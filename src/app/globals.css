@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-navy-50: #f0f3f9;
+  --color-navy-100: #d9e0ef;
+  --color-navy-200: #b3c1df;
+  --color-navy-300: #8da2cf;
+  --color-navy-400: #6783bf;
+  --color-navy-500: #4164af;
+  --color-navy-600: #34508c;
+  --color-navy-700: #273c69;
+  --color-navy-800: #1a2846;
+  --color-navy-900: #0d1423;
+  --color-navy-950: #070a12;
+
+  --color-gold-50: #fff9eb;
+  --color-gold-100: #ffefc6;
+  --color-gold-200: #ffdf88;
+  --color-gold-300: #ffcf4a;
+  --color-gold-400: #ffbf20;
+  --color-gold-500: #f59e07;
+  --color-gold-600: #d97702;
+  --color-gold-700: #b45306;
+  --color-gold-800: #92400c;
+  --color-gold-900: #78340d;
+  --color-gold-950: #451a02;
+
+  --color-charcoal-50: #f6f6f6;
+  --color-charcoal-100: #e7e7e7;
+  --color-charcoal-200: #d1d1d1;
+  --color-charcoal-300: #b0b0b0;
+  --color-charcoal-400: #888888;
+  --color-charcoal-500: #6d6d6d;
+  --color-charcoal-600: #5d5d5d;
+  --color-charcoal-700: #4f4f4f;
+  --color-charcoal-800: #454545;
+  --color-charcoal-900: #3d3d3d;
+  --color-charcoal-950: #1a1a1a;
+
+  --color-brand-red: #c0392b;
+  --color-brand-red-dark: #a93226;
+
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-charcoal-900);
+}
