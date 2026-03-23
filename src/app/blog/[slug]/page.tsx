@@ -60,15 +60,17 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* Featured Image */}
-      <div className="relative w-full h-72 md:h-96">
-        <Image
-          src={post.featuredImage}
-          alt={post.title}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+      <div className="max-w-3xl mx-auto px-6 -mt-6">
+        <div className="relative w-full aspect-[2/1] rounded-xl overflow-hidden shadow-lg">
+          <Image
+            src={post.featuredImage}
+            alt={post.title}
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 768px"
+          />
+        </div>
       </div>
 
       {/* Article Body */}
@@ -99,33 +101,3 @@ export default async function BlogPostPage({ params }: Props) {
                 Contact Real Elite Contracting for a free estimate. Serving Martinsburg, Charles Town, and the Eastern Panhandle.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-block bg-[#c0392b] text-white font-semibold px-7 py-3 rounded-full hover:bg-[#a93226] transition-colors text-sm"
-                >
-                  Get a Free Estimate
-                </Link>
-                <a
-                  href="tel:+16815345515"
-                  className="inline-block bg-white/10 text-white font-semibold px-7 py-3 rounded-full hover:bg-white/20 transition-colors text-sm"
-                >
-                  Call (681) 534-5515
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Back link */}
-          <div className="mt-8">
-            <Link
-              href="/blog"
-              className="text-[#c0392b] text-sm font-semibold hover:underline"
-            >
-              ← Back to Blog
-            </Link>
-          </div>
-        </div>
-      </article>
-    </>
-  );
-}
