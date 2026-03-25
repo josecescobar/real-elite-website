@@ -4,7 +4,7 @@ import EstimateForm from '@/components/shared/EstimateForm';
 import { Check, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: `General Repairs & Maintenance | ${BUSINESS.name}`,
+  title: `General Repairs in Eastern Panhandle, WV | ${BUSINESS.name}`,
   description:
     'Professional home repair and maintenance services in the Eastern Panhandle. Door repairs, drywall patching, trim work, deck fixes, and more.',
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     'Eastern Panhandle',
   ],
   openGraph: {
-    title: `General Repairs & Maintenance | ${BUSINESS.name}`,
+    title: `General Repairs in Eastern Panhandle, WV | ${BUSINESS.name}`,
     description:
       'Professional home repair and maintenance services. No job too small when it comes to keeping your home in great shape.',
     url: `${BUSINESS.url}/services/general-repairs`,
