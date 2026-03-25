@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import JsonLd from '@/components/seo/JsonLd';
 import { BUSINESS } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `${BUSINESS.name} | ${BUSINESS.tagline}`,
+  title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
   description:
     'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more. Free estimates available.',
   keywords: [
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: BUSINESS.url,
     siteName: BUSINESS.name,
-    title: `${BUSINESS.name} | ${BUSINESS.tagline}`,
+    title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
     description:
       'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
   },
@@ -61,63 +62,65 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
-              name: BUSINESS.name,
-              description:
-                'Eastern Panhandle\'s most trusted veteran-owned contracting company',
-              image: `${BUSINESS.url}/images/logo.png`,
-              url: BUSINESS.url,
-              telephone: BUSINESS.phoneRaw,
-              email: BUSINESS.email,
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: BUSINESS.address.street,
-                addressLocality: BUSINESS.address.city,
-                addressRegion: BUSINESS.address.state,
-                postalCode: BUSINESS.address.zip,
-                addressCountry: 'US',
+        <JsonLd
+          schema={{
+            '@context': 'https://schema.org',
+            '@type': 'GeneralContractor',
+            name: BUSINESS.name,
+            description:
+              "Eastern Panhandle's most trusted veteran-owned contracting company",
+            image: `${BUSINESS.url}/images/logo.png`,
+            url: `${BUSINESS.url}/`,
+            telephone: '+1-681-534-5515',
+            email: BUSINESS.email,
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Martinsburg',
+              addressRegion: 'WV',
+              postalCode: '25405',
+              addressCountry: 'US',
+            },
+            areaServed: [
+              'Martinsburg, WV',
+              'Inwood, WV',
+              'Hedgesville, WV',
+              'Charles Town, WV',
+              'Ranson, WV',
+              'Kearneysville, WV',
+              'Shepherdstown, WV',
+              'Harpers Ferry, WV',
+              'Berkeley Springs, WV',
+              'Spring Mills, WV',
+              'Falling Waters, WV',
+              'Winchester, VA',
+              'Hagerstown, MD',
+              'Frederick, MD',
+            ],
+            priceRange: '$$$',
+            knowsAbout: [
+              'Roofing',
+              'Siding',
+              'Decks',
+              'Remodeling',
+              'Additions',
+              'Exterior Repairs',
+              'General Repairs',
+            ],
+            openingHoursSpecification: [
+              {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '08:00',
+                closes: '17:00',
               },
-              areaServed: [
-                'Martinsburg, WV',
-                'Inwood, WV',
-                'Charles Town, WV',
-                'Ranson, WV',
-                'Hedgesville, WV',
-                'Spring Mills, WV',
-                'Falling Waters, WV',
-                'Berkeley Springs, WV',
-                'Shepherdstown, WV',
-              ],
-              priceRange: '$$$',
-              knowsAbout: [
-                'Roofing',
-                'Siding',
-                'Decks',
-                'Remodeling',
-                'Additions',
-                'Exterior Repairs',
-              ],
-              openingHoursSpecification: [
-                {
-                  '@type': 'OpeningHoursSpecification',
-                  dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                  opens: '07:00',
-                  closes: '18:00',
-                },
-                {
-                  '@type': 'OpeningHoursSpecification',
-                  dayOfWeek: 'Saturday',
-                  opens: '08:00',
-                  closes: '14:00',
-                },
-              ],
-              sameAs: [BUSINESS.social.facebook, BUSINESS.social.instagram],
-            }),
+            ],
+            sameAs: [
+              BUSINESS.social.facebook,
+              BUSINESS.social.instagram,
+              'https://www.linkedin.com/company/real-elite-contracting',
+              'https://www.yelp.com/biz/real-elite-contracting',
+              'https://www.thumbtack.com/wv/martinsburg/general-contractors/real-elite-contracting',
+            ],
           }}
         />
       </head>

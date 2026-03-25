@@ -60,15 +60,17 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* Featured Image */}
-      <div className="relative w-full h-72 md:h-96">
-        <Image
-          src={post.featuredImage}
-          alt={post.title}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+      <div className="max-w-3xl mx-auto px-6 -mt-6">
+        <div className="relative w-full aspect-[2/1] rounded-xl overflow-hidden shadow-lg">
+          <Image
+            src={post.featuredImage}
+            alt={post.title}
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 768px"
+          />
+        </div>
       </div>
 
       {/* Article Body */}

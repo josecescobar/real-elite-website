@@ -71,6 +71,13 @@ export const SERVICES = [
       'Door and window repairs, drywall patching, trim work, deck fixes, and all the smaller jobs that keep your home in great shape.',
     icon: 'Paintbrush' as const,
   },
+  {
+    title: 'Handyman Services',
+    slug: 'handyman',
+    description:
+      'Drywall repair, door installation, pressure washing, gutter cleaning, fence repair, TV mounting, and dozens of other fast, reliable home repairs.',
+    icon: 'Hammer' as const,
+  },
 ] as const;
 
 // --- Service Area Tiers ---

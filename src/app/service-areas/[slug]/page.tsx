@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const title = `${city.city}, ${city.state} Roofing, Siding & Deck Contractor | ${BUSINESS.name}`;
+  const title = `Contractor in ${city.city}, ${city.state} | ${BUSINESS.name}`;
   const description = `Professional roofing, siding, decks, remodeling, and exterior repairs in ${city.city}, ${city.state}. Free estimates from Real Elite Contracting.`;
 
   return {
