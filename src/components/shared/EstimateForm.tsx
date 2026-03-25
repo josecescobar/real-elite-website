@@ -36,6 +36,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -97,13 +98,18 @@ export default function EstimateForm({ service }: EstimateFormProps) {
     }
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
-      // TODO: Replace with actual API call
-      console.log('Form submitted:', formData);
+      const response = await fetch('/api/estimate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (!response.ok) {
+        throw new Error('Failed to send estimate request');
+      }
 
       setIsSuccess(true);
       setFormData({
@@ -120,6 +126,9 @@ export default function EstimateForm({ service }: EstimateFormProps) {
       }, 5000);
     } catch (error) {
       console.error('Form submission error:', error);
+      setSubmitError(
+        'Something went wrong sending your request. Please call us at (304) 901-8185 or try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -265,6 +274,13 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           <p className="text-red-500 text-sm mt-1">{errors.message}</p>
         )}
       </div>
+
+      {/* Error Message */}
+      {submitError && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <p className="text-red-700 text-sm">{submitError}</p>
+        </div>
+      )}
 
       {/* Submit Button */}
       <Button
