@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'Real Elite Contracting <onboarding@resend.dev>',
+        from: 'Real Elite Contracting <info@realelitecontracting.com>',
         to: [TO_EMAIL],
         subject: `New Estimate Request: ${service} — ${fullName}`,
         reply_to: email,
