@@ -28,7 +28,7 @@ export default function Header() {
             <span className="text-[#1a2744] font-bold text-xl tracking-tight">
               Real Elite
             </span>
-            <span className="text-[#1a2744]/60 font-medium text-xs tracking-widest uppercase">
+            <span className="text-[#1a2744] font-medium text-xs tracking-widest uppercase">
               Contracting
             </span>
           </div>

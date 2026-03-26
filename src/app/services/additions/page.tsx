@@ -150,6 +150,7 @@ export default function AdditionsPage() {
                 src="/images/shed-trim.jpg"
                 alt="Custom built shed with siding, trim, and fall foliage"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

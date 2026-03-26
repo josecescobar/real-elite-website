@@ -90,7 +90,7 @@ export default function Footer() {
             {BUSINESS.email}
           </a>
         </p>
-        <p className="text-gray-500 text-xs mt-1">{BUSINESS.hours}</p>
+        <p className="text-gray-400 text-xs mt-1">{BUSINESS.hours}</p>
 
         {/* Social Media Icons */}
         <div className="flex justify-center gap-4 mt-6">
@@ -101,7 +101,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="text-gray-500 hover:text-white transition-colors"
+              className="text-gray-400 hover:text-white transition-colors"
             >
               {link.icon}
             </a>
@@ -113,7 +113,7 @@ export default function Footer() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-gray-500 hover:text-gray-300 text-xs transition-colors"
+              className="text-gray-400 hover:text-gray-300 text-xs transition-colors"
             >
               {link.label}
             </Link>
@@ -125,7 +125,7 @@ export default function Footer() {
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="text-gray-600 hover:text-gray-400 text-xs transition-colors"
+              className="text-gray-400 hover:text-gray-300 text-xs transition-colors"
             >
               {service.title}
             </Link>
@@ -137,20 +137,20 @@ export default function Footer() {
             <Link
               key={area.slug}
               href={`/service-areas/${area.slug}`}
-              className="text-gray-600 hover:text-gray-400 text-xs transition-colors"
+              className="text-gray-400 hover:text-gray-300 text-xs transition-colors"
             >
               {area.city}, {area.state}
             </Link>
           ))}
           <Link
             href="/service-areas"
-            className="text-gray-500 hover:text-gray-300 text-xs transition-colors font-semibold"
+            className="text-gray-400 hover:text-gray-300 text-xs transition-colors font-semibold"
           >
             View All Areas &rarr;
           </Link>
         </div>
 
-        <p className="text-gray-600 text-xs mt-6">
+        <p className="text-gray-400 text-xs mt-6">
           &copy; 2024–{currentYear} {BUSINESS.name}. Licensed &amp; Insured.
         </p>
       </div>

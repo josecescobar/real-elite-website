@@ -61,12 +61,13 @@ export default function LatestBlogPosts() {
 
                 {/* Footer */}
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <time className="text-xs text-gray-400" dateTime={post.date}>
+                  <time className="text-xs text-gray-500" dateTime={post.date}>
                     {formatDate(post.date)}
                   </time>
                   <Link
                     href={`/blog/${post.slug}`}
                     className="text-[#c0392b] text-xs font-semibold hover:underline"
+                    aria-label={`Read more about ${post.title}`}
                   >
                     Read More →
                   </Link>
