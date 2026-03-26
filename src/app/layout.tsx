@@ -92,7 +92,7 @@ export default function RootLayout({
               '@type': 'PostalAddress',
               addressLocality: 'Martinsburg',
               addressRegion: 'WV',
-              postalCode: '25405',
+              postalCode: '25401',
               addressCountry: 'US',
             },
             areaServed: [
