@@ -149,7 +149,6 @@ export default function DecksPage() {
                 src="/images/deck-night-lights.jpg"
                 alt="Finished deck with solar post lights at night"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -185,13 +184,13 @@ export default function DecksPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-              <Image src="/images/deck-lounge.jpg" alt="Deck with outdoor lounge furniture" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              <Image src="/images/deck-lounge.jpg" alt="Deck with outdoor lounge furniture" fill className="object-cover" />
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-              <Image src="/images/deck-finished-railings.jpg" alt="Composite deck with white railings" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              <Image src="/images/deck-finished-railings.jpg" alt="Composite deck with white railings" fill className="object-cover" />
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-              <Image src="/images/deck-railing-install.jpg" alt="Installing white railing on deck" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              <Image src="/images/deck-railing-install.jpg" alt="Installing white railing on deck" fill className="object-cover" />
             </div>
           </div>
 

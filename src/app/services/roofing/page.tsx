@@ -149,7 +149,6 @@ export default function RoofingPage() {
                 src="/images/roofing-hero.jpg"
                 alt="Completed dark architectural shingle roof with clean ridge cap"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -185,13 +184,13 @@ export default function RoofingPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-              <Image src="/images/roofing-valley.jpg" alt="Roof valley and flashing detail" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              <Image src="/images/roofing-valley.jpg" alt="Roof valley and flashing detail" fill className="object-cover" />
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-              <Image src="/images/roofing-slope.jpg" alt="New charcoal shingle roof slope" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              <Image src="/images/roofing-slope.jpg" alt="New charcoal shingle roof slope" fill className="object-cover" />
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-              <Image src="/images/roofing-crew.jpg" alt="Roofing crew working on residential roof" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              <Image src="/images/roofing-crew.jpg" alt="Roofing crew working on residential roof" fill className="object-cover" />
             </div>
           </div>
 

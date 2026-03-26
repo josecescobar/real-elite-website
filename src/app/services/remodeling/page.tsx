@@ -149,7 +149,6 @@ export default function RemodelingPage() {
                 src="/images/flooring-dark-living.jpg"
                 alt="Dark laminate flooring installed in remodeled living room"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

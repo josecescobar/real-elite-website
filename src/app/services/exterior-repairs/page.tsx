@@ -137,7 +137,6 @@ export default function ExteriorRepairsPage() {
                 src="/images/stone-facade-finished.jpg"
                 alt="Finished stone veneer porch facade with white railings and walkway"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

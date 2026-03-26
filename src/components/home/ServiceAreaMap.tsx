@@ -60,7 +60,7 @@ export const ServiceAreaMap = () => {
 
         {/* Expansion Areas */}
         <div>
-          <h3 className="text-sm font-bold text-charcoal-600 uppercase tracking-wider mb-4 text-center">
+          <h3 className="text-sm font-bold text-charcoal-400 uppercase tracking-wider mb-4 text-center">
             Expanding To
           </h3>
           <div className="flex flex-wrap justify-center gap-3">

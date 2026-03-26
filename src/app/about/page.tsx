@@ -97,7 +97,6 @@ export default function AboutPage() {
                 src="/images/crew-dusk.jpg"
                 alt="Real Elite Contracting crew installing roof rafters at dusk"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
