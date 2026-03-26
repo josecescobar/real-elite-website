@@ -182,10 +182,11 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { service: string; city: string };
+  params: Promise<{ service: string; city: string }>;
 }): Promise<Metadata> {
-  const serviceData = SERVICES.find((s) => s.slug === params.service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === params.city);
+  const { service, city } = await params;
+  const serviceData = SERVICES.find((s) => s.slug === service);
+  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
 
   if (!serviceData || !cityData) return { title: 'Not Found' };
 
@@ -203,12 +204,12 @@ export async function generateMetadata({
       `${cityData.state} contractor`,
     ],
     alternates: {
-      canonical: `${BUSINESS.url}/services/${params.service}/${params.city}`,
+      canonical: `${BUSINESS.url}/services/${service}/${city}`,
     },
     openGraph: {
       title,
       description,
-      url: `${BUSINESS.url}/services/${params.service}/${params.city}`,
+      url: `${BUSINESS.url}/services/${service}/${city}`,
       type: 'website',
     },
   };
@@ -216,14 +217,15 @@ export async function generateMetadata({
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function ServiceCityPage({
+export default async function ServiceCityPage({
   params,
 }: {
-  params: { service: string; city: string };
+  params: Promise<{ service: string; city: string }>;
 }) {
-  const serviceData = SERVICES.find((s) => s.slug === params.service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === params.city);
-  const contentKey = `${params.service}-${params.city}` as keyof typeof CONTENT;
+  const { service, city } = await params;
+  const serviceData = SERVICES.find((s) => s.slug === service);
+  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
+  const contentKey = `${service}-${city}` as keyof typeof CONTENT;
   const content = CONTENT[contentKey];
 
   if (!serviceData || !cityData || !content) {

@@ -78,8 +78,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const city = ALL_SERVICE_AREAS.find((c) => c.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const city = ALL_SERVICE_AREAS.find((c) => c.slug === slug);
 
   if (!city) {
     return {
@@ -105,26 +106,27 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       'contractor near me',
     ],
     alternates: {
-      canonical: `${BUSINESS.url}/service-areas/${params.slug}`,
+      canonical: `${BUSINESS.url}/service-areas/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `${BUSINESS.url}/service-areas/${params.slug}`,
+      url: `${BUSINESS.url}/service-areas/${slug}`,
       type: 'website',
     },
   };
 }
 
-export default function CityServicePage({ params }: { params: { slug: string } }) {
-  const city = ALL_SERVICE_AREAS.find((c) => c.slug === params.slug);
-  const cityData = FULL_CITY_DATA[params.slug as CitySlug];
+export default async function CityServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const city = ALL_SERVICE_AREAS.find((c) => c.slug === slug);
+  const cityData = FULL_CITY_DATA[slug as CitySlug];
 
   if (!city || !cityData) {
     notFound();
   }
 
-  const isPrimary = PRIMARY_SERVICE_AREAS.some((a) => a.slug === params.slug);
+  const isPrimary = PRIMARY_SERVICE_AREAS.some((a) => a.slug === slug);
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
