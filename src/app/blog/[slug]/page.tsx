@@ -36,8 +36,38 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const canonicalUrl = `https://www.realelitecontracting.com/blog/${slug}`;
+
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Organization',
+      name: 'Real Elite Contracting',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Real Elite Contracting',
+      url: 'https://www.realelitecontracting.com',
+    },
+    image: post.featuredImage,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    description: post.excerpt,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+
       {/* Hero */}
       <section className="bg-[#1a2744] py-12 px-6">
         <div className="max-w-3xl mx-auto">

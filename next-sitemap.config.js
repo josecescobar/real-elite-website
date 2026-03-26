@@ -7,6 +7,7 @@ module.exports = {
       { userAgent: '*', allow: '/' },
     ],
   },
+  exclude: ['/apple-icon.png'],
   // Ensure all pages are included
   changefreq: 'weekly',
   priority: 0.7,

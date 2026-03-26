@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { BUSINESS } from '@/lib/constants';
+import Link from 'next/link';
+import { BUSINESS, ALL_SERVICE_AREAS } from '@/lib/constants';
 import Button from '@/components/shared/Button';
 import EstimateForm from '@/components/shared/EstimateForm';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: `Home Additions in Eastern Panhandle, WV | ${BUSINESS.name}`,
@@ -27,8 +28,67 @@ export const metadata: Metadata = {
       'Home additions that seamlessly blend with your existing structure. Add the space your family needs.',
     url: `${BUSINESS.url}/services/additions`,
     type: 'website',
+    images: [{ url: 'https://www.realelitecontracting.com/images/og-image.jpg', width: 1200, height: 630 }],
   },
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does a home addition cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Home addition costs in the Eastern Panhandle typically range from $100 to $250 per square foot depending on the type of addition, finishes, and complexity. A simple room addition might start around $30,000, while a full second-story addition can range from $100,000 and up. We provide detailed estimates during your free consultation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need a permit for a home addition?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, home additions require building permits in West Virginia. This includes structural permits, electrical, and plumbing permits depending on the scope. Real Elite Contracting handles the entire permitting process for you, ensuring full code compliance.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does it take to build an addition?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most home additions take 2-4 months from start to finish, depending on size and complexity. A simple room addition may take 6-8 weeks, while a second-story addition or in-law suite can take 3-4 months or more. We provide a detailed project timeline during your consultation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will an addition increase my home\'s value?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, a well-designed home addition typically increases your home\'s value significantly. Additions that add functional living space — like bedrooms, bathrooms, or in-law suites — tend to offer the best return on investment, often recouping 50-70% or more of the project cost at resale.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    question: 'How much does a home addition cost?',
+    answer: 'Home addition costs in the Eastern Panhandle typically range from $100 to $250 per square foot depending on the type of addition, finishes, and complexity. A simple room addition might start around $30,000, while a full second-story addition can range from $100,000 and up. We provide detailed estimates during your free consultation.',
+  },
+  {
+    question: 'Do I need a permit for a home addition?',
+    answer: 'Yes, home additions require building permits in West Virginia. This includes structural permits, electrical, and plumbing permits depending on the scope. Real Elite Contracting handles the entire permitting process for you, ensuring full code compliance.',
+  },
+  {
+    question: 'How long does it take to build an addition?',
+    answer: 'Most home additions take 2-4 months from start to finish, depending on size and complexity. A simple room addition may take 6-8 weeks, while a second-story addition or in-law suite can take 3-4 months or more. We provide a detailed project timeline during your consultation.',
+  },
+  {
+    question: 'Will an addition increase my home\'s value?',
+    answer: 'Yes, a well-designed home addition typically increases your home\'s value significantly. Additions that add functional living space — like bedrooms, bathrooms, or in-law suites — tend to offer the best return on investment, often recouping 50-70% or more of the project cost at resale.',
+  },
+];
 
 const additionServices = [
   'Room additions and expansions',
@@ -48,6 +108,12 @@ const whyChooseUs = [
 export default function AdditionsPage() {
   return (
     <>
+      {/* FAQPage JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero Banner */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
@@ -129,6 +195,41 @@ export default function AdditionsPage() {
                   <p className="text-gray-700 text-lg">{reason}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-24 bg-navy-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-12 text-center">
+            Frequently Asked Questions
+          </h2>
+
+          <div className="max-w-3xl mx-auto space-y-8">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
+                <h3 className="text-xl font-bold text-navy-900 mb-3">{faq.question}</h3>
+                <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Areas We Serve */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
+            Home Addition Services Across the Region
+          </h2>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {ALL_SERVICE_AREAS.map((area) => (
+              <Link key={area.slug} href={`/service-areas/${area.slug}`} className="flex items-center gap-2 text-navy-700 hover:text-gold-600 transition-colors p-2">
+                <MapPin className="w-4 h-4 text-gold-500 flex-shrink-0" />
+                <span>{area.city}, {area.state}</span>
+              </Link>
             ))}
           </div>
         </div>

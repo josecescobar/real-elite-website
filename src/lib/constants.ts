@@ -175,10 +175,12 @@ export const NAV_LINKS = [
     })),
   },
   { label: 'About', href: '/about' },
+  { label: 'Our Process', href: '/process' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Reviews', href: '/reviews' },
   { label: 'Service Areas', href: '/service-areas' },
   { label: 'Blog', href: '/blog' },
+  { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 

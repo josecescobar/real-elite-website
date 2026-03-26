@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { BUSINESS } from '@/lib/constants';
+import Link from 'next/link';
+import { BUSINESS, ALL_SERVICE_AREAS } from '@/lib/constants';
 import EstimateForm from '@/components/shared/EstimateForm';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: `General Repairs in Eastern Panhandle, WV | ${BUSINESS.name}`,
@@ -27,8 +28,55 @@ export const metadata: Metadata = {
       'Professional home repair and maintenance services. No job too small when it comes to keeping your home in great shape.',
     url: `${BUSINESS.url}/services/general-repairs`,
     type: 'website',
+    images: [{ url: 'https://www.realelitecontracting.com/images/og-image.jpg', width: 1200, height: 630 }],
   },
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What types of repairs do you handle?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We handle a wide range of general home repairs including door and window repairs, drywall patching, interior and exterior trim work, deck and fence repairs, pressure washing, weather damage repairs, caulking and sealing, and general carpentry. If it\'s broken, worn out, or needs fixing, odds are we can handle it.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can you schedule a repair?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We typically schedule repair work within 1-2 weeks, though availability varies by season. For urgent issues that could cause further damage to your home, we do our best to prioritize and get out sooner. Call us at (681) 534-5515 to discuss your timeline.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you offer emergency repair services?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'While we don\'t offer 24/7 emergency service, we prioritize urgent repairs that could lead to further damage — like storm damage, water intrusion, or structural safety concerns. Call us and we\'ll work to get your repair scheduled as quickly as possible.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    question: 'What types of repairs do you handle?',
+    answer: 'We handle a wide range of general home repairs including door and window repairs, drywall patching, interior and exterior trim work, deck and fence repairs, pressure washing, weather damage repairs, caulking and sealing, and general carpentry. If it\'s broken, worn out, or needs fixing, odds are we can handle it.',
+  },
+  {
+    question: 'How quickly can you schedule a repair?',
+    answer: 'We typically schedule repair work within 1-2 weeks, though availability varies by season. For urgent issues that could cause further damage to your home, we do our best to prioritize and get out sooner. Call us at (681) 534-5515 to discuss your timeline.',
+  },
+  {
+    question: 'Do you offer emergency repair services?',
+    answer: 'While we don\'t offer 24/7 emergency service, we prioritize urgent repairs that could lead to further damage — like storm damage, water intrusion, or structural safety concerns. Call us and we\'ll work to get your repair scheduled as quickly as possible.',
+  },
+];
 
 const repairServices = [
   'Door and window repairs',
@@ -56,6 +104,12 @@ const whyChooseUs = [
 export default function GeneralRepairsPage() {
   return (
     <>
+      {/* FAQPage JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero Banner */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
@@ -146,6 +200,41 @@ export default function GeneralRepairsPage() {
                   <p className="text-gray-700 text-lg">{reason}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-24 bg-navy-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-12 text-center">
+            Frequently Asked Questions
+          </h2>
+
+          <div className="max-w-3xl mx-auto space-y-8">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
+                <h3 className="text-xl font-bold text-navy-900 mb-3">{faq.question}</h3>
+                <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Areas We Serve */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
+            General Repair Services Across the Region
+          </h2>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {ALL_SERVICE_AREAS.map((area) => (
+              <Link key={area.slug} href={`/service-areas/${area.slug}`} className="flex items-center gap-2 text-navy-700 hover:text-gold-600 transition-colors p-2">
+                <MapPin className="w-4 h-4 text-gold-500 flex-shrink-0" />
+                <span>{area.city}, {area.state}</span>
+              </Link>
             ))}
           </div>
         </div>

@@ -266,11 +266,26 @@ export default async function ServiceCityPage({
     },
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BUSINESS.url },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${BUSINESS.url}/services` },
+      { '@type': 'ListItem', position: 3, name: serviceData.title, item: `${BUSINESS.url}/services/${service}` },
+      { '@type': 'ListItem', position: 4, name: `${cityData.city}, ${cityData.state}`, item: `${BUSINESS.url}/services/${service}/${city}` },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero */}

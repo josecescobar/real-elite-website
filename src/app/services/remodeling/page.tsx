@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { BUSINESS } from '@/lib/constants';
+import Link from 'next/link';
+import { BUSINESS, ALL_SERVICE_AREAS } from '@/lib/constants';
 import Button from '@/components/shared/Button';
 import EstimateForm from '@/components/shared/EstimateForm';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: `Home Remodeling in Eastern Panhandle, WV | ${BUSINESS.name}`,
@@ -27,8 +28,67 @@ export const metadata: Metadata = {
       'Interior and exterior remodeling that modernizes your home. Kitchens, bathrooms, and full home renovations.',
     url: `${BUSINESS.url}/services/remodeling`,
     type: 'website',
+    images: [{ url: 'https://www.realelitecontracting.com/images/og-image.jpg', width: 1200, height: 630 }],
   },
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does a kitchen remodel cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Kitchen remodel costs vary widely based on scope and materials. A minor kitchen update in the Eastern Panhandle typically starts around $10,000, while a full kitchen remodel can range from $20,000 to $50,000 or more. We provide detailed, transparent estimates before any work begins.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does a home remodel take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Timelines depend on the scope of the project. A bathroom remodel typically takes 2-4 weeks, a kitchen remodel 4-8 weeks, and a full home renovation can take several months. We provide a realistic timeline during your consultation and keep you updated throughout the project.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you handle permits for remodeling projects?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, we handle all necessary permits and ensure your remodeling project meets local building codes. Proper permitting protects your investment and ensures the work is done safely and to code.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I live in my home during a remodel?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'In most cases, yes. We take steps to minimize disruption — containing dust, maintaining access to essential rooms, and cleaning up daily. For major renovations that affect kitchens or bathrooms, we work with you to plan around your daily routine.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    question: 'How much does a kitchen remodel cost?',
+    answer: 'Kitchen remodel costs vary widely based on scope and materials. A minor kitchen update in the Eastern Panhandle typically starts around $10,000, while a full kitchen remodel can range from $20,000 to $50,000 or more. We provide detailed, transparent estimates before any work begins.',
+  },
+  {
+    question: 'How long does a home remodel take?',
+    answer: 'Timelines depend on the scope of the project. A bathroom remodel typically takes 2-4 weeks, a kitchen remodel 4-8 weeks, and a full home renovation can take several months. We provide a realistic timeline during your consultation and keep you updated throughout the project.',
+  },
+  {
+    question: 'Do you handle permits for remodeling projects?',
+    answer: 'Yes, we handle all necessary permits and ensure your remodeling project meets local building codes. Proper permitting protects your investment and ensures the work is done safely and to code.',
+  },
+  {
+    question: 'Can I live in my home during a remodel?',
+    answer: 'In most cases, yes. We take steps to minimize disruption — containing dust, maintaining access to essential rooms, and cleaning up daily. For major renovations that affect kitchens or bathrooms, we work with you to plan around your daily routine.',
+  },
+];
 
 const remodelingServices = [
   'Kitchen remodeling and updates',
@@ -48,6 +108,12 @@ const whyChooseUs = [
 export default function RemodelingPage() {
   return (
     <>
+      {/* FAQPage JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero Banner */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
@@ -128,6 +194,41 @@ export default function RemodelingPage() {
                   <p className="text-gray-700 text-lg">{reason}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-24 bg-navy-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-12 text-center">
+            Frequently Asked Questions
+          </h2>
+
+          <div className="max-w-3xl mx-auto space-y-8">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
+                <h3 className="text-xl font-bold text-navy-900 mb-3">{faq.question}</h3>
+                <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Areas We Serve */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
+            Remodeling Services Across the Region
+          </h2>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {ALL_SERVICE_AREAS.map((area) => (
+              <Link key={area.slug} href={`/service-areas/${area.slug}`} className="flex items-center gap-2 text-navy-700 hover:text-gold-600 transition-colors p-2">
+                <MapPin className="w-4 h-4 text-gold-500 flex-shrink-0" />
+                <span>{area.city}, {area.state}</span>
+              </Link>
             ))}
           </div>
         </div>

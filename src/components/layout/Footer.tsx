@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { BUSINESS, SERVICES, NAV_LINKS } from '@/lib/constants';
+import { BUSINESS, SERVICES, NAV_LINKS, PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS } from '@/lib/constants';
 
 const SOCIAL_LINKS = [
   {
@@ -90,6 +90,7 @@ export default function Footer() {
             {BUSINESS.email}
           </a>
         </p>
+        <p className="text-gray-500 text-xs mt-1">{BUSINESS.hours}</p>
 
         {/* Social Media Icons */}
         <div className="flex justify-center gap-4 mt-6">
@@ -129,6 +130,24 @@ export default function Footer() {
               {service.title}
             </Link>
           ))}
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-4">
+          {[...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS].slice(0, 6).map((area) => (
+            <Link
+              key={area.slug}
+              href={`/service-areas/${area.slug}`}
+              className="text-gray-600 hover:text-gray-400 text-xs transition-colors"
+            >
+              {area.city}, {area.state}
+            </Link>
+          ))}
+          <Link
+            href="/service-areas"
+            className="text-gray-500 hover:text-gray-300 text-xs transition-colors font-semibold"
+          >
+            View All Areas &rarr;
+          </Link>
         </div>
 
         <p className="text-gray-600 text-xs mt-6">
