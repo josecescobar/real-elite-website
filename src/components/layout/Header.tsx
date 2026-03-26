@@ -13,7 +13,7 @@ export default function Header() {
   const [expandedService, setExpandedService] = useState(false);
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
