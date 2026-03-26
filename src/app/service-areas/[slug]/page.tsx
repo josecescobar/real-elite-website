@@ -5,6 +5,9 @@ import {
   BUSINESS,
   PRIMARY_SERVICE_AREAS,
   SECONDARY_SERVICE_AREAS,
+  EXPANSION_SERVICE_AREAS,
+  EXPANSION_CITY_DATA,
+  ALL_SERVICE_AREAS,
   SERVICES,
 } from '@/lib/constants';
 import Button from '@/components/shared/Button';
@@ -66,18 +69,17 @@ const CITY_DATA: Record<
   },
 };
 
-type CitySlug = keyof typeof CITY_DATA;
+const FULL_CITY_DATA = { ...CITY_DATA, ...EXPANSION_CITY_DATA };
+type CitySlug = keyof typeof FULL_CITY_DATA;
 
 export function generateStaticParams() {
-  const allCities = [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
-  return allCities.map((area) => ({
+  return ALL_SERVICE_AREAS.map((area) => ({
     slug: area.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const allCities = [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
-  const city = allCities.find((c) => c.slug === params.slug);
+  const city = ALL_SERVICE_AREAS.find((c) => c.slug === params.slug);
 
   if (!city) {
     return {
@@ -85,21 +87,21 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const title = `Contractor in ${city.city}, ${city.state} | ${BUSINESS.name}`;
-  const description = `Professional roofing, siding, decks, remodeling, and exterior repairs in ${city.city}, ${city.state}. Free estimates from Real Elite Contracting.`;
+  const title = `General Contractor in ${city.city}, ${city.state} | ${BUSINESS.name}`;
+  const description = `Real Elite Contracting serves ${city.city}, ${city.state} with expert roofing, siding, decks, remodeling, and exterior repairs. Veteran-owned. Call for a free estimate.`;
 
   return {
     title,
     description,
     keywords: [
       `${city.city} contractor`,
+      `${city.city} general contractor`,
       `${city.city} roofing`,
       `${city.city} siding`,
       `${city.city} decks`,
       `${city.city} remodeling`,
-      `${city.city} exterior repair`,
+      `${city.city} home improvement`,
       `${city.state} contractor`,
-      'home improvement',
       'contractor near me',
     ],
     alternates: {
@@ -115,9 +117,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function CityServicePage({ params }: { params: { slug: string } }) {
-  const allCities = [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
-  const city = allCities.find((c) => c.slug === params.slug);
-  const cityData = CITY_DATA[params.slug as CitySlug];
+  const city = ALL_SERVICE_AREAS.find((c) => c.slug === params.slug);
+  const cityData = FULL_CITY_DATA[params.slug as CitySlug];
 
   if (!city || !cityData) {
     notFound();
@@ -125,8 +126,45 @@ export default function CityServicePage({ params }: { params: { slug: string } }
 
   const isPrimary = PRIMARY_SERVICE_AREAS.some((a) => a.slug === params.slug);
 
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: BUSINESS.name,
+    url: BUSINESS.url,
+    telephone: BUSINESS.phoneRaw,
+    email: BUSINESS.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: BUSINESS.address.city,
+      addressRegion: BUSINESS.address.state,
+      postalCode: BUSINESS.address.zip,
+      addressCountry: 'US',
+    },
+    areaServed: {
+      '@type': 'City',
+      name: city.city,
+      containedInPlace: {
+        '@type': 'State',
+        name: city.state,
+      },
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Home Improvement Services',
+      itemListElement: SERVICES.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.title },
+      })),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+
       {/* Hero Section */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <div className="container mx-auto px-4">

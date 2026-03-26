@@ -106,6 +106,30 @@ export const EXPANSION_SERVICE_AREAS = [
   { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
 ] as const;
 
+/** Rich city data for expansion service areas */
+export const EXPANSION_CITY_DATA: Record<string, { description: string; neighborhoods: string[] }> = {
+  'winchester-va': {
+    description:
+      "Winchester is the historic gateway to Virginia's Shenandoah Valley — a city that blends a vibrant, walkable Old Town with rapidly growing residential neighborhoods along Route 7, Route 522, and the Senseny Road corridor. As the largest city in the Northern Shenandoah Valley, Winchester draws families and professionals who appreciate its small-city character, proximity to the mountains, and access to both Northern Virginia jobs and a lower cost of living. Real Elite Contracting is proud to serve Winchester homeowners with the same high-quality craftsmanship we deliver throughout the Eastern Panhandle.",
+    neighborhoods: ['Old Town Winchester', 'Shawnee District', 'Senseny Road Corridor', 'Millwood Avenue Area'],
+  },
+  'frederick-md': {
+    description:
+      "Frederick is the county seat and largest city in Frederick County, Maryland — a rapidly growing community of over 75,000 residents that has transformed from a historic market town into one of the Mid-Atlantic's most desirable places to live. The revitalization of Carroll Creek and the Market Street corridor has breathed new life into Frederick's historic downtown, while the I-70 growth corridor continues to attract new developments in Urbana, Jefferson, and New Market. Real Elite Contracting serves Frederick homeowners who want professional-grade results for their most important asset.",
+    neighborhoods: ['Historic Downtown Frederick', 'Ballenger Creek', 'Urbana', 'Jefferson'],
+  },
+  'leesburg-va': {
+    description:
+      "Leesburg is the historic county seat of Loudoun County, Virginia — one of the wealthiest counties in the United States and one of the fastest-growing. Its walkable, brick-lined historic downtown along King Street, its proximity to Dulles International Airport, and its stunning setting in the Loudoun Valley make it one of Northern Virginia's most desirable addresses. From estate homes in Lansdowne on the Potomac to restored historic properties in the Old Town district, Leesburg homeowners demand quality craftsmanship. Real Elite Contracting delivers it.",
+    neighborhoods: ['Historic Old Town Leesburg', 'Lansdowne on the Potomac', 'Cascades', 'Countryside'],
+  },
+  'ashburn-va': {
+    description:
+      "Ashburn is at the heart of Loudoun County's explosive growth — a master-planned tech corridor and residential powerhouse that houses thousands of data centers alongside growing young families. Communities like Broadlands, Brambleton, One Loudoun, and Ashburn Farm offer modern homes in well-maintained neighborhoods where curb appeal and property values are taken seriously. With the Silver Line Metro now connecting Ashburn directly to Washington, D.C., this market only continues to appreciate. Real Elite Contracting is Ashburn's trusted partner for home improvements done right.",
+    neighborhoods: ['One Loudoun', 'Broadlands', 'Brambleton', 'Ashburn Farm'],
+  },
+};
+
 /** Flat list of all service areas for convenience */
 export const ALL_SERVICE_AREAS = [
   ...PRIMARY_SERVICE_AREAS,

@@ -154,22 +154,31 @@ export default function ServiceAreasPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
-              Expansion Service Areas
+              Now Serving Virginia &amp; Maryland
             </h2>
             <p className="text-gold-300 text-center max-w-2xl mx-auto">
-              We're expanding our service footprint to reach more homeowners in Virginia and Maryland.
+              Real Elite Contracting has expanded to serve homeowners across Northern Virginia and Western Maryland.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {EXPANSION_SERVICE_AREAS.map((area) => (
-              <div
-                key={area.slug}
-                className="bg-navy-800 p-6 rounded-lg border border-navy-700 text-center"
-              >
-                <h3 className="text-lg font-bold mb-2">{area.city}</h3>
-                <p className="text-gray-400 text-sm">{area.state}</p>
-              </div>
+              <Link key={area.slug} href={`/service-areas/${area.slug}`}>
+                <div className="bg-navy-800 p-6 rounded-lg border border-gold-500 hover:border-gold-400 hover:bg-navy-700 transition-all duration-300 cursor-pointer group">
+                  <div className="flex items-start gap-3 mb-3">
+                    <MapPin className="w-5 h-5 text-gold-400 mt-0.5 flex-shrink-0 group-hover:text-gold-300" />
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-white group-hover:text-gold-300 transition-colors">
+                        {area.city}
+                      </h3>
+                      <p className="text-gray-400 text-xs">{area.state}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center text-gold-400 font-semibold text-sm group-hover:text-gold-300 transition-colors">
+                    View Details <ArrowRight className="w-3 h-3 ml-2" />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
