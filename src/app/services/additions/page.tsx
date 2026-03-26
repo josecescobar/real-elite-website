@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     'in-law suites',
     'Eastern Panhandle',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/services/additions`,
+  },
   openGraph: {
     title: `Home Additions in Eastern Panhandle, WV | ${BUSINESS.name}`,
     description:

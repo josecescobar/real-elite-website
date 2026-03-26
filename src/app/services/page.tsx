@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     'home maintenance',
     'handyman services',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/services`,
+  },
   openGraph: {
     title: `Services | ${BUSINESS.name}`,
     description: 'Explore our full range of contracting services across the Eastern Panhandle.',

@@ -20,6 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} | Real Elite Contracting`,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://www.realelitecontracting.com/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,

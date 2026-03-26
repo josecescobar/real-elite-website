@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     'roofing projects',
     'deck construction',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/gallery`,
+  },
   openGraph: {
     title: `Project Gallery | ${BUSINESS.name}`,
     description:

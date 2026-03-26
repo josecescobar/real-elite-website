@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     'TV mounting',
     'veteran-owned handyman',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/services/handyman`,
+  },
   openGraph: {
     title: `Handyman Services in Martinsburg, WV | ${BUSINESS.name}`,
     description:

@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     'WV contractor',
     'local contractor',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/service-areas`,
+  },
   openGraph: {
     title: `Service Areas | ${BUSINESS.name}`,
     description:
@@ -165,10 +168,7 @@ export default function ServiceAreasPage() {
                 className="bg-navy-800 p-6 rounded-lg border border-navy-700 text-center"
               >
                 <h3 className="text-lg font-bold mb-2">{area.city}</h3>
-                <p className="text-gray-400 text-sm mb-4">{area.state}</p>
-                <span className="inline-block bg-gold-600 text-navy-900 text-xs font-bold px-3 py-1 rounded-full">
-                  Coming Soon
-                </span>
+                <p className="text-gray-400 text-sm">{area.state}</p>
               </div>
             ))}
           </div>

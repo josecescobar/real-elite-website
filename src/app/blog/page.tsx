@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Blog | Real Elite Contracting',
   description:
     "Tips, guides, and project insights from Eastern Panhandle's most trusted contractor. Roofing, decks, siding, and home improvement advice for WV homeowners.",
+  alternates: {
+    canonical: 'https://www.realelitecontracting.com/blog',
+  },
 };
 
 export default function BlogPage() {

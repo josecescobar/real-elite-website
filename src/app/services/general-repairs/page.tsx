@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     'Martinsburg',
     'Eastern Panhandle',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/services/general-repairs`,
+  },
   openGraph: {
     title: `General Repairs in Eastern Panhandle, WV | ${BUSINESS.name}`,
     description:

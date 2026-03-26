@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     'email',
     'Eastern Panhandle',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/contact`,
+  },
   openGraph: {
     title: `Contact Us | ${BUSINESS.name}`,
     description: 'Get in touch with Real Elite Contracting for your home improvement project.',
@@ -91,8 +94,6 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-navy-900">Location</h3>
                     <p className="text-gray-700">
-                      {BUSINESS.address.street}
-                      <br />
                       {BUSINESS.address.city}, {BUSINESS.address.state} {BUSINESS.address.zip}
                     </p>
                     <p className="text-sm text-gray-600 mt-2">

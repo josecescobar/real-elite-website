@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     'wood siding',
     'Eastern Panhandle contractor',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/services/siding`,
+  },
   openGraph: {
     title: `Siding in Eastern Panhandle, WV | ${BUSINESS.name}`,
     description:

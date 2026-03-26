@@ -43,6 +43,24 @@ export const metadata: Metadata = {
     title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
     description:
       'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
+    images: [
+      {
+        url: `${BUSINESS.url}/images/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Real Elite Contracting - Eastern Panhandle\'s Most Trusted Contractor',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
+    description:
+      'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
+    images: [`${BUSINESS.url}/images/og-image.jpg`],
+  },
+  alternates: {
+    canonical: BUSINESS.url,
   },
   robots: {
     index: true,
@@ -125,8 +143,14 @@ export default function RootLayout({
               {
                 '@type': 'OpeningHoursSpecification',
                 dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '07:00',
+                closes: '18:00',
+              },
+              {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Saturday'],
                 opens: '08:00',
-                closes: '17:00',
+                closes: '14:00',
               },
             ],
             sameAs: [

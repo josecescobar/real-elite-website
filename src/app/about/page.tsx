@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     'Eastern Panhandle contractor',
     'Real Elite Contracting',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/about`,
+  },
   openGraph: {
     title: `About Us | ${BUSINESS.name}`,
     description:

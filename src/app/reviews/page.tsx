@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     'customer satisfaction',
     'Google reviews',
   ],
+  alternates: {
+    canonical: `${BUSINESS.url}/reviews`,
+  },
   openGraph: {
     title: `Customer Reviews | ${BUSINESS.name}`,
     description:
@@ -92,6 +95,31 @@ export default function ReviewsPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Leave a Review CTA */}
+      <section className="py-14 md:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center justify-center gap-2 bg-[#c0392b]/10 text-[#c0392b] font-semibold text-sm px-4 py-2 rounded-full mb-5">
+            <Star className="w-4 h-4 fill-[#c0392b]" />
+            Share Your Experience
+          </div>
+          <h2 className="text-3xl md:text-4xl font-black text-navy-900 mb-4">
+            Leave Us a Review on Google
+          </h2>
+          <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
+            Had a great experience with Real Elite Contracting? Your review helps other homeowners
+            find a contractor they can trust.
+          </p>
+          <a
+            href={BUSINESS.social.google}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#c0392b] hover:bg-[#a93226] text-white font-bold text-lg px-10 py-4 rounded-lg transition-colors shadow-lg"
+          >
+            Leave Us a Review
+          </a>
         </div>
       </section>
 

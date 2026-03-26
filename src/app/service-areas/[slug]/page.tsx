@@ -102,6 +102,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       'home improvement',
       'contractor near me',
     ],
+    alternates: {
+      canonical: `${BUSINESS.url}/service-areas/${params.slug}`,
+    },
     openGraph: {
       title,
       description,
