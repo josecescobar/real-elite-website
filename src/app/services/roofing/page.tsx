@@ -149,6 +149,7 @@ export default function RoofingPage() {
                 src="/images/roofing-hero.jpg"
                 alt="Completed dark architectural shingle roof with clean ridge cap"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

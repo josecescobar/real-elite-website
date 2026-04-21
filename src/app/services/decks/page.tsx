@@ -149,6 +149,7 @@ export default function DecksPage() {
                 src="/images/deck-night-lights.jpg"
                 alt="Finished deck with solar post lights at night"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

@@ -78,10 +78,10 @@ export default function Footer() {
           className="w-16 h-16 md:w-[72px] md:h-[72px] mx-auto mb-4"
         />
         <span className="text-white font-bold text-lg">{BUSINESS.name}</span>
-        <p className="text-gray-400 text-sm mt-1">
+        <p className="text-gray-300 text-sm mt-1">
           Veteran-Owned · {BUSINESS.address.region}
         </p>
-        <p className="text-gray-400 text-sm mt-2">
+        <p className="text-gray-300 text-sm mt-2">
           <a href={`tel:${BUSINESS.phoneRaw}`} className="hover:text-white transition-colors">
             {BUSINESS.phone}
           </a>
@@ -90,7 +90,7 @@ export default function Footer() {
             {BUSINESS.email}
           </a>
         </p>
-        <p className="text-gray-500 text-xs mt-1">{BUSINESS.hours}</p>
+        <p className="text-gray-300 text-xs mt-1">{BUSINESS.hours}</p>
 
         {/* Social Media Icons */}
         <div className="flex justify-center gap-4 mt-6">
@@ -101,56 +101,56 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="text-gray-500 hover:text-white transition-colors"
+              className="inline-flex items-center justify-center w-11 h-11 text-gray-300 hover:text-white transition-colors"
             >
               {link.icon}
             </a>
           ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-6">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-6">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-gray-500 hover:text-gray-300 text-xs transition-colors"
+              className="text-gray-300 hover:text-white text-sm py-1 transition-colors"
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-4">
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 mt-4">
           {SERVICES.map((service) => (
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="text-gray-600 hover:text-gray-400 text-xs transition-colors"
+              className="text-gray-300 hover:text-white text-sm py-1 transition-colors"
             >
               {service.title}
             </Link>
           ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-4">
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 mt-4">
           {[...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS].slice(0, 6).map((area) => (
             <Link
               key={area.slug}
               href={`/service-areas/${area.slug}`}
-              className="text-gray-600 hover:text-gray-400 text-xs transition-colors"
+              className="text-gray-300 hover:text-white text-sm py-1 transition-colors"
             >
               {area.city}, {area.state}
             </Link>
           ))}
           <Link
             href="/service-areas"
-            className="text-gray-500 hover:text-gray-300 text-xs transition-colors font-semibold"
+            className="text-gray-300 hover:text-white text-sm py-1 transition-colors font-semibold"
           >
             View All Areas &rarr;
           </Link>
         </div>
 
-        <p className="text-gray-600 text-xs mt-6">
+        <p className="text-gray-300 text-xs mt-6">
           &copy; 2024–{currentYear} {BUSINESS.name}. Licensed &amp; Insured.
         </p>
       </div>

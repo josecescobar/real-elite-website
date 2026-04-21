@@ -14,6 +14,7 @@ export const Hero = () => {
             width={140}
             height={140}
             className="w-32 h-32 md:w-36 md:h-36 mb-8"
+            priority
           />
 
           <div className="inline-flex items-center gap-2 bg-[#1a2744]/5 rounded-full px-4 py-1.5 mb-8">

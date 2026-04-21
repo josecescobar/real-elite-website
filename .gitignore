@@ -3,3 +3,6 @@ node_modules
 .vercel
 .env
 .env.local
+
+# image originals kept locally, not deployed
+*.backup
