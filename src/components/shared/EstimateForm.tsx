@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { SERVICES } from '@/lib/constants';
+import { trackEvent } from '@/lib/analytics';
 import Button from './Button';
 
 interface FormData {
@@ -113,6 +114,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
         throw new Error('Failed to send estimate request');
       }
 
+      trackEvent('form_submit', { form: 'estimate', service: formData.service });
       setIsSuccess(true);
       setFormData({
         fullName: '',

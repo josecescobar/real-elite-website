@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import { BUSINESS } from '@/lib/constants';
+import { trackEvent } from '@/lib/analytics';
 
 const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
 
@@ -38,12 +41,14 @@ export const Hero = () => {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('calendly_click', { location: 'hero' })}
               className="bg-[#c0392b] text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-[#a93226] transition-colors shadow-lg shadow-[#c0392b]/20"
             >
               Book Free Estimate →
             </a>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
+              onClick={() => trackEvent('phone_click', { location: 'hero' })}
               className="bg-[#1a2744] text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-[#0f1b2d] transition-colors"
             >
               Call {BUSINESS.phone}
