@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { SERVICES } from '@/lib/constants';
+import { trackEvent } from '@/lib/analytics';
 import Button from './Button';
 
 interface FormData {
@@ -100,17 +101,20 @@ export default function EstimateForm({ service }: EstimateFormProps) {
     setIsSubmitting(true);
     setSubmitError(null);
 
+    const honeypot = (e.currentTarget.elements.namedItem('website') as HTMLInputElement | null)?.value ?? '';
+
     try {
       const response = await fetch('/api/estimate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, website: honeypot }),
       });
 
       if (!response.ok) {
         throw new Error('Failed to send estimate request');
       }
 
+      trackEvent('form_submit', { form: 'estimate', service: formData.service });
       setIsSuccess(true);
       setFormData({
         fullName: '',
@@ -155,6 +159,12 @@ export default function EstimateForm({ service }: EstimateFormProps) {
       onSubmit={handleSubmit}
       className="bg-white rounded-lg shadow-lg p-6 sm:p-8 space-y-6"
     >
+      {/* Honeypot — visually hidden, bots fill it, real users don't */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
+        <label htmlFor="website">Website</label>
+        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
+
       {/* Full Name */}
       <div>
         <label htmlFor="fullName" className="block text-sm font-semibold text-navy-900 mb-2">

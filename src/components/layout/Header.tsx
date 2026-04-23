@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { NAV_LINKS, BUSINESS } from '@/lib/constants';
+import { trackEvent } from '@/lib/analytics';
 
 const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
 
@@ -13,7 +14,7 @@ export default function Header() {
   const [expandedService, setExpandedService] = useState(false);
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
@@ -28,7 +29,7 @@ export default function Header() {
             <span className="text-[#1a2744] font-bold text-xl tracking-tight">
               Real Elite
             </span>
-            <span className="text-[#1a2744]/60 font-medium text-xs tracking-widest uppercase">
+            <span className="text-[#1a2744] font-medium text-xs tracking-widest uppercase">
               Contracting
             </span>
           </div>
@@ -66,6 +67,7 @@ export default function Header() {
 
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
+            onClick={() => trackEvent('phone_click', { location: 'header_desktop' })}
             className="bg-[#1a2744] text-white px-5 py-2.5 rounded-full font-medium text-sm hover:bg-[#0f1b2d] transition-colors"
           >
             {BUSINESS.phone}
@@ -74,6 +76,7 @@ export default function Header() {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('calendly_click', { location: 'header_desktop' })}
             className="bg-[#c0392b] text-white px-5 py-2.5 rounded-full font-medium text-sm hover:bg-[#a93226] transition-colors"
           >
             Book Free Estimate
@@ -84,6 +87,7 @@ export default function Header() {
         <div className="lg:hidden flex items-center gap-3">
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
+            onClick={() => trackEvent('phone_click', { location: 'header_mobile' })}
             className="bg-[#1a2744] text-white px-4 py-2 rounded-full text-sm font-medium"
           >
             Call
@@ -147,6 +151,7 @@ export default function Header() {
           <div className="px-6 pb-4 flex flex-col gap-3 max-w-6xl mx-auto">
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
+              onClick={() => trackEvent('phone_click', { location: 'header_mobile_menu' })}
               className="flex items-center justify-center w-full py-3 bg-[#1a2744] text-white font-medium rounded-full text-sm"
             >
               Call {BUSINESS.phone}
@@ -155,6 +160,7 @@ export default function Header() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('calendly_click', { location: 'header_mobile_menu' })}
               className="flex items-center justify-center w-full py-3 bg-[#c0392b] text-white font-medium rounded-full text-sm"
             >
               Book Free Estimate

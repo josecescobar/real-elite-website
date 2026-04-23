@@ -149,6 +149,7 @@ export default function SidingPage() {
                 src="/images/siding-windows.jpg"
                 alt="Siding and window replacement showing house wrap to siding transition"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
