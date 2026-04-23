@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TO_EMAIL = process.env.ESTIMATE_TO_EMAIL || 'josecapacho@gmail.com';
+const TO_EMAIL = process.env.ESTIMATE_TO_EMAIL || 'info@realelitecontracting.com';
 
 const MAX = { fullName: 100, email: 200, phone: 30, service: 50, message: 2000 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
