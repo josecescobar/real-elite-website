@@ -1,17 +1,55 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { NAV_LINKS, BUSINESS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 
 const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
 
+function isActive(pathname: string, href: string): boolean {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export default function Header() {
+  const pathname = usePathname() ?? '/';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [expandedService, setExpandedService] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+
+  // Close desktop services dropdown on outside click or Escape
+  useEffect(() => {
+    if (!isServicesOpen) return;
+    function onClick(e: MouseEvent) {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setIsServicesOpen(false);
+    }
+    document.addEventListener('mousedown', onClick);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [isServicesOpen]);
+
+  // Close mobile menu on Escape
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="bg-white backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
@@ -36,34 +74,70 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6 text-sm text-gray-500">
-          {NAV_LINKS.map((link) => (
-            <div key={link.label} className="relative group">
+        <nav className="hidden lg:flex items-center gap-6 text-sm text-gray-500" aria-label="Primary">
+          {NAV_LINKS.map((link) => {
+            const active = isActive(pathname, link.href);
+            const isServices = link.label === 'Services' && link.children;
+
+            if (isServices) {
+              return (
+                <div key={link.label} className="relative" ref={servicesRef}>
+                  <div className="flex items-center gap-1">
+                    <Link
+                      href={link.href}
+                      className={`hover:text-[#1a2744] transition-colors font-medium ${active ? 'text-[#1a2744]' : ''}`}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setIsServicesOpen((open) => !open)}
+                      aria-expanded={isServicesOpen}
+                      aria-controls="services-submenu"
+                      aria-label={`${isServicesOpen ? 'Close' : 'Open'} Services submenu`}
+                      className="p-1 rounded text-gray-500 hover:text-[#1a2744] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a2744]"
+                    >
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                  </div>
+
+                  {isServicesOpen && (
+                    <div
+                      id="services-submenu"
+                      role="menu"
+                      className="absolute left-0 top-full mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 py-1"
+                    >
+                      {link.children!.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          role="menuitem"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="block px-4 py-2 text-sm text-gray-600 hover:text-[#1a2744] hover:bg-gray-50 transition-colors first:rounded-t-xl last:rounded-b-xl"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            return (
               <Link
+                key={link.label}
                 href={link.href}
-                className="hover:text-[#1a2744] flex items-center gap-1 transition-colors font-medium"
+                className={`hover:text-[#1a2744] transition-colors font-medium ${active ? 'text-[#1a2744]' : ''}`}
+                aria-current={active ? 'page' : undefined}
               >
                 {link.label}
-                {link.label === 'Services' && (
-                  <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
-                )}
               </Link>
-
-              {link.label === 'Services' && link.children && (
-                <div className="absolute left-0 top-full mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1">
-                  {link.children.map((child) => (
-                    <Link
-                      key={child.label}
-                      href={child.href}
-                      className="block px-4 py-2 text-sm text-gray-600 hover:text-[#1a2744] hover:bg-gray-50 transition-colors first:rounded-t-xl last:rounded-b-xl"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
 
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
@@ -93,9 +167,12 @@ export default function Header() {
             Call
           </a>
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
             className="text-[#1a2744] hover:text-gray-600 transition-colors"
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -104,48 +181,56 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white">
-          <nav className="flex flex-col py-4 max-w-6xl mx-auto px-6">
-            {NAV_LINKS.map((link) => (
-              <div key={link.label}>
-                <div className="flex items-center justify-between">
-                  <Link
-                    href={link.href}
-                    className="py-2.5 text-sm font-medium text-gray-600 hover:text-[#1a2744] transition-colors flex-1"
-                    onClick={() => {
-                      if (link.label !== 'Services') setIsMobileMenuOpen(false);
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                  {link.label === 'Services' && link.children && (
-                    <button
-                      onClick={() => setExpandedService(!expandedService)}
-                      className="py-2 px-1"
+        <div id="mobile-menu" className="lg:hidden border-t border-gray-100 bg-white">
+          <nav className="flex flex-col py-4 max-w-6xl mx-auto px-6" aria-label="Mobile">
+            {NAV_LINKS.map((link) => {
+              const active = isActive(pathname, link.href);
+              return (
+                <div key={link.label}>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={link.href}
+                      className={`py-2.5 text-sm font-medium hover:text-[#1a2744] transition-colors flex-1 ${active ? 'text-[#1a2744]' : 'text-gray-600'}`}
+                      aria-current={active ? 'page' : undefined}
+                      onClick={() => {
+                        if (link.label !== 'Services') setIsMobileMenuOpen(false);
+                      }}
                     >
-                      <ChevronDown
-                        className={`w-4 h-4 text-gray-400 transition-transform ${expandedService ? 'rotate-180' : ''}`}
-                      />
-                    </button>
+                      {link.label}
+                    </Link>
+                    {link.label === 'Services' && link.children && (
+                      <button
+                        type="button"
+                        onClick={() => setIsMobileServicesOpen((open) => !open)}
+                        className="py-2 px-1"
+                        aria-expanded={isMobileServicesOpen}
+                        aria-controls="mobile-services-submenu"
+                        aria-label={`${isMobileServicesOpen ? 'Collapse' : 'Expand'} Services`}
+                      >
+                        <ChevronDown
+                          className={`w-4 h-4 text-gray-400 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                    )}
+                  </div>
+
+                  {link.label === 'Services' && link.children && isMobileServicesOpen && (
+                    <div id="mobile-services-submenu" className="bg-gray-50 rounded-lg mb-2">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          className="block px-4 py-2 text-sm text-gray-500 hover:text-[#1a2744] transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
                   )}
                 </div>
-
-                {link.label === 'Services' && link.children && expandedService && (
-                  <div className="bg-gray-50 rounded-lg mb-2">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.href}
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-[#1a2744] transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </nav>
 
           <div className="px-6 pb-4 flex flex-col gap-3 max-w-6xl mx-auto">

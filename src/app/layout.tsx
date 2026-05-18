@@ -9,6 +9,7 @@ import { BUSINESS } from '@/lib/constants';
 const GA_MEASUREMENT_ID = 'G-W9QH965H3Y';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BUSINESS.url),
   title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
   description:
     'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more. Free estimates available.',

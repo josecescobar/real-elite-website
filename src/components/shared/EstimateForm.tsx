@@ -140,7 +140,11 @@ export default function EstimateForm({ service }: EstimateFormProps) {
 
   if (isSuccess) {
     return (
-      <div className="bg-gold-50 border-2 border-gold-500 rounded-lg p-6 sm:p-8">
+      <div
+        className="bg-gold-50 border-2 border-gold-500 rounded-lg p-6 sm:p-8"
+        role="status"
+        aria-live="polite"
+      >
         <div className="text-center">
           <h3 className="text-2xl font-bold text-navy-900 mb-2">
             Thank You!
@@ -158,6 +162,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
     <form
       onSubmit={handleSubmit}
       className="bg-white rounded-lg shadow-lg p-6 sm:p-8 space-y-6"
+      noValidate
     >
       {/* Honeypot — visually hidden, bots fill it, real users don't */}
       <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
@@ -177,6 +182,9 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           value={formData.fullName}
           onChange={handleChange}
           placeholder="John Smith"
+          autoComplete="name"
+          aria-invalid={!!errors.fullName}
+          aria-describedby={errors.fullName ? 'fullName-error' : undefined}
           className={`w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-colors ${
             errors.fullName
               ? 'border-red-500 focus:ring-red-500'
@@ -184,7 +192,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           }`}
         />
         {errors.fullName && (
-          <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
+          <p id="fullName-error" className="text-red-500 text-sm mt-1">{errors.fullName}</p>
         )}
       </div>
 
@@ -200,6 +208,10 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           value={formData.email}
           onChange={handleChange}
           placeholder="john@example.com"
+          autoComplete="email"
+          inputMode="email"
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? 'email-error' : undefined}
           className={`w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-colors ${
             errors.email
               ? 'border-red-500 focus:ring-red-500'
@@ -207,7 +219,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           }`}
         />
         {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+          <p id="email-error" className="text-red-500 text-sm mt-1">{errors.email}</p>
         )}
       </div>
 
@@ -223,6 +235,10 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           value={formData.phone}
           onChange={handleChange}
           placeholder="(304) 555-0123"
+          autoComplete="tel"
+          inputMode="tel"
+          aria-invalid={!!errors.phone}
+          aria-describedby={errors.phone ? 'phone-error' : undefined}
           className={`w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-colors ${
             errors.phone
               ? 'border-red-500 focus:ring-red-500'
@@ -230,7 +246,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           }`}
         />
         {errors.phone && (
-          <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+          <p id="phone-error" className="text-red-500 text-sm mt-1">{errors.phone}</p>
         )}
       </div>
 
@@ -244,6 +260,8 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           name="service"
           value={formData.service}
           onChange={handleChange}
+          aria-invalid={!!errors.service}
+          aria-describedby={errors.service ? 'service-error' : undefined}
           className={`w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-colors ${
             errors.service
               ? 'border-red-500 focus:ring-red-500'
@@ -258,7 +276,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           ))}
         </select>
         {errors.service && (
-          <p className="text-red-500 text-sm mt-1">{errors.service}</p>
+          <p id="service-error" className="text-red-500 text-sm mt-1">{errors.service}</p>
         )}
       </div>
 
@@ -274,6 +292,8 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           onChange={handleChange}
           placeholder="Tell us about your project, timeline, and any specific requirements..."
           rows={5}
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? 'message-error' : undefined}
           className={`w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-colors resize-none ${
             errors.message
               ? 'border-red-500 focus:ring-red-500'
@@ -281,13 +301,13 @@ export default function EstimateForm({ service }: EstimateFormProps) {
           }`}
         />
         {errors.message && (
-          <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+          <p id="message-error" className="text-red-500 text-sm mt-1">{errors.message}</p>
         )}
       </div>
 
       {/* Error Message */}
       {submitError && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4" role="alert">
           <p className="text-red-700 text-sm">{submitError}</p>
         </div>
       )}
