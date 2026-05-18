@@ -8,6 +8,9 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
 
 const RATE_LIMIT = { max: 5, windowMs: 10 * 60 * 1000 };
+// In-memory per-process bucket. On serverless (Vercel, Lambda) each instance
+// has its own Map, so the effective limit is `max × instances`. For real
+// protection, swap this for Vercel KV / Upstash Redis or a CAPTCHA in front.
 const hits = new Map<string, { count: number; resetAt: number }>();
 
 function rateLimit(ip: string) {

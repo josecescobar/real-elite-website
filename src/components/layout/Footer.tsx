@@ -1,9 +1,7 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { BUSINESS, SERVICES, NAV_LINKS, PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS } from '@/lib/constants';
-import { trackEvent } from '@/lib/analytics';
+import TrackedLink from '@/components/shared/TrackedLink';
 
 const SOCIAL_LINKS = [
   {
@@ -85,21 +83,23 @@ export default function Footer() {
           Veteran-Owned · {BUSINESS.address.region}
         </p>
         <p className="text-gray-300 text-sm mt-2">
-          <a
+          <TrackedLink
             href={`tel:${BUSINESS.phoneRaw}`}
-            onClick={() => trackEvent('phone_click', { location: 'footer' })}
+            event="phone_click"
+            eventParams={{ location: 'footer' }}
             className="hover:text-white transition-colors"
           >
             {BUSINESS.phone}
-          </a>
+          </TrackedLink>
           {' · '}
-          <a
+          <TrackedLink
             href={`mailto:${BUSINESS.email}`}
-            onClick={() => trackEvent('email_click', { location: 'footer' })}
+            event="email_click"
+            eventParams={{ location: 'footer' }}
             className="hover:text-white transition-colors"
           >
             {BUSINESS.email}
-          </a>
+          </TrackedLink>
         </p>
         <p className="text-gray-300 text-xs mt-1">{BUSINESS.hours}</p>
 

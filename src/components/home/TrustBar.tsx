@@ -1,6 +1,6 @@
 export const TrustBar = () => {
   const stats = [
-    { number: '40+', label: 'Years of Experience' },
+    { number: '40+', label: 'Years of Combined Experience' },
     { number: '5.0★', label: 'Google Rating' },
     { number: 'Veteran', label: 'Owned & Operated' },
     { number: 'Licensed', label: '& Fully Insured' },
