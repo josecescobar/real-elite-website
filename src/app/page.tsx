@@ -22,12 +22,12 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <ServicesGrid />
-      <WhyChooseUs />
       <ProjectGallery />
+      <WhyChooseUs />
       <Testimonials />
-      <LatestBlogPosts />
       <CTASection />
       <ServiceAreaMap />
+      <LatestBlogPosts />
     </>
   );
 }

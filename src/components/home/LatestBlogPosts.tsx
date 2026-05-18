@@ -8,11 +8,11 @@ export default function LatestBlogPosts() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section className="py-20 md:py-24 px-6 bg-gray-50 border-t border-gray-100">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-12">
-          <p className="text-[#c0392b] font-semibold text-sm uppercase tracking-widest mb-2">
+        <div className="max-w-2xl mx-auto text-center mb-12">
+          <p className="text-[#c0392b] font-semibold text-sm uppercase tracking-widest mb-3">
             Resources
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-[#1a2744] mb-3">

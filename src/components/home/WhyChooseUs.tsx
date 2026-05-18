@@ -6,47 +6,52 @@ export const WhyChooseUs = () => {
       icon: Award,
       title: 'Quality Craftsmanship',
       description:
-        'Premium materials and expert techniques ensure every project exceeds expectations and stands the test of time.',
+        'Premium materials and expert techniques on every project — built to last.',
     },
     {
       icon: DollarSign,
       title: 'Transparent Pricing',
       description:
-        'No hidden fees or surprise charges. Detailed estimates upfront so you know exactly what to expect.',
+        'Detailed estimates upfront. No hidden fees, no surprise charges.',
     },
     {
       icon: Clock,
       title: 'On-Time Delivery',
       description:
-        'We respect your time and consistently finish projects on schedule without compromising quality.',
+        'We respect your time and consistently finish on schedule.',
     },
     {
       icon: MapPin,
       title: 'Local Reputation',
       description:
-        'Trusted by Eastern Panhandle families for years. Our reputation is built on consistent excellence.',
+        'Trusted by Eastern Panhandle families and built on consistent excellence.',
     },
   ];
 
   return (
-    <section className="w-full bg-white py-16 sm:py-24 border-t border-gray-100">
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-        <h2 className="text-3xl md:text-4xl font-black text-[#1a2744] mb-12">
-          Why Choose Real Elite
-        </h2>
+    <section className="w-full bg-[#1a2744] py-20 md:py-24">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-2xl mb-12">
+          <p className="text-[#c0392b] font-semibold text-sm uppercase tracking-widest mb-3">
+            Why Real Elite
+          </p>
+          <h2 className="text-3xl md:text-4xl font-black text-white">
+            Built on standards you can count on.
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {reasons.map((reason, index) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {reasons.map((reason) => {
             const Icon = reason.icon;
             return (
-              <div key={index}>
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#c0392b]/10 mb-4">
-                  <Icon className="w-5 h-5 text-[#c0392b]" />
+              <div key={reason.title} className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#c0392b]/15 mb-4">
+                  <Icon className="w-5 h-5 text-[#c0392b]" aria-hidden="true" />
                 </div>
-                <h3 className="text-base font-bold text-[#1a2744] mb-2">
+                <h3 className="text-base font-bold text-white mb-2">
                   {reason.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed">
                   {reason.description}
                 </p>
               </div>
