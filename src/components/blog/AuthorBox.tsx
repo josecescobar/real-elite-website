@@ -1,28 +1,33 @@
 import Image from 'next/image';
 import { ShieldCheck } from 'lucide-react';
+import { OWNER } from '@/lib/constants';
 
 /**
  * Author box anchoring the veteran-owner positioning.
- * Uses the logo as the visual until a real owner portrait is added
- * to /public/images/team/owner.jpg.
+ * Reads OWNER.portrait from constants — drop a real portrait at
+ * /public/images/team/owner.jpg and update OWNER.portrait to that path
+ * to swap in the real photo across every guide article.
  */
 type Props = {
   authorName: string;
 };
 
 export default function AuthorBox({ authorName }: Props) {
+  const hasPortrait = Boolean(OWNER.portrait);
+
   return (
     <aside className="mt-12 bg-steel-50 border-t-4 border-brand-red rounded-lg p-6 sm:p-7 flex items-start gap-5">
-      {/* Placeholder avatar — uses the company logo until a real owner
-          portrait is added at /public/images/team/owner.jpg. Swap the
-          src below when the photo is ready. */}
-      <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-white shadow-sm flex-shrink-0 ring-2 ring-brand-red/20">
+      <div
+        className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-white shadow-sm flex-shrink-0 ${
+          hasPortrait ? '' : 'ring-2 ring-brand-red/20'
+        }`}
+      >
         <Image
-          src="/images/logo.png"
+          src={OWNER.portrait ?? '/images/logo.png'}
           alt={authorName}
           fill
           sizes="80px"
-          className="object-contain p-2"
+          className={hasPortrait ? 'object-cover' : 'object-contain p-2'}
         />
       </div>
       <div className="flex-1 min-w-0">

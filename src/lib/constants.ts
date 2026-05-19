@@ -1,3 +1,16 @@
+/**
+ * Owner / author identity used by the blog AuthorBox and any future
+ * "About the owner" surface. Drop a real portrait at
+ * /public/images/team/owner.jpg and set portrait: '/images/team/owner.jpg'
+ * here to replace the placeholder. Set name/title once finalized.
+ */
+export const OWNER = {
+  name: 'Real Elite Contracting Team',
+  title: 'Veteran-Owned · Built With Military Precision',
+  /** Set to '/images/team/owner.jpg' once the real portrait lands. */
+  portrait: null as string | null,
+} as const;
+
 export const BUSINESS = {
   name: 'Real Elite Contracting',
   tagline: "Eastern Panhandle's Most Trusted Contractor",
