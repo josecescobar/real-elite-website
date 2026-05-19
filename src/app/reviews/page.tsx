@@ -1,31 +1,39 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Star, Quote, ArrowRight } from 'lucide-react';
 import { BUSINESS, TESTIMONIALS } from '@/lib/constants';
-import Button from '@/components/shared/Button';
-import { Star } from 'lucide-react';
+import Container from '@/components/shared/Container';
+import SectionHeader from '@/components/shared/SectionHeader';
+import AssurancesBand from '@/components/home/AssurancesBand';
 
 export const metadata: Metadata = {
-  title: `Customer Reviews | ${BUSINESS.name}`,
+  title: `Reviews | 5.0 ★ Google Rating | ${BUSINESS.name}`,
   description:
-    'Read verified reviews from satisfied customers throughout the Eastern Panhandle. See why Real Elite Contracting is the trusted choice.',
+    "Read verified Real Elite Contracting reviews from homeowners across the WV–MD–VA region. Veteran-owned. 5.0 ★ on Google.",
   keywords: [
     'customer reviews',
     'testimonials',
     'contractor reviews',
-    'rated contractor',
-    'customer satisfaction',
     'Google reviews',
+    'Real Elite Contracting reviews',
+    'Eastern Panhandle reviews',
   ],
-  alternates: {
-    canonical: `${BUSINESS.url}/reviews`,
-  },
+  alternates: { canonical: `${BUSINESS.url}/reviews` },
   openGraph: {
-    title: `Customer Reviews | ${BUSINESS.name}`,
-    description:
-      'Read reviews from satisfied customers who have worked with Real Elite Contracting.',
+    title: `Reviews | ${BUSINESS.name}`,
+    description: '5.0-star reviews from real homeowners we have actually worked for.',
     url: `${BUSINESS.url}/reviews`,
     type: 'website',
   },
 };
+
+const renderStars = (count: number) => (
+  <div className="flex gap-1" aria-label={`${count} out of 5 stars`}>
+    {Array.from({ length: count }).map((_, i) => (
+      <Star key={i} className="w-5 h-5 text-gold-500 fill-gold-500" strokeWidth={0} />
+    ))}
+  </div>
+);
 
 export default function ReviewsPage() {
   const averageRating =
@@ -33,118 +41,120 @@ export default function ReviewsPage() {
 
   return (
     <>
-      {/* Hero Banner */}
-      <section className="bg-navy-900 text-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-black mb-4">Customer Reviews</h1>
-          <p className="text-lg text-white max-w-2xl">
-            See what our satisfied customers have to say about their experience with Real Elite
-            Contracting
-          </p>
-        </div>
-      </section>
-
-      {/* Rating Summary */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mx-auto text-center mb-12">
-            <h2 className="text-4xl font-bold text-navy-900 mb-4">
-              {averageRating.toFixed(1)} Average Rating
-            </h2>
-            <div className="flex justify-center gap-2 mb-6">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-8 h-8 fill-gold-500 text-gold-500"
-                />
-              ))}
-            </div>
-            <p className="text-lg text-gray-700">
-              Based on {TESTIMONIALS.length} verified customer reviews
+      {/* Hero */}
+      <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
+        <Container size="wide">
+          <div className="max-w-3xl">
+            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+              Receipts
+            </p>
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
+              The receipts.
+            </h1>
+            <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
+              Verified reviews from homeowners we have actually worked for, across the
+              Eastern Panhandle, Frederick MD, Winchester VA, and Loudoun County.
             </p>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Testimonials Grid */}
-      <section className="py-16 md:py-24 bg-navy-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 fill-gold-500 text-gold-500"
-                    />
-                  ))}
-                </div>
-
-                {/* Review Text */}
-                <p className="text-gray-700 mb-6 leading-relaxed italic">
-                  "{testimonial.text}"
-                </p>
-
-                {/* Author */}
-                <div className="border-t border-navy-100 pt-4">
-                  <p className="font-bold text-navy-900">{testimonial.name}</p>
-                  <p className="text-sm text-gray-600">{testimonial.location}</p>
-                </div>
-              </div>
-            ))}
+      {/* Rating block */}
+      <section className="bg-white border-b border-charcoal-100">
+        <Container size="default" className="py-12 sm:py-16 text-center">
+          <div className="font-heading text-6xl sm:text-7xl font-extrabold text-navy-800 leading-none tracking-tight">
+            {averageRating.toFixed(1)}
           </div>
-        </div>
-      </section>
-
-      {/* Leave a Review CTA */}
-      <section className="py-14 md:py-20 bg-white border-t border-gray-100">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center justify-center gap-2 bg-[#c0392b]/10 text-[#c0392b] font-semibold text-sm px-4 py-2 rounded-full mb-5">
-            <Star className="w-4 h-4 fill-[#c0392b]" />
-            Share Your Experience
+          <div className="flex justify-center gap-1 mt-4">
+            {renderStars(5)}
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-navy-900 mb-4">
-            Leave Us a Review on Google
-          </h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
-            Had a great experience with Real Elite Contracting? Your review helps other homeowners
-            find a contractor they can trust.
+          <p className="text-charcoal-500 text-sm mt-3 uppercase tracking-[0.15em] font-semibold">
+            Based on {TESTIMONIALS.length}+ verified reviews
           </p>
           <a
             href={BUSINESS.social.google}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#c0392b] hover:bg-[#a93226] text-white font-bold text-lg px-10 py-4 rounded-lg transition-colors shadow-lg"
+            className="inline-block mt-6 text-navy-800 font-semibold text-sm underline hover:text-brand-red transition-colors"
           >
-            Leave Us a Review
+            See full Google review history →
           </a>
-        </div>
+        </Container>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-navy-900 text-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join Our Satisfied Customers
+      {/* Testimonials grid */}
+      <section className="bg-steel-50 py-16 md:py-24">
+        <Container size="wide">
+          <SectionHeader eyebrow="Verified Reviews" title="What clients say." />
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            {TESTIMONIALS.map((t) => (
+              <figure
+                key={t.name}
+                className="relative bg-white rounded-lg p-8 md:p-10 shadow-sm border-t-4 border-brand-red"
+              >
+                <Quote
+                  className="absolute top-6 right-6 w-10 h-10 text-navy-100"
+                  aria-hidden="true"
+                />
+                <div className="mb-5">{renderStars(t.rating)}</div>
+                <blockquote className="text-navy-800 text-lg md:text-xl leading-relaxed font-medium mb-6">
+                  &ldquo;{t.text}&rdquo;
+                </blockquote>
+                <figcaption className="border-t border-charcoal-200 pt-5">
+                  <p className="font-heading text-navy-800 font-bold">{t.name}</p>
+                  <p className="text-charcoal-500 text-sm">{t.location}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Leave a review */}
+      <section className="bg-white py-16 md:py-24 border-t border-charcoal-100">
+        <Container size="default" className="text-center">
+          <div className="inline-flex items-center justify-center gap-2 bg-brand-red/10 text-brand-red font-semibold text-xs uppercase tracking-[0.15em] px-4 py-2 rounded-full mb-5">
+            <Star className="w-4 h-4 fill-brand-red" />
+            Share Your Experience
+          </div>
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 mb-4 leading-tight">
+            Worked with us? Leave a review.
           </h2>
-          <p className="text-lg text-gold-300 mb-8 max-w-2xl mx-auto">
-            Experience the quality and professionalism that earned us these glowing reviews. Contact
-            us today to start your project.
+          <p className="text-charcoal-600 mb-8 max-w-xl mx-auto">
+            Your review helps the next homeowner pick a contractor they can actually trust.
           </p>
-          <Button href="https://calendly.com/realelitecontracting-info/free-estimate-call" variant="primary" size="lg" className="mr-4">
-            Book Free Estimate
-          </Button>
-          <Button
+          <a
             href={BUSINESS.social.google}
-            variant="outline"
-            size="lg"
-            className="border-white text-white hover:bg-white hover:text-navy-900"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
           >
-            Leave a Review
-          </Button>
-        </div>
+            Leave Us a Google Review
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </Container>
+      </section>
+
+      {/* Assurances */}
+      <AssurancesBand />
+
+      {/* CTA */}
+      <section className="bg-navy-900 text-white py-16 md:py-24">
+        <Container size="default" className="text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
+            Join the list of homeowners we&apos;ve actually worked for.
+          </h2>
+          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
+            Three steps, about 60 seconds — a real project lead reaches out within 24 business hours.
+          </p>
+          <Link
+            href="/#estimate"
+            className="inline-flex items-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+          >
+            Get My Free Estimate
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </Container>
       </section>
     </>
   );
