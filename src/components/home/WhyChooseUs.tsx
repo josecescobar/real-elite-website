@@ -29,26 +29,22 @@ export const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-16 sm:py-24 border-t border-gray-100">
+    <section className="w-full bg-white py-16 sm:py-24 border-t border-charcoal-100">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-        <h2 className="text-3xl md:text-4xl font-black text-[#1a2744] mb-12">
+        <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 mb-12">
           Why Choose Real Elite
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {reasons.map((reason, index) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {reasons.map((reason) => {
             const Icon = reason.icon;
             return (
-              <div key={index}>
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#c0392b]/10 mb-4">
-                  <Icon className="w-5 h-5 text-[#c0392b]" />
+              <div key={reason.title}>
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-red/10 mb-4">
+                  <Icon className="w-5 h-5 text-brand-red" />
                 </div>
-                <h3 className="text-base font-bold text-[#1a2744] mb-2">
-                  {reason.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {reason.description}
-                </p>
+                <h3 className="text-base font-bold text-navy-800 mb-2">{reason.title}</h3>
+                <p className="text-charcoal-500 text-sm leading-relaxed">{reason.description}</p>
               </div>
             );
           })}

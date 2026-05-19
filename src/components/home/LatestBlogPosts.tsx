@@ -10,28 +10,28 @@ export default function LatestBlogPosts() {
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        {/* Section header */}
         <div className="text-center mb-12">
-          <p className="text-[#c0392b] font-semibold text-sm uppercase tracking-widest mb-2">
-            Resources
+          <p className="text-brand-red font-semibold text-xs uppercase tracking-[0.15em] mb-2">
+            Homeowner Guides
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-[#1a2744] mb-3">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 mb-3">
             Latest from the Blog
           </h2>
-          <p className="text-gray-500 max-w-xl mx-auto text-sm">
-            Tips, guides, and project insights for Eastern Panhandle homeowners.
+          <p className="text-charcoal-500 max-w-xl mx-auto text-sm">
+            Tips, guides, and project breakdowns for homeowners across the WV–MD–VA region.
           </p>
         </div>
 
-        {/* Posts grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <article
               key={post.slug}
-              className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
+              className="border border-charcoal-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
             >
-              {/* Image */}
-              <Link href={`/blog/${post.slug}`} className="block relative h-44 overflow-hidden">
+              <Link
+                href={`/blog/${post.slug}`}
+                className="block relative h-44 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400"
+              >
                 <Image
                   src={post.featuredImage}
                   alt={post.title}
@@ -42,31 +42,30 @@ export default function LatestBlogPosts() {
               </Link>
 
               <div className="p-5 flex flex-col flex-1">
-                {/* Category */}
-                <span className="inline-block bg-[#1a2744]/10 text-[#1a2744] text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-3 self-start">
+                <span className="inline-block bg-navy-800/10 text-navy-800 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-3 self-start">
                   {post.category}
                 </span>
 
-                {/* Title */}
-                <h3 className="text-base font-black text-[#1a2744] leading-snug mb-2">
-                  <Link href={`/blog/${post.slug}`} className="hover:text-[#c0392b] transition-colors">
+                <h3 className="text-base font-bold text-navy-800 leading-snug mb-2">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="hover:text-brand-red transition-colors"
+                  >
                     {post.title}
                   </Link>
                 </h3>
 
-                {/* Excerpt */}
-                <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
+                <p className="text-charcoal-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
                   {post.excerpt}
                 </p>
 
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <time className="text-xs text-gray-400" dateTime={post.date}>
+                <div className="flex items-center justify-between pt-4 border-t border-charcoal-100">
+                  <time className="text-xs text-charcoal-400" dateTime={post.date}>
                     {formatDate(post.date)}
                   </time>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="text-[#c0392b] text-xs font-semibold hover:underline"
+                    className="text-brand-red text-xs font-semibold hover:underline"
                   >
                     Read More →
                   </Link>
@@ -76,11 +75,10 @@ export default function LatestBlogPosts() {
           ))}
         </div>
 
-        {/* View all link */}
         <div className="text-center mt-10">
           <Link
             href="/blog"
-            className="inline-block border-2 border-[#1a2744] text-[#1a2744] font-semibold px-8 py-3 rounded-full hover:bg-[#1a2744] hover:text-white transition-colors text-sm"
+            className="inline-block border-2 border-navy-800 text-navy-800 font-semibold px-8 py-3 rounded-md hover:bg-navy-800 hover:text-white transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
           >
             View All Posts
           </Link>

@@ -13,8 +13,8 @@ export const ServiceAreaMap = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
             <MapPin className="w-8 h-8 text-gold-500" />
-            <h2 className="text-4xl sm:text-5xl font-bold text-navy-900">
-              Proudly Serving the Eastern Panhandle
+            <h2 className="font-heading text-4xl sm:text-5xl font-extrabold text-navy-900">
+              Proudly Serving the WV–MD–VA Region
             </h2>
           </div>
           <p className="text-charcoal-600 text-lg mt-4 max-w-2xl mx-auto">

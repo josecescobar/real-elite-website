@@ -20,7 +20,7 @@ export const Testimonials = () => {
     <section className="w-full bg-charcoal-50 py-16 sm:py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-navy-900 mb-4">
+          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold text-navy-900 mb-4">
             What Our Clients Say
           </h2>
           <p className="text-lg text-charcoal-600 max-w-2xl mx-auto">
@@ -28,7 +28,7 @@ export const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {TESTIMONIALS.map((testimonial, index) => (
             <div
               key={index}

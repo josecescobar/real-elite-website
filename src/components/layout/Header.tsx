@@ -14,7 +14,7 @@ export default function Header() {
   const [expandedService, setExpandedService] = useState(false);
 
   return (
-    <header className="bg-white backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white backdrop-blur-sm border-b border-charcoal-100 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
@@ -26,22 +26,22 @@ export default function Header() {
             className="w-14 h-14"
           />
           <div className="hidden sm:flex flex-col leading-tight">
-            <span className="text-[#1a2744] font-bold text-xl tracking-tight">
+            <span className="font-heading text-navy-800 font-bold text-xl tracking-tight">
               Real Elite
             </span>
-            <span className="text-[#1a2744] font-medium text-xs tracking-widest uppercase">
+            <span className="text-navy-800 font-medium text-xs tracking-widest uppercase">
               Contracting
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6 text-sm text-gray-500">
+        <nav className="hidden lg:flex items-center gap-6 text-sm text-charcoal-500">
           {NAV_LINKS.map((link) => (
             <div key={link.label} className="relative group">
               <Link
                 href={link.href}
-                className="hover:text-[#1a2744] flex items-center gap-1 transition-colors font-medium"
+                className="hover:text-navy-800 flex items-center gap-1 transition-colors font-medium"
               >
                 {link.label}
                 {link.label === 'Services' && (
@@ -50,12 +50,12 @@ export default function Header() {
               </Link>
 
               {link.label === 'Services' && link.children && (
-                <div className="absolute left-0 top-full mt-2 w-44 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1">
+                <div className="absolute left-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-charcoal-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1">
                   {link.children.map((child) => (
                     <Link
                       key={child.label}
                       href={child.href}
-                      className="block px-4 py-2 text-sm text-gray-600 hover:text-[#1a2744] hover:bg-gray-50 transition-colors first:rounded-t-xl last:rounded-b-xl"
+                      className="block px-4 py-2 text-sm text-charcoal-600 hover:text-navy-800 hover:bg-charcoal-50 transition-colors first:rounded-t-lg last:rounded-b-lg"
                     >
                       {child.label}
                     </Link>
@@ -68,7 +68,7 @@ export default function Header() {
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
             onClick={() => trackEvent('phone_click', { location: 'header_desktop' })}
-            className="bg-[#1a2744] text-white px-5 py-2.5 rounded-full font-medium text-sm hover:bg-[#0f1b2d] transition-colors"
+            className="bg-navy-800 text-white px-5 py-2.5 rounded-md font-medium text-sm hover:bg-navy-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
           >
             {BUSINESS.phone}
           </a>
@@ -77,9 +77,9 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent('calendly_click', { location: 'header_desktop' })}
-            className="bg-[#c0392b] text-white px-5 py-2.5 rounded-full font-medium text-sm hover:bg-[#a93226] transition-colors"
+            className="bg-brand-red text-white px-5 py-2.5 rounded-md font-medium text-sm hover:bg-brand-red-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
           >
-            Book Free Estimate
+            Free Estimate
           </a>
         </nav>
 
@@ -88,14 +88,15 @@ export default function Header() {
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
             onClick={() => trackEvent('phone_click', { location: 'header_mobile' })}
-            className="bg-[#1a2744] text-white px-4 py-2 rounded-full text-sm font-medium"
+            className="bg-navy-800 text-white px-4 py-2 rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
           >
             Call
           </a>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-[#1a2744] hover:text-gray-600 transition-colors"
+            className="text-navy-800 hover:text-charcoal-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-md"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -104,14 +105,14 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white">
+        <div className="lg:hidden border-t border-charcoal-100 bg-white">
           <nav className="flex flex-col py-4 max-w-6xl mx-auto px-6">
             {NAV_LINKS.map((link) => (
               <div key={link.label}>
                 <div className="flex items-center justify-between">
                   <Link
                     href={link.href}
-                    className="py-2.5 text-sm font-medium text-gray-600 hover:text-[#1a2744] transition-colors flex-1"
+                    className="py-2.5 text-sm font-medium text-charcoal-600 hover:text-navy-800 transition-colors flex-1"
                     onClick={() => {
                       if (link.label !== 'Services') setIsMobileMenuOpen(false);
                     }}
@@ -122,21 +123,23 @@ export default function Header() {
                     <button
                       onClick={() => setExpandedService(!expandedService)}
                       className="py-2 px-1"
+                      aria-expanded={expandedService}
+                      aria-label="Toggle services menu"
                     >
                       <ChevronDown
-                        className={`w-4 h-4 text-gray-400 transition-transform ${expandedService ? 'rotate-180' : ''}`}
+                        className={`w-4 h-4 text-charcoal-400 transition-transform ${expandedService ? 'rotate-180' : ''}`}
                       />
                     </button>
                   )}
                 </div>
 
                 {link.label === 'Services' && link.children && expandedService && (
-                  <div className="bg-gray-50 rounded-lg mb-2">
+                  <div className="bg-charcoal-50 rounded-md mb-2">
                     {link.children.map((child) => (
                       <Link
                         key={child.label}
                         href={child.href}
-                        className="block px-4 py-2 text-sm text-gray-500 hover:text-[#1a2744] transition-colors"
+                        className="block px-4 py-2 text-sm text-charcoal-500 hover:text-navy-800 transition-colors"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {child.label}
@@ -152,7 +155,7 @@ export default function Header() {
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
               onClick={() => trackEvent('phone_click', { location: 'header_mobile_menu' })}
-              className="flex items-center justify-center w-full py-3 bg-[#1a2744] text-white font-medium rounded-full text-sm"
+              className="flex items-center justify-center w-full py-3 bg-navy-800 text-white font-medium rounded-md text-sm hover:bg-navy-900 transition-colors"
             >
               Call {BUSINESS.phone}
             </a>
@@ -161,9 +164,9 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('calendly_click', { location: 'header_mobile_menu' })}
-              className="flex items-center justify-center w-full py-3 bg-[#c0392b] text-white font-medium rounded-full text-sm"
+              className="flex items-center justify-center w-full py-3 bg-brand-red text-white font-medium rounded-md text-sm hover:bg-brand-red-dark transition-colors"
             >
-              Book Free Estimate
+              Free Estimate
             </a>
           </div>
         </div>

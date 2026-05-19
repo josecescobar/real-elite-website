@@ -71,7 +71,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1a2744] py-12">
+    <footer className="bg-navy-800 py-12">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <Image
           src="/images/logo.png"
