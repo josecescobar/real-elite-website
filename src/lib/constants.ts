@@ -553,29 +553,63 @@ export const HOME_FAQ = [
   },
 ] as const;
 
-export const GALLERY_IMAGES = [
+/**
+ * Project gallery — every entry tagged with category + state (the
+ * region the project was completed in). The optional `citySlug` field
+ * is for true city-specific tagging once new shoots come in for
+ * Frederick/Loudoun/etc. — at that point the city page filter on
+ * CityPageTemplate prefers exact-city matches over state-level matches.
+ *
+ * Existing photos are all from the WV Eastern Panhandle home market;
+ * leaving citySlug undefined keeps the city page filter from over-
+ * claiming specific localized work that didn't happen there.
+ */
+export type GalleryImage = {
+  src: string;
+  alt: string;
+  category: string;
+  state?: 'WV' | 'MD' | 'VA';
+  citySlug?: string;
+};
+
+export const GALLERY_IMAGES: GalleryImage[] = [
   // Roofing
-  { src: '/images/roofing-hero.jpg', alt: 'Completed dark architectural shingle roof with clean ridge cap', category: 'Roofing' },
-  { src: '/images/roofing-valley.jpg', alt: 'Architectural shingle roof valley and flashing detail', category: 'Roofing' },
-  { src: '/images/roofing-slope.jpg', alt: 'New charcoal shingle roof with clean valley lines', category: 'Roofing' },
-  { src: '/images/roofing-crew.jpg', alt: 'Roofing crew working on full tear-off and re-roof', category: 'Roofing' },
+  { src: '/images/roofing-hero.jpg', alt: 'Completed dark architectural shingle roof with clean ridge cap', category: 'Roofing', state: 'WV' },
+  { src: '/images/roofing-valley.jpg', alt: 'Architectural shingle roof valley and flashing detail', category: 'Roofing', state: 'WV' },
+  { src: '/images/roofing-slope.jpg', alt: 'New charcoal shingle roof with clean valley lines', category: 'Roofing', state: 'WV' },
+  { src: '/images/roofing-crew.jpg', alt: 'Roofing crew working on full tear-off and re-roof', category: 'Roofing', state: 'WV' },
   // Decks
-  { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night', category: 'Decks' },
-  { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture set', category: 'Decks' },
-  { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white horizontal railings and stairs', category: 'Decks' },
-  { src: '/images/deck-railing-install.jpg', alt: 'Installing white railing on composite deck', category: 'Decks' },
+  { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night', category: 'Decks', state: 'WV' },
+  { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture set', category: 'Decks', state: 'WV' },
+  { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white horizontal railings and stairs', category: 'Decks', state: 'WV' },
+  { src: '/images/deck-railing-install.jpg', alt: 'Installing white railing on composite deck', category: 'Decks', state: 'WV' },
   // Siding & Exterior
-  { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior' },
-  { src: '/images/siding-windows.jpg', alt: 'Siding and window replacement in progress', category: 'Siding' },
-  { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer foundation detail on home exterior', category: 'Exterior' },
+  { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior', state: 'WV' },
+  { src: '/images/siding-windows.jpg', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
+  { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer foundation detail on home exterior', category: 'Exterior', state: 'WV' },
   // Remodeling / Interior
-  { src: '/images/flooring-dark-living.jpg', alt: 'Dark laminate flooring installed in living room', category: 'Remodeling' },
-  { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway', category: 'Remodeling' },
-  { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring in living space', category: 'Remodeling' },
+  { src: '/images/flooring-dark-living.jpg', alt: 'Dark laminate flooring installed in living room', category: 'Remodeling', state: 'WV' },
+  { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway', category: 'Remodeling', state: 'WV' },
+  { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring in living space', category: 'Remodeling', state: 'WV' },
   // New Construction
-  { src: '/images/framing-crew.jpg', alt: 'Interior framing crew working on scaffolding', category: 'New Construction' },
-  { src: '/images/new-build-sunset.jpg', alt: 'New construction house wrap at sunset', category: 'New Construction' },
-  { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction', category: 'New Construction' },
+  { src: '/images/framing-crew.jpg', alt: 'Interior framing crew working on scaffolding', category: 'New Construction', state: 'WV' },
+  { src: '/images/new-build-sunset.jpg', alt: 'New construction house wrap at sunset', category: 'New Construction', state: 'WV' },
+  { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction', category: 'New Construction', state: 'WV' },
   // Additions
-  { src: '/images/shed-trim.jpg', alt: 'Custom built shed with trim and siding', category: 'Additions' },
-] as const;
+  { src: '/images/shed-trim.jpg', alt: 'Custom built shed with trim and siding', category: 'Additions', state: 'WV' },
+];
+
+/**
+ * Filter helper used by CityPageTemplate to surface the most-local
+ * projects available, falling back to state then to all.
+ *   1. Prefer photos tagged with this exact city slug
+ *   2. Else prefer photos tagged with this state
+ *   3. Else fall back to the full gallery
+ */
+export function selectGalleryFor(citySlug: string, state: 'WV' | 'MD' | 'VA', limit = 6): GalleryImage[] {
+  const byCity = GALLERY_IMAGES.filter((g) => g.citySlug === citySlug);
+  if (byCity.length >= 3) return byCity.slice(0, limit);
+  const byState = GALLERY_IMAGES.filter((g) => g.state === state);
+  if (byState.length >= 3) return byState.slice(0, limit);
+  return GALLERY_IMAGES.slice(0, limit);
+}

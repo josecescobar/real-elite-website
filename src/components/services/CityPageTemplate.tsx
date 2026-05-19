@@ -10,7 +10,7 @@ import StickyEstimateRail from '@/components/services/StickyEstimateRail';
 import RelatedGuides from '@/components/blog/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
 
-import { SERVICES, BUSINESS, GALLERY_IMAGES, type CityDataEntry } from '@/lib/constants';
+import { SERVICES, BUSINESS, selectGalleryFor, type CityDataEntry } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import { getRecentPosts } from '@/lib/blog';
 
@@ -41,8 +41,14 @@ export default function CityPageTemplate({ city, data }: Props) {
   // articles tagged with that category they'll auto-surface).
   const guidePosts = getRecentPosts(3);
 
-  // Localized projects: just use a curated subset of GALLERY_IMAGES
-  const projectShots = GALLERY_IMAGES.slice(0, 6);
+  // Localized projects: prefer city-tagged photos, fall back to
+  // state-tagged, then the full gallery. selectGalleryFor handles
+  // the cascade.
+  const projectShots = selectGalleryFor(
+    city.slug,
+    city.state as 'WV' | 'MD' | 'VA',
+    6
+  );
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
