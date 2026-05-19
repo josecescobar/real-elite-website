@@ -108,13 +108,25 @@ export const SERVICES = [
   },
 ] as const;
 
-// --- Service Area Tiers ---
+/* --------------------------------------------------------------------- */
+/*  Service Areas                                                        */
+/*                                                                       */
+/*  Tiers reflect actual market emphasis, not "expansion." Frederick MD, */
+/*  Winchester VA, Leesburg VA, Ashburn VA, and Hagerstown MD are        */
+/*  first-class primary markets alongside the Eastern Panhandle WV.      */
+/* --------------------------------------------------------------------- */
+
 export const PRIMARY_SERVICE_AREAS = [
   { city: 'Martinsburg', state: 'WV', slug: 'martinsburg-wv' },
   { city: 'Inwood', state: 'WV', slug: 'inwood-wv' },
   { city: 'Charles Town', state: 'WV', slug: 'charles-town-wv' },
   { city: 'Ranson', state: 'WV', slug: 'ranson-wv' },
   { city: 'Hedgesville', state: 'WV', slug: 'hedgesville-wv' },
+  { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
+  { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
+  { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
+  { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
+  { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
 ] as const;
 
 export const SECONDARY_SERVICE_AREAS = [
@@ -122,45 +134,159 @@ export const SECONDARY_SERVICE_AREAS = [
   { city: 'Falling Waters', state: 'WV', slug: 'falling-waters-wv' },
   { city: 'Berkeley Springs', state: 'WV', slug: 'berkeley-springs-wv' },
   { city: 'Shepherdstown', state: 'WV', slug: 'shepherdstown-wv' },
+  { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
 ] as const;
 
+/**
+ * Legacy alias — kept so the old ServiceAreaMap and FeatureMap callsites
+ * that imported EXPANSION_SERVICE_AREAS keep compiling. Populated with the
+ * VA/MD cities so the regional grid still groups them under "VA / MD".
+ */
 export const EXPANSION_SERVICE_AREAS = [
   { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
   { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
   { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
   { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
+  { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
+  { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
 ] as const;
 
-/** Rich city data for expansion service areas */
-export const EXPANSION_CITY_DATA: Record<string, { description: string; neighborhoods: string[] }> = {
-  'winchester-va': {
+/**
+ * Per-city marketEmphasis encodes the service slugs we lead with on
+ * each city page. Order matters — the first service is featured as the
+ * hero card, the rest in priority order. From the rebuild plan v2:
+ *
+ *   Loudoun / Ashburn / Leesburg VA -> luxury decks, outdoor living,
+ *     kitchens, bathrooms
+ *   Frederick MD -> bathrooms, basements, kitchens, roofing
+ *   Winchester VA -> decks, roofing, whole-home remodeling
+ *   Hagerstown MD -> roofing, siding, bathrooms
+ *   Eastern Panhandle WV -> all services, home market
+ */
+export type CityDataEntry = {
+  description: string;
+  neighborhoods: string[];
+  marketEmphasis: string[];
+};
+
+export const CITY_DATA: Record<string, CityDataEntry> = {
+  /* ---------- Eastern Panhandle WV (home market) ---------- */
+  'martinsburg-wv': {
     description:
-      "Winchester is the historic gateway to Virginia's Shenandoah Valley — a city that blends a vibrant, walkable Old Town with rapidly growing residential neighborhoods along Route 7, Route 522, and the Senseny Road corridor. As the largest city in the Northern Shenandoah Valley, Winchester draws families and professionals who appreciate its small-city character, proximity to the mountains, and access to both Northern Virginia jobs and a lower cost of living. Real Elite Contracting is proud to serve Winchester homeowners with the same high-quality craftsmanship we deliver throughout the Eastern Panhandle.",
-    neighborhoods: ['Old Town Winchester', 'Shawnee District', 'Senseny Road Corridor', 'Millwood Avenue Area'],
+      "Martinsburg is the county seat of Berkeley County and the largest city in the Eastern Panhandle. Located along the I-81 corridor, it serves as the regional hub for commerce, services, and community life. Berkeley County is the fastest-growing county in West Virginia, and Martinsburg sits at the center of that growth — attracting families and professionals drawn by affordable housing, a revitalizing historic downtown, and easy commuter access to the Washington, D.C. metro via MARC train. Homes here range from beautifully preserved Victorian-era properties in the historic district to modern developments in the surrounding suburbs. Real Elite Contracting has deep roots in Martinsburg and is the contractor neighbors trust for quality craftsmanship that protects and enhances their most valuable investment.",
+    neighborhoods: ['South Martinsburg', 'North End', 'Pikeside', 'Foxcroft Area', 'Burke Street Historic District'],
+    marketEmphasis: ['roofing', 'siding', 'decks', 'remodeling', 'bathrooms', 'kitchens', 'additions'],
   },
+  'inwood-wv': {
+    description:
+      "Inwood is an unincorporated community in Berkeley County experiencing a remarkable residential boom. Located near I-81 and just minutes from Martinsburg, Inwood offers a blend of rural charm and convenient access to regional amenities. The Route 51 corridor has become a focal point of new housing development, with subdivisions and single-family homes replacing farmland as the area transitions from a quiet rural crossroads to a thriving suburban community. Real Elite Contracting understands the specific building codes and conditions in this part of Berkeley County and brings that local knowledge to every project.",
+    neighborhoods: ['Route 51 Corridor', 'Ridge Road Area', 'Highway 9 Community', 'Inwood Orchards', 'Gerrardstown Road Area'],
+    marketEmphasis: ['roofing', 'decks', 'siding', 'remodeling', 'additions', 'bathrooms'],
+  },
+  'charles-town-wv': {
+    description:
+      "Charles Town is the county seat of Jefferson County and boasts a rich historical downtown dating back to its founding by Charles Washington, brother of George Washington. Jefferson County has seen significant growth as a commuter destination, with many residents working in Northern Virginia while enjoying the lower cost of living and scenic beauty of the Eastern Panhandle. Many properties in the historic downtown require contractors who understand period-appropriate materials and techniques. Real Elite Contracting is proud to serve this community — helping preserve the character of historic homes while modernizing living spaces.",
+    neighborhoods: ['Historic Downtown', 'Ranson Border', 'Jefferson Orchards Area', 'Cavaland', 'Flowing Springs Road Area'],
+    marketEmphasis: ['remodeling', 'roofing', 'decks', 'bathrooms', 'siding', 'additions'],
+  },
+  'ranson-wv': {
+    description:
+      "Ranson is rapidly transforming from a small community into one of the Eastern Panhandle's most dynamic residential destinations, with new developments and growing infrastructure reshaping the landscape. The Flowing Springs and Powhatan Place developments have brought hundreds of new homes to the area, and along Fairfax Boulevard, urban renewal has revitalized commercial spaces. Real Elite Contracting serves the many construction and remodeling needs of Ranson's expanding population — from finishing new construction details to updating established homes.",
+    neighborhoods: ['Old Town Ranson', 'Flowing Springs Development', 'Harpers Ferry Road Area', 'Powhatan Place', 'Fairfax Boulevard Corridor'],
+    marketEmphasis: ['decks', 'remodeling', 'basements', 'roofing', 'siding', 'additions'],
+  },
+  'hedgesville-wv': {
+    description:
+      "Hedgesville is a rural community in Berkeley County known for its family-oriented atmosphere, peaceful surroundings, and one of the most highly regarded school districts in the state. Properties here tend to sit on larger lots — often an acre or more — which means homeowners face unique exterior maintenance challenges. The rolling terrain and wooded parcels also expose homes to more wind, debris, and moisture. Real Elite Contracting understands the specific needs of rural homeowners in the Hedgesville area and delivers dependable, high-quality service.",
+    neighborhoods: ['Hedgesville Pike Area', 'Route 9 Community', 'Mill Creek District', 'Shanghai Road Area', 'Back Creek Valley'],
+    marketEmphasis: ['roofing', 'siding', 'decks', 'additions', 'exterior-repairs', 'remodeling'],
+  },
+  'spring-mills-wv': {
+    description:
+      "Spring Mills is one of the fastest-growing communities in West Virginia. What was once a quiet stretch of Route 11 south of Martinsburg has evolved into a thriving suburban corridor anchored by Spring Mills High School and a wave of residential construction. New subdivisions like Sunridge and Spring Ridge feature modern homes with composite decks, vinyl and fiber cement siding, and architectural shingle roofs. Real Elite Contracting actively serves homeowners in Spring Mills building and improving their dream properties.",
+    neighborhoods: ['Sunridge Development', 'Spring Ridge Area', 'Route 11 Corridor', 'Eagle School Road Area', 'Spring Mills High School Community'],
+    marketEmphasis: ['decks', 'roofing', 'siding', 'remodeling', 'bathrooms', 'additions'],
+  },
+  'falling-waters-wv': {
+    description:
+      "Falling Waters is a scenic rural community nestled along the Potomac River in Berkeley County, offering some of the most picturesque residential settings in the Eastern Panhandle. Properties near the river enjoy stunning views but also come with practical considerations — flood zone designations, higher moisture exposure, and the need for durable exterior materials. Real Elite Contracting understands the specific challenges of building near water and delivers results that are both beautiful and built to last.",
+    neighborhoods: ['Potomac Riverside', 'Route 9 Corridor', 'Woods Edge Area', 'River Country Estates', 'Dam Number 5 Road Area'],
+    marketEmphasis: ['decks', 'roofing', 'siding', 'exterior-repairs', 'remodeling'],
+  },
+  'berkeley-springs-wv': {
+    description:
+      "Berkeley Springs is the county seat of Morgan County, famous for its warm mineral springs and vibrant tourism industry. The charming historic downtown draws visitors year-round, while the surrounding hills are dotted with cabins, vacation rentals, and full-time residences. Seasonal property maintenance is a major consideration here, particularly for vacation homes that must stay in top condition. Real Elite Contracting serves both permanent residents and absentee property owners with craftsmanship that preserves the area's historic character.",
+    neighborhoods: ['Historic Downtown', 'Warm Springs Area', 'Market Street District', 'Cacapon Road Corridor', 'Ridge Road Community'],
+    marketEmphasis: ['roofing', 'siding', 'exterior-repairs', 'decks', 'remodeling'],
+  },
+  'shepherdstown-wv': {
+    description:
+      "Shepherdstown is the oldest town in West Virginia, founded in 1762, and home to Shepherd University — giving it a unique blend of historic charm and youthful vitality. The picturesque German Street corridor attracts professionals, academics, and families who value quality living. Many properties require contractors experienced with older construction methods and historic preservation. Real Elite Contracting brings the expertise and attention to detail that Shepherdstown homeowners expect.",
+    neighborhoods: ['Historic Downtown', 'University Area', 'Potomac Riverfront', 'Moler Crossroads', 'Shepherd Grade Road Area'],
+    marketEmphasis: ['remodeling', 'roofing', 'bathrooms', 'kitchens', 'decks', 'exterior-repairs'],
+  },
+
+  /* ---------- Frederick County MD ---------- */
   'frederick-md': {
     description:
-      "Frederick is the county seat and largest city in Frederick County, Maryland — a rapidly growing community of over 75,000 residents that has transformed from a historic market town into one of the Mid-Atlantic's most desirable places to live. The revitalization of Carroll Creek and the Market Street corridor has breathed new life into Frederick's historic downtown, while the I-70 growth corridor continues to attract new developments in Urbana, Jefferson, and New Market. Real Elite Contracting serves Frederick homeowners who want professional-grade results for their most important asset.",
-    neighborhoods: ['Historic Downtown Frederick', 'Ballenger Creek', 'Urbana', 'Jefferson'],
+      "Frederick is the county seat and largest city in Frederick County, Maryland — a rapidly growing community of over 75,000 residents that has transformed from a historic market town into one of the Mid-Atlantic's most desirable places to live. The revitalization of Carroll Creek and the Market Street corridor has breathed new life into Frederick's historic downtown, while the I-70 growth corridor continues to attract new developments in Urbana, Jefferson, and New Market. Real Elite Contracting serves Frederick homeowners who want professional-grade results on bathrooms, kitchens, basements, and roofing — the projects that drive the most value in this market.",
+    neighborhoods: ['Historic Downtown Frederick', 'Ballenger Creek', 'Urbana', 'Jefferson', 'New Market', 'Buckeystown'],
+    marketEmphasis: ['bathrooms', 'basements', 'kitchens', 'roofing', 'remodeling', 'additions'],
+  },
+  'hagerstown-md': {
+    description:
+      "Hagerstown is the county seat of Washington County, Maryland and the largest city in the Cumberland Valley — a strategically located commercial hub at the intersection of I-70 and I-81. With a mix of historic neighborhoods near Public Square and growing suburban development along the Halfway and Robinwood corridors, Hagerstown's housing stock spans turn-of-the-century brick homes to newer single-family construction. Real Elite Contracting brings premium roofing, siding, and bathroom remodels to Hagerstown homeowners who want craftsmanship that respects both the historic character and modern demands of the region.",
+    neighborhoods: ['Public Square Historic District', 'North End', 'Halfway', 'Robinwood', 'South End', 'Fountain Head Heights'],
+    marketEmphasis: ['roofing', 'siding', 'bathrooms', 'remodeling', 'decks', 'exterior-repairs'],
+  },
+
+  /* ---------- Northern Shenandoah Valley + Loudoun County VA ---------- */
+  'winchester-va': {
+    description:
+      "Winchester is the historic gateway to Virginia's Shenandoah Valley — a city that blends a vibrant, walkable Old Town with rapidly growing residential neighborhoods along Route 7, Route 522, and the Senseny Road corridor. As the largest city in the Northern Shenandoah Valley, Winchester draws families and professionals who appreciate its small-city character, proximity to the mountains, and access to both Northern Virginia jobs and a lower cost of living. Real Elite Contracting is proud to serve Winchester homeowners with the high-quality craftsmanship we deliver throughout the region.",
+    neighborhoods: ['Old Town Winchester', 'Shawnee District', 'Senseny Road Corridor', 'Millwood Avenue Area', 'Route 7 Corridor'],
+    marketEmphasis: ['decks', 'roofing', 'remodeling', 'siding', 'bathrooms', 'additions'],
   },
   'leesburg-va': {
     description:
-      "Leesburg is the historic county seat of Loudoun County, Virginia — one of the wealthiest counties in the United States and one of the fastest-growing. Its walkable, brick-lined historic downtown along King Street, its proximity to Dulles International Airport, and its stunning setting in the Loudoun Valley make it one of Northern Virginia's most desirable addresses. From estate homes in Lansdowne on the Potomac to restored historic properties in the Old Town district, Leesburg homeowners demand quality craftsmanship. Real Elite Contracting delivers it.",
-    neighborhoods: ['Historic Old Town Leesburg', 'Lansdowne on the Potomac', 'Cascades', 'Countryside'],
+      "Leesburg is the historic county seat of Loudoun County, Virginia — one of the wealthiest counties in the United States and one of the fastest-growing. Its walkable, brick-lined historic downtown along King Street, its proximity to Dulles International Airport, and its stunning setting in the Loudoun Valley make it one of Northern Virginia's most desirable addresses. From estate homes in Lansdowne on the Potomac to restored historic properties in the Old Town district, Leesburg homeowners demand premium craftsmanship. Real Elite Contracting delivers it.",
+    neighborhoods: ['Historic Old Town Leesburg', 'Lansdowne on the Potomac', 'Cascades', 'Countryside', 'River Creek'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
   },
   'ashburn-va': {
     description:
-      "Ashburn is at the heart of Loudoun County's explosive growth — a master-planned tech corridor and residential powerhouse that houses thousands of data centers alongside growing young families. Communities like Broadlands, Brambleton, One Loudoun, and Ashburn Farm offer modern homes in well-maintained neighborhoods where curb appeal and property values are taken seriously. With the Silver Line Metro now connecting Ashburn directly to Washington, D.C., this market only continues to appreciate. Real Elite Contracting is Ashburn's trusted partner for home improvements done right.",
-    neighborhoods: ['One Loudoun', 'Broadlands', 'Brambleton', 'Ashburn Farm'],
+      "Ashburn is at the heart of Loudoun County's explosive growth — a master-planned tech corridor and residential powerhouse housing thousands of data centers alongside growing young families. Communities like Broadlands, Brambleton, One Loudoun, and Ashburn Farm offer modern homes in well-maintained neighborhoods where curb appeal and property values are taken seriously. With the Silver Line Metro now connecting Ashburn directly to Washington, D.C., this market only continues to appreciate. Real Elite Contracting is Ashburn's trusted partner for premium decks, outdoor living, kitchens, and bathroom remodels.",
+    neighborhoods: ['One Loudoun', 'Broadlands', 'Brambleton', 'Ashburn Farm', 'Loudoun Valley Estates', 'Belmont Greene'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+  },
+  'loudoun-county-va': {
+    description:
+      "Loudoun County is one of the wealthiest and fastest-growing counties in the United States — home to Leesburg, Ashburn, Sterling, Purcellville, and a network of master-planned communities reshaping Northern Virginia. From estate properties in horse country west of Route 15 to data-center-adjacent neighborhoods along the Silver Line Metro corridor, Loudoun homeowners share an expectation of premium craftsmanship and clean execution. Real Elite Contracting brings veteran-led precision and high-end remodeling to Loudoun County — luxury decks and outdoor living, custom kitchens, premium bathrooms, and full home transformations done to the standard this market expects.",
+    neighborhoods: ['Leesburg', 'Ashburn', 'Lansdowne', 'Brambleton', 'One Loudoun', 'Cascades', 'Purcellville', 'Sterling'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
   },
 };
 
+/** @deprecated — use CITY_DATA. Kept temporarily to avoid breaking any
+ *  import that still references the old name. */
+export const EXPANSION_CITY_DATA = CITY_DATA;
+
 /** Flat list of all service areas for convenience */
+/**
+ * De-duplicated flat list. Several VA/MD cities now live in
+ * PRIMARY_SERVICE_AREAS and also in the legacy EXPANSION_SERVICE_AREAS
+ * alias, so we dedupe by slug here.
+ */
+const _seen = new Set<string>();
 export const ALL_SERVICE_AREAS = [
   ...PRIMARY_SERVICE_AREAS,
   ...SECONDARY_SERVICE_AREAS,
   ...EXPANSION_SERVICE_AREAS,
-] as const;
+].filter((a) => {
+  if (_seen.has(a.slug)) return false;
+  _seen.add(a.slug);
+  return true;
+});
 
 /** Legacy flat list (primary + secondary city names) for simple iterations */
 export const SERVICE_AREAS = [
