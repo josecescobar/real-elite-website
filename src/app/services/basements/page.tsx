@@ -3,7 +3,7 @@ import { BUSINESS } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import ServicePageTemplate from '@/components/services/ServicePageTemplate';
 
-const data = SERVICE_DATA.handyman;
+const data = SERVICE_DATA.basements;
 
 export const metadata: Metadata = {
   title: data.metaTitle,
@@ -19,6 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HandymanPage() {
+export default function BasementsPage() {
   return <ServicePageTemplate data={data} />;
 }

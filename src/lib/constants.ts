@@ -24,61 +24,86 @@ export const BUSINESS = {
   veteranOwned: true,
 } as const;
 
+/**
+ * Service catalog — ordered by homepage / mega-menu priority.
+ * Premium remodeling categories lead; small-job services trail.
+ */
 export const SERVICES = [
+  {
+    title: 'Bathroom Remodeling',
+    slug: 'bathrooms',
+    description:
+      'Walk-in showers, tile work, vanities, and full master-bath transformations across the WV–MD–VA region.',
+    icon: 'Bath' as const,
+  },
+  {
+    title: 'Kitchen Remodeling',
+    slug: 'kitchens',
+    description:
+      'Custom cabinetry, islands, layout changes, and full kitchen transformations. Premium kitchens for families who actually cook.',
+    icon: 'ChefHat' as const,
+  },
+  {
+    title: 'Basement Finishing',
+    slug: 'basements',
+    description:
+      'Finished family rooms, in-law suites, basement bars. Done to code with proper moisture control.',
+    icon: 'Home' as const,
+  },
+  {
+    title: 'Whole-Home Remodeling',
+    slug: 'remodeling',
+    description:
+      'Interior and exterior remodels — kitchens, bathrooms, basements, and full home renovations under one project lead.',
+    icon: 'Hammer' as const,
+  },
+  {
+    title: 'Decks & Outdoor Living',
+    slug: 'decks',
+    description:
+      'Composite decks, railings, lighting, pergolas, and full backyard transformations using premium materials.',
+    icon: 'Fence' as const,
+  },
   {
     title: 'Roofing',
     slug: 'roofing',
     description:
-      'Complete roof replacement and repair with premium architectural shingles. Protect your home with expert installation.',
+      'Architectural shingle replacement, valley flashing, storm-damage repair, and complete tear-offs.',
     icon: 'Home' as const,
   },
   {
-    title: 'Siding',
+    title: 'Siding & Stone Exteriors',
     slug: 'siding',
     description:
-      'Vinyl, fiber cement, and wood siding installation that transforms your home\'s exterior and boosts curb appeal.',
+      'Vinyl, fiber cement, and stone veneer that elevates every facade — the highest-ROI exterior upgrade.',
     icon: 'Layers' as const,
   },
   {
-    title: 'Decks',
-    slug: 'decks',
-    description:
-      'Custom deck design and construction using premium materials. Expand your living space with a beautiful outdoor area.',
-    icon: 'Fence' as const,
-  },
-  {
-    title: 'Remodeling',
-    slug: 'remodeling',
-    description:
-      'Interior and exterior remodeling that modernizes your home. Kitchens, bathrooms, and full home renovations.',
-    icon: 'Hammer' as const,
-  },
-  {
-    title: 'Additions',
+    title: 'Home Additions',
     slug: 'additions',
     description:
-      'Home additions that seamlessly blend with your existing structure. Add the space your family needs.',
+      'Bump-outs, single rooms, second stories, and in-law suites — engineered to look like they were always part of the home.',
     icon: 'Plus' as const,
   },
   {
     title: 'Exterior Repairs',
     slug: 'exterior-repairs',
     description:
-      'Stone veneer, foundation repair, trim work, and general exterior maintenance to keep your home in top shape.',
+      'Stone veneer detail work, foundation repair, trim, and exterior maintenance — same craft, smaller scope.',
     icon: 'Wrench' as const,
   },
   {
     title: 'General Repairs & Maintenance',
     slug: 'general-repairs',
     description:
-      'Door and window repairs, drywall patching, trim work, deck fixes, and all the smaller jobs that keep your home in great shape.',
+      'Doors, drywall, trim, deck fixes, and the smaller jobs that keep your home in great shape.',
     icon: 'Paintbrush' as const,
   },
   {
     title: 'Handyman Services',
     slug: 'handyman',
     description:
-      'Drywall repair, door installation, pressure washing, gutter cleaning, fence repair, TV mounting, and dozens of other fast, reliable home repairs.',
+      'Drywall, doors, pressure washing, gutter cleaning, fence repair, TV mounting — the small-job catalog, done right.',
     icon: 'Hammer' as const,
   },
 ] as const;
@@ -197,23 +222,24 @@ export const UTILITY_LINKS = [
 
 /**
  * Services mega-menu — grouped into 3 editorial columns.
- * Bathrooms / Kitchens / Basements are intentionally omitted here until
- * their dedicated routes ship in Phase 4 with real photography.
  */
 export const SERVICES_MEGA_MENU = [
   {
     heading: 'Remodeling',
     items: [
-      { label: 'Whole-Home Remodeling', href: '/services/remodeling', description: 'Kitchens, bathrooms, full interior renovations' },
-      { label: 'Home Additions', href: '/services/additions', description: 'Seamless additions that match your existing home' },
+      { label: 'Bathroom Remodeling', href: '/services/bathrooms', description: 'Walk-in showers, tile, vanities, master baths' },
+      { label: 'Kitchen Remodeling', href: '/services/kitchens', description: 'Custom cabinetry, islands, layout changes' },
+      { label: 'Basement Finishing', href: '/services/basements', description: 'Family rooms, in-law suites, basement bars' },
+      { label: 'Whole-Home Remodeling', href: '/services/remodeling', description: 'Full interior renovations under one project lead' },
+      { label: 'Home Additions', href: '/services/additions', description: 'Bump-outs, single rooms, second stories' },
     ],
   },
   {
     heading: 'Exteriors',
     items: [
+      { label: 'Decks & Outdoor Living', href: '/services/decks', description: 'Composite decks, railings, outdoor spaces' },
       { label: 'Roofing', href: '/services/roofing', description: 'Architectural shingle replacement & repair' },
       { label: 'Siding & Stone', href: '/services/siding', description: 'Vinyl, fiber cement, and stone veneer exteriors' },
-      { label: 'Decks & Outdoor Living', href: '/services/decks', description: 'Composite decks, railings, outdoor spaces' },
       { label: 'Exterior Repairs', href: '/services/exterior-repairs', description: 'Trim, foundation, stone veneer detail work' },
     ],
   },

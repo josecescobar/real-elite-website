@@ -30,7 +30,16 @@ export const metadata: Metadata = {
   },
 };
 
-type IconName = 'Home' | 'Layers' | 'Fence' | 'Hammer' | 'Plus' | 'Wrench' | 'Paintbrush';
+type IconName =
+  | 'Home'
+  | 'Layers'
+  | 'Fence'
+  | 'Hammer'
+  | 'Plus'
+  | 'Wrench'
+  | 'Paintbrush'
+  | 'Bath'
+  | 'ChefHat';
 
 const getIcon = (iconName: IconName) => {
   const icons: Record<IconName, typeof LucideIcons.Home> = {
@@ -41,8 +50,10 @@ const getIcon = (iconName: IconName) => {
     Plus: LucideIcons.Plus,
     Wrench: LucideIcons.Wrench,
     Paintbrush: LucideIcons.Paintbrush,
+    Bath: LucideIcons.Bath,
+    ChefHat: LucideIcons.ChefHat,
   };
-  return icons[iconName];
+  return icons[iconName] ?? LucideIcons.Hammer;
 };
 
 export default function ServicesPage() {
