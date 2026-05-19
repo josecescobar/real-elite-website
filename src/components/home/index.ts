@@ -8,5 +8,6 @@ export { default as FeaturedGuides } from './FeaturedGuides';
 export { default as Testimonials } from './Testimonials';
 export { default as ServiceAreaMap } from './ServiceAreaMap';
 export { default as AssurancesBand } from './AssurancesBand';
+export { default as HomeEstimate } from './HomeEstimate';
 export { default as HomeFAQ } from './HomeFAQ';
 export { default as CTASection } from './CTASection';

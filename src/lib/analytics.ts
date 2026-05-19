@@ -13,3 +13,16 @@ export function trackEvent(name: string, params: GtagParams = {}) {
     ...params,
   });
 }
+
+/**
+ * Convenience tracker for multi-step estimate form progress.
+ * Fires `estimate_step_view`, `estimate_step_advance`, `estimate_submit`,
+ * and `estimate_abandon` depending on action.
+ */
+export function trackEstimateStep(
+  action: 'view' | 'advance' | 'submit' | 'abandon',
+  step: number,
+  params: GtagParams = {}
+) {
+  trackEvent(`estimate_step_${action}`, { step, ...params });
+}

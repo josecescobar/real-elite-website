@@ -1,4 +1,7 @@
+'use client';
+
 import { BUSINESS } from '@/lib/constants';
+import { trackEvent } from '@/lib/analytics';
 
 const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
 
@@ -17,20 +20,33 @@ export const CTASection = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+            href="#estimate"
+            onClick={() => trackEvent('estimate_cta_click', { location: 'cta_section' })}
+            className="w-full sm:w-auto bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 focus-visible:ring-brand-red"
           >
-            Book Free Estimate →
+            Get My Free Estimate →
           </a>
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
-            className="w-full sm:w-auto bg-white/10 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/40"
+            onClick={() => trackEvent('phone_click', { location: 'cta_section' })}
+            className="w-full sm:w-auto bg-white/10 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 focus-visible:ring-white/40"
           >
             Call {BUSINESS.phone}
           </a>
         </div>
+
+        <p className="text-xs text-charcoal-400 mt-6">
+          Prefer a quick chat?{' '}
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent('calendly_click', { location: 'cta_section' })}
+            className="text-white hover:text-brand-red underline transition-colors font-semibold"
+          >
+            Book a 15-minute call →
+          </a>
+        </p>
       </div>
     </section>
   );

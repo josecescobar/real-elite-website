@@ -4,8 +4,6 @@ import Image from 'next/image';
 import { BUSINESS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 
-const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
-
 export const Hero = () => {
   return (
     <section className="relative isolate overflow-hidden bg-navy-900 text-white">
@@ -56,10 +54,8 @@ export const Hero = () => {
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 mt-10">
             <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackEvent('calendly_click', { location: 'hero' })}
+              href="#estimate"
+              onClick={() => trackEvent('estimate_cta_click', { location: 'hero' })}
               className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red"
             >
               Get My Free Estimate →

@@ -10,6 +10,7 @@ import FeaturedGuides from '@/components/home/FeaturedGuides';
 import Testimonials from '@/components/home/Testimonials';
 import ServiceAreaMap from '@/components/home/ServiceAreaMap';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import HomeEstimate from '@/components/home/HomeEstimate';
 import HomeFAQ from '@/components/home/HomeFAQ';
 import CTASection from '@/components/home/CTASection';
 
@@ -32,6 +33,7 @@ export default function Home() {
       <Testimonials />
       <ServiceAreaMap />
       <AssurancesBand />
+      <HomeEstimate />
       <HomeFAQ />
       <CTASection />
     </>
