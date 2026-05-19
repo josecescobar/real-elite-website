@@ -20,7 +20,7 @@ export default function FeaturedGuides() {
             subtitle="Written by our crew — pricing breakdowns, material comparisons, permit walk-throughs, and the questions every homeowner should ask before signing a contract."
           />
           <Link
-            href="/blog"
+            href="/guides"
             className="hidden md:inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors group"
           >
             All Guides
@@ -99,7 +99,7 @@ export default function FeaturedGuides() {
 
         <div className="md:hidden mt-10 text-center">
           <Link
-            href="/blog"
+            href="/guides"
             className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors"
           >
             All Guides

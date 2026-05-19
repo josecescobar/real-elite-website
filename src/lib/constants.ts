@@ -208,7 +208,7 @@ export const NAV_LINKS = [
     href: '/service-areas',
   },
   { label: 'Our Work', href: '/gallery' },
-  { label: 'Guides', href: '/blog' },
+  { label: 'Guides', href: '/guides' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;
