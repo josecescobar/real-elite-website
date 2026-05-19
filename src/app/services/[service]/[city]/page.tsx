@@ -1,9 +1,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ChevronRight, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 import { BUSINESS, SERVICES, EXPANSION_SERVICE_AREAS } from '@/lib/constants';
-import Button from '@/components/shared/Button';
-import { MapPin, Check, Phone, ArrowRight } from 'lucide-react';
+import { SERVICE_DATA } from '@/lib/services-data';
+import Container from '@/components/shared/Container';
+import SectionHeader from '@/components/shared/SectionHeader';
+import StickyEstimateRail from '@/components/services/StickyEstimateRail';
+import InvestmentRanges from '@/components/services/InvestmentRanges';
+import PrecisionProcess from '@/components/home/PrecisionProcess';
+import AssurancesBand from '@/components/home/AssurancesBand';
+import JsonLd from '@/components/seo/JsonLd';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -337,38 +344,30 @@ export default async function ServiceCityPage({
     notFound();
   }
 
-  const localBusinessSchema = {
+  // SEO: Service schema scoped to this specific city, plus a
+  // BreadcrumbList. No per-market LocalBusiness duplication (the global
+  // GeneralContractor in layout.tsx already covers areaServed).
+  const richServiceData = SERVICE_DATA[serviceData.slug];
+  const serviceSchema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: BUSINESS.name,
-    url: BUSINESS.url,
-    telephone: BUSINESS.phoneRaw,
-    email: BUSINESS.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: BUSINESS.address.city,
-      addressRegion: BUSINESS.address.state,
-      postalCode: BUSINESS.address.zip,
-      addressCountry: 'US',
+    '@type': 'Service',
+    name: `${serviceData.title} in ${cityData.city}, ${cityData.state}`,
+    serviceType: richServiceData?.serviceType ?? serviceData.title,
+    description:
+      richServiceData?.metaDescription ??
+      `${serviceData.title} services for ${cityData.city}, ${cityData.state} homeowners by Real Elite Contracting.`,
+    provider: {
+      '@type': 'GeneralContractor',
+      name: BUSINESS.name,
+      url: `${BUSINESS.url}/`,
+      telephone: '+1-681-534-5515',
     },
     areaServed: {
       '@type': 'City',
       name: cityData.city,
       containedInPlace: { '@type': 'State', name: cityData.state },
     },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: serviceData.title,
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: `${serviceData.title} in ${cityData.city}, ${cityData.state}`,
-          },
-        },
-      ],
-    },
+    url: `${BUSINESS.url}/services/${service}/${city}`,
   };
 
   const breadcrumbSchema = {
@@ -382,155 +381,254 @@ export default async function ServiceCityPage({
     ],
   };
 
+  // Cross-link rails
+  const otherCitiesForThisService = EXPANSION_SERVICE_AREAS.filter(
+    (a) => a.slug !== cityData.slug && COMBO_CITY_SLUGS.includes(a.slug as ExpansionCitySlug)
+  ).slice(0, 5);
+  const otherServicesForThisCity = SERVICES.filter(
+    (s) => s.slug !== serviceData.slug && FEATURED_SERVICE_SLUGS.includes(s.slug as FeaturedServiceSlug)
+  );
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd schema={serviceSchema} />
+      <JsonLd schema={breadcrumbSchema} />
 
-      {/* Hero */}
-      <section className="bg-navy-900 text-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-2 text-charcoal-300 text-sm font-semibold mb-4">
-            <Link href={`/services/${serviceData.slug}`} className="hover:text-white transition-colors">
+      {/* Hero — editorial navy with brand-red eyebrow + breadcrumb */}
+      <section className="relative isolate bg-navy-900 text-white">
+        <div aria-hidden="true" className="absolute inset-0 -z-10 gradient-navy-hero" />
+        <Container size="wide" className="py-20 md:py-28 lg:py-32">
+          <nav
+            aria-label="Breadcrumb"
+            className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap"
+          >
+            <Link href="/services" className="hover:text-white transition-colors">
+              Services
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
+            <Link
+              href={`/services/${serviceData.slug}`}
+              className="hover:text-white transition-colors"
+            >
               {serviceData.title}
             </Link>
-            <span>/</span>
-            <Link href={`/service-areas/${cityData.slug}`} className="hover:text-white transition-colors">
+            <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
+            <Link
+              href={`/service-areas/${cityData.slug}`}
+              className="hover:text-white transition-colors"
+            >
               {cityData.city}, {cityData.state}
             </Link>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {serviceData.title} in {cityData.city}, {cityData.state}
+          </nav>
+
+          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
+            <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {cityData.city}, {cityData.state}
+          </p>
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight max-w-4xl">
+            {serviceData.title}
+            <br />
+            <span className="text-brand-red">in {cityData.city}.</span>
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl">
-            Real Elite Contracting — veteran-owned, quality-focused. Serving {cityData.city} and the surrounding area.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Button
-              href="https://calendly.com/realelitecontracting-info/free-estimate-call"
-              variant="primary"
-              size="lg"
-            >
-              Book Free Estimate
-            </Button>
-            <Button href={`tel:${BUSINESS.phoneRaw}`} variant="outline" size="lg">
-              Call {BUSINESS.phone}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Body Content */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="space-y-6">
-            {content.paragraphs.map((paragraph, index) => (
-              <p key={index} className="text-lg text-gray-700 leading-relaxed">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Real Elite */}
-      <section className="py-16 md:py-24 bg-navy-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-navy-900 mb-12 text-center">
-            Why {cityData.city} Homeowners Choose Real Elite
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                title: 'Veteran-Owned & Operated',
-                body: 'Founded on military values — discipline, accountability, and a commitment to doing the job right the first time. When we say we stand behind our work, we mean it.',
-              },
-              {
-                title: 'Transparent Pricing',
-                body: 'No hidden fees, no surprise line items. We provide detailed written estimates before any work begins so you know exactly what you\'re getting for your investment.',
-              },
-              {
-                title: 'Local Expertise',
-                body: `We know ${cityData.city}'s neighborhoods, building codes, and climate challenges. That local knowledge means smarter material choices and better results for your home.`,
-              },
-            ].map((item) => (
-              <div key={item.title} className="text-center">
-                <div className="bg-brand-red/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Check className="w-8 h-8 text-brand-red" />
-                </div>
-                <h3 className="text-xl font-bold text-navy-900 mb-3">{item.title}</h3>
-                <p className="text-gray-700">{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 md:py-24 bg-navy-900 text-white">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Get Started in {cityData.city}?
-          </h2>
-          <p className="text-lg text-gray-300 mb-8">
-            Schedule your free, no-obligation {serviceData.title.toLowerCase()} estimate today. We'll assess your project,
-            answer your questions, and provide a detailed quote — no pressure, no gimmicks.
+          <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
+            {richServiceData?.hero?.sub ?? serviceData.description}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <Button
-              href="https://calendly.com/realelitecontracting-info/free-estimate-call"
-              variant="primary"
-              size="lg"
+          <div className="flex flex-wrap gap-4 mt-10">
+            <a
+              href="#estimate"
+              className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
             >
-              Book Free Estimate Online
-            </Button>
-          </div>
-
-          <div className="flex items-center justify-center gap-3 text-gray-300">
-            <Phone className="w-5 h-5 text-brand-red flex-shrink-0" />
-            <span>Or call us directly:</span>
+              Get My Free Estimate →
+            </a>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
-              className="text-xl font-bold text-brand-red hover:text-charcoal-300 transition-colors"
+              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
-              {BUSINESS.phone}
+              Call {BUSINESS.phone}
             </a>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Internal Links */}
-      <section className="py-12 bg-white border-t border-gray-200">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-gray-600 mb-6">Explore more from Real Elite Contracting</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
-            <Link href={`/services/${serviceData.slug}`}>
-              <Button variant="outline" size="sm">
-                <ArrowRight className="w-4 h-4 mr-2" />
-                All {serviceData.title} Services
-              </Button>
-            </Link>
-            <Link href={`/service-areas/${cityData.slug}`}>
-              <Button variant="outline" size="sm">
-                <MapPin className="w-4 h-4 mr-2" />
-                {cityData.city}, {cityData.state} Service Area
-              </Button>
-            </Link>
-            <Link href="/services">
-              <Button variant="outline" size="sm">
-                View All Services
-              </Button>
-            </Link>
+      {/* Body + sticky form rail */}
+      <section className="bg-white py-16 md:py-24">
+        <Container size="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            <div className="lg:col-span-7 xl:col-span-8 space-y-16">
+              {/* Localized prose */}
+              <div>
+                <SectionHeader
+                  eyebrow={`${serviceData.title} · ${cityData.city}`}
+                  title={`Why ${cityData.city} homeowners hire us.`}
+                />
+                <div className="mt-7 space-y-5">
+                  {content.paragraphs.map((paragraph, index) => (
+                    <p
+                      key={index}
+                      className="text-charcoal-700 text-base md:text-lg leading-relaxed"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Investment ranges (when SERVICE_DATA has them) */}
+              {richServiceData?.investment && (
+                <InvestmentRanges
+                  startingAt={richServiceData.investment.startingAt}
+                  tiers={richServiceData.investment.tiers}
+                  note={richServiceData.investment.note}
+                />
+              )}
+
+              {/* Why this city trusts us */}
+              <div className="bg-steel-50 rounded-lg border-t-4 border-brand-red p-7 md:p-9">
+                <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
+                  Why {cityData.city} homeowners choose Real Elite
+                </p>
+                <ul className="space-y-3 text-charcoal-700">
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      One named project lead on every {cityData.city}{' '}
+                      {serviceData.title.toLowerCase()} job — from estimate through final walkthrough.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      Daily updates, clean job site, 24-hour response standard.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      Written workmanship warranty + manufacturer warranties registered on your behalf.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      Licensed and insured in {cityData.state} — local permitting + inspections handled.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Cross-links */}
+              <div>
+                <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-6">
+                  Keep exploring
+                </h2>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Link
+                    href={`/services/${serviceData.slug}`}
+                    className="group bg-steel-50 hover:bg-navy-800 rounded-md p-5 transition-colors"
+                  >
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-brand-red mb-1">
+                      Service overview
+                    </p>
+                    <p className="font-heading text-base font-bold text-navy-800 group-hover:text-white transition-colors inline-flex items-center gap-1.5">
+                      All {serviceData.title}
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </p>
+                  </Link>
+                  <Link
+                    href={`/service-areas/${cityData.slug}`}
+                    className="group bg-steel-50 hover:bg-navy-800 rounded-md p-5 transition-colors"
+                  >
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-brand-red mb-1">
+                      Service area
+                    </p>
+                    <p className="font-heading text-base font-bold text-navy-800 group-hover:text-white transition-colors inline-flex items-center gap-1.5">
+                      All services in {cityData.city}
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </p>
+                  </Link>
+                </div>
+
+                {otherServicesForThisCity.length > 0 && (
+                  <div className="mt-8">
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-charcoal-500 mb-3">
+                      Other services in {cityData.city}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {otherServicesForThisCity.map((s) => (
+                        <Link
+                          key={s.slug}
+                          href={`/services/${s.slug}/${cityData.slug}`}
+                          className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                        >
+                          {s.title} <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {otherCitiesForThisService.length > 0 && (
+                  <div className="mt-8">
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-charcoal-500 mb-3">
+                      {serviceData.title} in other markets
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {otherCitiesForThisService.map((c) => (
+                        <Link
+                          key={c.slug}
+                          href={`/services/${serviceData.slug}/${c.slug}`}
+                          className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                        >
+                          {c.city}, {c.state} <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Sticky right rail — multi-step estimate form */}
+            <div className="lg:col-span-5 xl:col-span-4">
+              <StickyEstimateRail initialService={serviceData.slug} />
+            </div>
           </div>
-        </div>
+        </Container>
+      </section>
+
+      {/* Process module */}
+      <PrecisionProcess />
+
+      {/* Assurances */}
+      <AssurancesBand />
+
+      {/* Final CTA */}
+      <section className="bg-navy-900 text-white py-16 md:py-24">
+        <Container size="default" className="text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
+            Ready to start your {cityData.city} project?
+          </h2>
+          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
+            Three short steps, about 60 seconds — a real project lead reaches out within 24
+            business hours to schedule your free on-site walkthrough.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#estimate"
+              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+            >
+              Get My Free Estimate
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href={`tel:${BUSINESS.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
+            >
+              Call {BUSINESS.phone}
+            </a>
+          </div>
+        </Container>
       </section>
     </>
   );
