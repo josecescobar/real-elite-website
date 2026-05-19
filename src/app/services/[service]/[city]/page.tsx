@@ -11,18 +11,24 @@ const FEATURED_SERVICE_SLUGS = ['roofing', 'decks', 'remodeling', 'siding'] as c
 type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
 
 /**
- * Service+city deep-link combos only exist for these 4 cities — each
- * pairing has hand-written localized content in the CONTENT map below.
+ * Service+city deep-link combos exist for these 6 cities. Each pairing
+ * has hand-written localized content in the CONTENT map below.
  *
  * NOTE: this list is INTENTIONALLY decoupled from EXPANSION_SERVICE_AREAS
- * in constants.ts. Hagerstown MD and Loudoun County VA are full
- * service-area destinations (/service-areas/{slug}) but do not yet have
- * per-service localized copy here. Iterating the broader list from
- * constants would generate broken URLs the sitemap then advertises.
- * Add a city to COMBO_CITY_SLUGS only after adding all 4 of its
- * service-specific CONTENT entries below.
+ * in constants.ts. Adding a city-overview page (in constants) should NOT
+ * automatically create per-service deep-link pages here without the
+ * localized content also being written. The contract: add a city to
+ * COMBO_CITY_SLUGS only after adding all 4 of its service-specific
+ * CONTENT entries below.
  */
-const COMBO_CITY_SLUGS = ['winchester-va', 'frederick-md', 'leesburg-va', 'ashburn-va'] as const;
+const COMBO_CITY_SLUGS = [
+  'winchester-va',
+  'frederick-md',
+  'leesburg-va',
+  'ashburn-va',
+  'hagerstown-md',
+  'loudoun-county-va',
+] as const;
 type ExpansionCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
 const COMBO_CITIES = EXPANSION_SERVICE_AREAS.filter((a) =>
@@ -69,6 +75,24 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
     ],
   },
 
+  'roofing-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's location at the I-70 / I-81 crossroads in the Cumberland Valley means your roof faces the full Mid-Atlantic weather mix — nor'easters from the east, snow squalls funneling down from the Allegheny ridges, and summer thunderstorms that have travelled across the valley. As Washington County's county seat and largest city, Hagerstown homeowners need a roofing contractor familiar with both the historic brick row homes near Public Square and the newer suburban construction along the Halfway and Robinwood corridors.",
+      "Real Elite Contracting provides professional roofing services across Hagerstown and the surrounding Cumberland Valley. Our crews handle architectural shingle replacements on the Federal and Victorian-era homes that line the historic North End and Fountain Head, where rooflines often feature steep pitches, multiple dormers, and intricate valleys that demand precision. For newer subdivisions in the South End and along the I-81 commercial corridor, we offer efficient full replacements with predictable timelines and clean job sites.",
+      "Hagerstown's roofs deal with a freeze-thaw cycle that's particularly hard on flashing, valleys, and chimney saddles — the bridge climate where the Eastern Panhandle's milder winters meet Pennsylvania's colder ones. We install only premium architectural shingles from GAF and Owens Corning, backed by manufacturer warranties and our own workmanship guarantee in writing. Ridge venting, proper underlayment, and ice-and-water shield in the right places are standard, not upsells.",
+      "Insurance claims after the regular wind events that hit the Cumberland Valley are handled directly with your carrier — we document damage with on-roof photos, provide the detailed scope insurers expect, and coordinate inspections so the claim moves through quickly. For Hagerstown homeowners replacing a roof at the end of its service life rather than after storm damage, our free inspections include an honest read on whether the roof has years left or whether replacement is the right call now.",
+    ],
+  },
+
+  'roofing-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County is one of the most demanding residential markets in the country — estate homes in horse country west of Route 15, master-planned communities like Brambleton and One Loudoun, premium properties along the Silver Line Metro corridor, and historic homes from Leesburg to Purcellville. Loudoun roofs see the full Mid-Atlantic weather mix: nor'easters, summer thunderstorms, ice storms, and the periodic windstorms that come down off the Blue Ridge.",
+      "Real Elite Contracting brings premium roofing services to homeowners across Loudoun County. We're experienced with the complex rooflines that define Loudoun's upscale neighborhoods — standing seam metal on historic country properties, architectural shingles on Lansdowne estates and One Loudoun homes, copper accents on premium custom builds. The expectation in this market is precision, and we deliver it.",
+      "Loudoun's master-planned communities — Brambleton, Lansdowne, Cascades, Belmont Greene, River Creek — operate under HOA architectural standards that specify approved shingle colors, materials, and installation details. We handle HOA submission and approval as part of every roofing project, ensuring your replacement meets community design standards without the homeowner managing the back-and-forth. For historic-district properties in Leesburg or Waterford, we work with HARB-equivalent oversight as needed.",
+      "Premium roofing in Loudoun County typically runs $15,000 to $40,000+ for a full replacement, depending on size, complexity, and material tier. Architectural shingles from GAF Timberline and Owens Corning Duration are standard; premium tiers (designer shingles, architectural metal accents, copper detailing) add cost but deliver the curb appeal and longevity Loudoun homeowners expect. Free inspections, written estimates, and workmanship warranties in writing.",
+    ],
+  },
+
   // ── DECKS ──────────────────────────────────────────────────────────────
 
   'decks-winchester-va': {
@@ -104,6 +128,24 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
       "Ashburn's planned communities offer beautiful settings for outdoor living, but HOA guidelines can make deck additions complicated. Real Elite is experienced with the specific requirements of Ashburn's major communities — Broadlands, Brambleton, Ashburn Farm, Belmont Country Club, and more. We handle all HOA submissions, material approvals, and Loudoun County permits, making the process seamless for you.",
       "We specialize in composite decking systems that look sharp and stay looking sharp in Ashburn's suburban environment. Trex, TimberTech, and Azek products resist the fading, staining, and warping that pressure-treated wood develops within a few years. With kids and pets in the picture, low-maintenance composite is the obvious choice — no annual staining, no splinters, no worries.",
       "Ashburn decks often include multiple functional zones: a dining area near the sliding door, a fire pit corner, a built-in grill station, and a lounge section for unwinding. Real Elite designs each deck with your lifestyle in mind. We take measurements, create a layout, walk you through material options, and provide a fixed-price estimate before work begins.",
+    ],
+  },
+
+  'decks-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's outdoor culture — long summers, mild springs and falls, the Antietam Creek and C&O Canal trails just minutes away — makes deck and outdoor-living spaces one of the smartest investments a Cumberland Valley homeowner can make. From a backyard composite deck overlooking the rolling hills west of the city to a multi-level entertainment space in a Halfway or Robinwood subdivision, we build outdoor spaces that get used through three seasons.",
+      "Our deck-building expertise spans every part of the Hagerstown market. For the historic North End and Public Square area, we work with care on properties where the deck addition needs to respect the architectural character of the original home. For newer construction along Robinwood, Fountain Head, and the South End, we deliver modern composite builds in Trex, TimberTech, and Azek that hold up beautifully against the Cumberland Valley climate.",
+      "Composite is what we recommend for most Hagerstown homeowners — the humid summers and freeze-thaw winters punish pressure-treated lumber, and the maintenance cycle (sealing, restaining, board replacement) adds up. A composite deck installed correctly looks the same in year 15 as it did in year 1, with annual maintenance measured in hours rather than weekends. We bring real samples on the estimate so you can compare materials before committing.",
+      "Washington County deck permits run 2–3 weeks from application to issue, and most decks above 30 inches at any point require a permit. We handle the entire permitting and inspection process, so you don't deal with the paperwork. Pier inspections happen before concrete, framing inspections before decking goes down — all coordinated with the county on your behalf.",
+    ],
+  },
+
+  'decks-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County is where outdoor living has fundamentally changed in the past decade. Premium homes in Lansdowne, Brambleton, One Loudoun, Ashburn Farm, and Belmont Greene — plus the estate properties in the western county — increasingly feature multi-level composite decks with built-in outdoor kitchens, pergolas, integrated lighting, and seamless transitions to landscaped backyards. The \"simple deck\" has been replaced by the outdoor living buildout.",
+      "Real Elite Contracting builds premium decks and outdoor living spaces across Loudoun County. We work with all three major composite manufacturers — Trex Transcend, TimberTech AZEK, and TimberTech PRO — and most of our Loudoun projects are in the $25,000 to $75,000+ range, reflecting the level of finish this market expects. We bring real material samples to your estimate, show completed Loudoun projects, and walk you through the design choices that affect long-term value.",
+      "HOA approval is part of nearly every Loudoun County deck project. We handle the architectural review submission for Brambleton, Lansdowne, One Loudoun, Cascades, Belmont Greene, and the other master-planned communities — providing the elevations, material specifications, and color samples each HOA requires. Expect 2–4 weeks for HOA review on top of the standard 2–3 week county permit timeline; we coordinate both in parallel.",
+      "Loudoun County's pier depth requirement (30 inches minimum), Virginia building code, and the HOA design standards all combine to make Loudoun deck builds more complex than the regional average. Cheap contractors cut corners on footings and the failures show up in 7–10 years as frost heave. We install to spec, document every inspection, and back the work with a written workmanship warranty.",
     ],
   },
 
@@ -145,6 +187,24 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
     ],
   },
 
+  'remodeling-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's housing stock is one of its strongest assets — solid brick row homes in the historic district, mid-century single-family homes along the established corridors, and newer construction in the rapidly growing Halfway, Robinwood, and Fountain Head neighborhoods. Each comes with its own remodeling considerations, and Real Elite Contracting brings the right approach to whatever the project is.",
+      "For Washington County homeowners updating older properties — bathroom remodels in 1950s-era brick homes, kitchen remodels in mid-century ranches, basement finishing in established neighborhoods — the work always starts with understanding what's behind the walls. Older Hagerstown homes often have plumbing and electrical that needs attention before any cosmetic update is worth doing, and we'll tell you upfront if those underlying systems need investment first. The cost is real but ignoring it always costs more.",
+      "For newer suburban remodels — open-concept kitchen updates, primary suite bathroom upgrades, mudroom and laundry buildouts — we deliver premium finishes with the same project management discipline. Named project lead, daily updates, clean job site every day, and a written workmanship warranty when the work is done.",
+      "Typical timelines: bathroom remodels run 3–5 weeks of active work in the Hagerstown market, kitchens 6–10 weeks, basements 6–12 weeks. We give you a written timeline before we break ground and update you daily if anything shifts. Permitting through Washington County and the City of Hagerstown is included as part of every project.",
+    ],
+  },
+
+  'remodeling-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County remodeling is its own market segment. The average finished-square-foot expectation, the material quality, the design integration — everything operates a tier above what's typical for the broader region. Brambleton kitchens, Lansdowne primary suite remodels, One Loudoun whole-home renovations, Leesburg historic property restorations — Real Elite Contracting delivers the standard this market demands.",
+      "Bathroom remodels in Loudoun County typically run $40,000 to $80,000+ for primary suites with curbless showers, custom tile, frameless glass, double vanities, and the premium fixture selections (Brizo, Hansgrohe, Kohler Artifacts) Loudoun homeowners specify. Kitchens commonly land in the $75,000 to $200,000 range depending on cabinetry tier, layout changes, and appliance package. We bring the right project management discipline to projects at that scale — one named lead, daily updates, transparent line-item pricing.",
+      "For Loudoun's historic properties — homes in Old Town Leesburg, restored farmhouses in the western county, properties with historic preservation considerations — we work with care. We match period-appropriate materials and finishes where they matter, integrate modern systems without compromising character, and coordinate with HARB and county historic-district oversight where required.",
+      "Loudoun County permit and inspection processes are predictable but slow — typically 3–4 weeks for permits on a substantial remodel, plus structural-engineering review where applicable. We handle every step. HOA submissions for design review in master-planned communities are managed in parallel, so the permit and HOA approval timelines don't stack.",
+    ],
+  },
+
   // ── SIDING ────────────────────────────────────────────────────────────────
 
   'siding-winchester-va': {
@@ -180,6 +240,24 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
       "Many Ashburn homes from the late 1990s and early 2000s feature original vinyl siding that is fading, chalking, or showing impact damage after 20+ years of service. A fresh siding replacement transforms the look of your home immediately — and modern vinyl siding products perform significantly better than what was installed a generation ago, with better UV resistance, insulated backing options, and warranties that cover the life of the home.",
       "We work within all major Ashburn HOA communities — Broadlands, Brambleton, Ashburn Farm, Belmont Country Club, and others — navigating the approval process and ensuring your siding selection meets community guidelines. Our team helps you choose replacement colors that comply with HOA standards while giving your home a fresh, updated appearance that stands out on the street.",
       "Ashburn homeowners can also choose James Hardie fiber cement for a premium upgrade that adds significant curb appeal and resale value. Hardie siding is particularly popular for accent areas — gable ends, dormers, and entryways — where a texture upgrade makes a dramatic visual impact.",
+    ],
+  },
+
+  'siding-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's varied housing stock — historic brick, mid-century clapboard, modern fiber cement, newer vinyl construction — means siding work in this market requires real range. Real Elite Contracting handles vinyl replacement, fiber cement (James Hardie and comparable) installation, and stone veneer accent work across Washington County, from the historic Public Square area through the growing Halfway and Robinwood corridors.",
+      "For homeowners in newer Hagerstown developments — the rapidly growing South End, communities along the I-81 corridor, and newer subdivisions in the surrounding county — fiber cement siding is increasingly the standard. James Hardie holds up to the Cumberland Valley climate beautifully, requires minimal maintenance, and dramatically improves resale value. We're certified on the install process and can show you completed projects in the area.",
+      "For older Hagerstown properties — the brick row homes near downtown, mid-century clapboard houses in the established neighborhoods — siding work often involves restoration alongside replacement. We can match historic profiles, repair sound original siding rather than ripping it all out, and integrate new materials with existing in ways that respect the property's character. For homeowners in historic preservation districts, we coordinate with the Hagerstown HARB (Historic District Commission) on any required reviews.",
+      "Hagerstown's weather — humid summers, snowy winters, the freeze-thaw cycle, occasional wind events — is what siding has to survive. Cheap vinyl over poor underlayment fails inside a decade; properly installed fiber cement or premium vinyl with house wrap, flashing, and proper trim details lasts 30+ years. We install for the long term, not the lowest bid.",
+    ],
+  },
+
+  'siding-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County siding work mostly happens in two segments: fiber cement upgrades on premium properties — particularly James Hardie — and stone veneer accent work on facades, foundations, and chimney bases. Vinyl is still installed in the lower-tier subdivisions and as repair work, but the premium end of the Loudoun market has clearly moved to fiber cement and natural stone aesthetics over the past decade.",
+      "Real Elite Contracting is certified on James Hardie installation and handles fiber cement projects across Loudoun County — from full home replacements in Cascades, Brambleton, and Lansdowne to facade upgrades on estate properties in the western county. Hardie's 30-year ColorPlus warranty plus our workmanship warranty delivers a siding solution that meaningfully outlasts vinyl and substantially improves resale value.",
+      "Stone veneer accent work is the other premium siding category in Loudoun. Whether it's a full facade upgrade on a Lansdowne home, a porch base in a Brambleton custom build, or chimney surround work on an Old Town Leesburg property, we install natural stone and high-quality manufactured veneer with the attention to detail this market requires. Proper substrate prep, weep screed, flashing, and weather barrier work — the parts behind the stone that determine whether it lasts 50 years or fails in 10 — are non-negotiable.",
+      "HOA approval for siding changes is required in most Loudoun master-planned communities. Color selection, material grade, and installation details all need pre-approval. We handle that submission and coordinate with the HOA architectural review committee on your behalf. For homeowners considering a full siding replacement, we provide written estimates that reflect the real labor cost in the Loudoun market — there's no shortcut to a $40,000+ premium siding job, and we don't pretend otherwise.",
     ],
   },
 };
