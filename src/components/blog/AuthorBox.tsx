@@ -13,7 +13,10 @@ type Props = {
 export default function AuthorBox({ authorName }: Props) {
   return (
     <aside className="mt-12 bg-steel-50 border-t-4 border-brand-red rounded-lg p-6 sm:p-7 flex items-start gap-5">
-      <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-white shadow-sm flex-shrink-0">
+      {/* Placeholder avatar — uses the company logo until a real owner
+          portrait is added at /public/images/team/owner.jpg. Swap the
+          src below when the photo is ready. */}
+      <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-white shadow-sm flex-shrink-0 ring-2 ring-brand-red/20">
         <Image
           src="/images/logo.png"
           alt={authorName}

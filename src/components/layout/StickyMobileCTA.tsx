@@ -1,11 +1,22 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { BUSINESS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 
-const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
-
+/**
+ * Mobile-only sticky CTA bar.
+ *
+ * "Free Estimate" routes to the in-page #estimate anchor when the user
+ * is already on the homepage or /contact (where the form lives), and
+ * to "/#estimate" otherwise so a click navigates to the homepage and
+ * scrolls to the form.
+ */
 export default function StickyMobileCTA() {
+  const pathname = usePathname();
+  const onFormPage = pathname === '/' || pathname === '/contact';
+  const estimateHref = onFormPage ? '#estimate' : '/#estimate';
+
   return (
     <div
       role="region"
@@ -24,10 +35,10 @@ export default function StickyMobileCTA() {
           Call {BUSINESS.phone}
         </a>
         <a
-          href={CALENDLY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackEvent('calendly_click', { location: 'sticky_mobile' })}
+          href={estimateHref}
+          onClick={() =>
+            trackEvent('estimate_cta_click', { location: 'sticky_mobile' })
+          }
           className="flex items-center justify-center bg-brand-red text-white font-semibold py-3 rounded-md text-sm hover:bg-brand-red-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
         >
           Free Estimate

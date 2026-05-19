@@ -291,12 +291,12 @@ export default async function ServiceCityPage({
       {/* Hero */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="flex items-center gap-2 text-gold-300 text-sm font-semibold mb-4">
-            <Link href={`/services/${serviceData.slug}`} className="hover:text-gold-200 transition-colors">
+          <div className="flex items-center gap-2 text-charcoal-300 text-sm font-semibold mb-4">
+            <Link href={`/services/${serviceData.slug}`} className="hover:text-white transition-colors">
               {serviceData.title}
             </Link>
             <span>/</span>
-            <Link href={`/service-areas/${cityData.slug}`} className="hover:text-gold-200 transition-colors">
+            <Link href={`/service-areas/${cityData.slug}`} className="hover:text-white transition-colors">
               {cityData.city}, {cityData.state}
             </Link>
           </div>
@@ -357,8 +357,8 @@ export default async function ServiceCityPage({
               },
             ].map((item) => (
               <div key={item.title} className="text-center">
-                <div className="bg-gold-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Check className="w-8 h-8 text-gold-600" />
+                <div className="bg-brand-red/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8 text-brand-red" />
                 </div>
                 <h3 className="text-xl font-bold text-navy-900 mb-3">{item.title}</h3>
                 <p className="text-gray-700">{item.body}</p>
@@ -390,11 +390,11 @@ export default async function ServiceCityPage({
           </div>
 
           <div className="flex items-center justify-center gap-3 text-gray-300">
-            <Phone className="w-5 h-5 text-gold-400 flex-shrink-0" />
+            <Phone className="w-5 h-5 text-brand-red flex-shrink-0" />
             <span>Or call us directly:</span>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
-              className="text-xl font-bold text-gold-400 hover:text-gold-300 transition-colors"
+              className="text-xl font-bold text-brand-red hover:text-charcoal-300 transition-colors"
             >
               {BUSINESS.phone}
             </a>
