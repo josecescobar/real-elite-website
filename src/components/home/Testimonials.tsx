@@ -1,55 +1,60 @@
-import { Star } from 'lucide-react';
+import Link from 'next/link';
+import { Star, Quote } from 'lucide-react';
+import Container from '@/components/shared/Container';
+import SectionHeader from '@/components/shared/SectionHeader';
 import { TESTIMONIALS } from '@/lib/constants';
 
-export const Testimonials = () => {
-  const renderStars = (rating: number) => {
-    return (
-      <div className="flex gap-1">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star
-            key={i}
-            className="w-5 h-5 text-gold-500 fill-gold-500"
-            strokeWidth={0}
-          />
-        ))}
-      </div>
-    );
-  };
+const renderStars = () => (
+  <div className="flex gap-1" aria-label="5 out of 5 stars">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <Star key={i} className="w-5 h-5 text-gold-500 fill-gold-500" strokeWidth={0} />
+    ))}
+  </div>
+);
+
+export default function Testimonials() {
+  // Lead with the two strongest testimonials editorially.
+  const [a, b] = TESTIMONIALS;
 
   return (
-    <section className="w-full bg-charcoal-50 py-16 sm:py-24 lg:py-32">
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="text-center mb-16">
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl font-extrabold text-navy-900 mb-4">
-            What Our Clients Say
-          </h2>
-          <p className="text-lg text-charcoal-600 max-w-2xl mx-auto">
-            Real feedback from real customers in the Eastern Panhandle
-          </p>
-        </div>
+    <section className="bg-white py-20 md:py-28">
+      <Container size="wide">
+        <SectionHeader
+          eyebrow="What Clients Say"
+          title="The receipts from homeowners we&rsquo;ve actually worked for."
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-md p-8 flex flex-col"
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+          {[a, b].map((t) => (
+            <figure
+              key={t.name}
+              className="relative bg-steel-50 rounded-lg p-8 md:p-10 shadow-sm flex flex-col"
             >
-              <div className="mb-4">{renderStars(testimonial.rating)}</div>
-
-              <p className="text-charcoal-700 italic leading-relaxed mb-6 flex-grow">
-                &quot;{testimonial.text}&quot;
-              </p>
-
-              <div>
-                <p className="font-bold text-navy-900">{testimonial.name}</p>
-                <p className="text-charcoal-500 text-sm">{testimonial.location}</p>
-              </div>
-            </div>
+              <Quote
+                className="absolute top-6 right-6 w-10 h-10 text-navy-100"
+                aria-hidden="true"
+              />
+              <div className="mb-5">{renderStars()}</div>
+              <blockquote className="text-navy-800 text-lg md:text-xl leading-relaxed font-medium mb-6 flex-1">
+                &ldquo;{t.text}&rdquo;
+              </blockquote>
+              <figcaption className="border-t border-charcoal-200 pt-5">
+                <p className="font-heading text-navy-800 font-bold">{t.name}</p>
+                <p className="text-charcoal-500 text-sm">{t.location}</p>
+              </figcaption>
+            </figure>
           ))}
         </div>
-      </div>
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/reviews"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors"
+          >
+            Read All Reviews →
+          </Link>
+        </div>
+      </Container>
     </section>
   );
-};
-
-export default Testimonials;
+}

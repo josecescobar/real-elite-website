@@ -164,8 +164,12 @@ export const TESTIMONIALS = [
   },
 ] as const;
 
+/**
+ * Primary navigation — 6 top-level items.
+ * Process, Reviews, and FAQ move to the footer utility row.
+ * Services and Service Areas open mega-menus on desktop; accordions on mobile.
+ */
 export const NAV_LINKS = [
-  { label: 'Home', href: '/' },
   {
     label: 'Services',
     href: '/services',
@@ -174,14 +178,214 @@ export const NAV_LINKS = [
       href: `/services/${s.slug}`,
     })),
   },
+  {
+    label: 'Service Areas',
+    href: '/service-areas',
+  },
+  { label: 'Our Work', href: '/gallery' },
+  { label: 'Guides', href: '/blog' },
   { label: 'About', href: '/about' },
-  { label: 'Our Process', href: '/process' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Reviews', href: '/reviews' },
-  { label: 'Service Areas', href: '/service-areas' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
+] as const;
+
+/** Utility links surfaced in footer + mobile nav drawer */
+export const UTILITY_LINKS = [
+  { label: 'Our Process', href: '/process' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'FAQ', href: '/faq' },
+] as const;
+
+/**
+ * Services mega-menu — grouped into 3 editorial columns.
+ * Bathrooms / Kitchens / Basements are intentionally omitted here until
+ * their dedicated routes ship in Phase 4 with real photography.
+ */
+export const SERVICES_MEGA_MENU = [
+  {
+    heading: 'Remodeling',
+    items: [
+      { label: 'Whole-Home Remodeling', href: '/services/remodeling', description: 'Kitchens, bathrooms, full interior renovations' },
+      { label: 'Home Additions', href: '/services/additions', description: 'Seamless additions that match your existing home' },
+    ],
+  },
+  {
+    heading: 'Exteriors',
+    items: [
+      { label: 'Roofing', href: '/services/roofing', description: 'Architectural shingle replacement & repair' },
+      { label: 'Siding & Stone', href: '/services/siding', description: 'Vinyl, fiber cement, and stone veneer exteriors' },
+      { label: 'Decks & Outdoor Living', href: '/services/decks', description: 'Composite decks, railings, outdoor spaces' },
+      { label: 'Exterior Repairs', href: '/services/exterior-repairs', description: 'Trim, foundation, stone veneer detail work' },
+    ],
+  },
+  {
+    heading: 'Repairs',
+    items: [
+      { label: 'General Repairs', href: '/services/general-repairs', description: 'Doors, drywall, trim, deck fixes' },
+      { label: 'Handyman Services', href: '/services/handyman', description: 'Small-job specialists — done right' },
+    ],
+  },
+] as const;
+
+/**
+ * Featured services for the homepage editorial grid (6 cards).
+ * Asymmetric layout: hero tile + 5 supporting tiles.
+ * All images use existing real project photography.
+ */
+export const HOMEPAGE_FEATURED_SERVICES = [
+  {
+    title: 'Remodeling & Interiors',
+    eyebrow: 'Premium Interior',
+    scope: 'Kitchens, bathrooms, flooring, and full interior renovations finished to a higher standard.',
+    href: '/services/remodeling',
+    image: '/images/flooring-dark-living.jpg',
+    imageAlt: 'Dark laminate flooring installed in a remodeled living room',
+    span: 'hero', // large editorial card
+  },
+  {
+    title: 'Decks & Outdoor Living',
+    eyebrow: 'Outdoor',
+    scope: 'Composite decks, railings, lighting, and full backyard transformations.',
+    href: '/services/decks',
+    image: '/images/deck-night-lights.jpg',
+    imageAlt: 'Finished composite deck with solar post lights at night',
+    span: 'standard',
+  },
+  {
+    title: 'Roofing',
+    eyebrow: 'Exterior',
+    scope: 'Architectural shingle replacement, valley flashing, and complete tear-offs.',
+    href: '/services/roofing',
+    image: '/images/roofing-slope.jpg',
+    imageAlt: 'New charcoal architectural shingle roof with clean valley lines',
+    span: 'standard',
+  },
+  {
+    title: 'Siding & Stone Exteriors',
+    eyebrow: 'Curb Appeal',
+    scope: 'Vinyl, fiber cement, and stone veneer that elevates every facade.',
+    href: '/services/siding',
+    image: '/images/stone-facade-finished.jpg',
+    imageAlt: 'Finished stone veneer porch facade with custom railings',
+    span: 'standard',
+  },
+  {
+    title: 'Home Additions',
+    eyebrow: 'New Space',
+    scope: 'Additions that seamlessly extend your existing home — engineered to last.',
+    href: '/services/additions',
+    image: '/images/new-build-sunset.jpg',
+    imageAlt: 'New construction with house wrap at sunset',
+    span: 'standard',
+  },
+  {
+    title: 'Stone & Specialty Work',
+    eyebrow: 'Detail Craft',
+    scope: 'Stone veneer foundations, custom trim, and the small details that finish a project right.',
+    href: '/services/exterior-repairs',
+    image: '/images/stone-veneer-detail.jpg',
+    imageAlt: 'Stone veneer foundation detail on a home exterior',
+    span: 'standard',
+  },
+] as const;
+
+/**
+ * The four-step Military Precision Process — homepage + /process page.
+ */
+export const PRECISION_PROCESS = [
+  {
+    step: '01',
+    title: 'Recon',
+    summary: 'On-site assessment, scope walkthrough, and a clear picture of what your project actually needs — at no cost.',
+  },
+  {
+    step: '02',
+    title: 'Plan',
+    summary: 'Written scope, transparent line-item pricing, financing options, and a project lead assigned before we break ground.',
+  },
+  {
+    step: '03',
+    title: 'Execute',
+    summary: 'Daily updates from your project lead. Clean job site. 24-hour response standard. The crew that started your job is the crew that finishes it.',
+  },
+  {
+    step: '04',
+    title: 'Inspect',
+    summary: 'Final walkthrough, punch list cleared, workmanship warranty issued in writing. You only sign off when the project is right.',
+  },
+] as const;
+
+/**
+ * Featured single project spotlight on the homepage.
+ * Rotates manually — update to surface your strongest current project.
+ */
+export const HOMEPAGE_PROJECT_SPOTLIGHT = {
+  title: 'Custom Stone Facade & Outdoor Living',
+  location: 'Eastern Panhandle, WV',
+  scope: 'Full stone veneer facade, custom front-porch rebuild, and matching outdoor living transition. Architectural shingle re-roof on the same project.',
+  investmentRange: '$45k – $65k',
+  image: '/images/stone-facade-finished.jpg',
+  imageAlt: 'Finished custom stone veneer facade with new front porch and matching exterior',
+  href: '/gallery',
+} as const;
+
+/**
+ * Before/after pairs for the homepage cinematic slider.
+ * NOTE: Until actual paired before/after photography is shot, the
+ * "before" slot here uses framing/in-progress shots that thematically
+ * pair with the finished result. Replace with true paired shots
+ * (same angle, same framing, before vs. after) as projects are shot.
+ */
+export const BEFORE_AFTER_PAIRS = [
+  {
+    label: 'New-build exterior',
+    category: 'Exterior',
+    before: { src: '/images/house-wrap-worker.jpg', alt: 'House wrap and framing in progress before siding install' },
+    after: { src: '/images/new-build-sunset.jpg', alt: 'Finished new construction exterior at sunset' },
+  },
+  {
+    label: 'Composite deck transformation',
+    category: 'Decks',
+    before: { src: '/images/deck-construction.jpg', alt: 'Deck framing during construction phase' },
+    after: { src: '/images/deck-finished-railings.jpg', alt: 'Finished composite deck with white horizontal railings' },
+  },
+  {
+    label: 'Stone facade upgrade',
+    category: 'Exterior',
+    before: { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer installation in progress' },
+    after: { src: '/images/stone-facade-finished.jpg', alt: 'Completed stone facade with railings and trim' },
+  },
+] as const;
+
+/**
+ * Top 5 FAQs surfaced on the homepage.
+ * Full list lives on /faq.
+ */
+export const HOME_FAQ = [
+  {
+    question: 'Are you licensed and insured?',
+    answer:
+      "Yes — Real Elite Contracting is fully licensed and insured across West Virginia, Maryland, and Virginia. We carry general liability and workers' compensation, and we'll send copies of every certificate before work begins.",
+  },
+  {
+    question: 'How long does a typical remodel take?',
+    answer:
+      "Most full bathroom remodels run 3–5 weeks. Kitchens run 6–10 weeks. Decks take 1–3 weeks. We give you a written timeline before we break ground and update you daily — if anything shifts, you hear it from us first.",
+  },
+  {
+    question: 'Do you offer financing?',
+    answer:
+      "Yes. We work with several home-improvement financing partners that offer monthly payment plans on qualified projects. We'll walk you through the options on your free estimate so the numbers make sense before you commit.",
+  },
+  {
+    question: 'What does your warranty cover?',
+    answer:
+      "Every project includes our written workmanship warranty. Material warranties from our manufacturers (architectural shingles, composite decking, fiber cement siding) stack on top of that and we register them on your behalf.",
+  },
+  {
+    question: 'Do you pull permits?',
+    answer:
+      "Yes. We handle the full permitting process for every project that requires one — county and municipal — and document each inspection. You shouldn't have to chase paperwork on your own remodel.",
+  },
 ] as const;
 
 export const GALLERY_IMAGES = [
