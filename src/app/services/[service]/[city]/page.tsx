@@ -9,7 +9,25 @@ import { MapPin, Check, Phone, ArrowRight } from 'lucide-react';
 
 const FEATURED_SERVICE_SLUGS = ['roofing', 'decks', 'remodeling', 'siding'] as const;
 type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
-type ExpansionCitySlug = 'winchester-va' | 'frederick-md' | 'leesburg-va' | 'ashburn-va';
+
+/**
+ * Service+city deep-link combos only exist for these 4 cities — each
+ * pairing has hand-written localized content in the CONTENT map below.
+ *
+ * NOTE: this list is INTENTIONALLY decoupled from EXPANSION_SERVICE_AREAS
+ * in constants.ts. Hagerstown MD and Loudoun County VA are full
+ * service-area destinations (/service-areas/{slug}) but do not yet have
+ * per-service localized copy here. Iterating the broader list from
+ * constants would generate broken URLs the sitemap then advertises.
+ * Add a city to COMBO_CITY_SLUGS only after adding all 4 of its
+ * service-specific CONTENT entries below.
+ */
+const COMBO_CITY_SLUGS = ['winchester-va', 'frederick-md', 'leesburg-va', 'ashburn-va'] as const;
+type ExpansionCitySlug = (typeof COMBO_CITY_SLUGS)[number];
+
+const COMBO_CITIES = EXPANSION_SERVICE_AREAS.filter((a) =>
+  (COMBO_CITY_SLUGS as readonly string[]).includes(a.slug)
+);
 
 // Unique body content for each service × city combination
 const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraphs: string[] }> = {
@@ -168,9 +186,18 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
 
 // ─── Static Params ────────────────────────────────────────────────────────────
 
+/**
+ * Refuse to render service+city combos outside generateStaticParams.
+ * Hagerstown MD + Loudoun County VA would otherwise be rendered
+ * on-demand and hit notFound() at runtime — visible as soft 404s in
+ * Search Console. With dynamicParams=false, Next returns a hard 404
+ * for any combo not in the list.
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return FEATURED_SERVICE_SLUGS.flatMap((service) =>
-    EXPANSION_SERVICE_AREAS.map((area) => ({
+    COMBO_CITIES.map((area) => ({
       service,
       city: area.slug,
     }))
