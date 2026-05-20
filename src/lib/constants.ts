@@ -151,9 +151,9 @@ export const SECONDARY_SERVICE_AREAS = [
 ] as const;
 
 /**
- * Legacy alias — kept so the old ServiceAreaMap and FeatureMap callsites
- * that imported EXPANSION_SERVICE_AREAS keep compiling. Populated with the
- * VA/MD cities so the regional grid still groups them under "VA / MD".
+ * VA / MD growth-market cities. A distinct subset — not a duplicate of
+ * PRIMARY_SERVICE_AREAS. Drives the "VA / MD" grouping in the regional
+ * grid and the service+city combo pages under /services/[service]/[city].
  */
 export const EXPANSION_SERVICE_AREAS = [
   { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
@@ -280,10 +280,6 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
 };
 
-/** @deprecated — use CITY_DATA. Kept temporarily to avoid breaking any
- *  import that still references the old name. */
-export const EXPANSION_CITY_DATA = CITY_DATA;
-
 /** Flat list of all service areas for convenience */
 /**
  * De-duplicated flat list. Several VA/MD cities now live in
@@ -348,6 +344,7 @@ export const NAV_LINKS = [
   },
   { label: 'Our Work', href: '/gallery' },
   { label: 'Guides', href: '/guides' },
+  { label: 'Roof Quote', href: '/instant-roof-quote' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;

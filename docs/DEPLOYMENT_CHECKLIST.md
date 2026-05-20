@@ -133,7 +133,66 @@ premium positioning per the plan's risk #10.
 
 ---
 
-## 5. PR & shipping
+## 5. Google API key — Instant Roof Quote tool
+
+The `/instant-roof-quote` page lets a homeowner enter their address and get a
+ballpark roof price. Without a key it still works — it just skips the satellite
+measurement and asks a couple of quick questions instead. Add the key to turn
+on the address auto-measurement.
+
+### One-time setup (~10 minutes)
+
+1. Go to https://console.cloud.google.com/ and sign in with a Google account.
+2. Create a new project (top bar → project dropdown → "New Project"). Name it
+   anything, e.g. `real-elite-roof-quote`.
+3. A billing account with a card on file is required even for free usage —
+   add one under **Billing**. You will not be charged at this site's volume
+   (see the free tiers below).
+4. Enable two APIs (APIs & Services → Library → search → Enable):
+   - **Geocoding API**
+   - **Solar API**
+5. Create the key: **APIs & Services → Credentials → Create Credentials →
+   API key**. Copy the key.
+6. (Recommended) Click the new key → under **API restrictions**, choose
+   "Restrict key" and allow only the Geocoding API and Solar API.
+7. (Recommended) Under **Billing → Budgets & alerts**, set a $1 budget alert
+   so you're notified if usage ever becomes non-zero.
+
+### Wire it in
+
+Set in **Vercel → Project Settings → Environment Variables** (Production,
+Preview, Development):
+
+| Key | Value |
+|---|---|
+| `GOOGLE_SOLAR_API_KEY` | The API key from step 5 |
+
+### Free tier — why this costs $0 here
+
+- **Solar API** — 10,000 free Building Insights calls per month.
+- **Geocoding API** — 10,000 free calls per month.
+
+One homeowner using the tool = one Geocoding call + one Solar call. The site
+would need thousands of uses per month to ever leave the free tier.
+
+### Coverage note
+
+Google's roof data is excellent in suburban/urban areas (Martinsburg,
+Hagerstown, Frederick, Winchester, Leesburg, Ashburn) but spotty for some
+rural WV addresses. When an address isn't covered, the tool automatically
+falls back to the quick-question flow — no error shown to the homeowner.
+
+### Adjusting your prices
+
+Roof pricing lives in **`src/lib/roof-estimate.ts`** — the `ROOF_MATERIALS`
+array at the top. `pricePerSquare` is your all-in installed price per roofing
+square (100 sq ft): material + labor + tear-off + disposal + overhead +
+margin. The shipped numbers are placeholder regional figures — replace them
+with your real rates.
+
+---
+
+## 6. PR & shipping
 
 1. **Set `RESEND_API_KEY` in Vercel first** — without it, the form throws.
 2. Open the PR from `claude/inspect-rebuild-plan-tBIbO` → main.
