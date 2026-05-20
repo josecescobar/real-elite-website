@@ -1,217 +1,226 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { Plus, Minus, ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
-import Button from '@/components/shared/Button';
-import { HelpCircle } from 'lucide-react';
+import Container from '@/components/shared/Container';
+import SectionHeader from '@/components/shared/SectionHeader';
+import FAQSchema from '@/components/seo/FAQSchema';
+import AssurancesBand from '@/components/home/AssurancesBand';
 
-export const metadata: Metadata = {
-  title: `Frequently Asked Questions | ${BUSINESS.name}`,
-  description:
-    'Get answers to common questions about Real Elite Contracting — licensing, pricing, project timelines, insurance claims, and more. Veteran-owned contractor serving the Eastern Panhandle.',
-  keywords: [
-    'FAQ',
-    'frequently asked questions',
-    'contractor FAQ',
-    'roofing cost',
-    'deck cost',
-    'licensed contractor WV',
-    'insurance claims contractor',
-    'Real Elite Contracting',
-  ],
-  alternates: {
-    canonical: `${BUSINESS.url}/faq`,
-  },
-  openGraph: {
-    title: `Frequently Asked Questions | ${BUSINESS.name}`,
-    description:
-      'Get answers to common questions about Real Elite Contracting — licensing, pricing, project timelines, insurance claims, and more.',
-    url: `${BUSINESS.url}/faq`,
-    type: 'website',
-  },
-};
-
-const faqSections = [
+const FAQ_SECTIONS = [
   {
-    heading: 'General Questions',
-    faqs: [
+    heading: 'General',
+    items: [
       {
         question: 'Are you licensed and insured?',
         answer:
-          'Yes. Real Elite Contracting is fully licensed and insured in West Virginia, Virginia, and Maryland. We carry general liability insurance and workers\u2019 compensation coverage on every project.',
+          "Yes — Real Elite Contracting is fully licensed and insured across West Virginia, Maryland, and Virginia. We carry general liability and workers' compensation, and we'll send copies of every certificate before work begins.",
       },
       {
         question: 'Are you really veteran-owned?',
         answer:
-          'Yes. Real Elite Contracting is a proud veteran-owned and operated business. We bring the same discipline, attention to detail, and commitment to excellence that was instilled during military service to every project we take on.',
+          'Yes. Real Elite Contracting is a proud veteran-owned and operated business. The discipline, communication, and accountability that shape how we run projects come straight from that background.',
       },
       {
         question: 'What areas do you serve?',
         answer:
-          'We serve the entire Eastern Panhandle of West Virginia including Martinsburg, Charles Town, Ranson, Hedgesville, Inwood, Spring Mills, Falling Waters, Berkeley Springs, and Shepherdstown. We\u2019ve also expanded to serve Winchester VA, Frederick MD, Leesburg VA, and Ashburn VA.',
+          'Eastern Panhandle WV (Martinsburg, Inwood, Charles Town, Ranson, Hedgesville, Spring Mills, Falling Waters, Berkeley Springs, Shepherdstown), plus Frederick MD, Hagerstown MD, Winchester VA, Leesburg VA, Ashburn VA, and the wider Loudoun County. If you are nearby and not listed, ask — we will tell you upfront if we are the right fit.',
       },
       {
         question: 'How do I get a free estimate?',
         answer:
-          'You can book a free estimate three ways: call us at (681) 534-5515, fill out the estimate form on our contact page, or book directly through our online calendar.',
+          'Three ways: call us at (681) 534-5515, use the multi-step estimate form on the homepage, or book a 15-minute call on Calendly. A real project lead reaches out within 24 business hours.',
       },
     ],
   },
   {
-    heading: 'Project & Pricing',
-    faqs: [
+    heading: 'Pricing & Timeline',
+    items: [
+      {
+        question: 'How much does a bathroom remodel cost?',
+        answer:
+          'Most bathroom remodels start around $15k for a clean refresh, $25k–$45k for a full layout-changing remodel with premium tile, and $45k+ for primary suite remodels with curbless showers and high-end finishes. Every estimate is line-itemed in writing.',
+      },
+      {
+        question: 'How much does a kitchen remodel cost?',
+        answer:
+          'A like-for-like update typically starts around $28k. A full remodel with layout changes runs $50k–$90k. Open-concept work involving wall removal and structural changes can push past $150k. We line-item the estimate so you can see exactly what each piece contributes.',
+      },
       {
         question: 'How much does a new roof cost?',
         answer:
-          'Residential roof replacements in the Eastern Panhandle typically range from $8,000 to $20,000 depending on roof size, materials, pitch, and complexity. We provide free, detailed estimates for every project.',
+          'Most residential roof replacements range from $8,000 to $20,000 depending on size, slope complexity, and materials. Repairs are typically $500–$3,500. Premium or larger / more complex roofs can run higher.',
       },
       {
         question: 'How much does a new deck cost?',
         answer:
-          'Deck costs vary based on size, materials, and design complexity. A standard 300\u2013400 sq ft deck typically ranges from $15,000 to $35,000. Composite materials cost more upfront but require less maintenance over time.',
+          'A pressure-treated deck typically runs $8k–$18k, composite $15k–$35k, and full outdoor living buildouts with pergolas and lighting $35k–$80k+. Free written estimate after a site walk.',
       },
       {
-        question: 'How long do projects typically take?',
+        question: 'How long do projects take?',
         answer:
-          'Timeline depends on the project scope. Roof replacements typically take 1\u20133 days, deck builds 1\u20133 weeks, siding installations 1\u20132 weeks, and full remodels 4\u201312 weeks. We\u2019ll provide a detailed timeline during your estimate.',
+          'Roof replacements: 1–3 days. Decks: 1–3 weeks. Bathroom remodels: 3–5 weeks. Kitchens: 6–10 weeks. Basements: 6–12 weeks. Additions: 3 to 8 months depending on scope. We give you a written timeline before we break ground.',
       },
       {
-        question: 'Do you pull permits?',
+        question: 'Do you offer financing?',
         answer:
-          'Yes. We handle all necessary permits and inspections required by local building codes. This is included as part of our project management \u2014 you don\u2019t have to worry about the paperwork.',
+          "Yes. We work with several home-improvement financing partners that offer monthly payment plans on qualified projects. We'll walk you through the options on the free estimate before you commit.",
       },
       {
         question: 'What payment methods do you accept?',
         answer:
-          'We accept checks, credit cards, and bank transfers. For larger projects, we typically structure payments in milestones \u2014 a deposit to start, progress payments at key milestones, and a final payment upon completion and your satisfaction.',
+          'Checks, credit cards, and bank transfers. For larger projects we structure payment in milestones — a deposit to start, progress payments at key checkpoints, and a final payment upon completion and your satisfaction.',
       },
     ],
   },
   {
     heading: 'During Your Project',
-    faqs: [
+    items: [
       {
         question: 'Can I live in my home during a remodel?',
         answer:
-          'In most cases, yes. We take steps to minimize disruption, including dust barriers and clean work areas. For major kitchen or bathroom remodels, we\u2019ll discuss logistics upfront so you can plan accordingly.',
+          'Most homeowners do. We set up dust containment, protect walked surfaces, and clean up daily. For kitchen and primary-bath work we plan around your routine and discuss any short utility shutoffs in advance.',
       },
       {
-        question: 'Do you clean up after the job?',
+        question: 'How will you communicate during the project?',
         answer:
-          'Absolutely. We leave your property as clean as we found it \u2014 often cleaner. Full debris removal, nail sweeps (for roofing), and site cleanup are standard on every project.',
+          'Named project lead from day one. Daily updates with progress photos. 24-hour response standard on calls, texts, and emails during business days. If anything shifts on the schedule, you hear it from us first.',
       },
       {
-        question: 'What happens if there\u2019s a problem after the job is done?',
+        question: 'Do you handle permits and inspections?',
         answer:
-          'We stand behind our work. If you notice any issue related to our workmanship, call us and we\u2019ll make it right. We also provide manufacturer warranty information for all materials we install.',
+          "Yes. We pull every permit required by your county or municipality and coordinate every inspection from rough-in to final. You shouldn't have to chase paperwork on your own remodel.",
+      },
+      {
+        question: 'Do you clean up daily?',
+        answer:
+          'Yes. Site swept end-of-day. Nail sweep on every roofing project. Walked surfaces covered. Your home stays livable while we work.',
       },
     ],
   },
   {
-    heading: 'Insurance & Storm Damage',
-    faqs: [
+    heading: 'Warranty & After',
+    items: [
+      {
+        question: 'What does your warranty cover?',
+        answer:
+          'Every project gets our written workmanship warranty. Manufacturer material warranties (architectural shingles, composite decking, fiber cement siding, fixtures) stack on top of that, and we register them on your behalf.',
+      },
+      {
+        question: 'What if there is a problem after the job is done?',
+        answer:
+          "We stand behind our work. If you notice any workmanship issue, call us and we'll make it right. We also keep your manufacturer warranty info on file for the products we installed.",
+      },
       {
         question: 'Do you work with insurance companies?',
         answer:
-          'Yes. If your home has storm damage, we\u2019ll work directly with your insurance company to document the damage, provide detailed estimates, and ensure your claim is handled properly.',
-      },
-      {
-        question: 'What should I do after a storm damages my home?',
-        answer:
-          'First, document the damage with photos. Then call us at (681) 534-5515 \u2014 we\u2019ll perform a thorough inspection and help you through the insurance claims process. Don\u2019t wait, as delays can lead to further damage.',
+          "Yes. If your home has storm damage, we work directly with your insurance company to document the damage, provide detailed estimates, and ensure the claim is handled properly.",
       },
     ],
   },
 ];
 
-const allFaqs = faqSections.flatMap((section) => section.faqs);
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: allFaqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
-};
+const ALL_FAQS = FAQ_SECTIONS.flatMap((s) => s.items);
 
 export default function FAQPage() {
+  const [openKey, setOpenKey] = useState<string | null>(null);
+
   return (
     <>
-      {/* FAQPage JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <FAQSchema items={ALL_FAQS} />
 
-      {/* Hero Banner */}
-      <section className="bg-navy-900 text-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-black mb-4">Frequently Asked Questions</h1>
-          <p className="text-lg text-white max-w-2xl">
-            Answers to the most common questions we hear from homeowners
-          </p>
-        </div>
+      {/* Hero */}
+      <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
+        <Container size="wide">
+          <div className="max-w-3xl">
+            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+              FAQ
+            </p>
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
+              The questions homeowners
+              <br />
+              <span className="text-brand-red">actually ask.</span>
+            </h1>
+            <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
+              Pricing, timelines, permits, communication, warranties, and what to expect during
+              your project. The short answers, straight.
+            </p>
+          </div>
+        </Container>
       </section>
 
-      {/* FAQ Sections */}
-      {faqSections.map((section, sectionIndex) => (
-        <section
-          key={sectionIndex}
-          className={`py-16 md:py-24 ${sectionIndex % 2 === 0 ? 'bg-white' : 'bg-navy-50'}`}
-        >
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-12 text-center">
-              {section.heading}
-            </h2>
-
-            <div className="max-w-3xl mx-auto space-y-8">
-              {section.faqs.map((faq, faqIndex) => (
-                <div
-                  key={faqIndex}
-                  className="bg-white rounded-lg p-8 shadow-sm border border-gray-100"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <HelpCircle className="w-6 h-6 text-gold-600 mt-1" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-navy-900 mb-3">{faq.question}</h3>
-                      <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                    </div>
+      {/* Sections */}
+      {FAQ_SECTIONS.map((section) => (
+        <section key={section.heading} className="bg-white py-16 md:py-24 border-b border-charcoal-100 last:border-b-0">
+          <Container size="default">
+            <SectionHeader eyebrow={section.heading} title={section.heading + '.'} />
+            <div className="mt-10 divide-y divide-charcoal-200 border-t border-b border-charcoal-200">
+              {section.items.map((item, idx) => {
+                const key = `${section.heading}-${idx}`;
+                const isOpen = openKey === key;
+                return (
+                  <div key={key}>
+                    <button
+                      type="button"
+                      onClick={() => setOpenKey(isOpen ? null : key)}
+                      aria-expanded={isOpen}
+                      aria-controls={`panel-${key}`}
+                      className="w-full py-5 flex items-start justify-between gap-6 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm"
+                    >
+                      <span className="font-heading text-base md:text-lg font-bold text-navy-800 group-hover:text-brand-red transition-colors">
+                        {item.question}
+                      </span>
+                      <span className="flex-shrink-0 mt-1 text-navy-800">
+                        {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                      </span>
+                    </button>
+                    {isOpen && (
+                      <div
+                        id={`panel-${key}`}
+                        className="pb-5 pr-12 text-charcoal-600 leading-relaxed text-sm md:text-base"
+                      >
+                        {item.answer}
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-          </div>
+          </Container>
         </section>
       ))}
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-navy-900">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Still Have Questions?
+      {/* Assurances */}
+      <AssurancesBand />
+
+      {/* Final CTA */}
+      <section className="bg-navy-900 text-white py-16 md:py-24">
+        <Container size="default" className="text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
+            Still have questions?
           </h2>
-          <p className="text-lg text-gold-300 mb-8 max-w-2xl mx-auto">
-            We&apos;re happy to answer anything we didn&apos;t cover here. Give us a call or book a
-            free estimate to discuss your project.
+          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
+            Easiest way to get a real answer: tell us what you&apos;re thinking about. A project
+            lead reaches out within 24 business hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              href="https://calendly.com/realelitecontracting-info/free-estimate-call"
-              variant="primary"
-              size="lg"
+            <Link
+              href="/#estimate"
+              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
             >
-              Book Free Estimate
-            </Button>
-            <Button href={`tel:${BUSINESS.phoneRaw}`} variant="secondary" size="lg">
+              Get My Free Estimate
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href={`tel:${BUSINESS.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
+            >
               Call {BUSINESS.phone}
-            </Button>
+            </a>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

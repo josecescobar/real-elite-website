@@ -1,15 +1,46 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ChevronRight, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 import { BUSINESS, SERVICES, EXPANSION_SERVICE_AREAS } from '@/lib/constants';
-import Button from '@/components/shared/Button';
-import { MapPin, Check, Phone, ArrowRight } from 'lucide-react';
+import { SERVICE_DATA } from '@/lib/services-data';
+import Container from '@/components/shared/Container';
+import SectionHeader from '@/components/shared/SectionHeader';
+import StickyEstimateRail from '@/components/services/StickyEstimateRail';
+import InvestmentRanges from '@/components/services/InvestmentRanges';
+import PrecisionProcess from '@/components/home/PrecisionProcess';
+import AssurancesBand from '@/components/home/AssurancesBand';
+import JsonLd from '@/components/seo/JsonLd';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const FEATURED_SERVICE_SLUGS = ['roofing', 'decks', 'remodeling', 'siding'] as const;
 type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
-type ExpansionCitySlug = 'winchester-va' | 'frederick-md' | 'leesburg-va' | 'ashburn-va';
+
+/**
+ * Service+city deep-link combos exist for these 6 cities. Each pairing
+ * has hand-written localized content in the CONTENT map below.
+ *
+ * NOTE: this list is INTENTIONALLY decoupled from EXPANSION_SERVICE_AREAS
+ * in constants.ts. Adding a city-overview page (in constants) should NOT
+ * automatically create per-service deep-link pages here without the
+ * localized content also being written. The contract: add a city to
+ * COMBO_CITY_SLUGS only after adding all 4 of its service-specific
+ * CONTENT entries below.
+ */
+const COMBO_CITY_SLUGS = [
+  'winchester-va',
+  'frederick-md',
+  'leesburg-va',
+  'ashburn-va',
+  'hagerstown-md',
+  'loudoun-county-va',
+] as const;
+type ExpansionCitySlug = (typeof COMBO_CITY_SLUGS)[number];
+
+const COMBO_CITIES = EXPANSION_SERVICE_AREAS.filter((a) =>
+  (COMBO_CITY_SLUGS as readonly string[]).includes(a.slug)
+);
 
 // Unique body content for each service × city combination
 const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraphs: string[] }> = {
@@ -51,6 +82,24 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
     ],
   },
 
+  'roofing-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's location at the I-70 / I-81 crossroads in the Cumberland Valley means your roof faces the full Mid-Atlantic weather mix — nor'easters from the east, snow squalls funneling down from the Allegheny ridges, and summer thunderstorms that have travelled across the valley. As Washington County's county seat and largest city, Hagerstown homeowners need a roofing contractor familiar with both the historic brick row homes near Public Square and the newer suburban construction along the Halfway and Robinwood corridors.",
+      "Real Elite Contracting provides professional roofing services across Hagerstown and the surrounding Cumberland Valley. Our crews handle architectural shingle replacements on the Federal and Victorian-era homes that line the historic North End and Fountain Head, where rooflines often feature steep pitches, multiple dormers, and intricate valleys that demand precision. For newer subdivisions in the South End and along the I-81 commercial corridor, we offer efficient full replacements with predictable timelines and clean job sites.",
+      "Hagerstown's roofs deal with a freeze-thaw cycle that's particularly hard on flashing, valleys, and chimney saddles — the bridge climate where the Eastern Panhandle's milder winters meet Pennsylvania's colder ones. We install only premium architectural shingles from GAF and Owens Corning, backed by manufacturer warranties and our own workmanship guarantee in writing. Ridge venting, proper underlayment, and ice-and-water shield in the right places are standard, not upsells.",
+      "Insurance claims after the regular wind events that hit the Cumberland Valley are handled directly with your carrier — we document damage with on-roof photos, provide the detailed scope insurers expect, and coordinate inspections so the claim moves through quickly. For Hagerstown homeowners replacing a roof at the end of its service life rather than after storm damage, our free inspections include an honest read on whether the roof has years left or whether replacement is the right call now.",
+    ],
+  },
+
+  'roofing-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County is one of the most demanding residential markets in the country — estate homes in horse country west of Route 15, master-planned communities like Brambleton and One Loudoun, premium properties along the Silver Line Metro corridor, and historic homes from Leesburg to Purcellville. Loudoun roofs see the full Mid-Atlantic weather mix: nor'easters, summer thunderstorms, ice storms, and the periodic windstorms that come down off the Blue Ridge.",
+      "Real Elite Contracting brings premium roofing services to homeowners across Loudoun County. We're experienced with the complex rooflines that define Loudoun's upscale neighborhoods — standing seam metal on historic country properties, architectural shingles on Lansdowne estates and One Loudoun homes, copper accents on premium custom builds. The expectation in this market is precision, and we deliver it.",
+      "Loudoun's master-planned communities — Brambleton, Lansdowne, Cascades, Belmont Greene, River Creek — operate under HOA architectural standards that specify approved shingle colors, materials, and installation details. We handle HOA submission and approval as part of every roofing project, ensuring your replacement meets community design standards without the homeowner managing the back-and-forth. For historic-district properties in Leesburg or Waterford, we work with HARB-equivalent oversight as needed.",
+      "Premium roofing in Loudoun County typically runs $15,000 to $40,000+ for a full replacement, depending on size, complexity, and material tier. Architectural shingles from GAF Timberline and Owens Corning Duration are standard; premium tiers (designer shingles, architectural metal accents, copper detailing) add cost but deliver the curb appeal and longevity Loudoun homeowners expect. Free inspections, written estimates, and workmanship warranties in writing.",
+    ],
+  },
+
   // ── DECKS ──────────────────────────────────────────────────────────────
 
   'decks-winchester-va': {
@@ -86,6 +135,24 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
       "Ashburn's planned communities offer beautiful settings for outdoor living, but HOA guidelines can make deck additions complicated. Real Elite is experienced with the specific requirements of Ashburn's major communities — Broadlands, Brambleton, Ashburn Farm, Belmont Country Club, and more. We handle all HOA submissions, material approvals, and Loudoun County permits, making the process seamless for you.",
       "We specialize in composite decking systems that look sharp and stay looking sharp in Ashburn's suburban environment. Trex, TimberTech, and Azek products resist the fading, staining, and warping that pressure-treated wood develops within a few years. With kids and pets in the picture, low-maintenance composite is the obvious choice — no annual staining, no splinters, no worries.",
       "Ashburn decks often include multiple functional zones: a dining area near the sliding door, a fire pit corner, a built-in grill station, and a lounge section for unwinding. Real Elite designs each deck with your lifestyle in mind. We take measurements, create a layout, walk you through material options, and provide a fixed-price estimate before work begins.",
+    ],
+  },
+
+  'decks-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's outdoor culture — long summers, mild springs and falls, the Antietam Creek and C&O Canal trails just minutes away — makes deck and outdoor-living spaces one of the smartest investments a Cumberland Valley homeowner can make. From a backyard composite deck overlooking the rolling hills west of the city to a multi-level entertainment space in a Halfway or Robinwood subdivision, we build outdoor spaces that get used through three seasons.",
+      "Our deck-building expertise spans every part of the Hagerstown market. For the historic North End and Public Square area, we work with care on properties where the deck addition needs to respect the architectural character of the original home. For newer construction along Robinwood, Fountain Head, and the South End, we deliver modern composite builds in Trex, TimberTech, and Azek that hold up beautifully against the Cumberland Valley climate.",
+      "Composite is what we recommend for most Hagerstown homeowners — the humid summers and freeze-thaw winters punish pressure-treated lumber, and the maintenance cycle (sealing, restaining, board replacement) adds up. A composite deck installed correctly looks the same in year 15 as it did in year 1, with annual maintenance measured in hours rather than weekends. We bring real samples on the estimate so you can compare materials before committing.",
+      "Washington County deck permits run 2–3 weeks from application to issue, and most decks above 30 inches at any point require a permit. We handle the entire permitting and inspection process, so you don't deal with the paperwork. Pier inspections happen before concrete, framing inspections before decking goes down — all coordinated with the county on your behalf.",
+    ],
+  },
+
+  'decks-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County is where outdoor living has fundamentally changed in the past decade. Premium homes in Lansdowne, Brambleton, One Loudoun, Ashburn Farm, and Belmont Greene — plus the estate properties in the western county — increasingly feature multi-level composite decks with built-in outdoor kitchens, pergolas, integrated lighting, and seamless transitions to landscaped backyards. The \"simple deck\" has been replaced by the outdoor living buildout.",
+      "Real Elite Contracting builds premium decks and outdoor living spaces across Loudoun County. We work with all three major composite manufacturers — Trex Transcend, TimberTech AZEK, and TimberTech PRO — and most of our Loudoun projects are in the $25,000 to $75,000+ range, reflecting the level of finish this market expects. We bring real material samples to your estimate, show completed Loudoun projects, and walk you through the design choices that affect long-term value.",
+      "HOA approval is part of nearly every Loudoun County deck project. We handle the architectural review submission for Brambleton, Lansdowne, One Loudoun, Cascades, Belmont Greene, and the other master-planned communities — providing the elevations, material specifications, and color samples each HOA requires. Expect 2–4 weeks for HOA review on top of the standard 2–3 week county permit timeline; we coordinate both in parallel.",
+      "Loudoun County's pier depth requirement (30 inches minimum), Virginia building code, and the HOA design standards all combine to make Loudoun deck builds more complex than the regional average. Cheap contractors cut corners on footings and the failures show up in 7–10 years as frost heave. We install to spec, document every inspection, and back the work with a written workmanship warranty.",
     ],
   },
 
@@ -127,6 +194,24 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
     ],
   },
 
+  'remodeling-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's housing stock is one of its strongest assets — solid brick row homes in the historic district, mid-century single-family homes along the established corridors, and newer construction in the rapidly growing Halfway, Robinwood, and Fountain Head neighborhoods. Each comes with its own remodeling considerations, and Real Elite Contracting brings the right approach to whatever the project is.",
+      "For Washington County homeowners updating older properties — bathroom remodels in 1950s-era brick homes, kitchen remodels in mid-century ranches, basement finishing in established neighborhoods — the work always starts with understanding what's behind the walls. Older Hagerstown homes often have plumbing and electrical that needs attention before any cosmetic update is worth doing, and we'll tell you upfront if those underlying systems need investment first. The cost is real but ignoring it always costs more.",
+      "For newer suburban remodels — open-concept kitchen updates, primary suite bathroom upgrades, mudroom and laundry buildouts — we deliver premium finishes with the same project management discipline. Named project lead, daily updates, clean job site every day, and a written workmanship warranty when the work is done.",
+      "Typical timelines: bathroom remodels run 3–5 weeks of active work in the Hagerstown market, kitchens 6–10 weeks, basements 6–12 weeks. We give you a written timeline before we break ground and update you daily if anything shifts. Permitting through Washington County and the City of Hagerstown is included as part of every project.",
+    ],
+  },
+
+  'remodeling-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County remodeling is its own market segment. The average finished-square-foot expectation, the material quality, the design integration — everything operates a tier above what's typical for the broader region. Brambleton kitchens, Lansdowne primary suite remodels, One Loudoun whole-home renovations, Leesburg historic property restorations — Real Elite Contracting delivers the standard this market demands.",
+      "Bathroom remodels in Loudoun County typically run $40,000 to $80,000+ for primary suites with curbless showers, custom tile, frameless glass, double vanities, and the premium fixture selections (Brizo, Hansgrohe, Kohler Artifacts) Loudoun homeowners specify. Kitchens commonly land in the $75,000 to $200,000 range depending on cabinetry tier, layout changes, and appliance package. We bring the right project management discipline to projects at that scale — one named lead, daily updates, transparent line-item pricing.",
+      "For Loudoun's historic properties — homes in Old Town Leesburg, restored farmhouses in the western county, properties with historic preservation considerations — we work with care. We match period-appropriate materials and finishes where they matter, integrate modern systems without compromising character, and coordinate with HARB and county historic-district oversight where required.",
+      "Loudoun County permit and inspection processes are predictable but slow — typically 3–4 weeks for permits on a substantial remodel, plus structural-engineering review where applicable. We handle every step. HOA submissions for design review in master-planned communities are managed in parallel, so the permit and HOA approval timelines don't stack.",
+    ],
+  },
+
   // ── SIDING ────────────────────────────────────────────────────────────────
 
   'siding-winchester-va': {
@@ -164,13 +249,40 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
       "Ashburn homeowners can also choose James Hardie fiber cement for a premium upgrade that adds significant curb appeal and resale value. Hardie siding is particularly popular for accent areas — gable ends, dormers, and entryways — where a texture upgrade makes a dramatic visual impact.",
     ],
   },
+
+  'siding-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown's varied housing stock — historic brick, mid-century clapboard, modern fiber cement, newer vinyl construction — means siding work in this market requires real range. Real Elite Contracting handles vinyl replacement, fiber cement (James Hardie and comparable) installation, and stone veneer accent work across Washington County, from the historic Public Square area through the growing Halfway and Robinwood corridors.",
+      "For homeowners in newer Hagerstown developments — the rapidly growing South End, communities along the I-81 corridor, and newer subdivisions in the surrounding county — fiber cement siding is increasingly the standard. James Hardie holds up to the Cumberland Valley climate beautifully, requires minimal maintenance, and dramatically improves resale value. We're certified on the install process and can show you completed projects in the area.",
+      "For older Hagerstown properties — the brick row homes near downtown, mid-century clapboard houses in the established neighborhoods — siding work often involves restoration alongside replacement. We can match historic profiles, repair sound original siding rather than ripping it all out, and integrate new materials with existing in ways that respect the property's character. For homeowners in historic preservation districts, we coordinate with the Hagerstown HARB (Historic District Commission) on any required reviews.",
+      "Hagerstown's weather — humid summers, snowy winters, the freeze-thaw cycle, occasional wind events — is what siding has to survive. Cheap vinyl over poor underlayment fails inside a decade; properly installed fiber cement or premium vinyl with house wrap, flashing, and proper trim details lasts 30+ years. We install for the long term, not the lowest bid.",
+    ],
+  },
+
+  'siding-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County siding work mostly happens in two segments: fiber cement upgrades on premium properties — particularly James Hardie — and stone veneer accent work on facades, foundations, and chimney bases. Vinyl is still installed in the lower-tier subdivisions and as repair work, but the premium end of the Loudoun market has clearly moved to fiber cement and natural stone aesthetics over the past decade.",
+      "Real Elite Contracting is certified on James Hardie installation and handles fiber cement projects across Loudoun County — from full home replacements in Cascades, Brambleton, and Lansdowne to facade upgrades on estate properties in the western county. Hardie's 30-year ColorPlus warranty plus our workmanship warranty delivers a siding solution that meaningfully outlasts vinyl and substantially improves resale value.",
+      "Stone veneer accent work is the other premium siding category in Loudoun. Whether it's a full facade upgrade on a Lansdowne home, a porch base in a Brambleton custom build, or chimney surround work on an Old Town Leesburg property, we install natural stone and high-quality manufactured veneer with the attention to detail this market requires. Proper substrate prep, weep screed, flashing, and weather barrier work — the parts behind the stone that determine whether it lasts 50 years or fails in 10 — are non-negotiable.",
+      "HOA approval for siding changes is required in most Loudoun master-planned communities. Color selection, material grade, and installation details all need pre-approval. We handle that submission and coordinate with the HOA architectural review committee on your behalf. For homeowners considering a full siding replacement, we provide written estimates that reflect the real labor cost in the Loudoun market — there's no shortcut to a $40,000+ premium siding job, and we don't pretend otherwise.",
+    ],
+  },
 };
 
 // ─── Static Params ────────────────────────────────────────────────────────────
 
+/**
+ * Refuse to render service+city combos outside generateStaticParams.
+ * Hagerstown MD + Loudoun County VA would otherwise be rendered
+ * on-demand and hit notFound() at runtime — visible as soft 404s in
+ * Search Console. With dynamicParams=false, Next returns a hard 404
+ * for any combo not in the list.
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return FEATURED_SERVICE_SLUGS.flatMap((service) =>
-    EXPANSION_SERVICE_AREAS.map((area) => ({
+    COMBO_CITIES.map((area) => ({
       service,
       city: area.slug,
     }))
@@ -232,38 +344,30 @@ export default async function ServiceCityPage({
     notFound();
   }
 
-  const localBusinessSchema = {
+  // SEO: Service schema scoped to this specific city, plus a
+  // BreadcrumbList. No per-market LocalBusiness duplication (the global
+  // GeneralContractor in layout.tsx already covers areaServed).
+  const richServiceData = SERVICE_DATA[serviceData.slug];
+  const serviceSchema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: BUSINESS.name,
-    url: BUSINESS.url,
-    telephone: BUSINESS.phoneRaw,
-    email: BUSINESS.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: BUSINESS.address.city,
-      addressRegion: BUSINESS.address.state,
-      postalCode: BUSINESS.address.zip,
-      addressCountry: 'US',
+    '@type': 'Service',
+    name: `${serviceData.title} in ${cityData.city}, ${cityData.state}`,
+    serviceType: richServiceData?.serviceType ?? serviceData.title,
+    description:
+      richServiceData?.metaDescription ??
+      `${serviceData.title} services for ${cityData.city}, ${cityData.state} homeowners by Real Elite Contracting.`,
+    provider: {
+      '@type': 'GeneralContractor',
+      name: BUSINESS.name,
+      url: `${BUSINESS.url}/`,
+      telephone: '+1-681-534-5515',
     },
     areaServed: {
       '@type': 'City',
       name: cityData.city,
       containedInPlace: { '@type': 'State', name: cityData.state },
     },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: serviceData.title,
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: `${serviceData.title} in ${cityData.city}, ${cityData.state}`,
-          },
-        },
-      ],
-    },
+    url: `${BUSINESS.url}/services/${service}/${city}`,
   };
 
   const breadcrumbSchema = {
@@ -277,155 +381,254 @@ export default async function ServiceCityPage({
     ],
   };
 
+  // Cross-link rails
+  const otherCitiesForThisService = EXPANSION_SERVICE_AREAS.filter(
+    (a) => a.slug !== cityData.slug && COMBO_CITY_SLUGS.includes(a.slug as ExpansionCitySlug)
+  ).slice(0, 5);
+  const otherServicesForThisCity = SERVICES.filter(
+    (s) => s.slug !== serviceData.slug && FEATURED_SERVICE_SLUGS.includes(s.slug as FeaturedServiceSlug)
+  );
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd schema={serviceSchema} />
+      <JsonLd schema={breadcrumbSchema} />
 
-      {/* Hero */}
-      <section className="bg-navy-900 text-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-2 text-gold-300 text-sm font-semibold mb-4">
-            <Link href={`/services/${serviceData.slug}`} className="hover:text-gold-200 transition-colors">
+      {/* Hero — editorial navy with brand-red eyebrow + breadcrumb */}
+      <section className="relative isolate bg-navy-900 text-white">
+        <div aria-hidden="true" className="absolute inset-0 -z-10 gradient-navy-hero" />
+        <Container size="wide" className="py-20 md:py-28 lg:py-32">
+          <nav
+            aria-label="Breadcrumb"
+            className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap"
+          >
+            <Link href="/services" className="hover:text-white transition-colors">
+              Services
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
+            <Link
+              href={`/services/${serviceData.slug}`}
+              className="hover:text-white transition-colors"
+            >
               {serviceData.title}
             </Link>
-            <span>/</span>
-            <Link href={`/service-areas/${cityData.slug}`} className="hover:text-gold-200 transition-colors">
+            <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
+            <Link
+              href={`/service-areas/${cityData.slug}`}
+              className="hover:text-white transition-colors"
+            >
               {cityData.city}, {cityData.state}
             </Link>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {serviceData.title} in {cityData.city}, {cityData.state}
+          </nav>
+
+          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
+            <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {cityData.city}, {cityData.state}
+          </p>
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight max-w-4xl">
+            {serviceData.title}
+            <br />
+            <span className="text-brand-red">in {cityData.city}.</span>
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl">
-            Real Elite Contracting — veteran-owned, quality-focused. Serving {cityData.city} and the surrounding area.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Button
-              href="https://calendly.com/realelitecontracting-info/free-estimate-call"
-              variant="primary"
-              size="lg"
-            >
-              Book Free Estimate
-            </Button>
-            <Button href={`tel:${BUSINESS.phoneRaw}`} variant="outline" size="lg">
-              Call {BUSINESS.phone}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Body Content */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="space-y-6">
-            {content.paragraphs.map((paragraph, index) => (
-              <p key={index} className="text-lg text-gray-700 leading-relaxed">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Real Elite */}
-      <section className="py-16 md:py-24 bg-navy-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-navy-900 mb-12 text-center">
-            Why {cityData.city} Homeowners Choose Real Elite
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                title: 'Veteran-Owned & Operated',
-                body: 'Founded on military values — discipline, accountability, and a commitment to doing the job right the first time. When we say we stand behind our work, we mean it.',
-              },
-              {
-                title: 'Transparent Pricing',
-                body: 'No hidden fees, no surprise line items. We provide detailed written estimates before any work begins so you know exactly what you\'re getting for your investment.',
-              },
-              {
-                title: 'Local Expertise',
-                body: `We know ${cityData.city}'s neighborhoods, building codes, and climate challenges. That local knowledge means smarter material choices and better results for your home.`,
-              },
-            ].map((item) => (
-              <div key={item.title} className="text-center">
-                <div className="bg-gold-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Check className="w-8 h-8 text-gold-600" />
-                </div>
-                <h3 className="text-xl font-bold text-navy-900 mb-3">{item.title}</h3>
-                <p className="text-gray-700">{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 md:py-24 bg-navy-900 text-white">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Get Started in {cityData.city}?
-          </h2>
-          <p className="text-lg text-gray-300 mb-8">
-            Schedule your free, no-obligation {serviceData.title.toLowerCase()} estimate today. We'll assess your project,
-            answer your questions, and provide a detailed quote — no pressure, no gimmicks.
+          <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
+            {richServiceData?.hero?.sub ?? serviceData.description}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <Button
-              href="https://calendly.com/realelitecontracting-info/free-estimate-call"
-              variant="primary"
-              size="lg"
+          <div className="flex flex-wrap gap-4 mt-10">
+            <a
+              href="#estimate"
+              className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
             >
-              Book Free Estimate Online
-            </Button>
-          </div>
-
-          <div className="flex items-center justify-center gap-3 text-gray-300">
-            <Phone className="w-5 h-5 text-gold-400 flex-shrink-0" />
-            <span>Or call us directly:</span>
+              Get My Free Estimate →
+            </a>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
-              className="text-xl font-bold text-gold-400 hover:text-gold-300 transition-colors"
+              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
-              {BUSINESS.phone}
+              Call {BUSINESS.phone}
             </a>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Internal Links */}
-      <section className="py-12 bg-white border-t border-gray-200">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-gray-600 mb-6">Explore more from Real Elite Contracting</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
-            <Link href={`/services/${serviceData.slug}`}>
-              <Button variant="outline" size="sm">
-                <ArrowRight className="w-4 h-4 mr-2" />
-                All {serviceData.title} Services
-              </Button>
-            </Link>
-            <Link href={`/service-areas/${cityData.slug}`}>
-              <Button variant="outline" size="sm">
-                <MapPin className="w-4 h-4 mr-2" />
-                {cityData.city}, {cityData.state} Service Area
-              </Button>
-            </Link>
-            <Link href="/services">
-              <Button variant="outline" size="sm">
-                View All Services
-              </Button>
-            </Link>
+      {/* Body + sticky form rail */}
+      <section className="bg-white py-16 md:py-24">
+        <Container size="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            <div className="lg:col-span-7 xl:col-span-8 space-y-16">
+              {/* Localized prose */}
+              <div>
+                <SectionHeader
+                  eyebrow={`${serviceData.title} · ${cityData.city}`}
+                  title={`Why ${cityData.city} homeowners hire us.`}
+                />
+                <div className="mt-7 space-y-5">
+                  {content.paragraphs.map((paragraph, index) => (
+                    <p
+                      key={index}
+                      className="text-charcoal-700 text-base md:text-lg leading-relaxed"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Investment ranges (when SERVICE_DATA has them) */}
+              {richServiceData?.investment && (
+                <InvestmentRanges
+                  startingAt={richServiceData.investment.startingAt}
+                  tiers={richServiceData.investment.tiers}
+                  note={richServiceData.investment.note}
+                />
+              )}
+
+              {/* Why this city trusts us */}
+              <div className="bg-steel-50 rounded-lg border-t-4 border-brand-red p-7 md:p-9">
+                <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
+                  Why {cityData.city} homeowners choose Real Elite
+                </p>
+                <ul className="space-y-3 text-charcoal-700">
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      One named project lead on every {cityData.city}{' '}
+                      {serviceData.title.toLowerCase()} job — from estimate through final walkthrough.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      Daily updates, clean job site, 24-hour response standard.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      Written workmanship warranty + manufacturer warranties registered on your behalf.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                    <span>
+                      Licensed and insured in {cityData.state} — local permitting + inspections handled.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Cross-links */}
+              <div>
+                <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-6">
+                  Keep exploring
+                </h2>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Link
+                    href={`/services/${serviceData.slug}`}
+                    className="group bg-steel-50 hover:bg-navy-800 rounded-md p-5 transition-colors"
+                  >
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-brand-red mb-1">
+                      Service overview
+                    </p>
+                    <p className="font-heading text-base font-bold text-navy-800 group-hover:text-white transition-colors inline-flex items-center gap-1.5">
+                      All {serviceData.title}
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </p>
+                  </Link>
+                  <Link
+                    href={`/service-areas/${cityData.slug}`}
+                    className="group bg-steel-50 hover:bg-navy-800 rounded-md p-5 transition-colors"
+                  >
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-brand-red mb-1">
+                      Service area
+                    </p>
+                    <p className="font-heading text-base font-bold text-navy-800 group-hover:text-white transition-colors inline-flex items-center gap-1.5">
+                      All services in {cityData.city}
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </p>
+                  </Link>
+                </div>
+
+                {otherServicesForThisCity.length > 0 && (
+                  <div className="mt-8">
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-charcoal-500 mb-3">
+                      Other services in {cityData.city}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {otherServicesForThisCity.map((s) => (
+                        <Link
+                          key={s.slug}
+                          href={`/services/${s.slug}/${cityData.slug}`}
+                          className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                        >
+                          {s.title} <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {otherCitiesForThisService.length > 0 && (
+                  <div className="mt-8">
+                    <p className="text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-charcoal-500 mb-3">
+                      {serviceData.title} in other markets
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {otherCitiesForThisService.map((c) => (
+                        <Link
+                          key={c.slug}
+                          href={`/services/${serviceData.slug}/${c.slug}`}
+                          className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                        >
+                          {c.city}, {c.state} <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Sticky right rail — multi-step estimate form */}
+            <div className="lg:col-span-5 xl:col-span-4">
+              <StickyEstimateRail initialService={serviceData.slug} />
+            </div>
           </div>
-        </div>
+        </Container>
+      </section>
+
+      {/* Process module */}
+      <PrecisionProcess />
+
+      {/* Assurances */}
+      <AssurancesBand />
+
+      {/* Final CTA */}
+      <section className="bg-navy-900 text-white py-16 md:py-24">
+        <Container size="default" className="text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
+            Ready to start your {cityData.city} project?
+          </h2>
+          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
+            Three short steps, about 60 seconds — a real project lead reaches out within 24
+            business hours to schedule your free on-site walkthrough.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#estimate"
+              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+            >
+              Get My Free Estimate
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href={`tel:${BUSINESS.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
+            >
+              Call {BUSINESS.phone}
+            </a>
+          </div>
+        </Container>
       </section>
     </>
   );

@@ -1,138 +1,172 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Phone, Mail, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
-import EstimateForm from '@/components/shared/EstimateForm';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import Container from '@/components/shared/Container';
+import SectionHeader from '@/components/shared/SectionHeader';
+import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
+import AssurancesBand from '@/components/home/AssurancesBand';
+
+const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
 
 export const metadata: Metadata = {
-  title: `Contact Us | ${BUSINESS.name}`,
+  title: `Contact | ${BUSINESS.name}`,
   description:
-    'Get in touch with Real Elite Contracting. Call, email, or request a free estimate. We are ready to help with your project.',
+    'Contact Real Elite Contracting — call, email, or request a free written estimate. Veteran-owned premium contractor serving the WV–MD–VA region.',
   keywords: [
-    'contact us',
-    'contractor contact',
-    'request estimate',
-    'phone',
-    'email',
-    'Eastern Panhandle',
+    'contact Real Elite Contracting',
+    'free estimate contractor',
+    'WV contractor contact',
+    'Eastern Panhandle contractor',
+    'Frederick MD contractor contact',
+    'Winchester VA contractor contact',
   ],
-  alternates: {
-    canonical: `${BUSINESS.url}/contact`,
-  },
+  alternates: { canonical: `${BUSINESS.url}/contact` },
   openGraph: {
-    title: `Contact Us | ${BUSINESS.name}`,
-    description: 'Get in touch with Real Elite Contracting for your home improvement project.',
+    title: `Contact | ${BUSINESS.name}`,
+    description:
+      'Call, email, or request a free written estimate from Real Elite Contracting.',
     url: `${BUSINESS.url}/contact`,
     type: 'website',
   },
 };
 
+const CONTACT_BLOCKS = [
+  {
+    icon: Phone,
+    label: 'Phone',
+    primary: BUSINESS.phone,
+    href: `tel:${BUSINESS.phoneRaw}`,
+    sub: 'Real person, no call center.',
+  },
+  {
+    icon: Mail,
+    label: 'Email',
+    primary: BUSINESS.email,
+    href: `mailto:${BUSINESS.email}`,
+    sub: 'Replies within 24 business hours.',
+  },
+  {
+    icon: MapPin,
+    label: 'Location',
+    primary: `${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`,
+    sub: `Serving ${BUSINESS.address.region} + WV/MD/VA`,
+  },
+  {
+    icon: Clock,
+    label: 'Hours',
+    primary: BUSINESS.hours,
+    sub: 'Estimates by appointment.',
+  },
+];
+
 export default function ContactPage() {
   return (
     <>
-      {/* Hero Banner */}
-      <section className="bg-navy-900 text-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-black mb-4">Contact Us</h1>
-          <p className="text-lg text-white max-w-2xl">
-            Get in touch with our team. We're ready to discuss your project.
-          </p>
-        </div>
+      {/* Hero */}
+      <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
+        <Container size="wide">
+          <div className="max-w-3xl">
+            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+              Contact
+            </p>
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
+              Talk to a real
+              <br />
+              <span className="text-brand-red">project lead.</span>
+            </h1>
+            <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
+              Three ways to reach us. Pick the one that fits — we&apos;ll reach out within
+              24 business hours, no high-pressure sales calls.
+            </p>
+          </div>
+        </Container>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-3xl font-bold text-navy-900 mb-8">Get in Touch</h2>
-
-              <div className="space-y-8">
-                {/* Phone */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#c0392b]/10">
-                      <Phone className="h-6 w-6 text-[#c0392b]" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-navy-900">Phone</h3>
+      {/* Contact blocks + form */}
+      <section className="bg-white py-16 md:py-24">
+        <Container size="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            {/* Left: contact methods */}
+            <div className="lg:col-span-5 space-y-7">
+              <SectionHeader eyebrow="Reach Us" title="How to get in touch." />
+              <div className="space-y-6 mt-2">
+                {CONTACT_BLOCKS.map((b) => {
+                  const Icon = b.icon;
+                  const wrapper = b.href ? (
                     <a
-                      href={`tel:${BUSINESS.phoneRaw}`}
-                      className="text-lg text-gold-600 hover:text-gold-700 font-semibold"
+                      href={b.href}
+                      className="text-navy-800 font-semibold text-base md:text-lg hover:text-brand-red transition-colors break-words"
                     >
-                      {BUSINESS.phone}
+                      {b.primary}
                     </a>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#c0392b]/10">
-                      <Mail className="h-6 w-6 text-[#c0392b]" />
+                  ) : (
+                    <span className="text-navy-800 font-semibold text-base md:text-lg break-words">
+                      {b.primary}
+                    </span>
+                  );
+                  return (
+                    <div key={b.label} className="flex gap-4">
+                      <div className="flex items-center justify-center h-11 w-11 rounded-md bg-brand-red/10 flex-shrink-0">
+                        <Icon className="h-5 w-5 text-brand-red" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <p className="text-[0.65rem] uppercase tracking-[0.18em] font-semibold text-charcoal-500 mb-1">
+                          {b.label}
+                        </p>
+                        {wrapper}
+                        <p className="text-charcoal-500 text-xs mt-1">{b.sub}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-navy-900">Email</h3>
-                    <a
-                      href={`mailto:${BUSINESS.email}`}
-                      className="text-lg text-gold-600 hover:text-gold-700 font-semibold break-all"
-                    >
-                      {BUSINESS.email}
-                    </a>
-                  </div>
-                </div>
+                  );
+                })}
+              </div>
 
-                {/* Address */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#c0392b]/10">
-                      <MapPin className="h-6 w-6 text-[#c0392b]" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-navy-900">Location</h3>
-                    <p className="text-gray-700">
-                      {BUSINESS.address.city}, {BUSINESS.address.state} {BUSINESS.address.zip}
-                    </p>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Serving: {BUSINESS.address.region}
-                    </p>
-                  </div>
-                </div>
+              <div className="pt-6 border-t border-charcoal-200">
+                <p className="text-xs uppercase tracking-[0.15em] font-semibold text-charcoal-500 mb-3">
+                  Prefer to talk?
+                </p>
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-navy-800 hover:text-brand-red font-semibold text-sm underline transition-colors"
+                >
+                  Book a 15-minute call on Calendly →
+                </a>
+              </div>
 
-                {/* Hours */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#c0392b]/10">
-                      <Clock className="h-6 w-6 text-[#c0392b]" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-navy-900">Hours</h3>
-                    <p className="text-gray-700">{BUSINESS.hours}</p>
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-2 pt-4">
+                <span className="inline-flex items-center gap-1.5 bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
+                  <ShieldCheck className="w-3.5 h-3.5 text-brand-red" />
+                  Licensed &amp; Insured
+                </span>
+                <span className="inline-flex items-center bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
+                  Veteran-Owned
+                </span>
+                <span className="inline-flex items-center bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
+                  WV · MD · VA
+                </span>
               </div>
             </div>
 
-            {/* Estimate Form */}
-            <div>
-              <EstimateForm />
+            {/* Right: multi-step estimate form */}
+            <div className="lg:col-span-7" id="estimate">
+              <MultiStepEstimateForm />
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Map Placeholder */}
-      <section className="py-16 md:py-24 bg-navy-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8 text-center">
-            Find Us on the Map
-          </h2>
-
-          <div className="rounded-lg h-96 overflow-hidden shadow-lg">
+      {/* Map */}
+      <section className="bg-steel-50 py-16 md:py-24">
+        <Container size="wide">
+          <SectionHeader
+            eyebrow="Where We Work"
+            title="Headquartered in Martinsburg, WV."
+            subtitle="Active across the Eastern Panhandle, Frederick County MD, the Northern Shenandoah Valley, and Loudoun County VA."
+          />
+          <div className="rounded-lg h-96 overflow-hidden shadow-card-elevated mt-10">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98304.34812693078!2d-77.93!3d39.46!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b9a1e3b4c72f93%3A0x7c4e54e76f7d6b4e!2sMartinsburg%2C%20WV!5e0!3m2!1sen!2sus!4v1711000000000!5m2!1sen!2sus"
               width="100%"
@@ -141,32 +175,41 @@ export default function ContactPage() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Real Elite Contracting - Martinsburg, WV Service Area"
+              title="Real Elite Contracting — Martinsburg, WV service area"
             />
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Response Time Info */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-2xl mx-auto px-6">
-          <div className="bg-gold-50 border border-gold-200 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-navy-900 mb-4">Quick Response Guaranteed</h3>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              We understand that your time is valuable. When you submit an estimate request or
-              contact form, our team typically responds within 24 business hours. For urgent
-              matters, please call us directly at{' '}
-              <a href={`tel:${BUSINESS.phoneRaw}`} className="text-gold-600 font-semibold">
-                {BUSINESS.phone}
-              </a>
-              .
-            </p>
-            <p className="text-gray-700">
-              We're committed to providing prompt, professional communication from your first
-              inquiry all the way through project completion.
-            </p>
+      {/* Assurances */}
+      <AssurancesBand />
+
+      {/* Final CTA */}
+      <section className="bg-navy-900 text-white py-16 md:py-24">
+        <Container size="default" className="text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
+            Skip the back-and-forth.
+          </h2>
+          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
+            The multi-step form above takes about 60 seconds and gets your project to a real
+            lead. The phone number works too.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="#estimate"
+              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+            >
+              Get My Free Estimate
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href={`tel:${BUSINESS.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
+            >
+              Call {BUSINESS.phone}
+            </a>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

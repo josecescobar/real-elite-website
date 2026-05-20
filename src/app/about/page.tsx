@@ -1,160 +1,254 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ShieldCheck, Hammer, MessageSquareText, MapPin, Award, ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
-import Button from '@/components/shared/Button';
-import { Shield, Hammer, MessageSquare, Users } from 'lucide-react';
+import Container from '@/components/shared/Container';
+import SectionHeader from '@/components/shared/SectionHeader';
+import PrecisionProcess from '@/components/home/PrecisionProcess';
+import AssurancesBand from '@/components/home/AssurancesBand';
 
 export const metadata: Metadata = {
-  title: `About Us | ${BUSINESS.name}`,
+  title: `About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`,
   description:
-    'Meet Real Elite Contracting, a veteran-owned contracting company serving the Eastern Panhandle with excellence and integrity since day one.',
+    'Real Elite Contracting is a veteran-owned premium remodeling and exterior contractor serving the WV–MD–VA region. Built with military precision.',
   keywords: [
-    'about us',
+    'about Real Elite Contracting',
     'veteran-owned contractor',
+    'WV contractor',
     'Eastern Panhandle contractor',
-    'Real Elite Contracting',
+    'Frederick MD contractor',
+    'Winchester VA contractor',
+    'premium remodeling contractor',
   ],
-  alternates: {
-    canonical: `${BUSINESS.url}/about`,
-  },
+  alternates: { canonical: `${BUSINESS.url}/about` },
   openGraph: {
-    title: `About Us | ${BUSINESS.name}`,
+    title: `About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`,
     description:
-      'Meet Real Elite Contracting, a veteran-owned contracting company serving the Eastern Panhandle with excellence and integrity.',
+      'Veteran-owned remodeling and exterior contractor — built on military precision, communication, and high-end execution.',
     url: `${BUSINESS.url}/about`,
     type: 'website',
   },
 };
 
-const values = [
+const VALUES = [
   {
-    icon: Shield,
+    icon: ShieldCheck,
     title: 'Integrity',
-    description: 'We stand behind every project with honesty, transparency, and accountability.',
+    body: 'We tell you the same thing we tell our own families. No high-pressure sales, no upsells, no fine print.',
   },
   {
     icon: Hammer,
     title: 'Craftsmanship',
-    description: 'Quality workmanship is our signature. Excellence in every detail matters.',
+    body: 'Premium materials, real techniques, no shortcuts behind the drywall. Workmanship in writing.',
   },
   {
-    icon: MessageSquare,
+    icon: MessageSquareText,
     title: 'Communication',
-    description: 'Clear, honest communication throughout your project keeps you informed and confident.',
+    body: 'Named project lead. Daily updates. 24-hour response standard. You always know what is happening on your project.',
   },
   {
-    icon: Users,
-    title: 'Community',
-    description: 'We are proud to serve our neighbors and give back to the Eastern Panhandle.',
+    icon: MapPin,
+    title: 'Local Accountability',
+    body: 'We live and work in this region. Our reputation here is the business — we behave accordingly.',
   },
+];
+
+const NUMBERS = [
+  { value: '40+', label: 'Years of Experience' },
+  { value: '200+', label: 'Projects Completed' },
+  { value: '5.0★', label: 'Google Rating' },
+  { value: '3', label: 'States Licensed In' },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero Banner */}
-      <section className="bg-navy-900 text-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-black mb-4">About Real Elite Contracting</h1>
-          <p className="text-lg text-white max-w-2xl">
-            Eastern Panhandle's most trusted veteran-owned contracting company
-          </p>
-        </div>
+      {/* Hero */}
+      <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
+        <Container size="wide">
+          <div className="max-w-3xl">
+            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+              About Real Elite Contracting
+            </p>
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
+              Veteran-owned.
+              <br />
+              <span className="text-brand-red">Built with precision.</span>
+            </h1>
+            <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
+              Premium remodeling and high-end exterior craftsmanship across the WV–MD–VA region —
+              run with the same discipline, communication, and accountability you would expect from
+              a unit, not a crew.
+            </p>
+          </div>
+        </Container>
       </section>
 
-      {/* Story Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-8">
-            Built on Service, Driven by Excellence
-          </h2>
+      {/* Numbers strip */}
+      <section className="bg-white border-b border-charcoal-100">
+        <Container size="wide" className="py-10 sm:py-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 divide-x divide-charcoal-100">
+            {NUMBERS.map((n, idx) => (
+              <div
+                key={n.label}
+                className={`text-center ${idx === 0 ? 'pl-0' : 'pl-6'}`}
+              >
+                <div className="font-heading text-3xl sm:text-4xl font-extrabold text-navy-800 tracking-tight leading-none">
+                  {n.value}
+                </div>
+                <div className="text-charcoal-500 text-[0.65rem] sm:text-xs mt-2 tracking-[0.15em] uppercase font-semibold">
+                  {n.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Real Elite Contracting was founded on the principles of service, integrity, and
-                excellence. As a veteran-owned business, we bring the same dedication and
-                professionalism that we learned through our military service to every project we
-                undertake in the Eastern Panhandle.
+      {/* The story */}
+      <section className="bg-white py-16 md:py-24">
+        <Container size="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-7 space-y-6">
+              <SectionHeader
+                eyebrow="The Story"
+                title="Service first. Standards always."
+              />
+              <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
+                Real Elite Contracting was founded by veterans who carried the same standard from
+                service into civilian work: when you say you&apos;ll do something, you do it — to
+                the spec, on the timeline, and you communicate every step. Construction in this
+                region had drifted from that. We built Real Elite to bring it back.
               </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed">
-                For years, we've been the trusted choice for homeowners and businesses throughout
-                West Virginia who demand quality workmanship without compromise. Our commitment to
-                our community runs deep—we live and work here, and we take pride in building the
-                places where our neighbors live their lives.
+              <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
+                That foundation shapes every decision: how we estimate (written and line-itemed),
+                how we schedule (no double-booking your project lead), how we communicate (daily
+                updates, named lead, 24-hour response standard), and how we close (final walkthrough
+                with a written workmanship warranty before you sign off).
               </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Whether it's a roof replacement, a custom deck, or a complete home remodel, we
-                approach every project with the same attention to detail and respect for your home
-                that we'd show our own families.
+              <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
+                Today we build premium bathrooms, kitchens, basements, decks, roofs, and full home
+                additions across the Eastern Panhandle WV, Frederick MD, Winchester VA, Loudoun
+                County, and the surrounding region. The customers who hire us tend to send their
+                neighbors next.
               </p>
             </div>
-
-            <div className="relative h-96 md:h-full rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="/images/crew-dusk.jpg"
-                alt="Real Elite Contracting crew installing roof rafters at dusk"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-card-elevated">
+                <Image
+                  src="/images/crew-dusk.jpg"
+                  alt="Real Elite Contracting crew working on a roof at dusk"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Values Section */}
-      <section className="py-16 md:py-24 bg-navy-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4 text-center">
-            Our Core Values
-          </h2>
-          <p className="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-            These principles guide every decision we make and every project we complete.
-          </p>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const IconComponent = value.icon;
+      {/* Values */}
+      <section className="bg-steel-50 py-16 md:py-24">
+        <Container size="wide">
+          <SectionHeader
+            eyebrow="What We Stand For"
+            title="Four standards. Every project."
+            subtitle="The values aren&apos;t decoration. They&apos;re how we decide whether a project, a hire, or a sub-contractor meets the bar."
+            align="center"
+            className="mx-auto"
+          />
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {VALUES.map((v) => {
+              const Icon = v.icon;
               return (
                 <div
-                  key={index}
-                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                  key={v.title}
+                  className="bg-white rounded-lg p-7 shadow-sm border-t-4 border-brand-red"
                 >
-                  <div className="flex justify-center mb-4">
-                    <div className="bg-[#c0392b]/10 p-3 rounded-full">
-                      <IconComponent className="w-8 h-8 text-[#c0392b]" />
-                    </div>
+                  <div className="inline-flex items-center justify-center w-11 h-11 rounded-md bg-navy-800 text-white mb-5">
+                    <Icon className="w-5 h-5" aria-hidden="true" />
                   </div>
-                  <h3 className="text-xl font-bold text-navy-900 mb-3 text-center">
-                    {value.title}
+                  <h3 className="font-heading text-lg font-extrabold text-navy-800 mb-2">
+                    {v.title}
                   </h3>
-                  <p className="text-gray-700 text-center text-sm leading-relaxed">
-                    {value.description}
-                  </p>
+                  <p className="text-charcoal-600 text-sm leading-relaxed">{v.body}</p>
                 </div>
               );
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-            Ready to Work With Us?
+      {/* The crew (placeholder) */}
+      <section className="bg-white py-16 md:py-24">
+        <Container size="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-6 order-2 lg:order-1">
+              <div className="relative aspect-[3/2] rounded-lg overflow-hidden shadow-card-elevated">
+                <Image
+                  src="/images/team.jpg"
+                  alt="The Real Elite Contracting crew on the job site"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-6 order-1 lg:order-2">
+              <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
+                The Crew
+              </p>
+              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 mb-5 leading-tight">
+                The crew that starts your job is the crew that finishes it.
+              </h2>
+              <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
+                We don&apos;t hand off projects between teams or rotate strangers through your
+                house. Your project lead introduces themselves on day one and stays through the
+                final walkthrough. The trades on your job are people we&apos;ve worked with for
+                years — vetted, accountable, and held to the same standard the rest of the company
+                runs on.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-medium text-navy-800">
+                  <Award className="w-4 h-4 text-brand-red" aria-hidden="true" />
+                  Veteran-Owned &amp; Operated
+                </div>
+                <div className="inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-medium text-navy-800">
+                  <ShieldCheck className="w-4 h-4 text-brand-red" aria-hidden="true" />
+                  Licensed &amp; Insured · WV · MD · VA
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Process module */}
+      <PrecisionProcess />
+
+      {/* Assurances */}
+      <AssurancesBand />
+
+      {/* Final CTA */}
+      <section className="bg-navy-900 text-white py-16 md:py-24">
+        <Container size="default" className="text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
+            Ready to work with us?
           </h2>
-          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-            Contact us today to discuss your project and see why we're the trusted choice for
-            contractors in the Eastern Panhandle.
+          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
+            Tell us what you&apos;re picturing — three short steps, about 60 seconds, free written
+            estimate within 24 business hours.
           </p>
-          <Button href="https://calendly.com/realelitecontracting-info/free-estimate-call" variant="primary" size="lg">
-            Book Free Estimate
-          </Button>
-        </div>
+          <Link
+            href="/#estimate"
+            className="inline-flex items-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+          >
+            Get My Free Estimate
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </Container>
       </section>
     </>
   );
