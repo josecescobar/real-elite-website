@@ -7,7 +7,10 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -26,6 +29,7 @@
     "postcss": "^8.5.8",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.7"
   }
 }
