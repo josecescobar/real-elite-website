@@ -1,13 +1,33 @@
-'use client';
-
-import { useState } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Plus, Minus, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
-import SectionHeader from '@/components/shared/SectionHeader';
 import FAQSchema from '@/components/seo/FAQSchema';
+import FaqAccordion from '@/components/faq/FaqAccordion';
 import AssurancesBand from '@/components/home/AssurancesBand';
+
+export const metadata: Metadata = {
+  title: `FAQ — Remodel Costs, Timelines & Permits | ${BUSINESS.name}`,
+  description:
+    'Straight answers to the questions homeowners actually ask — bathroom and kitchen remodel costs, roofing and deck pricing, project timelines, permits, warranties, and what to expect. Veteran-owned WV–MD–VA contractor.',
+  keywords: [
+    'contractor FAQ',
+    'how much does a bathroom remodel cost',
+    'how much does a kitchen remodel cost',
+    'how much does a new roof cost',
+    'home remodel timeline',
+    'home improvement permits WV',
+  ],
+  alternates: { canonical: `${BUSINESS.url}/faq` },
+  openGraph: {
+    title: `FAQ | ${BUSINESS.name}`,
+    description:
+      'Pricing, timelines, permits, communication, and warranties — straight answers from a veteran-owned WV–MD–VA contractor.',
+    url: `${BUSINESS.url}/faq`,
+    type: 'website',
+  },
+};
 
 const FAQ_SECTIONS = [
   {
@@ -116,7 +136,7 @@ const FAQ_SECTIONS = [
       {
         question: 'Do you work with insurance companies?',
         answer:
-          "Yes. If your home has storm damage, we work directly with your insurance company to document the damage, provide detailed estimates, and ensure the claim is handled properly.",
+          'Yes. If your home has storm damage, we work directly with your insurance company to document the damage, provide detailed estimates, and ensure the claim is handled properly.',
       },
     ],
   },
@@ -125,8 +145,6 @@ const FAQ_SECTIONS = [
 const ALL_FAQS = FAQ_SECTIONS.flatMap((s) => s.items);
 
 export default function FAQPage() {
-  const [openKey, setOpenKey] = useState<string | null>(null);
-
   return (
     <>
       <FAQSchema items={ALL_FAQS} />
@@ -152,45 +170,7 @@ export default function FAQPage() {
       </section>
 
       {/* Sections */}
-      {FAQ_SECTIONS.map((section) => (
-        <section key={section.heading} className="bg-white py-16 md:py-24 border-b border-charcoal-100 last:border-b-0">
-          <Container size="default">
-            <SectionHeader eyebrow={section.heading} title={section.heading + '.'} />
-            <div className="mt-10 divide-y divide-charcoal-200 border-t border-b border-charcoal-200">
-              {section.items.map((item, idx) => {
-                const key = `${section.heading}-${idx}`;
-                const isOpen = openKey === key;
-                return (
-                  <div key={key}>
-                    <button
-                      type="button"
-                      onClick={() => setOpenKey(isOpen ? null : key)}
-                      aria-expanded={isOpen}
-                      aria-controls={`panel-${key}`}
-                      className="w-full py-5 flex items-start justify-between gap-6 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm"
-                    >
-                      <span className="font-heading text-base md:text-lg font-bold text-navy-800 group-hover:text-brand-red transition-colors">
-                        {item.question}
-                      </span>
-                      <span className="flex-shrink-0 mt-1 text-navy-800">
-                        {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-                      </span>
-                    </button>
-                    {isOpen && (
-                      <div
-                        id={`panel-${key}`}
-                        className="pb-5 pr-12 text-charcoal-600 leading-relaxed text-sm md:text-base"
-                      >
-                        {item.answer}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </Container>
-        </section>
-      ))}
+      <FaqAccordion sections={FAQ_SECTIONS} />
 
       {/* Assurances */}
       <AssurancesBand />
