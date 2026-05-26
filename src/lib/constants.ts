@@ -354,6 +354,8 @@ export const UTILITY_LINKS = [
   { label: 'Our Process', href: '/process' },
   { label: 'Reviews', href: '/reviews' },
   { label: 'FAQ', href: '/faq' },
+  { label: 'Veteran-Owned', href: '/veterans' },
+  { label: 'Full Property Bundle', href: '/full-property-perimeter' },
 ] as const;
 
 /**

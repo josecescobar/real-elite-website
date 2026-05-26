@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Handshake, MapPin, Hammer, ArrowRight } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
@@ -56,13 +57,13 @@ export default function PartnershipBand() {
                 ))}
               </ul>
 
-              <a
-                href="#estimate"
+              <Link
+                href="/full-property-perimeter"
                 className="mt-7 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-brand-red hover:text-brand-red-dark transition-colors"
               >
-                Bundle my estimate
+                See the Full Property Perimeter
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 

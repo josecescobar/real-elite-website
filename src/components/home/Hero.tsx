@@ -30,12 +30,20 @@ export const Hero = () => {
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-20 pb-28 md:pt-28 md:pb-36 lg:pt-32 lg:pb-44">
         <div className="max-w-3xl">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 mb-8">
-            <span className="text-brand-red text-xs">★</span>
-            <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
-              Veteran-Owned &amp; Operated
-            </span>
+          {/* Eyebrows — stacked trust badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5">
+              <span className="text-brand-red text-xs">★</span>
+              <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                Veteran-Owned &amp; Operated
+              </span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5">
+              <span className="text-brand-red text-xs">●</span>
+              <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                First AI Roof Quote in the Tri-State
+              </span>
+            </div>
           </div>
 
           {/* Headline */}
@@ -48,7 +56,8 @@ export const Hero = () => {
           {/* Sub */}
           <p className="text-charcoal-200 text-lg md:text-xl mt-8 max-w-2xl leading-relaxed">
             Premium remodeling and exterior craftsmanship across the WV–MD–VA region.
-            Veteran-owned. Communication-first. Quality you don&apos;t have to second-guess.
+            Veteran-owned. AI-instant roof quotes. Communication-first. Quality you don&apos;t
+            have to second-guess.
           </p>
 
           {/* CTAs */}
@@ -63,11 +72,8 @@ export const Hero = () => {
             <a
               href="/instant-roof-quote"
               onClick={() => trackEvent('roof_quote_cta_click', { location: 'hero' })}
-              className="relative bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
+              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
             >
-              <span className="absolute -top-2.5 -right-2.5 bg-brand-red text-white text-[0.6rem] font-bold uppercase tracking-[0.12em] px-2 py-0.5 rounded-sm shadow-md shadow-navy-950/40">
-                Tri-State First
-              </span>
               Instant Roof Quote →
             </a>
             <a
@@ -81,11 +87,15 @@ export const Hero = () => {
 
           {/* Trust strip */}
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
-            <li>Licensed</li>
+            <li>Licensed WV · MD · VA</li>
             <li aria-hidden="true" className="text-white/30">·</li>
             <li>Insured</li>
             <li aria-hidden="true" className="text-white/30">·</li>
-            <li>Veteran-Owned</li>
+            <li>
+              <a href="/veterans" className="hover:text-brand-red transition-colors">
+                Veteran-Owned
+              </a>
+            </li>
             <li aria-hidden="true" className="text-white/30">·</li>
             <li className="text-brand-red">5.0 ★ Google</li>
           </ul>
