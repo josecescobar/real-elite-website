@@ -14,7 +14,15 @@ import JsonLd from '@/components/seo/JsonLd';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const FEATURED_SERVICE_SLUGS = ['roofing', 'decks', 'remodeling', 'siding'] as const;
+const FEATURED_SERVICE_SLUGS = [
+  'roofing',
+  'decks',
+  'remodeling',
+  'siding',
+  'bathrooms',
+  'kitchens',
+  'basements',
+] as const;
 type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
 
 /**
@@ -24,9 +32,15 @@ type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
  * NOTE: this list is INTENTIONALLY decoupled from EXPANSION_SERVICE_AREAS
  * in constants.ts. Adding a city-overview page (in constants) should NOT
  * automatically create per-service deep-link pages here without the
- * localized content also being written. The contract: add a city to
- * COMBO_CITY_SLUGS only after adding all 4 of its service-specific
- * CONTENT entries below.
+ * localized content also being written.
+ *
+ * Coverage is PARTIAL across the matrix: roofing / decks / remodeling /
+ * siding ship combos for all six cities; bathrooms / kitchens / basements
+ * only render where the matching CONTENT entry exists (premium remodels
+ * are positioned only in the markets where they're the lead service per
+ * CITY_DATA.marketEmphasis in constants.ts). generateStaticParams below
+ * derives the actual list from CONTENT keys so half-built combos never
+ * ship as 404s.
  */
 const COMBO_CITY_SLUGS = [
   'winchester-va',
@@ -38,12 +52,9 @@ const COMBO_CITY_SLUGS = [
 ] as const;
 type ExpansionCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
-const COMBO_CITIES = EXPANSION_SERVICE_AREAS.filter((a) =>
-  (COMBO_CITY_SLUGS as readonly string[]).includes(a.slug)
-);
-
-// Unique body content for each service × city combination
-const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraphs: string[] }> = {
+// Unique body content for each service × city combination.
+// Partial — only combos with hand-written content are listed.
+const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraphs: string[] }>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
 
   'roofing-winchester-va': {
@@ -267,6 +278,111 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
       "HOA approval for siding changes is required in most Loudoun master-planned communities. Color selection, material grade, and installation details all need pre-approval. We handle that submission and coordinate with the HOA architectural review committee on your behalf. For homeowners considering a full siding replacement, we provide written estimates that reflect the real labor cost in the Loudoun market — there's no shortcut to a $40,000+ premium siding job, and we don't pretend otherwise.",
     ],
   },
+
+  // ── BATHROOMS ────────────────────────────────────────────────────────────
+
+  'bathrooms-frederick-md': {
+    paragraphs: [
+      "Frederick, Maryland is the strongest bathroom-remodel market in our service area. The mix of historic downtown homes near Market Street and Carroll Creek, established mid-century neighborhoods, and the explosive growth in Ballenger Creek, Urbana, Jefferson, and New Market means we see the full spectrum of bathroom work — from gut renovations of original 1920s tile bathrooms to primary-suite upgrades in 1990s colonials hitting the 25-year mark.",
+      "Real Elite Contracting builds Frederick bathrooms with Schluter-Kerdi waterproofing systems behind every shower, real tile setting (no shortcuts on substrate or backer board), and curbless walk-in shower designs that are increasingly the standard request. We handle plumbing relocation, electrical and lighting upgrades to current Maryland code, custom vanity builds, and the dozens of finish decisions that separate a remodel that looks great in year five from one that doesn't.",
+      "Typical Frederick bathroom investment in 2026 lands in the $20,000–$45,000 range for a full primary suite — depending on tile selection, fixture tier (Moen / Delta vs. Brizo / Hansgrohe / Kohler Artifacts), shower complexity, and whether the layout changes. Powder rooms run $8,000–$15,000. Guest baths fall in between. We bring a detailed line-item estimate to your free walkthrough so you can see exactly where the budget is going before signing anything.",
+      "Frederick County permits are required for any work involving plumbing, electrical, or structural changes, and the county is fairly strict about inspections. We handle the entire permitting and inspection process — rough-in, electrical, final — so you're not chasing paperwork on your own remodel. Most full Frederick bathroom projects run 3–5 weeks from demo to final walkthrough, with daily updates from your project lead.",
+    ],
+  },
+
+  'bathrooms-leesburg-va': {
+    paragraphs: [
+      "Leesburg, Virginia bathroom remodels operate at the premium end of the Northern Virginia market. Lansdowne on the Potomac, Cascades, River Creek, and the historic homes in Old Town along King Street all demand the kind of finish quality and design integration that only comes from a contractor used to working in this price range. Real Elite Contracting delivers that standard — curbless walk-in showers, frameless glass, custom tile, premium fixture packages, and the project management to keep a multi-month build on track.",
+      "Most Leesburg primary-suite bathroom remodels land in the $40,000–$75,000 range, with high-end builds pushing past $100,000 for layout changes, freestanding soaking tubs, double vanities with custom cabinetry, heated floors, and the fixture selections this market specifies — Brizo, Hansgrohe, Kohler Artifacts, Waterworks. We bring real material samples to the estimate so you see exactly what you're committing to before the demo crew arrives.",
+      "Waterproofing is what separates a Leesburg bathroom that holds up for 25 years from one that develops hidden moisture problems by year 8. We install Schluter-Kerdi systems behind every shower and around every tub deck, with proper substrate prep and slope-to-drain. For homes near the Potomac watershed where moisture is already elevated, that detail work isn't optional.",
+      "HOA design review is part of nearly every Leesburg bathroom project in the master-planned communities. We submit the scope, material specifications, and any required elevation drawings to the architectural review committee at the same time we pull the Loudoun County permit, so the two timelines run in parallel rather than stacking. Expect 6–10 weeks of active work for a full primary suite, with a named project lead and daily updates throughout.",
+    ],
+  },
+
+  'bathrooms-ashburn-va': {
+    paragraphs: [
+      "Ashburn, Virginia's housing stock — Broadlands, Brambleton, Ashburn Farm, One Loudoun, Belmont Greene, Loudoun Valley Estates — is hitting the 20-to-25-year mark on original builds. That's exactly the window when primary bathrooms start looking dated, when fixtures begin failing, and when homeowners look at their bathroom and realize the layout designed for the late-90s no longer matches how they live. Real Elite Contracting handles those primary-suite remodels every week.",
+      "Most Ashburn bathroom remodels we build now feature curbless walk-in showers (replacing the original cultured marble surrounds), frameless glass, real tile from floor to ceiling, double vanities with quartz tops, and modernized lighting that actually works for a bathroom. We bring Schluter-Kerdi waterproofing on every shower build — the cheap shortcut on substrate that some contractors take is exactly why mid-2000s Ashburn bathrooms develop moisture problems by year 10.",
+      "Typical Ashburn primary suite investment in 2026 runs $30,000–$60,000 depending on layout changes and finish tier. Guest baths and hall baths run $15,000–$30,000. Powder rooms run $7,000–$14,000. We provide detailed written estimates with line items so you can see what's driving the number — there's no shortcut to a properly built bathroom, but there's also no need to over-spec.",
+      "HOA architectural review applies to most Ashburn communities and typically only matters for exterior changes — but if your bathroom remodel involves window or skylight changes you'll need the HOA submission. We handle that part of the workflow plus the standard Loudoun County permits and inspections (rough-in plumbing and electrical, final). Most Ashburn primary baths run 4–6 weeks of active work from demo through final walkthrough.",
+    ],
+  },
+
+  'bathrooms-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County bathroom remodels are the highest-AOV bathroom work we do. Estate homes in the western county, premium custom builds in Brambleton and One Loudoun, restored historic properties in Old Town Leesburg, and the master-planned community primary suites that cumulatively define this market — Lansdowne, Cascades, Belmont Greene, River Creek — all set an expectation that doesn't exist most other places in our service area.",
+      "Real Elite Contracting builds Loudoun County primary bathrooms in the $50,000–$120,000+ range. Curbless walk-in showers with multiple body sprays, ceiling-mount rain heads, frameless glass enclosures, floor-to-ceiling natural stone or large-format porcelain tile, freestanding soaking tubs from MTI or Victoria + Albert, heated floors with smart thermostats, double vanities with custom cabinetry, premium fixture packages (Brizo Litze, Hansgrohe AXOR, Kohler Artifacts, Waterworks), and lighting designed by a specialist when the project warrants it.",
+      "Behind the visible finishes, the work that determines whether a Loudoun bathroom lasts 30 years or fails at 10 is the waterproofing detail. Schluter-Kerdi systems on every shower wall, full mortar bed under the pan, proper slope-to-drain, and substrate that's been correctly prepared. The cheap shortcuts that show up in lower-end builds — green board behind tile, painted-on waterproofing membrane, no curb dam — are not options on our crews.",
+      "Typical timeline is 8–12 weeks of active work for a full primary suite remodel at this scale, longer for layout changes that involve relocating plumbing or electrical service. We coordinate Loudoun County permits, HOA architectural review where required (Brambleton, Lansdowne, Cascades, Belmont Greene, River Creek, One Loudoun all have active ARCs), and structural-engineering sign-off where load-bearing walls are involved. One named project lead from estimate through final walkthrough.",
+    ],
+  },
+
+  'bathrooms-hagerstown-md': {
+    paragraphs: [
+      "Hagerstown bathroom remodels span the full range. Historic brick row homes in the North End and around Public Square have original 1920s and 1930s bathrooms — small, dated, often with structural surprises behind the plaster. Mid-century ranches along the established corridors typically have one full bath plus a half bath, both badly in need of refresh. Newer construction in Halfway, Robinwood, and the South End mostly needs primary-suite upgrades or basement-bath buildouts.",
+      "Real Elite Contracting handles Washington County bathroom projects across that whole range. For older homes, we always start by checking what's behind the walls — galvanized supply lines, cast iron drain stacks, and old electrical that needs attention before any cosmetic finish work is worth doing. We tell you upfront if the underlying systems need investment first. The cost is real but ignoring it always costs more.",
+      "For newer Hagerstown homes — primary baths in 1990s and 2000s construction — the typical project is a curbless walk-in shower conversion replacing the original cultured marble surround, double-vanity rebuild, new tile floor, frameless glass, and modernized lighting. Schluter-Kerdi waterproofing is standard on every shower we build, not an upsell. Typical investment runs $20,000–$40,000 for a full primary bath in this market.",
+      "Permits and inspections through Washington County and the City of Hagerstown are part of every project that involves plumbing or electrical changes. We pull the permits, coordinate the inspections (rough-in and final), and document everything on your behalf. Most full bathroom remodels in Hagerstown run 3–5 weeks of active work; powder rooms and partial refreshes run 1–2 weeks.",
+    ],
+  },
+
+  'bathrooms-winchester-va': {
+    paragraphs: [
+      "Winchester, Virginia bathroom remodels are a strong segment of the local home-improvement market. The mix of historic Old Town homes near Loudoun Street, the Shawnee District, and the rapidly growing Senseny Road / Route 7 corridor means we see everything from gut renovations of century-old bathrooms to primary-suite refreshes in 2000s subdivisions. Real Elite Contracting brings the same quality standard to both.",
+      "Most Winchester bathroom projects we build feature walk-in shower conversions (curbless options where the substrate allows), real tile work — floor, walls, and niches — vanity and fixture replacement, plumbing relocation as needed, and the lighting and ventilation upgrades that turn a bathroom from functional into actually enjoyable. Schluter-Kerdi waterproofing systems are standard on every shower, not an upsell — that detail is what separates a 25-year bathroom from one that has moisture problems by year 8.",
+      "Typical Winchester primary bathroom investment in 2026 runs $18,000–$40,000 depending on layout, tile selection, and fixture tier. Hall baths and guest baths fall in the $12,000–$25,000 range. Powder rooms run $6,000–$13,000. We bring detailed line-item estimates so there's no ambiguity about what's included — and no surprise change orders after the demo crew arrives.",
+      "Frederick County permits cover most Winchester bathroom work involving plumbing or electrical changes. For homes in the historic district along Loudoun Street and around the Old Town Walking Mall, additional historic-district review may apply — we coordinate that submission as part of the workflow. Most full bathroom remodels in Winchester run 3–5 weeks of active work with daily updates from your project lead.",
+    ],
+  },
+
+  // ── KITCHENS ─────────────────────────────────────────────────────────────
+
+  'kitchens-frederick-md': {
+    paragraphs: [
+      "Frederick, Maryland kitchen remodels are one of the most-requested project types in our pipeline. Frederick's mix of historic downtown homes, established mid-century neighborhoods, and rapidly growing Ballenger Creek / Urbana / Jefferson construction creates demand across the full price range — gut renovations of 1920s rowhouse kitchens near Market Street, open-concept conversions in 1990s colonials, and primary-kitchen builds in newer suburban construction.",
+      "Real Elite Contracting builds Frederick kitchens in the $40,000–$120,000 range, with most landing between $55,000 and $85,000. That includes custom or semi-custom cabinetry, quartz or natural stone counters, layout changes where needed, full appliance replacement, lighting design that actually works, real tile or wood floor refinishing, and the trim and finish work that separates a kitchen that looks great in year five from one that doesn't.",
+      "Layout changes — opening kitchens to dining rooms, relocating islands, removing load-bearing walls — are a recurring request in Frederick's older homes. We engage a structural engineer when load-bearing walls are involved, pull the necessary Frederick County permits, and coordinate the inspections. We tell you upfront which walls can come down and which can't, and what each option actually costs.",
+      "Kitchen remodels are long projects in any market and Frederick is no exception. Plan on 6–10 weeks of active work for a full kitchen build, longer for layout changes that involve structural work or extended cabinet lead times. We give you a written timeline before demo, a named project lead, and daily updates throughout. Most Frederick kitchen projects also involve some flooring extension into adjacent rooms — we coordinate that scope as part of the project.",
+    ],
+  },
+
+  'kitchens-leesburg-va': {
+    paragraphs: [
+      "Leesburg, Virginia kitchen remodels operate at the premium tier of the Northern Virginia market. Lansdowne on the Potomac, Cascades, River Creek, Countryside, and the upscale historic homes in Old Town all set an expectation that the kitchen is the centerpiece of the home — not just functional but a design statement. Real Elite Contracting builds Leesburg kitchens at the level this market demands.",
+      "Typical Leesburg kitchen investment in 2026 runs $80,000–$200,000+, with most full primary kitchens landing $95,000–$140,000. That includes custom cabinetry from regional shops (not big-box semi-custom), quartz or natural stone counters with waterfall edges where the design calls for it, premium appliance packages (Wolf, Sub-Zero, Miele, Thermador), layout changes including island additions or relocation, hardwood floor refinishing or replacement to match the new kitchen scope, and lighting design typically involving a specialist.",
+      "Layout work — opening kitchens to family rooms, removing load-bearing walls, repositioning the island, expanding into a former dining room — is the norm rather than the exception in Leesburg builds. We engage structural engineers from project start, coordinate Loudoun County permits and inspections, and handle HOA architectural review submissions in parallel so the two approval timelines run together rather than stacking.",
+      "Plan on 10–16 weeks of active work for a full Leesburg kitchen at this tier, with custom cabinetry lead times often driving the schedule. We give you a written timeline before demo, a named project lead, and daily updates throughout. Most Leesburg kitchen remodels also involve adjacent dining room and family room scope — refinished floors, paint, trim — which we coordinate as part of one project rather than chaining contractors.",
+    ],
+  },
+
+  'kitchens-ashburn-va': {
+    paragraphs: [
+      "Ashburn, Virginia kitchens are the most popular interior remodel in this market. Broadlands, Brambleton, Ashburn Farm, One Loudoun, Belmont Country Club, Loudoun Valley Estates — the original 1990s and 2000s builds are now hitting the 20-to-25-year window when their kitchens look dated, the appliances start failing, and the closed-off layout no longer matches how Ashburn families actually live. Real Elite Contracting handles these remodels every week.",
+      "Most Ashburn kitchen remodels we build feature opening the kitchen to the family room (removing a load-bearing wall in most cases), adding or relocating the island, replacing all cabinetry with semi-custom or custom (white painted shaker is still the dominant request, with darker islands as the second wave), quartz counters, full appliance replacement including induction cooktops on many builds, refinished or replaced hardwood floors, and modernized lighting design.",
+      "Typical Ashburn kitchen investment runs $50,000–$110,000 depending on cabinet tier, layout scope, and appliance package. Full Wolf / Sub-Zero packages push the number higher; standard premium brands (KitchenAid, Bosch, Café) land in the more typical range. We bring detailed line-item estimates so the budget allocation is visible from day one — cabinets, counters, appliances, flooring, electrical, plumbing, finishes — and there's no ambiguity about where the dollars go.",
+      "HOA architectural review usually doesn't apply to interior kitchen work in Ashburn unless you're changing windows or exterior elements. Loudoun County permits and inspections (electrical, plumbing, sometimes structural) are part of every kitchen project. Plan on 8–12 weeks of active work for a full Ashburn kitchen, with a named project lead and daily updates throughout.",
+    ],
+  },
+
+  'kitchens-loudoun-county-va': {
+    paragraphs: [
+      "Loudoun County kitchen remodels are the highest-tier kitchen work in our service area. Estate properties in the western county, custom builds in Brambleton and One Loudoun, restored historic homes in Old Town Leesburg, the master-planned community primary kitchens in Lansdowne / Cascades / Belmont Greene / River Creek — all operate at a finish level and project complexity that demands a contractor used to building at this scale.",
+      "Real Elite Contracting builds Loudoun County kitchens in the $100,000–$250,000+ range. That's custom cabinetry from regional shops with painted or stained finishes specified down to the door style and inset detail, natural stone or premium quartz counters with waterfall edges, premium appliance packages (Wolf dual-fuel ranges or 60-inch induction, Sub-Zero refrigeration columns and integrated drawer units, Miele dishwashers, full plumbing fixture packages from Brizo or Waterworks), layout changes typically involving structural work and load-bearing wall removal, and lighting design by a specialist.",
+      "The project management discipline that's table-stakes at this scale isn't optional. One named project lead from the first walkthrough through the final punch list. Daily updates. Coordination of structural engineer, electrical, plumbing, HVAC, custom cabinetry shop, stone fabricator, appliance delivery, and the half-dozen other trades that touch a project this complex. Written timeline before demo, transparent line-item pricing throughout, and the warranty work in writing.",
+      "Plan on 14–20 weeks of active work for a Loudoun County kitchen at this tier. Custom cabinet lead times (often 10–14 weeks alone) and stone fabrication scheduling typically drive the overall schedule. HOA architectural review applies in the master-planned communities and Loudoun County permits cover the rest. Most projects also involve adjacent dining, family, and butler's pantry scope, which we coordinate as one project rather than handing off to a second contractor.",
+    ],
+  },
+
+  // ── BASEMENTS ────────────────────────────────────────────────────────────
+
+  'basements-frederick-md': {
+    paragraphs: [
+      "Frederick, Maryland is the strongest basement-finishing market in our service area. The combination of Frederick County's housing stock — most newer homes in Ballenger Creek, Urbana, Jefferson, and New Market have full unfinished basements as standard construction — and the local demand for additional living space at a fraction of an addition's cost makes basement finishing one of the highest-ROI projects a Frederick homeowner can build.",
+      "Real Elite Contracting builds Frederick basements that pass inspection on the first walkthrough, every time. Moisture control comes first — sump pump verification, perimeter waterproofing assessment, vapor barrier installation under any framing — because the cheap shortcut on moisture is what creates mold problems in year three. Then code-compliant framing with proper egress windows where required, full electrical and plumbing rough-in to Frederick County code, HVAC extension or dedicated mini-split installation, and the insulation and drywall that turn raw space into living space.",
+      "Typical Frederick basement-finishing scope in 2026 runs $35,000–$85,000 depending on square footage and feature mix. Standard finished family room with full bath, wet bar, and laundry rough-in lands around $55,000–$70,000. In-law suites with full kitchens, bedrooms, and accessible bathrooms run higher. We provide detailed line-item estimates with everything broken out — framing, electrical, plumbing, HVAC, insulation, drywall, flooring, finishes — so you see exactly where the budget goes.",
+      "Frederick County permits and inspections are required for any basement finishing work — framing, electrical, plumbing, mechanical, final. The inspector sequence matters; we coordinate it so trades don't lose days waiting on each other. Most full Frederick basement projects run 6–12 weeks of active work depending on scope, with a named project lead, daily updates, and a clean job site every day. Egress windows, fire-blocking, and the other code requirements that separate properly finished basements from problem basements are non-negotiable in our work.",
+    ],
+  },
 };
 
 // ─── Static Params ────────────────────────────────────────────────────────────
@@ -280,13 +396,35 @@ const CONTENT: Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraph
  */
 export const dynamicParams = false;
 
+/**
+ * Build params straight off the CONTENT keys so partial coverage is
+ * safe — bathrooms/kitchens/basements only render in the markets where
+ * a CONTENT entry exists. Adding a key to CONTENT auto-publishes the
+ * route on next build.
+ */
 export function generateStaticParams() {
-  return FEATURED_SERVICE_SLUGS.flatMap((service) =>
-    COMBO_CITIES.map((area) => ({
-      service,
-      city: area.slug,
-    }))
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[]).map(
+    (key) => {
+      const dashIdx = key.indexOf('-');
+      return {
+        service: key.slice(0, dashIdx),
+        city: key.slice(dashIdx + 1),
+      };
+    }
   );
+}
+
+// Cross-link helpers — derived from what's actually published in CONTENT.
+function citiesForService(serviceSlug: string): readonly string[] {
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[])
+    .filter((k) => k.startsWith(`${serviceSlug}-`))
+    .map((k) => k.slice(serviceSlug.length + 1));
+}
+
+function servicesForCity(citySlug: string): readonly string[] {
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[])
+    .filter((k) => k.endsWith(`-${citySlug}`))
+    .map((k) => k.slice(0, k.length - citySlug.length - 1));
 }
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
@@ -381,12 +519,15 @@ export default async function ServiceCityPage({
     ],
   };
 
-  // Cross-link rails
+  // Cross-link rails — derived from what's actually published in CONTENT.
+  const publishedOtherCities = new Set(citiesForService(serviceData.slug));
   const otherCitiesForThisService = EXPANSION_SERVICE_AREAS.filter(
-    (a) => a.slug !== cityData.slug && COMBO_CITY_SLUGS.includes(a.slug as ExpansionCitySlug)
+    (a) => a.slug !== cityData.slug && publishedOtherCities.has(a.slug)
   ).slice(0, 5);
+
+  const publishedOtherServices = new Set(servicesForCity(cityData.slug));
   const otherServicesForThisCity = SERVICES.filter(
-    (s) => s.slug !== serviceData.slug && FEATURED_SERVICE_SLUGS.includes(s.slug as FeaturedServiceSlug)
+    (s) => s.slug !== serviceData.slug && publishedOtherServices.has(s.slug)
   );
 
   return (
