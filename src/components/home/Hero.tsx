@@ -40,9 +40,9 @@ export const Hero = () => {
 
           {/* Headline */}
           <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold leading-[0.95] tracking-tight text-white">
-            Built With
-            <br />
             <span className="text-brand-red">Military Precision.</span>
+            <br />
+            Civilian Excellence.
           </h1>
 
           {/* Sub */}
@@ -63,8 +63,11 @@ export const Hero = () => {
             <a
               href="/instant-roof-quote"
               onClick={() => trackEvent('roof_quote_cta_click', { location: 'hero' })}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
+              className="relative bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
             >
+              <span className="absolute -top-2.5 -right-2.5 bg-brand-red text-white text-[0.6rem] font-bold uppercase tracking-[0.12em] px-2 py-0.5 rounded-sm shadow-md shadow-navy-950/40">
+                Tri-State First
+              </span>
               Instant Roof Quote →
             </a>
             <a

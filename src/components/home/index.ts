@@ -1,6 +1,8 @@
 export { default as Hero } from './Hero';
 export { default as TrustBar } from './TrustBar';
+export { default as InstantQuoteBand } from './InstantQuoteBand';
 export { default as FeaturedServices } from './FeaturedServices';
+export { default as PartnershipBand } from './PartnershipBand';
 export { default as PrecisionProcess } from './PrecisionProcess';
 export { default as ProjectSpotlight } from './ProjectSpotlight';
 export { default as BeforeAfter } from './BeforeAfter';

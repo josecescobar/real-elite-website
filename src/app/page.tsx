@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { BUSINESS } from '@/lib/constants';
 import Hero from '@/components/home/Hero';
 import TrustBar from '@/components/home/TrustBar';
+import InstantQuoteBand from '@/components/home/InstantQuoteBand';
 import FeaturedServices from '@/components/home/FeaturedServices';
+import PartnershipBand from '@/components/home/PartnershipBand';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import ProjectSpotlight from '@/components/home/ProjectSpotlight';
 import BeforeAfter from '@/components/home/BeforeAfter';
@@ -25,7 +27,9 @@ export default function Home() {
     <>
       <Hero />
       <TrustBar />
+      <InstantQuoteBand />
       <FeaturedServices />
+      <PartnershipBand />
       <PrecisionProcess />
       <ProjectSpotlight />
       <BeforeAfter />
