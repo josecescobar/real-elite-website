@@ -6,7 +6,7 @@ export const TrustBar = () => {
     { number: '200+', label: 'Projects Completed' },
     { number: '5.0★', label: 'Google Rating' },
     { number: 'Veteran', label: 'Owned & Operated' },
-    { number: 'Licensed', label: 'WV · MD · VA' },
+    { number: '60-Sec', label: 'AI Roof Quote' },
   ];
 
   return (

@@ -9,6 +9,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import StickyEstimateRail from '@/components/services/StickyEstimateRail';
 import RelatedGuides from '@/components/blog/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
+import FAQSchema from '@/components/seo/FAQSchema';
 
 import { SERVICES, BUSINESS, selectGalleryFor, type CityDataEntry } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
@@ -50,6 +51,28 @@ export default function CityPageTemplate({ city, data }: Props) {
     6
   );
 
+  // Localized FAQ — answers the common pre-quote questions in a way
+  // that AI Overviews / SGE can quote directly. Adds FAQPage structured
+  // data on every city page for SEO + AI-search coverage.
+  const localFaqs: { question: string; answer: string }[] = [
+    {
+      question: `Does Real Elite Contracting serve ${city.city}, ${city.state}?`,
+      answer: `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${city.state === 'WV' ? 'Eastern Panhandle' : city.state === 'MD' ? 'Cumberland Valley and Frederick County area' : 'Northern Shenandoah Valley and Loudoun County area'}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`,
+    },
+    {
+      question: `What services does Real Elite offer in ${city.city}?`,
+      answer: `In ${city.city} we focus on ${data.marketEmphasis.slice(0, 5).map((s) => SERVICES.find((sv) => sv.slug === s)?.title ?? s).join(', ')}, plus general remodeling, additions, and exterior repairs. Our work is veteran-owned and built with military precision.`,
+    },
+    {
+      question: `How fast can I get a quote in ${city.city}?`,
+      answer: `For roofing, our AI Instant Roof Quote returns a ballpark price from your address in about 60 seconds — no ladder, no appointment. For other services, a project lead follows up within 24 business hours with a free written estimate. ${city.city} sits inside our primary service radius, so on-site visits are typically scheduled within the same week.`,
+    },
+    {
+      question: `Is Real Elite Contracting really veteran-owned?`,
+      answer: `Yes. Real Elite Contracting is veteran-owned and operated, with SDVOSB (Service-Disabled Veteran-Owned Small Business) federal certification in progress. Our tagline — "Military Precision. Civilian Excellence." — is grounded in the standards of service.`,
+    },
+  ];
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -74,6 +97,7 @@ export default function CityPageTemplate({ city, data }: Props) {
     <>
       <JsonLd schema={breadcrumbSchema} />
       <JsonLd schema={placeSchema} />
+      <FAQSchema items={localFaqs} />
 
       {/* Hero */}
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
@@ -285,6 +309,38 @@ export default function CityPageTemplate({ city, data }: Props) {
           />
           <div className="mt-10">
             <RelatedGuides posts={guidePosts} heading="" />
+          </div>
+        </Container>
+      </section>
+
+      {/* Localized FAQ — surfaces structured answers for AI Overview / SGE */}
+      <section className="bg-steel-50 py-16 md:py-24">
+        <Container size="default">
+          <SectionHeader
+            eyebrow={`${city.city} FAQ`}
+            title={`Questions ${city.city} homeowners ask first.`}
+            align="center"
+            className="mx-auto"
+          />
+          <div className="mt-12 max-w-3xl mx-auto space-y-3">
+            {localFaqs.map((item) => (
+              <details
+                key={item.question}
+                className="group bg-white border border-charcoal-100 rounded-lg p-5 hover:border-brand-red transition-colors"
+              >
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                  <span className="font-heading text-base md:text-lg font-bold text-navy-800">
+                    {item.question}
+                  </span>
+                  <span className="text-brand-red font-bold text-xl leading-none group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <p className="text-charcoal-700 text-sm md:text-base leading-relaxed mt-4">
+                  {item.answer}
+                </p>
+              </details>
+            ))}
           </div>
         </Container>
       </section>
