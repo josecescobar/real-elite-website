@@ -8,7 +8,6 @@ import { NAV_LINKS, BUSINESS, SERVICES_MEGA_MENU } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 import ServicesMegaMenu from './MegaMenu';
 
-const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -71,10 +70,8 @@ export default function Header() {
             {BUSINESS.phone}
           </a>
           <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackEvent('calendly_click', { location: 'header_desktop' })}
+            href="/contact#estimate"
+            onClick={() => trackEvent('estimate_cta_click', { location: 'header_desktop' })}
             className="bg-brand-red text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-red-dark transition-colors shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
           >
             Free Estimate
@@ -164,10 +161,8 @@ export default function Header() {
               Call {BUSINESS.phone}
             </a>
             <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackEvent('calendly_click', { location: 'header_mobile_menu' })}
+              href="/contact#estimate"
+              onClick={() => trackEvent('estimate_cta_click', { location: 'header_mobile_menu' })}
               className="flex items-center justify-center w-full py-3 bg-brand-red text-white font-semibold rounded-md text-sm hover:bg-brand-red-dark transition-colors"
             >
               Free Estimate
