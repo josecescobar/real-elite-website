@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
@@ -196,8 +197,38 @@ export default function ServicePageTemplate({ data }: Props) {
         </Container>
       </section>
 
-      {/* Assurances + final CTA */}
+      {/* Assurances */}
       <AssurancesBand />
+
+      {/* Final CTA — mirrors the combo page closer so every service
+          page ends with a clear next action instead of trailing off
+          into trust badges. */}
+      <section className="bg-navy-900 text-white py-16 md:py-24">
+        <Container size="default" className="text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
+            Ready to start your {data.title.toLowerCase()} project?
+          </h2>
+          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
+            Three short steps, about 60 seconds — a real project lead reaches out within
+            24 business hours to schedule your free on-site walk-through.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact#estimate"
+              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+            >
+              Get My Free Estimate
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href={`tel:${BUSINESS.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
+            >
+              Call {BUSINESS.phone}
+            </a>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }
