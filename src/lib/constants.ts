@@ -25,13 +25,21 @@ export const BUSINESS = {
     region: 'Eastern Panhandle, WV',
   },
   url: 'https://www.realelitecontracting.com',
+  /**
+   * Social URLs are verified-live links. LinkedIn and Thumbtack profiles
+   * were previously listed but returned 404 — removed to avoid broken
+   * trust signals in the footer and broken sameAs references in JSON-LD.
+   * Add them back here once the real profiles exist.
+   *
+   * Yelp is left in because Yelp blocks automated checks (403 on bots);
+   * verify the profile manually in a browser before linking it from the
+   * footer.
+   */
   social: {
     facebook: 'https://www.facebook.com/realelitecontracting',
     instagram: 'https://www.instagram.com/realelitecontracting',
     google: 'https://share.google/yuA4SUQ5zDrSKAyHm',
-    linkedin: 'https://www.linkedin.com/company/real-elite-contracting',
     yelp: 'https://www.yelp.com/biz/real-elite-contracting',
-    thumbtack: 'https://www.thumbtack.com/wv/martinsburg/general-contractors/real-elite-contracting',
   },
   hours: 'Mon–Fri: 7:00 AM – 6:00 PM | Sat: 8:00 AM – 2:00 PM',
   veteranOwned: true,
@@ -493,11 +501,17 @@ export const HOMEPAGE_PROJECT_SPOTLIGHT = {
 } as const;
 
 /**
- * Before/after pairs for the homepage cinematic slider.
- * NOTE: Until actual paired before/after photography is shot, the
- * "before" slot here uses framing/in-progress shots that thematically
- * pair with the finished result. Replace with true paired shots
- * (same angle, same framing, before vs. after) as projects are shot.
+ * "In progress -> finished" pairs for the homepage cinematic slider.
+ *
+ * These are intentionally NOT before/after pairs in the strict sense
+ * (same angle, same framing of an existing structure). They're paired
+ * mid-construction and post-construction shots of real Real Elite
+ * projects — a build-to-finished reveal. The slider UI labels and
+ * homepage copy reflect that framing.
+ *
+ * If genuine before/after photography (same angle, pre-work vs.
+ * post-work) is shot later, swap pairs in and rename the labels back
+ * to "Before / After" in BeforeAfter.tsx + the home section header.
  */
 export const BEFORE_AFTER_PAIRS = [
   {

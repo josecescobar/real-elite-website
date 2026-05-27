@@ -63,7 +63,7 @@ function Slider({ pair }: { pair: Pair }) {
           updatePosition(e.clientX);
         }}
       >
-        {/* After image (full bleed) */}
+        {/* Finished image (full bleed) */}
         <Image
           src={pair.after.src}
           alt={pair.after.alt}
@@ -71,12 +71,12 @@ function Slider({ pair }: { pair: Pair }) {
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover pointer-events-none"
         />
-        {/* After label */}
+        {/* Finished label */}
         <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm text-navy-800 text-[0.65rem] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-sm pointer-events-none">
-          After
+          Finished
         </div>
 
-        {/* Before image clipped */}
+        {/* In-progress image clipped */}
         <div
           className="absolute inset-0 overflow-hidden pointer-events-none"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
@@ -89,7 +89,7 @@ function Slider({ pair }: { pair: Pair }) {
             className="object-cover"
           />
           <div className="absolute top-4 left-4 bg-navy-900/90 backdrop-blur-sm text-white text-[0.65rem] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-sm">
-            Before
+            In Progress
           </div>
         </div>
 
@@ -123,9 +123,9 @@ export default function BeforeAfter() {
     <section className="bg-steel-50 py-20 md:py-28">
       <Container size="wide">
         <SectionHeader
-          eyebrow="Before & After"
-          title="The transformation, drag-to-reveal."
-          subtitle="Real Real Elite projects. Drag the slider to see the difference our crews deliver — start to finish, every time."
+          eyebrow="Build to Finished"
+          title="In progress to finished, drag-to-reveal."
+          subtitle="Real Real Elite project shots. Drag the slider to see what the work looks like during construction and what it becomes when the crew is done."
         />
 
         <div className="mt-12">
