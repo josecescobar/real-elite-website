@@ -165,7 +165,6 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower' },
       { src: '/images/projects/bathrooms/shower-black-frame.jpg', alt: 'Contemporary walk-in shower with black-frame glass enclosure and wood-look tile' },
       { src: '/images/projects/bathrooms/tub-shower-tile.jpg', alt: 'Tile tub-and-shower combination with frameless glass and travertine accents' },
-      { src: '/images/projects/bathrooms/vanity-transition.jpg', alt: 'Bathroom vanity and tile shower with white sink and warm wood floor transition' },
     ],
   },
 

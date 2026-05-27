@@ -604,13 +604,11 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/deck-ipe-modern.jpg', alt: 'IPE hardwood deck wrapping a modern glass-walled home with white woven dining chairs', category: 'Decks' },
   { src: '/images/deck-pebble-detail.jpg', alt: 'Weathered wood deck corner with white pebble accent inlay and grass edge', category: 'Decks' },
   { src: '/images/deck-garden-path-view.jpg', alt: 'Low-angle dark-stained deck looking out to a landscaped garden path', category: 'Decks' },
-  { src: '/images/deck-wet-rustic-rail.jpg', alt: 'Stained wood deck with rustic crisscross railing in a grassy natural setting after rain', category: 'Decks' },
   // Bathrooms
   { src: '/images/projects/bathrooms/hero.jpg', alt: 'Custom marble walk-in shower with frameless glass enclosure', category: 'Bathrooms' },
   { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower', category: 'Bathrooms' },
   { src: '/images/projects/bathrooms/shower-black-frame.jpg', alt: 'Contemporary walk-in shower with black-frame glass and wood-look tile', category: 'Bathrooms' },
   { src: '/images/projects/bathrooms/tub-shower-tile.jpg', alt: 'Tile tub-and-shower combination with frameless glass', category: 'Bathrooms' },
-  { src: '/images/projects/bathrooms/vanity-transition.jpg', alt: 'Bathroom vanity and tile shower with warm wood floor transition', category: 'Bathrooms' },
   // Kitchens
   { src: '/images/projects/kitchens/hero.jpg', alt: 'Editorial white kitchen with double islands and lantern pendant lighting', category: 'Kitchens' },
   { src: '/images/projects/kitchens/island-lantern-pendants.jpg', alt: 'White kitchen with marble-topped island and lantern pendants', category: 'Kitchens' },
