@@ -210,9 +210,8 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             sameAs: [
               BUSINESS.social.facebook,
               BUSINESS.social.instagram,
-              'https://www.linkedin.com/company/real-elite-contracting',
-              'https://www.yelp.com/biz/real-elite-contracting',
-              'https://www.thumbtack.com/wv/martinsburg/general-contractors/real-elite-contracting',
+              BUSINESS.social.google,
+              BUSINESS.social.yelp,
             ],
           }}
         />
