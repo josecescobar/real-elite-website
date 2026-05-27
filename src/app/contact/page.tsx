@@ -1,13 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Phone, MessageSquare, Mail, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import AssurancesBand from '@/components/home/AssurancesBand';
 
-const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
+/**
+ * SMS link with a prefilled greeting so the customer's text app opens
+ * ready to send. iOS and Android both honor the `?&body=` parameter.
+ */
+const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
+  "Hi, I'd like a free estimate from Real Elite Contracting."
+)}`;
 
 export const metadata: Metadata = {
   title: `Contact | ${BUSINESS.name}`,
@@ -34,10 +40,17 @@ export const metadata: Metadata = {
 const CONTACT_BLOCKS = [
   {
     icon: Phone,
-    label: 'Phone',
+    label: 'Call',
     primary: BUSINESS.phone,
     href: `tel:${BUSINESS.phoneRaw}`,
-    sub: 'Real person, no call center.',
+    sub: "Real person, no call center. If I don't pick up, leave a voicemail and I'll call you back the same day.",
+  },
+  {
+    icon: MessageSquare,
+    label: 'Text',
+    primary: BUSINESS.phone,
+    href: SMS_URL,
+    sub: 'Same number — texts often get the fastest reply.',
   },
   {
     icon: Mail,
@@ -76,8 +89,8 @@ export default function ContactPage() {
               <span className="text-brand-red">project lead.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Three ways to reach us. Pick the one that fits — we&apos;ll reach out within
-              24 business hours, no high-pressure sales calls.
+              Call, text, email, or fill out the form — whichever is easiest. A real
+              project lead reaches out within 24 business hours, no high-pressure sales calls.
             </p>
           </div>
         </Container>
@@ -126,14 +139,12 @@ export default function ContactPage() {
                 <p className="text-xs uppercase tracking-[0.15em] font-semibold text-charcoal-500 mb-3">
                   Prefer to talk?
                 </p>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-navy-800 hover:text-brand-red font-semibold text-sm underline transition-colors"
-                >
-                  Book a 15-minute call on Calendly →
-                </a>
+                <p className="text-sm text-charcoal-700 leading-relaxed">
+                  Call <a href={`tel:${BUSINESS.phoneRaw}`} className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">{BUSINESS.phone}</a> and a real person picks up. If I miss you, leave a voicemail — I&apos;ll get back to you the same day.
+                </p>
+                <p className="text-sm text-charcoal-700 leading-relaxed mt-3">
+                  You can also <a href={SMS_URL} className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">text the same number</a> — quick texts usually get the fastest reply.
+                </p>
               </div>
 
               <div className="flex flex-wrap gap-2 pt-4">

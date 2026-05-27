@@ -3,7 +3,9 @@
 import { BUSINESS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 
-const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
+const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
+  "Hi, I'd like a free estimate from Real Elite Contracting."
+)}`;
 
 export const CTASection = () => {
   return (
@@ -36,15 +38,13 @@ export const CTASection = () => {
         </div>
 
         <p className="text-xs text-charcoal-400 mt-6">
-          Prefer a quick chat?{' '}
+          Or{' '}
           <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackEvent('calendly_click', { location: 'cta_section' })}
+            href={SMS_URL}
+            onClick={() => trackEvent('sms_click', { location: 'cta_section' })}
             className="text-white hover:text-brand-red underline transition-colors font-semibold"
           >
-            Book a 15-minute call →
+            text {BUSINESS.phone} →
           </a>
         </p>
       </div>

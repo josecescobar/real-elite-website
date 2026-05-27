@@ -1,8 +1,11 @@
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
+import { BUSINESS } from '@/lib/constants';
 
-const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
+const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
+  "Hi, I'd like a free estimate from Real Elite Contracting."
+)}`;
 
 export default function HomeEstimate() {
   return (
@@ -42,14 +45,23 @@ export default function HomeEstimate() {
               <p className="text-xs uppercase tracking-[0.15em] font-semibold text-charcoal-400 mb-3">
                 Prefer to talk?
               </p>
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-brand-red font-semibold text-sm underline transition-colors"
-              >
-                Book a 15-minute call on Calendly →
-              </a>
+              <p className="text-sm text-charcoal-200 leading-relaxed">
+                Call{' '}
+                <a
+                  href={`tel:${BUSINESS.phoneRaw}`}
+                  className="text-white hover:text-brand-red font-semibold underline transition-colors"
+                >
+                  {BUSINESS.phone}
+                </a>{' '}
+                or{' '}
+                <a
+                  href={SMS_URL}
+                  className="text-white hover:text-brand-red font-semibold underline transition-colors"
+                >
+                  text the same number
+                </a>
+                . A real person picks up — leave a voicemail if we miss you and we&apos;ll call back the same day.
+              </p>
             </div>
           </div>
 
