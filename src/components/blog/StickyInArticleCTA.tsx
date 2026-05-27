@@ -41,7 +41,7 @@ export default function StickyInArticleCTA() {
           <p className="text-charcoal-300 text-xs mt-0.5">Free written estimate, no pressure.</p>
         </div>
         <a
-          href="/#estimate"
+          href="/contact#estimate"
           onClick={() => trackEvent('estimate_cta_click', { location: 'guide_sticky' })}
           className="bg-brand-red text-white px-4 py-2.5 rounded-md font-semibold text-xs hover:bg-brand-red-dark transition-colors inline-flex items-center gap-1 flex-shrink-0"
         >

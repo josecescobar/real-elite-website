@@ -155,7 +155,7 @@ export default function ServiceAreasPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/#estimate"
+              href="/contact#estimate"
               className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-md inline-flex items-center justify-center gap-2"
             >
               Get a Free Estimate
