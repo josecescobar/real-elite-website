@@ -24,7 +24,7 @@ export default function EstimateCTACard({
       </h3>
       <p className="text-charcoal-200 leading-relaxed mb-5 max-w-prose">{body}</p>
       <a
-        href="/#estimate"
+        href="/contact#estimate"
         className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 focus-visible:ring-brand-red"
       >
         Get My Free Estimate

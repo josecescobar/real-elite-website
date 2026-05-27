@@ -9,13 +9,15 @@ import { trackEvent } from '@/lib/analytics';
  *
  * "Free Estimate" routes to the in-page #estimate anchor when the user
  * is already on the homepage or /contact (where the form lives), and
- * to "/#estimate" otherwise so a click navigates to the homepage and
- * scrolls to the form.
+ * to "/contact#estimate" otherwise so a click navigates straight to
+ * the dedicated estimate form on the contact page instead of dropping
+ * the user back onto the homepage. Matches the cross-page CTA pattern
+ * used across the site.
  */
 export default function StickyMobileCTA() {
   const pathname = usePathname();
   const onFormPage = pathname === '/' || pathname === '/contact';
-  const estimateHref = onFormPage ? '#estimate' : '/#estimate';
+  const estimateHref = onFormPage ? '#estimate' : '/contact#estimate';
 
   return (
     <div

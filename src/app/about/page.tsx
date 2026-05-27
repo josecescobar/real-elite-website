@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Hammer, MessageSquareText, MapPin, Award, ArrowRight } from 'lucide-react';
-import { BUSINESS } from '@/lib/constants';
+import { BUSINESS, OWNER } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: `About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`,
@@ -62,8 +63,51 @@ const NUMBERS = [
 ];
 
 export default function AboutPage() {
+  /**
+   * AboutPage schema linking the page to the organization, plus an
+   * embedded Person founder reference so Google understands the
+   * veteran-owned positioning as structured data rather than just
+   * marketing copy. Portrait is added conditionally — once
+   * OWNER.portrait is set in constants.ts the image field appears in
+   * the schema automatically.
+   */
+  const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `About ${BUSINESS.name}`,
+    url: `${BUSINESS.url}/about`,
+    mainEntity: {
+      '@type': 'Organization',
+      '@id': `${BUSINESS.url}/#business`,
+      name: BUSINESS.name,
+      url: `${BUSINESS.url}/`,
+      foundingLocation: {
+        '@type': 'Place',
+        name: `${BUSINESS.address.city}, ${BUSINESS.address.state}`,
+      },
+      founder: {
+        '@type': 'Person',
+        name: OWNER.name,
+        jobTitle: OWNER.title,
+        worksFor: { '@id': `${BUSINESS.url}/#business` },
+        ...(OWNER.portrait ? { image: `${BUSINESS.url}${OWNER.portrait}` } : {}),
+      },
+      knowsAbout: [
+        'Bathroom Remodeling',
+        'Kitchen Remodeling',
+        'Basement Finishing',
+        'Roofing',
+        'Decks and Outdoor Living',
+        'Siding and Stone Exteriors',
+        'Home Additions',
+      ],
+    },
+  };
+
   return (
     <>
+      <JsonLd schema={aboutSchema} />
+
       {/* Hero */}
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
@@ -241,13 +285,21 @@ export default function AboutPage() {
             Tell us what you&apos;re picturing — three short steps, about 60 seconds, free written
             estimate within 24 business hours.
           </p>
-          <Link
-            href="/#estimate"
-            className="inline-flex items-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
-          >
-            Get My Free Estimate
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact#estimate"
+              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+            >
+              Get My Free Estimate
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href={`tel:${BUSINESS.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
+            >
+              Call {BUSINESS.phone}
+            </a>
+          </div>
         </Container>
       </section>
     </>

@@ -37,7 +37,7 @@ export default function NotFound() {
           <ArrowRight className="w-4 h-4" />
         </Link>
         <Link
-          href="/#estimate"
+          href="/contact#estimate"
           className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold text-sm px-8 py-4 rounded-md hover:bg-white/20 transition-colors"
         >
           Get a Free Estimate

@@ -68,7 +68,7 @@ export default function GalleryPage() {
             Tell us what you&apos;re picturing. Free written estimate within 24 business hours.
           </p>
           <Link
-            href="/#estimate"
+            href="/contact#estimate"
             className="inline-flex items-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
           >
             Get My Free Estimate
