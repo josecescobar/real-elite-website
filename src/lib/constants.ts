@@ -598,6 +598,11 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white horizontal railings and stairs', category: 'Decks', state: 'WV' },
   { src: '/images/deck-railing-install.jpg', alt: 'Installing white railing on composite deck', category: 'Decks', state: 'WV' },
   { src: '/images/deck-screened-porch.jpg', alt: 'Screened porch with stained wood ceiling, black railings, and wooded view', category: 'Decks' },
+  { src: '/images/deck-multilevel-step-lights.jpg', alt: 'Multi-level wood deck with built-in bench, recessed step lights, and landscaped garden', category: 'Decks' },
+  { src: '/images/deck-ipe-modern.jpg', alt: 'IPE hardwood deck wrapping a modern glass-walled home with white woven dining chairs', category: 'Decks' },
+  { src: '/images/deck-pebble-detail.jpg', alt: 'Weathered wood deck corner with white pebble accent inlay and grass edge', category: 'Decks' },
+  { src: '/images/deck-garden-path-view.jpg', alt: 'Low-angle dark-stained deck looking out to a landscaped garden path', category: 'Decks' },
+  { src: '/images/deck-wet-rustic-rail.jpg', alt: 'Stained wood deck with rustic crisscross railing in a grassy natural setting after rain', category: 'Decks' },
   // Bathrooms
   { src: '/images/projects/bathrooms/hero.jpg', alt: 'Custom marble walk-in shower with frameless glass enclosure', category: 'Bathrooms' },
   { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower', category: 'Bathrooms' },

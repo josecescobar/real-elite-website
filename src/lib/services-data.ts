@@ -571,9 +571,12 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       ],
     },
     gallery: [
+      { src: '/images/deck-multilevel-step-lights.jpg', alt: 'Multi-level wood deck with built-in bench, recessed step lights, and landscaped garden' },
+      { src: '/images/deck-ipe-modern.jpg', alt: 'IPE hardwood deck wrapping a modern glass-walled home with white dining chairs' },
       { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture' },
       { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white railings' },
       { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night' },
+      { src: '/images/deck-pebble-detail.jpg', alt: 'Weathered wood deck corner with white pebble accent inlay and grass edge' },
     ],
     whyChooseUs: [
       'Custom designs tailored to your home and how you actually use the space.',
