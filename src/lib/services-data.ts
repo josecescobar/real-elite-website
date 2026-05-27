@@ -94,6 +94,10 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'Premium Interior',
       heading: 'Bathroom Remodeling',
       sub: 'Walk-in showers, tile work, vanities, and full master-bath transformations across the WV–MD–VA region. The clean, communication-first remodel premium homeowners actually recommend.',
+      image: {
+        src: '/images/projects/bathrooms/hero.jpg',
+        alt: 'Custom marble walk-in shower with frameless glass enclosure and herringbone tile floor',
+      },
     },
     overview: {
       paragraphs: [
@@ -157,6 +161,12 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     ],
     relatedGuideSlugs: [],
     icon: 'Bath',
+    gallery: [
+      { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower' },
+      { src: '/images/projects/bathrooms/shower-black-frame.jpg', alt: 'Contemporary walk-in shower with black-frame glass enclosure and wood-look tile' },
+      { src: '/images/projects/bathrooms/tub-shower-tile.jpg', alt: 'Tile tub-and-shower combination with frameless glass and travertine accents' },
+      { src: '/images/projects/bathrooms/vanity-transition.jpg', alt: 'Bathroom vanity and tile shower with white sink and warm wood floor transition' },
+    ],
   },
 
   kitchens: {
@@ -179,6 +189,10 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'Premium Interior',
       heading: 'Kitchen Remodeling',
       sub: 'Custom cabinetry, islands, layout changes, and full kitchen transformations across the WV–MD–VA region. Premium kitchens built for the family that actually cooks in them.',
+      image: {
+        src: '/images/projects/kitchens/hero.jpg',
+        alt: 'Editorial white kitchen with double islands, lantern pendant lighting, and dark hardwood floors',
+      },
     },
     overview: {
       paragraphs: [
@@ -243,6 +257,13 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     ],
     relatedGuideSlugs: [],
     icon: 'ChefHat',
+    gallery: [
+      { src: '/images/projects/kitchens/island-lantern-pendants.jpg', alt: 'White kitchen with marble-topped island, lantern pendants, and dark hardwood floors' },
+      { src: '/images/projects/kitchens/gray-marble-waterfall.jpg', alt: 'Modern gray kitchen with marble waterfall island and chrome chandelier' },
+      { src: '/images/projects/kitchens/white-herringbone.jpg', alt: 'White kitchen with herringbone tile backsplash and shiplap ceiling' },
+      { src: '/images/projects/kitchens/white-island-chairs.jpg', alt: 'Open white kitchen with center island, navy chairs, and abstract artwork' },
+      { src: '/images/projects/kitchens/two-tone-black-hood.jpg', alt: 'Two-tone kitchen with dark cabinetry, warm wood uppers, and black range hood' },
+    ],
   },
 
   basements: {
@@ -265,6 +286,10 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'New Living Space',
       heading: 'Basement Finishing',
       sub: 'Family rooms, in-law suites, home gyms, and basement bars across the WV–MD–VA region. The kind of basement build that adds usable square footage and resale value — done to code, done right.',
+      image: {
+        src: '/images/projects/basements/hero-framing.jpg',
+        alt: 'Basement build in framing phase showing open floor joists, stud walls, and subfloor before finishes',
+      },
     },
     overview: {
       paragraphs: [

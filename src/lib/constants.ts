@@ -577,15 +577,35 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/roofing-valley.jpg', alt: 'Architectural shingle roof valley and flashing detail', category: 'Roofing', state: 'WV' },
   { src: '/images/roofing-slope.jpg', alt: 'New charcoal shingle roof with clean valley lines', category: 'Roofing', state: 'WV' },
   { src: '/images/roofing-crew.jpg', alt: 'Roofing crew working on full tear-off and re-roof', category: 'Roofing', state: 'WV' },
+  { src: '/images/roofing-victorian-reroof.jpg', alt: 'Crew re-roofing a Victorian home with porch and dormers', category: 'Roofing', state: 'WV' },
+  { src: '/images/roofing-shingle-install.jpg', alt: 'Close-up of architectural shingle install with nail gun', category: 'Roofing', state: 'WV' },
+  { src: '/images/roofing-tearoff.jpg', alt: 'Full roof tear-off in progress with ABC Pro Guard underlayment', category: 'Roofing', state: 'WV' },
   // Decks
   { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night', category: 'Decks', state: 'WV' },
   { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture set', category: 'Decks', state: 'WV' },
   { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white horizontal railings and stairs', category: 'Decks', state: 'WV' },
   { src: '/images/deck-railing-install.jpg', alt: 'Installing white railing on composite deck', category: 'Decks', state: 'WV' },
+  { src: '/images/deck-screened-porch.jpg', alt: 'Screened porch with stained wood ceiling, black railings, and wooded view', category: 'Decks' },
+  // Bathrooms
+  { src: '/images/projects/bathrooms/hero.jpg', alt: 'Custom marble walk-in shower with frameless glass enclosure', category: 'Bathrooms' },
+  { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower', category: 'Bathrooms' },
+  { src: '/images/projects/bathrooms/shower-black-frame.jpg', alt: 'Contemporary walk-in shower with black-frame glass and wood-look tile', category: 'Bathrooms' },
+  { src: '/images/projects/bathrooms/tub-shower-tile.jpg', alt: 'Tile tub-and-shower combination with frameless glass', category: 'Bathrooms' },
+  { src: '/images/projects/bathrooms/vanity-transition.jpg', alt: 'Bathroom vanity and tile shower with warm wood floor transition', category: 'Bathrooms' },
+  // Kitchens
+  { src: '/images/projects/kitchens/hero.jpg', alt: 'Editorial white kitchen with double islands and lantern pendant lighting', category: 'Kitchens' },
+  { src: '/images/projects/kitchens/island-lantern-pendants.jpg', alt: 'White kitchen with marble-topped island and lantern pendants', category: 'Kitchens' },
+  { src: '/images/projects/kitchens/gray-marble-waterfall.jpg', alt: 'Modern gray kitchen with marble waterfall island and chrome chandelier', category: 'Kitchens' },
+  { src: '/images/projects/kitchens/white-herringbone.jpg', alt: 'White kitchen with herringbone backsplash and shiplap ceiling', category: 'Kitchens' },
+  { src: '/images/projects/kitchens/white-island-chairs.jpg', alt: 'Open white kitchen with center island and navy chairs', category: 'Kitchens' },
+  { src: '/images/projects/kitchens/two-tone-black-hood.jpg', alt: 'Two-tone kitchen with dark cabinetry, warm wood uppers, and black hood', category: 'Kitchens' },
+  // Basements
+  { src: '/images/projects/basements/hero-framing.jpg', alt: 'Basement build in framing phase — stud walls and floor joists before finishes', category: 'Basements' },
   // Siding & Exterior
   { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior', state: 'WV' },
   { src: '/images/siding-windows.jpg', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
   { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer foundation detail on home exterior', category: 'Exterior', state: 'WV' },
+  { src: '/images/exterior-brick-victorian.jpg', alt: 'Brick Victorian-style home with multiple gables and dark architectural shingle roof', category: 'Exterior' },
   // Remodeling / Interior
   { src: '/images/flooring-dark-living.jpg', alt: 'Dark laminate flooring installed in living room', category: 'Remodeling', state: 'WV' },
   { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway', category: 'Remodeling', state: 'WV' },
