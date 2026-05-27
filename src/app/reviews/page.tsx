@@ -5,6 +5,7 @@ import { BUSINESS, TESTIMONIALS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: `Reviews | 5.0 ★ Google Rating | ${BUSINESS.name}`,
@@ -39,8 +40,50 @@ export default function ReviewsPage() {
   const averageRating =
     TESTIMONIALS.reduce((sum, t) => sum + t.rating, 0) / TESTIMONIALS.length;
 
+  /**
+   * AggregateRating + Review JSON-LD so Google can surface the star
+   * rating as a rich snippet in search results. Attached to a
+   * LocalBusiness node so the rating is scoped to Real Elite as a
+   * service provider rather than to a single product.
+   */
+  const reviewSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'GeneralContractor',
+    '@id': `${BUSINESS.url}/#business`,
+    name: BUSINESS.name,
+    url: `${BUSINESS.url}/`,
+    telephone: BUSINESS.phoneRaw,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: BUSINESS.address.city,
+      addressRegion: BUSINESS.address.state,
+      postalCode: BUSINESS.address.zip,
+      addressCountry: 'US',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: averageRating.toFixed(1),
+      reviewCount: TESTIMONIALS.length,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: TESTIMONIALS.map((t) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: t.name },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: t.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: t.text,
+      itemReviewed: { '@type': 'GeneralContractor', name: BUSINESS.name },
+    })),
+  };
+
   return (
     <>
+      <JsonLd schema={reviewSchema} />
       {/* Hero */}
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
@@ -69,7 +112,7 @@ export default function ReviewsPage() {
             {renderStars(5)}
           </div>
           <p className="text-charcoal-500 text-sm mt-3 uppercase tracking-[0.15em] font-semibold">
-            Based on {TESTIMONIALS.length}+ verified reviews
+            Verified by Google
           </p>
           <a
             href={BUSINESS.social.google}
