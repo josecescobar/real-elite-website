@@ -162,7 +162,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               "Premium regional remodeling and exterior contractor — built on military precision, communication, reliability, and high-end execution.",
             image: `${BUSINESS.url}/images/logo.png`,
             url: `${BUSINESS.url}/`,
-            telephone: '+1-681-534-5515',
+            telephone: BUSINESS.phoneRaw,
             email: BUSINESS.email,
             address: {
               '@type': 'PostalAddress',

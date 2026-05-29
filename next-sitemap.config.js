@@ -7,7 +7,18 @@ module.exports = {
       { userAgent: '*', allow: '/' },
     ],
   },
-  exclude: ['/apple-icon.png'],
+  // Keep Next.js metadata routes (OG images, icons, manifest) out of the
+  // sitemap — they aren't crawlable HTML pages and just add noise to the
+  // Search Console coverage report.
+  exclude: [
+    '/apple-icon.png',
+    '/icon',
+    '/manifest.webmanifest',
+    '/opengraph-image',
+    '/*/opengraph-image',
+    '/*/*/opengraph-image',
+    '/*/*/*/opengraph-image',
+  ],
   // Ensure all pages are included
   changefreq: 'weekly',
   priority: 0.7,
