@@ -71,6 +71,6 @@ If one or more of these signs sound familiar, the best move is a **professional 
 
 At Real Elite Contracting, we provide free roof assessments for homeowners in Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, and the surrounding area. We'll give you an honest assessment, explain your options, and work with your insurance company if storm damage is involved.
 
-**Don't wait until you're dealing with buckets in the living room.** Call us today at (681) 534-5515 or [book a free estimate online](/contact).
+**Don't wait until you're dealing with buckets in the living room.** Call us today at (681) 534-5515 or [book a free estimate online](/contact#estimate).
 
 *Real Elite Contracting — Eastern Panhandle's Most Trusted Contractor. Veteran-owned and locally operated.*

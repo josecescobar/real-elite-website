@@ -66,6 +66,6 @@ Whether you need a full roof replacement, a new deck built for summer, or just a
 
 We are proud to serve homeowners throughout West Virginia's Eastern Panhandle (Martinsburg, Charles Town, Inwood, Ranson, Hedgesville), the Shenandoah Valley, and Frederick, MD.
 
-**Contact us today** to schedule your spring exterior inspection and get a free estimate for your next home improvement project! Call us at **(681) 534-5515** or [request a free estimate online](/contact).
+**Contact us today** to schedule your spring exterior inspection and get a free estimate for your next home improvement project! Call us at **(681) 534-5515** or [request a free estimate online](/contact#estimate).
 
 *Real Elite Contracting — Eastern Panhandle's Most Trusted Contractor. Veteran-owned and locally operated.*
