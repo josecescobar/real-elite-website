@@ -41,7 +41,7 @@ export const Hero = () => {
             <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5">
               <span className="text-brand-red text-xs">●</span>
               <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
-                First AI Roof Quote in the Tri-State
+                60-Second AI Roof Quote
               </span>
             </div>
           </div>

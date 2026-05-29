@@ -5,8 +5,8 @@
  * here to replace the placeholder. Set name/title once finalized.
  */
 export const OWNER = {
-  name: 'Real Elite Contracting Team',
-  title: 'Veteran-Owned · Built With Military Precision',
+  name: 'Jose Escobar',
+  title: 'Founder & Owner · U.S. Military Veteran',
   /** Set to '/images/team/owner.jpg' once the real portrait lands. */
   portrait: null as string | null,
 } as const;
@@ -311,6 +311,14 @@ export const SERVICE_AREAS = [
   ...SECONDARY_SERVICE_AREAS.map((a) => a.city),
 ] as const;
 
+/**
+ * Featured client testimonials — first-party marketing copy, NOT pulled
+ * from a verified review platform. Display these as on-page social proof
+ * only. Do NOT emit AggregateRating / Review JSON-LD from this data:
+ * self-serving review markup violates Google's policy and risks a manual
+ * action. Re-add rating schema only when it's wired to the real Google
+ * Business Profile reviews.
+ */
 export const TESTIMONIALS = [
   {
     name: 'Mike & Sarah T.',
