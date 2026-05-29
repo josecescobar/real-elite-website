@@ -25,12 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const cat = GUIDE_CATEGORIES.find((c) => c.slug === category);
   if (!cat) return {};
+  // Avoid "Homeowner Guides Guides" when the category name already ends in "Guides".
+  const titleBase = cat.name.endsWith('Guides') ? cat.name : `${cat.name} Guides`;
   return {
-    title: `${cat.name} Guides | ${BUSINESS.name}`,
+    title: `${titleBase} | ${BUSINESS.name}`,
     description: cat.description,
     alternates: { canonical: `${BUSINESS.url}/guides/${cat.slug}` },
     openGraph: {
-      title: `${cat.name} Guides | ${BUSINESS.name}`,
+      title: `${titleBase} | ${BUSINESS.name}`,
       description: cat.description,
       url: `${BUSINESS.url}/guides/${cat.slug}`,
       type: 'website',

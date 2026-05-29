@@ -440,7 +440,7 @@ export async function generateMetadata({
 
   if (!serviceData || !cityData) return { title: 'Not Found' };
 
-  const title = `${serviceData.title} in ${cityData.city}, ${cityData.state} | ${BUSINESS.name}`;
+  const title = `${serviceData.title} in ${cityData.city}, ${cityData.state} | Real Elite`;
   const description = `Expert ${serviceData.title.toLowerCase()} services in ${cityData.city}, ${cityData.state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
 
   return {

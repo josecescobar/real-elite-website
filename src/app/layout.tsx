@@ -27,7 +27,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
+  title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
   description:
     'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more. Free estimates available.',
   keywords: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: BUSINESS.url,
     siteName: BUSINESS.name,
-    title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
+    title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
     description:
       'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
     images: [
