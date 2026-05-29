@@ -107,6 +107,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   const hasStarted = useRef(false);
   const hasSubmitted = useRef(false);
   const stepRef = useRef(step);
+  const stepHeadingRef = useRef<HTMLLegendElement>(null);
+  const isFirstStepRender = useRef(true);
 
   useEffect(() => {
     stepRef.current = step;
@@ -115,6 +117,16 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   // Step view tracking
   useEffect(() => {
     trackEstimateStep('view', step);
+  }, [step]);
+
+  // Move focus to the step heading when advancing/going back so screen-reader
+  // and keyboard users land on the new step (skip the initial mount).
+  useEffect(() => {
+    if (isFirstStepRender.current) {
+      isFirstStepRender.current = false;
+      return;
+    }
+    stepHeadingRef.current?.focus();
   }, [step]);
 
   // Abandonment: fire on tab hide / unload if started but not submitted
@@ -269,7 +281,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
       {/* Step 1 */}
       {step === 1 && (
         <fieldset>
-          <legend className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2">
+          <legend ref={stepHeadingRef} tabIndex={-1} className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2 focus:outline-none">
             What can we build for you?
           </legend>
           <p className="text-charcoal-600 text-sm mb-6">
@@ -283,6 +295,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             <select
               id="service"
               name="service"
+              aria-invalid={errors.service ? true : undefined}
+              aria-describedby={errors.service ? 'service-error' : undefined}
               value={data.service}
               onChange={(e) => update('service', e.target.value as ServiceValue)}
               className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
@@ -294,7 +308,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
-            {errors.service && <p className="text-brand-red text-sm mt-2">{errors.service}</p>}
+            {errors.service && <p id="service-error" role="alert" className="text-brand-red text-sm mt-2">{errors.service}</p>}
           </div>
 
           <div className="mt-5">
@@ -304,6 +318,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             <input
               id="zip"
               name="zip"
+              aria-invalid={errors.zip ? true : undefined}
+              aria-describedby={errors.zip ? 'zip-error' : undefined}
               type="text"
               inputMode="numeric"
               maxLength={5}
@@ -315,7 +331,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
                 errors.zip ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
               }`}
             />
-            {errors.zip && <p className="text-brand-red text-sm mt-2">{errors.zip}</p>}
+            {errors.zip && <p id="zip-error" role="alert" className="text-brand-red text-sm mt-2">{errors.zip}</p>}
             <p className="text-charcoal-500 text-xs mt-2">
               We serve the WV–MD–VA region. If you&apos;re outside, we&apos;ll let you know upfront.
             </p>
@@ -326,7 +342,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
       {/* Step 2 */}
       {step === 2 && (
         <fieldset>
-          <legend className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2">
+          <legend ref={stepHeadingRef} tabIndex={-1} className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2 focus:outline-none">
             A few project details.
           </legend>
           <p className="text-charcoal-600 text-sm mb-6">
@@ -355,7 +371,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
                 );
               })}
             </div>
-            {errors.propertyType && <p className="text-brand-red text-sm mt-2">{errors.propertyType}</p>}
+            {errors.propertyType && <p id="propertyType-error" role="alert" className="text-brand-red text-sm mt-2">{errors.propertyType}</p>}
           </div>
 
           <div className="mt-5">
@@ -365,6 +381,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             <select
               id="timeline"
               name="timeline"
+              aria-invalid={errors.timeline ? true : undefined}
+              aria-describedby={errors.timeline ? 'timeline-error' : undefined}
               value={data.timeline}
               onChange={(e) => update('timeline', e.target.value as TimelineValue)}
               className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
@@ -376,7 +394,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
-            {errors.timeline && <p className="text-brand-red text-sm mt-2">{errors.timeline}</p>}
+            {errors.timeline && <p id="timeline-error" role="alert" className="text-brand-red text-sm mt-2">{errors.timeline}</p>}
           </div>
 
           <div className="mt-5">
@@ -418,7 +436,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
       {/* Step 3 */}
       {step === 3 && (
         <fieldset>
-          <legend className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2">
+          <legend ref={stepHeadingRef} tabIndex={-1} className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2 focus:outline-none">
             Where do we send your estimate?
           </legend>
           <p className="text-charcoal-600 text-sm mb-6">
@@ -430,6 +448,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             <input
               id="fullName"
               name="fullName"
+              aria-invalid={errors.fullName ? true : undefined}
+              aria-describedby={errors.fullName ? 'fullName-error' : undefined}
               type="text"
               autoComplete="name"
               placeholder="John Smith"
@@ -439,7 +459,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
                 errors.fullName ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
               }`}
             />
-            {errors.fullName && <p className="text-brand-red text-sm mt-2">{errors.fullName}</p>}
+            {errors.fullName && <p id="fullName-error" role="alert" className="text-brand-red text-sm mt-2">{errors.fullName}</p>}
           </div>
 
           <div className="mt-5">
@@ -447,6 +467,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             <input
               id="phone"
               name="phone"
+              aria-invalid={errors.phone ? true : undefined}
+              aria-describedby={errors.phone ? 'phone-error' : undefined}
               type="tel"
               autoComplete="tel"
               placeholder="(681) 534-5515"
@@ -456,7 +478,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
                 errors.phone ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
               }`}
             />
-            {errors.phone && <p className="text-brand-red text-sm mt-2">{errors.phone}</p>}
+            {errors.phone && <p id="phone-error" role="alert" className="text-brand-red text-sm mt-2">{errors.phone}</p>}
           </div>
 
           <div className="mt-5">
@@ -464,6 +486,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             <input
               id="email"
               name="email"
+              aria-invalid={errors.email ? true : undefined}
+              aria-describedby={errors.email ? 'email-error' : undefined}
               type="email"
               autoComplete="email"
               placeholder="john@example.com"
@@ -473,11 +497,11 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
                 errors.email ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
               }`}
             />
-            {errors.email && <p className="text-brand-red text-sm mt-2">{errors.email}</p>}
+            {errors.email && <p id="email-error" role="alert" className="text-brand-red text-sm mt-2">{errors.email}</p>}
           </div>
 
           {submitError && (
-            <div className="mt-5 bg-brand-red/10 border border-brand-red/30 rounded-md p-4 text-sm text-brand-red">
+            <div role="alert" className="mt-5 bg-brand-red/10 border border-brand-red/30 rounded-md p-4 text-sm text-brand-red">
               {submitError}
             </div>
           )}
