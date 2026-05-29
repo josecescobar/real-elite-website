@@ -244,7 +244,7 @@ export default function VeteransPage() {
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-navy-800 text-white mb-5">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <p className="text-brand-red text-[0.65rem] uppercase tracking-[0.18em] font-bold mb-2">
+                  <p className="text-brand-red-light text-[0.65rem] uppercase tracking-[0.18em] font-bold mb-2">
                     {p.eyebrow}
                   </p>
                   <h3 className="font-heading text-xl md:text-2xl font-extrabold text-navy-800 mb-3">
@@ -314,7 +314,7 @@ export default function VeteransPage() {
                 key={t.site}
                 className="bg-navy-900 text-white rounded-lg p-7 lg:p-8 shadow-card-elevated"
               >
-                <div className="flex items-center gap-2 text-brand-red text-[0.65rem] uppercase tracking-[0.18em] font-bold mb-2">
+                <div className="flex items-center gap-2 text-brand-red-light text-[0.65rem] uppercase tracking-[0.18em] font-bold mb-2">
                   <MapPin className="w-3.5 h-3.5" />
                   {t.location} · {t.distance}
                 </div>

@@ -108,7 +108,7 @@ export default function GuideTemplate({ post }: Props) {
             </Link>
           </nav>
 
-          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+          <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
             {categoryLabel}
           </p>
 

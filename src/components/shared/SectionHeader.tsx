@@ -18,7 +18,9 @@ export default function SectionHeader({
   className = '',
 }: SectionHeaderProps) {
   const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left';
-  const eyebrowColor = tone === 'light' ? 'text-brand-red' : 'text-brand-red';
+  // On dark sections (tone="light" = light text on dark) the brand red fails
+  // WCAG AA contrast — use the lighter red. On white, keep the full red.
+  const eyebrowColor = tone === 'light' ? 'text-brand-red-light' : 'text-brand-red';
   const titleColor = tone === 'light' ? 'text-white' : 'text-navy-800';
   const subtitleColor = tone === 'light' ? 'text-charcoal-300' : 'text-charcoal-500';
 

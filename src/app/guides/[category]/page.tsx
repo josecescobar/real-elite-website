@@ -61,7 +61,7 @@ export default async function GuideCategoryPage({ params }: Props) {
             <span className="text-white">{cat.name}</span>
           </nav>
 
-          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+          <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
             Homeowner Guides
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight max-w-3xl">
