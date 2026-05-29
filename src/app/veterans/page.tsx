@@ -205,12 +205,12 @@ export default function VeteransPage() {
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
-              <a
+              <Link
                 href="/#estimate"
                 className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
               >
                 Get My Free Estimate →
-              </a>
+              </Link>
               <a
                 href="/contact"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"

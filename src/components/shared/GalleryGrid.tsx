@@ -43,13 +43,12 @@ export default function GalleryGrid() {
       {/* Filter bar */}
       <section className="bg-white border-b border-charcoal-100 sticky top-[64px] lg:top-[72px] z-20">
         <Container size="wide" className="py-5">
-          <div role="tablist" aria-label="Filter projects by category" className="flex flex-wrap gap-2">
+          <div role="group" aria-label="Filter projects by category" className="flex flex-wrap gap-2">
             {CATEGORIES.map((category) => {
               const isActive = selectedCategory === category;
               return (
                 <button
                   key={category}
-                  role="tab"
                   aria-pressed={isActive}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 ${
