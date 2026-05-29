@@ -155,10 +155,12 @@ async function compressImages() {
           .png({ compressionLevel: 9, quality: 80 })
           .toFile(tmpPath);
       } else {
-        // JPEG/WebP — try quality 82 first, drop if still too big
+        // JPEG/WebP — try quality 82 first, drop if still too big.
+        // Floor at 40 so detailed photos still land under the 300KB target
+        // and aren't re-encoded on every subsequent build.
         let quality = 82;
         let done = false;
-        while (!done && quality >= 50) {
+        while (!done && quality >= 40) {
           await sharp(filePath)
             .resize({ width: 1920, withoutEnlargement: true })
             .jpeg({ quality, mozjpeg: true })
