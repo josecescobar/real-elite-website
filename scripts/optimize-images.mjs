@@ -30,6 +30,13 @@ async function compressLogo() {
   const backupPath = path.join(imagesDir, 'logo.png.backup');
   const webpPath = path.join(imagesDir, 'logo.webp');
 
+  // Idempotent for prebuild: once logo.webp exists and the PNG is already
+  // small, treat the logo as optimized. Delete logo.webp to force a rerun.
+  if (existsSync(webpPath) && (await getFileSizeKB(logoPath)) <= 80) {
+    console.log('\nLogo: already optimized (logo.webp present) — skipping.');
+    return;
+  }
+
   const originalSize = await getFileSizeKB(logoPath);
   console.log(`\nLogo: ${originalSize}KB original`);
 
@@ -63,6 +70,15 @@ async function compressLogo() {
 async function generateFavicons() {
   const logoPath = path.join(imagesDir, 'logo.png');
 
+  // Idempotent for prebuild: skip if both icons already exist.
+  if (
+    existsSync(path.join(appDir, 'favicon.ico')) &&
+    existsSync(path.join(appDir, 'apple-icon.png'))
+  ) {
+    console.log('\nFavicons: already generated — skipping.');
+    return;
+  }
+
   console.log('\nGenerating favicons...');
 
   // favicon.ico as PNG at 32x32 (Next.js accepts .ico as PNG)
@@ -82,19 +98,39 @@ async function generateFavicons() {
   console.log(`  apple-icon.png → ${appleIconPath} (180x180)`);
 }
 
-async function compressImages() {
-  const files = await readdir(imagesDir);
-  const imageFiles = files.filter(f =>
-    /\.(jpg|jpeg|png|webp)$/i.test(f) && !f.startsWith('logo') && !f.endsWith('.backup')
-  );
+/**
+ * Recursively collect optimizable image paths under a directory.
+ * The previous version only read the top level of public/images, so the
+ * largest files (in public/images/projects/**) were never compressed.
+ */
+async function collectImages(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const out = [];
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      out.push(...(await collectImages(full)));
+    } else if (
+      /\.(jpg|jpeg|png|webp)$/i.test(entry.name) &&
+      !entry.name.startsWith('logo') &&
+      !entry.name.endsWith('.backup')
+    ) {
+      out.push(full);
+    }
+  }
+  return out;
+}
 
-  console.log(`\nCompressing ${imageFiles.length} images (target: <300KB each)...`);
+async function compressImages() {
+  const imagePaths = await collectImages(imagesDir);
+
+  console.log(`\nCompressing ${imagePaths.length} images (target: <300KB each)...`);
 
   let compressed = 0;
   let skipped = 0;
 
-  for (const file of imageFiles) {
-    const filePath = path.join(imagesDir, file);
+  for (const filePath of imagePaths) {
+    const file = path.relative(imagesDir, filePath);
     const originalSize = await getFileSizeKB(filePath);
 
     if (originalSize <= 300) {
@@ -149,6 +185,12 @@ async function compressImages() {
 }
 
 (async () => {
+  // Allow CI / fast builds to skip image work entirely (images are already
+  // optimized in the repo). `npm run optimize` ignores this and always runs.
+  if (process.env.SKIP_IMAGE_OPTIMIZE) {
+    console.log('SKIP_IMAGE_OPTIMIZE set — skipping image optimization.');
+    return;
+  }
   try {
     await compressLogo();
     await generateFavicons();
