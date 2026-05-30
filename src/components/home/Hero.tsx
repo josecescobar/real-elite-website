@@ -10,7 +10,7 @@ export const Hero = () => {
       {/* Full-bleed hero photography */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/images/hero-bg.jpg"
+          src="/images/inspiration/home-exterior-hero.jpg"
           alt=""
           fill
           priority
