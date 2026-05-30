@@ -56,13 +56,17 @@ const mdxComponents = {
     </h3>
   ),
   // Render inline markdown images through next/image (optimized, lazy-loaded,
-  // no layout shift). In-article images are authored at a 3:2 ratio (1600x1067).
+  // no layout shift). In-article images are authored at a 3:2 ratio; declaring
+  // the high-res intrinsic size (2560x1707) lets next/image serve crisp retina
+  // variants from high-quality sources while `sizes` keeps the delivered bytes
+  // small. Lower-res 3:2 sources are simply capped at their own resolution.
   img: ({ src, alt }: { src?: string; alt?: string }) => (
     <Image
       src={typeof src === 'string' ? src : ''}
       alt={alt ?? ''}
-      width={1600}
-      height={1067}
+      width={2560}
+      height={1707}
+      quality={82}
       sizes="(max-width: 768px) 100vw, 768px"
       className="rounded-lg w-full h-auto my-8"
     />
@@ -150,6 +154,7 @@ export default function GuideTemplate({ post }: Props) {
               alt={post.title}
               fill
               priority
+              quality={82}
               sizes="(max-width: 1024px) 100vw, 800px"
               className="object-cover"
             />

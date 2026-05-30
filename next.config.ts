@@ -12,6 +12,10 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Next 16 restricts delivered quality to this allowlist. 75 is the
+    // efficient default; 82 is used for the premium blog/featured imagery
+    // so high-resolution photos render crisp without bloating page weight.
+    qualities: [75, 82, 90],
     /**
      * Stock photo CDNs allowed as next/image sources so URLs from
      * Unsplash, Pexels, or Pixabay can be pasted directly into

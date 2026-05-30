@@ -109,6 +109,10 @@ async function collectImages(dir) {
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
+      // Skip the curated inspiration folder: those are intentionally stored as
+      // high-resolution sources, and next/image handles per-device delivery
+      // optimization, so they must not be downscaled/recompressed here.
+      if (entry.name === 'inspiration') continue;
       out.push(...(await collectImages(full)));
     } else if (
       /\.(jpg|jpeg|png|webp)$/i.test(entry.name) &&
