@@ -23,6 +23,8 @@ The most common mistake in a high-end kitchen is spending on finishes while keep
 
 Get the layout right and modest finishes still feel luxurious. Get it wrong and the most expensive marble in the county won't fix it.
 
+![Modern gray kitchen with a marble waterfall island and chrome chandelier](/images/projects/kitchens/gray-marble-waterfall.jpg)
+
 ## The features that define a high-end kitchen
 
 The luxury kitchens we build in the region tend to share a vocabulary:
@@ -34,6 +36,8 @@ The luxury kitchens we build in the region tend to share a vocabulary:
 - **Layered lighting** — recessed cans, statement pendants over the island, under-cabinet lighting, and interior cabinet lighting, all on dimmers.
 - **Considered hardware and fixtures** — a pot filler at the range, a workstation sink, and hardware carried consistently across the room.
 
+![Two-tone kitchen with dark lower cabinetry, warm wood uppers, and a black range hood](/images/projects/kitchens/two-tone-black-hood.jpg)
+
 ## Materials that read high-end — and hold up
 
 A kitchen takes more daily abuse than any room in the house, so luxury here also means durability:
@@ -42,6 +46,8 @@ A kitchen takes more daily abuse than any room in the house, so luxury here also
 - **Quality cabinetry boxes** — plywood construction, solid hardware, finishes that survive years of opening and closing.
 - **Real backsplash detailing** — full-height stone or large-format tile coursed to line up with the hood and outlets, not fought against them.
 - **Fixtures and appliances from brands you can service** a decade later.
+
+![White kitchen with a herringbone tile backsplash and shiplap ceiling](/images/projects/kitchens/white-herringbone.jpg)
 
 ## What happens behind the walls
 
