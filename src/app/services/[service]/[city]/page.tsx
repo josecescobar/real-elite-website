@@ -440,7 +440,7 @@ export async function generateMetadata({
 
   if (!serviceData || !cityData) return { title: 'Not Found' };
 
-  const title = `${serviceData.title} in ${cityData.city}, ${cityData.state} | ${BUSINESS.name}`;
+  const title = `${serviceData.title} in ${cityData.city}, ${cityData.state} | Real Elite`;
   const description = `Expert ${serviceData.title.toLowerCase()} services in ${cityData.city}, ${cityData.state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
 
   return {
@@ -562,7 +562,7 @@ export default async function ServiceCityPage({
             </Link>
           </nav>
 
-          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
+          <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {cityData.city}, {cityData.state}
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight max-w-4xl">

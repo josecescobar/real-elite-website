@@ -30,7 +30,7 @@ export default function ServiceSchema({
       '@type': 'GeneralContractor',
       name: BUSINESS.name,
       url: `${BUSINESS.url}/`,
-      telephone: '+1-681-534-5515',
+      telephone: BUSINESS.phoneRaw,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Martinsburg',

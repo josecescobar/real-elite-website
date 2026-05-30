@@ -107,6 +107,6 @@ Real Elite Contracting is a fully licensed and insured general contractor based 
 
 We're veteran-owned and local — our reputation in this community is everything to us. We'll never cut corners to win a bid.
 
-**Call us at (681) 534-5515** or [request a free estimate](/contact). Let us show you the difference that licensed, professional contracting makes.
+**Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Let us show you the difference that licensed, professional contracting makes.
 
 *Real Elite Contracting — Eastern Panhandle's Most Trusted Contractor.*

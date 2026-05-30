@@ -25,12 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const cat = GUIDE_CATEGORIES.find((c) => c.slug === category);
   if (!cat) return {};
+  // Avoid "Homeowner Guides Guides" when the category name already ends in "Guides".
+  const titleBase = cat.name.endsWith('Guides') ? cat.name : `${cat.name} Guides`;
   return {
-    title: `${cat.name} Guides | ${BUSINESS.name}`,
+    title: `${titleBase} | ${BUSINESS.name}`,
     description: cat.description,
     alternates: { canonical: `${BUSINESS.url}/guides/${cat.slug}` },
     openGraph: {
-      title: `${cat.name} Guides | ${BUSINESS.name}`,
+      title: `${titleBase} | ${BUSINESS.name}`,
       description: cat.description,
       url: `${BUSINESS.url}/guides/${cat.slug}`,
       type: 'website',
@@ -59,7 +61,7 @@ export default async function GuideCategoryPage({ params }: Props) {
             <span className="text-white">{cat.name}</span>
           </nav>
 
-          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+          <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
             Homeowner Guides
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight max-w-3xl">

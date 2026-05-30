@@ -49,7 +49,7 @@ export default function InstantRoofQuotePage() {
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
           <div className="max-w-3xl">
-            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+            <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
               Instant Roof Quote
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
@@ -62,6 +62,15 @@ export default function InstantRoofQuotePage() {
               pressure, no obligation — just a real starting number from a veteran-owned
               contractor.
             </p>
+            <div className="mt-8">
+              <a
+                href={`tel:${BUSINESS.phoneRaw}`}
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
+              >
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                Prefer to talk? Call {BUSINESS.phone}
+              </a>
+            </div>
           </div>
         </Container>
       </section>

@@ -103,6 +103,6 @@ For most homeowners in Martinsburg, Charles Town, and the Eastern Panhandle: **c
 
 Real Elite Contracting builds custom decks across the Eastern Panhandle — from simple ground-level platforms to multi-level entertainment spaces with built-in seating, pergolas, and lighting. We'll help you choose the right material for your budget and lifestyle, and we back every project with our workmanship guarantee.
 
-**Call us at (681) 534-5515** or [request your free estimate online](/contact). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, and surrounding communities.
+**Call us at (681) 534-5515** or [request your free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, and surrounding communities.
 
 *Real Elite Contracting — Veteran-owned. Locally trusted.*

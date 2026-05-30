@@ -58,7 +58,7 @@ const VALUES = [
 const NUMBERS = [
   { value: '40+', label: 'Years of Experience' },
   { value: '200+', label: 'Projects Completed' },
-  { value: '5.0★', label: 'Google Rating' },
+  { value: 'Top-Rated', label: 'on Google' },
   { value: '3', label: 'States Licensed In' },
 ];
 
@@ -112,7 +112,7 @@ export default function AboutPage() {
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
           <div className="max-w-3xl">
-            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+            <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
               About Real Elite Contracting
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
@@ -160,10 +160,11 @@ export default function AboutPage() {
                 title="Service first. Standards always."
               />
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
-                Real Elite Contracting was founded by veterans who carried the same standard from
-                service into civilian work: when you say you&apos;ll do something, you do it — to
-                the spec, on the timeline, and you communicate every step. Construction in this
-                region had drifted from that. We built Real Elite to bring it back.
+                Real Elite Contracting was founded by Jose Escobar, a U.S. military veteran who
+                carried the same standard from service into civilian work: when you say you&apos;ll
+                do something, you do it — to the spec, on the timeline, and you communicate every
+                step. Construction in this region had drifted from that. We built Real Elite to
+                bring it back.
               </p>
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
                 That foundation shapes every decision: how we estimate (written and line-itemed),

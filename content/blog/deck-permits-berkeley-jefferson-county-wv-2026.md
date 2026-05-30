@@ -107,7 +107,7 @@ Each inspection is scheduled through the county portal, typically with 24–48 h
 
 We build decks across the broader Shenandoah Valley and Mid-Atlantic region, including **Winchester and Frederick County, Virginia**; **Leesburg and Ashburn** in Loudoun County, Virginia; and **Frederick County, Maryland**. Each of those jurisdictions has its own code and permit process — Virginia uses the Uniform Statewide Building Code, Maryland has its own code — so the specific forms, fees, and inspection workflow are different from what's covered above.
 
-The short version: the *requirement* to pull a permit for an attached deck is essentially universal across our service area. The *process* varies by county and city. If you're outside Berkeley or Jefferson County, call us at **(681) 534-5515** or [request a free estimate](/contact) and we'll walk you through the local steps for your jurisdiction.
+The short version: the *requirement* to pull a permit for an attached deck is essentially universal across our service area. The *process* varies by county and city. If you're outside Berkeley or Jefferson County, call us at **(681) 534-5515** or [request a free estimate](/contact#estimate) and we'll walk you through the local steps for your jurisdiction.
 
 ## Quick-Reference Checklist
 
@@ -130,6 +130,6 @@ Real Elite Contracting handles the entire permitting process for every deck we b
 
 We're licensed, fully insured, and we've been building decks across the Eastern Panhandle for years. We know both county processes inside and out.
 
-**Call (681) 534-5515** or [request a free estimate online](/contact). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
+**Call (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
 
 *Real Elite Contracting — Veteran-owned. Locally trusted.*

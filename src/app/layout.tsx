@@ -8,7 +8,14 @@ import StickyMobileCTA from '@/components/layout/StickyMobileCTA';
 import JsonLd from '@/components/seo/JsonLd';
 import { BUSINESS } from '@/lib/constants';
 
-const GA_MEASUREMENT_ID = 'G-W9QH965H3Y';
+// GA4 loads only in the Vercel production environment so local dev and
+// preview deploys don't pollute the real analytics. NEXT_PUBLIC_GA_ID
+// overrides the default ID if set; production keeps working with no env
+// change required.
+const GA_MEASUREMENT_ID =
+  process.env.VERCEL_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_GA_ID ?? 'G-W9QH965H3Y'
+    : process.env.NEXT_PUBLIC_GA_ID;
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
@@ -27,7 +34,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
+  title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
   description:
     'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more. Free estimates available.',
   keywords: [
@@ -58,7 +65,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: BUSINESS.url,
     siteName: BUSINESS.name,
-    title: 'General Contractor in Martinsburg, WV | Roofing, Remodeling & Additions | Real Elite Contracting',
+    title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
     description:
       'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
     images: [
@@ -117,19 +124,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </Script>
         )}
 
-        {/* GA4 (kept; remove only once GTM is firing in production for >=1 week) */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
+        {/* GA4 — only in production (see GA_MEASUREMENT_ID gating above) */}
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
-        </Script>
+            </Script>
+          </>
+        )}
 
         {/* Microsoft Clarity (heatmaps + recordings) */}
         {CLARITY_ID && (
@@ -151,7 +162,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               "Premium regional remodeling and exterior contractor — built on military precision, communication, reliability, and high-end execution.",
             image: `${BUSINESS.url}/images/logo.png`,
             url: `${BUSINESS.url}/`,
-            telephone: '+1-681-534-5515',
+            telephone: BUSINESS.phoneRaw,
             email: BUSINESS.email,
             address: {
               '@type': 'PostalAddress',
@@ -217,6 +228,12 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         />
       </head>
       <body className="bg-white font-body">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+        >
+          Skip to content
+        </a>
         {GTM_ID && (
           <noscript>
             <iframe
@@ -228,7 +245,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           </noscript>
         )}
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
         <StickyMobileCTA />
       </body>

@@ -174,7 +174,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     serviceType: 'Kitchen Remodeling',
     metaTitle: 'Kitchen Remodeling in WV, MD & VA | Real Elite Contracting',
     metaDescription:
-      'Custom kitchen remodels across the WV–MD–VA region. Cabinetry, countertops, islands, layout changes — premium kitchen renovations done with veteran-led precision.',
+      'Custom kitchen remodels across the WV–MD–VA region — cabinetry, countertops, islands, and layout changes, built with veteran-led precision.',
     keywords: [
       'kitchen remodel',
       'kitchen renovation',
@@ -271,7 +271,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     serviceType: 'Basement Finishing',
     metaTitle: 'Basement Finishing in WV, MD & VA | Real Elite Contracting',
     metaDescription:
-      'Finished basements, family rooms, in-law suites, and basement bars across the WV–MD–VA region. Premium basement build-outs with proper moisture control and code-compliant egress.',
+      'Finished basements, family rooms, in-law suites, and bars across the WV–MD–VA region — proper moisture control and code-compliant egress.',
     keywords: [
       'basement finishing',
       'finished basement',
@@ -443,7 +443,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     slug: 'siding',
     title: 'Siding & Stone Exteriors',
     serviceType: 'Siding Installation',
-    metaTitle: 'Siding & Stone Exteriors in WV, MD & VA | Real Elite Contracting',
+    metaTitle: 'Siding & Stone Exteriors | Real Elite Contracting',
     metaDescription:
       'Vinyl, fiber cement, and stone veneer siding installation. Premium exterior craftsmanship for homes across the WV–MD–VA region.',
     keywords: [
@@ -524,7 +524,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     slug: 'decks',
     title: 'Decks & Outdoor Living',
     serviceType: 'Deck Construction',
-    metaTitle: 'Decks & Outdoor Living in WV, MD & VA | Real Elite Contracting',
+    metaTitle: 'Decks & Outdoor Living | Real Elite Contracting',
     metaDescription:
       'Custom deck construction with composite and pressure-treated materials. Outdoor living spaces across the WV–MD–VA region — built to last decades.',
     keywords: [
@@ -610,7 +610,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     slug: 'remodeling',
     title: 'Whole-Home Remodeling',
     serviceType: 'Home Remodeling',
-    metaTitle: 'Whole-Home Remodeling in WV, MD & VA | Real Elite Contracting',
+    metaTitle: 'Whole-Home Remodeling | Real Elite Contracting',
     metaDescription:
       'Interior and exterior remodeling — kitchens, bathrooms, basements, and full home renovations across the WV–MD–VA region.',
     keywords: [
@@ -838,7 +838,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     slug: 'general-repairs',
     title: 'General Repairs & Maintenance',
     serviceType: 'General Repairs',
-    metaTitle: 'General Repairs & Maintenance in WV, MD & VA | Real Elite Contracting',
+    metaTitle: 'General Repairs & Maintenance | Real Elite Contracting',
     metaDescription:
       'Door and window repairs, drywall, trim work, deck fixes, and the smaller jobs that keep your home in great shape. Veteran-owned, across the WV–MD–VA region.',
     keywords: [

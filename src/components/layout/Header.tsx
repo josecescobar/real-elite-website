@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -12,6 +12,20 @@ import ServicesMegaMenu from './MegaMenu';
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  // Close the mobile menu on Escape and return focus to the toggle button.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="bg-white border-b border-charcoal-100 sticky top-0 z-50">
@@ -88,10 +102,12 @@ export default function Header() {
             Call
           </a>
           <button
+            ref={toggleRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-navy-800 hover:text-charcoal-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm p-1"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -100,7 +116,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-charcoal-100 bg-white">
+        <div id="mobile-menu" className="lg:hidden border-t border-charcoal-100 bg-white">
           <nav className="flex flex-col py-4 max-w-7xl mx-auto px-6">
             {NAV_LINKS.map((link) => {
               const isServices = link.label === 'Services';

@@ -22,7 +22,7 @@ export async function generateMetadata({
   const city = ALL_SERVICE_AREAS.find((c) => c.slug === slug);
   if (!city) return { title: 'Not Found' };
 
-  const title = `Premium Contractor in ${city.city}, ${city.state} | ${BUSINESS.name}`;
+  const title = `Contractor in ${city.city}, ${city.state} | ${BUSINESS.name}`;
   const description = `Bathroom remodels, kitchens, decks, roofing, and additions in ${city.city}, ${city.state}. Veteran-owned contractor — built with military precision. Free written estimate.`;
 
   return {

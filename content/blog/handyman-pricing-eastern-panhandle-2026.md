@@ -159,6 +159,6 @@ That's what the price tag on a licensed contractor actually buys. Whether it's w
 
 We'll tell you honestly. If your job is small enough that a Tier 2 handyman is the right fit, we'll say so. If it's scope that actually needs a licensed contractor — permits, code, multi-trade coordination — we'll show you why.
 
-**Call us at (681) 534-5515** or [request a free estimate online](/contact). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
+**Call us at (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
 
 *Real Elite Contracting — Veteran-owned. Licensed. Honestly priced.*

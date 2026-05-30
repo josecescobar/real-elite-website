@@ -56,6 +56,11 @@
   /* ---------- Brand red (CTA only) ---------- */
   --color-brand-red: #c0392b;
   --color-brand-red-dark: #a93226;
+  /* Lighter red for small text / eyebrow labels on dark (navy) surfaces.
+     #c0392b on navy fails WCAG AA (~3.2:1); this clears 4.5:1 for small
+     text. Use text-brand-red-light on navy backgrounds, text-brand-red on
+     white. */
+  --color-brand-red-light: #e8857b;
 
   /* ---------- Typography ----------
      Font variables resolved from next/font in layout.tsx */

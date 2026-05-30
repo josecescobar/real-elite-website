@@ -65,6 +65,6 @@ At Real Elite Contracting, we have built decks of every size and style across th
 
 We proudly serve homeowners throughout Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, and the surrounding areas of the Shenandoah Valley and Frederick, MD.
 
-**Get your free deck estimate today.** Call us at **(681) 534-5515** or [request a free estimate online](/contact).
+**Get your free deck estimate today.** Call us at **(681) 534-5515** or [request a free estimate online](/contact#estimate).
 
 *Real Elite Contracting — Eastern Panhandle's Most Trusted Contractor. Veteran-owned and locally operated.*

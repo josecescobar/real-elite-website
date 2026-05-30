@@ -33,15 +33,15 @@ export const Hero = () => {
           {/* Eyebrows — stacked trust badges */}
           <div className="flex flex-wrap items-center gap-2 mb-8">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5">
-              <span className="text-brand-red text-xs">★</span>
+              <span className="text-brand-red-light text-xs">★</span>
               <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
                 Veteran-Owned &amp; Operated
               </span>
             </div>
             <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5">
-              <span className="text-brand-red text-xs">●</span>
+              <span className="text-brand-red-light text-xs">●</span>
               <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
-                First AI Roof Quote in the Tri-State
+                60-Second AI Roof Quote
               </span>
             </div>
           </div>
@@ -97,7 +97,7 @@ export const Hero = () => {
               </a>
             </li>
             <li aria-hidden="true" className="text-white/30">·</li>
-            <li className="text-brand-red">5.0 ★ Google</li>
+            <li className="text-brand-red-light">Top-Rated on Google</li>
           </ul>
         </div>
       </div>
