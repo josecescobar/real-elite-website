@@ -97,7 +97,7 @@ export const Hero = () => {
               </a>
             </li>
             <li aria-hidden="true" className="text-white/30">·</li>
-            <li className="text-brand-red-light">5.0 ★ Google</li>
+            <li className="text-brand-red-light">Top-Rated on Google</li>
           </ul>
         </div>
       </div>
