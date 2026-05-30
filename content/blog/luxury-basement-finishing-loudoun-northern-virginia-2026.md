@@ -25,6 +25,8 @@ The luxury basements homeowners ask us about in this market usually combine seve
 
 The best basements aren't one big open box. They're zoned — so the theater, the bar, and the play space each feel intentional.
 
+![A finished home theater room with tiered leather recliner seating and a large screen](/images/inspiration/basement-home-theater.jpg)
+
 ## The finishes that separate luxury from "finished"
 
 A builder-grade basement and a luxury one can have the same square footage. The difference is in the details:
@@ -36,6 +38,8 @@ A builder-grade basement and a luxury one can have the same square footage. The 
 - **Solid-core doors, substantial trim, and consistent hardware** — the small things your eye reads as "quality" without quite knowing why.
 - **Sound control** — insulation in the theater walls and ceiling, and an acoustic strategy so movie night doesn't take over the whole house.
 
+![A residential wet bar with wood cabinetry, open shelving, and counter stools](/images/inspiration/basement-wet-bar.jpg)
+
 ## What luxury basements get right behind the walls
 
 This is where a premium basement is actually made — and where cutting corners shows up later as a musty smell or a buckled floor. A high-end finish in our region depends on:
@@ -46,6 +50,8 @@ This is where a premium basement is actually made — and where cutting corners 
 - **Insulation and air sealing** done to today's standards for a space people will actually live in.
 
 We cover the practical side of this — moisture, egress, HVAC, and code — in depth in our [Frederick basement-finishing guide](/blog/basement-finishing-frederick-md-guide). Everything in that guide applies double when you're investing in a high-end finish: the luxury surfaces are only as good as the dry, comfortable, code-right space underneath them.
+
+![A finished lower-level media lounge with cozy seating, a screen, and warm wood decor](/images/inspiration/basement-media-lounge.jpg)
 
 ## What a luxury basement is an investment in
 
@@ -66,3 +72,5 @@ If you're planning a high-end basement in **Loudoun County, Ashburn, Leesburg, F
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [basement finishing services](/services/basements) or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va).
 
 Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+
+*Finished-room photography in this article is for design inspiration; the header photo is a Real Elite basement during the framing stage.*
