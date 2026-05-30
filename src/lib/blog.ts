@@ -51,6 +51,12 @@ export const GUIDE_CATEGORIES = [
       'Replacement signs, material choices, storm-damage and insurance — practical homeowner roofing guidance.',
   },
   {
+    slug: 'exteriors',
+    name: 'Siding & Exteriors',
+    description:
+      'Siding, stone veneer, and curb-appeal upgrades — the highest-ROI improvements to a home\'s facade.',
+  },
+  {
     slug: 'remodeling',
     name: 'Remodeling',
     description:
@@ -97,6 +103,16 @@ const CATEGORY_SLUG_MAP: Record<string, GuideCategorySlug> = {
 
   roofing: 'roofing',
   roof: 'roofing',
+
+  exteriors: 'exteriors',
+  exterior: 'exteriors',
+  'exterior repairs': 'exteriors',
+  siding: 'exteriors',
+  'siding & stone': 'exteriors',
+  'siding & exteriors': 'exteriors',
+  stone: 'exteriors',
+  'stone veneer': 'exteriors',
+  'curb appeal': 'exteriors',
 
   remodeling: 'remodeling',
   remodel: 'remodeling',
