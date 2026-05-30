@@ -56,7 +56,7 @@ const VALUES = [
 ];
 
 const NUMBERS = [
-  { value: '40+', label: 'Years Combined Experience' },
+  { value: '40+', label: 'Years of Experience' },
   { value: '200+', label: 'Projects Completed' },
   { value: '5.0★', label: 'Google Rating' },
   { value: '3', label: 'States Licensed In' },
