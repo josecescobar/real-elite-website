@@ -55,6 +55,18 @@ const mdxComponents = {
       {children}
     </h3>
   ),
+  // Render inline markdown images through next/image (optimized, lazy-loaded,
+  // no layout shift). In-article images are authored at a 3:2 ratio (1600x1067).
+  img: ({ src, alt }: { src?: string; alt?: string }) => (
+    <Image
+      src={typeof src === 'string' ? src : ''}
+      alt={alt ?? ''}
+      width={1600}
+      height={1067}
+      sizes="(max-width: 768px) 100vw, 768px"
+      className="rounded-lg w-full h-auto my-8"
+    />
+  ),
   InlineTestimonial,
   EstimateCTACard,
 };
