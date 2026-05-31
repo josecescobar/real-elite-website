@@ -3,7 +3,7 @@ import Container from '@/components/shared/Container';
 export const TrustBar = () => {
   const stats = [
     { number: '40+', label: 'Years of Experience' },
-    { number: '200+', label: 'Projects Completed' },
+    { number: 'Written', label: 'Workmanship Warranty' },
     { number: 'Top-Rated', label: 'on Google' },
     { number: 'Veteran', label: 'Owned & Operated' },
     { number: '60-Sec', label: 'AI Roof Quote' },

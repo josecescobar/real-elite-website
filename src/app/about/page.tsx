@@ -57,7 +57,7 @@ const VALUES = [
 
 const NUMBERS = [
   { value: '40+', label: 'Years of Experience' },
-  { value: '200+', label: 'Projects Completed' },
+  { value: 'Written', label: 'Workmanship Warranty' },
   { value: 'Top-Rated', label: 'on Google' },
   { value: '3', label: 'States Licensed In' },
 ];
