@@ -621,6 +621,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         { city: 'Berkeley Springs', state: 'WV', slug: 'berkeley-springs-wv' },
       ],
     },
+    relatedGuideSlugs: ['asphalt-vs-concrete-vs-tar-and-chip-driveways-eastern-panhandle-2026'],
     icon: 'Construction',
   },
 

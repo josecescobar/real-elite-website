@@ -52,9 +52,9 @@ export const GUIDE_CATEGORIES = [
   },
   {
     slug: 'exteriors',
-    name: 'Siding & Exteriors',
+    name: 'Exteriors',
     description:
-      'Siding, stone veneer, and curb-appeal upgrades — the highest-ROI improvements to a home\'s facade.',
+      'Siding, stone veneer, driveways, paving, and curb-appeal upgrades — the exterior projects that protect your home and lift its value.',
   },
   {
     slug: 'remodeling',
@@ -113,6 +113,12 @@ const CATEGORY_SLUG_MAP: Record<string, GuideCategorySlug> = {
   stone: 'exteriors',
   'stone veneer': 'exteriors',
   'curb appeal': 'exteriors',
+  paving: 'exteriors',
+  'paving & seal coating': 'exteriors',
+  driveways: 'exteriors',
+  driveway: 'exteriors',
+  'seal coating': 'exteriors',
+  sealcoating: 'exteriors',
 
   remodeling: 'remodeling',
   remodel: 'remodeling',
