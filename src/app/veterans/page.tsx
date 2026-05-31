@@ -130,7 +130,7 @@ const FAQ_ITEMS = [
   {
     question: 'Is Real Elite Contracting really veteran-owned?',
     answer:
-      'Yes. Real Elite Contracting LLC is owned and led by Jose Escobar, a US military veteran. Our brand promise — "Military Precision. Civilian Excellence." — is grounded in the standards of service.',
+      'Yes. Real Elite Contracting LLC is owned and led by a US military veteran. Our brand promise — "Military Precision. Civilian Excellence." — is grounded in the standards of service.',
   },
   {
     question: 'What is SDVOSB and why does it matter?',
@@ -166,11 +166,6 @@ const govEntitySchema = {
   url: `${BUSINESS.url}/veterans`,
   description:
     'Veteran-owned general contractor based in Martinsburg, WV serving the WV/MD/VA tri-state. Pursuing SDVOSB federal certification.',
-  founder: {
-    '@type': 'Person',
-    name: 'Jose Escobar',
-    jobTitle: 'Owner & Veteran',
-  },
   award: 'Veteran-Owned · SDVOSB Application In Progress',
   areaServed: ['West Virginia', 'Maryland', 'Virginia'],
 };

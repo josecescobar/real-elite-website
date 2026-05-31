@@ -5,8 +5,8 @@
  * here to replace the placeholder. Set name/title once finalized.
  */
 export const OWNER = {
-  name: 'Jose Escobar',
-  title: 'Founder & Owner · U.S. Military Veteran',
+  name: 'Real Elite Contracting Team',
+  title: 'Veteran-Owned · Built With Military Precision',
   /** Set to '/images/team/owner.jpg' once the real portrait lands. */
   portrait: null as string | null,
 } as const;
