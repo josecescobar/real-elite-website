@@ -13,7 +13,7 @@ export default function ServicesMegaMenu() {
     <div
       role="menu"
       aria-label="Services"
-      className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[min(900px,calc(100vw-2rem))] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
+      className="absolute left-0 top-full pt-4 w-[min(820px,calc(100vw-2rem))] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
     >
       <div className="bg-white rounded-lg shadow-xl border border-charcoal-100 overflow-hidden">
         <div className="grid grid-cols-3 gap-0">
