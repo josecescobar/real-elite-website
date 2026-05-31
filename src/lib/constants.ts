@@ -474,6 +474,15 @@ export const HOMEPAGE_FEATURED_SERVICES = [
     imageAlt: 'Stone veneer foundation detail on a home exterior',
     span: 'standard',
   },
+  {
+    title: 'Paving & Seal Coating',
+    eyebrow: 'Driveways',
+    scope: 'Asphalt, concrete & tar-and-chip driveways, parking lots, and seal coating across the Eastern Panhandle.',
+    href: '/services/paving',
+    image: '/images/inspiration/paving-aplus-driveway.jpg',
+    imageAlt: 'A freshly finished residential driveway',
+    span: 'standard',
+  },
 ] as const;
 
 /**
