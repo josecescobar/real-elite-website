@@ -103,7 +103,7 @@ export const SERVICES = [
     title: 'Paving & Seal Coating',
     slug: 'paving',
     description:
-      "Asphalt driveways, repairs, and seal coating that protect and sharpen your home's first impression.",
+      'Driveways, parking lots, repairs, and seal coating — asphalt, concrete, and tar-and-chip — across the Eastern Panhandle.',
     icon: 'Construction' as const,
   },
   {
@@ -401,7 +401,7 @@ export const SERVICES_MEGA_MENU = [
       { label: 'Decks & Outdoor Living', href: '/services/decks', description: 'Composite decks, railings, outdoor spaces' },
       { label: 'Roofing', href: '/services/roofing', description: 'Architectural shingle replacement & repair' },
       { label: 'Siding & Stone', href: '/services/siding', description: 'Vinyl, fiber cement, and stone veneer exteriors' },
-      { label: 'Paving & Seal Coating', href: '/services/paving', description: 'Asphalt driveways, repairs & seal coating' },
+      { label: 'Paving & Seal Coating', href: '/services/paving', description: 'Driveways, lots, repairs & seal coating' },
       { label: 'Exterior Repairs', href: '/services/exterior-repairs', description: 'Trim, foundation, stone veneer detail work' },
     ],
   },

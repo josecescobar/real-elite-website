@@ -5,6 +5,7 @@ import { PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS, EXPANSION_SERVICE_AREAS
 type Props = {
   serviceSlug: string;
   serviceTitle: string;
+  areaScope?: { label: string; cities: { city: string; state: string; slug: string }[] };
 };
 
 const PRIORITY_CITIES = [
@@ -19,8 +20,12 @@ const PRIORITY_CITIES = [
  * (with deep links to /services/[service]/[city]) then the rest of
  * the WV Eastern Panhandle markets.
  */
-export default function LocalAreasServed({ serviceSlug, serviceTitle }: Props) {
-  const others = [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
+export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope }: Props) {
+  const regionLabel = areaScope ? areaScope.label : 'the WV–MD–VA region';
+  const priorityCities = areaScope ? areaScope.cities.slice(0, 4) : PRIORITY_CITIES;
+  const others = areaScope
+    ? areaScope.cities.slice(4)
+    : [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
 
   // Service-city deep links only exist for the featured (roofing/decks/remodeling/siding)
   // service × VA/MD city combinations. For the rest, link to the city overview page.
@@ -31,14 +36,14 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle }: Props) {
   return (
     <section>
       <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2">
-        {serviceTitle} across the WV–MD–VA region
+        {serviceTitle} across {regionLabel}
       </h2>
       <p className="text-charcoal-600 text-sm mb-6">
         Premium markets we actively work in.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {PRIORITY_CITIES.map((area) => {
+        {priorityCities.map((area) => {
           const href = FEATURED_DEEP_LINK
             ? `/services/${serviceSlug}/${area.slug}`
             : `/service-areas/${area.slug}`;

@@ -65,6 +65,16 @@ export type ServiceData = {
 
   /** Optional: Lucide icon name for the service category */
   icon?: string;
+
+  /**
+   * Optional: a tighter service area than the site-wide WV–MD–VA default.
+   * Used for services delivered in a narrower footprint (e.g. paving), so
+   * the page's copy, areas grid, and JSON-LD reflect only where it's offered.
+   */
+  areaScope?: {
+    label: string;
+    cities: { city: string; state: string; slug: string }[];
+  };
 };
 
 /* -------------------------------------------------------------------------- */
@@ -523,70 +533,94 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
   paving: {
     slug: 'paving',
     title: 'Paving & Seal Coating',
-    serviceType: 'Asphalt Paving',
+    serviceType: 'Paving Contractor',
     metaTitle: 'Paving & Seal Coating | Real Elite Contracting',
     metaDescription:
-      'Asphalt driveway paving, repair, and seal coating across the WV–MD–VA region. Protect your driveway and sharpen your curb appeal — free written estimates.',
+      'Asphalt, concrete & tar-and-chip driveways, parking lots, repairs, and seal coating across the Eastern Panhandle of WV. Residential and commercial — free written estimates.',
     keywords: [
       'paving',
       'asphalt driveway',
       'driveway paving',
       'seal coating',
+      'sealcoating',
       'driveway repair',
-      'asphalt repair',
+      'parking lot paving',
+      'commercial paving',
+      'tar and chip',
+      'concrete driveway',
       'Eastern Panhandle paving',
+      'Martinsburg paving',
     ],
     hero: {
-      eyebrow: 'Driveways',
+      eyebrow: 'Driveways & Lots',
       heading: 'Paving & Seal Coating',
-      sub: "New asphalt driveways, repairs, and seal coating — done right and built to last. The fastest way to protect your driveway and sharpen your home's first impression.",
+      sub: 'New driveways and parking lots, repairs, and seal coating — asphalt, concrete, and tar-and-chip, done right and built to last across the Eastern Panhandle.',
       image: { src: '/images/inspiration/paving-fresh-asphalt.jpg', alt: 'A road roller compacting fresh asphalt' },
     },
     overview: {
       paragraphs: [
-        "A driveway is the first thing visitors see and the surface your family uses every day — and asphalt that's cracked, faded, or crumbling drags down the whole look of your home. Real Elite Contracting now offers asphalt paving and seal coating: new driveways, repairs, and protective seal coating that keeps your asphalt looking sharp and lasting longer.",
-        "Whether you need a brand-new driveway, want to patch and resurface an aging one, or just need a fresh seal coat to protect what you have, we handle the project end to end with the same disciplined process and accountability we bring to every job.",
+        "A driveway or parking lot is the first thing visitors see and the surface you use every day — and asphalt that's cracked, faded, or crumbling drags down the whole property. Real Elite Contracting offers paving and seal coating for homes and businesses across the Eastern Panhandle: new driveways and lots, repairs, and protective seal coating that keeps your asphalt looking sharp and lasting longer.",
+        "We work in asphalt, concrete, and tar-and-chip, and we handle the full project — from proper base prep to the final seal — with the same disciplined process and accountability we bring to every job. Whether it's a new residential driveway, a commercial lot with fresh striping, or just a reseal to protect what you have, we'll get it done right.",
       ],
-      image: { src: '/images/inspiration/paving-driveway-home.jpg', alt: 'A suburban home with a clean, freshly finished driveway' },
+      image: { src: '/images/inspiration/paving-aplus-driveway.jpg', alt: 'A freshly finished residential driveway in the Eastern Panhandle' },
     },
     scope: {
       title: 'What we handle',
       items: [
-        'New asphalt driveway installation',
-        'Driveway repair and patching',
-        'Resurfacing and overlays',
+        'New asphalt, concrete & tar-and-chip driveways',
+        'Commercial parking lots & line striping',
+        'Driveway repair, patching & resurfacing',
         'Seal coating for protection and curb appeal',
         'Crack filling and pothole repair',
         'Proper grading and base prep for results that last',
       ],
     },
+    gallery: [
+      { src: '/images/inspiration/paving-aplus-driveway-2.jpg', alt: 'A newly paved residential driveway' },
+      { src: '/images/inspiration/paving-aplus-commercial.jpg', alt: 'A freshly paved and striped commercial parking lot' },
+      { src: '/images/inspiration/paving-aplus-roller.jpg', alt: 'A roller compacting fresh asphalt on a driveway' },
+    ],
     whyChooseUs: [
       'One accountable point of contact — Real Elite manages your paving project from first call to final pass.',
-      'Proper base prep and grading, because a driveway is only as good as the foundation under it.',
-      'Free, no-pressure written estimates — and honest advice on whether you need a repair, a reseal, or a full replacement.',
+      'Residential and commercial — driveways, parking lots, and seal coating across the Eastern Panhandle.',
+      'Free, no-pressure written estimates, and honest advice on whether you need a repair, a reseal, or a full replacement.',
     ],
     faqs: [
       {
-        question: 'What does a new driveway or seal coating cost?',
+        question: 'What does a new driveway, parking lot, or seal coating cost?',
         answer:
-          'It depends on the size and condition of your driveway and whether you need a new install, a repair, or just seal coating. We give you a free, written estimate after a quick on-site look — no guesswork and no obligation.',
+          'It depends on the size and condition of the surface and whether you need a new install, a repair, or just seal coating. We give you a free, written estimate after a quick on-site look — no guesswork and no obligation.',
+      },
+      {
+        question: 'Do you do commercial parking lots, or just residential driveways?',
+        answer:
+          'Both. We handle residential driveways and commercial parking lots — including fresh line striping — across the Eastern Panhandle.',
       },
       {
         question: "What's the difference between paving and seal coating?",
         answer:
-          'Paving is installing or resurfacing the asphalt itself. Seal coating is a protective top layer applied over existing asphalt that shields it from water, UV, and oxidation — it keeps your driveway black and extends its life. Most driveways benefit from a reseal every few years.',
+          'Paving is installing or resurfacing the asphalt itself. Seal coating is a protective top layer applied over existing asphalt that shields it from water, UV, and oxidation — it keeps the surface black and extends its life. Most asphalt benefits from a reseal every few years.',
       },
       {
-        question: 'How often should I seal coat my driveway?',
+        question: 'What materials do you work in?',
         answer:
-          "For most driveways in our climate, every 2–3 years is a good rule of thumb. We'll tell you honestly when yours actually needs it rather than selling you a coat you don't need.",
-      },
-      {
-        question: 'Do you repair cracks and potholes, or only full replacements?',
-        answer:
-          "Both. Many driveways just need crack filling, patching, or a resurface rather than a full tear-out. We'll recommend the most cost-effective option that actually solves the problem.",
+          'Asphalt, concrete, and tar-and-chip. We help you choose based on your budget, the look you want, and how the surface will be used — then prep and install it to last.',
       },
     ],
+    areaScope: {
+      label: 'the Eastern Panhandle',
+      cities: [
+        { city: 'Martinsburg', state: 'WV', slug: 'martinsburg-wv' },
+        { city: 'Inwood', state: 'WV', slug: 'inwood-wv' },
+        { city: 'Charles Town', state: 'WV', slug: 'charles-town-wv' },
+        { city: 'Ranson', state: 'WV', slug: 'ranson-wv' },
+        { city: 'Hedgesville', state: 'WV', slug: 'hedgesville-wv' },
+        { city: 'Spring Mills', state: 'WV', slug: 'spring-mills-wv' },
+        { city: 'Falling Waters', state: 'WV', slug: 'falling-waters-wv' },
+        { city: 'Shepherdstown', state: 'WV', slug: 'shepherdstown-wv' },
+        { city: 'Berkeley Springs', state: 'WV', slug: 'berkeley-springs-wv' },
+      ],
+    },
     icon: 'Construction',
   },
 

@@ -38,18 +38,22 @@ export default function ServicePageTemplate({ data }: Props) {
         serviceTitle={data.title}
         serviceSlug={data.slug}
         description={data.metaDescription}
-        areaServed={[
-          'Martinsburg, WV',
-          'Charles Town, WV',
-          'Shepherdstown, WV',
-          'Inwood, WV',
-          'Frederick, MD',
-          'Hagerstown, MD',
-          'Winchester, VA',
-          'Leesburg, VA',
-          'Ashburn, VA',
-          'Loudoun County, VA',
-        ]}
+        areaServed={
+          data.areaScope
+            ? data.areaScope.cities.map((c) => `${c.city}, ${c.state}`)
+            : [
+                'Martinsburg, WV',
+                'Charles Town, WV',
+                'Shepherdstown, WV',
+                'Inwood, WV',
+                'Frederick, MD',
+                'Hagerstown, MD',
+                'Winchester, VA',
+                'Leesburg, VA',
+                'Ashburn, VA',
+                'Loudoun County, VA',
+              ]
+        }
       />
       <JsonLd schema={faqSchema} />
 
@@ -173,7 +177,7 @@ export default function ServicePageTemplate({ data }: Props) {
               </div>
 
               {/* Local areas served */}
-              <LocalAreasServed serviceSlug={data.slug} serviceTitle={data.title} />
+              <LocalAreasServed serviceSlug={data.slug} serviceTitle={data.title} areaScope={data.areaScope} />
 
               {/* FAQ */}
               <ServiceFAQ items={data.faqs} />
