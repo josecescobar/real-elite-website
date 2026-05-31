@@ -16,6 +16,7 @@ const SLUG_TO_FORM_VALUE: Record<string, string> = {
   'exterior-repairs': 'repairs',
   'general-repairs': 'repairs',
   handyman: 'repairs',
+  paving: 'paving',
 };
 
 type Props = { initialService?: string };

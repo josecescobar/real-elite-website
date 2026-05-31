@@ -14,6 +14,7 @@ const SERVICE_OPTIONS = [
   { value: 'decks-outdoor', label: 'Decks & Outdoor Living' },
   { value: 'roofing', label: 'Roofing' },
   { value: 'siding', label: 'Siding & Exterior' },
+  { value: 'paving', label: 'Paving & Seal Coating' },
   { value: 'addition', label: 'Home Addition' },
   { value: 'repairs', label: 'Repairs / Handyman' },
   { value: 'other', label: 'Something else' },
