@@ -520,6 +520,76 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     ],
   },
 
+  paving: {
+    slug: 'paving',
+    title: 'Paving & Seal Coating',
+    serviceType: 'Asphalt Paving',
+    metaTitle: 'Paving & Seal Coating | Real Elite Contracting',
+    metaDescription:
+      'Asphalt driveway paving, repair, and seal coating across the WV–MD–VA region. Protect your driveway and sharpen your curb appeal — free written estimates.',
+    keywords: [
+      'paving',
+      'asphalt driveway',
+      'driveway paving',
+      'seal coating',
+      'driveway repair',
+      'asphalt repair',
+      'Eastern Panhandle paving',
+    ],
+    hero: {
+      eyebrow: 'Driveways',
+      heading: 'Paving & Seal Coating',
+      sub: "New asphalt driveways, repairs, and seal coating — done right and built to last. The fastest way to protect your driveway and sharpen your home's first impression.",
+      image: { src: '/images/inspiration/paving-fresh-asphalt.jpg', alt: 'A road roller compacting fresh asphalt' },
+    },
+    overview: {
+      paragraphs: [
+        "A driveway is the first thing visitors see and the surface your family uses every day — and asphalt that's cracked, faded, or crumbling drags down the whole look of your home. Real Elite Contracting now offers asphalt paving and seal coating: new driveways, repairs, and protective seal coating that keeps your asphalt looking sharp and lasting longer.",
+        "Whether you need a brand-new driveway, want to patch and resurface an aging one, or just need a fresh seal coat to protect what you have, we handle the project end to end with the same disciplined process and accountability we bring to every job.",
+      ],
+      image: { src: '/images/inspiration/paving-driveway-home.jpg', alt: 'A suburban home with a clean, freshly finished driveway' },
+    },
+    scope: {
+      title: 'What we handle',
+      items: [
+        'New asphalt driveway installation',
+        'Driveway repair and patching',
+        'Resurfacing and overlays',
+        'Seal coating for protection and curb appeal',
+        'Crack filling and pothole repair',
+        'Proper grading and base prep for results that last',
+      ],
+    },
+    whyChooseUs: [
+      'One accountable point of contact — Real Elite manages your paving project from first call to final pass.',
+      'Proper base prep and grading, because a driveway is only as good as the foundation under it.',
+      'Free, no-pressure written estimates — and honest advice on whether you need a repair, a reseal, or a full replacement.',
+    ],
+    faqs: [
+      {
+        question: 'What does a new driveway or seal coating cost?',
+        answer:
+          'It depends on the size and condition of your driveway and whether you need a new install, a repair, or just seal coating. We give you a free, written estimate after a quick on-site look — no guesswork and no obligation.',
+      },
+      {
+        question: "What's the difference between paving and seal coating?",
+        answer:
+          'Paving is installing or resurfacing the asphalt itself. Seal coating is a protective top layer applied over existing asphalt that shields it from water, UV, and oxidation — it keeps your driveway black and extends its life. Most driveways benefit from a reseal every few years.',
+      },
+      {
+        question: 'How often should I seal coat my driveway?',
+        answer:
+          "For most driveways in our climate, every 2–3 years is a good rule of thumb. We'll tell you honestly when yours actually needs it rather than selling you a coat you don't need.",
+      },
+      {
+        question: 'Do you repair cracks and potholes, or only full replacements?',
+        answer:
+          "Both. Many driveways just need crack filling, patching, or a resurface rather than a full tear-out. We'll recommend the most cost-effective option that actually solves the problem.",
+      },
+    ],
+    icon: 'Construction',
+  },
+
   decks: {
     slug: 'decks',
     title: 'Decks & Outdoor Living',

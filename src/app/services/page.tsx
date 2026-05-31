@@ -44,7 +44,8 @@ type IconName =
   | 'Wrench'
   | 'Paintbrush'
   | 'Bath'
-  | 'ChefHat';
+  | 'ChefHat'
+  | 'Construction';
 
 const getIcon = (iconName: IconName) => {
   const icons: Record<IconName, typeof LucideIcons.Home> = {
@@ -57,6 +58,7 @@ const getIcon = (iconName: IconName) => {
     Paintbrush: LucideIcons.Paintbrush,
     Bath: LucideIcons.Bath,
     ChefHat: LucideIcons.ChefHat,
+    Construction: LucideIcons.Construction,
   };
   return icons[iconName] ?? LucideIcons.Hammer;
 };
