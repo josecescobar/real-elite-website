@@ -160,7 +160,7 @@ export default function AboutPage() {
                 title="Service first. Standards always."
               />
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
-                Real Elite Contracting was founded by Jose Escobar, a U.S. military veteran who
+                Real Elite Contracting was founded by a U.S. military veteran who
                 carried the same standard from service into civilian work: when you say you&apos;ll
                 do something, you do it — to the spec, on the timeline, and you communicate every
                 step. Construction in this region had drifted from that. We built Real Elite to
