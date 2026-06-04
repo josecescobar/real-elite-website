@@ -304,6 +304,7 @@ export default function CapabilityStatementPage() {
             eyebrow="Differentiators"
             title="Why us, specifically."
             subtitle="Beyond the badge — the operational facts that translate into project performance."
+            tone="light"
           />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
             {DIFFERENTIATORS.map((d) => (
