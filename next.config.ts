@@ -47,6 +47,9 @@ const nextConfig: NextConfig = {
       { source: '/contact.html', destination: '/contact', permanent: true },
       { source: '/gallery.html', destination: '/gallery', permanent: true },
       { source: '/reviews.html', destination: '/reviews', permanent: true },
+      // Paving consolidated into the dedicated /paving pillar (hub + service
+      // templates + location pages). The old single-service page redirects in.
+      { source: '/services/paving', destination: '/paving', permanent: true },
     ];
   },
 };
