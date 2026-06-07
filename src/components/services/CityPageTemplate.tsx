@@ -7,11 +7,18 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import StickyEstimateRail from '@/components/services/StickyEstimateRail';
+import LuxuryConsultationRail from '@/components/services/LuxuryConsultationRail';
 import RelatedGuides from '@/components/blog/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 
-import { SERVICES, BUSINESS, selectGalleryFor, type CityDataEntry } from '@/lib/constants';
+import {
+  SERVICES,
+  BUSINESS,
+  LUXURY_CITY_SLUGS,
+  selectGalleryFor,
+  type CityDataEntry,
+} from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import { getRecentPosts } from '@/lib/blog';
 
@@ -288,9 +295,14 @@ export default function CityPageTemplate({ city, data }: Props) {
               </div>
             </div>
 
-            {/* Right rail: sticky form */}
+            {/* Right rail: luxury markets get the design-consultation CTA;
+                everyone else gets the standard multi-step estimate form. */}
             <div className="lg:col-span-5 xl:col-span-4">
-              <StickyEstimateRail />
+              {LUXURY_CITY_SLUGS.has(city.slug) ? (
+                <LuxuryConsultationRail />
+              ) : (
+                <StickyEstimateRail />
+              )}
             </div>
           </div>
         </Container>

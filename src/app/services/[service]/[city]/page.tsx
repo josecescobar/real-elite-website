@@ -2,11 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronRight, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
-import { BUSINESS, SERVICES, EXPANSION_SERVICE_AREAS } from '@/lib/constants';
+import {
+  BUSINESS,
+  SERVICES,
+  EXPANSION_SERVICE_AREAS,
+  LUXURY_CITY_SLUGS,
+} from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import StickyEstimateRail from '@/components/services/StickyEstimateRail';
+import LuxuryConsultationRail from '@/components/services/LuxuryConsultationRail';
 import InvestmentRanges from '@/components/services/InvestmentRanges';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
@@ -24,6 +30,23 @@ const FEATURED_SERVICE_SLUGS = [
   'basements',
 ] as const;
 type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
+
+/**
+ * Maps a service slug to the project type the luxury design-consultation
+ * form expects. Used on luxury markets so a Bathroom → McLean visitor lands
+ * on /design-consultation?type=bathroom with the field pre-selected.
+ */
+const CONSULTATION_TYPE_FOR_SERVICE: Partial<
+  Record<
+    FeaturedServiceSlug,
+    'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'addition'
+  >
+> = {
+  bathrooms: 'bathroom',
+  kitchens: 'kitchen',
+  basements: 'basement',
+  remodeling: 'whole-home',
+};
 
 /**
  * Service+city deep-link combos exist for these 6 cities. Each pairing
@@ -1009,9 +1032,19 @@ export default async function ServiceCityPage({
               </div>
             </div>
 
-            {/* Sticky right rail — multi-step estimate form */}
+            {/* Sticky right rail — luxury markets see the design-consultation
+                CTA with the project type pre-filled; everyone else gets the
+                standard multi-step estimate form. */}
             <div className="lg:col-span-5 xl:col-span-4">
-              <StickyEstimateRail initialService={serviceData.slug} />
+              {LUXURY_CITY_SLUGS.has(city) ? (
+                <LuxuryConsultationRail
+                  initialProjectType={
+                    CONSULTATION_TYPE_FOR_SERVICE[serviceData.slug as FeaturedServiceSlug]
+                  }
+                />
+              ) : (
+                <StickyEstimateRail initialService={serviceData.slug} />
+              )}
             </div>
           </div>
         </Container>
