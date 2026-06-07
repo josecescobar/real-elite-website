@@ -1,16 +1,16 @@
 ---
 title: "Composite vs Pressure-Treated Decks in Loudoun County, VA — What's Actually Right for Your Backyard"
-date: "2026-05-19"
-excerpt: "Trex, TimberTech, Azek, or pressure-treated lumber — what each material actually delivers in the Loudoun County climate, how much each costs over 20 years, and what neighbors in Ashburn, Leesburg, and Brambleton are actually building."
+date: "2026-06-07"
+excerpt: "Trex, TimberTech, Azek, or pressure-treated lumber — what each material actually delivers in the Loudoun County climate, what each really costs over 20 years, and what neighbors in Ashburn, Leesburg, and Brambleton are actually building."
 slug: "composite-vs-pressure-treated-decks-loudoun-county-va"
 featuredImage: "/images/deck-night-lights.jpg"
 category: "Decks"
 author: "Real Elite Contracting Team"
 ---
 
-If you're building a deck in Loudoun County in 2026 — Ashburn, Leesburg, Brambleton, One Loudoun, Lansdowne, or anywhere across the county — the first real decision is the material. Composite or pressure-treated? It's not a small question. The right choice cuts your lifetime cost by half and the wrong one means restaining, replacing boards, and dealing with rot at the 8-year mark.
+If you're building a deck in Loudoun County in 2026 — Ashburn, Leesburg, Brambleton, One Loudoun, Lansdowne, or anywhere across the county — the first real decision is the material. Composite or pressure-treated? It feels like a small question right up until it's a board you're replacing on a Saturday morning, eight years in. The right call quietly cuts your lifetime cost in half. The wrong one means restaining, swapping boards, and getting friendly with the word "rot."
 
-This guide gives the straight answer for Loudoun homeowners, with the lifecycle math, the brand comparison, and the specific neighborhood and HOA considerations that affect the call.
+This guide is the straight answer for Loudoun homeowners — the lifecycle math, the brand breakdown, and the HOA realities that quietly steer the decision.
 
 ## The straight answer
 
@@ -112,10 +112,10 @@ Here's what a real $35,000 composite deck build in Ashburn looks like in 2026:
 
 Active construction time: 9 working days, plus 2 weeks of permitting / HOA approval before start.
 
-20-year lifecycle cost: roughly $35,500 (essentially flat with a $1,200 board replacement around year 18 from a hot grill incident).
+20-year lifecycle cost: roughly $35,500 (essentially flat, with a $1,200 board replacement around year 18 thanks to a hot-grill incident we won't name names on).
 
 ## How we work in Loudoun County
 
 Real Elite Contracting builds composite and outdoor-living decks across Loudoun County — Ashburn, Leesburg, Brambleton, Lansdowne, One Loudoun, Cascades, Sterling, and beyond. Licensed and insured in Virginia, full HOA submission handling, and every estimate is line-itemed in writing.
 
-We work with all three major composite manufacturers (Trex, TimberTech, AZEK) and bring real samples to your estimate so you can see and touch the material before committing. We'll also tell you upfront if pressure-treated is the right call for your specific situation — we don't push upgrades that don't deliver real value.
+We work with all three major composite manufacturers (Trex, TimberTech, AZEK) and bring real samples to your estimate, because picking a deck color from a tiny photo on a website is a great way to spend $30,000 on regret. We'll also tell you upfront if pressure-treated is the right call for your situation — we don't sell upgrades that don't actually pay you back.
