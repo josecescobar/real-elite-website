@@ -15,25 +15,26 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
+import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
 
 export const metadata: Metadata = {
-  title: `Design Consultation — Luxury Kitchen, Bath & Basement | ${BUSINESS.name}`,
+  title: `Schedule a Phone Consultation — Luxury Kitchen, Bath & Basement | ${BUSINESS.name}`,
   description:
-    'Schedule a design consultation for your kitchen, primary bath, or lower-level project across Loudoun, Fairfax, and Alexandria. Veteran-owned design-build. Designer and architect collaboration welcomed.',
+    'Schedule a phone consultation for your kitchen, primary bath, or lower-level project across Loudoun, Fairfax, and Alexandria. Veteran-owned design-build. Designer and architect collaboration welcomed.',
   keywords: [
     'luxury kitchen consultation Northern Virginia',
-    'design build consultation McLean',
+    'design build phone consultation McLean',
     'primary bathroom consultation Great Falls',
     'basement design consultation Fairfax',
     'luxury renovation Alexandria',
-    'design build contractor consultation',
+    'design build contractor phone consultation',
   ],
   alternates: { canonical: `${BUSINESS.url}/design-consultation` },
   openGraph: {
-    title: `Design Consultation | ${BUSINESS.name}`,
+    title: `Phone Consultation | ${BUSINESS.name}`,
     description:
-      'Schedule a luxury design consultation — kitchens, primary baths, and lower-level projects across Loudoun, Fairfax, and Alexandria.',
+      'Schedule a phone consultation — kitchens, primary baths, and lower-level projects across Loudoun, Fairfax, and Alexandria.',
     url: `${BUSINESS.url}/design-consultation`,
     type: 'website',
   },
@@ -43,17 +44,17 @@ const HOW_IT_RUNS = [
   {
     step: 1,
     title: 'Brief intake',
-    body: 'You share the project type, address, budget tier, and timeline. We confirm fit and respond within 4 business hours.',
+    body: 'You share the project type, address, budget tier, timeline, and the best window to be called.',
   },
   {
     step: 2,
-    title: 'In-home consultation',
-    body: 'A 60–90 minute walkthrough of the home and the project, at no charge. We bring the project lead, not a salesperson.',
+    title: 'Phone consultation',
+    body: 'A 20–30 minute call inside your requested window. We talk through the project, answer your questions, and confirm fit on both sides — no pressure, no quota.',
   },
   {
     step: 3,
-    title: 'Project brief',
-    body: 'You receive a written scope, a realistic budget range, and a proposed timeline. Designer collaboration is encouraged where one is engaged.',
+    title: 'In-home walkthrough (only if it fits)',
+    body: 'If the project, the budget, and the timing all line up, we schedule a no-charge in-home visit to measure, photograph, and write the scope.',
   },
   {
     step: 4,
@@ -115,7 +116,7 @@ export default function DesignConsultationPage() {
           },
           areaServed: ['Virginia', 'Maryland', 'West Virginia'],
           description:
-            'Design consultation for luxury kitchen, primary bath, basement, and whole-home renovation projects across Loudoun, Fairfax, and Alexandria.',
+            'Phone consultation for luxury kitchen, primary bath, basement, and whole-home renovation projects across Loudoun, Fairfax, and Alexandria.',
         }}
       />
       <JsonLd
@@ -137,29 +138,33 @@ export default function DesignConsultationPage() {
             <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5 mb-6">
               <Star className="w-3 h-3 text-brand-red" />
               <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
-                Design Consultation
+                Phone Consultation · No Obligation
               </span>
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-              The conversation before
+              Pick a window.
               <br />
-              <span className="text-brand-red">the build.</span>
+              <span className="text-brand-red">We&apos;ll call you.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              A focused consultation for kitchens, primary baths, lower-level finishing, and
-              whole-home renovations across Loudoun, Fairfax, and Alexandria. We bring the project
-              lead, not a salesperson — and we are comfortable working alongside your designer or
-              architect.
+              A 20–30 minute phone consultation for kitchens, primary baths, lower-level
+              finishing, and whole-home renovations across Loudoun, Fairfax, and Alexandria. You
+              tell us the brief and the best time to be called; we call inside the window. Only
+              when the fit is right do we schedule an in-home visit.
             </p>
 
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
+              <li className="flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5 text-brand-red" /> Phone First
+              </li>
+              <li aria-hidden="true" className="text-white/30">·</li>
               <li className="flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-brand-red" /> 4-Hour Response
               </li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-brand-red" /> Free In-Home Visit
+                <Calendar className="w-3.5 h-3.5 text-brand-red" /> No In-Home Until It Fits
               </li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li className="flex items-center gap-1.5">
@@ -172,7 +177,7 @@ export default function DesignConsultationPage() {
                 href="#consult-form"
                 className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
               >
-                Request Consultation →
+                Request a Call →
               </a>
               <a
                 href={`tel:${BUSINESS.phoneRaw}`}
@@ -247,6 +252,9 @@ export default function DesignConsultationPage() {
           </div>
         </Container>
       </section>
+
+      {/* Portfolio: recent work + design inspiration */}
+      <LuxuryGallery />
 
       {/* Fit */}
       <section className="bg-steel-50 py-16 md:py-24">

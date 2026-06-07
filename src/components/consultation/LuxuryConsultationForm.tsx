@@ -53,16 +53,28 @@ const DESIGNER_OPTIONS = [
   { value: 'undecided', label: 'Undecided / open to it' },
 ] as const;
 
+const CALL_WINDOWS = [
+  { value: 'asap', label: 'As soon as possible' },
+  { value: 'today-pm', label: 'Today, afternoon (1–5 PM)' },
+  { value: 'tomorrow-am', label: 'Tomorrow morning (8 AM–12 PM)' },
+  { value: 'tomorrow-pm', label: 'Tomorrow afternoon (1–5 PM)' },
+  { value: 'this-week', label: 'Sometime this week' },
+  { value: 'next-week', label: 'Sometime next week' },
+  { value: 'evening', label: 'Evenings after 5 PM' },
+] as const;
+
 type ProjectType = (typeof PROJECT_TYPES)[number]['value'];
 type Budget = (typeof BUDGET_TIERS)[number]['value'];
 type Timeline = (typeof TIMELINES)[number]['value'];
 type Designer = (typeof DESIGNER_OPTIONS)[number]['value'];
+type CallWindow = (typeof CALL_WINDOWS)[number]['value'];
 
 interface FormData {
   projectType: ProjectType | '';
   budget: Budget | '';
   timeline: Timeline | '';
   designer: Designer | '';
+  callWindow: CallWindow | '';
   zip: string;
   fullName: string;
   phone: string;
@@ -75,6 +87,7 @@ const INITIAL: FormData = {
   budget: '',
   timeline: '',
   designer: '',
+  callWindow: '',
   zip: '',
   fullName: '',
   phone: '',
@@ -139,6 +152,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
     if (!data.budget) e.budget = 'Select a budget tier.';
     if (!data.timeline) e.timeline = 'Select a timeline.';
     if (!data.designer) e.designer = 'Let us know your designer status.';
+    if (!data.callWindow) e.callWindow = 'When should we call?';
     if (!data.zip.trim()) e.zip = 'ZIP code is required.';
     else if (!ZIP_RE.test(data.zip.trim())) e.zip = 'Enter a 5-digit ZIP.';
     if (!data.fullName.trim()) e.fullName = 'Name is required.';
@@ -169,7 +183,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           phone: data.phone,
           service: `[Luxury Consultation] ${labelFor(PROJECT_TYPES, data.projectType)}`,
           zip: data.zip,
-          propertyType: `Designer: ${labelFor(DESIGNER_OPTIONS, data.designer)}`,
+          propertyType: `Designer: ${labelFor(DESIGNER_OPTIONS, data.designer)} · Call window: ${labelFor(CALL_WINDOWS, data.callWindow)}`,
           timeline: labelFor(TIMELINES, data.timeline),
           budgetRange: labelFor(BUDGET_TIERS, data.budget),
           message: data.scope,
@@ -210,12 +224,13 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           <Check className="w-7 h-7" />
         </div>
         <h3 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-3">
-          Consultation request received.
+          We&apos;ll call you.
         </h3>
         <p className="text-charcoal-600 leading-relaxed max-w-md mx-auto">
-          Thank you. A project lead will be in touch within 4 business hours to schedule your
-          in-home design consultation. We&apos;ll review the project brief together and confirm fit
-          before booking.
+          Thank you. A project lead will call within your requested window. The first
+          conversation is a 20–30 minute phone consultation — we&apos;ll review the project
+          brief together, answer your questions, and only schedule an in-home visit if the fit
+          is right.
         </p>
       </div>
     );
@@ -365,6 +380,40 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           )}
         </fieldset>
 
+        {/* Preferred call window */}
+        <div>
+          <label
+            htmlFor="callWindow"
+            className="block text-sm font-semibold text-navy-800 mb-2"
+          >
+            When&apos;s a good time to call?
+          </label>
+          <select
+            id="callWindow"
+            name="callWindow"
+            aria-invalid={errors.callWindow ? true : undefined}
+            value={data.callWindow}
+            onChange={(e) => update('callWindow', e.target.value as CallWindow)}
+            className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
+              errors.callWindow
+                ? 'border-brand-red'
+                : 'border-charcoal-200 hover:border-charcoal-300'
+            }`}
+          >
+            <option value="">Pick a window…</option>
+            {CALL_WINDOWS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+          {errors.callWindow && (
+            <p role="alert" className="text-brand-red text-sm mt-2">
+              {errors.callWindow}
+            </p>
+          )}
+        </div>
+
         {/* ZIP */}
         <div>
           <label htmlFor="zip" className="block text-sm font-semibold text-navy-800 mb-2">
@@ -506,7 +555,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           disabled={isSubmitting}
           className="w-full inline-flex items-center justify-center gap-2 bg-brand-red text-white px-7 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
         >
-          {isSubmitting ? 'Sending…' : 'Request Design Consultation'}
+          {isSubmitting ? 'Sending…' : 'Request Phone Consultation'}
           {!isSubmitting && <ArrowRight className="w-4 h-4" />}
         </button>
       </div>

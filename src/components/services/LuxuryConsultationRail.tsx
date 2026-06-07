@@ -35,11 +35,11 @@ export default function LuxuryConsultationRail({ initialProjectType }: Props) {
           For Premium Projects
         </p>
         <h3 className="font-heading text-2xl lg:text-3xl font-extrabold leading-tight mb-3">
-          Schedule a Design Consultation
+          Schedule a Phone Consultation
         </h3>
         <p className="text-charcoal-200 text-sm leading-relaxed mb-7">
-          A 30-minute conversation about the project, the vision, and the fit — followed by an
-          in-home consultation when the brief is right for both sides.
+          A 20–30 minute call about the project, the vision, and the fit. Pick a window, we
+          call you inside it — no pressure, no obligation.
         </p>
 
         <ul className="space-y-3 mb-7">
@@ -53,7 +53,8 @@ export default function LuxuryConsultationRail({ initialProjectType }: Props) {
           <li className="flex items-start gap-3 text-sm">
             <Calendar className="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" />
             <span className="text-charcoal-200">
-              <span className="text-white font-semibold">In-home consultation</span> at no charge
+              <span className="text-white font-semibold">No in-home visit</span> until the brief
+              and budget are right
             </span>
           </li>
           <li className="flex items-start gap-3 text-sm">
@@ -69,7 +70,7 @@ export default function LuxuryConsultationRail({ initialProjectType }: Props) {
           href={consultationHref}
           className="block w-full text-center bg-brand-red text-white px-6 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red"
         >
-          Request Consultation →
+          Request a Call →
         </Link>
 
         <div className="mt-5 pt-5 border-t border-white/10 text-center">
