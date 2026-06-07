@@ -378,6 +378,7 @@ export const UTILITY_LINKS = [
   { label: 'Reviews', href: '/reviews' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Veteran-Owned', href: '/veterans' },
+  { label: 'Storm Damage', href: '/storm-damage' },
   { label: 'Full Property Bundle', href: '/full-property-perimeter' },
 ] as const;
 
