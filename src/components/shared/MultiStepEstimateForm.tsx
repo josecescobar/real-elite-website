@@ -13,6 +13,7 @@ const SERVICE_OPTIONS = [
   { value: 'whole-home-remodel', label: 'Whole-Home Remodel' },
   { value: 'decks-outdoor', label: 'Decks & Outdoor Living' },
   { value: 'roofing', label: 'Roofing' },
+  { value: 'storm-damage', label: 'Storm Damage / Insurance Claim' },
   { value: 'siding', label: 'Siding & Exterior' },
   { value: 'paving', label: 'Paving & Seal Coating' },
   { value: 'addition', label: 'Home Addition' },

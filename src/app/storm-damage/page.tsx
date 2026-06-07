@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import {
   AlertTriangle,
   ShieldCheck,
@@ -15,6 +14,7 @@ import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 
@@ -192,12 +192,12 @@ export default function StormDamagePage() {
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
-              <Link
-                href="/#estimate"
+              <a
+                href="#estimate"
                 className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
               >
                 Book Free Inspection →
-              </Link>
+              </a>
               <a
                 href={`tel:${BUSINESS.phoneRaw}`}
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
@@ -332,6 +332,22 @@ export default function StormDamagePage() {
         </Container>
       </section>
 
+      {/* Embedded storm-aware estimate form */}
+      <section id="estimate" className="bg-steel-50 py-16 md:py-24 scroll-mt-24">
+        <Container size="default">
+          <SectionHeader
+            eyebrow="Book Your Free Inspection"
+            title="Tell us about the storm damage."
+            subtitle="Pre-set to storm damage so your request reaches us with the right urgency. A project lead follows up within 24 business hours — or call (681) 534-5515 for an active leak."
+            align="center"
+            className="mx-auto"
+          />
+          <div className="mt-10 max-w-2xl mx-auto">
+            <MultiStepEstimateForm initialService="storm-damage" />
+          </div>
+        </Container>
+      </section>
+
       {/* FAQ */}
       <section className="bg-white py-16 md:py-24">
         <Container size="default">
@@ -380,13 +396,13 @@ export default function StormDamagePage() {
             Leesburg, and the surrounding tri-state.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/#estimate"
+            <a
+              href="#estimate"
               className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-md inline-flex items-center justify-center gap-2"
             >
               Book Free Inspection
               <ArrowUpRight className="w-4 h-4" />
-            </Link>
+            </a>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"
