@@ -152,11 +152,11 @@ describe('POST /api/estimate — anti-spam', () => {
 });
 
 describe('POST /api/estimate — delivery', () => {
-  it('returns 500 when RESEND_API_KEY is not configured', async () => {
+  it('returns 503 with a graceful message when RESEND_API_KEY is not configured', async () => {
     const POST = await loadPOST({ resendKey: null });
     const res = await POST(makeRequest(validBody, '203.0.113.40'));
-    expect(res.status).toBe(500);
-    expect((await res.json()).error).toBe('Email service is not configured');
+    expect(res.status).toBe(503);
+    expect((await res.json()).error).toMatch(/call .*\(681\) 534-5515/i);
   });
 
   it('returns 500 when the Resend API call fails', async () => {

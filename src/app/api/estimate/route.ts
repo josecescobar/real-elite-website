@@ -3,6 +3,15 @@ import { NextResponse } from 'next/server';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const TO_EMAIL = process.env.ESTIMATE_TO_EMAIL || 'info@realelitecontracting.com';
 
+// Speed-to-lead: Twilio SMS notification to the owner the second a
+// qualified inquiry lands. All four vars must be set or the SMS step
+// is silently skipped (the form still works on email alone). Setup
+// guide: docs/SPEED_TO_LEAD_SETUP.md
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+const TWILIO_FROM_NUMBER = process.env.TWILIO_FROM_NUMBER;
+const TWILIO_TO_NUMBER = process.env.TWILIO_TO_NUMBER;
+
 const MAX = {
   fullName: 100,
   email: 200,
@@ -10,7 +19,7 @@ const MAX = {
   service: 80,
   message: 2000,
   zip: 12,
-  propertyType: 50,
+  propertyType: 200,
   timeline: 60,
   budgetRange: 60,
 };
@@ -106,10 +115,17 @@ export async function POST(request: Request) {
     }
 
     if (!RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
+      console.error(
+        'RESEND_API_KEY is not set — add it in Vercel project settings ' +
+          '(see docs/DEPLOYMENT_CHECKLIST.md). Falling back to a graceful ' +
+          'user message instead of a hard 500.'
+      );
       return NextResponse.json(
-        { error: 'Email service is not configured' },
-        { status: 500 }
+        {
+          error:
+            "We couldn't send the request automatically. Please call (681) 534-5515 and we'll take it from there.",
+        },
+        { status: 503 }
       );
     }
 
@@ -187,6 +203,61 @@ export async function POST(request: Request) {
         { error: 'Failed to send email' },
         { status: 500 }
       );
+    }
+
+    // Speed-to-lead SMS — env-gated; no-op (with a debug log) when keys
+    // aren't set. Fire-and-forget on a non-blocking promise so a Twilio
+    // outage never breaks the lead-capture happy path.
+    if (
+      TWILIO_ACCOUNT_SID &&
+      TWILIO_AUTH_TOKEN &&
+      TWILIO_FROM_NUMBER &&
+      TWILIO_TO_NUMBER
+    ) {
+      const isLuxury = (values.service ?? '').startsWith('[Luxury Consultation]');
+      const smsBody = [
+        isLuxury ? '🔔 LUXURY LEAD' : '🔔 New Lead',
+        `${values.fullName} · ${values.service}`,
+        values.budgetRange ? `Budget: ${values.budgetRange}` : null,
+        values.timeline ? `Timeline: ${values.timeline}` : null,
+        values.zip ? `ZIP: ${values.zip}` : null,
+        `📞 ${values.phone}`,
+        '— Real Elite',
+      ]
+        .filter(Boolean)
+        .join('\n');
+
+      const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`;
+      const twilioAuth = Buffer.from(
+        `${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`
+      ).toString('base64');
+
+      const twilioForm = new URLSearchParams({
+        From: TWILIO_FROM_NUMBER,
+        To: TWILIO_TO_NUMBER,
+        Body: smsBody,
+      });
+
+      fetch(twilioUrl, {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${twilioAuth}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: twilioForm.toString(),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            return res
+              .text()
+              .then((body) =>
+                console.error('Twilio SMS failed', { status: res.status, body })
+              );
+          }
+        })
+        .catch((err) => {
+          console.error('Twilio SMS network error', err);
+        });
     }
 
     return NextResponse.json(
