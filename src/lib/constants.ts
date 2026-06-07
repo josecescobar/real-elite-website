@@ -155,6 +155,8 @@ export const PRIMARY_SERVICE_AREAS = [
   { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
   { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
   { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
+  { city: 'McLean', state: 'VA', slug: 'mclean-va' },
+  { city: 'Alexandria', state: 'VA', slug: 'alexandria-va' },
 ] as const;
 
 export const SECONDARY_SERVICE_AREAS = [
@@ -175,6 +177,8 @@ export const EXPANSION_SERVICE_AREAS = [
   { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
   { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
   { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
+  { city: 'McLean', state: 'VA', slug: 'mclean-va' },
+  { city: 'Alexandria', state: 'VA', slug: 'alexandria-va' },
   { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
   { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
 ] as const;
@@ -292,6 +296,20 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       "Loudoun County is one of the wealthiest and fastest-growing counties in the United States — home to Leesburg, Ashburn, Sterling, Purcellville, and a network of master-planned communities reshaping Northern Virginia. From estate properties in horse country west of Route 15 to data-center-adjacent neighborhoods along the Silver Line Metro corridor, Loudoun homeowners share an expectation of premium craftsmanship and clean execution. Real Elite Contracting brings veteran-led precision and high-end remodeling to Loudoun County — luxury decks and outdoor living, custom kitchens, premium bathrooms, and full home transformations done to the standard this market expects.",
     neighborhoods: ['Leesburg', 'Ashburn', 'Lansdowne', 'Brambleton', 'One Loudoun', 'Cascades', 'Purcellville', 'Sterling'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+  },
+
+  /* ---------- Fairfax County, VA (luxury Northern Virginia) ---------- */
+  'mclean-va': {
+    description:
+      "McLean is one of the most affluent communities in the United States — a Fairfax County address known for estate homes, gracious mid-century properties, and discreet, executive-class neighborhoods inside the Beltway. From the long-established streets of Langley Forest and Salona Village to the newer estates along Old Dominion Drive and the wooded enclaves bordering the Potomac, McLean homes are large, architecturally distinct, and held to a standard. Real Elite Contracting brings veteran-led precision and luxury interior work to McLean — primary-bath spa renovations, designer kitchens, finished lower-level entertainment suites, and whole-home renovations executed with the discretion and attention to detail this market expects.",
+    neighborhoods: ['Langley Forest', 'Salona Village', 'Chesterbrook', 'Franklin Park', 'Kent Gardens', 'McLean Hamlet'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'alexandria-va': {
+    description:
+      "Alexandria is one of the most architecturally distinctive cities in the country — a historic Potomac River port whose Old Town district carries one of the most concentrated collections of 18th- and 19th-century homes in the United States, alongside premium 20th-century neighborhoods like Belle Haven, Rosemont, North Ridge, and Beverley Hills. Alexandria homeowners care deeply about period accuracy and finish quality, and many of the most beautiful interior renovations in the city are done inside historic envelopes that demand a contractor who can work to museum-grade detail. Real Elite Contracting brings that level of care to Alexandria — historic-respectful kitchens and primary baths, sensitively finished lower levels, and whole-home renovations that honor the architectural pedigree of the address.",
+    neighborhoods: ['Old Town', 'Belle Haven', 'Rosemont', 'North Ridge', 'Beverley Hills', 'Del Ray'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
 };
 
