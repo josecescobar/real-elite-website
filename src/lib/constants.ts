@@ -395,6 +395,31 @@ export const SERVICE_AREAS = [
 ] as const;
 
 /**
+ * Luxury market city slugs. Pages for these cities swap the standard
+ * estimate rail for the dedicated /design-consultation conversion path,
+ * which is calibrated for $50k+ project intake (pre-qualification, designer
+ * status, budget tier, in-home consultation booking).
+ *
+ * Adding a slug here automatically rewires the CTAs on:
+ *   - /service-areas/[slug]
+ *   - /services/[service]/[slug] (the deep-link combos)
+ */
+export const LUXURY_CITY_SLUGS = new Set<string>([
+  'mclean-va',
+  'alexandria-va',
+  'vienna-va',
+  'great-falls-va',
+  'reston-va',
+  'burke-va',
+  'fairfax-station-va',
+  'clifton-va',
+  'middleburg-va',
+  'leesburg-va',
+  'ashburn-va',
+  'loudoun-county-va',
+]);
+
+/**
  * Featured client testimonials — first-party marketing copy, NOT pulled
  * from a verified review platform. Display these as on-page social proof
  * only. Do NOT emit AggregateRating / Review JSON-LD from this data:
