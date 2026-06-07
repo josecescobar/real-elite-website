@@ -157,6 +157,13 @@ export const PRIMARY_SERVICE_AREAS = [
   { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
   { city: 'McLean', state: 'VA', slug: 'mclean-va' },
   { city: 'Alexandria', state: 'VA', slug: 'alexandria-va' },
+  { city: 'Vienna', state: 'VA', slug: 'vienna-va' },
+  { city: 'Great Falls', state: 'VA', slug: 'great-falls-va' },
+  { city: 'Reston', state: 'VA', slug: 'reston-va' },
+  { city: 'Burke', state: 'VA', slug: 'burke-va' },
+  { city: 'Fairfax Station', state: 'VA', slug: 'fairfax-station-va' },
+  { city: 'Clifton', state: 'VA', slug: 'clifton-va' },
+  { city: 'Middleburg', state: 'VA', slug: 'middleburg-va' },
 ] as const;
 
 export const SECONDARY_SERVICE_AREAS = [
@@ -179,6 +186,13 @@ export const EXPANSION_SERVICE_AREAS = [
   { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
   { city: 'McLean', state: 'VA', slug: 'mclean-va' },
   { city: 'Alexandria', state: 'VA', slug: 'alexandria-va' },
+  { city: 'Vienna', state: 'VA', slug: 'vienna-va' },
+  { city: 'Great Falls', state: 'VA', slug: 'great-falls-va' },
+  { city: 'Reston', state: 'VA', slug: 'reston-va' },
+  { city: 'Burke', state: 'VA', slug: 'burke-va' },
+  { city: 'Fairfax Station', state: 'VA', slug: 'fairfax-station-va' },
+  { city: 'Clifton', state: 'VA', slug: 'clifton-va' },
+  { city: 'Middleburg', state: 'VA', slug: 'middleburg-va' },
   { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
   { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
 ] as const;
@@ -309,6 +323,50 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Alexandria is one of the most architecturally distinctive cities in the country — a historic Potomac River port whose Old Town district carries one of the most concentrated collections of 18th- and 19th-century homes in the United States, alongside premium 20th-century neighborhoods like Belle Haven, Rosemont, North Ridge, and Beverley Hills. Alexandria homeowners care deeply about period accuracy and finish quality, and many of the most beautiful interior renovations in the city are done inside historic envelopes that demand a contractor who can work to museum-grade detail. Real Elite Contracting brings that level of care to Alexandria — historic-respectful kitchens and primary baths, sensitively finished lower levels, and whole-home renovations that honor the architectural pedigree of the address.",
     neighborhoods: ['Old Town', 'Belle Haven', 'Rosemont', 'North Ridge', 'Beverley Hills', 'Del Ray'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+
+  /* ---------- Fairfax County, VA — Phase 2 luxury cities ---------- */
+  'vienna-va': {
+    description:
+      "Vienna is one of the most desirable interior-renovation markets in Northern Virginia — a Fairfax County town whose homes range from refined mid-century properties on tree-lined streets to substantial newer custom builds along the Maple Avenue corridor and west into Hunter Mill. Vienna homeowners are well-informed, design-conscious, and serious about doing things right; the typical Vienna primary kitchen or primary bath is a thoughtful, designer-collaborative project where finish quality and execution discipline matter more than any single line item. Real Elite Contracting brings veteran-led precision to Vienna — custom kitchens, primary-suite renovations, finished lower-level entertainment suites, and whole-home renovations executed to the standard the address expects.",
+    neighborhoods: ['Hunter Mill', 'Tysons-adjacent', 'Wolftrap', 'Maple Avenue corridor', 'Vienna Woods', 'Country Club Manor'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'great-falls-va': {
+    description:
+      "Great Falls is one of the most exclusive addresses in Fairfax County — a community of large lots, mature trees, and discreet estate homes ranging from refined mid-century properties to substantial custom builds with multi-acre privacy. Great Falls projects are some of the most ambitious residential remodels in our service area: primary suites that read as private wings, kitchens designed around catering and entertaining rather than weeknight family dinners, and finished lower levels that include media rooms, wine cellars, gyms, and guest suites under one envelope. Real Elite Contracting brings the craft, the discretion, and the project discipline this market expects.",
+    neighborhoods: ['Falls Estates', 'Riverbend', 'Hickory Hill', 'Potomac River corridor', 'Old Dominion Drive', 'Georgetown Pike'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'reston-va': {
+    description:
+      "Reston is a uniquely large premium-remodel market — a planned community that has matured into one of the most active high-end renovation pipelines in Fairfax County. The original master-planned villages, the lakefront homes around Lake Anne and Lake Audubon, and the larger custom properties west of Reston Parkway all share a common dynamic: design-conscious owners renovating homes that were architecturally distinctive on day one and now deserve current-spec interiors. Real Elite Contracting renovates Reston kitchens, primary baths, and lower levels with the design sensitivity these homes were built to live up to.",
+    neighborhoods: ['Lake Anne', 'Lake Audubon', 'Hunters Woods', 'North Point', 'South Lakes', 'Reston Town Center area'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'burke-va': {
+    description:
+      "Burke is one of the strongest mid-to-upper-tier remodeling markets in Fairfax County — a well-established community of substantial homes on generous lots, with neighborhoods like Burke Centre, Lake Braddock, and Burke Lake Park drawing families who tend to stay for the long term and invest in the home accordingly. Burke kitchens, primary baths, and lower-level family rooms are bread-and-butter premium remodels — well-specified, beautifully executed, and built to add real value at resale or simply to make the home work better for the family living in it. Real Elite Contracting brings the same craft we bring to the Mclean / Great Falls market, calibrated to the Burke project brief.",
+    neighborhoods: ['Burke Centre', 'Lake Braddock', 'Longwood Knolls', 'Burke Station', 'Burke Lake Park area', 'Kings Park West'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'fairfax-station-va': {
+    description:
+      "Fairfax Station is a community of larger lots and substantial custom homes south of the Fairfax County core — a quieter, more private corner of the county where one-acre and multi-acre properties are common, equestrian neighbors are not unusual, and the home itself is treated as a long-term family asset. Fairfax Station projects skew larger and more architecturally ambitious than typical Fairfax County remodels — full primary-suite expansions, kitchens designed around catering and entertaining, lower-level builds that include guest suites, gyms, and media rooms. Real Elite Contracting brings the craft this market expects.",
+    neighborhoods: ['Burke Lake Road corridor', 'Lake Braddock-adjacent', 'Hampton Forest', 'South Run', 'Hooes Road area', 'Pohick Road area'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'clifton-va': {
+    description:
+      "Clifton is the small-town heart of southern Fairfax County — an old railroad village whose historic downtown and surrounding country estates form one of the most distinctive luxury enclaves in the area. Clifton properties trend large, private, and architecturally substantial: refined historic homes in the village proper, custom estates on multi-acre parcels along the rural corridors, and a homeowner population that values craft, character, and long-term ownership. Real Elite Contracting renovates Clifton kitchens, primary baths, and lower levels with the discretion and craft this market expects.",
+    neighborhoods: ['Historic Clifton Village', 'Clifton Forest', 'Bull Run Estates', 'Compton Road corridor', 'Ridge Road area', 'Yates Ford Road area'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'middleburg-va': {
+    description:
+      "Middleburg is the historic anchor of Virginia's hunt country — a Loudoun County village whose stone Main Street and surrounding equestrian estates form one of the most distinctive luxury markets in the Mid-Atlantic. Middleburg interior renovations are some of the most architecturally significant projects in our service area: stone-and-timber kitchens designed around catering and entertaining, primary suites in genuine historic envelopes, finished lower levels in estate homes that include tasting rooms, gun rooms, and guest wings. The brief here is restraint, period sensitivity, and craft. Real Elite Contracting brings all three.",
+    neighborhoods: ['Historic Middleburg Village', 'Main Street corridor', 'Goose Creek Estate area', 'Foxcroft Road area', 'Atoka Road area', 'Halfway hunt country'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
 };
