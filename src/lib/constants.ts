@@ -365,6 +365,7 @@ export const NAV_LINKS = [
     label: 'Service Areas',
     href: '/service-areas',
   },
+  { label: 'Paving', href: '/paving' },
   { label: 'Our Work', href: '/gallery' },
   { label: 'Guides', href: '/guides' },
   { label: 'Roof Quote', href: '/instant-roof-quote' },
@@ -378,6 +379,7 @@ export const UTILITY_LINKS = [
   { label: 'Reviews', href: '/reviews' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Veteran-Owned', href: '/veterans' },
+  { label: 'Capability Statement', href: '/capability-statement' },
   { label: 'Storm Damage', href: '/storm-damage' },
   { label: 'Full Property Bundle', href: '/full-property-perimeter' },
 ] as const;
@@ -402,7 +404,7 @@ export const SERVICES_MEGA_MENU = [
       { label: 'Decks & Outdoor Living', href: '/services/decks', description: 'Composite decks, railings, outdoor spaces' },
       { label: 'Roofing', href: '/services/roofing', description: 'Architectural shingle replacement & repair' },
       { label: 'Siding & Stone', href: '/services/siding', description: 'Vinyl, fiber cement, and stone veneer exteriors' },
-      { label: 'Paving & Seal Coating', href: '/services/paving', description: 'Driveways, lots, repairs & seal coating' },
+      { label: 'Paving & Seal Coating', href: '/paving', description: 'Driveways, lots, repairs & seal coating' },
       { label: 'Exterior Repairs', href: '/services/exterior-repairs', description: 'Trim, foundation, stone veneer detail work' },
     ],
   },
@@ -479,7 +481,7 @@ export const HOMEPAGE_FEATURED_SERVICES = [
     title: 'Paving & Seal Coating',
     eyebrow: 'Driveways',
     scope: 'Asphalt, concrete & tar-and-chip driveways, parking lots, and seal coating across the Eastern Panhandle.',
-    href: '/services/paving',
+    href: '/paving',
     image: '/images/inspiration/paving-aplus-driveway.jpg',
     imageAlt: 'A freshly finished residential driveway',
     span: 'standard',
@@ -517,12 +519,11 @@ export const PRECISION_PROCESS = [
  * Rotates manually — update to surface your strongest current project.
  */
 export const HOMEPAGE_PROJECT_SPOTLIGHT = {
-  title: 'Custom Stone Facade & Outdoor Living',
+  title: 'Custom Addition, Framed to Spec',
   location: 'Eastern Panhandle, WV',
-  scope: 'Full stone veneer facade, custom front-porch rebuild, and matching outdoor living transition. Architectural shingle re-roof on the same project.',
-  investmentRange: '$45k – $65k',
-  image: '/images/stone-facade-finished.jpg',
-  imageAlt: 'Finished custom stone veneer facade with new front porch and matching exterior',
+  scope: 'Custom addition framing — joists, walls, and roof structure squared, braced, and built to spec. The kind of work that keeps going after the sun drops, because the schedule said this stage finishes today.',
+  image: '/images/crew-dusk.jpg',
+  imageAlt: 'Real Elite crew member framing a custom addition by work light at dusk',
   href: '/gallery',
 } as const;
 

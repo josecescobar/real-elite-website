@@ -59,7 +59,6 @@ const NUMBERS = [
   { value: '40+', label: 'Years of Experience' },
   { value: 'Written', label: 'Workmanship Warranty' },
   { value: 'Top-Rated', label: 'on Google' },
-  { value: '3', label: 'States Licensed In' },
 ];
 
 export default function AboutPage() {
@@ -132,7 +131,7 @@ export default function AboutPage() {
       {/* Numbers strip */}
       <section className="bg-white border-b border-charcoal-100">
         <Container size="wide" className="py-10 sm:py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 divide-x divide-charcoal-100">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-8 sm:divide-x divide-charcoal-100">
             {NUMBERS.map((n, idx) => (
               <div
                 key={n.label}
