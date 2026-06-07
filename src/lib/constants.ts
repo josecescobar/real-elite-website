@@ -517,12 +517,11 @@ export const PRECISION_PROCESS = [
  * Rotates manually — update to surface your strongest current project.
  */
 export const HOMEPAGE_PROJECT_SPOTLIGHT = {
-  title: 'Custom Stone Facade & Outdoor Living',
+  title: 'Custom Addition, Framed to Spec',
   location: 'Eastern Panhandle, WV',
-  scope: 'Full stone veneer facade, custom front-porch rebuild, and matching outdoor living transition. Architectural shingle re-roof on the same project.',
-  investmentRange: '$45k – $65k',
-  image: '/images/stone-facade-finished.jpg',
-  imageAlt: 'Finished custom stone veneer facade with new front porch and matching exterior',
+  scope: 'Custom addition framing — joists, walls, and roof structure squared, braced, and built to spec. The kind of work that keeps going after the sun drops, because the schedule said this stage finishes today.',
+  image: '/images/crew-dusk.jpg',
+  imageAlt: 'Real Elite crew member framing a custom addition by work light at dusk',
   href: '/gallery',
 } as const;
 

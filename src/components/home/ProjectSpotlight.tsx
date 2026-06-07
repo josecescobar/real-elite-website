@@ -36,12 +36,6 @@ export default function ProjectSpotlight() {
                 </dt>
                 <dd className="text-navy-800 font-medium">{project.location}</dd>
               </div>
-              <div className="flex gap-3">
-                <dt className="text-charcoal-500 uppercase tracking-[0.12em] font-semibold text-xs w-24 pt-1 flex-shrink-0">
-                  Investment
-                </dt>
-                <dd className="text-navy-800 font-medium">{project.investmentRange}</dd>
-              </div>
             </dl>
             <p className="text-charcoal-600 leading-relaxed mb-8">
               {project.scope}
