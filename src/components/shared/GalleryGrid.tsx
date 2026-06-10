@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import { GALLERY_IMAGES } from '@/lib/constants';
 import Container from './Container';
@@ -11,6 +11,39 @@ const CATEGORIES = ['All', 'Roofing', 'Decks', 'Siding', 'Exterior', 'Remodeling
 export default function GalleryGrid() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
+  const isLightboxOpen = lightboxIdx !== null;
+
+  // Move focus into the lightbox when it opens; restore it when it closes.
+  useEffect(() => {
+    if (isLightboxOpen) {
+      lastFocusedRef.current = document.activeElement as HTMLElement | null;
+      closeButtonRef.current?.focus();
+    } else {
+      lastFocusedRef.current?.focus();
+      lastFocusedRef.current = null;
+    }
+  }, [isLightboxOpen]);
+
+  // Keep Tab cycling within the lightbox while it is open.
+  const trapFocus = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab' || !dialogRef.current) return;
+    const focusables = dialogRef.current.querySelectorAll<HTMLElement>(
+      'button, [href], [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
 
   const filtered = useMemo(
     () =>
@@ -106,14 +139,17 @@ export default function GalleryGrid() {
       {/* Lightbox */}
       {active && lightboxIdx !== null && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={`Project: ${active.alt}`}
           className="fixed inset-0 z-[80] bg-navy-950/95 flex items-center justify-center p-4 sm:p-8"
           onClick={() => setLightboxIdx(null)}
+          onKeyDown={trapFocus}
         >
           {/* Close */}
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={(e) => {
               e.stopPropagation();
@@ -174,7 +210,11 @@ export default function GalleryGrid() {
             <p className="text-sm text-charcoal-200 max-w-2xl mx-auto leading-snug">
               {active.alt}
             </p>
-            <p className="text-xs text-charcoal-400 mt-2">
+            <p
+              className="text-xs text-charcoal-400 mt-2"
+              aria-live="polite"
+              aria-label={`Image ${lightboxIdx + 1} of ${filtered.length}`}
+            >
               {lightboxIdx + 1} / {filtered.length}
             </p>
           </div>

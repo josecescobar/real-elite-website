@@ -25,6 +25,7 @@ export default function HomeFAQ() {
             return (
               <div key={item.question}>
                 <button
+                  type="button"
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
                   className="w-full py-6 flex items-start justify-between gap-6 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm"
                   aria-expanded={isOpen}
@@ -41,14 +42,13 @@ export default function HomeFAQ() {
                     )}
                   </span>
                 </button>
-                {isOpen && (
-                  <div
-                    id={`faq-panel-${idx}`}
-                    className="pb-6 pr-12 text-charcoal-600 leading-relaxed text-sm md:text-base"
-                  >
-                    {item.answer}
-                  </div>
-                )}
+                <div
+                  id={`faq-panel-${idx}`}
+                  hidden={!isOpen}
+                  className="pb-6 pr-12 text-charcoal-600 leading-relaxed text-sm md:text-base"
+                >
+                  {item.answer}
+                </div>
               </div>
             );
           })}

@@ -509,6 +509,7 @@ export default function RoofQuoteTool() {
               id="rq-phone"
               label="Phone"
               type="tel"
+              inputMode="tel"
               value={lead.phone}
               error={leadErrors.phone}
               autoComplete="tel"
@@ -640,6 +641,7 @@ function Field({
   type = 'text',
   placeholder,
   autoComplete,
+  inputMode,
 }: {
   id: string;
   label: string;
@@ -649,6 +651,7 @@ function Field({
   type?: string;
   placeholder?: string;
   autoComplete?: string;
+  inputMode?: React.HTMLAttributes<HTMLInputElement>['inputMode'];
 }) {
   return (
     <div>
@@ -658,6 +661,7 @@ function Field({
       <input
         id={id}
         type={type}
+        inputMode={inputMode}
         value={value}
         placeholder={placeholder}
         autoComplete={autoComplete}
