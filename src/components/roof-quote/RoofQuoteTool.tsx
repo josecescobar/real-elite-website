@@ -23,6 +23,7 @@ import {
   type FallbackAnswers,
 } from '@/lib/roof-estimate';
 import { trackEvent } from '@/lib/analytics';
+import { BUSINESS } from '@/lib/constants';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
@@ -183,7 +184,7 @@ export default function RoofQuoteTool() {
       setPhase('success');
     } catch {
       setSubmitError(
-        'Something went wrong sending your request. Please call (681) 534-5515 or try again.'
+        `Something went wrong sending your request. Please call ${BUSINESS.phone} or try again.`
       );
     } finally {
       setIsSubmitting(false);
@@ -221,6 +222,8 @@ export default function RoofQuoteTool() {
                   setAddress(e.target.value);
                   if (addressError) setAddressError(null);
                 }}
+                aria-invalid={addressError ? true : undefined}
+                aria-describedby={addressError ? 'rq-address-error' : undefined}
                 className={`${inputBase} pl-10 ${
                   addressError ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
                 }`}
@@ -244,7 +247,11 @@ export default function RoofQuoteTool() {
               )}
             </button>
           </div>
-          {addressError && <p className="text-brand-red text-sm mt-2">{addressError}</p>}
+          {addressError && (
+            <p id="rq-address-error" className="text-brand-red text-sm mt-2">
+              {addressError}
+            </p>
+          )}
           <p className="text-charcoal-500 text-xs mt-3 leading-relaxed">
             If your address isn&apos;t covered by satellite data, we&apos;ll ask a couple of quick
             questions instead. Either way, it takes about a minute.
@@ -505,7 +512,7 @@ export default function RoofQuoteTool() {
               value={lead.phone}
               error={leadErrors.phone}
               autoComplete="tel"
-              placeholder="(681) 534-5515"
+              placeholder={BUSINESS.phone}
               onChange={(v) => {
                 setLead((p) => ({ ...p, phone: v }));
                 if (leadErrors.phone) setLeadErrors((p) => ({ ...p, phone: undefined }));
@@ -654,12 +661,18 @@ function Field({
         value={value}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
         onChange={(e) => onChange(e.target.value)}
         className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
           error ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
         }`}
       />
-      {error && <p className="text-brand-red text-sm mt-2">{error}</p>}
+      {error && (
+        <p id={`${id}-error`} className="text-brand-red text-sm mt-2">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

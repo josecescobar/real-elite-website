@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { trackEvent, trackEstimateStep } from '@/lib/analytics';
+import { BUSINESS } from '@/lib/constants';
 
 /* -------------------------------- options -------------------------------- */
 
@@ -83,7 +84,8 @@ const labelFor = <T extends { value: string; label: string }>(
   value: string
 ) => options.find((o) => o.value === value)?.label ?? value;
 
-const ZIP_RE = /^\d{5}$/;
+// Matches the server-side rule in /api/estimate (ZIP+4 allowed).
+const ZIP_RE = /^\d{5}(?:-\d{4})?$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
 
@@ -158,7 +160,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
     if (current === 1) {
       if (!data.service) e.service = 'Pick the service that fits best.';
       if (!data.zip.trim()) e.zip = 'ZIP code is required.';
-      else if (!ZIP_RE.test(data.zip.trim())) e.zip = 'Enter a 5-digit ZIP.';
+      else if (!ZIP_RE.test(data.zip.trim())) e.zip = 'Enter a valid ZIP code.';
     }
     if (current === 2) {
       if (!data.propertyType) e.propertyType = 'Pick a property type.';
@@ -221,7 +223,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
     } catch (err) {
       console.error('Multi-step estimate submission error:', err);
       setSubmitError(
-        "Something went wrong. Please call (681) 534-5515 or try again in a moment."
+        `Something went wrong. Please call ${BUSINESS.phone} or try again in a moment.`
       );
     } finally {
       setIsSubmitting(false);
@@ -324,11 +326,11 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
               aria-describedby={errors.zip ? 'zip-error' : undefined}
               type="text"
               inputMode="numeric"
-              maxLength={5}
+              maxLength={10}
               autoComplete="postal-code"
               placeholder="25401"
               value={data.zip}
-              onChange={(e) => update('zip', e.target.value.replace(/\D/g, ''))}
+              onChange={(e) => update('zip', e.target.value.replace(/[^\d-]/g, ''))}
               className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
                 errors.zip ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
               }`}
@@ -473,7 +475,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
               aria-describedby={errors.phone ? 'phone-error' : undefined}
               type="tel"
               autoComplete="tel"
-              placeholder="(681) 534-5515"
+              placeholder={BUSINESS.phone}
               value={data.phone}
               onChange={(e) => update('phone', e.target.value)}
               className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${

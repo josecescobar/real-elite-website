@@ -75,7 +75,7 @@ const PROCESS = [
     step: '1',
     title: 'Call or book online',
     body:
-      'One call to (681) 534-5515 or one form on this page. We schedule a free inspection — usually same-week in the Eastern Panhandle.',
+      `One call to ${BUSINESS.phone} or one form on this page. We schedule a free inspection — usually same-week in the Eastern Panhandle.`,
   },
   {
     icon: Camera,
@@ -115,7 +115,7 @@ const FAQ_ITEMS = [
   {
     question: 'How fast can you inspect my roof after a storm?',
     answer:
-      'For confirmed storms in the Eastern Panhandle WV, Frederick County MD, or Loudoun County VA service area, we typically schedule a free inspection within the same week — often within 48 business hours. For active leaks or emergency tarping needs, call (681) 534-5515 immediately and we will prioritize.',
+      `For confirmed storms in the Eastern Panhandle WV, Frederick County MD, or Loudoun County VA service area, we typically schedule a free inspection within the same week — often within 48 business hours. For active leaks or emergency tarping needs, call ${BUSINESS.phone} immediately and we will prioritize.`,
   },
   {
     question: 'Do you work directly with my insurance carrier?',
@@ -145,7 +145,7 @@ const FAQ_ITEMS = [
   {
     question: 'What about emergency tarping or temporary repairs?',
     answer:
-      'For active leaks, partially missing roofs, or anything that exposes the interior to weather, call (681) 534-5515 immediately. We coordinate emergency tarping and temporary repairs to prevent further damage while the claim process moves forward.',
+      `For active leaks, partially missing roofs, or anything that exposes the interior to weather, call ${BUSINESS.phone} immediately. We coordinate emergency tarping and temporary repairs to prevent further damage while the claim process moves forward.`,
   },
 ];
 
@@ -338,7 +338,7 @@ export default function StormDamagePage() {
           <SectionHeader
             eyebrow="Book Your Free Inspection"
             title="Tell us about the storm damage."
-            subtitle="Pre-set to storm damage so your request reaches us with the right urgency. A project lead follows up within 24 business hours — or call (681) 534-5515 for an active leak."
+            subtitle={`Pre-set to storm damage so your request reaches us with the right urgency. A project lead follows up within 24 business hours — or call ${BUSINESS.phone} for an active leak.`}
             align="center"
             className="mx-auto"
           />

@@ -243,7 +243,7 @@ export default function PavingHubPage() {
           <SectionHeader
             eyebrow="Free Paving Estimate"
             title="Tell us about your project."
-            subtitle="Pre-set to paving so your request reaches the right crew. A project lead follows up within 24 business hours — or call (681) 534-5515."
+            subtitle={`Pre-set to paving so your request reaches the right crew. A project lead follows up within 24 business hours — or call ${BUSINESS.phone}.`}
             align="center"
             className="mx-auto"
           />

@@ -51,7 +51,7 @@ const FAQ_SECTIONS = [
       {
         question: 'How do I get a free estimate?',
         answer:
-          'Three ways: call (681) 534-5515, text the same number, or use the multi-step estimate form on the homepage. A real project lead reaches out within 24 business hours. If you call and miss us, leave a voicemail — we return calls the same day.',
+          `Three ways: call ${BUSINESS.phone}, text the same number, or use the multi-step estimate form on the homepage. A real project lead reaches out within 24 business hours. If you call and miss us, leave a voicemail — we return calls the same day.`,
       },
     ],
   },

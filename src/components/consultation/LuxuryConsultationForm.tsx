@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
 import { trackEvent, trackEstimateStep } from '@/lib/analytics';
+import { BUSINESS } from '@/lib/constants';
 
 /* ─────────────────────────────────────────────────────────────────────────
  * LuxuryConsultationForm
@@ -95,7 +96,8 @@ const INITIAL: FormData = {
   scope: '',
 };
 
-const ZIP_RE = /^\d{5}$/;
+// Matches the server-side rule in /api/estimate (ZIP+4 allowed).
+const ZIP_RE = /^\d{5}(?:-\d{4})?$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
 
@@ -154,7 +156,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
     if (!data.designer) e.designer = 'Let us know your designer status.';
     if (!data.callWindow) e.callWindow = 'When should we call?';
     if (!data.zip.trim()) e.zip = 'ZIP code is required.';
-    else if (!ZIP_RE.test(data.zip.trim())) e.zip = 'Enter a 5-digit ZIP.';
+    else if (!ZIP_RE.test(data.zip.trim())) e.zip = 'Enter a valid ZIP code.';
     if (!data.fullName.trim()) e.fullName = 'Name is required.';
     if (!data.phone.trim()) e.phone = 'Phone is required.';
     else if (!PHONE_RE.test(data.phone)) e.phone = 'Enter a valid phone number.';
@@ -210,7 +212,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
     } catch (err) {
       console.error('Luxury consultation submission error:', err);
       setSubmitError(
-        "Something went wrong. Please call (681) 534-5515 or try again in a moment."
+        `Something went wrong. Please call ${BUSINESS.phone} or try again in a moment.`
       );
     } finally {
       setIsSubmitting(false);
@@ -299,6 +301,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
             id="budget"
             name="budget"
             aria-invalid={errors.budget ? true : undefined}
+            aria-describedby={errors.budget ? 'budget-error' : undefined}
             value={data.budget}
             onChange={(e) => update('budget', e.target.value as Budget)}
             className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
@@ -313,7 +316,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
             ))}
           </select>
           {errors.budget && (
-            <p role="alert" className="text-brand-red text-sm mt-2">
+            <p id="budget-error" role="alert" className="text-brand-red text-sm mt-2">
               {errors.budget}
             </p>
           )}
@@ -328,6 +331,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
             id="timeline"
             name="timeline"
             aria-invalid={errors.timeline ? true : undefined}
+            aria-describedby={errors.timeline ? 'timeline-error' : undefined}
             value={data.timeline}
             onChange={(e) => update('timeline', e.target.value as Timeline)}
             className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
@@ -342,7 +346,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
             ))}
           </select>
           {errors.timeline && (
-            <p role="alert" className="text-brand-red text-sm mt-2">
+            <p id="timeline-error" role="alert" className="text-brand-red text-sm mt-2">
               {errors.timeline}
             </p>
           )}
@@ -392,6 +396,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
             id="callWindow"
             name="callWindow"
             aria-invalid={errors.callWindow ? true : undefined}
+            aria-describedby={errors.callWindow ? 'callWindow-error' : undefined}
             value={data.callWindow}
             onChange={(e) => update('callWindow', e.target.value as CallWindow)}
             className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
@@ -408,7 +413,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
             ))}
           </select>
           {errors.callWindow && (
-            <p role="alert" className="text-brand-red text-sm mt-2">
+            <p id="callWindow-error" role="alert" className="text-brand-red text-sm mt-2">
               {errors.callWindow}
             </p>
           )}
@@ -423,19 +428,20 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
             id="zip"
             name="zip"
             aria-invalid={errors.zip ? true : undefined}
+            aria-describedby={errors.zip ? 'zip-error' : undefined}
             type="text"
             inputMode="numeric"
-            maxLength={5}
+            maxLength={10}
             autoComplete="postal-code"
             placeholder="22101"
             value={data.zip}
-            onChange={(e) => update('zip', e.target.value.replace(/\D/g, ''))}
+            onChange={(e) => update('zip', e.target.value.replace(/[^\d-]/g, ''))}
             className={`w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors ${
               errors.zip ? 'border-brand-red' : 'border-charcoal-200 hover:border-charcoal-300'
             }`}
           />
           {errors.zip && (
-            <p role="alert" className="text-brand-red text-sm mt-2">
+            <p id="zip-error" role="alert" className="text-brand-red text-sm mt-2">
               {errors.zip}
             </p>
           )}
@@ -456,6 +462,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                 id="fullName"
                 name="fullName"
                 aria-invalid={errors.fullName ? true : undefined}
+                aria-describedby={errors.fullName ? 'fullName-error' : undefined}
                 type="text"
                 autoComplete="name"
                 value={data.fullName}
@@ -465,7 +472,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                 }`}
               />
               {errors.fullName && (
-                <p role="alert" className="text-brand-red text-sm mt-2">
+                <p id="fullName-error" role="alert" className="text-brand-red text-sm mt-2">
                   {errors.fullName}
                 </p>
               )}
@@ -479,6 +486,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                 id="phone"
                 name="phone"
                 aria-invalid={errors.phone ? true : undefined}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
                 type="tel"
                 autoComplete="tel"
                 value={data.phone}
@@ -488,7 +496,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                 }`}
               />
               {errors.phone && (
-                <p role="alert" className="text-brand-red text-sm mt-2">
+                <p id="phone-error" role="alert" className="text-brand-red text-sm mt-2">
                   {errors.phone}
                 </p>
               )}
@@ -502,6 +510,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                 id="email"
                 name="email"
                 aria-invalid={errors.email ? true : undefined}
+                aria-describedby={errors.email ? 'email-error' : undefined}
                 type="email"
                 autoComplete="email"
                 value={data.email}
@@ -511,7 +520,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                 }`}
               />
               {errors.email && (
-                <p role="alert" className="text-brand-red text-sm mt-2">
+                <p id="email-error" role="alert" className="text-brand-red text-sm mt-2">
                   {errors.email}
                 </p>
               )}
