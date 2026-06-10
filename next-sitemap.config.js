@@ -18,6 +18,8 @@ module.exports = {
     '/*/opengraph-image',
     '/*/*/opengraph-image',
     '/*/*/*/opengraph-image',
+    // Internal tools — noindexed, key-protected, never for crawlers.
+    '/review-request',
   ],
   // Ensure all pages are included
   changefreq: 'weekly',
