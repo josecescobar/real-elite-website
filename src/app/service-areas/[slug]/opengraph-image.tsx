@@ -7,11 +7,12 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 export const alt = 'Real Elite Contracting service area';
 
-type Params = { slug: string };
+type Params = Promise<{ slug: string }>;
 
 export default async function OG({ params }: { params: Params }) {
-  const city = ALL_SERVICE_AREAS.find((c) => c.slug === params.slug);
-  const data = CITY_DATA[params.slug];
+  const { slug } = await params;
+  const city = ALL_SERVICE_AREAS.find((c) => c.slug === slug);
+  const data = CITY_DATA[slug];
   if (!city || !data) notFound();
 
   const leadServices = data.marketEmphasis

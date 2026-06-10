@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { squaresFromAreaMeters2 } from '@/lib/roof-estimate';
+import { rateLimit, getClientIp } from '@/lib/rate-limit';
 
 /**
  * Roof measurement endpoint.
@@ -15,21 +16,6 @@ import { squaresFromAreaMeters2 } from '@/lib/roof-estimate';
 const SOLAR_KEY = process.env.GOOGLE_SOLAR_API_KEY;
 
 const RATE_LIMIT = { max: 12, windowMs: 10 * 60 * 1000 };
-const hits = new Map<string, { count: number; resetAt: number }>();
-
-function rateLimit(ip: string) {
-  const now = Date.now();
-  const entry = hits.get(ip);
-  if (!entry || entry.resetAt < now) {
-    hits.set(ip, { count: 1, resetAt: now + RATE_LIMIT.windowMs });
-    return { allowed: true, retryAfter: 0 };
-  }
-  if (entry.count >= RATE_LIMIT.max) {
-    return { allowed: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) };
-  }
-  entry.count += 1;
-  return { allowed: true, retryAfter: 0 };
-}
 
 type Result =
   | { covered: true; squares: number; formattedAddress: string }
@@ -40,12 +26,9 @@ type Result =
 
 export async function POST(request: Request) {
   try {
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown';
+    const ip = getClientIp(request);
 
-    const limit = rateLimit(ip);
+    const limit = await rateLimit(`roof:${ip}`, RATE_LIMIT.max, RATE_LIMIT.windowMs);
     if (!limit.allowed) {
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },

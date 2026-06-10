@@ -7,14 +7,15 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 export const alt = 'Real Elite Contracting homeowner guide';
 
-type Params = { slug: string };
+type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
 }
 
 export default async function OG({ params }: { params: Params }) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
   return renderOgCard({
