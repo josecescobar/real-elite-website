@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { BUSINESS } from '@/lib/constants';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const TO_EMAIL = process.env.ESTIMATE_TO_EMAIL || 'info@realelitecontracting.com';
@@ -122,8 +123,7 @@ export async function POST(request: Request) {
       );
       return NextResponse.json(
         {
-          error:
-            "We couldn't send the request automatically. Please call (681) 534-5515 and we'll take it from there.",
+          error: `We couldn't send the request automatically. Please call ${BUSINESS.phone} and we'll take it from there.`,
         },
         { status: 503 }
       );
