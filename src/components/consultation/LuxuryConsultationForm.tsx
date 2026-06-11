@@ -135,11 +135,15 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
         trackEstimateStep('abandon', 1);
       }
     };
-    document.addEventListener('visibilitychange', () => {
+    const onVisibilityChange = () => {
       if (document.visibilityState === 'hidden') onLeave();
-    });
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
     window.addEventListener('pagehide', onLeave);
-    return () => window.removeEventListener('pagehide', onLeave);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      window.removeEventListener('pagehide', onLeave);
+    };
   }, []);
 
   const update = <K extends keyof FormData>(key: K, value: FormData[K]) => {
@@ -488,6 +492,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                 aria-invalid={errors.phone ? true : undefined}
                 aria-describedby={errors.phone ? 'phone-error' : undefined}
                 type="tel"
+                inputMode="tel"
                 autoComplete="tel"
                 value={data.phone}
                 onChange={(e) => update('phone', e.target.value)}

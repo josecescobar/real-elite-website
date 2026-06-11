@@ -197,7 +197,8 @@ export default function Footer() {
 
         {/* Utility row */}
         <div className="mt-12 pt-8 border-t border-navy-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
-          <p className="text-charcoal-400">
+          {/* suppressHydrationWarning: prebuilt HTML can carry last year's date after New Year */}
+          <p className="text-charcoal-400" suppressHydrationWarning>
             &copy; 2024–{currentYear} {BUSINESS.name}. Licensed &amp; Insured across WV, MD, VA.
           </p>
           <p className="text-charcoal-500 uppercase tracking-[0.15em] font-semibold">

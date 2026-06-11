@@ -227,7 +227,8 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           }}
         />
       </head>
-      <body className="bg-white font-body">
+      {/* Bottom padding below lg reserves space for the fixed StickyMobileCTA bar */}
+      <body className="bg-white font-body pb-[76px] lg:pb-0">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"

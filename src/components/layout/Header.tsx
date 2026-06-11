@@ -13,8 +13,10 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
-  // Close the mobile menu on Escape and return focus to the toggle button.
+  // Close the mobile menu on Escape (returning focus to the toggle button)
+  // or when tapping/clicking anywhere outside the header.
   useEffect(() => {
     if (!isMobileMenuOpen) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -23,12 +25,21 @@ export default function Header() {
         toggleRef.current?.focus();
       }
     };
+    const onPointerDown = (e: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
     document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="bg-white border-b border-charcoal-100 sticky top-0 z-50">
+    <header ref={headerRef} className="bg-white border-b border-charcoal-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 py-3 flex items-center justify-between gap-6">
         {/* Logo */}
         <Link
@@ -97,14 +108,14 @@ export default function Header() {
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
             onClick={() => trackEvent('phone_click', { location: 'header_mobile' })}
-            className="bg-navy-800 text-white px-3 py-2 rounded-md text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
+            className="inline-flex items-center min-h-[44px] bg-navy-800 text-white px-4 py-2 rounded-md text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
           >
             Call
           </a>
           <button
             ref={toggleRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-navy-800 hover:text-charcoal-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm p-1"
+            className="text-navy-800 hover:text-charcoal-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm p-2.5 -mr-2.5"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -135,8 +146,9 @@ export default function Header() {
                     </Link>
                     {isServices && (
                       <button
+                        type="button"
                         onClick={() => setExpandedSection(isExpandedHere ? null : link.label)}
-                        className="py-2 px-1"
+                        className="p-3 -m-1"
                         aria-expanded={isExpandedHere}
                         aria-label="Toggle services menu"
                       >

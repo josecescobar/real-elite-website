@@ -31,14 +31,13 @@ export default function ServiceFAQ({ items }: { items: readonly FAQ[] | FAQ[] })
                   {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 </span>
               </button>
-              {isOpen && (
-                <div
-                  id={`service-faq-${idx}`}
-                  className="pb-5 pr-12 text-charcoal-600 leading-relaxed text-sm md:text-base"
-                >
-                  {item.answer}
-                </div>
-              )}
+              <div
+                id={`service-faq-${idx}`}
+                hidden={!isOpen}
+                className="pb-5 pr-12 text-charcoal-600 leading-relaxed text-sm md:text-base"
+              >
+                {item.answer}
+              </div>
             </div>
           );
         })}

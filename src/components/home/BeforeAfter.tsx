@@ -56,7 +56,7 @@ function Slider({ pair }: { pair: Pair }) {
       </div>
       <div
         ref={containerRef}
-        className="relative w-full aspect-[16/10] overflow-hidden rounded-lg shadow-card-elevated bg-navy-900 select-none touch-pan-y"
+        className={`relative w-full aspect-[16/10] overflow-hidden rounded-lg shadow-card-elevated bg-navy-900 select-none touch-pan-y ${isDragging ? 'cursor-grabbing' : 'cursor-ew-resize'}`}
         onPointerDown={(e) => {
           (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
           setIsDragging(true);
@@ -125,7 +125,7 @@ export default function BeforeAfter() {
         <SectionHeader
           eyebrow="Build to Finished"
           title="In progress to finished, drag-to-reveal."
-          subtitle="Real Real Elite project shots. Drag the slider to see what the work looks like during construction and what it becomes when the crew is done."
+          subtitle="Real project shots from Real Elite. Drag the slider to see what the work looks like during construction and what it becomes when the crew is done."
         />
 
         <div className="mt-12">

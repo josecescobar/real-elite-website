@@ -140,11 +140,13 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
         trackEstimateStep('abandon', stepRef.current);
       }
     };
-    document.addEventListener('visibilitychange', () => {
+    const onVisibilityChange = () => {
       if (document.visibilityState === 'hidden') onLeave();
-    });
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
     window.addEventListener('pagehide', onLeave);
     return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       window.removeEventListener('pagehide', onLeave);
     };
   }, []);
@@ -474,6 +476,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
               aria-invalid={errors.phone ? true : undefined}
               aria-describedby={errors.phone ? 'phone-error' : undefined}
               type="tel"
+              inputMode="tel"
               autoComplete="tel"
               placeholder={BUSINESS.phone}
               value={data.phone}
