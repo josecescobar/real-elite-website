@@ -34,6 +34,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  // Absolute-URL base for og:image / twitter:image and other relative
+  // metadata. Without it, Vercel falls back to the deployment URL
+  // (*.vercel.app), so social cards would point at the wrong host.
+  metadataBase: new URL(BUSINESS.url),
   title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
   description:
     'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more. Free estimates available.',

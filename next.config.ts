@@ -1,6 +1,36 @@
 import type { NextConfig } from 'next';
 
+/**
+ * Content-Security-Policy.
+ *
+ * 'unsafe-inline' in script-src is required: pages are statically
+ * generated, so per-request nonces aren't possible, and Next's
+ * bootstrapping plus the GTM/GA4/Clarity init snippets are inline.
+ * The allowlist still blocks scripts from any unlisted origin.
+ *
+ * Allowed third parties (all env-gated in src/app/layout.tsx):
+ *  - Google Tag Manager / GA4: googletagmanager.com, google-analytics.com
+ *  - Microsoft Clarity: clarity.ms (+ c.bing.com beacons)
+ *  - vercel.live: the preview-deployment feedback toolbar
+ *  - Stock photo CDNs mirror images.remotePatterns below
+ */
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://images.unsplash.com https://plus.unsplash.com https://images.pexels.com https://cdn.pixabay.com https://pixabay.com https://vercel.live",
+  "font-src 'self' data:",
+  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com",
+  "frame-src https://www.googletagmanager.com https://vercel.live",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  'upgrade-insecure-requests',
+].join('; ');
+
 const securityHeaders = [
+  { key: 'Content-Security-Policy', value: contentSecurityPolicy },
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
