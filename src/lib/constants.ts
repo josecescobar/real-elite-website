@@ -46,6 +46,24 @@ export const BUSINESS = {
 } as const;
 
 /**
+ * Financing. Until a lending partner (Hearth, Sunlight Financial,
+ * Service Finance, GreenSky, etc.) is signed, `applyUrl` stays null and
+ * the /financing page routes homeowners to the estimate form, where the
+ * team walks through options in person. The moment a partner is live,
+ * set `applyUrl` to their co-branded application link (and `partnerName`
+ * for the byline) — every CTA on /financing switches over automatically.
+ *
+ * IMPORTANT: never advertise specific APRs, "as low as" rates, or fixed
+ * monthly figures here without written substantiation from the lender —
+ * those are regulated credit-advertising claims (TILA / Reg Z). The page
+ * is intentionally written without rate numbers.
+ */
+export const FINANCING = {
+  applyUrl: null as string | null,
+  partnerName: null as string | null,
+} as const;
+
+/**
  * Service catalog — ordered by homepage / mega-menu priority.
  * Premium remodeling categories lead; small-job services trail.
  */
@@ -477,6 +495,7 @@ export const NAV_LINKS = [
 /** Utility links surfaced in footer + mobile nav drawer */
 export const UTILITY_LINKS = [
   { label: 'Our Process', href: '/process' },
+  { label: 'Financing', href: '/financing' },
   { label: 'Reviews', href: '/reviews' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Veteran-Owned', href: '/veterans' },
