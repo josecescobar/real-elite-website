@@ -30,8 +30,18 @@ const DIAL_TIMEOUT = 18; // seconds before we treat the call as missed
 
 export async function POST(request: Request) {
   const authToken = process.env.TWILIO_AUTH_TOKEN;
-  if (!authToken || !FORWARD_TO) {
-    // Not configured — refuse rather than answer calls half-wired.
+  // Refuse unless FULLY wired. The signature check needs the auth token,
+  // and both SMS sends — the caller text-back and the owner alert — need
+  // the account SID, the from-number, and the owner number. A partial
+  // config would answer the call and dial out but then silently drop the
+  // promised text-back, which is worse than not answering at all.
+  if (
+    !authToken ||
+    !process.env.TWILIO_ACCOUNT_SID ||
+    !process.env.TWILIO_FROM_NUMBER ||
+    !OWNER_ALERT_TO ||
+    !FORWARD_TO
+  ) {
     return twiml('<Response><Reject/></Response>', 503);
   }
 
