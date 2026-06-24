@@ -77,6 +77,10 @@ If you're planning a primary suite in **Loudoun County, Ashburn, Leesburg, Frede
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [remodeling](/services/remodeling) and [home addition](/services/additions) services, or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va).
 
+## Also serving the wider Northern Virginia luxury market
+
+Beyond Loudoun, we design primary suites across Fairfax County and Alexandria — including [McLean](/services/bathrooms/mclean-va), [Great Falls](/services/bathrooms/great-falls-va), [Vienna](/services/bathrooms/vienna-va), [Reston](/services/bathrooms/reston-va), [Old Town Alexandria](/services/bathrooms/alexandria-va), and [Middleburg](/services/bathrooms/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=bathroom) and we'll call inside the window you choose.
+
 Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
 
 *Photography in this article is for design inspiration.*

@@ -54,7 +54,11 @@ vi.mock('@/lib/analytics', () => ({
 /*  Home page components (mock to isolate page-level rendering)       */
 /* ------------------------------------------------------------------ */
 
-const stubComponent = (name: string) => () => <div data-testid={`mock-${name}`} />;
+const stubComponent = (name: string) => {
+  const Stub = () => <div data-testid={`mock-${name}`} />;
+  Stub.displayName = `Stub(${name})`;
+  return Stub;
+};
 
 vi.mock('@/components/home/Hero', () => ({ default: stubComponent('Hero') }));
 vi.mock('@/components/home/TrustBar', () => ({ default: stubComponent('TrustBar') }));

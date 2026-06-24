@@ -75,6 +75,10 @@ If you're considering a full renovation in **Loudoun County, Ashburn, Leesburg, 
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [whole-home remodeling services](/services/remodeling) or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va).
 
+## Also serving the wider Northern Virginia luxury market
+
+Beyond Loudoun, we take on whole-home renovations across Fairfax County and Alexandria — including [McLean](/service-areas/mclean-va), [Great Falls](/service-areas/great-falls-va), [Vienna](/service-areas/vienna-va), [Reston](/service-areas/reston-va), [Old Town Alexandria](/service-areas/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=whole-home) and we'll call inside the window you choose.
+
 Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
 
 *Photography in this article is for design inspiration.*
