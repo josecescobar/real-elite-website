@@ -71,6 +71,10 @@ If you're planning a high-end basement in **Loudoun County, Ashburn, Leesburg, F
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [basement finishing services](/services/basements) or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va).
 
+## Also serving the wider Northern Virginia luxury market
+
+Beyond Loudoun, we build finished lower levels across Fairfax County and Alexandria — including [McLean](/services/basements/mclean-va), [Great Falls](/services/basements/great-falls-va), [Vienna](/services/basements/vienna-va), [Reston](/services/basements/reston-va), [Old Town Alexandria](/services/basements/alexandria-va), and [Middleburg](/services/basements/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=basement) and we'll call inside the window you choose.
+
 Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
 
 *Finished-room photography in this article is for design inspiration; the header photo is a Real Elite basement during the framing stage.*
