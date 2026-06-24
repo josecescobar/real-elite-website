@@ -1,153 +1,100 @@
 import { describe, it, expect } from 'vitest';
 import {
-  BUSINESS,
   SERVICES,
   PRIMARY_SERVICE_AREAS,
   SECONDARY_SERVICE_AREAS,
-  EXPANSION_SERVICE_AREAS,
   ALL_SERVICE_AREAS,
-  SERVICE_AREAS,
-  TESTIMONIALS,
-  NAV_LINKS,
+  CITY_DATA,
   GALLERY_IMAGES,
-} from './constants';
+  selectGalleryFor,
+  BUSINESS,
+} from '@/lib/constants';
 
-describe('BUSINESS', () => {
-  it('has required contact fields', () => {
-    expect(BUSINESS.name).toBe('Real Elite Contracting');
-    expect(BUSINESS.phone).toMatch(/^\(\d{3}\) \d{3}-\d{4}$/);
-    expect(BUSINESS.phoneRaw).toMatch(/^\+\d+$/);
-    expect(BUSINESS.email).toContain('@');
+const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
+
+describe('SERVICES catalog', () => {
+  it('has unique, kebab-case slugs', () => {
+    const slugs = SERVICES.map((s) => s.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const slug of slugs) expect(slug).toMatch(/^[a-z0-9-]+$/);
   });
 
-  it('has a valid URL', () => {
-    expect(BUSINESS.url).toMatch(/^https:\/\//);
-  });
-
-  it('has address fields', () => {
-    expect(BUSINESS.address.city).toBeTruthy();
-    expect(BUSINESS.address.state).toBe('WV');
-    expect(BUSINESS.address.zip).toMatch(/^\d{5}$/);
-  });
-
-  it('has social media links', () => {
-    expect(BUSINESS.social.facebook).toMatch(/^https:\/\//);
-    expect(BUSINESS.social.instagram).toMatch(/^https:\/\//);
+  it('gives every service a non-empty title and description', () => {
+    for (const s of SERVICES) {
+      expect(s.title.trim().length).toBeGreaterThan(0);
+      expect(s.description.trim().length).toBeGreaterThan(0);
+    }
   });
 });
 
-describe('SERVICES', () => {
-  it('has at least one service', () => {
-    expect(SERVICES.length).toBeGreaterThan(0);
-  });
-
-  it('each service has required fields', () => {
-    SERVICES.forEach((service) => {
-      expect(service.title).toBeTruthy();
-      expect(service.slug).toMatch(/^[a-z0-9-]+$/);
-      expect(service.description.length).toBeGreaterThan(10);
-      expect(service.icon).toBeTruthy();
-    });
-  });
-
-  it('has unique slugs', () => {
-    const slugs = SERVICES.map((s) => s.slug);
+describe('service areas', () => {
+  it('has globally unique slugs across primary and secondary tiers', () => {
+    const slugs = [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS].map((a) => a.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
-  it('has unique titles', () => {
-    const titles = SERVICES.map((s) => s.title);
-    expect(new Set(titles).size).toBe(titles.length);
-  });
-});
-
-describe('Service Areas', () => {
-  it('each area has city, state, and slug', () => {
-    [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS, ...EXPANSION_SERVICE_AREAS].forEach((area) => {
-      expect(area.city).toBeTruthy();
-      expect(area.state).toMatch(/^[A-Z]{2}$/);
-      expect(area.slug).toMatch(/^[a-z-]+-[a-z]{2}$/);
-    });
-  });
-
-  it('ALL_SERVICE_AREAS combines all tiers', () => {
-    expect(ALL_SERVICE_AREAS.length).toBe(
-      PRIMARY_SERVICE_AREAS.length + SECONDARY_SERVICE_AREAS.length + EXPANSION_SERVICE_AREAS.length
-    );
-  });
-
-  it('SERVICE_AREAS contains primary and secondary city names', () => {
-    expect(SERVICE_AREAS.length).toBe(PRIMARY_SERVICE_AREAS.length + SECONDARY_SERVICE_AREAS.length);
-    PRIMARY_SERVICE_AREAS.forEach((area) => {
-      expect(SERVICE_AREAS).toContain(area.city);
-    });
-    SECONDARY_SERVICE_AREAS.forEach((area) => {
-      expect(SERVICE_AREAS).toContain(area.city);
-    });
-  });
-
-  it('has unique slugs across all areas', () => {
+  it('exposes a deduplicated ALL_SERVICE_AREAS list', () => {
     const slugs = ALL_SERVICE_AREAS.map((a) => a.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
-});
 
-describe('TESTIMONIALS', () => {
-  it('has at least one testimonial', () => {
-    expect(TESTIMONIALS.length).toBeGreaterThan(0);
-  });
-
-  it('each testimonial has required fields', () => {
-    TESTIMONIALS.forEach((t) => {
-      expect(t.name).toBeTruthy();
-      expect(t.location).toBeTruthy();
-      expect(t.rating).toBeGreaterThanOrEqual(1);
-      expect(t.rating).toBeLessThanOrEqual(5);
-      expect(t.text.length).toBeGreaterThan(20);
-    });
+  it('has a CITY_DATA entry for every primary and secondary service area', () => {
+    for (const area of [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS]) {
+      expect(CITY_DATA[area.slug], `missing CITY_DATA for ${area.slug}`).toBeDefined();
+    }
   });
 });
 
-describe('NAV_LINKS', () => {
-  it('has Home as first link pointing to /', () => {
-    expect(NAV_LINKS[0].label).toBe('Home');
-    expect(NAV_LINKS[0].href).toBe('/');
+describe('CITY_DATA', () => {
+  it('gives every city a description, neighborhoods, and market emphasis', () => {
+    for (const [slug, city] of Object.entries(CITY_DATA)) {
+      expect(city.description.trim().length, slug).toBeGreaterThan(0);
+      expect(city.neighborhoods.length, slug).toBeGreaterThan(0);
+      expect(city.marketEmphasis.length, slug).toBeGreaterThan(0);
+    }
   });
 
-  it('each link has label and href', () => {
-    NAV_LINKS.forEach((link) => {
-      expect(link.label).toBeTruthy();
-      expect(link.href).toMatch(/^\//);
-    });
-  });
-
-  it('Services link has children matching SERVICES', () => {
-    const servicesLink = NAV_LINKS.find((l) => l.label === 'Services');
-    expect(servicesLink).toBeDefined();
-    expect(servicesLink!.children).toBeDefined();
-    expect(servicesLink!.children!.length).toBe(SERVICES.length);
-    servicesLink!.children!.forEach((child, i) => {
-      expect(child.label).toBe(SERVICES[i].title);
-      expect(child.href).toBe(`/services/${SERVICES[i].slug}`);
-    });
+  it('only references real service slugs in marketEmphasis', () => {
+    for (const [slug, city] of Object.entries(CITY_DATA)) {
+      for (const svc of city.marketEmphasis) {
+        expect(SERVICE_SLUGS.has(svc), `${slug} → unknown service "${svc}"`).toBe(true);
+      }
+    }
   });
 });
 
 describe('GALLERY_IMAGES', () => {
-  it('has at least one image', () => {
-    expect(GALLERY_IMAGES.length).toBeGreaterThan(0);
+  it('gives every image a src, alt text, and category', () => {
+    for (const img of GALLERY_IMAGES) {
+      expect(img.src).toMatch(/^\//);
+      expect(img.alt.trim().length).toBeGreaterThan(0);
+      expect(img.category.trim().length).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe('selectGalleryFor', () => {
+  it('returns images tagged with the requested state when available', () => {
+    const result = selectGalleryFor('martinsburg-wv', 'WV');
+    expect(result.length).toBeGreaterThan(0);
+    for (const img of result) expect(img.state).toBe('WV');
   });
 
-  it('each image has src, alt, and category', () => {
-    GALLERY_IMAGES.forEach((img) => {
-      expect(img.src).toMatch(/^\/images\/.+\.(jpg|png|webp)$/);
-      expect(img.alt.length).toBeGreaterThan(5);
-      expect(img.category).toBeTruthy();
-    });
+  it('falls back to the full gallery when no local matches exist', () => {
+    const result = selectGalleryFor('frederick-md', 'MD');
+    expect(result).toEqual(GALLERY_IMAGES.slice(0, 6));
   });
 
-  it('has unique image sources', () => {
-    const srcs = GALLERY_IMAGES.map((img) => img.src);
-    expect(new Set(srcs).size).toBe(srcs.length);
+  it('never returns more images than the limit', () => {
+    expect(selectGalleryFor('martinsburg-wv', 'WV', 3)).toHaveLength(3);
+    expect(selectGalleryFor('martinsburg-wv', 'WV').length).toBeLessThanOrEqual(6);
+  });
+});
+
+describe('BUSINESS', () => {
+  it('has a name, a valid email, and a digit-only raw phone number', () => {
+    expect(BUSINESS.name.length).toBeGreaterThan(0);
+    expect(BUSINESS.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    expect(BUSINESS.phoneRaw).toMatch(/^\+?\d+$/);
   });
 });

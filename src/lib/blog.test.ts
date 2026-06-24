@@ -1,211 +1,163 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import path from 'path';
-import { getAllPosts, getPostBySlug, getRecentPosts, formatDate } from './blog';
+import { describe, it, expect } from 'vitest';
+import {
+  computeReadingTime,
+  extractHeadings,
+  formatDate,
+  getAllPosts,
+  getPostBySlug,
+  getRecentPosts,
+  getRelatedPosts,
+  getPostsByCategorySlug,
+  GUIDE_CATEGORIES,
+} from '@/lib/blog';
 
-const mockReaddirSync = vi.fn();
-const mockReadFileSync = vi.fn();
-const mockExistsSync = vi.fn();
+const VALID_CATEGORY_SLUGS = GUIDE_CATEGORIES.map((c) => c.slug);
 
-vi.mock('fs', () => ({
-  default: {
-    readdirSync: (...args: unknown[]) => mockReaddirSync(...args),
-    readFileSync: (...args: unknown[]) => mockReadFileSync(...args),
-    existsSync: (...args: unknown[]) => mockExistsSync(...args),
-  },
-  readdirSync: (...args: unknown[]) => mockReaddirSync(...args),
-  readFileSync: (...args: unknown[]) => mockReadFileSync(...args),
-  existsSync: (...args: unknown[]) => mockExistsSync(...args),
-}));
-
-vi.mock('gray-matter', () => ({
-  default: (raw: string) => {
-    const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-    if (!match) return { data: {}, content: raw };
-    const data: Record<string, string> = {};
-    match[1].split('\n').forEach((line) => {
-      const [key, ...rest] = line.split(': ');
-      if (key && rest.length) data[key.trim()] = rest.join(': ').replace(/^"|"$/g, '');
-    });
-    return { data, content: match[2] };
-  },
-}));
-
-const makeFrontmatter = (overrides: Record<string, string> = {}) => {
-  const defaults = {
-    title: 'Test Post',
-    date: '2025-01-15',
-    excerpt: 'A test excerpt',
-    featuredImage: '/images/test.jpg',
-    category: 'Roofing',
-    author: 'Test Author',
-  };
-  const merged = { ...defaults, ...overrides };
-  const frontmatter = Object.entries(merged)
-    .map(([k, v]) => `${k}: "${v}"`)
-    .join('\n');
-  return `---\n${frontmatter}\n---\nPost content here`;
-};
-
-describe('getAllPosts', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+describe('computeReadingTime', () => {
+  it('returns at least 1 minute for empty or trivial content', () => {
+    expect(computeReadingTime('')).toBe(1);
+    expect(computeReadingTime('a few words only')).toBe(1);
   });
 
-  it('returns posts sorted by date descending', () => {
-    mockReaddirSync.mockReturnValue(['old-post.md', 'new-post.md']);
-    mockReadFileSync.mockImplementation((filePath: string) => {
-      const name = path.basename(filePath);
-      if (name === 'old-post.md') return makeFrontmatter({ title: 'Old Post', date: '2024-01-01' });
-      return makeFrontmatter({ title: 'New Post', date: '2025-06-01' });
-    });
-
-    const posts = getAllPosts();
-    expect(posts).toHaveLength(2);
-    expect(posts[0].title).toBe('New Post');
-    expect(posts[1].title).toBe('Old Post');
+  it('rounds to whole minutes at ~220 words per minute', () => {
+    expect(computeReadingTime('word '.repeat(220))).toBe(1);
+    expect(computeReadingTime('word '.repeat(660))).toBe(3);
   });
 
-  it('filters to only .md and .mdx files', () => {
-    mockReaddirSync.mockReturnValue(['post.md', 'post2.mdx', 'image.png', 'notes.txt']);
-    mockReadFileSync.mockReturnValue(makeFrontmatter());
+  it('excludes fenced code blocks from the word count', () => {
+    const content = '```\n' + 'code '.repeat(500) + '\n```\n' + 'word '.repeat(220);
+    expect(computeReadingTime(content)).toBe(1);
+  });
+});
 
-    const posts = getAllPosts();
-    expect(posts).toHaveLength(2);
+describe('extractHeadings', () => {
+  it('extracts H2 and H3 headings with slugified ids', () => {
+    const headings = extractHeadings('## Introduction\nbody text\n### The Details');
+    expect(headings).toEqual([
+      { id: 'introduction', text: 'Introduction', level: 2 },
+      { id: 'the-details', text: 'The Details', level: 3 },
+    ]);
   });
 
-  it('extracts slug from filename without extension', () => {
-    mockReaddirSync.mockReturnValue(['my-blog-post.md']);
-    mockReadFileSync.mockReturnValue(makeFrontmatter());
-
-    const posts = getAllPosts();
-    expect(posts[0].slug).toBe('my-blog-post');
-  });
-
-  it('strips .mdx extension for slug', () => {
-    mockReaddirSync.mockReturnValue(['mdx-post.mdx']);
-    mockReadFileSync.mockReturnValue(makeFrontmatter());
-
-    const posts = getAllPosts();
-    expect(posts[0].slug).toBe('mdx-post');
-  });
-
-  it('parses all frontmatter fields correctly', () => {
-    mockReaddirSync.mockReturnValue(['post.md']);
-    mockReadFileSync.mockReturnValue(
-      makeFrontmatter({
-        title: 'My Title',
-        date: '2025-03-10',
-        excerpt: 'My excerpt',
-        featuredImage: '/images/hero.jpg',
-        category: 'Decks',
-        author: 'Jane Doe',
-      })
+  it('ignores headings inside fenced code blocks', () => {
+    const md = ['## Real Heading', 'text', '```', '## Fake Heading', '```', '### After'].join(
+      '\n'
     );
-
-    const posts = getAllPosts();
-    expect(posts[0]).toEqual({
-      slug: 'post',
-      title: 'My Title',
-      date: '2025-03-10',
-      excerpt: 'My excerpt',
-      featuredImage: '/images/hero.jpg',
-      category: 'Decks',
-      author: 'Jane Doe',
-    });
+    const headings = extractHeadings(md);
+    expect(headings.map((h) => h.text)).toEqual(['Real Heading', 'After']);
   });
 
-  it('returns empty array when no posts exist', () => {
-    mockReaddirSync.mockReturnValue([]);
-
-    const posts = getAllPosts();
-    expect(posts).toEqual([]);
-  });
-});
-
-describe('getPostBySlug', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+  it('does not treat H1 as a TOC heading', () => {
+    expect(extractHeadings('# Page Title\n## Section').map((h) => h.text)).toEqual(['Section']);
   });
 
-  it('returns post with content for a valid .md slug', () => {
-    mockExistsSync.mockImplementation((filePath: string) => filePath.endsWith('.md'));
-    mockReadFileSync.mockReturnValue(makeFrontmatter({ title: 'Found Post' }));
-
-    const post = getPostBySlug('my-post');
-    expect(post).not.toBeNull();
-    expect(post!.title).toBe('Found Post');
-    expect(post!.slug).toBe('my-post');
-    expect(post!.content).toContain('Post content here');
+  it('strips punctuation and trailing hashes from heading slugs', () => {
+    expect(extractHeadings('## My Heading, Tested! ##')).toEqual([
+      { id: 'my-heading-tested', text: 'My Heading, Tested!', level: 2 },
+    ]);
   });
 
-  it('falls back to .mdx if .md does not exist', () => {
-    mockExistsSync.mockImplementation((filePath: string) => filePath.endsWith('.mdx'));
-    mockReadFileSync.mockReturnValue(makeFrontmatter({ title: 'MDX Post' }));
-
-    const post = getPostBySlug('mdx-post');
-    expect(post).not.toBeNull();
-    expect(post!.title).toBe('MDX Post');
-  });
-
-  it('returns null when slug does not exist', () => {
-    mockExistsSync.mockReturnValue(false);
-
-    const post = getPostBySlug('nonexistent');
-    expect(post).toBeNull();
-  });
-});
-
-describe('getRecentPosts', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-    mockReaddirSync.mockReturnValue(['post-a.md', 'post-b.md', 'post-c.md', 'post-d.md']);
-    mockReadFileSync.mockImplementation((filePath: string) => {
-      const name = path.basename(filePath, '.md');
-      const dates: Record<string, string> = {
-        'post-a': '2025-01-01',
-        'post-b': '2025-02-01',
-        'post-c': '2025-03-01',
-        'post-d': '2025-04-01',
-      };
-      return makeFrontmatter({ title: name, date: dates[name] || '2025-01-01' });
-    });
-  });
-
-  it('defaults to 3 posts', () => {
-    const posts = getRecentPosts();
-    expect(posts).toHaveLength(3);
-  });
-
-  it('returns requested number of posts', () => {
-    const posts = getRecentPosts(2);
-    expect(posts).toHaveLength(2);
-  });
-
-  it('returns most recent posts first', () => {
-    const posts = getRecentPosts(2);
-    expect(posts[0].slug).toBe('post-d');
-    expect(posts[1].slug).toBe('post-c');
-  });
-
-  it('returns all posts when count exceeds total', () => {
-    const posts = getRecentPosts(10);
-    expect(posts).toHaveLength(4);
+  it('returns an empty array when there are no headings', () => {
+    expect(extractHeadings('just a paragraph\nand another line')).toEqual([]);
   });
 });
 
 describe('formatDate', () => {
-  it('formats a standard date string', () => {
-    const result = formatDate('2025-03-10');
-    expect(result).toBe('March 10, 2025');
+  it('formats an ISO date as a long en-US date in UTC', () => {
+    expect(formatDate('2026-05-19')).toBe('May 19, 2026');
+  });
+});
+
+describe('GUIDE_CATEGORIES', () => {
+  it('has unique, non-empty category slugs', () => {
+    const slugs = GUIDE_CATEGORIES.map((c) => c.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const c of GUIDE_CATEGORIES) {
+      expect(c.slug).toMatch(/^[a-z0-9-]+$/);
+      expect(c.name.length).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe('getAllPosts', () => {
+  const posts = getAllPosts();
+
+  it('loads every blog post from content/blog', () => {
+    expect(posts.length).toBeGreaterThan(0);
   });
 
-  it('formats a date with day padding', () => {
-    const result = formatDate('2025-01-01');
-    expect(result).toBe('January 1, 2025');
+  it('returns posts sorted newest-first by date', () => {
+    const times = posts.map((p) => new Date(p.date).getTime());
+    const sorted = [...times].sort((a, b) => b - a);
+    expect(times).toEqual(sorted);
   });
 
-  it('handles different months correctly', () => {
-    expect(formatDate('2024-12-25')).toBe('December 25, 2024');
-    expect(formatDate('2025-07-04')).toBe('July 4, 2025');
+  it('gives every post the required metadata fields', () => {
+    for (const p of posts) {
+      expect(p.slug.length).toBeGreaterThan(0);
+      expect(p.title.length).toBeGreaterThan(0);
+      expect(p.date.length).toBeGreaterThan(0);
+      expect(p.excerpt.length).toBeGreaterThan(0);
+      expect(p.author.length).toBeGreaterThan(0);
+      expect(p.readingTimeMinutes).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it('normalizes every post category to a known guide-category slug', () => {
+    for (const p of posts) {
+      expect(VALID_CATEGORY_SLUGS).toContain(p.categorySlug);
+    }
+  });
+
+  it('has a unique slug for every post', () => {
+    const slugs = posts.map((p) => p.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+  });
+});
+
+describe('getPostBySlug', () => {
+  it('returns a post with body content for a known slug', () => {
+    const slug = getAllPosts()[0].slug;
+    const post = getPostBySlug(slug);
+    expect(post).not.toBeNull();
+    expect(post?.slug).toBe(slug);
+    expect((post?.content.length ?? 0)).toBeGreaterThan(0);
+  });
+
+  it('returns null for an unknown slug', () => {
+    expect(getPostBySlug('this-post-does-not-exist')).toBeNull();
+  });
+});
+
+describe('getRecentPosts', () => {
+  it('returns the 3 most recent posts by default', () => {
+    expect(getRecentPosts()).toEqual(getAllPosts().slice(0, 3));
+  });
+
+  it('respects an explicit count', () => {
+    expect(getRecentPosts(2)).toHaveLength(2);
+  });
+});
+
+describe('getPostsByCategorySlug', () => {
+  it('returns only posts in the requested category', () => {
+    for (const slug of VALID_CATEGORY_SLUGS) {
+      for (const p of getPostsByCategorySlug(slug)) {
+        expect(p.categorySlug).toBe(slug);
+      }
+    }
+  });
+});
+
+describe('getRelatedPosts', () => {
+  it('returns up to `count` posts and never includes the source post', () => {
+    const slug = getAllPosts()[0].slug;
+    const related = getRelatedPosts(slug, 3);
+    expect(related.length).toBeLessThanOrEqual(3);
+    expect(related.some((p) => p.slug === slug)).toBe(false);
+  });
+
+  it('falls back to recent posts for an unknown slug', () => {
+    expect(getRelatedPosts('unknown-slug', 3)).toEqual(getAllPosts().slice(0, 3));
   });
 });

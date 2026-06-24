@@ -21,17 +21,18 @@ vi.mock('lucide-react', () => ({
   ChevronDown: () => <span data-testid="chevron-icon">▼</span>,
 }));
 
+vi.mock('@/lib/analytics', () => ({
+  trackEvent: vi.fn(),
+}));
+
+vi.mock('./MegaMenu', () => ({
+  default: () => <div data-testid="mega-menu">MegaMenu</div>,
+}));
+
 vi.mock('@/lib/constants', () => ({
   NAV_LINKS: [
     { label: 'Home', href: '/' },
-    {
-      label: 'Services',
-      href: '/services',
-      children: [
-        { label: 'Roofing', href: '/services/roofing' },
-        { label: 'Siding', href: '/services/siding' },
-      ],
-    },
+    { label: 'Services', href: '/services' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],
@@ -39,6 +40,15 @@ vi.mock('@/lib/constants', () => ({
     phone: '(681) 534-5515',
     phoneRaw: '+16815345515',
   },
+  SERVICES_MEGA_MENU: [
+    {
+      heading: 'Exteriors',
+      items: [
+        { label: 'Roofing', href: '/services/roofing', description: 'Roof work' },
+        { label: 'Siding', href: '/services/siding', description: 'Siding work' },
+      ],
+    },
+  ],
 }));
 
 describe('Header', () => {
@@ -56,26 +66,24 @@ describe('Header', () => {
     expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute('href', '/contact');
   });
 
-  it('renders phone call button', () => {
+  it('renders phone call link', () => {
     render(<Header />);
     const callLinks = screen.getAllByRole('link', { name: /call|534-5515/i });
     expect(callLinks.length).toBeGreaterThan(0);
     expect(callLinks[0]).toHaveAttribute('href', 'tel:+16815345515');
   });
 
-  it('renders Book Free Estimate button', () => {
+  it('renders Free Estimate button', () => {
     render(<Header />);
-    const estimateLinks = screen.getAllByRole('link', { name: /book free estimate/i });
+    const estimateLinks = screen.getAllByRole('link', { name: /free estimate/i });
     expect(estimateLinks.length).toBeGreaterThan(0);
   });
 
   describe('mobile menu', () => {
     it('does not show mobile menu by default', () => {
       render(<Header />);
-      // Mobile nav links are only rendered when menu is open
-      // The desktop nav has the links, but mobile menu adds duplicates
-      // Check that toggle button shows menu icon
       expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
+      expect(screen.getByLabelText(/toggle menu/i)).toHaveAttribute('aria-expanded', 'false');
     });
 
     it('opens mobile menu when toggle button is clicked', async () => {
@@ -84,19 +92,17 @@ describe('Header', () => {
 
       await user.click(screen.getByLabelText(/toggle menu/i));
 
-      // After opening, the X icon should appear
       expect(screen.getByTestId('x-icon')).toBeInTheDocument();
+      expect(screen.getByLabelText(/toggle menu/i)).toHaveAttribute('aria-expanded', 'true');
     });
 
     it('closes mobile menu when toggle button is clicked again', async () => {
       const user = userEvent.setup();
       render(<Header />);
 
-      // Open
       await user.click(screen.getByLabelText(/toggle menu/i));
       expect(screen.getByTestId('x-icon')).toBeInTheDocument();
 
-      // Close
       await user.click(screen.getByLabelText(/toggle menu/i));
       expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
     });
@@ -108,7 +114,6 @@ describe('Header', () => {
       await user.click(screen.getByLabelText(/toggle menu/i));
       expect(screen.getByTestId('x-icon')).toBeInTheDocument();
 
-      // Click About link in mobile menu (get all About links, mobile is the last one)
       const aboutLinks = screen.getAllByRole('link', { name: /about/i });
       await user.click(aboutLinks[aboutLinks.length - 1]);
 
@@ -119,21 +124,11 @@ describe('Header', () => {
       const user = userEvent.setup();
       render(<Header />);
 
-      // Open mobile menu
       await user.click(screen.getByLabelText(/toggle menu/i));
+      await user.click(screen.getByLabelText(/toggle services menu/i));
 
-      // Find and click the chevron button to expand services
-      const chevronButtons = screen.getAllByTestId('chevron-icon');
-      // The mobile chevron is wrapped in a button
-      const expandButton = chevronButtons.find(
-        (el) => el.closest('button') && !el.closest('nav.hidden')
-      );
-      expect(expandButton).toBeTruthy();
-      await user.click(expandButton!.closest('button')!);
-
-      // Now service children should be visible in mobile menu
-      const roofingLinks = screen.getAllByRole('link', { name: /roofing/i });
-      expect(roofingLinks.length).toBeGreaterThanOrEqual(2); // desktop dropdown + mobile expanded
+      expect(screen.getByRole('link', { name: /roofing/i })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: /siding/i })).toBeInTheDocument();
     });
   });
 });

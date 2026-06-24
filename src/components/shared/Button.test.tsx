@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button } from './Button';
 
-// Mock next/link to render a plain anchor
 vi.mock('next/link', () => ({
   default: ({ href, children, ...props }: { href: string; children: React.ReactNode; [key: string]: unknown }) => (
     <a href={href} {...props}>{children}</a>
@@ -52,13 +51,13 @@ describe('Button', () => {
     it('applies primary variant styles by default', () => {
       render(<Button>Primary</Button>);
       const el = screen.getByRole('button');
-      expect(el.className).toContain('bg-[#c0392b]');
+      expect(el.className).toContain('bg-brand-red');
     });
 
     it('applies secondary variant styles', () => {
       render(<Button variant="secondary">Secondary</Button>);
       const el = screen.getByRole('button');
-      expect(el.className).toContain('bg-[#1a2744]');
+      expect(el.className).toContain('bg-navy-800');
     });
 
     it('applies outline variant styles', () => {
@@ -66,6 +65,13 @@ describe('Button', () => {
       const el = screen.getByRole('button');
       expect(el.className).toContain('border-2');
       expect(el.className).toContain('bg-transparent');
+    });
+
+    it('applies ghost variant styles', () => {
+      render(<Button variant="ghost">Ghost</Button>);
+      const el = screen.getByRole('button');
+      expect(el.className).toContain('bg-transparent');
+      expect(el.className).toContain('hover:bg-navy-50');
     });
   });
 

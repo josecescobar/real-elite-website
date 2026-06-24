@@ -1,53 +1,104 @@
+'use client';
+
 import Image from 'next/image';
 import { BUSINESS } from '@/lib/constants';
-
-const CALENDLY_URL = 'https://calendly.com/realelitecontracting-info/free-estimate-call';
+import { trackEvent } from '@/lib/analytics';
 
 export const Hero = () => {
   return (
-    <section className="px-6 pt-20 pb-24 md:pt-28 md:pb-32 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="max-w-3xl">
-          <Image
-            src="/images/logo.png"
-            alt="Real Elite Contracting Logo"
-            width={140}
-            height={140}
-            className="w-32 h-32 md:w-36 md:h-36 mb-8"
-          />
+    <section className="relative isolate overflow-hidden bg-navy-900 text-white">
+      {/* Full-bleed hero photography */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/images/inspiration/home-exterior-hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Editorial navy overlay */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 gradient-navy-overlay"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-navy-900/40"
+        />
+      </div>
 
-          <div className="inline-flex items-center gap-2 bg-[#1a2744]/5 rounded-full px-4 py-1.5 mb-8">
-            <span className="text-[#c0392b] text-xs">★</span>
-            <span className="text-[#1a2744] text-xs font-semibold tracking-wide">
-              VETERAN-OWNED &amp; OPERATED
-            </span>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-20 pb-28 md:pt-28 md:pb-36 lg:pt-32 lg:pb-44">
+        <div className="max-w-3xl">
+          {/* Eyebrows — stacked trust badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5">
+              <span className="text-brand-red-light text-xs">★</span>
+              <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                Veteran-Owned &amp; Operated
+              </span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5">
+              <span className="text-brand-red-light text-xs">●</span>
+              <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                60-Second AI Roof Quote
+              </span>
+            </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-black text-[#1a2744] leading-[0.95] tracking-tight">
-            Eastern Panhandle&apos;s Best Builder.
+          {/* Headline */}
+          <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold leading-[0.95] tracking-tight text-white">
+            Built With
+            <br />
+            <span className="text-brand-red">Military Precision.</span>
           </h1>
 
-          <p className="text-gray-500 text-lg mt-8 max-w-md leading-relaxed">
-            Roofing. Siding. Decks. Remodeling. Additions. Licensed, insured, and backed by
-            200+ completed projects.
+          {/* Sub */}
+          <p className="text-charcoal-200 text-lg md:text-xl mt-8 max-w-2xl leading-relaxed">
+            Premium remodeling and exterior craftsmanship across the WV–MD–VA region.
+            Veteran-owned. AI-instant roof quotes. Communication-first. Quality you don&apos;t
+            have to second-guess.
           </p>
 
+          {/* CTAs */}
           <div className="flex flex-wrap gap-4 mt-10">
             <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#c0392b] text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-[#a93226] transition-colors shadow-lg shadow-[#c0392b]/20"
+              href="#estimate"
+              onClick={() => trackEvent('estimate_cta_click', { location: 'hero' })}
+              className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red"
             >
-              Book Free Estimate →
+              Get My Free Estimate →
+            </a>
+            <a
+              href="/instant-roof-quote"
+              onClick={() => trackEvent('roof_quote_cta_click', { location: 'hero' })}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
+            >
+              Instant Roof Quote →
             </a>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
-              className="bg-[#1a2744] text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-[#0f1b2d] transition-colors"
+              onClick={() => trackEvent('phone_click', { location: 'hero' })}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
             >
               Call {BUSINESS.phone}
             </a>
           </div>
+
+          {/* Trust strip */}
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
+            <li>Licensed WV · MD · VA</li>
+            <li aria-hidden="true" className="text-white/30">·</li>
+            <li>Insured</li>
+            <li aria-hidden="true" className="text-white/30">·</li>
+            <li>
+              <a href="/veterans" className="hover:text-brand-red transition-colors">
+                Veteran-Owned
+              </a>
+            </li>
+            <li aria-hidden="true" className="text-white/30">·</li>
+            <li className="text-brand-red-light">Top-Rated on Google</li>
+          </ul>
         </div>
       </div>
     </section>

@@ -5,9 +5,18 @@ import GalleryGrid from './GalleryGrid';
 
 vi.mock('next/image', () => ({
   default: ({ src, alt, ...props }: { src: string; alt: string; [key: string]: unknown }) => (
-    // eslint-disable-next-line @next/next/no-img-element
     <img src={src} alt={alt} {...props} />
   ),
+}));
+
+vi.mock('lucide-react', () => ({
+  ArrowLeft: () => <span>←</span>,
+  ArrowRight: () => <span>→</span>,
+  X: () => <span>×</span>,
+}));
+
+vi.mock('./Container', () => ({
+  default: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
 vi.mock('@/lib/constants', () => ({
@@ -74,17 +83,19 @@ describe('GalleryGrid', () => {
     await user.click(screen.getByRole('button', { name: 'Exterior' }));
 
     expect(screen.queryAllByRole('img')).toHaveLength(0);
-    expect(screen.getByText(/no projects found/i)).toBeInTheDocument();
+    expect(screen.getByText(/no projects in this category/i)).toBeInTheDocument();
   });
 
-  it('highlights the active category button', async () => {
+  it('sets aria-pressed on the active category button', async () => {
     const user = userEvent.setup();
     render(<GalleryGrid />);
 
-    const roofingBtn = screen.getByRole('button', { name: 'Roofing' });
-    await user.click(roofingBtn);
+    expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Roofing' })).toHaveAttribute('aria-pressed', 'false');
 
-    expect(roofingBtn.className).toContain('bg-gold-500');
-    expect(screen.getByRole('button', { name: 'All' }).className).not.toContain('bg-gold-500');
+    await user.click(screen.getByRole('button', { name: 'Roofing' }));
+
+    expect(screen.getByRole('button', { name: 'Roofing' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'false');
   });
 });

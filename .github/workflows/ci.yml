@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+        env:
+          # Skip the image-optimization prebuild in CI — images are already
+          # optimized in the repo, and sharp re-encoding isn't needed to
+          # validate the build.
+          SKIP_IMAGE_OPTIMIZE: '1'
