@@ -28,6 +28,14 @@ export type ServiceData = {
   metaDescription: string;
   keywords: string[];
 
+  /**
+   * Optional concise "answer block" shown at the top of the service page —
+   * the lift-able summary for AI Overviews / assistants (GEO/AEO) and the
+   * scannable gist for visitors. When absent, the template falls back to
+   * `metaDescription`, so every service ships an answer block without new copy.
+   */
+  answer?: string;
+
   hero: {
     eyebrow?: string;
     heading: string;

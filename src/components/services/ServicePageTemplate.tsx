@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import AnswerBlock from './AnswerBlock';
 import ScopeChecklist from './ScopeChecklist';
 import InvestmentRanges from './InvestmentRanges';
 import StickyEstimateRail from './StickyEstimateRail';
@@ -115,6 +116,10 @@ export default function ServicePageTemplate({ data }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Main column */}
             <div className="lg:col-span-7 xl:col-span-8 space-y-16">
+              {/* Answer block — concise, citable summary (GEO/AEO). Falls back
+                  to metaDescription when a bespoke answer isn't authored. */}
+              <AnswerBlock text={data.answer ?? data.metaDescription} />
+
               {/* Overview */}
               <div>
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
