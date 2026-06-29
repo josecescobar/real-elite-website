@@ -12,8 +12,10 @@
  * lead from reaching the inbox.
  */
 
-const UPSTASH_URL = process.env.UPSTASH_REDIS_REST_URL;
-const UPSTASH_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+import { env } from './env';
+
+const UPSTASH_URL = env.upstashRedisUrl();
+const UPSTASH_TOKEN = env.upstashRedisToken();
 
 export type RateLimitVerdict = { allowed: boolean; retryAfter: number };
 

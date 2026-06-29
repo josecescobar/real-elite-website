@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from 'crypto';
+import { env } from './env';
 
 /**
  * Twilio helpers shared by the voice/SMS webhooks.
@@ -52,7 +53,7 @@ export function validateTwilioSignature(opts: {
  * overrides header reconstruction when set (most reliable behind proxies).
  */
 export function webhookUrl(request: Request, pathname: string): string {
-  const base = process.env.TWILIO_WEBHOOK_BASE_URL;
+  const base = env.twilioWebhookBaseUrl();
   if (base) return `${base.replace(/\/$/, '')}${pathname}`;
   const host =
     request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
@@ -65,9 +66,9 @@ export function webhookUrl(request: Request, pathname: string): string {
  * TWILIO_FROM_NUMBER from the environment.
  */
 export async function sendSms(to: string, body: string): Promise<boolean> {
-  const sid = process.env.TWILIO_ACCOUNT_SID;
-  const token = process.env.TWILIO_AUTH_TOKEN;
-  const from = process.env.TWILIO_FROM_NUMBER;
+  const sid = env.twilioAccountSid();
+  const token = env.twilioAuthToken();
+  const from = env.twilioFromNumber();
   if (!sid || !token || !from) return false;
 
   try {

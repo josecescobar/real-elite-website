@@ -1,18 +1,19 @@
 import { NextResponse } from 'next/server';
 import { BUSINESS } from '@/lib/constants';
+import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TO_EMAIL = process.env.ESTIMATE_TO_EMAIL || 'info@realelitecontracting.com';
+const RESEND_API_KEY = env.resendApiKey();
+const TO_EMAIL = env.estimateToEmail() || 'info@realelitecontracting.com';
 
 // Speed-to-lead: Twilio SMS notification to the owner the second a
 // qualified inquiry lands. All four vars must be set or the SMS step
 // is silently skipped (the form still works on email alone). Setup
 // guide: docs/SPEED_TO_LEAD_SETUP.md
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const TWILIO_FROM_NUMBER = process.env.TWILIO_FROM_NUMBER;
-const TWILIO_TO_NUMBER = process.env.TWILIO_TO_NUMBER;
+const TWILIO_ACCOUNT_SID = env.twilioAccountSid();
+const TWILIO_AUTH_TOKEN = env.twilioAuthToken();
+const TWILIO_FROM_NUMBER = env.twilioFromNumber();
+const TWILIO_TO_NUMBER = env.twilioToNumber();
 
 const MAX = {
   fullName: 100,
