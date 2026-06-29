@@ -6,19 +6,15 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import StickyMobileCTA from '@/components/layout/StickyMobileCTA';
 import JsonLd from '@/components/seo/JsonLd';
-import { BUSINESS } from '@/lib/constants';
+import { BUSINESS, GENERAL_CONTRACTOR_AREA_SERVED } from '@/lib/constants';
+import { env } from '@/lib/env';
 import { aggregateRatingSchema } from '@/lib/social-proof';
 
 // GA4 loads only in the Vercel production environment so local dev and
-// preview deploys don't pollute the real analytics. NEXT_PUBLIC_GA_ID
-// overrides the default ID if set; production keeps working with no env
-// change required.
-const GA_MEASUREMENT_ID =
-  process.env.VERCEL_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_GA_ID ?? 'G-W9QH965H3Y'
-    : process.env.NEXT_PUBLIC_GA_ID;
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
-const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+// preview deploys don't pollute the real analytics (gating lives in env.ts).
+const GA_MEASUREMENT_ID = env.gaMeasurementId();
+const GTM_ID = env.gtmId();
+const CLARITY_ID = env.clarityId();
 
 const saira = Saira_Condensed({
   subsets: ['latin'],
@@ -180,25 +176,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               postalCode: '25401',
               addressCountry: 'US',
             },
-            areaServed: [
-              'Martinsburg, WV',
-              'Inwood, WV',
-              'Hedgesville, WV',
-              'Charles Town, WV',
-              'Ranson, WV',
-              'Kearneysville, WV',
-              'Shepherdstown, WV',
-              'Harpers Ferry, WV',
-              'Berkeley Springs, WV',
-              'Spring Mills, WV',
-              'Falling Waters, WV',
-              'Winchester, VA',
-              'Leesburg, VA',
-              'Ashburn, VA',
-              'Loudoun County, VA',
-              'Hagerstown, MD',
-              'Frederick, MD',
-            ],
+            areaServed: GENERAL_CONTRACTOR_AREA_SERVED,
             priceRange: '$$$',
             knowsAbout: [
               'Bathroom Remodeling',

@@ -448,6 +448,59 @@ export const SERVICE_AREAS = [
   ...SECONDARY_SERVICE_AREAS.map((a) => a.city),
 ] as const;
 
+/** Format an area record as the `"City, ST"` label used in JSON-LD areaServed. */
+export const formatAreaLabel = (a: { city: string; state: string }): string =>
+  `${a.city}, ${a.state}`;
+
+/**
+ * `areaServed` lists for JSON-LD, centralized here so the served-area claim
+ * lives in one place instead of being hand-typed inside component files.
+ *
+ * The two lists are INTENTIONALLY distinct and are NOT merged:
+ *  - GENERAL_CONTRACTOR_AREA_SERVED advertises the full home-market footprint
+ *    on the site-wide Organization/GeneralContractor schema, including small
+ *    Eastern Panhandle communities (Kearneysville, Harpers Ferry) that don't
+ *    have their own pages.
+ *  - SERVICE_PAGE_AREA_SERVED is the curated tri-state highlight used as the
+ *    default `areaServed` on per-service Service schema when a service has no
+ *    narrower `areaScope`.
+ * Forcing them into one derived list would change the served-area set each
+ * schema reports, so they stay separate by design. Edit these arrays to change
+ * what the site claims to serve.
+ */
+export const GENERAL_CONTRACTOR_AREA_SERVED: string[] = [
+  'Martinsburg, WV',
+  'Inwood, WV',
+  'Hedgesville, WV',
+  'Charles Town, WV',
+  'Ranson, WV',
+  'Kearneysville, WV',
+  'Shepherdstown, WV',
+  'Harpers Ferry, WV',
+  'Berkeley Springs, WV',
+  'Spring Mills, WV',
+  'Falling Waters, WV',
+  'Winchester, VA',
+  'Leesburg, VA',
+  'Ashburn, VA',
+  'Loudoun County, VA',
+  'Hagerstown, MD',
+  'Frederick, MD',
+];
+
+export const SERVICE_PAGE_AREA_SERVED: string[] = [
+  'Martinsburg, WV',
+  'Charles Town, WV',
+  'Shepherdstown, WV',
+  'Inwood, WV',
+  'Frederick, MD',
+  'Hagerstown, MD',
+  'Winchester, VA',
+  'Leesburg, VA',
+  'Ashburn, VA',
+  'Loudoun County, VA',
+];
+
 /**
  * Luxury market city slugs. Pages for these cities swap the standard
  * estimate rail for the dedicated /design-consultation conversion path,

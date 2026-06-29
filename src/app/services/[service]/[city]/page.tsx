@@ -17,6 +17,7 @@ import InvestmentRanges from '@/components/services/InvestmentRanges';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
+import { buildBreadcrumbSchema } from '@/lib/seo';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -810,16 +811,12 @@ export default async function ServiceCityPage({
     url: `${BUSINESS.url}/services/${service}/${city}`,
   };
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: BUSINESS.url },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: `${BUSINESS.url}/services` },
-      { '@type': 'ListItem', position: 3, name: serviceData.title, item: `${BUSINESS.url}/services/${service}` },
-      { '@type': 'ListItem', position: 4, name: `${cityData.city}, ${cityData.state}`, item: `${BUSINESS.url}/services/${service}/${city}` },
-    ],
-  };
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', item: BUSINESS.url },
+    { name: 'Services', item: `${BUSINESS.url}/services` },
+    { name: serviceData.title, item: `${BUSINESS.url}/services/${service}` },
+    { name: `${cityData.city}, ${cityData.state}`, item: `${BUSINESS.url}/services/${service}/${city}` },
+  ]);
 
   // Cross-link rails — derived from what's actually published in CONTENT.
   const publishedOtherCities = new Set(citiesForService(serviceData.slug));

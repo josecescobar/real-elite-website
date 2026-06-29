@@ -10,6 +10,7 @@ import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
+import { buildBreadcrumbSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: `Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`,
@@ -62,14 +63,10 @@ const HUB_FAQS = [
 ];
 
 export default function PavingHubPage() {
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: BUSINESS.url },
-      { '@type': 'ListItem', position: 2, name: 'Paving', item: `${BUSINESS.url}/paving` },
-    ],
-  };
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', item: BUSINESS.url },
+    { name: 'Paving', item: `${BUSINESS.url}/paving` },
+  ]);
 
   return (
     <>

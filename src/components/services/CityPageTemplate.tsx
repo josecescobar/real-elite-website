@@ -21,6 +21,7 @@ import {
 } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import { getRecentPosts } from '@/lib/blog';
+import { buildBreadcrumbSchema } from '@/lib/seo';
 
 const FEATURED_DEEP_LINK_SLUGS = new Set(['roofing', 'decks', 'remodeling', 'siding']);
 
@@ -80,15 +81,11 @@ export default function CityPageTemplate({ city, data }: Props) {
     },
   ];
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: BUSINESS.url },
-      { '@type': 'ListItem', position: 2, name: 'Service Areas', item: `${BUSINESS.url}/service-areas` },
-      { '@type': 'ListItem', position: 3, name: `${city.city}, ${city.state}`, item: url },
-    ],
-  };
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', item: BUSINESS.url },
+    { name: 'Service Areas', item: `${BUSINESS.url}/service-areas` },
+    { name: `${city.city}, ${city.state}`, item: url },
+  ]);
 
   // Per the plan, no per-market LocalBusiness — the global
   // GeneralContractor in layout.tsx carries areaServed for every city
@@ -145,7 +142,7 @@ export default function CityPageTemplate({ city, data }: Props) {
           <div className="flex flex-wrap gap-4 mt-10">
             <a
               href="#estimate"
-              className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red"
+              className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
             >
               Get My Free Estimate →
             </a>
