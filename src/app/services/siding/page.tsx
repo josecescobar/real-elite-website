@@ -1,23 +1,16 @@
 import type { Metadata } from 'next';
-import { BUSINESS } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 import { SERVICE_DATA } from '@/lib/services-data';
 import ServicePageTemplate from '@/components/services/ServicePageTemplate';
 
 const data = SERVICE_DATA.siding;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: data.metaTitle,
   description: data.metaDescription,
+  path: `/services/${data.slug}`,
   keywords: data.keywords,
-  alternates: { canonical: `${BUSINESS.url}/services/${data.slug}` },
-  openGraph: {
-    title: data.metaTitle,
-    description: data.metaDescription,
-    url: `${BUSINESS.url}/services/${data.slug}`,
-    type: 'website',
-    images: [{ url: `${BUSINESS.url}/images/og-image.jpg`, width: 1200, height: 630 }],
-  },
-};
+});
 
 export default function SidingPage() {
   return <ServicePageTemplate data={data} />;

@@ -68,7 +68,7 @@ export default function LuxuryConsultationRail({ initialProjectType }: Props) {
 
         <Link
           href={consultationHref}
-          className="block w-full text-center bg-brand-red text-white px-6 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red"
+          className="block w-full text-center bg-brand-red text-white px-6 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
         >
           Request a Call →
         </Link>

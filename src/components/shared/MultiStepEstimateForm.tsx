@@ -548,7 +548,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+            className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-ring"
           >
             {isSubmitting ? 'Sending…' : 'Get My Free Estimate'}
             {!isSubmitting && <ArrowRight className="w-4 h-4" />}

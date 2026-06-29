@@ -13,7 +13,8 @@ import ServiceFAQ from './ServiceFAQ';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import JsonLd from '@/components/seo/JsonLd';
 import type { ServiceData } from '@/lib/services-data';
-import { BUSINESS } from '@/lib/constants';
+import { BUSINESS, SERVICE_PAGE_AREA_SERVED } from '@/lib/constants';
+import { buildBreadcrumbSchema } from '@/lib/seo';
 
 type Props = {
   data: ServiceData;
@@ -30,9 +31,16 @@ export default function ServicePageTemplate({ data }: Props) {
     })),
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', item: BUSINESS.url },
+    { name: 'Services', item: `${BUSINESS.url}/services` },
+    { name: data.title, item: `${BUSINESS.url}/services/${data.slug}` },
+  ]);
+
   return (
     <>
-      {/* JSON-LD: per-service Service + FAQPage */}
+      {/* JSON-LD: per-service Breadcrumb + Service + FAQPage */}
+      <JsonLd schema={breadcrumbSchema} />
       <ServiceSchema
         serviceType={data.serviceType}
         serviceTitle={data.title}
@@ -41,18 +49,7 @@ export default function ServicePageTemplate({ data }: Props) {
         areaServed={
           data.areaScope
             ? data.areaScope.cities.map((c) => `${c.city}, ${c.state}`)
-            : [
-                'Martinsburg, WV',
-                'Charles Town, WV',
-                'Shepherdstown, WV',
-                'Inwood, WV',
-                'Frederick, MD',
-                'Hagerstown, MD',
-                'Winchester, VA',
-                'Leesburg, VA',
-                'Ashburn, VA',
-                'Loudoun County, VA',
-              ]
+            : SERVICE_PAGE_AREA_SERVED
         }
       />
       <JsonLd schema={faqSchema} />
@@ -97,7 +94,7 @@ export default function ServicePageTemplate({ data }: Props) {
             <div className="flex flex-wrap gap-4 mt-8">
               <a
                 href="#estimate"
-                className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red"
+                className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
               >
                 Get My Free Estimate →
               </a>

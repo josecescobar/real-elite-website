@@ -22,7 +22,7 @@ export default function TrustBadges({ className = '' }: { className?: string }) 
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackEvent('trust_badge_click', { badge: badge.name })}
-          className="group inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-semibold text-navy-800 hover:border-brand-red hover:text-brand-red transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+          className="group inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-semibold text-navy-800 hover:border-brand-red hover:text-brand-red transition-colors focus-ring"
         >
           <ShieldCheck className="w-4 h-4 text-brand-red" aria-hidden="true" />
           {badge.label}

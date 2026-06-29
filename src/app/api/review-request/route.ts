@@ -1,6 +1,7 @@
 import { timingSafeEqual, createHash } from 'crypto';
 import { NextResponse } from 'next/server';
 import { BUSINESS } from '@/lib/constants';
+import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { buildReviewMessage, toE164 } from '@/lib/review-request';
 
@@ -23,11 +24,11 @@ import { buildReviewMessage, toE164 } from '@/lib/review-request';
  * a direct write-review URL (https://search.google.com/local/writereview?placeid=…).
  */
 
-const ADMIN_TOOLS_KEY = process.env.ADMIN_TOOLS_KEY;
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const TWILIO_FROM_NUMBER = process.env.TWILIO_FROM_NUMBER;
-const REVIEW_LINK = process.env.GOOGLE_REVIEW_LINK || BUSINESS.social.google;
+const ADMIN_TOOLS_KEY = env.adminToolsKey();
+const TWILIO_ACCOUNT_SID = env.twilioAccountSid();
+const TWILIO_AUTH_TOKEN = env.twilioAuthToken();
+const TWILIO_FROM_NUMBER = env.twilioFromNumber();
+const REVIEW_LINK = env.googleReviewLink() || BUSINESS.social.google;
 
 const RATE_LIMIT = { max: 30, windowMs: 10 * 60 * 1000 };
 

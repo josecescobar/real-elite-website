@@ -115,6 +115,22 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   letter-spacing: -0.01em;
 }
 
+/* ---------- Focus-ring tokens ----------
+   Shared keyboard-focus rings so the same long utility chain isn't retyped
+   inline on every interactive element. Each class @applies the EXACT set of
+   utilities it replaced, so emitted CSS — and the visible focus ring — is
+   unchanged; this is pure de-duplication.
+     .focus-ring         → brand-red ring on light surfaces
+     .focus-ring-on-navy → brand-red ring with a navy-900 offset on dark surfaces
+   Other one-off ring variants (navy-400, white/40, navy-800 offset) remain
+   inline for now; fold them in here as they recur. */
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red;
+}
+.focus-ring-on-navy {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red;
+}
+
 /* ---------- Long-form prose (blog/guides) ---------- */
 .prose-editorial {
   font-family: var(--font-body);

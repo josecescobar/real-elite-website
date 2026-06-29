@@ -9,6 +9,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 
 import { BUSINESS } from '@/lib/constants';
+import { buildBreadcrumbSchema } from '@/lib/seo';
 import {
   PAVING_ICONS,
   PAVING_SERVICES,
@@ -31,16 +32,12 @@ export default function PavingLocationTemplate({ location }: Props) {
     .map((slug) => getPavingLocation(slug))
     .filter((l): l is PavingLocation => Boolean(l));
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: BUSINESS.url },
-      { '@type': 'ListItem', position: 2, name: 'Paving', item: `${BUSINESS.url}/paving` },
-      { '@type': 'ListItem', position: 3, name: 'Locations', item: `${BUSINESS.url}/paving` },
-      { '@type': 'ListItem', position: 4, name: `${location.city}, ${location.state}`, item: url },
-    ],
-  };
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', item: BUSINESS.url },
+    { name: 'Paving', item: `${BUSINESS.url}/paving` },
+    { name: 'Locations', item: `${BUSINESS.url}/paving` },
+    { name: `${location.city}, ${location.state}`, item: url },
+  ]);
 
   const serviceAreaSchema = {
     '@context': 'https://schema.org',
@@ -98,7 +95,7 @@ export default function PavingLocationTemplate({ location }: Props) {
           <div className="flex flex-wrap gap-4 mt-10">
             <a
               href="#estimate"
-              className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red"
+              className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
             >
               Get My Free Estimate →
             </a>

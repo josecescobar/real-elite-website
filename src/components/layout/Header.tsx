@@ -97,7 +97,7 @@ export default function Header() {
           <a
             href="/contact#estimate"
             onClick={() => trackEvent('estimate_cta_click', { location: 'header_desktop' })}
-            className="bg-brand-red text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-red-dark transition-colors shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+            className="bg-brand-red text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-red-dark transition-colors shadow-md focus-ring"
           >
             Free Estimate
           </a>

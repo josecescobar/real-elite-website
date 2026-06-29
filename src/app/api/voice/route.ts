@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { env } from '@/lib/env';
 import { validateTwilioSignature, webhookUrl, sendSms, twiml, escapeXml } from '@/lib/twilio';
 import { callerTextBack, ownerMissedAlert, wasAnswered } from '@/lib/missed-call';
 
@@ -24,12 +25,12 @@ export const runtime = 'nodejs';
  */
 
 const FORWARD_TO =
-  process.env.MISSED_CALL_FORWARD_NUMBER || process.env.TWILIO_TO_NUMBER;
-const OWNER_ALERT_TO = process.env.TWILIO_TO_NUMBER;
+  env.missedCallForwardNumber() || env.twilioToNumber();
+const OWNER_ALERT_TO = env.twilioToNumber();
 const DIAL_TIMEOUT = 18; // seconds before we treat the call as missed
 
 export async function POST(request: Request) {
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const authToken = env.twilioAuthToken();
   // Refuse unless FULLY wired. The signature check needs the auth token,
   // and both SMS sends — the caller text-back and the owner alert — need
   // the account SID, the from-number, and the owner number. A partial
@@ -37,8 +38,8 @@ export async function POST(request: Request) {
   // promised text-back, which is worse than not answering at all.
   if (
     !authToken ||
-    !process.env.TWILIO_ACCOUNT_SID ||
-    !process.env.TWILIO_FROM_NUMBER ||
+    !env.twilioAccountSid() ||
+    !env.twilioFromNumber() ||
     !OWNER_ALERT_TO ||
     !FORWARD_TO
   ) {
@@ -82,8 +83,9 @@ export async function POST(request: Request) {
   // First leg: inbound call. Greet, then ring the owner's phone.
   const action = escapeXml(webhookUrl(request, '/api/voice'));
   const dialTarget = escapeXml(FORWARD_TO);
-  const callerId = process.env.TWILIO_FROM_NUMBER
-    ? ` callerId="${escapeXml(process.env.TWILIO_FROM_NUMBER)}"`
+  const twilioFromNumber = env.twilioFromNumber();
+  const callerId = twilioFromNumber
+    ? ` callerId="${escapeXml(twilioFromNumber)}"`
     : '';
 
   return twiml(

@@ -567,7 +567,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full inline-flex items-center justify-center gap-2 bg-brand-red text-white px-7 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+          className="w-full inline-flex items-center justify-center gap-2 bg-brand-red text-white px-7 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-ring"
         >
           {isSubmitting ? 'Sending…' : 'Request Phone Consultation'}
           {!isSubmitting && <ArrowRight className="w-4 h-4" />}

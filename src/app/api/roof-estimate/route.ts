@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { squaresFromAreaMeters2 } from '@/lib/roof-estimate';
+import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 
 /**
@@ -13,7 +14,7 @@ import { rateLimit, getClientIp } from '@/lib/rate-limit';
  * quick questions instead. Nothing 500s.
  */
 
-const SOLAR_KEY = process.env.GOOGLE_SOLAR_API_KEY;
+const SOLAR_KEY = env.googleSolarApiKey();
 
 const RATE_LIMIT = { max: 12, windowMs: 10 * 60 * 1000 };
 

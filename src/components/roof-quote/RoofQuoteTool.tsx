@@ -232,7 +232,7 @@ export default function RoofQuoteTool() {
             <button
               type="submit"
               disabled={isMeasuring}
-              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-6 py-3 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-6 py-3 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-ring whitespace-nowrap"
             >
               {isMeasuring ? (
                 <>
@@ -328,7 +328,7 @@ export default function RoofQuoteTool() {
             <BackLink onClick={startOver} label="Start over" />
             <button
               type="submit"
-              className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+              className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 focus-ring"
             >
               See My Estimate
               <ArrowRight className="w-4 h-4" />
@@ -463,7 +463,7 @@ export default function RoofQuoteTool() {
               type="button"
               disabled={!material}
               onClick={() => setPhase('lead')}
-              className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+              className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-40 disabled:cursor-not-allowed focus-ring"
             >
               {mat?.slug === 'other' ? 'Continue' : 'Get This In Writing'}
               <ArrowRight className="w-4 h-4" />
@@ -550,7 +550,7 @@ export default function RoofQuoteTool() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-red"
+              className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-ring"
             >
               {isSubmitting ? 'Sending…' : 'Send My Request'}
               {!isSubmitting && <ArrowRight className="w-4 h-4" />}
