@@ -5,6 +5,7 @@ import { ShieldCheck, Hammer, MessageSquareText, MapPin, Award, ArrowRight } fro
 import { BUSINESS, OWNER } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
+import OwnerCard from '@/components/shared/OwnerCard';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
@@ -264,6 +265,7 @@ export default function AboutPage() {
                   Licensed &amp; Insured · WV · MD · VA
                 </div>
               </div>
+              <OwnerCard className="mt-7" />
             </div>
           </div>
         </Container>

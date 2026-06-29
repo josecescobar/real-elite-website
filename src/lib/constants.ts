@@ -46,6 +46,42 @@ export const BUSINESS = {
 } as const;
 
 /**
+ * Social-proof / trust signals — single source of truth for the rating,
+ * review count, badges, and aggregate numbers shown across the site
+ * (TrustBar, /reviews, footer, LocalBusiness JSON-LD).
+ *
+ * Everything here ships as honest placeholders. The site renders its
+ * existing generic copy until real numbers land. To go live with real
+ * social proof, edit ONLY this object:
+ *
+ *   1. Set `googleRating` / `googleReviewCount` to the real Google
+ *      Business Profile figures and flip `verified` to true. This upgrades
+ *      the TrustBar tile, the /reviews rating block, AND emits the
+ *      AggregateRating JSON-LD (rich-result stars). Do NOT set `verified`
+ *      true with invented numbers — self-serving review markup that does
+ *      not mirror the real profile violates Google's policy (see the
+ *      TESTIMONIALS warning below) and risks a manual action.
+ *   2. Add a real, live profile URL to a badge's `href` to make it appear.
+ *      Badges with `href: null` never render (no fake trust badges).
+ *   3. `projectsCompleted` displays only when set to a real number.
+ */
+export const SOCIAL_PROOF = {
+  /** Gates the rating display AND the review JSON-LD. Keep false until the
+   *  numbers below mirror the real Google Business Profile. */
+  verified: false,
+  googleRating: null as number | null, // e.g. 4.9
+  googleReviewCount: null as number | null, // e.g. 127
+  projectsCompleted: null as number | null, // e.g. 500
+  /** Third-party trust badges. Each renders ONLY when `href` is a real,
+   *  live profile URL — keep `null` for any platform not yet verified. */
+  badges: [
+    { name: 'Google', label: 'Google Reviews', href: BUSINESS.social.google as string | null },
+    { name: 'BBB', label: 'BBB Accredited', href: null as string | null },
+    { name: 'Angi', label: 'Angi Certified', href: null as string | null },
+  ],
+} as const;
+
+/**
  * Financing. Until a lending partner (Hearth, Sunlight Financial,
  * Service Finance, GreenSky, etc.) is signed, `applyUrl` stays null and
  * the /financing page routes homeowners to the estimate form, where the

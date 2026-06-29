@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Star, Quote, ArrowRight } from 'lucide-react';
-import { BUSINESS, TESTIMONIALS } from '@/lib/constants';
+import { BUSINESS, TESTIMONIALS, SOCIAL_PROOF } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
+import TrustBadges from '@/components/shared/TrustBadges';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import { hasVerifiedReviews } from '@/lib/social-proof';
 
 export const metadata: Metadata = {
   title: `Client Reviews | ${BUSINESS.name}`,
@@ -35,8 +37,16 @@ const renderStars = (count: number) => (
 );
 
 export default function ReviewsPage() {
-  const averageRating =
+  const featuredAverage =
     TESTIMONIALS.reduce((sum, t) => sum + t.rating, 0) / TESTIMONIALS.length;
+
+  // Until the real Google rating is verified in SOCIAL_PROOF we present these
+  // honestly as featured client stories, not an implied verified aggregate.
+  const verified = hasVerifiedReviews();
+  const displayRating = verified ? SOCIAL_PROOF.googleRating! : featuredAverage;
+  const ratingCaption = verified
+    ? `From ${SOCIAL_PROOF.googleReviewCount} Google reviews`
+    : 'Average across our featured client stories';
 
   return (
     <>
@@ -62,13 +72,13 @@ export default function ReviewsPage() {
       <section className="bg-white border-b border-charcoal-100">
         <Container size="default" className="py-12 sm:py-16 text-center">
           <div className="font-heading text-6xl sm:text-7xl font-extrabold text-navy-800 leading-none tracking-tight">
-            {averageRating.toFixed(1)}
+            {displayRating.toFixed(1)}
           </div>
           <div className="flex justify-center gap-1 mt-4">
             {renderStars(5)}
           </div>
           <p className="text-charcoal-500 text-sm mt-3 uppercase tracking-[0.15em] font-semibold">
-            Average of featured reviews
+            {ratingCaption}
           </p>
           <a
             href={BUSINESS.social.google}
@@ -78,13 +88,17 @@ export default function ReviewsPage() {
           >
             See full Google review history →
           </a>
+          <TrustBadges className="mt-8" />
         </Container>
       </section>
 
       {/* Testimonials grid */}
       <section className="bg-steel-50 py-16 md:py-24">
         <Container size="wide">
-          <SectionHeader eyebrow="Verified Reviews" title="What clients say." />
+          <SectionHeader
+            eyebrow={verified ? 'Verified Reviews' : 'Client Stories'}
+            title="What clients say."
+          />
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {TESTIMONIALS.map((t) => (
               <figure
