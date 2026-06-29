@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import StickyMobileCTA from '@/components/layout/StickyMobileCTA';
 import JsonLd from '@/components/seo/JsonLd';
 import { BUSINESS } from '@/lib/constants';
+import { aggregateRatingSchema } from '@/lib/social-proof';
 
 // GA4 loads only in the Vercel production environment so local dev and
 // preview deploys don't pollute the real analytics. NEXT_PUBLIC_GA_ID
@@ -114,6 +115,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Only present once reviews are verified in SOCIAL_PROOF — no self-serving
+  // review markup ships until it mirrors the real Google Business Profile.
+  const aggregateRating = aggregateRatingSchema();
+
   return (
     <html lang="en" className={`${saira.variable} ${inter.variable}`}>
       <head>
@@ -228,6 +233,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               BUSINESS.social.google,
               BUSINESS.social.yelp,
             ],
+            ...(aggregateRating ? { aggregateRating } : {}),
           }}
         />
       </head>

@@ -1,10 +1,16 @@
 import Container from '@/components/shared/Container';
+import { ratingLabel } from '@/lib/social-proof';
 
 export const TrustBar = () => {
+  // The Google tile shows real rating + review count once they're verified in
+  // SOCIAL_PROOF; until then it falls back to the existing copy, so the bar
+  // renders identically to production.
+  const rating = ratingLabel() ?? { number: 'Top-Rated', label: 'on Google' };
+
   const stats = [
     { number: '40+', label: 'Years of Experience' },
     { number: 'Written', label: 'Workmanship Warranty' },
-    { number: 'Top-Rated', label: 'on Google' },
+    { number: rating.number, label: rating.label },
     { number: 'Veteran', label: 'Owned & Operated' },
     { number: '60-Sec', label: 'AI Roof Quote' },
   ];
