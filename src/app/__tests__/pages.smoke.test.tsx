@@ -297,3 +297,30 @@ describe('blog index', () => {
     expect(redirect).toHaveBeenCalledWith('/guides');
   });
 });
+
+/* ------------------------------------------------------------------ */
+/*  Project System                                                    */
+/* ------------------------------------------------------------------ */
+
+describe('project system smoke tests', () => {
+  const SAMPLE = 'victorian-roof-replacement-martinsburg-wv';
+
+  it('/projects index renders', async () => {
+    const { default: ProjectsPage } = await import('@/app/projects/page');
+    expect(() => render(<ProjectsPage />)).not.toThrow();
+  });
+
+  it('/projects/[slug] exposes the sample project via generateStaticParams', async () => {
+    const { generateStaticParams } = await import('@/app/projects/[slug]/page');
+    const params = generateStaticParams();
+    expect(params.some((p) => p.slug === SAMPLE)).toBe(true);
+  });
+
+  it('renders the exemplary project through ProjectPageTemplate', async () => {
+    const { default: ProjectPageTemplate } = await import('@/components/projects/ProjectPageTemplate');
+    const { getProjectBySlug } = await import('@/lib/projects');
+    const project = getProjectBySlug(SAMPLE);
+    expect(project).not.toBeNull();
+    expect(() => render(<ProjectPageTemplate project={project!} />)).not.toThrow();
+  });
+});
