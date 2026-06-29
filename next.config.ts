@@ -40,6 +40,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Pin the workspace root so Turbopack doesn't infer it from a stray
+  // package-lock.json higher up the tree (e.g. in the home directory).
+  turbopack: {
+    root: __dirname,
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     // Next 16 restricts delivered quality to this allowlist. 75 is the
