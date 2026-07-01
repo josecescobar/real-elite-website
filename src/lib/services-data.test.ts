@@ -63,4 +63,12 @@ describe('SERVICE_DATA', () => {
       }
     }
   });
+
+  it('gives every service a bespoke, non-empty answer block (not just a metaDescription fallback)', () => {
+    for (const [slug, data] of ENTRIES) {
+      expect(data.answer, `${slug} has no answer field`).toBeDefined();
+      expect(data.answer!.trim().length, slug).toBeGreaterThan(0);
+      expect(data.answer, `${slug} answer duplicates metaDescription`).not.toBe(data.metaDescription);
+    }
+  });
 });

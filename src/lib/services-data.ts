@@ -28,6 +28,14 @@ export type ServiceData = {
   metaDescription: string;
   keywords: string[];
 
+  /**
+   * Optional concise "answer block" shown at the top of the service page —
+   * the lift-able summary for AI Overviews / assistants (GEO/AEO) and the
+   * scannable gist for visitors. When absent, the template falls back to
+   * `metaDescription`, so every service ships an answer block without new copy.
+   */
+  answer?: string;
+
   hero: {
     eyebrow?: string;
     heading: string;
@@ -100,6 +108,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'bathroom remodeling Winchester VA',
       'bathroom remodel Eastern Panhandle',
     ],
+    answer:
+      'Real Elite Contracting remodels bathrooms across Eastern Panhandle WV, Frederick MD, and Winchester VA — walk-in showers, tile work, and full master-bath transformations with real Schluter-Kerdi waterproofing, typically running 3–5 weeks with a named project lead.',
     hero: {
       eyebrow: 'Premium Interior',
       heading: 'Bathroom Remodeling',
@@ -194,6 +204,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'kitchen remodeling Winchester VA',
       'kitchen remodel Loudoun County',
     ],
+    answer:
+      'Real Elite Contracting builds custom kitchens across Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County — cabinetry, countertops, islands, and layout changes under one accountable project lead, with most full remodels running 6–10 weeks.',
     hero: {
       eyebrow: 'Premium Interior',
       heading: 'Kitchen Remodeling',
@@ -291,6 +303,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'basement build-out Frederick MD',
       'basement Eastern Panhandle',
     ],
+    answer:
+      'Real Elite Contracting finishes basements across the WV–MD–VA region — family rooms, in-law suites, and bars built on proper moisture control, code-compliant egress, and HVAC/electrical work, typically running 6–12 weeks.',
     hero: {
       eyebrow: 'New Living Space',
       heading: 'Basement Finishing',
@@ -383,6 +397,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Frederick MD roofing',
       'Winchester VA roofing',
     ],
+    answer:
+      'Real Elite Contracting is a veteran-owned roofing contractor serving WV, MD, and VA — full tear-off replacement, storm-damage repair, and premium architectural shingle installs (GAF, Owens Corning), most jobs completed in 1–3 days.',
     hero: {
       eyebrow: 'Exterior',
       heading: 'Roofing Services',
@@ -465,6 +481,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'stone veneer',
       'Eastern Panhandle contractor',
     ],
+    answer:
+      'Real Elite Contracting installs vinyl, fiber cement, and stone veneer siding for homes across the WV–MD–VA region — premium exterior materials that protect the home and deliver one of the highest-ROI upgrades available.',
     hero: {
       eyebrow: 'Curb Appeal',
       heading: 'Siding & Stone Exteriors',
@@ -551,6 +569,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Eastern Panhandle paving',
       'Martinsburg paving',
     ],
+    answer:
+      'Real Elite Contracting paves and seal-coats driveways and parking lots across the Eastern Panhandle of WV — asphalt, concrete, and tar-and-chip installs, repairs, and protective seal coating for residential and commercial properties, with free written estimates.',
     hero: {
       eyebrow: 'Driveways & Lots',
       heading: 'Paving & Seal Coating',
@@ -642,6 +662,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Eastern Panhandle',
       'Loudoun County deck',
     ],
+    answer:
+      'Real Elite Contracting designs and builds custom decks across the WV–MD–VA region — pressure-treated and premium composite (Trex, TimberTech, Azek), railings, and full outdoor living spaces engineered for the four-season climate.',
     hero: {
       eyebrow: 'Outdoor',
       heading: 'Decks & Outdoor Living',
@@ -727,6 +749,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'interior remodeling',
       'Eastern Panhandle',
     ],
+    answer:
+      'Real Elite Contracting manages interior and exterior remodels across the WV–MD–VA region — kitchens, bathrooms, basements, and full home renovations under one accountable project lead, from design consultation through final inspection.',
     hero: {
       eyebrow: 'Premium Interior',
       heading: 'Whole-Home Remodeling',
@@ -807,6 +831,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'garage addition',
       'Eastern Panhandle',
     ],
+    answer:
+      'Real Elite Contracting designs and builds home additions across the WV–MD–VA region that match the existing architecture — bump-outs, single-room, second-story, and in-law suite additions with structural engineering and permitting handled in-house.',
     hero: {
       eyebrow: 'New Space',
       heading: 'Home Additions',
@@ -888,6 +914,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'exterior maintenance',
       'Eastern Panhandle',
     ],
+    answer:
+      'Real Elite Contracting handles stone veneer, foundation repair, trim, and exterior maintenance across the WV–MD–VA region — the smaller exterior projects that protect the rest of the home, done to the same standard as the larger jobs.',
     hero: {
       eyebrow: 'Detail Craft',
       heading: 'Exterior Repairs',
@@ -955,6 +983,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'trim work',
       'Eastern Panhandle',
     ],
+    answer:
+      'Real Elite Contracting handles general home repairs and maintenance across the WV–MD–VA region — doors, drywall, trim, and deck fixes done with the same project lead and workmanship warranty as the larger remodels.',
     hero: {
       eyebrow: 'Smaller Projects',
       heading: 'General Repairs & Maintenance',
@@ -1018,6 +1048,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'TV mounting',
       'Eastern Panhandle handyman',
     ],
+    answer:
+      "Real Elite Contracting's handyman team covers the small-job catalog for homeowners across the WV–MD–VA region — drywall, doors, pressure washing, gutter cleaning, fence repair, TV mounting, and more, often in a single scheduled visit.",
     hero: {
       eyebrow: 'Small-Job Specialists',
       heading: 'Handyman Services',
