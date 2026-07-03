@@ -52,6 +52,15 @@ export function buildMetadata({
       type: ogType,
       images: [DEFAULT_OG_IMAGE],
     },
+    // Without a per-page twitter block, Next.js inherits the root layout's
+    // (homepage) twitter card wholesale, so every subpage would advertise the
+    // homepage title/description. Emit a matching card per page.
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [DEFAULT_OG_IMAGE.url],
+    },
   };
 }
 
