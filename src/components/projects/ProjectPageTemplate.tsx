@@ -6,6 +6,7 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import ServiceFAQ from '@/components/services/ServiceFAQ';
+import RelatedGuides from '@/components/services/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 import ProjectCard from './ProjectCard';
@@ -278,6 +279,15 @@ export default function ProjectPageTemplate({ project }: { project: Project }) {
                 <ProjectCard key={p.slug} project={p} />
               ))}
             </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Related guides — cross-links authored on the project (relatedGuideSlugs) */}
+      {project.relatedGuideSlugs && project.relatedGuideSlugs.length > 0 && (
+        <section className="bg-white py-16 md:py-24">
+          <Container size="wide">
+            <RelatedGuides slugs={project.relatedGuideSlugs} />
           </Container>
         </section>
       )}

@@ -12,9 +12,11 @@ import LocalAreasServed from './LocalAreasServed';
 import ServiceFAQ from './ServiceFAQ';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import JsonLd from '@/components/seo/JsonLd';
+import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
 import type { ServiceData } from '@/lib/services-data';
 import { BUSINESS, SERVICE_PAGE_AREA_SERVED } from '@/lib/constants';
 import { buildBreadcrumbSchema } from '@/lib/seo';
+import { getProjectsByService } from '@/lib/projects';
 
 type Props = {
   data: ServiceData;
@@ -36,6 +38,10 @@ export default function ServicePageTemplate({ data }: Props) {
     { name: 'Services', item: `${BUSINESS.url}/services` },
     { name: data.title, item: `${BUSINESS.url}/services/${data.slug}` },
   ]);
+
+  // Real case-study projects for this service (from the Project System).
+  // Renders nothing when none exist, so most services are unaffected today.
+  const serviceProjects = getProjectsByService(data.slug, 3);
 
   return (
     <>
@@ -150,6 +156,12 @@ export default function ServicePageTemplate({ data }: Props) {
                   note={data.investment.note}
                 />
               )}
+
+              {/* Real project case studies (Project System) — leads the proof */}
+              <RelatedProjectsRail
+                projects={serviceProjects}
+                heading={`Recent ${data.title.toLowerCase()} projects`}
+              />
 
               {/* Related projects */}
               {data.gallery && data.gallery.length > 0 && (
