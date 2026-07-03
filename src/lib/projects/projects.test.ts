@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   PROJECTS,
   getAllProjects,
@@ -15,6 +17,22 @@ import { getAllPosts } from '@/lib/blog';
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const CITY_SLUGS = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
 const BLOG_SLUGS = new Set<string>(getAllPosts().map((p) => p.slug));
+
+describe('Project media integrity', () => {
+  it('references local image files that exist in public/', () => {
+    const publicDir = join(process.cwd(), 'public');
+    for (const p of PROJECTS) {
+      const srcs = [
+        p.hero.image.src,
+        ...p.gallery.map((g) => g.src),
+        ...(p.beforeAfter ?? []).flatMap((ba) => [ba.before.src, ba.after.src]),
+      ].filter((s) => s.startsWith('/'));
+      for (const src of srcs) {
+        expect(existsSync(join(publicDir, src)), `${p.slug} → missing image ${src}`).toBe(true);
+      }
+    }
+  });
+});
 
 describe('Project registry integrity', () => {
   it('has unique project slugs', () => {
