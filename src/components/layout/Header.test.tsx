@@ -36,6 +36,10 @@ vi.mock('@/lib/constants', () => ({
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],
+  UTILITY_LINKS: [
+    { label: 'Our Process', href: '/process' },
+    { label: 'Photo Gallery', href: '/gallery' },
+  ],
   BUSINESS: {
     phone: '(681) 534-5515',
     phoneRaw: '+16815345515',
