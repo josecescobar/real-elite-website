@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { PROJECT_MODULES } from './registry.generated';
 import {
   PROJECTS,
   getAllProjects,
@@ -17,6 +18,26 @@ import { getAllPosts } from '@/lib/blog';
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const CITY_SLUGS = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
 const BLOG_SLUGS = new Set<string>(getAllPosts().map((p) => p.slug));
+
+describe('Generated registry is in sync with the data directory', () => {
+  // Guards the codegen (scripts/generate-projects-registry.mjs): if a project
+  // file is added/removed without running `npm run generate:projects`, this
+  // fails so the drift is caught in CI rather than silently dropping a project.
+  const dataFiles = readdirSync(join(process.cwd(), 'src/lib/projects/data'))
+    .filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts'))
+    .map((f) => f.replace(/\.ts$/, ''));
+
+  it('registers exactly the projects present in ./data', () => {
+    expect(PROJECT_MODULES.length).toBe(dataFiles.length);
+  });
+
+  it('registers a project whose slug matches each data filename', () => {
+    const registeredSlugs = new Set(PROJECT_MODULES.map((p) => p.slug));
+    for (const fileSlug of dataFiles) {
+      expect(registeredSlugs.has(fileSlug), `no registered project for data/${fileSlug}.ts`).toBe(true);
+    }
+  });
+});
 
 describe('Project media integrity', () => {
   it('references local image files that exist in public/', () => {
