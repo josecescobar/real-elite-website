@@ -22,6 +22,8 @@ import {
 import { SERVICE_DATA } from '@/lib/services-data';
 import { getRecentPosts } from '@/lib/blog';
 import { buildBreadcrumbSchema } from '@/lib/seo';
+import { getProjectsByCity } from '@/lib/projects';
+import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
 
 const FEATURED_DEEP_LINK_SLUGS = new Set(['roofing', 'decks', 'remodeling', 'siding']);
 
@@ -86,6 +88,9 @@ export default function CityPageTemplate({ city, data }: Props) {
     { name: 'Service Areas', item: `${BUSINESS.url}/service-areas` },
     { name: `${city.city}, ${city.state}`, item: url },
   ]);
+
+  // Real case-study projects located in this city (from the Project System).
+  const cityProjects = getProjectsByCity(city.slug, 3);
 
   // Per the plan, no per-market LocalBusiness — the global
   // GeneralContractor in layout.tsx carries areaServed for every city
@@ -238,6 +243,12 @@ export default function CityPageTemplate({ city, data }: Props) {
                   ))}
                 </ul>
               </div>
+
+              {/* Real project case studies in this city (Project System) */}
+              <RelatedProjectsRail
+                projects={cityProjects}
+                heading={`Recent projects in ${city.city}`}
+              />
 
               {/* Recent projects */}
               <div>

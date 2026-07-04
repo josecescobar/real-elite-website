@@ -574,7 +574,7 @@ export const NAV_LINKS = [
     href: '/service-areas',
   },
   { label: 'Paving', href: '/paving' },
-  { label: 'Our Work', href: '/gallery' },
+  { label: 'Our Work', href: '/projects' },
   { label: 'Guides', href: '/guides' },
   { label: 'Roof Quote', href: '/instant-roof-quote' },
   { label: 'About', href: '/about' },
@@ -591,6 +591,7 @@ export const UTILITY_LINKS = [
   { label: 'Capability Statement', href: '/capability-statement' },
   { label: 'Storm Damage', href: '/storm-damage' },
   { label: 'Full Property Bundle', href: '/full-property-perimeter' },
+  { label: 'Photo Gallery', href: '/gallery' },
 ] as const;
 
 /**
@@ -733,7 +734,7 @@ export const HOMEPAGE_PROJECT_SPOTLIGHT = {
   scope: 'Custom addition framing — joists, walls, and roof structure squared, braced, and built to spec. The kind of work that keeps going after the sun drops, because the schedule said this stage finishes today.',
   image: '/images/crew-dusk.jpg',
   imageAlt: 'Real Elite crew member framing a custom addition by work light at dusk',
-  href: '/gallery',
+  href: '/projects',
 } as const;
 
 /**

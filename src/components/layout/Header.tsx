@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { NAV_LINKS, BUSINESS, SERVICES_MEGA_MENU } from '@/lib/constants';
+import { NAV_LINKS, UTILITY_LINKS, BUSINESS, SERVICES_MEGA_MENU } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 import ServicesMegaMenu from './MegaMenu';
 
@@ -178,6 +178,21 @@ export default function Header() {
                 </div>
               );
             })}
+          </nav>
+
+          {/* Secondary utility links — footer parity so mobile users keep
+              reaching pages like the photo gallery, process, and reviews. */}
+          <nav className="flex flex-col pb-4 max-w-7xl mx-auto px-6 border-t border-charcoal-100 pt-3">
+            {UTILITY_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="py-2 text-sm text-charcoal-500 hover:text-navy-800 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="px-6 pb-4 flex flex-col gap-3 max-w-7xl mx-auto">
