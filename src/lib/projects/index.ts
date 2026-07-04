@@ -8,17 +8,16 @@
  * the style of src/lib/blog.ts.
  *
  * To add a project: create ./data/<slug>.ts exporting a default Project, then
- * add it to PROJECT_MODULES below. (A future markdown/CMS loader could populate
- * the same Project type without changing any consumer.)
+ * run `npm run generate:projects` (also runs in prebuild) to refresh the
+ * generated registry. A staleness test guards against forgetting. (A future
+ * markdown/CMS loader could populate the same Project type without changing
+ * any consumer.)
  */
 import { ALL_SERVICE_AREAS } from '@/lib/constants';
 import type { Project } from './types';
-import victorianRoofMartinsburg from './data/victorian-roof-replacement-martinsburg-wv';
+import { PROJECT_MODULES } from './registry.generated';
 
 export type { Project } from './types';
-
-/** Every authored project, published or draft. Order here does not matter. */
-const PROJECT_MODULES: Project[] = [victorianRoofMartinsburg];
 
 /** All projects sorted newest-first (drafts included) — internal base list. */
 const ALL: Project[] = [...PROJECT_MODULES].sort((a, b) =>
