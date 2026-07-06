@@ -321,7 +321,14 @@ describe('project system smoke tests', () => {
 
   it('/projects index renders', async () => {
     const { default: ProjectsPage } = await import('@/app/projects/page');
-    expect(() => render(<ProjectsPage />)).not.toThrow();
+    const el = await ProjectsPage({ searchParams: Promise.resolve({}) });
+    expect(() => render(el)).not.toThrow();
+  });
+
+  it('/projects index renders filtered by service', async () => {
+    const { default: ProjectsPage } = await import('@/app/projects/page');
+    const el = await ProjectsPage({ searchParams: Promise.resolve({ service: 'roofing' }) });
+    expect(() => render(el)).not.toThrow();
   });
 
   it('/projects/[slug] exposes the sample project via generateStaticParams', async () => {

@@ -55,6 +55,34 @@ export default function GalleryPage() {
       {/* Gallery + Lightbox */}
       <GalleryGrid />
 
+      {/* Rail into the Project stories — the gallery is the photos; Projects
+          is the full story (before/after, scope, materials, the review). */}
+      <section className="bg-steel-50 py-14 md:py-20 border-t border-charcoal-100">
+        <Container size="wide">
+          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
+                The full story
+              </p>
+              <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 leading-tight">
+                Photos are the start. See the projects behind them.
+              </h2>
+              <p className="text-charcoal-600 mt-3">
+                Every completed job, told start to finish — the before, what made it tricky, the
+                materials, and the homeowner&apos;s own words.
+              </p>
+            </div>
+            <Link
+              href="/projects"
+              className="inline-flex flex-shrink-0 items-center gap-2 bg-navy-800 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-navy-900 transition-colors shadow-md focus-ring"
+            >
+              Explore Projects
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
       {/* Assurances */}
       <AssurancesBand />
 
