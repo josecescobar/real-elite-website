@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { BUSINESS } from '@/lib/constants';
 import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
+import { recordLead, inferLeadType } from '@/lib/leads';
 
 const RESEND_API_KEY = env.resendApiKey();
 const TO_EMAIL = env.estimateToEmail() || 'info@realelitecontracting.com';
@@ -25,6 +26,12 @@ const MAX = {
   propertyType: 200,
   timeline: 60,
   budgetRange: 60,
+  // First-touch attribution (client-captured; see src/lib/attribution.ts).
+  utmSource: 200,
+  utmMedium: 200,
+  utmCampaign: 200,
+  referrer: 200,
+  landingPath: 300,
 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
@@ -41,9 +48,50 @@ function escapeHtml(s: string) {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * Warm, plain confirmation sent to the customer after any form submission.
+ * Text-forward with a single call CTA — keeps it out of spam folders and
+ * sets the "a real person will call within one business day" expectation.
+ * `safeFirstName` must already be HTML-escaped by the caller.
+ */
+function customerConfirmationHtml(safeFirstName: string) {
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2744;">
+      <div style="background-color: #1a2744; padding: 20px; text-align: center;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 20px; letter-spacing: 0.5px;">Real Elite Contracting</h1>
+        <p style="color: #c0392b; margin: 4px 0 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Built With Military Precision</p>
+      </div>
+      <div style="padding: 24px 20px; line-height: 1.6;">
+        <p style="margin: 0 0 14px;">Hi ${safeFirstName},</p>
+        <p style="margin: 0 0 14px;">Thanks for reaching out — we&#39;ve got your request and it&#39;s with a project lead now. Here&#39;s what happens next:</p>
+        <ul style="margin: 0 0 16px; padding-left: 20px;">
+          <li style="margin-bottom: 6px;">A real person from our team will call you within one business day — no call center, no runaround.</li>
+          <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>
+        </ul>
+        <p style="margin: 0 0 20px;">If you&#39;d rather not wait, you&#39;re always welcome to call or text us directly:</p>
+        <div style="text-align: center; margin: 0 0 20px;">
+          <a href="tel:${BUSINESS.phoneRaw}" style="display: inline-block; background-color: #c0392b; color: #ffffff; text-decoration: none; font-weight: bold; padding: 12px 28px; border-radius: 6px; font-size: 15px;">Call ${BUSINESS.phone}</a>
+        </div>
+        <p style="margin: 0; color: #5d5d5d; font-size: 13px;">Veteran-owned. Licensed &amp; insured across WV, MD, and VA.</p>
+      </div>
+    </div>
+  `;
+}
+
 type Field = keyof typeof MAX;
 const REQUIRED: Field[] = ['fullName', 'email', 'phone', 'service'];
-const OPTIONAL: Field[] = ['message', 'zip', 'propertyType', 'timeline', 'budgetRange'];
+const OPTIONAL: Field[] = [
+  'message',
+  'zip',
+  'propertyType',
+  'timeline',
+  'budgetRange',
+  'utmSource',
+  'utmMedium',
+  'utmCampaign',
+  'referrer',
+  'landingPath',
+];
 
 export async function POST(request: Request) {
   try {
@@ -132,6 +180,14 @@ export async function POST(request: Request) {
     if (safe.propertyType) rows.push({ label: 'Property', html: safe.propertyType });
     if (safe.timeline) rows.push({ label: 'Timeline', html: safe.timeline });
     if (safe.budgetRange) rows.push({ label: 'Budget', html: safe.budgetRange });
+
+    // Attribution: where this lead came from — the number that makes paid
+    // spend optimizable. Falls back to the referring host, then "(direct)".
+    const sourceLabel = safe.utmSource
+      ? [safe.utmSource, safe.utmMedium, safe.utmCampaign].filter(Boolean).join(' / ')
+      : safe.referrer || '(direct)';
+    rows.push({ label: 'Source', html: sourceLabel });
+    if (safe.landingPath) rows.push({ label: 'Landing page', html: safe.landingPath });
 
     const rowsHtml = rows
       .map(
@@ -242,6 +298,55 @@ export async function POST(request: Request) {
         .catch((err) => {
           console.error('Twilio SMS network error', err);
         });
+    }
+
+    // Durable lead ledger — env-gated no-op until Supabase is configured.
+    // Awaited (with an internal timeout) only AFTER the owner email is sent
+    // and the SMS is dispatched, and it never throws, so a ledger outage can
+    // neither block nor delay lead delivery. See src/lib/leads.ts.
+    const isLuxuryLead = (values.service ?? '').startsWith('[Luxury Consultation]');
+    await recordLead({
+      leadType: inferLeadType(values.service ?? ''),
+      luxury: isLuxuryLead,
+      fullName: values.fullName!,
+      email: values.email!,
+      phone: values.phone!,
+      service: values.service!,
+      zip: values.zip,
+      budgetRange: values.budgetRange,
+      timeline: values.timeline,
+      propertyType: values.propertyType,
+      message: values.message,
+      attribution: {
+        utmSource: values.utmSource,
+        utmMedium: values.utmMedium,
+        utmCampaign: values.utmCampaign,
+        referrer: values.referrer,
+        landingPath: values.landingPath,
+      },
+    });
+
+    // Customer confirmation — a warm receipt so they know it landed and what
+    // happens next. Non-fatal: the owner email above already captured the
+    // lead, so a failure here is logged and the request still succeeds.
+    const firstName = (values.fullName ?? '').trim().split(/\s+/)[0] || 'there';
+    try {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: 'Real Elite Contracting <no-reply@realelitecontracting.com>',
+          to: [values.email],
+          reply_to: TO_EMAIL,
+          subject: 'We got your request — here’s what happens next',
+          html: customerConfirmationHtml(escapeHtml(firstName)),
+        }),
+      });
+    } catch (err) {
+      console.error('Customer confirmation email failed', err);
     }
 
     return NextResponse.json(

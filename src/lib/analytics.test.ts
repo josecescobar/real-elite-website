@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { trackEvent, trackEstimateStep } from '@/lib/analytics';
+import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
 
 function stubWindow(gtag?: unknown) {
   vi.stubGlobal('window', {
@@ -51,6 +51,30 @@ describe('trackEstimateStep', () => {
       page_path: '/test-page',
       step: 2,
       service: 'roofing',
+    });
+  });
+});
+
+describe('trackLead', () => {
+  it('fires the canonical generate_lead event with its params', () => {
+    const gtag = vi.fn();
+    stubWindow(gtag);
+    trackLead({ lead_type: 'estimate', service: 'roofing', value_band: '$25k – $50k' });
+    expect(gtag).toHaveBeenCalledWith('event', 'generate_lead', {
+      page_path: '/test-page',
+      lead_type: 'estimate',
+      service: 'roofing',
+      value_band: '$25k – $50k',
+    });
+  });
+
+  it('works with only the required lead_type', () => {
+    const gtag = vi.fn();
+    stubWindow(gtag);
+    trackLead({ lead_type: 'roof_quote' });
+    expect(gtag).toHaveBeenCalledWith('event', 'generate_lead', {
+      page_path: '/test-page',
+      lead_type: 'roof_quote',
     });
   });
 });

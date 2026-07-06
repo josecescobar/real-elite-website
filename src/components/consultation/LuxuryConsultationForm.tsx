@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
-import { trackEvent, trackEstimateStep } from '@/lib/analytics';
+import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
+import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -193,6 +194,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           timeline: labelFor(TIMELINES, data.timeline),
           budgetRange: labelFor(BUDGET_TIERS, data.budget),
           message: data.scope,
+          ...attributionPayload(),
           website: honeypot,
         }),
       });
@@ -207,6 +209,11 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
         form: 'luxury_consultation',
         projectType: data.projectType,
         budget: data.budget,
+      });
+      trackLead({
+        lead_type: 'luxury_consultation',
+        service: data.projectType ? labelFor(PROJECT_TYPES, data.projectType) : undefined,
+        value_band: data.budget ? labelFor(BUDGET_TIERS, data.budget) : undefined,
       });
       trackEstimateStep('submit', 1, {
         projectType: data.projectType,

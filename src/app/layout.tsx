@@ -5,6 +5,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import StickyMobileCTA from '@/components/layout/StickyMobileCTA';
+import AttributionTracker from '@/components/analytics/AttributionTracker';
 import JsonLd from '@/components/seo/JsonLd';
 import { BUSINESS, GENERAL_CONTRACTOR_AREA_SERVED } from '@/lib/constants';
 import { env } from '@/lib/env';
@@ -235,6 +236,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             />
           </noscript>
         )}
+        <AttributionTracker />
         <Header />
         <main id="main">{children}</main>
         <Footer />

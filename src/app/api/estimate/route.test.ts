@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { BUSINESS } from '@/lib/constants';
 
 /**
  * route.ts captures RESEND_API_KEY into a const at module-eval time, so each
@@ -175,8 +176,58 @@ describe('POST /api/estimate — delivery', () => {
     const POST = await loadPOST();
     const res = await POST(makeRequest(validBody, '203.0.113.42'));
     expect(res.status).toBe(200);
-    expect(fetchMock).toHaveBeenCalledOnce();
+    // Two emails: the owner lead notification, then the customer confirmation.
+    expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock.mock.calls[0][0]).toBe('https://api.resend.com/emails');
+    expect(fetchMock.mock.calls[1][0]).toBe('https://api.resend.com/emails');
+  });
+
+  it('sends a confirmation email addressed to the customer', async () => {
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    await POST(makeRequest(validBody, '203.0.113.44'));
+    const confirmation = JSON.parse(fetchMock.mock.calls[1][1].body as string);
+    expect(confirmation.to).toEqual([validBody.email]);
+    expect(confirmation.from).toContain('no-reply@realelitecontracting.com');
+    expect(confirmation.subject).toMatch(/what happens next/i);
+    // Warm, on-voice, and personalized to the first name.
+    expect(confirmation.html).toContain('Hi Jane');
+    expect(confirmation.html).toContain(BUSINESS.phone);
+  });
+
+  it('still returns 200 when the customer confirmation email fails', async () => {
+    // First call (owner email) succeeds; second (confirmation) rejects.
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(new Response('{"id":"e1"}', { status: 200 }))
+      .mockRejectedValueOnce(new Error('network'));
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.45'));
+    expect(res.status).toBe(200);
+  });
+
+  it('records the first-touch source in the owner email', async () => {
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    await POST(
+      makeRequest(
+        { ...validBody, utmSource: 'google', utmMedium: 'lsa', landingPath: '/services/roofing' },
+        '203.0.113.46'
+      )
+    );
+    const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    expect(owner.html).toContain('Source');
+    expect(owner.html).toContain('google / lsa');
+    expect(owner.html).toContain('/services/roofing');
+  });
+
+  it('labels the owner email source "(direct)" when no attribution is present', async () => {
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    await POST(makeRequest(validBody, '203.0.113.47'));
+    const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    expect(owner.html).toContain('(direct)');
   });
 
   it('HTML-escapes user input in the email body to prevent injection', async () => {
