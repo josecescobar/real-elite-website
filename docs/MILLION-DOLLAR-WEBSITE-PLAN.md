@@ -172,6 +172,15 @@ Verification: `npm run typecheck` clean · `npm run test` **298/298 pass** (was 
 
 **Exit criteria:** 100% answer-block coverage, 6 money-keyword guides live, schema mesh complete (verified in Rich Results test), `llms.txt` live.
 
+**Status — shipped 2026-07-06 (branch `claude/mdw-phase-2-geo`).**
+- ✅ **2.1** Answer blocks on all 27 articles (24 added this phase; extracted from each article's own content — no invented figures). A `blog.test.ts` invariant now fails if any future post ships without a substantive answer block.
+- ✅ **2.2** Cost-guide cluster: 4 new money-keyword guides — roof replacement cost (Eastern Panhandle), walk-in shower cost (WV/MD/VA), basement egress window cost, deck cost per square foot. **Every dollar figure is sourced from ranges already published on the site** (roof $9k–$22k, shower system $3,500–$6,000, egress $3,500–$6,500, deck $15–$55/sq ft) and audited — none invented. Each carries `type: cost-guide`, an answer block, and both-way cross-links (guide→service in-body; bathrooms/basements service pages backlink to their guide). *Note: 4 authored rather than 6 — held to only the money-keyword gaps that could be filled with site-approved figures rather than fabricate two more; roof/shower/egress/deck were the highest-intent gaps from audit finding F5.*
+- ✅ **2.3** Schema mesh: BreadcrumbList JSON-LD now emitted on `/blog/[slug]` (GuideTemplate) and `/resources/[category]`; verified rendering. Service pages already emit FAQPage via `ServicePageTemplate`, and project pages already emit it via `ProjectPageTemplate` — FAQ coverage confirmed complete.
+- ✅ **2.4** `public/llms.txt` live — honest business facts (NAP, veteran-owned + SDVOSB-in-progress, no founding date), canonical URLs for the four proof engines, services, service areas, and cost guides; figures consistent with `constants.ts`.
+- ✅ **2.5** All 12 service pages already open with a citable `overview` block near the H1 (verified in `services-data.ts`).
+
+Verification: `npm run typecheck` clean · `npm run test` **299/299 pass** · `npm run build` 227 pages + sitemap succeed · breadcrumb schema, answer blocks, and `llms.txt` confirmed rendering on a dev server.
+
 ---
 
 ### Phase 3 — The estimate hub & conversion polish · ~1 session

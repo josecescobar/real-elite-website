@@ -6,6 +6,7 @@ slug: "5-signs-you-need-a-new-roof-eastern-panhandle"
 featuredImage: "/images/roofing-complete.jpg"
 category: "Roofing"
 type: "maintenance"
+answer: "In the Eastern Panhandle, the five signs it is time to replace your roof are curling, cracking, or missing shingles; a roof past 20-25 years old; shingle granules collecting in your gutters; visible daylight or soft spots and stains in the attic; and energy bills quietly climbing from poor ventilation. As a rule of thumb, once more than 20-30% of shingles look rough, replacement is smarter money than patching. If even one sign applies, get a professional roof inspection before the next round of storms, ideally while it is still a planning conversation and not a leak emergency."
 author: "Real Elite Contracting Team"
 ---
 

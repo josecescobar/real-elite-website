@@ -6,6 +6,7 @@ slug: "loudoun-county-permits-hoa-guide-2026"
 featuredImage: "/images/stone-facade-finished.jpg"
 category: "Service Areas"
 type: "permit-guide"
+answer: "A Loudoun County remodel runs a dual-approval gauntlet: county permits through the Department of Building and Development (2-4 weeks of plan review for most permits) plus HOA architectural review through the community ARC (2-6 weeks), which nearly every master-planned community like Brambleton, Lansdowne, and One Loudoun requires for exterior changes. Both layers apply to most substantive remodels (a wall-opening kitchen, plumbing-relocating bathroom, any meaningful deck, additions, siding, or window replacements), while purely interior cosmetic work usually skips both. Because the county does not require HOA approval to process a permit, the two tracks run independently and should be submitted in parallel, which takes about 5 weeks total instead of 7-plus when done sequentially, and Old Town Leesburg historic-overlay properties add a third HARB layer that pushes pre-construction to 8 weeks."
 author: "Real Elite Contracting Team"
 ---
 

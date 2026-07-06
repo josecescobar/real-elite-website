@@ -6,6 +6,7 @@ slug: "how-to-choose-deck-material-west-virginia-weather"
 featuredImage: "/images/deck-construction.jpg"
 category: "Decks"
 type: "buying-guide"
+answer: "For West Virginia weather in the Eastern Panhandle, the best value for most homeowners is capped composite decking over a pressure-treated frame, pairing a bulletproof structure with a low-maintenance surface. Pressure-treated lumber costs the least (often 30-50% less than composite) and lasts 15-25 years but needs annual cleaning and sealing or it grays, checks, and warps. Capped composite (Trex, TimberTech, Fiberon) resists moisture, mold, splintering, and fading with 25-30+ year warranties, while 100% cellular PVC is the most moisture-proof option and earns its keep near water features and in deep-shade, lower-lying spots that never fully dry."
 author: "Real Elite Contracting Team"
 ---
 
