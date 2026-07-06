@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
 import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
+import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 
 /* -------------------------------- options -------------------------------- */
 
@@ -254,6 +255,10 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
           Thanks — we&apos;ve got your details. A project lead will reach out within
           24 business hours to schedule your free on-site estimate.
         </p>
+        <SuccessNextSteps
+          guideHref="/resources"
+          guideLabel="Browse our cost & planning guides"
+        />
       </div>
     );
   }

@@ -111,7 +111,7 @@ export default function Header() {
             {BUSINESS.phone}
           </a>
           <a
-            href="/contact#estimate"
+            href="/estimate"
             onClick={() => trackEvent('estimate_cta_click', { location: 'header_desktop' })}
             className="bg-brand-red text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-red-dark transition-colors shadow-md focus-ring"
           >
@@ -220,7 +220,7 @@ export default function Header() {
               Call {BUSINESS.phone}
             </a>
             <a
-              href="/contact#estimate"
+              href="/estimate"
               onClick={() => trackEvent('estimate_cta_click', { location: 'header_mobile_menu' })}
               className="flex items-center justify-center w-full py-3 bg-brand-red text-white font-semibold rounded-md text-sm hover:bg-brand-red-dark transition-colors"
             >

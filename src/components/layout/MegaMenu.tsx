@@ -52,16 +52,24 @@ export default function ServicesMegaMenu() {
             </div>
           ))}
         </div>
-        <div className="bg-charcoal-50 border-t border-charcoal-100 px-6 py-3 flex items-center justify-between">
+        <div className="bg-charcoal-50 border-t border-charcoal-100 px-6 py-3 flex items-center justify-between gap-4">
           <span className="text-xs text-charcoal-600">
             Veteran-owned · Licensed across WV, MD, VA
           </span>
-          <Link
-            href="/services"
-            className="text-xs font-semibold text-navy-800 hover:text-brand-red transition-colors uppercase tracking-[0.12em]"
-          >
-            All Services →
-          </Link>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/design-consultation"
+              className="text-xs font-semibold text-navy-800 hover:text-brand-red transition-colors uppercase tracking-[0.12em]"
+            >
+              Design Consultation
+            </Link>
+            <Link
+              href="/services"
+              className="text-xs font-semibold text-navy-800 hover:text-brand-red transition-colors uppercase tracking-[0.12em]"
+            >
+              All Services →
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

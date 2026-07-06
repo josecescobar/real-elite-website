@@ -8,6 +8,7 @@ import ProjectSpotlight from '@/components/home/ProjectSpotlight';
 import BeforeAfter from '@/components/home/BeforeAfter';
 import FeaturedGuides from '@/components/home/FeaturedGuides';
 import Testimonials from '@/components/home/Testimonials';
+import LuxuryBand from '@/components/home/LuxuryBand';
 import ServiceAreaMap from '@/components/home/ServiceAreaMap';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import HomeEstimate from '@/components/home/HomeEstimate';
@@ -31,6 +32,7 @@ export default function Home() {
       <BeforeAfter />
       <FeaturedGuides />
       <Testimonials />
+      <LuxuryBand />
       <ServiceAreaMap />
       <AssurancesBand />
       <HomeEstimate />
