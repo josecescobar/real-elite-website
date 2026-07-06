@@ -10,17 +10,13 @@ import { SERVICES_MEGA_MENU } from '@/lib/constants';
  *
  * Deliberately NOT role="menu": ARIA menus imply arrow-key/typeahead
  * interaction this link panel doesn't implement — a plain group of links is
- * the correct semantics. Escape closes by blurring the focused link (the
- * reveal is focus-within/hover driven).
+ * the correct semantics. Escape-to-close lives on the shared trigger+panel
+ * wrapper in Header (trigger and panel are siblings, so a handler here would
+ * miss Escape pressed while the trigger itself is focused).
  */
 export default function ServicesMegaMenu() {
   return (
     <div
-      onKeyDown={(e) => {
-        if (e.key === 'Escape' && document.activeElement instanceof HTMLElement) {
-          document.activeElement.blur();
-        }
-      }}
       className="absolute left-0 top-full pt-4 w-[min(820px,calc(100vw-2rem))] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
     >
       <div className="bg-white rounded-lg shadow-xl border border-charcoal-100 overflow-hidden">

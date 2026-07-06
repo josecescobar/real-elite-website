@@ -68,7 +68,23 @@ export default function Header() {
           {NAV_LINKS.map((link) => {
             const hasMegaMenu = link.label === 'Services';
             return (
-              <div key={link.label} className="relative group">
+              <div
+                key={link.label}
+                className="relative group"
+                // Escape closes the mega-menu whether focus is on the trigger
+                // or inside the panel: the reveal is focus-within driven, so
+                // blurring the focused element hides it. Lives on this shared
+                // wrapper because trigger and panel are siblings.
+                onKeyDown={
+                  hasMegaMenu
+                    ? (e) => {
+                        if (e.key === 'Escape' && document.activeElement instanceof HTMLElement) {
+                          document.activeElement.blur();
+                        }
+                      }
+                    : undefined
+                }
+              >
                 <Link
                   href={link.href}
                   className="text-charcoal-700 hover:text-navy-800 flex items-center gap-1 transition-colors font-medium py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm"
