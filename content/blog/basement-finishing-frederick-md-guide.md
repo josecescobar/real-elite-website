@@ -5,6 +5,7 @@ excerpt: "Before you frame a single wall — what a finished basement actually r
 slug: "basement-finishing-frederick-md-guide"
 featuredImage: "/images/foundation-block.jpg"
 category: "Remodeling"
+type: "cost-guide"
 author: "Real Elite Contracting Team"
 ---
 

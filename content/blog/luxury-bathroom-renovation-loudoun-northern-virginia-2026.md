@@ -5,6 +5,7 @@ excerpt: "What actually separates a luxury primary bath from a standard remodel 
 slug: "luxury-bathroom-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/projects/bathrooms/hero.jpg"
 category: "Bathrooms"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

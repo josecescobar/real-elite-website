@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
 import GuideTemplate from '@/components/blog/GuideTemplate';
 import { BUSINESS } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -16,17 +17,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  return {
+  // Article URLs stay canonical at /blog/[slug]. Spread buildMetadata for the
+  // consistent canonical + twitter card, then swap the default social card
+  // for the post's featured image.
+  const base = buildMetadata({
+    path: `/blog/${slug}`,
     title: `${post.title} | ${BUSINESS.name}`,
     description: post.excerpt,
-    alternates: {
-      canonical: `${BUSINESS.url}/blog/${slug}`,
-    },
+    ogType: 'article',
+  });
+  return {
+    ...base,
     openGraph: {
+      ...base.openGraph,
       title: post.title,
-      description: post.excerpt,
-      type: 'article',
       images: [{ url: post.featuredImage }],
+    },
+    twitter: {
+      ...base.twitter,
+      images: [post.featuredImage],
     },
   };
 }

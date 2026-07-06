@@ -5,6 +5,7 @@ excerpt: "A straight answer on handyman rates in Martinsburg, Charles Town, and 
 slug: "handyman-pricing-eastern-panhandle-2026"
 featuredImage: "/images/handyman-tools-pricing.jpg"
 category: "Tips & Advice"
+type: "cost-guide"
 author: "Real Elite Contracting Team"
 ---
 

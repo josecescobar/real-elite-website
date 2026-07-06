@@ -5,6 +5,7 @@ excerpt: "A line-itemed breakdown of kitchen remodel costs across the Eastern Pa
 slug: "kitchen-remodel-cost-wv-md-va-2026"
 featuredImage: "/images/flooring-light-living.jpg"
 category: "Kitchens"
+type: "cost-guide"
 author: "Real Elite Contracting Team"
 ---
 

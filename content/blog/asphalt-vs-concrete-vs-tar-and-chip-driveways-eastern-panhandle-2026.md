@@ -5,6 +5,7 @@ excerpt: "Your driveway is one of the largest surfaces on your property — and 
 slug: "asphalt-vs-concrete-vs-tar-and-chip-driveways-eastern-panhandle-2026"
 featuredImage: "/images/inspiration/paving-aplus-driveway.jpg"
 category: "Exteriors"
+type: "comparison"
 author: "Real Elite Contracting Team"
 ---
 

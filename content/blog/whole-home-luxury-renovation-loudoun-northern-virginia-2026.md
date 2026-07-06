@@ -5,6 +5,7 @@ excerpt: "When a home's bones are good but the spaces feel dated and disconnecte
 slug: "whole-home-luxury-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/wholehome-foyer-staircase.jpg"
 category: "Remodeling"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

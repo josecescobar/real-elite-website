@@ -5,6 +5,7 @@ excerpt: "A homeowner's playbook for a high-end bathroom: how to set goals and a
 slug: "how-to-plan-luxury-bathroom-renovation-choose-contractor-2026"
 featuredImage: "/images/inspiration/luxury-bathroom-shower-tub.jpg"
 category: "Bathrooms"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

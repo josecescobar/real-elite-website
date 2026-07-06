@@ -5,6 +5,7 @@ excerpt: "Your roof won't text you when it's in trouble — it just quietly lets
 slug: "5-signs-you-need-a-new-roof-eastern-panhandle"
 featuredImage: "/images/roofing-complete.jpg"
 category: "Roofing"
+type: "maintenance"
 author: "Real Elite Contracting Team"
 ---
 

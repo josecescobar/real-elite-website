@@ -85,6 +85,10 @@ const nextConfig: NextConfig = {
       // Paving consolidated into the dedicated /paving pillar (hub + service
       // templates + location pages). The old single-service page redirects in.
       { source: '/services/paving', destination: '/paving', permanent: true },
+      // Guides consolidated into the Resource Center. Browse URLs moved to
+      // /resources; article URLs at /blog/[slug] are canonical and unchanged.
+      { source: '/guides', destination: '/resources', permanent: true },
+      { source: '/guides/:category', destination: '/resources/:category', permanent: true },
     ];
   },
 };

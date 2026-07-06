@@ -5,7 +5,7 @@ import { GUIDE_CATEGORIES } from '@/lib/blog';
 export const runtime = 'nodejs';
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
-export const alt = 'Real Elite Contracting homeowner guides';
+export const alt = 'Real Elite Contracting resource center';
 
 type Params = Promise<{ category: string }>;
 
@@ -19,7 +19,7 @@ export default async function OG({ params }: { params: Params }) {
   if (!cat) notFound();
 
   return renderOgCard({
-    eyebrow: 'Homeowner Guides',
+    eyebrow: 'Resource Center',
     title: cat.name,
     subtitle: cat.description,
   });

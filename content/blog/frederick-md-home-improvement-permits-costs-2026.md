@@ -5,6 +5,7 @@ excerpt: "A practical orientation for Frederick MD homeowners planning a remodel
 slug: "frederick-md-home-improvement-permits-costs-2026"
 featuredImage: "/images/new-build-sunset.jpg"
 category: "Service Areas"
+type: "permit-guide"
 author: "Real Elite Contracting Team"
 ---
 

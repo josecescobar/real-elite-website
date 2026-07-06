@@ -5,6 +5,7 @@ excerpt: "Pressure-treated, composite, or PVC? West Virginia weather is gorgeous
 slug: "how-to-choose-deck-material-west-virginia-weather"
 featuredImage: "/images/deck-construction.jpg"
 category: "Decks"
+type: "buying-guide"
 author: "Real Elite Contracting Team"
 ---
 

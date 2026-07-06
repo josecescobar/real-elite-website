@@ -5,6 +5,7 @@ excerpt: "Trex, TimberTech, Azek, or pressure-treated lumber — what each mater
 slug: "composite-vs-pressure-treated-decks-loudoun-county-va"
 featuredImage: "/images/deck-night-lights.jpg"
 category: "Decks"
+type: "comparison"
 author: "Real Elite Contracting Team"
 ---
 
