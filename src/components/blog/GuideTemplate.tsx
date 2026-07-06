@@ -86,7 +86,7 @@ export default function GuideTemplate({ post }: Props) {
   const headings = extractHeadings(post.content);
   const related = getRelatedPosts(post.slug, 3);
   const category = GUIDE_CATEGORIES.find((c) => c.slug === post.categorySlug);
-  const categoryHref = category ? `/guides/${category.slug}` : '/guides';
+  const categoryHref = category ? `/resources/${category.slug}` : '/resources';
   const categoryLabel = category?.name ?? post.category;
 
   // Heuristic: feed the inline-projects module a hint based on category
@@ -115,8 +115,8 @@ export default function GuideTemplate({ post }: Props) {
       <section className="bg-navy-900 text-white pt-14 pb-12 sm:pt-20 sm:pb-16">
         <Container size="default">
           <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap">
-            <Link href="/guides" className="hover:text-white transition-colors">
-              Guides
+            <Link href="/resources" className="hover:text-white transition-colors">
+              Resources
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
             <Link href={categoryHref} className="hover:text-white transition-colors">
@@ -188,6 +188,15 @@ export default function GuideTemplate({ post }: Props) {
                 </details>
               )}
 
+              {/* Citable answer block — the direct answer to the article's
+                  question, positioned above the body so readers (and AI
+                  answer engines) get it first. Optional frontmatter. */}
+              {post.answer && (
+                <p className="text-charcoal-800 text-lg md:text-xl leading-relaxed border-l-4 border-brand-red pl-5 mb-10">
+                  {post.answer}
+                </p>
+              )}
+
               <div
                 className="prose prose-editorial prose-lg max-w-none
                   prose-headings:font-heading prose-headings:text-navy-800
@@ -225,10 +234,10 @@ export default function GuideTemplate({ post }: Props) {
               {/* Back to guides */}
               <div className="mt-12 text-center">
                 <Link
-                  href="/guides"
+                  href="/resources"
                   className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors"
                 >
-                  ← All Guides
+                  ← All Resources
                 </Link>
               </div>
             </div>

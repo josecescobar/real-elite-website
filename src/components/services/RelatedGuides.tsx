@@ -29,7 +29,7 @@ export default function RelatedGuides({ slugs, fallbackCount = 3 }: Props) {
           Related guides
         </h2>
         <Link
-          href="/blog"
+          href="/resources"
           className="text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors"
         >
           All Guides →

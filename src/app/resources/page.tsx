@@ -1,36 +1,30 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { BUSINESS } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 import { GUIDE_CATEGORIES, getAllPosts, getPostsByCategorySlug, formatDate } from '@/lib/blog';
 
-export const metadata: Metadata = {
-  title: `Homeowner Guides | ${BUSINESS.name}`,
+export const metadata = buildMetadata({
+  path: '/resources',
+  title: `Resource Center | ${BUSINESS.name}`,
   description:
-    'Practical homeowner guides — bathroom remodel pricing, deck materials, roofing replacement, financing, and the questions every homeowner should ask before signing a contract.',
+    'Cost guides, permit walk-throughs, material comparisons, and the questions every homeowner should ask before signing a contract — the Real Elite knowledge hub.',
   keywords: [
-    'homeowner guides',
+    'homeowner resource center',
     'remodel pricing',
     'bathroom remodel cost',
     'deck material comparison',
     'roofing replacement guide',
+    'permit guide',
     'home renovation tips',
     'Eastern Panhandle',
   ],
-  alternates: { canonical: `${BUSINESS.url}/guides` },
-  openGraph: {
-    title: `Homeowner Guides | ${BUSINESS.name}`,
-    description:
-      'Practical, no-fluff homeowner guides from the crew that actually builds the projects.',
-    url: `${BUSINESS.url}/guides`,
-    type: 'website',
-  },
-};
+});
 
-export default function GuidesIndexPage() {
+export default function ResourcesIndexPage() {
   const all = getAllPosts();
   const [featured, ...rest] = all;
 
@@ -44,7 +38,7 @@ export default function GuidesIndexPage() {
               Built With Military Precision
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-              Homeowner Guides.
+              Resource Center.
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Pricing breakdowns, material comparisons, permit walk-throughs, and the
@@ -106,7 +100,7 @@ export default function GuidesIndexPage() {
               return (
                 <Link
                   key={cat.slug}
-                  href={`/guides/${cat.slug}`}
+                  href={`/resources/${cat.slug}`}
                   className="group bg-white border border-charcoal-100 rounded-lg p-5 hover:border-brand-red hover:shadow-md transition-all"
                 >
                   <div className="flex items-start justify-between mb-2">

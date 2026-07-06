@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { BUSINESS } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 import {
   GUIDE_CATEGORIES,
   getPostsByCategorySlug,
@@ -27,17 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return {};
   // Avoid "Homeowner Guides Guides" when the category name already ends in "Guides".
   const titleBase = cat.name.endsWith('Guides') ? cat.name : `${cat.name} Guides`;
-  return {
+  return buildMetadata({
+    path: `/resources/${cat.slug}`,
     title: `${titleBase} | ${BUSINESS.name}`,
     description: cat.description,
-    alternates: { canonical: `${BUSINESS.url}/guides/${cat.slug}` },
-    openGraph: {
-      title: `${titleBase} | ${BUSINESS.name}`,
-      description: cat.description,
-      url: `${BUSINESS.url}/guides/${cat.slug}`,
-      type: 'website',
-    },
-  };
+  });
 }
 
 export default async function GuideCategoryPage({ params }: Props) {
@@ -54,15 +49,15 @@ export default async function GuideCategoryPage({ params }: Props) {
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
           <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-charcoal-300 mb-6">
-            <Link href="/guides" className="hover:text-white transition-colors">
-              Guides
+            <Link href="/resources" className="hover:text-white transition-colors">
+              Resources
             </Link>
             <span className="mx-2 text-charcoal-500">/</span>
             <span className="text-white">{cat.name}</span>
           </nav>
 
           <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
-            Homeowner Guides
+            Resource Center
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight max-w-3xl">
             {cat.name}.
@@ -159,7 +154,7 @@ export default async function GuideCategoryPage({ params }: Props) {
             {GUIDE_CATEGORIES.filter((c) => c.slug !== cat.slug).map((other) => (
               <Link
                 key={other.slug}
-                href={`/guides/${other.slug}`}
+                href={`/resources/${other.slug}`}
                 className="bg-white rounded-md px-4 py-3 text-sm font-semibold text-navy-800 hover:text-brand-red hover:shadow-sm transition-all border border-charcoal-100"
               >
                 {other.name} →

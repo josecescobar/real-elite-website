@@ -575,7 +575,7 @@ export const NAV_LINKS = [
   },
   { label: 'Paving', href: '/paving' },
   { label: 'Our Work', href: '/projects' },
-  { label: 'Guides', href: '/guides' },
+  { label: 'Resources', href: '/resources' },
   { label: 'Roof Quote', href: '/instant-roof-quote' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

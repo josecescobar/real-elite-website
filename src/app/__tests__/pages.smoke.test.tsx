@@ -203,9 +203,15 @@ describe('static page smoke tests', () => {
     expect(() => render(<StormDamagePage />)).not.toThrow();
   });
 
-  it('Guides page renders', async () => {
-    const { default: GuidesPage } = await import('@/app/guides/page');
-    expect(() => render(<GuidesPage />)).not.toThrow();
+  it('Resources hub renders', async () => {
+    const { default: ResourcesPage } = await import('@/app/resources/page');
+    expect(() => render(<ResourcesPage />)).not.toThrow();
+  });
+
+  it('Resources category page renders', async () => {
+    const { default: CategoryPage } = await import('@/app/resources/[category]/page');
+    const el = await CategoryPage({ params: Promise.resolve({ category: 'roofing' }) });
+    expect(() => render(el)).not.toThrow();
   });
 
   it('Instant Roof Quote page renders', async () => {
@@ -290,11 +296,11 @@ describe('service page smoke tests', () => {
 /* ------------------------------------------------------------------ */
 
 describe('blog index', () => {
-  it('/blog redirects to /guides', async () => {
+  it('/blog redirects to /resources', async () => {
     const { redirect } = await import('next/navigation');
     const { default: BlogIndex } = await import('@/app/blog/page');
     BlogIndex();
-    expect(redirect).toHaveBeenCalledWith('/guides');
+    expect(redirect).toHaveBeenCalledWith('/resources');
   });
 });
 
