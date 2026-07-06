@@ -152,7 +152,7 @@ Verification: `npm run typecheck` clean · `npm run test` **285/285 pass** (was 
 - ⏳ **1.2** Author 9–11 Project Objects — **blocked on 1.1.** The pipeline is ready (drop-a-file `src/lib/projects/data/`, registry auto-generates); as each real project lands it auto-populates the gallery, its service/city proof modules, and (if it carries a review) the Review Center.
 - ⏳ **1.5 [JOSE]** Review velocity via `/review-request` after each job (needs `ADMIN_TOOLS_KEY` from Phase 0.1). Each Google review authored into `reviews/data.ts` with `source:'google'` lights up more of the site automatically.
 - ⏳ **1.6 [JOSE]** Flip `SOCIAL_PROOF.verified=true` + real numbers once the Google profile is stable — TrustBar/badges/aggregate schema then activate.
-- ↪️ **1.7** Gallery→Projects convergence — deferred to a small follow-up PR (kept this PR focused on the Review Center).
+- ✅ **1.7** Gallery→Projects convergence — `/projects` now supports shareable, indexable facet URLs (`/projects?service=roofing`, `?city=…`) with chips that only appear for facets that have a project; `/gallery` gained a "see the full story" rail into `/projects`. (Shipped on branch `claude/mdw-phase-1-7-gallery`.)
 
 Verification: `npm run typecheck` clean · `npm run test` **298/298 pass** (was 285) · `npm run build` + sitemap succeed · `npm run lint` 0 errors. Rendered output spot-checked on a dev server (Review Center, filters, project thumbnail, service/city surfacing, graceful empty state).
 
