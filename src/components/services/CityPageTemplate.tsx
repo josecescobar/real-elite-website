@@ -20,7 +20,7 @@ import {
   type CityDataEntry,
 } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
-import { getRecentPosts } from '@/lib/blog';
+import { getRecentPosts, getPostBySlug } from '@/lib/blog';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import { getProjectsByCity } from '@/lib/projects';
 import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
@@ -28,6 +28,25 @@ import ReviewsSection from '@/components/reviews/ReviewsSection';
 import { getReviewsByCity } from '@/lib/reviews';
 
 const FEATURED_DEEP_LINK_SLUGS = new Set(['roofing', 'decks', 'remodeling', 'siding']);
+
+/**
+ * Map a city to the permit guide that genuinely covers its jurisdiction, so
+ * each city page surfaces accurate local permit content. Deliberately
+ * conservative: only cities a guide truly covers are mapped — an unmapped city
+ * simply shows recent guides instead of a permit guide for the wrong county.
+ */
+const BERKELEY_JEFFERSON_WV = new Set([
+  'martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'falling-waters-wv', 'spring-mills-wv',
+  'charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'kearneysville-wv', 'harpers-ferry-wv',
+]);
+const LOUDOUN_VA = new Set(['leesburg-va', 'ashburn-va', 'loudoun-county-va', 'middleburg-va']);
+
+function permitGuideSlugForCity(citySlug: string): string | null {
+  if (BERKELEY_JEFFERSON_WV.has(citySlug)) return 'deck-permits-berkeley-jefferson-county-wv-2026';
+  if (citySlug === 'frederick-md') return 'frederick-md-home-improvement-permits-costs-2026';
+  if (LOUDOUN_VA.has(citySlug)) return 'loudoun-county-permits-hoa-guide-2026';
+  return null;
+}
 
 type City = { city: string; state: string; slug: string };
 
@@ -49,10 +68,18 @@ export default function CityPageTemplate({ city, data }: Props) {
   const orderedServices = [...emphasized, ...otherServices];
   const [heroService, ...restServices] = orderedServices;
 
-  // Pull localized guide cross-links — for now, the latest 3 (Phase 5
-  // introduced the service-areas category; once we author localized
-  // articles tagged with that category they'll auto-surface).
-  const guidePosts = getRecentPosts(3);
+  // Localized guide cross-links: surface this city's own jurisdiction permit
+  // guide first (accurate local content = local SEO + trust), then fill with
+  // recent guides. Only cities whose jurisdiction a permit guide actually
+  // covers are mapped — never over-claim a guide for the wrong county.
+  const permitSlug = permitGuideSlugForCity(city.slug);
+  const permitPost = permitSlug ? getPostBySlug(permitSlug) : null;
+  const guidePosts = [
+    permitPost,
+    ...getRecentPosts(4).filter((p) => p.slug !== permitPost?.slug),
+  ]
+    .filter((p): p is NonNullable<typeof p> => Boolean(p))
+    .slice(0, 3);
 
   // Localized projects: prefer city-tagged photos, fall back to
   // state-tagged, then the full gallery. selectGalleryFor handles
