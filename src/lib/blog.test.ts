@@ -190,10 +190,14 @@ describe('answer blocks', () => {
     expect(post!.answer!.length).toBeGreaterThan(100);
   });
 
-  it('leaves answer undefined for posts without one', () => {
-    const withoutAnswer = getAllPosts().find((p) => !p.answer);
-    expect(withoutAnswer).toBeDefined();
-    expect(withoutAnswer!.answer).toBeUndefined();
+  // The Resource Center doctrine: every article opens with a citable answer
+  // block. This enforces it the same way the categorySlug-membership test
+  // enforces the taxonomy — a new post can't ship without an `answer:`.
+  it('gives every post a substantive answer block (the GEO doctrine)', () => {
+    for (const p of getAllPosts()) {
+      expect(p.answer, `${p.slug} is missing an answer: frontmatter block`).toBeTruthy();
+      expect(p.answer!.length, `${p.slug} answer is too short to be citable`).toBeGreaterThan(100);
+    }
   });
 });
 
