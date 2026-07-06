@@ -5,6 +5,7 @@ excerpt: "When to start a deck project in Martinsburg, Charles Town, and the wid
 slug: "spring-deck-building-season-eastern-panhandle"
 featuredImage: "/images/spring-deck-backyard-patio-eastern-panhandle.jpg"
 category: "Decks & Outdoor Living"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

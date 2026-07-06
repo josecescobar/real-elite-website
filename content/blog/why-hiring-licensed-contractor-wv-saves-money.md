@@ -5,6 +5,7 @@ excerpt: "The cheapest bid has a way of becoming the most expensive one. Here's 
 slug: "why-hiring-licensed-contractor-wv-saves-money"
 featuredImage: "/images/licensed-contractor.jpg"
 category: "Tips & Advice"
+type: "buying-guide"
 author: "Real Elite Contracting Team"
 ---
 

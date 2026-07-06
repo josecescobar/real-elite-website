@@ -5,6 +5,7 @@ excerpt: "A finished basement can add a whole tier of living space to a premium 
 slug: "luxury-basement-finishing-loudoun-northern-virginia-2026"
 featuredImage: "/images/projects/basements/hero-framing.jpg"
 category: "Remodeling"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

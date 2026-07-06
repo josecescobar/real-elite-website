@@ -5,6 +5,8 @@ excerpt: "Everything Eastern Panhandle homeowners actually need to know about pu
 slug: "deck-permits-berkeley-jefferson-county-wv-2026"
 featuredImage: "/images/deck-permit-blueprint.jpg"
 category: "Decks"
+type: "permit-guide"
+answer: "Yes — in Berkeley and Jefferson County, WV you almost always need a deck permit: any deck attached to the house, more than 30 inches above grade, or built on permanent footings requires one. Berkeley County files through its one-stop portal (most decks $75–$200, reviewed in 5–10 business days) and Jefferson County through MGO Connect; inside Martinsburg or Ranson city limits, the city runs its own review. Plan for three inspections — footing, framing, and final."
 author: "Real Elite Contracting Team"
 ---
 

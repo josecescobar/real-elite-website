@@ -5,6 +5,7 @@ excerpt: "Summer storms in the WV–MD–VA region hit roofs hard. Here's the st
 slug: "storm-damage-roof-repair-insurance-eastern-panhandle-2026"
 featuredImage: "/images/roofing-crew.jpg"
 category: "Roofing"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

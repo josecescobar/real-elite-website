@@ -5,6 +5,7 @@ excerpt: "At the high end, a backyard is a second living room — a deck for din
 slug: "luxury-outdoor-living-decks-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/outdoor-living-pergola-dining.jpg"
 category: "Decks & Outdoor Living"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

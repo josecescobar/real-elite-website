@@ -5,6 +5,7 @@ excerpt: "Five exterior checks that take an afternoon and can save you thousands
 slug: "ultimate-spring-exterior-checklist-eastern-panhandle"
 featuredImage: "/images/spring-house-blooming-trees.jpg"
 category: "Tips & Advice"
+type: "maintenance"
 author: "Real Elite Contracting Team"
 ---
 

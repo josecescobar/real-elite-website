@@ -5,6 +5,7 @@ excerpt: "New siding and stone veneer do more than look good — they protect th
 slug: "siding-stone-exterior-curb-appeal-wv-md-va-2026"
 featuredImage: "/images/stone-facade-finished.jpg"
 category: "Siding & Stone"
+type: "buying-guide"
 author: "Real Elite Contracting Team"
 ---
 

@@ -5,6 +5,7 @@ excerpt: "Flooring is the largest continuous surface in your home — and the fa
 slug: "luxury-flooring-hardwood-wide-plank-wv-md-va-2026"
 featuredImage: "/images/inspiration/flooring-hardwood-living.jpg"
 category: "Remodeling"
+type: "buying-guide"
 author: "Real Elite Contracting Team"
 ---
 

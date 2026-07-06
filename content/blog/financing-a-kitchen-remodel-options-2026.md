@@ -5,6 +5,7 @@ excerpt: "Cash, contractor financing, HELOC, personal loan, or cash-out refi —
 slug: "financing-a-kitchen-remodel-options-2026"
 featuredImage: "/images/handyman-tools-pricing.jpg"
 category: "Financing"
+type: "buying-guide"
 author: "Real Elite Contracting Team"
 ---
 

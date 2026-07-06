@@ -5,6 +5,7 @@ excerpt: "A luxury kitchen isn't just premium appliances — it's layout, cabine
 slug: "luxury-kitchen-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/projects/kitchens/hero.jpg"
 category: "Kitchens"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

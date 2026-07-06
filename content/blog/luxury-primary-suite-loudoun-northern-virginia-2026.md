@@ -5,6 +5,7 @@ excerpt: "A primary suite should feel like a private retreat — a calm bedroom,
 slug: "luxury-primary-suite-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/suite-bedroom.jpg"
 category: "Remodeling"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 

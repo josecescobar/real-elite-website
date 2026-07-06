@@ -5,6 +5,7 @@ excerpt: "Loudoun County remodels run a dual-approval gauntlet — county permit
 slug: "loudoun-county-permits-hoa-guide-2026"
 featuredImage: "/images/stone-facade-finished.jpg"
 category: "Service Areas"
+type: "permit-guide"
 author: "Real Elite Contracting Team"
 ---
 

@@ -5,6 +5,7 @@ excerpt: "When you love your home and your location but need more room, a well-b
 slug: "home-additions-in-law-suites-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/addition-sunroom-fireplace.jpg"
 category: "Remodeling"
+type: "how-to"
 author: "Real Elite Contracting Team"
 ---
 
