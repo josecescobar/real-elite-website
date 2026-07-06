@@ -527,33 +527,13 @@ export const LUXURY_CITY_SLUGS = new Set<string>([
 ]);
 
 /**
- * Featured client testimonials — first-party marketing copy, NOT pulled
- * from a verified review platform. Display these as on-page social proof
- * only. Do NOT emit AggregateRating / Review JSON-LD from this data:
- * self-serving review markup violates Google's policy and risks a manual
- * action. Re-add rating schema only when it's wired to the real Google
- * Business Profile reviews.
+ * Client reviews moved to the unified Review contract and single source at
+ * `src/lib/reviews/` (Review Center, homepage, and service/city proof modules
+ * all read from there). The same integrity rule still holds: first-party
+ * reviews render as on-page social proof only and never emit AggregateRating /
+ * Review JSON-LD — that's gated to verified Google reviews in
+ * `src/lib/social-proof.ts`.
  */
-export const TESTIMONIALS = [
-  {
-    name: 'Mike & Sarah T.',
-    location: 'Martinsburg, WV',
-    rating: 5,
-    text: 'Real Elite replaced our entire roof in just two days. The crew was professional, cleaned up everything, and the new architectural shingles look incredible. Best contractor experience we\'ve ever had.',
-  },
-  {
-    name: 'Jennifer R.',
-    location: 'Charles Town, WV',
-    rating: 5,
-    text: 'We hired them for a full deck build and couldn\'t be happier. The craftsmanship is outstanding — every detail was perfect. They communicated every step of the way and finished on schedule.',
-  },
-  {
-    name: 'David & Linda K.',
-    location: 'Shepherdstown, WV',
-    rating: 5,
-    text: 'The stone veneer work on our front porch is absolutely stunning. Everyone who visits compliments it. Real Elite\'s attention to detail sets them apart from every other contractor in the area.',
-  },
-] as const;
 
 /**
  * Primary navigation — 6 top-level items.
