@@ -159,6 +159,11 @@ describe('static page smoke tests', () => {
     expect(() => render(<ContactPage />)).not.toThrow();
   });
 
+  it('Estimate hub page renders', async () => {
+    const { default: EstimateHubPage } = await import('@/app/estimate/page');
+    expect(() => render(<EstimateHubPage />)).not.toThrow();
+  });
+
   it('Gallery page renders', async () => {
     const { default: GalleryPage } = await import('@/app/gallery/page');
     expect(() => render(<GalleryPage />)).not.toThrow();

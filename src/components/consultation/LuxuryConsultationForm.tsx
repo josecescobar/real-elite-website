@@ -5,6 +5,7 @@ import { ArrowRight, Check } from 'lucide-react';
 import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
 import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
+import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 
 /* ─────────────────────────────────────────────────────────────────────────
  * LuxuryConsultationForm
@@ -245,6 +246,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           brief together, answer your questions, and only schedule an in-home visit if the fit
           is right.
         </p>
+        <SuccessNextSteps guideHref="/projects" guideLabel="See recent Real Elite projects" />
       </div>
     );
   }

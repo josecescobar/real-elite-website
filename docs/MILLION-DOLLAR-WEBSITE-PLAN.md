@@ -195,6 +195,15 @@ Verification: `npm run typecheck` clean · `npm run test` **299/299 pass** · `n
 
 **Exit criteria:** one obvious estimate front door, luxury funnel discoverable, no silent loss of near-converted leads.
 
+**Status — shipped 2026-07-06 (branch `claude/mdw-phase-3-conversion`).**
+- ✅ **3.1** `/estimate` hub — one page routing intent into three calibrated paths (Instant Roof Quote / Free Written Estimate [primary] / Design Consultation) with a phone fallback. The Header "Free Estimate" buttons (desktop + mobile drawer) now target `/estimate`. *The always-visible mobile sticky bar deliberately still goes straight to `/contact#estimate` — mobile "panic-Googling a leaking roof" wants the fastest path to the form, not a chooser. Easily reversible if Jose prefers the primary CTA to bypass the hub.*
+- ✅ **3.2** Luxury discoverability — Design Consultation now in the services mega-menu footer, the footer + mobile drawer (via `UTILITY_LINKS`), and a quiet, refined homepage `LuxuryBand` below the proof sections. Luxury pages' tone untouched.
+- ✅ **3.3** Success-state second act — a shared `SuccessNextSteps` on all three form confirmations offers a relevant next read (estimate → resources; roof quote → the new roof-cost guide; luxury → projects) plus a one-tap "prefer to talk now?" call, tracked as `post_lead_click`.
+- ✅ **3.5** Context-aware CTAs — service pages already pre-fill the estimate via `StickyEstimateRail initialService`, and luxury cities route to the consultation rail; verified, no change needed.
+- ⛔ **3.4 partial-lead capture — intentionally NOT built.** Silently POSTing a visitor's phone/email when they typed it but chose *not* to submit, then calling them, cuts against this brand's core promise ("no high-pressure sales, no upsells") and raises a real consent concern. Flagging rather than shipping; revisit only with an explicit, visible opt-in.
+
+Verification: `npm run typecheck` clean · `npm run test` **300/300 pass** · `npm run build` 228 pages + sitemap succeed · hub, header CTA, luxury band, and footer links confirmed rendering on a dev server.
+
 ---
 
 ### Phase 4 — Local depth (city pages that deserve to rank) · ~1–2 sessions, content-gated

@@ -25,6 +25,7 @@ import {
 import { trackEvent, trackLead } from '@/lib/analytics';
 import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
+import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
@@ -576,6 +577,10 @@ export default function RoofQuoteTool() {
             lead will reach out within 24 business hours to schedule your free, no-obligation
             on-site estimate.
           </p>
+          <SuccessNextSteps
+            guideHref="/blog/roof-replacement-cost-eastern-panhandle-2026"
+            guideLabel="Read: what a roof replacement really costs here"
+          />
         </div>
       )}
     </div>

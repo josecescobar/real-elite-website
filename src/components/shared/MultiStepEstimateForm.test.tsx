@@ -7,6 +7,8 @@ vi.mock('lucide-react', () => ({
   ArrowLeft: () => <span data-testid="arrow-left">←</span>,
   ArrowRight: () => <span data-testid="arrow-right">→</span>,
   Check: () => <span data-testid="check">✓</span>,
+  BookOpen: () => <span data-testid="book-open">📖</span>,
+  Phone: () => <span data-testid="phone">📞</span>,
 }));
 
 vi.mock('@/lib/analytics', () => ({
