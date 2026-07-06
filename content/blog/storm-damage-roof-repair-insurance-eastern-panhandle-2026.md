@@ -6,6 +6,7 @@ slug: "storm-damage-roof-repair-insurance-eastern-panhandle-2026"
 featuredImage: "/images/roofing-crew.jpg"
 category: "Roofing"
 type: "how-to"
+answer: "After a storm hits your roof in the Eastern Panhandle, stay off the roof, document everything from the ground with timestamped photos, stop further water intrusion safely with a tarp or bucket, and do not sign anything with a door-knocker. The most expensive mistake homeowners make is signing a contract or assignment of benefits with the first crew that shows up, and any crew promising to waive your deductible is describing insurance fraud, which is illegal in WV, MD, and VA. Roof claims generally follow three steps: you file with your insurer, an adjuster inspects and estimates the covered damage, and your policy pays out minus your deductible, on either an Actual Cash Value or Replacement Cost Value basis. Protect yourself by working only with a local, licensed, insured contractor whose license number you can verify."
 author: "Real Elite Contracting Team"
 ---
 

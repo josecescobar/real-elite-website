@@ -6,6 +6,7 @@ slug: "frederick-md-home-improvement-permits-costs-2026"
 featuredImage: "/images/new-build-sunset.jpg"
 category: "Service Areas"
 type: "permit-guide"
+answer: "Almost every meaningful home-improvement project in Frederick MD requires a permit, and Frederick County residential remodel permits typically issue in 2-3 weeks once a complete application is submitted; the project starts when the permit clears, not when you sign the contract. Homes in Frederick's Historic Preservation District need Historic Preservation Commission review for exterior work, which adds 4-6 weeks. Typical 2026 ranges run about $9,000-$22,000 for a roof, $16,000-$40,000 for a composite deck, $15,000-$50,000 for a bathroom, $30,000-$120,000 for a kitchen, and $35,000-$140,000 for a finished basement. Reputable crews book 4-8 weeks out and always provide a line-itemed written estimate, so a single round number with no breakdown is a red flag."
 author: "Real Elite Contracting Team"
 ---
 

@@ -169,7 +169,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
           "Yes — we work in both modern and traditional/historic homes. We can pull tile, fixtures, and finishes that respect the original character of a Frederick rowhouse or a Winchester historic property, or carry a modern aesthetic across an existing home with confidence.",
       },
     ],
-    relatedGuideSlugs: [],
+    relatedGuideSlugs: ['walk-in-shower-cost-wv-md-va-2026'],
     icon: 'Bath',
     gallery: [
       { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower' },
@@ -360,7 +360,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
           "Yes — proper rim joist insulation, perimeter wall insulation, and an HVAC extension (or independent zone, depending on your system) keep finished basements comfortable year-round. We don't cut corners on insulation.",
       },
     ],
-    relatedGuideSlugs: [],
+    relatedGuideSlugs: ['basement-egress-window-cost-eastern-panhandle-2026'],
     icon: 'Home',
   },
 

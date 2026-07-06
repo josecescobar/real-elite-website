@@ -14,6 +14,7 @@ import InlineTestimonial from './InlineTestimonial';
 import RelatedProjectsInline from './RelatedProjectsInline';
 import RelatedGuides from './RelatedGuides';
 import ArticleSchema from '@/components/seo/ArticleSchema';
+import JsonLd from '@/components/seo/JsonLd';
 import {
   formatDate,
   extractHeadings,
@@ -22,6 +23,7 @@ import {
   type BlogPost,
 } from '@/lib/blog';
 import { BUSINESS } from '@/lib/constants';
+import { buildBreadcrumbSchema } from '@/lib/seo';
 
 /* ----------- MDX heading anchor injection so TOC links resolve ----------- */
 
@@ -108,6 +110,14 @@ export default function GuideTemplate({ post }: Props) {
         datePublished={post.date}
         url={url}
         author={post.author}
+      />
+      <JsonLd
+        schema={buildBreadcrumbSchema([
+          { name: 'Home', item: BUSINESS.url },
+          { name: 'Resources', item: `${BUSINESS.url}/resources` },
+          { name: categoryLabel, item: `${BUSINESS.url}${categoryHref}` },
+          { name: post.title, item: url },
+        ])}
       />
       <ReadingProgressBar />
 

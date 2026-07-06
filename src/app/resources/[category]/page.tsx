@@ -4,8 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
+import JsonLd from '@/components/seo/JsonLd';
 import { BUSINESS } from '@/lib/constants';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, buildBreadcrumbSchema } from '@/lib/seo';
 import {
   GUIDE_CATEGORIES,
   getPostsByCategorySlug,
@@ -45,6 +46,13 @@ export default async function GuideCategoryPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        schema={buildBreadcrumbSchema([
+          { name: 'Home', item: BUSINESS.url },
+          { name: 'Resources', item: `${BUSINESS.url}/resources` },
+          { name: cat.name, item: `${BUSINESS.url}/resources/${cat.slug}` },
+        ])}
+      />
       {/* Hero */}
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">

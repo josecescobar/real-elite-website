@@ -190,10 +190,12 @@ describe('answer blocks', () => {
     expect(post!.answer!.length).toBeGreaterThan(100);
   });
 
-  it('leaves answer undefined for posts without one', () => {
-    const withoutAnswer = getAllPosts().find((p) => !p.answer);
-    expect(withoutAnswer).toBeDefined();
-    expect(withoutAnswer!.answer).toBeUndefined();
+  it('has a substantive answer block on every published post (GEO coverage)', () => {
+    // Phase 2 goal: 100% answer-block coverage so AI Overviews / assistants
+    // have a citable answer on every article. If a new post ships without one,
+    // this fails with its slug.
+    const missing = getAllPosts().filter((p) => !p.answer || p.answer.trim().length < 40);
+    expect(missing.map((p) => p.slug)).toEqual([]);
   });
 });
 

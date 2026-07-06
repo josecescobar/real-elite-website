@@ -6,6 +6,7 @@ slug: "ultimate-spring-exterior-checklist-eastern-panhandle"
 featuredImage: "/images/spring-house-blooming-trees.jpg"
 category: "Tips & Advice"
 type: "maintenance"
+answer: "Once or twice a year, ideally after winter and again before summer storm season, Eastern Panhandle homeowners should run a five-point exterior check that takes an afternoon and a pair of binoculars. Scan the roof from the ground for missing or lifting shingles, granule loss in the gutters, and bent or rusted flashing; check siding and trim for warped panels and soft, rotted wood; inspect the deck ledger board, since a failing ledger is the number one cause of deck collapses; clear the gutters and confirm downspouts divert water 5 to 10 feet from the foundation; and knock out the small fascia, gate, and trim repairs before they compound. If your roof is over 15 years old, get a professional inspection, because insurance carriers in WV, VA, and MD have gotten pickier about roof age."
 author: "Real Elite Contracting Team"
 ---
 

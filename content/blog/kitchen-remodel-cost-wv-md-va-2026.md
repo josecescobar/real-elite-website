@@ -6,6 +6,7 @@ slug: "kitchen-remodel-cost-wv-md-va-2026"
 featuredImage: "/images/flooring-light-living.jpg"
 category: "Kitchens"
 type: "cost-guide"
+answer: "In the WV-MD-VA region in 2026, kitchen remodels fall into three tiers: a $28k-$50k update that keeps the same footprint with new cabinets, counters, and appliances, a $50k-$90k full remodel that changes the layout and adds an island, and a $90k-$200k+ open-concept project that removes load-bearing walls and integrates the whole floor. The $50k-$90k full remodel is where most real kitchen remodels land, with cabinetry ($12k-$40k) the biggest line item. The same scope costs more in Loudoun County than the Eastern Panhandle, driven mostly by finish level, permit complexity, and trade labor that runs 10-20% higher, and a full remodel takes 6-10 weeks of active construction."
 author: "Real Elite Contracting Team"
 ---
 

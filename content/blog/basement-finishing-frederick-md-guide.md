@@ -6,6 +6,7 @@ slug: "basement-finishing-frederick-md-guide"
 featuredImage: "/images/foundation-block.jpg"
 category: "Remodeling"
 type: "cost-guide"
+answer: "Finishing a basement in Frederick MD typically runs $35k-$55k for an open family room, $55k-$90k for a full build-out with a bathroom and egress, and $90k-$140k+ for an in-law suite with a kitchenette. Maryland code requires a minimum 7-foot finished ceiling height, and any basement bedroom needs an egress window, which runs $3,500-$6,500 installed. The moisture and egress work is non-negotiable and comes first: finishing over an unaddressed moisture problem is the single most expensive mistake in this category. Expect 6-12 weeks of work plus 2-3 weeks of Frederick County permitting, with inspections at framing, rough-in, and final."
 author: "Real Elite Contracting Team"
 ---
 
