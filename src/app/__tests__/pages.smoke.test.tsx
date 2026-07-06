@@ -166,7 +166,14 @@ describe('static page smoke tests', () => {
 
   it('Reviews page renders', async () => {
     const { default: ReviewsPage } = await import('@/app/reviews/page');
-    expect(() => render(<ReviewsPage />)).not.toThrow();
+    const el = await ReviewsPage({ searchParams: Promise.resolve({}) });
+    expect(() => render(el)).not.toThrow();
+  });
+
+  it('Reviews page renders filtered by service', async () => {
+    const { default: ReviewsPage } = await import('@/app/reviews/page');
+    const el = await ReviewsPage({ searchParams: Promise.resolve({ service: 'roofing' }) });
+    expect(() => render(el)).not.toThrow();
   });
 
   it('Services page renders', async () => {

@@ -24,6 +24,8 @@ import { getRecentPosts } from '@/lib/blog';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import { getProjectsByCity } from '@/lib/projects';
 import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
+import { getReviewsByCity } from '@/lib/reviews';
 
 const FEATURED_DEEP_LINK_SLUGS = new Set(['roofing', 'decks', 'remodeling', 'siding']);
 
@@ -318,6 +320,13 @@ export default function CityPageTemplate({ city, data }: Props) {
 
       {/* Process module */}
       <PrecisionProcess />
+
+      {/* Reviews in this city — renders only when a matching review exists */}
+      <ReviewsSection
+        reviews={getReviewsByCity(city.slug)}
+        eyebrow="Reviews"
+        title={`What ${city.city} homeowners say.`}
+      />
 
       {/* Localized guides */}
       <section className="bg-white py-16 md:py-24">

@@ -145,6 +145,17 @@ Verification: `npm run typecheck` clean · `npm run test` **285/285 pass** (was 
 
 **Exit criteria:** 10+ published projects, Review Center live with ≥10 reviews (mixed sources), every service page shows real proof, Google review count growing weekly.
 
+**Status — Part 1 shipped 2026-07-06 (branch `claude/mdw-phase-1-proof`): the Review Center infrastructure, on the single Review contract.**
+- ✅ **1.3** `src/lib/reviews/{data,index}.ts` is now the single source for every review the site renders — the 3 real first-party testimonials migrated verbatim to the `Review` contract, enriched with canonical `serviceSlug`/`citySlug`, and the Martinsburg roofing review linked to the published victorian-roof project (`projectSlug`). `/reviews` rebuilt as a Review Center: project-linked reviews show a thumbnail deep-linking to the project, and URL-driven service filters (`?service=roofing`) appear only for services that actually have a review. Integrity gate + slug validation covered by `src/lib/reviews/reviews.test.ts`. `TESTIMONIALS` removed from `constants.ts` (fully migrated); zero Review/AggregateRating JSON-LD while unverified.
+- ✅ **1.4** Reviews now surface from that one source on service pages (`ServicePageTemplate`), city pages (`CityPageTemplate`), and the homepage (`Testimonials`) — each rendering only when a matching review exists (kitchens/bathrooms/etc. stay clean, no empty rails). Verified end-to-end: `/services/roofing` and `/service-areas/martinsburg-wv` surface the roofing review; `/services/kitchens` shows none.
+- ⏳ **1.1 [JOSE] — the critical unblock.** Send raw material for 10–12 past jobs (photos + a few lines each). Template: `docs/PROJECT-INTAKE.md`. **This is the gate on everything below** — the project case studies cannot be authored honestly without real photos and facts (fabricating them would violate Part 5), so this is the single highest-value thing only Jose can provide.
+- ⏳ **1.2** Author 9–11 Project Objects — **blocked on 1.1.** The pipeline is ready (drop-a-file `src/lib/projects/data/`, registry auto-generates); as each real project lands it auto-populates the gallery, its service/city proof modules, and (if it carries a review) the Review Center.
+- ⏳ **1.5 [JOSE]** Review velocity via `/review-request` after each job (needs `ADMIN_TOOLS_KEY` from Phase 0.1). Each Google review authored into `reviews/data.ts` with `source:'google'` lights up more of the site automatically.
+- ⏳ **1.6 [JOSE]** Flip `SOCIAL_PROOF.verified=true` + real numbers once the Google profile is stable — TrustBar/badges/aggregate schema then activate.
+- ↪️ **1.7** Gallery→Projects convergence — deferred to a small follow-up PR (kept this PR focused on the Review Center).
+
+Verification: `npm run typecheck` clean · `npm run test` **298/298 pass** (was 285) · `npm run build` + sitemap succeed · `npm run lint` 0 errors. Rendered output spot-checked on a dev server (Review Center, filters, project thumbnail, service/city surfacing, graceful empty state).
+
 ---
 
 ### Phase 2 — Own the answers (GEO / AI-search) · ~1–2 sessions

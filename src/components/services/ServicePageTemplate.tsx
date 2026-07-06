@@ -13,10 +13,12 @@ import ServiceFAQ from './ServiceFAQ';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import JsonLd from '@/components/seo/JsonLd';
 import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
 import type { ServiceData } from '@/lib/services-data';
 import { BUSINESS, SERVICE_PAGE_AREA_SERVED } from '@/lib/constants';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import { getProjectsByService } from '@/lib/projects';
+import { getReviewsByService } from '@/lib/reviews';
 
 type Props = {
   data: ServiceData;
@@ -202,6 +204,9 @@ export default function ServicePageTemplate({ data }: Props) {
 
       {/* Process module */}
       <PrecisionProcess />
+
+      {/* Reviews for this service — renders only when a matching review exists */}
+      <ReviewsSection reviews={getReviewsByService(data.slug)} eyebrow="Reviews" title="What clients say." />
 
       {/* Related guides */}
       <section className="bg-white py-16 md:py-24">
