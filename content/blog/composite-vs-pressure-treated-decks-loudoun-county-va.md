@@ -6,6 +6,7 @@ slug: "composite-vs-pressure-treated-decks-loudoun-county-va"
 featuredImage: "/images/deck-night-lights.jpg"
 category: "Decks"
 type: "comparison"
+answer: "For most Loudoun County homeowners building a new deck in 2026, composite (Trex Transcend, TimberTech AZEK, or TimberTech PRO) is the right choice: it costs roughly 60–80% more upfront, but over 20 years the lifecycle cost is about equal to pressure-treated ($24,000 vs $23,700 on a 400 sq ft deck) — with about 30 hours of total maintenance instead of 200+. Pressure-treated still wins for tight budgets, a 3–5-year ownership horizon, or historic architectural styles. Budget 2–4 weeks for HOA review and 2–3 weeks for the Loudoun County permit."
 author: "Real Elite Contracting Team"
 ---
 

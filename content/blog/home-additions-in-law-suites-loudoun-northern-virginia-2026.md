@@ -6,6 +6,7 @@ slug: "home-additions-in-law-suites-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/addition-sunroom-fireplace.jpg"
 category: "Remodeling"
 type: "how-to"
+answer: "Additions in Loudoun County and Northern Virginia range from cost-effective bump-outs to single rooms, second stories, sunrooms, and full in-law suites — the fastest-growing request, driven by multigenerational living. A true in-law suite includes a bedroom with code-compliant egress, a full bathroom, a kitchenette, a private entrance where the layout allows, and aging-in-place accessibility built in from the start. Construction typically runs 6–16 weeks plus design and permitting up front, with zoning setbacks and HOA approval a normal part of the process."
 author: "Real Elite Contracting Team"
 ---
 

@@ -6,6 +6,7 @@ slug: "why-hiring-licensed-contractor-wv-saves-money"
 featuredImage: "/images/licensed-contractor.jpg"
 category: "Tips & Advice"
 type: "buying-guide"
+answer: "Hiring a licensed West Virginia contractor saves money five ways: unlicensed work can void homeowner-insurance claims tied to it; permitted, inspected work protects your sale (buyer inspectors always find unpermitted work); the contractor general-liability and workers-comp coverage shields you when something goes wrong; code compliance is what keeps roofs and decks standing when weather tests them; and manufacturer warranties from GAF, Owens Corning, and CertainTeed generally only hold when certified installers do the work. Verify any license free at the WV Division of Labor online portal before signing."
 author: "Real Elite Contracting Team"
 ---
 

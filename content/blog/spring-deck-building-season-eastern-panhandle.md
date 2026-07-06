@@ -6,6 +6,7 @@ slug: "spring-deck-building-season-eastern-panhandle"
 featuredImage: "/images/spring-deck-backyard-patio-eastern-panhandle.jpg"
 category: "Decks & Outdoor Living"
 type: "how-to"
+answer: "The best time to build an Eastern Panhandle deck is early in the season — once the ground thaws for below-frost-line footings (30 inches in West Virginia) and before reputable Martinsburg and Charles Town crews book solid by mid-summer. A typical deck runs two to four weeks from permit to final walkthrough; pressure-treated costs roughly $15–$25 per square foot installed versus $30–$55 for composite, which then needs essentially nothing for 25+ years. Both Berkeley and Jefferson County require building permits, and railings are code-required on any surface 30 inches or more above grade."
 author: "Real Elite Contracting Team"
 ---
 

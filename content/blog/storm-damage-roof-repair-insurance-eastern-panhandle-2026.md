@@ -6,6 +6,7 @@ slug: "storm-damage-roof-repair-insurance-eastern-panhandle-2026"
 featuredImage: "/images/roofing-crew.jpg"
 category: "Roofing"
 type: "how-to"
+answer: "After a storm hits an Eastern Panhandle roof: stay off it, document everything from the ground with time-stamped photos, take reasonable steps (a tarp, a bucket) to stop additional damage, and do not sign anything with a door-knocking crew — offering to waive your deductible is insurance fraud in WV, MD, and VA. Claims follow the same shape: you file with photos and the storm date, an adjuster inspects, and your policy pays per its terms (ACV pays depreciated value; RCV pays replacement cost, usually in two checks). A local licensed contractor documents the damage, can meet your adjuster on site, and tells you honestly whether it is a repair or a replacement."
 author: "Real Elite Contracting Team"
 ---
 

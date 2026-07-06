@@ -6,6 +6,7 @@ slug: "ultimate-spring-exterior-checklist-eastern-panhandle"
 featuredImage: "/images/spring-house-blooming-trees.jpg"
 category: "Tips & Advice"
 type: "maintenance"
+answer: "Once or twice a year — after winter and before summer storm season — walk your home exterior through five checks: scan the roof from the ground with binoculars for missing shingles, granule loss, and flashing damage; press wood trim for rot and look for buckled siding; inspect the deck ledger board, railings, and boards (a failing ledger is the number-one cause of deck collapses); clear the gutters and make sure downspouts discharge 5–10 feet from the foundation; and knock out the small punch-list items before they compound. It takes an afternoon and binoculars, and it is far cheaper than the ceiling-stain alternative."
 author: "Real Elite Contracting Team"
 ---
 

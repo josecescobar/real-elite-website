@@ -6,6 +6,7 @@ slug: "how-to-choose-deck-material-west-virginia-weather"
 featuredImage: "/images/deck-construction.jpg"
 category: "Decks"
 type: "buying-guide"
+answer: "For most Eastern Panhandle homeowners the sweet spot is capped composite decking over a pressure-treated frame — a bulletproof structure with a surface that shrugs off West Virginia humidity, freeze-thaw cycles, and UV. Pressure-treated boards cost 30–50% less upfront but need annual sealing and realistically last 15–25 years; capped composite runs 25–30+ years with soap-and-water maintenance, and 100% PVC is the pick for genuinely wet, shaded spots. Whatever the walking surface, the frame should be pressure-treated — that is the job it does best."
 author: "Real Elite Contracting Team"
 ---
 
