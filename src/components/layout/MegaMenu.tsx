@@ -7,12 +7,20 @@ import { SERVICES_MEGA_MENU } from '@/lib/constants';
  * Desktop-only services mega-menu.
  * Hover/focus reveal; absolute-positioned beneath the trigger.
  * Mobile keeps the existing accordion in Header.
+ *
+ * Deliberately NOT role="menu": ARIA menus imply arrow-key/typeahead
+ * interaction this link panel doesn't implement — a plain group of links is
+ * the correct semantics. Escape closes by blurring the focused link (the
+ * reveal is focus-within/hover driven).
  */
 export default function ServicesMegaMenu() {
   return (
     <div
-      role="menu"
-      aria-label="Services"
+      onKeyDown={(e) => {
+        if (e.key === 'Escape' && document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+      }}
       className="absolute left-0 top-full pt-4 w-[min(820px,calc(100vw-2rem))] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
     >
       <div className="bg-white rounded-lg shadow-xl border border-charcoal-100 overflow-hidden">
@@ -30,7 +38,6 @@ export default function ServicesMegaMenu() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      role="menuitem"
                       className="block group/item focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm"
                     >
                       <div className="font-semibold text-navy-800 group-hover/item:text-brand-red transition-colors text-sm">
