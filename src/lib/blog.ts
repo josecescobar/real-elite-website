@@ -14,6 +14,19 @@ export interface BlogPostMeta {
   category: string;
   /** Normalized category slug — see CATEGORY_SLUG_MAP */
   categorySlug: string;
+  /**
+   * Normalized resource type (second taxonomy axis, orthogonal to category) —
+   * see RESOURCE_TYPES. Null when the post's frontmatter has no `type`;
+   * untyped posts are never silently defaulted into a type.
+   */
+  typeSlug: ResourceTypeSlug | null;
+  /**
+   * The citable "answer block": a 2–4 sentence direct answer to the question
+   * the article exists to answer, written for AI Overviews / assistants to
+   * lift verbatim. Optional frontmatter (`answer:`); rendered as a callout at
+   * the top of the article when present.
+   */
+  answer?: string;
   author: string;
   readingTimeMinutes: number;
 }
@@ -148,6 +161,42 @@ function normalizeCategory(category: string): GuideCategorySlug {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Resource types (second taxonomy axis)                                     */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Resource types classify HOW an article helps (cost guide vs comparison vs
+ * permit guide…), orthogonal to WHAT it covers (the category). This is the
+ * Resource Center taxonomy from the v2 blueprint §7. Set via the optional
+ * `type:` frontmatter field.
+ */
+export const RESOURCE_TYPES = [
+  { slug: 'cost-guide', name: 'Cost Guide', description: 'What projects really cost, with real ranges and what drives the number.' },
+  { slug: 'permit-guide', name: 'Permit Guide', description: 'Jurisdiction-specific permitting, inspections, and HOA requirements.' },
+  { slug: 'comparison', name: 'Comparison', description: 'Material vs material, repair vs replace — decisions weighed side by side.' },
+  { slug: 'maintenance', name: 'Maintenance', description: 'Seasonal upkeep and checklists that protect your home.' },
+  { slug: 'buying-guide', name: 'Buying Guide', description: 'How to choose materials, options, and the right contractor.' },
+  { slug: 'how-to', name: 'How-To', description: 'Step-by-step planning guidance for a project done right.' },
+  { slug: 'local-guide', name: 'Local Guide', description: 'Market-specific guidance for the cities and counties we serve.' },
+] as const;
+
+export type ResourceTypeSlug = (typeof RESOURCE_TYPES)[number]['slug'];
+
+const RESOURCE_TYPE_SLUGS = new Set<string>(RESOURCE_TYPES.map((t) => t.slug));
+
+/** Normalize a raw frontmatter `type` value; unknown/absent values become null. */
+function normalizeType(type: unknown): ResourceTypeSlug | null {
+  if (typeof type !== 'string') return null;
+  const key = type.trim().toLowerCase();
+  return RESOURCE_TYPE_SLUGS.has(key) ? (key as ResourceTypeSlug) : null;
+}
+
+export function getResourceType(slug: ResourceTypeSlug | null) {
+  if (!slug) return null;
+  return RESOURCE_TYPES.find((t) => t.slug === slug) ?? null;
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Reading time                                                              */
 /* -------------------------------------------------------------------------- */
 
@@ -207,29 +256,47 @@ export function extractHeadings(content: string): GuideHeading[] {
 /*  Queries                                                                   */
 /* -------------------------------------------------------------------------- */
 
-export function getAllPosts(): BlogPostMeta[] {
-  const files = fs.readdirSync(POSTS_DIR);
+/** Build a post's meta from parsed frontmatter — the single parse site. */
+function toMeta(slug: string, data: Record<string, unknown>, content: string): BlogPostMeta {
+  const category = (data.category as string) || 'Homeowner Guides';
+  const answer = typeof data.answer === 'string' && data.answer.trim() ? data.answer.trim() : undefined;
+  return {
+    slug,
+    title: data.title as string,
+    date: data.date as string,
+    excerpt: data.excerpt as string,
+    featuredImage: data.featuredImage as string,
+    category,
+    categorySlug: normalizeCategory(category),
+    typeSlug: normalizeType(data.type),
+    ...(answer ? { answer } : {}),
+    author: (data.author as string) || 'Real Elite Contracting Team',
+    readingTimeMinutes: computeReadingTime(content),
+  };
+}
 
-  return files
+// Memoize the corpus in production builds: getAllPosts() fans out from many
+// pages at build time and re-parsing 27+ markdown files per call is pure
+// waste. Left uncached in dev so newly authored posts appear without a
+// server restart.
+let postsCache: BlogPostMeta[] | null = null;
+
+export function getAllPosts(): BlogPostMeta[] {
+  if (process.env.NODE_ENV === 'production' && postsCache) return postsCache;
+
+  const files = fs.readdirSync(POSTS_DIR);
+  const posts = files
     .filter((f) => f.endsWith('.md') || f.endsWith('.mdx'))
     .map((filename) => {
       const slug = filename.replace(/\.mdx?$/, '');
       const raw = fs.readFileSync(path.join(POSTS_DIR, filename), 'utf8');
       const { data, content } = matter(raw);
-      const category = (data.category as string) || 'Homeowner Guides';
-      return {
-        slug,
-        title: data.title as string,
-        date: data.date as string,
-        excerpt: data.excerpt as string,
-        featuredImage: data.featuredImage as string,
-        category,
-        categorySlug: normalizeCategory(category),
-        author: (data.author as string) || 'Real Elite Contracting Team',
-        readingTimeMinutes: computeReadingTime(content),
-      };
+      return toMeta(slug, data, content);
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  if (process.env.NODE_ENV === 'production') postsCache = posts;
+  return posts;
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
@@ -238,19 +305,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     if (fs.existsSync(filePath)) {
       const raw = fs.readFileSync(filePath, 'utf8');
       const { data, content } = matter(raw);
-      const category = (data.category as string) || 'Homeowner Guides';
-      return {
-        slug,
-        title: data.title as string,
-        date: data.date as string,
-        excerpt: data.excerpt as string,
-        featuredImage: data.featuredImage as string,
-        category,
-        categorySlug: normalizeCategory(category),
-        author: (data.author as string) || 'Real Elite Contracting Team',
-        readingTimeMinutes: computeReadingTime(content),
-        content,
-      };
+      return { ...toMeta(slug, data, content), content };
     }
   }
   return null;

@@ -8,10 +8,13 @@ import {
   getRecentPosts,
   getRelatedPosts,
   getPostsByCategorySlug,
+  getResourceType,
   GUIDE_CATEGORIES,
+  RESOURCE_TYPES,
 } from '@/lib/blog';
 
 const VALID_CATEGORY_SLUGS = GUIDE_CATEGORIES.map((c) => c.slug);
+const VALID_TYPE_SLUGS = new Set<string>(RESOURCE_TYPES.map((t) => t.slug));
 
 describe('computeReadingTime', () => {
   it('returns at least 1 minute for empty or trivial content', () => {
@@ -146,6 +149,51 @@ describe('getPostsByCategorySlug', () => {
         expect(p.categorySlug).toBe(slug);
       }
     }
+  });
+});
+
+describe('resource types', () => {
+  it('has unique, well-formed type slugs', () => {
+    const slugs = RESOURCE_TYPES.map((t) => t.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const t of RESOURCE_TYPES) {
+      expect(t.slug).toMatch(/^[a-z0-9-]+$/);
+      expect(t.name.trim().length).toBeGreaterThan(0);
+      expect(t.description.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('gives every post a valid typeSlug or null (never an unknown value)', () => {
+    for (const p of getAllPosts()) {
+      expect(
+        p.typeSlug === null || VALID_TYPE_SLUGS.has(p.typeSlug),
+        `${p.slug} → unknown type "${p.typeSlug}"`
+      ).toBe(true);
+    }
+  });
+
+  it('has classified the existing corpus (most posts carry a type)', () => {
+    const typed = getAllPosts().filter((p) => p.typeSlug !== null);
+    expect(typed.length).toBeGreaterThan(0);
+  });
+
+  it('resolves type slugs via getResourceType and null for untyped', () => {
+    expect(getResourceType('cost-guide')?.name).toBe('Cost Guide');
+    expect(getResourceType(null)).toBeNull();
+  });
+});
+
+describe('answer blocks', () => {
+  it('parses the answer frontmatter on exemplar posts', () => {
+    const post = getPostBySlug('deck-permits-berkeley-jefferson-county-wv-2026');
+    expect(post?.answer).toBeTruthy();
+    expect(post!.answer!.length).toBeGreaterThan(100);
+  });
+
+  it('leaves answer undefined for posts without one', () => {
+    const withoutAnswer = getAllPosts().find((p) => !p.answer);
+    expect(withoutAnswer).toBeDefined();
+    expect(withoutAnswer!.answer).toBeUndefined();
   });
 });
 
