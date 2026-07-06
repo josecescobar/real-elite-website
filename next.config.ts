@@ -12,13 +12,12 @@ import type { NextConfig } from 'next';
  *  - Google Tag Manager / GA4: googletagmanager.com, google-analytics.com
  *  - Microsoft Clarity: clarity.ms (+ c.bing.com beacons)
  *  - vercel.live: the preview-deployment feedback toolbar
- *  - Stock photo CDNs mirror images.remotePatterns below
  */
 const contentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://images.unsplash.com https://plus.unsplash.com https://images.pexels.com https://cdn.pixabay.com https://pixabay.com https://vercel.live",
+  "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://vercel.live",
   "font-src 'self' data:",
   "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com",
   "frame-src https://www.googletagmanager.com https://vercel.live",
@@ -51,20 +50,9 @@ const nextConfig: NextConfig = {
     // efficient default; 82 is used for the premium blog/featured imagery
     // so high-resolution photos render crisp without bloating page weight.
     qualities: [75, 82, 90],
-    /**
-     * Stock photo CDNs allowed as next/image sources so URLs from
-     * Unsplash, Pexels, or Pixabay can be pasted directly into
-     * SERVICE_DATA.{bathrooms,kitchens,basements}.hero.image.src or
-     * GALLERY_IMAGES entries. Prefer self-hosting in /public/images
-     * for production; this is for staging/placeholder use.
-     */
-    remotePatterns: [
-      { protocol: 'https', hostname: 'images.unsplash.com' },
-      { protocol: 'https', hostname: 'plus.unsplash.com' },
-      { protocol: 'https', hostname: 'images.pexels.com' },
-      { protocol: 'https', hostname: 'cdn.pixabay.com' },
-      { protocol: 'https', hostname: 'pixabay.com' },
-    ],
+    // All site imagery is self-hosted in /public/images — no remote image
+    // sources are allowed. If a remote CDN is ever needed again, add it to
+    // remotePatterns here AND to the CSP img-src above, together.
   },
   async headers() {
     return [
