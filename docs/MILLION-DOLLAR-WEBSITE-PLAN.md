@@ -217,6 +217,25 @@ Verification: `npm run typecheck` clean · `npm run test` **300/300 pass** · `n
 
 **Exit criteria:** priority-market city pages carry real local proof + unique local content; GBP/LSA operational rhythm established.
 
+**Status — shipped 2026-07-06 (branch `claude/mdw-phase-4-local`).**
+- ✅ **4.2** Permit micro-content: every city page now surfaces its **jurisdiction's own permit guide** first in the localized-guides slot (Berkeley/Jefferson WV → the WV permit guide, Frederick MD → the Frederick guide, Loudoun VA → the Loudoun permit/HOA guide). Deliberately conservative mapping — a city is linked only to a guide that genuinely covers its county, never over-claimed. Verified rendering on Martinsburg, Leesburg, and Frederick.
+- ✅ **4.3** Expansion-market audit — **no action needed, verified clean.** `generateStaticParams` for `/services/[service]/[city]` derives *only* from authored `CONTENT` keys and the page `notFound()`s when content is missing, so all **62** service×city pages are hand-authored — there are zero thin auto-spun doorway pages to consolidate. The anti-doorway discipline is enforced structurally.
+- ⏳ **4.1 [JOSE] — blocked on the same photos as 1.2.** City-tagging real projects/reviews/gallery images to specific cities needs real, location-verified project material. The plumbing is ready (`selectGalleryFor` already prefers city→state→all; reviews and projects carry `citySlug`), so tagged assets light up city pages automatically once the projects land.
+- ⏳ **4.4 [JOSE]** GBP weekly rhythm + Google LSA application (owner-side; see research §6).
+
+Verification: `npm run typecheck` clean · `npm run test` **300/300 pass** · `npm run build` 228 pages + sitemap succeed · permit-guide surfacing confirmed on WV/MD/VA city pages.
+
+---
+
+## Plan completion summary (2026-07-06)
+
+**Phases 0–4 are code-complete.** Everything in the plan that could be built honestly from existing real data has shipped across PRs #63–#68. What remains is **owner-side and cannot be coded**, plus optional Phase 5 platform work:
+
+- 🔴 **Jose's project photos (`docs/PROJECT-INTAKE.md`)** — the one gate on the remaining proof work: task **1.2** (10–12 project case studies) and **4.1** (city-tagging real assets). Fabricating these would violate Part 5, so they wait on real material.
+- 🔴 **Vercel env vars** (`docs/LEAD_LEDGER_SETUP.md` + Appendix A) — `RESEND_API_KEY` (critical), Twilio, `ADMIN_TOOLS_KEY`, Supabase, analytics IDs.
+- 🟡 **GA4 key events**, **review velocity** (1.5), **`SOCIAL_PROOF.verified` flip** (1.6), **GBP/LSA** (4.4) — all owner-side.
+- ↪️ **Phase 5** (faceted gallery, video reviews, AI cost assistant, lead dashboard, Mission Control contracts) — optional, unstarted; scope each into its own session when reached.
+
 ---
 
 ### Phase 5 — Flywheel & platform (optional, after 0–4 prove out)
