@@ -116,6 +116,17 @@ KEEP  everything else              (redirects preserved; blog URLs canonical; no
 
 **Exit criteria:** a test lead flows end-to-end (form → owner email + SMS + ledger row + GA4 key event + customer confirmation) and Jose received it on his phone in <60 seconds.
 
+**Status — shipped 2026-07-06 (branch `claude/mdw-phase-0-measurement`):**
+- ✅ **0.2** `trackLead()` in `src/lib/analytics.ts` fires the canonical `generate_lead` event (params `lead_type`/`service`/`value_band`) from all three form successes, alongside the existing events. Tested.
+- ✅ **0.3** `src/lib/attribution.ts` + `AttributionTracker` (mounted in `layout.tsx`) capture first-touch UTM/referrer/landing-path into sessionStorage; all three forms append it to the payload; the owner email now shows a **Source** row. Tested.
+- ✅ **0.4** `src/lib/leads.ts` — `Lead` type + `recordLead()` inserts to Supabase over PostgREST (no new dependency), env-gated no-op when unset, never throws, timeout-bounded, awaited only after email/SMS. Wired into `/api/estimate`. Table SQL + setup in `docs/LEAD_LEDGER_SETUP.md`. Tested.
+- ✅ **0.5** Customer confirmation email (warm, single call CTA, from `no-reply@`) sent on every submission; non-fatal on failure. Tested.
+- ✅ **0.7** Review-tool placeholder → `BUSINESS.phone`; mega-menu is now a labeled `<nav aria-label="Services">` landmark; `docs/PROJECT-OBJECT-SPEC.md` committed. **Hero eyebrow left unchanged** — measured contrast of `charcoal-200` (#d1d1d1) on navy-900 (#0f1b2d) is ~11:1, comfortably past WCAG AA, so the conditional "if Lighthouse flags" did not apply.
+- ⏳ **0.1 [JOSE]** — set env vars in Vercel (`RESEND_API_KEY` critical; Twilio ×4; `ADMIN_TOOLS_KEY`; `GOOGLE_SOLAR_API_KEY`; `NEXT_PUBLIC_GTM_ID`; `NEXT_PUBLIC_CLARITY_ID`; Upstash ×2; **new:** `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` + create the `leads` table per `docs/LEAD_LEDGER_SETUP.md`).
+- ⏳ **0.6 [JOSE]** — in GA4 (`G-W9QH965H3Y`): mark `generate_lead` and `phone_click` as key events. Path: GA4 → Admin → Events (or Key events) → toggle "Mark as key event" on each. They appear in the Events list within ~24h of the first live fire, or add them by name immediately via **Admin → Key events → New key event** typing `generate_lead` then `phone_click`.
+
+Verification: `npm run typecheck` clean · `npm run test` **285/285 pass** (was 263) · `npm run build` + sitemap succeed · `npm run lint` 0 errors (3 pre-existing `<img>` warnings in test files).
+
 ---
 
 ### Phase 1 — Fill the proof engine (projects + reviews) · ~2 sessions + Jose's photos

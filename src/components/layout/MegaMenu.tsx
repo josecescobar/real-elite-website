@@ -10,13 +10,16 @@ import { SERVICES_MEGA_MENU } from '@/lib/constants';
  *
  * Deliberately NOT role="menu": ARIA menus imply arrow-key/typeahead
  * interaction this link panel doesn't implement — a plain group of links is
- * the correct semantics. Escape-to-close lives on the shared trigger+panel
- * wrapper in Header (trigger and panel are siblings, so a handler here would
- * miss Escape pressed while the trigger itself is focused).
+ * the correct semantics. It IS a labeled `navigation` landmark, so screen
+ * readers can jump to the services list and announce it by name. Escape-to-
+ * close lives on the shared trigger+panel wrapper in Header (trigger and panel
+ * are siblings, so a handler here would miss Escape pressed while the trigger
+ * itself is focused).
  */
 export default function ServicesMegaMenu() {
   return (
-    <div
+    <nav
+      aria-label="Services"
       className="absolute left-0 top-full pt-4 w-[min(820px,calc(100vw-2rem))] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200"
     >
       <div className="bg-white rounded-lg shadow-xl border border-charcoal-100 overflow-hidden">
@@ -61,6 +64,6 @@ export default function ServicesMegaMenu() {
           </Link>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

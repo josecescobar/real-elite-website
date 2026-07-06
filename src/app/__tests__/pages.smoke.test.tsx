@@ -48,6 +48,7 @@ vi.mock('lucide-react', async (importOriginal) => {
 vi.mock('@/lib/analytics', () => ({
   trackEvent: vi.fn(),
   trackEstimateStep: vi.fn(),
+  trackLead: vi.fn(),
 }));
 
 /* ------------------------------------------------------------------ */

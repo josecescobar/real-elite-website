@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { trackEvent, trackEstimateStep } from '@/lib/analytics';
+import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
+import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 
 /* -------------------------------- options -------------------------------- */
@@ -209,6 +210,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
           timeline: labelFor(TIMELINE_OPTIONS, data.timeline),
           budgetRange: data.budgetRange ? labelFor(BUDGET_OPTIONS, data.budgetRange) : '',
           message: data.scope,
+          ...attributionPayload(),
           website: honeypot,
         }),
       });
@@ -220,6 +222,11 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
 
       hasSubmitted.current = true;
       trackEvent('form_submit', { form: 'estimate_multistep', service: data.service });
+      trackLead({
+        lead_type: 'estimate',
+        service: data.service || undefined,
+        value_band: data.budgetRange ? labelFor(BUDGET_OPTIONS, data.budgetRange) : undefined,
+      });
       trackEstimateStep('submit', 3, { service: data.service });
       setIsSuccess(true);
     } catch (err) {

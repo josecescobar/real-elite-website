@@ -116,7 +116,7 @@ export default function ReviewRequestTool() {
           <input
             id="rr-phone"
             type="tel"
-            placeholder="(304) 555-0123"
+            placeholder={BUSINESS.phone}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className={inputClass}

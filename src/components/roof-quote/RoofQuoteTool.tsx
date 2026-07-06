@@ -22,7 +22,8 @@ import {
   type MaterialSlug,
   type FallbackAnswers,
 } from '@/lib/roof-estimate';
-import { trackEvent } from '@/lib/analytics';
+import { trackEvent, trackLead } from '@/lib/analytics';
+import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -173,6 +174,7 @@ export default function RoofQuoteTool() {
           phone: lead.phone,
           service: 'Roofing — Instant Quote',
           message: summary,
+          ...attributionPayload(),
           website: honeypot,
         }),
       });
@@ -181,6 +183,7 @@ export default function RoofQuoteTool() {
         throw new Error(err?.error || 'Failed to send');
       }
       trackEvent('roof_quote_submit', { material: material ?? 'unknown' });
+      trackLead({ lead_type: 'roof_quote', service: 'Roofing' });
       setPhase('success');
     } catch {
       setSubmitError(

@@ -75,4 +75,13 @@ export const env = {
   upstashRedisUrl: (): string | undefined => process.env.UPSTASH_REDIS_REST_URL,
   upstashRedisToken: (): string | undefined =>
     process.env.UPSTASH_REDIS_REST_TOKEN,
+
+  // ── Supabase (durable lead ledger) ───────────────────────────────────────
+  /** Supabase project URL. When absent, the lead ledger no-ops (email/SMS
+   *  remain the source of truth for delivery). */
+  supabaseUrl: (): string | undefined => process.env.SUPABASE_URL,
+  /** Supabase service-role key — server-only; bypasses RLS to insert leads.
+   *  Both this and the URL must be set for the ledger to write. */
+  supabaseServiceRoleKey: (): string | undefined =>
+    process.env.SUPABASE_SERVICE_ROLE_KEY,
 } as const;
