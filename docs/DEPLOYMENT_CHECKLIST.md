@@ -184,11 +184,16 @@ falls back to the quick-question flow — no error shown to the homeowner.
 
 ### Adjusting your prices
 
-Roof pricing lives in **`src/lib/roof-estimate.ts`** — the `ROOF_MATERIALS`
-array at the top. `pricePerSquare` is your all-in installed price per roofing
-square (100 sq ft): material + labor + tear-off + disposal + overhead +
-margin. The shipped numbers are placeholder regional figures — replace them
-with your real rates.
+The instant-quote tools use placeholder regional rates — replace them with
+your real numbers:
+
+- **Roof:** `src/lib/roof-estimate.ts` → `ROOF_MATERIALS`. `pricePerSquare`
+  is your all-in installed price per roofing square (100 sq ft).
+- **Deck:** `src/lib/deck-estimate.ts` → `DECK_MATERIALS`. `pricePerSqFt` is
+  your all-in installed price per square foot of deck.
+
+"All-in" means material + labor + everything + your margin in one number —
+not the retail price of the material.
 
 ---
 

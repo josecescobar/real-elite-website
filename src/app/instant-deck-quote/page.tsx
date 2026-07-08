@@ -1,40 +1,40 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Satellite, SlidersHorizontal, FileCheck, Phone } from 'lucide-react';
+import { Ruler, SlidersHorizontal, FileCheck, Phone } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
-import RoofQuoteTool from '@/components/roof-quote/RoofQuoteTool';
+import DeckQuoteTool from '@/components/deck-quote/DeckQuoteTool';
 
 export const metadata: Metadata = {
-  title: `Instant Roof Quote — Ballpark Price From Your Address | ${BUSINESS.name}`,
+  title: `Instant Deck Quote — Ballpark Deck Price | ${BUSINESS.name}`,
   description:
-    'Get a ballpark roof replacement price in about a minute. Enter your address, pick a shingle, and see an estimated range — from a veteran-owned WV–MD–VA roofing contractor.',
+    'Get a ballpark deck price in about a minute. Enter your deck size, pick a material, and see an estimated range — from a veteran-owned WV–MD–VA deck builder.',
   keywords: [
-    'instant roof quote',
-    'roof estimate by address',
-    'roof replacement cost calculator',
-    'free roof estimate WV MD VA',
+    'instant deck quote',
+    'deck cost calculator',
+    'deck price estimate',
+    'composite deck cost WV MD VA',
   ],
-  alternates: { canonical: `${BUSINESS.url}/instant-roof-quote` },
+  alternates: { canonical: `${BUSINESS.url}/instant-deck-quote` },
   openGraph: {
-    title: `Instant Roof Quote | ${BUSINESS.name}`,
+    title: `Instant Deck Quote | ${BUSINESS.name}`,
     description:
-      'Enter your address, pick a material, and see a ballpark roof price in about a minute.',
-    url: `${BUSINESS.url}/instant-roof-quote`,
+      'Enter your deck size, pick a material, and see a ballpark price in about a minute.',
+    url: `${BUSINESS.url}/instant-deck-quote`,
     type: 'website',
   },
 };
 
 const STEPS = [
   {
-    icon: Satellite,
-    title: 'We measure your roof',
-    body: 'Enter your address and we pull the roof size from satellite imagery — no ladder, no appointment.',
+    icon: Ruler,
+    title: 'Tell us the size',
+    body: 'Enter the deck dimensions you have in mind — or tap a common size — and how high it sits.',
   },
   {
     icon: SlidersHorizontal,
     title: 'You pick a material',
-    body: 'Choose architectural, designer, or metal — the estimated range updates to match.',
+    body: 'Choose pressure-treated, composite, or premium PVC — the estimated range updates to match.',
   },
   {
     icon: FileCheck,
@@ -43,7 +43,7 @@ const STEPS = [
   },
 ];
 
-export default function InstantRoofQuotePage() {
+export default function InstantDeckQuotePage() {
   return (
     <>
       {/* Hero */}
@@ -51,17 +51,16 @@ export default function InstantRoofQuotePage() {
         <Container size="wide">
           <div className="max-w-3xl">
             <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
-              Instant Roof Quote
+              Instant Deck Quote
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-              Your roof price —
+              Your deck price —
               <br />
-              <span className="text-brand-red">before we ever climb a ladder.</span>
+              <span className="text-brand-red">in about a minute.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Enter your address, pick a material, and see a ballpark range in about a minute. No
-              pressure, no obligation — just a real starting number from a veteran-owned
-              contractor.
+              Enter the size, pick a material, and see a ballpark range. No pressure, no
+              obligation — just a real starting number from a veteran-owned deck builder.
             </p>
           </div>
         </Container>
@@ -71,7 +70,7 @@ export default function InstantRoofQuotePage() {
       <section className="bg-charcoal-50 py-14 md:py-20">
         <Container size="default">
           <div className="max-w-2xl mx-auto">
-            <RoofQuoteTool />
+            <DeckQuoteTool />
           </div>
         </Container>
       </section>
@@ -111,7 +110,8 @@ export default function InstantRoofQuotePage() {
             Rather just talk it through?
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Call us and a project lead will walk your roof options with you — financing included.
+            Call us and a project lead will walk your deck and outdoor-living options with you —
+            financing included.
           </p>
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
@@ -121,9 +121,9 @@ export default function InstantRoofQuotePage() {
             Call {BUSINESS.phone}
           </a>
           <p className="text-charcoal-400 text-sm mt-8">
-            Looking for a deck price instead?{' '}
-            <Link href="/instant-deck-quote" className="text-white underline hover:text-brand-red transition-colors">
-              Get an instant deck quote →
+            Need a roof price instead?{' '}
+            <Link href="/instant-roof-quote" className="text-white underline hover:text-brand-red transition-colors">
+              Get an instant roof quote →
             </Link>
           </p>
         </Container>

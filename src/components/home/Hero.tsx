@@ -61,11 +61,11 @@ export const Hero = () => {
               Get My Free Estimate →
             </a>
             <a
-              href="/instant-roof-quote"
-              onClick={() => trackEvent('roof_quote_cta_click', { location: 'hero' })}
+              href="/instant-quote"
+              onClick={() => trackEvent('instant_quote_cta_click', { location: 'hero' })}
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
             >
-              Instant Roof Quote →
+              Get an Instant Quote →
             </a>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}

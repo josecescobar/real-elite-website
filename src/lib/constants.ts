@@ -344,7 +344,7 @@ export const NAV_LINKS = [
   },
   { label: 'Our Work', href: '/gallery' },
   { label: 'Guides', href: '/guides' },
-  { label: 'Roof Quote', href: '/instant-roof-quote' },
+  { label: 'Instant Quote', href: '/instant-quote' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;
