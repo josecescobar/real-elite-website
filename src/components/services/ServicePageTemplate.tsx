@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { Zap, ArrowRight } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
@@ -18,7 +20,17 @@ type Props = {
   data: ServiceData;
 };
 
+/**
+ * Services that have a matching instant-quote tool get a banner under the
+ * hero. Add an entry here when a new tool ships (e.g. siding).
+ */
+const INSTANT_QUOTE_TOOLS: Record<string, { href: string; label: string }> = {
+  roofing: { href: '/instant-roof-quote', label: 'Get an instant roof quote' },
+  decks: { href: '/instant-deck-quote', label: 'Get an instant deck quote' },
+};
+
 export default function ServicePageTemplate({ data }: Props) {
+  const instantQuote = INSTANT_QUOTE_TOOLS[data.slug];
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -106,6 +118,27 @@ export default function ServicePageTemplate({ data }: Props) {
           </div>
         </Container>
       </section>
+
+      {/* Instant quote banner — only for services with a matching tool */}
+      {instantQuote && (
+        <section className="bg-brand-red text-white">
+          <Container size="wide" className="py-4">
+            <Link
+              href={instantQuote.href}
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
+            >
+              <span className="inline-flex items-center gap-2 font-bold text-sm">
+                <Zap className="w-4 h-4" aria-hidden="true" />
+                Skip the wait — see a ballpark price in about a minute.
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-sm font-bold underline underline-offset-4 group-hover:gap-2.5 transition-all">
+                {instantQuote.label}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </span>
+            </Link>
+          </Container>
+        </section>
+      )}
 
       {/* Main content + sticky form rail */}
       <section className="bg-white py-16 md:py-24">

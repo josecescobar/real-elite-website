@@ -51,7 +51,7 @@ const FAQ_SECTIONS = [
       {
         question: 'How do I get a free estimate?',
         answer:
-          'Three ways: call us at (681) 534-5515, use the multi-step estimate form on the homepage, or book a 15-minute call on Calendly. A real project lead reaches out within 24 business hours.',
+          'Call us at (681) 534-5515, use the estimate form on the homepage, or book a 15-minute call on Calendly. Roofing or deck project? Try the Instant Quote tool on our site for a ballpark price in about a minute. Either way, a real project lead reaches out within 24 business hours.',
       },
     ],
   },
