@@ -58,12 +58,6 @@ export default function ServicesMegaMenu() {
           </span>
           <div className="flex items-center gap-5">
             <Link
-              href="/premium-remodeling"
-              className="text-xs font-semibold text-navy-800 hover:text-brand-red transition-colors uppercase tracking-[0.12em]"
-            >
-              Premium Remodeling
-            </Link>
-            <Link
               href="/design-consultation"
               className="text-xs font-semibold text-navy-800 hover:text-brand-red transition-colors uppercase tracking-[0.12em]"
             >

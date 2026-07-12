@@ -21,7 +21,7 @@ import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
 export const metadata: Metadata = {
   title: `Schedule a Phone Consultation — Luxury Kitchen, Bath & Basement | ${BUSINESS.name}`,
   description:
-    'Schedule a phone consultation for a premium kitchen, suite, lower-level, addition, or covered outdoor project across Loudoun and the surrounding region.',
+    'Schedule a phone consultation for your kitchen, primary bath, or lower-level project across Loudoun, Fairfax, and Alexandria. Veteran-owned design-build. Designer and architect collaboration welcomed.',
   keywords: [
     'luxury kitchen consultation Northern Virginia',
     'design build phone consultation McLean',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Phone Consultation | ${BUSINESS.name}`,
     description:
-      'Schedule a phone consultation for substantial interior, addition, and covered outdoor-living projects across the region.',
+      'Schedule a phone consultation — kitchens, primary baths, and lower-level projects across Loudoun, Fairfax, and Alexandria.',
     url: `${BUSINESS.url}/design-consultation`,
     type: 'website',
   },
@@ -67,8 +67,8 @@ const FIT_ITEMS = [
   'Loudoun County (Leesburg, Ashburn, Brambleton, Lansdowne, Middleburg)',
   'Fairfax County (McLean, Great Falls, Vienna, Reston, Burke, Fairfax Station, Clifton)',
   'Alexandria (Old Town, Belle Haven, Rosemont, North Ridge, Beverley Hills)',
-  'Kitchens · primary baths · lower-level finishing · whole-home renovation · additions · covered outdoor living',
-  'Premium project planning bands from $40,000 through $500,000+',
+  'Kitchens · primary baths · lower-level finishing · whole-home renovation · additions',
+  'Project budgets from $50,000 through $500,000+',
   'Working with a designer, considering one, or open to a recommendation',
 ];
 
@@ -91,7 +91,7 @@ const FAQ_ITEMS = [
   {
     question: 'What project size makes sense for this consultation path?',
     answer:
-      'The design consultation path is designed for substantial kitchen, bath, basement, addition, whole-home, and covered outdoor projects. Most interior projects begin at a $50,000 planning band; covered outdoor-living briefs may begin at $40,000. For smaller-scope work, the standard estimate form is faster.',
+      'The design consultation path is the right fit for primary kitchen, bath, basement, addition, and whole-home projects in the $50,000+ range. For smaller-scope work, the standard estimate form on our service pages is faster and more efficient.',
   },
   {
     question: 'What is the typical response time?',
@@ -116,7 +116,7 @@ export default function DesignConsultationPage() {
           },
           areaServed: ['Virginia', 'Maryland', 'West Virginia'],
           description:
-            'Phone consultation for substantial kitchen, suite, basement, addition, whole-home, and outdoor-living projects across Loudoun and the surrounding region.',
+            'Phone consultation for luxury kitchen, primary bath, basement, and whole-home renovation projects across Loudoun, Fairfax, and Alexandria.',
         }}
       />
       <JsonLd
@@ -149,7 +149,7 @@ export default function DesignConsultationPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               A 20–30 minute phone consultation for kitchens, primary baths, lower-level
-              finishing, additions, whole-home renovations, and covered outdoor living. You
+              finishing, and whole-home renovations across Loudoun, Fairfax, and Alexandria. You
               tell us the brief and the best time to be called; we call inside the window. Only
               when the fit is right do we schedule an in-home visit.
             </p>
@@ -269,7 +269,7 @@ export default function DesignConsultationPage() {
               </h2>
               <p className="text-charcoal-600 mt-4 text-base leading-relaxed">
                 The design consultation path is calibrated for premium kitchen, bath, lower-level,
-                addition, whole-home, and covered outdoor-living work. For smaller-scope repairs and quick estimates, our
+                addition, and whole-home work. For smaller-scope repairs and quick estimates, our
                 standard request form on each service page is faster.
               </p>
             </div>
