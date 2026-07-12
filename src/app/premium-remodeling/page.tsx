@@ -106,6 +106,29 @@ const FAQS = [
   },
 ];
 
+const PLANNING_GUIDES = [
+  {
+    title: 'Planning a Luxury Kitchen',
+    body: 'Layout, cabinetry, lighting, selections, and the sequence that keeps major decisions from becoming expensive changes.',
+    href: '/blog/luxury-kitchen-renovation-loudoun-northern-virginia-2026',
+  },
+  {
+    title: 'What Defines a Premium Primary Bath',
+    body: 'The visible finishes—and the waterproofing, ventilation, and coordination behind them.',
+    href: '/blog/luxury-bathroom-renovation-loudoun-northern-virginia-2026',
+  },
+  {
+    title: 'Building a Better Lower Level',
+    body: 'Moisture, egress, HVAC, room planning, and what separates added living space from a finished box.',
+    href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+  },
+  {
+    title: 'Designing Outdoor Living as One Project',
+    body: 'Decks, covered structures, lighting, railings, and circulation planned as a connected space.',
+    href: '/blog/luxury-outdoor-living-decks-loudoun-northern-virginia-2026',
+  },
+] as const;
+
 export default function PremiumRemodelingPage() {
   return (
     <>
@@ -315,8 +338,35 @@ export default function PremiumRemodelingPage() {
         </Container>
       </section>
 
+      <section className="bg-steel-50 py-16 md:py-24">
+        <Container size="wide">
+          <SectionHeader
+            eyebrow="Plan Before the Call"
+            title="Four guides for making the brief sharper."
+            subtitle="Use these decision-stage resources to identify priorities, constraints, and questions before the first project conversation."
+            align="center"
+            className="mx-auto"
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {PLANNING_GUIDES.map((guide) => (
+              <article key={guide.href} className="rounded-xl border border-charcoal-100 bg-white p-6 md:p-7">
+                <h2 className="font-heading text-xl font-extrabold text-navy-800 md:text-2xl">
+                  {guide.title}
+                </h2>
+                <p className="mt-3 leading-relaxed text-charcoal-600">{guide.body}</p>
+                <Link
+                  href={`${guide.href}?utm_source=website&utm_medium=campaign_resource&utm_campaign=premium_market_90_day`}
+                  className="mt-5 inline-flex min-h-11 items-center font-bold text-navy-800 underline decoration-brand-red decoration-2 underline-offset-4 transition-colors hover:text-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400"
+                >
+                  Read the planning guide
+                </Link>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <AssurancesBand />
     </>
   );
 }
-

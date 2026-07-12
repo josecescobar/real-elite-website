@@ -80,3 +80,10 @@ from public.leads group by 1 order by 2 desc;
 -- Luxury pipeline
 select ts, service, budget_range, full_name from public.leads where luxury order by ts desc;
 ```
+
+## Premium campaign operations
+
+The optional migration at `docs/sql/premium-campaign-lead-fields.sql` adds manual qualification,
+contact, walkthrough, proposal, and outcome fields plus the weekly query for the
+`premium_market_90_day` campaign. It does not change lead delivery or expose the table publicly.
+Run it only after the base `leads` table above exists.
