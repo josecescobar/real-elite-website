@@ -6,11 +6,21 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import StickyMobileCTA from '@/components/layout/StickyMobileCTA';
 import JsonLd from '@/components/seo/JsonLd';
-import { BUSINESS } from '@/lib/constants';
+import { BUSINESS, TESTIMONIALS } from '@/lib/constants';
 
 const GA_MEASUREMENT_ID = 'G-W9QH965H3Y';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+
+/**
+ * Average customer rating, derived from the testimonials in constants.ts
+ * so the AggregateRating schema stays truthful — add a testimonial and
+ * both the rating and review count update automatically.
+ */
+const AVG_RATING =
+  Math.round(
+    (TESTIMONIALS.reduce((sum, t) => sum + t.rating, 0) / TESTIMONIALS.length) * 10,
+  ) / 10;
 
 const saira = Saira_Condensed({
   subsets: ['latin'],
@@ -180,6 +190,24 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               'Frederick, MD',
             ],
             priceRange: '$$$',
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: AVG_RATING,
+              reviewCount: TESTIMONIALS.length,
+              bestRating: 5,
+              worstRating: 1,
+            },
+            review: TESTIMONIALS.map((t) => ({
+              '@type': 'Review',
+              author: { '@type': 'Person', name: t.name },
+              reviewRating: {
+                '@type': 'Rating',
+                ratingValue: t.rating,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              reviewBody: t.text,
+            })),
             knowsAbout: [
               'Bathroom Remodeling',
               'Kitchen Remodeling',

@@ -154,13 +154,13 @@ export default function ServiceAreasPage() {
             tell you upfront whether we&apos;re the right fit — no high-pressure sales calls.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/#estimate"
               className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-md inline-flex items-center justify-center gap-2"
             >
               Get a Free Estimate
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </Link>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"

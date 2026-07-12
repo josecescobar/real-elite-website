@@ -50,7 +50,7 @@ export default function GalleryGrid() {
                 <button
                   key={category}
                   role="tab"
-                  aria-pressed={isActive}
+                  aria-selected={isActive}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 ${
                     isActive

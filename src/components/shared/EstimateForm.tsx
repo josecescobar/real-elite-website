@@ -146,7 +146,7 @@ export default function EstimateForm({ service }: EstimateFormProps) {
             Thank You!
           </h3>
           <p className="text-gray-700">
-            We've received your estimate request. Our team will contact you
+            We&apos;ve received your estimate request. Our team will contact you
             within 24 hours to discuss your project.
           </p>
         </div>

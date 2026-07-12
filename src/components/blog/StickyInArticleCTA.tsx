@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { ArrowRight, X } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
@@ -40,14 +41,14 @@ export default function StickyInArticleCTA() {
           </p>
           <p className="text-charcoal-300 text-xs mt-0.5">Free written estimate, no pressure.</p>
         </div>
-        <a
+        <Link
           href="/#estimate"
           onClick={() => trackEvent('estimate_cta_click', { location: 'guide_sticky' })}
           className="bg-brand-red text-white px-4 py-2.5 rounded-md font-semibold text-xs hover:bg-brand-red-dark transition-colors inline-flex items-center gap-1 flex-shrink-0"
         >
           Get Estimate
           <ArrowRight className="w-3.5 h-3.5" />
-        </a>
+        </Link>
         <button
           type="button"
           onClick={() => setDismissed(true)}
