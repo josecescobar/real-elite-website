@@ -27,10 +27,10 @@ export default function LuxuryBand() {
             </p>
           </div>
           <Link
-            href="/design-consultation"
+            href="/premium-remodeling"
             className="inline-flex flex-shrink-0 items-center gap-2 self-start rounded-md border border-white/25 bg-white/10 px-8 py-4 font-bold text-sm text-white backdrop-blur-sm transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950 focus-visible:ring-white/40"
           >
-            Request a Design Consultation
+            Explore Premium Project Paths
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

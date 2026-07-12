@@ -9,10 +9,18 @@ const ALLOWED_TYPES = new Set([
   'basement',
   'whole-home',
   'addition',
+  'outdoor-living',
   'other',
 ]);
 
-type ProjectType = 'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'addition' | 'other';
+type ProjectType =
+  | 'kitchen'
+  | 'bathroom'
+  | 'basement'
+  | 'whole-home'
+  | 'addition'
+  | 'outdoor-living'
+  | 'other';
 
 /**
  * Reads `?type=kitchen` (etc.) from the URL — set by deep-link CTAs on the
