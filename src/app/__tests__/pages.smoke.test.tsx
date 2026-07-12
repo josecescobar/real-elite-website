@@ -242,11 +242,6 @@ describe('static page smoke tests', () => {
     expect(() => render(<DesignPage />)).not.toThrow();
   });
 
-  it('Premium Remodeling campaign page renders', async () => {
-    const { default: PremiumRemodelingPage } = await import('@/app/premium-remodeling/page');
-    expect(() => render(<PremiumRemodelingPage />)).not.toThrow();
-  });
-
   it('Paving hub page renders', async () => {
     const { default: PavingPage } = await import('@/app/paving/page');
     expect(() => render(<PavingPage />)).not.toThrow();

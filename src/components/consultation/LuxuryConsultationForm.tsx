@@ -32,12 +32,10 @@ const PROJECT_TYPES = [
   { value: 'basement', label: 'Lower-Level Finishing' },
   { value: 'whole-home', label: 'Whole-Home Renovation' },
   { value: 'addition', label: 'Addition or Expansion' },
-  { value: 'outdoor-living', label: 'Covered Outdoor Living' },
   { value: 'other', label: 'Other Premium Project' },
 ] as const;
 
 const BUDGET_TIERS = [
-  { value: '40-50', label: '$40k – $50k' },
   { value: '50-100', label: '$50k – $100k' },
   { value: '100-200', label: '$100k – $200k' },
   { value: '200-500', label: '$200k – $500k' },

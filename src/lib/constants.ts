@@ -564,7 +564,6 @@ export const NAV_LINKS = [
 /** Utility links surfaced in footer + mobile nav drawer */
 export const UTILITY_LINKS = [
   { label: 'Get an Estimate', href: '/estimate' },
-  { label: 'Premium Remodeling', href: '/premium-remodeling' },
   { label: 'Design Consultation', href: '/design-consultation' },
   { label: 'Our Process', href: '/process' },
   { label: 'Financing', href: '/financing' },
