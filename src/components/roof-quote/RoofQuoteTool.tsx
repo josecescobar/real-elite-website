@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
   ArrowLeft,
@@ -26,6 +26,7 @@ import { trackEvent, trackLead } from '@/lib/analytics';
 import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
+import PrivacyNotice from '@/components/shared/PrivacyNotice';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
@@ -59,9 +60,14 @@ export default function RoofQuoteTool() {
   const [leadErrors, setLeadErrors] = useState<{ fullName?: string; phone?: string; email?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const successRef = useRef<HTMLDivElement>(null);
 
   const mat = material ? getMaterial(material) : undefined;
   const range = mat && squares != null ? estimateRange(squares, mat) : null;
+
+  useEffect(() => {
+    if (phase === 'success') successRef.current?.focus();
+  }, [phase]);
 
   /* ---------------------------- measurement ---------------------------- */
 
@@ -539,15 +545,12 @@ export default function RoofQuoteTool() {
           </div>
 
           {submitError && (
-            <div className="mt-5 bg-brand-red/10 border border-brand-red/30 rounded-md p-4 text-sm text-brand-red">
+            <div role="alert" className="mt-5 bg-brand-red/10 border border-brand-red/30 rounded-md p-4 text-sm text-brand-red">
               {submitError}
             </div>
           )}
 
-          <p className="text-xs text-charcoal-500 mt-5 leading-relaxed">
-            By submitting, you agree we may contact you about this estimate. We&apos;ll never sell
-            your info. Licensed &amp; insured across WV, MD, VA.
-          </p>
+          <PrivacyNotice subject="estimate" />
 
           <div className="mt-7 flex items-center justify-between gap-4">
             <BackLink onClick={() => setPhase('material')} label="Back" icon="arrow" />
@@ -565,7 +568,13 @@ export default function RoofQuoteTool() {
 
       {/* ---------------------------- SUCCESS ---------------------------- */}
       {phase === 'success' && (
-        <div className="text-center py-4">
+        <div
+          ref={successRef}
+          role="status"
+          aria-live="polite"
+          tabIndex={-1}
+          className="text-center py-4 focus:outline-none"
+        >
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-red text-white mb-5">
             <Check className="w-7 h-7" />
           </div>
@@ -681,7 +690,7 @@ function Field({
         }`}
       />
       {error && (
-        <p id={`${id}-error`} className="text-brand-red text-sm mt-2">
+        <p id={`${id}-error`} role="alert" className="text-brand-red text-sm mt-2">
           {error}
         </p>
       )}

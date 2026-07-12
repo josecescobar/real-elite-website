@@ -42,7 +42,7 @@ export const CTASection = () => {
           <a
             href={SMS_URL}
             onClick={() => trackEvent('sms_click', { location: 'cta_section' })}
-            className="text-white hover:text-brand-red underline transition-colors font-semibold"
+            className="text-white hover:text-brand-red-light underline transition-colors font-semibold"
           >
             text {BUSINESS.phone} →
           </a>

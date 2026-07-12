@@ -49,14 +49,14 @@ export default function HomeEstimate() {
                 Call{' '}
                 <a
                   href={`tel:${BUSINESS.phoneRaw}`}
-                  className="text-white hover:text-brand-red font-semibold underline transition-colors"
+                  className="text-white hover:text-brand-red-light font-semibold underline transition-colors"
                 >
                   {BUSINESS.phone}
                 </a>{' '}
                 or{' '}
                 <a
                   href={SMS_URL}
-                  className="text-white hover:text-brand-red font-semibold underline transition-colors"
+                  className="text-white hover:text-brand-red-light font-semibold underline transition-colors"
                 >
                   text the same number
                 </a>

@@ -64,7 +64,7 @@ export default function ServiceAreaMap() {
                   <li key={area.slug}>
                     <Link
                       href={`/service-areas/${area.slug}`}
-                      className="inline-flex items-center justify-between w-full text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors py-1.5 group"
+                      className="inline-flex min-h-11 items-center justify-between w-full text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors py-2 group"
                     >
                       <span>
                         {area.city}, <span className="text-charcoal-500">{area.state}</span>

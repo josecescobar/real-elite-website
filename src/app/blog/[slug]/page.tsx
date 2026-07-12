@@ -22,15 +22,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // for the post's featured image.
   const base = buildMetadata({
     path: `/blog/${slug}`,
-    title: `${post.title} | ${BUSINESS.name}`,
-    description: post.excerpt,
+    title: post.seoTitle ?? `${post.title} | ${BUSINESS.name}`,
+    description: post.seoDescription ?? post.excerpt,
     ogType: 'article',
   });
   return {
     ...base,
     openGraph: {
       ...base.openGraph,
-      title: post.title,
+      title: post.seoTitle ?? post.title,
+      description: post.seoDescription ?? post.excerpt,
       images: [{ url: post.featuredImage }],
     },
     twitter: {

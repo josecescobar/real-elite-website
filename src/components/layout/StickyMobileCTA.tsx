@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { BUSINESS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
+import { primaryCtaForPath } from '@/lib/cta-intent';
 
 /**
  * Mobile-only sticky CTA bar.
@@ -16,8 +17,7 @@ import { trackEvent } from '@/lib/analytics';
  */
 export default function StickyMobileCTA() {
   const pathname = usePathname();
-  const onFormPage = pathname === '/' || pathname === '/contact';
-  const estimateHref = onFormPage ? '#estimate' : '/contact#estimate';
+  const primaryCta = primaryCtaForPath(pathname);
 
   return (
     <div
@@ -37,13 +37,11 @@ export default function StickyMobileCTA() {
           Call {BUSINESS.phone}
         </a>
         <a
-          href={estimateHref}
-          onClick={() =>
-            trackEvent('estimate_cta_click', { location: 'sticky_mobile' })
-          }
+          href={primaryCta.href}
+          onClick={() => trackEvent(primaryCta.eventName, { location: 'sticky_mobile' })}
           className="flex items-center justify-center bg-brand-red text-white font-semibold py-3 rounded-md text-sm hover:bg-brand-red-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
         >
-          Free Estimate
+          {primaryCta.label}
         </a>
       </div>
     </div>

@@ -93,13 +93,13 @@ export default function PavingHubPage() {
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
           <div className="max-w-3xl">
-            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4">
+            <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
               Paving · WV · MD · VA
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
               Paving done
               <br />
-              <span className="text-brand-red">from the ground up.</span>
+              <span className="text-brand-red-light">from the ground up.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Asphalt paving, driveways, parking lots, sealcoating, and repair across the Eastern
@@ -127,7 +127,7 @@ export default function PavingHubPage() {
               <li aria-hidden="true" className="text-white/30">·</li>
               <li>Licensed WV · MD · VA</li>
               <li aria-hidden="true" className="text-white/30">·</li>
-              <li className="text-brand-red">Proper Base &amp; Drainage</li>
+              <li className="text-brand-red-light">Proper Base &amp; Drainage</li>
             </ul>
           </div>
         </Container>

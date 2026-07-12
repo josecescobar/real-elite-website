@@ -59,13 +59,13 @@ export default function PavingServiceTemplate({ service }: Props) {
             <span className="text-white">{service.name}</span>
           </nav>
 
-          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
+          <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
             <Icon className="w-3.5 h-3.5" aria-hidden="true" /> {service.hero.eyebrow}
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
             {service.hero.line1}
             <br />
-            <span className="text-brand-red">{service.hero.accent}</span>
+            <span className="text-brand-red-light">{service.hero.accent}</span>
           </h1>
           <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
             {service.hero.sub}
@@ -142,7 +142,7 @@ export default function PavingServiceTemplate({ service }: Props) {
 
               {/* Investment */}
               <div className="bg-navy-900 text-white rounded-lg p-7 md:p-9 shadow-card-elevated">
-                <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-2">
+                <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-2">
                   Investment
                 </p>
                 <p className="font-heading text-2xl md:text-3xl font-extrabold mb-3">
@@ -153,7 +153,7 @@ export default function PavingServiceTemplate({ service }: Props) {
 
               {/* Why us */}
               <div className="bg-steel-50 rounded-lg border-t-4 border-brand-red p-7 md:p-9">
-                <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
+                <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-3">
                   Why Real Elite
                 </p>
                 <ul className="space-y-3">
@@ -253,7 +253,7 @@ export default function PavingServiceTemplate({ service }: Props) {
           {/* Bundle cross-link */}
           <div className="mt-10 bg-navy-900 text-white rounded-lg p-7 md:p-9 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-2">
+              <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-2">
                 Doing more than the driveway?
               </p>
               <h3 className="font-heading text-xl md:text-2xl font-extrabold">

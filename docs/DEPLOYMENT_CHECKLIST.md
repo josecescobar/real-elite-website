@@ -15,7 +15,7 @@ Production, Preview, and Development scopes unless noted.
 
 | Key | Value | What breaks without it |
 |---|---|---|
-| `RESEND_API_KEY` | From https://resend.com/api-keys | `/api/estimate` returns 500. The multi-step estimate form on `/` and `/contact` will fail submission. |
+| `RESEND_API_KEY` | From https://resend.com/api-keys | `/api/estimate` returns 503. The multi-step estimate form on `/` and `/contact` will fail submission. |
 
 ### Optional (graceful no-op when missing)
 
@@ -48,7 +48,7 @@ When the real owner photo is ready:
 
 That's the entire swap. The AuthorBox auto-detects the value and switches
 from logo-on-white placeholder to a real cover-fit portrait across every
-`/blog/[slug]` and `/guides/*` page.
+`/blog/[slug]` and `/resources/*` page.
 
 ---
 
@@ -99,14 +99,11 @@ The `ServicePageTemplate` already conditionally renders both — adding the
 fields automatically upgrades the page from gradient hero to cinematic
 photography and adds the "Recent project work" gallery strip.
 
-### Don't have project photos yet? Use placeholders.
+### Don't have project photos yet?
 
-`next.config.ts` allows remote images from `images.unsplash.com`,
-`plus.unsplash.com`, `images.pexels.com`, and `cdn.pixabay.com`. Paste an
-Unsplash URL directly into `hero.image.src` and `next/image` will fetch,
-optimize, and serve it. **Replace with real project shots before the rebuild
-is positioned as the company's flagship** — stock photos undermine the
-premium positioning per the plan's risk #10.
+Keep the existing gradient hero until approved project photography is ready.
+The production image policy is self-hosted, so add reviewed assets under
+`public/images/projects/` rather than linking to third-party stock hosts.
 
 ---
 
@@ -124,7 +121,7 @@ premium positioning per the plan's risk #10.
 - **Localized guides.** The `service-areas` and `financing` guide categories
   (Phase 5) are empty until articles are authored. Add MDX files to
   `content/blog/` with `category: 'service-areas'` or `category: 'financing'`
-  in frontmatter — they auto-surface on the matching `/guides/[category]`
+  in frontmatter — they auto-surface on the matching `/resources/[category]`
   landing.
 - **Bathroom / Kitchen before-after pairs.** `BEFORE_AFTER_PAIRS` in
   `constants.ts` currently uses thematic in-progress vs. finished shots
@@ -195,7 +192,7 @@ with your real rates.
 ## 6. PR & shipping
 
 1. **Set `RESEND_API_KEY` in Vercel first** — without it, the form throws.
-2. Open the PR from `claude/inspect-rebuild-plan-tBIbO` → main.
+2. Open the implementation PR and review the generated preview deployment.
 3. Promote a preview deploy through QA: hit the homepage `/#estimate` form,
    submit a test, confirm the email arrives.
 4. Once live, watch Microsoft Clarity (after Phase 1 env var is set) for the

@@ -106,6 +106,13 @@ describe('getAllPosts', () => {
     }
   });
 
+  it('keeps authored SERP overrides within practical display lengths', () => {
+    for (const p of posts) {
+      if (p.seoTitle) expect(p.seoTitle.length).toBeLessThanOrEqual(60);
+      if (p.seoDescription) expect(p.seoDescription.length).toBeLessThanOrEqual(160);
+    }
+  });
+
   it('normalizes every post category to a known guide-category slug', () => {
     for (const p of posts) {
       expect(VALID_CATEGORY_SLUGS).toContain(p.categorySlug);

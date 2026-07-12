@@ -1,7 +1,9 @@
 ---
 title: "Luxury Bathroom Renovations in Loudoun County & Northern Virginia: Inside a High-End Primary Bath (2026)"
+seoTitle: "Luxury Bathroom Remodeling in Loudoun County, VA"
 date: "2026-05-30"
 excerpt: "What actually separates a luxury primary bath from a standard remodel — the layouts, materials, and behind-the-wall work that make a high-end bathroom feel like a private spa. A design-first guide for Loudoun, Ashburn, Leesburg, and the wider WV–MD–VA region."
+seoDescription: "Explore luxury bathroom remodeling in Loudoun County, from curbless showers and heated floors to waterproofing, ventilation, and custom vanities."
 slug: "luxury-bathroom-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/projects/bathrooms/hero.jpg"
 category: "Bathrooms"
