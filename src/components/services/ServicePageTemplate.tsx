@@ -20,12 +20,18 @@ import { BUSINESS, SERVICE_PAGE_AREA_SERVED } from '@/lib/constants';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import { getProjectsByService } from '@/lib/projects';
 import { getReviewsByService } from '@/lib/reviews';
+import { primaryCtaForService } from '@/lib/cta-intent';
 
 type Props = {
   data: ServiceData;
 };
 
 export default function ServicePageTemplate({ data }: Props) {
+  const primaryCta = primaryCtaForService(data.slug);
+  const ctaDescription =
+    primaryCta.intent === 'roof-quote'
+      ? 'Enter your address, choose a roofing material, and get a ballpark replacement range in about 60 seconds.'
+      : 'Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walk-through.';
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -102,10 +108,10 @@ export default function ServicePageTemplate({ data }: Props) {
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <a
-                href="#estimate"
+                href={primaryCta.href}
                 className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
               >
-                Get My Free Estimate →
+                {primaryCta.label} →
               </a>
               <a
                 href={`tel:${BUSINESS.phoneRaw}`}
@@ -232,15 +238,14 @@ export default function ServicePageTemplate({ data }: Props) {
             Ready to start your {data.title.toLowerCase()} project?
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Three short steps, about 60 seconds — a real project lead reaches out within
-            24 business hours to schedule your free on-site walk-through.
+            {ctaDescription}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/contact#estimate"
+              href={primaryCta.href}
               className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
             >
-              Get My Free Estimate
+              {primaryCta.label}
               <ArrowRight className="w-4 h-4" />
             </a>
             <a

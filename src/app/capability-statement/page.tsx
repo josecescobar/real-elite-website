@@ -175,7 +175,7 @@ export default function CapabilityStatementPage() {
         <Container size="wide">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5 mb-6">
-              <FileText className="w-3.5 h-3.5 text-brand-red" />
+              <FileText className="w-3.5 h-3.5 text-brand-red-light" />
               <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
                 Federal Capability Statement
               </span>
@@ -184,7 +184,7 @@ export default function CapabilityStatementPage() {
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
               Real Elite Contracting
               <br />
-              <span className="text-brand-red">Capability Statement.</span>
+              <span className="text-brand-red-light">Capability Statement.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Veteran-owned general contractor based in Martinsburg, WV — 8 miles from the
@@ -402,7 +402,7 @@ export default function CapabilityStatementPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <p className="text-[0.65rem] uppercase tracking-[0.18em] text-brand-red font-bold mb-1">
+                <p className="text-[0.65rem] uppercase tracking-[0.18em] text-brand-red-light font-bold mb-1">
                   Owner & Point Of Contact
                 </p>
                 <p className="font-heading text-xl font-extrabold">Jose Escobar</p>
@@ -411,14 +411,14 @@ export default function CapabilityStatementPage() {
               <div className="space-y-3">
                 <a
                   href={`tel:${BUSINESS.phoneRaw}`}
-                  className="flex items-center gap-3 text-white hover:text-brand-red transition-colors"
+                  className="flex items-center gap-3 text-white hover:text-brand-red-light transition-colors"
                 >
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span className="font-semibold">{BUSINESS.phone}</span>
                 </a>
                 <a
                   href={`mailto:${BUSINESS.email}`}
-                  className="flex items-center gap-3 text-white hover:text-brand-red transition-colors"
+                  className="flex items-center gap-3 text-white hover:text-brand-red-light transition-colors"
                 >
                   <Mail className="w-4 h-4 flex-shrink-0" />
                   <span className="font-semibold">{BUSINESS.email}</span>
@@ -434,7 +434,7 @@ export default function CapabilityStatementPage() {
 
             <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-4 text-[0.65rem] uppercase tracking-[0.18em] font-bold text-charcoal-300">
               <span className="flex items-center gap-1.5">
-                <Shield className="w-3 h-3 text-brand-red" /> Veteran-Owned
+                <Shield className="w-3 h-3 text-brand-red-light" /> Veteran-Owned
               </span>
               <span>·</span>
               <span>Licensed WV · MD · VA</span>

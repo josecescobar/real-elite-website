@@ -1,7 +1,9 @@
 ---
 title: "Luxury Primary Suite Renovations in Loudoun County & Northern Virginia: Bedroom, Spa Bath & Walk-In Closet (2026)"
+seoTitle: "Luxury Primary Suite Renovations in Loudoun County"
 date: "2026-05-30"
 excerpt: "A primary suite should feel like a private retreat — a calm bedroom, a spa bathroom, and a custom walk-in closet, designed as one. A guide to planning a high-end primary suite (as a remodel or an addition) for Loudoun, Ashburn, Leesburg, and the wider WV–MD–VA region."
+seoDescription: "Plan a luxury primary suite in Loudoun County with a cohesive bedroom, spa bath, and custom walk-in closet under one project lead."
 slug: "luxury-primary-suite-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/suite-bedroom.jpg"
 category: "Remodeling"

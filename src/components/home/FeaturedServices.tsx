@@ -46,7 +46,7 @@ export default function FeaturedServices() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-900/30 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-7 md:p-10 text-white">
-              <p className="text-[0.7rem] uppercase tracking-[0.18em] font-semibold text-brand-red mb-3">
+              <p className="text-[0.7rem] uppercase tracking-[0.18em] font-semibold text-brand-red-light mb-3">
                 {hero.eyebrow}
               </p>
               <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-3">
@@ -55,7 +55,7 @@ export default function FeaturedServices() {
               <p className="text-charcoal-200 text-sm md:text-base max-w-md leading-relaxed mb-4">
                 {hero.scope}
               </p>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-white group-hover:text-brand-red transition-colors">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-white group-hover:text-brand-red-light transition-colors">
                 See Projects
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </span>
@@ -78,7 +78,7 @@ export default function FeaturedServices() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-900/25 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                <p className="text-[0.65rem] uppercase tracking-[0.18em] font-semibold text-brand-red mb-2">
+                <p className="text-[0.65rem] uppercase tracking-[0.18em] font-semibold text-brand-red-light mb-2">
                   {service.eyebrow}
                 </p>
                 <h3 className="font-heading text-xl md:text-2xl font-extrabold leading-tight mb-2">
@@ -87,7 +87,7 @@ export default function FeaturedServices() {
                 <p className="text-charcoal-200 text-xs md:text-sm leading-relaxed line-clamp-2 mb-3">
                   {service.scope}
                 </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white group-hover:text-brand-red transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white group-hover:text-brand-red-light transition-colors">
                   See Projects
                   <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>

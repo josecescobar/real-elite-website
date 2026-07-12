@@ -1,7 +1,9 @@
 ---
 title: "Luxury Kitchen Renovations in Loudoun County & Northern Virginia: What Sets a High-End Kitchen Apart (2026)"
+seoTitle: "Luxury Kitchen Remodeling in Loudoun County, VA"
 date: "2026-05-30"
 excerpt: "A luxury kitchen isn't just premium appliances — it's layout, cabinetry, stone, and lighting executed so the room works as hard as it looks. A design-first guide to high-end kitchen renovations for Loudoun, Ashburn, Leesburg, and the wider WV–MD–VA region."
+seoDescription: "See what defines a luxury Loudoun County kitchen: better layout, custom cabinetry, premium stone, layered lighting, and disciplined project management."
 slug: "luxury-kitchen-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/projects/kitchens/hero.jpg"
 category: "Kitchens"

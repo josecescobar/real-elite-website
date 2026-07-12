@@ -118,14 +118,14 @@ export default function Footer() {
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="hover:text-white transition-colors"
+                    className="min-h-11 inline-flex items-center hover:text-white transition-colors"
                   >
                     {service.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/services" className="text-white font-semibold hover:text-brand-red transition-colors">
+                  <Link href="/services" className="min-h-11 inline-flex items-center text-white font-semibold hover:text-brand-red-light transition-colors">
                   All Services →
                 </Link>
               </li>
@@ -142,14 +142,14 @@ export default function Footer() {
                 <li key={area.slug}>
                   <Link
                     href={`/service-areas/${area.slug}`}
-                    className="hover:text-white transition-colors"
+                    className="min-h-11 inline-flex items-center hover:text-white transition-colors"
                   >
                     {area.city}, {area.state}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/service-areas" className="text-white font-semibold hover:text-brand-red transition-colors">
+                <Link href="/service-areas" className="min-h-11 inline-flex items-center text-white font-semibold hover:text-brand-red-light transition-colors">
                   All Areas →
                 </Link>
               </li>
@@ -164,14 +164,14 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               {NAV_LINKS.filter((l) => l.label !== 'Services' && l.label !== 'Service Areas').map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-white transition-colors">
+                  <Link href={link.href} className="min-h-11 inline-flex items-center hover:text-white transition-colors">
                     {link.label}
                   </Link>
                 </li>
               ))}
               {UTILITY_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-white transition-colors">
+                  <Link href={link.href} className="min-h-11 inline-flex items-center hover:text-white transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -186,7 +186,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-md text-charcoal-300 hover:text-white hover:bg-navy-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-navy-400"
+                  className="inline-flex items-center justify-center w-11 h-11 rounded-md text-charcoal-300 hover:text-white hover:bg-navy-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-navy-400"
                 >
                   {link.icon}
                 </a>
@@ -198,9 +198,14 @@ export default function Footer() {
         {/* Utility row */}
         <div className="mt-12 pt-8 border-t border-navy-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
           {/* suppressHydrationWarning: prebuilt HTML can carry last year's date after New Year */}
-          <p className="text-charcoal-400" suppressHydrationWarning>
-            &copy; 2024–{currentYear} {BUSINESS.name}. Licensed &amp; Insured across WV, MD, VA.
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-charcoal-400">
+            <p suppressHydrationWarning>
+              &copy; 2024–{currentYear} {BUSINESS.name}. Licensed &amp; Insured across WV, MD, VA.
+            </p>
+            <Link className="min-h-11 inline-flex items-center underline underline-offset-2 hover:text-white transition-colors" href="/privacy">
+              Privacy Policy
+            </Link>
+          </div>
           <p className="text-charcoal-500 uppercase tracking-[0.15em] font-semibold">
             Veteran-Owned · Built With Military Precision
           </p>

@@ -196,6 +196,11 @@ describe('static page smoke tests', () => {
     expect(() => render(<FAQPage />)).not.toThrow();
   });
 
+  it('Privacy page renders', async () => {
+    const { default: PrivacyPage } = await import('@/app/privacy/page');
+    expect(() => render(<PrivacyPage />)).not.toThrow();
+  });
+
   it('Process page renders', async () => {
     const { default: ProcessPage } = await import('@/app/process/page');
     expect(() => render(<ProcessPage />)).not.toThrow();

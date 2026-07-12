@@ -142,7 +142,7 @@ export default function ProcessPage() {
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
               Four steps.
               <br />
-              <span className="text-brand-red">No surprises.</span>
+              <span className="text-brand-red-light">No surprises.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               The same disciplined operating system every project follows — from the first phone

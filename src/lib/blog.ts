@@ -7,8 +7,12 @@ const POSTS_DIR = path.join(process.cwd(), 'content/blog');
 export interface BlogPostMeta {
   slug: string;
   title: string;
+  /** Optional concise SERP title; the editorial H1 remains `title`. */
+  seoTitle?: string;
   date: string;
   excerpt: string;
+  /** Optional concise meta description; cards and article dek keep `excerpt`. */
+  seoDescription?: string;
   featuredImage: string;
   /** Raw category as written in frontmatter */
   category: string;
@@ -260,11 +264,19 @@ export function extractHeadings(content: string): GuideHeading[] {
 function toMeta(slug: string, data: Record<string, unknown>, content: string): BlogPostMeta {
   const category = (data.category as string) || 'Homeowner Guides';
   const answer = typeof data.answer === 'string' && data.answer.trim() ? data.answer.trim() : undefined;
+  const seoTitle =
+    typeof data.seoTitle === 'string' && data.seoTitle.trim() ? data.seoTitle.trim() : undefined;
+  const seoDescription =
+    typeof data.seoDescription === 'string' && data.seoDescription.trim()
+      ? data.seoDescription.trim()
+      : undefined;
   return {
     slug,
     title: data.title as string,
+    ...(seoTitle ? { seoTitle } : {}),
     date: data.date as string,
     excerpt: data.excerpt as string,
+    ...(seoDescription ? { seoDescription } : {}),
     featuredImage: data.featuredImage as string,
     category,
     categorySlug: normalizeCategory(category),

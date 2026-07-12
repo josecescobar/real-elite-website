@@ -55,7 +55,7 @@ export default function InstantRoofQuotePage() {
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
               Your roof price —
               <br />
-              <span className="text-brand-red">before we ever climb a ladder.</span>
+              <span className="text-brand-red-light">before we ever climb a ladder.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Enter your address, pick a material, and see a ballpark range in about a minute. No

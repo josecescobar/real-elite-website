@@ -183,7 +183,7 @@ export default function StormDamagePage() {
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
               Storm hit your roof?
               <br />
-              <span className="text-brand-red">We document it. Free.</span>
+              <span className="text-brand-red-light">We document it. Free.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Hail and wind damage often isn&apos;t visible from the ground. Get a free, written
@@ -385,11 +385,11 @@ export default function StormDamagePage() {
       {/* Final CTA */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <Container size="default" className="text-center">
-          <ShieldCheck className="w-12 h-12 text-brand-red mx-auto mb-6" />
+          <ShieldCheck className="w-12 h-12 text-brand-red-light mx-auto mb-6" />
           <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-6">
             Veteran-owned. Insurance-friendly.
             <br />
-            <span className="text-brand-red">Free storm inspection.</span>
+            <span className="text-brand-red-light">Free storm inspection.</span>
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
             Same-week appointments across Martinsburg, Frederick, Winchester, Hagerstown,

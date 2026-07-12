@@ -59,7 +59,7 @@ const VALUES = [
 const NUMBERS = [
   { value: '40+', label: 'Years of Experience' },
   { value: 'Written', label: 'Workmanship Warranty' },
-  { value: 'Top-Rated', label: 'on Google' },
+  { value: 'Client', label: 'Recommended' },
 ];
 
 export default function AboutPage() {
@@ -118,7 +118,7 @@ export default function AboutPage() {
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
               Veteran-owned.
               <br />
-              <span className="text-brand-red">Built with precision.</span>
+              <span className="text-brand-red-light">Built with precision.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Premium remodeling and high-end exterior craftsmanship across the WV–MD–VA region —

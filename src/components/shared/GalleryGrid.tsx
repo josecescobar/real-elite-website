@@ -84,7 +84,7 @@ export default function GalleryGrid() {
                   key={category}
                   aria-pressed={isActive}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 ${
+                  className={`min-h-11 px-4 py-2 rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 ${
                     isActive
                       ? 'bg-navy-800 text-white'
                       : 'bg-steel-50 text-navy-800 hover:bg-charcoal-100'
@@ -156,7 +156,7 @@ export default function GalleryGrid() {
               setLightboxIdx(null);
             }}
             aria-label="Close lightbox"
-            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            className="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
           >
             <X className="w-5 h-5" />
           </button>

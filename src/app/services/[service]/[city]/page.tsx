@@ -23,6 +23,7 @@ import {
   type FeaturedServiceSlug,
   type ExpansionCitySlug,
 } from '@/lib/service-city-content';
+import { primaryCtaForService } from '@/lib/cta-intent';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -140,6 +141,18 @@ export default async function ServiceCityPage({
     notFound();
   }
 
+  const consultationType = CONSULTATION_TYPE_FOR_SERVICE[service as FeaturedServiceSlug];
+  const primaryCta = primaryCtaForService(service, {
+    luxuryMarket: LUXURY_CITY_SLUGS.has(city),
+    consultationType,
+  });
+  const ctaDescription =
+    primaryCta.intent === 'consultation'
+      ? 'Share the brief and choose a call window. A project lead will review the fit before scheduling an in-home consultation.'
+      : primaryCta.intent === 'roof-quote'
+        ? 'Enter your address, choose a roofing material, and get a ballpark replacement range in about 60 seconds.'
+        : 'Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walkthrough.';
+
   // SEO: Service schema scoped to this specific city, plus a
   // BreadcrumbList. No per-market LocalBusiness duplication (the global
   // GeneralContractor in layout.tsx already covers areaServed).
@@ -230,10 +243,10 @@ export default async function ServiceCityPage({
 
           <div className="flex flex-wrap gap-4 mt-10">
             <a
-              href="#estimate"
+              href={primaryCta.href}
               className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
             >
-              Get My Free Estimate →
+              {primaryCta.label} →
             </a>
             <a
               href={`tel:${BUSINESS.phoneRaw}`}
@@ -415,15 +428,14 @@ export default async function ServiceCityPage({
             Ready to start your {cityData.city} project?
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Three short steps, about 60 seconds — a real project lead reaches out within 24
-            business hours to schedule your free on-site walkthrough.
+            {ctaDescription}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#estimate"
+              href={primaryCta.href}
               className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
             >
-              Get My Free Estimate
+              {primaryCta.label}
               <ArrowRight className="w-4 h-4" />
             </a>
             <a

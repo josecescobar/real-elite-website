@@ -145,7 +145,7 @@ export default function FinancingPage() {
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
               The home you want now.
               <br />
-              <span className="text-brand-red">On a monthly plan.</span>
+              <span className="text-brand-red-light">On a monthly plan.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               A new roof, a finished basement, the kitchen you&apos;ve been putting

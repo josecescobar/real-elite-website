@@ -6,6 +6,7 @@ import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
 import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
+import PrivacyNotice from '@/components/shared/PrivacyNotice';
 
 /* -------------------------------- options -------------------------------- */
 
@@ -114,6 +115,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   const hasSubmitted = useRef(false);
   const stepRef = useRef(step);
   const stepHeadingRef = useRef<HTMLLegendElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
   const isFirstStepRender = useRef(true);
 
   useEffect(() => {
@@ -134,6 +136,10 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
     }
     stepHeadingRef.current?.focus();
   }, [step]);
+
+  useEffect(() => {
+    if (isSuccess) successRef.current?.focus();
+  }, [isSuccess]);
 
   // Abandonment: fire on tab hide / unload if started but not submitted
   useEffect(() => {
@@ -244,7 +250,13 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
 
   if (isSuccess) {
     return (
-      <div className="bg-white rounded-lg shadow-card-elevated p-8 md:p-12 text-center max-w-2xl mx-auto">
+      <div
+        ref={successRef}
+        role="status"
+        aria-live="polite"
+        tabIndex={-1}
+        className="bg-white rounded-lg shadow-card-elevated p-8 md:p-12 text-center max-w-2xl mx-auto focus:outline-none"
+      >
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-red text-white mb-5">
           <Check className="w-7 h-7" />
         </div>
@@ -525,10 +537,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             </div>
           )}
 
-          <p className="text-xs text-charcoal-500 mt-5 leading-relaxed">
-            By submitting, you agree we may contact you about this estimate. We&apos;ll
-            never sell your info. Licensed &amp; insured across WV, MD, VA.
-          </p>
+          <PrivacyNotice subject="estimate" />
         </fieldset>
       )}
 

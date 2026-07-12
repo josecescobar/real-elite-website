@@ -1,7 +1,9 @@
 ---
 title: "Asphalt vs. Concrete vs. Tar-and-Chip Driveways: Which Is Right for Your Eastern Panhandle Home? (2026)"
+seoTitle: "Asphalt vs. Concrete vs. Tar-and-Chip Driveways"
 date: "2026-06-07"
 excerpt: "Your driveway is one of the largest surfaces on your property — and the material you pick shapes its look, lifespan, maintenance, and cost. A straight comparison of asphalt, concrete, and tar-and-chip for the Eastern Panhandle climate, plus where sealcoating fits in."
+seoDescription: "Compare asphalt, concrete, and tar-and-chip driveway cost, lifespan, maintenance, and freeze-thaw performance for Eastern Panhandle homes."
 slug: "asphalt-vs-concrete-vs-tar-and-chip-driveways-eastern-panhandle-2026"
 featuredImage: "/images/inspiration/paving-aplus-driveway.jpg"
 category: "Exteriors"

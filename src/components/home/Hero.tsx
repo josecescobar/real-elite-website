@@ -50,7 +50,7 @@ export const Hero = () => {
           <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold leading-[0.95] tracking-tight text-white">
             Built With
             <br />
-            <span className="text-brand-red">Military Precision.</span>
+            <span className="text-brand-red-light">Military Precision.</span>
           </h1>
 
           {/* Sub */}
@@ -92,12 +92,12 @@ export const Hero = () => {
             <li>Insured</li>
             <li aria-hidden="true" className="text-white/30">·</li>
             <li>
-              <a href="/veterans" className="hover:text-brand-red transition-colors">
+              <a href="/veterans" className="hover:text-brand-red-light transition-colors">
                 Veteran-Owned
               </a>
             </li>
             <li aria-hidden="true" className="text-white/30">·</li>
-            <li className="text-brand-red-light">Top-Rated on Google</li>
+            <li className="text-brand-red-light">Client-Recommended</li>
           </ul>
         </div>
       </div>

@@ -256,8 +256,17 @@ describe('MultiStepEstimateForm', () => {
       fireEvent.submit(screen.getByRole('button', { name: /get my free estimate/i }).closest('form')!);
 
       await waitFor(() => {
-        expect(screen.getByText(/request received/i)).toBeInTheDocument();
+        expect(screen.getByRole('status')).toHaveTextContent(/request received/i);
+        expect(screen.getByRole('status')).toHaveFocus();
       });
+    });
+
+    it('links the contact disclosure to the privacy policy', async () => {
+      await goToStep3();
+      expect(screen.getByRole('link', { name: /privacy policy/i })).toHaveAttribute(
+        'href',
+        '/privacy'
+      );
     });
 
     it('shows "Sending…" while submitting', async () => {

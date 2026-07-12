@@ -1,7 +1,9 @@
 ---
 title: "Whole-Home Luxury Renovations in Loudoun County & Northern Virginia: One Vision, One Project Lead (2026)"
+seoTitle: "Whole-Home Luxury Renovations in Loudoun County"
 date: "2026-05-30"
 excerpt: "When a home's bones are good but the spaces feel dated and disconnected, a whole-home renovation transforms it into one cohesive, high-end home. Here's how a full renovation works in the WV–MD–VA region — and why doing it under one project lead beats stitching together five separate contractors."
+seoDescription: "Plan a cohesive whole-home renovation in Loudoun County with one design direction, one construction schedule, and one accountable project lead."
 slug: "whole-home-luxury-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/wholehome-foyer-staircase.jpg"
 category: "Remodeling"

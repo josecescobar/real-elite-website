@@ -5,7 +5,7 @@ export const TrustBar = () => {
   // The Google tile shows real rating + review count once they're verified in
   // SOCIAL_PROOF; until then it falls back to the existing copy, so the bar
   // renders identically to production.
-  const rating = ratingLabel() ?? { number: 'Top-Rated', label: 'on Google' };
+  const rating = ratingLabel() ?? { number: 'Client', label: 'Recommended' };
 
   const stats = [
     { number: '40+', label: 'Years of Experience' },
