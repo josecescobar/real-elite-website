@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
@@ -8,7 +9,7 @@ import FaqAccordion from '@/components/faq/FaqAccordion';
 import AssurancesBand from '@/components/home/AssurancesBand';
 
 export const metadata: Metadata = {
-  title: `FAQ — Remodel Costs, Timelines & Permits | ${BUSINESS.name}`,
+  title: fitTitle(`FAQ — Remodel Costs, Timelines & Permits | ${BUSINESS.name}`),
   description:
     'Straight answers to the questions homeowners actually ask — bathroom and kitchen remodel costs, roofing and deck pricing, project timelines, permits, warranties, and what to expect. Veteran-owned WV–MD–VA contractor.',
   keywords: [

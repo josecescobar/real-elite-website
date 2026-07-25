@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -16,7 +17,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 
 export const metadata: Metadata = {
-  title: `Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`,
+  title: fitTitle(`Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`),
   description:
     'Spread your remodel, roof, or addition into manageable monthly payments. Real Elite Contracting offers financing options so you can start the project now — veteran-owned, licensed across WV, MD, and VA.',
   keywords: [

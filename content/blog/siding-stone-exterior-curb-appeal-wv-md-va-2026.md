@@ -1,5 +1,7 @@
 ---
 title: "Siding & Stone: The Highest-ROI Exterior Upgrade for WV, MD & VA Homes (2026)"
+seoTitle: 'Siding & Stone: Highest-ROI Exterior Upgrade'
+seoDescription: 'New siding and stone veneer protect the house and return more at resale than most exterior work. Material options, warning signs and costs for WV, MD, VA.'
 date: "2026-05-30"
 excerpt: "New siding and stone veneer do more than look good — they protect the house and return more at resale than almost any other exterior project. A guide to your material options, the signs it's time to replace, and the install details that actually keep weather out, for homes across the WV–MD–VA region."
 slug: "siding-stone-exterior-curb-appeal-wv-md-va-2026"

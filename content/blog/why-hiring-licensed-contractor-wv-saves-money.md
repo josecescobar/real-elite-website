@@ -1,5 +1,7 @@
 ---
 title: "Why Hiring a Licensed Contractor in WV Saves You Money"
+seoTitle: 'Why a Licensed WV Contractor Saves You Money'
+seoDescription: 'The cheapest bid often becomes the most expensive one. How verifying a WV contractor''s license protects your home and wallet — and how to check in 90 seconds.'
 date: "2026-06-07"
 excerpt: "The cheapest bid has a way of becoming the most expensive one. Here's why verifying your contractor's WV license protects your home, your wallet, and your weekend — plus how to check in about 90 seconds."
 slug: "why-hiring-licensed-contractor-wv-saves-money"

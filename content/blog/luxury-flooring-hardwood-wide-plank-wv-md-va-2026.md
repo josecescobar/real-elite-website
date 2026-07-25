@@ -1,5 +1,7 @@
 ---
 title: "Luxury Flooring for WV, MD & VA Homes: Hardwood, Engineered & Wide-Plank (2026)"
+seoTitle: 'Luxury Flooring Guide: Hardwood & Wide-Plank'
+seoDescription: 'Solid versus engineered hardwood, wide-plank and herringbone — choosing luxury flooring that suits WV, MD and VA homes, subfloors and humidity swings.'
 date: "2026-05-30"
 excerpt: "Flooring is the largest continuous surface in your home — and the fastest way to make it feel high-end or dated. A guide to luxury flooring options (solid and engineered hardwood, wide-plank, herringbone, premium LVP, and tile), what works in our climate, and the install details that make a floor last."
 slug: "luxury-flooring-hardwood-wide-plank-wv-md-va-2026"

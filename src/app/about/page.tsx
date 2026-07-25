@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { fitTitle } from '@/lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Hammer, MessageSquareText, MapPin, Award, ArrowRight } from 'lucide-react';
@@ -11,7 +12,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: `About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`,
+  title: fitTitle(`About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`),
   description:
     'Real Elite Contracting is a veteran-owned premium remodeling and exterior contractor serving the WV–MD–VA region. Built with military precision.',
   keywords: [

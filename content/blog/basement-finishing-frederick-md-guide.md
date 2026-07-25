@@ -1,5 +1,7 @@
 ---
 title: "Finishing a Basement in Frederick MD: Moisture, Egress, and What It Really Costs"
+seoTitle: 'Finishing a Basement in Frederick MD: Full Guide'
+seoDescription: 'Moisture control, egress, code and HVAC — what a finished basement really takes in Frederick MD, plus family-room versus full in-law-suite costs.'
 date: "2026-05-19"
 excerpt: "Before you frame a single wall — what a finished basement actually requires in Frederick MD. Moisture control, egress windows, code, HVAC, and the real cost of an open family room vs. a full in-law suite."
 slug: "basement-finishing-frederick-md-guide"

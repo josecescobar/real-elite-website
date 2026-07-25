@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   ShieldCheck,
@@ -17,7 +18,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 
 export const metadata: Metadata = {
-  title: `Veteran-Owned Contractor — SDVOSB · VA · Federal | ${BUSINESS.name}`,
+  title: fitTitle(`Veteran-Owned Contractor — SDVOSB · VA · Federal | ${BUSINESS.name}`),
   description:
     'Real Elite Contracting is a veteran-owned general contractor serving WV, MD, and VA — pursuing SDVOSB certification and federal contracting opportunities at the Martinsburg VA Medical Center, Fort Detrick, Aberdeen, Quantico, and the Pentagon.',
   keywords: [

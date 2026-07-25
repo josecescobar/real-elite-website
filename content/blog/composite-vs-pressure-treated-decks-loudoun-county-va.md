@@ -1,5 +1,7 @@
 ---
 title: "Composite vs Pressure-Treated Decks in Loudoun County, VA — What's Actually Right for Your Backyard"
+seoTitle: 'Composite vs Pressure-Treated Decks: Loudoun VA'
+seoDescription: 'Trex, TimberTech, Azek or pressure-treated lumber — what each really costs over 20 years in the Loudoun County climate, and which fits your backyard.'
 date: "2026-06-07"
 excerpt: "Trex, TimberTech, Azek, or pressure-treated lumber — what each material actually delivers in the Loudoun County climate, what each really costs over 20 years, and what neighbors in Ashburn, Leesburg, and Brambleton are actually building."
 slug: "composite-vs-pressure-treated-decks-loudoun-county-va"

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   Home,
@@ -19,7 +20,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 
 export const metadata: Metadata = {
-  title: `Full Property Perimeter — Roof to Road Bundle | ${BUSINESS.name}`,
+  title: fitTitle(`Full Property Perimeter — Roof to Road Bundle | ${BUSINESS.name}`),
   description:
     'Roof + siding + deck + driveway + landscaping under one coordinated project. Real Elite Contracting × A+ Paving & Landscaping. Tri-state WV / MD / VA. Veteran-owned. Built with military precision.',
   keywords: [

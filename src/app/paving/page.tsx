@@ -10,10 +10,10 @@ import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
-import { buildBreadcrumbSchema } from '@/lib/seo';
+import { buildBreadcrumbSchema, fitTitle } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: `Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`,
+  title: fitTitle(`Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`),
   description:
     'Veteran-owned paving across WV, MD & VA — asphalt paving, driveways, parking lots, sealcoating, asphalt repair, and commercial paving. Proper base, real drainage, accountable crews. Free estimate.',
   keywords: [

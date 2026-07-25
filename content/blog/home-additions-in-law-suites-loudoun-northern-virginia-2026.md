@@ -1,5 +1,7 @@
 ---
 title: "Home Additions & In-Law Suites in Loudoun County & Northern Virginia: Adding Space the Right Way (2026)"
+seoTitle: 'Home Additions & In-Law Suites in Loudoun County'
+seoDescription: 'Addition types, multigenerational in-law suite layouts, permitting and real cost ranges for Loudoun County and Northern Virginia homes that need space.'
 date: "2026-05-30"
 excerpt: "When you love your home and your location but need more room, a well-built addition beats moving. A guide to additions and in-law suites for the WV–MD–VA region — the types, the multigenerational-suite boom, and how to make new space look like it was always part of the house."
 slug: "home-additions-in-law-suites-loudoun-northern-virginia-2026"

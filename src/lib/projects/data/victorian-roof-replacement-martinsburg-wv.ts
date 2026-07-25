@@ -28,9 +28,9 @@ const project: Project = {
     { name: 'Ice & Water Shield' },
   ],
 
-  metaTitle: 'Victorian Roof Replacement in Martinsburg, WV | Real Elite Project',
+  metaTitle: 'Victorian Roof Replacement in Martinsburg, WV',
   metaDescription:
-    'A full architectural-shingle re-roof on a historic Victorian home in the Burke Street district of Martinsburg, WV — tear-off, deck repair, and GAF system install in three days.',
+    'A full architectural-shingle re-roof on a historic Victorian in Martinsburg, WV — tear-off, deck repair and a complete GAF system in three days.',
   keywords: [
     'roof replacement Martinsburg WV',
     'Victorian roof',

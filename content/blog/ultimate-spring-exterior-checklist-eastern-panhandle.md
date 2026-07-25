@@ -1,5 +1,7 @@
 ---
 title: "The Exterior Maintenance Checklist Every Eastern Panhandle Homeowner Should Run"
+seoTitle: 'Spring Exterior Maintenance Checklist for WV Homes'
+seoDescription: 'Five exterior checks that take an afternoon and can save you thousands — roof, siding, deck, gutters and the small stuff every homeowner forgets.'
 date: "2026-06-07"
 excerpt: "Five exterior checks that take an afternoon and can save you thousands — the roof, siding, deck, gutters, and the little stuff. For homeowners in Martinsburg, Winchester, Frederick, and everywhere the freeze-thaw cycle does its worst."
 slug: "ultimate-spring-exterior-checklist-eastern-panhandle"

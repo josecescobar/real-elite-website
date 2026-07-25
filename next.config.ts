@@ -12,6 +12,10 @@ import type { NextConfig } from 'next';
  *  - Google Tag Manager / GA4: googletagmanager.com, google-analytics.com
  *  - Microsoft Clarity: clarity.ms (+ c.bing.com beacons)
  *  - vercel.live: the preview-deployment feedback toolbar
+ *  - www.google.com: the Google Maps embed on /contact. This is a frame-src
+ *    entry only — the embed is a plain <iframe>, it loads no script here.
+ *    Without it the map silently fails to render (the iframe box lays out at
+ *    full size, but Chrome refuses to frame it and logs a CSP violation).
  */
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -20,7 +24,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://vercel.live",
   "font-src 'self' data:",
   "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com",
-  "frame-src https://www.googletagmanager.com https://vercel.live",
+  "frame-src https://www.googletagmanager.com https://www.google.com https://vercel.live",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

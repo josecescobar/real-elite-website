@@ -1,5 +1,7 @@
 ---
 title: "Architectural vs. 3-Tab Shingles: What Eastern Panhandle Homeowners Should Know"
+seoTitle: 'Architectural vs 3-Tab Shingles: Which Roof Wins?'
+seoDescription: 'Lifespan, wind rating, curb appeal and resale value — an honest comparison of architectural and 3-tab shingles for the WV, MD and VA climate.'
 date: "2026-06-07"
 excerpt: "Your shingle pick shapes your roof's lifespan, wind rating, curb appeal, and resale value. A straight comparison of architectural vs. 3-tab for the WV–MD–VA climate — and why we install one and not the other."
 slug: "architectural-vs-3-tab-shingles-eastern-panhandle"

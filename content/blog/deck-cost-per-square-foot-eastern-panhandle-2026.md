@@ -1,5 +1,7 @@
 ---
 title: "Deck Cost Per Square Foot in the Eastern Panhandle (2026)"
+seoTitle: 'Deck Cost Per Square Foot in WV (2026)'
+seoDescription: 'What a new deck costs per square foot in Martinsburg, Charles Town and the wider Eastern Panhandle in 2026, by material — and what moves the final price.'
 date: "2026-07-06"
 excerpt: "What a new deck actually costs per square foot in Martinsburg, Charles Town, and the wider Eastern Panhandle in 2026 — by material — plus the factors beyond square footage that move the final number."
 slug: "deck-cost-per-square-foot-eastern-panhandle-2026"

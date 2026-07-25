@@ -1,5 +1,7 @@
 ---
 title: "5 Signs You Need a New Roof in the Eastern Panhandle"
+seoTitle: '5 Signs You Need a New Roof | Eastern Panhandle'
+seoDescription: 'Five warning signs your roof is failing — curling shingles, granule loss, daylight in the attic — and what Martinsburg homeowners should check first.'
 date: "2026-06-07"
 excerpt: "Your roof won't text you when it's in trouble — it just quietly lets the weather in. Here are the five warning signs WV homeowners in Martinsburg, Charles Town, and beyond should never ignore (before the buckets come out)."
 slug: "5-signs-you-need-a-new-roof-eastern-panhandle"
