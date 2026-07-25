@@ -76,7 +76,7 @@ export default function GalleryGrid() {
       {/* Filter bar */}
       <section className="bg-white border-b border-charcoal-100 sticky top-[64px] lg:top-[72px] z-20">
         <Container size="wide" className="py-5">
-          <div role="group" aria-label="Filter projects by category" className="flex flex-wrap gap-2">
+          <div role="group" aria-label="Filter projects by category" className="chip-row">
             {CATEGORIES.map((category) => {
               const isActive = selectedCategory === category;
               return (

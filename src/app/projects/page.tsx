@@ -63,7 +63,7 @@ export default async function ProjectsPage({
         <Container size="wide">
           {hasFilters && (
             <div
-              className="mb-10 flex flex-wrap gap-2"
+              className="chip-row mb-10"
               role="group"
               aria-label="Filter projects"
             >
