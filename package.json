@@ -2,6 +2,12 @@
   "name": "real-elite-website",
   "version": "1.0.0",
   "private": true,
+  "overrides": {
+    "next": {
+      "postcss": "^8.5.23",
+      "sharp": "^0.35.3"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "optimize": "node scripts/optimize-images.mjs",
@@ -40,7 +46,7 @@
     "jsdom": "^29.0.1",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.8",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
     "vitest": "^4.1.7"
