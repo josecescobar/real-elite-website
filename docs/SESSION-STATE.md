@@ -100,6 +100,20 @@ Vitest · Vercel. Alias `@/* → src/*`.
 
 ## 4. Prioritized backlog
 
+**Step 0 for every working session — run the site audit and clear any `error`
+finding first.** `npm run audit:site` (see `docs/SITE-QUALITY-LOOP.md`) crawls all
+178 routes and grades findings. An `error` means something is broken for users or
+crawlers *right now* on the live site, so it outranks everything below. Its first
+run found a Google Map that had been invisible on `/contact` for months — the CSP
+`frame-src` never allowed the embed — while lint, typecheck, tests and the build
+were all green. None of the existing gates can see that class of bug.
+
+Current standing: **0 error · 33 warn · 1 info**. The open `warn` cluster is
+`desc-too-long` (32 pages) — page-level `metadata` blocks and
+`src/lib/paving-data.ts` `metaDescription` fields over the 160-char SERP budget.
+Each needs a human rewrite that keeps the lead message; never truncate
+mechanically. Then:
+
 1. **Real data from the owner (the binding constraint — everything below compounds on it):**
    job photos + details (+ consented reviews) → author more projects (proof rails auto-populate)
    and grow the review corpus (`docs/PROJECT-INTAKE.md` is the intake checklist);
@@ -115,4 +129,8 @@ Vitest · Vercel. Alias `@/* → src/*`.
 5. Minor: consolidate the duplicated final-CTA sections into a shared component; `TrackedLink`
    wrapper so `Footer` can be a server component; naming collision between the two `RelatedGuides`.
 
-When picking up: read this file, then `docs/OPERATING-MANUAL.md`, then take the top unblocked item.
+When picking up: read this file, then `docs/SITE-QUALITY-LOOP.md`, then
+`docs/OPERATING-MANUAL.md` — then run the audit and take the top unblocked item.
+
+**Shipping rule for audit work:** a PR that claims an audit fix must quote the
+before/after counts. "Improved SEO" is not a result; "warn 33 → 21" is.

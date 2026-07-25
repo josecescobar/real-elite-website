@@ -21,7 +21,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest --coverage",
-    "audit:site": "node scripts/audit-site.mjs"
+    "audit:site": "node scripts/audit-site.mjs",
+    "preflight": "node scripts/preflight.mjs"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
