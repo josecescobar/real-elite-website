@@ -131,6 +131,30 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-brand-red;
 }
 
+/* ---------- Filter chip rows ----------
+   Category/facet chips wrap onto many rows on a phone (the gallery has 11
+   categories), pushing the content itself below the fold. Below `md` the row
+   becomes a single horizontally-swipeable strip; from `md` up it reverts to
+   the original wrapping behaviour, so desktop is visually unchanged.
+
+   Chips must not shrink or wrap their label inside the strip — `.chip-row > *`
+   handles that so callers don't repeat it on every chip. The scrollbar is
+   hidden because the chips themselves are the affordance (and a horizontal
+   bar under a sticky filter bar reads as chrome); scrolling still works by
+   touch, wheel, and keyboard, and tabbing to an off-screen chip scrolls it
+   into view. */
+.chip-row {
+  @apply flex gap-2 overflow-x-auto md:flex-wrap md:overflow-x-visible;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+.chip-row::-webkit-scrollbar {
+  display: none; /* WebKit/Blink */
+}
+.chip-row > * {
+  @apply flex-none whitespace-nowrap;
+}
+
 /* ---------- Long-form prose (blog/guides) ---------- */
 .prose-editorial {
   font-family: var(--font-body);
