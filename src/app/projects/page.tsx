@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import GalleryGrid from '@/components/shared/GalleryGrid';
 import ProjectCard from '@/components/projects/ProjectCard';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS, SERVICES } from '@/lib/constants';
@@ -100,6 +101,19 @@ export default async function ProjectsPage({
           )}
         </Container>
       </section>
+
+      {/* Recent Work — the full photo wall. The case studies above are the
+          stories; this is every job-site photo, filterable by category. */}
+      <section className="bg-white pt-4 pb-10 md:pb-14">
+        <Container size="wide">
+          <SectionHeader
+            eyebrow="Recent Work"
+            title="The photo wall"
+            subtitle="Job-site photography from across the WV–MD–VA region — filter by category, click any image to view full-size."
+          />
+        </Container>
+      </section>
+      <GalleryGrid />
 
       <AssurancesBand />
     </>

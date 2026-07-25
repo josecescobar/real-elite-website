@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import { GALLERY_IMAGES } from '@/lib/constants';
 import Container from './Container';
 
-const CATEGORIES = ['All', 'Roofing', 'Decks', 'Siding', 'Exterior', 'Remodeling', 'New Construction', 'Additions'];
+const CATEGORIES = ['All', 'Roofing', 'Decks', 'Bathrooms', 'Kitchens', 'Basements', 'Siding', 'Exterior', 'Remodeling', 'New Construction', 'Additions'];
 
 export default function GalleryGrid() {
   const [selectedCategory, setSelectedCategory] = useState('All');
