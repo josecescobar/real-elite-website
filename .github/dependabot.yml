@@ -8,6 +8,22 @@ updates:
       time: "09:00"
       timezone: America/New_York
     open-pull-requests-limit: 5
+    ignore:
+      # TypeScript 7 is not usable here yet. `eslint-config-next` vendors
+      # typescript-eslint ^8.x, which refuses to load against TS 7 —
+      # `npm run lint` dies at module resolution before linting a single file:
+      #   "Error: typescript-eslint does not support TS 7.0."
+      # Upstream tracking: typescript-eslint/typescript-eslint#10940
+      #
+      # Because the dev-dependency group bundles this major with everything
+      # else, one unusable package failed the whole grouped PR — twice (#75
+      # and #82, both closed unmerged). Ignoring only the major keeps 5.x
+      # patch/minor updates (including security fixes) flowing normally.
+      #
+      # REMOVE THIS once typescript-eslint ships TS >= 7 support, then let
+      # the TypeScript 7 upgrade land as its own reviewed PR.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
     groups:
       production-dependencies:
         dependency-type: production
