@@ -86,22 +86,44 @@ before and after counts.** "Improved SEO" is not a result; "warn 118 → 33" is.
 
 ## 4. Current standing
 
-**0 error · 0 warn · 1 info** across all 178 routes.
+**0 error · 109 warn · 1 info** across all 178 routes.
 
-| Rule | Was | Now |
+| Rule | First run | Now |
 |---|---|---|
-| `csp-blocked` | 1 | 0 |
-| `title-too-long` | 54 | 0 |
-| `desc-too-long` | 64 | 0 |
+| `csp-blocked` | 1 | **0** |
+| `title-too-long` | 54 | **0** |
+| `desc-too-long` | 64 | **0** |
+| `mobile-h-overflow` | — | **0** (clean from the first mobile run) |
+| `mobile-tap-target` | — | 109 ← the open item |
 | `thin-content` | 1 | 1 |
 
-The remaining `info` is `/resources/financing` at 244 words (min 300). It is
-parked deliberately: growing it honestly needs real financing-partner terms
-from the owner, and padding a page to clear a word count is the exact failure
-mode this harness exists to prevent.
-
-Treat these counts as a ratchet. A change that pushes any of them back up is a
+Treat the zeroes as a ratchet: a change that pushes any of them back up is a
 bug in that change, not a new backlog item.
+
+### The open item: `mobile-tap-target` (109)
+
+Breadcrumbs and standalone "view all" rail links are fixed via `.tap-target`.
+What remains is **dense link lists**, and it is a layout decision rather than a
+mechanical one:
+
+- `ServicePageTemplate` — the nearby-cities grid inside the `<details>` block
+  (`grid grid-cols-2`, links at 20px)
+- `CityPageTemplate` and `PavingLocationTemplate` — the same pattern, plus
+  their "all services / all projects" rails
+- `/capability-statement` — the phone and email links at 24px
+
+`.tap-target` is the wrong tool here. It works by growing the hit box and
+pulling the growth back with a negative block margin, which is safe for a lone
+link in a flow but would make adjacent **rows overlap** inside a grid. The
+honest fix is to give these lists real row spacing (roughly `gap-y` to 44px per
+row), which changes how dense those sections look — so it wants a human eye on
+the result, not an automated sweep.
+
+### Parked: `thin-content` (1)
+
+`/resources/financing` at 244 words. Growing it honestly needs real
+financing-partner terms from the owner, and padding a page to clear a word
+count is the exact failure mode this harness exists to prevent.
 
 ## 5. Deliberate non-goals
 

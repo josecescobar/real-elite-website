@@ -108,14 +108,19 @@ run found a Google Map that had been invisible on `/contact` for months — the 
 `frame-src` never allowed the embed — while lint, typecheck, tests and the build
 were all green. None of the existing gates can see that class of bug.
 
-Current standing: **0 error · 0 warn · 1 info** — the whole 178-route corpus is
-inside its SEO budgets, with no broken embeds, dead links, missing alt text or
-unlabelled fields. The single `info` is `/resources/financing` at 244 words
-(min 300); it needs real financing-partner detail from the owner to grow
-honestly, so it is parked rather than padded.
+Current standing: **0 error · 109 warn · 1 info**. All the SEO budgets are clear
+(titles, descriptions), there are no broken embeds, dead links, missing alt text
+or unlabelled fields, and the mobile pass shows **no page scrolling sideways**.
 
-Keep it there: the audit is a ratchet, not a one-off. Anything that regresses a
-count is a bug in the change that caused it. Then:
+The 109 open warns are all `mobile-tap-target` on dense link lists — the
+nearby-cities grids and service rails in `ServicePageTemplate`,
+`CityPageTemplate` and `PavingLocationTemplate`. That one is a layout decision
+(those rows need real spacing; the `.tap-target` negative-margin trick would
+overlap grid rows), so it wants a human eye — see `docs/SITE-QUALITY-LOOP.md`
+§4 for the specific components.
+
+Keep the zeroes at zero: the audit is a ratchet, not a one-off. Anything that
+regresses a cleared count is a bug in the change that caused it. Then:
 
 1. **Real data from the owner (the binding constraint — everything below compounds on it):**
    job photos + details (+ consented reviews) → author more projects (proof rails auto-populate)
