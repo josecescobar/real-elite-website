@@ -208,7 +208,7 @@ export default function PavingHubPage() {
               </p>
               <Link
                 href="/full-property-perimeter"
-                className="inline-flex items-center gap-2 mt-6 text-navy-800 font-semibold hover:text-brand-red transition-colors"
+                className="inline-flex items-center gap-2 min-h-11 md:min-h-0 mt-6 text-navy-800 font-semibold hover:text-brand-red transition-colors"
               >
                 See the Full Property Perimeter bundle <ArrowUpRight className="w-4 h-4" />
               </Link>

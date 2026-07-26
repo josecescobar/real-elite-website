@@ -64,6 +64,17 @@ const JSON_OUT = getArg('--json', null);
 const FAIL_ON = getArg('--fail-on', null); // 'error' | 'warn'
 const LIMIT = Number(getArg('--limit', '0')) || 0;
 /**
+ * `--only /a,/b` narrows the crawl to specific routes. Verifying one fix
+ * against the full sitemap costs ~10 minutes, which is long enough that it
+ * discourages re-checking at all; this makes the tight loop (change → measure
+ * the routes you changed) take seconds. Unknown routes are reported rather
+ * than silently dropped, so a typo cannot masquerade as a clean result.
+ */
+const ONLY = (getArg('--only', '') || '')
+  .split(',')
+  .map((r) => r.trim())
+  .filter(Boolean);
+/**
  * Find a Chromium to drive. Checked in order: an explicit override, any
  * Playwright-managed build under PLAYWRIGHT_BROWSERS_PATH (or its default
  * location), then a system Chrome/Chromium. Returns null to let
@@ -139,6 +150,17 @@ async function main() {
     return;
   }
   await ctx0.close();
+  if (ONLY.length) {
+    const known = new Set(routes);
+    const missing = ONLY.filter((r) => !known.has(r));
+    if (missing.length) {
+      console.error(`--only: not in the sitemap — ${missing.join(', ')}`);
+      process.exitCode = 2;
+      await browser.close();
+      return;
+    }
+    routes = ONLY;
+  }
   if (LIMIT) routes = routes.slice(0, LIMIT);
   console.error(`auditing ${routes.length} routes at ${BASE}`);
 
@@ -344,6 +366,7 @@ async function main() {
         //     until focused and are correct as authored → exempt
         //   - anything inside running prose → exempt
         const small = [];
+        let smallTotal = 0;
         for (const el of document.querySelectorAll(
           // `summary` matters: on a closed <details> it is the only thing there
           // is to tap, and this site uses disclosures for the nearby-cities and
@@ -379,13 +402,20 @@ async function main() {
           const tallEnough = r.height >= tapPx - 0.5;
           const wideEnough = r.width >= 24 - 0.5;
           if (tallEnough && wideEnough) continue;
-          small.push(
-            `${el.tagName.toLowerCase()}"${(el.textContent || '').trim().slice(0, 24)}" ` +
-              `${Math.round(r.width)}×${Math.round(r.height)}`
-          );
-          if (small.length >= 4) break;
+          smallTotal += 1;
+          // Only the first few are named — a page with a repeated undersized
+          // component would otherwise print a wall of near-identical strings.
+          // `smallTotal` keeps counting past the cap so the report can say how
+          // many were withheld; a truncated list that looks complete makes a
+          // route read as nearly-fixed when it is not.
+          if (small.length < 4) {
+            small.push(
+              `${el.tagName.toLowerCase()}"${(el.textContent || '').trim().slice(0, 24)}" ` +
+                `${Math.round(r.width)}×${Math.round(r.height)}`
+            );
+          }
         }
-        return { overflowBy, culprits, small };
+        return { overflowBy, culprits, small, smallTotal };
       },
       { tapPx: LIMITS.tapPx, slop: LIMITS.overflowSlopPx }
     );
@@ -400,7 +430,14 @@ async function main() {
       );
     }
     if (m.small.length) {
-      add('warn', 'mobile-tap-target', route, `under ${LIMITS.tapPx}px: ${m.small.join('; ')}`);
+      const hidden = m.smallTotal - m.small.length;
+      add(
+        'warn',
+        'mobile-tap-target',
+        route,
+        `under ${LIMITS.tapPx}px: ${m.small.join('; ')}` +
+          (hidden > 0 ? ` (+${hidden} more)` : '')
+      );
     }
   }
   await mctx.close();
