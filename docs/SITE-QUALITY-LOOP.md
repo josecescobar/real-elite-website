@@ -19,12 +19,24 @@ npm run audit:site -- --json report.json   # machine-readable
 npm run audit:site -- --fail-on error      # exit 1 when errors exist
 ```
 
-It crawls every URL in `sitemap-0.xml` and grades findings:
+It crawls every URL in `sitemap-0.xml` **twice** — once at 1440px for content
+and once at 390px for layout — and grades findings.
+
+The mobile pass exists because most traffic to a contractor site is a phone,
+and the failures that matter there are invisible at desktop width: a page that
+scrolls sideways, or a link too small to hit with a thumb. It measures geometry
+only (everything content-shaped is already graded on the desktop pass), and it
+is deliberately conservative about what counts as a target — WCAG 2.2 exempts
+links presented inside a sentence, so inline text links, visually-hidden skip
+links, `aria-hidden` subtrees and off-canvas elements (honeypot fields, closed
+drawers) are all excluded. Flagging those buries the real finding.
+
+Findings are graded:
 
 | Level | Meaning | Examples |
 |---|---|---|
-| **error** | Broken for users or crawlers. Fix before shipping. | CSP-blocked embed, 4xx/5xx, dead internal link, missing alt text, unlabelled form field, invalid JSON-LD |
-| **warn** | Measurably costs reach or conversion. | Title >60 chars, meta description outside 70–160, LCP >2.5s, CLS >0.1, missing canonical |
+| **error** | Broken for users or crawlers. Fix before shipping. | CSP-blocked embed, 4xx/5xx, dead internal link, missing alt text, unlabelled form field, invalid JSON-LD, **horizontal overflow on mobile** |
+| **warn** | Measurably costs reach or conversion. | Title >60 chars, meta description outside 70–160, LCP >2.5s, CLS >0.1, missing canonical, **tap target under 44px** |
 | **info** | Worth knowing, not worth blocking. | Thin content, heading-order jumps |
 
 Thresholds live in `LIMITS` at the top of the script and encode Google's

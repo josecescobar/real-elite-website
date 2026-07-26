@@ -155,6 +155,26 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   @apply flex-none whitespace-nowrap;
 }
 
+/* ---------- Touch targets ----------
+   Small nav links (breadcrumbs, "view all" rails) render 16–20px tall, which
+   is a fine mouse target and a poor thumb one — and phones are where most of
+   this site's traffic lands. `scripts/audit-site.mjs` measures this on its
+   mobile pass.
+
+   Grow the hit box to the 44px WCAG 2.2 minimum, then pull the growth back
+   out with a negative block margin so surrounding layout is unchanged — the
+   link occupies the same visual space, it is just hittable. Scoped below `md`
+   because a cursor does not need the help and desktop spacing should not
+   shift. */
+@media (width < 48rem) {
+  .tap-target {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-block: -0.75rem;
+  }
+}
+
 /* ---------- Long-form prose (blog/guides) ---------- */
 .prose-editorial {
   font-family: var(--font-body);

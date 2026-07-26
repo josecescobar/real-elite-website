@@ -73,7 +73,7 @@ export default function ProjectPageTemplate({ project }: { project: Project }) {
 
         <Container size="wide" className="py-20 md:py-28 lg:py-32">
           <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap">
-            <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
+            <Link href="/projects" className="hover:text-white transition-colors tap-target">Projects</Link>
             <span className="text-charcoal-500">/</span>
             <span className="text-white">{project.title}</span>
           </nav>

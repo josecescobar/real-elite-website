@@ -24,7 +24,7 @@ export default function FeaturedServices() {
           />
           <Link
             href="/services"
-            className="hidden md:inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors group"
+            className="hidden md:inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors group tap-target"
           >
             View All Services
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -100,7 +100,7 @@ export default function FeaturedServices() {
         <div className="md:hidden mt-8 text-center">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors tap-target"
           >
             View All Services
             <ArrowUpRight className="w-4 h-4" />

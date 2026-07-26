@@ -32,7 +32,7 @@ export default function RelatedProjectsInline({ categoryHint, count = 3 }: Props
         </h3>
         <Link
           href="/gallery"
-          className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors"
+          className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors tap-target"
         >
           Full Gallery
           <ArrowUpRight className="w-3.5 h-3.5" />

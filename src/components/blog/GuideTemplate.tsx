@@ -125,11 +125,11 @@ export default function GuideTemplate({ post }: Props) {
       <section className="bg-navy-900 text-white pt-14 pb-12 sm:pt-20 sm:pb-16">
         <Container size="default">
           <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap">
-            <Link href="/resources" className="hover:text-white transition-colors">
+            <Link href="/resources" className="hover:text-white transition-colors tap-target">
               Resources
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
-            <Link href={categoryHref} className="hover:text-white transition-colors">
+            <Link href={categoryHref} className="hover:text-white transition-colors tap-target">
               {categoryLabel}
             </Link>
           </nav>
@@ -245,7 +245,7 @@ export default function GuideTemplate({ post }: Props) {
               <div className="mt-12 text-center">
                 <Link
                   href="/resources"
-                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors tap-target"
                 >
                   ← All Resources
                 </Link>

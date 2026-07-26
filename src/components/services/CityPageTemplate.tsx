@@ -141,7 +141,7 @@ export default function CityPageTemplate({ city, data }: Props) {
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
           <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap">
-            <Link href="/service-areas" className="hover:text-white transition-colors">
+            <Link href="/service-areas" className="hover:text-white transition-colors tap-target">
               Service Areas
             </Link>
             <span className="text-charcoal-500">/</span>

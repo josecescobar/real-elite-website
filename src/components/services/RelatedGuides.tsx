@@ -30,7 +30,7 @@ export default function RelatedGuides({ slugs, fallbackCount = 3 }: Props) {
         </h2>
         <Link
           href="/resources"
-          className="text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors"
+          className="text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors tap-target"
         >
           All Guides →
         </Link>
