@@ -1,5 +1,7 @@
 ---
 title: "How Much Should You Pay a Handyman in the Eastern Panhandle? (2026 Pricing Guide)"
+seoTitle: 'Handyman Rates in the Eastern Panhandle (2026)'
+seoDescription: 'What a fair handyman rate looks like in Martinsburg and Charles Town — hourly versus flat pricing, and the WV licensing law that separates pro from risk.'
 date: "2026-06-07"
 excerpt: "A straight answer on handyman rates in Martinsburg, Charles Town, and the Eastern Panhandle — what's fair, what's too cheap, what's overpriced, and the WV law that quietly separates the two."
 slug: "handyman-pricing-eastern-panhandle-2026"

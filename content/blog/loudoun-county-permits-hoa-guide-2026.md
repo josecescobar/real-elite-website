@@ -1,5 +1,7 @@
 ---
 title: "Loudoun County Remodel Permits and HOA Approvals — A 2026 Homeowner's Guide"
+seoTitle: 'Loudoun County Permits & HOA Approval Guide'
+seoDescription: 'Loudoun remodels need county permits and HOA architectural review. Real timelines, what each reviewer wants, and how to run both tracks without delay.'
 date: "2026-05-27"
 excerpt: "Loudoun County remodels run a dual-approval gauntlet — county permits plus HOA architectural review in nearly every master-planned community. This guide walks through the real timelines, what each layer reviews, and how to keep the two tracks running in parallel instead of stacked."
 slug: "loudoun-county-permits-hoa-guide-2026"

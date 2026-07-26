@@ -1,5 +1,7 @@
 ---
 title: "What a Kitchen Remodel Costs in the WV–MD–VA Region (2026)"
+seoTitle: 'Kitchen Remodel Cost in WV, MD & VA (2026)'
+seoDescription: 'What the $30k update, the $60k full remodel and the $120k open-concept kitchen each buy across the Eastern Panhandle, Frederick and Loudoun County.'
 date: "2026-05-19"
 excerpt: "A line-itemed breakdown of kitchen remodel costs across the Eastern Panhandle, Frederick County, and Loudoun County — what the $30k update, the $60k full remodel, and the $120k open-concept tier each actually buy you."
 slug: "kitchen-remodel-cost-wv-md-va-2026"

@@ -36,9 +36,11 @@ export const metadata: Metadata = {
   // metadata. Without it, Vercel falls back to the deployment URL
   // (*.vercel.app), so social cards would point at the wrong host.
   metadataBase: new URL(BUSINESS.url),
-  title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
+  // 60-char SERP budget (see fitTitle in src/lib/seo.ts): the short brand form
+  // keeps the city + service keywords, which is what the title is for.
+  title: 'General Contractor in Martinsburg, WV | Real Elite',
   description:
-    'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more. Free estimates available.',
+    'Veteran-owned general contractor serving the Eastern Panhandle — roofing, siding, decks and remodeling. Free written estimates within 24 business hours.',
   keywords: [
     'contractor',
     'roofing',

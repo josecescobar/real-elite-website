@@ -1,5 +1,7 @@
 ---
 title: "How to Plan a Luxury Bathroom Renovation — and Choose the Right Contractor (2026)"
+seoTitle: 'Planning a Luxury Bathroom Renovation (2026)'
+seoDescription: 'Set a realistic budget, lock the design before demo, choose materials that last, and vet your contractor properly — a high-end bathroom playbook.'
 date: "2026-05-30"
 excerpt: "A homeowner's playbook for a high-end bathroom: how to set goals and a realistic budget, lock in the design before demo, pick materials that feel luxurious and last, and — most importantly — how to choose a contractor you can actually trust. Includes the questions to ask before you sign."
 slug: "how-to-plan-luxury-bathroom-renovation-choose-contractor-2026"

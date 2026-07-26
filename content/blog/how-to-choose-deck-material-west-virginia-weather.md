@@ -1,5 +1,7 @@
 ---
 title: "How to Choose the Right Deck Material for West Virginia Weather"
+seoTitle: 'Best Deck Material for West Virginia Weather'
+seoDescription: 'Pressure-treated, composite or PVC — what survives an Eastern Panhandle year of freeze, thaw, sun and humidity, and what quietly rots underneath it.'
 date: "2026-06-07"
 excerpt: "Pressure-treated, composite, or PVC? West Virginia weather is gorgeous and absolutely merciless on decks. Here's the honest breakdown of what survives an Eastern Panhandle year — and what quietly rots while you're not looking."
 slug: "how-to-choose-deck-material-west-virginia-weather"

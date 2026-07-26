@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BUSINESS } from '@/lib/constants';
+import { fitTitle } from '@/lib/seo';
 import { getPavingService, PAVING_SERVICE_SLUGS } from '@/lib/paving-data';
 import PavingServiceTemplate from '@/components/paving/PavingServiceTemplate';
 
@@ -21,7 +22,7 @@ export async function generateMetadata({
   const service = getPavingService(slug);
   if (!service) return { title: 'Not Found' };
 
-  const title = `${service.metaTitle} | ${BUSINESS.name}`;
+  const title = fitTitle(`${service.metaTitle} | ${BUSINESS.name}`);
   return {
     title,
     description: service.metaDescription,

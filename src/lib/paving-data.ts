@@ -74,7 +74,7 @@ export const PAVING_SERVICES: PavingService[] = [
     iconKey: 'asphalt',
     metaTitle: 'Asphalt Paving Contractor — WV, MD & VA',
     metaDescription:
-      'Professional asphalt paving across the Eastern Panhandle, Cumberland Valley, and Northern Shenandoah Valley. Proper base prep, grading, and compaction for driveways, lots, and roads. Free estimate.',
+      'Asphalt paving across the Eastern Panhandle, Cumberland Valley and Shenandoah Valley — proper base prep, grading and compaction. Free estimate.',
     keywords: [
       'asphalt paving',
       'asphalt paving contractor WV',
@@ -129,7 +129,7 @@ export const PAVING_SERVICES: PavingService[] = [
     iconKey: 'driveway',
     metaTitle: 'Driveway Paving — Asphalt Driveways in WV, MD & VA',
     metaDescription:
-      'New asphalt driveways and replacements across the Eastern Panhandle and Mid-Atlantic. Curb appeal, proper drainage, clean aprons, and a surface built to last. Veteran-owned. Free estimate.',
+      'New asphalt driveways and replacements across the Eastern Panhandle and Mid-Atlantic — proper drainage, clean aprons, a surface built to last.',
     keywords: [
       'driveway paving',
       'asphalt driveway',
@@ -185,7 +185,7 @@ export const PAVING_SERVICES: PavingService[] = [
     iconKey: 'parking',
     metaTitle: 'Parking Lot Paving — Commercial Asphalt WV, MD & VA',
     metaDescription:
-      'Parking lot paving and resurfacing for businesses, churches, HOAs, and retail across the Eastern Panhandle and Mid-Atlantic. Drainage, ADA-compliant striping, durable surfaces, minimal downtime.',
+      'Parking lot paving and resurfacing for businesses, churches, HOAs and retail — drainage, ADA-compliant striping and minimal downtime.',
     keywords: [
       'parking lot paving',
       'commercial parking lot paving',
@@ -240,7 +240,7 @@ export const PAVING_SERVICES: PavingService[] = [
     iconKey: 'sealcoat',
     metaTitle: 'Sealcoating — Driveway & Parking Lot Sealing WV, MD & VA',
     metaDescription:
-      'Asphalt sealcoating and crack filling across the Eastern Panhandle and Mid-Atlantic. Protect your driveway or lot from water, UV, and freeze-thaw — and double its life. Free estimate.',
+      'Asphalt sealcoating and crack filling across the Eastern Panhandle and Mid-Atlantic — protect your driveway from water, UV and freeze-thaw.',
     keywords: [
       'sealcoating',
       'driveway sealcoating',
@@ -295,7 +295,7 @@ export const PAVING_SERVICES: PavingService[] = [
     iconKey: 'repair',
     metaTitle: 'Asphalt Repair — Pothole, Crack & Patch WV, MD & VA',
     metaDescription:
-      'Asphalt repair, pothole patching, crack filling, and resurfacing across the Eastern Panhandle and Mid-Atlantic. Fix problems before they spread — extend the life of your driveway or lot. Free estimate.',
+      'Pothole patching, crack filling and resurfacing across the Eastern Panhandle and Mid-Atlantic — fix problems before they spread. Free estimate.',
     keywords: [
       'asphalt repair',
       'pothole repair',
@@ -350,7 +350,7 @@ export const PAVING_SERVICES: PavingService[] = [
     iconKey: 'commercial',
     metaTitle: 'Commercial Paving Contractor — WV, MD & VA',
     metaDescription:
-      'Commercial asphalt paving for businesses, municipalities, churches, and HOAs across the Eastern Panhandle and Mid-Atlantic. Durable surfaces, phased scheduling, minimal downtime. Free proposal.',
+      'Commercial asphalt paving for businesses, municipalities, churches and HOAs — durable surfaces, phased scheduling and minimal downtime.',
     keywords: [
       'commercial paving',
       'commercial asphalt contractor',
@@ -414,7 +414,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['inwood-wv', 'spring-mills-wv', 'hedgesville-wv', 'falling-waters-wv'],
     metaTitle: 'Paving Martinsburg WV — Asphalt, Driveways & Sealcoating',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating, and repair in Martinsburg, WV. Veteran-owned, locally based in Berkeley County. Free estimate from a contractor who knows the area.',
+      'Asphalt paving, driveways, parking lots, sealcoating and repair in Martinsburg, WV. Veteran-owned and locally based in Berkeley County.',
     keywords: [
       'paving Martinsburg WV',
       'asphalt paving Martinsburg',
@@ -448,7 +448,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['martinsburg-wv', 'spring-mills-wv', 'hedgesville-wv', 'winchester-va'],
     metaTitle: 'Paving Inwood WV — Asphalt Driveways & Sealcoating',
     metaDescription:
-      'Asphalt paving, driveways, sealcoating, and repair in Inwood, WV. Local, veteran-owned paving for the Route 51 corridor and Inwood’s growing subdivisions. Free estimate.',
+      'Asphalt paving, driveways, sealcoating and repair in Inwood, WV — veteran-owned paving for the Route 51 corridor and its growing subdivisions.',
     keywords: [
       'paving Inwood WV',
       'asphalt driveway Inwood',
@@ -482,7 +482,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['martinsburg-wv', 'falling-waters-wv', 'hedgesville-wv', 'inwood-wv'],
     metaTitle: 'Paving Spring Mills WV — Asphalt Driveways & Sealcoating',
     metaDescription:
-      'Asphalt paving, driveways, sealcoating, and repair in Spring Mills, WV. Local, veteran-owned paving for the Route 11 corridor and Spring Mills’ new subdivisions. Free estimate.',
+      'Asphalt paving, driveways, sealcoating and repair in Spring Mills, WV — veteran-owned paving for the Route 11 corridor and new subdivisions.',
     keywords: [
       'paving Spring Mills WV',
       'asphalt driveway Spring Mills',
@@ -516,7 +516,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['martinsburg-wv', 'spring-mills-wv', 'falling-waters-wv', 'inwood-wv'],
     metaTitle: 'Paving Hedgesville WV — Rural Asphalt Driveways & Lanes',
     metaDescription:
-      'Asphalt paving, long rural driveways, gravel-to-asphalt conversions, sealcoating, and repair in Hedgesville, WV. Veteran-owned, built for larger lots and country lanes. Free estimate.',
+      'Asphalt paving, long rural driveways, gravel-to-asphalt conversions and repair in Hedgesville, WV. Built for larger lots and country lanes.',
     keywords: [
       'paving Hedgesville WV',
       'rural driveway paving Hedgesville',
@@ -550,7 +550,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['martinsburg-wv', 'spring-mills-wv', 'hedgesville-wv', 'hagerstown-md'],
     metaTitle: 'Paving Falling Waters WV — Asphalt Driveways & Repair',
     metaDescription:
-      'Asphalt paving, driveways, sealcoating, and repair in Falling Waters, WV. Drainage-smart paving for riverside and rural lots near the Potomac. Veteran-owned. Free estimate.',
+      'Asphalt paving, driveways, sealcoating and repair in Falling Waters, WV — drainage-smart paving for riverside and rural lots near the Potomac.',
     keywords: [
       'paving Falling Waters WV',
       'asphalt driveway Falling Waters',
@@ -584,7 +584,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['shepherdstown-wv', 'martinsburg-wv', 'inwood-wv', 'winchester-va'],
     metaTitle: 'Paving Charles Town WV — Asphalt Driveways & Lots',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating, and repair in Charles Town, WV. Veteran-owned paving for Jefferson County homes and businesses. Free estimate.',
+      'Asphalt paving, driveways, parking lots, sealcoating and repair in Charles Town, WV — veteran-owned paving for Jefferson County.',
     keywords: [
       'paving Charles Town WV',
       'asphalt driveway Charles Town',
@@ -618,7 +618,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['charles-town-wv', 'martinsburg-wv', 'hagerstown-md', 'winchester-va'],
     metaTitle: 'Paving Shepherdstown WV — Asphalt Driveways & Repair',
     metaDescription:
-      'Asphalt paving, driveways, sealcoating, and repair in Shepherdstown, WV. Careful, drainage-smart paving for historic properties and university-area homes. Veteran-owned. Free estimate.',
+      'Asphalt paving, driveways, sealcoating and repair in Shepherdstown, WV — drainage-smart work for historic and university-area properties.',
     keywords: [
       'paving Shepherdstown WV',
       'asphalt driveway Shepherdstown',
@@ -686,7 +686,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['falling-waters-wv', 'martinsburg-wv', 'frederick-md', 'shepherdstown-wv'],
     metaTitle: 'Paving Hagerstown MD — Asphalt Driveways & Parking Lots',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating, and repair in Hagerstown, MD. Veteran-owned paving for the Cumberland Valley and I-70/I-81 hub. Free estimate.',
+      'Asphalt paving, driveways, parking lots, sealcoating and repair in Hagerstown, MD — veteran-owned paving for the Cumberland Valley.',
     keywords: [
       'paving Hagerstown MD',
       'asphalt driveway Hagerstown',
@@ -720,7 +720,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['hagerstown-md', 'martinsburg-wv', 'falling-waters-wv', 'winchester-va'],
     metaTitle: 'Paving Frederick MD — Asphalt Driveways & Parking Lots',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating, and repair in Frederick, MD. Veteran-owned paving for the I-70 corridor and Frederick County’s growing communities. Free estimate.',
+      'Asphalt paving, driveways, parking lots, sealcoating and repair in Frederick, MD — veteran-owned paving for the I-70 corridor.',
     keywords: [
       'paving Frederick MD',
       'asphalt driveway Frederick',

@@ -1,5 +1,7 @@
 ---
 title: "Do You Need a Permit to Build a Deck in Berkeley or Jefferson County, WV? (2026 Guide)"
+seoTitle: 'Deck Permits in Berkeley & Jefferson County WV'
+seoDescription: 'Where to apply, what it costs, which inspections you face, and what happens if you skip it — deck permitting in WV''s Eastern Panhandle for 2026.'
 date: "2026-06-07"
 excerpt: "Everything Eastern Panhandle homeowners actually need to know about pulling a deck permit in Berkeley and Jefferson County — where to apply, what it costs, what happens if you skip it, and which inspections show up."
 slug: "deck-permits-berkeley-jefferson-county-wv-2026"

@@ -1,5 +1,7 @@
 ---
 title: "Frederick MD Home Improvement in 2026: Permits, Timelines, and What Local Projects Actually Cost"
+seoTitle: 'Frederick MD Home Improvement Guide (2026)'
+seoDescription: 'How Frederick County permitting works, realistic project timelines, what local remodels cost, and the historic-district rules that catch homeowners out.'
 date: "2026-05-19"
 excerpt: "A practical orientation for Frederick MD homeowners planning a remodel, roof, deck, or addition in 2026 — how county permitting works, realistic timelines, what local projects cost, and the historic-district considerations worth knowing early."
 slug: "frederick-md-home-improvement-permits-costs-2026"

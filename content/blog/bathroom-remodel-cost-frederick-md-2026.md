@@ -1,5 +1,7 @@
 ---
 title: "What a $30,000 to $50,000 Bathroom Remodel Actually Costs in Frederick MD (2026)"
+seoTitle: 'Bathroom Remodel Cost in Frederick MD (2026)'
+seoDescription: 'A line-itemed look at what $30k, $50k and $70k bathroom remodels actually buy in Frederick MD this year — finishes, scope, layout changes and labor.'
 date: "2026-05-19"
 excerpt: "A line-itemed breakdown of what mid-range and primary-suite bathroom remodels really cost in Frederick MD this year — and what the $30k vs $50k vs $70k tier actually buys you in finishes, scope, and lead time."
 slug: "bathroom-remodel-cost-frederick-md-2026"

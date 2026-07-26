@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: `Service Areas | ${BUSINESS.name}`,
   description:
-    'Premium remodeling and exterior contracting across the WV–MD–VA region — Frederick MD, Winchester VA, Leesburg VA, Ashburn VA, Hagerstown MD, and the Eastern Panhandle WV.',
+    'Premium remodeling and exterior contracting across the WV-MD-VA region — Frederick, Winchester, Leesburg, Ashburn, Hagerstown and the Eastern Panhandle.',
   keywords: [
     'service areas',
     'Eastern Panhandle',

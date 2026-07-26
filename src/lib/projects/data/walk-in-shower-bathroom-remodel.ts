@@ -29,7 +29,7 @@ const project: Project = {
 
   metaTitle: 'Walk-In Shower Bathroom Remodel | Real Elite Project',
   metaDescription:
-    'A tub-to-walk-in-shower bathroom transformation — full waterproofing, floor-to-ceiling tile, and frameless glass. See how Real Elite builds a bathroom remodel from tear-out to final seal.',
+    'A tub-to-walk-in-shower conversion — full waterproofing, floor-to-ceiling tile and frameless glass, built from tear-out to final seal.',
   keywords: [
     'bathroom remodel WV',
     'walk-in shower conversion',

@@ -27,7 +27,7 @@ const project: Project = {
 
   metaTitle: 'Stone Facade Exterior Upgrade | Real Elite Project',
   metaDescription:
-    'A stone veneer facade transformation — moisture barrier, lath, and hand-set stone that rebuilt the front of the home. See how Real Elite delivers exterior curb-appeal upgrades.',
+    'A stone veneer facade upgrade — moisture barrier, lath and hand-set stone that rebuilt the front of the home, plus new railings and trim.',
   keywords: [
     'stone veneer installation WV',
     'exterior facade upgrade',

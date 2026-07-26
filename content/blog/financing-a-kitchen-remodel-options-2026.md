@@ -1,5 +1,7 @@
 ---
 title: "Financing a Kitchen Remodel — What Your Options Actually Are in 2026"
+seoTitle: 'How to Finance a Kitchen Remodel (2026 Options)'
+seoDescription: 'Cash, contractor financing, HELOC, personal loan or cash-out refi — the five ways homeowners fund a $50k-$100k kitchen, with real monthly payment math.'
 date: "2026-05-19"
 excerpt: "Cash, contractor financing, HELOC, personal loan, or cash-out refi — the five paths most homeowners actually use to pay for a $50k–$100k kitchen remodel, with monthly payment math and the red flags that come up most often."
 slug: "financing-a-kitchen-remodel-options-2026"

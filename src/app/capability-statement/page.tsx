@@ -20,7 +20,7 @@ import JsonLd from '@/components/seo/JsonLd';
 export const metadata: Metadata = {
   title: `Capability Statement | ${BUSINESS.name}`,
   description:
-    'Federal capability statement for Real Elite Contracting LLC — veteran-owned general contractor in Martinsburg, WV. NAICS codes, core competencies, differentiators, and contact for federal, VA, and prime/sub teaming opportunities.',
+    'Federal capability statement for Real Elite Contracting LLC — veteran-owned Martinsburg WV contractor. NAICS codes, core competencies and teaming contact.',
   keywords: [
     'capability statement',
     'veteran-owned contractor capability statement',

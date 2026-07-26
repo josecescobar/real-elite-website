@@ -30,7 +30,7 @@ const project: Project = {
 
   metaTitle: 'Signature Kitchen Remodel | Real Elite Project',
   metaDescription:
-    'A full kitchen transformation — custom cabinetry, stone island, designer lighting, and a layout built around how the family actually cooks. See how Real Elite runs a kitchen remodel start to finish.',
+    'Custom cabinetry, a stone-topped island and layered lighting — how Real Elite runs a full kitchen remodel from demo day to final walkthrough.',
   keywords: [
     'kitchen remodel WV',
     'kitchen renovation Eastern Panhandle',

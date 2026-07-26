@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   ClipboardList,
@@ -19,9 +20,9 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
 
 export const metadata: Metadata = {
-  title: `Our Process | Built With Military Precision | ${BUSINESS.name}`,
+  title: fitTitle(`Our Process | Built With Military Precision | ${BUSINESS.name}`),
   description:
-    'Recon, Plan, Execute, Inspect — the disciplined four-step process behind every Real Elite project. Communication standards, daily cleanup, and what to expect during your remodel.',
+    'Recon, Plan, Execute, Inspect — the four-step process behind every Real Elite project, with communication standards and daily site cleanup.',
   keywords: [
     'contractor process',
     'remodel process',

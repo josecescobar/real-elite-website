@@ -28,7 +28,7 @@ const project: Project = {
 
   metaTitle: 'Custom Addition, Foundation to Finish | Real Elite Project',
   metaDescription:
-    'Foundation piers, framing, weather barrier, and roof — a custom addition built from the ground up. See how Real Elite runs structural work from footers to dried-in shell.',
+    'Block foundation, squared framing, weather barrier and roof — a custom addition built from the ground up and inspected at every phase.',
   keywords: [
     'home addition contractor WV',
     'custom addition Eastern Panhandle',

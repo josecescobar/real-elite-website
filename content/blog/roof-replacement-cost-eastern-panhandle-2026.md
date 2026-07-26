@@ -1,5 +1,7 @@
 ---
 title: "What a Roof Replacement Actually Costs in the Eastern Panhandle (2026)"
+seoTitle: 'Roof Replacement Cost in the Eastern Panhandle'
+seoDescription: 'The real $9,000-$22,000 spread for a WV roof replacement in 2026, what each tier buys you, and the hidden costs like rotted decking that move the number.'
 date: "2026-07-06"
 excerpt: "A straight breakdown of what a roof replacement really costs in WV's Eastern Panhandle in 2026 — the $9,000 to $22,000 spread, what each tier buys you, and the hidden costs (like rotted decking) that show up after tear-off."
 slug: "roof-replacement-cost-eastern-panhandle-2026"

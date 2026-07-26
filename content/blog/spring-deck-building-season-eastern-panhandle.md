@@ -1,5 +1,7 @@
 ---
 title: "The Best Time to Build a Deck in the Eastern Panhandle (and How to Hire Right)"
+seoTitle: 'Best Time to Build a Deck in the Eastern Panhandle'
+seoDescription: 'When to start a deck in Martinsburg or Charles Town, what each decking material costs, and the permit and contractor questions that separate good from bad.'
 date: "2026-06-07"
 excerpt: "When to start a deck project in Martinsburg, Charles Town, and the wider Eastern Panhandle, what each decking material really costs, and the permit and contractor questions that separate a great deck from an expensive headache."
 slug: "spring-deck-building-season-eastern-panhandle"

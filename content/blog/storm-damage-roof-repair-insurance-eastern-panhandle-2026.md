@@ -1,5 +1,7 @@
 ---
 title: "Storm Damage Roof Repair in the Eastern Panhandle: What to Do First & How Insurance Claims Work (2026)"
+seoTitle: 'Storm Damage Roof Repair & Insurance Claims'
+seoDescription: 'What to do in the first 48 hours after a storm, how to spot roof damage from the ground, and how roof insurance claims really work in the WV-MD-VA region.'
 date: "2026-06-07"
 excerpt: "Summer storms in the WV–MD–VA region hit roofs hard. Here's the straight playbook — what to do in the first 48 hours, how to spot damage from the ground, how roof insurance claims actually work, and how to spot a storm-chaser before they finish their first sentence."
 slug: "storm-damage-roof-repair-insurance-eastern-panhandle-2026"

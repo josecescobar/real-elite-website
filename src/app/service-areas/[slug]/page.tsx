@@ -23,7 +23,10 @@ export async function generateMetadata({
   if (!city) return { title: 'Not Found' };
 
   const title = `Contractor in ${city.city}, ${city.state} | ${BUSINESS.name}`;
-  const description = `Bathroom remodels, kitchens, decks, roofing, and additions in ${city.city}, ${city.state}. Veteran-owned contractor — built with military precision. Free written estimate.`;
+  // Kept under the 160-char SERP budget for the longest city name in the
+  // catalog ("Berkeley Springs, WV") — see fitTitle/TITLE_MAX in src/lib/seo.ts
+  // for the sibling title rule, and scripts/audit-site.mjs which enforces both.
+  const description = `Bathroom remodels, kitchens, decks, roofing and additions in ${city.city}, ${city.state} — veteran-owned, built with military precision. Free written estimate.`;
 
   return {
     title,

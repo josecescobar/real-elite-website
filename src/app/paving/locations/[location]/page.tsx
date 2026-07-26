@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BUSINESS } from '@/lib/constants';
+import { fitTitle } from '@/lib/seo';
 import { getPavingLocation, PAVING_LOCATION_SLUGS } from '@/lib/paving-data';
 import PavingLocationTemplate from '@/components/paving/PavingLocationTemplate';
 
@@ -21,7 +22,7 @@ export async function generateMetadata({
   const location = getPavingLocation(slug);
   if (!location) return { title: 'Not Found' };
 
-  const title = `${location.metaTitle} | ${BUSINESS.name}`;
+  const title = fitTitle(`${location.metaTitle} | ${BUSINESS.name}`);
   return {
     title,
     description: location.metaDescription,

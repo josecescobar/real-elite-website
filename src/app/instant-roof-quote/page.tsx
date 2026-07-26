@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
+import { fitTitle } from '@/lib/seo';
 import { Satellite, SlidersHorizontal, FileCheck, Phone } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import RoofQuoteTool from '@/components/roof-quote/RoofQuoteTool';
 
 export const metadata: Metadata = {
-  title: `Instant Roof Quote — Ballpark Price From Your Address | ${BUSINESS.name}`,
+  title: fitTitle(`Instant Roof Quote — Ballpark Price From Your Address | ${BUSINESS.name}`),
   description:
-    'Get a ballpark roof replacement price in about a minute. Enter your address, pick a shingle, and see an estimated range — from a veteran-owned WV–MD–VA roofing contractor.',
+    'Get a ballpark roof replacement price in about a minute — enter your address, pick a shingle, see an estimated range. Veteran-owned WV-MD-VA roofer.',
   keywords: [
     'instant roof quote',
     'roof estimate by address',

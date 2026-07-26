@@ -1,5 +1,7 @@
 ---
 title: "What a Walk-In Shower Actually Costs in WV, MD & VA (2026)"
+seoTitle: 'Walk-In Shower Cost in WV, MD & VA (2026)'
+seoDescription: 'What a walk-in shower really costs in 2026 — the waterproofing system, the curbless upgrade and the glass — plus where the money actually matters most.'
 date: "2026-07-06"
 excerpt: "A straight breakdown of what a walk-in shower really costs across West Virginia, Maryland, and Virginia in 2026 — the waterproofing system, the curbless upgrade, the glass — and why the money that matters is the part you never see."
 slug: "walk-in-shower-cost-wv-md-va-2026"

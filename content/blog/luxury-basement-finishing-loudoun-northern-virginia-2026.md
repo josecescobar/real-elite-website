@@ -1,5 +1,7 @@
 ---
 title: "Luxury Basement Finishing in Loudoun County: Home Theaters, Wet Bars & In-Law Suites (2026)"
+seoTitle: 'Luxury Basement Finishing in Loudoun County'
+seoDescription: 'Home theaters, wet bars, gyms and guest suites — what goes into a high-end basement build in Loudoun County and Northern Virginia, and what it costs.'
 date: "2026-05-30"
 excerpt: "A finished basement can add a whole tier of living space to a premium home — a theater, a wet bar, a gym, a guest suite. Here's what goes into a high-end basement build in Loudoun County and Northern Virginia, the finishes that separate luxury from 'finished,' and the behind-the-wall work that makes it last."
 slug: "luxury-basement-finishing-loudoun-northern-virginia-2026"

@@ -28,7 +28,7 @@ const project: Project = {
 
   metaTitle: 'Composite Deck Build in Martinsburg, WV | Real Elite Project',
   metaDescription:
-    'From framing to finished outdoor room: a composite deck build with white railings and post lighting. See how Real Elite engineers, permits, and builds a deck that lasts.',
+    'From footers to finished outdoor room — a composite deck build with white railings and post lighting, permitted and inspected in Martinsburg, WV.',
   keywords: [
     'composite deck builder Martinsburg WV',
     'deck construction Eastern Panhandle',

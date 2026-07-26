@@ -1,5 +1,7 @@
 ---
 title: "Luxury Outdoor Living in Loudoun County: Decks, Pergolas & Backyard Design (2026)"
+seoTitle: 'Luxury Outdoor Living & Decks in Loudoun County'
+seoDescription: 'Decks for dining, pergolas for shade, fire features for the shoulder seasons and lighting that extends the night — premium backyard design in Loudoun.'
 date: "2026-05-30"
 excerpt: "At the high end, a backyard is a second living room — a deck for dining, a pergola for shade, a fire feature for the shoulder seasons, and lighting that keeps it going after dark. A design-first guide to luxury outdoor living for Loudoun, Ashburn, Leesburg, and the wider WV–MD–VA region."
 slug: "luxury-outdoor-living-decks-loudoun-northern-virginia-2026"

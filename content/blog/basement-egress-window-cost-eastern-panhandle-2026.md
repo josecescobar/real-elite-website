@@ -1,5 +1,7 @@
 ---
 title: "Basement Egress Window Cost in the Eastern Panhandle (2026)"
+seoTitle: 'Basement Egress Window Cost in WV (2026 Guide)'
+seoDescription: 'What a basement egress window costs in WV''s Eastern Panhandle in 2026 — the $3,500-$6,500 installed range, what moves it, and why code requires one.'
 date: "2026-07-06"
 excerpt: "What a basement egress window actually costs in WV's Eastern Panhandle and nearby Maryland this year — the $3,500-$6,500 installed range, what moves it within that band, and why it's code, not optional, for any basement bedroom."
 slug: "basement-egress-window-cost-eastern-panhandle-2026"
