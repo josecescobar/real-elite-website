@@ -411,14 +411,14 @@ export default function CapabilityStatementPage() {
               <div className="space-y-3">
                 <a
                   href={`tel:${BUSINESS.phoneRaw}`}
-                  className="flex items-center gap-3 text-white hover:text-brand-red-light transition-colors"
+                  className="flex items-center gap-3 min-h-11 text-white hover:text-brand-red-light transition-colors"
                 >
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span className="font-semibold">{BUSINESS.phone}</span>
                 </a>
                 <a
                   href={`mailto:${BUSINESS.email}`}
-                  className="flex items-center gap-3 text-white hover:text-brand-red-light transition-colors"
+                  className="flex items-center gap-3 min-h-11 text-white hover:text-brand-red-light transition-colors"
                 >
                   <Mail className="w-4 h-4 flex-shrink-0" />
                   <span className="font-semibold">{BUSINESS.email}</span>
