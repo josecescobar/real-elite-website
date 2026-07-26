@@ -15,7 +15,7 @@ import { buildBreadcrumbSchema, fitTitle } from '@/lib/seo';
 export const metadata: Metadata = {
   title: fitTitle(`Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`),
   description:
-    'Veteran-owned paving across WV, MD & VA — asphalt paving, driveways, parking lots, sealcoating, asphalt repair, and commercial paving. Proper base, real drainage, accountable crews. Free estimate.',
+    'Veteran-owned paving across WV, MD and VA — driveways, parking lots, sealcoating, asphalt repair and commercial work. Proper base, real drainage.',
   keywords: [
     'paving contractor WV',
     'asphalt paving Eastern Panhandle',

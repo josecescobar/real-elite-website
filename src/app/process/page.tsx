@@ -22,7 +22,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 export const metadata: Metadata = {
   title: fitTitle(`Our Process | Built With Military Precision | ${BUSINESS.name}`),
   description:
-    'Recon, Plan, Execute, Inspect — the disciplined four-step process behind every Real Elite project. Communication standards, daily cleanup, and what to expect during your remodel.',
+    'Recon, Plan, Execute, Inspect — the four-step process behind every Real Elite project, with communication standards and daily site cleanup.',
   keywords: [
     'contractor process',
     'remodel process',

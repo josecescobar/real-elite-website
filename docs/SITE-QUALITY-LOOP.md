@@ -72,13 +72,24 @@ runs this cycle:
 The rule that keeps it honest: **a PR claiming an audit fix must show the
 before and after counts.** "Improved SEO" is not a result; "warn 118 → 33" is.
 
-## 4. Current standing backlog (from the audit)
+## 4. Current standing
 
-- `desc-too-long` (32) — mostly `src/lib/paving-data.ts` `metaDescription`
-  fields and page-level `export const metadata` blocks. Each needs a human
-  rewrite to ≤160 characters that keeps the lead message; do not truncate
-  mechanically, it cuts mid-sentence.
-- `thin-content` (1) — `/resources/financing` at 244 words.
+**0 error · 0 warn · 1 info** across all 178 routes.
+
+| Rule | Was | Now |
+|---|---|---|
+| `csp-blocked` | 1 | 0 |
+| `title-too-long` | 54 | 0 |
+| `desc-too-long` | 64 | 0 |
+| `thin-content` | 1 | 1 |
+
+The remaining `info` is `/resources/financing` at 244 words (min 300). It is
+parked deliberately: growing it honestly needs real financing-partner terms
+from the owner, and padding a page to clear a word count is the exact failure
+mode this harness exists to prevent.
+
+Treat these counts as a ratchet. A change that pushes any of them back up is a
+bug in that change, not a new backlog item.
 
 ## 5. Deliberate non-goals
 

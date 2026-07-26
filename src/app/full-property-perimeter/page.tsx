@@ -22,7 +22,7 @@ import FAQSchema from '@/components/seo/FAQSchema';
 export const metadata: Metadata = {
   title: fitTitle(`Full Property Perimeter — Roof to Road Bundle | ${BUSINESS.name}`),
   description:
-    'Roof + siding + deck + driveway + landscaping under one coordinated project. Real Elite Contracting × A+ Paving & Landscaping. Tri-state WV / MD / VA. Veteran-owned. Built with military precision.',
+    'Roof, siding, deck, driveway and landscaping under one coordinated project. Real Elite with A+ Paving & Landscaping, serving WV, MD and VA.',
   keywords: [
     'roof and driveway bundle',
     'full exterior renovation WV',

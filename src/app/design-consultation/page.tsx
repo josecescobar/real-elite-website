@@ -22,7 +22,7 @@ import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
 export const metadata: Metadata = {
   title: fitTitle(`Design Consultation — Kitchen, Bath & Basement | ${BUSINESS.name}`),
   description:
-    'Schedule a phone consultation for your kitchen, primary bath, or lower-level project across Loudoun, Fairfax, and Alexandria. Veteran-owned design-build. Designer and architect collaboration welcomed.',
+    'Book a phone consultation for your kitchen, primary bath or lower-level project across Loudoun, Fairfax and Alexandria. Veteran-owned design-build.',
   keywords: [
     'luxury kitchen consultation Northern Virginia',
     'design build phone consultation McLean',

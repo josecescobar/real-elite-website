@@ -19,7 +19,7 @@ import FAQSchema from '@/components/seo/FAQSchema';
 export const metadata: Metadata = {
   title: fitTitle(`Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`),
   description:
-    'Spread your remodel, roof, or addition into manageable monthly payments. Real Elite Contracting offers financing options so you can start the project now — veteran-owned, licensed across WV, MD, and VA.',
+    'Spread your remodel, roof or addition into manageable monthly payments. Veteran-owned contractor licensed across WV, MD and VA — start the project now.',
   keywords: [
     'home improvement financing',
     'remodel financing',

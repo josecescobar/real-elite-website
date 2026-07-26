@@ -22,7 +22,7 @@ import FAQSchema from '@/components/seo/FAQSchema';
 export const metadata: Metadata = {
   title: fitTitle(`Storm Damage Roof Inspection (Free) — WV / MD / VA | ${BUSINESS.name}`),
   description:
-    'Free post-storm roof inspection from a veteran-owned local roofer. Hail and wind damage documented for your insurance carrier. Same-week appointments across the Eastern Panhandle WV, Frederick MD, and Loudoun VA.',
+    'Free post-storm roof inspection from a veteran-owned local roofer. Hail and wind damage documented for your insurance carrier. Same-week appointments.',
   keywords: [
     'storm damage roof inspection',
     'hail damage roofer WV',

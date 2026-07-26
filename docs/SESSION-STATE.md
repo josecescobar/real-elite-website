@@ -108,11 +108,14 @@ run found a Google Map that had been invisible on `/contact` for months — the 
 `frame-src` never allowed the embed — while lint, typecheck, tests and the build
 were all green. None of the existing gates can see that class of bug.
 
-Current standing: **0 error · 33 warn · 1 info**. The open `warn` cluster is
-`desc-too-long` (32 pages) — page-level `metadata` blocks and
-`src/lib/paving-data.ts` `metaDescription` fields over the 160-char SERP budget.
-Each needs a human rewrite that keeps the lead message; never truncate
-mechanically. Then:
+Current standing: **0 error · 0 warn · 1 info** — the whole 178-route corpus is
+inside its SEO budgets, with no broken embeds, dead links, missing alt text or
+unlabelled fields. The single `info` is `/resources/financing` at 244 words
+(min 300); it needs real financing-partner detail from the owner to grow
+honestly, so it is parked rather than padded.
+
+Keep it there: the audit is a ratchet, not a one-off. Anything that regresses a
+count is a bug in the change that caused it. Then:
 
 1. **Real data from the owner (the binding constraint — everything below compounds on it):**
    job photos + details (+ consented reviews) → author more projects (proof rails auto-populate)
