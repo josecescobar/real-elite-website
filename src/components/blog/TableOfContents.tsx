@@ -54,7 +54,12 @@ export default function TableOfContents({ headings }: Props) {
             <li key={h.id} className={h.level === 3 ? 'pl-3' : ''}>
               <a
                 href={`#${h.id}`}
-                className={`block py-1 -ml-px border-l-2 pl-3 transition-colors ${
+                // Below `md`, an explicit 44px minimum with the label centred —
+                // padding alone is not enough for the `text-xs` level-3 rows,
+                // which land at 40px. From `md` up it reverts to the original
+                // block/py-1 density, where a cursor is aiming rather than a
+                // thumb.
+                className={`flex items-center min-h-11 py-3 md:block md:min-h-0 md:py-1 -ml-px border-l-2 pl-3 transition-colors ${
                   isActive
                     ? 'border-brand-red text-navy-800 font-semibold'
                     : 'border-transparent text-charcoal-600 hover:text-navy-800'

@@ -189,7 +189,10 @@ export default function GuideTemplate({ post }: Props) {
               {/* TOC collapsed (mobile) */}
               {headings.length >= 3 && (
                 <details className="lg:hidden mb-8 bg-steel-50 rounded-lg p-5 border border-charcoal-100">
-                  <summary className="cursor-pointer font-heading font-bold text-navy-800 text-sm uppercase tracking-[0.12em]">
+                  {/* This disclosure only ever renders below `lg`, so the
+                      summary is the one tappable control here — give it the
+                      full 44px rather than a single line of text. */}
+                  <summary className="cursor-pointer font-heading font-bold text-navy-800 text-sm uppercase tracking-[0.12em] min-h-11 flex items-center">
                     On this page
                   </summary>
                   <div className="mt-4">

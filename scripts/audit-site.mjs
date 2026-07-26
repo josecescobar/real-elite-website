@@ -345,7 +345,11 @@ async function main() {
         //   - anything inside running prose → exempt
         const small = [];
         for (const el of document.querySelectorAll(
-          'a[href], button, input:not([type=hidden]), select, textarea, [role=button]'
+          // `summary` matters: on a closed <details> it is the only thing there
+          // is to tap, and this site uses disclosures for the nearby-cities and
+          // FAQ blocks. Omitting it lets a route report clean while its one
+          // real control is undersized.
+          'a[href], button, summary, input:not([type=hidden]), select, textarea, [role=button]'
         )) {
           const r = el.getBoundingClientRect();
           if (r.width === 0 || r.height === 0) continue; // not rendered
@@ -354,7 +358,13 @@ async function main() {
           if (r.right <= 0 || r.left >= window.innerWidth) continue;
           // Hidden from the accessibility tree, so not a target either.
           if (el.closest('[aria-hidden="true"]')) continue;
-          if (el.closest('p, li, .prose-editorial')) continue; // inline text link
+          // Running text only. `li` is deliberately NOT in this list: `ul > li >
+          // a` is the standard markup for a nav list, so exempting every list
+          // item would hide real controls — a table-of-contents anchor is a
+          // block link in an `li` and is every bit a tap target. Links that are
+          // genuinely inside a sentence are caught by the `display: inline`
+          // test below, wherever they sit.
+          if (el.closest('p, .prose-editorial')) continue;
           const cs = getComputedStyle(el);
           if (cs.display === 'inline') continue; // flows as text, not a control
           if (cs.position === 'fixed' && r.top < 0) continue; // off-canvas drawer
