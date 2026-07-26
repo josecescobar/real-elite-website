@@ -252,15 +252,15 @@ export default function PavingLocationTemplate({ location }: Props) {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-4 text-sm">
-            <Link href="/paving" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1">
+            <Link href="/paving" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1 min-h-11">
               All paving services <ArrowUpRight className="w-4 h-4" />
             </Link>
             <span className="text-charcoal-300">·</span>
-            <Link href="/service-areas" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1">
+            <Link href="/service-areas" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1 min-h-11">
               Remodeling & exterior service areas <ArrowUpRight className="w-4 h-4" />
             </Link>
             <span className="text-charcoal-300">·</span>
-            <Link href="/full-property-perimeter" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1">
+            <Link href="/full-property-perimeter" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1 min-h-11">
               Full Property Perimeter bundle <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>

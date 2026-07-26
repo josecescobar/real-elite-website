@@ -154,6 +154,16 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .chip-row > * {
   @apply flex-none whitespace-nowrap;
 }
+/* Chips are discrete controls, so they carry the same 44px touch minimum as
+   .tap-target below. The strip simply gets taller; nothing can overlap,
+   because it is a single non-wrapping row at this width. */
+@media (width < 48rem) {
+  .chip-row > * {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+}
 
 /* ---------- Touch targets ----------
    Small nav links (breadcrumbs, "view all" rails) render 16–20px tall, which

@@ -249,7 +249,7 @@ export default function CityPageTemplate({ city, data }: Props) {
                       <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
-                        className="text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors"
+                        className="text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors flex items-center min-h-11 md:min-h-0 md:block"
                       >
                         {s.title} →
                       </Link>

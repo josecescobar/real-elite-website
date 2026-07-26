@@ -73,7 +73,7 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
             <Link
               key={area.slug}
               href={`/service-areas/${area.slug}`}
-              className="text-charcoal-700 hover:text-brand-red transition-colors"
+              className="text-charcoal-700 hover:text-brand-red transition-colors flex items-center min-h-11 md:min-h-0 md:block"
             >
               {area.city}, {area.state}
             </Link>
