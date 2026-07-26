@@ -4,7 +4,8 @@
 > the project stands, the conventions to follow, and the prioritized backlog — so work continues
 > seamlessly without the prior conversation.
 >
-> **Last updated:** 2026-07-06 (current through PR #68 + the closure of PR #62).
+> **Last updated:** 2026-07-26 (current through PR #88 — the site audit harness and
+> its mobile pass; audit standing 0 error · 0 warn · 1 info across 178 routes).
 
 ---
 
@@ -108,16 +109,20 @@ run found a Google Map that had been invisible on `/contact` for months — the 
 `frame-src` never allowed the embed — while lint, typecheck, tests and the build
 were all green. None of the existing gates can see that class of bug.
 
-Current standing: **0 error · 109 warn · 1 info**. All the SEO budgets are clear
+Current standing: **0 error · 0 warn · 1 info**. All the SEO budgets are clear
 (titles, descriptions), there are no broken embeds, dead links, missing alt text
-or unlabelled fields, and the mobile pass shows **no page scrolling sideways**.
+or unlabelled fields, the mobile pass shows **no page scrolling sideways**, and
+every control clears the 44px WCAG 2.2 touch minimum.
 
-The 109 open warns are all `mobile-tap-target` on dense link lists — the
-nearby-cities grids and service rails in `ServicePageTemplate`,
-`CityPageTemplate` and `PavingLocationTemplate`. That one is a layout decision
-(those rows need real spacing; the `.tap-target` negative-margin trick would
-overlap grid rows), so it wants a human eye — see `docs/SITE-QUALITY-LOOP.md`
-§4 for the specific components.
+The single remaining `info` is `/resources/financing` at 244 words. It is parked
+deliberately: growing it honestly needs real financing-partner terms from the
+owner, and padding a page to clear a word count is the exact failure mode this
+harness exists to prevent.
+
+Iterate with `npm run audit:site -- --only /a,/b` (seconds); quote a **full**
+run in the PR. A hand-picked sample reflects where you already looked, so it
+will report a sweep finished while whole route families still fail — this is
+not hypothetical, it happened on the tap-target sweep.
 
 Keep the zeroes at zero: the audit is a ratchet, not a one-off. Anything that
 regresses a cleared count is a bug in the change that caused it. Then:
@@ -141,4 +146,5 @@ When picking up: read this file, then `docs/SITE-QUALITY-LOOP.md`, then
 `docs/OPERATING-MANUAL.md` — then run the audit and take the top unblocked item.
 
 **Shipping rule for audit work:** a PR that claims an audit fix must quote the
-before/after counts. "Improved SEO" is not a result; "warn 33 → 21" is.
+before/after counts, **from a full crawl**. "Improved SEO" is not a result;
+"warn 33 → 21" is. A sample is not a full crawl — see §4.

@@ -17,7 +17,15 @@ PORT=3100 npm start &          # must be a production build
 npm run audit:site             # human-readable report
 npm run audit:site -- --json report.json   # machine-readable
 npm run audit:site -- --fail-on error      # exit 1 when errors exist
+npm run audit:site -- --only /paving,/contact   # just these routes
 ```
+
+`--only` exists because a full crawl is ~10 minutes, which is long enough to
+discourage re-checking a fix at all — and a spot-check chosen by hand is how
+you convince yourself a sweep is finished when it isn't. Use it to re-measure
+the routes you changed in seconds, then let the full run be the thing you
+quote. It rejects routes that are not in the sitemap rather than skipping
+them, so a typo cannot come back as a clean result.
 
 It crawls every URL in `sitemap-0.xml` **twice** — once at 1440px for content
 and once at 390px for layout — and grades findings.
@@ -84,9 +92,14 @@ runs this cycle:
 The rule that keeps it honest: **a PR claiming an audit fix must show the
 before and after counts.** "Improved SEO" is not a result; "warn 118 → 33" is.
 
+And the counts must come from a **full run**, not a sample. A hand-picked
+spot-check reflects where you looked, which is exactly where you already
+fixed things — it will tell you a sweep is done when whole route families are
+still failing. Use `--only` to iterate; quote the full crawl.
+
 ## 4. Current standing
 
-**0 error · 109 warn · 1 info** across all 178 routes.
+**0 error · 0 warn · 1 info** across all 178 routes.
 
 | Rule | First run | Now |
 |---|---|---|
@@ -94,30 +107,43 @@ before and after counts.** "Improved SEO" is not a result; "warn 118 → 33" is.
 | `title-too-long` | 54 | **0** |
 | `desc-too-long` | 64 | **0** |
 | `mobile-h-overflow` | — | **0** (clean from the first mobile run) |
-| `mobile-tap-target` | — | 109 ← the open item |
-| `thin-content` | 1 | 1 |
+| `mobile-tap-target` | 109 | **0** |
+| `thin-content` | 1 | 1 (parked, see below) |
 
 Treat the zeroes as a ratchet: a change that pushes any of them back up is a
 bug in that change, not a new backlog item.
 
-### The open item: `mobile-tap-target` (109)
+### How `mobile-tap-target` went 109 → 0
 
-Breadcrumbs and standalone "view all" rail links are fixed via `.tap-target`.
-What remains is **dense link lists**, and it is a layout decision rather than a
-mechanical one:
+Two tools, and picking the right one per site is the whole job:
 
-- `ServicePageTemplate` — the nearby-cities grid inside the `<details>` block
-  (`grid grid-cols-2`, links at 20px)
-- `CityPageTemplate` and `PavingLocationTemplate` — the same pattern, plus
-  their "all services / all projects" rails
-- `/capability-statement` — the phone and email links at 24px
+- **`.tap-target`** grows the hit box to 44px and pulls the growth back out
+  with a negative block margin. Use it for a **lone link in a flow** —
+  breadcrumb crumbs, "view all" rails — where the visual position must not
+  move.
+- **plain `min-h-11`** (scoped `md:min-h-0`) just makes the row taller. Use it
+  inside **grids, chip rows and link lists**, where every sibling grows
+  together and the container absorbs it.
 
-`.tap-target` is the wrong tool here. It works by growing the hit box and
-pulling the growth back with a negative block margin, which is safe for a lone
-link in a flow but would make adjacent **rows overlap** inside a grid. The
-honest fix is to give these lists real row spacing (roughly `gap-y` to 44px per
-row), which changes how dense those sections look — so it wants a human eye on
-the result, not an automated sweep.
+An earlier revision of this document claimed the dense link lists could not be
+swept mechanically, because the negative margin would overlap adjacent grid
+rows. That reasoning was only true of `.tap-target`; it was wrong about the
+lists themselves. `min-h-11` grows the rows with no overlap at all, and the
+sections read the same. Scope it below `md` so desktop spacing is untouched.
+
+Two blind spots in the *rule* were also fixed along the way, and both had let
+routes report clean while a real control was undersized:
+
+- `summary` was missing from the audited selector, so guide pages passed while
+  their only mobile control sat at 300×20.
+- A blanket `li` exemption hid nav controls — `ul > li > a` is standard nav
+  markup, so exempting every list item hid table-of-contents anchors at 28px.
+  Links genuinely inside a sentence are still caught by the `display: inline`
+  test, wherever they sit.
+
+Closing those pushed the warn count **up** (109 → 118) before it came down.
+That is the correct behaviour: a count that only ever falls is measuring the
+rule, not the site.
 
 ### Parked: `thin-content` (1)
 
