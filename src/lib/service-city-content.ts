@@ -655,5 +655,106 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Loudoun County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
     ],
   },
-};
 
+  /* ══════════════════════════════════════════════════════════════════════════
+     WHOLE-HOME REMODELING · LUXURY NORTHERN VIRGINIA
+
+     These nine markets already declare `remodeling` in their CITY_DATA
+     marketEmphasis, and their city-overview copy promises whole-home
+     renovation — but no remodeling combo page existed for any of them, so the
+     highest-ticket service in the wealthiest markets had nothing to rank.
+     The differentiator in each entry is the local review authority, because
+     that is the part a homeowner cannot look up in a national cost guide and
+     the part that actually decides a schedule.
+     ═════════════════════════════════════════════════════════════════════════ */
+
+  // ── REMODELING · MCLEAN, VA ──────────────────────────────────────────────
+  'remodeling-mclean-va': {
+    paragraphs: [
+      "McLean's housing stock is the reason whole-home remodeling works so well here. Streets like Langley Forest, Salona Village, Chesterbrook and Kent Gardens are full of substantial mid-century and later-20th-century homes on generous, mature lots — properties with excellent bones, excellent locations, and interiors specified for how families lived forty years ago. The land value in McLean is high enough that the real question is rarely whether to invest; it is whether to renovate comprehensively or tear down. For a well-built home on a lot you love, a whole-home renovation is very often the better answer.",
+      "Real Elite Contracting runs McLean whole-home programs as a single coordinated project rather than a series of disconnected trades. That typically means opening up the main level for the way people actually entertain, a kitchen designed around real hosting rather than weeknight dinners, a primary suite rebuilt as a private wing with its own bath and closet program, updated systems throughout — electrical capacity, HVAC zoning, plumbing — and a finished lower level that carries the media, guest and fitness functions. Where a home is being taken back to studs in part, we treat insulation and air sealing as part of the scope, not an upsell.",
+      "Whole-home renovation in McLean generally runs $300,000 to $1,500,000 and up, depending on square footage, how much of the envelope opens up, and the finish and millwork level. A phased program — main level and kitchen first, primary suite and lower level in a second stage — is a legitimate way to run a large scope without living in a construction site for a year, and we will scope it that way when it suits the household.",
+      "McLean is unincorporated Fairfax County, so permitting and inspections run through Fairfax County for building, electrical, plumbing and mechanical, with final inspection at the end. We sequence the inspector calendar so trades are not idling between stages. One named project lead, daily updates, a clean and discreet job site, and a written workmanship warranty.",
+    ],
+  },
+
+  // ── REMODELING · ALEXANDRIA, VA ──────────────────────────────────────────
+  'remodeling-alexandria-va': {
+    paragraphs: [
+      "Alexandria whole-home renovation is a genuinely different discipline from suburban remodeling, and the difference is the building stock. Old Town holds one of the densest collections of 18th- and 19th-century homes in the country; Rosemont, North Ridge, Beverley Hills and Del Ray add premium early- and mid-20th-century houses. These homes were built before central air, before modern electrical loads, and often before insulation was a consideration at all. A whole-home program here is as much about what is behind the plaster as what replaces it.",
+      "Real Elite Contracting approaches Alexandria renovations by getting the invisible work right first — knob-and-tube and undersized panels replaced, supply and waste lines brought current, HVAC designed for a house that was never ducted for it, insulation and air sealing added where the assembly allows without trapping moisture in old masonry. Then the visible work: kitchens that read period-appropriate but function to current spec, primary baths worked into floor plans that never contemplated them, and finished lower levels handled carefully in a river city where water table and drainage genuinely matter.",
+      "Whole-home renovation in Alexandria typically runs $250,000 to $900,000 and up. Historic properties carry real cost variance, because what is found once a wall opens — framing that has settled, previous unpermitted work, masonry needing repointing — is not fully knowable at the estimate. We say so up front and build contingency into the conversation rather than into a change order six weeks in.",
+      "Alexandria is an independent city, so permits run through the City of Alexandria rather than Fairfax County — a distinction that catches out contractors who work mainly in the county. Exterior work in the Old and Historic Alexandria District, and in the Parker-Gray district, also requires Board of Architectural Review approval before a permit issues, and that review runs on its own calendar. We build the BAR timeline into the schedule from the start instead of discovering it.",
+    ],
+  },
+
+  // ── REMODELING · VIENNA, VA ──────────────────────────────────────────────
+  'remodeling-vienna-va': {
+    paragraphs: [
+      "Vienna is one of the strongest whole-home renovation markets in Fairfax County, and the reason is the shape of the housing stock. Vienna Woods, Country Club Manor and the streets off Maple Avenue are full of well-built mid-century ramblers, split-levels and colonials on flat, generous lots — homes that are structurally sound and beautifully located but chopped into small rooms with low ceilings and closed-off kitchens. That is close to the ideal candidate for comprehensive renovation, because the money goes into layout and systems rather than into fixing a bad property.",
+      "Real Elite Contracting runs Vienna whole-home projects around opening the main level, replacing the kitchen with something designed for how the household actually cooks and gathers, rebuilding the primary suite with a proper bath and closet, and bringing electrical, HVAC and plumbing to current spec across the house. On split-levels and ramblers, a second-story addition or a rear expansion is often the move that unlocks the whole plan — and because we do that structural work ourselves, the addition and the renovation are one project rather than two contractors blaming each other.",
+      "Whole-home renovation in Vienna generally runs $250,000 to $800,000 and up, depending on square footage, whether the footprint changes, and finish level. Adding square footage moves the number more than any finish decision, so we price the structural question first and let the household decide with real numbers rather than after the design is already committed.",
+      "One thing worth knowing: the Town of Vienna runs its own permitting and inspections, separate from Fairfax County, for properties inside town limits. Addresses with a Vienna mailing address that sit outside the town line go through Fairfax County instead. Getting that wrong costs weeks. We confirm which authority governs your parcel before the first drawing is submitted, then sequence inspections so trades are not waiting on each other.",
+    ],
+  },
+
+  // ── REMODELING · GREAT FALLS, VA ─────────────────────────────────────────
+  'remodeling-great-falls-va': {
+    paragraphs: [
+      "Great Falls whole-home projects are the most ambitious residential renovations in our service area. Properties along Georgetown Pike, Riverbend, Hickory Hill and the Falls Estates area sit on multi-acre parcels with real privacy, and the homes on them are large, architecturally distinct, and worth renovating comprehensively rather than incrementally. The typical Great Falls brief is not a kitchen — it is a primary wing, an entertaining-scale kitchen and butler's pantry, a lower level carrying media, wine, fitness and guest functions, and systems capable of running all of it.",
+      "Real Elite Contracting scopes Great Falls programs around the whole envelope: structural changes where the plan demands them, electrical service sized for current loads rather than 1980s ones, multi-zone HVAC that actually conditions a house of that footprint evenly, and insulation and air sealing brought current while walls are open. Finish work is where these homes are judged — millwork, stone, tile and cabinetry are specified and installed to a standard that reads correctly in this market, and we would rather extend a schedule than hand over trim that does not.",
+      "Whole-home renovation in Great Falls typically runs $400,000 to $2,000,000 and up. The spread is wide because the scope genuinely is: a comprehensive interior renovation and a program that adds a wing are different projects with the same name.",
+      "Two Great Falls specifics shape schedules more than homeowners expect. Much of Great Falls is on well and septic rather than public water and sewer, and septic drainfield capacity can govern how many bedrooms a renovation is permitted to create — which means a primary-suite plan has to be checked against the health department, not just the building code. And Georgetown Pike is a designated Virginia Byway, so site access, staging and any frontage work carry extra constraints. Fairfax County permits and inspections apply throughout; we plan around all of it before demolition, not during.",
+    ],
+  },
+
+  // ── REMODELING · RESTON, VA ──────────────────────────────────────────────
+  'remodeling-reston-va': {
+    paragraphs: [
+      "Reston is one of the largest premium renovation pipelines in Fairfax County, and its housing stock is unlike anywhere else in the region. The original Simon-era villages around Lake Anne and Lake Audubon, plus Hunters Woods, North Point and South Lakes, produced homes that were architecturally deliberate on day one — open plans, dramatic glazing, strong relationships to the wooded sites around them. Fifty years on, those houses deserve interiors and systems that live up to the original ambition, and they reward renovation that respects the architecture instead of flattening it.",
+      "Real Elite Contracting renovates Reston homes with the original design intent intact: keeping and improving the light and the sightlines rather than closing them in, replacing kitchens and primary baths to current spec, and upgrading the systems these houses most often need — electrical capacity, HVAC that copes with large glazed areas, insulation and air sealing at the envelope. Where a floor plan genuinely does not work anymore, we make structural changes deliberately and in keeping with the building rather than in spite of it.",
+      "Whole-home renovation in Reston generally runs $200,000 to $650,000 and up, depending on square footage, how much of the envelope and glazing is addressed, and finish level. Homes with extensive original glazing and cladding can carry more envelope work than a comparable conventional house, which is worth knowing before the budget is set.",
+      "The Reston specific that catches contractors out: most Reston property is subject to Reston Association covenants, and exterior alterations require Design Review Board approval in addition to a Fairfax County permit. The DRB meets on its own schedule and the approval is not a formality. We build that review into the program from the first conversation, so the county permit and the DRB approval land in the right order rather than one waiting months on the other.",
+    ],
+  },
+
+  // ── REMODELING · BURKE, VA ───────────────────────────────────────────────
+  'remodeling-burke-va': {
+    paragraphs: [
+      "Burke is one of the most consistent whole-home renovation markets in Fairfax County. Burke Centre, Lake Braddock, Longwood Knolls and Kings Park West are established neighborhoods of substantial colonials and split-levels on generous lots, bought by families who tend to stay — and that long ownership horizon is exactly what makes comprehensive renovation make sense here. The work is not being done to flip; it is being done because the household intends to live in the result for another fifteen years.",
+      "Real Elite Contracting runs Burke whole-home projects around the changes that actually alter daily life: opening the kitchen to the family room, rebuilding the primary suite with a bath and closet that work, finishing the lower level for the functions that have outgrown the main floor, and bringing electrical, HVAC and plumbing current across the house while the walls are open. On the split-levels common in Burke, resolving the level changes and circulation is often what unlocks the whole plan.",
+      "Whole-home renovation in Burke typically runs $150,000 to $450,000 and up, depending on square footage, whether the footprint changes, and finish level. Burke rewards well-specified, beautifully executed work rather than the most expensive possible specification, and we scope it that way.",
+      "Much of Burke sits inside the Burke Centre Conservancy or a comparable association, and exterior changes generally require architectural review in addition to Fairfax County permits and inspections. We confirm which association governs your property and get that approval moving in parallel with the county submission, so the two do not run end to end. One named project lead, daily updates, clean job site, written workmanship warranty.",
+    ],
+  },
+
+  // ── REMODELING · FAIRFAX STATION, VA ─────────────────────────────────────
+  'remodeling-fairfax-station-va': {
+    paragraphs: [
+      "Fairfax Station projects skew larger and more architecturally ambitious than typical Fairfax County work, and the lots are why. One-acre and multi-acre parcels along the Burke Lake Road corridor, South Run, Hampton Forest and the Pohick and Hooes Road areas carry substantial custom homes — many built in the 1980s and 1990s to a good standard, now due for interiors and systems that match the quality of the shell and the setting.",
+      "Real Elite Contracting scopes Fairfax Station whole-home programs around full primary-suite expansions, kitchens designed for catering and entertaining rather than weeknight cooking, lower levels built out with guest suites, gyms and media rooms, and the systems work that a house of that size genuinely needs — electrical capacity, properly zoned HVAC, and insulation and air sealing addressed while assemblies are open. Where the plan calls for added square footage, we do the structural work ourselves so the addition and the renovation are one coordinated project.",
+      "Whole-home renovation in Fairfax Station generally runs $250,000 to $800,000 and up, depending on square footage, whether the footprint changes, and the finish and millwork level.",
+      "Two local factors shape scope here. Parts of Fairfax Station are on well and septic rather than public utilities, and septic capacity can constrain how many bedrooms a renovation may add — a question worth answering before a primary-suite plan is drawn. Portions of the area also drain toward the Occoquan Reservoir, which brings additional stormwater and septic requirements. Fairfax County permits and inspections apply throughout, and we sequence them so trades are not idle between stages.",
+    ],
+  },
+
+  // ── REMODELING · CLIFTON, VA ─────────────────────────────────────────────
+  'remodeling-clifton-va': {
+    paragraphs: [
+      "Clifton is two distinct renovation markets sharing a name. Inside Historic Clifton Village are small, genuinely old homes on tight lots in a designated historic area; outside it, along Compton Road, Yates Ford Road and through Bull Run Estates and Clifton Forest, are large custom houses on multi-acre parcels. A whole-home program means something different in each, and the first useful thing a contractor can tell you is which one your property is.",
+      "Real Elite Contracting handles both. In the village, the work is period-sensitive: correcting decades of accumulated alterations, updating systems inside old framing without erasing what makes the house worth owning, and working within the historic district's expectations for anything visible from the street. On the estate properties, the brief is closer to Great Falls — entertaining-scale kitchens, primary wings, lower levels with real program, and mechanical systems sized for the footprint. Both get the same structural and systems discipline.",
+      "Whole-home renovation in Clifton generally runs $250,000 to $900,000 and up, with historic village properties carrying wider variance because what is found behind old finishes is not fully knowable at estimate.",
+      "The constraint that governs Clifton more than any other is water. Much of the area drains into the Occoquan Reservoir, a drinking-water source, which brings stricter septic, drainfield and stormwater requirements than most of Fairfax County — and those requirements can directly limit how many bedrooms a renovation is allowed to add. Properties in the historic village carry design review on top. We establish which rules apply to your parcel before design, because finding out afterwards is what turns a schedule into a rework.",
+    ],
+  },
+
+  // ── REMODELING · MIDDLEBURG, VA ──────────────────────────────────────────
+  'remodeling-middleburg-va': {
+    paragraphs: [
+      "Middleburg whole-home renovation is the most architecturally significant work in our service area. The village's stone and stucco Main Street properties and the surrounding hunt-country estates along Foxcroft Road, Atoka Road and the Goose Creek area are genuinely historic buildings, often with dependencies — guest houses, barns, spring houses, staff quarters — that form part of the property rather than sitting beside it. The brief here is restraint. The goal is a house that lives to current standards and does not announce that it was renovated.",
+      "Real Elite Contracting approaches Middleburg programs by treating the original fabric as the thing being protected: stone and masonry repointed with appropriate mortar rather than modern mixes that trap moisture and spall the stone, systems threaded through historic framing with minimal intervention, and insulation strategies chosen for what an old assembly can tolerate. Then the current-spec work — kitchens designed around catering and entertaining, primary suites built into envelopes that never had them, lower levels carrying wine, tasting and guest functions. Millwork and stone are specified to read as though they were always there.",
+      "Whole-home renovation in Middleburg typically runs $350,000 to $1,500,000 and up. Estate properties with multiple structures are effectively several projects under one program, and we scope and schedule them that way rather than pretending otherwise.",
+      "Middleburg permits through Loudoun County, and properties in the town's historic district carry design review for exterior work on top of the county process. Estate properties frequently sit on well and septic, so drainfield capacity is a live question for any plan that adds bedrooms. We confirm all three — county, historic review, health department — before design is committed. One named project lead, daily updates, a discreet and clean job site, and a written workmanship warranty.",
+    ],
+  },
+};
