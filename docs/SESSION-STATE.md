@@ -134,6 +134,14 @@ regresses a cleared count is a bug in the change that caused it. Then:
    reviews into `src/lib/reviews/data.ts` with `verified: true`.
 2. **Owner action — triage the open PRs:** review/merge or close #55 and #56; close stale #52
    and #54 (both superseded on `main`).
+2b. **Owner action — switch on the roof aerial (optional, costs money):** the Instant Roof Quote
+   can show the homeowner a satellite photo of the roof it just measured. It is built and shipped
+   but **dark by default**: `/api/roof-aerial` answers `204` until the **Static Maps API** is
+   enabled on the same Google key that powers the Solar lookup (`GOOGLE_SOLAR_API_KEY`), and the
+   UI renders nothing on a 204. Static Maps is billed per request, so enabling it is deliberately
+   an owner decision rather than something that starts charging on deploy. The key is never
+   exposed to the browser — the route proxies the image server-side, which also keeps it
+   same-origin and out of the CSP.
 3. **Per-type resource routes** (`/resources/type/[type]`) + `/projects` pagination/filters once the
    corpora grow.
 4. **Unify "our work":** migrate `GALLERY_IMAGES` consumers toward the project registry (audit

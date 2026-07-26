@@ -26,6 +26,7 @@ import { trackEvent, trackLead } from '@/lib/analytics';
 import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
+import RoofAerial from './RoofAerial';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -46,6 +47,8 @@ export default function RoofQuoteTool() {
 
   const [squares, setSquares] = useState<number | null>(null);
   const [resolvedAddress, setResolvedAddress] = useState('');
+  // Only set on the satellite path; the fallback flow has no coordinates.
+  const [point, setPoint] = useState<{ lat: number; lng: number } | null>(null);
   const [source, setSource] = useState<'auto' | 'manual'>('auto');
 
   // quick-question fallback
@@ -95,6 +98,11 @@ export default function RoofQuoteTool() {
         setSquares(data.squares);
         setResolvedAddress(data.formattedAddress || trimmed);
         setSource('auto');
+        setPoint(
+          typeof data.lat === 'number' && typeof data.lng === 'number'
+            ? { lat: data.lat, lng: data.lng }
+            : null
+        );
         trackEvent('roof_quote_measure', { result: 'auto' });
         setPhase('material');
       } else {
@@ -129,6 +137,7 @@ export default function RoofQuoteTool() {
     setPhase('address');
     setSquares(null);
     setMaterial(null);
+    setPoint(null);
     setFb({ homeSize: '', stories: '', complexity: '' });
     setAddressError(null);
     setFbError(null);
@@ -353,6 +362,12 @@ export default function RoofQuoteTool() {
           <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2">
             Pick your roofing material.
           </h2>
+
+          {/* The roof itself, when we measured it from satellite. Renders
+              nothing at all if imagery is unavailable — see RoofAerial. */}
+          {source === 'auto' && point && (
+            <RoofAerial lat={point.lat} lng={point.lng} address={resolvedAddress} />
+          )}
 
           {/* Roof size summary */}
           <div className="mt-4 mb-6 flex items-start gap-3 rounded-md bg-navy-900 text-white px-4 py-3">
