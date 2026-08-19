@@ -218,6 +218,15 @@ export const PRIMARY_SERVICE_AREAS = [
   { city: 'Fairfax Station', state: 'VA', slug: 'fairfax-station-va' },
   { city: 'Clifton', state: 'VA', slug: 'clifton-va' },
   { city: 'Middleburg', state: 'VA', slug: 'middleburg-va' },
+  // Loudoun County depth. Every competitor bidding this county lists Sterling;
+  // the master-planned communities (Brambleton, South Riding, Lansdowne) and
+  // Willowsford in Aldie are where the county's money actually sits.
+  { city: 'Sterling', state: 'VA', slug: 'sterling-va' },
+  { city: 'Purcellville', state: 'VA', slug: 'purcellville-va' },
+  { city: 'Brambleton', state: 'VA', slug: 'brambleton-va' },
+  { city: 'South Riding', state: 'VA', slug: 'south-riding-va' },
+  { city: 'Lansdowne', state: 'VA', slug: 'lansdowne-va' },
+  { city: 'Aldie', state: 'VA', slug: 'aldie-va' },
 ] as const;
 
 export const SECONDARY_SERVICE_AREAS = [
@@ -249,6 +258,15 @@ export const EXPANSION_SERVICE_AREAS = [
   { city: 'Middleburg', state: 'VA', slug: 'middleburg-va' },
   { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
   { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
+  // Loudoun depth. These must appear here as well as in PRIMARY_SERVICE_AREAS:
+  // /services/[service]/[city] resolves its city from THIS list, so a city
+  // present only in PRIMARY ships a sitemap entry that 404s on request.
+  { city: 'Sterling', state: 'VA', slug: 'sterling-va' },
+  { city: 'Purcellville', state: 'VA', slug: 'purcellville-va' },
+  { city: 'Brambleton', state: 'VA', slug: 'brambleton-va' },
+  { city: 'South Riding', state: 'VA', slug: 'south-riding-va' },
+  { city: 'Lansdowne', state: 'VA', slug: 'lansdowne-va' },
+  { city: 'Aldie', state: 'VA', slug: 'aldie-va' },
 ] as const;
 
 /**
@@ -422,6 +440,50 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       "Middleburg is the historic anchor of Virginia's hunt country — a Loudoun County village whose stone Main Street and surrounding equestrian estates form one of the most distinctive luxury markets in the Mid-Atlantic. Middleburg interior renovations are some of the most architecturally significant projects in our service area: stone-and-timber kitchens designed around catering and entertaining, primary suites in genuine historic envelopes, finished lower levels in estate homes that include tasting rooms, gun rooms, and guest wings. The brief here is restraint, period sensitivity, and craft. Real Elite Contracting brings all three.",
     neighborhoods: ['Historic Middleburg Village', 'Main Street corridor', 'Goose Creek Estate area', 'Foxcroft Road area', 'Atoka Road area', 'Halfway hunt country'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+
+  /* ---------- Loudoun County, VA — county depth ----------
+     Loudoun is the highest-median-income county in the United States and the
+     single most contested remodeling market in our service area. What almost
+     no competitor page says out loud is that most of these addresses sit under
+     a mandatory HOA architectural review in ADDITION to the Loudoun County
+     permit — and that review, not the county, is usually what sets the start
+     date. Leading with it is the honest differentiator here. */
+  'sterling-va': {
+    description:
+      "Sterling is eastern Loudoun's population center and the county's most competitive remodeling market — every contractor bidding Loudoun lists it. The housing stock is why it rewards renovation: Sugarland Run, Countryside, Cascades and Sterling Park are full of solid 1970s–1990s colonials, split-levels and townhomes on established lots, well built but laid out for how families lived a generation ago. Real Elite Contracting renovates Sterling kitchens, primary baths and lower levels to current spec, and handles the roofing and siding these homes are now due for, with one named project lead from estimate to final walk-through.",
+    neighborhoods: ['Sugarland Run', 'Countryside', 'Cascades', 'Sterling Park', 'Lowes Island', 'Great Falls Forest'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'roofing', 'siding'],
+  },
+  'purcellville-va': {
+    description:
+      "Purcellville is western Loudoun's anchor — a town of historic Main Street properties, established neighborhoods, and newer custom homes on acreage running out toward Round Hill, Hamilton and the Blue Ridge. It is a market that values craft over speed and tends to hire contractors who will still be around in ten years. Real Elite Contracting brings that to Purcellville: kitchens and primary baths built to last, whole-home renovation inside older envelopes, and the exterior work these homes need in a corner of the county that takes real weather off the mountain.",
+    neighborhoods: ['Historic Downtown Purcellville', 'Locust Grove', 'Mayfair', 'Hirst Farm', 'Village Case', 'Round Hill & Hamilton corridor'],
+    marketEmphasis: ['remodeling', 'kitchens', 'bathrooms', 'decks', 'roofing', 'siding'],
+  },
+  'brambleton-va': {
+    description:
+      "Brambleton is one of Loudoun's premier master-planned communities — a large, amenity-rich neighborhood of 2000s-and-newer homes whose owners are design-conscious, well-informed, and now hitting the twenty-year mark where original builder-grade kitchens, baths and unfinished lower levels come due. Real Elite Contracting renovates Brambleton homes to the standard the community expects, and works inside the Brambleton Community Association's architectural review process rather than discovering it halfway through the job.",
+    neighborhoods: ['Brambleton Town Center', 'Southern Walk', 'Summerwood', 'Legacy Park', 'Brambleton Overlook', 'Birchwood at Brambleton'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'decks'],
+  },
+  'south-riding-va': {
+    description:
+      "South Riding is one of the largest master-planned communities in Loudoun County — thousands of substantial homes built from the mid-1990s onward, on generous lots, owned by families who bought for the schools and stayed. That long ownership horizon is exactly what makes comprehensive renovation make sense: the work is not being done to flip, it is being done because the household intends to live in the result. Real Elite Contracting renovates South Riding kitchens, primary suites and lower levels, and handles the South Riding Proprietary's architectural review alongside the county permit.",
+    neighborhoods: ['South Riding Town Center', 'Amberlea', 'Chandler Ridge', 'Emerald Ridge', 'Hunt Chase', 'Stone Ridge corridor'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'decks'],
+  },
+  'lansdowne-va': {
+    description:
+      "Lansdowne sits on the Potomac between Leesburg and Ashburn — a golf-and-river community of upper-tier homes, from the Lansdowne on the Potomac neighborhoods to the estate properties along the river corridor. Owners here expect finish quality that reads correctly against the address, and lower levels that carry real program: media, fitness, wine, guest suites. Real Elite Contracting brings that level of craft to Lansdowne, and works within the community's covenants and design review from the first drawing rather than the first inspection.",
+    neighborhoods: ['Lansdowne on the Potomac', 'Lansdowne Village Greens', 'Potomac Station', 'Riverside', 'Coton Commons', 'Leesburg-Ashburn corridor'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'decks'],
+  },
+  'aldie-va': {
+    description:
+      "Aldie is where Loudoun turns from suburb to hunt country — the historic village on Route 50, the Willowsford community with its farm and conservancy land, and the estate properties running west toward Middleburg. Projects here skew large and architecturally ambitious: entertaining-scale kitchens, primary wings, lower levels with genuine program, and renovations inside genuinely old envelopes in the village itself. Real Elite Contracting brings the craft, the discretion, and the project discipline this end of the county expects.",
+    neighborhoods: ['Willowsford', 'Historic Aldie Village', 'Stone Ridge', 'Kirkpatrick Farms', 'Route 50 corridor', 'Little River area'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'decks'],
   },
 };
 

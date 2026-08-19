@@ -208,7 +208,7 @@ export default function PavingHubPage() {
               </p>
               <Link
                 href="/full-property-perimeter"
-                className="inline-flex items-center gap-2 mt-6 text-navy-800 font-semibold hover:text-brand-red transition-colors"
+                className="inline-flex items-center gap-2 min-h-11 md:min-h-0 mt-6 text-navy-800 font-semibold hover:text-brand-red transition-colors"
               >
                 See the Full Property Perimeter bundle <ArrowUpRight className="w-4 h-4" />
               </Link>
@@ -265,7 +265,7 @@ export default function PavingHubPage() {
                 key={item.question}
                 className="group bg-steel-50 border border-charcoal-100 rounded-lg p-5 hover:border-brand-red transition-colors"
               >
-                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4 min-h-11">
                   <span className="font-heading text-base md:text-lg font-bold text-navy-800">{item.question}</span>
                   <span className="text-brand-red font-bold text-xl leading-none group-open:rotate-45 transition-transform">+</span>
                 </summary>

@@ -141,7 +141,7 @@ export default function CityPageTemplate({ city, data }: Props) {
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
           <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap">
-            <Link href="/service-areas" className="hover:text-white transition-colors">
+            <Link href="/service-areas" className="hover:text-white transition-colors tap-target">
               Service Areas
             </Link>
             <span className="text-charcoal-500">/</span>
@@ -238,7 +238,7 @@ export default function CityPageTemplate({ city, data }: Props) {
                 </div>
 
                 <details className="mt-5 group">
-                  <summary className="cursor-pointer text-sm font-semibold text-charcoal-700 hover:text-navy-800 list-none flex items-center gap-2">
+                  <summary className="cursor-pointer text-sm font-semibold text-charcoal-700 hover:text-navy-800 list-none flex items-center gap-2 min-h-11">
                     <span className="inline-block w-4 h-4 rounded-full border-2 border-charcoal-400 flex-shrink-0 relative">
                       <span className="absolute inset-0 flex items-center justify-center text-charcoal-600 text-xs group-open:rotate-45 transition-transform">+</span>
                     </span>
@@ -249,7 +249,7 @@ export default function CityPageTemplate({ city, data }: Props) {
                       <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
-                        className="text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors"
+                        className="text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors flex items-center min-h-11 md:min-h-0 md:block"
                       >
                         {s.title} →
                       </Link>
@@ -384,7 +384,7 @@ export default function CityPageTemplate({ city, data }: Props) {
                 key={item.question}
                 className="group bg-white border border-charcoal-100 rounded-lg p-5 hover:border-brand-red transition-colors"
               >
-                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4 min-h-11">
                   <span className="font-heading text-base md:text-lg font-bold text-navy-800">
                     {item.question}
                   </span>

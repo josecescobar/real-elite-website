@@ -39,7 +39,7 @@ export default function ReviewsSection({
         <div className="mt-10 text-center">
           <Link
             href="/reviews"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors focus-ring"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors focus-ring tap-target"
           >
             Read the Review Center
             <ArrowRight className="w-4 h-4" />

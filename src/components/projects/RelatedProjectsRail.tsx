@@ -25,7 +25,7 @@ export default function RelatedProjectsRail({
         <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800">{heading}</h2>
         <Link
           href={viewAllHref}
-          className="text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors"
+          className="text-sm font-semibold uppercase tracking-[0.12em] text-navy-800 hover:text-brand-red transition-colors tap-target"
         >
           All projects →
         </Link>

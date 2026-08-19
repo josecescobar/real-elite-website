@@ -353,7 +353,7 @@ export default function DesignConsultationPage() {
                 key={item.question}
                 className="group bg-white border border-charcoal-100 rounded-lg p-5 hover:border-brand-red transition-colors"
               >
-                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4 min-h-11">
                   <span className="font-heading text-base md:text-lg font-bold text-navy-800">
                     {item.question}
                   </span>

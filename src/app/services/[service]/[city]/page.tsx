@@ -210,20 +210,20 @@ export default async function ServiceCityPage({
             aria-label="Breadcrumb"
             className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap"
           >
-            <Link href="/services" className="hover:text-white transition-colors">
+            <Link href="/services" className="hover:text-white transition-colors tap-target">
               Services
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
             <Link
               href={`/services/${serviceData.slug}`}
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors tap-target"
             >
               {serviceData.title}
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-charcoal-500" aria-hidden="true" />
             <Link
               href={`/service-areas/${cityData.slug}`}
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors tap-target"
             >
               {cityData.city}, {cityData.state}
             </Link>
@@ -367,7 +367,7 @@ export default async function ServiceCityPage({
                         <Link
                           key={s.slug}
                           href={`/services/${s.slug}/${cityData.slug}`}
-                          className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                          className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
                         >
                           {s.title} <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
@@ -386,7 +386,7 @@ export default async function ServiceCityPage({
                         <Link
                           key={c.slug}
                           href={`/services/${serviceData.slug}/${c.slug}`}
-                          className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                          className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
                         >
                           {c.city}, {c.state} <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>

@@ -66,7 +66,7 @@ export default function PavingLocationTemplate({ location }: Props) {
       <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
         <Container size="wide">
           <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-charcoal-300 mb-6 flex items-center gap-2 flex-wrap">
-            <Link href="/paving" className="hover:text-white transition-colors">Paving</Link>
+            <Link href="/paving" className="hover:text-white transition-colors tap-target">Paving</Link>
             <span className="text-charcoal-500">/</span>
             <span className="text-white">{location.city}, {location.state}</span>
           </nav>
@@ -221,7 +221,7 @@ export default function PavingLocationTemplate({ location }: Props) {
                 key={item.question}
                 className="group bg-steel-50 border border-charcoal-100 rounded-lg p-5 hover:border-brand-red transition-colors"
               >
-                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4 min-h-11">
                   <span className="font-heading text-base md:text-lg font-bold text-navy-800">{item.question}</span>
                   <span className="text-brand-red font-bold text-xl leading-none group-open:rotate-45 transition-transform">+</span>
                 </summary>
@@ -252,15 +252,15 @@ export default function PavingLocationTemplate({ location }: Props) {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-4 text-sm">
-            <Link href="/paving" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1">
+            <Link href="/paving" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1 min-h-11">
               All paving services <ArrowUpRight className="w-4 h-4" />
             </Link>
             <span className="text-charcoal-300">·</span>
-            <Link href="/service-areas" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1">
+            <Link href="/service-areas" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1 min-h-11">
               Remodeling & exterior service areas <ArrowUpRight className="w-4 h-4" />
             </Link>
             <span className="text-charcoal-300">·</span>
-            <Link href="/full-property-perimeter" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1">
+            <Link href="/full-property-perimeter" className="text-navy-800 font-semibold hover:text-brand-red transition-colors inline-flex items-center gap-1 min-h-11">
               Full Property Perimeter bundle <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>

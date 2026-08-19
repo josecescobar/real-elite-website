@@ -19,11 +19,29 @@ const SOLAR_KEY = env.googleSolarApiKey();
 const RATE_LIMIT = { max: 12, windowMs: 10 * 60 * 1000 };
 
 type Result =
-  | { covered: true; squares: number; formattedAddress: string }
+  | {
+      covered: true;
+      squares: number;
+      formattedAddress: string;
+      /**
+       * Geocoded centre of the building, rounded to ~1m. Returned so the UI can
+       * ask `/api/roof-aerial` for a satellite view of the roof we just
+       * measured — showing the homeowner the actual thing being quoted rather
+       * than a number in isolation. Coordinates only ever describe the address
+       * the visitor typed themselves.
+       */
+      lat: number;
+      lng: number;
+    }
   | {
       covered: false;
       reason: 'not_configured' | 'address_not_found' | 'no_roof_data' | 'error';
     };
+
+/** ~0.1m precision — enough to centre an aerial, short enough not to log noise. */
+function round6(n: number): number {
+  return Math.round(n * 1e6) / 1e6;
+}
 
 export async function POST(request: Request) {
   try {
@@ -82,6 +100,8 @@ export async function POST(request: Request) {
       covered: true,
       squares: squaresFromAreaMeters2(areaM2),
       formattedAddress,
+      lat: round6(lat),
+      lng: round6(lng),
     } satisfies Result);
   } catch (error) {
     console.error('roof-estimate error:', error);

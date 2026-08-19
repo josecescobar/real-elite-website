@@ -51,6 +51,12 @@ export const COMBO_CITY_SLUGS = [
   'fairfax-station-va',
   'clifton-va',
   'middleburg-va',
+  'sterling-va',
+  'purcellville-va',
+  'brambleton-va',
+  'south-riding-va',
+  'lansdowne-va',
+  'aldie-va',
 ] as const;
 export type ExpansionCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
@@ -655,5 +661,299 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Loudoun County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
     ],
   },
-};
 
+  /* ══════════════════════════════════════════════════════════════════════════
+     WHOLE-HOME REMODELING · LUXURY NORTHERN VIRGINIA
+
+     These nine markets already declare `remodeling` in their CITY_DATA
+     marketEmphasis, and their city-overview copy promises whole-home
+     renovation — but no remodeling combo page existed for any of them, so the
+     highest-ticket service in the wealthiest markets had nothing to rank.
+     The differentiator in each entry is the local review authority, because
+     that is the part a homeowner cannot look up in a national cost guide and
+     the part that actually decides a schedule.
+     ═════════════════════════════════════════════════════════════════════════ */
+
+  // ── REMODELING · MCLEAN, VA ──────────────────────────────────────────────
+  'remodeling-mclean-va': {
+    paragraphs: [
+      "McLean's housing stock is the reason whole-home remodeling works so well here. Streets like Langley Forest, Salona Village, Chesterbrook and Kent Gardens are full of substantial mid-century and later-20th-century homes on generous, mature lots — properties with excellent bones, excellent locations, and interiors specified for how families lived forty years ago. The land value in McLean is high enough that the real question is rarely whether to invest; it is whether to renovate comprehensively or tear down. For a well-built home on a lot you love, a whole-home renovation is very often the better answer.",
+      "Real Elite Contracting runs McLean whole-home programs as a single coordinated project rather than a series of disconnected trades. That typically means opening up the main level for the way people actually entertain, a kitchen designed around real hosting rather than weeknight dinners, a primary suite rebuilt as a private wing with its own bath and closet program, updated systems throughout — electrical capacity, HVAC zoning, plumbing — and a finished lower level that carries the media, guest and fitness functions. Where a home is being taken back to studs in part, we treat insulation and air sealing as part of the scope, not an upsell.",
+      "Whole-home renovation in McLean generally runs $300,000 to $1,500,000 and up, depending on square footage, how much of the envelope opens up, and the finish and millwork level. A phased program — main level and kitchen first, primary suite and lower level in a second stage — is a legitimate way to run a large scope without living in a construction site for a year, and we will scope it that way when it suits the household.",
+      "McLean is unincorporated Fairfax County, so permitting and inspections run through Fairfax County for building, electrical, plumbing and mechanical, with final inspection at the end. We sequence the inspector calendar so trades are not idling between stages. One named project lead, daily updates, a clean and discreet job site, and a written workmanship warranty.",
+    ],
+  },
+
+  // ── REMODELING · ALEXANDRIA, VA ──────────────────────────────────────────
+  'remodeling-alexandria-va': {
+    paragraphs: [
+      "Alexandria whole-home renovation is a genuinely different discipline from suburban remodeling, and the difference is the building stock. Old Town holds one of the densest collections of 18th- and 19th-century homes in the country; Rosemont, North Ridge, Beverley Hills and Del Ray add premium early- and mid-20th-century houses. These homes were built before central air, before modern electrical loads, and often before insulation was a consideration at all. A whole-home program here is as much about what is behind the plaster as what replaces it.",
+      "Real Elite Contracting approaches Alexandria renovations by getting the invisible work right first — knob-and-tube and undersized panels replaced, supply and waste lines brought current, HVAC designed for a house that was never ducted for it, insulation and air sealing added where the assembly allows without trapping moisture in old masonry. Then the visible work: kitchens that read period-appropriate but function to current spec, primary baths worked into floor plans that never contemplated them, and finished lower levels handled carefully in a river city where water table and drainage genuinely matter.",
+      "Whole-home renovation in Alexandria typically runs $250,000 to $900,000 and up. Historic properties carry real cost variance, because what is found once a wall opens — framing that has settled, previous unpermitted work, masonry needing repointing — is not fully knowable at the estimate. We say so up front and build contingency into the conversation rather than into a change order six weeks in.",
+      "Alexandria is an independent city, so permits run through the City of Alexandria rather than Fairfax County — a distinction that catches out contractors who work mainly in the county. Exterior work in the Old and Historic Alexandria District, and in the Parker-Gray district, also requires Board of Architectural Review approval before a permit issues, and that review runs on its own calendar. We build the BAR timeline into the schedule from the start instead of discovering it.",
+    ],
+  },
+
+  // ── REMODELING · VIENNA, VA ──────────────────────────────────────────────
+  'remodeling-vienna-va': {
+    paragraphs: [
+      "Vienna is one of the strongest whole-home renovation markets in Fairfax County, and the reason is the shape of the housing stock. Vienna Woods, Country Club Manor and the streets off Maple Avenue are full of well-built mid-century ramblers, split-levels and colonials on flat, generous lots — homes that are structurally sound and beautifully located but chopped into small rooms with low ceilings and closed-off kitchens. That is close to the ideal candidate for comprehensive renovation, because the money goes into layout and systems rather than into fixing a bad property.",
+      "Real Elite Contracting runs Vienna whole-home projects around opening the main level, replacing the kitchen with something designed for how the household actually cooks and gathers, rebuilding the primary suite with a proper bath and closet, and bringing electrical, HVAC and plumbing to current spec across the house. On split-levels and ramblers, a second-story addition or a rear expansion is often the move that unlocks the whole plan — and because we do that structural work ourselves, the addition and the renovation are one project rather than two contractors blaming each other.",
+      "Whole-home renovation in Vienna generally runs $250,000 to $800,000 and up, depending on square footage, whether the footprint changes, and finish level. Adding square footage moves the number more than any finish decision, so we price the structural question first and let the household decide with real numbers rather than after the design is already committed.",
+      "One thing worth knowing: the Town of Vienna runs its own permitting and inspections, separate from Fairfax County, for properties inside town limits. Addresses with a Vienna mailing address that sit outside the town line go through Fairfax County instead. Getting that wrong costs weeks. We confirm which authority governs your parcel before the first drawing is submitted, then sequence inspections so trades are not waiting on each other.",
+    ],
+  },
+
+  // ── REMODELING · GREAT FALLS, VA ─────────────────────────────────────────
+  'remodeling-great-falls-va': {
+    paragraphs: [
+      "Great Falls whole-home projects are the most ambitious residential renovations in our service area. Properties along Georgetown Pike, Riverbend, Hickory Hill and the Falls Estates area sit on multi-acre parcels with real privacy, and the homes on them are large, architecturally distinct, and worth renovating comprehensively rather than incrementally. The typical Great Falls brief is not a kitchen — it is a primary wing, an entertaining-scale kitchen and butler's pantry, a lower level carrying media, wine, fitness and guest functions, and systems capable of running all of it.",
+      "Real Elite Contracting scopes Great Falls programs around the whole envelope: structural changes where the plan demands them, electrical service sized for current loads rather than 1980s ones, multi-zone HVAC that actually conditions a house of that footprint evenly, and insulation and air sealing brought current while walls are open. Finish work is where these homes are judged — millwork, stone, tile and cabinetry are specified and installed to a standard that reads correctly in this market, and we would rather extend a schedule than hand over trim that does not.",
+      "Whole-home renovation in Great Falls typically runs $400,000 to $2,000,000 and up. The spread is wide because the scope genuinely is: a comprehensive interior renovation and a program that adds a wing are different projects with the same name.",
+      "Two Great Falls specifics shape schedules more than homeowners expect. Much of Great Falls is on well and septic rather than public water and sewer, and septic drainfield capacity can govern how many bedrooms a renovation is permitted to create — which means a primary-suite plan has to be checked against the health department, not just the building code. And Georgetown Pike is a designated Virginia Byway, so site access, staging and any frontage work carry extra constraints. Fairfax County permits and inspections apply throughout; we plan around all of it before demolition, not during.",
+    ],
+  },
+
+  // ── REMODELING · RESTON, VA ──────────────────────────────────────────────
+  'remodeling-reston-va': {
+    paragraphs: [
+      "Reston is one of the largest premium renovation pipelines in Fairfax County, and its housing stock is unlike anywhere else in the region. The original Simon-era villages around Lake Anne and Lake Audubon, plus Hunters Woods, North Point and South Lakes, produced homes that were architecturally deliberate on day one — open plans, dramatic glazing, strong relationships to the wooded sites around them. Fifty years on, those houses deserve interiors and systems that live up to the original ambition, and they reward renovation that respects the architecture instead of flattening it.",
+      "Real Elite Contracting renovates Reston homes with the original design intent intact: keeping and improving the light and the sightlines rather than closing them in, replacing kitchens and primary baths to current spec, and upgrading the systems these houses most often need — electrical capacity, HVAC that copes with large glazed areas, insulation and air sealing at the envelope. Where a floor plan genuinely does not work anymore, we make structural changes deliberately and in keeping with the building rather than in spite of it.",
+      "Whole-home renovation in Reston generally runs $200,000 to $650,000 and up, depending on square footage, how much of the envelope and glazing is addressed, and finish level. Homes with extensive original glazing and cladding can carry more envelope work than a comparable conventional house, which is worth knowing before the budget is set.",
+      "The Reston specific that catches contractors out: most Reston property is subject to Reston Association covenants, and exterior alterations require Design Review Board approval in addition to a Fairfax County permit. The DRB meets on its own schedule and the approval is not a formality. We build that review into the program from the first conversation, so the county permit and the DRB approval land in the right order rather than one waiting months on the other.",
+    ],
+  },
+
+  // ── REMODELING · BURKE, VA ───────────────────────────────────────────────
+  'remodeling-burke-va': {
+    paragraphs: [
+      "Burke is one of the most consistent whole-home renovation markets in Fairfax County. Burke Centre, Lake Braddock, Longwood Knolls and Kings Park West are established neighborhoods of substantial colonials and split-levels on generous lots, bought by families who tend to stay — and that long ownership horizon is exactly what makes comprehensive renovation make sense here. The work is not being done to flip; it is being done because the household intends to live in the result for another fifteen years.",
+      "Real Elite Contracting runs Burke whole-home projects around the changes that actually alter daily life: opening the kitchen to the family room, rebuilding the primary suite with a bath and closet that work, finishing the lower level for the functions that have outgrown the main floor, and bringing electrical, HVAC and plumbing current across the house while the walls are open. On the split-levels common in Burke, resolving the level changes and circulation is often what unlocks the whole plan.",
+      "Whole-home renovation in Burke typically runs $150,000 to $450,000 and up, depending on square footage, whether the footprint changes, and finish level. Burke rewards well-specified, beautifully executed work rather than the most expensive possible specification, and we scope it that way.",
+      "Much of Burke sits inside the Burke Centre Conservancy or a comparable association, and exterior changes generally require architectural review in addition to Fairfax County permits and inspections. We confirm which association governs your property and get that approval moving in parallel with the county submission, so the two do not run end to end. One named project lead, daily updates, clean job site, written workmanship warranty.",
+    ],
+  },
+
+  // ── REMODELING · FAIRFAX STATION, VA ─────────────────────────────────────
+  'remodeling-fairfax-station-va': {
+    paragraphs: [
+      "Fairfax Station projects skew larger and more architecturally ambitious than typical Fairfax County work, and the lots are why. One-acre and multi-acre parcels along the Burke Lake Road corridor, South Run, Hampton Forest and the Pohick and Hooes Road areas carry substantial custom homes — many built in the 1980s and 1990s to a good standard, now due for interiors and systems that match the quality of the shell and the setting.",
+      "Real Elite Contracting scopes Fairfax Station whole-home programs around full primary-suite expansions, kitchens designed for catering and entertaining rather than weeknight cooking, lower levels built out with guest suites, gyms and media rooms, and the systems work that a house of that size genuinely needs — electrical capacity, properly zoned HVAC, and insulation and air sealing addressed while assemblies are open. Where the plan calls for added square footage, we do the structural work ourselves so the addition and the renovation are one coordinated project.",
+      "Whole-home renovation in Fairfax Station generally runs $250,000 to $800,000 and up, depending on square footage, whether the footprint changes, and the finish and millwork level.",
+      "Two local factors shape scope here. Parts of Fairfax Station are on well and septic rather than public utilities, and septic capacity can constrain how many bedrooms a renovation may add — a question worth answering before a primary-suite plan is drawn. Portions of the area also drain toward the Occoquan Reservoir, which brings additional stormwater and septic requirements. Fairfax County permits and inspections apply throughout, and we sequence them so trades are not idle between stages.",
+    ],
+  },
+
+  // ── REMODELING · CLIFTON, VA ─────────────────────────────────────────────
+  'remodeling-clifton-va': {
+    paragraphs: [
+      "Clifton is two distinct renovation markets sharing a name. Inside Historic Clifton Village are small, genuinely old homes on tight lots in a designated historic area; outside it, along Compton Road, Yates Ford Road and through Bull Run Estates and Clifton Forest, are large custom houses on multi-acre parcels. A whole-home program means something different in each, and the first useful thing a contractor can tell you is which one your property is.",
+      "Real Elite Contracting handles both. In the village, the work is period-sensitive: correcting decades of accumulated alterations, updating systems inside old framing without erasing what makes the house worth owning, and working within the historic district's expectations for anything visible from the street. On the estate properties, the brief is closer to Great Falls — entertaining-scale kitchens, primary wings, lower levels with real program, and mechanical systems sized for the footprint. Both get the same structural and systems discipline.",
+      "Whole-home renovation in Clifton generally runs $250,000 to $900,000 and up, with historic village properties carrying wider variance because what is found behind old finishes is not fully knowable at estimate.",
+      "The constraint that governs Clifton more than any other is water. Much of the area drains into the Occoquan Reservoir, a drinking-water source, which brings stricter septic, drainfield and stormwater requirements than most of Fairfax County — and those requirements can directly limit how many bedrooms a renovation is allowed to add. Properties in the historic village carry design review on top. We establish which rules apply to your parcel before design, because finding out afterwards is what turns a schedule into a rework.",
+    ],
+  },
+
+  // ── REMODELING · MIDDLEBURG, VA ──────────────────────────────────────────
+  'remodeling-middleburg-va': {
+    paragraphs: [
+      "Middleburg whole-home renovation is the most architecturally significant work in our service area. The village's stone and stucco Main Street properties and the surrounding hunt-country estates along Foxcroft Road, Atoka Road and the Goose Creek area are genuinely historic buildings, often with dependencies — guest houses, barns, spring houses, staff quarters — that form part of the property rather than sitting beside it. The brief here is restraint. The goal is a house that lives to current standards and does not announce that it was renovated.",
+      "Real Elite Contracting approaches Middleburg programs by treating the original fabric as the thing being protected: stone and masonry repointed with appropriate mortar rather than modern mixes that trap moisture and spall the stone, systems threaded through historic framing with minimal intervention, and insulation strategies chosen for what an old assembly can tolerate. Then the current-spec work — kitchens designed around catering and entertaining, primary suites built into envelopes that never had them, lower levels carrying wine, tasting and guest functions. Millwork and stone are specified to read as though they were always there.",
+      "Whole-home renovation in Middleburg typically runs $350,000 to $1,500,000 and up. Estate properties with multiple structures are effectively several projects under one program, and we scope and schedule them that way rather than pretending otherwise.",
+      "Middleburg permits through Loudoun County, and properties in the town's historic district carry design review for exterior work on top of the county process. Estate properties frequently sit on well and septic, so drainfield capacity is a live question for any plan that adds bedrooms. We confirm all three — county, historic review, health department — before design is committed. One named project lead, daily updates, a discreet and clean job site, and a written workmanship warranty.",
+    ],
+  },
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     LOUDOUN COUNTY DEPTH — Sterling, Purcellville, Brambleton, South Riding,
+     Lansdowne, Aldie.
+
+     Loudoun is the most contested remodeling market we serve, and every
+     competitor bidding it lists the same towns. The differentiator written
+     into these pages is the one thing their pages leave out: most of these
+     addresses sit under a mandatory HOA architectural review IN ADDITION to
+     the Loudoun County permit, and that review — not the county — usually
+     sets the start date. A homeowner cannot get that from a national cost
+     guide, and it is the single most useful thing to tell them first.
+     ═════════════════════════════════════════════════════════════════════════ */
+
+  // ── REMODELING · STERLING, VA ────────────────────────────────────────────
+  'remodeling-sterling-va': {
+    paragraphs: [
+      "Sterling is the most competitive remodeling market in Loudoun County, and its housing stock is the reason whole-home renovation works so well here. Sugarland Run, Countryside, Sterling Park and the Cascades neighborhoods are full of solid colonials, split-levels and townhomes built between the 1970s and the 1990s — structurally sound, well sited on established lots, and laid out for a generation that wanted separate rooms for everything. Opening those plans up is usually the single change that transforms how the house lives.",
+      "Real Elite Contracting runs Sterling whole-home projects as one coordinated program rather than a string of disconnected trades. That typically means taking down the wall between kitchen and family room, rebuilding the kitchen for how the household actually cooks and gathers, reworking the primary suite so the bath and closet finally function, finishing the lower level, and bringing electrical capacity, HVAC and plumbing to current spec while the walls are open. On homes of this vintage we treat insulation and air sealing as part of the scope, not an upsell.",
+      "Whole-home renovation in Sterling generally runs $150,000 to $500,000 and up, depending on square footage, whether the footprint changes, and finish level. Adding square footage moves the number more than any finish decision, so we price the structural question first and let you decide with real numbers rather than after the design is committed.",
+      "Sterling permits through Loudoun County for building, electrical, plumbing and mechanical, with a final inspection at the end. Many Sterling neighborhoods — Countryside and Cascades among them — also carry an HOA architectural review for anything that changes the exterior, and that approval runs on its own calendar. We confirm which association governs your property and get that moving in parallel with the county submission, so the two do not run end to end.",
+    ],
+  },
+
+  // ── KITCHENS · STERLING, VA ──────────────────────────────────────────────
+  'kitchens-sterling-va': {
+    paragraphs: [
+      "The typical Sterling kitchen was built as a closed room with a doorway to the family room, a soffit over the wall cabinets, and a window over the sink — a perfectly good 1985 kitchen. Almost every Sterling kitchen project we scope starts with the same question: does the wall between the kitchen and the family room come down. In most of these floor plans it can, and when it does the whole main level starts working differently.",
+      "Real Elite Contracting handles Sterling kitchens end to end — structural assessment and beam work where a wall is load-bearing, soffit removal, full-height cabinetry, quartz or granite surfaces, tile, updated electrical for current appliance loads, and the plumbing and venting changes an island or a relocated range actually requires. We do the framing and structural work ourselves, so the wall coming out and the kitchen going in are one project rather than two contractors pointing at each other.",
+      "A full Sterling kitchen renovation generally runs $45,000 to $110,000 and up, depending on cabinetry level, surfaces, appliance package, and whether walls or plumbing move. Removing a load-bearing wall adds engineering and beam cost that a cosmetic refresh does not carry — worth knowing before the budget is set.",
+      "Loudoun County permits and inspections cover the electrical, plumbing and mechanical work, plus framing when a wall comes out. Interior kitchen work does not usually trigger HOA architectural review, but we confirm your association's rules before demolition rather than assuming — several Sterling communities review anything that touches windows or exterior venting.",
+    ],
+  },
+
+  // ── BATHROOMS · STERLING, VA ─────────────────────────────────────────────
+  'bathrooms-sterling-va': {
+    paragraphs: [
+      "Sterling primary bathrooms are usually the last original room in the house. The pattern across Sugarland Run, Countryside and Sterling Park is consistent: a builder-grade primary bath with a garden tub nobody has filled in fifteen years, a separate cramped shower, a low double vanity, and a toilet in the same open space. Reclaiming the tub footprint for a real walk-in shower is the change that most often makes the room feel like it belongs to a different house.",
+      "Real Elite Contracting rebuilds Sterling baths from the waterproofing out. That means a properly detailed shower assembly — correct slope to drain, bonded waterproofing membrane, and curbless entry where the joist structure allows it — before any tile is set. From there: relocated plumbing where the layout demands it, updated electrical and dedicated ventilation sized for the room, heated floors where wanted, and tile and glass installed to a standard that still looks right in ten years.",
+      "A full Sterling primary bath renovation generally runs $28,000 to $65,000 and up, depending on size, whether fixtures move, and the tile and glass specification. Secondary and hall baths typically run less. Moving drains is what separates the ends of that range, so we establish early whether your joist direction and stack location make a relocation straightforward or expensive.",
+      "Loudoun County permits and inspections apply to the plumbing, electrical and mechanical work, with rough-in and final inspections. We sequence the inspector calendar so trades are not idling between stages — a bathroom is a small room with a lot of sequence in it, and that is where schedules usually slip.",
+    ],
+  },
+
+  // ── REMODELING · PURCELLVILLE, VA ────────────────────────────────────────
+  'remodeling-purcellville-va': {
+    paragraphs: [
+      "Purcellville renovation covers two quite different kinds of house, and knowing which one you have is the first useful thing a contractor can tell you. In and around the historic downtown are genuinely old properties — plaster, settled framing, systems added in layers over decades. Out toward Hamilton, Round Hill and the Blue Ridge are newer custom homes on acreage, well built and now due for interiors that match the quality of the shell and the setting.",
+      "Real Elite Contracting handles both. In older Purcellville homes the invisible work comes first: undersized panels and legacy wiring replaced, supply and waste lines brought current, HVAC designed for a house that was never ducted for it, and insulation and air sealing added where the assembly can tolerate it without trapping moisture. In the newer homes on acreage the brief is closer to a luxury program — entertaining-scale kitchens, primary wings, lower levels with real function, and mechanical systems sized for the footprint.",
+      "Whole-home renovation in Purcellville generally runs $200,000 to $700,000 and up. Older properties carry wider variance, because what is found once a wall opens — settled framing, previous unpermitted work, masonry needing repointing — is not fully knowable at the estimate. We say so up front and build contingency into the conversation rather than into a change order six weeks in.",
+      "Purcellville permits through the Town of Purcellville for properties inside town limits and through Loudoun County for those outside — a distinction that catches out contractors who only work the eastern end of the county, and one that costs weeks when it is got wrong. Work in the historic district carries design review on top. Properties on acreage are frequently on well and septic, where drainfield capacity can cap how many bedrooms a renovation may add. We confirm all of it before design is committed.",
+    ],
+  },
+
+  // ── KITCHENS · PURCELLVILLE, VA ──────────────────────────────────────────
+  'kitchens-purcellville-va': {
+    paragraphs: [
+      "A Purcellville kitchen has to do two things at once: work to current standards and look like it belongs in western Loudoun. The county's most successful kitchens here are not the ones that import a Tysons showroom aesthetic wholesale — they are the ones that use honest materials, real wood, stone that reads as stone, and cabinetry proportioned to the room rather than to a catalog.",
+      "Real Elite Contracting builds Purcellville kitchens with the structural and mechanical work handled properly underneath the finishes: beam work where a wall opens, electrical sized for current appliance loads, plumbing and venting reworked for an island or relocated range, and — in older houses — floor framing assessed before heavy stone goes down on a span that was never designed for it. Then the visible work: full-height cabinetry, stone surfaces, tile, and the millwork details that make a kitchen read as built rather than installed.",
+      "A full Purcellville kitchen renovation generally runs $50,000 to $130,000 and up, depending on cabinetry level, surfaces, appliance package, and how much structure moves. Kitchens in older downtown properties trend toward the upper end for the same reason their whole-home renovations do — what is behind the plaster is not fully knowable until it is open.",
+      "Permits run through the Town of Purcellville inside town limits and Loudoun County outside them, covering electrical, plumbing, mechanical and any framing changes. We confirm which authority governs your parcel before the first drawing is submitted.",
+    ],
+  },
+
+  // ── BATHROOMS · PURCELLVILLE, VA ─────────────────────────────────────────
+  'bathrooms-purcellville-va': {
+    paragraphs: [
+      "Bathrooms are the hardest room to add to an old Purcellville house and the most rewarding to get right. Historic properties in and around downtown were not built with primary suites, so a primary bath usually has to be worked into a floor plan that never contemplated one — borrowing from a bedroom, a hall, or an attic space, with the framing and stack routing that implies. Newer homes out toward Round Hill and Hamilton have the space but the builder-grade fixtures.",
+      "Real Elite Contracting builds Purcellville baths waterproofing-first: correct slope to drain, bonded membrane, and curbless entry where the joist structure allows. In older homes we handle the parts that make or break the job — routing new waste lines through framing that was never planned for them, and assessing whether a floor can carry a stone-set shower or a freestanding tub before it is specified. Ventilation is sized for the room and ducted to the outside, which is exactly the corner most often cut in an old house.",
+      "A full Purcellville primary bath renovation generally runs $30,000 to $75,000 and up, with older properties trending higher because of the routing and structural work behind the finishes. Secondary baths typically run less.",
+      "Permits go through the Town of Purcellville inside town limits or Loudoun County outside, covering plumbing, electrical and mechanical, with rough-in and final inspections. Historic-district properties carry design review for anything that changes the exterior — including a new vent or window. We establish that before demolition.",
+    ],
+  },
+
+  // ── REMODELING · BRAMBLETON, VA ──────────────────────────────────────────
+  'remodeling-brambleton-va': {
+    paragraphs: [
+      "Brambleton is hitting the age where whole-home renovation starts to make sense. The community's earlier phases are now around twenty years old, which is exactly when original builder-grade kitchens, primary baths and unfinished lower levels stop being adequate for households that have grown into the house. The homes themselves are well built and well located — the renovation money goes into layout, finish and function rather than into fixing a bad property.",
+      "Real Elite Contracting runs Brambleton whole-home programs around the changes that actually alter daily life: opening and rebuilding the kitchen, converting the lower level into real living space with a full bath and guest suite, rebuilding the primary suite to a current standard, and refreshing the secondary baths in the same pass so the household is not living through a second project a year later. Electrical, HVAC and plumbing are brought current while the walls are open.",
+      "Whole-home renovation in Brambleton generally runs $180,000 to $550,000 and up, depending on square footage, how much of the lower level is built out, and finish level.",
+      "Brambleton permits through Loudoun County for building, electrical, plumbing and mechanical. Just as importantly, the Brambleton Community Association carries architectural review for exterior alterations — decks, additions, windows, siding and roofing color among them — and that approval runs on its own calendar, not the county's. We build the association review into the program from the first conversation so the two approvals land in the right order.",
+    ],
+  },
+
+  // ── KITCHENS · BRAMBLETON, VA ────────────────────────────────────────────
+  'kitchens-brambleton-va': {
+    paragraphs: [
+      "Brambleton kitchens are a specific renovation problem: the layout is usually fine. These are 2000s-and-newer homes with open plans and islands already in place — what has aged is the specification. Builder-grade cabinetry with visible wear at the hinges, laminate or entry-level granite, an appliance package chosen to hit a price point, and a lighting plan that was never really a plan. The work is less about moving walls and more about replacing everything the builder value-engineered.",
+      "Real Elite Contracting rebuilds Brambleton kitchens to the standard the community expects: full-height cabinetry with real drawer hardware, quartz or natural stone, a proper tile installation, lighting designed in layers rather than four recessed cans, and electrical brought up to handle the appliances people actually buy now. Where the island is undersized or badly placed — a common builder compromise — we will move it, which means plumbing and electrical routing rather than a swap in place.",
+      "A full Brambleton kitchen renovation generally runs $50,000 to $120,000 and up, depending on cabinetry level, surfaces and appliance package. Because the layout usually stays, the spread here is driven more by specification than by structure.",
+      "Loudoun County permits cover the electrical, plumbing and mechanical work. Interior kitchen work does not normally trigger Brambleton Community Association review, but anything that changes an exterior wall — a new vent, a window, a door — does. We check before demolition rather than after.",
+    ],
+  },
+
+  // ── BATHROOMS · BRAMBLETON, VA ───────────────────────────────────────────
+  'bathrooms-brambleton-va': {
+    paragraphs: [
+      "The Brambleton primary bath follows the builder pattern almost exactly: a large garden tub under a window, a small separate shower with a builder door, a long low vanity, and a lot of square footage that is not doing much. Twenty years in, the tub has become storage. Converting that footprint into a genuine walk-in shower — with a bench, proper niches, and a linear drain — is the single change that most often makes the room worth the money.",
+      "Real Elite Contracting rebuilds Brambleton baths from the waterproofing out: correct slope to drain, bonded waterproofing membrane, and curbless entry where the joist structure allows. Then relocated plumbing where the new layout requires it, updated electrical, dedicated ventilation sized for the room, heated floors where wanted, and a tile and glass installation detailed to hold up.",
+      "A full Brambleton primary bath renovation generally runs $30,000 to $70,000 and up, depending on size, whether fixtures move, and tile and glass specification. Secondary and hall baths typically run less.",
+      "Loudoun County permits and inspections cover the plumbing, electrical and mechanical work, with rough-in and final. Interior bath work generally sits outside Brambleton Community Association review, but a new exterior vent penetration does not — we confirm before the trades start.",
+    ],
+  },
+
+  // ── REMODELING · SOUTH RIDING, VA ────────────────────────────────────────
+  'remodeling-south-riding-va': {
+    paragraphs: [
+      "South Riding is one of the largest master-planned communities in Loudoun County, and the ownership pattern is what makes comprehensive renovation sensible here. Families bought for the schools and stayed — often twenty years or more in the same house. Renovation in South Riding is rarely about resale; it is about a household that intends to live in the result for another decade or more and would rather fix the house properly than move.",
+      "Real Elite Contracting runs South Riding whole-home programs around the things that actually change how the house works: opening and rebuilding the kitchen, converting the lower level into real living space with a full bath and guest suite, rebuilding the primary suite, and updating secondary baths in the same pass. Electrical capacity, HVAC zoning and plumbing come current while walls are open, which is the only economical time to do it.",
+      "Whole-home renovation in South Riding generally runs $160,000 to $500,000 and up, depending on square footage, how much of the lower level is finished, and finish level.",
+      "South Riding permits through Loudoun County for building, electrical, plumbing and mechanical. The South Riding Proprietary also carries architectural review for exterior alterations — decks, additions, siding, roofing, windows — on its own review calendar. We get that approval moving in parallel with the county submission rather than in sequence after it, which is where most of the avoidable delay in this community comes from.",
+    ],
+  },
+
+  // ── KITCHENS · SOUTH RIDING, VA ──────────────────────────────────────────
+  'kitchens-south-riding-va': {
+    paragraphs: [
+      "South Riding kitchens divide by build phase. The mid-1990s and early-2000s homes typically have a closed or half-open kitchen with a soffit and a peninsula — those benefit from real structural change. The later phases already have the open plan and the island, and what they need is everything the builder specified to a price point replaced. Establishing which you have is the first thing we do, because it determines whether this is a structural project or a specification one.",
+      "Real Elite Contracting handles both. Where a wall or peninsula comes out we do the beam and framing work ourselves, so the structure and the kitchen are one project. Where the layout stays we focus on what shows and what lasts: full-height cabinetry with real hardware, quartz or natural stone, a properly set tile installation, layered lighting, and electrical brought up to current appliance loads. Island relocations get the plumbing and electrical routing they actually require rather than the shortest path.",
+      "A full South Riding kitchen renovation generally runs $45,000 to $115,000 and up, depending on cabinetry level, surfaces, appliance package, and whether structure moves. Taking out a load-bearing wall adds engineering and beam cost a cosmetic refresh does not carry.",
+      "Loudoun County permits cover the electrical, plumbing, mechanical and any framing work. Interior kitchen work does not normally trigger South Riding Proprietary review; anything altering an exterior wall does. We confirm before demolition.",
+    ],
+  },
+
+  // ── BATHROOMS · SOUTH RIDING, VA ─────────────────────────────────────────
+  'bathrooms-south-riding-va': {
+    paragraphs: [
+      "The South Riding primary bath is the room most households have simply put up with. The builder layout — oversized garden tub, undersized shower, low double vanity, builder mirror and lighting — was adequate on move-in day and has not aged well. Converting the tub footprint into a proper walk-in shower is the change that most often transforms the room, and in most South Riding floor plans the plumbing makes it straightforward.",
+      "Real Elite Contracting rebuilds South Riding baths waterproofing-first: correct slope to drain, bonded membrane, curbless entry where the joists allow. Then relocated plumbing where the layout requires, updated electrical, dedicated ventilation ducted properly to the outside, heated floors where wanted, and a tile and glass installation detailed to still look right in a decade.",
+      "A full South Riding primary bath renovation generally runs $28,000 to $68,000 and up, depending on size, whether fixtures move, and tile and glass specification. Secondary and hall baths typically run less.",
+      "Loudoun County permits and inspections cover plumbing, electrical and mechanical, with rough-in and final. We sequence the inspector calendar so trades are not idling between stages.",
+    ],
+  },
+
+  // ── REMODELING · LANSDOWNE, VA ───────────────────────────────────────────
+  'remodeling-lansdowne-va': {
+    paragraphs: [
+      "Lansdowne sits on the Potomac between Leesburg and Ashburn, and the renovation brief here reflects the address. Homes in Lansdowne on the Potomac, Potomac Station and the river corridor are upper-tier properties whose owners expect finish quality that reads correctly against what the house is worth — and lower levels that carry genuine program rather than a carpeted rec room.",
+      "Real Elite Contracting scopes Lansdowne whole-home projects around entertaining-scale kitchens, primary suites rebuilt as private wings with their own bath and closet program, lower levels built out with media, fitness, wine and guest functions, and the systems work a house of that size genuinely needs — electrical capacity, properly zoned HVAC, and insulation and air sealing addressed while assemblies are open. Finish work is where these homes are judged, and we would rather extend a schedule than hand over millwork that does not hold up.",
+      "Whole-home renovation in Lansdowne generally runs $250,000 to $800,000 and up, depending on square footage, how much of the lower level is built out, and the finish and millwork level.",
+      "Lansdowne permits through Loudoun County for building, electrical, plumbing and mechanical. The community's covenants and design review also govern exterior alterations, and river-corridor properties can carry additional site constraints. We confirm the review path and any site restrictions before design is committed rather than after drawings are paid for.",
+    ],
+  },
+
+  // ── KITCHENS · LANSDOWNE, VA ─────────────────────────────────────────────
+  'kitchens-lansdowne-va': {
+    paragraphs: [
+      "A Lansdowne kitchen is judged against the rest of the house and against the address, which sets a different bar from a straightforward suburban refresh. These are large kitchens in large homes, usually already open to a family room, where the original build was good but is now twenty years of specification behind. The work is about bringing the room up to what the property implies rather than rearranging it.",
+      "Real Elite Contracting builds Lansdowne kitchens to that standard: full-height cabinetry with genuine hardware and interior fittings, natural stone or premium quartz, a butler's pantry or beverage station where the plan allows, layered lighting designed rather than defaulted, appliance-grade electrical, and the venting a real range actually requires — ducted to the outside, sized correctly, and not the recirculating compromise builders default to. Island relocations and structural changes are handled in-house.",
+      "A full Lansdowne kitchen renovation generally runs $65,000 to $160,000 and up, depending on cabinetry level, stone selection, appliance package and whether structure moves.",
+      "Loudoun County permits cover electrical, plumbing, mechanical and framing changes. Interior work generally sits outside the community's design review, but new exterior venting or window changes do not — we confirm before demolition.",
+    ],
+  },
+
+  // ── BATHROOMS · LANSDOWNE, VA ────────────────────────────────────────────
+  'bathrooms-lansdowne-va': {
+    paragraphs: [
+      "Lansdowne primary baths have the square footage and lack the specification. The typical layout — a large garden tub as the focal point, a modest separate shower, a long low double vanity — spends its space on a fixture that goes unused and starves the one that gets used every day. Rebuilding around a large walk-in shower, with a freestanding tub only where it genuinely earns its place, is what makes these rooms work.",
+      "Real Elite Contracting rebuilds Lansdowne baths from the waterproofing out: correct slope to drain, bonded waterproofing membrane, curbless entry where the joist structure allows, and a tile and glass installation detailed properly at the transitions where these jobs usually fail. Then relocated plumbing where the new layout requires, updated electrical, heated floors, dedicated ventilation sized for the room, and the stone and millwork the address expects.",
+      "A full Lansdowne primary bath renovation generally runs $35,000 to $90,000 and up, depending on size, whether fixtures move, and the stone, tile and glass specification. Secondary baths typically run less.",
+      "Loudoun County permits and inspections cover plumbing, electrical and mechanical, with rough-in and final. We sequence the inspector calendar so trades are not waiting on each other.",
+    ],
+  },
+
+  // ── REMODELING · ALDIE, VA ───────────────────────────────────────────────
+  'remodeling-aldie-va': {
+    paragraphs: [
+      "Aldie is where Loudoun stops being suburban. The historic village on Route 50 holds genuinely old buildings; Willowsford and the surrounding properties are large, deliberately designed homes on conservancy-adjacent land; and further west the parcels open up toward Middleburg and hunt country. A whole-home program means something different in each, and the first useful thing a contractor can tell you is which one your property is.",
+      "Real Elite Contracting handles the full range. In the village the work is period-sensitive: correcting decades of accumulated alteration, updating systems inside old framing without erasing what makes the building worth owning. In Willowsford and on the larger parcels the brief is a luxury program — entertaining-scale kitchens, primary wings, lower levels with real function, and mechanical systems sized for the footprint. Both get the same structural and systems discipline underneath the finishes.",
+      "Whole-home renovation in Aldie generally runs $250,000 to $900,000 and up. Historic village properties carry wider variance, because what is found behind old finishes is not fully knowable at estimate.",
+      "Aldie permits through Loudoun County. Willowsford carries its own architectural review through the community association, and historic village properties carry design review for exterior work. Many properties out here are on well and septic, where drainfield capacity can cap how many bedrooms a renovation may add — a question worth answering before a primary-suite plan is drawn, not after. We confirm all three paths before design is committed.",
+    ],
+  },
+
+  // ── KITCHENS · ALDIE, VA ─────────────────────────────────────────────────
+  'kitchens-aldie-va': {
+    paragraphs: [
+      "Aldie kitchens run from genuinely historic to deliberately rural-modern, and the successful ones share a quality: they look like they belong to the land they sit on. Willowsford in particular was designed around a working farm, and the kitchens that work best there are built for real cooking and real entertaining — larger islands, serious ventilation, pantry and prep space — rather than for a showroom photograph.",
+      "Real Elite Contracting builds Aldie kitchens with the structure and mechanicals handled properly underneath: beam work where a wall opens, floor framing assessed before heavy stone is specified, electrical sized for current appliance loads, and ventilation ducted correctly to the outside for the ranges these kitchens actually get. Then the visible work — full-height cabinetry, natural stone, honest tile, and millwork detailed so the room reads as built rather than installed.",
+      "A full Aldie kitchen renovation generally runs $60,000 to $160,000 and up, depending on cabinetry level, stone, appliance package and how much structure moves. Historic village kitchens trend higher for the same reason their whole-home projects do.",
+      "Loudoun County permits cover electrical, plumbing, mechanical and framing. Willowsford properties carry community architectural review for exterior changes, and historic village properties carry design review. We confirm which applies before demolition.",
+    ],
+  },
+
+  // ── BATHROOMS · ALDIE, VA ────────────────────────────────────────────────
+  'bathrooms-aldie-va': {
+    paragraphs: [
+      "Bathrooms in Aldie split the same way the rest of the market does. In Willowsford and the newer properties, the rooms are large and the fixtures are builder-standard — the work is specification and layout. In the historic village, a primary bath often has to be created rather than renovated, worked into a floor plan that never had one, with the framing and waste routing that implies.",
+      "Real Elite Contracting builds Aldie baths waterproofing-first: correct slope to drain, bonded membrane, curbless entry where the joists allow, and transitions detailed properly. In older buildings we handle the parts that decide whether the job succeeds — routing new waste lines through framing never planned for them, and confirming a floor can carry a stone-set shower or freestanding tub before it is specified. Ventilation is sized and ducted outside, which is the corner most often cut in an old house.",
+      "A full Aldie primary bath renovation generally runs $32,000 to $85,000 and up, with historic properties trending higher because of the routing and structural work behind the finishes. Secondary baths typically run less.",
+      "Loudoun County permits and inspections cover plumbing, electrical and mechanical. Willowsford architectural review and historic-district design review apply to anything that changes the exterior — including a new vent penetration. We establish that before the trades start.",
+    ],
+  },
+};

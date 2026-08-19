@@ -43,7 +43,16 @@ const LIMITS = {
   // Core Web Vitals "good" thresholds (field equivalents, measured warm here).
   lcpMs: 2500,
   cls: 0.1,
+  // Minimum comfortable touch target, per the WCAG 2.2 "Target Size (Minimum)"
+  // guidance and both platform HIGs. Measured on the mobile pass only.
+  tapPx: 44,
+  // A few px of slop before calling it horizontal overflow — sub-pixel layout
+  // rounding routinely leaves scrollWidth a hair over clientWidth.
+  overflowSlopPx: 2,
 };
+
+/** The mobile pass runs at a common small-phone width, the worst realistic case. */
+const MOBILE = { width: 390, height: 844 };
 
 const args = process.argv.slice(2);
 const getArg = (flag, fallback) => {
@@ -54,6 +63,17 @@ const BASE = getArg('--base', 'http://127.0.0.1:3100').replace(/\/$/, '');
 const JSON_OUT = getArg('--json', null);
 const FAIL_ON = getArg('--fail-on', null); // 'error' | 'warn'
 const LIMIT = Number(getArg('--limit', '0')) || 0;
+/**
+ * `--only /a,/b` narrows the crawl to specific routes. Verifying one fix
+ * against the full sitemap costs ~10 minutes, which is long enough that it
+ * discourages re-checking at all; this makes the tight loop (change → measure
+ * the routes you changed) take seconds. Unknown routes are reported rather
+ * than silently dropped, so a typo cannot masquerade as a clean result.
+ */
+const ONLY = (getArg('--only', '') || '')
+  .split(',')
+  .map((r) => r.trim())
+  .filter(Boolean);
 /**
  * Find a Chromium to drive. Checked in order: an explicit override, any
  * Playwright-managed build under PLAYWRIGHT_BROWSERS_PATH (or its default
@@ -130,6 +150,17 @@ async function main() {
     return;
   }
   await ctx0.close();
+  if (ONLY.length) {
+    const known = new Set(routes);
+    const missing = ONLY.filter((r) => !known.has(r));
+    if (missing.length) {
+      console.error(`--only: not in the sitemap — ${missing.join(', ')}`);
+      process.exitCode = 2;
+      await browser.close();
+      return;
+    }
+    routes = ONLY;
+  }
   if (LIMIT) routes = routes.slice(0, LIMIT);
   console.error(`auditing ${routes.length} routes at ${BASE}`);
 
@@ -272,6 +303,144 @@ async function main() {
   }
   await lp.close();
   await ctx.close();
+
+  // ---- mobile pass ----
+  // Most traffic to a contractor site is a phone, and the failures that matter
+  // there are invisible at 1440px: a page that scrolls sideways, or a control
+  // too small to hit. Both are layout facts, so this pass only measures
+  // geometry — everything content-shaped was already graded above.
+  const mctx = await browser.newContext({
+    viewport: MOBILE,
+    deviceScaleFactor: 2,
+    isMobile: true,
+    hasTouch: true,
+    userAgent:
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 ' +
+      '(KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+  });
+  const mp = await mctx.newPage();
+
+  for (const route of routes) {
+    try {
+      await mp.goto(BASE + route, { waitUntil: 'networkidle', timeout: 45000 });
+    } catch {
+      // The desktop pass already reported unreachable routes.
+      continue;
+    }
+
+    const m = await mp.evaluate(
+      ({ tapPx, slop }) => {
+        const doc = document.documentElement;
+        const overflowBy = doc.scrollWidth - doc.clientWidth;
+
+        // Name the widest offenders so the fix has somewhere to start, rather
+        // than reporting "something is too wide" for a whole page.
+        const culprits = [];
+        if (overflowBy > slop) {
+          for (const el of document.querySelectorAll('body *')) {
+            const r = el.getBoundingClientRect();
+            if (r.width === 0 || r.height === 0) continue;
+            if (r.right <= doc.clientWidth + slop) continue;
+            // Skip elements that are wide only because an ancestor already is.
+            const p = el.parentElement;
+            if (p && p.getBoundingClientRect().right > doc.clientWidth + slop) continue;
+            culprits.push(
+              `${el.tagName.toLowerCase()}${
+                el.className && typeof el.className === 'string'
+                  ? '.' + el.className.trim().split(/\s+/).slice(0, 2).join('.')
+                  : ''
+              } → ${Math.round(r.right)}px`
+            );
+            if (culprits.length >= 3) break;
+          }
+        }
+
+        // Tap targets: controls rendered smaller than the minimum.
+        //
+        // WCAG 2.2's Target Size (Minimum) exempts targets presented "in a
+        // sentence or block of text", which is most of what a content site
+        // links. Flagging those buries the real finding, so this only grades
+        // things that present as discrete controls:
+        //   - `display: inline` is a text link in the flow → exempt
+        //   - visually-hidden utilities (skip links, sr-only) collapse to ~0px
+        //     until focused and are correct as authored → exempt
+        //   - anything inside running prose → exempt
+        const small = [];
+        let smallTotal = 0;
+        for (const el of document.querySelectorAll(
+          // `summary` matters: on a closed <details> it is the only thing there
+          // is to tap, and this site uses disclosures for the nearby-cities and
+          // FAQ blocks. Omitting it lets a route report clean while its one
+          // real control is undersized.
+          'a[href], button, summary, input:not([type=hidden]), select, textarea, [role=button]'
+        )) {
+          const r = el.getBoundingClientRect();
+          if (r.width === 0 || r.height === 0) continue; // not rendered
+          if (r.width <= 4 || r.height <= 4) continue; // visually-hidden utility
+          // Parked off-canvas (honeypot fields, closed drawers): not a target.
+          if (r.right <= 0 || r.left >= window.innerWidth) continue;
+          // Hidden from the accessibility tree, so not a target either.
+          if (el.closest('[aria-hidden="true"]')) continue;
+          // Running text only. `li` is deliberately NOT in this list: `ul > li >
+          // a` is the standard markup for a nav list, so exempting every list
+          // item would hide real controls — a table-of-contents anchor is a
+          // block link in an `li` and is every bit a tap target. Links that are
+          // genuinely inside a sentence are caught by the `display: inline`
+          // test below, wherever they sit.
+          if (el.closest('p, .prose-editorial')) continue;
+          const cs = getComputedStyle(el);
+          if (cs.display === 'inline') continue; // flows as text, not a control
+          if (cs.position === 'fixed' && r.top < 0) continue; // off-canvas drawer
+          // Height is the dimension that decides whether a thumb lands on a
+          // link in a vertically-scrolling page, so it carries the full
+          // minimum. Width is only graded down to icon size: a breadcrumb
+          // crumb is as wide as its word ("Paving" is 38px) and padding it to
+          // 44 would put visible gaps in the trail for no real gain — WCAG 2.2
+          // itself exempts undersized targets that have clearance around them.
+          // Half-pixel tolerance because a box authored at exactly 44px
+          // routinely measures 43.99 after layout rounding.
+          const tallEnough = r.height >= tapPx - 0.5;
+          const wideEnough = r.width >= 24 - 0.5;
+          if (tallEnough && wideEnough) continue;
+          smallTotal += 1;
+          // Only the first few are named — a page with a repeated undersized
+          // component would otherwise print a wall of near-identical strings.
+          // `smallTotal` keeps counting past the cap so the report can say how
+          // many were withheld; a truncated list that looks complete makes a
+          // route read as nearly-fixed when it is not.
+          if (small.length < 4) {
+            small.push(
+              `${el.tagName.toLowerCase()}"${(el.textContent || '').trim().slice(0, 24)}" ` +
+                `${Math.round(r.width)}×${Math.round(r.height)}`
+            );
+          }
+        }
+        return { overflowBy, culprits, small, smallTotal };
+      },
+      { tapPx: LIMITS.tapPx, slop: LIMITS.overflowSlopPx }
+    );
+
+    if (m.overflowBy > LIMITS.overflowSlopPx) {
+      add(
+        'error',
+        'mobile-h-overflow',
+        route,
+        `page scrolls ${m.overflowBy}px sideways at ${MOBILE.width}px` +
+          (m.culprits.length ? ` — widest: ${m.culprits.join('; ')}` : '')
+      );
+    }
+    if (m.small.length) {
+      const hidden = m.smallTotal - m.small.length;
+      add(
+        'warn',
+        'mobile-tap-target',
+        route,
+        `under ${LIMITS.tapPx}px: ${m.small.join('; ')}` +
+          (hidden > 0 ? ` (+${hidden} more)` : '')
+      );
+    }
+  }
+  await mctx.close();
   await browser.close();
 
   // ---- report ----

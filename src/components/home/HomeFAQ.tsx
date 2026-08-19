@@ -57,7 +57,7 @@ export default function HomeFAQ() {
         <div className="mt-10 text-center">
           <Link
             href="/faq"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors tap-target"
           >
             All FAQs →
           </Link>

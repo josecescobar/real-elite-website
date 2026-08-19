@@ -79,7 +79,7 @@ export default function LuxuryConsultationRail({ initialProjectType }: Props) {
           </p>
           <a
             href={`tel:${BUSINESS.phoneRaw}`}
-            className="inline-flex items-center gap-1.5 text-white font-bold hover:text-brand-red transition-colors"
+            className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-white font-bold hover:text-brand-red transition-colors"
           >
             {BUSINESS.phone}
             <ArrowUpRight className="w-3.5 h-3.5" />

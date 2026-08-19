@@ -4,7 +4,8 @@
 > the project stands, the conventions to follow, and the prioritized backlog — so work continues
 > seamlessly without the prior conversation.
 >
-> **Last updated:** 2026-07-06 (current through PR #68 + the closure of PR #62).
+> **Last updated:** 2026-07-26 (current through PR #88 — the site audit harness and
+> its mobile pass; audit standing 0 error · 0 warn · 1 info across 178 routes).
 
 ---
 
@@ -108,14 +109,23 @@ run found a Google Map that had been invisible on `/contact` for months — the 
 `frame-src` never allowed the embed — while lint, typecheck, tests and the build
 were all green. None of the existing gates can see that class of bug.
 
-Current standing: **0 error · 0 warn · 1 info** — the whole 178-route corpus is
-inside its SEO budgets, with no broken embeds, dead links, missing alt text or
-unlabelled fields. The single `info` is `/resources/financing` at 244 words
-(min 300); it needs real financing-partner detail from the owner to grow
-honestly, so it is parked rather than padded.
+Current standing: **0 error · 0 warn · 1 info**. All the SEO budgets are clear
+(titles, descriptions), there are no broken embeds, dead links, missing alt text
+or unlabelled fields, the mobile pass shows **no page scrolling sideways**, and
+every control clears the 44px WCAG 2.2 touch minimum.
 
-Keep it there: the audit is a ratchet, not a one-off. Anything that regresses a
-count is a bug in the change that caused it. Then:
+The single remaining `info` is `/resources/financing` at 244 words. It is parked
+deliberately: growing it honestly needs real financing-partner terms from the
+owner, and padding a page to clear a word count is the exact failure mode this
+harness exists to prevent.
+
+Iterate with `npm run audit:site -- --only /a,/b` (seconds); quote a **full**
+run in the PR. A hand-picked sample reflects where you already looked, so it
+will report a sweep finished while whole route families still fail — this is
+not hypothetical, it happened on the tap-target sweep.
+
+Keep the zeroes at zero: the audit is a ratchet, not a one-off. Anything that
+regresses a cleared count is a bug in the change that caused it. Then:
 
 1. **Real data from the owner (the binding constraint — everything below compounds on it):**
    job photos + details (+ consented reviews) → author more projects (proof rails auto-populate)
@@ -124,6 +134,14 @@ count is a bug in the change that caused it. Then:
    reviews into `src/lib/reviews/data.ts` with `verified: true`.
 2. **Owner action — triage the open PRs:** review/merge or close #55 and #56; close stale #52
    and #54 (both superseded on `main`).
+2b. **Owner action — switch on the roof aerial (optional, costs money):** the Instant Roof Quote
+   can show the homeowner a satellite photo of the roof it just measured. It is built and shipped
+   but **dark by default**: `/api/roof-aerial` answers `204` until the **Static Maps API** is
+   enabled on the same Google key that powers the Solar lookup (`GOOGLE_SOLAR_API_KEY`), and the
+   UI renders nothing on a 204. Static Maps is billed per request, so enabling it is deliberately
+   an owner decision rather than something that starts charging on deploy. The key is never
+   exposed to the browser — the route proxies the image server-side, which also keeps it
+   same-origin and out of the CSP.
 3. **Per-type resource routes** (`/resources/type/[type]`) + `/projects` pagination/filters once the
    corpora grow.
 4. **Unify "our work":** migrate `GALLERY_IMAGES` consumers toward the project registry (audit
@@ -136,4 +154,5 @@ When picking up: read this file, then `docs/SITE-QUALITY-LOOP.md`, then
 `docs/OPERATING-MANUAL.md` — then run the audit and take the top unblocked item.
 
 **Shipping rule for audit work:** a PR that claims an audit fix must quote the
-before/after counts. "Improved SEO" is not a result; "warn 33 → 21" is.
+before/after counts, **from a full crawl**. "Improved SEO" is not a result;
+"warn 33 → 21" is. A sample is not a full crawl — see §4.

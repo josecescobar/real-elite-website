@@ -21,7 +21,7 @@ export default function FeaturedGuides() {
           />
           <Link
             href="/resources"
-            className="hidden md:inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors group"
+            className="hidden md:inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors group tap-target"
           >
             All Guides
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -100,7 +100,7 @@ export default function FeaturedGuides() {
         <div className="md:hidden mt-10 text-center">
           <Link
             href="/resources"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-navy-800 hover:text-brand-red transition-colors tap-target"
           >
             All Guides
             <ArrowUpRight className="w-4 h-4" />
