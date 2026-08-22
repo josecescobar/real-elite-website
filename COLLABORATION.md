@@ -52,9 +52,14 @@ Make this reflexive. It prevents ~95% of all problems.
 - Grok, ChatGPT, and Cursor will typically work directly on `main`.
 - Claude Code works on its own `claude/...` branch and merges into `main` via a
   pull request. So Claude's changes reach `main` after a quick merge step.
-- Cursor runs on your computer (a local clone), so anything edited there must be
-  committed and pushed before the cloud tools (Claude, Grok, ChatGPT) can see it
-  — and pulled after they push, before you keep editing in Cursor.
+- Cursor can run two ways: as a **local clone** (the desktop app on your
+  computer) or as a **Cloud agent** (e.g. from the mobile app, running on
+  Cursor's servers like Claude Code does). Either way, its edits are invisible to
+  the other tools until they're pushed — and you pull after they push.
+- A Cloud agent's workspace is temporary, so the "never leave unpushed work"
+  rule matters most there: anything not committed and pushed can vanish. Cloud
+  agents (Claude Code, Cursor Cloud) normally handle this by opening their own
+  branch and pull request automatically.
 
 ## Quick Reference
 
