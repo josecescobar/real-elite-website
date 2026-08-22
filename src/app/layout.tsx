@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Saira_Condensed, Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -16,6 +17,7 @@ import { aggregateRatingSchema } from '@/lib/social-proof';
 const GA_MEASUREMENT_ID = env.gaMeasurementId();
 const GTM_ID = env.gtmId();
 const CLARITY_ID = env.clarityId();
+const VERCEL_ENV = env.vercelEnv();
 
 const saira = Saira_Condensed({
   subsets: ['latin'],
@@ -243,6 +245,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         <main id="main">{children}</main>
         <Footer />
         <StickyMobileCTA />
+        {VERCEL_ENV && <Analytics />}
       </body>
     </html>
   );
