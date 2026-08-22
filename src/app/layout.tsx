@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Saira_Condensed, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -246,6 +247,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         <Footer />
         <StickyMobileCTA />
         {VERCEL_ENV && <Analytics />}
+        {VERCEL_ENV && <SpeedInsights />}
       </body>
     </html>
   );

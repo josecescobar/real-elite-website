@@ -28,14 +28,14 @@ const sections = [
   {
     title: 'Service providers',
     body: [
-      'We use trusted providers to operate the website and deliver requested services. Depending on which features are configured, these may include Vercel for hosting, Google Analytics for site measurement, Resend for email delivery, Twilio for call and text delivery, Supabase for lead records, Upstash for abuse prevention, and Google Maps or Solar APIs for address and roof measurements.',
+      'We use trusted providers to operate the website and deliver requested services. Depending on which features are configured, these may include Vercel for hosting and performance measurement, Google Analytics for site measurement, Microsoft Clarity for heatmaps and session recordings, Resend for email delivery, Twilio for call and text delivery, Supabase for lead records, Upstash for abuse prevention, and Google Maps or Solar APIs for address and roof measurements.',
       'These providers receive only the information needed to perform their function and process it under their own privacy and security terms.',
     ],
   },
   {
     title: 'Cookies and analytics',
     body: [
-      'The website may use cookies or similar browser storage for analytics, campaign attribution, security, and essential site behavior. You can restrict cookies through your browser settings, though some measurement and convenience features may no longer work as intended.',
+      'The website may use cookies or similar browser storage for analytics, campaign attribution, security, heatmaps, session recordings, and essential site behavior. You can restrict cookies through your browser settings, though some measurement and convenience features may no longer work as intended.',
     ],
   },
   {
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
         <Container>
           <div className="max-w-3xl space-y-10">
             <div className="rounded-lg border border-gold-300 bg-gold-50 p-5 text-sm text-charcoal-700 leading-relaxed">
-              <strong className="text-navy-800">Effective July 12, 2026.</strong> This policy is
+              <strong className="text-navy-800">Effective August 22, 2026.</strong> This policy is
               drafted from the website&apos;s current data flows and should be reviewed whenever a
               new analytics, messaging, financing, or customer-data provider is added.
             </div>
