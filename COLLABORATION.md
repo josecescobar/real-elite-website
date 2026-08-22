@@ -1,9 +1,9 @@
 # Working on This Repo Across Multiple Tools
 
 This website is edited from more than one place — mainly **Claude Code**, but
-also **Grok** and **ChatGPT**. Each tool has its *own separate clone* of the
-repo. None of them can see another's changes until those changes go through
-**GitHub**. GitHub is the single source of truth.
+also **Grok**, **ChatGPT**, and **Cursor**. Each tool has its *own separate
+clone* of the repo. None of them can see another's changes until those changes
+go through **GitHub**. GitHub is the single source of truth.
 
 Follow these rules and you'll almost never hit a conflict or lose work.
 
@@ -49,9 +49,12 @@ Make this reflexive. It prevents ~95% of all problems.
 
 ## Note on Branches
 
-- Grok and ChatGPT will typically work directly on `main`.
+- Grok, ChatGPT, and Cursor will typically work directly on `main`.
 - Claude Code works on its own `claude/...` branch and merges into `main` via a
   pull request. So Claude's changes reach `main` after a quick merge step.
+- Cursor runs on your computer (a local clone), so anything edited there must be
+  committed and pushed before the cloud tools (Claude, Grok, ChatGPT) can see it
+  — and pulled after they push, before you keep editing in Cursor.
 
 ## Quick Reference
 
