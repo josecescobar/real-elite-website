@@ -4,6 +4,7 @@ import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
 function stubWindow(gtag?: unknown) {
   vi.stubGlobal('window', {
     gtag,
+    dataLayer: [],
     location: { pathname: '/test-page' },
   });
 }
@@ -17,9 +18,11 @@ describe('trackEvent', () => {
     expect(() => trackEvent('estimate_submit')).not.toThrow();
   });
 
-  it('is a no-op when window.gtag is not a function', () => {
+  it('queues the event on dataLayer when gtag.js has not loaded yet', () => {
     stubWindow(undefined);
     expect(() => trackEvent('estimate_submit')).not.toThrow();
+    expect(typeof window.gtag).toBe('function');
+    expect(window.dataLayer?.length).toBeGreaterThan(0);
   });
 
   it('forwards the event name and current path to gtag', () => {

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { ChevronRight, Clock } from 'lucide-react';
+import '@/styles/prose.css';
 
 import Container from '@/components/shared/Container';
 import TableOfContents from './TableOfContents';

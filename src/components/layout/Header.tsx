@@ -51,6 +51,7 @@ export default function Header() {
             alt="Real Elite Contracting Logo"
             width={56}
             height={56}
+            sizes="56px"
             className="w-12 h-12 lg:w-14 lg:h-14"
           />
           <div className="hidden sm:flex flex-col leading-tight">
@@ -132,7 +133,7 @@ export default function Header() {
             ref={toggleRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-navy-800 hover:text-charcoal-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm p-2.5 -mr-2.5"
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
           >

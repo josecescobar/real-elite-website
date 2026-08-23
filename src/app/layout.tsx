@@ -8,28 +8,31 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import StickyMobileCTA from '@/components/layout/StickyMobileCTA';
 import AttributionTracker from '@/components/analytics/AttributionTracker';
+import DeferredAnalytics from '@/components/analytics/DeferredAnalytics';
 import JsonLd from '@/components/seo/JsonLd';
 import { BUSINESS, GENERAL_CONTRACTOR_AREA_SERVED } from '@/lib/constants';
 import { env } from '@/lib/env';
 import { aggregateRatingSchema } from '@/lib/social-proof';
 
-// GA4 loads only in the Vercel production environment so local dev and
-// preview deploys don't pollute the real analytics (gating lives in env.ts).
+// GA4 / Clarity load only in the Vercel production environment so local
+// dev and preview deploys don't pollute real analytics (gating in env.ts).
 const GA_MEASUREMENT_ID = env.gaMeasurementId();
 const GTM_ID = env.gtmId();
 const CLARITY_ID = env.clarityId();
 const VERCEL_ENV = env.vercelEnv();
 
+// Headings use font-bold (700) and font-extrabold (800) only — 600 was
+// preloaded on every page and never applied. Inter is a variable font;
+// omitting weight ships one file instead of four static cuts.
 const saira = Saira_Condensed({
   subsets: ['latin'],
-  weight: ['600', '700', '800'],
+  weight: ['700', '800'],
   variable: '--font-saira',
   display: 'swap',
 });
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
   variable: '--font-inter',
   display: 'swap',
 });
@@ -124,46 +127,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${saira.variable} ${inter.variable}`}>
       <head>
-        {/* Google Tag Manager (env-gated, no-op until NEXT_PUBLIC_GTM_ID is set) */}
-        {GTM_ID && (
-          <Script id="gtm-init" strategy="afterInteractive">
-            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`}
-          </Script>
-        )}
-
-        {/* GA4 — only in production (see GA_MEASUREMENT_ID gating above) */}
-        {GA_MEASUREMENT_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-            </Script>
-          </>
-        )}
-
-        {/* Microsoft Clarity (heatmaps + recordings) */}
-        {CLARITY_ID && (
-          <Script id="ms-clarity" strategy="afterInteractive">
-            {`(function(c,l,a,r,i,t,y){
-c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window, document, "clarity", "script", "${CLARITY_ID}");`}
-          </Script>
-        )}
-
         <JsonLd
           schema={{
             '@context': 'https://schema.org',
@@ -232,16 +195,26 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           Skip to content
         </a>
         {GTM_ID && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
+          <>
+            <Script id="gtm-init" strategy="afterInteractive">
+              {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`}
+            </Script>
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: 'none', visibility: 'hidden' }}
+              />
+            </noscript>
+          </>
         )}
         <AttributionTracker />
+        <DeferredAnalytics gaId={GA_MEASUREMENT_ID} clarityId={CLARITY_ID} />
         <Header />
         <main id="main">{children}</main>
         <Footer />

@@ -2,13 +2,30 @@ type GtagParams = Record<string, string | number | boolean | undefined>;
 
 declare global {
   interface Window {
-    gtag?: (command: 'event', eventName: string, params?: GtagParams) => void;
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
+/**
+ * Official GA4 dataLayer stub. Events pushed here before `gtag.js` arrives
+ * are flushed when the library loads, so we can delay the third-party
+ * download past first paint without dropping `estimate_*` / `generate_lead`.
+ */
+export function ensureGtagStub() {
+  if (typeof window === 'undefined') return;
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag === 'function') return;
+  window.gtag = function gtag() {
+    // GA's own snippet uses `arguments`, not rest params.
+    window.dataLayer!.push(arguments);
+  };
+}
+
 export function trackEvent(name: string, params: GtagParams = {}) {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
-  window.gtag('event', name, {
+  if (typeof window === 'undefined') return;
+  ensureGtagStub();
+  window.gtag!('event', name, {
     page_path: window.location.pathname,
     ...params,
   });

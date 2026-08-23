@@ -1,7 +1,5 @@
-'use client';
-
 import { BUSINESS } from '@/lib/constants';
-import { trackEvent } from '@/lib/analytics';
+import TrackedLink from '@/components/analytics/TrackedLink';
 
 const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
   "Hi, I'd like a free estimate from Real Elite Contracting."
@@ -21,31 +19,34 @@ export const CTASection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
+          <TrackedLink
             href="#estimate"
-            onClick={() => trackEvent('estimate_cta_click', { location: 'cta_section' })}
+            eventName="estimate_cta_click"
+            eventParams={{ location: 'cta_section' }}
             className="w-full sm:w-auto bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 focus-visible:ring-brand-red"
           >
             Get My Free Estimate →
-          </a>
-          <a
+          </TrackedLink>
+          <TrackedLink
             href={`tel:${BUSINESS.phoneRaw}`}
-            onClick={() => trackEvent('phone_click', { location: 'cta_section' })}
+            eventName="phone_click"
+            eventParams={{ location: 'cta_section' }}
             className="w-full sm:w-auto bg-white/10 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 focus-visible:ring-white/40"
           >
             Call {BUSINESS.phone}
-          </a>
+          </TrackedLink>
         </div>
 
         <p className="text-xs text-charcoal-400 mt-6">
           Or{' '}
-          <a
+          <TrackedLink
             href={SMS_URL}
-            onClick={() => trackEvent('sms_click', { location: 'cta_section' })}
+            eventName="sms_click"
+            eventParams={{ location: 'cta_section' }}
             className="text-white hover:text-brand-red-light underline transition-colors font-semibold"
           >
             text {BUSINESS.phone} →
-          </a>
+          </TrackedLink>
         </p>
       </div>
     </section>
