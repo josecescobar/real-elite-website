@@ -1,7 +1,19 @@
+import dynamic from 'next/dynamic';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
-import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import { BUSINESS } from '@/lib/constants';
+
+const MultiStepEstimateForm = dynamic(
+  () => import('@/components/shared/MultiStepEstimateForm'),
+  {
+    loading: () => (
+      <div
+        className="bg-white rounded-lg shadow-card-elevated p-6 sm:p-8 md:p-10 min-h-[28rem]"
+        aria-hidden="true"
+      />
+    ),
+  }
+);
 
 const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
   "Hi, I'd like a free estimate from Real Elite Contracting."

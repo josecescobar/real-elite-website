@@ -48,12 +48,20 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     // Next 16 restricts delivered quality to this allowlist. 75 is the
     // efficient default; 82 is used for the premium blog/featured imagery
     // so high-resolution photos render crisp without bloating page weight.
     qualities: [75, 82, 90],
+    // Drop 2048/3840 from the default srcset. Full-bleed heroes already
+    // declare sizes="100vw"; a 1920w webp is enough for desktop and keeps
+    // the optimizer from encoding unused 2x/4K variants.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     // All site imagery is self-hosted in /public/images — no remote image
     // sources are allowed. If a remote CDN is ever needed again, add it to
     // remotePatterns here AND to the CSP img-src above, together.

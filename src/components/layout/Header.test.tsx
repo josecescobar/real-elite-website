@@ -88,27 +88,27 @@ describe('Header', () => {
     it('does not show mobile menu by default', () => {
       render(<Header />);
       expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
-      expect(screen.getByLabelText(/toggle menu/i)).toHaveAttribute('aria-expanded', 'false');
+      expect(screen.getByLabelText(/open menu/i)).toHaveAttribute('aria-expanded', 'false');
     });
 
     it('opens mobile menu when toggle button is clicked', async () => {
       const user = userEvent.setup();
       render(<Header />);
 
-      await user.click(screen.getByLabelText(/toggle menu/i));
+      await user.click(screen.getByLabelText(/open menu/i));
 
       expect(screen.getByTestId('x-icon')).toBeInTheDocument();
-      expect(screen.getByLabelText(/toggle menu/i)).toHaveAttribute('aria-expanded', 'true');
+      expect(screen.getByLabelText(/close menu/i)).toHaveAttribute('aria-expanded', 'true');
     });
 
     it('closes mobile menu when toggle button is clicked again', async () => {
       const user = userEvent.setup();
       render(<Header />);
 
-      await user.click(screen.getByLabelText(/toggle menu/i));
+      await user.click(screen.getByLabelText(/open menu/i));
       expect(screen.getByTestId('x-icon')).toBeInTheDocument();
 
-      await user.click(screen.getByLabelText(/toggle menu/i));
+      await user.click(screen.getByLabelText(/close menu/i));
       expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
     });
 
@@ -116,7 +116,7 @@ describe('Header', () => {
       const user = userEvent.setup();
       render(<Header />);
 
-      await user.click(screen.getByLabelText(/toggle menu/i));
+      await user.click(screen.getByLabelText(/open menu/i));
       expect(screen.getByTestId('x-icon')).toBeInTheDocument();
 
       const aboutLinks = screen.getAllByRole('link', { name: /about/i });
@@ -129,7 +129,7 @@ describe('Header', () => {
       const user = userEvent.setup();
       render(<Header />);
 
-      await user.click(screen.getByLabelText(/toggle menu/i));
+      await user.click(screen.getByLabelText(/open menu/i));
       await user.click(screen.getByLabelText(/toggle services menu/i));
 
       expect(screen.getByRole('link', { name: /roofing/i })).toBeInTheDocument();

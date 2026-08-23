@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
 @theme {
   /* ---------- Navy (primary brand) ---------- */
@@ -153,14 +152,6 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 .chip-row > * {
   @apply flex-none whitespace-nowrap;
-}
-
-/* ---------- Long-form prose (blog/guides) ---------- */
-.prose-editorial {
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.75;
-  max-width: 68ch;
 }
 
 /* ---------- Reduced-motion ---------- */

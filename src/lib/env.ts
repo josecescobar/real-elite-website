@@ -41,8 +41,15 @@ export const env = {
       : process.env.NEXT_PUBLIC_GA_ID,
   /** Google Tag Manager container ID. No-op until set. */
   gtmId: (): string | undefined => process.env.NEXT_PUBLIC_GTM_ID,
-  /** Microsoft Clarity project ID (heatmaps + session recordings). */
-  clarityId: (): string | undefined => process.env.NEXT_PUBLIC_CLARITY_ID,
+  /**
+   * Microsoft Clarity project ID (heatmaps + session recordings).
+   * Same production default as GA so a missing env var cannot drop the tag.
+   * `NEXT_PUBLIC_CLARITY_ID` overrides. Preview/dev stay opt-in.
+   */
+  clarityId: (): string | undefined =>
+    process.env.VERCEL_ENV === 'production'
+      ? process.env.NEXT_PUBLIC_CLARITY_ID ?? 'y6j2ghobe7'
+      : process.env.NEXT_PUBLIC_CLARITY_ID,
 
   // ── Resend (estimate / lead email) ───────────────────────────────────────
   /** Resend API key. When absent the estimate route returns 503 gracefully. */

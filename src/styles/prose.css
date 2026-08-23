@@ -1,0 +1,9 @@
+@plugin "@tailwindcss/typography";
+
+/* Long-form prose (blog/guides only — kept off the homepage CSS). */
+.prose-editorial {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  max-width: 68ch;
+}

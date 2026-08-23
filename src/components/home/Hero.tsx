@@ -1,8 +1,6 @@
-'use client';
-
 import Image from 'next/image';
 import { BUSINESS } from '@/lib/constants';
-import { trackEvent } from '@/lib/analytics';
+import TrackedLink from '@/components/analytics/TrackedLink';
 
 export const Hero = () => {
   return (
@@ -10,10 +8,12 @@ export const Hero = () => {
       {/* Full-bleed hero photography */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/images/inspiration/home-exterior-hero.jpg"
+          src="/images/home-hero.jpg"
           alt=""
           fill
           priority
+          fetchPriority="high"
+          quality={75}
           sizes="100vw"
           className="object-cover object-center"
         />
@@ -62,27 +62,30 @@ export const Hero = () => {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 mt-10">
-            <a
+            <TrackedLink
               href="#estimate"
-              onClick={() => trackEvent('estimate_cta_click', { location: 'hero' })}
+              eventName="estimate_cta_click"
+              eventParams={{ location: 'hero' }}
               className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
             >
               Get My Free Estimate →
-            </a>
-            <a
+            </TrackedLink>
+            <TrackedLink
               href="/instant-roof-quote"
-              onClick={() => trackEvent('roof_quote_cta_click', { location: 'hero' })}
+              eventName="roof_quote_cta_click"
+              eventParams={{ location: 'hero' }}
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
             >
               Instant Roof Quote →
-            </a>
-            <a
+            </TrackedLink>
+            <TrackedLink
               href={`tel:${BUSINESS.phoneRaw}`}
-              onClick={() => trackEvent('phone_click', { location: 'hero' })}
+              eventName="phone_click"
+              eventParams={{ location: 'hero' }}
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
             >
               Call {BUSINESS.phone}
-            </a>
+            </TrackedLink>
           </div>
 
           {/* Trust strip */}
