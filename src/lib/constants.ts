@@ -350,7 +350,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   'leesburg-va': {
     description:
       "Leesburg is Loudoun County's seat — Town limits around Old Town and the western approach from Route 7 and Route 9, plus Leesburg-address neighborhoods that sit in unincorporated county (Lansdowne, River Creek). A Leesburg mailing address is not automatically Town zoning. We lead here with decks and outdoor living, then kitchens, baths, and additions, and we file Town zoning before the county building permit when the parcel is inside Town. Real Elite Contracting works western Leesburg first from Martinsburg.",
-    neighborhoods: ['Historic Old Town Leesburg', 'Town of Leesburg', 'Lansdowne on the Potomac', 'River Creek'],
+    neighborhoods: ['Historic Old Town Leesburg', 'West of Route 15', 'Lansdowne on the Potomac', 'River Creek'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
   },
   'ashburn-va': {
