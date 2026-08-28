@@ -355,8 +355,8 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'ashburn-va': {
     description:
-      "Ashburn is at the heart of Loudoun County's explosive growth — a master-planned tech corridor and residential powerhouse housing thousands of data centers alongside growing young families. Communities like Broadlands, Brambleton, One Loudoun, and Ashburn Farm offer modern homes in well-maintained neighborhoods where curb appeal and property values are taken seriously. With the Silver Line Metro now connecting Ashburn directly to Washington, D.C., this market only continues to appreciate. Real Elite Contracting is Ashburn's trusted partner for premium decks, outdoor living, kitchens, and bathroom remodels.",
-    neighborhoods: ['One Loudoun', 'Broadlands', 'Brambleton', 'Ashburn Farm', 'Loudoun Valley Estates', 'Belmont Greene'],
+      "Ashburn is unincorporated Loudoun County — county building and zoning through LandMARC, plus HOA architectural review in nearly every master-planned community. We lead here with decks and outdoor living, then kitchens, baths, and additions. A county permit is not HOA approval; we file both tracks in parallel. Real Elite Contracting works Brambleton, Broadlands, Ashburn Farm, and One Loudoun from Martinsburg.",
+    neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
   },
   'loudoun-county-va': {
