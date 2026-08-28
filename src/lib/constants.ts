@@ -419,9 +419,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'middleburg-va': {
     description:
-      "Middleburg is the historic anchor of Virginia's hunt country — a Loudoun County village whose stone Main Street and surrounding equestrian estates form one of the most distinctive luxury markets in the Mid-Atlantic. Middleburg interior renovations are some of the most architecturally significant projects in our service area: stone-and-timber kitchens designed around catering and entertaining, primary suites in genuine historic envelopes, finished lower levels in estate homes that include tasting rooms, gun rooms, and guest wings. The brief here is restraint, period sensitivity, and craft. Real Elite Contracting brings all three.",
-    neighborhoods: ['Historic Middleburg Village', 'Main Street corridor', 'Goose Creek Estate area', 'Foxcroft Road area', 'Atoka Road area', 'Halfway hunt country'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+      "Middleburg is an incorporated Loudoun town. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). We lead here with decks and outdoor living, then additions, kitchens, and baths, and we work selected Middleburg from Martinsburg.",
+    neighborhoods: ['Historic District', 'Main Street', 'Atoka Road', 'Foxcroft Road', 'Goose Creek'],
+    marketEmphasis: ['decks', 'additions', 'kitchens', 'bathrooms', 'remodeling'],
   },
 };
 
