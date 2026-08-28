@@ -349,21 +349,21 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'leesburg-va': {
     description:
-      "Leesburg is Loudoun County's seat — Town limits around Old Town and the western approach from Route 7 and Route 9, plus Leesburg-address neighborhoods that sit in unincorporated county (Lansdowne, River Creek). A Leesburg mailing address is not automatically Town zoning. We lead here with decks and outdoor living, then kitchens, baths, and additions, and we file Town zoning before the county building permit when the parcel is inside Town. Real Elite Contracting works western Leesburg first from Martinsburg.",
+      "Leesburg is Loudoun County's seat — Town limits around Old Town and the western approach from Route 7 and Route 9, plus Leesburg-address neighborhoods that sit in unincorporated county (Lansdowne, River Creek). A Leesburg mailing address is not automatically Town zoning. We lead here with decks and outdoor living, then kitchens, baths, and in-law basement finish, and we file Town zoning before the county building permit when the parcel is inside Town. Real Elite Contracting works western Leesburg first from Martinsburg.",
     neighborhoods: ['Historic Old Town Leesburg', 'West of Route 15', 'Lansdowne on the Potomac', 'River Creek'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
   },
   'ashburn-va': {
     description:
-      "Ashburn is unincorporated Loudoun County — county building and zoning through LandMARC, plus HOA architectural review in nearly every master-planned community. We lead here with decks and outdoor living, then kitchens, baths, and additions. A county permit is not HOA approval; we file both tracks in parallel. Real Elite Contracting works Brambleton, Broadlands, Ashburn Farm, and One Loudoun from Martinsburg.",
+      "Ashburn is unincorporated Loudoun County — county building and zoning through LandMARC, plus HOA architectural review in nearly every master-planned community. We lead here with decks and outdoor living, then kitchens, baths, and in-law basement finish. A county permit is not HOA approval; we file both tracks in parallel. Real Elite Contracting works Brambleton, Broadlands, Ashburn Farm, and One Loudoun from Martinsburg.",
     neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
   },
   'loudoun-county-va': {
     description:
-      "Loudoun County decks run two tracks: county building and zoning through LandMARC, plus HOA review in most master-planned communities. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen drops you onto full plans at $395. Leesburg, Purcellville, and Middleburg permit separately. We lead the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then kitchens, baths, and additions. A county permit is not HOA approval. Real Elite Contracting works Loudoun from Martinsburg.",
+      "Loudoun County decks run two tracks: county building and zoning through LandMARC, plus HOA review in most master-planned communities. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen drops you onto full plans at $395. Leesburg, Purcellville, and Middleburg permit separately. We lead the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then kitchens, baths, and in-law basement finish. A county permit is not HOA approval. Real Elite Contracting works Loudoun from Martinsburg.",
     neighborhoods: ['Purcellville', 'Leesburg', 'Middleburg', 'Ashburn', 'Brambleton', 'Lansdowne'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
   },
 
   /* ---------- Fairfax County, VA (luxury Northern Virginia) ---------- */
@@ -419,9 +419,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'middleburg-va': {
     description:
-      "Middleburg is an incorporated Loudoun town. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). We lead here with decks and outdoor living, then additions, kitchens, and baths, and we work selected Middleburg from Martinsburg.",
+      "Middleburg is an incorporated Loudoun town. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). We lead here with decks and outdoor living, then additions, kitchens, baths, and in-law basement finish, and we work selected Middleburg from Martinsburg.",
     neighborhoods: ['Historic District', 'Main Street', 'Atoka Road', 'Foxcroft Road', 'Goose Creek'],
-    marketEmphasis: ['decks', 'additions', 'kitchens', 'bathrooms', 'remodeling'],
+    marketEmphasis: ['decks', 'additions', 'kitchens', 'bathrooms', 'basements'],
   },
 };
 

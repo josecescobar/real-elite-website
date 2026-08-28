@@ -373,8 +373,16 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         answer:
           "Yes — proper rim joist insulation, perimeter wall insulation, and an HVAC extension (or independent zone, depending on your system) keep finished basements comfortable year-round. We don't cut corners on insulation.",
       },
+      {
+        question: 'Do I need a permit to finish a basement in Loudoun County?',
+        answer:
+          'Yes. Loudoun requires a building and zoning application for architectural and structural work, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Typical Finished Basement Details can stand in for custom drawings unless you alter a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum; a kitchen in the basement adds a published $165 zoning fee; full plans add a published $130 plan review fee. Leesburg, Purcellville, and Middleburg issue town zoning first. A bedroom needs an emergency egress window. We put the current fees in the written estimate.',
+      },
     ],
-    relatedGuideSlugs: ['basement-egress-window-cost-eastern-panhandle-2026'],
+    relatedGuideSlugs: [
+      'basement-egress-window-cost-eastern-panhandle-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
     icon: 'Home',
   },
 

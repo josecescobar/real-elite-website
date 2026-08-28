@@ -384,6 +384,33 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
     ],
   },
 
+  'basements-leesburg-va': {
+    paragraphs: [
+      "Real Elite Contracting finishes Leesburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
+      "Inside Town limits the order is fixed. The Town's published home-improvement table treats interior or basement finish-out as Town zoning (typically without engineering review) plus a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. A bedroom needs an emergency egress window — sill height, opening size, and window-well dimensions go on the plans — and that opening is exterior work. In the H-1 Old and Historic District it also needs a Certificate of Appropriateness.",
+      "Outside Town limits, county building and zoning run through LandMARC. HOA review usually applies only if we cut a new window or door. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum; full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. Trade permits are separate. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor. We do not publish invented basement price bands.",
+      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC building set. County inspections run in published order — trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+    ],
+  },
+
+  'basements-ashburn-va': {
+    paragraphs: [
+      "Real Elite Contracting finishes Ashburn lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. Ashburn is unincorporated Loudoun County, not a town. Building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
+      "Every finished basement needs a Loudoun County building and zoning application, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. A bedroom needs an emergency egress window; that opening is exterior work.",
+      "A county permit is not HOA approval. We file the association packet in parallel when we cut a new window or door. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands needs Modifications Subcommittee written consent before visible exterior work; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet — we do not invent approved-color lists. Moisture comes first. We do not publish invented basement price bands or claim a pipeline of finished Ashburn lower levels we cannot show.",
+      "What you get is the paperwork product: Typical vs full plans, which association reviews the lot, and the LandMARC set plus the ARC packet when egress is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+    ],
+  },
+
+  'basements-loudoun-county-va': {
+    paragraphs: [
+      "Real Elite Contracting finishes Loudoun County lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg.",
+      "Every finished basement needs a Loudoun County building and zoning application, plus trade permits when electrical, plumbing, mechanical, or gas is in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. Leesburg, Purcellville, and Middleburg issue town zoning first — the county will not release the building permit without it. A bedroom needs an emergency egress window.",
+      "A county permit is not HOA approval. An egress cut is exterior work: HOA review in master-planned communities, and a Certificate of Appropriateness in Old Town Leesburg or the Middleburg Historic District. Moisture comes first. We do not publish invented basement price bands or treat wine cellars and media rooms as the typical Loudoun brief.",
+      "What you get is the paperwork product: Typical vs full plans, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+    ],
+  },
+
   // ── BASEMENTS ────────────────────────────────────────────────────────────
 
   'basements-frederick-md': {
@@ -658,10 +685,10 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
   // ── BASEMENTS · MIDDLEBURG, VA ───────────────────────────────────────────
   'basements-middleburg-va': {
     paragraphs: [
-      "Real Elite Contracting finishes selected Middleburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. A Middleburg mailing address is not Town limits. We check the parcel before we file.",
-      "Framing, electrical, plumbing, and mechanical all need Loudoun County permits and inspections. Inside Town, work that needs a county building permit also needs a Town Zoning Location Permit first. A bedroom in the lower level needs a legal egress opening; that opening is exterior work and, in the Historic District, needs a Certificate of Appropriateness.",
-      "Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor. We do not publish invented $120,000–$350,000 bands or treat wine cellars, tasting rooms, and gun rooms as the typical Middleburg brief.",
-      "Named project lead, inspector sequence coordinated so trades do not wait on each other, written workmanship warranty.",
+      "Real Elite Contracting finishes selected Middleburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. A Middleburg mailing address is not Town limits: parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun. We check the parcel before we file.",
+      "Inside Town limits the order is fixed. Work that needs a Loudoun County building permit also needs a Town Zoning Location Permit first. County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum; full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. A bedroom needs an emergency egress window — that opening is exterior work.",
+      "If the parcel is in the Historic District, an egress opening needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor. We do not publish invented basement price bands or treat wine cellars, tasting rooms, and gun rooms as the typical Middleburg brief.",
+      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC building set. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
     ],
   },
 };
