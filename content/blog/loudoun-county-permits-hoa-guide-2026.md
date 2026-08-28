@@ -8,7 +8,7 @@ slug: "loudoun-county-permits-hoa-guide-2026"
 featuredImage: "/images/stone-facade-finished.jpg"
 category: "Service Areas"
 type: "permit-guide"
-answer: "A Loudoun County remodel runs two independent tracks: county permits through Building and Development, plus HOA architectural review for most exterior work. A county permit is not HOA approval — the county does not enforce covenants — so both should be submitted in parallel. For decks, the county Typical Deck Detail (single-level, attached, no roof, no screen, no hot tub, no gazebo, no detached structure) is published at $265 with 2-day building review and 2-day zoning review; a roofed patio, screened porch, or three-season room needs full plans at $395 with 15-day building and 10-day zoning review. For finished basements, Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, exterior wall, beam, or column; published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas ($65 minimum); full plans add a $130 plan review fee; a kitchen in the basement adds a $165 zoning fee. Leesburg, Purcellville, and Middleburg permit separately. Brambleton reviews essentially all exterior changes (Covenants Committee typically the second Monday; applications due 9:00 AM Friday ten days prior). South Riding requires written Architectural Standards approval before exterior work; staff can rubber-stamp a short list that includes roof and window replacement, not a new deck. Old Town Leesburg historic-overlay properties add a HARB layer."
+answer: "A Loudoun County remodel runs two independent tracks: county permits through Building and Development, plus HOA architectural review for most exterior work. A county permit is not HOA approval — the county does not enforce covenants — so both should be submitted in parallel. For decks, the county Typical Deck Detail (single-level, attached, no roof, no screen, no hot tub, no gazebo, no detached structure) is published at $265 with 2-day building review and 2-day zoning review; a roofed patio, screened porch, or three-season room needs full plans at $395 with 15-day building and 10-day zoning review. For finished basements, Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, exterior wall, beam, or column; published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas ($65 minimum); full plans add a $130 plan review fee; a kitchen in the basement adds a $165 zoning fee. For additions, Loudoun publishes $395 at or under 1,000 sq ft (building + plan review + county zoning); over 1,000 sq ft the building fee is 1% of construction cost plus a $335 plan review fee plus county zoning; a screened porch is a residential addition, not a Typical Deck. Leesburg, Purcellville, and Middleburg permit separately. Brambleton reviews essentially all exterior changes (Covenants Committee typically the second Monday; applications due 9:00 AM Friday ten days prior). South Riding requires written Architectural Standards approval before exterior work; staff can rubber-stamp a short list that includes roof and window replacement, not a new deck. Old Town Leesburg historic-overlay properties add a HARB layer."
 author: "Real Elite Contracting Team"
 ---
 
@@ -39,7 +39,7 @@ The county side is the more predictable layer. The Department of Building & Deve
 - **Finished basement on Typical Finished Basement Details** (no load-bearing, exterior-wall, beam, or column changes): published fee **1%** of construction cost excluding electrical, mechanical, plumbing, and gas (**$65** minimum). A kitchen in the basement adds a published **$165** zoning fee. Leesburg, Purcellville, and Middleburg submit town zoning with the county application.
 - **Finished basement with full plans**: same **1%** plus a published **$130** plan review fee.
 - **Whole-home remodel** with multiple trades touching: **4–6 weeks** for the comprehensive permit package.
-- **Home addition**: building + plumbing + mechanical + electrical, plus zoning review if the footprint changes. **5–8 weeks** is typical; complex sites push longer.
+- **Home addition** (Loudoun publishes a screened porch as a residential addition): plat with setbacks plus a comprehensive structural plan. Published county fee **$395** at or under 1,000 sq ft (building + plan review + county zoning). Over 1,000 sq ft: **1%** of construction cost plus a **$335** plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg submit town zoning with the county application. A bedroom added on well and septic needs Health Department approval first. The county does not publish a review-day target for additions — we put the current window in the written estimate.
 
 ### Inspections you'll see
 
@@ -72,6 +72,18 @@ Loudoun publishes the same two-path idea for lower levels on the [Finished Basem
 A kitchen in the basement needs a zoning permit and adds a published **$165** zoning fee. Trade permits (electrical, plumbing, mechanical, gas) are separate. Incorporated towns submit an approved town zoning permit with the county application. A bedroom needs an emergency egress window — sill height, opening size, and window-well dimensions go on the plans.
 
 County inspections are published in order: trade rough-ins before building framing, insulation before cover, then finals. The approved Typical packet or plan set must be on the job or the inspector will not perform the inspection.
+
+### Residential additions vs alterations
+
+Loudoun's [Residential Additions and Alterations](https://www.loudoun.gov/5387/Residential-Additions-and-Alterations) page draws a hard line. An **addition** adds square footage. An **alteration** changes the use of existing square footage. A screened porch is published as a residential addition — it is not a Typical Deck.
+
+| Path | What qualifies | Published fee |
+|---|---|---|
+| Addition ≤ 1,000 sq ft | Adds square footage at or under 1,000 sq ft | **$395** (building + plan review + county zoning bundled) |
+| Addition > 1,000 sq ft | Adds more than 1,000 sq ft | **1%** of construction cost + **$335** plan review + county zoning |
+| Alteration (any size) | Changes use of existing square footage | **1%** of construction cost + **$130** plan review |
+
+The application needs a plat (house, addition, distances to the sides and rear) and a comprehensive structural plan. Incorporated towns submit an approved town zoning permit with the county application. A bedroom added on well and septic needs Health Department approval first. County inspections for additions: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals.
 
 ### When you need a structural engineer
 

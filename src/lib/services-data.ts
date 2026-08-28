@@ -904,7 +904,13 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         answer:
           'That\'s the goal on every project. We match rooflines, siding, trim profiles, and interior finishes carefully. Matching can never be 100% on older homes (material weathering, discontinued products), but we get it as close as the materials allow.',
       },
+      {
+        question: 'Do I need a permit for a home addition in Loudoun County?',
+        answer:
+          'Yes. Loudoun requires a building and zoning application, a plat with setbacks, and a comprehensive structural plan. Screened porches are published as residential additions, not Typical Deck jobs. Published county fees are $395 at or under 1,000 square feet (building, plan review, and county zoning bundled). Over 1,000 square feet the building fee is 1% of construction cost plus a $335 plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg issue town zoning first. A bedroom added on well and septic needs Health Department approval before the county application. We put the current fees in the written estimate.',
+      },
     ],
+    relatedGuideSlugs: ['loudoun-county-permits-hoa-guide-2026'],
   },
 
   'exterior-repairs': {

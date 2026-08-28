@@ -42,6 +42,7 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
   kitchens: 'kitchen',
   basements: 'basement',
   remodeling: 'whole-home',
+  additions: 'addition',
 };
 
 // ─── Static Params ────────────────────────────────────────────────────────────

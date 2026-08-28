@@ -15,6 +15,7 @@ export const FEATURED_SERVICE_SLUGS = [
   'bathrooms',
   'kitchens',
   'basements',
+  'additions',
 ] as const;
 export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
 
@@ -28,10 +29,8 @@ export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
  * localized content also being written.
  *
  * Coverage is PARTIAL across the matrix: roofing / decks / remodeling /
- * siding ship combos for all six cities; bathrooms / kitchens / basements
- * only render where the matching CONTENT entry exists (premium remodels
- * are positioned only in the markets where they're the lead service per
- * CITY_DATA.marketEmphasis in constants.ts). generateStaticParams below
+ * siding ship combos for all six cities; bathrooms / kitchens / basements /
+ * additions only render where the matching CONTENT entry exists. generateStaticParams
  * derives the actual list from CONTENT keys so half-built combos never
  * ship as 404s.
  */
@@ -689,6 +688,44 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Inside Town limits the order is fixed. Work that needs a Loudoun County building permit also needs a Town Zoning Location Permit first. County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum; full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. A bedroom needs an emergency egress window — that opening is exterior work.",
       "If the parcel is in the Historic District, an egress opening needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor. We do not publish invented basement price bands or treat wine cellars, tasting rooms, and gun rooms as the typical Middleburg brief.",
       "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC building set. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+    ],
+  },
+
+  // ── ADDITIONS · LOUDOUN ───────────────────────────────────────────────────
+
+  'additions-leesburg-va': {
+    paragraphs: [
+      "Real Elite Contracting builds Leesburg additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
+      "Inside Town limits the order is fixed. The Town's published home-improvement table treats home additions and expansions as Town zoning plus engineering review, then a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. The county set needs a plat (house, addition location, distances to the sides and rear) and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Trade permits are separate. If the addition adds a bedroom on well and septic, Health Department approval comes before the county application.",
+      "If the parcel is in the H-1 Old and Historic District, the addition needs a Certificate of Appropriateness. Outside Town limits, county building and zoning run through LandMARC. A county permit is not HOA approval — we file the association packet in parallel. Environmentally sensitive lots and conservation easements can add review; we check those before we lock the design. We do not publish invented addition price bands or a completed Leesburg project count we cannot show.",
+      "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC addition set. County inspections for additions: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+    ],
+  },
+
+  'additions-ashburn-va': {
+    paragraphs: [
+      "Real Elite Contracting builds Ashburn additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. Ashburn is unincorporated Loudoun County, not a town. Building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
+      "Every addition needs a Loudoun County building and zoning application, a plat showing the house, the addition, and setbacks, and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Trade permits (electrical, plumbing, mechanical, gas) are separate. Gas permits for residential additions have required plan review since October 1, 2025.",
+      "A county permit is not HOA approval. We file the association packet in parallel. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands Declaration 7.5 requires Modifications Subcommittee written consent before an exterior addition; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet — we do not invent approved-color lists. We do not publish invented addition price bands or claim a pipeline of finished Ashburn additions we cannot show.",
+      "What you get is the paperwork product: the published fee path, which association reviews the lot, and the LandMARC set plus the ARC packet. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+    ],
+  },
+
+  'additions-loudoun-county-va': {
+    paragraphs: [
+      "Real Elite Contracting builds Loudoun County additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. The county publishes a screened porch as a residential addition, not a Typical Deck. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg.",
+      "Every addition needs a Loudoun County building and zoning application, a plat with setbacks, and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg issue town zoning first — the county will not release the building permit without it. If the addition adds a bedroom on well and septic, Health Department approval comes before the county application. Conservation easements are more common in western Loudoun; we check the parcel before we lock the design.",
+      "A county permit is not HOA approval. An addition is exterior work: HOA review in master-planned communities, and a Certificate of Appropriateness in Old Town Leesburg or the Middleburg Historic District. We do not publish invented addition price bands or treat wine cellars and media wings as the typical Loudoun brief.",
+      "What you get is the paperwork product: the published fee path, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+    ],
+  },
+
+  'additions-middleburg-va': {
+    paragraphs: [
+      "Real Elite Contracting builds selected Middleburg additions — a bump-out, a single room, or a screened porch when the lot and the architecture allow it. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. A Middleburg mailing address is not Town limits: parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun. We check the parcel before we file.",
+      "Inside Town limits the order is fixed. An addition needs a Town Zoning Location Permit first, then the Loudoun County building permit. The county set needs a plat (house, addition, setbacks) and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Town zoning has its own fee — we put the current Town amount in the written estimate. If the addition adds a bedroom on well and septic, Health Department approval comes first. Conservation easements can limit what the lot will take.",
+      "If the parcel is in the Historic District, the addition needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA. We do not publish invented addition price bands or treat tasting rooms, wine cellars, and gun rooms as the typical Middleburg brief.",
+      "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC addition set. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
     ],
   },
 };
