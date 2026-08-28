@@ -723,7 +723,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'Do I need a permit for a deck?',
         answer:
-          "Usually yes — decks above a certain height or square footage typically require a building permit in WV, MD, and VA. We handle the permitting and inspection coordination as part of the project.",
+          "Yes in the markets we publish. Loudoun County requires a building permit and a zoning permit on every deck. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen needs full plans at $395. Leesburg, Purcellville, and Middleburg issue town zoning first. Frederick County MD requires a permit for a new or replacement deck (City of Frederick and Mt. Airy permit separately). The City of Hagerstown lists decks as a permitted structure. We tell you which office files the job and put the published fee in the written estimate.",
       },
       {
         question: 'How long does it take to build a deck?',

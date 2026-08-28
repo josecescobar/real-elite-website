@@ -349,20 +349,20 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'leesburg-va': {
     description:
-      "Leesburg is the historic county seat of Loudoun County, Virginia — one of the wealthiest counties in the United States and one of the fastest-growing. Its walkable, brick-lined historic downtown along King Street, its proximity to Dulles International Airport, and its stunning setting in the Loudoun Valley make it one of Northern Virginia's most desirable addresses. From estate homes in Lansdowne on the Potomac to restored historic properties in the Old Town district, Leesburg homeowners demand premium craftsmanship. Real Elite Contracting delivers it.",
-    neighborhoods: ['Historic Old Town Leesburg', 'Lansdowne on the Potomac', 'Cascades', 'Countryside', 'River Creek'],
+      "Leesburg is Loudoun County's seat — Town limits around Old Town and the western approach from Route 7 and Route 9, plus Leesburg-address neighborhoods that sit in unincorporated county (Lansdowne, River Creek). A Leesburg mailing address is not automatically Town zoning. We lead here with decks and outdoor living, then kitchens, baths, and additions, and we file Town zoning before the county building permit when the parcel is inside Town. Real Elite Contracting works western Leesburg first from Martinsburg.",
+    neighborhoods: ['Historic Old Town Leesburg', 'West of Route 15', 'Lansdowne on the Potomac', 'River Creek'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
   },
   'ashburn-va': {
     description:
-      "Ashburn is at the heart of Loudoun County's explosive growth — a master-planned tech corridor and residential powerhouse housing thousands of data centers alongside growing young families. Communities like Broadlands, Brambleton, One Loudoun, and Ashburn Farm offer modern homes in well-maintained neighborhoods where curb appeal and property values are taken seriously. With the Silver Line Metro now connecting Ashburn directly to Washington, D.C., this market only continues to appreciate. Real Elite Contracting is Ashburn's trusted partner for premium decks, outdoor living, kitchens, and bathroom remodels.",
-    neighborhoods: ['One Loudoun', 'Broadlands', 'Brambleton', 'Ashburn Farm', 'Loudoun Valley Estates', 'Belmont Greene'],
+      "Ashburn is unincorporated Loudoun County — county building and zoning through LandMARC, plus HOA architectural review in nearly every master-planned community. We lead here with decks and outdoor living, then kitchens, baths, and additions. A county permit is not HOA approval; we file both tracks in parallel. Real Elite Contracting works Brambleton, Broadlands, Ashburn Farm, and One Loudoun from Martinsburg.",
+    neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
   },
   'loudoun-county-va': {
     description:
-      "Loudoun County is one of the wealthiest and fastest-growing counties in the United States — home to Leesburg, Ashburn, Sterling, Purcellville, and a network of master-planned communities reshaping Northern Virginia. From estate properties in horse country west of Route 15 to data-center-adjacent neighborhoods along the Silver Line Metro corridor, Loudoun homeowners share an expectation of premium craftsmanship and clean execution. Real Elite Contracting brings veteran-led precision and high-end remodeling to Loudoun County — luxury decks and outdoor living, custom kitchens, premium bathrooms, and full home transformations done to the standard this market expects.",
-    neighborhoods: ['Leesburg', 'Ashburn', 'Lansdowne', 'Brambleton', 'One Loudoun', 'Cascades', 'Purcellville', 'Sterling'],
+      "Loudoun County decks run two tracks: county building and zoning through LandMARC, plus HOA review in most master-planned communities. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen drops you onto full plans at $395. Leesburg, Purcellville, and Middleburg permit separately. We lead the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then kitchens, baths, and additions. A county permit is not HOA approval. Real Elite Contracting works Loudoun from Martinsburg.",
+    neighborhoods: ['Purcellville', 'Leesburg', 'Middleburg', 'Ashburn', 'Brambleton', 'Lansdowne'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
   },
 
@@ -419,9 +419,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'middleburg-va': {
     description:
-      "Middleburg is the historic anchor of Virginia's hunt country — a Loudoun County village whose stone Main Street and surrounding equestrian estates form one of the most distinctive luxury markets in the Mid-Atlantic. Middleburg interior renovations are some of the most architecturally significant projects in our service area: stone-and-timber kitchens designed around catering and entertaining, primary suites in genuine historic envelopes, finished lower levels in estate homes that include tasting rooms, gun rooms, and guest wings. The brief here is restraint, period sensitivity, and craft. Real Elite Contracting brings all three.",
-    neighborhoods: ['Historic Middleburg Village', 'Main Street corridor', 'Goose Creek Estate area', 'Foxcroft Road area', 'Atoka Road area', 'Halfway hunt country'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+      "Middleburg is an incorporated Loudoun town. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). We lead here with decks and outdoor living, then additions, kitchens, and baths, and we work selected Middleburg from Martinsburg.",
+    neighborhoods: ['Historic District', 'Main Street', 'Atoka Road', 'Foxcroft Road', 'Goose Creek'],
+    marketEmphasis: ['decks', 'additions', 'kitchens', 'bathrooms', 'remodeling'],
   },
 };
 
