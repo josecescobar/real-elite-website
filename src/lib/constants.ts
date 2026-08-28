@@ -18,7 +18,11 @@ export const BUSINESS = {
   phoneRaw: '+16815345515',
   email: 'info@realelitecontracting.com',
   address: {
-    street: '123 Charlotte Ct',
+    /**
+     * HQ street is also the home address. Never publish it on the site,
+     * in schema, or in llms.txt. Treat this as a service-area business.
+     */
+    street: null as string | null,
     city: 'Martinsburg',
     state: 'WV',
     zip: '25405',

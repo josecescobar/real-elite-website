@@ -33,7 +33,6 @@ export default function ServiceSchema({
       telephone: BUSINESS.phoneRaw,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: BUSINESS.address.street,
         addressLocality: BUSINESS.address.city,
         addressRegion: BUSINESS.address.state,
         postalCode: BUSINESS.address.zip,

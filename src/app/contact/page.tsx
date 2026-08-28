@@ -62,7 +62,7 @@ const CONTACT_BLOCKS = [
   {
     icon: MapPin,
     label: 'Location',
-    primary: `${BUSINESS.address.street}, ${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`,
+    primary: `${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`,
     sub: `Serving ${BUSINESS.address.region} + WV/MD/VA`,
   },
   {
