@@ -18,10 +18,10 @@ export const BUSINESS = {
   phoneRaw: '+16815345515',
   email: 'info@realelitecontracting.com',
   address: {
-    street: 'Martinsburg',
+    street: '123 Charlotte Ct',
     city: 'Martinsburg',
     state: 'WV',
-    zip: '25401',
+    zip: '25405',
     region: 'Eastern Panhandle, WV',
   },
   url: 'https://www.realelitecontracting.com',

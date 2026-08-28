@@ -43,7 +43,10 @@ export const metadata: Metadata = {
 const SNAPSHOT = [
   { label: 'Legal Name', value: 'Real Elite Contracting LLC' },
   { label: 'Established', value: 'West Virginia LLC · Veteran-Owned' },
-  { label: 'HQ', value: 'Martinsburg, WV 25401' },
+  {
+    label: 'HQ',
+    value: `${BUSINESS.address.street}, ${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`,
+  },
   { label: 'Service Region', value: 'WV · MD · VA Tri-State' },
   { label: 'Business Type', value: 'Veteran-Owned Small Business' },
   { label: 'SDVOSB Status', value: 'VetCert Application In Progress' },
@@ -162,6 +165,7 @@ export default function CapabilityStatementPage() {
           email: BUSINESS.email,
           address: {
             '@type': 'PostalAddress',
+            streetAddress: BUSINESS.address.street,
             addressLocality: BUSINESS.address.city,
             addressRegion: BUSINESS.address.state,
             postalCode: BUSINESS.address.zip,
@@ -426,7 +430,8 @@ export default function CapabilityStatementPage() {
                 <div className="flex items-center gap-3 text-charcoal-300">
                   <MapPin className="w-4 h-4 flex-shrink-0" />
                   <span className="text-sm">
-                    {BUSINESS.address.city}, {BUSINESS.address.state} {BUSINESS.address.zip}
+                    {BUSINESS.address.street}, {BUSINESS.address.city}, {BUSINESS.address.state}{' '}
+                    {BUSINESS.address.zip}
                   </span>
                 </div>
               </div>
