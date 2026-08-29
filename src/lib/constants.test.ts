@@ -97,4 +97,11 @@ describe('BUSINESS', () => {
     expect(BUSINESS.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
     expect(BUSINESS.phoneRaw).toMatch(/^\+?\d+$/);
   });
+
+  it('publishes city and ZIP 25405 and omits the HQ street', () => {
+    expect(BUSINESS.address.city).toBe('Martinsburg');
+    expect(BUSINESS.address.state).toBe('WV');
+    expect(BUSINESS.address.zip).toBe('25405');
+    expect(BUSINESS.address.street).toBeNull();
+  });
 });
