@@ -69,12 +69,12 @@ const COMPETENCIES = [
   {
     title: 'Roofing & Exterior Envelope',
     body:
-      'Architectural shingle replacement, full tear-offs, valley flashing, ice-and-water shield, ridge venting, soffit / fascia, gutter systems. GAF Master Elite track. Manufacturer warranties registered on behalf of the owner.',
+      'Architectural shingle replacement, full tear-offs, valley flashing, ice-and-water shield, ridge venting, soffit / fascia, gutter systems. We install GAF and Owens Corning when the job calls for them; we do not advertise a Master Elite, Pro, or Platinum badge we do not hold. Manufacturer warranties registered on behalf of the owner.',
   },
   {
     title: 'Siding & Facade',
     body:
-      'Vinyl, fiber cement (James Hardie experience), and stone veneer installation. Weather-resistant barrier (WRB) and air-sealing detail to current code. CertainTeed and James Hardie certification path.',
+      'Vinyl, fiber cement, and stone veneer installation when the job calls for them. Weather-resistant barrier (WRB) and air-sealing detail to current code. We do not advertise a James Hardie or CertainTeed certification we do not hold.',
   },
   {
     title: 'Interior Remodeling',
@@ -125,17 +125,17 @@ const PAST_PERFORMANCE = [
   {
     market: 'Eastern Panhandle WV',
     scope: 'Full exterior renovations (roof + siding + deck) for residential homeowners across Martinsburg, Inwood, Charles Town, Hedgesville, and Shepherdstown',
-    detail: '200+ projects completed across the home market. Representative project documentation available on request under NDA.',
+    detail: 'Home-market work across Martinsburg, Inwood, Charles Town, Hedgesville, and Shepherdstown. We do not publish an invented completed-project count.',
   },
   {
     market: 'Frederick County MD',
     scope: 'Bathroom, kitchen, and basement remodels along the I-70 growth corridor (Frederick, Urbana, Jefferson, New Market)',
-    detail: 'Premium tier work ($30K–$90K project range) for homeowners in the Maryland Mid-Atlantic corridor.',
+    detail: 'Bathroom, kitchen, and basement work along the I-70 corridor. Line items go in the written estimate — we do not publish invented price bands here.',
   },
   {
     market: 'Loudoun County VA',
-    scope: 'Premium decks, outdoor living, and full home additions in Leesburg, Ashburn, Brambleton, Lansdowne, and Cascades',
-    detail: 'High-spec work for one of the highest-income counties in the United States. HOA-submission discipline.',
+    scope: 'Decks, outdoor living, and additions in Loudoun — western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg)',
+    detail: 'County Typical Deck and Typical Finished Basement paths, town zoning first in Leesburg / Purcellville / Middleburg, HOA packets in parallel. We do not invent a completed Loudoun project count.',
   },
 ];
 
