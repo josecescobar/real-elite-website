@@ -8,7 +8,7 @@ slug: "loudoun-county-permits-hoa-guide-2026"
 featuredImage: "/images/stone-facade-finished.jpg"
 category: "Service Areas"
 type: "permit-guide"
-answer: "A Loudoun County remodel runs a dual-approval gauntlet: county permits through the Department of Building and Development (2-4 weeks of plan review for most permits) plus HOA architectural review through the community ARC (2-6 weeks), which nearly every master-planned community like Brambleton, Lansdowne, and One Loudoun requires for exterior changes. Both layers apply to most substantive remodels (a wall-opening kitchen, plumbing-relocating bathroom, any meaningful deck, additions, siding, or window replacements), while purely interior cosmetic work usually skips both. Because the county does not require HOA approval to process a permit, the two tracks run independently and should be submitted in parallel, which takes about 5 weeks total instead of 7-plus when done sequentially, and Old Town Leesburg historic-overlay properties add a third HARB layer that pushes pre-construction to 8 weeks."
+answer: "A Loudoun County remodel runs two independent tracks: county permits through Building and Development, plus HOA architectural review for most exterior work. A county permit is not HOA approval — the county does not enforce covenants — so both should be submitted in parallel. For decks, the county Typical Deck Detail (single-level, attached, no roof, no screen, no hot tub, no gazebo, no detached structure) is published at $265 with 2-day building review and 2-day zoning review; a roofed patio, screened porch, or three-season room needs full plans at $395 with 15-day building and 10-day zoning review. For finished basements, Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, exterior wall, beam, or column; published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas ($65 minimum); full plans add a $130 plan review fee; a kitchen in the basement adds a $165 zoning fee. For additions, Loudoun publishes $395 at or under 1,000 sq ft (building + plan review + county zoning); over 1,000 sq ft the building fee is 1% of construction cost plus a $335 plan review fee plus county zoning; a screened porch is a residential addition, not a Typical Deck. Leesburg, Purcellville, and Middleburg permit separately. Brambleton reviews essentially all exterior changes (Covenants Committee typically the second Monday; applications due 9:00 AM Friday ten days prior). South Riding requires written Architectural Standards approval before exterior work; staff can rubber-stamp a short list that includes roof and window replacement, not a new deck. Old Town Leesburg historic-overlay properties add a HARB layer."
 author: "Real Elite Contracting Team"
 ---
 
@@ -34,15 +34,56 @@ The county side is the more predictable layer. The Department of Building & Deve
 - **Bathroom remodel** with plumbing relocation: building + plumbing + electrical permits, **2–3 weeks** for plan review.
 - **Kitchen remodel** with no wall changes: building + plumbing + electrical, **2–3 weeks**.
 - **Kitchen remodel** that opens a load-bearing wall: above, plus structural-engineering-stamped drawings, **3–5 weeks**.
-- **Deck** of any size (in Loudoun, decks over 30 inches at any point require a permit): **2–3 weeks**.
+- **Deck on Typical Deck Detail** (single-level, attached, no roof, no screen, no hot tub, no gazebo, no detached structure): published county fee **$265**; building review **2 days**; zoning review **2 days**; intake completeness **2–5 business days**. Every Loudoun County deck still needs both a building permit and a zoning permit.
+- **Roofed patio, screened porch, or three-season room** (drops out of Typical): published fee **$395**; building review **15 days**; zoning review **10 days**. Leesburg, Purcellville, and Middleburg permit separately from the county.
+- **Finished basement on Typical Finished Basement Details** (no load-bearing, exterior-wall, beam, or column changes): published fee **1%** of construction cost excluding electrical, mechanical, plumbing, and gas (**$65** minimum). A kitchen in the basement adds a published **$165** zoning fee. Leesburg, Purcellville, and Middleburg submit town zoning with the county application.
+- **Finished basement with full plans**: same **1%** plus a published **$130** plan review fee.
 - **Whole-home remodel** with multiple trades touching: **4–6 weeks** for the comprehensive permit package.
-- **Home addition**: building + plumbing + mechanical + electrical, plus zoning review if the footprint changes. **5–8 weeks** is typical; complex sites push longer.
+- **Home addition** (Loudoun publishes a screened porch as a residential addition): plat with setbacks plus a comprehensive structural plan. Published county fee **$395** at or under 1,000 sq ft (building + plan review + county zoning). Over 1,000 sq ft: **1%** of construction cost plus a **$335** plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg submit town zoning with the county application. A bedroom added on well and septic needs Health Department approval first. The county does not publish a review-day target for additions — we put the current window in the written estimate.
 
 ### Inspections you'll see
 
 The Loudoun inspection sequence is rigorous and the order matters. For a typical full bathroom remodel: rough-in plumbing → rough-in electrical → insulation → drywall → final. For a deck: pier/footing inspection (before concrete pour) → framing inspection (before decking) → final. Skipping or rescheduling one out of order can stall a project for a week.
 
 A good contractor coordinates the inspection sequence so the trades don't lose days waiting on each other. That's part of what you're paying for.
+
+### Typical Deck Detail vs full plans
+
+This is the schedule wedge most Loudoun deck pages skip. [Loudoun's deck page](https://www.loudoun.gov/1166/Decks) and the [Residential Permits Processing Dashboard](https://www.loudoun.gov/6084/Residential-Permits-Processing-Dashboard) publish two paths. [Fee schedules](https://www.loudoun.gov/5126/Fee-Schedules) publish the dollars.
+
+| Path | What qualifies | Published fee | Building review | Zoning review |
+|---|---|---|---|---|
+| Typical Deck Detail | Single-level, residential, attached; **no** roof, screen, hot tub, gazebo, or detached structure | **$265** | **2 days** | **2 days** |
+| Custom / full structural plans | Roofed patio, screened porch, three-season room, multi-level, or anything Typical excludes | **$395** | **15 days** | **10 days** |
+
+Intake completeness is 2–5 business days on Typical and up to 10 on custom. Those review days are county targets, not a contractor promise — but they are the official published targets. A contractor quoting "$800–$1,500" for a Loudoun deck permit is not quoting the county schedule.
+
+Applies outside the incorporated towns. **Leesburg, Purcellville, and Middleburg permit separately.**
+
+### Typical Finished Basement vs full plans
+
+Loudoun publishes the same two-path idea for lower levels on the [Finished Basements](https://www.loudoun.gov/1172/Finished-Basements) page.
+
+| Path | What qualifies | Published fee |
+|---|---|---|
+| Typical Finished Basement Details | Residential finish that does **not** alter a load-bearing wall, exterior wall, beam, or column / post | **1%** of construction cost excluding electrical, mechanical, plumbing, and gas; **$65** minimum |
+| Full plans | Load-bearing, exterior-wall, beam, or column changes | Same **1%** plus a **$130** plan review fee |
+
+A kitchen in the basement needs a zoning permit and adds a published **$165** zoning fee. Trade permits (electrical, plumbing, mechanical, gas) are separate. Incorporated towns submit an approved town zoning permit with the county application. A bedroom needs an emergency egress window — sill height, opening size, and window-well dimensions go on the plans.
+
+County inspections are published in order: trade rough-ins before building framing, insulation before cover, then finals. The approved Typical packet or plan set must be on the job or the inspector will not perform the inspection.
+
+### Residential additions vs alterations
+
+Loudoun's [Residential Additions and Alterations](https://www.loudoun.gov/5387/Residential-Additions-and-Alterations) page draws a hard line. An **addition** adds square footage. An **alteration** changes the use of existing square footage. A screened porch is published as a residential addition — it is not a Typical Deck.
+
+| Path | What qualifies | Published fee |
+|---|---|---|
+| Addition ≤ 1,000 sq ft | Adds square footage at or under 1,000 sq ft | **$395** (building + plan review + county zoning bundled) |
+| Addition > 1,000 sq ft | Adds more than 1,000 sq ft | **1%** of construction cost + **$335** plan review + county zoning |
+| Alteration (any size) | Changes use of existing square footage | **1%** of construction cost + **$130** plan review |
+
+The application needs a plat (house, addition, distances to the sides and rear) and a comprehensive structural plan. Incorporated towns submit an approved town zoning permit with the county application. A bedroom added on well and septic needs Health Department approval first. County inspections for additions: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals.
 
 ### When you need a structural engineer
 
@@ -56,11 +97,13 @@ This is the layer that catches Loudoun homeowners off guard. Nearly every master
 
 These are the ARCs we work with most often. Each has its own submission process, its own approved-materials list, and its own meeting cadence:
 
-- **Brambleton** — One of the largest and most active ARCs in Loudoun. Reviews all exterior changes including roofing color, siding material, paint, deck materials and railing styles, windows, doors, fences, landscaping changes, and exterior lighting. ARC meets monthly; submissions are due roughly two weeks before the meeting.
+- **Brambleton** — Official design review covers essentially all exterior changes, permanent or temporary, including color/material changes and removals ([Brambleton Design Review](https://brambletonhoa.com/252/Design-Review)). The Covenants Committee typically meets the second Monday of the month; applications are due 9:00 AM Friday, ten days prior; decision letters usually follow 5–7 business days after the meeting.
+
+- **South Riding** — Written Architectural Standards approval is required before additions, alterations, or grade changes. A county permit is not HOA approval. After-the-fact filings carry a published $50 assessment. Staff can rubber-stamp a short list that includes **window replacement and roof replacement**; a new deck is not on that list ([South Riding Exterior Modification](https://www.southriding.net/resident-services/application-for-exterior-modification/)).
 
 - **Lansdowne on the Potomac** — Strict on exterior aesthetics given the premium positioning of the community. Architectural details, materials, and colors all reviewed against a published design standards manual. Sometimes requires Architectural Subcommittee pre-review before full ARC submission.
 
-- **One Loudoun** — Mixed-use community with both residential and commercial review boards. Residential exterior work goes through the residential ARC. Color palettes are tighter than in older Loudoun communities.
+- **One Loudoun** — Mixed-use community with a residential ARC. We submit a packet when we have the current association guidelines in hand. We do not publish One Loudoun approved colors or material lists from contractor blog summaries.
 
 - **Cascades** — Long-established community with one of the more familiar review processes. Submission turnaround is typically 2–3 weeks. Standards are documented but the committee is reasonable.
 

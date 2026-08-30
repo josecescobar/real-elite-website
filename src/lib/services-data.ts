@@ -373,8 +373,16 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         answer:
           "Yes — proper rim joist insulation, perimeter wall insulation, and an HVAC extension (or independent zone, depending on your system) keep finished basements comfortable year-round. We don't cut corners on insulation.",
       },
+      {
+        question: 'Do I need a permit to finish a basement in Loudoun County?',
+        answer:
+          'Yes. Loudoun requires a building and zoning application for architectural and structural work, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Typical Finished Basement Details can stand in for custom drawings unless you alter a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum; a kitchen in the basement adds a published $165 zoning fee; full plans add a published $130 plan review fee. Leesburg, Purcellville, and Middleburg issue town zoning first. A bedroom needs an emergency egress window. We put the current fees in the written estimate.',
+      },
     ],
-    relatedGuideSlugs: ['basement-egress-window-cost-eastern-panhandle-2026'],
+    relatedGuideSlugs: [
+      'basement-egress-window-cost-eastern-panhandle-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
     icon: 'Home',
   },
 
@@ -723,7 +731,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'Do I need a permit for a deck?',
         answer:
-          "Usually yes — decks above a certain height or square footage typically require a building permit in WV, MD, and VA. We handle the permitting and inspection coordination as part of the project.",
+          "Yes in the markets we publish. Loudoun County requires a building permit and a zoning permit on every deck. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen needs full plans at $395. Leesburg, Purcellville, and Middleburg issue town zoning first. Frederick County MD requires a permit for a new or replacement deck (City of Frederick and Mt. Airy permit separately). The City of Hagerstown lists decks as a permitted structure. We tell you which office files the job and put the published fee in the written estimate.",
       },
       {
         question: 'How long does it take to build a deck?',
@@ -896,7 +904,13 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         answer:
           'That\'s the goal on every project. We match rooflines, siding, trim profiles, and interior finishes carefully. Matching can never be 100% on older homes (material weathering, discontinued products), but we get it as close as the materials allow.',
       },
+      {
+        question: 'Do I need a permit for a home addition in Loudoun County?',
+        answer:
+          'Yes. Loudoun requires a building and zoning application, a plat with setbacks, and a comprehensive structural plan. Screened porches are published as residential additions, not Typical Deck jobs. Published county fees are $395 at or under 1,000 square feet (building, plan review, and county zoning bundled). Over 1,000 square feet the building fee is 1% of construction cost plus a $335 plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg issue town zoning first. A bedroom added on well and septic needs Health Department approval before the county application. We put the current fees in the written estimate.',
+      },
     ],
+    relatedGuideSlugs: ['loudoun-county-permits-hoa-guide-2026'],
   },
 
   'exterior-repairs': {
