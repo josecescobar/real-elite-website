@@ -41,7 +41,8 @@ out fast — so a database hiccup can never block or delay a lead. Code: `src/li
      utm_medium    text,
      utm_campaign  text,
      referrer      text,
-     landing_path  text
+     landing_path  text,
+     ai_summary    text            -- see AI_GATEWAY_API_KEY in .env.example
    );
 
    -- The app writes with the service-role key (server-only), which bypasses RLS.
@@ -50,6 +51,13 @@ out fast — so a database hiccup can never block or delay a lead. Code: `src/li
 
    create index if not exists leads_ts_idx on public.leads (ts desc);
    create index if not exists leads_source_idx on public.leads (utm_source);
+   ```
+
+   Already have a `leads` table from before `ai_summary` existed? Add the column instead of
+   re-running the create statement:
+
+   ```sql
+   alter table public.leads add column if not exists ai_summary text;
    ```
 
 3. **Grab the two credentials** from Supabase → Project Settings:

@@ -4,15 +4,28 @@ import { BUSINESS } from '@/lib/constants';
 import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { buildReviewMessage, toE164 } from '@/lib/review-request';
+import { draftReviewMessage } from '@/lib/ai-review-message';
 
 /**
  * Review-request SMS — the engine behind /review-request (internal tool).
  *
- * When a job wraps, Jose enters the customer's first name + phone and
- * this endpoint texts them a thank-you with the direct Google review
- * link. Consistent review velocity is the main ranking input for the
- * Google map pack, which is where most local contractor searches
- * convert.
+ * When a job wraps, Jose enters the customer's first name + phone (and,
+ * when he has them, the job type / address) and this endpoint texts them
+ * a thank-you with the direct Google review link. Consistent review
+ * velocity is the main ranking input for the Google map pack, which is
+ * where most local contractor searches convert.
+ *
+ * The text itself is drafted by AI when possible — see ai-review-message.ts
+ * — to sound like a specific, personal note from Jose instead of a fixed
+ * template, referencing the job/address when given. That draft is
+ * validated (must contain the exact review link, must not be absurdly
+ * long) and used only if it passes; every other case (AI Gateway unset,
+ * the call failing, or a draft that fails validation) falls back to the
+ * exact same fixed `buildReviewMessage` template this route always used —
+ * this is a real outbound customer text and must never be blocked or
+ * degraded by an AI outage. Note: the /review-request tool page's preview
+ * shows that fixed template; the text actually sent may read a little
+ * warmer/more specific when AI personalization kicks in.
  *
  * Env-gated twice:
  *  - ADMIN_TOOLS_KEY must be set AND match the key sent by the tool
@@ -78,6 +91,18 @@ export async function POST(request: Request) {
       );
     }
 
+    // Optional context for the AI-personalized draft — plain, best-effort
+    // strings; absent/invalid values just mean a more generic (but still
+    // AI-warmed, or template) message. Never required to send.
+    const jobType =
+      typeof body?.jobType === 'string' && body.jobType.trim()
+        ? body.jobType.trim().slice(0, 80)
+        : undefined;
+    const address =
+      typeof body?.address === 'string' && body.address.trim()
+        ? body.address.trim().slice(0, 100)
+        : undefined;
+
     if (!TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN || !TWILIO_FROM_NUMBER) {
       return NextResponse.json(
         {
@@ -95,6 +120,14 @@ export async function POST(request: Request) {
       `${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`
     ).toString('base64');
 
+    const aiDraft = await draftReviewMessage({
+      firstName,
+      link: REVIEW_LINK,
+      jobType,
+      address,
+    });
+    const messageBody = aiDraft ?? buildReviewMessage(firstName, REVIEW_LINK);
+
     const res = await fetch(twilioUrl, {
       method: 'POST',
       headers: {
@@ -104,7 +137,7 @@ export async function POST(request: Request) {
       body: new URLSearchParams({
         From: TWILIO_FROM_NUMBER,
         To: phone,
-        Body: buildReviewMessage(firstName, REVIEW_LINK),
+        Body: messageBody,
       }).toString(),
     });
 
