@@ -91,4 +91,10 @@ export const env = {
    *  Both this and the URL must be set for the ledger to write. */
   supabaseServiceRoleKey: (): string | undefined =>
     process.env.SUPABASE_SERVICE_ROLE_KEY,
+
+  // ── Vercel AI Gateway (AI lead summary) ──────────────────────────────────
+  /** API key for the Vercel AI Gateway (ai-gateway.vercel.sh). When absent,
+   *  the AI "heads up" lead summary is skipped — the owner email/SMS/ledger
+   *  flow is completely unaffected. See src/lib/ai-lead-summary.ts. */
+  aiGatewayApiKey: (): string | undefined => process.env.AI_GATEWAY_API_KEY,
 } as const;
