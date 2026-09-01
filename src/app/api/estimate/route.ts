@@ -3,6 +3,7 @@ import { BUSINESS } from '@/lib/constants';
 import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { recordLead, inferLeadType } from '@/lib/leads';
+import { summarizeLead } from '@/lib/ai-lead-summary';
 
 const RESEND_API_KEY = env.resendApiKey();
 const TO_EMAIL = env.estimateToEmail() || 'info@realelitecontracting.com';
@@ -207,6 +208,28 @@ export async function POST(request: Request) {
         </div>`
       : '';
 
+    // AI "heads up" summary — a short plain-English blurb of what the visitor
+    // wants, for Jose/Miguel to skim before calling back. Purely additive:
+    // env-gated on AI_GATEWAY_API_KEY and never throws, so an AI outage or
+    // missing key never affects the email/SMS/ledger flow below. See
+    // src/lib/ai-lead-summary.ts.
+    const aiSummary = await summarizeLead({
+      fullName: values.fullName!,
+      service: values.service!,
+      message: values.message,
+      propertyType: values.propertyType,
+      timeline: values.timeline,
+      budgetRange: values.budgetRange,
+      zip: values.zip,
+    });
+    const aiSummaryBlock = aiSummary
+      ? `
+        <div style="margin-top: 20px; padding: 16px; background-color: #eef2ff; border-radius: 8px; border: 1px solid #c7d2fe;">
+          <h3 style="color: #1a2744; margin: 0 0 8px 0; font-size: 14px;">🤖 AI Heads-Up</h3>
+          <p style="margin: 0; color: #333; line-height: 1.6;">${escapeHtml(aiSummary)}</p>
+        </div>`
+      : '';
+
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -227,6 +250,7 @@ export async function POST(request: Request) {
             <div style="padding: 24px; background-color: #f8f9fa; border: 1px solid #e2e8f0;">
               <table style="width: 100%; border-collapse: collapse;">${rowsHtml}</table>
               ${messageBlock}
+              ${aiSummaryBlock}
             </div>
             <div style="padding: 16px; text-align: center; color: #718096; font-size: 12px;">
               <p>This estimate request was submitted via realelitecontracting.com</p>
@@ -317,6 +341,7 @@ export async function POST(request: Request) {
       timeline: values.timeline,
       propertyType: values.propertyType,
       message: values.message,
+      aiSummary: aiSummary ?? undefined,
       attribution: {
         utmSource: values.utmSource,
         utmMedium: values.utmMedium,

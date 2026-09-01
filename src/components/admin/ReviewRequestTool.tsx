@@ -23,6 +23,8 @@ export default function ReviewRequestTool() {
 
   const [firstName, setFirstName] = useState('');
   const [phone, setPhone] = useState('');
+  const [jobType, setJobType] = useState('');
+  const [address, setAddress] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -55,6 +57,8 @@ export default function ReviewRequestTool() {
           key: accessKey.trim(),
           firstName: firstName.trim(),
           phone: normalizedPhone,
+          jobType: jobType.trim() || undefined,
+          address: address.trim() || undefined,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -66,6 +70,8 @@ export default function ReviewRequestTool() {
       setResult({ ok: true, text: data?.message || 'Review request sent.' });
       setFirstName('');
       setPhone('');
+      setJobType('');
+      setAddress('');
     } catch {
       setResult({ ok: false, text: 'Network error — try again.' });
     } finally {
@@ -128,9 +134,39 @@ export default function ReviewRequestTool() {
           )}
         </div>
 
+        <div>
+          <label htmlFor="rr-job" className="block text-sm font-semibold text-navy-800 mb-2">
+            Job type <span className="font-normal text-charcoal-500">(optional)</span>
+          </label>
+          <input
+            id="rr-job"
+            type="text"
+            maxLength={80}
+            placeholder="kitchen remodel"
+            value={jobType}
+            onChange={(e) => setJobType(e.target.value)}
+            className={inputClass}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="rr-address" className="block text-sm font-semibold text-navy-800 mb-2">
+            Address / area <span className="font-normal text-charcoal-500">(optional)</span>
+          </label>
+          <input
+            id="rr-address"
+            type="text"
+            maxLength={100}
+            placeholder="Oak Street, Martinsburg"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className={inputClass}
+          />
+        </div>
+
         <div className="rounded-md bg-navy-900 text-white px-4 py-4">
           <p className="text-[0.65rem] uppercase tracking-[0.18em] font-bold text-charcoal-300 mb-2">
-            They&apos;ll receive
+            They&apos;ll receive (fallback shown — sent text may be AI-personalized)
           </p>
           <p className="text-sm leading-relaxed text-charcoal-100">
             {buildReviewMessage(previewName, BUSINESS.social.google)}

@@ -45,6 +45,9 @@ export type LeadInput = {
   propertyType?: string;
   message?: string;
   attribution?: LeadAttribution;
+  /** Optional AI-generated "heads up" blurb (see src/lib/ai-lead-summary.ts).
+   *  Omitted/undefined when the AI Gateway key isn't set or the call failed. */
+  aiSummary?: string;
 };
 
 /** How long to wait on the insert before giving up (never stall the response). */
@@ -90,6 +93,7 @@ export async function recordLead(input: LeadInput): Promise<void> {
     utm_campaign: input.attribution?.utmCampaign ?? null,
     referrer: input.attribution?.referrer ?? null,
     landing_path: input.attribution?.landingPath ?? null,
+    ai_summary: input.aiSummary ?? null,
   };
 
   try {

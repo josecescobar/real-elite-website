@@ -111,4 +111,10 @@ export const env = {
   thumbtackBusinessId: (): string | undefined => process.env.THUMBTACK_BUSINESS_ID,
   xaiApiKey: (): string | undefined => process.env.XAI_API_KEY,
   openaiApiKey: (): string | undefined => process.env.OPENAI_API_KEY,
+
+  // ── Vercel AI Gateway (AI lead summary) ──────────────────────────────────
+  /** API key for the Vercel AI Gateway (ai-gateway.vercel.sh). When absent,
+   *  the AI "heads up" lead summary is skipped — the owner email/SMS/ledger
+   *  flow is completely unaffected. See src/lib/ai-lead-summary.ts. */
+  aiGatewayApiKey: (): string | undefined => process.env.AI_GATEWAY_API_KEY,
 } as const;
