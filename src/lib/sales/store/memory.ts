@@ -1,3 +1,4 @@
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import type {
   AgentTask,
   Conversation,
@@ -33,7 +34,8 @@ function matchesQuery(lead: Lead, customer: Customer | undefined, query: string)
   return hay.includes(q);
 }
 
-export function createMemoryStore(): SalesStore {
+export function createMemoryStore(opts: { persistPath?: string | null } = {}): SalesStore {
+  const persistPath = opts.persistPath ?? null;
   const customers = new Map<string, Customer>();
   const leads = new Map<string, Lead>();
   const conversations = new Map<string, Conversation>();
@@ -43,6 +45,52 @@ export function createMemoryStore(): SalesStore {
   const opportunities = new Map<string, Opportunity>();
   const estimates = new Map<string, EstimateDraft>();
   const tasks = new Map<string, AgentTask>();
+
+  const load = () => {
+    if (!persistPath || !existsSync(persistPath)) return;
+    try {
+      const snap = JSON.parse(readFileSync(persistPath, 'utf8')) as Record<string, [string, unknown][]>;
+      const fill = <T,>(map: Map<string, T>, rows?: [string, T][]) => {
+        map.clear();
+        for (const [k, v] of rows ?? []) map.set(k, v);
+      };
+      fill(customers, snap.customers as [string, Customer][]);
+      fill(leads, snap.leads as [string, Lead][]);
+      fill(conversations, snap.conversations as [string, Conversation][]);
+      fill(messages, snap.messages as [string, Message][]);
+      fill(webhookEvents, snap.webhookEvents as [string, WebhookEvent][]);
+      fill(followups, snap.followups as [string, Followup][]);
+      fill(opportunities, snap.opportunities as [string, Opportunity][]);
+      fill(estimates, snap.estimates as [string, EstimateDraft][]);
+      fill(tasks, snap.tasks as [string, AgentTask][]);
+    } catch {
+      // Corrupt snapshot — start empty rather than crash ingest.
+    }
+  };
+
+  const persist = () => {
+    if (!persistPath) return;
+    try {
+      writeFileSync(
+        persistPath,
+        JSON.stringify({
+          customers: [...customers],
+          leads: [...leads],
+          conversations: [...conversations],
+          messages: [...messages],
+          webhookEvents: [...webhookEvents],
+          followups: [...followups],
+          opportunities: [...opportunities],
+          estimates: [...estimates],
+          tasks: [...tasks],
+        })
+      );
+    } catch (err) {
+      console.error('sales memory persist failed', err);
+    }
+  };
+
+  load();
 
   const webhookKey = (connector: string, eventId: string) => `${connector}:${eventId}`;
 
@@ -254,5 +302,17 @@ export function createMemoryStore(): SalesStore {
     },
   };
 
-  return store;
+  if (!persistPath) return store;
+
+  return new Proxy(store, {
+    get(target, prop, receiver) {
+      const value = Reflect.get(target, prop, receiver) as unknown;
+      if (typeof value !== 'function') return value;
+      return async (...args: unknown[]) => {
+        const result = await (value as (...inner: unknown[]) => Promise<unknown>).apply(target, args);
+        persist();
+        return result;
+      };
+    },
+  });
 }

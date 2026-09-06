@@ -22,15 +22,25 @@ type LeadRow = Lead & { customer?: { fullName?: string; phone?: string | null; e
 const inputClass =
   'w-full px-3 py-2 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 border-charcoal-200 text-sm';
 
-export default function SalesCommandCenter() {
+export default function SalesCommandCenter({
+  initialKey = '',
+  initialBucket = 'all',
+  initialLeads = [],
+  initialError = null,
+}: {
+  initialKey?: string;
+  initialBucket?: LeadBucket | 'all';
+  initialLeads?: LeadRow[];
+  initialError?: string | null;
+}) {
   const savedKey = useSyncExternalStore(noopSubscribe, readSavedKey, () => null);
-  const [typedKey, setTypedKey] = useState<string | null>(null);
-  const accessKey = typedKey ?? savedKey ?? '';
-  const [bucket, setBucket] = useState<LeadBucket | 'all'>('all');
-  const [leads, setLeads] = useState<LeadRow[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [draft, setDraft] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [typedKey, setTypedKey] = useState<string | null>(initialKey || null);
+  const accessKey = typedKey ?? savedKey ?? initialKey ?? '';
+  const [bucket, setBucket] = useState<LeadBucket | 'all'>(initialBucket);
+  const [leads, setLeads] = useState<LeadRow[]>(initialLeads);
+  const [selectedId, setSelectedId] = useState<string | null>(initialLeads[0]?.id ?? null);
+  const [draft, setDraft] = useState(initialLeads[0]?.draftReply ?? '');
+  const [error, setError] = useState<string | null>(initialError);
   const [notice, setNotice] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -84,20 +94,19 @@ export default function SalesCommandCenter() {
   return (
     <div className="space-y-6">
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          void loadLeads();
-        }}
+        method="GET"
+        action="/sales"
         className="bg-white rounded-lg shadow-card-elevated p-5 grid gap-3 sm:grid-cols-[1fr_auto]"
       >
         <input
           type="password"
+          name="key"
           className={inputClass}
           placeholder="Access key"
-          value={accessKey}
-          onChange={(e) => setTypedKey(e.target.value)}
+          defaultValue={accessKey}
           autoComplete="off"
         />
+        <input type="hidden" name="bucket" value={bucket} />
         <button
           type="submit"
           className="px-5 py-2 rounded-md bg-navy-800 text-white text-sm font-semibold hover:bg-navy-700"
