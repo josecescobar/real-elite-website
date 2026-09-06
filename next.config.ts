@@ -19,7 +19,9 @@ import type { NextConfig } from 'next';
  */
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live",
+  // 'unsafe-eval' is development-only: React Refresh / React DevTools need
+  // eval() under next dev. Production builds never include it.
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://vercel.live",
   "font-src 'self' data:",

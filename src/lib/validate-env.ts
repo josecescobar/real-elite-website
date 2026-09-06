@@ -81,4 +81,25 @@ export function validateEnv(): void {
         'and UPSTASH_REDIS_REST_TOKEN are required, or it silently falls back to in-memory limits.'
     );
   }
+
+  const thumbtackBasic = [env.thumbtackWebhookUser(), env.thumbtackWebhookPassword()].filter(Boolean).length;
+  if (thumbtackBasic === 1) {
+    console.warn(
+      '[env] Thumbtack webhook Basic auth is only partially configured — both ' +
+        'THUMBTACK_WEBHOOK_USER and THUMBTACK_WEBHOOK_PASSWORD are required.'
+    );
+  }
+
+  const thumbtackOutbound = [env.thumbtackAccessToken(), env.thumbtackBusinessId()].filter(Boolean).length;
+  if (thumbtackOutbound === 1) {
+    console.warn(
+      '[env] Thumbtack outbound is only partially configured — both ' +
+        'THUMBTACK_ACCESS_TOKEN and THUMBTACK_BUSINESS_ID are required, or Send stays stubbed.'
+    );
+  }
+
+  const mode = env.salesAgentMode();
+  if (mode && !['draft_only', 'safe_autopilot', 'full_autopilot'].includes(mode)) {
+    console.warn('[env] salesAgentMode: expected draft_only | safe_autopilot | full_autopilot');
+  }
 }

@@ -28,7 +28,7 @@ const sections = [
   {
     title: 'Service providers',
     body: [
-      'We use trusted providers to operate the website and deliver requested services. Depending on which features are configured, these may include Vercel for hosting and performance measurement, Google Analytics for site measurement, Microsoft Clarity for heatmaps and session recordings, Resend for email delivery, Twilio for call and text delivery, Supabase for lead records, Upstash for abuse prevention, and Google Maps or Solar APIs for address and roof measurements.',
+      'We use trusted providers to operate the website and deliver requested services. Depending on which features are configured, these may include Vercel for hosting and performance measurement, Google Analytics for site measurement, Microsoft Clarity for heatmaps and session recordings, Resend for email delivery, Twilio for call and text delivery, Supabase for lead records, Upstash for abuse prevention, Google Maps or Solar APIs for address and roof measurements, and Thumbtack when a homeowner contacts us through that marketplace.',
       'These providers receive only the information needed to perform their function and process it under their own privacy and security terms.',
     ],
   },
