@@ -25,6 +25,7 @@ describe('parseThumbtackPayload', () => {
     expect(inbound?.customer.fullName).toBe('Jane Homeowner');
     expect(inbound?.customer.zip).toBe('25401');
     expect(inbound?.projectType).toBe('Bathroom Remodel');
+    expect(inbound?.estimatedValueCents).toBe(1_200_000);
     expect(thumbtackEventId(payload)).toBe('evt_1');
     expect(thumbtackEventType(payload)).toBe('NegotiationCreatedV4');
   });

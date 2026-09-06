@@ -124,8 +124,9 @@ export async function ingestInboundLead(inbound: InboundLead): Promise<PipelineR
   if (inbound.message && status === 'new') status = 'qualifying';
   if (facts.stopContact || facts.hiredElsewhere) status = 'lost';
 
-  const awaiting = Boolean(draft.body) && status !== 'won' && status !== 'lost';
-  const bucket = bucketForLead(scored.score, status, awaiting && !existingLead);
+  const awaitingCustomer =
+    existingLead?.draftStatus === 'sent' || status === 'awaiting_customer';
+  const bucket = bucketForLead(scored.score, status, awaitingCustomer);
 
   const leadFields = {
     customerId: customer.id,

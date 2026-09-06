@@ -38,8 +38,9 @@ function str(...values: unknown[]): string | undefined {
 }
 
 function centsFromUnknown(value: unknown): number | undefined {
-  if (typeof value === 'number' && Number.isFinite(value)) {
-    return value > 10_000 ? Math.round(value) : Math.round(value * 100);
+  // Thumbtack payloads use dollars (e.g. 12000 = $12,000).
+  if (typeof value === 'number' && Number.isFinite(value) && value > 0) {
+    return Math.round(value * 100);
   }
   if (typeof value === 'string') {
     const n = Number(value.replace(/[^0-9.]/g, ''));

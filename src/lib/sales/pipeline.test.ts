@@ -28,6 +28,8 @@ describe('ingestInboundLead', () => {
     expect(result.duplicate).toBe(false);
     expect(result.lead?.customerId).toBeTruthy();
     expect(result.lead?.draftReply).toMatch(/Jose/);
+    expect(result.lead?.bucket).toBe('hot');
+    expect(result.lead?.score).toBeGreaterThanOrEqual(70);
     expect(result.draftReply).toBe(result.lead?.draftReply);
 
     const again = await ingestInboundLead(inbound);
