@@ -43,19 +43,19 @@ export function shouldStopFollowups(input: {
 }
 
 export function planFollowups(leadId: string, now = new Date(), cadence = parseCadence()): Omit<Followup, 'id'>[] {
-  return cadence
-    .map((token) => {
-      const ms = cadenceToMs(token);
-      if (ms == null) return null;
-      return {
-        createdAt: now.toISOString(),
-        leadId,
-        dueAt: new Date(now.getTime() + ms).toISOString(),
-        kind: `cadence_${token}`,
-        status: 'scheduled' as const,
-        note: `Automatic follow-up at +${token}`,
-        cancelledReason: null,
-      };
-    })
-    .filter((row): row is Omit<Followup, 'id'> => row !== null);
+  const rows: Omit<Followup, 'id'>[] = [];
+  for (const token of cadence) {
+    const ms = cadenceToMs(token);
+    if (ms == null) continue;
+    rows.push({
+      createdAt: now.toISOString(),
+      leadId,
+      dueAt: new Date(now.getTime() + ms).toISOString(),
+      kind: `cadence_${token}`,
+      status: 'scheduled',
+      note: `Automatic follow-up at +${token}`,
+      cancelledReason: null,
+    });
+  }
+  return rows;
 }
