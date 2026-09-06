@@ -20,6 +20,7 @@ module.exports = {
     '/*/*/*/opengraph-image',
     // Internal tools — noindexed, key-protected, never for crawlers.
     '/review-request',
+    '/sales',
     // Legacy index; now a permanent redirect to /resources.
     '/blog',
   ],

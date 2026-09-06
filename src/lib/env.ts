@@ -91,4 +91,24 @@ export const env = {
    *  Both this and the URL must be set for the ledger to write. */
   supabaseServiceRoleKey: (): string | undefined =>
     process.env.SUPABASE_SERVICE_ROLE_KEY,
+
+  // ── Grokbot sales ops ────────────────────────────────────────────────────
+  /** draft_only | safe_autopilot | full_autopilot. Default safe_autopilot. */
+  salesAgentMode: (): string | undefined => process.env.SALES_AGENT_MODE,
+  /** Bearer key for /api/agents/grokbot/* (ChatGPT bridge + tools). */
+  grokbotApiKey: (): string | undefined => process.env.GROKBOT_API_KEY,
+  /** Optional follow-up cadence, e.g. "2h,24h,3d,7d". */
+  salesFollowupCadence: (): string | undefined => process.env.SALES_FOLLOWUP_CADENCE,
+  thumbtackWebhookUser: (): string | undefined => process.env.THUMBTACK_WEBHOOK_USER,
+  thumbtackWebhookPassword: (): string | undefined =>
+    process.env.THUMBTACK_WEBHOOK_PASSWORD,
+  /** Shared Bearer / X-Webhook-Token for paste-URL or simulated posts. */
+  thumbtackWebhookToken: (): string | undefined => process.env.THUMBTACK_WEBHOOK_TOKEN,
+  /** Optional HMAC secret if Thumbtack (or a proxy) signs the body. */
+  thumbtackWebhookSecret: (): string | undefined => process.env.THUMBTACK_WEBHOOK_SECRET,
+  /** Partner API OAuth access token — required to send Thumbtack replies. */
+  thumbtackAccessToken: (): string | undefined => process.env.THUMBTACK_ACCESS_TOKEN,
+  thumbtackBusinessId: (): string | undefined => process.env.THUMBTACK_BUSINESS_ID,
+  xaiApiKey: (): string | undefined => process.env.XAI_API_KEY,
+  openaiApiKey: (): string | undefined => process.env.OPENAI_API_KEY,
 } as const;
