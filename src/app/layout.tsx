@@ -140,9 +140,9 @@ export default function RootLayout({
             email: BUSINESS.email,
             address: {
               '@type': 'PostalAddress',
-              addressLocality: 'Martinsburg',
-              addressRegion: 'WV',
-              postalCode: '25401',
+              addressLocality: BUSINESS.address.city,
+              addressRegion: BUSINESS.address.state,
+              postalCode: BUSINESS.address.zip,
               addressCountry: 'US',
             },
             areaServed: GENERAL_CONTRACTOR_AREA_SERVED,

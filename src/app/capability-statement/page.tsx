@@ -43,7 +43,10 @@ export const metadata: Metadata = {
 const SNAPSHOT = [
   { label: 'Legal Name', value: 'Real Elite Contracting LLC' },
   { label: 'Established', value: 'West Virginia LLC · Veteran-Owned' },
-  { label: 'HQ', value: 'Martinsburg, WV 25401' },
+  {
+    label: 'HQ',
+    value: `${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`,
+  },
   { label: 'Service Region', value: 'WV · MD · VA Tri-State' },
   { label: 'Business Type', value: 'Veteran-Owned Small Business' },
   { label: 'SDVOSB Status', value: 'VetCert Application In Progress' },
