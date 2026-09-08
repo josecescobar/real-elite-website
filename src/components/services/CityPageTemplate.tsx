@@ -26,8 +26,7 @@ import { getProjectsByCity } from '@/lib/projects';
 import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import { getReviewsByCity } from '@/lib/reviews';
-
-const FEATURED_DEEP_LINK_SLUGS = new Set(['roofing', 'decks', 'remodeling', 'siding']);
+import { CONTENT } from '@/lib/service-city-content';
 
 /**
  * Map a city to the permit guide that genuinely covers its jurisdiction, so
@@ -422,11 +421,9 @@ function ServiceCard({
   title: string;
   hero?: boolean;
 }) {
-  // Deep-link service+city pages exist for roofing/decks/remodeling/siding
-  // and the 4 expansion cities (winchester/frederick/leesburg/ashburn).
-  const deepLinkAvailable =
-    FEATURED_DEEP_LINK_SLUGS.has(serviceSlug) &&
-    ['winchester-va', 'frederick-md', 'leesburg-va', 'ashburn-va'].includes(citySlug);
+  const deepLinkAvailable = Boolean(
+    CONTENT[`${serviceSlug}-${citySlug}` as keyof typeof CONTENT]
+  );
 
   const href = deepLinkAvailable
     ? `/services/${serviceSlug}/${citySlug}`

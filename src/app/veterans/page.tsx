@@ -81,13 +81,6 @@ const CERT_TRACKS = [
       'Real Elite is registered in the federal contracting system, the prerequisite for bidding on any federal opportunity and for prime/sub team-ups on larger projects.',
   },
   {
-    name: 'GAF Master Elite',
-    full: 'Top 2% Roofing Contractor Designation',
-    status: 'Application In Progress',
-    body:
-      'Master Elite is GAF\'s top contractor tier — fewer than 2% of US roofers qualify. Pairs with our veteran-owned status for the highest-trust roofing offer in the Eastern Panhandle.',
-  },
-  {
     name: 'State Preferences',
     full: 'WV §5A-3-37 · MD VSBE · VA SDV / SWaM',
     status: 'On The Roadmap',
@@ -146,7 +139,7 @@ const FAQ_ITEMS = [
   {
     question: 'Which veteran certifications and designations does Real Elite hold?',
     answer:
-      'Real Elite is veteran-owned in fact and is actively pursuing SDVOSB certification through SBA VetCert. We are registered in SAM.gov for federal contracting. We are also pursuing GAF Master Elite roofer status — the top 2% tier of US roofers — to pair with our veteran-owned identity.',
+      'Real Elite is veteran-owned in fact and is actively pursuing SDVOSB certification through SBA VetCert. We are registered in SAM.gov for federal contracting. We do not advertise a GAF Master Elite, manufacturer Pro, or Platinum badge we do not hold.',
   },
   {
     question: 'How does "Military Precision" actually show up in our project?',
