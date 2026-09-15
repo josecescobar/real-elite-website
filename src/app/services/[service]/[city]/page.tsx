@@ -5,7 +5,7 @@ import { ChevronRight, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 import {
   BUSINESS,
   SERVICES,
-  EXPANSION_SERVICE_AREAS,
+  ALL_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
 } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
@@ -21,7 +21,7 @@ import { buildBreadcrumbSchema } from '@/lib/seo';
 import {
   CONTENT,
   type FeaturedServiceSlug,
-  type ExpansionCitySlug,
+  type ComboCitySlug,
 } from '@/lib/service-city-content';
 import { primaryCtaForService } from '@/lib/cta-intent';
 
@@ -62,7 +62,7 @@ export const dynamicParams = false;
  * route on next build.
  */
 export function generateStaticParams() {
-  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[]).map(
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[]).map(
     (key) => {
       const dashIdx = key.indexOf('-');
       return {
@@ -75,13 +75,13 @@ export function generateStaticParams() {
 
 // Cross-link helpers — derived from what's actually published in CONTENT.
 function citiesForService(serviceSlug: string): readonly string[] {
-  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[])
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[])
     .filter((k) => k.startsWith(`${serviceSlug}-`))
     .map((k) => k.slice(serviceSlug.length + 1));
 }
 
 function servicesForCity(citySlug: string): readonly string[] {
-  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[])
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[])
     .filter((k) => k.endsWith(`-${citySlug}`))
     .map((k) => k.slice(0, k.length - citySlug.length - 1));
 }
@@ -95,12 +95,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { service, city } = await params;
   const serviceData = SERVICES.find((s) => s.slug === service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
+  const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
 
   if (!serviceData || !cityData) return { title: 'Not Found' };
 
-  const title = `${serviceData.title} in ${cityData.city}, ${cityData.state} | Real Elite`;
-  const description = `Expert ${serviceData.title.toLowerCase()} services in ${cityData.city}, ${cityData.state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+  // Home-turf combos override the generic template so the snippet can lead
+  // with the thing the query actually asks for (price, response time). The
+  // fallback is unchanged, so every combo without an override keeps the
+  // metadata it shipped with.
+  const meta = CONTENT[`${service}-${city}` as keyof typeof CONTENT];
+
+  const title =
+    meta?.metaTitle ??
+    `${serviceData.title} in ${cityData.city}, ${cityData.state} | Real Elite`;
+  const description =
+    meta?.metaDescription ??
+    `Expert ${serviceData.title.toLowerCase()} services in ${cityData.city}, ${cityData.state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
 
   return {
     title,
@@ -133,7 +143,7 @@ export default async function ServiceCityPage({
 }) {
   const { service, city } = await params;
   const serviceData = SERVICES.find((s) => s.slug === service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
+  const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
   const contentKey = `${service}-${city}` as keyof typeof CONTENT;
   const content = CONTENT[contentKey];
 
@@ -188,7 +198,7 @@ export default async function ServiceCityPage({
 
   // Cross-link rails — derived from what's actually published in CONTENT.
   const publishedOtherCities = new Set(citiesForService(serviceData.slug));
-  const otherCitiesForThisService = EXPANSION_SERVICE_AREAS.filter(
+  const otherCitiesForThisService = ALL_SERVICE_AREAS.filter(
     (a) => a.slug !== cityData.slug && publishedOtherCities.has(a.slug)
   ).slice(0, 5);
 
