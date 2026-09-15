@@ -44,6 +44,12 @@ export const COMBO_CITY_SLUGS = [
   'martinsburg-wv',
   'charles-town-wv',
 
+  // Loudoun outdoor living. Brambleton is a community inside Ashburn's orbit
+  // rather than a town, but it carries seven distinct deck queries of its own
+  // at positions 9-23, all currently answered by the Ashburn page. See the
+  // decks-brambleton-va entry for how the two are kept from competing.
+  'brambleton-va',
+
   'winchester-va',
   'frederick-md',
   'leesburg-va',
@@ -180,6 +186,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'decks-leesburg-va': {
+    metaTitle: 'Composite Deck Builder in Leesburg, VA | Real Elite',
+    metaDescription:
+      'Premium composite decks and outdoor living in Leesburg — Lansdowne, Cascades and Countryside. TimberTech, Azek and Trex, with HOA and historic-district approvals handled.',
     paragraphs: [
       "Leesburg's upscale neighborhoods and estate homes create the perfect backdrop for premium outdoor living spaces. Whether you're overlooking the Potomac watershed from Lansdowne, entertaining in Cascades, or enhancing a historic property on King Street, a custom deck from Real Elite Contracting becomes the cornerstone of your outdoor lifestyle. We build decks that match the quality and character Leesburg homeowners expect.",
       "Leesburg's affluent residential market demands materials and craftsmanship at a higher standard. We specialize in premium composite decking systems — TimberTech PRO, Azek Harvest Collection, and Trex Transcend — that deliver the beauty of hardwood with none of the maintenance headaches. For homes in communities like Lansdowne on the Potomac and Countryside, we design decks that complement existing landscaping and architecture, creating seamless transitions between indoor and outdoor living.",
@@ -188,7 +197,37 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
+  /**
+   * Brambleton gets its own page rather than more Ashburn copy because it
+   * carries its own named demand: "composite deck builder in brambleton va"
+   * (pos 11.1), "pvc decking brambleton va" (9.2), "deck installation
+   * brambleton va" (10.6) and four more, ~172 impressions, every one of them
+   * currently served by /services/decks/ashburn-va.
+   *
+   * To keep the two from competing, this page is about Brambleton's HOA design
+   * review and its small, closely-spaced lots, while the Ashburn page's snippet
+   * (below) is retargeted at Ashburn's own communities. The bodies overlap only
+   * where a homeowner would genuinely expect them to.
+   */
+  'decks-brambleton-va': {
+    metaTitle: 'Composite Deck Builder in Brambleton, VA | Real Elite',
+    metaDescription:
+      'Custom composite and PVC decks in Brambleton — Trex, TimberTech and Azek, built to Loudoun County code. We carry the HOA design review from drawing to approval.',
+    paragraphs: [
+      "Brambleton was built dense and built quickly, and that shapes every deck we put in here. Lots are close together, sight lines to neighbours are short, and the grade behind a townhome or single-family often drops away faster than owners expect. A deck in Brambleton has to earn its space: the right height to sit level with the kitchen door, the right railing to keep the yard feeling open rather than fenced in, and a footprint that leaves usable ground underneath instead of a dead shaded strip.",
+      "Nearly every project in Brambleton passes through the community's architectural review before a single post goes in. We prepare the submission the way the committee expects to receive it — dimensioned plan, elevation, material and colour selections, and the finished-height detail that causes most of the rejections we see on plans homeowners drew themselves. The Loudoun County permit runs in parallel. You are not chasing either one; that is our job, and it is the part that usually decides whether you are entertaining on the deck in June or in September.",
+      "Composite and PVC are the right call on these lots and it is not close. Trex, TimberTech and Azek hold their colour through the full-sun western exposures common in Brambleton, they do not splinter where children are barefoot, and they skip the annual sanding and staining that pressure-treated boards demand by year three. We will walk you through the boards in daylight rather than off a chip, because the greys and the warm browns read very differently against Brambleton's brick and siding palettes than they do in a showroom.",
+      "Most Brambleton decks we build are doing more than one job: a dining zone that clears the door swing, a lounge corner that catches evening light, lighting worked into the posts and risers so the space survives past dusk, and often a pergola or roof over part of it for the July afternoons. We design it as one space, price it as fixed line items before demolition, and build it with the same crew start to finish.",
+    ],
+  },
+
   'decks-ashburn-va': {
+    // Snippet retargeted to Ashburn's own communities now that Brambleton has
+    // a dedicated page. The body still mentions Brambleton in passing, which is
+    // natural for a neighbouring community and not worth rewriting.
+    metaTitle: 'Custom Deck Builder in Ashburn, VA | Real Elite',
+    metaDescription:
+      'Composite decks and outdoor living in Ashburn — One Loudoun, Broadlands and Ashburn Farm. Trex, TimberTech and Azek, with HOA submissions and Loudoun permits handled.',
     paragraphs: [
       "Ashburn, Virginia's young, active families are reshaping what outdoor living means. From summer cookouts in Brambleton to evening gatherings in Broadlands and One Loudoun, the demand for custom decks in Ashburn has never been higher. Real Elite Contracting builds decks that become the social hub of your property — functional, beautiful, and built to Loudoun County code from the ground up.",
       "Ashburn's planned communities offer beautiful settings for outdoor living, but HOA guidelines can make deck additions complicated. Real Elite is experienced with the specific requirements of Ashburn's major communities — Broadlands, Brambleton, Ashburn Farm, Belmont Country Club, and more. We handle all HOA submissions, material approvals, and Loudoun County permits, making the process seamless for you.",
@@ -207,6 +246,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'decks-loudoun-county-va': {
+    // The body already publishes the $25k-$75k+ range this market works in, so
+    // the snippet leads with it. A homeowner pricing an outdoor-living buildout
+    // self-qualifies before the click, which is the point on a consultation CTA.
+    metaTitle: 'Outdoor Living & Deck Builder — Loudoun County, VA',
+    metaDescription:
+      'Multi-level composite decks, outdoor kitchens and pergolas across Loudoun County. Most projects run $25,000 to $75,000+. Trex, TimberTech and Azek, built to county code.',
     paragraphs: [
       "Loudoun County is where outdoor living has fundamentally changed in the past decade. Premium homes in Lansdowne, Brambleton, One Loudoun, Ashburn Farm, and Belmont Greene — plus the estate properties in the western county — increasingly feature multi-level composite decks with built-in outdoor kitchens, pergolas, integrated lighting, and seamless transitions to landscaped backyards. The \"simple deck\" has been replaced by the outdoor living buildout.",
       "Real Elite Contracting builds premium decks and outdoor living spaces across Loudoun County. We work with all three major composite manufacturers — Trex Transcend, TimberTech AZEK, and TimberTech PRO — and most of our Loudoun projects are in the $25,000 to $75,000+ range, reflecting the level of finish this market expects. We bring real material samples to your estimate, show completed Loudoun projects, and walk you through the design choices that affect long-term value.",

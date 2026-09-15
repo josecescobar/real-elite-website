@@ -4,7 +4,7 @@ import {
   COMBO_CITY_SLUGS,
   FEATURED_SERVICE_SLUGS,
 } from '@/lib/service-city-content';
-import { SERVICES, ALL_SERVICE_AREAS } from '@/lib/constants';
+import { SERVICES, ALL_SERVICE_AREAS, CITY_DATA, LUXURY_CITY_SLUGS } from '@/lib/constants';
 import { TITLE_MAX } from '@/lib/seo';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
@@ -65,6 +65,55 @@ describe('home-turf WV roofing pages', () => {
       expect(body).toMatch(/\$[\d,]+ to \$[\d,]+/);
     }
   );
+});
+
+describe('service-area / city-data contract', () => {
+  /**
+   * /service-areas/[slug] builds its params from ALL_SERVICE_AREAS but calls
+   * notFound() when CITY_DATA has no matching entry, so an area added without
+   * one ships as a generated 404. Adding Brambleton is exactly the change that
+   * could trip this.
+   */
+  it('gives every service area a CITY_DATA entry', () => {
+    const missing = ALL_SERVICE_AREAS.filter((a) => !CITY_DATA[a.slug]).map((a) => a.slug);
+    expect(missing, 'these areas would build a 404 page').toEqual([]);
+  });
+
+  it('leaves no CITY_DATA entry without a service area', () => {
+    const slugs = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
+    const orphans = Object.keys(CITY_DATA).filter((s) => !slugs.has(s));
+    expect(orphans, 'unreachable CITY_DATA entries').toEqual([]);
+  });
+
+  it('keeps service-area slugs unique after dedupe', () => {
+    const slugs = ALL_SERVICE_AREAS.map((a) => a.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+  });
+});
+
+describe('Loudoun luxury outdoor living', () => {
+  // Decks are the only luxury line holding top-10 positions in Loudoun, so the
+  // deck combos there must route to the consultation funnel, not a free
+  // estimate. That depends on the city being flagged luxury.
+  it.each(['brambleton-va', 'ashburn-va', 'leesburg-va', 'loudoun-county-va'])(
+    'treats %s as a luxury market',
+    (city) => {
+      expect(LUXURY_CITY_SLUGS.has(city)).toBe(true);
+    }
+  );
+
+  it('publishes a dedicated Brambleton deck page', () => {
+    expect(Object.keys(CONTENT)).toContain('decks-brambleton-va');
+  });
+
+  it('gives every Loudoun deck page its own snippet', () => {
+    const titles = ['brambleton-va', 'ashburn-va', 'leesburg-va', 'loudoun-county-va'].map(
+      (city) => CONTENT[`decks-${city}` as keyof typeof CONTENT]?.metaTitle
+    );
+    for (const t of titles) expect(t, 'missing metaTitle override').toBeTruthy();
+    // Distinct titles are what keep the neighbouring pages from competing.
+    expect(new Set(titles).size).toBe(titles.length);
+  });
 });
 
 describe('combo content shape', () => {
