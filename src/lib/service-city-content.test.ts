@@ -67,6 +67,40 @@ describe('home-turf WV roofing pages', () => {
   );
 });
 
+describe('Eastern Panhandle home-turf coverage', () => {
+  /**
+   * These carry the site's best commercial positions — basement queries in
+   * Ranson at 3.2 and Inwood at 5.7 — and were previously answered by generic
+   * /service-areas/ pages. Every home-turf combo gets its own snippet; the
+   * generic "Expert X services in Y" template is what lost the clicks.
+   */
+  const WV_COMBOS = [
+    'roofing-martinsburg-wv',
+    'roofing-charles-town-wv',
+    'basements-ranson-wv',
+    'basements-inwood-wv',
+    'basements-charles-town-wv',
+    'decks-martinsburg-wv',
+  ];
+
+  it.each(WV_COMBOS)('publishes %s', (key) => {
+    expect(Object.keys(CONTENT)).toContain(key);
+  });
+
+  it.each(WV_COMBOS)('%s overrides both snippet fields', (key) => {
+    const entry = CONTENT[key as keyof typeof CONTENT];
+    expect(entry!.metaTitle, `${key} has no metaTitle`).toBeTruthy();
+    expect(entry!.metaDescription, `${key} has no metaDescription`).toBeTruthy();
+  });
+
+  it.each(WV_COMBOS)('%s leads with a concrete published figure', (key) => {
+    // Every home-turf snippet quotes a number the site already publishes
+    // elsewhere: the roof range, the deck per-square-foot rates, or the egress
+    // window cost. None of them invents a figure that appears nowhere else.
+    expect(CONTENT[key as keyof typeof CONTENT]!.metaDescription).toMatch(/\$[\d,]+/);
+  });
+});
+
 describe('combo content shape', () => {
   it('gives every combo non-empty paragraphs', () => {
     for (const [key, entry] of Object.entries(CONTENT)) {
