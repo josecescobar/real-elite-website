@@ -424,6 +424,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── BASEMENTS ────────────────────────────────────────────────────────────
 
   'basements-frederick-md': {
+    metaDescription:
+      'Basement finishing in Frederick, MD — family room, guest suite, full bath, proper moisture control. Most projects run $55,000 to $70,000, itemized up front.',
     paragraphs: [
       "Frederick, Maryland is the strongest basement-finishing market in our service area. The combination of Frederick County's housing stock — most newer homes in Ballenger Creek, Urbana, Jefferson, and New Market have full unfinished basements as standard construction — and the local demand for additional living space at a fraction of an addition's cost makes basement finishing one of the highest-ROI projects a Frederick homeowner can build.",
       "Real Elite Contracting builds Frederick basements that pass inspection on the first walkthrough, every time. Moisture control comes first — sump pump verification, perimeter waterproofing assessment, vapor barrier installation under any framing — because the cheap shortcut on moisture is what creates mold problems in year three. Then code-compliant framing with proper egress windows where required, full electrical and plumbing rough-in to Frederick County code, HVAC extension or dedicated mini-split installation, and the insulation and drywall that turn raw space into living space.",
@@ -474,6 +476,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · MCLEAN, VA ───────────────────────────────────────────────
   'basements-mclean-va': {
+    metaDescription:
+      'Lower-level finishing in McLean — media room, wet bar, wine room, guest suite. Most builds run $150,000 to $220,000, with every line itemized up front.',
     paragraphs: [
       "McLean homes generally have generous unfinished lower levels with full ceiling height and walkout access, which makes finished-basement entertainment suites one of the highest-impact projects an estate-class home can build. The McLean basement brief tends to be ambitious: a true media room with tiered seating, a separate wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space to an already substantial home.",
       "Real Elite Contracting builds McLean lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the cheap shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -484,6 +488,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · ALEXANDRIA, VA ───────────────────────────────────────────
   'basements-alexandria-va': {
+    metaDescription:
+      'Finished lower levels in Alexandria, from row-house basements to full entertainment levels. Typical scope runs $80,000 to $200,000+, itemized up front.',
     paragraphs: [
       "Alexandria basement work splits cleanly into two categories: historic Old Town townhouse cellars, which need a very specific technical approach (often around moisture, ceiling height, and structure), and the larger walkout or full lower levels in the colonial and contemporary homes of Belle Haven, Rosemont, North Ridge, and Beverley Hills. Real Elite Contracting handles both, and the right answer for each is rarely the same.",
       "For Belle Haven and the post-war neighborhoods, lower-level finishes follow the same playbook as a luxury Fairfax County build: moisture control first, code-compliant framing with proper egress, full electrical and plumbing rough-in, HVAC, surround pre-wire, and millwork that elevates the space. Typical scope runs $80,000–$200,000+ depending on square footage and feature mix — finished family room, full bath, wet bar, guest suite, and dedicated gym or office.",
@@ -514,6 +520,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · VIENNA, VA ───────────────────────────────────────────────
   'basements-vienna-va': {
+    metaDescription:
+      'Finished lower levels in Vienna — media room, wet bar, guest suite, full bath. Most projects run $130,000 to $180,000, itemized before work starts.',
     paragraphs: [
       "Vienna homes typically have generous unfinished lower levels with full ceiling height and walkout access, which makes a finished entertainment lower level one of the highest-impact projects the home can build. The typical Vienna basement brief includes a true media room with tiered seating, a wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space.",
       "Real Elite Contracting builds Vienna lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -544,6 +552,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · GREAT FALLS, VA ──────────────────────────────────────────
   'basements-great-falls-va': {
+    metaDescription:
+      'Estate-scale lower levels in Great Falls — media room, wet bar, wine room, fitness, guest suite. Most builds run $250,000 to $350,000, fully itemized.',
     paragraphs: [
       "Great Falls lower levels are some of the most ambitious finished-basement projects in our service area. The typical brief includes a media room with tiered seating and acoustic treatment, a true wet bar that functions as a second entertaining kitchen, a wine room with dedicated cooling, a fitness room with rubber flooring and mirrored wall, a guest suite with full bath, and sometimes a separate game room or family lounge. Lower levels at this scale function as an entire additional tier of the home.",
       "Real Elite Contracting builds Great Falls lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where required — because the shortcut on moisture is the one that surfaces years later. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, dedicated HVAC systems where the existing capacity doesn't carry the load, surround pre-wire, acoustic treatment, and the millwork and stone that turn the space into a true room.",
@@ -574,6 +584,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · RESTON, VA ───────────────────────────────────────────────
   'basements-reston-va': {
+    metaDescription:
+      'Finished lower levels in Reston — media room, wet bar, full bath, guest suite. Most projects run $110,000 to $160,000, itemized line by line up front.',
     paragraphs: [
       "Reston homes typically have generous lower levels — often walkouts with full ceiling height — and a finished lower level is one of the highest-impact projects the home can build. The typical Reston basement brief includes a media room, wet bar, full bath, guest suite, and sometimes a dedicated gym or yoga room. The build adds a full additional tier of livable space.",
       "Real Elite Contracting builds Reston lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump verification, dimple-mat or insulated subfloor systems where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -604,6 +616,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · BURKE, VA ────────────────────────────────────────────────
   'basements-burke-va': {
+    metaDescription:
+      'Finished lower levels in Burke — family room, guest suite, full bath, gym. Most projects run $80,000 to $120,000, with every line itemized before work starts.',
     paragraphs: [
       "Burke homes typically have generous unfinished lower levels, and a finished lower level is one of the highest-impact projects a Burke homeowner can build. The typical Burke basement brief includes a finished family room, full bath, wet bar or kitchenette, guest suite or office, and sometimes a dedicated gym or media room.",
       "Real Elite Contracting builds Burke lower levels with proper moisture control as the foundation: perimeter inspection, sump pump verification, vapor barrier installation under any framing, dimple-mat or insulated subfloor where the slab condition requires it. From there: code-compliant framing, egress where bedrooms are planned, full electrical, HVAC extension, and the insulation, drywall, and finishes that turn raw space into living space.",
@@ -634,6 +648,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · FAIRFAX STATION, VA ──────────────────────────────────────
   'basements-fairfax-station-va': {
+    metaDescription:
+      'Estate lower levels in Fairfax Station — media room, wet bar, guest suite, fitness. Most builds run $150,000 to $200,000, fully itemized before work starts.',
     paragraphs: [
       "Fairfax Station lower levels are some of the most substantial finished-basement projects in southern Fairfax County. The typical brief includes a media room with tiered seating, a wet bar that functions as a second entertaining kitchen, a guest suite with full bath, a fitness or yoga room, and sometimes a wine room or family lounge.",
       "Real Elite Contracting builds Fairfax Station lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -664,6 +680,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · CLIFTON, VA ──────────────────────────────────────────────
   'basements-clifton-va': {
+    metaDescription:
+      'Lower-level finishing in Clifton — restrained builds for Village homes, full entertainment levels for the country estates. From $60,000 to $300,000+, itemized.',
     paragraphs: [
       "Clifton lower levels mirror the same two-track pattern as the upstairs: restrained, period-respectful finishes in the historic village homes, and large entertainment-tier builds in the country estates. Real Elite Contracting handles both, with the right answer determined by the home.",
       "For historic Clifton Village homes, we often recommend a restrained finish in the lower level — wine storage, a quiet workshop, a guest room with its own bath, a family lounge — that respects the period character above. Where moisture control or structural reinforcement is required, we do it correctly and document it. Typical scope runs $60,000–$160,000+.",
@@ -694,6 +712,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · MIDDLEBURG, VA ───────────────────────────────────────────
   'basements-middleburg-va': {
+    metaDescription:
+      'Lower-level finishing for Middleburg estates — wine room, media room, guest suite, fitness. Typical scope runs $120,000 to $350,000+, itemized up front.',
     paragraphs: [
       "Middleburg lower levels are some of the most distinctive finished-basement projects in our service area. The brief routinely includes a wine cellar with dedicated cooling and traditional racking, a tasting room, a gun room or trophy room for hunt-country homes, a guest suite with full bath, and sometimes a media room or family lounge. Done with restraint, the lower level reads as a genuine extension of the historic home above.",
       "Real Elite Contracting builds Middleburg lower levels with proper moisture and vapor control as the technical foundation — perimeter inspection, sump pump verification, dimple-mat or insulated subfloor where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical, HVAC extension, surround pre-wire, and the millwork and stone that turn the space into a true room. For wine cellars, dedicated cooling and proper insulation are non-negotiable.",

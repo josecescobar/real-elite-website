@@ -67,6 +67,31 @@ describe('home-turf WV roofing pages', () => {
   );
 });
 
+describe('basement snippets lead with price', () => {
+  /**
+   * Basements are the site's strongest cluster by position: 38 queries, 7 in
+   * the top 10 and 22 in the top 20, on 351 impressions and zero clicks. Each
+   * page body already publishes a real range, so the snippet quotes it rather
+   * than falling back to "Expert basement finishing services in X".
+   */
+  const basementKeys = Object.keys(CONTENT).filter((k) => k.startsWith('basements-'));
+
+  it('has basement combos to check', () => {
+    expect(basementKeys.length).toBeGreaterThanOrEqual(10);
+  });
+
+  it.each(basementKeys)('%s quotes a dollar figure in its description', (key) => {
+    const entry = CONTENT[key as keyof typeof CONTENT];
+    expect(entry!.metaDescription, `${key} has no metaDescription override`).toBeTruthy();
+    expect(entry!.metaDescription).toMatch(/\$[\d,]+/);
+  });
+
+  it.each(basementKeys)('%s keeps its description within snippet length', (key) => {
+    // Google truncates around 160 characters; past that the price is lost.
+    expect(CONTENT[key as keyof typeof CONTENT]!.metaDescription!.length).toBeLessThanOrEqual(165);
+  });
+});
+
 describe('combo content shape', () => {
   it('gives every combo non-empty paragraphs', () => {
     for (const [key, entry] of Object.entries(CONTENT)) {
