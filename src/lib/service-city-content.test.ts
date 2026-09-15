@@ -3,6 +3,8 @@ import {
   CONTENT,
   COMBO_CITY_SLUGS,
   FEATURED_SERVICE_SLUGS,
+  defaultComboTitle,
+  defaultComboDescription,
 } from '@/lib/service-city-content';
 import { SERVICES, ALL_SERVICE_AREAS } from '@/lib/constants';
 import { TITLE_MAX } from '@/lib/seo';
@@ -123,6 +125,44 @@ describe('basement snippets lead with price', () => {
   it.each(basementKeys)('%s keeps its description within snippet length', (key) => {
     // Google truncates around 160 characters; past that the price is lost.
     expect(CONTENT[key as keyof typeof CONTENT]!.metaDescription!.length).toBeLessThanOrEqual(165);
+  });
+});
+
+describe('snippet overrides earn their place', () => {
+  /**
+   * An override that reproduces the fallback word for word costs a
+   * maintenance burden and buys nothing — the page renders the same string
+   * either way. Three WV basement combos shipped exactly that: a metaTitle
+   * byte-identical to defaultComboTitle(). Truthiness checks pass on those,
+   * so compare against the real template instead.
+   */
+  const overrides = Object.entries(CONTENT).flatMap(([key, entry]) => {
+    const { service, city } = splitKey(key);
+    const serviceTitle = SERVICES.find((s) => s.slug === service)?.title;
+    const area = ALL_SERVICE_AREAS.find((a) => a.slug === city);
+    return serviceTitle && area ? [{ key, entry: entry!, serviceTitle, area }] : [];
+  });
+
+  it('checks every published combo', () => {
+    expect(overrides.length).toBe(Object.keys(CONTENT).length);
+  });
+
+  it.each(overrides.map((o) => o.key))('%s does not restate the default title', (key) => {
+    const { entry, serviceTitle, area } = overrides.find((o) => o.key === key)!;
+    if (entry.metaTitle === undefined) return;
+    expect(
+      entry.metaTitle,
+      `${key} overrides metaTitle with the generic template — drop it or say something`
+    ).not.toBe(defaultComboTitle(serviceTitle, area.city, area.state));
+  });
+
+  it.each(overrides.map((o) => o.key))('%s does not restate the default description', (key) => {
+    const { entry, serviceTitle, area } = overrides.find((o) => o.key === key)!;
+    if (entry.metaDescription === undefined) return;
+    expect(
+      entry.metaDescription,
+      `${key} overrides metaDescription with the generic template`
+    ).not.toBe(defaultComboDescription(serviceTitle, area.city, area.state));
   });
 });
 

@@ -80,6 +80,20 @@ type ComboContent = {
   metaDescription?: string;
 };
 
+/**
+ * The generic metadata every combo gets when it defines no override.
+ * Exported so the route and the tests share one definition: an override
+ * that merely reproduces the fallback is dead weight, and the only way to
+ * detect that is to compare against the real template rather than a copy.
+ */
+export function defaultComboTitle(serviceTitle: string, city: string, state: string) {
+  return `${serviceTitle} in ${city}, ${state} | Real Elite`;
+}
+
+export function defaultComboDescription(serviceTitle: string, city: string, state: string) {
+  return `Expert ${serviceTitle.toLowerCase()} services in ${city}, ${state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+}
+
 export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
 
@@ -456,7 +470,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
    * specific, and it is the line item that actually catches WV homeowners out.
    */
   'basements-ranson-wv': {
-    metaTitle: 'Basement Finishing in Ranson, WV | Real Elite',
+    metaTitle: 'Basement Finishing & Remodeling in Ranson, WV | Real Elite',
     metaDescription:
       'Finished basements in Ranson — family room, guest suite, full bath, and the egress window Jefferson County code requires, $3,500 to $6,500 installed.',
     paragraphs: [
@@ -468,7 +482,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'basements-inwood-wv': {
-    metaTitle: 'Basement Finishing in Inwood, WV | Real Elite',
+    metaTitle: 'Basement Finishing & Remodeling in Inwood, WV | Real Elite',
     metaDescription:
       'Finished basements in Inwood and the Route 51 corridor — family room, guest suite, full bath, plus the egress window WV code requires from $3,500.',
     paragraphs: [
@@ -480,7 +494,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'basements-charles-town-wv': {
-    metaTitle: 'Basement Finishing in Charles Town, WV | Real Elite',
+    metaTitle: 'Basement Finishing & Remodeling in Charles Town, WV',
     metaDescription:
       'Finished basements in Charles Town, from historic-district stone cellars to newer full-height builds. Egress windows to Jefferson County code from $3,500.',
     paragraphs: [
