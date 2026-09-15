@@ -19,10 +19,10 @@ export const FEATURED_SERVICE_SLUGS = [
 export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
 
 /**
- * Service+city deep-link combos exist for these 6 cities. Each pairing
- * has hand-written localized content in the CONTENT map below.
+ * Cities that have service+city deep-link pages. Each pairing has
+ * hand-written localized content in the CONTENT map below.
  *
- * NOTE: this list is INTENTIONALLY decoupled from EXPANSION_SERVICE_AREAS
+ * NOTE: this list is INTENTIONALLY decoupled from the service-area lists
  * in constants.ts. Adding a city-overview page (in constants) should NOT
  * automatically create per-service deep-link pages here without the
  * localized content also being written.
@@ -36,6 +36,14 @@ export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
  * ship as 404s.
  */
 export const COMBO_CITY_SLUGS = [
+  // Home turf (Eastern Panhandle WV). These are the closest, highest-intent
+  // markets — Search Console shows the site already ranking near the top for
+  // "roof replacement cost/estimate" queries in both towns — so they lead the
+  // list and their copy quotes real price ranges rather than deferring to a
+  // form. Coverage here is roofing-only for now; decks are the next addition.
+  'martinsburg-wv',
+  'charles-town-wv',
+
   'winchester-va',
   'frederick-md',
   'leesburg-va',
@@ -52,12 +60,50 @@ export const COMBO_CITY_SLUGS = [
   'clifton-va',
   'middleburg-va',
 ] as const;
-export type ExpansionCitySlug = (typeof COMBO_CITY_SLUGS)[number];
+export type ComboCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
 // Unique body content for each service × city combination.
 // Partial — only combos with hand-written content are listed.
-export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraphs: string[] }>> = {
+type ComboContent = {
+  paragraphs: string[];
+  /**
+   * Optional search-snippet overrides. Omit both and the route falls back to
+   * its generic `{Service} in {City}, {State}` template, which is what every
+   * VA/MD combo still uses. Set them where the query has a specific shape the
+   * template cannot answer — the WV roofing pages target "roof replacement
+   * cost <town> wv", so their snippet leads with the price range instead of
+   * "Expert roofing services".
+   */
+  metaTitle?: string;
+  metaDescription?: string;
+};
+
+export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
+
+  'roofing-martinsburg-wv': {
+    metaTitle: 'Roof Replacement Cost in Martinsburg, WV | Real Elite',
+    metaDescription:
+      'What a roof replacement really costs in Martinsburg, WV — the $9,000 to $22,000 range, what moves the number, and a free written estimate within 24 business hours.',
+    paragraphs: [
+      "Martinsburg sits in the Eastern Panhandle along the I-81 corridor, where roofs take a beating from both directions: humid summers with fast-moving thunderstorms and hail, then a winter of freeze-thaw cycles that work water under shingles and into flashing. Most roofs here reach the end of their service life somewhere between year eighteen and year twenty-five, and the first sign is rarely a leak — it is granule loss in the gutters, curling at the edges, or a stain on an upstairs ceiling after a hard rain.",
+      "A roof replacement in the Eastern Panhandle typically runs about $9,000 to $22,000. Where your roof lands in that range comes down to four things: square footage and pitch, how many old layers have to come off, whether you choose architectural shingles or standing seam metal, and whether rotted decking turns up once the old roof is stripped. We put all four in writing before the job starts, and we will tell you what the decking allowance is rather than discovering it on invoice day.",
+      "We work across Berkeley County — the older homes around downtown and Queen Street, where steeper pitches and original framing need a careful hand, and the newer subdivisions out toward Spring Mills, Hedgesville and the Route 11 corridor, where full replacements move quickly. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia, and the crew that quotes your roof is the crew that installs it.",
+      "If a storm came through, do not wait on the insurance company to tell you what happened. We will inspect the roof, document the damage properly, and deal with the adjuster directly. If the roof can be repaired rather than replaced, we will say so — an honest repair keeps you as a customer longer than a replacement you did not need.",
+    ],
+  },
+
+  'roofing-charles-town-wv': {
+    metaTitle: 'Roof Replacement Cost in Charles Town, WV | Real Elite',
+    metaDescription:
+      'Roof replacement in Charles Town, WV — real price ranges, storm and insurance work, and a free written estimate within 24 business hours.',
+    paragraphs: [
+      "Charles Town and the surrounding Jefferson County communities sit at the eastern edge of the Panhandle, close enough to the Blue Ridge to catch the weather that rolls over it. Summer storms arrive fast and hard, winter brings ice and the freeze-thaw cycle that opens seams around chimneys and valleys, and the shade from mature trees keeps north-facing slopes damp long enough to grow moss and algae. All of it shortens the life of a roof that looked fine three years ago.",
+      "Expect a roof replacement here to fall in the $9,000 to $22,000 range. Size and pitch set the baseline; tear-off of multiple old layers, the material tier you pick, and any decking that has to be replaced move it from there. You get that broken out as line items on a written estimate, not a single number over the phone. Any contractor who will not itemize is hiding where the money goes.",
+      "The historic streets around Washington and George have homes with steep pitches, dormers, slate, and detailing that does not forgive a rushed install, and Jefferson County's historic review adds a step that is easy to get wrong. Out toward Ranson, Route 9 and the Route 340 corridor, the newer subdivisions are straightforward architectural shingle replacements we can turn around fast. We handle permitting for both, and we know which one you are.",
+      "Storm damage is where most Charles Town homeowners meet us. We will get out to look, photograph what we find for the claim, and give you a straight read on whether you are looking at a repair or a replacement. Real Elite Contracting is veteran-owned, licensed across WV, MD and VA, and backs every roof with both the manufacturer warranty and our own labor guarantee.",
+    ],
+  },
 
   'roofing-winchester-va': {
     paragraphs: [
