@@ -49,11 +49,40 @@ describe('trackEstimateStep', () => {
   it('namespaces the action and includes the step number', () => {
     const gtag = vi.fn();
     stubWindow(gtag);
-    trackEstimateStep('advance', 2, { service: 'roofing' });
+    trackEstimateStep('advance', 2, 'estimate', { service: 'roofing' });
     expect(gtag).toHaveBeenCalledWith('event', 'estimate_step_advance', {
       page_path: '/test-page',
       step: 2,
+      form: 'estimate',
       service: 'roofing',
+    });
+  });
+
+  /**
+   * Both intakes emit these event names. Without the discriminator a GA4
+   * report cannot separate the two funnels — which is how "17 form views, 0
+   * advances" became unreadable: some of those views were the single-step
+   * consultation form, which never emits an advance at all.
+   */
+  it('tags every event with the funnel it came from', () => {
+    const gtag = vi.fn();
+    stubWindow(gtag);
+    trackEstimateStep('view', 1, 'luxury_consultation');
+    expect(gtag).toHaveBeenCalledWith('event', 'estimate_step_view', {
+      page_path: '/test-page',
+      step: 1,
+      form: 'luxury_consultation',
+    });
+  });
+
+  it('emits a distinct start event for first interaction', () => {
+    const gtag = vi.fn();
+    stubWindow(gtag);
+    trackEstimateStep('start', 1, 'estimate');
+    expect(gtag).toHaveBeenCalledWith('event', 'estimate_step_start', {
+      page_path: '/test-page',
+      step: 1,
+      form: 'estimate',
     });
   });
 });
