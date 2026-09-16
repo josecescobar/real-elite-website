@@ -137,14 +137,14 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
   const hasSubmitted = useRef(false);
 
   useEffect(() => {
-    trackEstimateStep('view', 1);
+    trackEstimateStep('view', 1, 'luxury_consultation');
   }, []);
 
   // Abandonment tracking
   useEffect(() => {
     const onLeave = () => {
       if (hasStarted.current && !hasSubmitted.current) {
-        trackEstimateStep('abandon', 1);
+        trackEstimateStep('abandon', 1, 'luxury_consultation');
       }
     };
     const onVisibilityChange = () => {
@@ -159,7 +159,12 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
   }, []);
 
   const update = <K extends keyof FormData>(key: K, value: FormData[K]) => {
-    if (!hasStarted.current) hasStarted.current = true;
+    // First real interaction with a field — the engagement signal that `view`
+    // (which fires on mount) is not.
+    if (!hasStarted.current) {
+      hasStarted.current = true;
+      trackEstimateStep('start', 1, 'luxury_consultation');
+    }
     setData((prev) => ({ ...prev, [key]: value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
   };
@@ -226,7 +231,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
         service: data.projectType ? labelFor(PROJECT_TYPES, data.projectType) : undefined,
         value_band: data.budget ? labelFor(BUDGET_TIERS, data.budget) : undefined,
       });
-      trackEstimateStep('submit', 1, {
+      trackEstimateStep('submit', 1, 'luxury_consultation', {
         projectType: data.projectType,
         budget: data.budget,
       });
