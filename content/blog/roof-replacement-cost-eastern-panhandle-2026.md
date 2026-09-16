@@ -26,7 +26,7 @@ Most replacements in this market fall into one of three brackets. Where your roo
 | Better | $13,000 – $18,000 | A typical Eastern Panhandle home — average size and pitch, full tear-off, architectural shingles, refreshed flashing and ventilation |
 | Best | $18,000 – $22,000+ | A large, steep, or complex roof — multiple facets and valleys, or a premium upgrade like standing-seam metal |
 
-The middle tier is where most full-size family homes in Martinsburg and Charles Town land: a complete tear-off, quality [architectural shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle), new underlayment, and properly reworked flashing and ventilation. It's the "real roof that lasts decades" number for a typical home.
+The middle tier is where most full-size family homes in [Martinsburg](/services/roofing/martinsburg-wv) and [Charles Town](/services/roofing/charles-town-wv) land: a complete tear-off, quality [architectural shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle), new underlayment, and properly reworked flashing and ventilation. It's the "real roof that lasts decades" number for a typical home.
 
 ## What actually drives the cost
 
@@ -72,6 +72,6 @@ We can give you a solid ballpark. Our [Instant Roof Quote](/instant-roof-quote) 
 
 The best way to know where your roof lands in the $9,000–$22,000 range is to have someone actually look at it and put the number in writing. That's exactly what we do — no pressure, no vague round numbers, no invented damage.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA, serving Martinsburg, Charles Town, and the surrounding Berkeley and Jefferson County communities. Every roof we quote comes with a line-itemed written estimate — including how we handle decking if we find it — and every roof we install comes with the manufacturer warranty registered on your behalf plus our own workmanship warranty in writing.
+Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA, serving [Martinsburg](/services/roofing/martinsburg-wv), [Charles Town](/services/roofing/charles-town-wv), and the surrounding Berkeley and Jefferson County communities. Every roof we quote comes with a line-itemed written estimate — including how we handle decking if we find it — and every roof we install comes with the manufacturer warranty registered on your behalf plus our own workmanship warranty in writing.
 
 Start with a fast ballpark from the [Instant Roof Quote](/instant-roof-quote) tool, learn more about our full [roofing services](/services/roofing), or [request a free estimate](/contact#estimate) and we'll get you a real number to plan around.
