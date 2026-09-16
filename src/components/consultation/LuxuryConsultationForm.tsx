@@ -32,6 +32,10 @@ const PROJECT_TYPES = [
   { value: 'basement', label: 'Lower-Level Finishing' },
   { value: 'whole-home', label: 'Whole-Home Renovation' },
   { value: 'addition', label: 'Addition or Expansion' },
+  // Outdoor living is the luxury line already ranking in Loudoun, and the
+  // service+city deck pages preselect it. Without an option here those pages
+  // sent a high-value enquiry into a form with nothing that described the job.
+  { value: 'outdoor-living', label: 'Outdoor Living / Custom Deck' },
   { value: 'other', label: 'Other Premium Project' },
 ] as const;
 

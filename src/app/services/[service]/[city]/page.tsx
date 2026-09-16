@@ -25,7 +25,7 @@ import {
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
-import { primaryCtaForService } from '@/lib/cta-intent';
+import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-intent';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -35,15 +35,19 @@ import { primaryCtaForService } from '@/lib/cta-intent';
  * on /design-consultation?type=bathroom with the field pre-selected.
  */
 const CONSULTATION_TYPE_FOR_SERVICE: Partial<
-  Record<
-    FeaturedServiceSlug,
-    'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'addition'
-  >
+  Record<FeaturedServiceSlug, ConsultationProjectType>
 > = {
   bathrooms: 'bathroom',
   kitchens: 'kitchen',
   basements: 'basement',
   remodeling: 'whole-home',
+  // Outdoor living is the luxury line that actually ranks in Loudoun: decks
+  // hold four top-10 and twelve top-20 positions there, against zero top-10
+  // for kitchen/bath. Without this mapping those pages rendered the luxury
+  // consultation rail with nothing preselected while the header CTA fell
+  // through to "Free Estimate" — a $60k Brambleton deck enquiry treated like
+  // a handyman call.
+  decks: 'outdoor-living',
 };
 
 // ─── Static Params ────────────────────────────────────────────────────────────

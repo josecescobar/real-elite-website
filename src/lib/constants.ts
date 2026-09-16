@@ -226,6 +226,12 @@ export const SECONDARY_SERVICE_AREAS = [
   { city: 'Berkeley Springs', state: 'WV', slug: 'berkeley-springs-wv' },
   { city: 'Shepherdstown', state: 'WV', slug: 'shepherdstown-wv' },
   { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
+  // Brambleton is a planned community rather than a town, but it earns its own
+  // entry: Search Console shows seven distinct "deck builder / composite
+  // decking brambleton va" queries at positions 9-23, all currently served by
+  // the Ashburn page. It is the strongest named-place demand signal in Loudoun
+  // with no page of its own.
+  { city: 'Brambleton', state: 'VA', slug: 'brambleton-va' },
 ] as const;
 
 /**
@@ -358,6 +364,12 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       "Ashburn is at the heart of Loudoun County's explosive growth — a master-planned tech corridor and residential powerhouse housing thousands of data centers alongside growing young families. Communities like Broadlands, Brambleton, One Loudoun, and Ashburn Farm offer modern homes in well-maintained neighborhoods where curb appeal and property values are taken seriously. With the Silver Line Metro now connecting Ashburn directly to Washington, D.C., this market only continues to appreciate. Real Elite Contracting is Ashburn's trusted partner for premium decks, outdoor living, kitchens, and bathroom remodels.",
     neighborhoods: ['One Loudoun', 'Broadlands', 'Brambleton', 'Ashburn Farm', 'Loudoun Valley Estates', 'Belmont Greene'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+  },
+  'brambleton-va': {
+    description:
+      "Brambleton is one of Loudoun County's largest planned communities, a walkable collection of villages built around Brambleton Town Center with the Dulles Greenway and the Silver Line's Ashburn station a short drive away. Homes here are newer, closely spaced, and held to an active architectural review process, which makes the back yard the one place a family can genuinely make their own. That is why outdoor living is the dominant project type in Brambleton: composite decks, covered porches, and multi-zone entertaining space rather than wholesale exterior changes. Real Elite Contracting builds those spaces to Loudoun County code and carries the HOA design submission from drawing to approval.",
+    neighborhoods: ['Brambleton Town Center', 'Birchwood at Brambleton', 'West Park at Brambleton', 'Summerfield at Brambleton'],
+    marketEmphasis: ['decks', 'bathrooms', 'kitchens', 'remodeling', 'basements', 'siding'],
   },
   'loudoun-county-va': {
     description:
@@ -524,6 +536,7 @@ export const LUXURY_CITY_SLUGS = new Set<string>([
   'leesburg-va',
   'ashburn-va',
   'loudoun-county-va',
+  'brambleton-va',
 ]);
 
 /**

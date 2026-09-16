@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight, Calendar, Clock, ShieldCheck } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import type { ConsultationProjectType } from '@/lib/cta-intent';
 
 /**
  * Right-rail block shown on luxury market pages (the McLean / Great Falls /
@@ -20,7 +21,7 @@ type Props = {
    * consultation page (set on service-city combo pages so a Bathroom →
    * McLean visitor lands with "Primary Bath / Suite" already filled).
    */
-  initialProjectType?: 'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'addition';
+  initialProjectType?: ConsultationProjectType;
 };
 
 export default function LuxuryConsultationRail({ initialProjectType }: Props) {
