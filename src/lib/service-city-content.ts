@@ -36,13 +36,15 @@ export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
  * ship as 404s.
  */
 export const COMBO_CITY_SLUGS = [
-  // Home turf (Eastern Panhandle WV). These are the closest, highest-intent
-  // markets — Search Console shows the site already ranking near the top for
-  // "roof replacement cost/estimate" queries in both towns — so they lead the
-  // list and their copy quotes real price ranges rather than deferring to a
-  // form. Coverage here is roofing-only for now; decks are the next addition.
+  // Home turf (Eastern Panhandle WV). The closest, highest-intent markets, and
+  // where the site's best commercial positions sit: Search Console shows
+  // "basement remodeling ranson wv" at 3.2 and "basement remodeling inwood wv"
+  // at 5.7, both currently answered by a generic /service-areas/ page. Copy
+  // here quotes real published figures rather than deferring to a form.
   'martinsburg-wv',
   'charles-town-wv',
+  'ranson-wv',
+  'inwood-wv',
 
   'winchester-va',
   'frederick-md',
@@ -78,6 +80,20 @@ type ComboContent = {
   metaDescription?: string;
 };
 
+/**
+ * The generic metadata every combo gets when it defines no override.
+ * Exported so the route and the tests share one definition: an override
+ * that merely reproduces the fallback is dead weight, and the only way to
+ * detect that is to compare against the real template rather than a copy.
+ */
+export function defaultComboTitle(serviceTitle: string, city: string, state: string) {
+  return `${serviceTitle} in ${city}, ${state} | Real Elite`;
+}
+
+export function defaultComboDescription(serviceTitle: string, city: string, state: string) {
+  return `Expert ${serviceTitle.toLowerCase()} services in ${city}, ${state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+}
+
 export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
 
@@ -96,7 +112,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'roofing-charles-town-wv': {
     metaTitle: 'Roof Replacement Cost in Charles Town, WV | Real Elite',
     metaDescription:
-      'Roof replacement in Charles Town, WV — real price ranges, storm and insurance work, and a free written estimate within 24 business hours.',
+      'Roof replacement in Charles Town, WV — the real $9,000 to $22,000 range, storm and insurance claims, and a free written estimate within 24 business hours.',
     paragraphs: [
       "Charles Town and the surrounding Jefferson County communities sit at the eastern edge of the Panhandle, close enough to the Blue Ridge to catch the weather that rolls over it. Summer storms arrive fast and hard, winter brings ice and the freeze-thaw cycle that opens seams around chimneys and valleys, and the shade from mature trees keeps north-facing slopes damp long enough to grow moss and algae. All of it shortens the life of a roof that looked fine three years ago.",
       "Expect a roof replacement here to fall in the $9,000 to $22,000 range. Size and pitch set the baseline; tear-off of multiple old layers, the material tier you pick, and any decking that has to be replaced move it from there. You get that broken out as line items on a written estimate, not a single number over the phone. Any contractor who will not itemize is hiding where the money goes.",
@@ -160,6 +176,25 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   // ── DECKS ──────────────────────────────────────────────────────────────
+
+  /**
+   * Home-turf decks. "composite decking martinsburg" (29 impressions, position
+   * 26.4) and "decking martinsburg" (12, position 33) currently land on the
+   * generic /services/decks hub, which names no town. The per-square-foot
+   * figures here are the ones the deck-cost guide already publishes for the
+   * Eastern Panhandle, so the site does not contradict itself.
+   */
+  'decks-martinsburg-wv': {
+    metaTitle: 'Composite Deck Builder in Martinsburg, WV | Real Elite',
+    metaDescription:
+      'Composite and pressure-treated decks in Martinsburg. Installed cost runs about $30 to $55 per square foot for Trex or TimberTech, $15 to $25 for pressure-treated.',
+    paragraphs: [
+      "Martinsburg decks take the full Eastern Panhandle year: humid summers with fast thunderstorms, then a winter of freeze and thaw that works water into every fastener and board end. That cycle is why pressure-treated pine here needs sanding and staining by about year three and why so many Berkeley County homeowners replacing a fifteen-year-old deck do not replace it in kind.",
+      "Installed cost in this market runs roughly $15 to $25 per square foot for pressure-treated pine and $30 to $55 per square foot for composite like Trex or TimberTech. On a typical 400 square foot deck that is a real spread, and it is worth being honest about where it goes: composite costs more up front and gives back the annual maintenance weekend, holds colour through the west-facing exposures common out toward Spring Mills, and does not splinter where children are barefoot.",
+      "We build across Berkeley County — the older homes near downtown and Queen Street, where grade and existing framing need a careful look before anything is designed, and the newer subdivisions toward Spring Mills, Hedgesville and the Route 11 corridor, where a straightforward replacement moves quickly. Footings go below the frost line, which in this part of West Virginia is not a detail to eyeball.",
+      "Berkeley County permits and inspections are ours to handle. You get a written, itemized estimate before anything is torn out, with framing, decking, railing, footings and any structural work broken out separately so the number is checkable. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
 
   'decks-winchester-va': {
     paragraphs: [
@@ -422,6 +457,53 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   // ── BASEMENTS ────────────────────────────────────────────────────────────
+
+  /**
+   * Eastern Panhandle basements. These carry the best commercial positions on
+   * the site — "basement remodeling ranson wv" at 3.2, "basement remodel ranson
+   * wv" at 5.1, "basement remodeling inwood wv" at 5.7 — all currently answered
+   * by a generic /service-areas/ page with a template snippet.
+   *
+   * No whole-project WV basement range is published anywhere on the site, so
+   * these deliberately do NOT quote one. The egress window figure is published
+   * (see the basement-egress-window-cost guide) and is used instead: it is true,
+   * specific, and it is the line item that actually catches WV homeowners out.
+   */
+  'basements-ranson-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Ranson, WV | Real Elite',
+    metaDescription:
+      'Finished basements in Ranson — family room, guest suite, full bath, and the egress window Jefferson County code requires, $3,500 to $6,500 installed.',
+    paragraphs: [
+      "Ranson has more unfinished basement square footage than almost anywhere else in Jefferson County, and it is nearly all recent. The Flowing Springs and Powhatan Place developments put hundreds of homes up with full-height lower levels roughed for nothing but a furnace, and the families who bought them are now out of room upstairs. That is the typical Ranson brief: a family room, a guest bedroom with its own bath, and somewhere to put the things that have taken over the garage.",
+      "The part that catches people out is egress. West Virginia code will not let you call a lower-level room a bedroom without a compliant egress window, and on the newer Ranson builds that usually means cutting the foundation wall and setting a window well. That is a real line item, $3,500 to $6,500 installed, and we put it on the estimate at the start rather than after the framing is up. If your plan does not include a bedroom, you do not need one, and we will tell you that too.",
+      "Everything before the finishes decides how the basement ages. We check the perimeter and the slab for moisture before a single stud goes up, verify the sump and its backup, and use an insulated subfloor system where the slab reads cold or damp. Then framing to code, a properly sized HVAC run or a dedicated mini-split rather than a prayer that the existing system reaches, full electrical, and insulation that makes the lower level comfortable in February instead of merely finished.",
+      "We pull the Jefferson County permits and meet the inspector ourselves. You get a written, itemized estimate before demolition, covering framing, electrical, plumbing, HVAC, insulation, drywall, flooring and finishes as separate lines, so you can see exactly where the money goes and hold the final invoice against it. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
+  'basements-inwood-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Inwood, WV | Real Elite',
+    metaDescription:
+      'Finished basements in Inwood and the Route 51 corridor — family room, guest suite, full bath, plus the egress window WV code requires from $3,500.',
+    paragraphs: [
+      "Inwood grew fast and it grew new. The subdivisions along the Route 51 corridor and out toward Gerrardstown Road went up on what was farmland a generation ago, and almost all of them came with a full basement left unfinished. Families here tend to finish them for the same reasons: a second living space that is not the front room, a bedroom for a relative or a returning adult child, and a place for the treadmill that is currently a coat rack.",
+      "Berkeley County enforces egress the way the code is written. A lower-level bedroom needs a compliant egress window, which on most Inwood builds means cutting the foundation and setting a well — $3,500 to $6,500 installed, quoted up front, not discovered later. Plenty of Inwood basements do not need one, because the plan is a family room and a bath rather than a bedroom. We will tell you which one you are looking at before you are committed to anything.",
+      "Because these houses are newer, the slabs are usually sound and the moisture work is quick, but we still check rather than assume: perimeter inspection, sump and battery backup verified, insulated subfloor where the slab needs it. From there it is code framing, an HVAC run sized for the space or a dedicated mini-split, full electrical, insulation, and the finishes. Skipping the moisture step is the shortcut that shows up three years later in the baseboards.",
+      "We handle the Berkeley County permit and the inspections. The estimate is written and itemized before any work starts, with each trade broken out so the number is something you can check rather than something you have to trust. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
+  'basements-charles-town-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Charles Town, WV',
+    metaDescription:
+      'Finished basements in Charles Town, from historic-district stone cellars to newer full-height builds. Egress windows to Jefferson County code from $3,500.',
+    paragraphs: [
+      "Charles Town basements come in two very different shapes and the difference decides the whole project. The historic streets around Washington and George sit on older stone or block foundations with lower headroom, uneven floors and, often, a moisture history worth taking seriously. The newer subdivisions out toward Route 9 and the Ranson line have full-height poured walls roughed in for a future finish. We quote them differently because they genuinely are different jobs.",
+      "On the older homes, the honest conversation happens before design. Some of those cellars want a dehumidification and drainage plan and a modest finish rather than a full build-out, and we would rather say so than sell you drywall that will not last. Where the headroom and the foundation do support a full finish, the result is worth having: a guest suite, a library or den, a workshop that is not the garage.",
+      "Newer Charles Town builds are straightforward, and the main code point is egress. Jefferson County requires a compliant egress window for any lower-level bedroom — $3,500 to $6,500 installed on a typical foundation, on the estimate from the start. Moisture control still comes first regardless of the home's age: perimeter check, sump and backup, insulated subfloor where the slab calls for it.",
+      "We pull the Jefferson County permits, coordinate the inspections, and where the property sits in the historic district we handle that review too. Every job starts with a written, itemized estimate. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
 
   'basements-frederick-md': {
     metaDescription:

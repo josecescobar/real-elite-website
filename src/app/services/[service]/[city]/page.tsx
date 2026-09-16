@@ -20,6 +20,8 @@ import JsonLd from '@/components/seo/JsonLd';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import {
   CONTENT,
+  defaultComboTitle,
+  defaultComboDescription,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
@@ -106,11 +108,10 @@ export async function generateMetadata({
   const meta = CONTENT[`${service}-${city}` as keyof typeof CONTENT];
 
   const title =
-    meta?.metaTitle ??
-    `${serviceData.title} in ${cityData.city}, ${cityData.state} | Real Elite`;
+    meta?.metaTitle ?? defaultComboTitle(serviceData.title, cityData.city, cityData.state);
   const description =
     meta?.metaDescription ??
-    `Expert ${serviceData.title.toLowerCase()} services in ${cityData.city}, ${cityData.state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+    defaultComboDescription(serviceData.title, cityData.city, cityData.state);
 
   return {
     title,
