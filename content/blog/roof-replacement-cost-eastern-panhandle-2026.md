@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 If you're a homeowner in the Eastern Panhandle pricing a roof replacement for 2026, you've probably already heard a wide spread of numbers — and wondered why the quotes for what looks like the same house can be thousands of dollars apart. The short answer: they're usually not the same job. Roof size, pitch, how many old layers are up there, what's hiding under them, and the material you pick all move the number.
 
-Across the Eastern Panhandle — Martinsburg, Charles Town, and the surrounding communities in Berkeley and Jefferson County — a roof replacement in 2026 generally lands somewhere between **$9,000 and $22,000**. This guide breaks down what each part of that range actually buys you, and where the number really comes from.
+This guide covers the Eastern Panhandle specifically — Martinsburg, Charles Town, and the surrounding communities in Berkeley and Jefferson County. Statewide West Virginia averages quoted online often run thousands below the **$9,000–$22,000** range here, so check which region a number describes before you use it to judge a quote you've been handed. The tiers below show what each part of that spread buys, and the section after them covers the costs that only turn up once the old roof is off.
 
 ## What a roof replacement costs by scope
 
