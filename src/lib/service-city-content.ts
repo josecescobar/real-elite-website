@@ -36,13 +36,15 @@ export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
  * ship as 404s.
  */
 export const COMBO_CITY_SLUGS = [
-  // Home turf (Eastern Panhandle WV). These are the closest, highest-intent
-  // markets — Search Console shows the site already ranking near the top for
-  // "roof replacement cost/estimate" queries in both towns — so they lead the
-  // list and their copy quotes real price ranges rather than deferring to a
-  // form. Coverage here is roofing-only for now; decks are the next addition.
+  // Home turf (Eastern Panhandle WV). The closest, highest-intent markets, and
+  // where the site's best commercial positions sit: Search Console shows
+  // "basement remodeling ranson wv" at 3.2 and "basement remodeling inwood wv"
+  // at 5.7, both currently answered by a generic /service-areas/ page. Copy
+  // here quotes real published figures rather than deferring to a form.
   'martinsburg-wv',
   'charles-town-wv',
+  'ranson-wv',
+  'inwood-wv',
 
   // Loudoun outdoor living. Brambleton is a community inside Ashburn's orbit
   // rather than a town, but it carries seven distinct deck queries of its own
@@ -84,6 +86,20 @@ type ComboContent = {
   metaDescription?: string;
 };
 
+/**
+ * The generic metadata every combo gets when it defines no override.
+ * Exported so the route and the tests share one definition: an override
+ * that merely reproduces the fallback is dead weight, and the only way to
+ * detect that is to compare against the real template rather than a copy.
+ */
+export function defaultComboTitle(serviceTitle: string, city: string, state: string) {
+  return `${serviceTitle} in ${city}, ${state} | Real Elite`;
+}
+
+export function defaultComboDescription(serviceTitle: string, city: string, state: string) {
+  return `Expert ${serviceTitle.toLowerCase()} services in ${city}, ${state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+}
+
 export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
 
@@ -102,7 +118,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'roofing-charles-town-wv': {
     metaTitle: 'Roof Replacement Cost in Charles Town, WV | Real Elite',
     metaDescription:
-      'Roof replacement in Charles Town, WV — real price ranges, storm and insurance work, and a free written estimate within 24 business hours.',
+      'Roof replacement in Charles Town, WV — the real $9,000 to $22,000 range, storm and insurance claims, and a free written estimate within 24 business hours.',
     paragraphs: [
       "Charles Town and the surrounding Jefferson County communities sit at the eastern edge of the Panhandle, close enough to the Blue Ridge to catch the weather that rolls over it. Summer storms arrive fast and hard, winter brings ice and the freeze-thaw cycle that opens seams around chimneys and valleys, and the shade from mature trees keeps north-facing slopes damp long enough to grow moss and algae. All of it shortens the life of a roof that looked fine three years ago.",
       "Expect a roof replacement here to fall in the $9,000 to $22,000 range. Size and pitch set the baseline; tear-off of multiple old layers, the material tier you pick, and any decking that has to be replaced move it from there. You get that broken out as line items on a written estimate, not a single number over the phone. Any contractor who will not itemize is hiding where the money goes.",
@@ -166,6 +182,25 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   // ── DECKS ──────────────────────────────────────────────────────────────
+
+  /**
+   * Home-turf decks. "composite decking martinsburg" (29 impressions, position
+   * 26.4) and "decking martinsburg" (12, position 33) currently land on the
+   * generic /services/decks hub, which names no town. The per-square-foot
+   * figures here are the ones the deck-cost guide already publishes for the
+   * Eastern Panhandle, so the site does not contradict itself.
+   */
+  'decks-martinsburg-wv': {
+    metaTitle: 'Composite Deck Builder in Martinsburg, WV | Real Elite',
+    metaDescription:
+      'Composite and pressure-treated decks in Martinsburg. Installed cost runs about $30 to $55 per square foot for Trex or TimberTech, $15 to $25 for pressure-treated.',
+    paragraphs: [
+      "Martinsburg decks take the full Eastern Panhandle year: humid summers with fast thunderstorms, then a winter of freeze and thaw that works water into every fastener and board end. That cycle is why pressure-treated pine here needs sanding and staining by about year three and why so many Berkeley County homeowners replacing a fifteen-year-old deck do not replace it in kind.",
+      "Installed cost in this market runs roughly $15 to $25 per square foot for pressure-treated pine and $30 to $55 per square foot for composite like Trex or TimberTech. On a typical 400 square foot deck that is a real spread, and it is worth being honest about where it goes: composite costs more up front and gives back the annual maintenance weekend, holds colour through the west-facing exposures common out toward Spring Mills, and does not splinter where children are barefoot.",
+      "We build across Berkeley County — the older homes near downtown and Queen Street, where grade and existing framing need a careful look before anything is designed, and the newer subdivisions toward Spring Mills, Hedgesville and the Route 11 corridor, where a straightforward replacement moves quickly. Footings go below the frost line, which in this part of West Virginia is not a detail to eyeball.",
+      "Berkeley County permits and inspections are ours to handle. You get a written, itemized estimate before anything is torn out, with framing, decking, railing, footings and any structural work broken out separately so the number is checkable. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
 
   'decks-winchester-va': {
     paragraphs: [
@@ -468,7 +503,56 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS ────────────────────────────────────────────────────────────
 
+  /**
+   * Eastern Panhandle basements. These carry the best commercial positions on
+   * the site — "basement remodeling ranson wv" at 3.2, "basement remodel ranson
+   * wv" at 5.1, "basement remodeling inwood wv" at 5.7 — all currently answered
+   * by a generic /service-areas/ page with a template snippet.
+   *
+   * No whole-project WV basement range is published anywhere on the site, so
+   * these deliberately do NOT quote one. The egress window figure is published
+   * (see the basement-egress-window-cost guide) and is used instead: it is true,
+   * specific, and it is the line item that actually catches WV homeowners out.
+   */
+  'basements-ranson-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Ranson, WV | Real Elite',
+    metaDescription:
+      'Finished basements in Ranson — family room, guest suite, full bath, and the egress window Jefferson County code requires, $3,500 to $6,500 installed.',
+    paragraphs: [
+      "Ranson has more unfinished basement square footage than almost anywhere else in Jefferson County, and it is nearly all recent. The Flowing Springs and Powhatan Place developments put hundreds of homes up with full-height lower levels roughed for nothing but a furnace, and the families who bought them are now out of room upstairs. That is the typical Ranson brief: a family room, a guest bedroom with its own bath, and somewhere to put the things that have taken over the garage.",
+      "The part that catches people out is egress. West Virginia code will not let you call a lower-level room a bedroom without a compliant egress window, and on the newer Ranson builds that usually means cutting the foundation wall and setting a window well. That is a real line item, $3,500 to $6,500 installed, and we put it on the estimate at the start rather than after the framing is up. If your plan does not include a bedroom, you do not need one, and we will tell you that too.",
+      "Everything before the finishes decides how the basement ages. We check the perimeter and the slab for moisture before a single stud goes up, verify the sump and its backup, and use an insulated subfloor system where the slab reads cold or damp. Then framing to code, a properly sized HVAC run or a dedicated mini-split rather than a prayer that the existing system reaches, full electrical, and insulation that makes the lower level comfortable in February instead of merely finished.",
+      "We pull the Jefferson County permits and meet the inspector ourselves. You get a written, itemized estimate before demolition, covering framing, electrical, plumbing, HVAC, insulation, drywall, flooring and finishes as separate lines, so you can see exactly where the money goes and hold the final invoice against it. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
+  'basements-inwood-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Inwood, WV | Real Elite',
+    metaDescription:
+      'Finished basements in Inwood and the Route 51 corridor — family room, guest suite, full bath, plus the egress window WV code requires from $3,500.',
+    paragraphs: [
+      "Inwood grew fast and it grew new. The subdivisions along the Route 51 corridor and out toward Gerrardstown Road went up on what was farmland a generation ago, and almost all of them came with a full basement left unfinished. Families here tend to finish them for the same reasons: a second living space that is not the front room, a bedroom for a relative or a returning adult child, and a place for the treadmill that is currently a coat rack.",
+      "Berkeley County enforces egress the way the code is written. A lower-level bedroom needs a compliant egress window, which on most Inwood builds means cutting the foundation and setting a well — $3,500 to $6,500 installed, quoted up front, not discovered later. Plenty of Inwood basements do not need one, because the plan is a family room and a bath rather than a bedroom. We will tell you which one you are looking at before you are committed to anything.",
+      "Because these houses are newer, the slabs are usually sound and the moisture work is quick, but we still check rather than assume: perimeter inspection, sump and battery backup verified, insulated subfloor where the slab needs it. From there it is code framing, an HVAC run sized for the space or a dedicated mini-split, full electrical, insulation, and the finishes. Skipping the moisture step is the shortcut that shows up three years later in the baseboards.",
+      "We handle the Berkeley County permit and the inspections. The estimate is written and itemized before any work starts, with each trade broken out so the number is something you can check rather than something you have to trust. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
+  'basements-charles-town-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Charles Town, WV',
+    metaDescription:
+      'Finished basements in Charles Town, from historic-district stone cellars to newer full-height builds. Egress windows to Jefferson County code from $3,500.',
+    paragraphs: [
+      "Charles Town basements come in two very different shapes and the difference decides the whole project. The historic streets around Washington and George sit on older stone or block foundations with lower headroom, uneven floors and, often, a moisture history worth taking seriously. The newer subdivisions out toward Route 9 and the Ranson line have full-height poured walls roughed in for a future finish. We quote them differently because they genuinely are different jobs.",
+      "On the older homes, the honest conversation happens before design. Some of those cellars want a dehumidification and drainage plan and a modest finish rather than a full build-out, and we would rather say so than sell you drywall that will not last. Where the headroom and the foundation do support a full finish, the result is worth having: a guest suite, a library or den, a workshop that is not the garage.",
+      "Newer Charles Town builds are straightforward, and the main code point is egress. Jefferson County requires a compliant egress window for any lower-level bedroom — $3,500 to $6,500 installed on a typical foundation, on the estimate from the start. Moisture control still comes first regardless of the home's age: perimeter check, sump and backup, insulated subfloor where the slab calls for it.",
+      "We pull the Jefferson County permits, coordinate the inspections, and where the property sits in the historic district we handle that review too. Every job starts with a written, itemized estimate. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
   'basements-frederick-md': {
+    metaDescription:
+      'Basement finishing in Frederick, MD — family room, guest suite, full bath, proper moisture control. Most projects run $55,000 to $70,000, itemized up front.',
     paragraphs: [
       "Frederick, Maryland is the strongest basement-finishing market in our service area. The combination of Frederick County's housing stock — most newer homes in Ballenger Creek, Urbana, Jefferson, and New Market have full unfinished basements as standard construction — and the local demand for additional living space at a fraction of an addition's cost makes basement finishing one of the highest-ROI projects a Frederick homeowner can build.",
       "Real Elite Contracting builds Frederick basements that pass inspection on the first walkthrough, every time. Moisture control comes first — sump pump verification, perimeter waterproofing assessment, vapor barrier installation under any framing — because the cheap shortcut on moisture is what creates mold problems in year three. Then code-compliant framing with proper egress windows where required, full electrical and plumbing rough-in to Frederick County code, HVAC extension or dedicated mini-split installation, and the insulation and drywall that turn raw space into living space.",
@@ -519,6 +603,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · MCLEAN, VA ───────────────────────────────────────────────
   'basements-mclean-va': {
+    metaDescription:
+      'Lower-level finishing in McLean — media room, wet bar, wine room, guest suite. Most builds run $150,000 to $220,000, with every line itemized up front.',
     paragraphs: [
       "McLean homes generally have generous unfinished lower levels with full ceiling height and walkout access, which makes finished-basement entertainment suites one of the highest-impact projects an estate-class home can build. The McLean basement brief tends to be ambitious: a true media room with tiered seating, a separate wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space to an already substantial home.",
       "Real Elite Contracting builds McLean lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the cheap shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -529,6 +615,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · ALEXANDRIA, VA ───────────────────────────────────────────
   'basements-alexandria-va': {
+    metaDescription:
+      'Finished lower levels in Alexandria, from row-house basements to full entertainment levels. Typical scope runs $80,000 to $200,000+, itemized up front.',
     paragraphs: [
       "Alexandria basement work splits cleanly into two categories: historic Old Town townhouse cellars, which need a very specific technical approach (often around moisture, ceiling height, and structure), and the larger walkout or full lower levels in the colonial and contemporary homes of Belle Haven, Rosemont, North Ridge, and Beverley Hills. Real Elite Contracting handles both, and the right answer for each is rarely the same.",
       "For Belle Haven and the post-war neighborhoods, lower-level finishes follow the same playbook as a luxury Fairfax County build: moisture control first, code-compliant framing with proper egress, full electrical and plumbing rough-in, HVAC, surround pre-wire, and millwork that elevates the space. Typical scope runs $80,000–$200,000+ depending on square footage and feature mix — finished family room, full bath, wet bar, guest suite, and dedicated gym or office.",
@@ -559,6 +647,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · VIENNA, VA ───────────────────────────────────────────────
   'basements-vienna-va': {
+    metaDescription:
+      'Finished lower levels in Vienna — media room, wet bar, guest suite, full bath. Most projects run $130,000 to $180,000, itemized before work starts.',
     paragraphs: [
       "Vienna homes typically have generous unfinished lower levels with full ceiling height and walkout access, which makes a finished entertainment lower level one of the highest-impact projects the home can build. The typical Vienna basement brief includes a true media room with tiered seating, a wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space.",
       "Real Elite Contracting builds Vienna lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -589,6 +679,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · GREAT FALLS, VA ──────────────────────────────────────────
   'basements-great-falls-va': {
+    metaDescription:
+      'Estate-scale lower levels in Great Falls — media room, wet bar, wine room, fitness, guest suite. Most builds run $250,000 to $350,000, fully itemized.',
     paragraphs: [
       "Great Falls lower levels are some of the most ambitious finished-basement projects in our service area. The typical brief includes a media room with tiered seating and acoustic treatment, a true wet bar that functions as a second entertaining kitchen, a wine room with dedicated cooling, a fitness room with rubber flooring and mirrored wall, a guest suite with full bath, and sometimes a separate game room or family lounge. Lower levels at this scale function as an entire additional tier of the home.",
       "Real Elite Contracting builds Great Falls lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where required — because the shortcut on moisture is the one that surfaces years later. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, dedicated HVAC systems where the existing capacity doesn't carry the load, surround pre-wire, acoustic treatment, and the millwork and stone that turn the space into a true room.",
@@ -619,6 +711,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · RESTON, VA ───────────────────────────────────────────────
   'basements-reston-va': {
+    metaDescription:
+      'Finished lower levels in Reston — media room, wet bar, full bath, guest suite. Most projects run $110,000 to $160,000, itemized line by line up front.',
     paragraphs: [
       "Reston homes typically have generous lower levels — often walkouts with full ceiling height — and a finished lower level is one of the highest-impact projects the home can build. The typical Reston basement brief includes a media room, wet bar, full bath, guest suite, and sometimes a dedicated gym or yoga room. The build adds a full additional tier of livable space.",
       "Real Elite Contracting builds Reston lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump verification, dimple-mat or insulated subfloor systems where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -649,6 +743,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · BURKE, VA ────────────────────────────────────────────────
   'basements-burke-va': {
+    metaDescription:
+      'Finished lower levels in Burke — family room, guest suite, full bath, gym. Most projects run $80,000 to $120,000, with every line itemized before work starts.',
     paragraphs: [
       "Burke homes typically have generous unfinished lower levels, and a finished lower level is one of the highest-impact projects a Burke homeowner can build. The typical Burke basement brief includes a finished family room, full bath, wet bar or kitchenette, guest suite or office, and sometimes a dedicated gym or media room.",
       "Real Elite Contracting builds Burke lower levels with proper moisture control as the foundation: perimeter inspection, sump pump verification, vapor barrier installation under any framing, dimple-mat or insulated subfloor where the slab condition requires it. From there: code-compliant framing, egress where bedrooms are planned, full electrical, HVAC extension, and the insulation, drywall, and finishes that turn raw space into living space.",
@@ -679,6 +775,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · FAIRFAX STATION, VA ──────────────────────────────────────
   'basements-fairfax-station-va': {
+    metaDescription:
+      'Estate lower levels in Fairfax Station — media room, wet bar, guest suite, fitness. Most builds run $150,000 to $200,000, fully itemized before work starts.',
     paragraphs: [
       "Fairfax Station lower levels are some of the most substantial finished-basement projects in southern Fairfax County. The typical brief includes a media room with tiered seating, a wet bar that functions as a second entertaining kitchen, a guest suite with full bath, a fitness or yoga room, and sometimes a wine room or family lounge.",
       "Real Elite Contracting builds Fairfax Station lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -709,6 +807,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · CLIFTON, VA ──────────────────────────────────────────────
   'basements-clifton-va': {
+    metaDescription:
+      'Lower-level finishing in Clifton — restrained builds for Village homes, full entertainment levels for the country estates. From $60,000 to $300,000+, itemized.',
     paragraphs: [
       "Clifton lower levels mirror the same two-track pattern as the upstairs: restrained, period-respectful finishes in the historic village homes, and large entertainment-tier builds in the country estates. Real Elite Contracting handles both, with the right answer determined by the home.",
       "For historic Clifton Village homes, we often recommend a restrained finish in the lower level — wine storage, a quiet workshop, a guest room with its own bath, a family lounge — that respects the period character above. Where moisture control or structural reinforcement is required, we do it correctly and document it. Typical scope runs $60,000–$160,000+.",
@@ -739,6 +839,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · MIDDLEBURG, VA ───────────────────────────────────────────
   'basements-middleburg-va': {
+    metaDescription:
+      'Lower-level finishing for Middleburg estates — wine room, media room, guest suite, fitness. Typical scope runs $120,000 to $350,000+, itemized up front.',
     paragraphs: [
       "Middleburg lower levels are some of the most distinctive finished-basement projects in our service area. The brief routinely includes a wine cellar with dedicated cooling and traditional racking, a tasting room, a gun room or trophy room for hunt-country homes, a guest suite with full bath, and sometimes a media room or family lounge. Done with restraint, the lower level reads as a genuine extension of the historic home above.",
       "Real Elite Contracting builds Middleburg lower levels with proper moisture and vapor control as the technical foundation — perimeter inspection, sump pump verification, dimple-mat or insulated subfloor where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical, HVAC extension, surround pre-wire, and the millwork and stone that turn the space into a true room. For wine cellars, dedicated cooling and proper insulation are non-negotiable.",

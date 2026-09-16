@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 If you're a homeowner in the Eastern Panhandle pricing a roof replacement for 2026, you've probably already heard a wide spread of numbers — and wondered why the quotes for what looks like the same house can be thousands of dollars apart. The short answer: they're usually not the same job. Roof size, pitch, how many old layers are up there, what's hiding under them, and the material you pick all move the number.
 
-Across the Eastern Panhandle — Martinsburg, Charles Town, and the surrounding communities in Berkeley and Jefferson County — a roof replacement in 2026 generally lands somewhere between **$9,000 and $22,000**. This guide breaks down what each part of that range actually buys you, and where the number really comes from.
+This guide covers the Eastern Panhandle specifically — Martinsburg, Charles Town, and the surrounding communities in Berkeley and Jefferson County. Statewide West Virginia averages quoted online often run thousands below the **$9,000–$22,000** range here, so check which region a number describes before you use it to judge a quote you've been handed. The tiers below show what each part of that spread buys, and the section after them covers the costs that only turn up once the old roof is off.
 
 ## What a roof replacement costs by scope
 
@@ -26,7 +26,7 @@ Most replacements in this market fall into one of three brackets. Where your roo
 | Better | $13,000 – $18,000 | A typical Eastern Panhandle home — average size and pitch, full tear-off, architectural shingles, refreshed flashing and ventilation |
 | Best | $18,000 – $22,000+ | A large, steep, or complex roof — multiple facets and valleys, or a premium upgrade like standing-seam metal |
 
-The middle tier is where most full-size family homes in Martinsburg and Charles Town land: a complete tear-off, quality [architectural shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle), new underlayment, and properly reworked flashing and ventilation. It's the "real roof that lasts decades" number for a typical home.
+The middle tier is where most full-size family homes in [Martinsburg](/services/roofing/martinsburg-wv) and [Charles Town](/services/roofing/charles-town-wv) land: a complete tear-off, quality [architectural shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle), new underlayment, and properly reworked flashing and ventilation. It's the "real roof that lasts decades" number for a typical home.
 
 ## What actually drives the cost
 
@@ -72,6 +72,6 @@ We can give you a solid ballpark. Our [Instant Roof Quote](/instant-roof-quote) 
 
 The best way to know where your roof lands in the $9,000–$22,000 range is to have someone actually look at it and put the number in writing. That's exactly what we do — no pressure, no vague round numbers, no invented damage.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA, serving Martinsburg, Charles Town, and the surrounding Berkeley and Jefferson County communities. Every roof we quote comes with a line-itemed written estimate — including how we handle decking if we find it — and every roof we install comes with the manufacturer warranty registered on your behalf plus our own workmanship warranty in writing.
+Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA, serving [Martinsburg](/services/roofing/martinsburg-wv), [Charles Town](/services/roofing/charles-town-wv), and the surrounding Berkeley and Jefferson County communities. Every roof we quote comes with a line-itemed written estimate — including how we handle decking if we find it — and every roof we install comes with the manufacturer warranty registered on your behalf plus our own workmanship warranty in writing.
 
 Start with a fast ballpark from the [Instant Roof Quote](/instant-roof-quote) tool, learn more about our full [roofing services](/services/roofing), or [request a free estimate](/contact#estimate) and we'll get you a real number to plan around.

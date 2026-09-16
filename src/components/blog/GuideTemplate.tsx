@@ -14,6 +14,7 @@ import EstimateCTACard from './EstimateCTACard';
 import InlineTestimonial from './InlineTestimonial';
 import RelatedProjectsInline from './RelatedProjectsInline';
 import RelatedGuides from './RelatedGuides';
+import { primaryCtaForPath } from '@/lib/cta-intent';
 import ArticleSchema from '@/components/seo/ArticleSchema';
 import JsonLd from '@/components/seo/JsonLd';
 import {
@@ -91,6 +92,15 @@ export default function GuideTemplate({ post }: Props) {
   const category = GUIDE_CATEGORIES.find((c) => c.slug === post.categorySlug);
   const categoryHref = category ? `/resources/${category.slug}` : '/resources';
   const categoryLabel = category?.name ?? post.category;
+
+  /**
+   * Resolve the article's call to action from its own path using the same
+   * helper the site header uses. A roofing guide sends the reader to the
+   * instant roof quote, which answers the question the article just raised in
+   * about a minute; everything else keeps the free-estimate form.
+   */
+  const cta = primaryCtaForPath(`/blog/${post.slug}`);
+  const isRoofQuote = cta.intent === 'roof-quote';
 
   // Heuristic: feed the inline-projects module a hint based on category
   const projectsHint =
@@ -232,7 +242,18 @@ export default function GuideTemplate({ post }: Props) {
               <RelatedProjectsInline categoryHint={projectsHint} />
 
               {/* End-of-article estimate CTA */}
-              <EstimateCTACard />
+              <EstimateCTACard
+                href={cta.href}
+                {...(isRoofQuote
+                  ? {
+                      eyebrow: 'Free instant estimate',
+                      heading: 'See what a new roof would cost on your house',
+                      body:
+                        'Enter your address, pick a shingle, and get a ballpark replacement range in about 60 seconds — no phone call, no waiting on a callback.',
+                      label: 'Get My Roof Quote',
+                    }
+                  : {})}
+              />
 
               {/* Author box */}
               <AuthorBox authorName={post.author} />
@@ -256,7 +277,15 @@ export default function GuideTemplate({ post }: Props) {
         </Container>
       </article>
 
-      <StickyInArticleCTA />
+      <StickyInArticleCTA
+        cta={cta}
+        {...(isRoofQuote
+          ? {
+              prompt: 'Pricing a roof replacement?',
+              subtext: 'Ballpark range from your address, about 60 seconds.',
+            }
+          : {})}
+      />
     </>
   );
 }
