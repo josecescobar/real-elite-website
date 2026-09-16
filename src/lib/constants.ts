@@ -368,7 +368,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   'brambleton-va': {
     description:
       "Brambleton is one of Loudoun County's largest planned communities, a walkable collection of villages built around Brambleton Town Center with the Dulles Greenway and the Silver Line's Ashburn station a short drive away. Homes here are newer, closely spaced, and held to an active architectural review process, which makes the back yard the one place a family can genuinely make their own. That is why outdoor living is the dominant project type in Brambleton: composite decks, covered porches, and multi-zone entertaining space rather than wholesale exterior changes. Real Elite Contracting builds those spaces to Loudoun County code and carries the HOA design submission from drawing to approval.",
-    neighborhoods: ['Brambleton Town Center', 'Legacy at Brambleton', 'Birchwood at Brambleton', 'Summerwalk', 'Brambleton Corner'],
+    neighborhoods: ['Brambleton Town Center', 'Birchwood at Brambleton', 'West Park at Brambleton', 'Summerfield at Brambleton'],
     marketEmphasis: ['decks', 'bathrooms', 'kitchens', 'remodeling', 'basements', 'siding'],
   },
   'loudoun-county-va': {
