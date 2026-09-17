@@ -291,6 +291,36 @@ describe('every app route declares its own canonical', () => {
     return found;
   }
 
+  /**
+   * The module a route re-exports its metadata from, if it does.
+   *
+   * `export { metadata } from './metadata'` is valid and this guard does not
+   * follow it — the declaration is in another file, and chasing it would make
+   * the whole analysis per-module rather than per-route (the seo.ts helper
+   * binding, scope resolution and all). Nothing in this app writes that, so
+   * the cost buys nothing today.
+   *
+   * What it does buy is the failure message. A route written this way would
+   * otherwise be told it has no canonical when it plainly has one, which is the
+   * kind of message that gets a test deleted rather than read.
+   */
+  function reexportsMetadataFrom(source: ts.SourceFile): string | undefined {
+    for (const statement of source.statements) {
+      if (!ts.isExportDeclaration(statement) || !statement.moduleSpecifier) continue;
+      if (!ts.isStringLiteral(statement.moduleSpecifier)) continue;
+      const clause = statement.exportClause;
+      if (clause && ts.isNamedExports(clause)) {
+        const carries = clause.elements.some(
+          (e) => e.name.text === 'metadata' || e.name.text === 'generateMetadata'
+        );
+        if (!carries) continue;
+      }
+      // A bare `export * from './metadata'` may carry either one.
+      return statement.moduleSpecifier.text;
+    }
+    return undefined;
+  }
+
   function metadataExports(source: ts.SourceFile): ts.Node[] {
     const exported = (node: ts.Node) =>
       ts.canHaveModifiers(node) &&
@@ -811,6 +841,8 @@ describe('every app route declares its own canonical', () => {
     //   - the call is not nested in a conditional. `if (loggedIn)
     //     redirect('/account');` with no return after it has no rendered value
     //     either, yet the fallthrough is not a redirect.
+    const reexported = reexportsMetadataFrom(source);
+
     const fn = defaultExport(source);
     if (fn) {
       const root = metadataFunction(fn);
@@ -837,8 +869,14 @@ describe('every app route declares its own canonical', () => {
         `Export metadata built with buildMetadata({ path, title, description }) ` +
         `from src/lib/seo.ts, or carrying alternates.canonical or ` +
         `robots.index: false. A branching generateMetadata needs a canonical on ` +
-        `some branch, or noindex on every one. A redirect() only counts when the ` +
-        `route returns nothing at all.`
+        `the return it serves — the last one — or noindex on every branch. ` +
+        `A redirect only counts when every path through the page takes one.` +
+        (reexported
+          ? ` This route re-exports its metadata from '${reexported}'. That is ` +
+            `valid and this guard does not follow it across modules: declare ` +
+            `the metadata in the page file, or re-export it and set ` +
+            `alternates.canonical here as well.`
+          : '')
     ).toBeGreaterThan(0);
   });
 });
