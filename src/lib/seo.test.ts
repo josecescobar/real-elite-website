@@ -95,13 +95,20 @@ describe('every app route declares its own canonical', () => {
     });
   }
 
+  /**
+   * The walk accepts `page.ts` as well as `page.tsx`, so the script kind has to
+   * follow the extension. Parsing a `.ts` file as TSX reads the angle-bracket
+   * assertion in `<Metadata>{ … }` as a JSX tag, and the metadata disappears.
+   */
   function parse(file: string) {
     return ts.createSourceFile(
       file,
       readFileSync(file, 'utf8'),
       ts.ScriptTarget.Latest,
       /* setParentNodes */ true,
-      ts.ScriptKind.TSX
+      file.endsWith('.tsx') || file.endsWith('.jsx')
+        ? ts.ScriptKind.TSX
+        : ts.ScriptKind.TS
     );
   }
 
@@ -119,10 +126,19 @@ describe('every app route declares its own canonical', () => {
     return found;
   }
 
+  /**
+   * A call to `name`, where `name` still means the import it was bound to.
+   * A local `const buildMetadata = () => ({ title })` inside the metadata
+   * function shadows the helper, and matching on the bare text would credit the
+   * route with a canonical the shadow never sets. `declarationInScope` already
+   * answers this: if the callee resolves to a local declaration, it is not the
+   * import.
+   */
   const calls = (name: string) => (node: ts.Node) =>
     ts.isCallExpression(node) &&
     ts.isIdentifier(node.expression) &&
-    node.expression.text === name;
+    node.expression.text === name &&
+    declarationInScope(node.expression) === undefined;
 
   /** A property named `name`, longhand or shorthand (`{ canonical }`). */
   const named = (node: ts.Node, name: string) =>
@@ -139,6 +155,8 @@ describe('every app route declares its own canonical', () => {
     if (
       ts.isSatisfiesExpression(expression) ||
       ts.isAsExpression(expression) ||
+      // `<Metadata>{ … }`, which only parses as an assertion in a .ts file.
+      ts.isTypeAssertionExpression(expression) ||
       ts.isParenthesizedExpression(expression) ||
       ts.isNonNullExpression(expression)
     ) {
@@ -152,48 +170,54 @@ describe('every app route declares its own canonical', () => {
    * `const`. `const alternates = { canonical: '/about' }` assigned in by shorthand
    * is the same metadata as writing the object inline.
    *
-   * The lookup is file-wide rather than scope-aware, which can in principle find
-   * a same-named `const` from another scope. That errs toward accepting a route,
-   * which is the safe direction for a guard whose expensive failure is rejecting
-   * valid code.
+   * The identifier is resolved from where it is written, innermost scope first,
+   * the way the language resolves it. An earlier file-wide search by name was
+   * wrong in the direction that matters: a helper's `const result = { alternates:
+   * { canonical } }` could answer for a `generateMetadata` that returns its own
+   * uncanonicalised `const result`, and the route passed on a canonical it never
+   * emits. Erring toward accepting is not the safe side for a guard — an
+   * accepted broken route is a guard that does nothing while being trusted.
    */
-  function objectOf(
-    source: ts.SourceFile,
-    expression: ts.Expression
-  ): ts.ObjectLiteralExpression | undefined {
+  function declarationInScope(
+    reference: ts.Identifier
+  ): ts.VariableDeclaration | undefined {
+    const declaredHere = (statements: ts.NodeArray<ts.Statement>) => {
+      for (const statement of statements) {
+        if (!ts.isVariableStatement(statement)) continue;
+        for (const d of statement.declarationList.declarations) {
+          if (ts.isIdentifier(d.name) && d.name.text === reference.text) return d;
+        }
+      }
+      return undefined;
+    };
+
+    for (let scope: ts.Node | undefined = reference; scope; scope = scope.parent) {
+      if (ts.isBlock(scope) || ts.isSourceFile(scope)) {
+        const found = declaredHere(scope.statements);
+        if (found) return found;
+      }
+    }
+    return undefined;
+  }
+
+  function objectOf(expression: ts.Expression): ts.ObjectLiteralExpression | undefined {
     const value = unwrap(expression);
     if (ts.isObjectLiteralExpression(value)) return value;
     if (!ts.isIdentifier(value)) return undefined;
 
-    let found: ts.ObjectLiteralExpression | undefined;
-    const visit = (node: ts.Node) => {
-      if (found) return;
-      if (
-        ts.isVariableDeclaration(node) &&
-        ts.isIdentifier(node.name) &&
-        node.name.text === value.text &&
-        node.initializer
-      ) {
-        const initializer = unwrap(node.initializer);
-        if (ts.isObjectLiteralExpression(initializer)) found = initializer;
-        return;
-      }
-      ts.forEachChild(node, visit);
-    };
-    visit(source);
-    return found;
+    const declaration = declarationInScope(value);
+    if (!declaration?.initializer) return undefined;
+    const initializer = unwrap(declaration.initializer);
+    return ts.isObjectLiteralExpression(initializer) ? initializer : undefined;
   }
 
   /**
    * The object a property's value is: its initializer longhand, or the binding it
    * names when written shorthand (`{ alternates }`).
    */
-  const valueObject = (
-    source: ts.SourceFile,
-    property: ts.Node
-  ): ts.ObjectLiteralExpression | undefined => {
-    if (ts.isPropertyAssignment(property)) return objectOf(source, property.initializer);
-    if (ts.isShorthandPropertyAssignment(property)) return objectOf(source, property.name);
+  const valueObject = (property: ts.Node): ts.ObjectLiteralExpression | undefined => {
+    if (ts.isPropertyAssignment(property)) return objectOf(property.initializer);
+    if (ts.isShorthandPropertyAssignment(property)) return objectOf(property.name);
     return undefined;
   };
 
@@ -208,12 +232,12 @@ describe('every app route declares its own canonical', () => {
    * canonical } } }` emits no link, and neither does
    * `alternates: { languages: { canonical } }`.
    */
-  const hasCanonical = (source: ts.SourceFile, value: ts.Expression): boolean => {
-    const object = objectOf(source, value);
+  const hasCanonical = (value: ts.Expression): boolean => {
+    const object = objectOf(value);
     if (!object) return false;
     const alternates = memberOf(object, 'alternates');
     if (!alternates) return false;
-    const section = valueObject(source, alternates);
+    const section = valueObject(alternates);
     return !!section && memberOf(section, 'canonical') !== undefined;
   };
 
@@ -225,8 +249,8 @@ describe('every app route declares its own canonical', () => {
    * says nothing about whether the page is indexed. Presence is the test for a
    * canonical; for `index` it is the value.
    */
-  const hasNoIndex = (source: ts.SourceFile, value: ts.Expression): boolean => {
-    const object = objectOf(source, value);
+  const hasNoIndex = (value: ts.Expression): boolean => {
+    const object = objectOf(value);
     if (!object) return false;
     const robots = memberOf(object, 'robots');
     if (!robots) return false;
@@ -236,7 +260,7 @@ describe('every app route declares its own canonical', () => {
       if (ts.isStringLiteral(directive) && /\bnoindex\b/.test(directive.text)) return true;
     }
 
-    const section = valueObject(source, robots);
+    const section = valueObject(robots);
     const index = section && memberOf(section, 'index');
     return (
       !!index &&
@@ -677,8 +701,44 @@ describe('every app route declares its own canonical', () => {
       return [];
     };
 
+    /** A direct `buildMetadata({ … })`, which sets the canonical from `path`. */
+    const isHelperCall = (value: ts.Expression) =>
+      helper !== undefined && calls(helper)(unwrap(value));
+
+    /**
+     * Does this one returned value carry a canonical? Three ways, because the
+     * repo already writes all three:
+     *
+     *   return buildMetadata({ path, … });          // the helper's own canonical
+     *   return { alternates: { canonical } };       // written out
+     *   const base = buildMetadata({ … });          // blog/[slug]
+     *   return { ...base, openGraph: { … } };       // through the spread
+     *
+     * The third is why the branching rule below used to settle for "a canonical
+     * somewhere in the function": a spread hides the canonical from any check on
+     * the returned object. Resolving the spread to its declaration is one hop of
+     * the same lookup `objectOf` already does, so the excuse no longer holds.
+     */
+    const yieldsCanonical = (value: ts.Expression): boolean => {
+      if (isHelperCall(value)) return true;
+      if (hasCanonical(value)) return true;
+
+      const object = objectOf(value);
+      if (!object) return false;
+      return object.properties.some((property) => {
+        if (!ts.isSpreadAssignment(property)) return false;
+        const spread = unwrap(property.expression);
+        if (isHelperCall(spread)) return true;
+        if (!ts.isIdentifier(spread)) return false;
+        const declaration = declarationInScope(spread);
+        if (!declaration?.initializer) return false;
+        const initializer = unwrap(declaration.initializer);
+        return isHelperCall(initializer) || hasCanonical(initializer);
+      });
+    };
+
     const carriesCanonical = (node: ts.Node) =>
-      valuesOf(node).some((value) => hasCanonical(source, value)) ||
+      valuesOf(node).some(yieldsCanonical) ||
       (helper !== undefined && some(node, calls(helper)));
 
     const exits: string[] = [];
@@ -692,31 +752,41 @@ describe('every app route declares its own canonical', () => {
       if (metadataBody && !alwaysReturnsValue(metadataBody)) continue;
 
       if (returns.length > 1) {
-        // A branching generateMetadata. One noindexed miss must not cover the
-        // hit: `if (!record) return { robots: { index: false } }` followed by an
-        // uncanonicalised `return { title: record.title }` is the accident this
-        // catches. Either every branch is noindexed, or a canonical is produced
-        // somewhere in the function.
+        // A branching generateMetadata. Either every branch is noindexed, or the
+        // *last* return carries the canonical.
         //
-        // "Somewhere" rather than "on every branch" is deliberate. blog/[slug]
-        // calls buildMetadata() into a local and returns `{ ...base, openGraph }`,
-        // so the canonical reaches the return through a spread that no subtree
-        // check on the returned expression can see. Following it would need
-        // dataflow. The cost is that a route which produces a canonical and then
-        // drops it on one branch still passes; the accident above does not.
-        if (returns.every((value) => hasNoIndex(source, value))) {
+        // The last return rather than any return, because the shape both real
+        // routes here are written in is a guard clause and then the answer:
+        //
+        //   if (!post) return {};                    // blog/[slug]
+        //   if (!serviceData) return { title: … };    // services/[service]/[city]
+        //   return buildMetadata({ path, … });        // the page that is served
+        //
+        // Early returns are the misses — those pages call notFound(), so nothing
+        // they say is indexed. The final return is the metadata the route
+        // actually serves, and it is the one that must be canonical. Accepting a
+        // canonical on *any* branch, which is what this did before, approves the
+        // inverse — `if (legacy) return { alternates: { canonical } }` followed
+        // by a bare `return { title }` — where the page that is served inherits.
+        //
+        // The limit, stated plainly: a route whose served metadata is an early
+        // return and whose last return is the miss reads backwards to this and
+        // has to declare its canonical another way. Distinguishing those needs
+        // the metadata branch to be correlated with the component's notFound(),
+        // which is dataflow across two functions.
+        if (returns.every(hasNoIndex)) {
           exits.push('robots index: false on every branch');
-        } else if (
-          returns.some((value) => hasCanonical(source, value)) ||
-          (helper !== undefined && some(node, calls(helper)))
-        ) {
-          exits.push('a canonical produced in the metadata function');
+        } else {
+          const served = returns[returns.length - 1];
+          if (yieldsCanonical(served) || hasNoIndex(served)) {
+            exits.push('a canonical on the served branch');
+          }
         }
         continue;
       }
 
       if (carriesCanonical(node)) exits.push('an explicit canonical');
-      else if (valuesOf(node).some((value) => hasNoIndex(source, value))) exits.push('robots index: false');
+      else if (valuesOf(node).some(hasNoIndex)) exits.push('robots index: false');
     }
 
     // A redirect only exempts the route when *every* path takes it. Two things
