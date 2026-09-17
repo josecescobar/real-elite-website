@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join, relative } from 'node:path';
 import { BUSINESS } from '@/lib/constants';
 import { TITLE_MAX, absoluteUrl, buildMetadata, fitTitle } from '@/lib/seo';
 
@@ -56,4 +58,57 @@ describe('buildMetadata', () => {
     const meta = buildMetadata({ path: '/about', title: 'About', description: 'd' });
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/about'));
   });
+});
+
+/**
+ * The root layout sets `alternates.canonical` to the homepage URL, and Next.js
+ * metadata inherits. A page that neither calls `buildMetadata` nor sets its own
+ * canonical therefore ships `<link rel="canonical" href="https://…/">` and tells
+ * Google it is a duplicate of the homepage — silently, with no build error and
+ * nothing visible on the page itself.
+ *
+ * Nothing in `src/app` gets this wrong today. This guard is what keeps that true:
+ * every route must take one of four exits, all of which are safe.
+ */
+describe('every app route declares its own canonical', () => {
+  const APP_DIR = join(process.cwd(), 'src', 'app');
+
+  /** Each exit is safe for a different reason — see the assertion message. */
+  const EXITS = [
+    { name: 'buildMetadata()', re: /\bbuildMetadata\s*\(/ },
+    { name: 'an explicit canonical', re: /\bcanonical\b/ },
+    { name: 'robots noindex', re: /index:\s*false/ },
+    { name: 'a redirect()', re: /\bredirect\s*\(/ },
+  ];
+
+  function pageFiles(dir: string): string[] {
+    return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) return pageFiles(full);
+      return entry.name === 'page.tsx' ? [full] : [];
+    });
+  }
+
+  const pages = pageFiles(APP_DIR);
+
+  it('finds routes to check', () => {
+    // Guards the guard: a broken walk would make every assertion below vacuous.
+    expect(pages.length).toBeGreaterThan(30);
+  });
+
+  it.each(pages.map((p) => [relative(APP_DIR, p), p]))(
+    '%s',
+    (route, file) => {
+      const source = readFileSync(file, 'utf8');
+      const taken = EXITS.filter((exit) => exit.re.test(source)).map((e) => e.name);
+
+      expect(
+        taken.length,
+        `${route} takes none of the safe exits, so it inherits the root layout's ` +
+          `homepage canonical and declares itself a duplicate of the homepage. ` +
+          `Use buildMetadata({ path, title, description }) from src/lib/seo.ts, ` +
+          `or set alternates.canonical, robots.index: false, or redirect().`
+      ).toBeGreaterThan(0);
+    }
+  );
 });
