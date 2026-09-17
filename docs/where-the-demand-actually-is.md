@@ -137,67 +137,65 @@ row behind them:
 | `basements-inwood-wv` | none |
 | `basements-charles-town-wv` | none |
 
-**Three of six is the Ads-floor count.** Search Console records impressions
-below that floor, so it is the second instrument — but it has to be filtered to
-the mobile-plus-tablet slice first, for the reason
-`docs/search-traffic-reality-2026-09-17.md` sets out: **79% of this property's
-impressions are desktop**, that desktop slice is mostly automated, and
-templated geo-queries are exactly the shape the crawlers generate. 79% is a
-device share, not a measured automation rate — desktop still produced 30 clicks
-over the window, so some of it is real and the two cannot be cleanly separated.
-Mobile and tablet are therefore the **conservative floor**, not an exact count
-of genuine traffic.
+**Three of six is the Ads-floor count, and Search Console does not raise it.**
+Earlier drafts of this section used Search Console to rescue the three basement
+routes, first to six of six and then to "roughly four of six". Both were wrong,
+and not because of a device filter or a reporting floor. They credited these
+routes with impressions that landed on **different pages**.
 
-Filtered, 6 months to 2026-09-14. The floor is mobile **plus** tablet, so both
-are shown:
+Joining query to page over 6 months to 2026-09-14 shows where the WV basement
+queries actually resolve:
 
-| Route | Query | All-device | Mobile | Tablet (obs.) | **Floor** | Position |
-| --- | --- | --- | --- | --- | --- | --- |
-| `basements-inwood-wv` | `basement remodeling inwood wv` | 41 | 8 | 0 | **8** | 5.4 |
-| `basements-ranson-wv` | `basement remodeling ranson wv` | — | 1 | 0 | **1** | 3.0 |
-| `basements-ranson-wv` | `basement remodel ranson wv` | 15 | 0 | 0 | **0** | — |
-| `basements-charles-town-wv` | `basement remodeling charles town wv` | 5 | 0 | 0 | **0** | — |
+| Query | Page that received the impressions | Impr. | Clicks | Position |
+| --- | --- | --- | --- | --- |
+| `basement remodeling inwood wv` | `/service-areas/inwood-wv` | 41 | 0 | 7.3 |
+| `basement remodel ranson wv` | `/service-areas/ranson-wv` | 15 | 0 | 5.1 |
+| `basement remodeling ranson wv` | `/service-areas/ranson-wv` | 5 | 0 | 3.2 |
+| `basement remodeling charles town wv` | `/service-areas/charles-town-wv` | 5 | 0 | 12.0 |
+| `basement remodel gerrardstown wv` | `/service-areas/inwood-wv` | 4 | 0 | 19.8 |
+| `basement remodeling hedgesville wv` | `/service-areas/hedgesville-wv` | 1 | 0 | 12.0 |
 
-The tablet zeros are **bounds, not counts**, and the bound needs stating
-precisely. The whole tablet slice over this window is 62 impressions. Grouped
-by query, 21 of those 62 are attributable — 14 queries, none a basement term,
-none in Inwood, Ranson or Charles Town. The other 41 sit in queries Search
-Console withholds as too rare to name, and by construction cannot be attributed
-to anything. So the query slice alone does not rule out a withheld tablet
-impression on one of these routes.
+Not one of them is served by the route it was being used to justify. Grouped by
+page, `/services/basements/` resolves six URLs over the window — Frederick MD,
+Vienna, Alexandria, Great Falls, McLean and Reston VA. **The three WV basement
+routes appear in no page row at all: zero impressions, all devices, six
+months.** They are live (all three return 200) and they are in the sitemap, so
+this is not a build or discovery problem.
 
-The page dimension is a second, independent cut at the same question, and it is
-not subject to query anonymisation. Grouped by page, the tablet slice resolves
-15 URLs. The three WV basement routes are **absent from all of them**; the only
-basement page with a tablet impression is `/services/basements/vienna-va`, at 1.
-Charles Town and Inwood appear only as `/service-areas/` pages, on 1 and 2
-impressions — different pages, and in Charles Town's case a bathroom query.
+That settles the device question by making it moot. A page with zero all-device
+impressions has zero mobile impressions, zero tablet impressions and zero
+clicks; no anonymised remainder can hide traffic on a page whose total is zero.
+The tablet caveats that occupied earlier drafts of this section applied to the
+wrong pages.
 
-That cut does not close the gap either: the page grouping resolves 26 of the 62,
-so 36 impressions remain unaccounted under either lens, and the 2 tablet clicks
-in the window appear in neither. What can honestly be said is that **two
-independent groupings of the tablet slice both put these three routes at zero,
-and neither can account for the whole 62.** A withheld tablet impression on one
-of them is not excluded — it is unobserved under both cuts.
+So the count is **three of six**, and for a stronger reason than the Ads floor:
+the other three have no Search Console presence of any kind. The first draft's
+three of six was right, and the two revisions that moved it up were both
+crediting another page's traffic.
 
-What that leaves unresolved is bounded on the side that matters. The largest
-thing the unattributed remainder could be is 62 impressions and 2 clicks across
-the entire property over six months. Even allocated adversarially, it cannot
-turn a route with no clicks into one with leads, which is what the six are being
-judged on below.
+**What still needs stating about the tablet slice**, because it applies
+elsewhere in this document: of 62 tablet impressions over the window, the query
+grouping accounts for 21 and the page grouping for 26, and the 2 tablet clicks
+appear in neither. So a zero-click claim about a page that *does* have
+impressions is bounded by that remainder, not established by it. The three WV
+basement routes are the exception, not the pattern — their zero is a page total,
+not an unobserved cell.
 
-The all-device figures were the first draft of this section and they were wrong
-to use: 33 of Inwood's 41 impressions disappear on filtering, and both the
-Charles Town row and the stronger Ranson phrasing vanish entirely.
+**That the service-area pages hold these queries is not news — it is why the
+routes exist.** The comment above the basement entries in
+`src/lib/service-city-content.ts` says so outright: these positions are "all
+currently answered by a generic `/service-areas/` page with a template snippet",
+and the routes were written to take them over with something specific.
 
-So the honest count is **roughly four of six**: three clearing the Ads floor,
-plus Inwood on 8 floor impressions at position 5.4. Ranson rests on a single
-impression, and Charles Town has no observed evidence in the floor slice.
-Charles Town is the one the tablet gap could in principle move — from zero to
-some small number — so treat the fourth slot as Inwood's and the count as
-four-ish rather than exact. **None of the six has a single click**, and that
-part the tablet gap cannot touch: the whole tablet slice carries 2 clicks
-property-wide.
+The finding is that **the handover has not happened.** Six months on, the
+service-area pages still hold the positions and the purpose-built routes have
+recorded nothing at all — not a weak showing, zero. That is a different problem
+from the one this section was set up to measure, and a more actionable one: the
+question is not whether these three towns have basement demand (they do, at
+positions 3.2 to 12.0) but why the pages built to answer it are invisible while
+the generic pages they were meant to replace are not. Worth its own
+investigation; internal linking and the service-area pages' own targeting are
+the first places to look.
 
 The pages are titled "Basement Finishing **& Remodeling**", so the remodeling
 phrasings are the ones that matter; all fourteen `basement remodeling` /
@@ -219,6 +217,12 @@ Ads-measurable volume**, and every one has Search Console impressions:
 
 Against that, the sweep found exactly one Inwood row — `handyman inwood wv`, 10
 a month. **The Ads floor is hiding most of the query variety in this market.**
+
+Worth noting alongside the route finding above: every one of those six
+impressions blocks lands on `/service-areas/inwood-wv`, across six different
+trades. One page is absorbing the whole town's query variety, and it converts
+none of it.
+
 
 But Search Console cannot be substituted for it, because the desktop slice
 carrying 79% of this property's impressions is mostly noise (see
@@ -368,15 +372,15 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    so those rows cannot be summed without double-counting. A subtotal rather
    than a ceiling, but it is the one figure here measured on the right
    population, and the shape is unambiguous: demand is Martinsburg, and thin
-   everywhere else. Six WV routes are published; three clear the Ads floor and
-   a fourth has Search Console evidence in the mobile-plus-tablet floor, with
-   the other two resting on one impression and none observed — the
-   unattributable part of the tablet slice leaves that last one short of
-   settled. No published WV route has a single click. The Ads floor hides most
-   of this market's query variety, and Search Console cannot replace it because
-   its desktop majority — 79% of impressions — is mostly noise that cannot be
-   cleanly separated from genuine traffic. Mobile and tablet give a
-   conservative floor, not a clean read.
+   everywhere else. Six WV routes are published and three clear the Ads floor.
+   The other three — the WV basement routes — have no Search Console presence
+   at all: joining query to page shows their queries are served by
+   `/service-areas/` pages instead, and the routes themselves record zero
+   impressions on any device over six months. No published WV route has a
+   single click. The Ads floor hides most of this market's query variety, and
+   Search Console cannot replace it because its desktop majority — 79% of
+   impressions — is mostly noise that cannot be cleanly separated from genuine
+   traffic. Mobile and tablet give a conservative floor, not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
    organically — they appear only in inert metadata `keywords` arrays — so this
@@ -386,8 +390,12 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    clicks. n = 3, so directional only, but it is attribution rather than
    inference.
 4. **Prioritising the profile rests on the rank grid**, not on a keyword ratio.
-5. **Do not divide a national volume by a local one**, and do not restate a
-   bound as a measurement. Both errors appeared here — the withdrawn 1,500:1
-   ratio, and 79% read as an automation rate when it is a device share. The
-   figures in this document held up under checking; the sentences written
-   around them kept reaching for something tidier than the data supported.
+5. **Check the population, the bound, and the page.** Three errors of the same
+   family appeared in this document: dividing a national volume by a local one
+   (the withdrawn 1,500:1 ratio), restating a bound as a measurement (79% read
+   as an automation rate when it is a device share), and crediting a page with
+   impressions that a query-only report never said it received — which is what
+   moved the route count to six and then to four before a query-to-page join
+   put it back at three. Query data alone never names the page. The figures in
+   this document held up under checking; the sentences written around them kept
+   reaching for something tidier than the data supported.
