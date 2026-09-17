@@ -137,11 +137,71 @@ describe('every app route declares its own canonical', () => {
     node.name.text === 'index' &&
     node.initializer.kind === ts.SyntaxKind.FalseKeyword;
 
-  /** Elements, self-closing tags and fragments all render. */
-  const isJsx = (node: ts.Node) =>
-    ts.isJsxElement(node) ||
-    ts.isJsxSelfClosingElement(node) ||
-    ts.isJsxFragment(node);
+  /**
+   * The metadata export itself: `export const metadata = …` or
+   * `export …  generateMetadata(…)`. Exits are looked for inside this subtree
+   * rather than anywhere in the file, so an unrelated `{ canonical: 'legacy' }`
+   * or an options object carrying `index: false` cannot satisfy them.
+   */
+  function metadataExports(source: ts.SourceFile): ts.Node[] {
+    const exported = (node: ts.Node) =>
+      ts.canHaveModifiers(node) &&
+      ts
+        .getModifiers(node)
+        ?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword) === true;
+
+    return source.statements.flatMap((statement) => {
+      if (!exported(statement)) return [];
+      if (ts.isFunctionDeclaration(statement)) {
+        return statement.name?.text === 'generateMetadata' ? [statement] : [];
+      }
+      if (ts.isVariableStatement(statement)) {
+        return statement.declarationList.declarations.filter(
+          (d) =>
+            ts.isIdentifier(d.name) &&
+            (d.name.text === 'metadata' || d.name.text === 'generateMetadata')
+        );
+      }
+      return [];
+    });
+  }
+
+  /** `buildMetadata` only counts when it is the real import, not a local shadow. */
+  function importsBuildMetadata(source: ts.SourceFile): boolean {
+    return source.statements.some(
+      (statement) =>
+        ts.isImportDeclaration(statement) &&
+        ts.isStringLiteral(statement.moduleSpecifier) &&
+        /(^|\/)(@\/lib\/seo|seo)$/.test(statement.moduleSpecifier.text) &&
+        statement.importClause?.namedBindings !== undefined &&
+        ts.isNamedImports(statement.importClause.namedBindings) &&
+        statement.importClause.namedBindings.elements.some(
+          (el) => el.name.text === 'buildMetadata'
+        )
+    );
+  }
+
+  /**
+   * The default export's body. A route that only redirects has the call as a
+   * statement and returns nothing; anything that returns a value renders, whether
+   * that value is JSX, a fragment, a string, null or createElement(...). Checking
+   * for a returned value rather than for JSX is what makes this hold.
+   */
+  function defaultExportBody(source: ts.SourceFile): ts.Node | undefined {
+    for (const statement of source.statements) {
+      const isDefault =
+        ts.canHaveModifiers(statement) &&
+        ts
+          .getModifiers(statement)
+          ?.some((m) => m.kind === ts.SyntaxKind.DefaultKeyword) === true;
+      if (isDefault && ts.isFunctionDeclaration(statement)) return statement.body;
+      if (ts.isExportAssignment(statement)) return statement.expression;
+    }
+    return undefined;
+  }
+
+  const returnsAValue = (node: ts.Node) =>
+    ts.isReturnStatement(node) && node.expression !== undefined;
 
   const pages = pageFiles(APP_DIR);
 
@@ -152,14 +212,21 @@ describe('every app route declares its own canonical', () => {
 
   it.each(pages.map((p) => [relative(APP_DIR, p), p]))('%s', (route, file) => {
     const source = parse(file);
+    const metaNodes = metadataExports(source);
+    const inMetadata = (match: (node: ts.Node) => boolean) =>
+      metaNodes.some((node) => some(node, match));
 
     const exits: string[] = [];
-    if (some(source, calls('buildMetadata'))) exits.push('buildMetadata()');
-    if (some(source, isCanonicalProperty)) exits.push('an explicit canonical');
-    if (some(source, isNoIndex)) exits.push('robots index: false');
+    if (importsBuildMetadata(source) && inMetadata(calls('buildMetadata'))) {
+      exits.push('buildMetadata()');
+    }
+    if (inMetadata(isCanonicalProperty)) exits.push('an explicit canonical');
+    if (inMetadata(isNoIndex)) exits.push('robots index: false');
+
     // A redirect only exempts the route when nothing else renders: a guard
     // branch leaves the normal path serving an inherited homepage canonical.
-    if (some(source, calls('redirect')) && !some(source, isJsx)) {
+    const body = defaultExportBody(source);
+    if (body && some(body, calls('redirect')) && !some(body, returnsAValue)) {
       exits.push('an unconditional redirect()');
     }
 
@@ -167,9 +234,10 @@ describe('every app route declares its own canonical', () => {
       exits.length,
       `${route} takes none of the safe exits, so it inherits the root layout's ` +
         `homepage canonical and declares itself a duplicate of the homepage. ` +
-        `Use buildMetadata({ path, title, description }) from src/lib/seo.ts, ` +
-        `or set alternates.canonical or robots.index: false. A redirect() only ` +
-        `counts when the route renders nothing at all.`
+        `Export metadata built with buildMetadata({ path, title, description }) ` +
+        `from src/lib/seo.ts, or carrying alternates.canonical or ` +
+        `robots.index: false. A redirect() only counts when the route returns ` +
+        `nothing at all.`
     ).toBeGreaterThan(0);
   });
 });
