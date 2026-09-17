@@ -137,16 +137,24 @@ row behind them:
 | `basements-inwood-wv` | none |
 | `basements-charles-town-wv` | none |
 
-**Three of six is the Ads-floor count, and Search Console does not raise it.**
-Earlier drafts of this section used Search Console to rescue the three basement
-routes, first to six of six and then to "roughly four of six". Both were wrong,
-and not because of a device filter or a reporting floor. They credited these
-routes with impressions that landed on **different pages**.
+**Three of six is the Ads-floor count, and Search Console cannot raise or lower
+it, because these routes are two days old.** All six WV keys were added on
+2026-09-15 — the roofing pair in `15ae01e`, the deck and three basement combos
+in `e1e6a5b`. Every Search Console window in this document ends 2026-09-14, and
+Search Console lags roughly three days besides. **No published WV route existed
+during any measured window.**
 
-Joining query to page over 6 months to 2026-09-14 shows where the WV basement
-queries actually resolve:
+Three earlier drafts of this section missed that and read route performance out
+of the data anyway — first six of six, then roughly four of six, then three of
+six on the grounds that the routes had "zero impressions over six months". That
+last one was the worst of the three: the zero was real, and it meant the pages
+did not exist, not that they had failed. **Withdrawn entirely. There is no
+post-publication data yet, so there is nothing here to measure.**
 
-| Query | Page that received the impressions | Impr. | Clicks | Position |
+What the query-to-page join does establish, and what commit `e1e6a5b` already
+recorded as its reason for existing, is where this demand currently lands:
+
+| Query | Page receiving the impressions | Impr. | Clicks | Position |
 | --- | --- | --- | --- | --- |
 | `basement remodeling inwood wv` | `/service-areas/inwood-wv` | 41 | 0 | 7.3 |
 | `basement remodel ranson wv` | `/service-areas/ranson-wv` | 15 | 0 | 5.1 |
@@ -155,47 +163,23 @@ queries actually resolve:
 | `basement remodel gerrardstown wv` | `/service-areas/inwood-wv` | 4 | 0 | 19.8 |
 | `basement remodeling hedgesville wv` | `/service-areas/hedgesville-wv` | 1 | 0 | 12.0 |
 
-Not one of them is served by the route it was being used to justify. Grouped by
-page, `/services/basements/` resolves six URLs over the window — Frederick MD,
-Vienna, Alexandria, Great Falls, McLean and Reston VA. **The three WV basement
-routes appear in no page row at all: zero impressions, all devices, six
-months.** They are live (all three return 200) and they are in the sitemap, so
-this is not a build or discovery problem.
+Generic service-area pages hold positions 3.2 to 12.0 on trade-specific queries
+and convert none of them. That is the gap the new routes were published to
+close, and it is background here rather than a finding — `e1e6a5b`'s message
+sets it out with the same figures.
 
-That settles the device question by making it moot. A page with zero all-device
-impressions has zero mobile impressions, zero tablet impressions and zero
-clicks; no anonymised remainder can hide traffic on a page whose total is zero.
-The tablet caveats that occupied earlier drafts of this section applied to the
-wrong pages.
-
-So the count is **three of six**, and for a stronger reason than the Ads floor:
-the other three have no Search Console presence of any kind. The first draft's
-three of six was right, and the two revisions that moved it up were both
-crediting another page's traffic.
+**The open question is whether the handover happens**, and it is genuinely open.
+Give the routes a normal indexing and ranking window — 8 to 12 weeks is the
+usual shape for pages of this kind — then re-run the page report over a window
+that starts after 2026-09-15 and compare `/services/basements/{town}-wv` against
+`/service-areas/{town}-wv` on the same queries. Until then, silence in the data
+is what a two-day-old page is supposed to look like.
 
 **What still needs stating about the tablet slice**, because it applies
 elsewhere in this document: of 62 tablet impressions over the window, the query
 grouping accounts for 21 and the page grouping for 26, and the 2 tablet clicks
-appear in neither. So a zero-click claim about a page that *does* have
-impressions is bounded by that remainder, not established by it. The three WV
-basement routes are the exception, not the pattern — their zero is a page total,
-not an unobserved cell.
-
-**That the service-area pages hold these queries is not news — it is why the
-routes exist.** The comment above the basement entries in
-`src/lib/service-city-content.ts` says so outright: these positions are "all
-currently answered by a generic `/service-areas/` page with a template snippet",
-and the routes were written to take them over with something specific.
-
-The finding is that **the handover has not happened.** Six months on, the
-service-area pages still hold the positions and the purpose-built routes have
-recorded nothing at all — not a weak showing, zero. That is a different problem
-from the one this section was set up to measure, and a more actionable one: the
-question is not whether these three towns have basement demand (they do, at
-positions 3.2 to 12.0) but why the pages built to answer it are invisible while
-the generic pages they were meant to replace are not. Worth its own
-investigation; internal linking and the service-area pages' own targeting are
-the first places to look.
+appear in neither. A zero-click claim about a page that *does* have impressions
+is bounded by that remainder, not established by it.
 
 The pages are titled "Basement Finishing **& Remodeling**", so the remodeling
 phrasings are the ones that matter; all fourteen `basement remodeling` /
@@ -373,14 +357,14 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    than a ceiling, but it is the one figure here measured on the right
    population, and the shape is unambiguous: demand is Martinsburg, and thin
    everywhere else. Six WV routes are published and three clear the Ads floor.
-   The other three — the WV basement routes — have no Search Console presence
-   at all: joining query to page shows their queries are served by
-   `/service-areas/` pages instead, and the routes themselves record zero
-   impressions on any device over six months. No published WV route has a
-   single click. The Ads floor hides most of this market's query variety, and
-   Search Console cannot replace it because its desktop majority — 79% of
-   impressions — is mostly noise that cannot be cleanly separated from genuine
-   traffic. Mobile and tablet give a conservative floor, not a clean read.
+   How any of them perform is not yet knowable: all six were added on
+   2026-09-15, after every measurement window here closed. The trade-specific
+   WV queries currently land on `/service-areas/` pages, which is the gap those
+   routes were published to close. The Ads floor hides most of this market's
+   query variety, and Search Console cannot replace it because its desktop
+   majority — 79% of impressions — is mostly noise that cannot be cleanly
+   separated from genuine traffic. Mobile and tablet give a conservative floor,
+   not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
    organically — they appear only in inert metadata `keywords` arrays — so this
@@ -390,12 +374,15 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    clicks. n = 3, so directional only, but it is attribution rather than
    inference.
 4. **Prioritising the profile rests on the rank grid**, not on a keyword ratio.
-5. **Check the population, the bound, and the page.** Three errors of the same
-   family appeared in this document: dividing a national volume by a local one
-   (the withdrawn 1,500:1 ratio), restating a bound as a measurement (79% read
-   as an automation rate when it is a device share), and crediting a page with
-   impressions that a query-only report never said it received — which is what
-   moved the route count to six and then to four before a query-to-page join
-   put it back at three. Query data alone never names the page. The figures in
-   this document held up under checking; the sentences written around them kept
-   reaching for something tidier than the data supported.
+5. **Check the population, the bound, the page, and the date.** Four errors of
+   the same family appeared in this document. Dividing a national volume by a
+   local one — the withdrawn 1,500:1 ratio. Restating a bound as a measurement
+   — 79% read as an automation rate when it is a device share. Crediting a page
+   with impressions a query-only report never said it received: query data
+   alone never names the page. And reading failure into a page's absence from a
+   window that closed before the page was created — the WV routes are two days
+   old, and every route-performance reading here was withdrawn for that reason.
+   Check when the thing you are measuring came into existence before you
+   attribute anything to its absence. The figures in this document held up
+   under checking; the sentences written around them kept reaching for
+   something tidier than the data supported.
