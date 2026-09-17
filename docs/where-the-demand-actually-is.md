@@ -98,9 +98,11 @@ So the defensible figure is **440 a month across one canonical phrasing per
 service-town pair** — not a total across all wordings, which cannot be computed
 by addition from these numbers at all.
 
-Call it a **measured subtotal, not a ceiling.** Untested wordings add some
-unknown increment on top; the variant clustering above is why that increment
-cannot be estimated by summing the rows.
+Call it a **measured subtotal**, and resist turning that into either a ceiling
+or a floor. Untested wordings might add volume on top, or their volume might
+already sit inside the canonical rows that were reported — clustering is
+precisely what makes the two indistinguishable. The increment cannot be
+estimated by summing the rows, and it cannot be assumed positive either.
 
 ### What "no measurable volume" actually means
 
@@ -163,7 +165,7 @@ recorded as its reason for existing, is where this demand currently lands:
 | `basement remodel gerrardstown wv` | `/service-areas/inwood-wv` | 4 | 0 | 19.8 |
 | `basement remodeling hedgesville wv` | `/service-areas/hedgesville-wv` | 1 | 0 | 12.0 |
 
-Generic service-area pages hold positions 3.2 to 12.0 on trade-specific queries
+Generic service-area pages hold positions 3.2 to 19.8 on trade-specific queries
 and convert none of them. That is the gap the new routes were published to
 close, and it is background here rather than a finding — `e1e6a5b`'s message
 sets it out with the same figures.
@@ -214,11 +216,20 @@ carrying 79% of this property's impressions is mostly noise (see
 say which slice a given query sits in. Filtering to mobile and tablet gives a
 floor rather than a clean read.
 
-So: **the 440 is Ads-reportable volume, not the size of the market.** The market
-is larger than 440 by an amount neither instrument can quantify. What both
-agree on is the shape — many distinct queries, each tiny, concentrated in a few
-towns — and neither offers any evidence of a large organic upside hiding
-somewhere.
+So: **the 440 is the sum of the reported rows, and the market total is
+unknown** — not merely unquantified, unknown in direction as well. It is
+tempting to read the Search Console query variety as volume sitting *outside*
+the 440, which would make 440 a floor. That does not follow from anything
+measured here. Ads clusters close variants, so an impression on
+`basement remodeling inwood wv` may already be counted inside a canonical row
+that the sweep reported, or may not be; Search Console shows the strings exist
+and says nothing about which cluster their volume lands in. The two instruments
+cannot be added, and neither bounds the other.
+
+What both agree on is the shape — many distinct queries, each tiny,
+concentrated in a few towns — and neither offers any evidence of a large
+organic upside hiding somewhere. That is the conclusion this document rests on,
+and it does not require knowing the total.
 
 In West Virginia the site has been conservative either way. The original audit's
 overbuilding finding was about the 62 combinations it counted across **VA and
@@ -353,18 +364,20 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    phrasing per service-town pair, and 121 of the 132 combinations return
    nothing — where *nothing* means below Google Ads' reporting floor, not zero.
    Alternative wordings are not added in: Google Ads clusters close variants,
-   so those rows cannot be summed without double-counting. A subtotal rather
-   than a ceiling, but it is the one figure here measured on the right
-   population, and the shape is unambiguous: demand is Martinsburg, and thin
-   everywhere else. Six WV routes are published and three clear the Ads floor.
-   How any of them perform is not yet knowable: all six were added on
-   2026-09-15, after every measurement window here closed. The trade-specific
-   WV queries currently land on `/service-areas/` pages, which is the gap those
-   routes were published to close. The Ads floor hides most of this market's
-   query variety, and Search Console cannot replace it because its desktop
-   majority — 79% of impressions — is mostly noise that cannot be cleanly
-   separated from genuine traffic. Mobile and tablet give a conservative floor,
-   not a clean read.
+   so those rows cannot be summed without double-counting. A subtotal, which is
+   neither a ceiling nor a floor — clustering means untested wordings may
+   already be counted inside the reported rows — but it is the one figure here
+   measured on the right population, and the shape is unambiguous: demand is
+   Martinsburg, and thin everywhere else. Six WV routes are published and three
+   clear the Ads floor. How any of them perform is not yet knowable: all six
+   were added on 2026-09-15, after every measurement window here closed. The
+   trade-specific WV queries currently land on `/service-areas/` pages, which
+   is the gap those routes were published to close. The Ads floor hides most of
+   this market's query *variety* — whether it hides volume as well is not
+   knowable from these tools — and Search Console cannot replace it because its
+   desktop majority — 79% of impressions — is mostly noise that cannot be
+   cleanly separated from genuine traffic. Mobile and tablet give a
+   conservative floor, not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
    organically — they appear only in inert metadata `keywords` arrays — so this
