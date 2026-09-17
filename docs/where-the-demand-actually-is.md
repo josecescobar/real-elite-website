@@ -203,10 +203,16 @@ window, which closed the day before the routes went live**:
 | `basement remodel gerrardstown wv` | `/service-areas/inwood-wv` | 4 | 0 | 19.8 |
 | `basement remodeling hedgesville wv` | `/service-areas/hedgesville-wv` | 1 | 0 | 12.0 |
 
-Generic service-area pages hold positions 3.2 to 19.8 on trade-specific queries
-and convert none of them. That is the gap the new routes were published to
-close, and it is background here rather than a finding — `e1e6a5b`'s message
-sets it out with the same figures.
+Generic service-area pages hold positions 3.2 to 19.8 on trade-specific queries,
+with **zero clicks in every row above** — which is not the same as "convert
+none", since the tablet slice leaves 2 clicks unattributed under both groupings.
+That is the gap the new routes were published to close, and it is background
+here rather than a finding. `e1e6a5b`'s message records the same *rationale* on
+an earlier and narrower window — it reports `basement remodeling inwood wv` at
+14 impressions and position 5.7, and the Charles Town query at 4 and 12.5,
+against 41/7.3 and 5/12.0 in the six-month join above. Same conclusion, from a
+different window; the figures here come from the six-month query-to-page
+export, not from that commit.
 
 **The open question is whether the handover happens**, and it is genuinely open.
 Give the routes a normal indexing and ranking window — 8 to 12 weeks is the
@@ -341,21 +347,27 @@ against what the Ads sweep reported for the same towns:
 The Ads sweep covers only the site's twelve services, so the Search Console side
 is **restricted to the same trades** — otherwise the two columns are measuring
 different things. Excluded: Hedgesville's four plumbing terms (229 impressions),
-`tile sealing inwood` (34) and `stone repair inwood` (5), the address lookup
-`homesite 225 spool rd, inwood, wv` (10), the two Charles Town home-building
-queries (8), and the bare place name `martinsburg, wv` (1).
+the address lookup `homesite 225 spool rd, inwood, wv` (10), the two Charles
+Town home-building queries (8), and the bare place name `martinsburg, wv` (1).
+
+`stone repair inwood` (5) is **kept**: `src/lib/services-data.ts` lists "Stone
+veneer installation and repair" under Exterior Repairs, so it is one of the
+twelve. `tile sealing inwood` (34) is excluded as a judgment call — the site
+does tile setting under Bathrooms but does not offer tile sealing as a service.
+Including it would make Inwood 31 queries and 620 impressions and Martinsburg
+11% → 10.7%; the comparison does not turn on it.
 
 | Town | In-trade floor queries | Floor impr. | Floor clicks | Ads sweep |
 | --- | --- | --- | --- | --- |
-| Inwood | 29 | 581 | 0 | 1 row, 10/mo |
+| Inwood | 30 | 586 | 0 | 1 row, 10/mo |
 | Martinsburg | 15 | 76 | 1 | 8 rows, **370/mo** |
 | Charles Town | 4 | 9 | 0 | 2 rows, 60/mo |
 | Ranson | 2 | 3 | 0 | nothing |
 | Hedgesville | 0 | 0 | 0 | nothing |
 
 Martinsburg is 370 of the 440 on the Ads side — 84% of everything the sweep
-reported — and **11% of the 669 in-trade floor impressions**. Against Inwood
-alone it is 76 to 581.
+reported — and **11% of the 674 in-trade floor impressions**. Against Inwood
+alone it is 76 to 586.
 
 Ads puts almost all the reportable volume in Martinsburg. The floor puts nearly
 eight times Martinsburg's impressions, and twice its query variety, in Inwood —
@@ -525,7 +537,7 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    Martinsburg-heavy, thin elsewhere — but that is a fact about the sampled
    phrasings, not about where demand lives. On the Search Console floor,
    restricted to the site's twelve trades so the two sides are comparable,
-   Inwood carries 581 impressions to Martinsburg's 76 — roughly eight to one
+   Inwood carries 586 impressions to Martinsburg's 76 — roughly eight to one
    the other way. Neither instrument is measuring the market: Ads ranks towns
    by which phrases got an independently reported row, Search Console by where
    this site happens to rank. Six WV routes are published and three have an
