@@ -150,7 +150,7 @@ describe('every app route declares its own canonical', () => {
         .getModifiers(node)
         ?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword) === true;
 
-    return source.statements.flatMap((statement) => {
+    return source.statements.flatMap<ts.Node>((statement) => {
       if (!exported(statement)) return [];
       if (ts.isFunctionDeclaration(statement)) {
         return statement.name?.text === 'generateMetadata' ? [statement] : [];
