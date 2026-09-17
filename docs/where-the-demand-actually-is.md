@@ -79,13 +79,25 @@ that did:
 
 **440 a month from that grid.** Every town other than Martinsburg, Charles Town
 and Inwood is empty across all twelve trades, and siding, home additions, paving
-contractor and exterior repair return nothing in any town at all. Adding the
-other Martinsburg phrasings from the first table brings the measured total to
-roughly **810 a month**.
+contractor and exterior repair return nothing in any town at all.
 
-Call that a **measured subtotal, not a ceiling.** It covers one phrasing per
-service per town, not every way a person might word a search, so untested
-wordings could add to it. What it establishes is the shape: demand concentrates
+The first table holds five more Martinsburg phrasings the grid did not use —
+`contractors` 110, `general contractor` 110, `roofing companies` 110,
+`roof repair` 40, `roofing contractor` 10, which sum to 380. **They are
+deliberately not added to the 440.** Google Ads aggregates close variants, so
+`roofing martinsburg wv` (90), `roofing companies martinsburg wv` (110) and
+`roofing contractor martinsburg wv` (10) are not necessarily disjoint searches,
+and `contractors` and `general contractor` returning *exactly* 110 apiece reads
+like one cluster reported under two labels. Adding them would count the same
+searches twice.
+
+So the defensible figure is **440 a month across one canonical phrasing per
+service-town pair** — not a total across all wordings, which cannot be computed
+by addition from these numbers at all.
+
+Call it a **measured subtotal, not a ceiling.** Untested wordings add some
+unknown increment on top; the variant clustering above is why that increment
+cannot be estimated by summing the rows. What it establishes is the shape: demand concentrates
 almost entirely in Martinsburg, and 90% of the grid has no measurable search
 behind it.
 
@@ -215,8 +227,10 @@ confirmation of `docs/ga4-conversion-tracking.md`.
 
 ## What this means
 
-1. **Measured geo-modified demand is ~810 searches a month**, and 97 of the 108
-   service-town combinations return nothing. A subtotal rather than a ceiling,
+1. **Measured geo-modified demand is 440 searches a month** on one canonical
+   phrasing per service-town pair, and 97 of the 108 combinations return
+   nothing. Alternative wordings are not added in: Google Ads clusters close
+   variants, so those rows cannot be summed without double-counting. A subtotal rather than a ceiling,
    but it is the one figure here measured on the right population, and the
    shape is unambiguous: demand is Martinsburg, and thin everywhere else. Only
    six are published as WV pages, five of them in towns with measured volume.
