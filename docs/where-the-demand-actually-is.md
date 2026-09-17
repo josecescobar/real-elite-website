@@ -335,9 +335,11 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    shape is unambiguous: demand is Martinsburg, and thin everywhere else. Six
    WV routes are published; three clear the Ads floor and a fourth has mobile
    Search Console evidence, with the other two resting on one impression and
-   none respectively. No published WV route has a single click. The Ads floor hides most of this market's
-   query variety, and Search Console cannot replace it because most of its
-   impressions here are automated.
+   none respectively. No published WV route has a single click. The Ads floor
+   hides most of this market's query variety, and Search Console cannot replace
+   it because its desktop majority — 79% of impressions — is mostly noise that
+   cannot be cleanly separated from genuine traffic. Mobile and tablet give a
+   conservative floor, not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
    organically — they appear only in inert metadata `keywords` arrays — so this
@@ -347,6 +349,8 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    clicks. n = 3, so directional only, but it is attribution rather than
    inference.
 4. **Prioritising the profile rests on the rank grid**, not on a keyword ratio.
-5. **Do not divide a national volume by a local one.** That was the error here,
-   and it is the same class of mistake as reading Search Console without
-   filtering out desktop crawler traffic.
+5. **Do not divide a national volume by a local one**, and do not restate a
+   bound as a measurement. Both errors appeared here — the withdrawn 1,500:1
+   ratio, and 79% read as an automation rate when it is a device share. The
+   figures in this document held up under checking; the sentences written
+   around them kept reaching for something tidier than the data supported.
