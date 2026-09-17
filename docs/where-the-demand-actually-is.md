@@ -56,11 +56,12 @@ volume. Every Eastern Panhandle term that returned a figure:
 | `paving winchester va` | 10 | — |
 | `driveway paving martinsburg wv` | **no record** | — |
 
-A follow-up sweep made this systematic rather than hand-picked: **every one of
-the site's 12 services against all 9 West Virginia home-market towns, in one
-canonical phrasing each — 90 combinations.**
+A follow-up sweep made this systematic rather than hand-picked: **all 12 of the
+site's services against all 9 West Virginia home-market towns, one canonical
+phrasing each — 108 combinations.**
 
-**Eighty of the ninety returned no measurable volume at all.** The ten that did:
+**Ninety-seven of the 108 returned no measurable volume at all.** The eleven
+that did:
 
 | Keyword | Volume |
 | --- | --- |
@@ -73,20 +74,30 @@ canonical phrasing each — 90 combinations.**
 | `kitchen remodeling martinsburg wv` | 20 |
 | `basement finishing martinsburg wv` | 10 |
 | `handyman inwood wv` | 10 |
+| `home repair martinsburg wv` | 10 |
 | `roofing charles town wv` | 10 |
 
-**430 a month from that grid**, and every town other than Martinsburg, Charles
-Town and Inwood is empty across all twelve trades. Siding, home additions and
-paving contractor return nothing in any town. Adding the other Martinsburg
-phrasings from the first table brings the measured total to roughly **800 a
-month**.
+**440 a month from that grid.** Every town other than Martinsburg, Charles Town
+and Inwood is empty across all twelve trades, and siding, home additions, paving
+contractor and exterior repair return nothing in any town at all. Adding the
+other Martinsburg phrasings from the first table brings the measured total to
+roughly **810 a month**.
 
 Call that a **measured subtotal, not a ceiling.** It covers one phrasing per
 service per town, not every way a person might word a search, so untested
-phrasings could add to it. What it does establish is the shape: demand
-concentrates almost entirely in Martinsburg, and 89% of service-town
-combinations the site builds pages for have no measurable search behind them at
-all.
+wordings could add to it. What it establishes is the shape: demand concentrates
+almost entirely in Martinsburg, and 90% of the grid has no measurable search
+behind it.
+
+**That grid is not the site's page count.** `/services/[service]/[city]` builds
+only from the `CONTENT` map in `src/lib/service-city-content.ts`, which holds
+**six** WV service-city entries — `roofing-martinsburg-wv`,
+`roofing-charles-town-wv`, `basements-ranson-wv`, `basements-inwood-wv`,
+`basements-charles-town-wv` and `decks-martinsburg-wv` — out of 96 keys overall.
+The low-demand combinations are therefore mostly *unpublished*, and all six that
+exist sit in the three towns that actually return volume. In West Virginia the
+site has been conservative; the original audit's overbuilding finding was about
+the 62 Virginia pages, not these.
 
 ## Near-me demand belongs to both, not to the profile
 
@@ -197,10 +208,11 @@ confirmation of `docs/ga4-conversion-tracking.md`.
 
 ## What this means
 
-1. **Measured geo-modified demand is ~800 searches a month**, and 80 of 90
+1. **Measured geo-modified demand is ~810 searches a month**, and 97 of the 108
    service-town combinations return nothing. A subtotal rather than a ceiling,
    but it is the one figure here measured on the right population, and the
-   shape is unambiguous: demand is Martinsburg, and thin everywhere else.
+   shape is unambiguous: demand is Martinsburg, and thin everywhere else. Only
+   six of those combinations are published as pages, all in towns with volume.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately; the site already competes for some of these phrases and
    should not concede them.
