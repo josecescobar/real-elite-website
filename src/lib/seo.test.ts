@@ -105,6 +105,27 @@ describe('every app route declares its own canonical', () => {
     );
   }
 
+  /**
+   * Like `some`, but never leaves the function's own body. An unused local helper
+   * containing `redirect()` is not the page redirecting — and `returnedValues`
+   * already skips nested functions, so counting their calls made a page that
+   * merely mentions redirect look like one that performs it.
+   */
+  function someOwn(root: ts.Node, match: (node: ts.Node) => boolean): boolean {
+    let found = false;
+    const visit = (node: ts.Node) => {
+      if (found) return;
+      if (match(node)) {
+        found = true;
+        return;
+      }
+      if (node !== root && ts.isFunctionLike(node)) return;
+      ts.forEachChild(node, visit);
+    };
+    visit(root);
+    return found;
+  }
+
   function some(root: ts.Node, match: (node: ts.Node) => boolean): boolean {
     let found = false;
     const visit = (node: ts.Node) => {
@@ -130,12 +151,19 @@ describe('every app route declares its own canonical', () => {
     (ts.isIdentifier(node.name) || ts.isStringLiteral(node.name)) &&
     node.name.text === name;
 
-  /** Walks up to see whether this property sits inside one named `parent`. */
-  const nestedUnder = (node: ts.Node, parent: string): boolean => {
-    for (let n = node.parent; n; n = n.parent) {
-      if (named(n, parent)) return true;
-    }
-    return false;
+  /**
+   * Is this property a *direct* member of the object assigned to `parent`?
+   * An ancestor walk is too loose: `alternates: { languages: { canonical } }` is
+   * a language-alternate entry, not `alternates.canonical`, and emits no link.
+   */
+  const directChildOf = (node: ts.Node, parent: string): boolean => {
+    const object = node.parent;
+    return (
+      !!object &&
+      ts.isObjectLiteralExpression(object) &&
+      !!object.parent &&
+      named(object.parent, parent)
+    );
   };
 
   /**
@@ -144,14 +172,14 @@ describe('every app route declares its own canonical', () => {
    * route would still inherit the homepage URL.
    */
   const isCanonicalProperty = (node: ts.Node) =>
-    named(node, 'canonical') && nestedUnder(node, 'alternates');
+    named(node, 'canonical') && directChildOf(node, 'alternates');
 
   /** `robots: { index: false }` — the page is not indexed, so the canonical is moot. */
   const isNoIndex = (node: ts.Node) =>
     named(node, 'index') &&
     ts.isPropertyAssignment(node) &&
     node.initializer.kind === ts.SyntaxKind.FalseKeyword &&
-    nestedUnder(node, 'robots');
+    directChildOf(node, 'robots');
 
   /**
    * The metadata export itself: `export const metadata = …` or
@@ -182,23 +210,32 @@ describe('every app route declares its own canonical', () => {
     });
   }
 
-  /** `buildMetadata` only counts when it is the real import, not a local shadow. */
-  function importsBuildMetadata(source: ts.SourceFile): boolean {
-    return source.statements.some(
-      (statement) =>
-        ts.isImportDeclaration(statement) &&
-        ts.isStringLiteral(statement.moduleSpecifier) &&
-        // The real helper only: `@/lib/seo`, or a relative path to that same file.
-        // `@/feature/seo` or a local `./seo` is a different buildMetadata.
-        /^(@\/lib\/seo|(\.\.?\/)+lib\/seo|\.\/seo)$/.test(
-          statement.moduleSpecifier.text
-        ) &&
-        statement.importClause?.namedBindings !== undefined &&
-        ts.isNamedImports(statement.importClause.namedBindings) &&
-        statement.importClause.namedBindings.elements.some(
-          (el) => el.name.text === 'buildMetadata'
-        )
-    );
+  /**
+   * The local name `buildMetadata` is bound to, when it really is the helper from
+   * `@/lib/seo`. Returns undefined for a local shadow or a same-named export of
+   * some other module.
+   *
+   * Every file scanned here lives under `src/app`, so a bare `./seo` resolves
+   * beside the page and is never `src/lib/seo` — it is not accepted.
+   * `import { buildMetadata as makeMetadata }` is, under its local name.
+   */
+  function buildMetadataBinding(source: ts.SourceFile): string | undefined {
+    for (const statement of source.statements) {
+      if (
+        !ts.isImportDeclaration(statement) ||
+        !ts.isStringLiteral(statement.moduleSpecifier) ||
+        !/^(@\/lib\/seo|(\.\.\/)+lib\/seo)$/.test(statement.moduleSpecifier.text)
+      ) {
+        continue;
+      }
+      const bindings = statement.importClause?.namedBindings;
+      if (!bindings || !ts.isNamedImports(bindings)) continue;
+      for (const element of bindings.elements) {
+        const imported = element.propertyName?.text ?? element.name.text;
+        if (imported === 'buildMetadata') return element.name.text;
+      }
+    }
+    return undefined;
   }
 
   /**
@@ -338,11 +375,11 @@ describe('every app route declares its own canonical', () => {
   it.each(pages.map((p) => [relative(APP_DIR, p), p]))('%s', (route, file) => {
     const source = parse(file);
     const metaNodes = metadataExports(source);
-    const hasImport = importsBuildMetadata(source);
+    const helper = buildMetadataBinding(source);
 
     const carriesCanonical = (node: ts.Node) =>
       some(node, isCanonicalProperty) ||
-      (hasImport && some(node, calls('buildMetadata')));
+      (helper !== undefined && some(node, calls(helper)));
 
     const exits: string[] = [];
 
@@ -384,7 +421,7 @@ describe('every app route declares its own canonical', () => {
     const fn = defaultExport(source);
     if (fn) {
       const root = metadataFunction(fn);
-      const unconditional = some(
+      const unconditional = someOwn(
         root,
         (node) => calls('redirect')(node) && !insideABranch(node, root)
       );
