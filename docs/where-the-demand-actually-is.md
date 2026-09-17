@@ -56,12 +56,37 @@ volume. Every Eastern Panhandle term that returned a figure:
 | `paving winchester va` | 10 | — |
 | `driveway paving martinsburg wv` | **no record** | — |
 
-**About 660 searches a month, across every trade the business does.** First
-place on all of it at a generous 30% CTR is roughly 200 visits a month.
+A follow-up sweep made this systematic rather than hand-picked: **every one of
+the site's 12 services against all 9 West Virginia home-market towns, in one
+canonical phrasing each — 90 combinations.**
 
-This figure is sound because of the naming: no national/local mismatch applies.
-It is the ceiling on the query shape the site is built for, and it supports the
-earlier read that on-page work cannot make this base large.
+**Eighty of the ninety returned no measurable volume at all.** The ten that did:
+
+| Keyword | Volume |
+| --- | --- |
+| `handyman martinsburg wv` | 140 |
+| `roofing martinsburg wv` | 90 |
+| `bathroom remodeling martinsburg wv` | 50 |
+| `handyman charles town wv` | 50 |
+| `deck builder martinsburg wv` | 30 |
+| `home remodeling martinsburg wv` | 20 |
+| `kitchen remodeling martinsburg wv` | 20 |
+| `basement finishing martinsburg wv` | 10 |
+| `handyman inwood wv` | 10 |
+| `roofing charles town wv` | 10 |
+
+**430 a month from that grid**, and every town other than Martinsburg, Charles
+Town and Inwood is empty across all twelve trades. Siding, home additions and
+paving contractor return nothing in any town. Adding the other Martinsburg
+phrasings from the first table brings the measured total to roughly **800 a
+month**.
+
+Call that a **measured subtotal, not a ceiling.** It covers one phrasing per
+service per town, not every way a person might word a search, so untested
+phrasings could add to it. What it does establish is the shape: demand
+concentrates almost entirely in Martinsburg, and 89% of service-town
+combinations the site builds pages for have no measurable search behind them at
+all.
 
 ## Near-me demand belongs to both, not to the profile
 
@@ -109,11 +134,32 @@ same reason as above.
 
 These are national and early-intent, and the local slice of each is small — on
 the same population logic, `asphalt driveway cost` is a handful of local
-searches a month. As a lead source that is negligible. As a traffic source it is
-real, and the site's own numbers say what that traffic is worth: the driveway
-comparison guide wins one of these terms, produces 36% of all site clicks, and
-scores the **lowest business value in the whole opportunity report** — 0.06, on
-48% engagement across 29 sessions.
+searches a month.
+
+An earlier draft argued this traffic was "not leads" from the opportunity
+report's engagement score and its `keyEvents: 0` rows. **That reasoning was
+circular** — every row reads zero because `generate_lead` is not marked as a key
+event, so the report is blind to conversions by construction and cannot be
+evidence about them.
+
+The raw events can be attributed by landing page, and that is the actual
+measurement. All three `generate_lead` events in the window:
+
+| Landing page | Leads |
+| --- | --- |
+| `/paving` | 1 |
+| `/paving/locations/winchester-va` | 1 |
+| `/service-areas/hedgesville-wv` | 1 |
+
+**Two of three landed on paving service pages. None landed on the driveway
+comparison guide**, which carries 36% of all site clicks. The two `phone_click`
+events landed on `/` and `/instant-roof-quote`.
+
+**n = 3.** That is directional, not conclusive, and it deserves saying plainly
+rather than being dressed up: three events cannot carry a strategy. What it does
+do is replace an inference drawn from conversion-blind data with the real
+attribution, and what it points at is service pages over guides — and paving
+over everything else.
 
 `asphalt driveway cost` remains the cleanest content target on the board —
 12,100 a month, difficulty 0, the priced answer (`$4–$7 per square foot
@@ -151,14 +197,16 @@ confirmation of `docs/ga4-conversion-tracking.md`.
 
 ## What this means
 
-1. **The organic ceiling for geo-modified terms is ~660 searches a month.** Any
-   plan assuming more from `{service} {town}` pages assumes demand that is not
-   there. This is the one figure here measured on the right population.
+1. **Measured geo-modified demand is ~800 searches a month**, and 80 of 90
+   service-town combinations return nothing. A subtotal rather than a ceiling,
+   but it is the one figure here measured on the right population, and the
+   shape is unambiguous: demand is Martinsburg, and thin everywhere else.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately; the site already competes for some of these phrases and
    should not concede them.
-3. **National informational volume is traffic, not leads**, and the site's own
-   engagement data says so.
+3. **All three attributed leads landed on service pages, none on the guide**
+   that carries 36% of clicks — two of the three on paving. n = 3, so
+   directional only, but it is attribution rather than inference.
 4. **Prioritising the profile rests on the rank grid**, not on a keyword ratio.
 5. **Do not divide a national volume by a local one.** That was the error here,
    and it is the same class of mistake as reading Search Console without
