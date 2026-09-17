@@ -36,7 +36,13 @@ claim was an artifact of dividing a national number by a local one.
 ## The one sound local measurement
 
 Geo-modified terms name their market, so their national volume is their local
-volume. Every Eastern Panhandle term that returned a figure:
+volume. The first pass at this was a **hand-picked sample**, not an inventory —
+it is superseded by the systematic sweep below, which found positive rows this
+table does not list (`roofing martinsburg wv`, `handyman charles town wv`,
+`handyman inwood wv`, `home repair martinsburg wv`). Two of its rows, Hagerstown
+MD and Winchester VA, are not in the Eastern Panhandle at all. It is kept
+because the five extra Martinsburg phrasings in it are what established the
+clustering problem:
 
 | Keyword | Volume | KD |
 | --- | --- | --- |
@@ -115,19 +121,32 @@ estimated by summing the rows, and it cannot be assumed positive.
 
 ### What "no measurable volume" actually means
 
-It means **below Google Ads' reporting floor**, not that nobody searches the
-term. The two are different, and this repository contains the proof: the
+It means **no independently reported volume**, which is weaker than it sounds
+and has two causes that cannot be told apart from the outside.
+
+The first is the reporting floor: too few searches for Ads to publish a number.
+This repository contains the proof that a floored term is not a dead one — the
 comment above the basement entries in `src/lib/service-city-content.ts` records
 Search Console positions of **3.2** for `basement remodeling ranson wv` and
 **5.7** for `basement remodeling inwood wv`. A position exists only where
 impressions exist. Both phrases return no volume in the Ads data checked here.
 
-So every "returns nothing" in this document should be read as *too small for
-Google Ads to report*, which for a market this size is a meaningful share of
-what is actually there. It does not license the stronger claim that the demand
-is zero. What it establishes is narrower than it first looks: **the reported
-grid is Martinsburg-heavy**, and 90% of the grid has no measurable search
-behind it. That is a statement about the sampled canonical phrasings, not about
+The second is clustering: the phrase is a close variant of one that *was*
+reported, and its volume is already counted inside that row. `basement
+remodeling inwood wv` could be either — floored, or folded into a canonical
+basement row — and nothing in the Ads output distinguishes them.
+
+**This weakens the 121 empty rows and the three-of-six count alike.** Neither is
+"121 terms nobody searches" nor "121 terms below the floor"; it is 121 terms
+with no separately reported number, for one reason or the other. The same
+applies to saying three of six routes "clear the floor": three have an
+independently reported row and three do not, which is not the same as three
+having demand and three not.
+
+So every "returns nothing" in this document should be read as *no separately
+reported number*, never as *nobody searches this*. What it establishes is
+narrower than it first looks: **the reported grid is Martinsburg-heavy**, and
+90% of the grid has no independently reported volume behind it. That is a statement about the sampled canonical phrasings, not about
 where demand lives — see "The two instruments disagree about geography" below,
 where the floor data points somewhere else entirely.
 
@@ -150,8 +169,10 @@ row behind them:
 | `basements-inwood-wv` | none |
 | `basements-charles-town-wv` | none |
 
-**Three of six is the Ads-floor count, and Search Console cannot raise or lower
-it, because these routes are two days old.** All six WV keys were added on
+**Three of six is the independently-reported count — not a demand count — and
+Search Console cannot raise or lower it, because these routes are two days
+old.** Three of the six have a phrase with its own Ads row; the other three do
+not, which per the section above can mean floored *or* folded into a cluster. All six WV keys were added on
 2026-09-15 — the roofing pair in `15ae01e`, the deck and three basement combos
 in `e1e6a5b`. Every Search Console window in this document ends 2026-09-14, and
 Search Console lags roughly three days besides. **No published WV route existed
@@ -451,26 +472,29 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    phrasing per service-town pair — not a measurement of demand and not a true
    subtotal, because variant clustering can put the market total either side of
    it. And 121 of the 132 combinations return nothing — where *nothing* means
-   below Google Ads' reporting floor, not zero. Alternative wordings are not
-   added in, because clustering means they cannot be summed without
-   double-counting and may already sit inside the reported rows. What 440 does
-   have going for it is the population: it is the one figure here measured on
-   geo-modified terms, which name their own market. The shape of the reported
-   grid is unambiguous — Martinsburg-heavy, thin elsewhere — but that is a fact
-   about the sampled phrasings, not about where demand lives. On the Search
-   Console floor, Inwood carries eight times Martinsburg's impressions. The two
-   instruments disagree about geography by a factor of eight, and neither is
-   measuring the market: Ads ranks towns by what clears its floor, Search
-   Console by where this site happens to rank. Six WV routes are published and
-   three clear the Ads floor. How any of them perform is not yet knowable: all
-   six were added on 2026-09-15, after every measurement window here closed.
-   The trade-specific WV queries currently land on `/service-areas/` pages,
-   which is the gap those routes were published to close. The Ads floor hides
-   most of this market's query *variety* — whether it hides volume as well is
-   not knowable from these tools — and Search Console cannot replace it because
-   its desktop majority — 79% of impressions — is mostly noise that cannot be
-   cleanly separated from genuine traffic. Mobile and tablet give a
-   conservative floor, not a clean read.
+   no separately reported number, which can be a term below the reporting floor
+   or a term whose volume is already counted inside a reported row. Not zero,
+   and not distinguishable. Alternative wordings are not added in, because
+   clustering means they cannot be summed without double-counting and may
+   already sit inside the reported rows. What 440 does have going for it is the
+   population: it is the one figure here measured on geo-modified terms, which
+   name their own market. The shape of the reported grid is unambiguous —
+   Martinsburg-heavy, thin elsewhere — but that is a fact about the sampled
+   phrasings, not about where demand lives. On the Search Console floor, Inwood
+   carries eight times Martinsburg's impressions. The two instruments disagree
+   about geography by a factor of eight, and neither is measuring the market:
+   Ads ranks towns by what clears its floor, Search Console by where this site
+   happens to rank. Six WV routes are published and three have an independently
+   reported Ads row; the other three do not, which is not the same as having no
+   demand. How any of them perform is not yet knowable: all six were added on
+   2026-09-15, after every measurement window here closed. The trade-specific
+   WV queries currently land on `/service-areas/` pages, which is the gap those
+   routes were published to close. The Ads floor hides most of this market's
+   query *variety* — whether it hides volume as well is not knowable from these
+   tools — and Search Console cannot replace it because its desktop majority —
+   79% of impressions — is mostly noise that cannot be cleanly separated from
+   genuine traffic. Mobile and tablet give a conservative floor, not a clean
+   read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
    organically — they appear only in inert metadata `keywords` arrays — so this
