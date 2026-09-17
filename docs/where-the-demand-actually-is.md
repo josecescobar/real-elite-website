@@ -137,24 +137,33 @@ row behind them:
 | `basements-inwood-wv` | none |
 | `basements-charles-town-wv` | none |
 
-**Three of six is the Ads-floor count, and it is not the demand count.** Checked
-against Search Console, which records impressions below the floor, all three
-basement routes have observed demand for the phrasings they target:
+**Three of six is the Ads-floor count.** Search Console records impressions
+below that floor, so it is the second instrument — but it has to be filtered to
+mobile first, for the reason `docs/search-traffic-reality-2026-09-17.md` sets
+out: roughly 79% of this property's impressions are automated, and templated
+geo-queries are exactly the shape the crawlers generate.
 
-| Route | Search Console query | Impressions | Position |
-| --- | --- | --- | --- |
-| `basements-inwood-wv` | `basement remodeling inwood wv` | 41 | 7.3 |
-| `basements-ranson-wv` | `basement remodel ranson wv` | 15 | 5.1 |
-| `basements-charles-town-wv` | `basement remodeling charles town wv` | 5 | 12.0 |
+Filtered, 6 months to 2026-09-14:
 
-*(6 months to 2026-09-14. The pages are titled "Basement Finishing **&
-Remodeling**", so the remodeling phrasings are the ones that matter; all
-fourteen `basement remodeling` / `basement remodel` variants return no
-Ads-measurable volume.)*
+| Route | Query | All-device | **Mobile** | Mobile position |
+| --- | --- | --- | --- | --- |
+| `basements-inwood-wv` | `basement remodeling inwood wv` | 41 | **8** | 5.4 |
+| `basements-ranson-wv` | `basement remodeling ranson wv` | — | **1** | 3.0 |
+| `basements-ranson-wv` | `basement remodel ranson wv` | 15 | **0** | — |
+| `basements-charles-town-wv` | `basement remodeling charles town wv` | 5 | **0** | — |
 
-So **six of six** published WV routes have demand observable by one instrument
-or the other. Three of six counts only those above the Ads reporting floor, and
-using it to judge whether the pages were worth building would be wrong.
+The all-device figures were the first draft of this section and they were wrong
+to use: 33 of Inwood's 41 impressions disappear on filtering, and both the
+Charles Town row and the stronger Ranson phrasing vanish entirely.
+
+So the honest count is **roughly four of six**: three clearing the Ads floor,
+plus Inwood on 8 mobile impressions at position 5.4. Ranson rests on a single
+mobile impression, and Charles Town has no mobile evidence at all. **None of the
+six has a single click.**
+
+The pages are titled "Basement Finishing **& Remodeling**", so the remodeling
+phrasings are the ones that matter; all fourteen `basement remodeling` /
+`basement remodel` variants return no Ads-measurable volume.
 
 ### Neither instrument reads this market cleanly
 
@@ -204,8 +213,12 @@ So the two opportunities have to be kept apart rather than merged:
 
 - **Local-pack opportunity** — won with the Business Profile: categories,
   reviews, service area, proximity to the searcher.
-- **Organic opportunity** — won with pages, beneath the pack, and the site
-  already targets some of these phrases.
+- **Organic opportunity** — won with pages, beneath the pack. The site does
+  **not** currently target any of these phrases in a way Google reads: a
+  repo-wide search finds them only in metadata `keywords` arrays
+  (`src/app/paving/page.tsx`, `src/lib/paving-data.ts`), which render as an
+  inert `<meta name="keywords">` tag. Treat this as an opportunity not yet
+  taken, not as ground already held.
 
 The volumes below are national, and the local share of each is unknown for the
 same reason as above.
@@ -315,8 +328,9 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    variants, so those rows cannot be summed without double-counting. A subtotal rather than a ceiling,
    but it is the one figure here measured on the right population, and the
    shape is unambiguous: demand is Martinsburg, and thin everywhere else. Six
-   WV routes are published; three clear the Ads floor, and all six have demand
-   observable in Search Console. The Ads floor hides most of this market's
+   WV routes are published; three clear the Ads floor and a fourth has mobile
+   Search Console evidence, with the other two resting on one impression and
+   none respectively. No published WV route has a single click. The Ads floor hides most of this market's
    query variety, and Search Console cannot replace it because most of its
    impressions here are automated.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
