@@ -57,11 +57,14 @@ volume. Every Eastern Panhandle term that returned a figure:
 | `driveway paving martinsburg wv` | **no record** | — |
 
 A follow-up sweep made this systematic rather than hand-picked: **all 12 of the
-site's services against all 9 West Virginia home-market towns, one canonical
-phrasing each — 108 combinations.**
+site's services against all 11 West Virginia towns in
+`GENERAL_CONTRACTOR_AREA_SERVED`, one canonical phrasing each — 132
+combinations.** That list is the site's own declared home-market footprint and
+includes Kearneysville and Harpers Ferry, which have no pages of their own.
 
-**Ninety-seven of the 108 returned no measurable volume at all.** The eleven
-that did:
+**A hundred and twenty-one of the 132 returned no measurable volume.** All 24
+Kearneysville and Harpers Ferry combinations came back empty. The eleven rows
+that did return something:
 
 | Keyword | Volume |
 | --- | --- |
@@ -97,7 +100,21 @@ by addition from these numbers at all.
 
 Call it a **measured subtotal, not a ceiling.** Untested wordings add some
 unknown increment on top; the variant clustering above is why that increment
-cannot be estimated by summing the rows. What it establishes is the shape: demand concentrates
+cannot be estimated by summing the rows.
+
+### What "no measurable volume" actually means
+
+It means **below Google Ads' reporting floor**, not that nobody searches the
+term. The two are different, and this repository contains the proof: the
+comment above the basement entries in `src/lib/service-city-content.ts` records
+Search Console positions of **3.2** for `basement remodeling ranson wv` and
+**5.7** for `basement remodeling inwood wv`. A position exists only where
+impressions exist. Both phrases return no volume in the Ads data checked here.
+
+So every "returns nothing" in this document should be read as *too small for
+Google Ads to report*, which for a market this size is a meaningful share of
+what is actually there. It does not license the stronger claim that the demand
+is zero. What it establishes is the shape: demand concentrates
 almost entirely in Martinsburg, and 90% of the grid has no measurable search
 behind it.
 
@@ -124,6 +141,14 @@ row behind them:
 `basement finishing` returns volume in exactly one town — Martinsburg, at 10 a
 month — and there is no `basements-martinsburg-wv` route. The three basement
 pages that exist target the three towns where the term returns nothing.
+
+The pages are titled "Basement Finishing **& Remodeling**", so the remodeling
+phrasings were tested too: `basement remodeling` across all 11 towns and
+`basement remodel` for Ranson, Inwood and Charles Town. **All fourteen return no
+Ads-measurable volume**, so the three-of-six count holds on this data — but with
+the reporting-floor caveat above attached, and it attaches hardest here, since
+those exact Ranson and Inwood phrases are the ones the repo records at positions
+3.2 and 5.7. Read "miss" as *no Ads-measurable volume*, not *no demand*.
 
 Matching on town alone would report five of six, which is the looser and more
 flattering count. Three of six is the like-for-like one, and it is the number to
@@ -243,8 +268,8 @@ confirmation of `docs/ga4-conversion-tracking.md`.
 ## What this means
 
 1. **Measured geo-modified demand is 440 searches a month** on one canonical
-   phrasing per service-town pair, and 97 of the 108 combinations return
-   nothing. Alternative wordings are not added in: Google Ads clusters close
+   phrasing per service-town pair, and 121 of the 132 combinations return
+   nothing — where *nothing* means below Google Ads' reporting floor, not zero. Alternative wordings are not added in: Google Ads clusters close
    variants, so those rows cannot be summed without double-counting. A subtotal rather than a ceiling,
    but it is the one figure here measured on the right population, and the
    shape is unambiguous: demand is Martinsburg, and thin everywhere else. Six
