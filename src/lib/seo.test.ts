@@ -187,21 +187,27 @@ describe('every app route declares its own canonical', () => {
    * that value is JSX, a fragment, a string, null or createElement(...). Checking
    * for a returned value rather than for JSX is what makes this hold.
    */
-  function defaultExportBody(source: ts.SourceFile): ts.Node | undefined {
+  function defaultExport(source: ts.SourceFile): ts.Node | undefined {
     for (const statement of source.statements) {
       const isDefault =
         ts.canHaveModifiers(statement) &&
         ts
           .getModifiers(statement)
           ?.some((m) => m.kind === ts.SyntaxKind.DefaultKeyword) === true;
-      if (isDefault && ts.isFunctionDeclaration(statement)) return statement.body;
-      if (ts.isExportAssignment(statement)) return statement.expression;
+      if (isDefault && ts.isFunctionDeclaration(statement)) return statement;
+      if (ts.isExportAssignment(statement)) return statement;
     }
     return undefined;
   }
 
-  const returnsAValue = (node: ts.Node) =>
-    ts.isReturnStatement(node) && node.expression !== undefined;
+  /**
+   * `redirect()` never returns, so `return redirect('/resources')` is exactly as
+   * unconditional as calling it bare — the value is not rendered content.
+   */
+  const isRedirectCall = (value: ts.Expression): boolean => {
+    const inner = ts.isAwaitExpression(value) ? value.expression : value;
+    return calls('redirect')(inner);
+  };
 
   /**
    * `export const generateMetadata = () => …` hands `metadataExports` the variable
@@ -214,6 +220,9 @@ describe('every app route declares its own canonical', () => {
       ts.isFunctionLike(node.initializer)
     ) {
       return node.initializer;
+    }
+    if (ts.isExportAssignment(node) && ts.isFunctionLike(node.expression)) {
+      return node.expression;
     }
     return node;
   }
@@ -305,11 +314,14 @@ describe('every app route declares its own canonical', () => {
       else if (some(node, isNoIndex)) exits.push('robots index: false');
     }
 
-    // A redirect only exempts the route when nothing else renders: a guard
-    // branch leaves the normal path serving an inherited homepage canonical.
-    const body = defaultExportBody(source);
-    if (body && some(body, calls('redirect')) && !some(body, returnsAValue)) {
-      exits.push('an unconditional redirect()');
+    // A redirect only exempts the route when nothing else renders. Reuse the
+    // branch machinery: it flattens ternaries and reads a concise arrow body as
+    // an implicit return, so `() => missing ? redirect('/x') : <main />` is seen
+    // for what it is — one rendering branch beside one redirecting one.
+    const fn = defaultExport(source);
+    if (fn && some(fn, calls('redirect'))) {
+      const rendered = returnedValues(fn).filter((value) => !isRedirectCall(value));
+      if (rendered.length === 0) exits.push('an unconditional redirect()');
     }
 
     expect(
