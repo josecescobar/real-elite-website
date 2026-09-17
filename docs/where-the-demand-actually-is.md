@@ -137,22 +137,52 @@ row behind them:
 | `basements-inwood-wv` | none |
 | `basements-charles-town-wv` | none |
 
-**All three basement routes miss, and they miss the same way.**
-`basement finishing` returns volume in exactly one town — Martinsburg, at 10 a
-month — and there is no `basements-martinsburg-wv` route. The three basement
-pages that exist target the three towns where the term returns nothing.
+**Three of six is the Ads-floor count, and it is not the demand count.** Checked
+against Search Console, which records impressions below the floor, all three
+basement routes have observed demand for the phrasings they target:
 
-The pages are titled "Basement Finishing **& Remodeling**", so the remodeling
-phrasings were tested too: `basement remodeling` across all 11 towns and
-`basement remodel` for Ranson, Inwood and Charles Town. **All fourteen return no
-Ads-measurable volume**, so the three-of-six count holds on this data — but with
-the reporting-floor caveat above attached, and it attaches hardest here, since
-those exact Ranson and Inwood phrases are the ones the repo records at positions
-3.2 and 5.7. Read "miss" as *no Ads-measurable volume*, not *no demand*.
+| Route | Search Console query | Impressions | Position |
+| --- | --- | --- | --- |
+| `basements-inwood-wv` | `basement remodeling inwood wv` | 41 | 7.3 |
+| `basements-ranson-wv` | `basement remodel ranson wv` | 15 | 5.1 |
+| `basements-charles-town-wv` | `basement remodeling charles town wv` | 5 | 12.0 |
 
-Matching on town alone would report five of six, which is the looser and more
-flattering count. Three of six is the like-for-like one, and it is the number to
-use when deciding whether published routes have demand behind them.
+*(6 months to 2026-09-14. The pages are titled "Basement Finishing **&
+Remodeling**", so the remodeling phrasings are the ones that matter; all
+fourteen `basement remodeling` / `basement remodel` variants return no
+Ads-measurable volume.)*
+
+So **six of six** published WV routes have demand observable by one instrument
+or the other. Three of six counts only those above the Ads reporting floor, and
+using it to judge whether the pages were worth building would be wrong.
+
+### Neither instrument reads this market cleanly
+
+Inwood is the clearest illustration. Every one of these returns **no
+Ads-measurable volume**, and every one has Search Console impressions:
+
+| Query | Impressions | Position |
+| --- | --- | --- |
+| `driveway contractor inwood` | 66 | 39.0 |
+| `asphalt shingle roofing inwood wv` | 47 | 13.9 |
+| `basement remodeling inwood wv` | 41 | 7.3 |
+| `bathroom remodeling inwood` | 33 | 21.5 |
+| `asphalt resurfacing inwood` | 19 | 24.4 |
+| `deck builders inwood wv` | 18 | 20.1 |
+
+Against that, the sweep found exactly one Inwood row — `handyman inwood wv`, 10
+a month. **The Ads floor is hiding most of the query variety in this market.**
+
+But Search Console cannot be substituted for it, because roughly 79% of this
+property's impressions are automated (see
+`docs/search-traffic-reality-2026-09-17.md`), and there is no way to tell from
+an impression count which slice a given query sits in.
+
+So: **the 440 is Ads-reportable volume, not the size of the market.** The market
+is larger than 440 by an amount neither instrument can quantify. What both
+agree on is the shape — many distinct queries, each tiny, concentrated in a few
+towns — and neither offers any evidence of a large organic upside hiding
+somewhere.
 
 In West Virginia the site has been conservative either way. The original audit's
 overbuilding finding was about the 62 combinations it counted across **VA and
@@ -235,10 +265,22 @@ over everything else.
 12,100 a month, difficulty 0, the priced answer (`$4–$7 per square foot
 installed, $4,000–$10,000 typical`) already published in the driveways guide and
 in the FAQ on `/paving/driveway-paving`, and position 4–5 already held on
-adjacent comparison terms. It belongs in a guide. Retitling
-`/paving/driveway-paving` around cost would trade `driveway paving near me` —
-transactional, difficulty 1, already targeted — for an informational term, which
-is the wrong direction.
+adjacent comparison terms. It belongs in a guide rather than on the service
+page.
+
+An earlier draft justified that by saying `/paving/driveway-paving` **already
+targets** `driveway paving near me`. It does not. The phrase appears only in the
+`keywords` array in `src/lib/paving-data.ts`, which
+`src/app/paving/[service]/page.tsx` passes to Next's metadata `keywords` field —
+a `<meta name="keywords">` tag Google has not used for ranking in many years. It
+is in no title and no body copy, and the page does not appear in the property's
+top 60 by impressions, so there is no query-performance evidence either.
+
+The recommendation stands but on weaker and more honest grounds: a service page
+is better aimed at transactional intent than at a cost question, which is a
+judgement about page purpose rather than the protection of an asset that turns
+out not to exist. Worth noting separately that these `keywords` arrays are inert
+across the repo — harmless, but maintained for no ranking benefit.
 
 ## A caveat on difficulty scores
 
@@ -273,8 +315,10 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    variants, so those rows cannot be summed without double-counting. A subtotal rather than a ceiling,
    but it is the one figure here measured on the right population, and the
    shape is unambiguous: demand is Martinsburg, and thin everywhere else. Six
-   WV routes are published, and only three have a measured row at the same
-   service-town granularity — all three basement pages miss.
+   WV routes are published; three clear the Ads floor, and all six have demand
+   observable in Search Console. The Ads floor hides most of this market's
+   query variety, and Search Console cannot replace it because most of its
+   impressions here are automated.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately; the site already competes for some of these phrases and
    should not concede them.
