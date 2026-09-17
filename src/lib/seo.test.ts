@@ -204,20 +204,58 @@ describe('every app route declares its own canonical', () => {
     ts.isReturnStatement(node) && node.expression !== undefined;
 
   /**
+   * `export const generateMetadata = () => …` hands `metadataExports` the variable
+   * declaration, so the function to analyse is its initializer.
+   */
+  function metadataFunction(node: ts.Node): ts.Node {
+    if (
+      ts.isVariableDeclaration(node) &&
+      node.initializer &&
+      ts.isFunctionLike(node.initializer)
+    ) {
+      return node.initializer;
+    }
+    return node;
+  }
+
+  /**
+   * A conditional return is still two branches:
+   * `return record ? { title } : { robots: { index: false } }` must not be read
+   * as one value that happens to contain a noindex.
+   */
+  function branches(expression: ts.Expression): ts.Expression[] {
+    if (ts.isParenthesizedExpression(expression)) return branches(expression.expression);
+    if (ts.isConditionalExpression(expression)) {
+      return [...branches(expression.whenTrue), ...branches(expression.whenFalse)];
+    }
+    return [expression];
+  }
+
+  /**
    * Every value `generateMetadata` can return. A fallback branch must not be able
    * to exempt the whole route: `if (!record) return { robots: { index: false } };
    * return { title: record.title };` noindexes the miss and leaves every real
    * record inheriting the homepage canonical.
    */
   function returnedValues(node: ts.Node): ts.Expression[] {
+    const root = metadataFunction(node);
     const values: ts.Expression[] = [];
+
+    // An arrow with a concise body returns it without a return statement.
+    if (
+      ts.isArrowFunction(root) &&
+      !ts.isBlock(root.body)
+    ) {
+      return branches(root.body);
+    }
+
     const visit = (n: ts.Node) => {
-      if (ts.isReturnStatement(n) && n.expression) values.push(n.expression);
+      if (ts.isReturnStatement(n) && n.expression) values.push(...branches(n.expression));
       // Do not descend into nested functions; their returns are not this one's.
-      if (n !== node && ts.isFunctionLike(n)) return;
+      if (n !== root && ts.isFunctionLike(n)) return;
       ts.forEachChild(n, visit);
     };
-    visit(node);
+    visit(root);
     return values;
   }
 
