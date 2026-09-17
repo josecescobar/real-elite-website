@@ -124,17 +124,20 @@ estimated by summing the rows, and it cannot be assumed positive.
 It means **no independently reported volume**, which is weaker than it sounds
 and has two causes that cannot be told apart from the outside.
 
-The first is the reporting floor: too few searches for Ads to publish a number.
-This repository contains the proof that a floored term is not a dead one — the
-comment above the basement entries in `src/lib/service-city-content.ts` records
-Search Console positions of **3.2** for `basement remodeling ranson wv` and
-**5.7** for `basement remodeling inwood wv`. A position exists only where
-impressions exist. Both phrases return no volume in the Ads data checked here.
+The first is the **reporting floor**: too few searches for Ads to publish a
+number. The second is **clustering**: the phrase is a close variant of one that
+*was* reported, and its volume is already counted inside that row. Nothing in
+the Ads output distinguishes them.
 
-The second is clustering: the phrase is a close variant of one that *was*
-reported, and its volume is already counted inside that row. `basement
-remodeling inwood wv` could be either — floored, or folded into a canonical
-basement row — and nothing in the Ads output distinguishes them.
+What this repository does prove is that an unreported term is not a dead one.
+The comment above the basement entries in `src/lib/service-city-content.ts`
+records Search Console positions of **3.2** for `basement remodeling ranson wv`
+and **5.7** for `basement remodeling inwood wv`, and a position exists only
+where impressions exist. Both phrases return no volume in the Ads data checked
+here — so both are searched, and both are unreported. **Which of the two causes
+applies to either one is not determinable**, and this document does not claim
+it. The example establishes that an empty row can coexist with real searching;
+it establishes nothing about why the row is empty.
 
 **This weakens the 121 empty rows and the three-of-six count alike.** Neither is
 "121 terms nobody searches" nor "121 terms below the floor"; it is 121 terms
