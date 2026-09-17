@@ -240,8 +240,16 @@ Grouped by page rather than by query, the same filtered Inwood slice totals
 **631** — one more than the query grouping's 630, because Search Console's two
 groupings are computed separately and do not have to reconcile exactly. Within
 the page grouping: **519 to `/service-areas/inwood-wv`**, 86 to `/paving`, and
-26 across five other pages. One generic page absorbs 82% of a town's query
-variety, across six trades, and converts none of it.
+26 across five other pages. So `/service-areas/inwood-wv` takes **82% of the
+page-grouped impressions**.
+
+Joining query to page gives the variety figure separately, and it is close but
+not the same number: of the 32 distinct floor queries, **25 land on
+`/service-areas/inwood-wv`** — 78% — spanning roofing, siding, bathrooms,
+basements, paving and stonework. `/paving` takes 7, and the remaining pages
+share 3 between them (two queries appear on more than one page). One generic
+page answers three quarters of a town's distinct queries, across six trades,
+and converts none of them.
 
 
 But Search Console cannot be substituted for it, because the desktop slice
@@ -279,7 +287,8 @@ against what the Ads sweep reported for the same towns:
 | Ranson | 2 | 3 | 0 | nothing |
 
 Martinsburg is 370 of the 440 on the Ads side — 84% of everything the sweep
-reported — and 12% of the floor impressions.
+reported — and **8% of the 956 floor impressions in this table**. Against
+Inwood alone it is 77 to 630.
 
 Ads puts almost all the reportable volume in Martinsburg. The floor puts eight
 times Martinsburg's impressions, and twice its query variety, in Inwood — a
