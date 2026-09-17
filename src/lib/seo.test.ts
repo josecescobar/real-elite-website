@@ -73,19 +73,39 @@ describe('buildMetadata', () => {
 describe('every app route declares its own canonical', () => {
   const APP_DIR = join(process.cwd(), 'src', 'app');
 
+  /**
+   * Comments are stripped before matching, and the canonical exit looks for the
+   * object key `canonical:` rather than the bare word. Both matter:
+   * `src/app/blog/page.tsx` has "remain canonical and unchanged" in its header
+   * comment, so a prose match would let that route pass on the wrong exit and
+   * stay green if it were ever converted from a redirect into a real page.
+   */
+  function stripComments(source: string): string {
+    return source
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^\s*\/\/.*$/gm, '');
+  }
+
   /** Each exit is safe for a different reason — see the assertion message. */
   const EXITS = [
     { name: 'buildMetadata()', re: /\bbuildMetadata\s*\(/ },
-    { name: 'an explicit canonical', re: /\bcanonical\b/ },
-    { name: 'robots noindex', re: /index:\s*false/ },
+    { name: 'an explicit canonical', re: /\bcanonical\s*:/ },
+    { name: 'robots noindex', re: /\bindex\s*:\s*false\b/ },
     { name: 'a redirect()', re: /\bredirect\s*\(/ },
   ];
+
+  /**
+   * next.config does not restrict `pageExtensions`, so all four of Next.js'
+   * defaults define real routes. Checking only `page.tsx` would skip a
+   * `page.ts` added later while the count assertion below stayed satisfied.
+   */
+  const PAGE_FILE = /^page\.(tsx|ts|jsx|js)$/;
 
   function pageFiles(dir: string): string[] {
     return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
       const full = join(dir, entry.name);
       if (entry.isDirectory()) return pageFiles(full);
-      return entry.name === 'page.tsx' ? [full] : [];
+      return PAGE_FILE.test(entry.name) ? [full] : [];
     });
   }
 
@@ -99,7 +119,7 @@ describe('every app route declares its own canonical', () => {
   it.each(pages.map((p) => [relative(APP_DIR, p), p]))(
     '%s',
     (route, file) => {
-      const source = readFileSync(file, 'utf8');
+      const source = stripComments(readFileSync(file, 'utf8'));
       const taken = EXITS.filter((exit) => exit.re.test(source)).map((e) => e.name);
 
       expect(
