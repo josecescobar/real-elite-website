@@ -146,40 +146,52 @@ describe('every app route declares its own canonical', () => {
     node.expression.text === name;
 
   /** Any property named `canonical`, wherever it sits in the metadata object. */
+  /** A property named `name`, longhand or shorthand (`{ canonical }`). */
   const named = (node: ts.Node, name: string) =>
-    ts.isPropertyAssignment(node) &&
+    (ts.isPropertyAssignment(node) || ts.isShorthandPropertyAssignment(node)) &&
     (ts.isIdentifier(node.name) || ts.isStringLiteral(node.name)) &&
     node.name.text === name;
 
-  /**
-   * Is this property a *direct* member of the object assigned to `parent`?
-   * An ancestor walk is too loose: `alternates: { languages: { canonical } }` is
-   * a language-alternate entry, not `alternates.canonical`, and emits no link.
-   */
-  const directChildOf = (node: ts.Node, parent: string): boolean => {
-    const object = node.parent;
-    return (
-      !!object &&
-      ts.isObjectLiteralExpression(object) &&
-      !!object.parent &&
-      named(object.parent, parent)
-    );
+  /** The object a property's value is, when that value is an object literal. */
+  const valueObject = (property: ts.Node): ts.ObjectLiteralExpression | undefined => {
+    if (!ts.isPropertyAssignment(property)) return undefined;
+    return ts.isObjectLiteralExpression(property.initializer)
+      ? property.initializer
+      : undefined;
   };
 
-  /**
-   * Next emits `<link rel="canonical">` from `alternates.canonical` and nowhere
-   * else, so `{ openGraph: { canonical: '/about' } }` is not a canonical — the
-   * route would still inherit the homepage URL.
-   */
-  const isCanonicalProperty = (node: ts.Node) =>
-    named(node, 'canonical') && directChildOf(node, 'alternates');
+  /** A direct member of `object` named `name`. */
+  const memberOf = (object: ts.ObjectLiteralExpression, name: string) =>
+    object.properties.find((property) => named(property, name));
 
-  /** `robots: { index: false }` — the page is not indexed, so the canonical is moot. */
-  const isNoIndex = (node: ts.Node) =>
-    named(node, 'index') &&
-    ts.isPropertyAssignment(node) &&
-    node.initializer.kind === ts.SyntaxKind.FalseKeyword &&
-    directChildOf(node, 'robots');
+  /**
+   * Does this metadata *value* carry `alternates.canonical`? Anchored to the
+   * value itself rather than searched for in its subtree: Next reads
+   * `alternates` only at the top level, so `{ openGraph: { alternates: {
+   * canonical } } }` emits no link, and neither does
+   * `alternates: { languages: { canonical } }`.
+   */
+  const hasCanonical = (value: ts.Expression): boolean => {
+    if (!ts.isObjectLiteralExpression(value)) return false;
+    const alternates = memberOf(value, 'alternates');
+    if (!alternates) return false;
+    const object = valueObject(alternates);
+    return !!object && memberOf(object, 'canonical') !== undefined;
+  };
+
+  /** `robots: { index: false }` at the top level — the page is not indexed. */
+  const hasNoIndex = (value: ts.Expression): boolean => {
+    if (!ts.isObjectLiteralExpression(value)) return false;
+    const robots = memberOf(value, 'robots');
+    if (!robots) return false;
+    const object = valueObject(robots);
+    const index = object && memberOf(object, 'index');
+    return (
+      !!index &&
+      ts.isPropertyAssignment(index) &&
+      index.initializer.kind === ts.SyntaxKind.FalseKeyword
+    );
+  };
 
   /**
    * The metadata export itself: `export const metadata = …` or
@@ -194,7 +206,7 @@ describe('every app route declares its own canonical', () => {
         .getModifiers(node)
         ?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword) === true;
 
-    return source.statements.flatMap<ts.Node>((statement) => {
+    const declared = source.statements.flatMap<ts.Node>((statement) => {
       if (!exported(statement)) return [];
       if (ts.isFunctionDeclaration(statement)) {
         return statement.name?.text === 'generateMetadata' ? [statement] : [];
@@ -208,6 +220,31 @@ describe('every app route declares its own canonical', () => {
       }
       return [];
     });
+
+    // `const metadata = {…}; export { metadata };` — a valid module form where
+    // neither statement carries an export modifier. Resolve the specifier.
+    for (const statement of source.statements) {
+      if (!ts.isExportDeclaration(statement) || statement.moduleSpecifier) continue;
+      const clause = statement.exportClause;
+      if (!clause || !ts.isNamedExports(clause)) continue;
+      for (const element of clause.elements) {
+        const exportedAs = element.name.text;
+        if (exportedAs !== 'metadata' && exportedAs !== 'generateMetadata') continue;
+        const local = element.propertyName?.text ?? exportedAs;
+        for (const candidate of source.statements) {
+          if (ts.isFunctionDeclaration(candidate) && candidate.name?.text === local) {
+            declared.push(candidate);
+          }
+          if (ts.isVariableStatement(candidate)) {
+            for (const d of candidate.declarationList.declarations) {
+              if (ts.isIdentifier(d.name) && d.name.text === local) declared.push(d);
+            }
+          }
+        }
+      }
+    }
+
+    return declared;
   }
 
   /**
@@ -278,9 +315,13 @@ describe('every app route declares its own canonical', () => {
    * `redirect()` never returns, so `return redirect('/resources')` is exactly as
    * unconditional as calling it bare — the value is not rendered content.
    */
+  /** Next ships two: `redirect` (307/302) and `permanentRedirect` (308/301). */
+  const REDIRECTS = ['redirect', 'permanentRedirect'];
+  const callsARedirect = (node: ts.Node) => REDIRECTS.some((name) => calls(name)(node));
+
   const isRedirectCall = (value: ts.Expression): boolean => {
     const inner = ts.isAwaitExpression(value) ? value.expression : value;
-    return calls('redirect')(inner);
+    return callsARedirect(inner);
   };
 
   /**
@@ -377,8 +418,16 @@ describe('every app route declares its own canonical', () => {
     const metaNodes = metadataExports(source);
     const helper = buildMetadataBinding(source);
 
+    /** The value(s) a metadata declaration resolves to, for direct inspection. */
+    const valuesOf = (node: ts.Node): ts.Expression[] => {
+      const returns = returnedValues(node);
+      if (returns.length > 0) return returns;
+      if (ts.isVariableDeclaration(node) && node.initializer) return [node.initializer];
+      return [];
+    };
+
     const carriesCanonical = (node: ts.Node) =>
-      some(node, isCanonicalProperty) ||
+      valuesOf(node).some(hasCanonical) ||
       (helper !== undefined && some(node, calls(helper)));
 
     const exits: string[] = [];
@@ -399,16 +448,19 @@ describe('every app route declares its own canonical', () => {
         // check on the returned expression can see. Following it would need
         // dataflow. The cost is that a route which produces a canonical and then
         // drops it on one branch still passes; the accident above does not.
-        if (returns.every((value) => some(value, isNoIndex))) {
+        if (returns.every(hasNoIndex)) {
           exits.push('robots index: false on every branch');
-        } else if (returns.some(carriesCanonical) || carriesCanonical(node)) {
+        } else if (
+          returns.some(hasCanonical) ||
+          (helper !== undefined && some(node, calls(helper)))
+        ) {
           exits.push('a canonical produced in the metadata function');
         }
         continue;
       }
 
       if (carriesCanonical(node)) exits.push('an explicit canonical');
-      else if (some(node, isNoIndex)) exits.push('robots index: false');
+      else if (valuesOf(node).some(hasNoIndex)) exits.push('robots index: false');
     }
 
     // A redirect only exempts the route when *every* path takes it. Two things
@@ -423,7 +475,7 @@ describe('every app route declares its own canonical', () => {
       const root = metadataFunction(fn);
       const unconditional = someOwn(
         root,
-        (node) => calls('redirect')(node) && !insideABranch(node, root)
+        (node) => callsARedirect(node) && !insideABranch(node, root)
       );
       const rendered = returnedValues(fn).filter((value) => !isRedirectCall(value));
       if (unconditional && rendered.length === 0) {
