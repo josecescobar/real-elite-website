@@ -156,9 +156,11 @@ only from the `CONTENT` map in `src/lib/service-city-content.ts`, which holds
 `roofing-charles-town-wv`, `decks-martinsburg-wv`, `basements-ranson-wv`,
 `basements-inwood-wv` and `basements-charles-town-wv`.
 
-So the low-demand combinations are mostly *unpublished*. Matched at the same
-service-town granularity the sweep uses, **three of the six** have a positive
-row behind them:
+So the combinations without an independently reported row are mostly
+*unpublished* — which says where the pages are, not where the demand is, since
+an unreported row can be floored or clustered. Matched at the same service-town
+granularity the sweep uses, **three of the six** have a positive row behind
+them:
 
 | Published route | Matching sweep row |
 | --- | --- |
@@ -298,10 +300,29 @@ that the sweep reported, or may not be; Search Console shows the strings exist
 and says nothing about which cluster their volume lands in. The two instruments
 cannot be added, and neither bounds the other.
 
-What both agree on is the shape — many distinct queries, each tiny — and
-neither offers any evidence of a large organic upside hiding somewhere. That is
-the conclusion this document rests on, and it does not require knowing the
-total. What they do **not** agree on is which towns those queries sit in.
+What both agree on is that there are **many distinct query strings** in this
+market. Neither establishes that each one is small — Search Console impressions
+are a function of where this site ranks, and an unreported Ads row may be
+floored or clustered.
+
+One bound does survive, and it is the one the document rests on. **Clustering
+cannot hide large volume.** If an untested variant's searches are folded into a
+canonical row, they are already inside that row's number — and the largest
+number any home-market geo-modified term returned is `handyman martinsburg wv`
+at 140 a month. A cluster containing large volume would report as large. So the
+only route by which a large geo-modified term could be hiding here is a phrasing
+the sweep never tested and that clusters with nothing it did test.
+
+**That route is open, and it is the honest caveat on this whole document.** The
+sweep used one canonical phrasing per service-town pair; Inwood alone shows 32
+distinct strings in Search Console against the 12 tested for it. Closing it
+means testing more phrasings per pair, not more towns. Until that is done, the
+defensible statement is: *no geo-modified term this document tested returns
+large volume, and nothing in either instrument points at one that would* — which
+is weaker than "there is no upside hiding" and is what the evidence supports.
+
+What the two instruments do **not** agree on is which towns those queries sit
+in.
 
 ### The two instruments disagree about geography
 
@@ -503,8 +524,18 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    third on a service-area page** — none on the guide that carries 36% of
    clicks. n = 3, so directional only, but it is attribution rather than
    inference.
-4. **Prioritising the profile rests on the rank grid**, not on a keyword ratio.
-5. **Check the population, the bound, the page, and the date.** Four errors of
+4. **No tested geo-modified term is large, and clustering cannot hide one.** A
+   variant folded into a canonical row is already inside that row's number, and
+   the largest number any home-market geo-modified term returned is 140 a month
+   (`handyman martinsburg wv`). A cluster holding large volume would report as
+   large. **The one open route** is a phrasing the sweep never tested that
+   clusters with nothing it did test — one canonical phrasing per service-town
+   pair was tested, while Inwood alone shows 32 distinct strings in Search
+   Console against 12 tested. Closing that means more phrasings per pair, not
+   more towns. Until then: no term tested here is large, and nothing in either
+   instrument points at one that would be.
+5. **Prioritising the profile rests on the rank grid**, not on a keyword ratio.
+6. **Check the population, the bound, the page, and the date.** Four errors of
    the same family appeared in this document. Dividing a national volume by a
    local one — the withdrawn 1,500:1 ratio. Restating a bound as a measurement
    — 79% read as an automation rate when it is a device share. Crediting a page
