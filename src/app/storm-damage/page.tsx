@@ -18,6 +18,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`Storm Damage Roof Inspection (Free) — WV / MD / VA | ${BUSINESS.name}`),
@@ -199,12 +200,12 @@ export default function StormDamagePage() {
               >
                 Book Free Inspection →
               </a>
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="storm_hero"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" /> Active Leak? Call {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
 
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
@@ -404,12 +405,12 @@ export default function StormDamagePage() {
               Book Free Inspection
               <ArrowUpRight className="w-4 h-4" />
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="storm_cta"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"
             >
               <Phone className="w-4 h-4" /> Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

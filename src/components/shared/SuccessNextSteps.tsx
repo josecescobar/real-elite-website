@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { BookOpen, Phone, ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 /**
  * The "second act" shown after a form succeeds: instead of a dead-end
@@ -36,15 +37,15 @@ export default function SuccessNextSteps({
             <ArrowRight className="w-4 h-4 flex-shrink-0 text-charcoal-400 group-hover:text-brand-red" aria-hidden="true" />
           </Link>
         )}
-        <a
-          href={`tel:${BUSINESS.phoneRaw}`}
+        <PhoneLink
+          location="success_next_steps"
           onClick={() => trackEvent('post_lead_click', { action: 'call' })}
           className="group inline-flex items-center gap-3 rounded-md border border-charcoal-100 bg-steel-50 px-4 py-3 text-sm font-semibold text-navy-800 transition-colors hover:border-brand-red/40 focus-ring"
         >
           <Phone className="w-4 h-4 flex-shrink-0 text-brand-red" aria-hidden="true" />
           <span className="flex-1">Prefer to talk now? Call {BUSINESS.phone}</span>
           <ArrowRight className="w-4 h-4 flex-shrink-0 text-charcoal-400 group-hover:text-brand-red" aria-hidden="true" />
-        </a>
+        </PhoneLink>
       </div>
     </div>
   );

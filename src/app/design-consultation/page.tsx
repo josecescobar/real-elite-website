@@ -18,6 +18,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
 import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`Design Consultation — Kitchen, Bath & Basement | ${BUSINESS.name}`),
@@ -180,12 +181,12 @@ export default function DesignConsultationPage() {
               >
                 Request a Call →
               </a>
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="design_consult_hero"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" /> {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </Container>
@@ -240,12 +241,12 @@ export default function DesignConsultationPage() {
                   </p>
                   <p className="text-charcoal-700 text-sm leading-relaxed">
                     Direct line to the project lead:{' '}
-                    <a
-                      href={`tel:${BUSINESS.phoneRaw}`}
+                    <PhoneLink
+                      location="design_consult_body"
                       className="font-bold text-navy-800 hover:text-brand-red transition-colors"
                     >
                       {BUSINESS.phone}
-                    </a>
+                    </PhoneLink>
                   </p>
                 </div>
               </div>

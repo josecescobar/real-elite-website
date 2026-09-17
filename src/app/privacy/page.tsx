@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Container from '@/components/shared/Container';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS } from '@/lib/constants';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata = buildMetadata({
   path: '/privacy',
@@ -102,9 +103,9 @@ export default function PrivacyPage() {
                   {BUSINESS.email}
                 </a>{' '}
                 or discussed by calling{' '}
-                <a className="font-semibold text-navy-800 underline" href={`tel:${BUSINESS.phoneRaw}`}>
+                <PhoneLink className="font-semibold text-navy-800 underline" location="privacy_body">
                   {BUSINESS.phone}
-                </a>
+                </PhoneLink>
                 . You can also return to the <Link className="font-semibold text-navy-800 underline" href="/contact">contact page</Link>.
               </p>
             </section>

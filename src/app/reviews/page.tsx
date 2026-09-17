@@ -13,6 +13,7 @@ import {
   getReviewsByService,
   getReviewedServiceSlugs,
 } from '@/lib/reviews';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: `Review Center | ${BUSINESS.name}`,
@@ -197,12 +198,12 @@ export default async function ReviewsPage({
               Get My Free Estimate
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="reviews_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

@@ -26,6 +26,7 @@ import {
   type ComboCitySlug,
 } from '@/lib/service-city-content';
 import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-intent';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -263,12 +264,12 @@ export default async function ServiceCityPage({
             >
               {primaryCta.label} →
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="combo_page_hero"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>
@@ -453,12 +454,12 @@ export default async function ServiceCityPage({
               {primaryCta.label}
               <ArrowRight className="w-4 h-4" />
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="combo_page_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

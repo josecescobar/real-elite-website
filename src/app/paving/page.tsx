@@ -11,6 +11,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 import { buildBreadcrumbSchema, fitTitle } from '@/lib/seo';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`),
@@ -114,12 +115,12 @@ export default function PavingHubPage() {
               >
                 Get My Free Estimate →
               </a>
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="paving_index_hero"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" /> {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
 
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">

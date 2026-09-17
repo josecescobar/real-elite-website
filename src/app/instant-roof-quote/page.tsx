@@ -4,6 +4,7 @@ import { Satellite, SlidersHorizontal, FileCheck, Phone } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import RoofQuoteTool from '@/components/roof-quote/RoofQuoteTool';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`Instant Roof Quote — Ballpark Price From Your Address | ${BUSINESS.name}`),
@@ -64,13 +65,13 @@ export default function InstantRoofQuotePage() {
               contractor.
             </p>
             <div className="mt-8">
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="roof_quote_hero"
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
                 Prefer to talk? Call {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </Container>
@@ -122,13 +123,13 @@ export default function InstantRoofQuotePage() {
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
             Call us and a project lead will walk your roof options with you — financing included.
           </p>
-          <a
-            href={`tel:${BUSINESS.phoneRaw}`}
+          <PhoneLink
+            location="roof_quote_cta"
             className="inline-flex items-center justify-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
           >
             <Phone className="w-4 h-4" />
             Call {BUSINESS.phone}
-          </a>
+          </PhoneLink>
         </Container>
       </section>
     </>

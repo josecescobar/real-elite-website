@@ -16,6 +16,7 @@ import {
   getPavingLocation,
   type PavingLocation,
 } from '@/lib/paving-data';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 type Props = { location: PavingLocation };
 
@@ -99,12 +100,12 @@ export default function PavingLocationTemplate({ location }: Props) {
             >
               Get My Free Estimate →
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="paving_location_cta"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
             >
               <Phone className="w-4 h-4" /> {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

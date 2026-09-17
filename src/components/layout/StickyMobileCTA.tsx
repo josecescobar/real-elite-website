@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { BUSINESS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 import { primaryCtaForPath } from '@/lib/cta-intent';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 /**
  * Mobile-only sticky CTA bar.
@@ -29,13 +30,12 @@ export default function StickyMobileCTA() {
         className="grid grid-cols-2 gap-2 px-3 pt-3"
         style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
       >
-        <a
-          href={`tel:${BUSINESS.phoneRaw}`}
-          onClick={() => trackEvent('phone_click', { location: 'sticky_mobile' })}
+        <PhoneLink
+          location="sticky_mobile"
           className="flex items-center justify-center bg-navy-800 text-white font-semibold py-3 rounded-md text-sm hover:bg-navy-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400"
         >
           Call {BUSINESS.phone}
-        </a>
+        </PhoneLink>
         <a
           href={primaryCta.href}
           onClick={() => trackEvent(primaryCta.eventName, { location: 'sticky_mobile' })}
