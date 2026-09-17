@@ -769,11 +769,26 @@ describe('every app route declares its own canonical', () => {
         // inverse — `if (legacy) return { alternates: { canonical } }` followed
         // by a bare `return { title }` — where the page that is served inherits.
         //
-        // The limit, stated plainly: a route whose served metadata is an early
-        // return and whose last return is the miss reads backwards to this and
-        // has to declare its canonical another way. Distinguishing those needs
-        // the metadata branch to be correlated with the component's notFound(),
-        // which is dataflow across two functions.
+        // The limit, stated plainly and wider than it first looks: *any* early
+        // return that is actually served goes unchecked. Not only the inverted
+        // shape (answer first, miss last), but a genuine second served branch —
+        //
+        //   if (post.kind === 'legacy') return { title: 'Legacy' };
+        //   return buildMetadata({ path, … });
+        //
+        // — which is syntactically identical to the guard clauses above and
+        // inherits the homepage canonical for legacy posts.
+        //
+        // Requiring a canonical on every branch instead is not a free tightening:
+        // it fails all seven dynamic routes in this app, every one of them
+        // correct. The difference between their miss branch and the legacy branch
+        // above is whether the component calls notFound() under the *same*
+        // condition — a correlation between two functions' control flow that
+        // needs a type checker, not a parser.
+        //
+        // So this stops here, on purpose. A guard that demanded seven correct
+        // routes be rewritten to suit it would be answering to itself rather
+        // than to the site.
         if (returns.every(hasNoIndex)) {
           exits.push('robots index: false on every branch');
         } else {
