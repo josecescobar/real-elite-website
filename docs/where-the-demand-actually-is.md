@@ -190,24 +190,48 @@ phrasings are the ones that matter; all fourteen `basement remodeling` /
 ### Neither instrument reads this market cleanly
 
 Inwood is the clearest illustration. Every one of these returns **no
-Ads-measurable volume**, and every one has Search Console impressions:
+Ads-measurable volume**, and every one has Search Console impressions — shown
+on the mobile-plus-tablet floor, because using all-device figures here would
+repeat the mistake this document already made twice. Tablet is zero for every
+Inwood query, so the floor is the mobile column:
 
-| Query | Impressions | Position |
-| --- | --- | --- |
-| `driveway contractor inwood` | 66 | 39.0 |
-| `asphalt shingle roofing inwood wv` | 47 | 13.9 |
-| `basement remodeling inwood wv` | 41 | 7.3 |
-| `bathroom remodeling inwood` | 33 | 21.5 |
-| `asphalt resurfacing inwood` | 19 | 24.4 |
-| `deck builders inwood wv` | 18 | 20.1 |
+| Query | All-device | **Floor** | Floor position |
+| --- | --- | --- | --- |
+| `paving contractor inwood` | 74 | **74** | 23.7 |
+| `driveway contractor inwood` | 66 | **66** | 39.0 |
+| `siding company inwood wv` | 52 | **35** | 7.5 |
+| `asphalt shingle roofing inwood wv` | 47 | **34** | 15.6 |
+| `bathroom remodeling inwood` | 33 | **33** | 21.5 |
+| `siding replacement inwood wv` | 53 | **30** | 11.7 |
+| `roofing contractor inwood wv` | 47 | **29** | 9.8 |
+| `roof replacement inwood wv` | 42 | **26** | 14.0 |
+| `asphalt resurfacing inwood` | 19 | **19** | 24.4 |
+| `basement remodeling inwood wv` | 41 | **8** | 5.4 |
+| `deck builders inwood wv` | 18 | **0** | — |
 
-Against that, the sweep found exactly one Inwood row — `handyman inwood wv`, 10
-a month. **The Ads floor is hiding most of the query variety in this market.**
+Filtering matters row by row. Some rows are untouched — `paving contractor
+inwood` and `driveway contractor inwood` are entirely mobile. Others collapse:
+`basement remodeling inwood wv` loses 33 of its 41, and `deck builders inwood
+wv` disappears completely, which means one of the six rows in this table's
+earlier all-device version was pure desktop noise.
 
-Worth noting alongside the route finding above: every one of those six
-impressions blocks lands on `/service-areas/inwood-wv`, across six different
-trades. One page is absorbing the whole town's query variety, and it converts
-none of it.
+The conclusion survives filtering and is stronger for it. Inwood produces **40
+distinct queries all-device and 32 on the floor**, totalling **630 floor
+impressions** across paving, roofing, siding, bathrooms, basements and
+stonework. Decks are not among them on the floor — the only two Inwood deck
+queries are all-device only. Against that, the sweep found exactly one Inwood row —
+`handyman inwood wv`, 10 a month — and that query has **1** Search Console
+impression over six months. The one term Ads can see is the one nobody here
+searches. **The Ads floor is hiding most of the query variety in this market**,
+and that now rests on filtered data.
+
+Two things it does not establish. It says nothing about **volume**: a floor
+impression proves the string was searched, not that its volume sits outside the
+Ads clusters. And it is not a success story. Those 630 floor impressions
+produced **zero clicks**, and by page they go **519 to
+`/service-areas/inwood-wv`** and 86 to `/paving`, with the remaining 26 spread
+across four other pages. One generic page absorbs 82% of a town's query variety,
+across six trades, and converts none of it.
 
 
 But Search Console cannot be substituted for it, because the desktop slice
@@ -360,23 +384,24 @@ confirmation of `docs/ga4-conversion-tracking.md`.
 
 ## What this means
 
-1. **Measured geo-modified demand is 440 searches a month** on one canonical
-   phrasing per service-town pair, and 121 of the 132 combinations return
-   nothing — where *nothing* means below Google Ads' reporting floor, not zero.
-   Alternative wordings are not added in: Google Ads clusters close variants,
-   so those rows cannot be summed without double-counting. A subtotal, which is
-   neither a ceiling nor a floor — clustering means untested wordings may
-   already be counted inside the reported rows — but it is the one figure here
-   measured on the right population, and the shape is unambiguous: demand is
-   Martinsburg, and thin everywhere else. Six WV routes are published and three
-   clear the Ads floor. How any of them perform is not yet knowable: all six
-   were added on 2026-09-15, after every measurement window here closed. The
-   trade-specific WV queries currently land on `/service-areas/` pages, which
-   is the gap those routes were published to close. The Ads floor hides most of
-   this market's query *variety* — whether it hides volume as well is not
-   knowable from these tools — and Search Console cannot replace it because its
-   desktop majority — 79% of impressions — is mostly noise that cannot be
-   cleanly separated from genuine traffic. Mobile and tablet give a
+1. **440 a month is the sum of the Ads-reported rows**, on one canonical
+   phrasing per service-town pair — not a measurement of demand and not a true
+   subtotal, because variant clustering can put the market total either side of
+   it. And 121 of the 132 combinations return nothing — where *nothing* means
+   below Google Ads' reporting floor, not zero. Alternative wordings are not
+   added in, because clustering means they cannot be summed without
+   double-counting and may already sit inside the reported rows. What 440 does
+   have going for it is the population: it is the one figure here measured on
+   geo-modified terms, which name their own market. The shape is unambiguous:
+   demand is Martinsburg, and thin everywhere else. Six WV routes are published
+   and three clear the Ads floor. How any of them perform is not yet knowable:
+   all six were added on 2026-09-15, after every measurement window here
+   closed. The trade-specific WV queries currently land on `/service-areas/`
+   pages, which is the gap those routes were published to close. The Ads floor
+   hides most of this market's query *variety* — whether it hides volume as
+   well is not knowable from these tools — and Search Console cannot replace it
+   because its desktop majority — 79% of impressions — is mostly noise that
+   cannot be cleanly separated from genuine traffic. Mobile and tablet give a
    conservative floor, not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
