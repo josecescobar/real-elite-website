@@ -107,12 +107,27 @@ only from the `CONTENT` map in `src/lib/service-city-content.ts`, which holds
 `roofing-charles-town-wv`, `decks-martinsburg-wv`, `basements-ranson-wv`,
 `basements-inwood-wv` and `basements-charles-town-wv`.
 
-So the low-demand combinations are mostly *unpublished*, and **five of the six**
-sit in towns that returned volume in the sweep. The exception is
-`basements-ranson-wv`: Ranson returned nothing across all twelve trades, so that
-page is published against no measurable search. (Inwood clears the bar only on
-`handyman inwood wv`, not on basements, so the match is by town rather than by
-service.)
+So the low-demand combinations are mostly *unpublished*. Matched at the same
+service-town granularity the sweep uses, **three of the six** have a positive
+row behind them:
+
+| Published route | Matching sweep row |
+| --- | --- |
+| `roofing-martinsburg-wv` | `roofing martinsburg wv` — 90 |
+| `roofing-charles-town-wv` | `roofing charles town wv` — 10 |
+| `decks-martinsburg-wv` | `deck builder martinsburg wv` — 30 |
+| `basements-ranson-wv` | none |
+| `basements-inwood-wv` | none |
+| `basements-charles-town-wv` | none |
+
+**All three basement routes miss, and they miss the same way.**
+`basement finishing` returns volume in exactly one town — Martinsburg, at 10 a
+month — and there is no `basements-martinsburg-wv` route. The three basement
+pages that exist target the three towns where the term returns nothing.
+
+Matching on town alone would report five of six, which is the looser and more
+flattering count. Three of six is the like-for-like one, and it is the number to
+use when deciding whether published routes have demand behind them.
 
 In West Virginia the site has been conservative either way. The original audit's
 overbuilding finding was about the 62 combinations it counted across **VA and
@@ -232,8 +247,9 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    nothing. Alternative wordings are not added in: Google Ads clusters close
    variants, so those rows cannot be summed without double-counting. A subtotal rather than a ceiling,
    but it is the one figure here measured on the right population, and the
-   shape is unambiguous: demand is Martinsburg, and thin everywhere else. Only
-   six are published as WV pages, five of them in towns with measured volume.
+   shape is unambiguous: demand is Martinsburg, and thin everywhere else. Six
+   WV routes are published, and only three have a measured row at the same
+   service-town granularity — all three basement pages miss.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately; the site already competes for some of these phrases and
    should not concede them.
