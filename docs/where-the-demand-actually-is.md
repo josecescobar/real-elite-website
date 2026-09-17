@@ -256,8 +256,12 @@ Inwood query, so the floor is the mobile column:
 Filtering matters row by row. Some rows are untouched — `paving contractor
 inwood` and `driveway contractor inwood` are entirely mobile. Others collapse:
 `basement remodeling inwood wv` loses 33 of its 41, and `deck builders inwood
-wv` disappears completely, which means one of the six rows in this table's
-earlier all-device version was pure desktop noise.
+wv` disappears completely — all 18 of its impressions are **desktop-only**.
+Desktop-only is not the same as noise. The companion report is explicit that
+the desktop slice is not purely automated and that genuine desktop traffic
+cannot be cleanly separated from the rest, so the authenticity of those 18 is
+unresolved. What the floor convention does is exclude them, which is why it is
+a floor and not a count.
 
 The conclusion survives filtering and is stronger for it. Inwood produces **40
 distinct queries all-device and 32 on the floor**, totalling **630 floor
