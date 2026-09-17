@@ -188,7 +188,8 @@ did not exist, not that they had failed. **Withdrawn entirely. There is no
 post-publication data yet, so there is nothing here to measure.**
 
 What the query-to-page join does establish, and what commit `e1e6a5b` already
-recorded as its reason for existing, is where this demand currently lands:
+recorded as its reason for existing, is where this demand landed **during the
+window, which closed the day before the routes went live**:
 
 | Query | Page receiving the impressions | Impr. | Clicks | Position |
 | --- | --- | --- | --- | --- |
@@ -259,13 +260,15 @@ over six months. That juxtaposition is worth stating carefully, because the
 obvious reading is wrong: one impression does not mean nobody searched the
 term. It means this property appeared in results for it once. The site ranks
 44th on it, so 10 searches a month and one impression in six months are
-perfectly consistent. **The Ads floor is hiding most of the query variety in
-this market** — that much now rests on filtered data. Whether Ads and Search
+perfectly consistent. What the comparison does show is that **Ads reports one
+independent row where Search Console records 32 distinct strings** — that much
+rests on filtered data. Why the other 31 have no row of their own is not
+determinable: floored, or folded into a reported cluster. Whether Ads and Search
 Console disagree about what people *search* is not something either can show.
 
 Two things it does not establish. It says nothing about **volume**: a floor
-impression proves the string was searched, not that its volume sits outside the
-Ads clusters. And it is not a success story. Those floor impressions
+impression proves the string was searched, and says nothing about how much of
+that search is already inside a reported Ads cluster. And it is not a success story. Those floor impressions
 produced **zero clicks**.
 
 Grouped by page rather than by query, the same filtered Inwood slice totals
@@ -345,10 +348,11 @@ Ads puts almost all the reportable volume in Martinsburg. The floor puts eight
 times Martinsburg's impressions, and twice its query variety, in Inwood — a
 town Ads sees once, at 10 a month.
 
-**Neither ordering is a measurement of demand.** Ads ranks towns by what clears
-its reporting floor. Search Console ranks them by where this site happens to
-rank, which is an accident of the site's own page inventory, not of the market.
-Hedgesville makes the point unmistakable: its 229 floor impressions are four
+**Neither ordering is a measurement of demand.** Ads ranks towns by which
+phrases got an independently reported row, so floored and clustered terms both
+drop out. Search Console ranks them by where this site happens to rank, which is
+an accident of the site's own page inventory, not of the market. Hedgesville
+makes the point unmistakable: its 229 floor impressions are four
 queries, and all four are plumbing terms — `vanity stoppage hedgesville wv`,
 `pop repair service hedgesville wv` — a trade the site does not list among its
 twelve services.
@@ -412,9 +416,12 @@ same reason as above.
 | `storm damage roof repair` | 3,600 | 0 | $47.01 |
 | `tar and chip driveway` | 2,900 | 0 | $7.60 |
 
-These are national and early-intent, and the local slice of each is small — on
-the same population logic, `asphalt driveway cost` is a handful of local
-searches a month.
+These are national and early-intent. **The local slice of each is unknown**, and
+this document has already withdrawn the population-scaling move that would
+estimate it — search behaviour is not uniform by head of population, and locally
+filtered volume for a term without a place name is not obtainable from these
+tools. What can be said is that these terms name no market, so their national
+figure is not a local one.
 
 An earlier draft argued this traffic was "not leads" from the opportunity
 report's engagement score and its `keyEvents: 0` rows. **That reasoning was
@@ -504,18 +511,20 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    phrasings, not about where demand lives. On the Search Console floor, Inwood
    carries eight times Martinsburg's impressions. The two instruments disagree
    about geography by a factor of eight, and neither is measuring the market:
-   Ads ranks towns by what clears its floor, Search Console by where this site
-   happens to rank. Six WV routes are published and three have an independently
-   reported Ads row; the other three do not, which is not the same as having no
-   demand. How any of them perform is not yet knowable: all six were added on
-   2026-09-15, after every measurement window here closed. The trade-specific
-   WV queries currently land on `/service-areas/` pages, which is the gap those
-   routes were published to close. The Ads floor hides most of this market's
-   query *variety* — whether it hides volume as well is not knowable from these
-   tools — and Search Console cannot replace it because its desktop majority —
-   79% of impressions — is mostly noise that cannot be cleanly separated from
-   genuine traffic. Mobile and tablet give a conservative floor, not a clean
-   read.
+   Ads ranks towns by which phrases got an independently reported row, Search
+   Console by where this site happens to rank. Six WV routes are published and
+   three have an independently reported Ads row; the other three do not, which
+   is not the same as having no demand. How any of them perform is not yet
+   knowable: all six were added on 2026-09-15, after every measurement window
+   here closed. The trade-specific WV queries landed on `/service-areas/` pages
+   during the measured window — which closed the day before the routes went
+   live — and that is the gap those routes were published to close. Ads reports
+   far fewer independent rows than Search Console records distinct strings;
+   whether the missing ones are floored or folded into reported clusters is not
+   knowable from these tools, and neither is their volume — and Search Console
+   cannot replace it because its desktop majority — 79% of impressions — is
+   mostly noise that cannot be cleanly separated from genuine traffic. Mobile
+   and tablet give a conservative floor, not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
    organically — they appear only in inert metadata `keywords` arrays — so this
