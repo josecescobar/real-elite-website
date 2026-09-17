@@ -203,6 +203,24 @@ describe('every app route declares its own canonical', () => {
   const returnsAValue = (node: ts.Node) =>
     ts.isReturnStatement(node) && node.expression !== undefined;
 
+  /**
+   * Every value `generateMetadata` can return. A fallback branch must not be able
+   * to exempt the whole route: `if (!record) return { robots: { index: false } };
+   * return { title: record.title };` noindexes the miss and leaves every real
+   * record inheriting the homepage canonical.
+   */
+  function returnedValues(node: ts.Node): ts.Expression[] {
+    const values: ts.Expression[] = [];
+    const visit = (n: ts.Node) => {
+      if (ts.isReturnStatement(n) && n.expression) values.push(n.expression);
+      // Do not descend into nested functions; their returns are not this one's.
+      if (n !== node && ts.isFunctionLike(n)) return;
+      ts.forEachChild(n, visit);
+    };
+    visit(node);
+    return values;
+  }
+
   const pages = pageFiles(APP_DIR);
 
   it('finds routes to check', () => {
@@ -213,15 +231,41 @@ describe('every app route declares its own canonical', () => {
   it.each(pages.map((p) => [relative(APP_DIR, p), p]))('%s', (route, file) => {
     const source = parse(file);
     const metaNodes = metadataExports(source);
-    const inMetadata = (match: (node: ts.Node) => boolean) =>
-      metaNodes.some((node) => some(node, match));
+    const hasImport = importsBuildMetadata(source);
+
+    const carriesCanonical = (node: ts.Node) =>
+      some(node, isCanonicalProperty) ||
+      (hasImport && some(node, calls('buildMetadata')));
 
     const exits: string[] = [];
-    if (importsBuildMetadata(source) && inMetadata(calls('buildMetadata'))) {
-      exits.push('buildMetadata()');
+
+    for (const node of metaNodes) {
+      const returns = returnedValues(node);
+
+      if (returns.length > 1) {
+        // A branching generateMetadata. One noindexed miss must not cover the
+        // hit: `if (!record) return { robots: { index: false } }` followed by an
+        // uncanonicalised `return { title: record.title }` is the accident this
+        // catches. Either every branch is noindexed, or a canonical is produced
+        // somewhere in the function.
+        //
+        // "Somewhere" rather than "on every branch" is deliberate. blog/[slug]
+        // calls buildMetadata() into a local and returns `{ ...base, openGraph }`,
+        // so the canonical reaches the return through a spread that no subtree
+        // check on the returned expression can see. Following it would need
+        // dataflow. The cost is that a route which produces a canonical and then
+        // drops it on one branch still passes; the accident above does not.
+        if (returns.every((value) => some(value, isNoIndex))) {
+          exits.push('robots index: false on every branch');
+        } else if (returns.some(carriesCanonical) || carriesCanonical(node)) {
+          exits.push('a canonical produced in the metadata function');
+        }
+        continue;
+      }
+
+      if (carriesCanonical(node)) exits.push('an explicit canonical');
+      else if (some(node, isNoIndex)) exits.push('robots index: false');
     }
-    if (inMetadata(isCanonicalProperty)) exits.push('an explicit canonical');
-    if (inMetadata(isNoIndex)) exits.push('robots index: false');
 
     // A redirect only exempts the route when nothing else renders: a guard
     // branch leaves the normal path serving an inherited homepage canonical.
@@ -236,8 +280,9 @@ describe('every app route declares its own canonical', () => {
         `homepage canonical and declares itself a duplicate of the homepage. ` +
         `Export metadata built with buildMetadata({ path, title, description }) ` +
         `from src/lib/seo.ts, or carrying alternates.canonical or ` +
-        `robots.index: false. A redirect() only counts when the route returns ` +
-        `nothing at all.`
+        `robots.index: false. A branching generateMetadata needs a canonical on ` +
+        `some branch, or noindex on every one. A redirect() only counts when the ` +
+        `route returns nothing at all.`
     ).toBeGreaterThan(0);
   });
 });
