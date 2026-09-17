@@ -116,9 +116,11 @@ impressions exist. Both phrases return no volume in the Ads data checked here.
 So every "returns nothing" in this document should be read as *too small for
 Google Ads to report*, which for a market this size is a meaningful share of
 what is actually there. It does not license the stronger claim that the demand
-is zero. What it establishes is the shape: demand concentrates
-almost entirely in Martinsburg, and 90% of the grid has no measurable search
-behind it.
+is zero. What it establishes is narrower than it first looks: **the reported
+grid is Martinsburg-heavy**, and 90% of the grid has no measurable search
+behind it. That is a statement about the sampled canonical phrasings, not about
+where demand lives — see "The two instruments disagree about geography" below,
+where the floor data points somewhere else entirely.
 
 **That grid is not the site's page count.** `/services/[service]/[city]` builds
 only from the `CONTENT` map in `src/lib/service-city-content.ts`, which holds
@@ -220,18 +222,26 @@ distinct queries all-device and 32 on the floor**, totalling **630 floor
 impressions** across paving, roofing, siding, bathrooms, basements and
 stonework. Decks are not among them on the floor — the only two Inwood deck
 queries are all-device only. Against that, the sweep found exactly one Inwood row —
-`handyman inwood wv`, 10 a month — and that query has **1** Search Console
-impression over six months. The one term Ads can see is the one nobody here
-searches. **The Ads floor is hiding most of the query variety in this market**,
-and that now rests on filtered data.
+`handyman inwood wv`, 10 a month, which has **1** Search Console impression
+over six months. That juxtaposition is worth stating carefully, because the
+obvious reading is wrong: one impression does not mean nobody searched the
+term. It means this property appeared in results for it once. The site ranks
+44th on it, so 10 searches a month and one impression in six months are
+perfectly consistent. **The Ads floor is hiding most of the query variety in
+this market** — that much now rests on filtered data. Whether Ads and Search
+Console disagree about what people *search* is not something either can show.
 
 Two things it does not establish. It says nothing about **volume**: a floor
 impression proves the string was searched, not that its volume sits outside the
-Ads clusters. And it is not a success story. Those 630 floor impressions
-produced **zero clicks**, and by page they go **519 to
-`/service-areas/inwood-wv`** and 86 to `/paving`, with the remaining 26 spread
-across four other pages. One generic page absorbs 82% of a town's query variety,
-across six trades, and converts none of it.
+Ads clusters. And it is not a success story. Those floor impressions
+produced **zero clicks**.
+
+Grouped by page rather than by query, the same filtered Inwood slice totals
+**631** — one more than the query grouping's 630, because Search Console's two
+groupings are computed separately and do not have to reconcile exactly. Within
+the page grouping: **519 to `/service-areas/inwood-wv`**, 86 to `/paving`, and
+26 across five other pages. One generic page absorbs 82% of a town's query
+variety, across six trades, and converts none of it.
 
 
 But Search Console cannot be substituted for it, because the desktop slice
@@ -250,10 +260,45 @@ that the sweep reported, or may not be; Search Console shows the strings exist
 and says nothing about which cluster their volume lands in. The two instruments
 cannot be added, and neither bounds the other.
 
-What both agree on is the shape — many distinct queries, each tiny,
-concentrated in a few towns — and neither offers any evidence of a large
-organic upside hiding somewhere. That is the conclusion this document rests on,
-and it does not require knowing the total.
+What both agree on is the shape — many distinct queries, each tiny — and
+neither offers any evidence of a large organic upside hiding somewhere. That is
+the conclusion this document rests on, and it does not require knowing the
+total. What they do **not** agree on is which towns those queries sit in.
+
+### The two instruments disagree about geography
+
+Home-market towns on the mobile-plus-tablet floor, 6 months to 2026-09-14,
+against what the Ads sweep reported for the same towns:
+
+| Town | Floor queries | Floor impr. | Floor clicks | Ads sweep |
+| --- | --- | --- | --- | --- |
+| Inwood | 32 | 630 | 0 | 1 row, 10/mo |
+| Hedgesville | 4 | 229 | 0 | nothing |
+| Martinsburg | 16 | 77 | 1 | 8 rows, **370/mo** |
+| Charles Town | 6 | 17 | 0 | 2 rows, 60/mo |
+| Ranson | 2 | 3 | 0 | nothing |
+
+Martinsburg is 370 of the 440 on the Ads side — 84% of everything the sweep
+reported — and 12% of the floor impressions.
+
+Ads puts almost all the reportable volume in Martinsburg. The floor puts eight
+times Martinsburg's impressions, and twice its query variety, in Inwood — a
+town Ads sees once, at 10 a month.
+
+**Neither ordering is a measurement of demand.** Ads ranks towns by what clears
+its reporting floor. Search Console ranks them by where this site happens to
+rank, which is an accident of the site's own page inventory, not of the market.
+Hedgesville makes the point unmistakable: its 229 floor impressions are four
+queries, and all four are plumbing terms — `vanity stoppage hedgesville wv`,
+`pop repair service hedgesville wv` — a trade the site does not list among its
+twelve services.
+That is the site surfacing for things nobody wanted it for, counted as if it
+were local demand.
+
+So the geographic claim this document can support is **"the reported grid is
+Martinsburg-heavy"** and nothing stronger. Where Eastern Panhandle demand
+actually concentrates is not established by either instrument, and the two
+disagree by a factor of eight about the leading town.
 
 In West Virginia the site has been conservative either way. The original audit's
 overbuilding finding was about the 62 combinations it counted across **VA and
@@ -392,16 +437,21 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    added in, because clustering means they cannot be summed without
    double-counting and may already sit inside the reported rows. What 440 does
    have going for it is the population: it is the one figure here measured on
-   geo-modified terms, which name their own market. The shape is unambiguous:
-   demand is Martinsburg, and thin everywhere else. Six WV routes are published
-   and three clear the Ads floor. How any of them perform is not yet knowable:
-   all six were added on 2026-09-15, after every measurement window here
-   closed. The trade-specific WV queries currently land on `/service-areas/`
-   pages, which is the gap those routes were published to close. The Ads floor
-   hides most of this market's query *variety* — whether it hides volume as
-   well is not knowable from these tools — and Search Console cannot replace it
-   because its desktop majority — 79% of impressions — is mostly noise that
-   cannot be cleanly separated from genuine traffic. Mobile and tablet give a
+   geo-modified terms, which name their own market. The shape of the reported
+   grid is unambiguous — Martinsburg-heavy, thin elsewhere — but that is a fact
+   about the sampled phrasings, not about where demand lives. On the Search
+   Console floor, Inwood carries eight times Martinsburg's impressions. The two
+   instruments disagree about geography by a factor of eight, and neither is
+   measuring the market: Ads ranks towns by what clears its floor, Search
+   Console by where this site happens to rank. Six WV routes are published and
+   three clear the Ads floor. How any of them perform is not yet knowable: all
+   six were added on 2026-09-15, after every measurement window here closed.
+   The trade-specific WV queries currently land on `/service-areas/` pages,
+   which is the gap those routes were published to close. The Ads floor hides
+   most of this market's query *variety* — whether it hides volume as well is
+   not knowable from these tools — and Search Console cannot replace it because
+   its desktop majority — 79% of impressions — is mostly noise that cannot be
+   cleanly separated from genuine traffic. Mobile and tablet give a
    conservative floor, not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
