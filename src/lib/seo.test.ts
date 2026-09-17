@@ -105,27 +105,6 @@ describe('every app route declares its own canonical', () => {
     );
   }
 
-  /**
-   * Like `some`, but never leaves the function's own body. An unused local helper
-   * containing `redirect()` is not the page redirecting — and `returnedValues`
-   * already skips nested functions, so counting their calls made a page that
-   * merely mentions redirect look like one that performs it.
-   */
-  function someOwn(root: ts.Node, match: (node: ts.Node) => boolean): boolean {
-    let found = false;
-    const visit = (node: ts.Node) => {
-      if (found) return;
-      if (match(node)) {
-        found = true;
-        return;
-      }
-      if (node !== root && ts.isFunctionLike(node)) return;
-      ts.forEachChild(node, visit);
-    };
-    visit(root);
-    return found;
-  }
-
   function some(root: ts.Node, match: (node: ts.Node) => boolean): boolean {
     let found = false;
     const visit = (node: ts.Node) => {
@@ -272,6 +251,22 @@ describe('every app route declares its own canonical', () => {
    * rather than anywhere in the file, so an unrelated `{ canonical: 'legacy' }`
    * or an options object carrying `index: false` cannot satisfy them.
    */
+  /** Top-level declarations of `name` in this file: `function name` or `const name`. */
+  function localDeclarations(source: ts.SourceFile, name: string): ts.Node[] {
+    const found: ts.Node[] = [];
+    for (const statement of source.statements) {
+      if (ts.isFunctionDeclaration(statement) && statement.name?.text === name) {
+        found.push(statement);
+      }
+      if (ts.isVariableStatement(statement)) {
+        for (const d of statement.declarationList.declarations) {
+          if (ts.isIdentifier(d.name) && d.name.text === name) found.push(d);
+        }
+      }
+    }
+    return found;
+  }
+
   function metadataExports(source: ts.SourceFile): ts.Node[] {
     const exported = (node: ts.Node) =>
       ts.canHaveModifiers(node) &&
@@ -303,17 +298,7 @@ describe('every app route declares its own canonical', () => {
       for (const element of clause.elements) {
         const exportedAs = element.name.text;
         if (exportedAs !== 'metadata' && exportedAs !== 'generateMetadata') continue;
-        const local = element.propertyName?.text ?? exportedAs;
-        for (const candidate of source.statements) {
-          if (ts.isFunctionDeclaration(candidate) && candidate.name?.text === local) {
-            declared.push(candidate);
-          }
-          if (ts.isVariableStatement(candidate)) {
-            for (const d of candidate.declarationList.declarations) {
-              if (ts.isIdentifier(d.name) && d.name.text === local) declared.push(d);
-            }
-          }
-        }
+        declared.push(...localDeclarations(source, element.propertyName?.text ?? exportedAs));
       }
     }
 
@@ -363,26 +348,24 @@ describe('every app route declares its own canonical', () => {
           ?.some((m) => m.kind === ts.SyntaxKind.DefaultKeyword) === true;
       if (isDefault && ts.isFunctionDeclaration(statement)) return statement;
       if (ts.isExportAssignment(statement)) return statement;
+
+      // `function Page() {…} export { Page as default };` — a local specifier,
+      // resolved the same way a metadata one is. A re-export with a module
+      // specifier is not followed; the declaration is not in this file.
+      if (ts.isExportDeclaration(statement) && !statement.moduleSpecifier) {
+        const clause = statement.exportClause;
+        if (!clause || !ts.isNamedExports(clause)) continue;
+        for (const element of clause.elements) {
+          if (element.name.text !== 'default' || !element.propertyName) continue;
+          const [declaration] = localDeclarations(source, element.propertyName.text);
+          if (declaration) return declaration;
+        }
+      }
     }
     return undefined;
   }
 
   /** Is this node under a conditional or loop, up to (not past) `root`? */
-  const insideABranch = (node: ts.Node, root: ts.Node): boolean => {
-    for (let n = node.parent; n && n !== root; n = n.parent) {
-      if (
-        ts.isIfStatement(n) ||
-        ts.isConditionalExpression(n) ||
-        ts.isSwitchStatement(n) ||
-        ts.isIterationStatement(n, /* lookInLabeledStatements */ false) ||
-        ts.isCatchClause(n) ||
-        ts.isBinaryExpression(n)
-      ) {
-        return true;
-      }
-    }
-    return false;
-  };
 
   /** Next ships two redirect helpers: `redirect` (307/302), `permanentRedirect` (308/301). */
   const REDIRECTS = ['redirect', 'permanentRedirect'];
@@ -428,6 +411,67 @@ describe('every app route declares its own canonical', () => {
     const inner = unwrap(value);
     return callsARedirect(redirects, ts.isAwaitExpression(inner) ? inner.expression : inner);
   };
+
+  /** Every branch of this expression is a redirect: `cond ? go('/a') : go('/b')`. */
+  const everyBranchRedirects = (redirects: string[], value: ts.Expression): boolean => {
+    const values = branches(value);
+    return values.length > 0 && values.every((v) => isRedirectCall(redirects, v));
+  };
+
+  /**
+   * Does control definitely leave this body through a redirect?
+   *
+   * The earlier version asked a proxy question — "is there a redirect call that
+   * is not nested inside any conditional?" — which rejects a page that picks its
+   * destination exhaustively:
+   *
+   *   if (legacy) redirect('/old');
+   *   else redirect('/new');
+   *
+   * Both calls sit under the same `if`, so neither looked unconditional, yet no
+   * path through the function renders anything. This asks the real question
+   * instead, over the shapes a redirect-only page is written in.
+   *
+   * Deliberately not exhaustive: a `switch` whose every case redirects, or a
+   * `try`/`finally`, is not recognised. Those are past where this guard is
+   * drawn, and the cost of missing one is a page that must state its canonical
+   * explicitly — not a wrong canonical.
+   */
+  function alwaysRedirects(redirects: string[], body: ts.Node | undefined): boolean {
+    if (!body) return false;
+
+    function statementRedirects(statement: ts.Statement): boolean {
+      if (ts.isBlock(statement)) return listRedirects(statement.statements);
+      if (ts.isExpressionStatement(statement)) {
+        return everyBranchRedirects(redirects, statement.expression);
+      }
+      if (ts.isReturnStatement(statement)) {
+        return (
+          statement.expression !== undefined &&
+          everyBranchRedirects(redirects, statement.expression)
+        );
+      }
+      // An `if` without an `else` can fall through, so it is never definite.
+      if (ts.isIfStatement(statement)) {
+        return (
+          statement.elseStatement !== undefined &&
+          statementRedirects(statement.thenStatement) &&
+          statementRedirects(statement.elseStatement)
+        );
+      }
+      return false;
+    }
+
+    // A statement that definitely redirects makes everything after it
+    // unreachable, so one is enough for the whole sequence.
+    function listRedirects(statements: ts.NodeArray<ts.Statement>): boolean {
+      return statements.some(statementRedirects);
+    }
+
+    if (ts.isBlock(body)) return listRedirects(body.statements);
+    // A concise arrow body: `export default () => redirect('/resources')`.
+    return ts.isExpression(body) && everyBranchRedirects(redirects, body);
+  }
 
   /**
    * `export const generateMetadata = () => …` hands `metadataExports` the variable
@@ -579,14 +623,18 @@ describe('every app route declares its own canonical', () => {
     const fn = defaultExport(source);
     if (fn) {
       const root = metadataFunction(fn);
-      const unconditional = someOwn(
-        root,
-        (node) => callsARedirect(redirects, node) && !insideABranch(node, root)
-      );
+      const body =
+        ts.isFunctionLike(root) && 'body' in root
+          ? (root.body as ts.Node | undefined)
+          : undefined;
+      // `rendered` is redundant while `alwaysRedirects` is correct — if every
+      // path redirects, nothing else is returned. It stays as a second opinion
+      // on hand-rolled reachability, and costs only unreachable code after a
+      // redirect, which `never` makes a type error anyway.
       const rendered = returnedValues(fn).filter(
         (value) => !isRedirectCall(redirects, value)
       );
-      if (unconditional && rendered.length === 0) {
+      if (alwaysRedirects(redirects, body) && rendered.length === 0) {
         exits.push('an unconditional redirect()');
       }
     }
