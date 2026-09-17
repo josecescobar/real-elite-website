@@ -6,6 +6,8 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import PhoneLink from '@/components/analytics/PhoneLink';
+import TrackedLink from '@/components/analytics/TrackedLink';
 
 /**
  * SMS link with a prefilled greeting so the customer's text app opens
@@ -106,17 +108,27 @@ export default function ContactPage() {
               <div className="space-y-6 mt-2">
                 {CONTACT_BLOCKS.map((b) => {
                   const Icon = b.icon;
-                  const wrapper = b.href ? (
-                    <a
-                      href={b.href}
-                      className="text-navy-800 font-semibold text-base md:text-lg hover:text-brand-red transition-colors break-words"
-                    >
-                      {b.primary}
-                    </a>
-                  ) : (
+                  const linkClass =
+                    'text-navy-800 font-semibold text-base md:text-lg hover:text-brand-red transition-colors break-words';
+                  // The blocks are data-driven across tel:, sms: and mailto:, so
+                  // the phone one branches out to keep every call on one event.
+                  const wrapper = !b.href ? (
                     <span className="text-navy-800 font-semibold text-base md:text-lg break-words">
                       {b.primary}
                     </span>
+                  ) : b.href.startsWith('tel:') ? (
+                    <PhoneLink location="contact_blocks" className={linkClass}>
+                      {b.primary}
+                    </PhoneLink>
+                  ) : (
+                    <TrackedLink
+                      href={b.href}
+                      eventName="contact_method_click"
+                      eventParams={{ location: 'contact_blocks', method: b.label.toLowerCase() }}
+                      className={linkClass}
+                    >
+                      {b.primary}
+                    </TrackedLink>
                   );
                   return (
                     <div key={b.label} className="flex gap-4">
@@ -140,7 +152,7 @@ export default function ContactPage() {
                   Prefer to talk?
                 </p>
                 <p className="text-sm text-charcoal-700 leading-relaxed">
-                  Call <a href={`tel:${BUSINESS.phoneRaw}`} className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">{BUSINESS.phone}</a> and a real person picks up. If I miss you, leave a voicemail — I&apos;ll get back to you the same day.
+                  Call <PhoneLink location="contact_body" className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">{BUSINESS.phone}</PhoneLink> and a real person picks up. If I miss you, leave a voicemail — I&apos;ll get back to you the same day.
                 </p>
                 <p className="text-sm text-charcoal-700 leading-relaxed mt-3">
                   You can also <a href={SMS_URL} className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">text the same number</a> — quick texts usually get the fastest reply.
@@ -213,12 +225,12 @@ export default function ContactPage() {
               Get My Free Estimate
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="contact_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

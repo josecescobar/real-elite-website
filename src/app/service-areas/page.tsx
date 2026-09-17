@@ -9,6 +9,7 @@ import {
   SECONDARY_SERVICE_AREAS,
   CITY_DATA,
 } from '@/lib/constants';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: `Service Areas | ${BUSINESS.name}`,
@@ -161,13 +162,13 @@ export default function ServiceAreasPage() {
               Get a Free Estimate
               <ArrowUpRight className="w-4 h-4" />
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="service_areas_cta"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"
             >
               <MapPin className="w-4 h-4" />
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

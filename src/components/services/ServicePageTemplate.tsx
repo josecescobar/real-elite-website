@@ -21,6 +21,7 @@ import { buildBreadcrumbSchema } from '@/lib/seo';
 import { getProjectsByService } from '@/lib/projects';
 import { getReviewsByService } from '@/lib/reviews';
 import { primaryCtaForService } from '@/lib/cta-intent';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 type Props = {
   data: ServiceData;
@@ -113,12 +114,12 @@ export default function ServicePageTemplate({ data }: Props) {
               >
                 {primaryCta.label} →
               </a>
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="service_page_hero"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
               >
                 Call {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </Container>
@@ -248,12 +249,12 @@ export default function ServicePageTemplate({ data }: Props) {
               {primaryCta.label}
               <ArrowRight className="w-4 h-4" />
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="service_page_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

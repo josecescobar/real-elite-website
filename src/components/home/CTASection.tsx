@@ -1,5 +1,6 @@
 import { BUSINESS } from '@/lib/constants';
 import TrackedLink from '@/components/analytics/TrackedLink';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
   "Hi, I'd like a free estimate from Real Elite Contracting."
@@ -27,14 +28,12 @@ export const CTASection = () => {
           >
             Get My Free Estimate →
           </TrackedLink>
-          <TrackedLink
-            href={`tel:${BUSINESS.phoneRaw}`}
-            eventName="phone_click"
-            eventParams={{ location: 'cta_section' }}
+          <PhoneLink
+            location="cta_section"
             className="w-full sm:w-auto bg-white/10 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 focus-visible:ring-white/40"
           >
             Call {BUSINESS.phone}
-          </TrackedLink>
+          </PhoneLink>
         </div>
 
         <p className="text-xs text-charcoal-400 mt-6">

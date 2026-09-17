@@ -8,6 +8,7 @@ import {
   SECONDARY_SERVICE_AREAS,
 } from '@/lib/constants';
 import TrackedLink from '@/components/analytics/TrackedLink';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 const SOCIAL_LINKS = [
   {
@@ -88,14 +89,12 @@ export default function Footer() {
               Veteran-owned. Built with military precision.
             </p>
             <p className="text-sm">
-              <TrackedLink
-                href={`tel:${BUSINESS.phoneRaw}`}
-                eventName="phone_click"
-                eventParams={{ location: 'footer' }}
+              <PhoneLink
+                location="footer"
                 className="block hover:text-white transition-colors font-semibold"
               >
                 {BUSINESS.phone}
-              </TrackedLink>
+              </PhoneLink>
               <TrackedLink
                 href={`mailto:${BUSINESS.email}`}
                 eventName="email_click"

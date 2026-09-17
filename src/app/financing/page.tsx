@@ -15,6 +15,7 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`),
@@ -282,12 +283,12 @@ export default function FinancingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <CtaButton {...primaryCta} variant="onDark" />
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="financing_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/15 transition-colors border border-white/15"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

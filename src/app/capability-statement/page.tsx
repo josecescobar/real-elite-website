@@ -16,6 +16,7 @@ import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import JsonLd from '@/components/seo/JsonLd';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: `Capability Statement | ${BUSINESS.name}`,
@@ -205,12 +206,12 @@ export default function CapabilityStatementPage() {
               >
                 <Mail className="w-4 h-4" /> {BUSINESS.email}
               </a>
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="capability_hero"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" /> {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </Container>
@@ -409,13 +410,13 @@ export default function CapabilityStatementPage() {
                 <p className="text-charcoal-300 text-sm">Owner · Veteran</p>
               </div>
               <div className="space-y-3">
-                <a
-                  href={`tel:${BUSINESS.phoneRaw}`}
+                <PhoneLink
+                  location="capability_contact"
                   className="flex items-center gap-3 text-white hover:text-brand-red-light transition-colors"
                 >
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span className="font-semibold">{BUSINESS.phone}</span>
-                </a>
+                </PhoneLink>
                 <a
                   href={`mailto:${BUSINESS.email}`}
                   className="flex items-center gap-3 text-white hover:text-brand-red-light transition-colors"

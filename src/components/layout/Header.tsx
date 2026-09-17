@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { NAV_LINKS, UTILITY_LINKS, BUSINESS, SERVICES_MEGA_MENU } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 import ServicesMegaMenu from './MegaMenu';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 
 export default function Header() {
@@ -104,13 +105,12 @@ export default function Header() {
 
         {/* Desktop CTAs */}
         <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-          <a
-            href={`tel:${BUSINESS.phoneRaw}`}
-            onClick={() => trackEvent('phone_click', { location: 'header_desktop' })}
+          <PhoneLink
+            location="header_desktop"
             className="text-navy-800 font-semibold text-sm hover:text-brand-red transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm px-2 py-1"
           >
             {BUSINESS.phone}
-          </a>
+          </PhoneLink>
           <a
             href="/estimate"
             onClick={() => trackEvent('estimate_cta_click', { location: 'header_desktop' })}
@@ -122,13 +122,12 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <div className="lg:hidden flex items-center gap-3">
-          <a
-            href={`tel:${BUSINESS.phoneRaw}`}
-            onClick={() => trackEvent('phone_click', { location: 'header_mobile' })}
+          <PhoneLink
+            location="header_mobile"
             className="inline-flex items-center min-h-[44px] bg-navy-800 text-white px-4 py-2 rounded-md text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
           >
             Call
-          </a>
+          </PhoneLink>
           <button
             ref={toggleRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -213,13 +212,12 @@ export default function Header() {
           </nav>
 
           <div className="px-6 pb-4 flex flex-col gap-3 max-w-7xl mx-auto">
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
-              onClick={() => trackEvent('phone_click', { location: 'header_mobile_menu' })}
+            <PhoneLink
+              location="header_mobile_menu"
               className="flex items-center justify-center w-full py-3 bg-navy-800 text-white font-semibold rounded-md text-sm hover:bg-navy-900 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
             <a
               href="/estimate"
               onClick={() => trackEvent('estimate_cta_click', { location: 'header_mobile_menu' })}

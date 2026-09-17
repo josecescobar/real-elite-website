@@ -26,6 +26,7 @@ import { getProjectsByCity } from '@/lib/projects';
 import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import { getReviewsByCity } from '@/lib/reviews';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 const FEATURED_DEEP_LINK_SLUGS = new Set(['roofing', 'decks', 'remodeling', 'siding']);
 
@@ -180,12 +181,12 @@ export default function CityPageTemplate({ city, data }: Props) {
             >
               Get My Free Estimate →
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="city_page_cta"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>
