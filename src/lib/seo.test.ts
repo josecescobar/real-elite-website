@@ -86,12 +86,25 @@ describe('every app route declares its own canonical', () => {
       .replace(/^\s*\/\/.*$/gm, '');
   }
 
+  /**
+   * A `redirect()` only makes the route safe when it is unconditional. A guard
+   * branch — `if (!post) redirect('/resources')` — leaves the normal render path
+   * serving a page that inherits the homepage canonical, so the bare presence of
+   * the call is not enough. Proxy for "renders nothing": the module contains no
+   * JSX element at all. A generic like `useState<string>()` trips this too,
+   * which only ever costs a route an explicit canonical it should arguably have.
+   */
+  const RENDERS_JSX = /<\/?[A-Za-z]/;
+
   /** Each exit is safe for a different reason — see the assertion message. */
   const EXITS = [
-    { name: 'buildMetadata()', re: /\bbuildMetadata\s*\(/ },
-    { name: 'an explicit canonical', re: /\bcanonical\s*:/ },
-    { name: 'robots noindex', re: /\bindex\s*:\s*false\b/ },
-    { name: 'a redirect()', re: /\bredirect\s*\(/ },
+    { name: 'buildMetadata()', test: (src: string) => /\bbuildMetadata\s*\(/.test(src) },
+    { name: 'an explicit canonical', test: (src: string) => /\bcanonical\s*:/.test(src) },
+    { name: 'robots noindex', test: (src: string) => /\bindex\s*:\s*false\b/.test(src) },
+    {
+      name: 'an unconditional redirect()',
+      test: (src: string) => /\bredirect\s*\(/.test(src) && !RENDERS_JSX.test(src),
+    },
   ];
 
   /**
@@ -120,14 +133,15 @@ describe('every app route declares its own canonical', () => {
     '%s',
     (route, file) => {
       const source = stripComments(readFileSync(file, 'utf8'));
-      const taken = EXITS.filter((exit) => exit.re.test(source)).map((e) => e.name);
+      const taken = EXITS.filter((exit) => exit.test(source)).map((e) => e.name);
 
       expect(
         taken.length,
         `${route} takes none of the safe exits, so it inherits the root layout's ` +
           `homepage canonical and declares itself a duplicate of the homepage. ` +
           `Use buildMetadata({ path, title, description }) from src/lib/seo.ts, ` +
-          `or set alternates.canonical, robots.index: false, or redirect().`
+          `or set alternates.canonical or robots.index: false. A redirect() only ` +
+          `counts when the route renders nothing at all.`
       ).toBeGreaterThan(0);
     }
   );
