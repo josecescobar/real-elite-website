@@ -140,8 +140,12 @@ row behind them:
 **Three of six is the Ads-floor count.** Search Console records impressions
 below that floor, so it is the second instrument — but it has to be filtered to
 mobile first, for the reason `docs/search-traffic-reality-2026-09-17.md` sets
-out: roughly 79% of this property's impressions are automated, and templated
-geo-queries are exactly the shape the crawlers generate.
+out: **79% of this property's impressions are desktop**, that desktop slice is
+mostly automated, and templated geo-queries are exactly the shape the crawlers
+generate. 79% is a device share, not a measured automation rate — desktop still
+produced 30 clicks over the window, so some of it is real and the two cannot be
+cleanly separated. Mobile and tablet are therefore the **conservative floor**,
+not an exact count of genuine traffic.
 
 Filtered, 6 months to 2026-09-14:
 
@@ -182,10 +186,11 @@ Ads-measurable volume**, and every one has Search Console impressions:
 Against that, the sweep found exactly one Inwood row — `handyman inwood wv`, 10
 a month. **The Ads floor is hiding most of the query variety in this market.**
 
-But Search Console cannot be substituted for it, because roughly 79% of this
-property's impressions are automated (see
-`docs/search-traffic-reality-2026-09-17.md`), and there is no way to tell from
-an impression count which slice a given query sits in.
+But Search Console cannot be substituted for it, because the desktop slice
+carrying 79% of this property's impressions is mostly noise (see
+`docs/search-traffic-reality-2026-09-17.md`), and an impression count does not
+say which slice a given query sits in. Filtering to mobile gives a floor rather
+than a clean read.
 
 So: **the 440 is Ads-reportable volume, not the size of the market.** The market
 is larger than 440 by an amount neither instrument can quantify. What both
@@ -334,8 +339,9 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    query variety, and Search Console cannot replace it because most of its
    impressions here are automated.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
-   two separately; the site already competes for some of these phrases and
-   should not concede them.
+   two separately. The site does **not** currently compete for these phrases
+   organically — they appear only in inert metadata `keywords` arrays — so this
+   is a targeting opportunity not yet taken rather than ground to defend.
 3. **Two of the three attributed leads landed on paving service pages and the
    third on a service-area page** — none on the guide that carries 36% of
    clicks. n = 3, so directional only, but it is attribution rather than
