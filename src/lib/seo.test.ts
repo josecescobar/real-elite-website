@@ -125,17 +125,33 @@ describe('every app route declares its own canonical', () => {
     node.expression.text === name;
 
   /** Any property named `canonical`, wherever it sits in the metadata object. */
-  const isCanonicalProperty = (node: ts.Node) =>
+  const named = (node: ts.Node, name: string) =>
     ts.isPropertyAssignment(node) &&
     (ts.isIdentifier(node.name) || ts.isStringLiteral(node.name)) &&
-    node.name.text === 'canonical';
+    node.name.text === name;
+
+  /** Walks up to see whether this property sits inside one named `parent`. */
+  const nestedUnder = (node: ts.Node, parent: string): boolean => {
+    for (let n = node.parent; n; n = n.parent) {
+      if (named(n, parent)) return true;
+    }
+    return false;
+  };
+
+  /**
+   * Next emits `<link rel="canonical">` from `alternates.canonical` and nowhere
+   * else, so `{ openGraph: { canonical: '/about' } }` is not a canonical — the
+   * route would still inherit the homepage URL.
+   */
+  const isCanonicalProperty = (node: ts.Node) =>
+    named(node, 'canonical') && nestedUnder(node, 'alternates');
 
   /** `robots: { index: false }` — the page is not indexed, so the canonical is moot. */
   const isNoIndex = (node: ts.Node) =>
+    named(node, 'index') &&
     ts.isPropertyAssignment(node) &&
-    (ts.isIdentifier(node.name) || ts.isStringLiteral(node.name)) &&
-    node.name.text === 'index' &&
-    node.initializer.kind === ts.SyntaxKind.FalseKeyword;
+    node.initializer.kind === ts.SyntaxKind.FalseKeyword &&
+    nestedUnder(node, 'robots');
 
   /**
    * The metadata export itself: `export const metadata = …` or
@@ -172,7 +188,11 @@ describe('every app route declares its own canonical', () => {
       (statement) =>
         ts.isImportDeclaration(statement) &&
         ts.isStringLiteral(statement.moduleSpecifier) &&
-        /(^|\/)(@\/lib\/seo|seo)$/.test(statement.moduleSpecifier.text) &&
+        // The real helper only: `@/lib/seo`, or a relative path to that same file.
+        // `@/feature/seo` or a local `./seo` is a different buildMetadata.
+        /^(@\/lib\/seo|(\.\.?\/)+lib\/seo|\.\/seo)$/.test(
+          statement.moduleSpecifier.text
+        ) &&
         statement.importClause?.namedBindings !== undefined &&
         ts.isNamedImports(statement.importClause.namedBindings) &&
         statement.importClause.namedBindings.elements.some(
@@ -200,6 +220,23 @@ describe('every app route declares its own canonical', () => {
     return undefined;
   }
 
+  /** Is this node under a conditional or loop, up to (not past) `root`? */
+  const insideABranch = (node: ts.Node, root: ts.Node): boolean => {
+    for (let n = node.parent; n && n !== root; n = n.parent) {
+      if (
+        ts.isIfStatement(n) ||
+        ts.isConditionalExpression(n) ||
+        ts.isSwitchStatement(n) ||
+        ts.isIterationStatement(n, /* lookInLabeledStatements */ false) ||
+        ts.isCatchClause(n) ||
+        ts.isBinaryExpression(n)
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   /**
    * `redirect()` never returns, so `return redirect('/resources')` is exactly as
    * unconditional as calling it bare — the value is not rendered content.
@@ -221,8 +258,31 @@ describe('every app route declares its own canonical', () => {
     ) {
       return node.initializer;
     }
-    if (ts.isExportAssignment(node) && ts.isFunctionLike(node.expression)) {
-      return node.expression;
+    if (ts.isExportAssignment(node)) {
+      if (ts.isFunctionLike(node.expression)) return node.expression;
+      // `function Page() {…} export default Page;` — resolve the identifier to
+      // its declaration in this file, or the route is never inspected at all.
+      if (ts.isIdentifier(node.expression)) {
+        const name = node.expression.text;
+        const source = node.getSourceFile();
+        for (const statement of source.statements) {
+          if (ts.isFunctionDeclaration(statement) && statement.name?.text === name) {
+            return statement;
+          }
+          if (ts.isVariableStatement(statement)) {
+            for (const declaration of statement.declarationList.declarations) {
+              if (
+                ts.isIdentifier(declaration.name) &&
+                declaration.name.text === name &&
+                declaration.initializer &&
+                ts.isFunctionLike(declaration.initializer)
+              ) {
+                return declaration.initializer;
+              }
+            }
+          }
+        }
+      }
     }
     return node;
   }
@@ -314,14 +374,24 @@ describe('every app route declares its own canonical', () => {
       else if (some(node, isNoIndex)) exits.push('robots index: false');
     }
 
-    // A redirect only exempts the route when nothing else renders. Reuse the
-    // branch machinery: it flattens ternaries and reads a concise arrow body as
-    // an implicit return, so `() => missing ? redirect('/x') : <main />` is seen
-    // for what it is — one rendering branch beside one redirecting one.
+    // A redirect only exempts the route when *every* path takes it. Two things
+    // have to hold, and each caught a different miss:
+    //   - nothing else renders (ternaries and concise arrow bodies included,
+    //     which is why this reuses the branch machinery), and
+    //   - the call is not nested in a conditional. `if (loggedIn)
+    //     redirect('/account');` with no return after it has no rendered value
+    //     either, yet the fallthrough is not a redirect.
     const fn = defaultExport(source);
-    if (fn && some(fn, calls('redirect'))) {
+    if (fn) {
+      const root = metadataFunction(fn);
+      const unconditional = some(
+        root,
+        (node) => calls('redirect')(node) && !insideABranch(node, root)
+      );
       const rendered = returnedValues(fn).filter((value) => !isRedirectCall(value));
-      if (rendered.length === 0) exits.push('an unconditional redirect()');
+      if (unconditional && rendered.length === 0) {
+        exits.push('an unconditional redirect()');
+      }
     }
 
     expect(
