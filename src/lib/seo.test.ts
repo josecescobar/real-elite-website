@@ -145,7 +145,6 @@ describe('every app route declares its own canonical', () => {
     ts.isIdentifier(node.expression) &&
     node.expression.text === name;
 
-  /** Any property named `canonical`, wherever it sits in the metadata object. */
   /** A property named `name`, longhand or shorthand (`{ canonical }`). */
   const named = (node: ts.Node, name: string) =>
     (ts.isPropertyAssignment(node) || ts.isShorthandPropertyAssignment(node)) &&
@@ -311,14 +310,14 @@ describe('every app route declares its own canonical', () => {
     return false;
   };
 
-  /**
-   * `redirect()` never returns, so `return redirect('/resources')` is exactly as
-   * unconditional as calling it bare — the value is not rendered content.
-   */
-  /** Next ships two: `redirect` (307/302) and `permanentRedirect` (308/301). */
+  /** Next ships two redirect helpers: `redirect` (307/302), `permanentRedirect` (308/301). */
   const REDIRECTS = ['redirect', 'permanentRedirect'];
   const callsARedirect = (node: ts.Node) => REDIRECTS.some((name) => calls(name)(node));
 
+  /**
+   * Neither helper returns, so `return redirect('/resources')` is exactly as
+   * unconditional as calling it bare — the value is not rendered content.
+   */
   const isRedirectCall = (value: ts.Expression): boolean => {
     const inner = ts.isAwaitExpression(value) ? value.expression : value;
     return callsARedirect(inner);
