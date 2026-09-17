@@ -287,7 +287,10 @@ not the same number: of the 32 distinct floor queries, **25 land on
 basements, paving and stonework. `/paving` takes 7, and the remaining pages
 share 3 between them (two queries appear on more than one page). One generic
 page answers three quarters of a town's distinct queries, across six trades,
-and converts none of them.
+with **zero clicks in every observed row**. Not quite the same as "converts
+none of them": the tablet slice leaves 2 clicks unattributed under both
+groupings, so one could in principle sit on this page. The observed rows are
+the claim.
 
 
 But Search Console cannot be substituted for it, because the desktop slice
@@ -335,37 +338,46 @@ in.
 Home-market towns on the mobile-plus-tablet floor, 6 months to 2026-09-14,
 against what the Ads sweep reported for the same towns:
 
-| Town | Floor queries | Floor impr. | Floor clicks | Ads sweep |
+The Ads sweep covers only the site's twelve services, so the Search Console side
+is **restricted to the same trades** — otherwise the two columns are measuring
+different things. Excluded: Hedgesville's four plumbing terms (229 impressions),
+`tile sealing inwood` (34) and `stone repair inwood` (5), the address lookup
+`homesite 225 spool rd, inwood, wv` (10), the two Charles Town home-building
+queries (8), and the bare place name `martinsburg, wv` (1).
+
+| Town | In-trade floor queries | Floor impr. | Floor clicks | Ads sweep |
 | --- | --- | --- | --- | --- |
-| Inwood | 32 | 630 | 0 | 1 row, 10/mo |
-| Hedgesville | 4 | 229 | 0 | nothing |
-| Martinsburg | 16 | 77 | 1 | 8 rows, **370/mo** |
-| Charles Town | 6 | 17 | 0 | 2 rows, 60/mo |
+| Inwood | 29 | 581 | 0 | 1 row, 10/mo |
+| Martinsburg | 15 | 76 | 1 | 8 rows, **370/mo** |
+| Charles Town | 4 | 9 | 0 | 2 rows, 60/mo |
 | Ranson | 2 | 3 | 0 | nothing |
+| Hedgesville | 0 | 0 | 0 | nothing |
 
 Martinsburg is 370 of the 440 on the Ads side — 84% of everything the sweep
-reported — and **8% of the 956 floor impressions in this table**. Against
-Inwood alone it is 77 to 630.
+reported — and **11% of the 669 in-trade floor impressions**. Against Inwood
+alone it is 76 to 581.
 
-Ads puts almost all the reportable volume in Martinsburg. The floor puts eight
-times Martinsburg's impressions, and twice its query variety, in Inwood — a
-town Ads sees once, at 10 a month.
+Ads puts almost all the reportable volume in Martinsburg. The floor puts nearly
+eight times Martinsburg's impressions, and twice its query variety, in Inwood —
+a town Ads sees once, at 10 a month. Restricting to the twelve trades does not
+soften the disagreement; it sharpens it, because Hedgesville — the largest
+off-trade block — drops out of the floor side entirely.
 
 **Neither ordering is a measurement of demand.** Ads ranks towns by which
 phrases got an independently reported row, so floored and clustered terms both
 drop out. Search Console ranks them by where this site happens to rank, which is
 an accident of the site's own page inventory, not of the market. Hedgesville
-makes the point unmistakable: its 229 floor impressions are four
-queries, and all four are plumbing terms — `vanity stoppage hedgesville wv`,
-`pop repair service hedgesville wv` — a trade the site does not list among its
-twelve services.
-That is the site surfacing for things nobody wanted it for, counted as if it
-were local demand.
+makes the point unmistakable, which is why its rows are excluded above: 229
+floor impressions across four queries, all plumbing terms — `vanity stoppage
+hedgesville wv`, `pop repair service hedgesville wv` — a trade the site does not
+list among its twelve services. That is the site surfacing for things nobody
+wanted it for, and in an unfiltered table it would read as the second-busiest
+town in the home market.
 
 So the geographic claim this document can support is **"the reported grid is
 Martinsburg-heavy"** and nothing stronger. Where Eastern Panhandle demand
 actually concentrates is not established by either instrument, and the two
-disagree by a factor of eight about the leading town.
+disagree about the leading town by roughly eight to one, in trade-matched terms.
 
 In West Virginia the site has been conservative either way. The original audit's
 overbuilding finding was about the 62 combinations it counted across **VA and
@@ -511,23 +523,24 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    population: it is the one figure here measured on geo-modified terms, which
    name their own market. The shape of the reported grid is unambiguous —
    Martinsburg-heavy, thin elsewhere — but that is a fact about the sampled
-   phrasings, not about where demand lives. On the Search Console floor, Inwood
-   carries eight times Martinsburg's impressions. The two instruments disagree
-   about geography by a factor of eight, and neither is measuring the market:
-   Ads ranks towns by which phrases got an independently reported row, Search
-   Console by where this site happens to rank. Six WV routes are published and
-   three have an independently reported Ads row; the other three do not, which
-   is not the same as having no demand. How any of them perform is not yet
-   knowable: all six were added on 2026-09-15, after every measurement window
-   here closed. The trade-specific WV queries landed on `/service-areas/` pages
-   during the measured window — which closed the day before the routes went
-   live — and that is the gap those routes were published to close. Ads reports
-   far fewer independent rows than Search Console records distinct strings;
-   whether the missing ones are floored or folded into reported clusters is not
-   knowable from these tools, and neither is their volume — and Search Console
-   cannot replace it because its desktop majority — 79% of impressions — is
-   mostly noise that cannot be cleanly separated from genuine traffic. Mobile
-   and tablet give a conservative floor, not a clean read.
+   phrasings, not about where demand lives. On the Search Console floor,
+   restricted to the site's twelve trades so the two sides are comparable,
+   Inwood carries 581 impressions to Martinsburg's 76 — roughly eight to one
+   the other way. Neither instrument is measuring the market: Ads ranks towns
+   by which phrases got an independently reported row, Search Console by where
+   this site happens to rank. Six WV routes are published and three have an
+   independently reported Ads row; the other three do not, which is not the
+   same as having no demand. How any of them perform is not yet knowable: all
+   six were added on 2026-09-15, after every measurement window here closed.
+   The trade-specific WV queries landed on `/service-areas/` pages during the
+   measured window — which closed the day before the routes went live — and
+   that is the gap those routes were published to close. Ads reports far fewer
+   independent rows than Search Console records distinct strings; whether the
+   missing ones are floored or folded into reported clusters is not knowable
+   from these tools, and neither is their volume — and Search Console cannot
+   replace it because its desktop majority — 79% of impressions — is mostly
+   noise that cannot be cleanly separated from genuine traffic. Mobile and
+   tablet give a conservative floor, not a clean read.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately. The site does **not** currently compete for these phrases
    organically — they appear only in inert metadata `keywords` arrays — so this
