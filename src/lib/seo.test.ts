@@ -151,12 +151,71 @@ describe('every app route declares its own canonical', () => {
     (ts.isIdentifier(node.name) || ts.isStringLiteral(node.name)) &&
     node.name.text === name;
 
-  /** The object a property's value is, when that value is an object literal. */
-  const valueObject = (property: ts.Node): ts.ObjectLiteralExpression | undefined => {
-    if (!ts.isPropertyAssignment(property)) return undefined;
-    return ts.isObjectLiteralExpression(property.initializer)
-      ? property.initializer
-      : undefined;
+  /**
+   * Strip the wrappers TypeScript erases. `{ … } satisfies Metadata` is the same
+   * object Next receives, so a guard that only accepts a bare object literal
+   * rejects one of the most ordinary ways to write a typed metadata export.
+   */
+  function unwrap(expression: ts.Expression): ts.Expression {
+    if (
+      ts.isSatisfiesExpression(expression) ||
+      ts.isAsExpression(expression) ||
+      ts.isParenthesizedExpression(expression) ||
+      ts.isNonNullExpression(expression)
+    ) {
+      return unwrap(expression.expression);
+    }
+    return expression;
+  }
+
+  /**
+   * The object literal an expression denotes, following one hop through a local
+   * `const`. `const alternates = { canonical: '/about' }` assigned in by shorthand
+   * is the same metadata as writing the object inline.
+   *
+   * The lookup is file-wide rather than scope-aware, which can in principle find
+   * a same-named `const` from another scope. That errs toward accepting a route,
+   * which is the safe direction for a guard whose expensive failure is rejecting
+   * valid code.
+   */
+  function objectOf(
+    source: ts.SourceFile,
+    expression: ts.Expression
+  ): ts.ObjectLiteralExpression | undefined {
+    const value = unwrap(expression);
+    if (ts.isObjectLiteralExpression(value)) return value;
+    if (!ts.isIdentifier(value)) return undefined;
+
+    let found: ts.ObjectLiteralExpression | undefined;
+    const visit = (node: ts.Node) => {
+      if (found) return;
+      if (
+        ts.isVariableDeclaration(node) &&
+        ts.isIdentifier(node.name) &&
+        node.name.text === value.text &&
+        node.initializer
+      ) {
+        const initializer = unwrap(node.initializer);
+        if (ts.isObjectLiteralExpression(initializer)) found = initializer;
+        return;
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(source);
+    return found;
+  }
+
+  /**
+   * The object a property's value is: its initializer longhand, or the binding it
+   * names when written shorthand (`{ alternates }`).
+   */
+  const valueObject = (
+    source: ts.SourceFile,
+    property: ts.Node
+  ): ts.ObjectLiteralExpression | undefined => {
+    if (ts.isPropertyAssignment(property)) return objectOf(source, property.initializer);
+    if (ts.isShorthandPropertyAssignment(property)) return objectOf(source, property.name);
+    return undefined;
   };
 
   /** A direct member of `object` named `name`. */
@@ -170,25 +229,40 @@ describe('every app route declares its own canonical', () => {
    * canonical } } }` emits no link, and neither does
    * `alternates: { languages: { canonical } }`.
    */
-  const hasCanonical = (value: ts.Expression): boolean => {
-    if (!ts.isObjectLiteralExpression(value)) return false;
-    const alternates = memberOf(value, 'alternates');
+  const hasCanonical = (source: ts.SourceFile, value: ts.Expression): boolean => {
+    const object = objectOf(source, value);
+    if (!object) return false;
+    const alternates = memberOf(object, 'alternates');
     if (!alternates) return false;
-    const object = valueObject(alternates);
-    return !!object && memberOf(object, 'canonical') !== undefined;
+    const section = valueObject(source, alternates);
+    return !!section && memberOf(section, 'canonical') !== undefined;
   };
 
-  /** `robots: { index: false }` at the top level — the page is not indexed. */
-  const hasNoIndex = (value: ts.Expression): boolean => {
-    if (!ts.isObjectLiteralExpression(value)) return false;
-    const robots = memberOf(value, 'robots');
+  /**
+   * The page is not indexed, so its canonical is moot. Next accepts two spellings:
+   * `robots: { index: false }` and the string form `robots: 'noindex'`.
+   *
+   * Unlike `canonical`, shorthand does not count here — `{ robots: { index } }`
+   * says nothing about whether the page is indexed. Presence is the test for a
+   * canonical; for `index` it is the value.
+   */
+  const hasNoIndex = (source: ts.SourceFile, value: ts.Expression): boolean => {
+    const object = objectOf(source, value);
+    if (!object) return false;
+    const robots = memberOf(object, 'robots');
     if (!robots) return false;
-    const object = valueObject(robots);
-    const index = object && memberOf(object, 'index');
+
+    if (ts.isPropertyAssignment(robots)) {
+      const directive = unwrap(robots.initializer);
+      if (ts.isStringLiteral(directive) && /\bnoindex\b/.test(directive.text)) return true;
+    }
+
+    const section = valueObject(source, robots);
+    const index = section && memberOf(section, 'index');
     return (
       !!index &&
       ts.isPropertyAssignment(index) &&
-      index.initializer.kind === ts.SyntaxKind.FalseKeyword
+      unwrap(index.initializer).kind === ts.SyntaxKind.FalseKeyword
     );
   };
 
@@ -312,15 +386,47 @@ describe('every app route declares its own canonical', () => {
 
   /** Next ships two redirect helpers: `redirect` (307/302), `permanentRedirect` (308/301). */
   const REDIRECTS = ['redirect', 'permanentRedirect'];
-  const callsARedirect = (node: ts.Node) => REDIRECTS.some((name) => calls(name)(node));
+
+  /**
+   * The local names Next's redirect helpers are bound to in this file. Matching
+   * the call-site identifier against the two literal names would reject
+   * `import { redirect as go } from 'next/navigation'`, and would equally accept
+   * a local helper that merely happens to be called `redirect`. Same reasoning,
+   * and the same shape, as `buildMetadataBinding`.
+   *
+   * A namespace import (`import * as nav`) binds no name here, so `nav.redirect()`
+   * is not recognised. `calls()` requires a plain identifier callee anyway.
+   */
+  function redirectBindings(source: ts.SourceFile): string[] {
+    const names: string[] = [];
+    for (const statement of source.statements) {
+      if (
+        !ts.isImportDeclaration(statement) ||
+        !ts.isStringLiteral(statement.moduleSpecifier) ||
+        statement.moduleSpecifier.text !== 'next/navigation'
+      ) {
+        continue;
+      }
+      const bindings = statement.importClause?.namedBindings;
+      if (!bindings || !ts.isNamedImports(bindings)) continue;
+      for (const element of bindings.elements) {
+        const imported = element.propertyName?.text ?? element.name.text;
+        if (REDIRECTS.includes(imported)) names.push(element.name.text);
+      }
+    }
+    return names;
+  }
+
+  const callsARedirect = (redirects: string[], node: ts.Node) =>
+    redirects.some((name) => calls(name)(node));
 
   /**
    * Neither helper returns, so `return redirect('/resources')` is exactly as
    * unconditional as calling it bare — the value is not rendered content.
    */
-  const isRedirectCall = (value: ts.Expression): boolean => {
-    const inner = ts.isAwaitExpression(value) ? value.expression : value;
-    return callsARedirect(inner);
+  const isRedirectCall = (redirects: string[], value: ts.Expression): boolean => {
+    const inner = unwrap(value);
+    return callsARedirect(redirects, ts.isAwaitExpression(inner) ? inner.expression : inner);
   };
 
   /**
@@ -416,6 +522,7 @@ describe('every app route declares its own canonical', () => {
     const source = parse(file);
     const metaNodes = metadataExports(source);
     const helper = buildMetadataBinding(source);
+    const redirects = redirectBindings(source);
 
     /** The value(s) a metadata declaration resolves to, for direct inspection. */
     const valuesOf = (node: ts.Node): ts.Expression[] => {
@@ -426,7 +533,7 @@ describe('every app route declares its own canonical', () => {
     };
 
     const carriesCanonical = (node: ts.Node) =>
-      valuesOf(node).some(hasCanonical) ||
+      valuesOf(node).some((value) => hasCanonical(source, value)) ||
       (helper !== undefined && some(node, calls(helper)));
 
     const exits: string[] = [];
@@ -447,10 +554,10 @@ describe('every app route declares its own canonical', () => {
         // check on the returned expression can see. Following it would need
         // dataflow. The cost is that a route which produces a canonical and then
         // drops it on one branch still passes; the accident above does not.
-        if (returns.every(hasNoIndex)) {
+        if (returns.every((value) => hasNoIndex(source, value))) {
           exits.push('robots index: false on every branch');
         } else if (
-          returns.some(hasCanonical) ||
+          returns.some((value) => hasCanonical(source, value)) ||
           (helper !== undefined && some(node, calls(helper)))
         ) {
           exits.push('a canonical produced in the metadata function');
@@ -459,7 +566,7 @@ describe('every app route declares its own canonical', () => {
       }
 
       if (carriesCanonical(node)) exits.push('an explicit canonical');
-      else if (valuesOf(node).some(hasNoIndex)) exits.push('robots index: false');
+      else if (valuesOf(node).some((value) => hasNoIndex(source, value))) exits.push('robots index: false');
     }
 
     // A redirect only exempts the route when *every* path takes it. Two things
@@ -474,9 +581,11 @@ describe('every app route declares its own canonical', () => {
       const root = metadataFunction(fn);
       const unconditional = someOwn(
         root,
-        (node) => callsARedirect(node) && !insideABranch(node, root)
+        (node) => callsARedirect(redirects, node) && !insideABranch(node, root)
       );
-      const rendered = returnedValues(fn).filter((value) => !isRedirectCall(value));
+      const rendered = returnedValues(fn).filter(
+        (value) => !isRedirectCall(redirects, value)
+      );
       if (unconditional && rendered.length === 0) {
         exits.push('an unconditional redirect()');
       }
