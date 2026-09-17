@@ -91,13 +91,20 @@ behind it.
 
 **That grid is not the site's page count.** `/services/[service]/[city]` builds
 only from the `CONTENT` map in `src/lib/service-city-content.ts`, which holds
-**six** WV service-city entries — `roofing-martinsburg-wv`,
-`roofing-charles-town-wv`, `basements-ranson-wv`, `basements-inwood-wv`,
-`basements-charles-town-wv` and `decks-martinsburg-wv` — out of 96 keys overall.
-The low-demand combinations are therefore mostly *unpublished*, and all six that
-exist sit in the three towns that actually return volume. In West Virginia the
-site has been conservative; the original audit's overbuilding finding was about
-the 62 Virginia pages, not these.
+**69 keys — 6 WV, 51 VA, 12 MD.** The WV six are `roofing-martinsburg-wv`,
+`roofing-charles-town-wv`, `decks-martinsburg-wv`, `basements-ranson-wv`,
+`basements-inwood-wv` and `basements-charles-town-wv`.
+
+So the low-demand combinations are mostly *unpublished*, and **five of the six**
+sit in towns that returned volume in the sweep. The exception is
+`basements-ranson-wv`: Ranson returned nothing across all twelve trades, so that
+page is published against no measurable search. (Inwood clears the bar only on
+`handyman inwood wv`, not on basements, so the match is by town rather than by
+service.)
+
+In West Virginia the site has been conservative either way. The original audit's
+overbuilding finding was about the 62 combinations it counted across **VA and
+MD** — 63 in the map today — not about these six.
 
 ## Near-me demand belongs to both, not to the profile
 
@@ -212,13 +219,14 @@ confirmation of `docs/ga4-conversion-tracking.md`.
    service-town combinations return nothing. A subtotal rather than a ceiling,
    but it is the one figure here measured on the right population, and the
    shape is unambiguous: demand is Martinsburg, and thin everywhere else. Only
-   six of those combinations are published as pages, all in towns with volume.
+   six are published as WV pages, five of them in towns with measured volume.
 2. **Near-me demand is contested by the pack and by organic pages.** Track the
    two separately; the site already competes for some of these phrases and
    should not concede them.
-3. **All three attributed leads landed on service pages, none on the guide**
-   that carries 36% of clicks — two of the three on paving. n = 3, so
-   directional only, but it is attribution rather than inference.
+3. **Two of the three attributed leads landed on paving service pages and the
+   third on a service-area page** — none on the guide that carries 36% of
+   clicks. n = 3, so directional only, but it is attribution rather than
+   inference.
 4. **Prioritising the profile rests on the rank grid**, not on a keyword ratio.
 5. **Do not divide a national volume by a local one.** That was the error here,
    and it is the same class of mistake as reading Search Console without
