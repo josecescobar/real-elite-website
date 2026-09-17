@@ -94,15 +94,24 @@ and `contractors` and `general contractor` returning *exactly* 110 apiece reads
 like one cluster reported under two labels. Adding them would count the same
 searches twice.
 
-So the defensible figure is **440 a month across one canonical phrasing per
-service-town pair** — not a total across all wordings, which cannot be computed
-by addition from these numbers at all.
+So the figure this document works with is **440 a month, the arithmetic sum of
+the eleven reported rows** — one canonical phrasing per service-town pair. Not
+a total across all wordings, which cannot be computed by addition from these
+numbers at all.
 
-Call it a **measured subtotal**, and resist turning that into either a ceiling
-or a floor. Untested wordings might add volume on top, or their volume might
-already sit inside the canonical rows that were reported — clustering is
-precisely what makes the two indistinguishable. The increment cannot be
-estimated by summing the rows, and it cannot be assumed positive either.
+**It is not a subtotal**, and calling it a "measured subtotal" — as earlier
+drafts did — smuggles in the claim the paragraph above just withdrew. A
+subtotal is a partial sum of disjoint parts, and nothing establishes that the
+eleven rows are disjoint from each other. The same clustering that stops the
+five extra Martinsburg phrasings being added applies *within* the grid:
+`handyman martinsburg wv` (140) and `home repair martinsburg wv` (10) are close
+enough in meaning that Ads may be reporting one cluster twice. So 440 could
+overstate the reported demand as easily as understate the market.
+
+Nor is it a ceiling or a floor. Untested wordings might add volume on top, or
+their volume might already sit inside the rows that were reported — clustering
+is precisely what makes the two indistinguishable. The increment cannot be
+estimated by summing the rows, and it cannot be assumed positive.
 
 ### What "no measurable volume" actually means
 
