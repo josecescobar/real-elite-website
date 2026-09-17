@@ -412,6 +412,28 @@ describe('every app route declares its own canonical', () => {
     return callsARedirect(redirects, ts.isAwaitExpression(inner) ? inner.expression : inner);
   };
 
+  /**
+   * A path out of this statement that is not a redirect: a bare `return`, or a
+   * `return` of anything else. Nested functions are skipped — their returns
+   * belong to their own control flow, not to this one.
+   */
+  function escapes(redirects: string[], statement: ts.Statement): boolean {
+    let found = false;
+    const visit = (node: ts.Node) => {
+      if (found) return;
+      if (ts.isFunctionLike(node)) return;
+      if (ts.isReturnStatement(node)) {
+        if (!node.expression || !everyBranchRedirects(redirects, node.expression)) {
+          found = true;
+        }
+        return;
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(statement);
+    return found;
+  }
+
   /** Every branch of this expression is a redirect: `cond ? go('/a') : go('/b')`. */
   const everyBranchRedirects = (redirects: string[], value: ts.Expression): boolean => {
     const values = branches(value);
@@ -462,10 +484,18 @@ describe('every app route declares its own canonical', () => {
       return false;
     }
 
-    // A statement that definitely redirects makes everything after it
-    // unreachable, so one is enough for the whole sequence.
+    /**
+     * A statement that definitely redirects makes everything after it
+     * unreachable — but only if control actually reaches it. `if (preview)
+     * return;` ahead of a redirect is a path that leaves without one, so the
+     * sequence stops being definite at the first statement that can escape.
+     */
     function listRedirects(statements: ts.NodeArray<ts.Statement>): boolean {
-      return statements.some(statementRedirects);
+      for (const statement of statements) {
+        if (statementRedirects(statement)) return true;
+        if (escapes(redirects, statement)) return false;
+      }
+      return false;
     }
 
     if (ts.isBlock(body)) return listRedirects(body.statements);
@@ -555,6 +585,77 @@ describe('every app route declares its own canonical', () => {
     return values;
   }
 
+  /** A function's body, when the node is a function at all. */
+  function functionBody(node: ts.Node): ts.Node | undefined {
+    return ts.isFunctionLike(node) && 'body' in node
+      ? (node.body as ts.Node | undefined)
+      : undefined;
+  }
+
+  /**
+   * Does every path through this metadata function return a value?
+   *
+   * `returnedValues` collects the returns it finds, which says nothing about the
+   * paths that return nothing at all:
+   *
+   *   if (!record) return { robots: { index: false } };
+   *   // …and nothing after it
+   *
+   * One noindexed value is collected, the route looks noindexed, and the `record`
+   * path quietly hands Next no metadata — so it inherits the homepage canonical.
+   * That forgetting is exactly what this guard exists to catch, so a function
+   * that can fall out of its own body earns no exit.
+   *
+   * Same shape and same stated limits as `alwaysRedirects`: `switch` and `try`
+   * are not recognised, and a route using them states its canonical explicitly.
+   */
+  function alwaysReturnsValue(body: ts.Node | undefined): boolean {
+    if (!body) return false;
+    // A concise arrow body is the value: `() => buildMetadata({ … })`.
+    if (!ts.isBlock(body)) return true;
+
+    function returnsValue(statement: ts.Statement): boolean {
+      if (ts.isBlock(statement)) return sequenceReturns(statement.statements);
+      if (ts.isReturnStatement(statement)) return statement.expression !== undefined;
+      // Throwing leaves the function without falling through to the end.
+      if (ts.isThrowStatement(statement)) return true;
+      if (ts.isIfStatement(statement)) {
+        return (
+          statement.elseStatement !== undefined &&
+          returnsValue(statement.thenStatement) &&
+          returnsValue(statement.elseStatement)
+        );
+      }
+      return false;
+    }
+
+    function bareReturn(statement: ts.Statement): boolean {
+      let found = false;
+      const visit = (node: ts.Node) => {
+        if (found) return;
+        if (ts.isFunctionLike(node)) return;
+        if (ts.isReturnStatement(node) && !node.expression) {
+          found = true;
+          return;
+        }
+        ts.forEachChild(node, visit);
+      };
+      visit(statement);
+      return found;
+    }
+
+    function sequenceReturns(statements: ts.NodeArray<ts.Statement>): boolean {
+      for (const statement of statements) {
+        if (returnsValue(statement)) return true;
+        if (bareReturn(statement)) return false;
+      }
+      // Reaching the end of the body is a path that returns nothing.
+      return false;
+    }
+
+    return sequenceReturns(body.statements);
+  }
+
   const pages = pageFiles(APP_DIR);
 
   it('finds routes to check', () => {
@@ -584,6 +685,11 @@ describe('every app route declares its own canonical', () => {
 
     for (const node of metaNodes) {
       const returns = returnedValues(node);
+
+      // A generateMetadata that can finish without returning anything hands Next
+      // no metadata on that path, which inherits. No exit from this export.
+      const metadataBody = functionBody(metadataFunction(node));
+      if (metadataBody && !alwaysReturnsValue(metadataBody)) continue;
 
       if (returns.length > 1) {
         // A branching generateMetadata. One noindexed miss must not cover the
