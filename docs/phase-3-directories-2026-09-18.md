@@ -41,10 +41,14 @@ is stable enough to rank directories from one look.
 Everything below is therefore reported as **observed in at least one snapshot**,
 not as what does or does not rank.
 
-## What was observed, across six snapshots
+## What was observed, across seven snapshots of five queries
 
-Five queries at depth 20 plus one re-pull at depth 30. Two further queries
-failed upstream and are not reported; I did not retry selectively.
+Five queries at depth 20, one re-pull of one of them at depth 30, and §1.3's
+earlier snapshot of that same query — **seven snapshots, five distinct
+queries**. §1.3's is counted here because it records a full organic field
+(ranks 4–20), so it is a look in which an absent domain could have appeared.
+Two further queries failed upstream and are not reported; I did not retry
+selectively.
 
 | Domain | Queries seen in | Where |
 | --- | --- | --- |
@@ -61,7 +65,7 @@ failed upstream and are not reported; I did not retry selectively.
 
 **Yelp is the only robust result here.** It appeared in every query and every
 snapshot. Everything else is a weaker observation, and the two zeroes are
-absence of evidence across six looks rather than proof of absence.
+absence of evidence across seven looks rather than proof of absence.
 
 An earlier version of this file compared directory share between Northern
 Virginia and the home market and concluded the home market ran higher. **That
@@ -78,8 +82,8 @@ the first draft of this file said it could not:
 | **Yelp** | URL present — `yelp.com/biz/real-elite-contracting` — but **unverified**: the comment records that Yelp returns 403 to automated checks and says to verify manually in a browser before linking it from the footer |
 | **Thumbtack** | profile was listed, **returned 404**, and was removed to avoid a broken `sameAs` reference |
 | **LinkedIn** | same — listed, 404, removed |
-| **BBB** | a trust badge with `href: null`, so it deliberately does not render |
-| **Angi** | a trust badge with `href: null`, so it deliberately does not render |
+| **BBB** | a trust badge labelled **"BBB Accredited"**, `href: null`. The comment defines null as *"not yet verified"* — which does not distinguish "no listing" from "listing exists, unchecked" |
+| **Angi** | a trust badge labelled **"Angi Certified"**, `href: null`, same meaning |
 | Facebook, Instagram, Google | live URLs, in `sameAs` |
 
 Two consequences.
@@ -89,10 +93,26 @@ the Phase 3 list because the repo has a Thumbtack *webhook*. The repo also
 records that the Thumbtack *profile* 404'd and was removed. Integration is not
 a profile, and neither is evidence of demand.
 
-**BBB and Angi already have UI waiting for them.** The badge array renders each
-entry only when `href` is a real live profile URL. Creating those profiles
-lights up components that are already built and currently hidden — a smaller
-and more certain return than a new listing elsewhere.
+**BBB and Angi have UI waiting — but it is not waiting for a profile.** An
+earlier version of this file read the two null badges as "no listing exists,
+so create one". That is wrong twice over, and the second way is the one that
+matters.
+
+*First*, `null` does not mean "no listing". The comment defines it as **"not
+yet verified"** — the same state as Yelp's, and it carries the same
+duplicate-listing risk. BBB and Angi are verify-or-create, exactly as Yelp is.
+
+*Second, and more seriously:* the badges read **"BBB Accredited"** and **"Angi
+Certified"**. Those are **credentials, not profiles**. BBB Accreditation is a
+paid, vetted status; Angi Certified requires Angi's background and licence
+screening. A free listing on either platform earns neither. So filling in an
+`href` on the strength of a basic profile would publish a trust badge
+asserting a credential the business may not hold — in front of a homeowner,
+which is the failure mode `CLAUDE.md` reserves the owner's confirmation for.
+
+**The badge `href` is therefore not the goal of a Phase 3 item.** It is
+downstream of the owner confirming the credential itself, and it stays `null`
+until then regardless of whether a profile exists.
 
 ## Revised order
 
@@ -101,10 +121,14 @@ and more certain return than a new listing elsewhere.
    Elite's, claim it and the footer link can be enabled; if it is not, that is
    when creation is the action. Creating one without checking risks a duplicate
    listing.
-2. **BBB** — observed in two home-market queries, and a badge placeholder is
-   already waiting on it.
-3. **Angi** — same badge situation; observed in the home market and in §1.3's
-   NoVA record.
+2. **BBB — check for an existing listing first, same as Yelp.** Observed in two
+   home-market queries. Most BBB listings exist unclaimed before a business
+   ever visits, so assume one may already be there. **Accreditation is a
+   separate, paid step**, and the badge stays `null` until the owner confirms
+   the business actually holds it.
+3. **Angi — same: check, then decide.** Observed in the home market and in
+   §1.3's NoVA record. Angi also auto-creates unclaimed listings. **"Angi
+   Certified" is a screening status, not a signup**, and the badge waits on it.
 4. **Houzz** — two home-market queries, both visual trades. Pairs with the job
    photos Phase 2.2 already needs.
 5. **HomeAdvisor** — same parent as Angi; treat as one decision with it.
@@ -117,6 +141,12 @@ and more certain return than a new listing elsewhere.
 **BuildZoom: not observed, no repo signal, no action.**
 **Thumbtack: the profile 404'd. Nothing to prioritise until one exists.**
 
+**The first action on the first three is the same action: look before
+creating.** Yelp, BBB and Angi all carry a repo state that means "unverified",
+and all three platforms generate unclaimed listings without the business
+asking. Claiming one is cheaper than creating one and cannot produce a
+duplicate.
+
 ## What this still does not tell you
 
 - Whether a listing converts. Ranking in the organic field means the
@@ -127,5 +157,7 @@ and more certain return than a new listing elsewhere.
 ## What has not been done, and why
 
 **No profiles were created, claimed or edited**, and no repo change was made to
-link the Yelp URL. Both write to outward-facing assets or depend on a manual
-verification `CLAUDE.md` reserves for the owner.
+link the Yelp URL or to fill in either null badge `href`. All of those write to
+outward-facing assets or depend on a manual verification `CLAUDE.md` reserves
+for the owner — and in the badges' case on a credential only the owner can
+confirm the business holds.

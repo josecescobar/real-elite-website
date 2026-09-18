@@ -882,19 +882,28 @@ Two things that file establishes, both of which change the work:
 **The repo already answers most of it.** `constants.ts` carries a Yelp profile
 URL that is unverified because Yelp blocks bots; records that the Thumbtack and
 LinkedIn profiles 404'd and were removed; and holds BBB and Angi as trust
-badges with `href: null`, so they deliberately do not render. So Yelp is a
-*verify*, not a create; Thumbtack has a webhook but no profile; and BBB and
-Angi have UI already built and waiting.
+badges with `href: null`, which its own comment defines as *"not yet
+verified"*. So Yelp, BBB and Angi are all **verify-before-create** — all three
+platforms generate unclaimed listings, and null does not mean "no listing".
+Thumbtack has a webhook but no profile.
+
+**And the two null badges are not a Phase 3 deliverable.** They read "BBB
+Accredited" and "Angi Certified" — credentials, not profiles. A free listing
+earns neither, so filling in an `href` off the back of one would publish an
+unconfirmed claim to a homeowner. The badge waits on the owner confirming the
+credential, which is §9's question, not this phase's.
 
 **And one SERP snapshot proves very little.** Three same-day snapshots of
 `basement remodeling northern virginia` — §1.3's and two of mine minutes apart
 — churn two to three domains between them. Yelp and BestPickReports appear in
 all three; Angi in §1.3's only. Rank directories from repeated observation, not
-from one look.
+from one look. Seven snapshots across five queries back that file, §1.3's
+included.
 
-Revised order: **Yelp (verify the existing URL), BBB, Angi, Houzz,
-HomeAdvisor, BestPickReports**, plus the GAF certified-installer locator.
-BuildZoom has no signal; Thumbtack has no profile.
+Revised order: **Yelp, BBB, Angi** (check for an existing listing on each
+before creating anything), then **Houzz, HomeAdvisor, BestPickReports**, plus
+the GAF certified-installer locator. BuildZoom has no signal; Thumbtack has no
+profile.
 
 **Phase 4 — paid test, gated on Phase 0.1, Phase 1.3 green, Phase 2.1
 live, and a tracking number.** Three months, geo-targeted to Fairfax and
