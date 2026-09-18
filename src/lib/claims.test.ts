@@ -219,8 +219,21 @@ describe('every claim-bearing file is accounted for', () => {
     // recognises a claim's own label when handed it. Neither depends on the
     // site still publishing anything.
     expect(runtimeTextOfFile('src/lib/constants.ts').length).toBeGreaterThan(2000);
-    const sample = OPERATIONAL_CLAIMS[0];
-    expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
+    // The matcher is exercised only when there IS a claim to match. An empty
+    // register is the all-retracted terminal state — the documented workflow
+    // deletes the entry — and indexing [0] there throws, so the fix for one
+    // terminal state blocked the other. Codex found it on #148, in code I had
+    // written one round earlier to stop exactly this kind of blocking, and
+    // duplicated across two files in the same commit where I wrote about
+    // duplication.
+    //
+    // Guarding rather than asserting is honest here: with no claims registered
+    // there is nothing for the matcher to find, and a synthetic fixture would
+    // test a pattern the register does not contain.
+    const [sample] = OPERATIONAL_CLAIMS;
+    if (sample) {
+      expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
+    }
     // And the runtime scanner must be reading strings, not comments: the combo
     // route carries claim text ONLY in comments now, so it must NOT register.
     expect(

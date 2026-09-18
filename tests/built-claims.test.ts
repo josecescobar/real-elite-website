@@ -250,8 +250,21 @@ describe('unconfirmed claims in rendered pages', () => {
     // And the matcher must be wired to the register: a phrase from a claim's
     // own label is found when it is present in text we supply here, which
     // tests claimsFoundIn without depending on the site still publishing it.
-    const sample = OPERATIONAL_CLAIMS[0];
-    expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
+    // The matcher is exercised only when there IS a claim to match. An empty
+    // register is the all-retracted terminal state — the documented workflow
+    // deletes the entry — and indexing [0] there throws, so the fix for one
+    // terminal state blocked the other. Codex found it on #148, in code I had
+    // written one round earlier to stop exactly this kind of blocking, and
+    // duplicated across two files in the same commit where I wrote about
+    // duplication.
+    //
+    // Guarding rather than asserting is honest here: with no claims registered
+    // there is nothing for the matcher to find, and a synthetic fixture would
+    // test a pattern the register does not contain.
+    const [sample] = OPERATIONAL_CLAIMS;
+    if (sample) {
+      expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
+    }
   });
 
   it.skipIf(UPDATING)('records a page list for every unconfirmed claim in the register', () => {
