@@ -69,13 +69,23 @@
  * "contract-dispute material" against a $250,000 job.
  *
  * **Narrowed, not closed, and the residual is named.** The per-market trust
- * block ("Why {place} homeowners choose Real Elite") now withholds those
- * claims from every `market: 'premium'` page, keeping only the verified
- * licensing line. That gate is in BOTH templates that render the block:
- * `CityPageTemplate` (the area pages, gated in #146) and the combo route
- * (the service+area pages, gated when the regional basement page landed).
- * Gating only the first left /service-areas/mclean-va withholding the
- * promises while /services/kitchens/mclean-va went on making them.
+ * block ("Why {place} homeowners choose Real Elite") withholds those claims
+ * and keeps only the verified licensing line. The gate is in BOTH templates
+ * that render the block: `CityPageTemplate` (the area pages, gated in #146)
+ * and the combo route (the service+area pages). Gating only the first left
+ * /service-areas/mclean-va withholding the promises while
+ * /services/kitchens/mclean-va went on making them.
+ *
+ * **The combo route's condition is narrower than `market === 'premium'`, and
+ * deliberately so.** It withholds only when the page's own localized copy
+ * makes no unconfirmed claim. Codex refuted the wider version: 36 of the 47
+ * premium combos already publish these promises in their own paragraphs, at
+ * the same service-and-town specificity, so withholding the bullets there
+ * reduced nothing and pre-applied part of a retraction that is the owner's to
+ * decide. It now bites on the 11 premium pages where the template is the sole
+ * source, and on every NEW premium page — which is what the original #146
+ * finding was about. See `comboMakesUnconfirmedClaims` in
+ * service-city-content.ts for the full reasoning and its stated coarseness.
  *
  * ## What still reaches a premium page, measured
  *

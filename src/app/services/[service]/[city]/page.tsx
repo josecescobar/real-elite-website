@@ -25,6 +25,7 @@ import {
   defaultComboTitle,
   defaultComboDescription,
   comboPublishesPricing,
+  comboMakesUnconfirmedClaims,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
@@ -179,37 +180,43 @@ export default async function ServiceCityPage({
 
   const place = formatAreaPlace(cityData);
 
-  // The same per-market trust block CityPageTemplate carries, behind the same
-  // gate. #146 gated the area-page copy on `market === 'home'` and left this
-  // twin alone, so /service-areas/mclean-va withheld the promises while
-  // /services/kitchens/mclean-va went on making them. That inconsistency was
-  // mine, and publishing a Northern Virginia combo would have carried them
-  // onto a new URL in the market the altitude doc calls contract-dispute
-  // material against a $250,000 job.
+  // The per-market trust block, withheld only where it reduces exposure.
   //
-  // Three bullets, carrying four claims registered `unconfirmed` in
+  // Three bullets carrying four claims registered `unconfirmed` in
   // src/lib/claims.ts: `named-project-lead`, `daily-updates`, `clean-job-site`
   // (the second bullet carries two) and `written-workmanship-warranty`.
-  // Premium markets keep only the licensing line, which is verified and is the
-  // one an out-of-state homeowner most needs. Flip those four to `verified` in
-  // claims.ts and delete this gate to restore them.
   //
-  // NOT a claim about the page as a whole. `AssurancesBand` and
+  // The first version gated on `market === 'premium'` alone, justified by
+  // specificity — a promise scoped to the exact service and town being worse
+  // in a dispute than the same promise in a sitewide banner. Codex refuted
+  // that where the gate actually bit, and it was right: 36 of the 47 premium
+  // combos already make those promises in their own localized paragraphs,
+  // which are scoped to the exact service and town. There the bullets add
+  // nothing in kind, so withholding them churned live copy for no reduction
+  // in exposure, and pre-applied part of a retraction that is the owner's to
+  // decide.
+  //
+  // So it is withheld only when the page's own copy makes no unconfirmed claim
+  // — the 11 existing premium pages where the template is the sole source of
+  // the town-scoped promise, and every NEW premium page, which is what the
+  // original #146 finding was about. See comboMakesUnconfirmedClaims.
+  //
+  // Still not a claim about the page as a whole. `AssurancesBand` and
   // `PRECISION_PROCESS` (via `PrecisionProcess`, both rendered below) publish
   // the same four here and on roughly fifty other pages including the
-  // homepage. That is deliberate: it is the owner's decision, taken on #146,
-  // and gating sitewide copy per-market would not reduce the exposure — the
-  // same buyer reads it two clicks later. See src/lib/claims.ts.
+  // homepage. That is the owner's decision, taken on #146, and gating sitewide
+  // copy per-market would not reduce the exposure anyway.
   const licensingPoint = `Licensed and insured in ${cityData.state} — local permitting + inspections handled.`;
-  const trustPoints =
-    cityData.market === 'home'
-      ? [
-          `One named project lead on every ${cityData.city} ${serviceData.title.toLowerCase()} job — from estimate through final walkthrough.`,
-          'Daily updates, clean job site, 24-hour response standard.',
-          'Written workmanship warranty + manufacturer warranties registered on your behalf.',
-          licensingPoint,
-        ]
-      : [licensingPoint];
+  const withholdTrustClaims =
+    cityData.market !== 'home' && !comboMakesUnconfirmedClaims(service, city);
+  const trustPoints = withholdTrustClaims
+    ? [licensingPoint]
+    : [
+        `One named project lead on every ${cityData.city} ${serviceData.title.toLowerCase()} job — from estimate through final walkthrough.`,
+        'Daily updates, clean job site, 24-hour response standard.',
+        'Written workmanship warranty + manufacturer warranties registered on your behalf.',
+        licensingPoint,
+      ];
 
   // SEO: Service schema scoped to this specific area, plus a BreadcrumbList.
   // No per-market LocalBusiness duplication (the global GeneralContractor in

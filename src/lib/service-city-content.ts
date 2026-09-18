@@ -7,6 +7,8 @@
  * generateStaticParams derives the published list from CONTENT keys).
  */
 
+import { claimsFoundIn } from '@/lib/claims';
+
 export const FEATURED_SERVICE_SLUGS = [
   'roofing',
   'decks',
@@ -955,6 +957,56 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
  * schema change and its own PR. This stops the contradiction reaching a reader
  * without inventing a number, which CLAUDE.md forbids.
  */
+/**
+ * Does this combo's OWN localized copy already publish an unconfirmed
+ * operational claim?
+ *
+ * Used to decide whether the combo template may add its per-market trust
+ * bullets, which make four of them.
+ *
+ * ## Why this exists, and the argument it replaces
+ *
+ * I gated the template's bullets on `market === 'premium'` and justified it by
+ * specificity: a promise scoped to the exact service and town is worse in a
+ * dispute than the same promise in a sitewide banner. Codex refuted that on
+ * the pages the gate actually affects, and it was right. THIRTY-SIX of the
+ * forty-seven premium combos already make those promises in their own
+ * paragraphs — copy scoped to the exact service and town. On those pages the
+ * bullets add nothing in kind, so withholding them reduces nothing and only
+ * churns live copy.
+ *
+ * So the gate now acts where it reduces exposure and nowhere else:
+ *
+ *   - home market                    → bullets render, unchanged.
+ *   - premium, own copy makes claims → bullets render. Unchanged from what
+ *     ships today, and `claims.ts` stays the accurate retraction worklist
+ *     rather than being partially pre-applied by template logic.
+ *   - premium, own copy makes none   → bullets withheld. Here the template IS
+ *     the only source of the town-and-service-scoped promise, which is the
+ *     case the specificity argument was always about. Eleven existing pages,
+ *     and every new premium page — including
+ *     /services/basements/northern-virginia, whose copy was written clean.
+ *
+ * That last line is the one that matters: the original finding on #146 was a
+ * NEW url publishing unconfirmed claims, and this keeps them off one.
+ *
+ * ## The coarseness, stated rather than hidden
+ *
+ * This asks whether the copy makes ANY unconfirmed claim, not whether it makes
+ * the same ones the bullets do. A page whose copy carries only
+ * `active-work-timeline` therefore keeps all four bullets. That declines to
+ * reduce exposure on such a page; it does not add any, because that is what
+ * already ships. The exact version is per-bullet gating, which is more
+ * machinery than a workaround for an unmade decision deserves. The real fix is
+ * the owner ruling on the seven claims in claims.ts: confirm them and every
+ * gate comes out, retract them and that file is the worklist.
+ */
+export function comboMakesUnconfirmedClaims(serviceSlug: string, areaSlug: string): boolean {
+  const entry = CONTENT[`${serviceSlug}-${areaSlug}` as keyof typeof CONTENT];
+  if (!entry) return false;
+  return claimsFoundIn(JSON.stringify(entry)).some((c) => c.status === 'unconfirmed');
+}
+
 export function comboPublishesPricing(serviceSlug: string, areaSlug: string): boolean {
   const entry = CONTENT[`${serviceSlug}-${areaSlug}` as keyof typeof CONTENT];
   return entry ? /\$[\d,]+/.test(JSON.stringify(entry)) : false;
