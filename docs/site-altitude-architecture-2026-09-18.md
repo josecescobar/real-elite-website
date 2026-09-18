@@ -871,6 +871,22 @@ Only then a second trade at regional altitude.
 
 ---
 
+**Leesburg ranks on Loudoun County queries, not Leesburg queries — 2026-09-18.**
+
+Surfaced by freezing query-level rows for the Phase 5 baseline, and it bears
+directly on §2. `/service-areas/leesburg-va` takes **241 of its 381 mobile
+impressions (63%) from "loudoun county" queries**, at positions 12.5–19.2 —
+better than its own town queries. Meanwhile "northern virginia" returns **zero**
+mobile impressions.
+
+The regional-altitude thesis may therefore be right about altitude and wrong
+about the place name: the demand that exists at a level above the town is
+phrased as the *county*, not as the region. This is one quarter of data and it
+is recorded as an observation, not a recommendation — acting on it means a
+county-level page, which is the owner's decision. But if the December read
+finds the regional page flat, check this before concluding that regional
+altitude failed. Detail in `docs/phase-5-baseline-2026-09-18.md`.
+
 **The timeline claim was too narrow three rounds running, and what is left is
 structural — 2026-09-18.**
 
