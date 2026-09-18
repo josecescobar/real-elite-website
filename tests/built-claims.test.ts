@@ -220,17 +220,38 @@ describe('unconfirmed claims in rendered pages', () => {
   }
 
   /**
-   * Proves the scan before concluding from it. A walker that found no pages, or
-   * a stripper that removed everything, would make the comparisons below pass
-   * silently — which is how two unfalsifiable tests shipped earlier in this
-   * feature.
+   * Proves the scan before concluding from it — WITHOUT requiring that any
+   * claim still be published.
+   *
+   * The first version asserted a floor on the number of claims found and on the
+   * warranty's page count. Both were anti-vacuity checks written as fixed
+   * minimums on quantities this project exists to drive to zero: retract three
+   * of the seven claims and the suite failed, verify the last one and it failed
+   * permanently, in update mode too, so the owner could not even record the
+   * progress. The guard punished the outcome it was built to reach. Codex found
+   * both on #148.
+   *
+   * What actually needs proving is that the WALKER and the STRIPPER work. Both
+   * are checked against content that has nothing to do with claims, so the
+   * check keeps its force as the claims go away.
    */
-  it('reads the built pages and finds the claims it is tracking', () => {
+  it('reads the built pages and extracts their text', () => {
     expect(pages.length, 'built pages').toBeGreaterThan(100);
-    expect(actual.size, 'distinct claims found in rendered text').toBeGreaterThan(4);
-    // The sitewide warranty line must be found on most of the site, or the
-    // stripper is eating content rather than markup.
-    expect((actual.get('written-workmanship-warranty') ?? new Set()).size).toBeGreaterThan(100);
+
+    // The stripper must yield real prose from a real page. `Real Elite
+    // Contracting` is the business name, present sitewide and independent of
+    // every claim, so this holds after the last retraction.
+    const home = pages.find((f) => routeOf(f) === '/');
+    expect(home, 'the homepage must be built').toBeDefined();
+    const homeText = visibleText(fs.readFileSync(home!, 'utf8'));
+    expect(homeText.length, 'extracted homepage text').toBeGreaterThan(2000);
+    expect(homeText).toMatch(/Real Elite Contracting/i);
+
+    // And the matcher must be wired to the register: a phrase from a claim's
+    // own label is found when it is present in text we supply here, which
+    // tests claimsFoundIn without depending on the site still publishing it.
+    const sample = OPERATIONAL_CLAIMS[0];
+    expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
   });
 
   it.skipIf(UPDATING)('records a page list for every unconfirmed claim in the register', () => {
@@ -275,7 +296,9 @@ describe('unconfirmed claims in rendered pages', () => {
    */
   it('scopes the snapshot to unconfirmed claims only', () => {
     const ids = snapshotClaimIds();
-    expect(ids.length).toBeGreaterThan(0);
+    // NO floor. Zero unconfirmed claims is the terminal state this register
+    // exists to reach — every claim confirmed or retracted, snapshot `{}` —
+    // and requiring a nonempty list made that state permanently unreachable.
     for (const id of ids) {
       const claim = OPERATIONAL_CLAIMS.find((c) => c.id === id);
       expect(claim?.status).toBe('unconfirmed');
