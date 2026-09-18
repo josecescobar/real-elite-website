@@ -1,10 +1,11 @@
 # Nearly half the service+city pages are not in Google's index — 2026-09-18
 
 **30 of the 62 service+city combo pages that were live for the measurement
-window have zero mobile impressions. All 8 of those inspected are "URL is
+window have zero mobile impressions. Of the 20 still live, all 20 are "URL is
 unknown to Google" — not ranked badly, not crawled and rejected, but never
 fetched**, though they have been in the sitemap since 2026-07-06 alongside the
-pages Google did index.
+pages Google did index. The other 10 were retired on 2026-09-18 and now serve
+301s, so they can no longer be checked.
 
 > **This file's headline number has now been wrong twice, in opposite
 > directions, and both corrections came from review.**
@@ -136,30 +137,55 @@ inventory for a window is what was live during the window, not what survived it.
 
 Published 2026-09-15 or later (8) stay excluded: too new to measure either way.
 
-## What the data shows, scoped to what was inspected
+## What the data shows — now a measurement, not a sample
 
-Nineteen URLs inspected: **8 of the 30 zero-impression combos**, 6 of the 32
-impression-bearing ones, and 5 of the new pages.
+**Completed 2026-09-18.** The remaining 12 still-live zero-impression combos
+were inspected, closing what had been an 8-page sample. **All 12 came back
+"URL is unknown to Google", making it 20 of 20 with no exceptions.**
+
+Thirty-seven URLs inspected in total:
 
 | Group | Inspected | Result |
 | --- | --- | --- |
-| Zero impressions, live during window | 8 of 30 | **8 unknown to Google** |
-| Any impressions | 6 of 32 | 5 indexed; 1 crawled-not-indexed |
+| Zero impressions, **still live** | **20 of 20 — complete** | **20 unknown to Google** |
+| Zero impressions, retired 2026-09-18 | 0 of 10 | cannot be inspected — now 301s |
+| Any impressions | 12 of 32 | 10 indexed; **2 crawled-not-indexed** |
 | Added 2026-09-15 or later | 5 of 8 | 5 unknown — expected at that age |
 
-Of the 22 zero-impression pages not inspected, **12 are still live and can be
-checked**; the other 10 are the retired ones, which now serve 301s and can no
-longer be inspected as pages. Their zero-impression status during the window is
-still evidence; their current index state is not recoverable.
+**Every still-live page that earned nothing has never been fetched.** That is no
+longer a hypothesis about a sample; for the checkable population it is the
+measurement. The ten retired pages cannot be added to it — retiring them
+destroyed the evidence.
 
-Index state and impressions are **consistent with one exception**, not exact:
-`/services/roofing/frederick-md` has 3 impressions and is currently
-crawled-not-indexed. Six-month impression totals and a point-in-time inspection
-are not contemporaneous measurements, so a page can have earned impressions
-before falling out of the index. The first version of this file claimed exact
-correspondence while printing the counterexample in its own table.
+### A second exception, and the two share a signature
 
-**This does not establish that all 30 are unindexed.** Eight were checked.
+Widening the impression-bearing side turned up a second page that is
+crawled-but-not-indexed, and the pair is more interesting than either alone:
+
+| Page | Impressions | Last crawled |
+| --- | --- | --- |
+| `/services/roofing/frederick-md` | 3 | **2026-06-01** |
+| `/services/siding/winchester-va` | 22 | **2026-06-01** |
+
+Both were last crawled on **the same day**, and every one of the 10 indexed
+pages inspected was crawled on **2026-07-07 or later** (four on 2026-07-09, then
+07-19, 07-28, 08-22, 09-11, 09-16). Twelve of twelve fall on the right side of
+that line.
+
+So the shape is not simply "half the pages were never fetched". It is that
+**Google crawled in June, made a broader pass from early July, and the pages it
+did not return to are the ones that fell out of the index** — having earned a
+handful of impressions first, which is why they show up on the impression side
+at all.
+
+This is an observation across 12 pages, not an established mechanism. It is
+recorded because it is checkable and because it sharpens what to test: if a
+requested recrawl restores them, crawl frequency is the lever.
+
+Index state and impressions are therefore **consistent with two exceptions**,
+both explained by the same recrawl gap. Six-month impression totals and a
+point-in-time inspection are not contemporaneous, so a page can earn
+impressions and later fall out.
 
 ## What does not explain it
 
@@ -177,10 +203,13 @@ correspondence while printing the counterexample in its own table.
 **Crawl budget and selection on a low-authority domain.** Google read the
 sitemap — it is among the referring URLs for the one combo it crawled — and
 fetched part of what was offered. That fits the observations and is the ordinary
-behaviour for a small site publishing 52 templated pages at once.
+behaviour for a small site publishing **62 templated pages in a single commit**
+(2026-07-06, the 52 still live plus the 10 later retired).
 
-**It is not confirmed.** With 8 established pages inspected, it is a hypothesis
-supported by a consistent sample, not a measured property of the site.
+**What is measured and what is not.** That every still-live page with zero
+impressions has never been fetched *is* measured — 20 of 20, no exceptions.
+**Why** Google fetched some and not others is not. Crawl budget is the
+best-fitting hypothesis for the cause and nothing here confirms it.
 
 ## Why it matters
 
@@ -213,10 +242,10 @@ to consolidate.
    deploy** — a false freshness signal aimed at the exact resource this
    hypothesis says is scarce. Blog posts carry a real `date` and could emit a
    true one; combo pages have none to emit.
-3. **Inspect the 12 still-live zero-impression combos that have not been
-   checked** before any consolidation decision rests on this. It is cheap and it
-   would take the sample from 8 of 30 to 20 of 30. The other 10 retired on
-   2026-09-18 and now serve 301s, so their index state is gone for good — a
+3. ~~Inspect the 12 still-live zero-impression combos that have not been
+   checked.~~ **Done 2026-09-18 — all 12 came back unknown to Google**, making
+   the still-live population 20 of 20 with no exceptions. The other 10 retired
+   on 2026-09-18 and now serve 301s, so their index state is gone for good — a
    reason to measure before retiring pages, not after.
 4. **Consolidation is a strategy decision for the owner**, and it should wait on
    1 and 3. #148 retired ten Tier C combos on impression evidence; whether that
@@ -224,11 +253,17 @@ to consolidate.
 
 ## What this file does not claim
 
-- **Not** that all 30 zero-impression pages are unindexed. Eight were checked,
-  and 10 of the rest can no longer be checked at all.
+- **Not** that all 30 zero-impression pages are unindexed. The 20 still live
+  were all checked and all are unknown to Google; the other 10 serve 301s and
+  can no longer be checked at all, so their state is inferred from their
+  zero-impression record, not measured.
+- **Not** that the June/July recrawl pattern is an established mechanism. It
+  holds across the 12 impression-bearing pages inspected and is offered as the
+  next thing to test, not as the answer.
 - **Not** that the template is bad. Thirty-two combos earn impressions.
 - **Not** that the cause is established.
 - **Not** anything about the eight pages published 2026-09-15 or later. They are
   too new to measure and are excluded from every figure above.
-- **Not** a measurement of the whole site. 19 of 178 sitemap URLs were inspected;
-  area pages, pillars and the homepage all sampled as indexed.
+- **Not** a measurement of the whole site. **37 of 178 sitemap URLs** were
+  inspected — complete for the still-live zero-impression combos, a sample
+  everywhere else. Area pages, pillars and the homepage all sampled as indexed.
