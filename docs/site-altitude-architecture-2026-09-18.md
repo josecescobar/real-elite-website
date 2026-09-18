@@ -164,15 +164,22 @@ dataset and it deserves its own look.
 **It got one, and the answer was bigger than the question —
 `docs/index-coverage-2026-09-18.md`.** The page is not ranking badly. It is
 **"Crawled – currently not indexed"**, last fetched 2026-06-01. And it is not
-alone: **28 of the 60 combo pages have zero mobile impressions, and all 13
-sampled are "URL is unknown to Google"** — never fetched, though they have been
-in the sitemap since 2026-07-06, the same commit that added the pages Google
-*did* index. Index state and impressions correspond exactly across 19 URLs.
+alone: **20 of the 52 combo pages live for the measurement window have zero
+mobile impressions, and all 8 of those inspected are "URL is unknown to
+Google"** — never fetched, though they have been in the sitemap since
+2026-07-06, the same commit that added the pages Google *did* index.
 
 Two things this corrects here. The impression count above was "no impressions";
 it is **3**, which is near enough to none to keep the point and not near enough
 to keep the wording. And the framing was wrong: zero impressions on those pages
 is an **indexing** fact, not a demand or ranking one.
+
+**Those figures were themselves corrected once.** The first version read "28 of
+60" and "all 13 sampled", counting eight combos published 2026-09-15 to
+2026-09-18 — days before the impression window closed, or after it — as though
+they belonged to the July cohort. They are too new to have impressions or to
+have been crawled, and five of the thirteen "unknown to Google" results rested
+on them. The finding survives; its size did not.
 
 ### 1.3 The SERPs at regional altitude
 

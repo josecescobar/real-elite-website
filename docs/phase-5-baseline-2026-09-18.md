@@ -35,10 +35,11 @@ Both clicking pages are Eastern Panhandle blog articles:
 Everything else on the site took **zero mobile clicks**.
 
 > **Added 2026-09-18, after this baseline was frozen — read the zero-impression
-> rows differently.** `docs/index-coverage-2026-09-18.md` establishes that **28
-> of the 60 service+city combo pages are not in Google's index**, and that all
-> 13 sampled are *"URL is unknown to Google"* — never fetched. Across 19
-> inspected URLs, index state and impressions correspond exactly.
+> rows differently.** `docs/index-coverage-2026-09-18.md` finds that **20 of the
+> 52 service+city combo pages live for this window have zero impressions, and
+> all 8 of those inspected are *"URL is unknown to Google"*** — never fetched.
+> (Corrected from "28 of 60" and "13 sampled": eight combos published
+> 2026-09-15 or later were wrongly counted in the first version.)
 >
 > So a zero-impression row below is, for the unindexed share, **not a statement
 > about demand or about ranking.** Those pages were never in the running. The
