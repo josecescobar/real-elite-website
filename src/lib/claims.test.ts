@@ -1,10 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
+import { runtimeTextOfFile } from '@/lib/runtime-text';
 import {
   OPERATIONAL_CLAIMS,
   UNCONFIRMED_CLAIMS,
   GUARDED_TEMPLATES,
+  UNGUARDED_CLAIM_SOURCES,
   claimsFoundIn,
   type OperationalClaim,
 } from '@/lib/claims';
@@ -36,8 +38,24 @@ function serviceSlugsWith(claim: OperationalClaim): string[] {
     .map(([slug]) => slug);
 }
 
+/**
+ * RUNTIME text per guarded file — string literals, template spans and JSX
+ * text — NOT raw source.
+ *
+ * It was raw source, and that made both guards unsound: a COMMENT mentioning a
+ * claim counted as publishing it. `CityPageTemplate.tsx`'s own docblock
+ * explaining the gate contains "named project lead", "daily updates / clean
+ * job site" and "written workmanship warranty", so removing the rendered
+ * strings from that file would have left its inventory entries passing and the
+ * retraction worklist wrong — the precise failure the inventory guard below
+ * was written to catch, reintroduced by the comment I wrote to explain it.
+ * Codex found it on #148.
+ *
+ * See src/lib/runtime-text.ts for why this uses the TypeScript AST rather than
+ * stripping comments with a regex.
+ */
 const TEMPLATE_SOURCE = new Map<string, string>(
-  GUARDED_TEMPLATES.map((rel) => [rel, fs.readFileSync(path.join(process.cwd(), rel), 'utf8')])
+  GUARDED_TEMPLATES.map((rel) => [rel, runtimeTextOfFile(path.join(process.cwd(), rel))])
 );
 
 const howToFix =
@@ -145,6 +163,107 @@ describe('operational claims register', () => {
       expect(claim.publishedIn.serviceSlugs, `${claim.id} is verified but still inventoried`).toEqual([]);
       expect(claim.publishedIn.templates, `${claim.id} is verified but still inventoried`).toEqual([]);
     }
+  });
+});
+
+describe('every claim-bearing file is accounted for', () => {
+  /**
+   * INDEPENDENT DISCOVERY, and the hole it closes.
+   *
+   * The inventory guard above iterates `publishedIn.templates` — the very list
+   * it validates. So a refactor that moves claim copy into a NEW module and
+   * drops the old inventory entry passes it, and the per-template ratchet never
+   * scans the new file because it is absent from GUARDED_TEMPLATES. That is
+   * exactly the blind spot #147 shipped, recreated despite the new guard.
+   * Codex named it on #148.
+   *
+   * So this does not consult the inventory at all. It walks `src`, reads the
+   * RUNTIME text of every module, and requires each file that publishes an
+   * unconfirmed claim to be classified as one of:
+   *
+   *   - watched at file level (GUARDED_TEMPLATES), or
+   *   - explicitly out of scope with a reason (UNGUARDED_CLAIM_SOURCES).
+   *
+   * An unclassified file fails. The default is failure, which is the only
+   * default that closes a discovery hole rather than narrowing it.
+   */
+  const walk = (dir: string, out: string[] = []): string[] => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (!entry.name.startsWith('.') && entry.name !== 'node_modules') walk(full, out);
+      } else if (/\.(ts|tsx)$/.test(entry.name) && !/\.test\.tsx?$/.test(entry.name)) {
+        out.push(full);
+      }
+    }
+    return out;
+  };
+
+  const modules = walk('src');
+
+  /**
+   * The assertions below pass trivially if the walk finds nothing or the
+   * scanner reads no claims. Two unfalsifiable tests have already shipped in
+   * this feature, so the scan proves itself first.
+   */
+  it('actually walks the source tree and finds claim-bearing files', () => {
+    expect(modules.length).toBeGreaterThan(50);
+    const bearing = modules.filter(
+      (f) => claimsFoundIn(runtimeTextOfFile(f)).some((c) => c.status === 'unconfirmed')
+    );
+    expect(bearing.length).toBeGreaterThan(10);
+    // And the runtime scanner must be reading strings, not comments: the combo
+    // route carries claim text ONLY in comments now, so it must NOT register.
+    expect(
+      claimsFoundIn(runtimeTextOfFile('src/app/services/[service]/[city]/page.tsx'))
+        .filter((c) => c.status === 'unconfirmed'),
+      'the combo route holds these claims only in comments, so runtime text must find none'
+    ).toEqual([]);
+  });
+
+  it('classifies every file whose runtime text publishes an unconfirmed claim', () => {
+    const watched = new Set<string>(GUARDED_TEMPLATES);
+    const declared = new Set(Object.keys(UNGUARDED_CLAIM_SOURCES));
+    const unclassified: string[] = [];
+
+    for (const file of modules) {
+      const ids = claimsFoundIn(runtimeTextOfFile(file))
+        .filter((c) => c.status === 'unconfirmed')
+        .map((c) => c.id);
+      if (ids.length === 0) continue;
+      if (watched.has(file) || declared.has(file)) continue;
+      unclassified.push(
+        `${file} publishes ${ids.join(', ')} but is neither in GUARDED_TEMPLATES nor in UNGUARDED_CLAIM_SOURCES. Watch it (and inventory the claims), or declare it out of scope with a reason — do not leave it unclassified, which is how the #147 blind spot happened`
+      );
+    }
+
+    expect(unclassified, unclassified.join('; ')).toEqual([]);
+  });
+
+  /**
+   * The reverse: a declared exemption for a file that no longer publishes
+   * anything is dead weight that makes the scope list lie about itself.
+   */
+  it('declares no exemption for a file that publishes nothing', () => {
+    const stale: string[] = [];
+    for (const [file, reason] of Object.entries(UNGUARDED_CLAIM_SOURCES)) {
+      if (!fs.existsSync(file)) {
+        stale.push(`${file} is exempted ("${reason}") but does not exist`);
+        continue;
+      }
+      const publishes = claimsFoundIn(runtimeTextOfFile(file)).some(
+        (c) => c.status === 'unconfirmed'
+      );
+      if (!publishes) {
+        stale.push(`${file} is exempted ("${reason}") but publishes no unconfirmed claim — drop the entry`);
+      }
+    }
+    expect(stale, stale.join('; ')).toEqual([]);
+  });
+
+  it('never exempts and watches the same file', () => {
+    const both = GUARDED_TEMPLATES.filter((f) => f in UNGUARDED_CLAIM_SOURCES);
+    expect(both, `${both.join(', ')} is both watched and exempted`).toEqual([]);
   });
 });
 

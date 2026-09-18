@@ -65,15 +65,23 @@
  * the `CONTENT` map (69 service+city pages), `SERVICE_DATA` (12 service
  * pages), and the two page templates that wrap them (94 pages between them).
  *
- * Out of scope, deliberately: one-off JSX pages (`/about`,
- * `/capability-statement`, `/design-consultation`, `/faq`, `/process`,
- * `/services`, `/veterans`, `/full-property-perimeter`, `AssurancesBand`),
- * `src/lib/constants.ts`'s sitewide FAQ, `src/lib/paving-data.ts`, and the
- * 15 blog posts under `content/blog/` that also carry the warranty language.
- * Those are hand-written pages the owner has seen, and they do not multiply
- * when a new market is added. They are listed here rather than left implicit
- * so the register is honest about its own coverage: a retraction has to sweep
- * them too, and the guard will not remind anyone.
+ * Out of scope, deliberately, and now ENFORCED AS DATA in
+ * `UNGUARDED_CLAIM_SOURCES` below rather than described here. Those are
+ * hand-written pages the owner has seen; they do not multiply when a market is
+ * added, which is what the file-level guard exists to stop. A retraction still
+ * has to sweep them, and the guard will not remind anyone.
+ *
+ * `AssurancesBand` and `constants.ts` were in that prose list and are now
+ * WATCHED instead — they reach every page.
+ *
+ * Making the list executable showed the prose was incomplete: it missed
+ * `/storm-damage`, `TrustBar.tsx` and three project records. Five claim-bearing
+ * files nobody had accounted for. `claims.test.ts` now walks `src` and fails on
+ * any claim-bearing file that is neither watched nor declared, so the list
+ * cannot silently fall behind again.
+ *
+ * The 15 blog posts under `content/blog/` that carry warranty language are
+ * outside this scan, which covers `src` only.
  *
  * ## A known gap in the ratchet
  *
@@ -235,6 +243,62 @@ export const GUARDED_TEMPLATES = [
   'src/components/home/AssurancesBand.tsx',
   'src/lib/constants.ts',
 ] as const;
+
+/**
+ * Files whose RUNTIME text publishes an unconfirmed claim and which the
+ * file-level guard deliberately does NOT watch, each with the reason.
+ *
+ * ## Why this is data and not prose
+ *
+ * The header above used to describe this set in a sentence. Codex asked on
+ * #148 for the guard to discover claim-bearing modules independently rather
+ * than trust the inventory it validates — otherwise a refactor that moves copy
+ * to a new module AND drops the old inventory entry leaves both the guard and
+ * the ratchet blind, which is the exact hole #147 shipped.
+ *
+ * So `claims.test.ts` now scans all of `src` and requires every claim-bearing
+ * file to be classified: watched here, inventoried by another axis, or listed
+ * below with a reason. An unclassified file FAILS. The default is failure,
+ * which is the only default that closes a discovery hole.
+ *
+ * Writing it down also showed the prose was incomplete. It named /about,
+ * /capability-statement, /design-consultation, /faq, /process, /services,
+ * /veterans, /full-property-perimeter and paving-data.ts — and MISSED
+ * /storm-damage, TrustBar.tsx and three project records. Five claim-bearing
+ * files nobody had accounted for, found by making the list executable.
+ */
+export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
+  // One-off, hand-written pages the owner has seen. They do not multiply when
+  // a market is added, which is what the file-level guard exists to stop.
+  'src/app/about/page.tsx': 'one-off page',
+  'src/app/capability-statement/page.tsx': 'one-off page',
+  'src/app/design-consultation/page.tsx': 'one-off page',
+  'src/app/faq/page.tsx': 'one-off page',
+  'src/app/full-property-perimeter/page.tsx': 'one-off page',
+  'src/app/process/page.tsx': 'one-off page',
+  'src/app/services/page.tsx': 'one-off page',
+  'src/app/storm-damage/page.tsx': 'one-off page — missing from the prose list',
+  'src/app/veterans/page.tsx': 'one-off page',
+  'src/components/home/TrustBar.tsx': 'sitewide band — missing from the prose list',
+
+  // Inventoried by a DIFFERENT axis of this register, so file-level watching
+  // would double-count: every occurrence is already listed per key or slug.
+  'src/lib/service-city-content.ts': 'inventoried per combo key (publishedIn.comboKeys)',
+  'src/lib/services-data.ts': 'inventoried per service slug (publishedIn.serviceSlugs)',
+
+  // Data the register does not track, recorded so it is not mistaken for an
+  // oversight. A retraction has to sweep these by hand.
+  'src/lib/paving-data.ts': 'paving data, untracked',
+  'src/lib/projects/data/composite-deck-build-martinsburg.ts':
+    'project record — missing from the prose list',
+  'src/lib/projects/data/new-construction-framing-to-finish.ts':
+    'project record — missing from the prose list',
+  'src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts':
+    'project record — missing from the prose list',
+
+  // The register quotes the claims it tracks, in labels and notes.
+  'src/lib/claims.ts': 'the register itself',
+};
 
 export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   {
