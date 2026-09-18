@@ -6,10 +6,22 @@ import {
   UTILITY_LINKS,
   PRIMARY_SERVICE_AREAS,
   SECONDARY_SERVICE_AREAS,
+  VERIFIED_PROFILE_URLS,
 } from '@/lib/constants';
 import TrackedLink from '@/components/analytics/TrackedLink';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
+/**
+ * Every platform the footer can show. An entry renders only if its URL is in
+ * `VERIFIED_PROFILE_URLS` — the same gate the LocalBusiness `sameAs` uses — so
+ * the footer and the structured data can never disagree about which profiles
+ * this business claims. Removing a URL from the verified set withdraws it from
+ * both at once.
+ *
+ * Adding a NEW platform takes two edits, and this is the one people forget:
+ * the URL in `VERIFIED_PROFILE_URLS`, AND an entry here with its icon. A URL
+ * on its own reaches `sameAs` but has nothing to render in the footer.
+ */
 const SOCIAL_LINKS = [
   {
     label: 'Facebook',
@@ -40,7 +52,7 @@ const SOCIAL_LINKS = [
       </svg>
     ),
   },
-];
+].filter((link) => (VERIFIED_PROFILE_URLS as readonly string[]).includes(link.href));
 
 const FEATURED_FOOTER_SERVICES = [
   { label: 'Whole-Home Remodeling', href: '/services/remodeling' },

@@ -34,8 +34,9 @@ export const BUSINESS = {
    * Yelp is left in because Yelp blocks automated checks (403 on bots), so it
    * has never been confirmed to be Real Elite's profile. It is therefore
    * UNVERIFIED and is deliberately absent from `VERIFIED_PROFILE_URLS` below.
-   * Verify it manually in a browser, then add it there — that one edit
-   * enables both the footer link and the sameAs assertion.
+   * Verify it manually in a browser, then add it there to enable the sameAs
+   * assertion. The footer needs a SECOND edit: an entry in `SOCIAL_LINKS` in
+   * Footer.tsx carrying an icon, since a bare URL has nothing to render.
    */
   social: {
     facebook: 'https://www.facebook.com/realelitecontracting',
@@ -60,7 +61,13 @@ export const BUSINESS = {
  *
  * Yelp is absent for the same reason: Yelp 403s bots, so its URL has never
  * been confirmed. Once a human opens it and confirms it is Real Elite's, add
- * `BUSINESS.social.yelp` here — that single edit is the whole change.
+ * `BUSINESS.social.yelp` here.
+ *
+ * Footer.tsx gates `SOCIAL_LINKS` on this same list, so removing a URL here
+ * withdraws it from both the footer and `sameAs` at once. Adding one is not
+ * symmetric: a new platform also needs a `SOCIAL_LINKS` entry with an icon
+ * before the footer can show it. An earlier version of this comment claimed
+ * one edit covered both, and it did not.
  */
 export const VERIFIED_PROFILE_URLS = [
   BUSINESS.social.facebook,

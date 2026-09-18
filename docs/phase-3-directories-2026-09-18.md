@@ -139,8 +139,20 @@ enforcement was incomplete.
 The fix applies the repo's own policy consistently: a new
 `VERIFIED_PROFILE_URLS` export holds the confirmed subset, `sameAs` reads from
 it, and Yelp is absent until someone confirms it. A test in
-`constants.test.ts` fails if it reappears. **Verifying Yelp is now a
-one-line edit** that lights up the footer link and the `sameAs` entry together.
+`constants.test.ts` fails if it reappears.
+
+**Corrected after review:** an earlier version of this paragraph said verifying
+Yelp was "a one-line edit that lights up the footer link and the `sameAs` entry
+together." That was **false when written**. `Footer.tsx` built its social links
+from a separate hard-coded array and never consulted `VERIFIED_PROFILE_URLS`,
+so the one edit would have changed the JSON-LD and left the footer untouched —
+a maintainer following that instruction would have believed they were done.
+
+`Footer.tsx` now filters on the same list, which makes *removal* symmetric:
+dropping a URL from `VERIFIED_PROFILE_URLS` withdraws it from the footer and
+`sameAs` at once. **Addition is still two edits** — the URL, plus a
+`SOCIAL_LINKS` entry carrying an icon, because a bare URL has nothing to
+render. That is stated in both files rather than smoothed over.
 
 ## One ranked item, then an unordered set
 
@@ -148,9 +160,10 @@ one-line edit** that lights up the footer link and the `sameAs` entry together.
 observed in all five queries and every snapshot, and the repo already holds a
 URL for it. The action is **verify, not create**: open
 `yelp.com/biz/real-elite-contracting` in a browser. If it is Real Elite's,
-claim it — and adding it to `VERIFIED_PROFILE_URLS` then enables both the
-footer link and the `sameAs` assertion in one edit. If it is not, creation is
-the action, and a duplicate has been avoided.
+claim it, then add the URL to `VERIFIED_PROFILE_URLS` (which enables the
+`sameAs` assertion) and add a `SOCIAL_LINKS` entry with a Yelp icon in
+`Footer.tsx` (which is what puts it in the footer) — two edits, not one. If it
+is not Real Elite's, creation is the action, and a duplicate has been avoided.
 
 **Everything after Yelp is deliberately unordered.** An earlier version of this
 file numbered them 2–7. That numbering implied a ranking the evidence does not
@@ -200,7 +213,9 @@ outward-facing assets or depend on a manual verification `CLAUDE.md` reserves
 for the owner — and in the badges' case on a credential only the owner can
 confirm the business holds.
 
-**One live site change was made:** removing the unverified Yelp URL from the
-LocalBusiness `sameAs`. That is a repo-owned change and it *withdraws* an
-unconfirmed assertion rather than adding one, so it does not need the owner
-first. Restoring it is one line, the moment the profile is confirmed.
+**Two live site changes were made:** removing the unverified Yelp URL from the
+LocalBusiness `sameAs`, and gating the footer's social links on the same
+verified list. Both are repo-owned, and both *withdraw* or constrain an
+unconfirmed assertion rather than adding one, so neither needed the owner
+first. Restoring Yelp is the two-edit path described above, the moment the
+profile is confirmed.

@@ -32,7 +32,7 @@ import { OPERATIONAL_CLAIMS, claimsFoundIn } from '../src/lib/claims';
  * ## These numbers are the argument for resolving the claims
  *
  * The source inventory counts 21 FILES. That understates the position badly.
- * At page level, 148 pages tell a homeowner there is a written workmanship
+ * At page level, 149 pages tell a homeowner there is a written workmanship
  * warranty and 143 name a dedicated project lead — none of it confirmed by the
  * owner. Against a $250k Great Falls basement that is contract-dispute
  * material. See `src/lib/claims.ts` for the register and the retraction
@@ -58,9 +58,15 @@ const ROOT = '.next/server/app';
  *
  * It doubles as the owner's page-level retraction worklist. `claims.ts` names
  * the 21 source FILES carrying each claim, which is what you edit; this names
- * the 603 rendered PAGES, which is what a homeowner actually sees — and for
+ * the rendered PAGES, which is what a homeowner actually sees — and for
  * `content/blog` it is the only such list that exists, since the source scan
  * walks `src` alone.
+ *
+ * The size is 625 claim-page pairs across 154 distinct pages. Deliberately not
+ * restated as a number anywhere else: an earlier version of this comment said
+ * "603 rendered PAGES", which was the PAIR count, and a stale one — the
+ * active-work-timeline pattern widening in #148 moved it to 625 in the same
+ * commit. Both errors were in one phrase. Read the counts off the file.
  *
  * ## Updating it
  *
