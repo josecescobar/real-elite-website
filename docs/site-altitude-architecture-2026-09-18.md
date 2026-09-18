@@ -82,9 +82,17 @@ Console 2026-03-15 → 2026-09-15, **mobile only**, per the convention in
    regional pages, which are cheap, slow, and worth doing once — not
    sixty-nine times.
 
-6. **Nothing above can be read until GA4 counts `generate_lead` and
-   `phone_click`.** That is the first line of the sequence in §8, and it is
-   yours.
+6. **GA4's CONVERSION REPORTING counts none of this, until `generate_lead` and
+   `phone_click` are marked as key events.** That is the first line of the
+   sequence in §8, and it is yours.
+
+   Corrected 2026-09-18: an earlier version of this line said nothing above
+   could be *read* until then. That is wrong, and it would stall work that is
+   not actually blocked. **Raw event counts are already queryable** — the flag
+   governs conversion reporting, not whether an event is recorded. The Phase 5
+   lead comparison uses raw `generate_lead` counts and does not wait on this.
+   See `docs/ga4-conversion-tracking.md` and
+   `docs/phase-5-baseline-2026-09-18.md`.
 
 ---
 
@@ -639,8 +647,15 @@ Every step is gated by the one above it where it says so.
 
 **Phase 0 — owner-only, this week, before any code.**
 1. GA4 → Admin → Key events → add `generate_lead`, `phone_click`
-   (`ga4-conversion-tracking.md`). Two minutes. Nothing downstream is
-   readable without it.
+   (`ga4-conversion-tracking.md`). Two minutes. It fixes your own dashboard
+   and anything Google Ads optimises toward, both of which currently read zero
+   conversions.
+
+   **It does NOT gate Phase 5, and an earlier version of this line said it
+   did.** Raw event counts are queryable without the flag, so the December
+   lead comparison uses those. Marking a key event is also not retroactive, so
+   comparing key events across the change would show a rise that measures when
+   the checkbox was ticked rather than demand.
 2. Answer §9 — the six claims, the job-size floor, the NoVA job history.
 3. GBP service area: add Berkeley County, WV in the free slot
    (`gbp-service-area-rebalance.md`). Unrelated to NoVA; it is the home-market
@@ -874,10 +889,14 @@ Only then a second trade at regional altitude.
 **Leesburg ranks on Loudoun County queries, not Leesburg queries — 2026-09-18.**
 
 Surfaced by freezing query-level rows for the Phase 5 baseline, and it bears
-directly on §2. `/service-areas/leesburg-va` takes **241 of its 381 mobile
-impressions (63%) from "loudoun county" queries**, at positions 12.5–19.2 —
-better than its own town queries. Meanwhile "northern virginia" returns **zero**
-mobile impressions.
+directly on §2. `/service-areas/leesburg-va` takes **243 of its 381 mobile
+impressions (64%) from "loudoun county" queries** across 18 query strings.
+Meanwhile "northern virginia" returns **zero** mobile impressions.
+
+Precisely, because an earlier version of this note overstated it: the **top
+three** county queries carry 188 of those impressions at positions 12.5–19.2,
+better than any Leesburg town query. The other 15 carry 55 impressions at
+positions **26.3–44.7**, where nothing is visible.
 
 The regional-altitude thesis may therefore be right about altitude and wrong
 about the place name: the demand that exists at a level above the town is

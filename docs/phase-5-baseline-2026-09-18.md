@@ -85,45 +85,77 @@ retire pages that still hold their rankings.
 So the query strings themselves are frozen here. December's test is whether
 **these specific queries** move, not whether a number went down.
 
-### Tier B basement combos — every mobile query, all trades
+### Tier B basement combos — the complete NoVA set
 
-30 rows, 177 impressions, 0 clicks. Abridged to queries with ≥4 impressions;
-the full set is reproducible with `dimensions: ["page","query"]`,
-`device=MOBILE`, 2026-06-15 → 2026-09-15.
+**26 rows, 177 impressions, 0 clicks — complete, not abridged.** Every query
+Search Console returns for these five pages is here. `device=MOBILE`,
+2026-06-15 → 2026-09-15.
+
+`/services/basements/frederick-md` is deliberately **absent**: Frederick is
+Maryland and Tier A, not a Northern Virginia redirect candidate, and its
+queries must never transfer to a Northern Virginia page. An earlier draft of
+this table included it while omitting McLean, which is the wrong set in both
+directions.
 
 | Page | Query | Impr | Pos |
 | --- | --- | --- | --- |
-| `basements/alexandria-va` | basement finishing alexandria va | 37 | 20.4 |
-| `basements/alexandria-va` | basement finishing alexandria va? | 8 | 9.8 |
-| `basements/great-falls-va` | basement remodeling great falls va | 20 | 11.6 |
-| `basements/great-falls-va` | basement additions great falls va | 19 | 12.7 |
-| `basements/great-falls-va` | basement renovations great falls va | 10 | 11.1 |
-| `basements/reston-va` | basement finishing in reston va | 13 | 10.7 |
-| `basements/reston-va` | basement remodeling in reston va | 4 | 12.8 |
-| `basements/reston-va` | basement remodeling reston va | 4 | 17.3 |
-| `basements/vienna-va` | basement finishing contractor in vienna va | 13 | 10.6 |
-| `basements/vienna-va` | basement finishes vienna va | 7 | 12.0 |
-| `basements/vienna-va` | basement renovation vienna va | 7 | 15.9 |
-| `basements/vienna-va` | basement remodeling in vienna va | 6 | 17.3 |
-| `basements/vienna-va` | high end basement remodel vienna va | 6 | 26.3 |
-| `basements/vienna-va` | vienna va basement finishing cost | 5 | 18.2 |
-| `basements/frederick-md` | basement finishing frederick | 6 | 13.7 |
+| alexandria-va | basement finishing alexandria va | 37 | 20.4 |
+| alexandria-va | basement finishing alexandria va? | 8 | 9.8 |
+| alexandria-va | basement remodeling alexandria | 2 | 33.0 |
+| alexandria-va | basement remodeling alexandria va | 2 | 31.5 |
+| alexandria-va | basement finishing contractor kingstowne va | 1 | 20.0 |
+| alexandria-va | basement remodel alexandria va | 1 | 30.0 |
+| alexandria-va | basement remodeling in alexandria va | 1 | 53.0 |
+| great-falls-va | basement remodeling great falls va | 20 | 11.6 |
+| great-falls-va | basement additions great falls va | 19 | 12.7 |
+| great-falls-va | basement renovations great falls va | 10 | 11.1 |
+| great-falls-va | basement remodeling great falls | 1 | 14.0 |
+| great-falls-va | basement remodeling in great falls va | 1 | 12.0 |
+| **mclean-va** | basement remodeling mclean va | 2 | 30.0 |
+| **mclean-va** | basement remodeling contractor mclean va | 1 | 12.0 |
+| reston-va | basement finishing in reston va | 13 | 10.7 |
+| reston-va | basement remodeling in reston va | 4 | 12.8 |
+| reston-va | basement remodeling reston va | 4 | 17.3 |
+| vienna-va | basement finishing contractor in vienna va | 13 | 10.6 |
+| vienna-va | basement finishes vienna va | 7 | 12.0 |
+| vienna-va | basement renovation vienna va | 7 | 15.9 |
+| vienna-va | basement remodeling in vienna va | 6 | 17.3 |
+| vienna-va | high end basement remodel vienna va | 6 | 26.3 |
+| vienna-va | vienna va basement finishing cost | 5 | 18.2 |
+| vienna-va | basement remodeling vienna va | 4 | 21.3 |
+| vienna-va | basement additions vienna va | 1 | 23.0 |
+| vienna-va | basement design vienna va | 1 | 26.0 |
 
-**Every one of the 30 queries is town-scoped.** Not one contains "northern
+McLean is bolded because its two rows are 1 and 2 impressions — an earlier
+draft's ≥4 cutoff erased this Tier B candidate from the frozen set entirely,
+which is exactly the page a December redirect decision would then be unable to
+make.
+
+**Every one of the 26 queries is town-scoped.** Not one contains "northern
 virginia". The transfer hypothesis therefore has a precise form: December
-should check whether *these* strings start resolving to
+checks whether *these* strings start resolving to
 `/services/basements/northern-virginia`. If the region instead earns new
 regional queries while the towns keep theirs, both pages are working and
 neither should be retired.
 
-### NoVA area pages — every Tier B redirect candidate, complete
+### NoVA area pages — every Tier B redirect candidate, every row
 
 §3.3 classifies every NoVA `/service-areas/` overview as Tier B, so each is a
-redirect candidate and each needs its own rows for the same reason the combos
-do. All queries at ≥3 mobile impressions; the remainder is a 1–2 impression
-long tail that cannot carry a redirect decision either way.
+redirect candidate needing its own rows.
 
-**`/service-areas/leesburg-va`** — 381 impressions. County queries marked ▸.
+**These tables are complete.** Each page's named queries sum exactly to its
+page total, so there is **no Search Console–suppressed remainder** on any of
+the four — the figure omitted by an earlier draft's ≥3 cutoff was not
+anonymised data, just rows it declined to print.
+
+| Page | Rows | Impressions named | Page total | Suppressed |
+| --- | --- | --- | --- | --- |
+| leesburg-va | 42 | 381 | 381 | **0** |
+| mclean-va | 34 | 209 | 209 | **0** |
+| great-falls-va | 27 | 106 | 106 | **0** |
+| clifton-va | 7 | 48 | 48 | **0** |
+
+**`/service-areas/leesburg-va`** — 42 rows, 381 impressions. County queries ▸.
 
 | Query | Impr | Pos |
 | --- | --- | --- |
@@ -142,9 +174,35 @@ long tail that cannot carry a redirect decision either way.
 | ▸ home remodeling loudoun county | 5 | 34.0 |
 | home remodeling leesburg | 4 | 26.8 |
 | ▸ remodel contractors loudoun county | 4 | 35.5 |
-| ▸ *(nine more county queries at 3 each)* | 27 | 26.3–44.7 |
+| ▸ general contractor remodeling loudoun county | 3 | 39.3 |
+| ▸ general contractors loudoun county | 3 | 38.3 |
+| ▸ home improvement contractors loudoun county | 3 | 39.0 |
+| ▸ home remodeling contractors loudoun county | 3 | 28.3 |
+| ▸ licensed contractors loudoun county | 3 | 26.3 |
+| ▸ licensed remodeling contractors loudoun county | 3 | 28.3 |
+| ▸ remodeling companies loudoun county | 3 | 30.0 |
+| ▸ renovation companies loudoun county | 3 | 41.7 |
+| ▸ residential general contractors loudoun county | 3 | 44.7 |
+| leesburg home remodel | 3 | 27.0 |
+| siding replacement leesburg va | 3 | 32.7 |
+| elite construction | 2 | 11.0 |
+| leesburg kitchen remodeling contractor | 2 | 25.0 |
+| local remodelers | 2 | 45.5 |
+| siding replacement leesburg | 2 | 31.5 |
+| basement finishing contractor in leesburg va | 1 | 19.0 |
+| bathroom remodeling leesburg | 1 | 32.0 |
+| deck renovation leesburg va | 1 | 36.0 |
+| elite contractor | 1 | 8.0 |
+| elite contractor services | 1 | 10.0 |
+| elite roofing | 1 | 9.0 |
+| elite siding | 1 | 6.0 |
+| fiber cement siding leesburg va | 1 | 38.0 |
+| ▸ home renovations loudoun county | 1 | 41.0 |
+| ▸ house renovation contractors loudoun county | 1 | 37.0 |
+| leesburg bathroom remodel | 1 | 34.0 |
+| leesburgh kitchen remodeling contractor | 1 | 37.0 |
 
-**`/service-areas/mclean-va`** — 209 impressions.
+**`/service-areas/mclean-va`** — 34 rows, 209 impressions.
 
 | Query | Impr | Pos |
 | --- | --- | --- |
@@ -165,8 +223,25 @@ long tail that cannot carry a redirect decision either way.
 | home remodeling mclean | 4 | 43.8 |
 | basement renovation contractors mclean va | 3 | 29.0 |
 | luxury remodeling company mclean va | 3 | 34.0 |
+| carpentry services in mclean va | 2 | 46.0 |
+| elite construction | 2 | 7.0 |
+| home remodeling contractor mclean va | 2 | 29.5 |
+| home remodeling in mclean va | 2 | 46.0 |
+| home renovation contractors mclean va | 2 | 28.0 |
+| remodeler mclean va | 2 | 39.0 |
+| remodeling company in mclean virginia | 2 | 38.5 |
+| siding contractor in mclean | 2 | 36.0 |
+| siding contractor mclean | 2 | 36.5 |
+| • luxury home remodeling mclean va | 2 | 43.0 |
+| best general contractor near me | 1 | 41.0 |
+| general contractor in mclean | 1 | 13.0 |
+| general contractor near me residential | 1 | 48.0 |
+| home additions in mclean va | 1 | 52.0 |
+| home remodeling contractors near me | 1 | 11.0 |
+| remodelers in mclean virginia | 1 | 46.0 |
+| remodeling in mclean virginia | 1 | 41.0 |
 
-**`/service-areas/great-falls-va`** — 106 impressions.
+**`/service-areas/great-falls-va`** — 27 rows, 106 impressions.
 
 | Query | Impr | Pos |
 | --- | --- | --- |
@@ -179,15 +254,27 @@ long tail that cannot carry a redirect decision either way.
 | home siding great falls va | 4 | 24.0 |
 | home siding installation great falls va | 4 | 26.0 |
 | siding company great falls va | 4 | 21.8 |
-| basement remodeling in great falls va | 3 | 18.7 |
 | basement remodeling great falls va | 3 | 42.0 |
+| basement remodeling in great falls va | 3 | 18.7 |
 | exterior trim contractors great falls va | 3 | 14.7 |
 | great falls kitchen remodeling contractors | 3 | 30.0 |
 | great falls kitchen renovation contractor | 3 | 22.0 |
 | siding installation great falls va | 3 | 25.7 |
+| basement renovations great falls va | 2 | 48.0 |
+| general contractor great falls va | 2 | 16.5 |
+| great falls kitchen remodeling contractor | 2 | 16.0 |
+| home restoration great falls | 2 | 21.0 |
+| replacement siding great falls va | 2 | 22.0 |
+| siding great falls va | 2 | 23.0 |
+| vinyl siding installation great falls va | 2 | 30.5 |
+| great falls kitchen renovation | 1 | 43.0 |
+| great falls kitchen renovation contractors | 1 | 20.0 |
+| kitchen remodeling great falls, va | 1 | 34.0 |
+| new roof great falls va | 1 | 31.0 |
+| residential roofing great falls va | 1 | 37.0 |
 
-**`/service-areas/clifton-va`** — 48 impressions. The Tier D page four
-retirement redirects from #148 land on, so its rows matter twice.
+**`/service-areas/clifton-va`** — 7 rows, 48 impressions. The Tier D page four
+#148 retirement redirects land on, so its rows matter twice.
 
 | Query | Impr | Pos |
 | --- | --- | --- |
@@ -197,18 +284,20 @@ retirement redirects from #148 land on, so its rows matter twice.
 | kitchen remodeling in clifton va | 7 | 23.3 |
 | contractor clifton va | 6 | 9.2 |
 | bathroom remodelers clifton va | 3 | 24.7 |
+| whole home remodeling clifton | 2 | 11.5 |
 
-Two things to carry into December. **Great Falls and McLean both hold their own
-basement queries at the area level**, separately from their basement combos —
-so a redirect decision on either page has to look at both surfaces, not one.
-And **`home restoration near me` appears on Leesburg (9.8) and McLean (9.1)**:
-non-geographic queries at page-one positions, which is local-pack territory and
-not something a page edit moves.
+Two things to carry into December. **Great Falls and McLean hold their own
+basement queries at the area level**, separately from their basement combos, so
+a redirect decision on either has to read both surfaces. And **`home
+restoration near me` ranks 9.8 on Leesburg and 9.1 on McLean** — non-geographic
+queries at page-one positions, which is local-pack territory and not something
+a page edit moves.
 
 ### The finding that was not in the page-level view
 
-`/service-areas/leesburg-va` is not ranking on Leesburg queries. **241 of its
-381 impressions — 63% — are Loudoun County queries**, and they outrank its town
+`/service-areas/leesburg-va` is not ranking on Leesburg queries. **243 of its
+381 impressions — 64% — are Loudoun County queries**, spread across 18 query
+strings. The top three carry 188 of those impressions and outrank its town
 queries:
 
 | Query | Impr | Pos |
@@ -220,8 +309,14 @@ queries:
 
 That is regional-altitude demand already present in the data, and §2's thesis
 is visible in it — **but at county altitude, not at "northern virginia"
-altitude.** "Northern virginia" returns zero mobile impressions while "loudoun
-county va" pulls 241 at positions 12–19. If December finds the regional page
+altitude.** "Northern virginia" returns zero mobile impressions.
+
+**Stated precisely, because an earlier draft overstated it.** The three queries
+above carry 188 impressions at positions 12.5–19.2. The other 15 county queries
+carry 55 impressions at positions **26.3–44.7** — pages three and four, where
+nothing is visible. Describing all 243 as ranking 12.5–19.2, as the reviewed
+draft did, inflates the opportunity in a passage whose whole purpose is to help
+the owner judge whether a county page is worth building. If December finds the regional page
 still flat, this is the first place to look before concluding that regional
 altitude failed: the altitude may be right and the *place name* wrong.
 
