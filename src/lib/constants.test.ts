@@ -11,6 +11,10 @@ import {
   getServiceArea,
   activeAreas,
   isLocalityArea,
+  formatAreaPlace,
+  areaSchemaType,
+  childAreasOf,
+  areaAncestors,
   areaRegionLabel,
   CITY_DATA,
   GALLERY_IMAGES,
@@ -86,10 +90,15 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     expect(SECONDARY_SERVICE_AREAS.map((a) => a.slug)).toEqual(SECONDARY_AT_32E6856);
   });
 
-  it('reproduces ALL_SERVICE_AREAS as primary followed by secondary', () => {
+  it('reproduces ALL_SERVICE_AREAS as primary, secondary, then rows added since', () => {
+    // 'northern-virginia' is the one row added after 32e6856 (PR for Phase 2
+    // of the altitude plan). It carries no legacy tier, which is why the two
+    // pins above still hold unchanged. Listed by name rather than regenerated:
+    // anything else appearing here should fail until someone says why.
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
+      'northern-virginia',
     ]);
   });
 
@@ -102,8 +111,12 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     }
   });
 
-  it('derives LUXURY_CITY_SLUGS from market: premium, unchanged', () => {
-    expect([...LUXURY_CITY_SLUGS].sort()).toEqual([...LUXURY_AT_32E6856].sort());
+  it('derives LUXURY_CITY_SLUGS from market: premium', () => {
+    // Same historical set plus the region row, which is a premium market and
+    // so routes to /design-consultation like the towns inside it.
+    expect([...LUXURY_CITY_SLUGS].sort()).toEqual(
+      [...LUXURY_AT_32E6856, 'northern-virginia'].sort()
+    );
   });
 
   it('gives every row a unique slug', () => {
@@ -128,12 +141,31 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
     }
   });
 
-  it('has no parent chains longer than one hop', () => {
-    // Breadcrumbs assume Home › Service Areas › [parent] › [area]. A
-    // grandparent would silently drop out of the trail.
+  /**
+   * Two hops, not one.
+   *
+   * This capped chains at one hop when the catalog landed, because breadcrumbs
+   * assumed Home › Service Areas › parent › area. Adding the Northern Virginia
+   * region made that cap a falsehood: Leesburg is in Loudoun County, and
+   * Loudoun County is in Northern Virginia. Keeping the cap would have meant
+   * either a two-level model or a claim that Loudoun is not in the region —
+   * the same kind of error as telling Vienna it sits in the Shenandoah. So the
+   * breadcrumb renders the full chain from `areaAncestors` and the cap moved.
+   */
+  it('keeps parent chains within two hops and free of cycles', () => {
     for (const area of SERVICE_AREA_CATALOG) {
       if (!area.parent) continue;
-      expect(getServiceArea(area.parent)!.parent, `${area.slug} has a grandparent`).toBeUndefined();
+      const chain = areaAncestors(area);
+      expect(
+        chain.length,
+        `${area.slug} → ${chain.map((a) => a.slug).join(' → ')} is deeper than town › county › region`
+      ).toBeLessThanOrEqual(2);
+      // areaAncestors stops on a repeat, so a cycle shows up as a chain that
+      // does not terminate at a parentless row.
+      expect(
+        chain[chain.length - 1].parent,
+        `${area.slug} sits in a parent cycle: ${chain.map((a) => a.slug).join(' → ')}`
+      ).toBeUndefined();
     }
   });
 
@@ -416,6 +448,71 @@ describe('areaRegionLabel', () => {
     for (const area of SERVICE_AREA_CATALOG) {
       expect(areaRegionLabel(area).trim().length, area.slug).toBeGreaterThan(0);
     }
+  });
+
+  it('does not give a region a surrounding region', () => {
+    // "Northern Virginia and the surrounding Northern Virginia" is what the
+    // callers must not render; they gate on isLocalityArea. This pins the
+    // value they would otherwise interpolate.
+    const nova = getServiceArea('northern-virginia')!;
+    expect(areaRegionLabel(nova)).toBe('Northern Virginia');
+  });
+});
+
+describe('the Northern Virginia region row', () => {
+  const nova = () => getServiceArea('northern-virginia')!;
+
+  it('exists as a premium region with no parent of its own', () => {
+    expect(nova().kind).toBe('region');
+    expect(nova().market).toBe('premium');
+    expect(nova().state).toBe('VA');
+    expect(nova().parent).toBeUndefined();
+  });
+
+  it('is not a locality, so it takes AdministrativeArea in schema', () => {
+    expect(isLocalityArea(nova())).toBe(false);
+    expect(areaSchemaType(nova())).toBe('AdministrativeArea');
+    expect(areaSchemaType(getServiceArea('vienna-va')!)).toBe('City');
+    expect(areaSchemaType(getServiceArea('loudoun-county-va')!)).toBe('AdministrativeArea');
+  });
+
+  it('omits the state from its display name and keeps it everywhere else', () => {
+    expect(formatAreaPlace(nova())).toBe('Northern Virginia');
+    expect(formatAreaPlace(getServiceArea('vienna-va')!)).toBe('Vienna, VA');
+    expect(formatAreaPlace(getServiceArea('loudoun-county-va')!)).toBe('Loudoun County, VA');
+  });
+
+  it('holds the Fairfax-County towns, Alexandria and Loudoun County directly', () => {
+    expect(childAreasOf('northern-virginia').map((a) => a.slug)).toEqual([
+      'mclean-va',
+      'alexandria-va',
+      'vienna-va',
+      'great-falls-va',
+      'reston-va',
+      'burke-va',
+      'fairfax-station-va',
+      'clifton-va',
+      'loudoun-county-va',
+    ]);
+  });
+
+  it('reaches the Loudoun towns through the county, two hops up', () => {
+    for (const slug of ['leesburg-va', 'ashburn-va', 'brambleton-va', 'middleburg-va']) {
+      expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
+        'loudoun-county-va',
+        'northern-virginia',
+      ]);
+    }
+  });
+
+  it('leaves the home market and the Shenandoah unparented', () => {
+    for (const slug of ['martinsburg-wv', 'frederick-md', 'winchester-va', 'hagerstown-md']) {
+      expect(areaAncestors(getServiceArea(slug)!), slug).toEqual([]);
+    }
+  });
+
+  it('gives childAreasOf nothing for a leaf', () => {
+    expect(childAreasOf('vienna-va')).toEqual([]);
   });
 });
 

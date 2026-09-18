@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { renderOgCard, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og';
-import { ALL_SERVICE_AREAS, CITY_DATA } from '@/lib/constants';
+import { ALL_SERVICE_AREAS, CITY_DATA, formatAreaPlace } from '@/lib/constants';
 
 export const runtime = 'nodejs';
 export const size = OG_SIZE;
@@ -26,7 +26,7 @@ export default async function OG({ params }: { params: Params }) {
 
   return renderOgCard({
     eyebrow: 'Service Area',
-    title: `${city.city}, ${city.state}`,
+    title: formatAreaPlace(city),
     subtitle: leadServices
       ? `Premium contracting — ${leadServices}.`
       : 'Premium remodeling and exterior contracting.',

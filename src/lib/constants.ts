@@ -306,18 +306,24 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'ashburn-va', city: 'Ashburn', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['primary', 'expansion'] },
 
   /* ---------- Fairfax County and the inner NoVA suburbs — premium ----------
-   * These have no `parent` yet. The Northern Virginia region row that will
-   * parent them is Phase 2 of the altitude plan; adding it here without the
-   * hub page would put a breadcrumb ancestor in place with nothing behind it.
+   * Parented to the `northern-virginia` region row below. That row exists
+   * because the basement demand in this market is regional: "basement
+   * remodeling northern virginia" reports 110/mo and "basement finishing
+   * northern virginia" 90/mo, while every town-level basement term here except
+   * Alexandria (70) and McLean (30) is below the reporting floor.
+   *
+   * Their kitchen and bathroom pages are a different story and stay town-level
+   * on purpose — "kitchen remodeling mclean va" is 260/mo and "vienna va" 140.
+   * See docs/site-altitude-architecture-2026-09-18.md §1.5.
    */
-  { slug: 'mclean-va', city: 'McLean', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'alexandria-va', city: 'Alexandria', state: 'VA', kind: 'city', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'vienna-va', city: 'Vienna', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'great-falls-va', city: 'Great Falls', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'reston-va', city: 'Reston', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'burke-va', city: 'Burke', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'fairfax-station-va', city: 'Fairfax Station', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'clifton-va', city: 'Clifton', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'mclean-va', city: 'McLean', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'alexandria-va', city: 'Alexandria', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'vienna-va', city: 'Vienna', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'great-falls-va', city: 'Great Falls', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'reston-va', city: 'Reston', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'burke-va', city: 'Burke', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'fairfax-station-va', city: 'Fairfax Station', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'clifton-va', city: 'Clifton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
   { slug: 'middleburg-va', city: 'Middleburg', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['primary', 'expansion'] },
 
   /* ---------- Secondary rows ---------- */
@@ -325,13 +331,22 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'falling-waters-wv', city: 'Falling Waters', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['secondary'] },
   { slug: 'berkeley-springs-wv', city: 'Berkeley Springs', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['secondary'] },
   { slug: 'shepherdstown-wv', city: 'Shepherdstown', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['secondary'] },
-  { slug: 'loudoun-county-va', city: 'Loudoun County', state: 'VA', kind: 'county', market: 'premium', status: 'active', legacyTiers: ['secondary', 'expansion'] },
+  { slug: 'loudoun-county-va', city: 'Loudoun County', state: 'VA', kind: 'county', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['secondary', 'expansion'] },
   // Brambleton is a planned community inside Ashburn's orbit rather than a
   // town, but it earns its own row: Search Console shows seven distinct
   // "deck builder / composite decking brambleton va" queries at positions
   // 9-23, all otherwise answered by the Ashburn page. It is the strongest
   // named-place demand signal in Loudoun with no page of its own.
   { slug: 'brambleton-va', city: 'Brambleton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['secondary'] },
+
+  /* ---------- The region ----------
+   * The one row at region altitude, and the reason the catalog has a `kind`
+   * at all. It carries no legacy tier: the three compatibility views reproduce
+   * the pre-catalog arrays exactly, and this row did not exist then. It is
+   * reached through ALL_SERVICE_AREAS, its own hub page, and the parent links
+   * on the rows above.
+   */
+  { slug: 'northern-virginia', city: 'Northern Virginia', state: 'VA', kind: 'region', market: 'premium', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -479,6 +494,29 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     neighborhoods: ['Brambleton Town Center', 'Birchwood at Brambleton', 'West Park at Brambleton', 'Summerfield at Brambleton'],
     marketEmphasis: ['decks', 'bathrooms', 'kitchens', 'remodeling', 'basements', 'siding'],
   },
+  /**
+   * The region row's page data. Its `neighborhoods` are the counties and the
+   * independent city the site actually serves, not subdivisions — for a region
+   * that is the useful granularity, and every name here is real and is a place
+   * the business already publishes pages for.
+   *
+   * No operational claims in this copy. The seven promises registered in
+   * src/lib/claims.ts are unconfirmed, and this is the page a Fairfax County
+   * homeowner reads before a six-figure decision.
+   */
+  'northern-virginia': {
+    description:
+      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements with walkout or areaway access — space the house already has and is not using. That is why the regional demand here concentrates on basements rather than on any single town: homeowners search for a Northern Virginia or Fairfax County contractor first and narrow down afterwards. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia, and works this market from its Eastern Panhandle base.",
+    neighborhoods: [
+      'Fairfax County',
+      'Loudoun County',
+      'Alexandria',
+      'McLean',
+      'Vienna',
+      'Great Falls',
+    ],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'decks'],
+  },
   'loudoun-county-va': {
     description:
       "Loudoun County is one of the wealthiest and fastest-growing counties in the United States — home to Leesburg, Ashburn, Sterling, Purcellville, and a network of master-planned communities reshaping Northern Virginia. From estate properties in horse country west of Route 15 to data-center-adjacent neighborhoods along the Silver Line Metro corridor, Loudoun homeowners share an expectation of premium craftsmanship and clean execution. Real Elite Contracting brings veteran-led precision and high-end remodeling to Loudoun County — luxury decks and outdoor living, custom kitchens, premium bathrooms, and full home transformations done to the standard this market expects.",
@@ -589,6 +627,11 @@ export const isLocalityArea = (area: Pick<ServiceArea, 'kind'>): boolean =>
  * none of those.
  */
 export function areaRegionLabel(area: ServiceArea): string {
+  // A region has no surrounding region. Callers that phrase this as
+  // "{place} and the surrounding {region}" must gate on `isLocalityArea`
+  // first, or they render "Northern Virginia and the surrounding Northern
+  // Virginia" — CityPageTemplate does exactly that gating.
+  if (area.kind === 'region') return area.city;
   if (area.state === 'WV') return 'Eastern Panhandle';
   if (area.state === 'MD') return 'Cumberland Valley and Frederick County area';
   if (area.slug === 'loudoun-county-va' || area.parent === 'loudoun-county-va') {
@@ -596,6 +639,53 @@ export function areaRegionLabel(area: ServiceArea): string {
   }
   // Winchester is the one VA row on the home-market side of the split.
   return area.market === 'home' ? 'Northern Shenandoah Valley' : 'Northern Virginia';
+}
+
+/**
+ * The place name as copy should say it.
+ *
+ * A locality or a county takes its state ("Vienna, VA", "Loudoun County, VA").
+ * A region does not, because the state is already inside the name — the
+ * generic templates produced "Northern Virginia, VA" in headings, breadcrumbs
+ * and titles before this existed.
+ */
+export const formatAreaPlace = (area: ServiceArea): string =>
+  area.kind === 'region' ? area.city : `${area.city}, ${area.state}`;
+
+/**
+ * The schema.org type for a row. A town or city is a `City`; a county or
+ * region is an `AdministrativeArea`. Emitting `City` for "Northern Virginia"
+ * tells Google the wrong kind of thing about the page.
+ */
+export const areaSchemaType = (area: ServiceArea): 'City' | 'AdministrativeArea' =>
+  isLocalityArea(area) ? 'City' : 'AdministrativeArea';
+
+/** Active rows sitting directly inside this one, in catalog order. */
+export const childAreasOf = (slug: string): ServiceArea[] =>
+  ALL_SERVICE_AREAS.filter((a) => a.parent === slug);
+
+/**
+ * Ancestors, nearest first — Middleburg gives
+ * `[Loudoun County, Northern Virginia]`. Used for the breadcrumb trail, which
+ * is why the order matters.
+ *
+ * The catalog allows a town inside a county inside a region, so this walks
+ * rather than reading `parent` once. The loop is bounded: `constants.test.ts`
+ * caps the chain at two hops and rejects cycles, and the guard here means a
+ * bad row cannot hang a build even so.
+ */
+export function areaAncestors(area: ServiceArea): ServiceArea[] {
+  const chain: ServiceArea[] = [];
+  const seen = new Set<string>([area.slug]);
+  let current = area.parent;
+  while (current && !seen.has(current) && chain.length < 8) {
+    const next = getServiceArea(current);
+    if (!next) break;
+    chain.push(next);
+    seen.add(next.slug);
+    current = next.parent;
+  }
+  return chain;
 }
 
 /** Legacy flat list (primary + secondary city names) for simple iterations */

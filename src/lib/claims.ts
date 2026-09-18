@@ -53,6 +53,26 @@
  * when a new market is added. They are listed here rather than left implicit
  * so the register is honest about its own coverage: a retraction has to sweep
  * them too, and the guard will not remind anyone.
+ *
+ * ## A known gap in the ratchet
+ *
+ * The guard watches the CONTENT map, SERVICE_DATA, and the two templates. It
+ * does NOT watch the set of areas those templates render onto. So adding a row
+ * to SERVICE_AREA_CATALOG publishes another page carrying whatever
+ * unconfirmed claims the template already makes, and nothing here trips.
+ *
+ * That happened when the `northern-virginia` region row landed: its hub page
+ * renders `written-workmanship-warranty`, `named-project-lead` and
+ * `clean-job-site` from CityPageTemplate, exactly as the twenty-five area
+ * pages before it do. The claims did not spread to a new *template* — they
+ * reached a new URL in the market where the altitude doc calls them
+ * "contract-dispute material" against a $250,000 job.
+ *
+ * Not closed here on purpose. Closing it means inventorying area slugs, and
+ * the next area row would then have to be added to that allowlist in its own
+ * PR — which is the move this file's header tells the reader never to make.
+ * The real fix is the owner ruling on the seven claims, after which the
+ * template copy is either verified or removed and the gap stops mattering.
  */
 
 export type ClaimStatus = 'verified' | 'unconfirmed';

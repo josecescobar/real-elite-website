@@ -18,6 +18,11 @@ import {
   LUXURY_CITY_SLUGS,
   selectGalleryFor,
   areaRegionLabel,
+  formatAreaPlace,
+  areaSchemaType,
+  childAreasOf,
+  areaAncestors,
+  isLocalityArea,
   type CityDataEntry,
   type ServiceArea,
 } from '@/lib/constants';
@@ -51,6 +56,19 @@ function permitGuideSlugForCity(citySlug: string): string | null {
   return null;
 }
 
+/**
+ * The hero splits its heading across two lines with the second in brand red.
+ * For a locality that is "Vienna," / "VA". A region already carries its state
+ * inside the name, so splitting off the last word — "Northern" / "Virginia" —
+ * keeps the same rhythm without rendering "Northern Virginia," / "VA".
+ */
+function heroLines(area: ServiceArea): [string, string] {
+  if (area.kind !== 'region') return [`${area.city},`, area.state];
+  const words = area.city.split(' ');
+  if (words.length < 2) return [area.city, ''];
+  return [words.slice(0, -1).join(' '), words[words.length - 1]];
+}
+
 type Props = {
   /**
    * The full catalog row, not a `{city, state, slug}` literal. The template
@@ -63,6 +81,10 @@ type Props = {
 
 export default function CityPageTemplate({ city, data }: Props) {
   const url = `${BUSINESS.url}/service-areas/${city.slug}`;
+
+  // A county or region lists the areas inside it; a town lists neighbourhoods.
+  const children = isLocalityArea(city) ? [] : childAreasOf(city.slug);
+  const [heroHead, heroTail] = heroLines(city);
 
   // Order services by marketEmphasis, then append remaining for completeness
   const emphasized = data.marketEmphasis
@@ -111,8 +133,18 @@ export default function CityPageTemplate({ city, data }: Props) {
 
   const localFaqs: { question: string; answer: string }[] = [
     {
-      question: `Does Real Elite Contracting serve ${city.city}, ${city.state}?`,
-      answer: `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`,
+      question: `Does Real Elite Contracting serve ${formatAreaPlace(city)}?`,
+      // A region or county has no "surrounding region" — phrasing it that way
+      // produced "Northern Virginia and the surrounding Northern Virginia" and
+      // "Loudoun County and the surrounding Loudoun County area". They name
+      // the areas inside them instead.
+      answer:
+        children.length > 0
+          ? `Yes. Real Elite Contracting works across ${city.city}, including ${children
+              .slice(0, 5)
+              .map((a) => a.city)
+              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`
+          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`,
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,
@@ -128,10 +160,19 @@ export default function CityPageTemplate({ city, data }: Props) {
     },
   ];
 
+  // Ancestors run nearest-first from the catalog, so reverse them for a trail
+  // that reads outside-in: Home › Service Areas › Northern Virginia › Loudoun
+  // County › Middleburg.
+  const ancestors = [...areaAncestors(city)].reverse();
+
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: 'Home', item: BUSINESS.url },
     { name: 'Service Areas', item: `${BUSINESS.url}/service-areas` },
-    { name: `${city.city}, ${city.state}`, item: url },
+    ...ancestors.map((a) => ({
+      name: formatAreaPlace(a),
+      item: `${BUSINESS.url}/service-areas/${a.slug}`,
+    })),
+    { name: formatAreaPlace(city), item: url },
   ]);
 
   // Real case-study projects located in this city (from the Project System).
@@ -142,8 +183,8 @@ export default function CityPageTemplate({ city, data }: Props) {
   // we serve. The city page uses Place + Service schemas instead.
   const placeSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Place',
-    name: `${city.city}, ${city.state}`,
+    '@type': areaSchemaType(city),
+    name: formatAreaPlace(city),
     containedInPlace: { '@type': 'AdministrativeArea', name: city.state },
   };
 
@@ -160,17 +201,28 @@ export default function CityPageTemplate({ city, data }: Props) {
             <Link href="/service-areas" className="hover:text-white transition-colors">
               Service Areas
             </Link>
+            {ancestors.map((a) => (
+              <span key={a.slug} className="flex items-center gap-2">
+                <span className="text-charcoal-500">/</span>
+                <Link
+                  href={`/service-areas/${a.slug}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {formatAreaPlace(a)}
+                </Link>
+              </span>
+            ))}
             <span className="text-charcoal-500">/</span>
-            <span className="text-white">{city.city}, {city.state}</span>
+            <span className="text-white">{formatAreaPlace(city)}</span>
           </nav>
 
           <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> Service Area
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-            {city.city},
+            {heroHead}
             <br />
-            <span className="text-brand-red">{city.state}</span>
+            <span className="text-brand-red">{heroTail}</span>
           </h1>
           <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
             Premium remodeling and exterior craftsmanship for {city.city} homeowners. Veteran-owned,
@@ -274,19 +326,44 @@ export default function CityPageTemplate({ city, data }: Props) {
                 </details>
               </div>
 
-              {/* Neighborhoods served */}
+              {/* Areas inside this one (region/county) or neighbourhoods (town). */}
               <div>
                 <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-6">
-                  Neighborhoods we work in
+                  {children.length > 0
+                    ? `Where we work in ${city.city}`
+                    : 'Neighborhoods we work in'}
                 </h2>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
-                  {data.neighborhoods.map((n) => (
-                    <li key={n} className="flex items-center gap-2 text-charcoal-700">
-                      <MapPin className="w-4 h-4 text-brand-red flex-shrink-0" aria-hidden="true" />
-                      <span>{n}</span>
-                    </li>
-                  ))}
-                </ul>
+                {children.length > 0 ? (
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                    {children.map((a) => (
+                      <li key={a.slug}>
+                        <Link
+                          href={`/service-areas/${a.slug}`}
+                          className="group flex items-center gap-2 text-charcoal-700 hover:text-brand-red transition-colors"
+                        >
+                          <MapPin
+                            className="w-4 h-4 text-brand-red flex-shrink-0"
+                            aria-hidden="true"
+                          />
+                          <span>{formatAreaPlace(a)}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-charcoal-300 group-hover:text-brand-red transition-colors" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                    {data.neighborhoods.map((n) => (
+                      <li key={n} className="flex items-center gap-2 text-charcoal-700">
+                        <MapPin
+                          className="w-4 h-4 text-brand-red flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                        <span>{n}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               {/* Real project case studies in this city (Project System) */}

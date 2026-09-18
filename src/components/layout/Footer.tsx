@@ -54,10 +54,13 @@ const FEATURED_FOOTER_SERVICES = [
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const featuredAreas = [
+    // The region leads: it is the only row at region altitude and the hub the
+    // Northern Virginia town pages link up to, so it needs a site-wide entry
+    // rather than being reachable only from its children.
+    { city: 'Northern Virginia', state: 'VA', slug: 'northern-virginia' },
     { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
     { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
     { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
-    { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
     ...PRIMARY_SERVICE_AREAS.slice(0, 3),
     ...SECONDARY_SERVICE_AREAS.slice(0, 1),
   ];
@@ -143,7 +146,7 @@ export default function Footer() {
                     href={`/service-areas/${area.slug}`}
                     className="min-h-11 inline-flex items-center hover:text-white transition-colors"
                   >
-                    {area.city}, {area.state}
+                    {area.slug === 'northern-virginia' ? area.city : `${area.city}, ${area.state}`}
                   </Link>
                 </li>
               ))}
