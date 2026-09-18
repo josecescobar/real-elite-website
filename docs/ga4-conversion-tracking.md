@@ -107,5 +107,30 @@ tracking implementation problem, and it is the single cheapest unblock
 available anywhere in this project.
 
 The baseline that depends on it is frozen in
-`docs/phase-5-baseline-2026-09-18.md`. Until this is fixed, the 2026-12-15
-Phase 5 read can compare impressions and positions but not leads.
+`docs/phase-5-baseline-2026-09-18.md`.
+
+### This does NOT gate the December lead read
+
+An earlier version of this line said the 2026-12-15 read "can compare
+impressions and positions but not leads". That was wrong, and it would have
+sent whoever follows this document past the very comparison they should run.
+
+**Raw events are already readable.** The table above — `generate_lead` 3,
+`phone_click` 2, `form_submit` 3 — was pulled with none of these marked as key
+events. The key-event flag governs GA4's *conversion reporting*, not whether
+the event is recorded or queryable.
+
+**And comparing key events across December would manufacture a result**,
+precisely because the flag is not retroactive (see above). Flip it in October,
+compare key events in December, and the baseline window is zero by
+construction — a rise that measures when a checkbox was ticked.
+
+So December compares **raw `generate_lead` and `phone_click` counts**. Both
+series carry an instrumentation discontinuity that must be handled — the phone
+links before 2026-09-16, and `trackLead()` before 2026-07-06 — and
+`phase-5-baseline-2026-09-18.md` states both.
+
+The flag still needs fixing: it drives the owner's own dashboard, anything
+Google Ads optimises toward, and every future reader of GA4 who does not have
+this document open beside them. It simply is not what stands between Phase 5
+and a lead comparison.

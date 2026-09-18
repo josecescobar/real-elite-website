@@ -116,6 +116,95 @@ should check whether *these* strings start resolving to
 regional queries while the towns keep theirs, both pages are working and
 neither should be retired.
 
+### NoVA area pages — every Tier B redirect candidate, complete
+
+§3.3 classifies every NoVA `/service-areas/` overview as Tier B, so each is a
+redirect candidate and each needs its own rows for the same reason the combos
+do. All queries at ≥3 mobile impressions; the remainder is a 1–2 impression
+long tail that cannot carry a redirect decision either way.
+
+**`/service-areas/leesburg-va`** — 381 impressions. County queries marked ▸.
+
+| Query | Impr | Pos |
+| --- | --- | --- |
+| ▸ exterior contracting services loudoun county va | 73 | 13.5 |
+| ▸ home exterior contractor loudoun county va | 65 | 19.2 |
+| ▸ exterior contracting company loudoun county va | 50 | 12.5 |
+| home remodeling leesburg va | 29 | 22.2 |
+| home restoration near me | 22 | 9.8 |
+| siding contractor in leesburg | 15 | 28.6 |
+| tile contractors leesburg | 14 | 20.5 |
+| general contractor leesburg va | 12 | 25.2 |
+| interior remodeling leesburg va | 12 | 25.5 |
+| ▸ home remodeling loudoun county va | 9 | 34.2 |
+| ▸ residential contractors loudoun county | 8 | 37.9 |
+| house siding leesburg va | 6 | 37.5 |
+| ▸ home remodeling loudoun county | 5 | 34.0 |
+| home remodeling leesburg | 4 | 26.8 |
+| ▸ remodel contractors loudoun county | 4 | 35.5 |
+| ▸ *(nine more county queries at 3 each)* | 27 | 26.3–44.7 |
+
+**`/service-areas/mclean-va`** — 209 impressions.
+
+| Query | Impr | Pos |
+| --- | --- | --- |
+| renovation and restoration mclean va | 41 | 36.3 |
+| renovations mclean va | 37 | 44.9 |
+| extensive renovation mclean va | 11 | 46.9 |
+| exterior remodeling contractor mclean | 11 | 19.9 |
+| remodeling contractor mclean va | 9 | 29.8 |
+| contractor in mclean | 8 | 15.6 |
+| home remodeling contractor mclean | 8 | 38.0 |
+| remodeling company mclean | 8 | 23.4 |
+| remodeling contractor mclean | 8 | 30.1 |
+| home restoration near me | 7 | 9.1 |
+| remodeling companies near me | 7 | 15.4 |
+| building envelope mclean va | 6 | 47.2 |
+| home remodeling mclean va | 6 | 38.8 |
+| interior remodeling mclean va | 5 | 40.0 |
+| home remodeling mclean | 4 | 43.8 |
+| basement renovation contractors mclean va | 3 | 29.0 |
+| luxury remodeling company mclean va | 3 | 34.0 |
+
+**`/service-areas/great-falls-va`** — 106 impressions.
+
+| Query | Impr | Pos |
+| --- | --- | --- |
+| kitchen remodeling in great falls va | 29 | 39.4 |
+| siding contractors great falls va | 8 | 22.9 |
+| remodeling contractor great falls va | 7 | 21.1 |
+| siding contractor in great falls | 5 | 25.0 |
+| bathroom remodeling great falls va | 4 | 36.0 |
+| home remodeling great falls va | 4 | 28.5 |
+| home siding great falls va | 4 | 24.0 |
+| home siding installation great falls va | 4 | 26.0 |
+| siding company great falls va | 4 | 21.8 |
+| basement remodeling in great falls va | 3 | 18.7 |
+| basement remodeling great falls va | 3 | 42.0 |
+| exterior trim contractors great falls va | 3 | 14.7 |
+| great falls kitchen remodeling contractors | 3 | 30.0 |
+| great falls kitchen renovation contractor | 3 | 22.0 |
+| siding installation great falls va | 3 | 25.7 |
+
+**`/service-areas/clifton-va`** — 48 impressions. The Tier D page four
+retirement redirects from #148 land on, so its rows matter twice.
+
+| Query | Impr | Pos |
+| --- | --- | --- |
+| basement finishing contractor in clifton va | 11 | 12.3 |
+| home remodeling services clifton | 11 | 11.5 |
+| remodeling contractor clifton va | 8 | 19.1 |
+| kitchen remodeling in clifton va | 7 | 23.3 |
+| contractor clifton va | 6 | 9.2 |
+| bathroom remodelers clifton va | 3 | 24.7 |
+
+Two things to carry into December. **Great Falls and McLean both hold their own
+basement queries at the area level**, separately from their basement combos —
+so a redirect decision on either page has to look at both surfaces, not one.
+And **`home restoration near me` appears on Leesburg (9.8) and McLean (9.1)**:
+non-geographic queries at page-one positions, which is local-pack territory and
+not something a page edit moves.
+
 ### The finding that was not in the page-level view
 
 `/service-areas/leesburg-va` is not ranking on Leesburg queries. **241 of its
@@ -251,11 +340,27 @@ matters for everything else — the owner's own dashboard, Google Ads
 optimisation, and anyone reading GA4 without this document beside them — which
 is why it stays on the list. But it does not gate Phase 5.
 
-One caveat to carry into that comparison: `phone_click` is **not** comparable
-across the boundary. 34 of the site's 41 phone links fired nothing until
-2026-09-16, so any pre-2026-09-17 phone figure is a floor rather than a count,
-and a rise across that date measures the fix rather than demand.
-`generate_lead` has no such discontinuity and is the honest series.
+**BOTH lead series have an instrumentation discontinuity. Neither is clean.**
+
+- `phone_click` — 34 of the site's 41 phone links fired nothing until
+  2026-09-16, so any earlier figure is a floor rather than a count and a rise
+  across that date measures the fix rather than demand.
+- `generate_lead` — `trackLead()` and all three of its production call sites
+  (`MultiStepEstimateForm`, `RoofQuoteTool`, `LuxuryConsultationForm`) were
+  introduced on **2026-07-06** in #63, verified with `git log -S`. The GA4
+  document's raw-count window opens 2026-06-19, so **its first 17 days could
+  not emit this event at all**. The count of 3 covers roughly 73 instrumented
+  days, not 90.
+
+So December must either use windows that both start after 2026-07-06, or state
+the uninstrumented days explicitly. Comparing that 3 against a fully
+instrumented 90-day December window manufactures an increase the same way a
+key-event comparison would.
+
+*(Recorded because the version of this file opened for review asserted
+`generate_lead` "has no such discontinuity and is the honest series". That was
+wrong, and wrong in a familiar way: the phone discontinuity was corrected and
+the parallel case beside it was asserted clean without being checked.)*
 
 One further note for December, recorded now so it is not mistaken for a later
 discovery: organic sessions were **41 in the 48 days to 2026-09-17, against 62
