@@ -153,13 +153,27 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
       expect(area.redirectTo, `${area.slug} is consolidated with no redirectTo`).toBeTruthy();
       expect(area.redirectTo, `${area.slug} redirects off-site`).toMatch(/^\//);
 
+      // Parse once, then check the ORIGIN before trusting the pathname.
+      //
+      // A leading slash is not enough: '//other.example/service-areas/foo' is a
+      // network-path reference that passes the regex above, and resolving it
+      // yields the pathname '/service-areas/foo' — so every later check passed
+      // while a browser would leave the site. The assertion above literally
+      // says "redirects off-site"; this is what makes that true.
+      const LOCAL_BASE = 'https://example.invalid';
+      const parsed = new URL(area.redirectTo!, LOCAL_BASE);
+      expect(
+        parsed.origin,
+        `${area.slug} redirects to ${area.redirectTo}, which leaves the site (host "${parsed.host}"). A protocol-relative or absolute URL satisfies a leading-slash check but sends visitors to another origin`
+      ).toBe(LOCAL_BASE);
+
       // Compare PATHNAMES, not raw strings. Next matches redirect sources by
       // pathname, so '/service-areas/foo?from=legacy' targets the same route as
       // '/service-areas/foo' and loops — while a raw-string comparison sees two
       // different values and an anchored path regex skips the catalog lookup
       // entirely. Parsing once fixes both, and covers trailing slashes and
       // fragments for free.
-      const destination = new URL(area.redirectTo!, 'https://example.invalid').pathname;
+      const destination = parsed.pathname;
 
       expect(
         destination,
