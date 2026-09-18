@@ -13,20 +13,39 @@ Console 2026-03-15 → 2026-09-15, **mobile only**, per the convention in
 
 ---
 
+> **Correction, 2026-09-18 (same day, after Phase 1 began).** Checking the
+> town-level *kitchen and bathroom* terms before consolidating any pages
+> reversed part of this document. The altitude finding is **trade-specific as
+> well as market-specific**: NoVA basements are searched regionally, but
+> kitchens and bathrooms in the very same towns carry real reported volume —
+> `kitchen remodeling ashburn va` 480/mo, `kitchen remodeling alexandria va`
+> 390, `bathroom remodeling alexandria va` 320, `kitchen remodeling mclean va`
+> 260, `kitchen remodeling vienna va` 140. §2's name test and §3.3's Tier C
+> are corrected in place below, and Tier C consolidation is **on hold** for
+> the reasons in §8. Full data in §1.5. Nothing in "The short version" is
+> withdrawn; item 1 is sharpened from "a property of each market" to "a
+> property of each market and trade."
+
 ## The short version
 
 1. **"Region-first vs town-first" is the wrong frame.** The right altitude is
-   not a site-wide choice; it is a property of each market, and it is *the
-   name people type after the trade.* In the Eastern Panhandle that name is
-   the town (Martinsburg carries 370 of the 440 reported searches; "Eastern
-   Panhandle", "Berkeley County" and "Jefferson County" return nothing for
-   any trade). In Maryland and the Shenandoah it is the city, because the
-   city *is* the region's name (Frederick, Hagerstown, Winchester). In
-   Northern Virginia it is the region or the county seat — "northern
-   virginia", "fairfax va", and for one large city, "alexandria va" — and
-   **not** the affluent suburbs the site was built around. Vienna, Great
-   Falls, Reston, McLean, Burke, Clifton, Fairfax Station and Middleburg all
-   fail that test.
+   not a site-wide choice; it is a property of each market **and each trade**,
+   and it is *the name people type after the trade.* In the Eastern Panhandle
+   that name is the town (Martinsburg carries 370 of the 440 reported
+   searches; "Eastern Panhandle", "Berkeley County" and "Jefferson County"
+   return nothing for any trade). In Maryland and the Shenandoah it is the
+   city, because the city *is* the region's name (Frederick, Hagerstown,
+   Winchester). In Northern Virginia it splits by trade: **basements** are
+   searched at region or county-seat altitude — "northern virginia", "fairfax
+   va", "alexandria va" — and not in the affluent suburbs the site was built
+   around, while **kitchens and bathrooms in those same suburbs are searched
+   by town**, with 480/mo in Ashburn and 260 in McLean. So the NoVA town pages
+   are wrong for basements and right for kitchens and baths. Only Clifton,
+   Fairfax Station and Middleburg fail the test in every trade.
+
+   *Revised 2026-09-18 — the first version of this item put Vienna, Great
+   Falls, Reston and McLean in the failing set, which was true of basements
+   and not of the towns. See the correction above and §1.5.*
 
 2. **Do not restructure the site. Re-tier it.** The area model gets one new
    level (region/county) above the town, one Northern Virginia basement page
@@ -197,6 +216,59 @@ Mobile only, 2026-03-15 → 2026-09-15.
 
 ---
 
+### 1.5 The correction: altitude is per trade, not just per market
+
+Pulled 2026-09-18, after Phase 1 began, to apply the name test properly
+before consolidating any page. It reversed part of §3.3.
+
+| Term | Vol/mo | KD | CPC |
+| --- | --- | --- | --- |
+| `kitchen remodeling ashburn va` | **480** | 0 | $69 |
+| `kitchen remodeling alexandria va` | 390 | 1 | $79 |
+| `bathroom remodeling alexandria va` | 320 | 0 | $63 |
+| `bathroom remodeling ashburn va` | 260 | 1 | $74 |
+| `kitchen remodeling mclean va` | 260 | 0 | — |
+| `bathroom remodeling mclean va` | 140 | 0 | — |
+| `kitchen remodeling vienna va` | 140 | 0 | — |
+| `bathroom remodeling leesburg va` | 90 | 0 | $16 |
+| `kitchen remodeling great falls va` | 90 | 0 | — |
+| `bathroom remodeling vienna va` | 70 | 0 | — |
+| `kitchen remodeling reston va` | 70 | 0 | — |
+| `bathroom remodeling reston va` | 50 | 0 | $23 |
+| `kitchen remodeling leesburg va` | 40 | 0 | $87 |
+| `basement remodeling mclean va` | 30 | 0 | — |
+| `bathroom remodeling burke va` | 10 | — | — |
+| `kitchen remodeling burke va` | 10 | 39 | — |
+
+**Returned no row in any of the three trades:** Clifton, Fairfax Station,
+Middleburg. Plus `basement remodeling burke va`.
+
+**What this changes.** The original §2 put Vienna, Great Falls, Reston and
+McLean in the "fails the name test" bucket. That was true *for basements*,
+which is the trade the brief asked about, and I generalised it to the towns.
+It is false for kitchens and bathrooms: McLean at 260, Vienna at 140, Great
+Falls at 90 and Reston at 70 are reported town-level kitchen demand, and the
+site already has pages for all of them.
+
+So the honest statement is narrower and more useful than the original: **in
+Northern Virginia, basements are searched regionally and kitchens and
+bathrooms are searched by town.** One market, two altitudes, decided by
+trade. A single site-wide altitude was never going to be right, and neither
+is a single per-market one.
+
+**What it does not change.** The regional basement page is still the build
+(§3.2) — no town-level basement term in NoVA has a row except McLean at 30
+and Alexandria at 70, against 110 + 90 + 70 at region and Fairfax altitude.
+And it reinforces §5: kitchens and bathrooms are the larger paid market,
+now at town level as well as regional, at $63–$87 a click.
+
+**Method note, since this document has a history of them.** The error was not
+in the data. It was generalising a finding about one trade into a finding
+about a place, which is the same family of mistake §10 of
+`where-the-demand-actually-is.md` catalogues. The keyword rows for basements
+were correct; the sentence written around them reached further than they
+supported. Checking before deleting pages caught it.
+
 ## 2. The altitude finding, stated properly
 
 The 2026-09-18 brief says "the demand is regional, not municipal." That is
@@ -207,15 +279,28 @@ the whole architecture.
 its URL is a name people put after a trade when they search. That is an
 empirical question with three possible answers per place:
 
-- **Reported volume** (an Ads row exists): Martinsburg, Charles Town, Inwood,
-  Frederick, Hagerstown, Winchester, Leesburg/Ashburn (decks), Alexandria,
-  "Northern Virginia", "Fairfax VA". Build here.
+**Corrected 2026-09-18 — the test is per place AND trade.** The original
+version of this list graded places, which is what produced the error in
+§1.5. A place can pass for one trade and fail for another in the same
+breath, so each bucket below names the pairing.
+
+- **Reported volume** (an Ads row exists): every trade in Martinsburg,
+  Charles Town and Inwood; roofing and decks in Frederick, Hagerstown and
+  Winchester; decks in Leesburg/Ashburn; **kitchens and bathrooms in Ashburn,
+  Alexandria, McLean, Vienna, Great Falls, Reston and Leesburg**; basements in
+  Alexandria and McLean; and basements at "Northern Virginia" and "Fairfax VA"
+  altitude. Build here.
 - **Below the floor but observed** (no Ads row, but Search Console
-  impressions on the exact phrasing): Ranson, Vienna, Great Falls, Reston,
-  Clifton. Real, tiny. Keep what exists; add nothing.
-- **Nothing on either instrument**: Burke, Fairfax Station, Middleburg,
-  McLean (basements), "Eastern Panhandle", "Berkeley County", "Loudoun
-  County" (basements). Do not build; consolidate what was built.
+  impressions on the exact phrasing): basements in Ranson, Vienna, Great
+  Falls, Reston and Clifton. Real, tiny. Keep what exists; add nothing.
+- **Nothing on either instrument**: all three premium trades in Clifton,
+  Fairfax Station and Middleburg; basements in Burke; and every Eastern
+  Panhandle regional phrasing — "Eastern Panhandle", "Berkeley County",
+  "Jefferson County" — plus "Loudoun County" for basements. Do not build.
+
+Note what moved: **McLean, Vienna, Great Falls and Reston left the bottom
+bucket entirely** on the strength of their kitchen and bathroom rows. Only
+Clifton, Fairfax Station and Middleburg are now empty across the board.
 
 The site currently has one altitude everywhere — town — and applied it to a
 suburban market that does not think in towns. The fix is not to switch the
@@ -305,12 +390,32 @@ Sorted by evidence, not by one rule. Risk column is SEO risk of the action.
 | --- | --- | --- | --- |
 | **A — keep and invest** | All WV town pages (`/service-areas/*-wv`, the six WV combos); Frederick, Hagerstown, Winchester; Leesburg, Ashburn, Loudoun, Brambleton decks | No structural change. These pass the name test or hold positions. | None. Redirecting any of these would be the single most damaging move available. |
 | **B — keep, freeze, re-parent** | NoVA combos with mobile impressions: `basements-{alexandria, great-falls, vienna, reston}-va`; the `/service-areas/` overview for every NoVA town | Stay indexed, self-canonical. Gain `parent: northern-virginia`, link up to the hub, and the hub links down. Strip unverified claims to the verified set (§3.5). Re-read at 90 days. | Low. The pages hold positions 12–20 on real long-tail; a redirect now would trade observed impressions for a hub that has none yet. Cannibalisation risk with the hub is small: Google matches "northern virginia" queries to the page that says Northern Virginia. |
-| **C — consolidate** | NoVA combos with zero mobile impressions in six months and no Ads row: `basements-{burke, clifton, fairfax-station, middleburg}-va`, `basements-mclean-va` (3 impressions), and the kitchen/bath combos in the same towns once their rows are checked | `status: 'consolidated'`, 301 to `/services/{service}/northern-virginia`. Same deploy as the key removal. | Negligible. Pages with zero impressions carry no rankings to lose; a 301 passes what little internal-link equity they have to the page that needs it. |
+| **C — consolidate** *(corrected, and on hold — see §8)* | The 10 combos with zero mobile impressions in six months **and** no Ads row in any trade: all three of `{bathrooms, kitchens, basements}-{clifton, fairfax-station, middleburg}-va`, plus `basements-burke-va`. | `status: 'consolidated'`, 301, same deploy as the key removal. | Negligible — no impressions means no rankings to lose. But the doc's original redirect target does not exist yet, which is why this is on hold rather than done. |
 | **D — leave alone** | `/service-areas/{burke, clifton, fairfax-station, middleburg, mclean}-va` overview pages | Keep. Clifton's area page holds 48 impressions at 15.2; McLean's 209. They become children of the hub and gate their operational FAQ by `kind`. | None. |
 
 Alexandria is the interesting case and the proof the name test works: it is a
 NoVA "town" page that passes, because Alexandria is a city of 160,000 whose
-name people actually type (70/mo, KD 0). It stays a full page.
+name people actually type (70/mo for basements, 390 for kitchens, 320 for
+bathrooms). It stays a full page.
+
+> **Correction, 2026-09-18.** Tier C originally named `basements-mclean-va`
+> and the Burke, Clifton, Fairfax Station and Middleburg basement combos,
+> and speculated that "the kitchen/bath combos in the same towns" would join
+> them "once their rows are checked." The rows were then checked (§1.5) and
+> the answer went the other way.
+>
+> **McLean is withdrawn from Tier C entirely.** It has an Ads row for all
+> three trades — basements 30/mo, kitchens 260, bathrooms 140 — and 3 mobile
+> impressions on the basement page. It belongs in Tier B. Consolidating it
+> would have deleted a page for reported demand, which is the exact error
+> this document accuses the original site build of making.
+>
+> **Burke keeps its kitchen and bathroom pages** (10/mo apiece — tiny, but
+> reported) and loses only its basement combo.
+>
+> Tier C is therefore 10 combos, not 5-plus-speculation, and none of them is
+> in a town that shows demand for anything. Correcting this cost one keyword
+> call and would have cost five wrongly deleted pages.
 
 Not one WV page moves. The brief's "60+ existing town pages" is, precisely:
 25 area overview pages, 69 service+area pages, and 10 paving location pages
@@ -545,11 +650,33 @@ Every step is gated by the one above it where it says so.
    cover the slug integrity.
 2. Gate the generic city-template FAQ on `kind`/`market` so the same-week
    claim renders only for home-market towns.
-3. The claims guard test (§3.5), seeded with the six claims as
-   `verified: false`. The build goes red on the NoVA pages until you answer
-   §9 or the copy is trimmed — which is the point.
-4. Tier C consolidation: `status: 'consolidated'` plus redirects, same
-   deploy.
+3. The claims guard test (§3.5). **Shipped in #143, with one change of
+   approach:** the doc proposed seeding it so the build went red until the
+   claims were resolved. A guard that ships red gets disabled, so it ships
+   green instead — the seven claims are registered in `src/lib/claims.ts`
+   with an inventory of every page that carries each one, and the test fails
+   only when a *new* page, service or template inherits one. It also found
+   the footprint is wider than §3.5 said: the warranty language alone is on
+   30 of the 69 combos, 3 service pages, both templates, the sitewide FAQ,
+   eight standalone pages and 15 blog posts.
+4. Tier C consolidation. **On hold, deliberately — two reasons.**
+   - **The redirect target does not exist.** §3.3 sends the consolidated
+     combos to `/services/{service}/northern-virginia`, which Phase 2 builds.
+     Shipping 301s into a 404 is worse than leaving the pages up, and
+     redirecting them somewhere else instead (the town overview page, or the
+     service pillar) is a different decision from the one this document made.
+     Tier C therefore belongs *after* Phase 2.1, not in Phase 1.
+   - **The list was wrong and is now corrected** (§1.5 and the Tier C note in
+     §3.3). It is 10 combos in three towns, not 5 in five towns, and it no
+     longer touches McLean.
+
+   Nothing else in Phase 1 depended on it, so items 1-3 shipped without it.
+
+**Phase 1 status, 2026-09-18.** Items 1 and 2 shipped in #142 (the catalog,
+the `market`-gated service-radius claim, the corrected regional geography,
+and two bugs it exposed: the combo OG-image route resolved cities against the
+VA/MD-only alias so all six WV combo pages shipped with no social card, and a
+dead import). Item 3 shipped in #143. Item 4 is above.
 
 **Phase 2 — repo, gated on Phase 0.2.**
 1. `northern-virginia` area (`kind: 'region'`, `market: 'premium'`), the hub
