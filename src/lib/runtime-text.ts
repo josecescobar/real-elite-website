@@ -153,11 +153,25 @@ export function runtimeTextOfSource(source: string, fileName = 'file.tsx'): stri
     // as separate runs, which would reintroduce the split.
     if (isJsxContainer(node) && !(node.parent && isJsxContainer(node.parent))) {
       runs.push(renderedTextOf(node, consumed, runs));
-      // Attributes are NOT part of the painted run, but alt/aria text is still
-      // published copy, so walk them separately.
+      // Attributes are NOT part of the painted run, but alt/aria/title copy is
+      // still published, so walk them separately.
+      //
+      // The initializer is not always a bare string. `aria-label={'the copy'}` wraps the
+      // text in a JsxExpression, and `title={`Premium contracting in ${city}.`}`
+      // wraps a template literal. Testing `isStringLiteral` alone missed BOTH,
+      // and because this branch returns, the generic visitor never reached them
+      // either — so every expression-valued attribute in the tree was invisible,
+      // CityPageTemplate's own among them. Codex found it on #148.
+      //
+      // Routing through `renderedTextOf` reuses exactly the logic the children
+      // already use: a literal or template comes back as text, an opaque value
+      // comes back as a space and is dropped here, and a conditional's branches
+      // land as separate runs rather than being fused into a phrase the page
+      // never renders.
       ts.forEachChild(node, function attrs(child: ts.Node) {
         if (ts.isJsxAttribute(child) && child.initializer) {
-          if (ts.isStringLiteral(child.initializer)) runs.push(child.initializer.text);
+          const text = renderedTextOf(child.initializer, consumed, runs);
+          if (text.trim()) runs.push(text);
         }
         ts.forEachChild(child, attrs);
       });

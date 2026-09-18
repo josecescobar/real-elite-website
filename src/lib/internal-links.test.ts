@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 import { CONTENT, RETIRED_COMBOS } from '@/lib/service-city-content';
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, SERVICE_AREA_CATALOG } from '@/lib/constants';
 
 /**
  * The site must not link to its own retired, unbuilt, or misspelled
@@ -40,6 +40,21 @@ import { SERVICES } from '@/lib/constants';
  * Template links are derived from CONTENT and cannot go stale —
  * `serviceHrefForArea` and `CityPageTemplate.links.test.tsx` cover those.
  * Hand-written markdown cannot be derived, so it has to be scanned.
+ *
+ * ## A STATED BOUND: only link syntax is captured
+ *
+ * The scan reads markdown `](...)` and inline `href=...`. A path built into a
+ * variable first — `const to = '/services/roofing/mclean-va'; <a href={to}>` —
+ * is invisible to it. That is a real false negative, and it is stated here
+ * rather than left implicit, because twice in this PR a hole I noticed and did
+ * not write down became the next finding.
+ *
+ * It is not live: the tree contains no `href={identifier}` at all, and every
+ * other `/services/x/y` literal outside link syntax sits in a declaration file
+ * below or in a docblock. Widening the capture is deliberately NOT done here —
+ * two of the four findings against this file came from widening capture and
+ * then getting the gate wrong, so the cost of covering a shape nobody writes
+ * is another gate bug. If that shape appears, this is the place to fix.
  */
 
 /** Files ALLOWED to name a retired path, because they declare or assert it. */
@@ -51,6 +66,16 @@ const DECLARATION_FILES = new Set([
 ]);
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
+/**
+ * Every area slug the catalog declares, active or consolidated.
+ *
+ * Used to decide whether the area segment of an interpolated URL is a COMPLETE
+ * slug or the prefix of a derived one. The catalog is the right set rather than
+ * the published-combo keys: `roofing/mclean-va` names a real service and a real
+ * area but was never published, which makes it a hard 404 — exactly what the
+ * unpublished-combo check exists to catch.
+ */
+const AREA_SLUGS = new Set<string>(SERVICE_AREA_CATALOG.map((a) => a.slug));
 const PUBLISHED = new Set(Object.keys(CONTENT));
 const RETIRED = new Set(Object.keys(RETIRED_COMBOS));
 const BASE = 'https://www.realelitecontracting.com';
@@ -85,7 +110,7 @@ export function extractComboLinks(source: string): ComboLink[] {
   for (const raw of urls) {
     // Where the interpolation sits decides whether the PATH is derived.
     //
-    // Two earlier versions were both wrong, in opposite directions:
+    // THREE earlier versions were wrong, each one narrower than the last:
     //
     //   1. Skip the URL if `${` appears anywhere. Dropped
     //      `/services/kitchens/middleburg-va?campaign=${c}` — a hand-written
@@ -93,13 +118,20 @@ export function extractComboLinks(source: string): ComboLink[] {
     //   2. Skip if `${` appears before the first literal `?` or `#`. Dropped
     //      `/services/kitchens/middleburg-va${suffix}`, where the suffix
     //      supplies its own `?`. Same false negative, one layer down.
+    //   3. Require the literal prefix to form a combo key the repo PUBLISHES
+    //      OR RETIRES. Dropped `/services/roofing/mclean-va${suffix}` — both
+    //      segments complete and real, the combo never published, so the URL
+    //      is a hard 404. That gate could only ever preserve combos already
+    //      known, which defeated the never-published check specifically.
     //
     // A purely lexical rule cannot separate "suffix appended after a complete
     // slug" from "slug partially derived" — `/services/kitchens/middleburg${x}`
-    // looks identical to the first but the area slug is really derived. So
-    // when an interpolation is present, the literal prefix is RESOLVED: it
-    // counts only if it already forms a combo key this repo knows. That is
-    // sound in both directions, and it declines to guess where it cannot know.
+    // looks identical to the first but the area slug is really derived. What
+    // distinguishes them is whether the literal area segment is a slug the
+    // CATALOG knows, which is resolvable and does not presume the combo exists.
+    // The service segment needs no such test: a `/` follows it, so it is always
+    // complete (an interpolation inside it would leave the prefix one segment
+    // short and fail the path shape below).
     const interp = raw.indexOf('${');
     const literalPath = (interp === -1 ? raw : raw.slice(0, interp)).split(/[?#]/)[0];
 
@@ -115,10 +147,10 @@ export function extractComboLinks(source: string): ComboLink[] {
     if (!m) continue;
 
     const key = `${m[1]}-${m[2]}`;
-    // With an interpolation present the prefix must resolve to a real combo,
-    // otherwise the segment itself was derived and this is a template link
-    // that CityPageTemplate.links.test.tsx already covers.
-    if (interp !== -1 && !RETIRED.has(key) && !PUBLISHED.has(key)) continue;
+    // With an interpolation present the area segment must be a slug the
+    // catalog knows; otherwise that segment was itself derived and this is a
+    // template link CityPageTemplate.links.test.tsx already covers.
+    if (interp !== -1 && !AREA_SLUGS.has(m[2])) continue;
 
     out.push({ key, service: m[1], area: m[2], raw });
   }
@@ -190,11 +222,27 @@ describe('extractComboLinks', () => {
       'kitchens-middleburg-va',
     ],
     // Looks the same lexically, but the area slug is genuinely derived —
-    // `middleburg` is not a combo this repo publishes or retires.
+    // `middleburg` is not an area slug the catalog knows.
     [
       'partially derived area slug is skipped',
       'href={`/services/kitchens/middleburg${rest}`}',
       null,
+    ],
+    // Both segments complete and real, the combo NEVER PUBLISHED. The gate
+    // that only preserved known combos dropped this — the worst case again,
+    // since a suffix that is a query, a fragment or the empty string leaves a
+    // hard 404. It must reach the unpublished-combo check.
+    [
+      'hard-coded unpublished combo with an interpolated suffix',
+      'href={`/services/roofing/mclean-va${suffix}`}',
+      'roofing-mclean-va',
+    ],
+    // Same shape, misspelled service. The area slug is complete, so the path
+    // is not derived and the typo is reportable.
+    [
+      'misspelled service with an interpolated suffix',
+      'href={`/services/kithens/vienna-va${suffix}`}',
+      'kithens-vienna-va',
     ],
   ];
 
@@ -202,6 +250,18 @@ describe('extractComboLinks', () => {
     const keys = extractComboLinks(source).map((l) => l.key);
     if (expected === null) expect(keys).toEqual([]);
     else expect(keys).toEqual([expected]);
+  });
+
+  /**
+   * The interpolation gate is only as wide as AREA_SLUGS, so a combo whose
+   * area the catalog does not declare would be silently dropped when written
+   * with a suffix. Nothing else asserts that dependency from this side.
+   */
+  it('covers every published and retired combo area with a catalog slug', () => {
+    const areas = [...PUBLISHED, ...RETIRED].map((key) => key.slice(key.indexOf('-') + 1));
+    const missing = [...new Set(areas)].filter((a) => !AREA_SLUGS.has(a));
+    expect(missing, `areas absent from SERVICE_AREA_CATALOG: ${missing.join(', ')}`).toEqual([]);
+    expect(areas.length).toBeGreaterThan(50);
   });
 
   it('keeps a misspelled service slug rather than discarding it', () => {

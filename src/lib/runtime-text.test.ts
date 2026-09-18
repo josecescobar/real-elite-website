@@ -150,3 +150,68 @@ describe('runtimeTextOfSource — what counts as published', () => {
     expect(text).toMatch(/daily updates/i);
   });
 });
+
+/**
+ * Attributes whose value is an EXPRESSION rather than a bare string.
+ *
+ * The attribute walk tested `isStringLiteral` on the initializer alone, so
+ * `aria-label={'copy'}` and `title={`copy ${x}`}` were both invisible — and
+ * because the JSX-root branch returns before the generic visitor runs, nothing
+ * else picked them up either. This is live shape, not hypothetical:
+ * `CityPageTemplate.tsx` carries `title={`Premium contracting in ${city.city}.`}`
+ * and GalleryGrid carries `aria-label={`Open project image: ${image.alt}`}`,
+ * and the scanner saw neither. Codex found it on #148.
+ *
+ * Latent rather than live, measured both ways: the same 21 claim-bearing files
+ * in `src` before and after, so nothing was escaping the discovery guard — but
+ * the next claim phrase written into an `aria-label` would have.
+ */
+describe('runtimeTextOfSource — expression-valued attributes', () => {
+  it('finds a literal wrapped in an expression container', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <div aria-label={'written workmanship warranty'}>x</div>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('finds a template literal in an attribute on the JSX root', () => {
+    // The live CityPageTemplate shape.
+    const text = runtimeTextOfSource(
+      'const C = ({ city }) => <div title={`One named project lead in ${city}.`}>x</div>;'
+    );
+    expect(text).toMatch(/named project lead/i);
+  });
+
+  it('finds a template literal in an attribute on a nested element', () => {
+    const text = runtimeTextOfSource(
+      'const C = ({ n }) => <p><img alt={`Daily updates on ${n} jobs`} src="/x.png" /></p>;'
+    );
+    expect(text).toMatch(/daily updates/i);
+  });
+
+  it('finds a literal in an expression attribute on a nested self-closing element', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <p><img alt={'written workmanship warranty'} src=\"/x.png\" /></p>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('finds both branches of a conditional attribute without fusing them', () => {
+    const text = runtimeTextOfSource(
+      "const C = ({ ok }) => <div aria-label={ok ? 'clean job' : 'site'}>x</div>;"
+    );
+    expect(text).toMatch(/clean job/i);
+    expect(text).toMatch(/site/i);
+    // Only one branch ever renders, so the page never shows the fused phrase.
+    expect(text).not.toMatch(/clean job site/i);
+  });
+
+  it('does not invent text for an opaque attribute value', () => {
+    // `alt={img.alt}` carries no literal at all. It must contribute nothing
+    // rather than an empty run, and must not fuse the text around it.
+    const text = runtimeTextOfSource(
+      'const C = ({ img }) => <p>workmanship <img alt={img.alt} src="/x.png" /> warranty</p>;'
+    );
+    expect(text).not.toMatch(/workmanship warranty/i);
+  });
+});
