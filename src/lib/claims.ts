@@ -73,12 +73,21 @@
  * withholds those three from every `market: 'premium'` page, the new hub
  * included, keeping only the verified licensing line.
  *
- * What still reaches the hub, measured in the built HTML rather than assumed:
- * the warranty line appears twice more, from `AssurancesBand` ("Every project
- * gets our written workmanship warranty") and from `PROCESS_STEPS` in this
- * file's own `constants.ts` neighbour, via `PrecisionProcess` ("workmanship
- * warranty issued in writing"). Both are sitewide components on roughly fifty
- * pages including the homepage and /process.
+ * What still reaches the hub, traced occurrence by occurrence in the built
+ * HTML rather than inferred from a count — an earlier version of this note got
+ * it wrong by measuring the warranty and not following the others:
+ *
+ *   - `AssurancesBand` — "Every project gets our written workmanship
+ *     warranty", and "Named project lead. Daily updates while we work.
+ *     24-hour response standard. Clean job site every day."
+ *   - `PROCESS_STEPS` in `constants.ts`, via `PrecisionProcess` — "workmanship
+ *     warranty issued in writing" and "Daily updates from your project lead.
+ *     Clean job site. 24-hour response standard."
+ *   - one `SERVICES` description in `constants.ts` — "Full interior
+ *     renovations under one project lead".
+ *
+ * So three of the claims survive there, not one, on roughly fifty pages
+ * including the homepage and /process.
  *
  * Those are deliberately NOT gated. Removing the claim from one market's hub
  * while the homepage still makes it does not reduce the contract exposure —
@@ -129,10 +138,23 @@ export type OperationalClaim = {
   note?: string;
 };
 
-/** The two templates the guard watches, because each wraps dozens of pages. */
+/**
+ * The files the guard watches at file level, because each puts its text on
+ * dozens of pages at once.
+ *
+ * The last two were added after the Northern Virginia hub shipped: tracing the
+ * built HTML showed `AssurancesBand` and `PROCESS_STEPS` in `constants.ts`
+ * were the actual sitewide source of the warranty, project-lead, daily-updates
+ * and clean-job-site claims on roughly fifty pages — not just the warranty, as
+ * an earlier version of the note below wrongly said. Watching them does not
+ * change what they publish; it stops a NEW claim being added to the two files
+ * that reach the whole site.
+ */
 export const GUARDED_TEMPLATES = [
   'src/app/services/[service]/[city]/page.tsx',
   'src/components/services/CityPageTemplate.tsx',
+  'src/components/home/AssurancesBand.tsx',
+  'src/lib/constants.ts',
 ] as const;
 
 export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
@@ -160,6 +182,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
         'src/components/services/CityPageTemplate.tsx',
+        'src/components/home/AssurancesBand.tsx',
+        'src/lib/constants.ts',
       ],
     },
   },
@@ -189,6 +213,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
         'src/components/services/CityPageTemplate.tsx',
+        'src/components/home/AssurancesBand.tsx',
+        'src/lib/constants.ts',
       ],
     },
   },
@@ -233,6 +259,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
         'src/components/services/CityPageTemplate.tsx',
+        'src/components/home/AssurancesBand.tsx',
+        'src/lib/constants.ts',
       ],
     },
   },
@@ -258,6 +286,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
         'src/components/services/CityPageTemplate.tsx',
+        'src/components/home/AssurancesBand.tsx',
+        'src/lib/constants.ts',
       ],
     },
   },

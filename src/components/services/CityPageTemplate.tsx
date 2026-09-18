@@ -113,6 +113,16 @@ export default function CityPageTemplate({ city, data }: Props) {
         ]
       : ['Licensed and insured across West Virginia, Maryland, and Virginia.'];
 
+  // The hero sub carried the same unconfirmed `named-project-lead` claim as
+  // the trust block above — "the same project lead from estimate to final
+  // walk-through" — and the first version of that gate missed it. Gated on the
+  // same condition, with the verified licensing fact in its place so the
+  // premium hero still says something concrete.
+  const heroSub =
+    city.market === 'home'
+      ? `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, communication-first, and the same project lead from estimate to final walk-through.`
+      : `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, and licensed and insured across West Virginia, Maryland and Virginia.`;
+
   // Order services by marketEmphasis, then append remaining for completeness
   const emphasized = data.marketEmphasis
     .map((slug) => SERVICES.find((s) => s.slug === slug))
@@ -252,8 +262,7 @@ export default function CityPageTemplate({ city, data }: Props) {
             <span className="text-brand-red">{heroTail}</span>
           </h1>
           <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-            Premium remodeling and exterior craftsmanship for {city.city} homeowners. Veteran-owned,
-            communication-first, and the same project lead from estimate to final walk-through.
+            {heroSub}
           </p>
 
           {/* Neighborhood chips */}
