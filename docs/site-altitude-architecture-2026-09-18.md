@@ -866,23 +866,27 @@ it is a far stronger argument for answering it than "21 files" was.
 
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles. The reasoning holds — being listed in a directory is
-cheaper than outranking it — but **the list below was generic and is
-superseded** by `docs/phase-3-directories-2026-09-18.md`, which checked it
-against five live SERPs on 2026-09-18.
+cheaper than outranking it — but the named list was generic and is superseded
+by `docs/phase-3-directories-2026-09-18.md`.
 
-Originally: *"Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already has a
-Thumbtack webhook). A third of the NoVA organic field is directories."*
+Two things that file establishes, both of which change the work:
 
-Measured: **BuildZoom and Thumbtack appear in none of the five.** Angi and
-Houzz appear only in the *home market*, not in either Northern Virginia query.
-Yelp appears in all five. Three that do rank — BestPickReports (NoVA only),
-BBB and HomeAdvisor (home market) — were not on the list. And directory share
-in the home market runs at least as high as in NoVA on either way of counting,
-so framing this as a Northern Virginia play is not supported.
+**The repo already answers most of it.** `constants.ts` carries a Yelp profile
+URL that is unverified because Yelp blocks bots; records that the Thumbtack and
+LinkedIn profiles 404'd and were removed; and holds BBB and Angi as trust
+badges with `href: null`, so they deliberately do not render. So Yelp is a
+*verify*, not a create; Thumbtack has a webhook but no profile; and BBB and
+Angi have UI already built and waiting.
 
-Revised order: **Yelp, BBB, Houzz, Angi/HomeAdvisor, BestPickReports**, plus
-the GAF certified-installer locator, which is a manufacturer listing rather
-than a directory. Detail, method and limits in that file.
+**And one SERP snapshot proves very little.** Three same-day snapshots of
+`basement remodeling northern virginia` — §1.3's and two of mine minutes apart
+— churn two to three domains between them. Yelp and BestPickReports appear in
+all three; Angi in §1.3's only. Rank directories from repeated observation, not
+from one look.
+
+Revised order: **Yelp (verify the existing URL), BBB, Angi, Houzz,
+HomeAdvisor, BestPickReports**, plus the GAF certified-installer locator.
+BuildZoom has no signal; Thumbtack has no profile.
 
 **Phase 4 — paid test, gated on Phase 0.1, Phase 1.3 green, Phase 2.1
 live, and a tracking number.** Three months, geo-targeted to Fairfax and

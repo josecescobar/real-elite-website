@@ -1,122 +1,131 @@
-# Phase 3 — which directories actually rank, measured 2026-09-18
+# Phase 3 — directories, checked against live SERPs and against the repo
 
 §8 Phase 3 says: *"Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack
 (the repo already has a Thumbtack webhook). A third of the NoVA organic field
 is directories; being listed in them is cheaper than outranking them."*
 
-The reasoning is sound. **The list is not, and neither is the market it points
-at.** Both were checked against live SERPs before any profile work starts,
-because a profile costs owner hours and those go to the wrong places if the
-list is generic.
+The reasoning holds. The list was checked before any profile work starts,
+because a profile costs owner hours.
 
-## Method, and its limits
+**Two things this file got wrong in its first draft, both corrected below:** it
+treated single SERP snapshots as stable, and it said the repo could not tell us
+which profiles already exist. The repo can, and does.
 
-Live Google results, depth 20, 2026-09-18, via DataForSEO. Five queries
-returned; two more (`kitchen remodeling loudoun county va`, `siding contractor
-martinsburg wv`) failed upstream with `Internal SE Server Error` and are not
-reported — I did not retry selectively.
+## The SERP is volatile enough that one snapshot proves little
 
-**Five queries is a small sample.** Directory presence varies by query and by
-trade, and nothing below should be read as a stable percentage. What it is good
-enough to establish is which *names* appear at all, which is the question Phase
-3 actually turns on.
+`basement remodeling northern virginia`, three snapshots on 2026-09-18 — §1.3's
+and two of mine taken minutes apart:
 
-Rows counted are organic only — local pack, People Also Ask, related searches
-and the review carousel are excluded. "Relevant" excludes rows where the SERP
-has run out of topical results (Reddit threads, a Spotify podcast, a PS5 error
-video, the WV Board of Medicine).
-
-## Directory share, both ways of counting
-
-`facebook.com` is counted separately because it is arguable: the rows are
-Facebook's `fb-answers` pages and a local group post, which behave like
-directory listings but are not one.
-
-| Query | Relevant organic | Directories | Strict | + social |
-| --- | --- | --- | --- | --- |
-| basement remodeling northern virginia | 10 | 2 | 20% | 30% |
-| basement finishing northern virginia | 14 | 2 | 14% | 14% |
-| roofing contractor martinsburg wv | 14 | 4 | 29% | 36% |
-| bathroom remodeling martinsburg wv | 14 | 4 | 29% | 36% |
-| deck builder martinsburg wv | 9 | 3 | 33% | 44% |
-
-| Market | Strict | + social |
+| | Relevant organic rows | Overlap with the other pull |
 | --- | --- | --- |
-| Northern Virginia (2 queries) | 17.1% | 22.1% |
-| Home market (3 queries) | 30.2% | 38.6% |
+| pull A | 10 | 8 |
+| pull B | 9 | 8 |
 
-**§1.3's "a third of the NoVA organic field is directories" holds on its own
-terms** — counting Facebook, `basement remodeling northern virginia` is 3 of 10.
-What the wider pull adds is that **the home market runs at least as high and
-probably higher**, on either counting. Phase 3 is framed as a Northern Virginia
-play, and the evidence does not support that framing being exclusive.
+Between two pulls **minutes apart**, `facebook.com` and `michaelandson.com`
+dropped out and `mossbuildinganddesign.com` appeared. Across all three
+snapshots of this one query:
 
-## Which names actually appear
-
-| Domain | SERPs (of 5) | Where |
-| --- | --- | --- |
-| `yelp.com` | **5** | both markets, every query |
-| `bestpickreports.com` | 2 | Northern Virginia only |
-| `bbb.org` | 2 | home market only |
-| `houzz.com` | 2 | home market only (bathroom, deck) |
-| `angi.com` | 1 | home market only (bathroom) |
-| `homeadvisor.com` | 1 | home market only (bathroom) |
-| `downtobid.com` | 1 | home market (commercial bid aggregator) |
-| `gaf.com` | 1 | home market (roofing manufacturer locator) |
-
-### Against the five Phase 3 names
-
-| Named in Phase 3 | Appears |
+| Directory | Snapshots seen in |
 | --- | --- |
-| Yelp | **5 of 5** |
-| Houzz | 2 of 5 — home market only |
-| Angi | 1 of 5 — home market only |
-| BuildZoom | **0 of 5** |
-| Thumbtack | **0 of 5** |
+| `yelp.com` | **3 of 3** |
+| `bestpickreports.com` | **3 of 3** |
+| `facebook.com` | 2 of 3 |
+| `angi.com` | 1 of 3 — §1.3's only |
 
-Two of the five never appear. Two more appear only in the market Phase 3 is not
-aimed at. And three domains that do rank — BestPickReports, BBB, HomeAdvisor —
-are not named at all.
+**So Angi *has* been recorded in a Northern Virginia SERP**, and an earlier
+version of this file said it appeared "home market only". That was a
+single-snapshot artefact. Directory *count* held steady at 2 of 9–10 across
+both of my pulls, so the share is more stable than the membership — but neither
+is stable enough to rank directories from one look.
 
-**The Thumbtack case is worth stating plainly:** the repo has a Thumbtack
-webhook, and that is why Thumbtack is on the list. Having the integration is not
-evidence of demand, and Thumbtack did not appear in any of the five SERPs.
-Plumbing is not a reason to prioritise a channel.
+Everything below is therefore reported as **observed in at least one snapshot**,
+not as what does or does not rank.
 
-## Revised priority
+## What was observed, across six snapshots
 
-Ordered by evidence, not by how well known the brand is.
+Five queries at depth 20 plus one re-pull at depth 30. Two further queries
+failed upstream and are not reported; I did not retry selectively.
 
-1. **Yelp** — the only directory in all five SERPs, in both markets. If exactly
-   one profile gets made, this is it.
-2. **BBB** — two of three home-market queries. Also a trust signal in a market
-   where the business is local, which the others are not.
-3. **Houzz** — two home-market queries, both on visual trades (bathroom, deck).
-   Houzz is photo-led; it pairs with the job photos already needed for Phase 2.2.
-4. **Angi / HomeAdvisor** — same parent company, one query each. Treat as one
-   decision, not two.
-5. **BestPickReports** — the only directory ranking in *both* NoVA queries. I do
-   not know its entry requirements or cost; it presents as a vetted/paid
-   programme. Worth a look before assuming it is available.
-6. **GAF contractor locator** — not a directory in the same sense: it is a
-   manufacturer's certified-installer listing, and Real Elite does roofing. If
-   the certification is already held, the listing may be free and unclaimed.
+| Domain | Queries seen in | Where |
+| --- | --- | --- |
+| `yelp.com` | 5 of 5 | both markets, every query, every snapshot |
+| `bestpickreports.com` | 2 of 5 | Northern Virginia |
+| `bbb.org` | 2 of 5 | home market |
+| `houzz.com` | 2 of 5 | home market |
+| `angi.com` | 1 of 5 + §1.3's NoVA record | both |
+| `homeadvisor.com` | 1 of 5 | home market |
+| `gaf.com` | 1 of 5 | home market, roofing |
+| `downtobid.com` | 1 of 5 | home market, commercial bids |
+| `buildzoom.com` | **0** | not observed |
+| `thumbtack.com` | **0** | not observed |
 
-**Dropped: BuildZoom, Thumbtack.** No appearances.
+**Yelp is the only robust result here.** It appeared in every query and every
+snapshot. Everything else is a weaker observation, and the two zeroes are
+absence of evidence across six looks rather than proof of absence.
 
-## What this does not tell you
+An earlier version of this file compared directory share between Northern
+Virginia and the home market and concluded the home market ran higher. **That
+comparison rested on one snapshot per query and is withdrawn** — the volatility
+above is the same size as the difference it claimed to find.
 
-- Whether Real Elite already has a profile on any of these. I cannot see that
-  from here; several may exist unclaimed, which is faster to fix than a new one.
-- Whether a listing converts. Ranking in the organic field means the *directory*
-  gets the click — being listed inside it is a second-order bet, and the
-  document that claims otherwise has not measured it.
-- Anything about the local pack, which is a different surface with different
-  rules and is §5's subject, not this one.
+## What the repo already knows, which matters more
+
+`src/lib/constants.ts` answers most of the "does a profile exist" question that
+the first draft of this file said it could not:
+
+| Platform | State in the repo |
+| --- | --- |
+| **Yelp** | URL present — `yelp.com/biz/real-elite-contracting` — but **unverified**: the comment records that Yelp returns 403 to automated checks and says to verify manually in a browser before linking it from the footer |
+| **Thumbtack** | profile was listed, **returned 404**, and was removed to avoid a broken `sameAs` reference |
+| **LinkedIn** | same — listed, 404, removed |
+| **BBB** | a trust badge with `href: null`, so it deliberately does not render |
+| **Angi** | a trust badge with `href: null`, so it deliberately does not render |
+| Facebook, Instagram, Google | live URLs, in `sameAs` |
+
+Two consequences.
+
+**The Thumbtack case is settled on repo evidence, not SERP evidence.** It is on
+the Phase 3 list because the repo has a Thumbtack *webhook*. The repo also
+records that the Thumbtack *profile* 404'd and was removed. Integration is not
+a profile, and neither is evidence of demand.
+
+**BBB and Angi already have UI waiting for them.** The badge array renders each
+entry only when `href` is a real live profile URL. Creating those profiles
+lights up components that are already built and currently hidden — a smaller
+and more certain return than a new listing elsewhere.
+
+## Revised order
+
+1. **Yelp — verify, do not create.** A profile URL already exists in the repo,
+   unverified because Yelp blocks bots. Open it in a browser. If it is Real
+   Elite's, claim it and the footer link can be enabled; if it is not, that is
+   when creation is the action. Creating one without checking risks a duplicate
+   listing.
+2. **BBB** — observed in two home-market queries, and a badge placeholder is
+   already waiting on it.
+3. **Angi** — same badge situation; observed in the home market and in §1.3's
+   NoVA record.
+4. **Houzz** — two home-market queries, both visual trades. Pairs with the job
+   photos Phase 2.2 already needs.
+5. **HomeAdvisor** — same parent as Angi; treat as one decision with it.
+6. **BestPickReports** — the one directory in every Northern Virginia snapshot
+   besides Yelp. Entry requirements unknown; it presents as vetted/paid.
+7. **GAF certified-installer locator** — a manufacturer listing rather than a
+   directory. If the certification is held, the listing may be free and
+   unclaimed.
+
+**BuildZoom: not observed, no repo signal, no action.**
+**Thumbtack: the profile 404'd. Nothing to prioritise until one exists.**
+
+## What this still does not tell you
+
+- Whether a listing converts. Ranking in the organic field means the
+  *directory* gets the click; being inside it is a second-order bet nobody here
+  has measured.
+- Anything about the local pack, which is a different surface — §5's subject.
 
 ## What has not been done, and why
 
-**No profiles were created or edited.** Every item above writes to an
-outward-facing asset the repo does not own, which `CLAUDE.md` reserves for the
-owner. This file is the prioritised list to work from, not a record of work
-completed.
+**No profiles were created, claimed or edited**, and no repo change was made to
+link the Yelp URL. Both write to outward-facing assets or depend on a manual
+verification `CLAUDE.md` reserves for the owner.
