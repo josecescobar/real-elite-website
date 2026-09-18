@@ -203,10 +203,13 @@ impressions and later fall out.
 **Crawl budget and selection on a low-authority domain.** Google read the
 sitemap — it is among the referring URLs for the one combo it crawled — and
 fetched part of what was offered. That fits the observations and is the ordinary
-behaviour for a small site publishing 52 templated pages at once.
+behaviour for a small site publishing **62 templated pages in a single commit**
+(2026-07-06, the 52 still live plus the 10 later retired).
 
-**It is not confirmed.** With 8 established pages inspected, it is a hypothesis
-supported by a consistent sample, not a measured property of the site.
+**What is measured and what is not.** That every still-live page with zero
+impressions has never been fetched *is* measured — 20 of 20, no exceptions.
+**Why** Google fetched some and not others is not. Crawl budget is the
+best-fitting hypothesis for the cause and nothing here confirms it.
 
 ## Why it matters
 
@@ -261,5 +264,6 @@ to consolidate.
 - **Not** that the cause is established.
 - **Not** anything about the eight pages published 2026-09-15 or later. They are
   too new to measure and are excluded from every figure above.
-- **Not** a measurement of the whole site. 19 of 178 sitemap URLs were inspected;
-  area pages, pillars and the homepage all sampled as indexed.
+- **Not** a measurement of the whole site. **37 of 178 sitemap URLs** were
+  inspected — complete for the still-live zero-impression combos, a sample
+  everywhere else. Area pages, pillars and the homepage all sampled as indexed.

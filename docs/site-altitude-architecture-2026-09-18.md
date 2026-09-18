@@ -165,7 +165,7 @@ dataset and it deserves its own look.
 `docs/index-coverage-2026-09-18.md`.** The page is not ranking badly. It is
 **"Crawled – currently not indexed"**, last fetched 2026-06-01. And it is not
 alone: **30 of the 62 combo pages live for the measurement window have zero
-mobile impressions, and of the 20 still live, **all 20 are "URL is unknown to
+mobile impressions, and of the 20 still live, all 20 are "URL is unknown to
 Google"** — never fetched, though they have been in the sitemap since
 2026-07-06, the same commit that added the pages Google *did* index. The other
 10 were retired on 2026-09-18 and can no longer be inspected.
