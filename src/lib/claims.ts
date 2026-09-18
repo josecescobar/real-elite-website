@@ -475,7 +475,24 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
     // watching: absent from the retraction worklist, absent from the count, and
     // a new page using the site's own "N to N" phrasing would not have moved
     // the snapshot or failed CI. Codex found it on #148.
-    patterns: [/\d+\s*(?:–|—|-|to)\s*\d+ weeks of active work/i],
+    // THE NOUN PHRASE VARIES TOO, not only the dash. Widening the separator
+    // last round fixed one axis of variation and left the other, immediately
+    // after being shown that this claim's phrasing varies. The site publishes
+    // the same promise four ways:
+    //
+    //   "8–14 weeks of active work"          combo content map
+    //   "6-10 weeks of active construction"  kitchen + bathroom cost articles
+    //   "6–10 weeks of on-site work"         signature-kitchen project record
+    //   "6-12 weeks of work"                 basement-finishing Frederick guide
+    //
+    // Deliberately NOT matched, because they are different promises that happen
+    // to share the shape: "2-3 weeks of Frederick County permitting", "1-2
+    // weeks of plan review", "3-6 months of expenses in liquid savings", and
+    // one article's "2-3 weeks of takeout-heavy living". A false positive here
+    // puts a page on the owner's retraction worklist that does not belong on it.
+    patterns: [
+      /\d+\s*(?:–|—|-|to)\s*\d+\s*(?:weeks?|days?) of (?:active work|active construction|on-site work|work)/i,
+    ],
     note:
       'Registered as one claim across all markets rather than only the 8-22 week NoVA figures the brief flagged, because they are the same kind of promise and the owner will want to rule on them together. A schedule quoted on a page becomes the baseline a late job is measured against.',
     publishedIn: {
