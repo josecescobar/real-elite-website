@@ -192,7 +192,34 @@ export type OperationalClaim = {
  * The files the guard watches at file level, because each puts its text on
  * dozens of pages at once.
  *
- * The last two were added after the Northern Virginia hub shipped:
+ * ## The inventory must name the file that actually carries the claim
+ *
+ * `src/lib/trust-bullets.ts` was added on 2026-09-18 after a break I shipped
+ * and Codex caught on #147, AFTER that PR merged. Extracting the per-market
+ * trust bullets out of the combo route into that module moved four claims to a
+ * new file and left every `publishedIn.templates` entry pointing at the route,
+ * which then matched none of them. Two consequences:
+ *
+ *   1. The retraction worklist became WRONG. An owner following it would edit
+ *      the route, find nothing, and every home-market combo would carry on
+ *      publishing the bullets.
+ *   2. The new file was not watched, so the ratchet was blind to it. Verified
+ *      by injecting `daily progress photos` and `same-day response` into it:
+ *      the whole claims suite stayed green, 22 of 22.
+ *
+ * Both are now tested — `inventories only templates that actually publish the
+ * claim` and `watches every file an inventory names`. Moving claim-bearing copy
+ * to a new file without moving the inventory and adding the file here fails.
+ *
+ * The same test found a pre-existing over-listing: `named-project-lead` named
+ * `constants.ts`, whose "a project lead assigned" and "your project lead" match
+ * none of that claim's patterns. Removed.
+ *
+ * The combo route stays watched even though it now carries no claim, so a
+ * claim added back to it trips.
+ *
+ * The AssurancesBand and constants.ts entries were added after the Northern
+ * Virginia hub shipped:
  * `AssurancesBand` and `PRECISION_PROCESS` in `constants.ts` are the actual
  * sitewide source of the warranty, project-lead, daily-updates and
  * clean-job-site claims on roughly fifty pages — not just the warranty, as an
@@ -203,6 +230,7 @@ export type OperationalClaim = {
  */
 export const GUARDED_TEMPLATES = [
   'src/app/services/[service]/[city]/page.tsx',
+  'src/lib/trust-bullets.ts',
   'src/components/services/CityPageTemplate.tsx',
   'src/components/home/AssurancesBand.tsx',
   'src/lib/constants.ts',
@@ -227,7 +255,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'bathrooms-burke-va', 'kitchens-burke-va', ],
       serviceSlugs: ['kitchens', 'roofing', 'general-repairs'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
         'src/lib/constants.ts',
@@ -254,10 +282,9 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'kitchens-burke-va', ],
       serviceSlugs: ['bathrooms', 'kitchens', 'remodeling'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
-        'src/lib/constants.ts',
       ],
     },
   },
@@ -295,7 +322,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'basements-great-falls-va', 'basements-reston-va', ],
       serviceSlugs: ['bathrooms', 'kitchens', 'decks', 'remodeling'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
         'src/lib/constants.ts',
@@ -318,7 +345,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         ],
       serviceSlugs: ['bathrooms', 'kitchens', 'remodeling', 'general-repairs', 'handyman'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
         'src/lib/constants.ts',

@@ -76,6 +76,65 @@ describe('operational claims register', () => {
   });
 
   /**
+   * An inventoried template must ACTUALLY publish the claim.
+   *
+   * This is the guard whose absence let a real break ship. Extracting the
+   * per-market trust bullets out of the combo route and into
+   * `src/lib/trust-bullets.ts` moved four claims to a new file and left every
+   * `publishedIn.templates` entry pointing at the route — which then matched
+   * none of them. Two consequences, both worse than a stale comment:
+   *
+   *   1. The retraction worklist became WRONG. An owner following it would
+   *      edit the route, find nothing, and every home-market combo would keep
+   *      publishing the bullets.
+   *   2. The new file was not in GUARDED_TEMPLATES, so the ratchet did not
+   *      watch it at all. Verified by injecting `daily progress photos` and
+   *      `same-day response` into trust-bullets.ts: the whole claims suite
+   *      stayed green, 22 of 22.
+   *
+   * Codex caught it on #147, after that PR had merged. A test catches it now:
+   * the register may not name a file that does not carry the claim, so moving
+   * the strings without moving the inventory fails here.
+   *
+   * It also found a pre-existing over-listing — `named-project-lead` claimed
+   * `constants.ts`, whose "a project lead assigned" and "your project lead"
+   * match none of that claim's patterns.
+   */
+  it('inventories only templates that actually publish the claim', () => {
+    const stale: string[] = [];
+    for (const claim of OPERATIONAL_CLAIMS) {
+      for (const rel of claim.publishedIn.templates) {
+        const source = TEMPLATE_SOURCE.get(rel);
+        if (source === undefined) continue; // covered by the test above
+        const published = claimsFoundIn(source).some((c) => c.id === claim.id);
+        if (!published) {
+          stale.push(
+            `${claim.id} inventories ${rel}, which matches none of its patterns — if the copy moved, move the inventory with it; if it never carried the claim, drop the entry`
+          );
+        }
+      }
+    }
+    expect(stale, stale.join('; ')).toEqual([]);
+  });
+
+  /**
+   * The other direction: a watched file that publishes an unconfirmed claim no
+   * inventory records is already covered by the ratchet's per-template test
+   * below. This pair means the register and the source cannot disagree in
+   * either direction without something going red.
+   */
+  it('watches every file an inventory names', () => {
+    for (const claim of OPERATIONAL_CLAIMS) {
+      for (const rel of claim.publishedIn.templates) {
+        expect(
+          GUARDED_TEMPLATES as readonly string[],
+          `${claim.id} inventories "${rel}" but the guard does not watch it, so a claim added there would not trip`
+        ).toContain(rel);
+      }
+    }
+  });
+
+  /**
    * A confirmed claim may appear anywhere, so its inventory is meaningless and
    * would go stale unnoticed. Emptying it is part of confirming the claim.
    */
