@@ -70,6 +70,18 @@ const ROOT = '.next/server/app';
  * the most reviewable form there is. Regenerating to silence a failure is the
  * move `claims.ts`'s howToFix forbids.
  */
+/**
+ * Which claims belong in the snapshot. ONE definition, used by both the
+ * validation and the regenerator.
+ *
+ * They decided this independently before, and drifted: the regenerator wrote
+ * every registered claim while the validation rejected any that was no longer
+ * unconfirmed, so confirming a claim produced a file that could not pass. Two
+ * places deciding the same thing is the defect; this is the fix.
+ */
+const snapshotClaimIds = (): string[] =>
+  OPERATIONAL_CLAIMS.filter((c) => c.status === 'unconfirmed').map((c) => c.id);
+
 const SNAPSHOT_PATH = 'tests/claim-pages.json';
 const SNAPSHOT: Record<string, string[]> = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
 
@@ -137,6 +149,21 @@ function visibleText(html: string): string {
     .join('\n');
 }
 
+/**
+ * The route a built artifact serves.
+ *
+ * Next writes the homepage as `index.html`, which the naive derivation turned
+ * into `/index` — a route this app does not have. The snapshot then listed
+ * `/index` under four claims and omitted `/`, so the retraction worklist
+ * pointed the owner at a page that does not exist while leaving out the
+ * homepage, which is the most-read page carrying those promises. Codex found
+ * it on #148, in data I had just handed over as a deliverable.
+ */
+function routeOf(file: string): string {
+  const path = file.slice(ROOT.length).replace(/\.html$/, '');
+  return path === '/index' || path === '' ? '/' : path;
+}
+
 function builtPages(): string[] {
   const out: string[] = [];
   const walk = (dir: string) => {
@@ -166,7 +193,7 @@ describe('unconfirmed claims in rendered pages', () => {
   /** claim id -> the routes whose rendered output publishes it. */
   const actual = new Map<string, Set<string>>();
   for (const file of pages) {
-    const route = file.slice(ROOT.length).replace(/\.html$/, '') || '/';
+    const route = routeOf(file);
     for (const claim of claimsFoundIn(visibleText(fs.readFileSync(file, 'utf8')))) {
       if (!actual.has(claim.id)) actual.set(claim.id, new Set());
       actual.get(claim.id)!.add(route);
@@ -188,7 +215,7 @@ describe('unconfirmed claims in rendered pages', () => {
   });
 
   it('records a page list for every unconfirmed claim in the register', () => {
-    const unconfirmed = OPERATIONAL_CLAIMS.filter((c) => c.status === 'unconfirmed').map((c) => c.id);
+    const unconfirmed = snapshotClaimIds();
     const missing = unconfirmed.filter((id) => !(id in SNAPSHOT));
     expect(
       missing,
@@ -202,6 +229,47 @@ describe('unconfirmed claims in rendered pages', () => {
   });
 
   /**
+   * The worklist must point at pages that exist.
+   *
+   * It listed `/index` under four claims and omitted `/`, because Next writes
+   * the homepage as `index.html`. An owner following that list would have gone
+   * looking for a page this app does not have, and would not have been told
+   * about the homepage — which carries four of the seven claims.
+   */
+  it('names only routes the site actually serves', () => {
+    const built = new Set(pages.map(routeOf));
+    const unknown = [...new Set(Object.values(SNAPSHOT).flat())]
+      .filter((route) => !built.has(route))
+      .sort();
+    expect(
+      unknown,
+      `the retraction worklist names ${unknown.length} route(s) with no built page: ${unknown.join(', ')}`
+    ).toEqual([]);
+    // The homepage carries claims and must be named as `/`.
+    expect(built.has('/'), 'the homepage must resolve to /').toBe(true);
+    expect(built.has('/index'), '/index is not a route').toBe(false);
+  });
+
+  /**
+   * The regenerator and the validation must agree on which claims belong in
+   * the file, or confirming a claim yields a snapshot that cannot pass.
+   */
+  it('scopes the snapshot to unconfirmed claims only', () => {
+    const ids = snapshotClaimIds();
+    expect(ids.length).toBeGreaterThan(0);
+    for (const id of ids) {
+      const claim = OPERATIONAL_CLAIMS.find((c) => c.id === id);
+      expect(claim?.status).toBe('unconfirmed');
+    }
+    // Every claim in the register is either snapshotted or verified — no third
+    // state that would fall between the two.
+    const accounted = OPERATIONAL_CLAIMS.every(
+      (c) => ids.includes(c.id) || c.status === 'verified'
+    );
+    expect(accounted, 'a claim is neither snapshotted nor verified').toBe(true);
+  });
+
+  /**
    * Set equality, with the two directions reported apart. A relocation — one
    * page losing the claim while another gains it — leaves the totals identical
    * and is caught here as one addition and one removal.
@@ -209,9 +277,15 @@ describe('unconfirmed claims in rendered pages', () => {
   it('publishes each unconfirmed claim on exactly the recorded pages', () => {
     if (process.env.UPDATE_CLAIM_PAGES) {
       const next: Record<string, string[]> = {};
-      for (const c of OPERATIONAL_CLAIMS) {
-        const routes = actual.get(c.id);
-        if (routes) next[c.id] = [...routes].sort();
+      // UNCONFIRMED only. Writing every registered claim put a newly verified
+      // one straight back into the file, which the validation above then
+      // rejected as stale — so the documented confirmation workflow (owner
+      // confirms a claim, regenerate) could not produce a valid file at all.
+      // The updater was broken for the one flow this whole register exists to
+      // support. Codex found it on #148.
+      for (const id of snapshotClaimIds()) {
+        const routes = actual.get(id);
+        if (routes) next[id] = [...routes].sort();
       }
       fs.writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(next, null, 2)}\n`);
       return;

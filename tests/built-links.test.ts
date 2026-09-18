@@ -65,8 +65,11 @@ function builtPages(): string[] {
   return out;
 }
 
-const pageRoute = (file: string): string =>
-  norm(file.slice(APP.length).replace(/\.html$/, ''));
+/** Next writes the homepage as `index.html`; `/index` is not a route. */
+const pageRoute = (file: string): string => {
+  const path = norm(file.slice(APP.length).replace(/\.html$/, ''));
+  return path === '/index' ? '/' : path;
+};
 
 /**
  * Every internal href a page renders. Only build output is excluded here.
