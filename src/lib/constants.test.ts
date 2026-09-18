@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   SERVICES,
+  servicePillarHref,
   SERVICE_AREA_CATALOG,
   PRIMARY_SERVICE_AREAS,
   SECONDARY_SERVICE_AREAS,
@@ -43,6 +44,24 @@ describe('service areas', () => {
   it('has globally unique slugs across primary and secondary tiers', () => {
     const slugs = [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS].map((a) => a.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  /**
+   * `/services/paving` 308s to `/paving`, and interpolating `/services/${slug}`
+   * put that redirect on all 26 area pages and the /services index. The link
+   * is derived, so it appears nowhere in source — only the built-HTML
+   * assertion could see it. This pins the helper that fixes it; the rendered
+   * check in tests/built-links.test.ts is what guards the call sites.
+   */
+  it('maps a service slug to its canonical pillar, honouring overrides', () => {
+    expect(servicePillarHref('kitchens')).toBe('/services/kitchens');
+    expect(servicePillarHref('paving')).toBe('/paving');
+    // Every service must produce a href, and none may point back at a slug
+    // whose pillar was moved.
+    for (const s of SERVICES) {
+      expect(servicePillarHref(s.slug).startsWith('/')).toBe(true);
+    }
+    expect(SERVICES.some((s) => s.slug === 'paving')).toBe(true);
   });
 
   it('exposes a deduplicated ALL_SERVICE_AREAS list', () => {
@@ -357,11 +376,15 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
         `${source} redirects to "${configured.destination}" but the catalog declares redirectTo: "${area.redirectTo}" — one of the two is wrong`
       ).toBe(area.redirectTo);
 
-      // 301, not 302: a retired area's ranking signals should pass to the page
-      // that replaced it. The altitude plan specifies 301 for consolidation.
+      // Permanent, not temporary: a retired area's ranking signals should pass
+      // to the page that replaced it. Note Next emits 308 for
+      // `permanent: true`, not the 301 the altitude plan's prose says; Google
+      // treats both as permanent for canonicalisation, so the plan's intent
+      // holds. Corrected here because the comment asserted a status code the
+      // config does not actually produce.
       expect(
         configured.permanent,
-        `${source} is a temporary redirect; a retired area should 301 so the destination inherits its ranking signals`
+        `${source} is a temporary redirect; a retired area should redirect permanently so the destination inherits its ranking signals`
       ).toBe(true);
 
       // (c) Unconditional. A `has`/`missing` predicate means the redirect only

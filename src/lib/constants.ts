@@ -103,6 +103,35 @@ export const FINANCING = {
  * Service catalog — ordered by homepage / mega-menu priority.
  * Premium remodeling categories lead; small-job services trail.
  */
+/**
+ * Services whose pillar page does NOT live under `/services/`.
+ *
+ * Paving was consolidated into a dedicated `/paving` pillar — hub, service
+ * templates and location pages — and `/services/paving` redirects there. But
+ * the row stays in SERVICES because the trade is still offered, so every
+ * caller deriving a link from the slug produced `/services/paving` and sent
+ * the visitor through a 308. It was on 27 live pages: all 26 service-area
+ * pages and the `/services` index.
+ *
+ * Found by the built-HTML link assertion in `tests/built-links.test.ts` on its
+ * first run. No source-level scan could have seen it — the href is derived
+ * from the slug, so the string `/services/paving` appears nowhere in `src`.
+ * That is the argument for asserting over rendered output, made concrete.
+ */
+const PILLAR_HREF_OVERRIDES: Readonly<Record<string, string>> = {
+  paving: '/paving',
+};
+
+/**
+ * The canonical pillar URL for a service slug.
+ *
+ * Every caller that turns a service slug into a link must use this rather than
+ * interpolating `/services/${slug}` — that is what produced the 27-page
+ * redirect above.
+ */
+export const servicePillarHref = (slug: string): string =>
+  PILLAR_HREF_OVERRIDES[slug] ?? `/services/${slug}`;
+
 export const SERVICES = [
   {
     title: 'Bathroom Remodeling',

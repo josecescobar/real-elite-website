@@ -80,6 +80,6 @@ If you're planning a high-end primary bath in **Loudoun County, Ashburn, Leesbur
 
 ## Also serving the wider Northern Virginia luxury market
 
-Beyond Loudoun, we renovate primary baths across Fairfax County and Alexandria — including [McLean](/services/bathrooms/mclean-va), [Great Falls](/services/bathrooms/great-falls-va), [Vienna](/services/bathrooms/vienna-va), [Reston](/services/bathrooms/reston-va), [Old Town Alexandria](/services/bathrooms/alexandria-va), and [Middleburg](/services/bathrooms/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=bathroom) and we'll call inside the window you choose.
+Beyond Loudoun, we renovate primary baths across Fairfax County and Alexandria — including [McLean](/services/bathrooms/mclean-va), [Great Falls](/services/bathrooms/great-falls-va), [Vienna](/services/bathrooms/vienna-va), [Reston](/services/bathrooms/reston-va), [Old Town Alexandria](/services/bathrooms/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=bathroom) and we'll call inside the window you choose.
 
 Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.

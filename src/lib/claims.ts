@@ -31,6 +31,27 @@
  * claim and the retraction is a mechanical edit against a known list rather
  * than a repo-wide hunt.
  *
+ * ## Shrinking an inventory when a page is RETIRED, not when it is awkward
+ *
+ * 2026-09-18: Tier C retired ten service+area pages (see `RETIRED_COMBOS` in
+ * service-city-content.ts), and 42 inventory entries across six claims pointed
+ * at them. Those entries are removed.
+ *
+ * This is NOT the move this file's `howToFix` forbids. That prohibition is on
+ * ADDING a location so a failing guard goes quiet, which hides a claim
+ * spreading to a new page. Here the pages ceased to exist: the
+ * `records only combo keys and service slugs that actually exist` test fails
+ * if a retired key stays, precisely so a stale inventory cannot quietly turn
+ * the ratchet into a no-op for that claim.
+ *
+ * The net effect is real and in the right direction — 42 fewer published
+ * occurrences of unconfirmed operational promises, on pages that had zero
+ * mobile impressions in six months. Retiring dead pages is the cheapest
+ * reduction in contract exposure available, and it needed no content decision
+ * from the owner because nothing was read there.
+ *
+ * The remaining worklist is smaller but the seven claims are unresolved.
+ *
  * ## How to resolve a claim
  *
  * - **Owner confirms it** → set `status: 'verified'` and empty its
@@ -44,15 +65,23 @@
  * the `CONTENT` map (69 service+city pages), `SERVICE_DATA` (12 service
  * pages), and the two page templates that wrap them (94 pages between them).
  *
- * Out of scope, deliberately: one-off JSX pages (`/about`,
- * `/capability-statement`, `/design-consultation`, `/faq`, `/process`,
- * `/services`, `/veterans`, `/full-property-perimeter`, `AssurancesBand`),
- * `src/lib/constants.ts`'s sitewide FAQ, `src/lib/paving-data.ts`, and the
- * 15 blog posts under `content/blog/` that also carry the warranty language.
- * Those are hand-written pages the owner has seen, and they do not multiply
- * when a new market is added. They are listed here rather than left implicit
- * so the register is honest about its own coverage: a retraction has to sweep
- * them too, and the guard will not remind anyone.
+ * Out of scope, deliberately, and now ENFORCED AS DATA in
+ * `UNGUARDED_CLAIM_SOURCES` below rather than described here. Those are
+ * hand-written pages the owner has seen; they do not multiply when a market is
+ * added, which is what the file-level guard exists to stop. A retraction still
+ * has to sweep them, and the guard will not remind anyone.
+ *
+ * `AssurancesBand` and `constants.ts` were in that prose list and are now
+ * WATCHED instead — they reach every page.
+ *
+ * Making the list executable showed the prose was incomplete: it missed
+ * `/storm-damage`, `TrustBar.tsx` and three project records. Five claim-bearing
+ * files nobody had accounted for. `claims.test.ts` now walks `src` and fails on
+ * any claim-bearing file that is neither watched nor declared, so the list
+ * cannot silently fall behind again.
+ *
+ * The 15 blog posts under `content/blog/` that carry warranty language are
+ * outside this scan, which covers `src` only.
  *
  * ## A known gap in the ratchet
  *
@@ -139,6 +168,22 @@
 export type ClaimStatus = 'verified' | 'unconfirmed';
 
 export type OperationalClaim = {
+  /**
+   * A fragment of the site's OWN phrasing that this claim's patterns match.
+   *
+   * Exists so a guard can exercise the matcher against any claim without
+   * depending on `label` wording. A label is a sentence written for the owner
+   * and four of the seven do NOT match their own patterns — `daily-progress-photos`
+   * is labelled "progress photos every day" while its pattern is
+   * /daily progress photos/i. An anti-vacuity check built on labels therefore
+   * ran or silently skipped depending on which claims remained registered,
+   * which is how a broken matcher could go unexercised. Codex found both halves
+   * of that on #148.
+   *
+   * `every example matches its own claim` enforces the guarantee, so this
+   * cannot drift from the patterns beside it.
+   */
+  example: string;
   /** Stable id, used in test failure messages. */
   id: string;
   /** The promise in plain terms — this is what the owner confirms or retracts. */
@@ -171,7 +216,34 @@ export type OperationalClaim = {
  * The files the guard watches at file level, because each puts its text on
  * dozens of pages at once.
  *
- * The last two were added after the Northern Virginia hub shipped:
+ * ## The inventory must name the file that actually carries the claim
+ *
+ * `src/lib/trust-bullets.ts` was added on 2026-09-18 after a break I shipped
+ * and Codex caught on #147, AFTER that PR merged. Extracting the per-market
+ * trust bullets out of the combo route into that module moved four claims to a
+ * new file and left every `publishedIn.templates` entry pointing at the route,
+ * which then matched none of them. Two consequences:
+ *
+ *   1. The retraction worklist became WRONG. An owner following it would edit
+ *      the route, find nothing, and every home-market combo would carry on
+ *      publishing the bullets.
+ *   2. The new file was not watched, so the ratchet was blind to it. Verified
+ *      by injecting `daily progress photos` and `same-day response` into it:
+ *      the whole claims suite stayed green, 22 of 22.
+ *
+ * Both are now tested — `inventories only templates that actually publish the
+ * claim` and `watches every file an inventory names`. Moving claim-bearing copy
+ * to a new file without moving the inventory and adding the file here fails.
+ *
+ * The same test found a pre-existing over-listing: `named-project-lead` named
+ * `constants.ts`, whose "a project lead assigned" and "your project lead" match
+ * none of that claim's patterns. Removed.
+ *
+ * The combo route stays watched even though it now carries no claim, so a
+ * claim added back to it trips.
+ *
+ * The AssurancesBand and constants.ts entries were added after the Northern
+ * Virginia hub shipped:
  * `AssurancesBand` and `PRECISION_PROCESS` in `constants.ts` are the actual
  * sitewide source of the warranty, project-lead, daily-updates and
  * clean-job-site claims on roughly fifty pages — not just the warranty, as an
@@ -182,17 +254,114 @@ export type OperationalClaim = {
  */
 export const GUARDED_TEMPLATES = [
   'src/app/services/[service]/[city]/page.tsx',
+  'src/lib/trust-bullets.ts',
   'src/components/services/CityPageTemplate.tsx',
   'src/components/home/AssurancesBand.tsx',
   'src/lib/constants.ts',
 ] as const;
 
+/**
+ * Files whose RUNTIME text publishes an unconfirmed claim and which the
+ * file-level guard deliberately does NOT watch, each with the reason.
+ *
+ * ## Why this is data and not prose
+ *
+ * The header above used to describe this set in a sentence. Codex asked on
+ * #148 for the guard to discover claim-bearing modules independently rather
+ * than trust the inventory it validates — otherwise a refactor that moves copy
+ * to a new module AND drops the old inventory entry leaves both the guard and
+ * the ratchet blind, which is the exact hole #147 shipped.
+ *
+ * So `claims.test.ts` now scans all of `src` and requires every claim-bearing
+ * file to be classified: watched here, inventoried by another axis, or listed
+ * below with a reason. An unclassified file FAILS. The default is failure,
+ * which is the only default that closes a discovery hole.
+ *
+ * Writing it down also showed the prose was incomplete. It named /about,
+ * /capability-statement, /design-consultation, /faq, /process, /services,
+ * /veterans, /full-property-perimeter and paving-data.ts — and MISSED
+ * /storm-damage, TrustBar.tsx and three project records. Five claim-bearing
+ * files nobody had accounted for, found by making the list executable.
+ */
+export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
+  // One-off, hand-written pages the owner has seen. They do not multiply when
+  // a market is added, which is what the file-level guard exists to stop.
+  'src/app/about/page.tsx': 'one-off page',
+  'src/app/capability-statement/page.tsx': 'one-off page',
+  'src/app/design-consultation/page.tsx': 'one-off page',
+  'src/app/faq/page.tsx': 'one-off page',
+  'src/app/full-property-perimeter/page.tsx': 'one-off page',
+  'src/app/process/page.tsx': 'one-off page',
+  'src/app/services/page.tsx': 'one-off page',
+  'src/app/storm-damage/page.tsx': 'one-off page — missing from the prose list',
+  'src/app/veterans/page.tsx': 'one-off page',
+  'src/components/home/TrustBar.tsx': 'sitewide band — missing from the prose list',
+
+  // Inventoried by a DIFFERENT axis of this register, so file-level watching
+  // would double-count: every occurrence is already listed per key or slug.
+  'src/lib/service-city-content.ts': 'inventoried per combo key (publishedIn.comboKeys)',
+  'src/lib/services-data.ts': 'inventoried per service slug (publishedIn.serviceSlugs)',
+
+  // Data the register does not track, recorded so it is not mistaken for an
+  // oversight. A retraction has to sweep these by hand.
+  'src/lib/paving-data.ts': 'paving data, untracked',
+  'src/lib/projects/data/composite-deck-build-martinsburg.ts':
+    'project record — missing from the prose list',
+  'src/lib/projects/data/walk-in-shower-bathroom-remodel.ts':
+    'project record — surfaced by the "N weeks on site" pattern, added 2026-09-18',
+  'src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts':
+    'project record — surfaced by the "N working days" pattern, added 2026-09-18',
+  'src/lib/projects/data/new-construction-framing-to-finish.ts':
+    'project record — missing from the prose list',
+  'src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts':
+    'project record — missing from the prose list',
+
+  // The register quotes the claims it tracks, in labels and notes.
+  'src/lib/claims.ts': 'the register itself',
+};
+
+/**
+ * The numeric span at the front of every duration promise, shared by the
+ * `active-work-timeline` patterns below.
+ *
+ * It exists as ONE constant because this claim has now been found too narrow
+ * three review rounds running, each time on a different axis of the same
+ * phrasing, and twice the fix widened one copy of the range and left another
+ * axis untouched. A shared prefix cannot drift from itself; three literals
+ * repeating it can, and did.
+ *
+ * Covers digits and the spelled-out numerals the site actually uses, either
+ * dash, and weeks or days. NOT months — every month-range on the site is a
+ * curing time, a savings-buffer figure or a design phase, none of them a
+ * promise about how long a crew is in someone's house.
+ */
+const COUNT = String.raw`(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve|twenty)`;
+const DURATION_RANGE = String.raw`${COUNT}\s*(?:\u2013|\u2014|-|to)\s*${COUNT}\s*(?:weeks?|days?)`;
+
+/**
+ * A duration counted in WORKING days, which needs no qualifier after it.
+ *
+ * The word carries the meaning on its own: a working day is time a crew is on
+ * the job, so "two to three working days" is the same promise as "3-5 weeks of
+ * active work" and belongs on the same worklist. The range is optional because
+ * the site states it both ways.
+ *
+ * "business days" is deliberately NOT here, and the distinction is the site's
+ * own rather than one imposed: every "business day" on the site is a RESPONSE
+ * turnaround ("a real person will call within one business day", permits
+ * "reviewed in 5-10 business days"), and every "working day" is job duration.
+ * If that ever stops being true the guard will surface the sentence and someone
+ * can read it, which is the guard working rather than a hole in it.
+ */
+const WORKING_DAYS = String.raw`${COUNT}(?:\s*(?:\u2013|\u2014|-|to)\s*${COUNT})?\s*working days?`;
+
 export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   {
     id: 'written-workmanship-warranty',
+    example: 'a written workmanship warranty on every job',
     label: 'Every project carries a written workmanship warranty.',
     status: 'unconfirmed',
-    patterns: [/workmanship warranty/i],
+    patterns: [/workmanship (?:warrant|guarantee)/i],
     note:
       'The broadest-reaching of the seven and the one with the most legal weight. Also published in the sitewide FAQ in constants.ts, on eight standalone pages, and in 15 blog posts — all outside this guard. A retraction is a repo-wide sweep, not a 30-key edit.',
     publishedIn: {
@@ -203,14 +372,16 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'bathrooms-vienna-va', 'kitchens-vienna-va', 'basements-vienna-va',
         'bathrooms-great-falls-va', 'kitchens-great-falls-va', 'basements-great-falls-va',
         'bathrooms-reston-va', 'kitchens-reston-va', 'basements-reston-va',
-        'bathrooms-burke-va', 'kitchens-burke-va', 'basements-burke-va',
-        'bathrooms-fairfax-station-va', 'kitchens-fairfax-station-va', 'basements-fairfax-station-va',
-        'bathrooms-clifton-va', 'kitchens-clifton-va', 'basements-clifton-va',
-        'bathrooms-middleburg-va', 'kitchens-middleburg-va', 'basements-middleburg-va',
-      ],
-      serviceSlugs: ['kitchens', 'roofing', 'general-repairs'],
+        'bathrooms-burke-va', 'kitchens-burke-va',
+        // Detected 2026-09-18 when the pattern widened to cover "workmanship
+        // guarantee" and the PLURAL "workmanship warranties". This copy dates
+        // to 2026-07-06 (#63) — it is not new, it was never matched. Adding it
+        // here is the one legitimate reason to grow an inventory; growing it to
+        // silence a guard that caught NEW copy is what the header forbids.
+        'roofing-frederick-md', 'roofing-hagerstown-md', 'roofing-loudoun-county-va', ],
+      serviceSlugs: ['kitchens', 'roofing', 'general-repairs', 'handyman'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
         'src/lib/constants.ts',
@@ -219,6 +390,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'named-project-lead',
+    example: 'one named project lead from estimate to punch list',
     label: 'One named project lead runs the job from estimate through final punch list.',
     status: 'unconfirmed',
     patterns: [/named project lead/i, /project lead on every/i, /accountable project lead/i],
@@ -234,22 +406,18 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'kitchens-vienna-va', 'basements-vienna-va', 'bathrooms-great-falls-va',
         'kitchens-great-falls-va', 'basements-great-falls-va', 'bathrooms-reston-va',
         'kitchens-reston-va', 'basements-reston-va', 'bathrooms-burke-va',
-        'kitchens-burke-va', 'basements-burke-va', 'bathrooms-fairfax-station-va',
-        'kitchens-fairfax-station-va', 'basements-fairfax-station-va', 'bathrooms-clifton-va',
-        'kitchens-clifton-va', 'basements-clifton-va', 'bathrooms-middleburg-va',
-        'kitchens-middleburg-va', 'basements-middleburg-va',
-      ],
+        'kitchens-burke-va', ],
       serviceSlugs: ['bathrooms', 'kitchens', 'remodeling'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
-        'src/lib/constants.ts',
       ],
     },
   },
   {
     id: 'daily-progress-photos',
+    example: 'daily progress photos shared with you',
     label: 'The homeowner receives progress photos every day.',
     status: 'unconfirmed',
     patterns: [/daily progress photos/i],
@@ -261,16 +429,14 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'basements-alexandria-va', 'bathrooms-vienna-va', 'kitchens-vienna-va',
         'bathrooms-great-falls-va', 'kitchens-great-falls-va', 'bathrooms-reston-va',
         'kitchens-reston-va', 'bathrooms-burke-va', 'kitchens-burke-va',
-        'bathrooms-fairfax-station-va', 'kitchens-fairfax-station-va',
-        'bathrooms-clifton-va', 'kitchens-clifton-va', 'bathrooms-middleburg-va',
-        'kitchens-middleburg-va',
-      ],
+        ],
       serviceSlugs: ['bathrooms'],
       templates: [],
     },
   },
   {
     id: 'daily-updates',
+    example: 'daily updates while the crew is on site',
     label: 'The homeowner gets an update every day the job is active.',
     status: 'unconfirmed',
     patterns: [/daily updates/i, /updates? you daily/i, /update you daily/i],
@@ -282,12 +448,10 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'bathrooms-leesburg-va', 'bathrooms-winchester-va', 'kitchens-frederick-md',
         'kitchens-leesburg-va', 'kitchens-ashburn-va', 'kitchens-loudoun-county-va',
         'basements-frederick-md', 'basements-mclean-va', 'basements-vienna-va',
-        'basements-great-falls-va', 'basements-reston-va', 'basements-burke-va',
-        'basements-fairfax-station-va', 'basements-clifton-va', 'basements-middleburg-va',
-      ],
+        'basements-great-falls-va', 'basements-reston-va', ],
       serviceSlugs: ['bathrooms', 'kitchens', 'decks', 'remodeling'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
         'src/lib/constants.ts',
@@ -296,9 +460,12 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'clean-job-site',
+    example: 'a clean job site at the end of every day',
     label: 'The job site is left clean at the end of every day.',
     status: 'unconfirmed',
     patterns: [/clean job site/i],
+    note:
+      'A daily operational promise, and the easiest of the seven for a homeowner to check — they are standing in the room at 6pm. It is also the one most likely to be broken by a subcontractor rather than by the crew, which makes it a claim about scheduling and supervision rather than about intent. Published on 135 of 182 built pages including the homepage.',
     publishedIn: {
       comboKeys: [
         'roofing-hagerstown-md', 'remodeling-hagerstown-md', 'basements-frederick-md',
@@ -307,14 +474,10 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'basements-vienna-va', 'bathrooms-great-falls-va', 'kitchens-great-falls-va',
         'basements-great-falls-va', 'bathrooms-reston-va', 'kitchens-reston-va',
         'basements-reston-va', 'bathrooms-burke-va', 'kitchens-burke-va',
-        'basements-burke-va', 'bathrooms-fairfax-station-va', 'kitchens-fairfax-station-va',
-        'basements-fairfax-station-va', 'bathrooms-clifton-va', 'kitchens-clifton-va',
-        'basements-clifton-va', 'bathrooms-middleburg-va', 'kitchens-middleburg-va',
-        'basements-middleburg-va',
-      ],
+        ],
       serviceSlugs: ['bathrooms', 'kitchens', 'remodeling', 'general-repairs', 'handyman'],
       templates: [
-        'src/app/services/[service]/[city]/page.tsx',
+        'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
         'src/components/home/AssurancesBand.tsx',
         'src/lib/constants.ts',
@@ -323,6 +486,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'same-day-response',
+    example: 'a same-day response to every enquiry',
     label: 'Enquiries and questions get a same-day response.',
     status: 'unconfirmed',
     patterns: [/same[- ]day response/i],
@@ -332,19 +496,68 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       comboKeys: [
         'bathrooms-mclean-va', 'kitchens-mclean-va', 'kitchens-alexandria-va',
         'bathrooms-vienna-va', 'kitchens-vienna-va', 'kitchens-great-falls-va',
-        'kitchens-reston-va', 'kitchens-burke-va', 'kitchens-fairfax-station-va',
-        'kitchens-clifton-va',
-      ],
+        'kitchens-reston-va', 'kitchens-burke-va', ],
       serviceSlugs: [],
       templates: [],
     },
   },
   {
     id: 'active-work-timeline',
+    example: 'typically 8–14 weeks of active work',
     label:
       'Named week-range timelines for active work (3-5 weeks for a bath up to 14-22 weeks for a Great Falls basement).',
     status: 'unconfirmed',
-    patterns: [/\d+–\d+ weeks of active work/i],
+    // THIS CLAIM'S DETECTION HAS BEEN FOUND NARROWER THAN ITS PUBLICATION
+    // THREE ROUNDS RUNNING, each time on a different axis of the same promise,
+    // and twice the fix widened the axis that was reported and left the next
+    // one. The patterns below are built from one shared range prefix for that
+    // reason. The full inventory of how the site says it:
+    //
+    //   SEPARATOR   "8–14 weeks", "6-10 weeks", "6 to 10 weeks",
+    //               "two to four weeks"
+    //   QUALIFIER   "of active work"        combo content map
+    //               "of active construction" kitchen + bathroom cost articles
+    //               "of on-site work"        signature-kitchen project record
+    //               "of work"                basement + Frederick permits guides
+    //               "on site"                deck + walk-in-shower project records
+    //               "from demo to final"     services-data kitchens + bathrooms
+    //               "from approved estimate to final walk-through"
+    //                                        full-property-perimeter
+    //               "from permit to final walkthrough"  deck-season article
+    //   UNIT        "two to three working days"   victorian-roof project record
+    //               "9 working days"              composite-vs-PT deck article
+    //                 — no qualifier needed; "working" names the promise
+    //
+    // Deliberately NOT matched, because they are different promises that happen
+    // to share the shape: "2-3 weeks of Frederick County permitting", "1-2
+    // weeks of plan review", "2-4 weeks of approval before the build", "3-6
+    // months of expenses in liquid savings", one article's "2-3 weeks of
+    // takeout-heavy living", and "4-8 weeks out for project starts" (booking
+    // lead time, not duration). A false positive here puts a page on the
+    // owner's retraction worklist that does not belong on it.
+    //
+    // STILL NOT MATCHED, AND STRUCTURAL: a bare range with no UNIT and no
+    // qualifier
+    // ("kitchen: 6–12 weeks" in a table, "5–8 weeks is typical"). Deciding
+    // whether one of those is this promise needs the surrounding prose, not a
+    // regex, and roughly fifty of them are permitting or curing figures. A
+    // regex that caught them would flood the worklist. §8 of
+    // docs/site-altitude-architecture-2026-09-18.md records this as the known
+    // residual and proposes the sweep that would close it.
+    patterns: [
+      // "8–14 weeks of active work", "6-12 weeks of work"
+      new RegExp(`${DURATION_RANGE} of (?:active work|active construction|on-site work|work)`, 'i'),
+      // "3–5 weeks on site", "1–3 weeks on site once the permit is issued"
+      new RegExp(`${DURATION_RANGE} on[- ]site`, 'i'),
+      // "3–5 weeks from demo to final walk-through", "5–7 weeks from approved
+      // estimate to final walk-through", "two to four weeks from permit to
+      // final walkthrough". The range prefix is what keeps this off the many
+      // `named project lead from estimate to final walk-through` lines, which
+      // are a different claim.
+      new RegExp(`${DURATION_RANGE} from (?:\\w+[ -]){0,3}to final`, 'i'),
+      // "two to three working days", "Active construction time: 9 working days"
+      new RegExp(WORKING_DAYS, 'i'),
+    ],
     note:
       'Registered as one claim across all markets rather than only the 8-22 week NoVA figures the brief flagged, because they are the same kind of promise and the owner will want to rule on them together. A schedule quoted on a page becomes the baseline a late job is measured against.',
     publishedIn: {
@@ -355,8 +568,17 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'kitchens-loudoun-county-va', 'basements-frederick-md', 'basements-mclean-va',
         'basements-vienna-va', 'kitchens-great-falls-va', 'basements-great-falls-va',
         'basements-reston-va',
+        // "3–5 weeks from demo to final walkthrough" — visible only once the
+        // patterns covered the no-"of" forms. git log -S dates the line to
+        // 2026-07-06 (#63), so the scan caught up; the copy did not spread.
+        'bathrooms-frederick-md',
       ],
-      serviceSlugs: [],
+      // Same round, same evidence: services-data.ts has said "3–5 weeks from
+      // demo to final walk-through" (bathrooms) and "6–10 weeks from demo to
+      // final" (kitchens) since #63 on 2026-07-06. These are the two highest-
+      // traffic service pillars on the site, and the promise was unwatched on
+      // both of them for two months.
+      serviceSlugs: ['bathrooms', 'kitchens'],
       templates: [],
     },
   },

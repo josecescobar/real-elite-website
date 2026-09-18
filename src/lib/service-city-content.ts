@@ -8,6 +8,12 @@
  */
 
 import { claimsFoundIn } from '@/lib/claims';
+import { servicePillarHref } from '@/lib/constants';
+
+// Re-exported so callers have one import site for combo facts. The declaration
+// lives in its own dependency-free module because next.config.ts loads it
+// outside the app's module graph, where `@/` does not resolve — see that file.
+export { RETIRED_COMBOS } from '@/lib/retired-combos';
 
 export const FEATURED_SERVICE_SLUGS = [
   'roofing',
@@ -85,9 +91,17 @@ export const COMBO_CITY_SLUGS = [
   'great-falls-va',
   'reston-va',
   'burke-va',
-  'fairfax-station-va',
-  'clifton-va',
-  'middleburg-va',
+
+  // Fairfax Station, Clifton and Middleburg are GONE from this list, not
+  // omitted by accident. Tier C retired every combo they had (see
+  // RETIRED_COMBOS in retired-combos.ts), so keeping their slugs here would
+  // leave three
+  // entries this map can never key. Burke stays: it keeps its kitchen and
+  // bathroom combos and lost only its basement page.
+  //
+  // Re-adding one means writing localized content for it AND removing its
+  // entry from RETIRED_COMBOS, which the retired-combo redirect test will
+  // force you to do rather than letting a page and a 301 fight each other.
 ] as const;
 export type ComboCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
@@ -804,113 +818,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
-  // ── BASEMENTS · BURKE, VA ────────────────────────────────────────────────
-  'basements-burke-va': {
-    metaDescription:
-      'Finished lower levels in Burke — family room, guest suite, full bath, gym. Most projects run $80,000 to $120,000, with every line itemized before work starts.',
-    paragraphs: [
-      "Burke homes typically have generous unfinished lower levels, and a finished lower level is one of the highest-impact projects a Burke homeowner can build. The typical Burke basement brief includes a finished family room, full bath, wet bar or kitchenette, guest suite or office, and sometimes a dedicated gym or media room.",
-      "Real Elite Contracting builds Burke lower levels with proper moisture control as the foundation: perimeter inspection, sump pump verification, vapor barrier installation under any framing, dimple-mat or insulated subfloor where the slab condition requires it. From there: code-compliant framing, egress where bedrooms are planned, full electrical, HVAC extension, and the insulation, drywall, and finishes that turn raw space into living space.",
-      "Typical Burke basement-finishing scope in 2026 runs $55,000–$140,000+ depending on square footage and feature mix. A finished family room with full bath, wet bar, guest suite, and laundry rough-in usually lands in the $80,000–$120,000 range. We provide detailed line-item estimates with everything broken out.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
-    ],
-  },
-
-  // ── BATHROOMS · FAIRFAX STATION, VA ──────────────────────────────────────
-  'bathrooms-fairfax-station-va': {
-    paragraphs: [
-      "Fairfax Station primary baths trend larger and more architecturally ambitious than the typical Fairfax County remodel — a reflection of the larger lots, the longer-term ownership pattern, and the homeowner expectation that a primary bath should function as a private retreat. Typical Fairfax Station primary-bath scope in 2026 runs $60,000–$130,000+ depending on size, layout changes, and material grade.",
-      "Real Elite Contracting renovates Fairfax Station primary baths with the craft this market expects. Featured projects routinely include curbless walk-in showers with linear drains, freestanding soaking tubs, double-vanity layouts with stone tops, slab-edge mitered details, premium fixture lines, heated floors, and lighting designed scene by scene.",
-      "Many Fairfax Station primary-bath renovations are part of a primary-suite expansion that opens into the closet or an adjoining bedroom. We bring a structural engineer in early when those changes are on the table, model the geometry for the homeowner and designer, and value-engineer the parts of the budget that won't change the visible result.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. One named project lead from estimate through final walkthrough, daily progress photos, clean job site every evening, and a written workmanship warranty.",
-    ],
-  },
-
-  // ── KITCHENS · FAIRFAX STATION, VA ───────────────────────────────────────
-  'kitchens-fairfax-station-va': {
-    paragraphs: [
-      "Fairfax Station kitchens skew larger and more architecturally substantial than typical Fairfax County kitchens. The homes are bigger, the entertaining is more serious, and the brief often includes a separate scullery or butler's pantry, professional-spec ventilation, integrated panel-front appliance suites, and a full-height refrigerator and freezer column. Typical scope in 2026 runs $130,000–$300,000+.",
-      "Real Elite Contracting builds Fairfax Station kitchens in close collaboration with the designers this market relies on. Featured scope includes custom inset cabinetry from a tier-one shop, full-slab quartzite or natural-stone countertops with mitered apron edges, integrated panel-front appliance suites (Sub-Zero, Wolf, Miele), professional ventilation that disappears into millwork, scullery build-outs, and layered lighting.",
-      "Where there's an opportunity to reshape the plan — removing the bearing wall to the family room, expanding into a former breakfast area, relocating mechanical to clean up ceiling height — those structural moves often deliver the highest-impact result. We bring a structural engineer in early, model the changes, value-engineer the parts that won't be visible, and protect the spend for the cabinetry, stone, and fixtures.",
-      "Communication runs through one named project lead from estimate through final punch list. Daily progress photos, clean job site every evening, same-day response standard, and a written workmanship warranty. Fairfax County permitting, mechanical and electrical inspections, and design coordination are handled by us.",
-    ],
-  },
-
-  // ── BASEMENTS · FAIRFAX STATION, VA ──────────────────────────────────────
-  'basements-fairfax-station-va': {
-    metaDescription:
-      'Estate lower levels in Fairfax Station — media room, wet bar, guest suite, fitness. Most builds run $150,000 to $200,000, fully itemized before work starts.',
-    paragraphs: [
-      "Fairfax Station lower levels are some of the most substantial finished-basement projects in southern Fairfax County. The typical brief includes a media room with tiered seating, a wet bar that functions as a second entertaining kitchen, a guest suite with full bath, a fitness or yoga room, and sometimes a wine room or family lounge.",
-      "Real Elite Contracting builds Fairfax Station lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
-      "Typical Fairfax Station basement-finishing scope in 2026 runs $100,000–$250,000+ depending on square footage, feature mix, and the level of millwork and stone. A finished entertainment lower level with media room, wet bar, full bath, guest suite, and gym usually lands in the $150,000–$200,000 range. We provide detailed line-item estimates with everything broken out.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
-    ],
-  },
-
-  // ── BATHROOMS · CLIFTON, VA ──────────────────────────────────────────────
-  'bathrooms-clifton-va': {
-    paragraphs: [
-      "Clifton primary baths divide naturally into two project briefs: historic homes in the Clifton Village proper, where period accuracy and restrained luxury are the priority, and the larger country estates along Compton Road, Ridge Road, and Yates Ford Road, where the brief is closer to a Great Falls primary-suite expansion. Real Elite Contracting handles both, calibrated to the architectural character of the address.",
-      "For historic Clifton Village homes, we specify period-respectful tile patterns (hex mosaic, marble basketweave, subway with pencil liners), traditional vanity profiles in inset cabinetry, polished nickel or unlacquered brass fittings, and clawfoot or freestanding tubs that belong in a historic envelope. Typical scope runs $50,000–$110,000+ depending on the level of structural and plumbing work the floor plan requires.",
-      "For the country estates, the brief tends to be larger and more contemporary — curbless walk-in showers with linear drains, freestanding soaking tubs, double-vanity layouts with stone tops, slab-edge mitered details, premium fixture lines, heated floors, and lighting designed scene by scene. Typical scope runs $70,000–$150,000+.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. For homes inside Clifton Town's historic district, any change affecting building exteriors requires Town review; we carry the paperwork. One named project lead from estimate through final walkthrough, daily progress photos, clean job site every evening, and a written workmanship warranty.",
-    ],
-  },
-
-  // ── KITCHENS · CLIFTON, VA ───────────────────────────────────────────────
-  'kitchens-clifton-va': {
-    paragraphs: [
-      "Clifton kitchens range from period-respectful historic-village renovations to substantial estate kitchens on the surrounding country lots. Each calls for a different sensibility, and the right contractor in this market is one who can read which sensibility the home is asking for and execute to it without compromise.",
-      "Real Elite Contracting builds Clifton kitchens with the same craft we bring to the McLean / Great Falls market, calibrated to the architectural pedigree of the address. Typical scope in 2026 runs $90,000–$280,000+ depending on the home, the cabinetry brief (inset paint-grade vs. period furniture-style), the stone, and the appliance specification. Historic Clifton kitchens often need creative plumbing and electrical routing inside plaster walls; we handle that as part of the scope.",
-      "For estate-class country properties, the brief is closer to Great Falls or Fairfax Station: full inset cabinetry from a tier-one shop, professional-spec ventilation, integrated panel-front appliances, scullery or butler's pantry, and structural changes (bearing wall removal, ceiling height changes) where the plan supports them. We bring a structural engineer in early when needed.",
-      "Communication runs through one named project lead from estimate through final punch list. Daily progress photos, clean job site every evening, same-day response standard, and a written workmanship warranty. Fairfax County permitting, mechanical and electrical inspections, and design coordination are handled by us.",
-    ],
-  },
-
-  // ── BASEMENTS · CLIFTON, VA ──────────────────────────────────────────────
-  'basements-clifton-va': {
-    metaDescription:
-      'Lower-level finishing in Clifton — restrained builds for Village homes, full entertainment levels for the country estates. From $60,000 to $300,000+, itemized.',
-    paragraphs: [
-      "Clifton lower levels mirror the same two-track pattern as the upstairs: restrained, period-respectful finishes in the historic village homes, and large entertainment-tier builds in the country estates. Real Elite Contracting handles both, with the right answer determined by the home.",
-      "For historic Clifton Village homes, we often recommend a restrained finish in the lower level — wine storage, a quiet workshop, a guest room with its own bath, a family lounge — that respects the period character above. Where moisture control or structural reinforcement is required, we do it correctly and document it. Typical scope runs $60,000–$160,000+.",
-      "For the country estates, the brief is closer to a Great Falls or Fairfax Station build: media room with tiered seating, wet bar that functions as a second entertaining kitchen, guest suite with full bath, fitness room, sometimes a wine room. Typical scope runs $130,000–$300,000+ depending on square footage and feature mix.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
-    ],
-  },
-
-  // ── BATHROOMS · MIDDLEBURG, VA ───────────────────────────────────────────
-  'bathrooms-middleburg-va': {
-    paragraphs: [
-      "Middleburg primary baths are some of the most architecturally significant residential bathroom projects in the Mid-Atlantic. The combination of historic stone-and-timber homes in the village proper, the equestrian estates along the surrounding hunt country roads, and the homeowner expectation of a primary suite that fits inside a genuine historic envelope means every Middleburg primary-bath project is a careful conversation between period sensitivity and modern spa specification.",
-      "Real Elite Contracting renovates Middleburg primary baths with the discretion and craft this market expects. Featured projects include period-respectful tile patterns (marble basketweave, hex mosaic, honed limestone), traditional vanity profiles in inset cabinetry painted to match historic palettes, polished nickel or unlacquered brass fittings, clawfoot or freestanding tubs, and lighting that disappears into the architecture rather than competing with it. Typical scope runs $80,000–$180,000+ depending on the level of structural and plumbing work the historic floor plan requires.",
-      "For larger equestrian estates outside the village, the brief widens to a primary suite that often includes a sitting area, a fireplace, dual closets, and a primary bath that functions as a private spa. We work with the designers and architects this market relies on and execute to whatever specification the design calls for.",
-      "Loudoun County permits, plumbing, electrical, and final inspections are handled by us. For homes inside the Middleburg historic district, any change affecting building exteriors requires Town review; we carry the paperwork. One named project lead from estimate through final walkthrough, daily progress photos, clean job site every evening, and a written workmanship warranty.",
-    ],
-  },
-
-  // ── KITCHENS · MIDDLEBURG, VA ────────────────────────────────────────────
-  'kitchens-middleburg-va': {
-    paragraphs: [
-      "Middleburg kitchens are some of the most architecturally distinctive residential kitchens in the country. The brief here is restraint, period sensitivity, and serious craft. A typical Middleburg primary kitchen is a $150,000–$450,000+ undertaking executed in close collaboration with a designer who specializes in hunt-country and historic-home work, a tier-one cabinet shop that can build to period profiles, and a stone fabricator who can work in honed soapstone, leathered granite, or marble that fits inside a stone-and-timber envelope.",
-      "Real Elite Contracting builds Middleburg kitchens with that collaboration in mind. Featured scope includes furniture-style inset cabinetry, hand-cast metal hardware, full-slab natural-stone countertops, professional-spec ranges that fit the architecture (La Cornue, Lacanche), period-appropriate plumbing fittings, and a scullery or butler's pantry that handles the catering side of the entertaining the home is built for.",
-      "For homes inside the Middleburg historic district, any change affecting building exteriors requires Town review; we carry the paperwork. For the surrounding equestrian estates, the design brief is sometimes more contemporary but the craft standard is the same. We bring a structural engineer in early when bearing-wall or ceiling-height changes are on the table.",
-      "Communication runs through one named project lead from estimate through final punch list. Daily progress photos, clean job site every evening, and a written workmanship warranty. We work discreetly and respect the rest of the home as the historic asset it is.",
-    ],
-  },
-
-  // ── BASEMENTS · MIDDLEBURG, VA ───────────────────────────────────────────
-  'basements-middleburg-va': {
-    metaDescription:
-      'Lower-level finishing for Middleburg estates — wine room, media room, guest suite, fitness. Typical scope runs $120,000 to $350,000+, itemized up front.',
-    paragraphs: [
-      "Middleburg lower levels are some of the most distinctive finished-basement projects in our service area. The brief routinely includes a wine cellar with dedicated cooling and traditional racking, a tasting room, a gun room or trophy room for hunt-country homes, a guest suite with full bath, and sometimes a media room or family lounge. Done with restraint, the lower level reads as a genuine extension of the historic home above.",
-      "Real Elite Contracting builds Middleburg lower levels with proper moisture and vapor control as the technical foundation — perimeter inspection, sump pump verification, dimple-mat or insulated subfloor where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical, HVAC extension, surround pre-wire, and the millwork and stone that turn the space into a true room. For wine cellars, dedicated cooling and proper insulation are non-negotiable.",
-      "Typical Middleburg basement-finishing scope in 2026 runs $120,000–$350,000+ depending on square footage, feature mix, and the level of millwork and stone in the build. Wine cellars with traditional racking and dedicated cooling add meaningfully to the budget but are typically the centerpiece of the lower level.",
-      "Loudoun County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
-    ],
-  },
 };
 
 /**
@@ -1025,5 +932,7 @@ export function comboPublishesPricing(serviceSlug: string, areaSlug: string): bo
 export function serviceHrefForArea(serviceSlug: string, areaSlug: string): string {
   return `${serviceSlug}-${areaSlug}` in CONTENT
     ? `/services/${serviceSlug}/${areaSlug}`
-    : `/services/${serviceSlug}`;
+    : // Not `/services/${serviceSlug}` — paving's pillar is `/paving`, and
+      // interpolating the slug here put a 308 on all 26 area pages.
+      servicePillarHref(serviceSlug);
 }

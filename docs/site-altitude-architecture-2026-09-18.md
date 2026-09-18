@@ -21,8 +21,10 @@ Console 2026-03-15 → 2026-09-15, **mobile only**, per the convention in
 > `kitchen remodeling ashburn va` 480/mo, `kitchen remodeling alexandria va`
 > 390, `bathroom remodeling alexandria va` 320, `kitchen remodeling mclean va`
 > 260, `kitchen remodeling vienna va` 140. §2's name test and §3.3's Tier C
-> are corrected in place below, and Tier C consolidation is **on hold** for
-> the reasons in §8. Full data in §1.5. Nothing in "The short version" is
+> are corrected in place below. Tier C consolidation was held for the reasons
+> in §8 and **shipped on 2026-09-18** once Phase 2.1 gave its basement combos
+> a target; that correction is what split its ten combos across two
+> destinations. Full data in §1.5. Nothing in "The short version" is
 > withdrawn; item 1 is sharpened from "a property of each market" to "a
 > property of each market and trade."
 
@@ -390,7 +392,7 @@ Sorted by evidence, not by one rule. Risk column is SEO risk of the action.
 | --- | --- | --- | --- |
 | **A — keep and invest** | All WV town pages (`/service-areas/*-wv`, the six WV combos); Frederick, Hagerstown, Winchester; Leesburg, Ashburn, Loudoun, Brambleton decks | No structural change. These pass the name test or hold positions. | None. Redirecting any of these would be the single most damaging move available. |
 | **B — keep, freeze, re-parent** | NoVA combos with mobile impressions: `basements-{alexandria, great-falls, vienna, reston}-va`; the `/service-areas/` overview for every NoVA town | Stay indexed, self-canonical. Gain `parent: northern-virginia`, link up to the hub, and the hub links down. Strip unverified claims to the verified set (§3.5). Re-read at 90 days. | Low. The pages hold positions 12–20 on real long-tail; a redirect now would trade observed impressions for a hub that has none yet. Cannibalisation risk with the hub is small: Google matches "northern virginia" queries to the page that says Northern Virginia. |
-| **C — consolidate** *(corrected, and on hold — see §8)* | The 10 combos with zero mobile impressions in six months **and** no Ads row in any trade: all three of `{bathrooms, kitchens, basements}-{clifton, fairfax-station, middleburg}-va`, plus `basements-burke-va`. | `status: 'consolidated'`, 301, same deploy as the key removal. | Negligible — no impressions means no rankings to lose. But the doc's original redirect target does not exist yet, which is why this is on hold rather than done. |
+| **C — consolidate** *(DONE 2026-09-18)* | The 10 combos with zero mobile impressions in six months **and** no Ads row in any trade: all three of `{bathrooms, kitchens, basements}-{clifton, fairfax-station, middleburg}-va`, plus `basements-burke-va`. | Shipped: CONTENT keys removed, permanent redirects generated from `src/lib/retired-combos.ts`. **Two destinations, one rule** — most specific surviving page that still serves the query. Basements → `/services/basements/northern-virginia` (trade kept, place widened). Kitchens and baths → the town's own `/service-areas/` page, because those trades have no regional page by design. | Negligible — no impressions means no rankings to lose. The towns' area pages are Tier D and survive, so the kitchen/bath 301s land on live pages. |
 | **D — leave alone** | `/service-areas/{burke, clifton, fairfax-station, middleburg, mclean}-va` overview pages | Keep. Clifton's area page holds 48 impressions at 15.2; McLean's 209. They become children of the hub and gate their operational FAQ by `kind`. | None. |
 
 Alexandria is the interesting case and the proof the name test works: it is a
@@ -659,18 +661,27 @@ Every step is gated by the one above it where it says so.
    the footprint is wider than §3.5 said: the warranty language alone is on
    30 of the 69 combos, 3 service pages, both templates, the sitewide FAQ,
    eight standalone pages and 15 blog posts.
-4. Tier C consolidation. **On hold, deliberately — two reasons.**
-   - **The redirect target does not exist.** §3.3 sends the consolidated
-     combos to `/services/{service}/northern-virginia`, which Phase 2 builds.
-     Shipping 301s into a 404 is worse than leaving the pages up, and
-     redirecting them somewhere else instead (the town overview page, or the
-     service pillar) is a different decision from the one this document made.
-     Tier C therefore belongs *after* Phase 2.1, not in Phase 1.
-   - **The list was wrong and is now corrected** (§1.5 and the Tier C note in
-     §3.3). It is 10 combos in three towns, not 5 in five towns, and it no
-     longer touches McLean.
+4. Tier C consolidation. **Shipped 2026-09-18, after Phase 2.1.** It was held
+   for two reasons, both now resolved:
+   - **The redirect target did not exist.** §3.3 sent the consolidated combos
+     to `/services/{service}/northern-virginia`, which Phase 2.1 built.
+     Shipping 301s into a 404 would have been worse than leaving the pages up.
+   - **The list was wrong and was corrected** (§1.5 and the Tier C note in
+     §3.3). 10 combos in three towns, not 5 in five towns, and McLean withdrawn.
 
-   Nothing else in Phase 1 depended on it, so items 1-3 shipped without it.
+   **§3.3 assumed one regional page per trade, and that was wrong.** Only
+   basements has a regional page; kitchens and baths stay at town altitude by
+   design, so six of the ten combos had no `/services/{service}/northern-virginia`
+   to land on. The owner chose the town's own area overview page for those,
+   which preserves the place match the query carried where the service pillar
+   would throw it away. So one rule — redirect to the most specific surviving
+   page that still serves the query — with two outcomes.
+
+   Side effect worth recording: retiring these ten pages removed **42
+   published occurrences of unconfirmed operational claims** across six of the
+   seven registered claims, on pages nobody was reading. Retiring dead pages is
+   the cheapest reduction in contract exposure available and needed no content
+   decision from the owner.
 
 **Phase 1 status, 2026-09-18.** Items 1 and 2 shipped in #142 (the catalog,
 the `market`-gated service-radius claim, the corrected regional geography,
@@ -752,14 +763,86 @@ dead import). Item 3 shipped in #143. Item 4 is above.
    across kitchens and bathrooms is the single easiest way to undo §1.5 with
    good intentions — `kitchen remodeling mclean va` is 260/mo and Vienna 140.
 
-**Tier C is now unblocked, with one open decision.** Its 301 target exists for
-basements. But six of the ten combos are kitchen and bathroom pages in Clifton,
-Fairfax Station and Middleburg, and those trades have no regional page by
-design — so those six have no `/services/{service}/northern-virginia` to land
-on. The two candidate targets are the town's own area overview page (Tier D,
-kept, and it preserves the place match the query carried) or the service pillar
-(which loses the place entirely). That is a decision this document has not
-made; §3.3 assumed one regional page per trade. Recommend the area overview.
+**Tier C shipped 2026-09-18**, in #148, once Phase 2.1 gave the basement
+combos a target. The open question — where the six kitchen and bathroom combos
+should land, since those trades have no regional page by design — was put to
+the owner, who chose the town's own area overview page. §3.3 and §8 record the
+resulting rule and the 42 unconfirmed-claim occurrences the retirement removed.
+
+**Guard design corrected in-flight, 2026-09-18 — and it found a live bug on its
+first run.**
+
+#148 took eleven review rounds and twenty-one findings. Every one was correct,
+and the distribution is the useful part: **fourteen of the twenty-one were in
+two files that did not exist when the PR opened**, both written in response to
+earlier rounds. The site-facing content drew no finding after round three.
+
+Six of those landed on one file, `internal-links.test.ts`, which answered *"does
+this link resolve?"* by pattern-matching link syntax in source. Each round was a
+case no lexical rule could express — URL suffixes, unknown service slugs,
+interpolation in four different positions, path depth, and finally a JavaScript
+ternary's `?` being read as a query delimiter. That is not carelessness in one
+file; it is the wrong technique. **A link's destination is a fact about the
+rendered page**, and the build already emits every page.
+
+So it was replaced rather than patched a seventh time, by
+`tests/built-links.test.ts`: read the built HTML, assert every internal link
+resolves against the route manifests, and assert none points at a redirect. No
+capture patterns, no interpolation gate, no depth arithmetic. It runs as
+`npm run test:built` in CI after `npm run build`.
+
+**It found a defect on its first run that no source scan could have.** All 26
+service-area pages and the `/services` index rendered a link to
+`/services/paving`, which 308s to the `/paving` pillar that trade was
+consolidated into. The href is derived from a service slug, so the string
+`/services/paving` appears nowhere in `src` — invisible to every lexical scan,
+and to the rendered-anchor test, which checks combos rather than pillars. Fixed
+with `servicePillarHref` in constants.ts, the single definition of a service's
+canonical pillar URL. The scanner it replaced had, after six rounds, found
+nothing live at all.
+
+Coverage comparison, both run against the same tree: the source scan read about
+twenty hand-written links; the built-HTML assertion reads **13,608** rendered
+ones across 182 pages.
+
+**`runtime-text.ts` was NOT replaced, and the reason is worth recording** — I
+argued in an earlier draft of this entry that the build output could serve the
+claims guard too, and that was wrong. The claims register's value is naming
+*which source file* publishes a claim, because that list is the owner's
+retraction worklist. Built HTML cannot attribute a phrase back to a module.
+Links are about URLs, where the build is authoritative; claims are about source
+attribution, where the AST is necessary. Its four findings were plain traversal
+omissions — `{expr}` handled but `${expr}` not, children walked but attribute
+initializers not, concatenation split, and a duplicated template branch fixed in
+only one of its two copies — which is incomplete rather than misconceived.
+
+**The rendered-text claims check was added too**, at round twelve, once a
+fourth traversal finding made the pattern clear: the supply of ways to build a
+string in JavaScript is unbounded, so the AST scan cannot be completed, only
+extended. `tests/built-claims.test.ts` counts unconfirmed claims in the built
+HTML — construction-independent, because it reads what the browser receives —
+as an exact snapshot — a rise means new copy inherited an unconfirmed claim, a
+fall must be recorded so the reduction is locked in rather than left as
+headroom for a later page. Attribution stays with the AST,
+completeness comes from the build, and a gap in the AST scan can now only make
+the retraction worklist incomplete rather than let a claim reach a homeowner
+unnoticed.
+
+**And it restated the exposure in the numbers that matter.** The source
+inventory counts 21 FILES. At page level:
+
+| Claim | Pages publishing it (of 182) |
+| --- | --- |
+| written workmanship warranty | **148** |
+| one named project lead | **143** |
+| daily updates | **140** |
+| clean job site every evening | **135** |
+| active-work timeline | 16 |
+| daily progress photos | 13 |
+| same-day response | 8 |
+
+None of the seven is confirmed. That is the size of §9's second question, and
+it is a far stronger argument for answering it than "21 files" was.
 
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already
@@ -781,6 +864,41 @@ Only then a second trade at regional altitude.
 
 ---
 
+**The timeline claim was too narrow three rounds running, and what is left is
+structural — 2026-09-18.**
+
+`active-work-timeline` was reported as under-matching on #148 in rounds 26, 27,
+28 and 29. Each round widened a different axis of the same sentence: the dash,
+then the noun phrase after "of", then the forms with no "of" at all, then the
+unit itself — "two to three working days", where the word *working* names the
+promise and no qualifier follows. The count went
+16 → 23 → 28 → 35 → 37 pages. Twice the fix covered the axis that was reported and
+left the next one, which is the mistake worth naming — when a pattern is found
+too narrow, the sweep has to enumerate every axis of the phrasing before it
+ships, not the one in the review comment.
+
+The three rounds found seven genuinely unwatched pages, and two of them matter
+more than their number suggests: **`/services/kitchens` and `/services/bathrooms`
+have promised a demo-to-final week range since 2026-07-06, unwatched.** Those
+are the two highest-traffic service pillars on the site.
+
+**What is still not matched, deliberately.** A bare range with no unit and no
+qualifier —
+"kitchen: 6–12 weeks" in a comparison table, "5–8 weeks is typical". There are
+roughly fifty of these on the site and most are permitting windows, curing
+times, or savings-buffer figures, so a regex that caught them would flood your
+retraction worklist with pages that do not belong on it. Deciding which are
+promises needs the surrounding prose.
+
+The sweep that would close it, if it is ever worth the cost: a snapshot of
+every duration range in the scanned source alongside the files it appears in,
+with a test that fails when the set changes. Each new or edited phrasing then
+forces a one-time "promise or not a promise" call instead of passing silently.
+That is a separate piece of work with a real maintenance cost — every content
+edit that touches a number churns the snapshot — and it should not ride on a
+PR that is already twenty-eight rounds deep. It is recorded here so it is a
+decision rather than an oversight.
+
 ## 9. Decisions I need from you
 
 1. **Will you take a Northern Virginia basement at sixty miles, and what is
@@ -792,6 +910,24 @@ Only then a second trade at regional altitude.
    timelines of 8–14 weeks (Vienna, Reston) and 14–22 weeks (Great Falls).
    Confirm, retract, or restate. Retractions have to come off the WV and
    service pages too, not only the NoVA pages.
+
+   **Two phrasings the detection patterns were missing, found 2026-09-18.**
+   The site writes the timeline range as `8–14 weeks of active work` in the
+   combo content and as `6 to 10 weeks of active work` in seven blog articles;
+   the pattern only matched the en dash, so those seven pages published the
+   promise unwatched. Same for `workmanship guarantee`, which one deck article
+   uses where everything else says `workmanship warranty`. Both patterns are
+   widened, and the page counts rose from 16 to 23 and 148 to 149 — no new copy,
+   just copy that was always there and never counted.
+
+   **One phrasing I have NOT folded in, because it is your call, not mine.**
+   Three pages promise a *single point of contact* — the capability statement,
+   the full-property-perimeter page, and a whole-home blog article. Is that the
+   same promise as *one named project lead*, or a weaker one about who answers
+   the phone? If it is the same, say so and it joins the register, which adds
+   those pages to the retraction worklist. I can argue it either way, which is
+   why I am not deciding it: a claim's scope is a statement about how the
+   business runs.
 3. **Has a Northern Virginia job been completed, and are there photos?** The
    Springfield reviews suggest yes. One verified project page is worth more
    than any five town pages.
