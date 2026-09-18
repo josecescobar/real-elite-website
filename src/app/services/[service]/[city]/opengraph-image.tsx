@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { renderOgCard, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og';
-import { SERVICES, ALL_SERVICE_AREAS } from '@/lib/constants';
+import { SERVICES, ALL_SERVICE_AREAS, formatAreaPlace, isLocalityArea } from '@/lib/constants';
 
 /**
  * Resolve against ALL_SERVICE_AREAS, not EXPANSION_SERVICE_AREAS.
@@ -29,7 +29,7 @@ export async function generateImageMetadata({ params }: { params: Params }) {
       size: OG_SIZE,
       alt:
         serviceData && cityData
-          ? `${serviceData.title} in ${cityData.city}, ${cityData.state} · Real Elite Contracting`
+          ? `${serviceData.title} in ${formatAreaPlace(cityData)} · Real Elite Contracting`
           : alt,
       contentType: OG_CONTENT_TYPE,
     },
@@ -42,9 +42,17 @@ export default async function OG({ params }: { params: Params }) {
   const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
   if (!serviceData || !cityData) notFound();
 
+  // A region or county has no "surrounding" communities of its own — it IS the
+  // surrounding area, so the locality phrasing produced "in Northern Virginia
+  // and surrounding VA communities". Same class of bug as the city FAQ #146
+  // fixed on the area pages.
+  const subtitle = isLocalityArea(cityData)
+    ? `Veteran-owned, licensed & insured across WV, MD, and VA. Free estimates in ${cityData.city} and surrounding ${cityData.state} communities.`
+    : `Veteran-owned, licensed & insured across WV, MD, and VA. Free estimates across ${cityData.city}.`;
+
   return renderOgCard({
-    eyebrow: `${cityData.city}, ${cityData.state}`,
+    eyebrow: formatAreaPlace(cityData),
     title: `${serviceData.title} in ${cityData.city}`,
-    subtitle: `Veteran-owned, licensed & insured across WV, MD, and VA. Free estimates in ${cityData.city} and surrounding ${cityData.state} communities.`,
+    subtitle,
   });
 }

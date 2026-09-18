@@ -19,8 +19,14 @@ export const FEATURED_SERVICE_SLUGS = [
 export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
 
 /**
- * Cities that have service+city deep-link pages. Each pairing has
+ * Areas that have service+area deep-link pages. Each pairing has
  * hand-written localized content in the CONTENT map below.
+ *
+ * Mostly towns and cities, but not exclusively: `loudoun-county-va` is a
+ * county and `northern-virginia` is a region, because the altitude a trade's
+ * demand sits at is a property of the trade and the market, not of the route.
+ * Anything in here must be a slug in ALL_SERVICE_AREAS — the route resolves
+ * against that list and calls notFound() on a miss.
  *
  * NOTE: this list is INTENTIONALLY decoupled from the service-area lists
  * in constants.ts. Adding a city-overview page (in constants) should NOT
@@ -58,6 +64,19 @@ export const COMBO_CITY_SLUGS = [
   'ashburn-va',
   'hagerstown-md',
   'loudoun-county-va',
+
+  // Northern Virginia at region altitude. The only combo city that is not a
+  // town, city or county: keyword data pulled 2026-09-18 puts "basement
+  // remodeling northern virginia" at 110/mo and "basement finishing northern
+  // virginia" at 90, while every town-level basement term in the same market
+  // except Alexandria (70) and McLean (30) sits below the reporting floor.
+  //
+  // Deliberately basements ONLY. "kitchen remodeling mclean va" is 260/mo and
+  // Vienna 140, so kitchens and baths stay at town altitude here — one market,
+  // two altitudes, decided per trade. See §1.5 of
+  // docs/site-altitude-architecture-2026-09-18.md.
+  'northern-virginia',
+
   'mclean-va',
   'alexandria-va',
   'vienna-va',
@@ -91,13 +110,19 @@ type ComboContent = {
  * Exported so the route and the tests share one definition: an override
  * that merely reproduces the fallback is dead weight, and the only way to
  * detect that is to compare against the real template rather than a copy.
+ *
+ * `place` is a formatted place name and callers pass `formatAreaPlace(area)`,
+ * not `${city}, ${state}`. The interpolated form produced "Basements in
+ * Northern Virginia, VA | Real Elite" once a region became a combo city; the
+ * helper returns "Vienna, VA" for a locality and "Northern Virginia" for a
+ * region, so every pre-existing combo title and description is unchanged.
  */
-export function defaultComboTitle(serviceTitle: string, city: string, state: string) {
-  return `${serviceTitle} in ${city}, ${state} | Real Elite`;
+export function defaultComboTitle(serviceTitle: string, place: string) {
+  return `${serviceTitle} in ${place} | Real Elite`;
 }
 
-export function defaultComboDescription(serviceTitle: string, city: string, state: string) {
-  return `Expert ${serviceTitle.toLowerCase()} services in ${city}, ${state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+export function defaultComboDescription(serviceTitle: string, place: string) {
+  return `Expert ${serviceTitle.toLowerCase()} services in ${place}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
 }
 
 export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
@@ -561,6 +586,42 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
+  // ── BASEMENTS · NORTHERN VIRGINIA (region) ───────────────────────────────
+  //
+  // The one combo at region altitude, and the reason the altitude doc exists.
+  // "basement remodeling northern virginia" 110/mo KD 0 $31 CPC, "basement
+  // finishing northern virginia" 90/mo $99 CPC, "basement remodeling fairfax
+  // va" 70/mo $132 CPC — against every town-level basement term in the same
+  // market sitting below the reporting floor bar Alexandria and McLean.
+  //
+  // FAIRFAX COUNTY IS COVERED IN PROSE, NOT AS AN H2. §3.2 of the altitude doc
+  // specified a Fairfax County H2 here; ComboContent has no headings, and
+  // adding a `sections` shape for a single consumer buys an abstraction the
+  // rest of the map would not use. Fairfax County is named substantively in
+  // three of the four paragraphs instead. Whether the "fairfax va" query
+  // follows this page is a Phase 5 read, and the doc already gates a dedicated
+  // /services/basements/fairfax-va page on that answer.
+  //
+  // Every figure below is an endpoint this site already publishes: $55,000 is
+  // the low end of the Burke range, $400,000+ the high end of Great Falls.
+  // No new price is introduced here — CLAUDE.md forbids it, and a regional
+  // page inventing a regional number would be the easiest way to break it.
+  'basements-northern-virginia': {
+    // The title takes "basement remodeling" (110/mo) and the description takes
+    // "basement finishing" (90/mo), so the page targets both head terms
+    // without either field reading as a keyword list. The generic fallback
+    // would say "Basements in Northern Virginia", which is neither term.
+    metaTitle: 'Basement Remodeling in Northern Virginia | Real Elite',
+    metaDescription:
+      'Basement finishing across Fairfax, Loudoun and Alexandria. Published scope runs $55,000 in Burke to $400,000+ in Great Falls, itemized before work starts.',
+    paragraphs: [
+      "Northern Virginia's basement demand is regional before it is local, and the housing stock is why. Fairfax County, Loudoun County and the city of Alexandria were built out largely between the 1960s and the 2000s on full-height unfinished lower levels with walkout or areaway access — square footage the house already has, already heats, and is not using. A homeowner in Vienna, Burke, Ashburn or Belle Haven is usually not shopping for a Vienna contractor or a Burke contractor; they are shopping for someone who finishes lower levels in Northern Virginia, and they narrow down afterwards.",
+      "The technical order of work is the same across the region, and the sequence matters more than the finish schedule. Moisture and vapor control come first: perimeter inspection, sump pump and battery backup verification, and dimple-mat or insulated subfloor systems where the slab condition calls for them. The shortcut taken there is the one that resurfaces three years later as a mold problem behind finished cabinetry. From there it is code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or a dedicated mini-split where the existing system will not carry the added load, surround pre-wire, and the millwork and finishes that make the space read as a room rather than a finished basement.",
+      "Budget varies more by house than by town, which is the honest version of a regional price. Across the Northern Virginia pages this site publishes, finished lower-level scope runs from $55,000 at the smaller Burke and Reston end to $400,000+ for an estate-scale Great Falls build with a media room, wine room and second entertaining kitchen. Most Fairfax and Loudoun County projects land between those poles, and the variables that move a number are square footage, the feature mix, and how much millwork and stone the build carries. Estimates are issued line by line — framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone and finishes broken out separately — so the figure can be read rather than taken on trust.",
+      "Permitting is the one part of a Northern Virginia basement that is genuinely not regional. Fairfax County, Loudoun County and the City of Alexandria each run their own permit and inspection process, and a lower level with bedrooms, a bath or a bar needs framing, electrical, plumbing, mechanical and final inspections in whichever jurisdiction the house sits in. Real Elite Contracting is veteran-owned, headquartered in Martinsburg, West Virginia, and licensed and insured in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
   // ── BATHROOMS · MCLEAN, VA ───────────────────────────────────────────────
   'bathrooms-mclean-va': {
     paragraphs: [
@@ -850,3 +911,27 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 };
 
+/**
+ * The most specific published URL for a service in a given area: the
+ * service+area page when one exists, the service pillar otherwise.
+ *
+ * Derived from CONTENT because CONTENT is exactly what the combo route's
+ * generateStaticParams publishes, so this can never return a path that 404s.
+ *
+ * It replaced a hardcoded allowlist in CityPageTemplate — four service slugs
+ * crossed with four city slugs — which had gone badly stale: twenty areas have
+ * published service+area pages, so most area pages were sending visitors and
+ * internal links to the generic pillar while their own local page went
+ * unlinked. The Northern Virginia hub pointed at /services/basements rather
+ * than /services/basements/northern-virginia, the regional page the altitude
+ * plan is built around.
+ *
+ * Lives here rather than in the template because "which URL represents this
+ * service in this area" is a fact about what is published, not about layout —
+ * and a pure function is testable without rendering a page.
+ */
+export function serviceHrefForArea(serviceSlug: string, areaSlug: string): string {
+  return `${serviceSlug}-${areaSlug}` in CONTENT
+    ? `/services/${serviceSlug}/${areaSlug}`
+    : `/services/${serviceSlug}`;
+}

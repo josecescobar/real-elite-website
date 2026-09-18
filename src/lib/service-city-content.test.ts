@@ -5,8 +5,15 @@ import {
   FEATURED_SERVICE_SLUGS,
   defaultComboTitle,
   defaultComboDescription,
+  serviceHrefForArea,
 } from '@/lib/service-city-content';
-import { SERVICES, ALL_SERVICE_AREAS, CITY_DATA, LUXURY_CITY_SLUGS } from '@/lib/constants';
+import {
+  SERVICES,
+  ALL_SERVICE_AREAS,
+  CITY_DATA,
+  LUXURY_CITY_SLUGS,
+  formatAreaPlace,
+} from '@/lib/constants';
 import { TITLE_MAX } from '@/lib/seo';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
@@ -202,7 +209,7 @@ describe('snippet overrides earn their place', () => {
     expect(
       entry.metaTitle,
       `${key} overrides metaTitle with the generic template — drop it or say something`
-    ).not.toBe(defaultComboTitle(serviceTitle, area.city, area.state));
+    ).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
   });
 
   it.each(overrides.map((o) => o.key))('%s does not restate the default description', (key) => {
@@ -211,7 +218,7 @@ describe('snippet overrides earn their place', () => {
     expect(
       entry.metaDescription,
       `${key} overrides metaDescription with the generic template`
-    ).not.toBe(defaultComboDescription(serviceTitle, area.city, area.state));
+    ).not.toBe(defaultComboDescription(serviceTitle, formatAreaPlace(area)));
   });
 });
 
@@ -240,6 +247,171 @@ describe('combo content shape', () => {
       if (entry!.metaDescription !== undefined) {
         expect(entry!.metaDescription.trim().length, `${key} metaDescription is empty`)
           .toBeGreaterThan(0);
+      }
+    }
+  });
+});
+
+describe('Northern Virginia at region altitude', () => {
+  /**
+   * The altitude decision this whole change exists for. Keyword data pulled
+   * 2026-09-18: "basement remodeling northern virginia" 110/mo, "basement
+   * finishing northern virginia" 90, against every town-level basement term in
+   * the same market below the reporting floor bar Alexandria (70) and McLean
+   * (30). See docs/site-altitude-architecture-2026-09-18.md §1.5.
+   */
+  it('publishes the regional basement combo', () => {
+    expect(Object.keys(CONTENT)).toContain('basements-northern-virginia');
+  });
+
+  /**
+   * The load-bearing assertion, and the one most likely to be broken by good
+   * intentions. "kitchen remodeling mclean va" is 260/mo and Vienna 140, so
+   * kitchens and bathrooms stay at TOWN altitude in this market — one market,
+   * two altitudes, decided per trade.
+   *
+   * Fanning the region out across the other trades would manufacture pages for
+   * demand that does not exist at that altitude, which is the exact failure
+   * the altitude doc accuses the original site build of. If a future keyword
+   * pull shows regional volume for another trade, delete this test and cite
+   * the pull — do not just add the key.
+   */
+  it('keeps the region to basements only', () => {
+    const regionCombos = Object.keys(CONTENT).filter((k) => k.endsWith('-northern-virginia'));
+    expect(regionCombos).toEqual(['basements-northern-virginia']);
+  });
+
+  /**
+   * The towns are deliberately NOT consolidated into the region for the trades
+   * where they carry their own demand. A consolidation that removed these
+   * would be trading reported volume for a hub that has none yet.
+   */
+  it.each(['kitchens-mclean-va', 'kitchens-vienna-va', 'bathrooms-mclean-va'])(
+    'keeps %s at town altitude',
+    (key) => {
+      expect(Object.keys(CONTENT)).toContain(key);
+    }
+  );
+
+  /**
+   * CLAUDE.md: basement snippets must quote a dollar figure the site already
+   * publishes elsewhere, and prices must not be invented. A REGIONAL page is
+   * where that rule is easiest to break — there is no single regional number,
+   * so the temptation is to make one up. Every figure on the regional page has
+   * to be an endpoint some other page already publishes.
+   */
+  it('quotes only dollar figures published elsewhere on the site', () => {
+    const entry = CONTENT['basements-northern-virginia']!;
+    const own = JSON.stringify(entry);
+    const figures = [...new Set(own.match(/\$[\d,]+/g) ?? [])];
+    expect(figures.length, 'the regional page quotes no figure at all').toBeGreaterThan(0);
+
+    const elsewhere = Object.entries(CONTENT)
+      .filter(([key]) => key !== 'basements-northern-virginia')
+      .map(([, e]) => JSON.stringify(e))
+      .join(' ');
+
+    for (const figure of figures) {
+      expect(
+        elsewhere.includes(figure),
+        `the regional page quotes ${figure}, which no other page publishes — either it is invented (CLAUDE.md forbids that) or the page that published it was removed`
+      ).toBe(true);
+    }
+  });
+
+  /**
+   * The bug this altitude change had to fix before it could ship. Both
+   * fallbacks interpolated `${city}, ${state}`, which reads "Northern
+   * Virginia, VA". Pinned in both directions: unchanged for a locality, and
+   * state-free for the region.
+   */
+  it('formats a region without appending its state', () => {
+    const region = ALL_SERVICE_AREAS.find((a) => a.slug === 'northern-virginia')!;
+    const town = ALL_SERVICE_AREAS.find((a) => a.slug === 'vienna-va')!;
+
+    expect(defaultComboTitle('Basements', formatAreaPlace(region))).toBe(
+      'Basements in Northern Virginia | Real Elite'
+    );
+    expect(defaultComboTitle('Basements', formatAreaPlace(town))).toBe(
+      'Basements in Vienna, VA | Real Elite'
+    );
+    expect(defaultComboDescription('Basements', formatAreaPlace(region))).toContain(
+      'services in Northern Virginia.'
+    );
+  });
+
+  it('never says "Northern Virginia, VA" in a snippet override', () => {
+    const entry = CONTENT['basements-northern-virginia']!;
+    expect(entry.metaTitle).not.toContain('Northern Virginia, VA');
+    expect(entry.metaDescription).not.toContain('Northern Virginia, VA');
+  });
+});
+
+describe('serviceHrefForArea', () => {
+  /**
+   * An area page should send visitors — and its internal links — to its own
+   * service+area page when one is published, not to the generic pillar.
+   *
+   * CityPageTemplate decided this with a hardcoded allowlist: four service
+   * slugs crossed with ['winchester-va', 'frederick-md', 'leesburg-va',
+   * 'ashburn-va']. Twenty areas have published service+area pages, so most of
+   * them linked past their own local page. The tests below are written to fail
+   * against that allowlist, not merely to restate the current implementation:
+   * the completeness assertion is the one that catches it.
+   */
+  it('links to the published service+area page when one exists', () => {
+    expect(serviceHrefForArea('basements', 'northern-virginia')).toBe(
+      '/services/basements/northern-virginia'
+    );
+    expect(serviceHrefForArea('bathrooms', 'vienna-va')).toBe('/services/bathrooms/vienna-va');
+  });
+
+  it('falls back to the service pillar when no combo is published', () => {
+    // No roofing content for Vienna, and none is planned — the NoVA markets
+    // are positioned on interior remodels.
+    expect(CONTENT).not.toHaveProperty('roofing-vienna-va');
+    expect(serviceHrefForArea('roofing', 'vienna-va')).toBe('/services/roofing');
+    expect(serviceHrefForArea('handyman', 'martinsburg-wv')).toBe('/services/handyman');
+  });
+
+  /**
+   * Completeness, and the assertion the allowlist failed. For every area, the
+   * set of services that deep-link must be exactly the set of combos actually
+   * published for it — no published page left unlinked, and nothing linked
+   * that was never built.
+   */
+  it('deep-links every published combo and nothing else', () => {
+    for (const area of ALL_SERVICE_AREAS) {
+      const published = Object.keys(CONTENT)
+        .filter((k) => k.endsWith(`-${area.slug}`))
+        .map((k) => k.slice(0, k.length - area.slug.length - 1))
+        .sort();
+
+      const deepLinked = SERVICES.map((s) => s.slug)
+        .filter((slug) => serviceHrefForArea(slug, area.slug) !== `/services/${slug}`)
+        .sort();
+
+      expect(deepLinked, `${area.slug} does not deep-link its published combos`).toEqual(
+        published
+      );
+    }
+  });
+
+  /**
+   * A deep link must never point at a combo the route did not build:
+   * /services/[service]/[city] sets dynamicParams = false, so an unpublished
+   * combo is a hard 404, and an area page advertising one would be linking to
+   * its own 404 — the same failure #145 fixed for consolidated area rows.
+   */
+  it('never returns a path the combo route did not publish', () => {
+    for (const area of ALL_SERVICE_AREAS) {
+      for (const service of SERVICES) {
+        const href = serviceHrefForArea(service.slug, area.slug);
+        if (href === `/services/${service.slug}`) continue;
+        expect(
+          Object.keys(CONTENT),
+          `${href} is linked but not published`
+        ).toContain(`${service.slug}-${area.slug}`);
       }
     }
   });

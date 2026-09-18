@@ -34,8 +34,7 @@ import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import { getReviewsByCity } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
-
-const FEATURED_DEEP_LINK_SLUGS = new Set(['roofing', 'decks', 'remodeling', 'siding']);
+import { serviceHrefForArea } from '@/lib/service-city-content';
 
 /**
  * Map a city to the permit guide that genuinely covers its jurisdiction, so
@@ -541,15 +540,10 @@ function ServiceCard({
   title: string;
   hero?: boolean;
 }) {
-  // Deep-link service+city pages exist for roofing/decks/remodeling/siding
-  // and the 4 expansion cities (winchester/frederick/leesburg/ashburn).
-  const deepLinkAvailable =
-    FEATURED_DEEP_LINK_SLUGS.has(serviceSlug) &&
-    ['winchester-va', 'frederick-md', 'leesburg-va', 'ashburn-va'].includes(citySlug);
-
-  const href = deepLinkAvailable
-    ? `/services/${serviceSlug}/${citySlug}`
-    : `/services/${serviceSlug}`;
+  // Deep-links to this area's own service+area page when one is published.
+  // Was a hardcoded allowlist that had gone stale by a wide margin — see the
+  // helper's docblock for what it was missing and why it lives in lib.
+  const href = serviceHrefForArea(serviceSlug, citySlug);
 
   const svcData = SERVICE_DATA[serviceSlug];
   const heroImage = svcData?.hero?.image ?? svcData?.overview?.image;

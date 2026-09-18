@@ -691,6 +691,53 @@ dead import). Item 3 shipped in #143. Item 4 is above.
 3. Cross-link the existing Loudoun/NoVA basement *guide* into the new
    service page. Different intent, no cannibalisation.
 
+**Phase 2 status, 2026-09-18.** Item 1 is shipped in two PRs.
+
+- **#146** — the `northern-virginia` catalog row (`kind: 'region'`,
+  `market: 'premium'`), the hub at `/service-areas/northern-virginia`, the nine
+  NoVA children re-parented to it, two-hop breadcrumbs, and a footer and
+  service-areas-index entry. It also fixed two bugs the region exposed: the
+  city FAQ said "X and the surrounding X", and the region would have been
+  absent from the index entirely.
+- **#147** — `/services/basements/northern-virginia`, the regional money page.
+  Region-aware labels across the combo route and its OG card (the fallback
+  read "Northern Virginia, VA"), `areaServed` corrected from a hardcoded `City`
+  to `areaSchemaType`, and the per-market trust block gated on
+  `market === 'home'` — the twin of the gate #146 added to `CityPageTemplate`,
+  which had left the area pages withholding three unconfirmed promises while
+  the combo pages went on making them.
+
+  It also replaced the deep-link allowlist in `CityPageTemplate` — four service
+  slugs crossed with four city slugs — with `serviceHrefForArea`, derived from
+  `CONTENT`. The allowlist had gone stale by a wide margin: twenty areas have
+  published service+area pages and most were linking past their own local page
+  to the generic pillar. Martinsburg linked neither of its own two. That is why
+  the hub pointed at `/services/basements` rather than at the regional page
+  this whole document is about.
+
+**Two things Phase 2.1 did not build, deliberately.**
+
+1. **The Fairfax County H2** specified in §3.2. `ComboContent` has no headings,
+   and adding a `sections` shape for a single consumer buys an abstraction
+   nothing else in the map would use. Fairfax County is named substantively in
+   three of the four paragraphs instead. Whether the "fairfax va" query follows
+   the regional page is a Phase 5 read, and §3.2 already gates a dedicated
+   `/services/basements/fairfax-va` page on that answer — so the H2 is a
+   presentation detail on a question that has not been asked yet.
+2. **The other trades at region altitude.** Basements only. A test now pins
+   this (`keeps the region to basements only`), because fanning the region
+   across kitchens and bathrooms is the single easiest way to undo §1.5 with
+   good intentions — `kitchen remodeling mclean va` is 260/mo and Vienna 140.
+
+**Tier C is now unblocked, with one open decision.** Its 301 target exists for
+basements. But six of the ten combos are kitchen and bathroom pages in Clifton,
+Fairfax Station and Middleburg, and those trades have no regional page by
+design — so those six have no `/services/{service}/northern-virginia` to land
+on. The two candidate targets are the town's own area overview page (Tier D,
+kept, and it preserves the place match the query carried) or the service pillar
+(which loses the place entirely). That is a decision this document has not
+made; §3.3 assumed one regional page per trade. Recommend the area overview.
+
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already
 has a Thumbtack webhook). A third of the NoVA organic field is directories;
