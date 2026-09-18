@@ -8,6 +8,7 @@
  */
 
 import { claimsFoundIn } from '@/lib/claims';
+import { servicePillarHref } from '@/lib/constants';
 
 // Re-exported so callers have one import site for combo facts. The declaration
 // lives in its own dependency-free module because next.config.ts loads it
@@ -931,5 +932,7 @@ export function comboPublishesPricing(serviceSlug: string, areaSlug: string): bo
 export function serviceHrefForArea(serviceSlug: string, areaSlug: string): string {
   return `${serviceSlug}-${areaSlug}` in CONTENT
     ? `/services/${serviceSlug}/${areaSlug}`
-    : `/services/${serviceSlug}`;
+    : // Not `/services/${serviceSlug}` — paving's pillar is `/paving`, and
+      // interpolating the slug here put a 308 on all 26 area pages.
+      servicePillarHref(serviceSlug);
 }

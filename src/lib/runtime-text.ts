@@ -113,6 +113,19 @@ function renderedTextOf(
 
   if (ts.isJsxSelfClosingElement(node)) return '';
 
+  // Concatenation renders CONTIGUOUSLY, so it is one run, not two.
+  // `{'written workmanship ' + 'warranty'}` paints the phrase, but emitting
+  // each operand separately put a newline between them and the pattern missed
+  // it — the same adjacency mistake as the inline-markup one, in expression
+  // form. Only `+` qualifies: every other binary operator (`||`, `??`, `&&`)
+  // selects ONE side, so its operands must stay separate runs or the scan
+  // invents phrases the page never renders.
+  if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken) {
+    const left = renderedTextOf(node.left, consumed, sideRuns);
+    const right = renderedTextOf(node.right, consumed, sideRuns);
+    return left + right;
+  }
+
   // Any OTHER expression — `{enabled && 'copy'}`, `{ok ? 'a' : 'b'}`, a call —
   // renders an unknown value, so it separates the text around it. But its
   // string-literal descendants can still reach the page, and returning a bare
@@ -136,9 +149,13 @@ function collectLiterals(node: ts.Node, consumed: Set<ts.Node>, sideRuns: string
     if (ts.isStringLiteral(child) || ts.isNoSubstitutionTemplateLiteral(child)) {
       sideRuns.push(child.text);
     } else if (ts.isTemplateExpression(child)) {
-      consumed.add(child.head);
-      child.templateSpans.forEach((sp) => consumed.add(sp.literal));
-      sideRuns.push([child.head.text, ...child.templateSpans.map((sp) => sp.literal.text)].join(' '));
+      // Route through renderedTextOf rather than re-deriving the text here.
+      // This branch used to assemble head+tails itself and never visit the
+      // span expressions, so it bypassed the interpolation traversal added to
+      // renderedTextOf — a nested template inside an opaque expression, e.g.
+      // `{format(`${ok ? 'copy' : ''}`)}`, lost its literal. Duplicated logic
+      // fixed in one place only; Codex found the other copy on #148.
+      sideRuns.push(renderedTextOf(child, consumed, sideRuns));
     } else if (isJsxContainer(child) || ts.isJsxSelfClosingElement(child)) {
       // Nested JSX inside an expression is still a rendered run of its own.
       sideRuns.push(renderedTextOf(child, consumed, sideRuns));
@@ -197,6 +214,16 @@ export function runtimeTextOfSource(source: string, fileName = 'file.tsx'): stri
     }
 
     if (ts.isTemplateExpression(node)) {
+      runs.push(renderedTextOf(node, consumed, runs));
+      return;
+    }
+
+    // A concatenation reached outside JSX, e.g. `const s = 'a ' + 'b';`. The
+    // JSX path routes through renderedTextOf and so joined these correctly,
+    // but this walker had no branch for it and descended into the operands,
+    // emitting each as its own run — so the same phrase held together inside
+    // JSX and split apart in a plain module. Caught by the standalone fixture.
+    if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken) {
       runs.push(renderedTextOf(node, consumed, runs));
       return;
     }

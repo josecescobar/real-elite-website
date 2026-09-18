@@ -16,6 +16,7 @@ import {
   CITY_DATA,
   LUXURY_CITY_SLUGS,
   formatAreaPlace,
+  servicePillarHref,
 } from '@/lib/constants';
 import { TITLE_MAX } from '@/lib/seo';
 
@@ -405,8 +406,12 @@ describe('serviceHrefForArea', () => {
         .map((k) => k.slice(0, k.length - area.slug.length - 1))
         .sort();
 
+      // "Not the pillar" rather than "not `/services/<slug>`": paving's pillar
+      // is `/paving`, so comparing against the interpolated shape counted it
+      // as a deep link. servicePillarHref is the single definition of what the
+      // fallback is, which is the point of having it.
       const deepLinked = SERVICES.map((s) => s.slug)
-        .filter((slug) => serviceHrefForArea(slug, area.slug) !== `/services/${slug}`)
+        .filter((slug) => serviceHrefForArea(slug, area.slug) !== servicePillarHref(slug))
         .sort();
 
       expect(deepLinked, `${area.slug} does not deep-link its published combos`).toEqual(
@@ -425,7 +430,7 @@ describe('serviceHrefForArea', () => {
     for (const area of ALL_SERVICE_AREAS) {
       for (const service of SERVICES) {
         const href = serviceHrefForArea(service.slug, area.slug);
-        if (href === `/services/${service.slug}`) continue;
+        if (href === servicePillarHref(service.slug)) continue;
         expect(
           Object.keys(CONTENT),
           `${href} is linked but not published`

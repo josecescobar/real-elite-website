@@ -29,3 +29,11 @@ jobs:
           # optimized in the repo, and sharp re-encoding isn't needed to
           # validate the build.
           SKIP_IMAGE_OPTIMIZE: '1'
+
+      # Asserts over the BUILT HTML that every internal link the site renders
+      # resolves and none points at a redirect. It needs .next/, so it cannot
+      # live in `npm test` — and a link's destination is a fact about the
+      # rendered page, which is why the source-level scan it replaced kept
+      # missing cases no lexical rule could express.
+      - name: Check rendered internal links
+        run: npm run test:built

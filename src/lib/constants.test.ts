@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   SERVICES,
+  servicePillarHref,
   SERVICE_AREA_CATALOG,
   PRIMARY_SERVICE_AREAS,
   SECONDARY_SERVICE_AREAS,
@@ -43,6 +44,24 @@ describe('service areas', () => {
   it('has globally unique slugs across primary and secondary tiers', () => {
     const slugs = [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS].map((a) => a.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  /**
+   * `/services/paving` 308s to `/paving`, and interpolating `/services/${slug}`
+   * put that redirect on all 26 area pages and the /services index. The link
+   * is derived, so it appears nowhere in source — only the built-HTML
+   * assertion could see it. This pins the helper that fixes it; the rendered
+   * check in tests/built-links.test.ts is what guards the call sites.
+   */
+  it('maps a service slug to its canonical pillar, honouring overrides', () => {
+    expect(servicePillarHref('kitchens')).toBe('/services/kitchens');
+    expect(servicePillarHref('paving')).toBe('/paving');
+    // Every service must produce a href, and none may point back at a slug
+    // whose pillar was moved.
+    for (const s of SERVICES) {
+      expect(servicePillarHref(s.slug).startsWith('/')).toBe(true);
+    }
+    expect(SERVICES.some((s) => s.slug === 'paving')).toBe(true);
   });
 
   it('exposes a deduplicated ALL_SERVICE_AREAS list', () => {

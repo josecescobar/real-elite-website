@@ -265,3 +265,62 @@ describe('runtimeTextOfSource — literals inside template interpolations', () =
     expect(text).toMatch(/workmanship warranty/i);
   });
 });
+
+/**
+ * Concatenation, and nested templates behind an opaque expression.
+ *
+ * Two more traversal gaps, both found on #148. Concatenation renders
+ * contiguously but was emitted as separate newline-delimited runs — the same
+ * adjacency mistake as inline markup, in expression form. And `collectLiterals`
+ * carried its own copy of the template-literal logic which never visited the
+ * span expressions, so the interpolation traversal added to `renderedTextOf`
+ * was bypassed whenever a template sat inside an opaque expression. Duplicated
+ * logic fixed in one place only.
+ */
+describe('runtimeTextOfSource — concatenation and nesting', () => {
+  it('keeps concatenated literals together', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <p>{'written workmanship ' + 'warranty'}</p>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('keeps a three-part concatenation together', () => {
+    const text = runtimeTextOfSource(
+      "const s = 'one ' + 'named project' + ' lead';"
+    );
+    expect(text).toMatch(/named project lead/i);
+  });
+
+  it('keeps concatenation together across an interpolated value', () => {
+    const text = runtimeTextOfSource("const s = 'daily updates' + ' on ' + n + ' jobs';");
+    expect(text).toMatch(/daily updates/i);
+  });
+
+  /**
+   * `||`, `??` and `&&` SELECT one side rather than joining them, so their
+   * operands must stay separate or the scan invents a phrase. Only `+` joins.
+   */
+  it('does not fuse the operands of a selecting operator', () => {
+    expect(runtimeTextOfSource("const s = 'clean job' || 'site';")).not.toMatch(
+      /clean job site/i
+    );
+    expect(runtimeTextOfSource("const s = 'clean job' ?? 'site';")).not.toMatch(
+      /clean job site/i
+    );
+  });
+
+  it('finds a literal in a template nested inside an opaque expression', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <p>{format(`${ok ? 'written workmanship warranty' : ''}`)}</p>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('finds a literal in a template nested two levels deep', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <p>{wrap(fmt(`${'one named project lead'}`))}</p>;"
+    );
+    expect(text).toMatch(/named project lead/i);
+  });
+});

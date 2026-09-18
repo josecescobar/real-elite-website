@@ -769,53 +769,58 @@ should land, since those trades have no regional page by design — was put to
 the owner, who chose the town's own area overview page. §3.3 and §8 record the
 resulting rule and the 42 unconfirmed-claim occurrences the retirement removed.
 
-**Technical debt recorded 2026-09-18 — the two guards #148 grew are the wrong
-shape, and I recommend replacing them.**
+**Guard design corrected in-flight, 2026-09-18 — and it found a live bug on its
+first run.**
 
-#148 took ten review rounds and eighteen findings. Every finding was correct,
-and the distribution is the useful part: **twelve of the eighteen were in two
-files that did not exist when the PR opened** — `src/lib/internal-links.test.ts`
-and `src/lib/runtime-text.ts`, both written in response to earlier rounds. The
-site-facing content drew no finding after round three. Ten of the eighteen were
-defects in a guard written to answer the previous finding, and two of those were
-regressions where my own fix opened a false negative while closing one. The
-final round also turned up a defect in the round-nine fix that the reviewer had
-not named, found only by working through the cases before pushing.
+#148 took eleven review rounds and twenty-one findings. Every one was correct,
+and the distribution is the useful part: **fourteen of the twenty-one were in
+two files that did not exist when the PR opened**, both written in response to
+earlier rounds. The site-facing content drew no finding after round three.
 
-That is not carelessness in one file; it is the wrong technique. Both guards
-reason about **source text** to answer a question about **rendered output**:
+Six of those landed on one file, `internal-links.test.ts`, which answered *"does
+this link resolve?"* by pattern-matching link syntax in source. Each round was a
+case no lexical rule could express — URL suffixes, unknown service slugs,
+interpolation in four different positions, path depth, and finally a JavaScript
+ternary's `?` being read as a query delimiter. That is not carelessness in one
+file; it is the wrong technique. **A link's destination is a fact about the
+rendered page**, and the build already emits every page.
 
-- `internal-links.test.ts` decides whether a link resolves by pattern-matching
-  link syntax — three capture patterns, a gate on interpolation and a path-depth
-  rule. Five findings landed on exactly that logic. A lexical rule cannot distinguish
-  `/services/kitchens/middleburg-va${suffix}` from
-  `/services/kitchens/middleburg${rest}`; the current version resolves the
-  literal area segment against the catalog, which works but is the third
-  attempt, and it still cannot see a path assigned to a variable first (a bound
-  now stated in the file).
-- `runtime-text.ts` reconstructs what a page paints from the TypeScript AST, so
-  the claims scan can ignore comments. Two findings landed on its traversal:
-  inline markup split a claim phrase, then expression-valued attributes were
-  invisible.
+So it was replaced rather than patched a seventh time, by
+`tests/built-links.test.ts`: read the built HTML, assert every internal link
+resolves against the route manifests, and assert none points at a redirect. No
+capture patterns, no interpolation gate, no depth arithmetic. It runs as
+`npm run test:built` in CI after `npm run build`.
 
-**The better shape, for whoever picks this up.** `npm run build` already emits
-every page as static HTML. A test that parses the built output and asserts (a)
-every internal `href` resolves to a built route or a configured redirect, and
-(b) no unconfirmed claim phrase appears in the rendered text of a page not in
-the claims inventory, is strictly more complete than either scanner, has no
-lexical rules to get wrong, and needs no AST. It would catch the
-variable-indirection case both scanners miss, and it cannot drift from what
-users actually see, because it reads what users actually see.
+**It found a defect on its first run that no source scan could have.** All 26
+service-area pages and the `/services` index rendered a link to
+`/services/paving`, which 308s to the `/paving` pillar that trade was
+consolidated into. The href is derived from a service slug, so the string
+`/services/paving` appears nowhere in `src` — invisible to every lexical scan,
+and to the rendered-anchor test, which checks combos rather than pillars. Fixed
+with `servicePillarHref` in constants.ts, the single definition of a service's
+canonical pillar URL. The scanner it replaced had, after six rounds, found
+nothing live at all.
 
-Cost: the build has to run before that test, so it belongs in a separate CI
-step rather than `npm test`. That is the only real objection, and it is a
-smaller cost than nine review rounds.
+Coverage comparison, both run against the same tree: the source scan read about
+twenty hand-written links; the built-HTML assertion reads **13,608** rendered
+ones across 182 pages.
 
-**Not done in #148 deliberately.** It is a different change, and #148 was
-already carrying three concerns because the designated branch had an open PR.
-The guards as they stand are green, measured, and do catch the cases they
-claim — so this is debt to schedule, not a defect to fix. Recommended before
-the next retirement or the next claim-bearing template, whichever comes first.
+**`runtime-text.ts` was NOT replaced, and the reason is worth recording** — I
+argued in an earlier draft of this entry that the build output could serve the
+claims guard too, and that was wrong. The claims register's value is naming
+*which source file* publishes a claim, because that list is the owner's
+retraction worklist. Built HTML cannot attribute a phrase back to a module.
+Links are about URLs, where the build is authoritative; claims are about source
+attribution, where the AST is necessary. Its four findings were plain traversal
+omissions — `{expr}` handled but `${expr}` not, children walked but attribute
+initializers not, concatenation split, and a duplicated template branch fixed in
+only one of its two copies — which is incomplete rather than misconceived.
+
+**Remaining debt.** The claims scan still reconstructs rendered text from
+source. A rendered-text check over the built HTML would be a useful *second*
+assertion — it would catch a claim reaching a page by any route — but it cannot
+replace the per-file inventory. Worth adding when the seven claims are resolved
+and the register's shape settles.
 
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import * as LucideIcons from 'lucide-react';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
-import { BUSINESS, SERVICES } from '@/lib/constants';
+import { BUSINESS, SERVICES, servicePillarHref } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
@@ -100,7 +100,7 @@ export default function ServicesPage() {
               return (
                 <Link
                   key={service.slug}
-                  href={`/services/${service.slug}`}
+                  href={servicePillarHref(service.slug)}
                   className="group bg-steel-50 hover:bg-white border border-charcoal-100 hover:border-brand-red hover:shadow-md transition-all rounded-lg p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400"
                 >
                   <div className="flex items-start justify-between gap-4 mb-4">
