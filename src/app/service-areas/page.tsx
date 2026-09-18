@@ -8,7 +8,7 @@ import {
   ALL_SERVICE_AREAS,
   CITY_DATA,
   formatAreaPlace,
-  isLocalityArea,
+  type AreaKind,
 } from '@/lib/constants';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
@@ -51,10 +51,22 @@ export const metadata: Metadata = {
  * up to it. Regions and counties sort above the towns inside them so the grid
  * reads as the hierarchy it now is.
  */
-const areasIn = (state: 'WV' | 'MD' | 'VA') => {
-  const rows = ALL_SERVICE_AREAS.filter((a) => a.state === state);
-  return [...rows.filter((a) => !isLocalityArea(a)), ...rows.filter(isLocalityArea)];
+const KIND_ORDER: Record<AreaKind, number> = {
+  region: 0,
+  county: 1,
+  city: 2,
+  town: 2,
 };
+
+const areasIn = (state: 'WV' | 'MD' | 'VA') =>
+  // Sorted by kind, not just partitioned by it. Splitting non-localities out
+  // kept catalog order among them, and the region row is appended last in the
+  // catalog — so Virginia listed Loudoun County above its own parent, which is
+  // the opposite of the hierarchy this is for. Stable within a rank, so
+  // localities keep catalog order.
+  [...ALL_SERVICE_AREAS.filter((a) => a.state === state)].sort(
+    (a, b) => KIND_ORDER[a.kind] - KIND_ORDER[b.kind]
+  );
 
 /**
  * Regional groups for the index — equal-tier treatment per the rebuild
