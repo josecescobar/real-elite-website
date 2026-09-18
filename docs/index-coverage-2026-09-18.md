@@ -1,21 +1,28 @@
-# A large minority of service+city pages are not in Google's index — 2026-09-18
+# Nearly half the service+city pages are not in Google's index — 2026-09-18
 
-**20 of the 52 service+city combo pages that were live for the measurement
+**30 of the 62 service+city combo pages that were live for the measurement
 window have zero mobile impressions. All 8 of those inspected are "URL is
 unknown to Google" — not ranked badly, not crawled and rejected, but never
 fetched**, though they have been in the sitemap since 2026-07-06 alongside the
 pages Google did index.
 
-> **Corrected 2026-09-18, after review, and the headline numbers changed.** The
-> first version of this file said "28 of 60" and "13 of 13". Both were inflated
-> by a cohort error: **8 combos were added between 2026-09-15 and 2026-09-18**,
-> one to three days before the impression window closed or after it, and
-> counting them as part of the July cohort made the problem look larger than it
-> is. The corrected figures are above. **Wrong turn 3** below has the detail.
-> The finding survives the correction; its size and its evidence base do not.
+> **This file's headline number has now been wrong twice, in opposite
+> directions, and both corrections came from review.**
+>
+> | Version | Claimed | Error |
+> | --- | --- | --- |
+> | first | 28 of 60 (47%) | counted 8 combos published days before the window closed |
+> | second | 20 of 52 (38%) | dropped 10 retired pages that were live all window |
+> | **now** | **30 of 62 (48%)** | — |
+>
+> The first version was close to right by accident: two errors in opposite
+> directions largely cancelled. **Wrong turns 3 and 4** below have the detail.
+> The finding has survived both corrections. Its size has moved each time, which
+> is the reason the figure is now derived explicitly rather than counted off the
+> filesystem.
 
-This started as a look at one page and became structural. Three hypotheses were
-tested and discarded on the way, and all three are recorded, because the wrong
+This started as a look at one page and became structural. Four hypotheses were
+tested and discarded on the way, and all four are recorded, because the wrong
 turns are the reason what is left can be trusted.
 
 ## How this started
@@ -52,8 +59,8 @@ were picked *because they appeared in the impressions report* — and a page wit
 impressions is necessarily indexed. The control could not have come back any
 other way.
 
-Rebuilt: of the 20 established zero-impression combos, most are not roofing.
-There is no roofing story.
+Rebuilt: of the 30 zero-impression combos, most are not roofing. There is no
+roofing story.
 
 ## Wrong turn 2: "the combo template is unindexable"
 
@@ -101,16 +108,49 @@ The signal I ignored: when dating the combos, eight returned no add-date from
 the search and I moved on instead of asking why. Those eight were exactly the
 recent ones.
 
+## Wrong turn 4: counting only the pages that still exist
+
+The correction to the correction, and the one with a name: **survivorship
+bias.**
+
+The combo list was built by walking `.next/server/app/services/**` — the pages
+that exist *now*. But **#148 retired ten Tier C combos on 2026-09-18**, and the
+measurement window ends **2026-09-17**. Those ten were live for the entire
+window. `src/lib/retired-combos.ts` records why they were retired: they "had
+ZERO mobile Search Console impressions in six months".
+
+So ten pages that were live all window and earned nothing were dropped from the
+denominator *because they had since been deleted for earning nothing*. That is
+the definition of the bias, and it made the coverage rate look better than it
+was.
+
+The Phase 5 baseline already had this right and I did not check it. It counts
+"**47** NoVA combo URLs (37 live plus the 10 #148 retired on 2026-09-18)" — the
+inventory for a window is what was live during the window, not what survived it.
+
+| | Pages | Zero impressions |
+| --- | --- | --- |
+| Established and still live | 52 | 20 |
+| Retired 2026-09-18, live all window | 10 | **10** |
+| **Live during the window** | **62** | **30** |
+
+Published 2026-09-15 or later (8) stay excluded: too new to measure either way.
+
 ## What the data shows, scoped to what was inspected
 
-Nineteen URLs inspected: **8 of the 20 established zero-impression combos**, 6
-of the 32 impression-bearing ones, and 5 of the new pages.
+Nineteen URLs inspected: **8 of the 30 zero-impression combos**, 6 of the 32
+impression-bearing ones, and 5 of the new pages.
 
 | Group | Inspected | Result |
 | --- | --- | --- |
-| Established, zero impressions | 8 of 20 | **8 unknown to Google** |
+| Zero impressions, live during window | 8 of 30 | **8 unknown to Google** |
 | Any impressions | 6 of 32 | 5 indexed; 1 crawled-not-indexed |
 | Added 2026-09-15 or later | 5 of 8 | 5 unknown — expected at that age |
+
+Of the 22 zero-impression pages not inspected, **12 are still live and can be
+checked**; the other 10 are the retired ones, which now serve 301s and can no
+longer be inspected as pages. Their zero-impression status during the window is
+still evidence; their current index state is not recoverable.
 
 Index state and impressions are **consistent with one exception**, not exact:
 `/services/roofing/frederick-md` has 3 impressions and is currently
@@ -119,7 +159,7 @@ are not contemporaneous measurements, so a page can have earned impressions
 before falling out of the index. The first version of this file claimed exact
 correspondence while printing the counterexample in its own table.
 
-**This does not establish that all 20 are unindexed.** Eight were checked.
+**This does not establish that all 30 are unindexed.** Eight were checked.
 
 ## What does not explain it
 
@@ -173,17 +213,19 @@ to consolidate.
    deploy** — a false freshness signal aimed at the exact resource this
    hypothesis says is scarce. Blog posts carry a real `date` and could emit a
    true one; combo pages have none to emit.
-3. **Inspect the remaining 12 established zero-impression combos** before any
-   consolidation decision rests on this. It is cheap and it would turn a
-   consistent 8-page sample into a measured figure.
+3. **Inspect the 12 still-live zero-impression combos that have not been
+   checked** before any consolidation decision rests on this. It is cheap and it
+   would take the sample from 8 of 30 to 20 of 30. The other 10 retired on
+   2026-09-18 and now serve 301s, so their index state is gone for good — a
+   reason to measure before retiring pages, not after.
 4. **Consolidation is a strategy decision for the owner**, and it should wait on
    1 and 3. #148 retired ten Tier C combos on impression evidence; whether that
    logic extends further depends on a cause that is not yet established.
 
 ## What this file does not claim
 
-- **Not** that all 20 established zero-impression pages are unindexed. Eight were
-  checked.
+- **Not** that all 30 zero-impression pages are unindexed. Eight were checked,
+  and 10 of the rest can no longer be checked at all.
 - **Not** that the template is bad. Thirty-two combos earn impressions.
 - **Not** that the cause is established.
 - **Not** anything about the eight pages published 2026-09-15 or later. They are
