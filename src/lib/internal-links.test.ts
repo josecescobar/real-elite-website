@@ -5,33 +5,47 @@ import { CONTENT, RETIRED_COMBOS } from '@/lib/service-city-content';
 import { SERVICES } from '@/lib/constants';
 
 /**
- * The site must not link to its own retired or unbuilt service+area pages.
+ * The site must not link to its own retired, unbuilt, or misspelled
+ * service+area pages.
  *
  * Tier C retired ten combos and left five links in four live blog articles
  * pointing at three of the removed URLs — every click and crawl from those
  * articles took a 308 to a page the same change had just declared retired.
- * Codex caught it on #148; the redirects were right and the internal links
- * were not.
+ * `/services/[service]/[city]` sets `dynamicParams = false`, so a link to
+ * anything without a CONTENT key and without a redirect is a hard 404 the site
+ * advertises itself.
  *
- * A link to an UNPUBLISHED combo is worse still: /services/[service]/[city]
- * sets `dynamicParams = false`, so anything without a CONTENT key and without
- * a redirect is a hard 404 the site advertises itself.
+ * ## Three holes Codex found in the first version of this file
  *
- * This is the same class as the area-page deep links `serviceHrefForArea` was
- * extracted to fix — rendered links checked against what is actually
- * published — reached from prose rather than from a template.
+ *   1. Unknown service slugs were SILENTLY DROPPED. A typo like
+ *      `/services/kithens/vienna-va` was matched by the regex and then
+ *      discarded because `kithens` is not a service — so the worst case, a
+ *      guaranteed 404, was the one case that passed. The slug filter existed to
+ *      suppress false positives from module import paths; once the scan was
+ *      narrowed to link syntax it was doing harm instead.
+ *   2. URL SUFFIXES were ignored. The patterns required `)` or a quote
+ *      immediately after the area slug, so `?ref=article`, `#estimate` and the
+ *      trailing-slash form all escaped.
+ *   3. The "proves its own scan" assertion DID NOT constrain both extractors.
+ *      Markdown supplies 17 keys on its own, so breaking the `href` extractor
+ *      still left the aggregate above its threshold. A guard against vacuity
+ *      that is itself partly vacuous.
+ *
+ * So the extractor now captures the URL and parses it, each supported syntax is
+ * pinned by its own fixture rather than by an aggregate count, and an
+ * unrecognised service slug is an offender rather than a skip.
  *
  * ## Why prose needs its own check
  *
- * Template links are derived from CONTENT and so cannot go stale.
+ * Template links are derived from CONTENT and cannot go stale —
+ * `serviceHrefForArea` and `CityPageTemplate.links.test.tsx` cover those.
  * Hand-written markdown cannot be derived, so it has to be scanned.
  */
 
-/** Files that are ALLOWED to name a retired path, because they declare it. */
+/** Files ALLOWED to name a retired path, because they declare or assert it. */
 const DECLARATION_FILES = new Set([
   'src/lib/retired-combos.ts',
   'next.config.ts',
-  // Tests that assert on retirement necessarily quote the paths.
   'src/lib/service-city-content.test.ts',
   'src/lib/internal-links.test.ts',
 ]);
@@ -39,108 +53,171 @@ const DECLARATION_FILES = new Set([
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const PUBLISHED = new Set(Object.keys(CONTENT));
 const RETIRED = new Set(Object.keys(RETIRED_COMBOS));
+const BASE = 'https://www.realelitecontracting.com';
 
-/** Every file under these roots that could carry a hand-written link. */
+type ComboLink = { key: string; service: string; area: string; raw: string };
+
+/**
+ * Every link in `source` whose path is `/services/<something>/<something>`.
+ *
+ * Captures the URL from link syntax and then PARSES it, so query strings,
+ * fragments and trailing slashes resolve to the same key as the bare path.
+ * Two syntaxes are supported:
+ *
+ *   - markdown  `](/services/kitchens/vienna-va)` — optional "title" allowed
+ *   - literal   `href="…"`, `href='…'`, `href={`…`}`
+ *
+ * Interpolated hrefs are deliberately NOT matched: those are derived from
+ * CONTENT and covered by CityPageTemplate.links.test.tsx. This file exists for
+ * the links that cannot be derived.
+ */
+export function extractComboLinks(source: string): ComboLink[] {
+  const urls: string[] = [];
+  // Markdown: stop at whitespace or the closing paren.
+  for (const m of source.matchAll(/\]\((\/[^\s)]+)/g)) urls.push(m[1]);
+  // Literal href, any of the three quote forms.
+  // `\{?` because JSX writes href={`/...`} — the brace sits between `href=`
+  // and the quote. Omitting it made the backtick form silently unmatched,
+  // which the per-syntax fixture below caught on its first run.
+  for (const m of source.matchAll(/href=\{?["'`](\/[^"'`]+)["'`]/g)) urls.push(m[1]);
+
+  const out: ComboLink[] = [];
+  for (const raw of urls) {
+    // Interpolated hrefs — href={`/services/${slug}/${city}`} — are derived
+    // from CONTENT and covered by CityPageTemplate.links.test.tsx. Allowing
+    // the JSX brace above brought them into range, and `${slug}` percent-
+    // encodes into something that satisfies the path shape, producing a bogus
+    // key and a false "unknown service" report. Skip them explicitly rather
+    // than hope the path pattern rejects them.
+    if (raw.includes('${')) continue;
+
+    let pathname: string;
+    try {
+      pathname = new URL(raw, BASE).pathname;
+    } catch {
+      continue;
+    }
+    const trimmed = pathname.replace(/\/+$/, '');
+    const m = /^\/services\/([^/]+)\/([^/]+)$/.exec(trimmed);
+    if (!m) continue;
+    out.push({ key: `${m[1]}-${m[2]}`, service: m[1], area: m[2], raw });
+  }
+  return out;
+}
+
+function walk(dir: string, out: string[] = []): string[] {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (!entry.name.startsWith('.') && entry.name !== 'node_modules') walk(full, out);
+    } else if (/\.(md|mdx|ts|tsx)$/.test(entry.name)) {
+      out.push(full);
+    }
+  }
+  return out;
+}
+
 function sourceFiles(): string[] {
   const out: string[] = [];
-  const walk = (dir: string) => {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue;
-        walk(full);
-      } else if (/\.(md|mdx|ts|tsx)$/.test(entry.name)) {
-        out.push(full);
-      }
-    }
-  };
-  for (const root of ['content', 'src']) if (fs.existsSync(root)) walk(root);
+  for (const root of ['content', 'src']) if (fs.existsSync(root)) walk(root, out);
   out.push('next.config.ts');
   return out;
 }
 
 /**
- * Combo LINKS in a source file, keyed `service-area`.
+ * Each supported syntax and suffix form, pinned individually.
  *
- * Scoped to link syntax on purpose. A bare `/services/x/y` scan matched module
- * import specifiers (`@/app/services/roofing/page`) and docblock prose about
- * pages that do not exist yet, producing twelve false positives on the first
- * run of this file. Two shapes are matched:
- *
- *   - markdown  `](/services/kitchens/vienna-va)`
- *   - literal   `href="/services/kitchens/vienna-va"`
- *
- * Interpolated hrefs are deliberately not matched: they are derived from
- * CONTENT, and CityPageTemplate.links.test.tsx already asserts the rendered
- * anchors against what is published. This file exists for the links that
- * CANNOT be derived.
+ * The aggregate "the repo contains more than ten links" assertion this
+ * replaces could not tell which extractor was working: markdown alone cleared
+ * the threshold, so the `href` extractor could have been broken or deleted
+ * with nothing failing. Fixtures constrain each form regardless of what the
+ * repo happens to contain.
  */
-function comboLinksIn(source: string): string[] {
-  const found: string[] = [];
-  const patterns = [
-    /\]\(\/services\/([a-z0-9-]+)\/([a-z0-9-]+)\)/g,
-    /href=["'`]\/services\/([a-z0-9-]+)\/([a-z0-9-]+)["'`]/g,
+describe('extractComboLinks', () => {
+  const cases: [string, string, string | null][] = [
+    ['markdown', '[Vienna](/services/kitchens/vienna-va)', 'kitchens-vienna-va'],
+    ['markdown with title', '[V](/services/kitchens/vienna-va "Kitchens")', 'kitchens-vienna-va'],
+    ['href double quote', '<a href="/services/kitchens/vienna-va">V</a>', 'kitchens-vienna-va'],
+    ['href single quote', "<a href='/services/kitchens/vienna-va'>V</a>", 'kitchens-vienna-va'],
+    ['href backtick', 'href={`/services/kitchens/vienna-va`}', 'kitchens-vienna-va'],
+    ['query string', '[V](/services/kitchens/vienna-va?ref=article)', 'kitchens-vienna-va'],
+    ['fragment', '[V](/services/kitchens/vienna-va#estimate)', 'kitchens-vienna-va'],
+    ['trailing slash', '[V](/services/kitchens/vienna-va/)', 'kitchens-vienna-va'],
+    ['query and fragment', '[V](/services/kitchens/vienna-va/?a=1#b)', 'kitchens-vienna-va'],
+    ['misspelled service', '[K](/services/kithens/vienna-va)', 'kithens-vienna-va'],
+    ['service pillar, not a combo', '[K](/services/kitchens)', null],
+    ['area page, not a combo', '[V](/service-areas/vienna-va)', null],
+    ['module import path', "import X from '@/app/services/roofing/page';", null],
+    ['interpolated href is skipped', 'href={`/services/${s}/${c}`}', null],
   ];
-  for (const re of patterns) {
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(source)) !== null) {
-      if (SERVICE_SLUGS.has(m[1])) found.push(`${m[1]}-${m[2]}`);
-    }
-  }
-  return found;
-}
+
+  it.each(cases)('%s', (_name, source, expected) => {
+    const keys = extractComboLinks(source).map((l) => l.key);
+    if (expected === null) expect(keys).toEqual([]);
+    else expect(keys).toEqual([expected]);
+  });
+
+  it('keeps a misspelled service slug rather than discarding it', () => {
+    // The first version filtered these out, so a guaranteed 404 was the one
+    // case that passed. It must survive extraction to be reportable.
+    const [link] = extractComboLinks('[K](/services/kithens/vienna-va)');
+    expect(link).toBeDefined();
+    expect(SERVICE_SLUGS.has(link.service)).toBe(false);
+  });
+});
 
 describe('internal links to service+area pages', () => {
   const files = sourceFiles();
+  const scanned = files
+    .filter((f) => !DECLARATION_FILES.has(f))
+    .map((f) => ({ file: f, links: extractComboLinks(fs.readFileSync(f, 'utf8')) }));
 
-  /**
-   * Both assertions below pass trivially if the walker finds no files or the
-   * extractor finds no links. That is the exact failure mode that shipped
-   * twice in this feature — a test that cannot fail reads as coverage — so the
-   * scan is asserted to be non-empty before anything is concluded from it.
-   */
-  it('actually scans files and finds combo links', () => {
+  it('actually walks the tree and finds combo links in prose', () => {
     expect(files.length).toBeGreaterThan(50);
     expect(files.some((f) => f.startsWith('content/blog/'))).toBe(true);
-
-    const linked = new Set(
-      files.flatMap((f) => comboLinksIn(fs.readFileSync(f, 'utf8')))
-    );
-    // The Loudoun luxury articles alone carry a dozen of these.
-    expect(linked.size).toBeGreaterThan(10);
-    // And every link found must be a real combo key shape.
-    for (const key of linked) expect(key).toMatch(/^[a-z0-9-]+-[a-z0-9-]+$/);
+    // Markdown prose specifically — the surface this file exists for.
+    const fromProse = scanned.filter((s) => s.file.endsWith('.md')).flatMap((s) => s.links);
+    expect(fromProse.length).toBeGreaterThan(10);
   });
 
   it('never links to a retired combo', () => {
-    const offenders: string[] = [];
-    for (const file of files) {
-      if (DECLARATION_FILES.has(file)) continue;
-      const source = fs.readFileSync(file, 'utf8');
-      for (const key of new Set(comboLinksIn(source))) {
-        if (RETIRED.has(key)) {
-          offenders.push(
-            `${file} links /services/${key.replace('-', '/')} — retired, so this click takes a 308. Point it at ${RETIRED_COMBOS[key]} or at whatever the anchor text actually names`
-          );
-        }
-      }
-    }
+    const offenders = scanned.flatMap(({ file, links }) =>
+      links
+        .filter((l) => RETIRED.has(l.key))
+        .map(
+          (l) =>
+            `${file} links ${l.raw} — retired, so this click takes a 308. Point it at ${RETIRED_COMBOS[l.key]} or at whatever the anchor text actually names`
+        )
+    );
     expect(offenders, offenders.join('; ')).toEqual([]);
   });
 
   it('never links to a combo that was never published', () => {
-    const offenders: string[] = [];
-    for (const file of files) {
-      if (DECLARATION_FILES.has(file)) continue;
-      const source = fs.readFileSync(file, 'utf8');
-      for (const key of new Set(comboLinksIn(source))) {
-        if (!PUBLISHED.has(key) && !RETIRED.has(key)) {
-          offenders.push(
-            `${file} links /services/${key.replace('-', '/')}, which is neither published in CONTENT nor retired with a redirect — dynamicParams is false, so that is a hard 404`
-          );
-        }
-      }
-    }
+    const offenders = scanned.flatMap(({ file, links }) =>
+      links
+        .filter((l) => SERVICE_SLUGS.has(l.service) && !PUBLISHED.has(l.key) && !RETIRED.has(l.key))
+        .map(
+          (l) =>
+            `${file} links ${l.raw}, which is neither published in CONTENT nor retired with a redirect — dynamicParams is false, so that is a hard 404`
+        )
+    );
+    expect(offenders, offenders.join('; ')).toEqual([]);
+  });
+
+  /**
+   * A link whose service segment is not a real service can never resolve, so
+   * it is the most certain 404 of the three — and it was the one the first
+   * version of this file silently skipped.
+   */
+  it('never links to an unknown service', () => {
+    const offenders = scanned.flatMap(({ file, links }) =>
+      links
+        .filter((l) => !SERVICE_SLUGS.has(l.service))
+        .map(
+          (l) =>
+            `${file} links ${l.raw}, but "${l.service}" is not a service slug — that URL cannot resolve`
+        )
+    );
     expect(offenders, offenders.join('; ')).toEqual([]);
   });
 });
