@@ -1,6 +1,16 @@
 import { notFound } from 'next/navigation';
 import { renderOgCard, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og';
-import { SERVICES, EXPANSION_SERVICE_AREAS } from '@/lib/constants';
+import { SERVICES, ALL_SERVICE_AREAS } from '@/lib/constants';
+
+/**
+ * Resolve against ALL_SERVICE_AREAS, not EXPANSION_SERVICE_AREAS.
+ *
+ * The expansion alias holds VA/MD rows only, so every West Virginia combo
+ * (/services/roofing/martinsburg-wv and the other five home-turf pages) fell
+ * through to notFound() here and shipped with no social card. Same class of
+ * bug as the city lookup the route itself had — see the note on the coverage
+ * test in src/lib/service-city-content.test.ts.
+ */
 
 export const runtime = 'nodejs';
 export const size = OG_SIZE;
@@ -12,7 +22,7 @@ type Params = Promise<{ service: string; city: string }>;
 export async function generateImageMetadata({ params }: { params: Params }) {
   const { service, city } = await params;
   const serviceData = SERVICES.find((s) => s.slug === service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
+  const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
   return [
     {
       id: 'default',
@@ -29,7 +39,7 @@ export async function generateImageMetadata({ params }: { params: Params }) {
 export default async function OG({ params }: { params: Params }) {
   const { service, city } = await params;
   const serviceData = SERVICES.find((s) => s.slug === service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
+  const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
   if (!serviceData || !cityData) notFound();
 
   return renderOgCard({

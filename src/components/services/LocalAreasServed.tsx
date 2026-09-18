@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
-import { PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS, EXPANSION_SERVICE_AREAS } from '@/lib/constants';
+import { PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS } from '@/lib/constants';
 
 type Props = {
   serviceSlug: string;
