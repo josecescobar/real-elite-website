@@ -152,19 +152,28 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
 
       expect(area.redirectTo, `${area.slug} is consolidated with no redirectTo`).toBeTruthy();
       expect(area.redirectTo, `${area.slug} redirects off-site`).toMatch(/^\//);
+
+      // Compare PATHNAMES, not raw strings. Next matches redirect sources by
+      // pathname, so '/service-areas/foo?from=legacy' targets the same route as
+      // '/service-areas/foo' and loops — while a raw-string comparison sees two
+      // different values and an anchored path regex skips the catalog lookup
+      // entirely. Parsing once fixes both, and covers trailing slashes and
+      // fragments for free.
+      const destination = new URL(area.redirectTo!, 'https://example.invalid').pathname;
+
       expect(
-        area.redirectTo,
-        `${area.slug} redirects to its own URL, which is an infinite redirect`
+        destination,
+        `${area.slug} redirects to its own URL (${area.redirectTo}), which is an infinite redirect`
       ).not.toBe(source);
 
       // When the destination is another area page, that area has to still
       // publish one. Retired → the redirect chains or loops; unknown → 404.
-      const target = /^\/service-areas\/([a-z0-9-]+)$/.exec(area.redirectTo!);
+      const target = /^\/service-areas\/([a-z0-9-]+)\/?$/.exec(destination);
       if (target) {
         const destination = getServiceArea(target[1]);
         expect(
           destination,
-          `${area.slug} redirects to /service-areas/${target[1]}, which is not an area in the catalog`
+          `${area.slug} redirects to ${destination}, which is not an area in the catalog`
         ).not.toBeNull();
         expect(
           destination!.status,
