@@ -83,17 +83,26 @@ export function extractComboLinks(source: string): ComboLink[] {
 
   const out: ComboLink[] = [];
   for (const raw of urls) {
-    // Interpolated hrefs — href={`/services/${slug}/${city}`} — are derived
-    // from CONTENT and covered by CityPageTemplate.links.test.tsx. Allowing
-    // the JSX brace above brought them into range, and `${slug}` percent-
-    // encodes into something that satisfies the path shape, producing a bogus
-    // key and a false "unknown service" report. Skip them explicitly rather
-    // than hope the path pattern rejects them.
-    if (raw.includes('${')) continue;
+    // Only the PATH portion decides whether this link is derived.
+    //
+    // The first version skipped the whole URL whenever `${` appeared anywhere
+    // in it. That dropped
+    //   href={`/services/kitchens/middleburg-va?campaign=${campaign}`}
+    // which is a hand-written retired-combo link with an interpolated query —
+    // and nothing else covers it, because CityPageTemplate.links.test.tsx only
+    // knows about links IT derives. A false negative, the bad direction.
+    //
+    // So: split off query and fragment first, and skip only when a PATH
+    // SEGMENT is interpolated (href={`/services/${slug}/${city}`}), which is
+    // the derived case that test does cover.
+    const rawPath = raw.split(/[?#]/)[0];
+    if (rawPath.includes('${')) continue;
 
     let pathname: string;
     try {
-      pathname = new URL(raw, BASE).pathname;
+      // Parsed from rawPath, not raw, so an interpolated query or fragment
+      // cannot affect parsing at all.
+      pathname = new URL(rawPath, BASE).pathname;
     } catch {
       continue;
     }
@@ -148,7 +157,20 @@ describe('extractComboLinks', () => {
     ['service pillar, not a combo', '[K](/services/kitchens)', null],
     ['area page, not a combo', '[V](/service-areas/vienna-va)', null],
     ['module import path', "import X from '@/app/services/roofing/page';", null],
-    ['interpolated href is skipped', 'href={`/services/${s}/${c}`}', null],
+    ['interpolated path is skipped', 'href={`/services/${s}/${c}`}', null],
+    ['interpolated area segment is skipped', 'href={`/services/kitchens/${city}`}', null],
+    // Hard-coded path, interpolated SUFFIX: still a hand-written link, and
+    // nothing else covers it. The blanket `${` skip used to drop these.
+    [
+      'hard-coded path with interpolated query',
+      'href={`/services/kitchens/middleburg-va?campaign=${c}`}',
+      'kitchens-middleburg-va',
+    ],
+    [
+      'hard-coded path with interpolated fragment',
+      'href={`/services/kitchens/middleburg-va#${anchor}`}',
+      'kitchens-middleburg-va',
+    ],
   ];
 
   it.each(cases)('%s', (_name, source, expected) => {
