@@ -157,9 +157,18 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
    * 2. Checking only that a redirect *source* exists leaves `redirectTo`
    *    decorative: a stale or unrelated redirect from the same source would
    *    pass while sending visitors somewhere the catalog never declared.
+   * 3. Indexing the rules into a Map by source reads the LAST rule for a
+   *    source. Next evaluates `redirects()` as an ordered list and the FIRST
+   *    match wins, so a stale rule earlier in the array with the correct one
+   *    appended after it would send visitors to the stale destination while
+   *    this test read the correct one and passed.
    *
-   * So this asserts the whole redirect — source, destination and permanence —
-   * against the row that requires it.
+   * The root cause of all three was modelling `next.config.ts` as a lookup
+   * table. It is an ordered rule list, so the assertion below reads it as one:
+   * it collects every rule matching the source, requires exactly one — which
+   * makes the precedence question moot rather than relying on this test to
+   * reimplement Next's matching — and then checks its destination and
+   * permanence.
    */
   it('redirects every consolidated area URL to its declared destination', async () => {
     const { default: nextConfig } = await import('../../next.config');
@@ -168,26 +177,35 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
       destination: string;
       permanent?: boolean;
     }[];
-    const bySource = new Map(redirects.map((r) => [r.source, r]));
 
     for (const area of CONSOLIDATED_SERVICE_AREAS) {
       const source = `/service-areas/${area.slug}`;
-      const configured = bySource.get(source);
+      const matching = redirects.filter((r) => r.source === source);
 
       expect(
-        configured,
+        matching.length,
         `${area.slug} is consolidated but next.config.ts has no redirect from ${source}, so that URL is a 404`
-      ).toBeDefined();
+      ).toBeGreaterThan(0);
 
       expect(
-        configured!.destination,
-        `${source} redirects to "${configured!.destination}" but the catalog declares redirectTo: "${area.redirectTo}" — one of the two is wrong`
+        matching.length,
+        `${source} has ${matching.length} redirect rules. Next uses the first match, so a stale duplicate would silently win over the correct one — remove the extras`
+      ).toBe(1);
+
+      // Index 0 rather than the Map lookup this replaced: with exactly one rule
+      // the two agree, and reading the first keeps it correct by Next's own
+      // precedence if the count assertion above is ever loosened.
+      const configured = matching[0];
+
+      expect(
+        configured.destination,
+        `${source} redirects to "${configured.destination}" but the catalog declares redirectTo: "${area.redirectTo}" — one of the two is wrong`
       ).toBe(area.redirectTo);
 
       // 301, not 302: a retired area's ranking signals should pass to the page
       // that replaced it. The altitude plan specifies 301 for consolidation.
       expect(
-        configured!.permanent,
+        configured.permanent,
         `${source} is a temporary redirect; a retired area should 301 so the destination inherits its ranking signals`
       ).toBe(true);
     }
