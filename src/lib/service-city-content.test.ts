@@ -19,9 +19,11 @@ import {
   servicePillarHref,
 } from '@/lib/constants';
 import { TITLE_MAX } from '@/lib/seo';
+import { getAllPosts } from '@/lib/blog';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const AREA_SLUGS = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
+const BLOG_SLUGS = new Set<string>(getAllPosts().map((p) => p.slug));
 
 /** Split a CONTENT key on its first dash, the same way the route does. */
 function splitKey(key: string) {
@@ -257,6 +259,35 @@ describe('combo content shape', () => {
         expect(entry!.metaDescription.trim().length, `${key} metaDescription is empty`)
           .toBeGreaterThan(0);
       }
+    }
+  });
+
+  /**
+   * A related-guide slug that does not resolve does NOT fail loudly at runtime.
+   * `RelatedGuides` drops the unresolved slug and, with nothing left, falls
+   * back to the three most recent posts — so a typo on a hiring page publishes
+   * whatever was written last week, silently and forever. The route passes
+   * `fallbackCount={0}` to blunt that, but the honest fix is for a bad slug to
+   * never reach the route at all.
+   *
+   * This is the same check `services-data.test.ts` runs over its own
+   * `relatedGuideSlugs`, against the same source of truth.
+   */
+  it('only links related guides that point at real blog posts', () => {
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      for (const guideSlug of entry!.relatedGuideSlugs ?? []) {
+        expect(
+          BLOG_SLUGS.has(guideSlug),
+          `${key} → unknown guide "${guideSlug}". The page would silently fall back to the three most recent posts.`
+        ).toBe(true);
+      }
+    }
+  });
+
+  it('does not pair a combo with the same guide twice', () => {
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      const slugs = entry!.relatedGuideSlugs ?? [];
+      expect(new Set(slugs).size, `${key} lists a guide more than once`).toBe(slugs.length);
     }
   });
 });

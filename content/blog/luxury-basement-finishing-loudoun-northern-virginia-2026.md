@@ -77,7 +77,7 @@ If you're planning a high-end basement in **Loudoun County, Ashburn, Leesburg, F
 
 ## Also serving the wider Northern Virginia luxury market
 
-Beyond Loudoun, we build finished lower levels across Fairfax County and Alexandria — including [McLean](/services/basements/mclean-va), [Great Falls](/services/basements/great-falls-va), [Vienna](/services/basements/vienna-va), [Reston](/services/basements/reston-va), [Old Town Alexandria](/services/basements/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=basement) and we'll call inside the window you choose.
+Beyond Loudoun, we build finished lower levels across Fairfax County and Alexandria. Our [basement remodeling in Northern Virginia](/services/basements/northern-virginia) page covers the regional picture — how scope and budget move from Burke to Great Falls, and how permitting differs between Fairfax County, Loudoun County and the City of Alexandria. For a specific town, we work in [McLean](/services/basements/mclean-va), [Great Falls](/services/basements/great-falls-va), [Vienna](/services/basements/vienna-va), [Reston](/services/basements/reston-va), [Old Town Alexandria](/services/basements/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=basement) and we'll call inside the window you choose.
 
 Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
 
