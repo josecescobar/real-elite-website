@@ -701,11 +701,34 @@ dead import). Item 3 shipped in #143. Item 4 is above.
   absent from the index entirely.
 - **#147** — `/services/basements/northern-virginia`, the regional money page.
   Region-aware labels across the combo route and its OG card (the fallback
-  read "Northern Virginia, VA"), `areaServed` corrected from a hardcoded `City`
-  to `areaSchemaType`, and the per-market trust block gated on
-  `market === 'home'` — the twin of the gate #146 added to `CityPageTemplate`,
-  which had left the area pages withholding three unconfirmed promises while
-  the combo pages went on making them.
+  read "Northern Virginia, VA"), and `areaServed` corrected from a hardcoded
+  `City` to `areaSchemaType`.
+
+  **The trust-block rule took three rounds of review to get right, and the
+  final rule is not `market === 'home'`.** Recording all three, because this
+  document exists so a later edit does not restore a version that was already
+  rejected:
+
+  1. `market === 'premium'`, argued from specificity — a town-and-service
+     scoped promise being worse in a dispute than a sitewide banner.
+     **Rejected:** 36 of the 47 premium combos already publish those promises
+     in their own localized paragraphs at that same specificity, so it reduced
+     nothing there, churned live copy, and pre-applied part of a retraction
+     that belongs to the owner. `claims.ts` is meant to *be* that worklist.
+  2. `market !== 'home' && the page's copy makes no unconfirmed claim`.
+     **Rejected:** a new premium page whose copy carried only an unrelated
+     claim (`active-work-timeline`) would have been handed all four bullets,
+     defeating the new-page boundary the rule exists for.
+  3. **Shipped:** per bullet, a bullet publishes only when the page's copy
+     already makes *every* claim that bullet would introduce. The rule lives in
+     `src/lib/trust-bullets.ts` — not in the route, because a rule inside a
+     page component can only be tested by rendering the page or by copying the
+     rule into the test, and the copy is what shipped and was found vacuous.
+
+  Do not widen this back to a market check. `/services/basements/northern-virginia`
+  has clean copy, so it receives only the verified licensing line; the 36 pages
+  whose copy already carries the claims are unchanged from what shipped before
+  this PR.
 
   It also replaced the deep-link allowlist in `CityPageTemplate` — four service
   slugs crossed with four city slugs — with `serviceHrefForArea`, derived from

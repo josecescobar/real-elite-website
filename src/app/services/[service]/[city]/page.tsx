@@ -25,12 +25,12 @@ import {
   defaultComboTitle,
   defaultComboDescription,
   comboPublishesPricing,
-  unconfirmedClaimIdsInCombo,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
 import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-intent';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { selectTrustBullets } from '@/lib/trust-bullets';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -54,43 +54,6 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
   // a handyman call.
   decks: 'outdoor-living',
 };
-
-/**
- * The "Why {place} homeowners choose Real Elite" bullets, with the operational
- * claims each one would publish.
- *
- * The `claims` annotations are the gate's input, so they must not drift from
- * the register's own patterns. `trust-bullets.test.ts` asserts each bullet's
- * annotation equals what `claimsFoundIn` detects in its text — an annotation
- * that silently understates a bullet would wave it onto a page that should not
- * carry it, which is worse than no gate.
- */
-export function trustBullets(
-  city: string,
-  serviceTitle: string,
-  state: string
-): readonly { text: string; claims: readonly string[] }[] {
-  return [
-    {
-      text: `One named project lead on every ${city} ${serviceTitle.toLowerCase()} job — from estimate through final walkthrough.`,
-      claims: ['named-project-lead'],
-    },
-    {
-      // Two claims in one sentence, so it needs both already present.
-      text: 'Daily updates, clean job site, 24-hour response standard.',
-      claims: ['daily-updates', 'clean-job-site'],
-    },
-    {
-      text: 'Written workmanship warranty + manufacturer warranties registered on your behalf.',
-      claims: ['written-workmanship-warranty'],
-    },
-    {
-      // Verified, so it carries no claims and always renders.
-      text: `Licensed and insured in ${state} — local permitting + inspections handled.`,
-      claims: [],
-    },
-  ];
-}
 
 // ─── Static Params ────────────────────────────────────────────────────────────
 
@@ -217,39 +180,14 @@ export default async function ServiceCityPage({
 
   const place = formatAreaPlace(cityData);
 
-  // The per-market trust block, gated per BULLET on the claims that bullet
-  // would introduce.
-  //
-  // Three rounds of review on this gate, each one correct:
-  //
-  //   1. `market === 'premium'`, justified by specificity — a town-and-service
-  //      scoped promise being worse than a sitewide banner. Refuted: 36 of the
-  //      47 premium combos already make these promises in their own localized
-  //      paragraphs, at that same specificity, so it reduced nothing on them
-  //      and churned live copy.
-  //   2. `market !== 'home' && the copy makes no unconfirmed claim`. Refuted
-  //      too, on the case I had underweighted: a NEW premium page whose copy
-  //      carries only an unrelated claim (`active-work-timeline`, as
-  //      bathrooms-ashburn-va does) would satisfy it and be handed all four
-  //      bullets its copy never made — defeating the new-page boundary that is
-  //      this gate's whole remaining justification.
-  //   3. This. A bullet renders only if the page's copy already makes every
-  //      claim it would introduce. Half a bullet being pre-existing does not
-  //      license the other half, so a two-claim bullet needs both.
-  //
-  // Still NOT a claim about the page as a whole. `AssurancesBand` and
-  // `PRECISION_PROCESS` (via `PrecisionProcess`, both rendered below) publish
-  // the same four here and on roughly fifty other pages including the
-  // homepage. That is the owner's decision, taken on #146. The real fix is
-  // their ruling on the seven claims in src/lib/claims.ts: confirm them and
-  // every gate comes out, retract them and that file is the worklist.
-  const ownClaims = new Set(unconfirmedClaimIdsInCombo(service, city));
-  const trustPoints = trustBullets(cityData.city, serviceData.title, cityData.state)
-    .filter(
-      (bullet) =>
-        cityData.market === 'home' || bullet.claims.every((id) => ownClaims.has(id))
-    )
-    .map((bullet) => bullet.text);
+  // Which trust bullets this page may publish. The rule lives in
+  // src/lib/trust-bullets.ts, not here: three of these four bullets publish
+  // claims registered `unconfirmed` in src/lib/claims.ts, and a rule that
+  // lives in a page component can only be tested by rendering the page or by
+  // copying the rule into the test. The copy is what shipped, and Codex showed
+  // it was vacuous AND blind to the route's filter being weakened from `every`
+  // to `some`. Same mistake serviceHrefForArea was extracted to fix.
+  const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
 
   // SEO: Service schema scoped to this specific area, plus a BreadcrumbList.
   // No per-market LocalBusiness duplication (the global GeneralContractor in

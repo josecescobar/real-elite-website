@@ -1,89 +1,103 @@
 import { describe, it, expect } from 'vitest';
-import { trustBullets } from '@/app/services/[service]/[city]/page';
+import { trustBullets, selectTrustBullets } from '@/lib/trust-bullets';
 import { claimsFoundIn } from '@/lib/claims';
-import { ALL_SERVICE_AREAS } from '@/lib/constants';
+import { ALL_SERVICE_AREAS, getServiceArea } from '@/lib/constants';
 import { CONTENT, unconfirmedClaimIdsInCombo } from '@/lib/service-city-content';
 
 /**
- * The combo template gates each trust bullet on the claims that bullet would
- * introduce, using the `claims` annotation beside its text. Those annotations
- * are hand-written, so they can drift from the register's own patterns — and an
- * annotation that UNDERSTATES a bullet waves it onto a page that should not
- * carry it. That is worse than having no gate, because the gate is then a
- * false assurance.
+ * Tests `selectTrustBullets` — the function the route actually calls.
  *
- * So the annotations are checked against `claimsFoundIn` rather than trusted.
+ * ## What the previous version of this file got wrong
+ *
+ * It replayed the route's filter and asserted on the replay. Codex found two
+ * faults, both verified before this rewrite:
+ *
+ *   1. The central assertion was VACUOUS BY CONSTRUCTION. It computed
+ *      `renders = claims.every(present)` and `introduced = claims.filter(absent)`
+ *      and failed on `renders && introduced.length` — which cannot both hold.
+ *      The test could not fail for any input.
+ *   2. Even written correctly, a replay says nothing about the route. Changing
+ *      the route's filter from `every` to `some` left the whole file green.
+ *      Confirmed by doing exactly that.
+ *
+ * That is the sixth "assertion weaker than its name" in this feature and the
+ * worst of them, because an unfalsifiable test reads as coverage.
+ *
+ * ## How this version avoids it
+ *
+ * The rule now lives in `trust-bullets.ts` and the route only calls it, so
+ * there is one implementation to test. And the assertions run OUTPUT → REGISTER
+ * → page copy: take the strings the selector returned, ask `claimsFoundIn`
+ * what claims they publish, and require the page's own copy to already make
+ * each one. Nothing here re-derives the predicate, so weakening it fails here.
  */
+
+/** The claim ids a bullet's text actually publishes, per the register. */
+function claimsPublishedBy(text: string): string[] {
+  return claimsFoundIn(text)
+    .filter((c) => c.status === 'unconfirmed')
+    .map((c) => c.id)
+    .sort();
+}
+
 const SAMPLE = trustBullets('McLean', 'Bathroom Remodeling', 'VA');
 
-/** The four claims the block publishes, per the register. */
-const BULLET_CLAIMS = [
-  'named-project-lead',
-  'daily-updates',
-  'clean-job-site',
-  'written-workmanship-warranty',
-];
-
 describe('trust bullet claim annotations', () => {
+  /**
+   * The annotations are the rule's input and are hand-written, so they are
+   * checked against the register rather than trusted. An annotation that
+   * UNDERSTATES a bullet would wave it onto a page that must not carry it.
+   */
   it.each(SAMPLE.map((b, i) => [i, b] as const))(
     'bullet %i annotates exactly the unconfirmed claims its text makes',
     (_i, bullet) => {
-      const detected = claimsFoundIn(bullet.text)
-        .filter((c) => c.status === 'unconfirmed')
-        .map((c) => c.id)
-        .sort();
       expect(
         [...bullet.claims].sort(),
         `annotation drifted from the register for: "${bullet.text}"`
-      ).toEqual(detected);
+      ).toEqual(claimsPublishedBy(bullet.text));
     }
   );
 
-  it('keeps the verified licensing bullet claim-free so it always renders', () => {
+  it('keeps the verified licensing bullet claim-free so it always publishes', () => {
     const licensing = SAMPLE.find((b) => b.text.startsWith('Licensed and insured'));
     expect(licensing, 'the licensing bullet went missing').toBeDefined();
     expect(licensing!.claims).toEqual([]);
-    expect(claimsFoundIn(licensing!.text).filter((c) => c.status === 'unconfirmed')).toEqual([]);
+    expect(claimsPublishedBy(licensing!.text)).toEqual([]);
   });
 
   it('covers all four claims the block is known to publish', () => {
-    const annotated = SAMPLE.flatMap((b) => b.claims).sort();
-    expect(annotated).toEqual([...BULLET_CLAIMS].sort());
+    expect(SAMPLE.flatMap((b) => b.claims).sort()).toEqual(
+      ['clean-job-site', 'daily-updates', 'named-project-lead', 'written-workmanship-warranty'].sort()
+    );
   });
 
-  /**
-   * A bullet carrying two claims must need BOTH already present: half its copy
-   * being pre-existing does not license the other half. Pinned because
-   * collapsing it to `some` would silently reopen the hole.
-   */
-  it('has a bullet carrying two claims, which is why the gate uses every()', () => {
+  it('has a bullet carrying two claims, which is why the rule uses every()', () => {
     expect(SAMPLE.some((b) => b.claims.length > 1)).toBe(true);
   });
 });
 
-describe('the gate the annotations feed', () => {
+describe('selectTrustBullets', () => {
   /**
-   * Replays the route's filter over every premium combo, so the invariant that
-   * matters is asserted rather than reasoned about: no premium page is handed
-   * a bullet whose claims its own copy does not already make.
+   * THE load-bearing assertion, and the one the previous version faked.
    *
-   * This is the assertion whose absence let two earlier predicates ship. The
-   * first two rounds were argued, not measured.
+   * For every premium combo, every claim published by every string the
+   * selector returned must already appear in that page's own copy. It reads
+   * the selector's output and consults the register — it does not reconstruct
+   * the filter — so `some` in place of `every`, or no filter at all, fails
+   * here, naming the page and the claim.
    */
-  it('never hands a premium page a claim its own copy does not already make', () => {
+  it('never publishes a claim a premium page does not already make', () => {
     const offenders: string[] = [];
 
     for (const key of Object.keys(CONTENT)) {
       const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
       if (!area || area.market !== 'premium') continue;
-      const service = key.slice(0, key.length - area.slug.length - 1);
-      const own = new Set(unconfirmedClaimIdsInCombo(service, area.slug));
+      const serviceSlug = key.slice(0, key.length - area.slug.length - 1);
+      const own = new Set(unconfirmedClaimIdsInCombo(serviceSlug, area.slug));
 
-      for (const bullet of trustBullets(area.city, 'Bathroom Remodeling', area.state)) {
-        const renders = bullet.claims.every((id) => own.has(id));
-        const introduced = bullet.claims.filter((id) => !own.has(id));
-        if (renders && introduced.length) {
-          offenders.push(`${key} would be handed ${introduced.join(', ')}`);
+      for (const text of selectTrustBullets(area, serviceSlug, 'Bathroom Remodeling')) {
+        for (const id of claimsPublishedBy(text)) {
+          if (!own.has(id)) offenders.push(`${key} publishes "${id}" via: ${text}`);
         }
       }
     }
@@ -92,34 +106,52 @@ describe('the gate the annotations feed', () => {
   });
 
   /**
-   * The new-page boundary, stated as a test rather than as a comment. The
-   * regional page's copy is clean, so it must receive no claim-bearing bullet
-   * at all — only the verified licensing line.
+   * The new-page boundary, which is the rule's whole remaining purpose. The
+   * regional page's copy was written clean, so it must receive only the
+   * verified licensing line.
    */
   it('gives the regional page only the verified licensing line', () => {
-    const own = new Set(unconfirmedClaimIdsInCombo('basements', 'northern-virginia'));
-    const rendered = trustBullets('Northern Virginia', 'Basement Finishing', 'VA')
-      .filter((b) => b.claims.every((id) => own.has(id)))
-      .map((b) => b.text);
+    const region = getServiceArea('northern-virginia')!;
+    const rendered = selectTrustBullets(region, 'basements', 'Basement Finishing');
 
     expect(rendered).toHaveLength(1);
     expect(rendered[0]).toContain('Licensed and insured');
   });
 
   /**
-   * The case that refuted the previous predicate. bathrooms-ashburn-va carries
-   * `active-work-timeline` and none of the block's four, so it must get the
-   * licensing line only — under the any-claim predicate it got all four.
+   * The case that refuted the any-claim predicate: copy carrying
+   * `active-work-timeline` and none of the block's four.
    */
   it('gives a page carrying only an unrelated claim the licensing line only', () => {
-    const own = new Set(unconfirmedClaimIdsInCombo('bathrooms', 'ashburn-va'));
-    expect(own.has('active-work-timeline')).toBe(true);
+    const ashburn = getServiceArea('ashburn-va')!;
+    expect(unconfirmedClaimIdsInCombo('bathrooms', 'ashburn-va')).toContain('active-work-timeline');
 
-    const rendered = trustBullets('Ashburn', 'Bathroom Remodeling', 'VA')
-      .filter((b) => b.claims.every((id) => own.has(id)))
-      .map((b) => b.text);
-
+    const rendered = selectTrustBullets(ashburn, 'bathrooms', 'Bathroom Remodeling');
     expect(rendered).toHaveLength(1);
     expect(rendered[0]).toContain('Licensed and insured');
+  });
+
+  /**
+   * The home market is unchanged by any of this, which is the other half of
+   * "reduces exposure where it can, changes nothing where it cannot".
+   */
+  it('publishes every bullet on the home market', () => {
+    const martinsburg = getServiceArea('martinsburg-wv')!;
+    expect(martinsburg.market).toBe('home');
+    expect(selectTrustBullets(martinsburg, 'roofing', 'Roofing')).toHaveLength(4);
+  });
+
+  /**
+   * A premium page whose copy does make the claims keeps its bullets. Without
+   * this, the rule could satisfy every other test by returning the licensing
+   * line and nothing else on all premium pages — which is the over-broad gate
+   * that two earlier rounds removed.
+   */
+  it('keeps the bullets a premium page already earns', () => {
+    const mclean = getServiceArea('mclean-va')!;
+    const rendered = selectTrustBullets(mclean, 'bathrooms', 'Bathroom Remodeling');
+
+    expect(rendered.length).toBeGreaterThan(1);
+    expect(rendered.some((t) => t.includes('named project lead'))).toBe(true);
   });
 });
