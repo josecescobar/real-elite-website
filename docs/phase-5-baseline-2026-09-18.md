@@ -138,10 +138,26 @@ checks whether *these* strings start resolving to
 regional queries while the towns keep theirs, both pages are working and
 neither should be retired.
 
-### NoVA area pages — every Tier B redirect candidate, every row
+### NoVA area pages — every row, with its tier
 
-§3.3 classifies every NoVA `/service-areas/` overview as Tier B, so each is a
-redirect candidate needing its own rows.
+**Only one of these four is a redirect candidate.** An earlier draft called all
+four "Tier B redirect candidates", and three of the four were wrong:
+
+| Page | §3.3 tier | What that means in December |
+| --- | --- | --- |
+| `leesburg-va` | **A — keep and invest** | never a redirect candidate; frozen here for observation only |
+| `great-falls-va` | **B — keep, freeze, re-parent** | the only one the 301 rule can apply to |
+| `mclean-va` | **D — leave alone** | frozen for observation; do not retire |
+| `clifton-va` | **D — leave alone** | do not retire — **four #148 retirement redirects point at it**, and retiring it chains them |
+
+The rows below are frozen for all four because the December read wants to see
+what happened to them. Only Great Falls may be acted on.
+
+**A note for whoever reconciles this with §3.3:** its Tier B row says "the
+`/service-areas/` overview for every NoVA town", and its Tier D row explicitly
+lists `{burke, clifton, fairfax-station, middleburg, mclean}-va` as leave-alone.
+Those overlap. Tier D is the specific list and wins; the Tier B phrasing is
+loose and predates it.
 
 **These tables are complete.** Each page's named queries sum exactly to its
 page total, so there is **no Search Console–suppressed remainder** on any of
@@ -433,11 +449,17 @@ from snippet wording and may be the local pack sitting above it.
 1. **Do any "northern virginia" queries appear at all?** From zero, any
    non-zero is signal. If still zero, the regional altitude thesis failed on
    its own terms and §2 should be reread rather than the page expanded.
-2. **Did the NoVA town pages lose THEIR QUERIES to the region?** Compare the
-   frozen query strings above, page by page — not the page totals. 301 a town
-   page only when the same queries it held now resolve to the regional page. A
-   total that fell while the region gained *different* queries is not transfer;
-   it is two pages serving different demand, and both should stay.
+2. **Did the Tier B pages lose THEIR QUERIES to the region?** Compare the
+   frozen query strings above, page by page — not the page totals. 301 a page
+   only when the same queries it held now resolve to the regional page. A total
+   that fell while the region gained *different* queries is not transfer; it is
+   two pages serving different demand, and both should stay.
+
+   **This rule applies to Tier B only** — the four basement combos and
+   `/service-areas/great-falls-va`. Tier A (`leesburg-va`) and Tier D
+   (`mclean-va`, `clifton-va`) are frozen above for observation and are not
+   candidates whatever their queries do. Retiring `clifton-va` in particular
+   would chain the four retirement redirects #148 pointed at it.
 3. **Did the Fairfax query follow the region?** If yes, no Fairfax page is
    needed. If no, build it.
 4. **Did anything reach page one?** Site-wide mobile CTR of 0.14% is a

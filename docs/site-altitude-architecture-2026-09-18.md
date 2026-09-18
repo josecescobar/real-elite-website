@@ -886,17 +886,21 @@ Only then a second trade at regional altitude.
 
 ---
 
-**Leesburg ranks on Loudoun County queries, not Leesburg queries — 2026-09-18.**
+**Loudoun County queries are the majority on Leesburg's page — 2026-09-18.**
 
 Surfaced by freezing query-level rows for the Phase 5 baseline, and it bears
 directly on §2. `/service-areas/leesburg-va` takes **243 of its 381 mobile
-impressions (64%) from "loudoun county" queries** across 18 query strings.
-Meanwhile "northern virginia" returns **zero** mobile impressions.
+impressions (64%) from "loudoun county" queries** across 18 query strings —
+the majority, though the page does also rank on 17 Leesburg-scoped strings
+carrying the other 108 impressions (28%). Meanwhile "northern virginia" returns
+**zero** mobile impressions.
 
-Precisely, because an earlier version of this note overstated it: the **top
-three** county queries carry 188 of those impressions at positions 12.5–19.2,
-better than any Leesburg town query. The other 15 carry 55 impressions at
-positions **26.3–44.7**, where nothing is visible.
+Precisely, because two earlier versions of this note overstated it: the top
+three county queries carry 188 impressions at positions 12.5–19.2, and **two
+of those three** outrank every town query — the third (19.2) is beaten by
+`basement finishing contractor in leesburg va` at 19.0. The remaining 15 county
+queries carry 55 impressions at positions **26.3–44.7**, where nothing is
+visible.
 
 The regional-altitude thesis may therefore be right about altitude and wrong
 about the place name: the demand that exists at a level above the town is
