@@ -112,6 +112,68 @@ page at position 14 with this much exposure is the clearest available measure of
 what ranking improvement would be worth, whenever that question is asked with
 better instrumentation.
 
+## Two properties of the posts themselves, tested and eliminated
+
+Both were free to check and both are recorded so nobody repeats them.
+
+### Age — ruled out, and it runs backwards
+
+The obvious explanation is that the unfetched posts are simply newer. They are
+not. **The four newest posts, all published 2026-07-06, have all been fetched**
+(`basement-egress-window-cost`, `deck-cost-per-square-foot`,
+`roof-replacement-cost`, `walk-in-shower-cost`), while the oldest cohort,
+2026-05-19, is four never-fetched against one.
+
+("Fetched" rather than "indexed" because one of the fifteen —
+`storm-damage-roof-repair-insurance` — is crawled-but-not-indexed, as the
+section above records. All sixteen in the other column are literally "unknown to
+Google".)
+
+| Published | Fetched | Never fetched |
+| --- | --- | --- |
+| 2026-05-19 | 1 | 4 |
+| 2026-05-27 | 1 | 0 |
+| 2026-05-30 | 4 | 6 |
+| 2026-06-07 | 5 | 6 |
+| 2026-07-06 | **4** | **0** |
+| **total** | **15** | **16** |
+
+**Every cohort that contains more than one post contains both states**, and the
+tendency, such as it is, favours newer posts being indexed. This is the same
+confound that inflated the service+city figures earlier today (see
+`index-coverage-2026-09-18.md`, wrong turn 3); here it was checked first and it
+does not apply.
+
+### Post type — not established, and weaker than it looks
+
+Sorting by the `type` field in the frontmatter shows cost guides doing better
+than the 48% base rate (15 of 31):
+
+| `type` | Fetched | Never fetched |
+| --- | --- | --- |
+| cost-guide | 6 | 2 |
+| how-to | 4 | 6 |
+| buying-guide | 2 | 3 |
+| comparison | 2 | 1 |
+| permit-guide | 1 | 2 |
+| maintenance | 0 | 2 |
+| **total** | **15** | **16** |
+
+Cost guides are 6 of 8 fetched against 3.9 expected. **P(≥6 of 8 by chance) =
+0.09**, and the related "slug contains *cost*" cut gives 5 of 7, **p = 0.17**.
+
+Neither is worth acting on, and the 0.09 is weaker than the number suggests for
+two reasons. **Two tests were run, not one.** And **the pattern was noticed in
+the output of the age test and then tested**, which is not the same as
+predicting it beforehand — a post-hoc p-value on a pattern spotted by eye
+overstates its own confidence. It is recorded as a tendency to keep an eye on if
+the sample ever grows, not as a finding.
+
+**So nothing about the posts themselves — their age, their type, their
+topic format — predicts whether Google fetched them.** That matches the
+service+city result, where content volume, raw link count, trade and page age
+were all eliminated too.
+
 ## What follows
 
 1. **Include unindexed blog posts in the indexing request — but the reason is
