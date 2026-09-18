@@ -29,13 +29,6 @@ import { OPERATIONAL_CLAIMS, claimsFoundIn } from '../src/lib/claims';
  * unnoticed, only make the retraction worklist incomplete. Attribution from
  * the AST, completeness from the build.
  *
- * ## Why counts rather than a page list
- *
- * The warranty line is on 148 of 182 pages. Pinning the list would be a
- * 148-entry fixture that churns on every new page and tells the reader
- * nothing; the number is the fact that matters — and it is the fact the
- * owner needs, because it is the size of the exposure.
- *
  * ## These numbers are the argument for resolving the claims
  *
  * The source inventory counts 21 FILES. That understates the position badly.
@@ -49,34 +42,36 @@ import { OPERATIONAL_CLAIMS, claimsFoundIn } from '../src/lib/claims';
 const ROOT = '.next/server/app';
 
 /**
- * Pages publishing each claim, as of 2026-09-18 on the Tier C build.
+ * The pages publishing each unconfirmed claim, as `tests/claim-pages.json`.
  *
- * An EXACT SNAPSHOT, not a ceiling, and the difference matters. A ceiling only
- * fails when the count rises above it, which leaves headroom: retract a claim
- * from ten pages, then later add it to ten different ones, and both changes
- * pass while the recorded number never moves. That is a fixed maximum wearing
- * a ratchet's name — Codex found the gap on #148, in wording I had written
- * myself.
+ * A SET OF ROUTES, not a count, and the difference is the point. An exact count
+ * still passes an atomic relocation: retract a claim from one page while
+ * another starts publishing it in the same change and `148 === 148` holds, so a
+ * new page inherits an unconfirmed promise with nothing failing. That is most
+ * reachable exactly where there is no other guard — blog metadata and
+ * dynamically assembled copy, which the source-level inventory does not walk.
+ * Codex found it on #148, one round after the count itself replaced a ceiling
+ * for a related reason.
  *
- * Requiring equality makes it a real ratchet: a reduction fails too, and the
- * only way to clear that failure is to write the smaller number here, so
- * progress is locked in and cannot be spent later.
+ * Additions and removals are reported SEPARATELY, because they mean opposite
+ * things: an addition is a defect to remove, a removal is progress to record.
  *
- * Lowering a number is therefore routine and good — it records a retraction or
- * a retired page. RAISING one is legitimate only when the owner has confirmed
- * that claim, at which point its status in `claims.ts` changes and it leaves
- * this table entirely. Raising it to silence a failure is the move
- * `claims.ts`'s howToFix forbids.
+ * It doubles as the owner's page-level retraction worklist. `claims.ts` names
+ * the 21 source FILES carrying each claim, which is what you edit; this names
+ * the 603 rendered PAGES, which is what a homeowner actually sees — and for
+ * `content/blog` it is the only such list that exists, since the source scan
+ * walks `src` alone.
+ *
+ * ## Updating it
+ *
+ * `UPDATE_CLAIM_PAGES=1 npm run test:built` rewrites the file. That is a
+ * convenience, not an escape hatch: the result is a committed diff, and a diff
+ * that ADDS routes to an unconfirmed claim is the guard reporting a problem in
+ * the most reviewable form there is. Regenerating to silence a failure is the
+ * move `claims.ts`'s howToFix forbids.
  */
-const PAGE_COUNTS: Readonly<Record<string, number>> = {
-  'written-workmanship-warranty': 148,
-  'named-project-lead': 143,
-  'daily-updates': 140,
-  'clean-job-site': 135,
-  'active-work-timeline': 16,
-  'daily-progress-photos': 13,
-  'same-day-response': 8,
-};
+const SNAPSHOT_PATH = 'tests/claim-pages.json';
+const SNAPSHOT: Record<string, string[]> = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
 
 /**
  * Everything on a page that can put a claim in front of a person.
@@ -131,8 +126,14 @@ function visibleText(html: string): string {
 
   chunks.push(withoutCode.replace(/<[^>]+>/g, ' '));
 
+  // Collapse ALL whitespace inside a chunk, newlines included. An earlier
+  // version preserved internal newlines, which bought nothing — the join below
+  // already separates chunks — while a value containing a literal newline, say
+  // an aria-label of `Written workmanship\nwarranty`, is presented by the
+  // browser and by accessible-name computation as a space and so escaped the
+  // pattern. Codex found it on #148.
   return chunks
-    .map((c) => c.replace(/&[a-z]+;|&#\d+;/gi, ' ').replace(/[^\S\n]+/g, ' ').trim())
+    .map((c) => c.replace(/&[a-z]+;|&#\d+;/gi, ' ').replace(/\s+/g, ' ').trim())
     .join('\n');
 }
 
@@ -162,58 +163,77 @@ describe('unconfirmed claims in rendered pages', () => {
   if (!hasBuild) return;
 
   const pages = builtPages();
-  const counts = new Map<string, number>();
-  const examples = new Map<string, string>();
+  /** claim id -> the routes whose rendered output publishes it. */
+  const actual = new Map<string, Set<string>>();
   for (const file of pages) {
     const route = file.slice(ROOT.length).replace(/\.html$/, '') || '/';
     for (const claim of claimsFoundIn(visibleText(fs.readFileSync(file, 'utf8')))) {
-      counts.set(claim.id, (counts.get(claim.id) ?? 0) + 1);
-      if (!examples.has(claim.id)) examples.set(claim.id, route);
+      if (!actual.has(claim.id)) actual.set(claim.id, new Set());
+      actual.get(claim.id)!.add(route);
     }
   }
 
   /**
    * Proves the scan before concluding from it. A walker that found no pages, or
-   * a stripper that removed everything, would make the ceilings below pass
+   * a stripper that removed everything, would make the comparisons below pass
    * silently — which is how two unfalsifiable tests shipped earlier in this
    * feature.
    */
-  it('reads the built pages and finds the claims it is counting', () => {
+  it('reads the built pages and finds the claims it is tracking', () => {
     expect(pages.length, 'built pages').toBeGreaterThan(100);
-    expect(counts.size, 'distinct claims found in rendered text').toBeGreaterThan(4);
+    expect(actual.size, 'distinct claims found in rendered text').toBeGreaterThan(4);
     // The sitewide warranty line must be found on most of the site, or the
     // stripper is eating content rather than markup.
-    expect(counts.get('written-workmanship-warranty') ?? 0).toBeGreaterThan(100);
+    expect((actual.get('written-workmanship-warranty') ?? new Set()).size).toBeGreaterThan(100);
   });
 
-  it('records a page count for every unconfirmed claim in the register', () => {
+  it('records a page list for every unconfirmed claim in the register', () => {
     const unconfirmed = OPERATIONAL_CLAIMS.filter((c) => c.status === 'unconfirmed').map((c) => c.id);
-    const missing = unconfirmed.filter((id) => !(id in PAGE_COUNTS));
+    const missing = unconfirmed.filter((id) => !(id in SNAPSHOT));
     expect(
       missing,
-      `unconfirmed claims with no recorded page count: ${missing.join(', ')} — add one, measured, or this claim can spread unwatched`
+      `unconfirmed claims with no recorded page list: ${missing.join(', ')} — regenerate the snapshot, or this claim can spread unwatched`
     ).toEqual([]);
-    // And no stale entry for a claim that has been confirmed or removed.
-    const stale = Object.keys(PAGE_COUNTS).filter((id) => !unconfirmed.includes(id));
+    const stale = Object.keys(SNAPSHOT).filter((id) => !unconfirmed.includes(id));
     expect(
       stale,
-      `page counts for claims no longer unconfirmed: ${stale.join(', ')} — remove them`
+      `page lists for claims no longer unconfirmed: ${stale.join(', ')} — remove them`
     ).toEqual([]);
   });
 
   /**
-   * Equality in both directions. A rise is new copy inheriting an unconfirmed
-   * claim. A fall is progress, and it must be recorded rather than banked as
-   * headroom for a future rise.
+   * Set equality, with the two directions reported apart. A relocation — one
+   * page losing the claim while another gains it — leaves the totals identical
+   * and is caught here as one addition and one removal.
    */
-  it('publishes each unconfirmed claim on exactly the recorded number of pages', () => {
-    const drift = Object.entries(PAGE_COUNTS).flatMap(([id, recorded]) => {
-      const actual = counts.get(id) ?? 0;
-      if (actual === recorded) return [];
-      return actual > recorded
-        ? `${id} now renders on ${actual} pages, up from ${recorded} (e.g. ${examples.get(id)}) — new copy inherited a claim the owner has not confirmed. Remove it; only a confirmation from the owner justifies a higher number, and that moves the claim out of this table entirely`
-        : `${id} now renders on ${actual} pages, down from ${recorded} — good. Record ${actual} here so the reduction is locked in and cannot be spent on a later page`;
-    });
-    expect(drift, drift.join('; ')).toEqual([]);
+  it('publishes each unconfirmed claim on exactly the recorded pages', () => {
+    if (process.env.UPDATE_CLAIM_PAGES) {
+      const next: Record<string, string[]> = {};
+      for (const c of OPERATIONAL_CLAIMS) {
+        const routes = actual.get(c.id);
+        if (routes) next[c.id] = [...routes].sort();
+      }
+      fs.writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(next, null, 2)}\n`);
+      return;
+    }
+
+    const problems: string[] = [];
+    for (const [id, recorded] of Object.entries(SNAPSHOT)) {
+      const now = actual.get(id) ?? new Set<string>();
+      const added = [...now].filter((r) => !recorded.includes(r)).sort();
+      const removed = recorded.filter((r) => !now.has(r)).sort();
+
+      if (added.length) {
+        problems.push(
+          `${id} is now published on ${added.length} page(s) it was not before — ${added.slice(0, 5).join(', ')}${added.length > 5 ? ', …' : ''} — new copy inherited a claim the owner has not confirmed. Remove it; only a confirmation justifies more pages, and that moves the claim out of this snapshot entirely`
+        );
+      }
+      if (removed.length) {
+        problems.push(
+          `${id} is no longer published on ${removed.length} page(s) — ${removed.slice(0, 5).join(', ')}${removed.length > 5 ? ', …' : ''} — good. Run UPDATE_CLAIM_PAGES=1 npm run test:built so the reduction is locked in and cannot be spent on a later page`
+        );
+      }
+    }
+    expect(problems, problems.join(' | ')).toEqual([]);
   });
 });
