@@ -958,11 +958,11 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
  * without inventing a number, which CLAUDE.md forbids.
  */
 /**
- * Does this combo's OWN localized copy already publish an unconfirmed
- * operational claim?
+ * The ids of the unconfirmed operational claims this combo's OWN localized
+ * copy already publishes.
  *
- * Used to decide whether the combo template may add its per-market trust
- * bullets, which make four of them.
+ * Used per-bullet: the combo template may render a trust bullet only when the
+ * page's copy already makes every claim that bullet would introduce.
  *
  * ## Why this exists, and the argument it replaces
  *
@@ -990,21 +990,31 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
  * That last line is the one that matters: the original finding on #146 was a
  * NEW url publishing unconfirmed claims, and this keeps them off one.
  *
- * ## The coarseness, stated rather than hidden
+ * ## Why this returns ids rather than a boolean
  *
- * This asks whether the copy makes ANY unconfirmed claim, not whether it makes
- * the same ones the bullets do. A page whose copy carries only
- * `active-work-timeline` therefore keeps all four bullets. That declines to
- * reduce exposure on such a page; it does not add any, because that is what
- * already ships. The exact version is per-bullet gating, which is more
- * machinery than a workaround for an unmade decision deserves. The real fix is
- * the owner ruling on the seven claims in claims.ts: confirm them and every
- * gate comes out, retract them and that file is the worklist.
+ * It was a boolean — "does the copy make ANY unconfirmed claim" — and I called
+ * the resulting coarseness an acceptable stopping point. Codex showed it was
+ * not, with the case I had underweighted: a NEW premium combo whose copy
+ * carries only an unrelated claim such as `active-work-timeline` would satisfy
+ * that predicate and be handed all four bullets, none of which its copy made.
+ * That defeats the new-page boundary, which is the gate's whole remaining
+ * justification. `bathrooms-ashburn-va` is the existing page that shows the
+ * classification.
+ *
+ * So the question is asked per bullet, against the claims that bullet would
+ * introduce. A bullet carrying two claims needs BOTH already present — half
+ * the bullet's copy being pre-existing does not license the other half.
+ *
+ * This is still a workaround for a decision that has not been made. The real
+ * fix is the owner ruling on the seven claims in claims.ts: confirm them and
+ * every gate comes out, retract them and that file is the worklist.
  */
-export function comboMakesUnconfirmedClaims(serviceSlug: string, areaSlug: string): boolean {
+export function unconfirmedClaimIdsInCombo(serviceSlug: string, areaSlug: string): string[] {
   const entry = CONTENT[`${serviceSlug}-${areaSlug}` as keyof typeof CONTENT];
-  if (!entry) return false;
-  return claimsFoundIn(JSON.stringify(entry)).some((c) => c.status === 'unconfirmed');
+  if (!entry) return [];
+  return claimsFoundIn(JSON.stringify(entry))
+    .filter((c) => c.status === 'unconfirmed')
+    .map((c) => c.id);
 }
 
 export function comboPublishesPricing(serviceSlug: string, areaSlug: string): boolean {

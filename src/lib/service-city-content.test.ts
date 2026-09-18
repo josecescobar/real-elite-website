@@ -7,7 +7,7 @@ import {
   defaultComboDescription,
   serviceHrefForArea,
   comboPublishesPricing,
-  comboMakesUnconfirmedClaims,
+  unconfirmedClaimIdsInCombo,
 } from '@/lib/service-city-content';
 import {
   SERVICES,
@@ -538,71 +538,53 @@ describe('comboPublishesPricing', () => {
   });
 });
 
-describe('comboMakesUnconfirmedClaims', () => {
+describe('unconfirmedClaimIdsInCombo', () => {
   /**
-   * Decides whether the combo template may add its per-market trust bullets,
-   * which make four claims registered `unconfirmed` in claims.ts.
+   * Feeds the combo template's per-bullet trust gate: a bullet renders only
+   * when the page's own copy already makes every claim it would introduce.
    *
-   * The first version of that gate keyed on `market === 'premium'` alone and
-   * justified itself by specificity. Codex refuted it: most premium combos
-   * already make those promises in their own paragraphs, at the same
-   * service-and-town specificity, so the gate churned live copy without
-   * reducing exposure. It now acts only where the template is the sole source.
+   * Two earlier predicates were refuted on review. `market === 'premium'`
+   * alone ignored that 36 of 47 premium combos already publish these promises
+   * in their own paragraphs. Replacing it with "makes ANY unconfirmed claim"
+   * then let a page carrying only `active-work-timeline` be handed all four
+   * bullets — which defeated the new-page boundary the gate exists for.
    */
-  it('is false for the regional page, whose copy was written clean', () => {
-    expect(comboMakesUnconfirmedClaims('basements', 'northern-virginia')).toBe(false);
+  it('is empty for the regional page, whose copy was written clean', () => {
+    expect(unconfirmedClaimIdsInCombo('basements', 'northern-virginia')).toEqual([]);
   });
 
-  it('is true where the page makes the promises in its own paragraphs', () => {
-    expect(comboMakesUnconfirmedClaims('bathrooms', 'mclean-va')).toBe(true);
-    expect(comboMakesUnconfirmedClaims('basements', 'great-falls-va')).toBe(true);
+  it('lists the claims a page makes in its own paragraphs', () => {
+    expect(unconfirmedClaimIdsInCombo('bathrooms', 'mclean-va')).toContain('named-project-lead');
+    expect(unconfirmedClaimIdsInCombo('basements', 'great-falls-va')).toContain(
+      'written-workmanship-warranty'
+    );
   });
 
-  it('is false for a premium page whose own copy makes none', () => {
-    expect(comboMakesUnconfirmedClaims('decks', 'ashburn-va')).toBe(false);
-    expect(comboMakesUnconfirmedClaims('roofing', 'leesburg-va')).toBe(false);
+  it('is empty for a premium page whose own copy makes none', () => {
+    expect(unconfirmedClaimIdsInCombo('decks', 'ashburn-va')).toEqual([]);
+    expect(unconfirmedClaimIdsInCombo('roofing', 'leesburg-va')).toEqual([]);
   });
 
-  it('is false for a combo that does not exist', () => {
-    expect(comboMakesUnconfirmedClaims('roofing', 'nowhere-va')).toBe(false);
+  it('is empty for a combo that does not exist', () => {
+    expect(unconfirmedClaimIdsInCombo('roofing', 'nowhere-va')).toEqual([]);
   });
 
   /**
-   * The split, pinned. This is the number Codex's argument turned on: if most
-   * premium pages already carry the claims, a blanket premium gate reduces
-   * nothing on them. Measured at the time of the change: 36 carry them, 11 do
-   * not.
-   *
-   * A change here is a change in how many live pages the gate touches, so it
-   * should be a decision. If this fails because copy was edited, update the
-   * numbers and say which pages moved; if it fails because a claim was
-   * confirmed or retracted, the gate itself should be coming out instead.
+   * The exact case Codex used to refute the any-claim predicate. This page's
+   * copy carries `active-work-timeline` and NONE of the four the trust bullets
+   * publish, so a predicate that only asked "any claim?" would have handed it
+   * all four.
    */
-  it('splits the premium combos 36 carrying claims to 11 not', () => {
-    let carrying = 0;
-    let clean = 0;
-    for (const key of Object.keys(CONTENT)) {
-      const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
-      if (!area || area.market !== 'premium') continue;
-      const service = key.slice(0, key.length - area.slug.length - 1);
-      if (comboMakesUnconfirmedClaims(service, area.slug)) carrying += 1;
-      else clean += 1;
+  it('does not report the trust bullets\u2019 claims for a page carrying only an unrelated one', () => {
+    const ids = unconfirmedClaimIdsInCombo('bathrooms', 'ashburn-va');
+    expect(ids).toContain('active-work-timeline');
+    for (const id of [
+      'named-project-lead',
+      'daily-updates',
+      'clean-job-site',
+      'written-workmanship-warranty',
+    ]) {
+      expect(ids, `${id} should not be reported for bathrooms-ashburn-va`).not.toContain(id);
     }
-    expect({ carrying, clean }).toEqual({ carrying: 36, clean: 11 });
-  });
-
-  /**
-   * The point of the whole gate: a NEW premium page must not be the first
-   * place these promises appear. Every premium combo whose copy is clean is
-   * one the template must not add them to — the regional page included.
-   */
-  it('marks the regional page as one the template must not add claims to', () => {
-    const mustWithhold = Object.keys(CONTENT).filter((key) => {
-      const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
-      if (!area || area.market !== 'premium') return false;
-      const service = key.slice(0, key.length - area.slug.length - 1);
-      return !comboMakesUnconfirmedClaims(service, area.slug);
-    });
-    expect(mustWithhold).toContain('basements-northern-virginia');
   });
 });

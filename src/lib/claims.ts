@@ -76,16 +76,25 @@
  * /service-areas/mclean-va withholding the promises while
  * /services/kitchens/mclean-va went on making them.
  *
- * **The combo route's condition is narrower than `market === 'premium'`, and
- * deliberately so.** It withholds only when the page's own localized copy
- * makes no unconfirmed claim. Codex refuted the wider version: 36 of the 47
- * premium combos already publish these promises in their own paragraphs, at
- * the same service-and-town specificity, so withholding the bullets there
- * reduced nothing and pre-applied part of a retraction that is the owner's to
- * decide. It now bites on the 11 premium pages where the template is the sole
- * source, and on every NEW premium page — which is what the original #146
- * finding was about. See `comboMakesUnconfirmedClaims` in
- * service-city-content.ts for the full reasoning and its stated coarseness.
+ * **The combo route gates PER BULLET, not per market.** A bullet renders only
+ * when the page's own localized copy already makes every claim that bullet
+ * would introduce; a bullet carrying two claims needs both. Two wider
+ * predicates were refuted on review before this one:
+ *
+ *   - `market === 'premium'` alone, justified by specificity. 36 of the 47
+ *     premium combos already publish these promises in their own paragraphs at
+ *     that same service-and-town specificity, so withholding the bullets there
+ *     reduced nothing and pre-applied part of a retraction that is the owner's
+ *     to decide — which makes THIS register's worklist wrong.
+ *   - "the copy makes no unconfirmed claim". A new premium page whose copy
+ *     carried only an unrelated claim (`active-work-timeline`, as
+ *     bathrooms-ashburn-va does) would have been handed all four bullets,
+ *     defeating the new-page boundary the gate exists for.
+ *
+ * See `unconfirmedClaimIdsInCombo` in service-city-content.ts and
+ * `trust-bullets.test.ts`, which checks the bullets' claim annotations against
+ * this register's own patterns rather than trusting them — an annotation that
+ * understates a bullet would wave it onto a page that must not carry it.
  *
  * ## What still reaches a premium page, measured
  *

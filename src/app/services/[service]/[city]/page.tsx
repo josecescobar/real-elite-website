@@ -25,7 +25,7 @@ import {
   defaultComboTitle,
   defaultComboDescription,
   comboPublishesPricing,
-  comboMakesUnconfirmedClaims,
+  unconfirmedClaimIdsInCombo,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
@@ -54,6 +54,43 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
   // a handyman call.
   decks: 'outdoor-living',
 };
+
+/**
+ * The "Why {place} homeowners choose Real Elite" bullets, with the operational
+ * claims each one would publish.
+ *
+ * The `claims` annotations are the gate's input, so they must not drift from
+ * the register's own patterns. `trust-bullets.test.ts` asserts each bullet's
+ * annotation equals what `claimsFoundIn` detects in its text — an annotation
+ * that silently understates a bullet would wave it onto a page that should not
+ * carry it, which is worse than no gate.
+ */
+export function trustBullets(
+  city: string,
+  serviceTitle: string,
+  state: string
+): readonly { text: string; claims: readonly string[] }[] {
+  return [
+    {
+      text: `One named project lead on every ${city} ${serviceTitle.toLowerCase()} job — from estimate through final walkthrough.`,
+      claims: ['named-project-lead'],
+    },
+    {
+      // Two claims in one sentence, so it needs both already present.
+      text: 'Daily updates, clean job site, 24-hour response standard.',
+      claims: ['daily-updates', 'clean-job-site'],
+    },
+    {
+      text: 'Written workmanship warranty + manufacturer warranties registered on your behalf.',
+      claims: ['written-workmanship-warranty'],
+    },
+    {
+      // Verified, so it carries no claims and always renders.
+      text: `Licensed and insured in ${state} — local permitting + inspections handled.`,
+      claims: [],
+    },
+  ];
+}
 
 // ─── Static Params ────────────────────────────────────────────────────────────
 
@@ -180,43 +217,39 @@ export default async function ServiceCityPage({
 
   const place = formatAreaPlace(cityData);
 
-  // The per-market trust block, withheld only where it reduces exposure.
+  // The per-market trust block, gated per BULLET on the claims that bullet
+  // would introduce.
   //
-  // Three bullets carrying four claims registered `unconfirmed` in
-  // src/lib/claims.ts: `named-project-lead`, `daily-updates`, `clean-job-site`
-  // (the second bullet carries two) and `written-workmanship-warranty`.
+  // Three rounds of review on this gate, each one correct:
   //
-  // The first version gated on `market === 'premium'` alone, justified by
-  // specificity — a promise scoped to the exact service and town being worse
-  // in a dispute than the same promise in a sitewide banner. Codex refuted
-  // that where the gate actually bit, and it was right: 36 of the 47 premium
-  // combos already make those promises in their own localized paragraphs,
-  // which are scoped to the exact service and town. There the bullets add
-  // nothing in kind, so withholding them churned live copy for no reduction
-  // in exposure, and pre-applied part of a retraction that is the owner's to
-  // decide.
+  //   1. `market === 'premium'`, justified by specificity — a town-and-service
+  //      scoped promise being worse than a sitewide banner. Refuted: 36 of the
+  //      47 premium combos already make these promises in their own localized
+  //      paragraphs, at that same specificity, so it reduced nothing on them
+  //      and churned live copy.
+  //   2. `market !== 'home' && the copy makes no unconfirmed claim`. Refuted
+  //      too, on the case I had underweighted: a NEW premium page whose copy
+  //      carries only an unrelated claim (`active-work-timeline`, as
+  //      bathrooms-ashburn-va does) would satisfy it and be handed all four
+  //      bullets its copy never made — defeating the new-page boundary that is
+  //      this gate's whole remaining justification.
+  //   3. This. A bullet renders only if the page's copy already makes every
+  //      claim it would introduce. Half a bullet being pre-existing does not
+  //      license the other half, so a two-claim bullet needs both.
   //
-  // So it is withheld only when the page's own copy makes no unconfirmed claim
-  // — the 11 existing premium pages where the template is the sole source of
-  // the town-scoped promise, and every NEW premium page, which is what the
-  // original #146 finding was about. See comboMakesUnconfirmedClaims.
-  //
-  // Still not a claim about the page as a whole. `AssurancesBand` and
+  // Still NOT a claim about the page as a whole. `AssurancesBand` and
   // `PRECISION_PROCESS` (via `PrecisionProcess`, both rendered below) publish
   // the same four here and on roughly fifty other pages including the
-  // homepage. That is the owner's decision, taken on #146, and gating sitewide
-  // copy per-market would not reduce the exposure anyway.
-  const licensingPoint = `Licensed and insured in ${cityData.state} — local permitting + inspections handled.`;
-  const withholdTrustClaims =
-    cityData.market !== 'home' && !comboMakesUnconfirmedClaims(service, city);
-  const trustPoints = withholdTrustClaims
-    ? [licensingPoint]
-    : [
-        `One named project lead on every ${cityData.city} ${serviceData.title.toLowerCase()} job — from estimate through final walkthrough.`,
-        'Daily updates, clean job site, 24-hour response standard.',
-        'Written workmanship warranty + manufacturer warranties registered on your behalf.',
-        licensingPoint,
-      ];
+  // homepage. That is the owner's decision, taken on #146. The real fix is
+  // their ruling on the seven claims in src/lib/claims.ts: confirm them and
+  // every gate comes out, retract them and that file is the worklist.
+  const ownClaims = new Set(unconfirmedClaimIdsInCombo(service, city));
+  const trustPoints = trustBullets(cityData.city, serviceData.title, cityData.state)
+    .filter(
+      (bullet) =>
+        cityData.market === 'home' || bullet.claims.every((id) => ownClaims.has(id))
+    )
+    .map((bullet) => bullet.text);
 
   // SEO: Service schema scoped to this specific area, plus a BreadcrumbList.
   // No per-market LocalBusiness duplication (the global GeneralContractor in
