@@ -48,6 +48,27 @@ import fs from 'node:fs';
  * genuinely separate pieces of copy. Both directions are covered: adjacency is
  * preserved where the output is adjacent, and separated where it is not.
  *
+ * ## COMPLETENESS IS BEST-EFFORT, AND THAT IS NOW SAFE
+ *
+ * This reconstructs rendered text from source, and the supply of ways to build
+ * a string in JavaScript is unbounded. Four review rounds on #148 each found
+ * another construction it missed — `${expr}` interpolations, expression-valued
+ * attributes, concatenation, and text either side of a conditional — and the
+ * next one will be a `.join()`, a `.map()`, or a helper returning a literal.
+ * None of those shapes was in the codebase; each was a real false negative
+ * anyway.
+ *
+ * So do NOT treat a gap here as a hole in the claims guard. Completeness comes
+ * from `tests/built-claims.test.ts`, which counts unconfirmed claims in the
+ * BUILT HTML — construction-independent by definition, because it reads what
+ * the browser receives. A gap in this file can no longer let a claim reach a
+ * homeowner unnoticed; it can only make the retraction worklist incomplete.
+ *
+ * This file exists for ATTRIBUTION — naming which source file publishes a
+ * claim, which is what the owner needs to retract one, and which rendered HTML
+ * cannot do. Fix a missed construction when it is real, but the rendered
+ * count is what guards the site.
+ *
  * ## Scope
  *
  * TEST SUPPORT ONLY. Nothing in the app imports this, and nothing should — it
@@ -117,13 +138,22 @@ function renderedTextOf(
   // `{'written workmanship ' + 'warranty'}` paints the phrase, but emitting
   // each operand separately put a newline between them and the pattern missed
   // it — the same adjacency mistake as the inline-markup one, in expression
-  // form. Only `+` qualifies: every other binary operator (`||`, `??`, `&&`)
-  // selects ONE side, so its operands must stay separate runs or the scan
-  // invents phrases the page never renders.
+  // form.
+  //
+  // Joining the two operands' text is not enough, though: when one operand
+  // SELECTS among literals — `'written workmanship ' + (ok ? 'warranty' : '')`
+  // — that side renders as a space and the phrase never forms. So a `+` is
+  // resolved through `variantsOf`, which enumerates the strings the expression
+  // can actually render, and every variant is emitted. Codex found the gap on
+  // #148.
   if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken) {
-    const left = renderedTextOf(node.left, consumed, sideRuns);
-    const right = renderedTextOf(node.right, consumed, sideRuns);
-    return left + right;
+    const variants = variantsOf(node);
+    collectLiterals(node, consumed, sideRuns);
+    markConsumed(node, consumed);
+    // Each variant is a phrase the page can paint, so each is its own run.
+    // The first stands in for the inline position; the rest ride alongside.
+    for (const v of variants.slice(1)) if (v.trim()) sideRuns.push(v);
+    return variants[0] ?? ' ';
   }
 
   // Any OTHER expression — `{enabled && 'copy'}`, `{ok ? 'a' : 'b'}`, a call —
@@ -140,6 +170,72 @@ function renderedTextOf(
   // and the space returned here keeps the surrounding text apart.
   collectLiterals(node, consumed, sideRuns);
   return ' ';
+}
+
+/**
+ * The strings an expression can render, as a set of alternatives.
+ *
+ * Concatenation needs this because text either side of a choice still renders
+ * against each branch: `'a ' + (ok ? 'b' : 'c')` paints "a b" or "a c", never
+ * "a b c". Returning alternatives rather than one string keeps both phrases
+ * available to the scan without inventing a third.
+ *
+ * `MAX_VARIANTS` bounds the cross product — nested choices multiply, and a
+ * scanner is not worth an exponential. Past the cap the extra alternatives are
+ * dropped; `collectLiterals` still records every literal individually, so
+ * nothing disappears, only some adjacency.
+ *
+ * This is deliberately NOT a general expression evaluator. It covers the
+ * constructions that carry copy in this codebase; anything else is opaque and
+ * contributes a space. See the completeness note in the header.
+ */
+const MAX_VARIANTS = 16;
+
+function variantsOf(node: ts.Node): string[] {
+  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return [node.text];
+
+  if (ts.isTemplateExpression(node)) {
+    return [[node.head.text, ...node.templateSpans.map((sp) => sp.literal.text)].join(' ')];
+  }
+
+  if (ts.isParenthesizedExpression(node)) return variantsOf(node.expression);
+
+  // A choice: both outcomes are possible copy, so both are alternatives.
+  if (ts.isConditionalExpression(node)) {
+    return [...variantsOf(node.whenTrue), ...variantsOf(node.whenFalse)].slice(0, MAX_VARIANTS);
+  }
+
+  if (ts.isBinaryExpression(node)) {
+    const kind = node.operatorToken.kind;
+    if (kind === ts.SyntaxKind.PlusToken) {
+      const out: string[] = [];
+      for (const l of variantsOf(node.left)) {
+        for (const r of variantsOf(node.right)) {
+          if (out.length >= MAX_VARIANTS) return out;
+          out.push(l + r);
+        }
+      }
+      return out;
+    }
+    // `||`, `??`, `&&` select one side rather than joining, so the sides are
+    // alternatives. Fusing them would invent a phrase.
+    if (
+      kind === ts.SyntaxKind.BarBarToken ||
+      kind === ts.SyntaxKind.QuestionQuestionToken ||
+      kind === ts.SyntaxKind.AmpersandAmpersandToken
+    ) {
+      return [...variantsOf(node.left), ...variantsOf(node.right)].slice(0, MAX_VARIANTS);
+    }
+  }
+
+  // Anything else renders an unknown value, which separates rather than joins.
+  return [' '];
+}
+
+/** Marks a subtree consumed so `visit` does not re-emit its literals. */
+function markConsumed(node: ts.Node, consumed: Set<ts.Node>): void {
+  consumed.add(node);
+  ts.forEachChild(node, (child) => markConsumed(child, consumed));
 }
 
 /** Every string-literal descendant of an opaque expression, as its own run. */

@@ -816,11 +816,31 @@ omissions — `{expr}` handled but `${expr}` not, children walked but attribute
 initializers not, concatenation split, and a duplicated template branch fixed in
 only one of its two copies — which is incomplete rather than misconceived.
 
-**Remaining debt.** The claims scan still reconstructs rendered text from
-source. A rendered-text check over the built HTML would be a useful *second*
-assertion — it would catch a claim reaching a page by any route — but it cannot
-replace the per-file inventory. Worth adding when the seven claims are resolved
-and the register's shape settles.
+**The rendered-text claims check was added too**, at round twelve, once a
+fourth traversal finding made the pattern clear: the supply of ways to build a
+string in JavaScript is unbounded, so the AST scan cannot be completed, only
+extended. `tests/built-claims.test.ts` counts unconfirmed claims in the built
+HTML — construction-independent, because it reads what the browser receives —
+as a ceiling that may fall but never rise. Attribution stays with the AST,
+completeness comes from the build, and a gap in the AST scan can now only make
+the retraction worklist incomplete rather than let a claim reach a homeowner
+unnoticed.
+
+**And it restated the exposure in the numbers that matter.** The source
+inventory counts 21 FILES. At page level:
+
+| Claim | Pages publishing it (of 182) |
+| --- | --- |
+| written workmanship warranty | **148** |
+| one named project lead | **143** |
+| daily updates | **140** |
+| clean job site every evening | **135** |
+| active-work timeline | 16 |
+| daily progress photos | 13 |
+| same-day response | 8 |
+
+None of the seven is confirmed. That is the size of §9's second question, and
+it is a far stronger argument for answering it than "21 files" was.
 
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already

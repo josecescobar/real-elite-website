@@ -324,3 +324,63 @@ describe('runtimeTextOfSource — concatenation and nesting', () => {
     expect(text).toMatch(/named project lead/i);
   });
 });
+
+/**
+ * Text either side of a CHOICE.
+ *
+ * `'written workmanship ' + (ok ? 'warranty' : '')` renders the claim on one
+ * branch, but joining the operands' text gave "written workmanship  " — the
+ * choice contributed a space and the phrase never formed. Concatenation now
+ * resolves through `variantsOf`, which enumerates what the expression can
+ * render, so each branch keeps the text around it. Codex found it on #148.
+ *
+ * Latent, measured: no concatenation with a selecting operand exists anywhere
+ * in `src`.
+ */
+describe('runtimeTextOfSource — concatenation across a choice', () => {
+  it('keeps the left operand against each branch of a conditional', () => {
+    const text = runtimeTextOfSource(
+      "const s = 'written workmanship ' + (ok ? 'warranty' : '');"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('keeps the right operand against each branch', () => {
+    const text = runtimeTextOfSource("const s = (ok ? 'daily' : 'weekly') + ' updates';");
+    expect(text).toMatch(/daily updates/i);
+  });
+
+  it('keeps both branches available, not just the first', () => {
+    const text = runtimeTextOfSource(
+      "const s = 'one ' + (ok ? 'named project lead' : 'clean job site');"
+    );
+    expect(text).toMatch(/named project lead/i);
+    expect(text).toMatch(/clean job site/i);
+  });
+
+  it('works across a selecting operator as well as a ternary', () => {
+    const text = runtimeTextOfSource("const s = 'written workmanship ' + (x || 'warranty');");
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('resolves a choice inside JSX', () => {
+    const text = runtimeTextOfSource(
+      "const C = ({ ok }) => <p>{'written workmanship ' + (ok ? 'warranty' : '')}</p>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  /**
+   * The alternatives must not be joined TO EACH OTHER: only one renders, so a
+   * phrase spanning two branches is one the page never paints.
+   */
+  it('does not fuse two branches into one phrase', () => {
+    const text = runtimeTextOfSource("const s = 'x' + (ok ? 'clean job' : 'site');");
+    expect(text).not.toMatch(/clean job site/i);
+  });
+
+  it('still does not fuse across a genuinely opaque operand', () => {
+    const text = runtimeTextOfSource("const s = 'workmanship ' + value + ' warranty';");
+    expect(text).not.toMatch(/workmanship warranty/i);
+  });
+});

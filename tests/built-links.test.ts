@@ -109,7 +109,22 @@ describe('rendered internal links', () => {
       ...(routesManifest.staticRoutes ?? []).map((r: { page: string }) => r.page),
     ].map(norm)
   );
-  const dynamic: RegExp[] = (routesManifest.dynamicRoutes ?? []).map(
+  // A dynamic route's regex proves only that a pathname has the right SHAPE,
+  // not that its parameters resolve. `/blog/nonexistent-post` matches
+  // `/blog/[slug]`, and that page calls notFound(); `/services/roofing/mclean-va`
+  // matches the combo route, which sets dynamicParams = false. Accepting either
+  // by shape let a hard 404 pass — Codex found it on #148.
+  //
+  // Every PAGE route here is prerendered with `fallback: null` or `false`, so an
+  // unlisted parameter 404s and its valid URLs are already enumerated in the
+  // prerender manifest above. Only routes with NO prerender entry are served at
+  // runtime (the three /api/* handlers and a metadata image route), and those
+  // are the only ones whose shape can stand in for their parameters.
+  const prerenderedDynamic = new Set(Object.keys(prerender.dynamicRoutes ?? {}));
+  const runtimeDynamic = (routesManifest.dynamicRoutes ?? []).filter(
+    (r: { page: string }) => !prerenderedDynamic.has(r.page)
+  );
+  const dynamic: RegExp[] = runtimeDynamic.map(
     (r: { regex: string }) => new RegExp(r.regex)
   );
   const redirects = new Map<string, string>(
@@ -142,6 +157,36 @@ describe('rendered internal links', () => {
     // The Tier C retirement must be present, or the redirect assertions below
     // are checking a build that predates it.
     expect(redirects.has('/services/basements/middleburg-va')).toBe(true);
+  });
+
+  /**
+   * The strict dynamic rule, asserted directly.
+   *
+   * If `dynamic` ever went back to accepting every dynamic route's shape, the
+   * resolvability check below would pass for any URL of the right form and this
+   * suite would go quiet without failing. So the rule is pinned rather than
+   * trusted: a real prerendered page resolves, and an unlisted parameter of the
+   * same shape does not.
+   */
+  it('rejects an unresolvable parameter on a prerendered dynamic route', () => {
+    const resolves = (p: string) =>
+      routes.has(p) || redirects.has(p) || dynamic.some((re) => re.test(p));
+
+    // Real pages, enumerated in the prerender manifest.
+    expect(resolves('/services/basements/northern-virginia')).toBe(true);
+    expect(resolves('/service-areas/martinsburg-wv')).toBe(true);
+
+    // Same shapes, parameters that were never generated. Each 404s.
+    expect(resolves('/blog/nonexistent-post')).toBe(false);
+    expect(resolves('/services/roofing/mclean-va')).toBe(false);
+    expect(resolves('/projects/not-a-project')).toBe(false);
+    expect(resolves('/service-areas/nowhere-zz')).toBe(false);
+
+    // And no page route may be accepted by shape alone.
+    expect(
+      runtimeDynamic.every((r: { page: string }) => r.page.startsWith('/api/') || r.page.includes('opengraph-image')),
+      `a page route is being accepted by shape: ${runtimeDynamic.map((r: { page: string }) => r.page).join(', ')}`
+    ).toBe(true);
   });
 
   it('resolves every internal link it renders', () => {
