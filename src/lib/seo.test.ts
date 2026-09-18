@@ -197,10 +197,6 @@ describe('every app route declares its own canonical', () => {
     return ts.isObjectLiteralExpression(initializer) ? initializer : undefined;
   }
 
-  /** A direct member of `object` named `name`. */
-  const memberOf = (object: ts.ObjectLiteralExpression, name: string) =>
-    object.properties.find((property) => named(property, name));
-
   /**
    * What `name` holds once the object's properties are applied in source order.
    *
@@ -285,12 +281,31 @@ describe('every app route declares its own canonical', () => {
     return resolve(object, new Set()) ?? { kind: 'unset' };
   }
 
-  /** Does the winning `alternates` carry a `canonical`? */
+  /** An explicit `undefined` or `null` is a key that emits nothing. */
+  const isAbsent = (value: ts.Expression): boolean => {
+    const emitted = unwrap(value);
+    return (
+      (ts.isIdentifier(emitted) && emitted.text === 'undefined') ||
+      emitted.kind === ts.SyntaxKind.NullKeyword
+    );
+  };
+
+  /**
+   * Does the winning `alternates` carry a `canonical`?
+   *
+   * `canonical` gets the same ordered, spread-aware resolution as the section
+   * above it. It is the same rule one level down, and looking it up with a
+   * `.find()` here was wrong in both directions: `{ ...shared }` holding the
+   * canonical was rejected, and `{ canonical: '/x', ...cleared }` was approved.
+   */
   const sectionHasCanonical = (write: SectionWrite): boolean => {
     if (write.kind === 'helper') return true;
     if (write.kind !== 'value') return false;
     const section = objectOf(write.value);
-    return !!section && memberOf(section, 'canonical') !== undefined;
+    if (!section) return false;
+    const canonical = lastWriteOf(section, 'canonical');
+    if (canonical.kind === 'helper') return true;
+    return canonical.kind === 'value' && !isAbsent(canonical.value);
   };
 
   /**
@@ -323,11 +338,11 @@ describe('every app route declares its own canonical', () => {
     if (ts.isStringLiteral(directive) && /\bnoindex\b/.test(directive.text)) return true;
 
     const section = objectOf(write.value);
-    const index = section && memberOf(section, 'index');
+    if (!section) return false;
+    const index = lastWriteOf(section, 'index');
     return (
-      !!index &&
-      ts.isPropertyAssignment(index) &&
-      unwrap(index.initializer).kind === ts.SyntaxKind.FalseKeyword
+      index.kind === 'value' &&
+      unwrap(index.value).kind === ts.SyntaxKind.FalseKeyword
     );
   };
 
