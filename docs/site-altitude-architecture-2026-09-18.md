@@ -156,10 +156,23 @@ geo-modified numbers in any of these audits:
 
 `roofing frederick md` at 880 a month is eight times the largest Northern
 Virginia basement term. The site already has `/services/roofing/frederick-md`.
-Search Console shows **no impressions for any Frederick roofing query** on
-mobile in six months — the page exists and Google does not show it. That is
-not an altitude problem and it is outside this brief, but it is the largest
-single number in the dataset and it deserves its own look.
+Search Console shows almost no impressions for it on mobile in six months —
+the page exists and Google does not show it. That is not an altitude problem
+and it is outside this brief, but it is the largest single number in the
+dataset and it deserves its own look.
+
+**It got one, and the answer was bigger than the question —
+`docs/index-coverage-2026-09-18.md`.** The page is not ranking badly. It is
+**"Crawled – currently not indexed"**, last fetched 2026-06-01. And it is not
+alone: **28 of the 60 combo pages have zero mobile impressions, and all 13
+sampled are "URL is unknown to Google"** — never fetched, though they have been
+in the sitemap since 2026-07-06, the same commit that added the pages Google
+*did* index. Index state and impressions correspond exactly across 19 URLs.
+
+Two things this corrects here. The impression count above was "no impressions";
+it is **3**, which is near enough to none to keep the point and not near enough
+to keep the wording. And the framing was wrong: zero impressions on those pages
+is an **indexing** fact, not a demand or ranking one.
 
 ### 1.3 The SERPs at regional altitude
 
@@ -722,7 +735,19 @@ dead import). Item 3 shipped in #143. Item 4 is above.
 3. Cross-link the existing Loudoun/NoVA basement *guide* into the new
    service page. Different intent, no cannibalisation.
 
-**Phase 2 status, 2026-09-18.** Item 1 is shipped in two PRs.
+**Phase 2 status, 2026-09-18.** Items 1 and 3 are shipped; item 2 is the only
+one still open and it is gated on the owner supplying Northern Virginia job
+photos.
+
+**Item 3 — cross-linking the Loudoun guide — shipped in #149** and was not
+recorded here until 2026-09-18. `relatedGuideSlugs` on the combo content map
+points `basements-northern-virginia` at
+`luxury-basement-finishing-loudoun-northern-virginia-2026`, the section renders
+only when the list is non-empty, and `service-city-content.test.ts` fails if a
+slug does not resolve to a real post. The opt-in shape matters: `RelatedGuides`
+falls back to the three most recent posts when given slugs it cannot resolve,
+so an unguarded version would have silently shown unrelated articles rather
+than nothing.
 
 - **#146** — the `northern-virginia` catalog row (`kind: 'region'`,
   `market: 'premium'`), the hub at `/service-areas/northern-virginia`, the nine

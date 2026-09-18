@@ -34,6 +34,19 @@ Both clicking pages are Eastern Panhandle blog articles:
 
 Everything else on the site took **zero mobile clicks**.
 
+> **Added 2026-09-18, after this baseline was frozen — read the zero-impression
+> rows differently.** `docs/index-coverage-2026-09-18.md` establishes that **28
+> of the 60 service+city combo pages are not in Google's index**, and that all
+> 13 sampled are *"URL is unknown to Google"* — never fetched. Across 19
+> inspected URLs, index state and impressions correspond exactly.
+>
+> So a zero-impression row below is, for the unindexed share, **not a statement
+> about demand or about ranking.** Those pages were never in the running. The
+> figures here are unchanged and still the frozen "before"; what changes is
+> what a zero is allowed to mean. December should read the indexed pages as a
+> performance comparison and the unindexed ones as a coverage problem that may
+> or may not have been fixed by then.
+
 ## Northern Virginia, which is what Phase 5 is actually testing
 
 **These 23 are the Northern Virginia URLs that returned any mobile impression,
