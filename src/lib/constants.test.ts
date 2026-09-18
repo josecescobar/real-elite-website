@@ -9,6 +9,7 @@ import {
   CONSOLIDATED_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
   getServiceArea,
+  activeAreas,
   isLocalityArea,
   areaRegionLabel,
   CITY_DATA,
@@ -136,10 +137,199 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
     }
   });
 
-  it('gives every consolidated row a redirect target that resolves', () => {
+  /**
+   * Named "resolves" and meaning it.
+   *
+   * The first version of this only checked that `redirectTo` began with a
+   * slash, which let two whole classes through: a row pointing at its own URL
+   * (an infinite redirect that satisfies every other assertion, because the
+   * configured and declared destinations agree), and a row pointing at an area
+   * that is itself retired or does not exist (a chain, a loop, or a 404).
+   */
+  it('gives every consolidated row a redirect target that actually resolves', () => {
     for (const area of CONSOLIDATED_SERVICE_AREAS) {
+      const source = `/service-areas/${area.slug}`;
+
       expect(area.redirectTo, `${area.slug} is consolidated with no redirectTo`).toBeTruthy();
       expect(area.redirectTo, `${area.slug} redirects off-site`).toMatch(/^\//);
+
+      // Parse once, then check the ORIGIN before trusting the pathname.
+      //
+      // A leading slash is not enough: '//other.example/service-areas/foo' is a
+      // network-path reference that passes the regex above, and resolving it
+      // yields the pathname '/service-areas/foo' — so every later check passed
+      // while a browser would leave the site. The assertion above literally
+      // says "redirects off-site"; this is what makes that true.
+      const LOCAL_BASE = 'https://example.invalid';
+      const parsed = new URL(area.redirectTo!, LOCAL_BASE);
+      expect(
+        parsed.origin,
+        `${area.slug} redirects to ${area.redirectTo}, which leaves the site (host "${parsed.host}"). A protocol-relative or absolute URL satisfies a leading-slash check but sends visitors to another origin`
+      ).toBe(LOCAL_BASE);
+
+      // Compare PATHNAMES, not raw strings. Next matches redirect sources by
+      // pathname, so '/service-areas/foo?from=legacy' targets the same route as
+      // '/service-areas/foo' and loops — while a raw-string comparison sees two
+      // different values and an anchored path regex skips the catalog lookup
+      // entirely. Parsing once fixes both, and covers trailing slashes and
+      // fragments for free.
+      const destination = parsed.pathname;
+
+      expect(
+        destination,
+        `${area.slug} redirects to its own URL (${area.redirectTo}), which is an infinite redirect`
+      ).not.toBe(source);
+
+      // A retired area's replacement must be another area page — and this is
+      // required, not conditional. Skipping the checks for any other local
+      // path meant a destination like '/does-not-exist' passed while the
+      // retired URL 404'd, because nothing validates an arbitrary path.
+      const target = /^\/service-areas\/([a-z0-9-]+)\/?$/.exec(destination);
+      expect(
+        target,
+        `${area.slug} redirects to ${destination}, which is not an area page. A retired area's replacement has to be another area page so this test can prove the destination exists; an arbitrary local path cannot be verified here and a typo or a removed route turns the retired URL into a 404. If a non-area destination is genuinely needed, add a check that resolves it rather than widening this pattern`
+      ).not.toBeNull();
+
+      // Named `destinationArea`, not `destination`: an earlier version of this
+      // edit shadowed the destination PATH with the resolved row, so the
+      // failure message below interpolated an object instead of the URL.
+      const destinationArea = getServiceArea(target![1]);
+      expect(
+        destinationArea,
+        `${area.slug} redirects to ${destination}, which is not an area in the catalog`
+      ).not.toBeNull();
+      expect(
+        destinationArea!.status,
+        `${area.slug} redirects to ${target![1]}, which is itself consolidated — that chains or loops instead of landing`
+      ).toBe('active');
+    }
+  });
+
+  /**
+   * The real invariant, not a proxy for it.
+   *
+   * Two earlier versions of this test each checked a weaker thing than the
+   * comment beside it claimed, so both are spelled out here:
+   *
+   * 1. Checking that `redirectTo` starts with a slash says nothing about
+   *    whether next.config.ts redirects anything. A consolidated row drops out
+   *    of ALL_SERVICE_AREAS, so with no redirect configured its old URL is a
+   *    404 and the string check passes regardless.
+   * 2. Checking only that a redirect *source* exists leaves `redirectTo`
+   *    decorative: a stale or unrelated redirect from the same source would
+   *    pass while sending visitors somewhere the catalog never declared.
+   * 3. Indexing the rules into a Map by source reads the LAST rule for a
+   *    source. Next evaluates `redirects()` as an ordered list and the FIRST
+   *    match wins, so a stale rule earlier in the array with the correct one
+   *    appended after it would send visitors to the stale destination while
+   *    this test read the correct one and passed.
+   *
+   * 4. Filtering on literal source equality still misses a dynamic rule. Next
+   *    treats `/service-areas/:slug` or a catch-all as a match, so one sitting
+   *    earlier in the list would preempt the exact consolidation rule while a
+   *    literal filter never saw it.
+   *
+   * The root cause running through all four is that this is config data being
+   * used to predict a routing outcome. Verifying the outcome properly means
+   * exercising Next's router, which is an integration test and out of
+   * proportion here.
+   *
+   * 5. A hand-written type for the rules hid the fields that decide whether a
+   *    redirect fires at all. Next supports `has` and `missing` predicates on
+   *    a redirect; one carrying either is conditional, and a normal request
+   *    that fails the predicate falls through to the retired route and 404s.
+   *    The narrow cast meant those fields were invisible here, so the
+   *    "sufficient condition" below did not actually establish an
+   *    unconditional redirect.
+   *
+   *    Root-cause fix: the rules are typed from the config's own signature
+   *    rather than by hand, so no supported field can be silently omitted
+   *    again.
+   *
+   * The root cause running through all five is that this is config data being
+   * used to predict a routing outcome. Verifying the outcome properly means
+   * exercising Next's router, which is an integration test and out of
+   * proportion here.
+   *
+   * So the assertion below proves a SUFFICIENT CONDITION instead, and says so
+   * rather than implying more:
+   *
+   *   (a) no redirect in the list has a dynamic source that could match
+   *       anything under `/service-areas/`,
+   *   (b) exactly one rule's source is the retired area's literal path, with
+   *       the declared destination and `permanent: true`, and
+   *   (c) that rule is unconditional — no `has`, no `missing`.
+   *
+   * Given (a) literal matching IS Next's behaviour for these paths, and given
+   * (c) the matched rule always fires, so (b) decides the outcome. No
+   * path-to-regexp reimplementation, and every assumption is named.
+   */
+  it('redirects every consolidated area URL to its declared destination', async () => {
+    const { default: nextConfig } = await import('../../next.config');
+    // Typed from the config's own signature, not by hand. A hand-written shape
+    // omitted `has`/`missing` and so hid the conditional-redirect hole that
+    // finding 5 found.
+    const redirects = await nextConfig.redirects!();
+
+    // (a) Nothing dynamic may overlap /service-areas/. Only checked when a row
+    // is actually consolidated, so this does not constrain unrelated config.
+    if (CONSOLIDATED_SERVICE_AREAS.length > 0) {
+      const DYNAMIC = /[:*(]/;
+      for (const rule of redirects.filter((r) => DYNAMIC.test(r.source))) {
+        const staticPrefix = rule.source.split(DYNAMIC)[0];
+        const couldOverlap =
+          '/service-areas/'.startsWith(staticPrefix) ||
+          staticPrefix.startsWith('/service-areas/');
+        expect(
+          couldOverlap,
+          `redirect "${rule.source}" is dynamic and could match paths under /service-areas/, so it may preempt a consolidation redirect. This test cannot predict which rule Next picks once that is true — make the overlapping rule specific, or order it after the consolidation rules and narrow this check`
+        ).toBe(false);
+      }
+    }
+
+    // (b) Exactly one literal rule per retired area, pointing where declared.
+    for (const area of CONSOLIDATED_SERVICE_AREAS) {
+      const source = `/service-areas/${area.slug}`;
+      const matching = redirects.filter((r) => r.source === source);
+
+      expect(
+        matching.length,
+        `${area.slug} is consolidated but next.config.ts has no redirect from ${source}, so that URL is a 404`
+      ).toBeGreaterThan(0);
+
+      expect(
+        matching.length,
+        `${source} has ${matching.length} redirect rules. Next uses the first match, so a stale duplicate would silently win over the correct one — remove the extras`
+      ).toBe(1);
+
+      // Index 0 rather than the Map lookup this replaced: with exactly one rule
+      // the two agree, and reading the first keeps it correct by Next's own
+      // precedence if the count assertion above is ever loosened.
+      const configured = matching[0];
+
+      expect(
+        configured.destination,
+        `${source} redirects to "${configured.destination}" but the catalog declares redirectTo: "${area.redirectTo}" — one of the two is wrong`
+      ).toBe(area.redirectTo);
+
+      // 301, not 302: a retired area's ranking signals should pass to the page
+      // that replaced it. The altitude plan specifies 301 for consolidation.
+      expect(
+        configured.permanent,
+        `${source} is a temporary redirect; a retired area should 301 so the destination inherits its ranking signals`
+      ).toBe(true);
+
+      // (c) Unconditional. A `has`/`missing` predicate means the redirect only
+      // fires for some requests; every other request falls through to a route
+      // that no longer exists and 404s.
+      expect(
+        configured.has,
+        `${source} redirects only when its \`has\` conditions match; every other request 404s on the retired route`
+      ).toBeUndefined();
+      expect(
+        configured.missing,
+        `${source} redirects only when its \`missing\` conditions match; every other request 404s on the retired route`
+      ).toBeUndefined();
     }
   });
 
@@ -148,6 +338,51 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
     for (const area of CONSOLIDATED_SERVICE_AREAS) {
       expect(active.has(area.slug), `${area.slug} is both active and consolidated`).toBe(false);
     }
+  });
+
+  /**
+   * The legacy tier views are rendered as links by the service-areas index,
+   * the homepage area map, the footer and LocalAreasServed, while
+   * ALL_SERVICE_AREAS decides what gets generated. If a consolidated row
+   * survives in the tier views, the site links to its own 404.
+   */
+  it('keeps consolidated rows out of the legacy tier views', () => {
+    for (const [name, view] of [
+      ['PRIMARY_SERVICE_AREAS', PRIMARY_SERVICE_AREAS],
+      ['SECONDARY_SERVICE_AREAS', SECONDARY_SERVICE_AREAS],
+      ['EXPANSION_SERVICE_AREAS', EXPANSION_SERVICE_AREAS],
+    ] as const) {
+      for (const area of view) {
+        expect(area.status, `${name} still lists consolidated area ${area.slug}`).toBe('active');
+      }
+    }
+  });
+});
+
+/**
+ * Tested against synthetic rows on purpose. Nothing in the real catalog is
+ * consolidated yet, so an assertion over SERVICE_AREA_CATALOG would pass
+ * whether or not the filtering works — which is exactly how this shipped
+ * missing from the legacy tier views in the first place.
+ */
+describe('activeAreas', () => {
+  const rows = [
+    { slug: 'kept', status: 'active' as const },
+    { slug: 'retired', status: 'consolidated' as const },
+    { slug: 'also-kept', status: 'active' as const },
+  ];
+
+  it('drops consolidated rows and preserves the order of the rest', () => {
+    expect(activeAreas(rows).map((r) => r.slug)).toEqual(['kept', 'also-kept']);
+  });
+
+  it('returns an empty list when every row is consolidated', () => {
+    expect(activeAreas([{ slug: 'gone', status: 'consolidated' as const }])).toEqual([]);
+  });
+
+  it('leaves an all-active list untouched', () => {
+    const allActive = [rows[0], rows[2]];
+    expect(activeAreas(allActive)).toEqual(allActive);
   });
 });
 
