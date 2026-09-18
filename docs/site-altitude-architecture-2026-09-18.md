@@ -537,8 +537,11 @@ than the same $4,000 spent on pages.
 
 Three conditions, all before the first dollar:
 
-1. GA4 key events for `generate_lead` and `phone_click`, or the spend cannot
-   be evaluated at all.
+1. GA4 key events for `generate_lead` and `phone_click`. Google Ads optimises
+   toward imported key events, so without them the campaign bids blind and
+   your dashboard reads zero. (Corrected 2026-09-18: this said "or the spend
+   cannot be evaluated at all", which is false — raw event counts are
+   queryable without the flag and can evaluate the spend.)
 2. A landing page whose claims are verified (§3.5). Paid traffic reads the
    page; an unverified "same-day response standard" in front of a paid
    $132 click is the worst place for it.

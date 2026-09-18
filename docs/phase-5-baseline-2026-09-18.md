@@ -455,8 +455,10 @@ from snippet wording and may be the local pack sitting above it.
    that fell while the region gained *different* queries is not transfer; it is
    two pages serving different demand, and both should stay.
 
-   **This rule applies to Tier B only** — the four basement combos and
-   `/service-areas/great-falls-va`. Tier A (`leesburg-va`) and Tier D
+   **This rule applies to Tier B only** — the **five** basement combos
+   (`alexandria`, `great-falls`, `mclean`, `reston`, `vienna`) and
+   `/service-areas/great-falls-va`. §3.3's Tier B row names only four; its own
+   McLean correction below it adds the fifth ("It belongs in Tier B"). Tier A (`leesburg-va`) and Tier D
    (`mclean-va`, `clifton-va`) are frozen above for observation and are not
    candidates whatever their queries do. Retiring `clifton-va` in particular
    would chain the four retirement redirects #148 pointed at it.
