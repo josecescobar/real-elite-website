@@ -867,10 +867,12 @@ Only then a second trade at regional altitude.
 **The timeline claim was too narrow three rounds running, and what is left is
 structural — 2026-09-18.**
 
-`active-work-timeline` was reported as under-matching on #148 in rounds 26, 27
-and 28. Each round widened a different axis of the same sentence: the dash, then
-the noun phrase after "of", then the forms with no "of" at all. The count went
-16 → 23 → 28 → 35 pages. Twice the fix covered the axis that was reported and
+`active-work-timeline` was reported as under-matching on #148 in rounds 26, 27,
+28 and 29. Each round widened a different axis of the same sentence: the dash,
+then the noun phrase after "of", then the forms with no "of" at all, then the
+unit itself — "two to three working days", where the word *working* names the
+promise and no qualifier follows. The count went
+16 → 23 → 28 → 35 → 37 pages. Twice the fix covered the axis that was reported and
 left the next one, which is the mistake worth naming — when a pattern is found
 too narrow, the sweep has to enumerate every axis of the phrasing before it
 ships, not the one in the review comment.
@@ -880,7 +882,8 @@ more than their number suggests: **`/services/kitchens` and `/services/bathrooms
 have promised a demo-to-final week range since 2026-07-06, unwatched.** Those
 are the two highest-traffic service pillars on the site.
 
-**What is still not matched, deliberately.** A bare range with no qualifier —
+**What is still not matched, deliberately.** A bare range with no unit and no
+qualifier —
 "kitchen: 6–12 weeks" in a comparison table, "5–8 weeks is typical". There are
 roughly fifty of these on the site and most are permitting windows, curing
 times, or savings-buffer figures, so a regex that caught them would flood your

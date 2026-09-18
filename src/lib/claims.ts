@@ -309,6 +309,8 @@ export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
     'project record — missing from the prose list',
   'src/lib/projects/data/walk-in-shower-bathroom-remodel.ts':
     'project record — surfaced by the "N weeks on site" pattern, added 2026-09-18',
+  'src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts':
+    'project record — surfaced by the "N working days" pattern, added 2026-09-18',
   'src/lib/projects/data/new-construction-framing-to-finish.ts':
     'project record — missing from the prose list',
   'src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts':
@@ -333,7 +335,25 @@ export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
  * curing time, a savings-buffer figure or a design phase, none of them a
  * promise about how long a crew is in someone's house.
  */
-const DURATION_RANGE = String.raw`(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve)\s*(?:\u2013|\u2014|-|to)\s*(?:\d+|two|three|four|five|six|seven|eight|nine|ten|twelve|twenty)\s*(?:weeks?|days?)`;
+const COUNT = String.raw`(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve|twenty)`;
+const DURATION_RANGE = String.raw`${COUNT}\s*(?:\u2013|\u2014|-|to)\s*${COUNT}\s*(?:weeks?|days?)`;
+
+/**
+ * A duration counted in WORKING days, which needs no qualifier after it.
+ *
+ * The word carries the meaning on its own: a working day is time a crew is on
+ * the job, so "two to three working days" is the same promise as "3-5 weeks of
+ * active work" and belongs on the same worklist. The range is optional because
+ * the site states it both ways.
+ *
+ * "business days" is deliberately NOT here, and the distinction is the site's
+ * own rather than one imposed: every "business day" on the site is a RESPONSE
+ * turnaround ("a real person will call within one business day", permits
+ * "reviewed in 5-10 business days"), and every "working day" is job duration.
+ * If that ever stops being true the guard will surface the sentence and someone
+ * can read it, which is the guard working rather than a hole in it.
+ */
+const WORKING_DAYS = String.raw`${COUNT}(?:\s*(?:\u2013|\u2014|-|to)\s*${COUNT})?\s*working days?`;
 
 export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   {
@@ -504,6 +524,9 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
     //               "from approved estimate to final walk-through"
     //                                        full-property-perimeter
     //               "from permit to final walkthrough"  deck-season article
+    //   UNIT        "two to three working days"   victorian-roof project record
+    //               "9 working days"              composite-vs-PT deck article
+    //                 — no qualifier needed; "working" names the promise
     //
     // Deliberately NOT matched, because they are different promises that happen
     // to share the shape: "2-3 weeks of Frederick County permitting", "1-2
@@ -513,7 +536,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
     // lead time, not duration). A false positive here puts a page on the
     // owner's retraction worklist that does not belong on it.
     //
-    // STILL NOT MATCHED, AND STRUCTURAL: a bare range with no qualifier
+    // STILL NOT MATCHED, AND STRUCTURAL: a bare range with no UNIT and no
+    // qualifier
     // ("kitchen: 6–12 weeks" in a table, "5–8 weeks is typical"). Deciding
     // whether one of those is this promise needs the surrounding prose, not a
     // regex, and roughly fifty of them are permitting or curing figures. A
@@ -531,6 +555,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       // `named project lead from estimate to final walk-through` lines, which
       // are a different claim.
       new RegExp(`${DURATION_RANGE} from (?:\\w+[ -]){0,3}to final`, 'i'),
+      // "two to three working days", "Active construction time: 9 working days"
+      new RegExp(WORKING_DAYS, 'i'),
     ],
     note:
       'Registered as one claim across all markets rather than only the 8-22 week NoVA figures the brief flagged, because they are the same kind of promise and the owner will want to rule on them together. A schedule quoted on a page becomes the baseline a late job is measured against.',
