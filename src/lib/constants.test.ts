@@ -163,12 +163,27 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
    *    appended after it would send visitors to the stale destination while
    *    this test read the correct one and passed.
    *
-   * The root cause of all three was modelling `next.config.ts` as a lookup
-   * table. It is an ordered rule list, so the assertion below reads it as one:
-   * it collects every rule matching the source, requires exactly one — which
-   * makes the precedence question moot rather than relying on this test to
-   * reimplement Next's matching — and then checks its destination and
-   * permanence.
+   * 4. Filtering on literal source equality still misses a dynamic rule. Next
+   *    treats `/service-areas/:slug` or a catch-all as a match, so one sitting
+   *    earlier in the list would preempt the exact consolidation rule while a
+   *    literal filter never saw it.
+   *
+   * The root cause running through all four is that this is config data being
+   * used to predict a routing outcome. Verifying the outcome properly means
+   * exercising Next's router, which is an integration test and out of
+   * proportion here.
+   *
+   * So the assertion below proves a SUFFICIENT CONDITION instead, and says so
+   * rather than implying more:
+   *
+   *   (a) no redirect in the list has a dynamic source that could match
+   *       anything under `/service-areas/`, and
+   *   (b) exactly one rule's source is the retired area's literal path, with
+   *       the declared destination and `permanent: true`.
+   *
+   * Given (a), literal matching IS Next's behaviour for these paths, so (b)
+   * decides the outcome. No path-to-regexp reimplementation, and the
+   * assumption is named instead of hidden.
    */
   it('redirects every consolidated area URL to its declared destination', async () => {
     const { default: nextConfig } = await import('../../next.config');
@@ -178,6 +193,23 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
       permanent?: boolean;
     }[];
 
+    // (a) Nothing dynamic may overlap /service-areas/. Only checked when a row
+    // is actually consolidated, so this does not constrain unrelated config.
+    if (CONSOLIDATED_SERVICE_AREAS.length > 0) {
+      const DYNAMIC = /[:*(]/;
+      for (const rule of redirects.filter((r) => DYNAMIC.test(r.source))) {
+        const staticPrefix = rule.source.split(DYNAMIC)[0];
+        const couldOverlap =
+          '/service-areas/'.startsWith(staticPrefix) ||
+          staticPrefix.startsWith('/service-areas/');
+        expect(
+          couldOverlap,
+          `redirect "${rule.source}" is dynamic and could match paths under /service-areas/, so it may preempt a consolidation redirect. This test cannot predict which rule Next picks once that is true — make the overlapping rule specific, or order it after the consolidation rules and narrow this check`
+        ).toBe(false);
+      }
+    }
+
+    // (b) Exactly one literal rule per retired area, pointing where declared.
     for (const area of CONSOLIDATED_SERVICE_AREAS) {
       const source = `/service-areas/${area.slug}`;
       const matching = redirects.filter((r) => r.source === source);
