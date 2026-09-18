@@ -900,10 +900,24 @@ all three; Angi in §1.3's only. Rank directories from repeated observation, not
 from one look. Seven snapshots across five queries back that file, §1.3's
 included.
 
-Revised order: **Yelp, BBB, Angi** (check for an existing listing on each
-before creating anything), then **Houzz, HomeAdvisor, BestPickReports**, plus
-the GAF certified-installer locator. BuildZoom has no signal; Thumbtack has no
-profile.
+**One ranked item, then an unordered set.** **Yelp** first — the only directory
+in all five queries and every snapshot — and the action there is *verify*, not
+create. Everything after it (**BBB, Houzz, BestPickReports, Angi, HomeAdvisor**,
+plus the GAF certified-installer locator) is deliberately **unordered**: an
+earlier version numbered them, which implied a ranking two-of-five observations
+cannot carry, and put BBB above BestPickReports even though BestPickReports is
+the only directory besides Yelp in the *target* market. Cost, eligibility and
+conversion would order that set; none of them was measured. BuildZoom has no
+signal; Thumbtack has no profile.
+
+**One live fix came out of it.** `layout.tsx` was emitting the unverified Yelp
+URL in the sitewide LocalBusiness `sameAs` — a machine-readable claim that the
+business owns that profile, on all 182 pages, for the one URL `constants.ts`
+flags as unconfirmed. The comment there had removed the 404'd LinkedIn and
+Thumbtack URLs for exactly that reason, so the policy was right and only its
+enforcement stopped at the footer. `sameAs` now reads from a new
+`VERIFIED_PROFILE_URLS` allowlist, Yelp is out until someone confirms it, and a
+test fails if it returns.
 
 **Phase 4 — paid test, gated on Phase 0.1, Phase 1.3 green, Phase 2.1
 live, and a tracking number.** Three months, geo-targeted to Fairfax and

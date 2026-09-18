@@ -114,38 +114,76 @@ which is the failure mode `CLAUDE.md` reserves the owner's confirmation for.
 downstream of the owner confirming the credential itself, and it stays `null`
 until then regardless of whether a profile exists.
 
-## Revised order
+### The unverified Yelp URL was already being asserted sitewide
 
-1. **Yelp — verify, do not create.** A profile URL already exists in the repo,
-   unverified because Yelp blocks bots. Open it in a browser. If it is Real
-   Elite's, claim it and the footer link can be enabled; if it is not, that is
-   when creation is the action. Creating one without checking risks a duplicate
-   listing.
-2. **BBB — check for an existing listing first, same as Yelp.** Observed in two
-   home-market queries. Most BBB listings exist unclaimed before a business
-   ever visits, so assume one may already be there. **Accreditation is a
-   separate, paid step**, and the badge stays `null` until the owner confirms
-   the business actually holds it.
-3. **Angi — same: check, then decide.** Observed in the home market and in
-   §1.3's NoVA record. Angi also auto-creates unclaimed listings. **"Angi
-   Certified" is a screening status, not a signup**, and the badge waits on it.
-4. **Houzz** — two home-market queries, both visual trades. Pairs with the job
-   photos Phase 2.2 already needs.
-5. **HomeAdvisor** — same parent as Angi; treat as one decision with it.
-6. **BestPickReports** — the one directory in every Northern Virginia snapshot
-   besides Yelp. Entry requirements unknown; it presents as vetted/paid.
-7. **GAF certified-installer locator** — a manufacturer listing rather than a
-   directory. If the certification is held, the listing may be free and
-   unclaimed.
+Found while checking the above, and **fixed in this PR** — it is the one live
+site change here.
+
+The comment above `BUSINESS.social` says the 404'd LinkedIn and Thumbtack URLs
+were removed *"to avoid ... broken `sameAs` references in JSON-LD"*, and then
+keeps Yelp as an explicit exception, telling the reader to verify it manually
+*"before linking it from the footer"*.
+
+But the footer was not the only consumer. `src/app/layout.tsx` put
+`BUSINESS.social.yelp` straight into the sitewide LocalBusiness `sameAs` array
+— so the one URL the comment flags as unconfirmed was making a machine-readable
+ownership claim on all 182 pages. The guard was written for the footer and the
+value leaked past it into structured data.
+
+`sameAs` is not a link. It tells Google *this business owns this profile*. If
+that Yelp page turns out to belong to someone else, the site has been asserting
+a false external identity — which is precisely the outcome the LinkedIn and
+Thumbtack removals were meant to prevent, so the policy was right and only its
+enforcement was incomplete.
+
+The fix applies the repo's own policy consistently: a new
+`VERIFIED_PROFILE_URLS` export holds the confirmed subset, `sameAs` reads from
+it, and Yelp is absent until someone confirms it. A test in
+`constants.test.ts` fails if it reappears. **Verifying Yelp is now a
+one-line edit** that lights up the footer link and the `sameAs` entry together.
+
+## One ranked item, then an unordered set
+
+**Yelp first, and it is the only ranked item.** It is the one directory
+observed in all five queries and every snapshot, and the repo already holds a
+URL for it. The action is **verify, not create**: open
+`yelp.com/biz/real-elite-contracting` in a browser. If it is Real Elite's,
+claim it — and adding it to `VERIFIED_PROFILE_URLS` then enables both the
+footer link and the `sameAs` assertion in one edit. If it is not, creation is
+the action, and a duplicate has been avoided.
+
+**Everything after Yelp is deliberately unordered.** An earlier version of this
+file numbered them 2–7. That numbering implied a ranking the evidence does not
+support: it put BBB (two home-market queries) above BestPickReports, which was
+in **every Northern Virginia snapshot** — the target market — purely because
+BBB had a badge placeholder that, as established above, is not a Phase 3
+deliverable at all. Having withdrawn the market comparison, there is no basis
+left for ordering two-of-five observations against each other.
+
+So here are the facts beside each, and the owner orders them on grounds this
+file does not have:
+
+| Candidate | Observed | Notes |
+| --- | --- | --- |
+| **BBB** | 2 of 5, home market | assume an unclaimed listing already exists — check first. **Accreditation is a separate, paid step**; the badge stays `null` until the owner confirms the business holds it |
+| **Houzz** | 2 of 5, home market | photo-led; pairs with the job photos Phase 2.2 already needs |
+| **BestPickReports** | 2 of 5, **and in all three NoVA snapshots** | the only directory besides Yelp in the target market. Entry requirements unknown; presents as vetted/paid |
+| **Angi** | 1 of 5 + §1.3's NoVA record | also auto-creates unclaimed listings — check first. **"Angi Certified" is a screening status, not a signup**; the badge waits on it |
+| **HomeAdvisor** | 1 of 5, home market | same parent as Angi — one decision, not two |
+| **GAF locator** | 1 of 5, home market, roofing | a manufacturer listing, not a directory. If the certification is already held, it may be free and unclaimed |
 
 **BuildZoom: not observed, no repo signal, no action.**
 **Thumbtack: the profile 404'd. Nothing to prioritise until one exists.**
 
-**The first action on the first three is the same action: look before
-creating.** Yelp, BBB and Angi all carry a repo state that means "unverified",
-and all three platforms generate unclaimed listings without the business
-asking. Claiming one is cheaper than creating one and cannot produce a
-duplicate.
+**What would order this set** is cost, eligibility, or conversion — none of
+which this file measured. A single phone call establishing which of them are
+free and which the business already qualifies for would rank them better than
+any amount of further SERP pulling.
+
+**One thing does apply to Yelp, BBB and Angi alike: look before creating.** All
+three carry a repo state meaning "unverified", and all three platforms generate
+unclaimed listings without the business asking. Claiming is cheaper than
+creating and cannot produce a duplicate.
 
 ## What this still does not tell you
 
@@ -156,8 +194,13 @@ duplicate.
 
 ## What has not been done, and why
 
-**No profiles were created, claimed or edited**, and no repo change was made to
-link the Yelp URL or to fill in either null badge `href`. All of those write to
+**No profiles were created, claimed or edited**, no Yelp URL was linked in the
+footer, and neither null badge `href` was filled in. All of those write to
 outward-facing assets or depend on a manual verification `CLAUDE.md` reserves
 for the owner — and in the badges' case on a credential only the owner can
 confirm the business holds.
+
+**One live site change was made:** removing the unverified Yelp URL from the
+LocalBusiness `sameAs`. That is a repo-owned change and it *withdraws* an
+unconfirmed assertion rather than adding one, so it does not need the owner
+first. Restoring it is one line, the moment the profile is confirmed.
