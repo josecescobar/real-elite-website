@@ -853,16 +853,24 @@ inventory counts 21 FILES. At page level:
 
 | Claim | Pages publishing it (of 182) |
 | --- | --- |
-| written workmanship warranty | **148** |
+| written workmanship warranty | **149** |
 | one named project lead | **143** |
 | daily updates | **140** |
 | clean job site every evening | **135** |
-| active-work timeline | 16 |
+| active-work timeline | **37** |
 | daily progress photos | 13 |
 | same-day response | 8 |
 
 None of the seven is confirmed. That is the size of §9's second question, and
 it is a far stronger argument for answering it than "21 files" was.
+
+**Corrected 2026-09-18:** two rows above were stale from the day they were
+written. The table was transcribed from a scan taken partway through #148,
+while the same commit's `tests/claim-pages.json` was regenerated after the
+`active-work-timeline` patterns were widened. It read `148` and `16`; the
+generated worklist read **149** and **37**, and the table now matches it.
+`tests/claim-pages.json` is the source of truth — it is regenerated from built
+HTML, and this table is a transcription of it.
 
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles. The reasoning holds — being listed in a directory is
@@ -893,21 +901,22 @@ live, and a tracking number.** Three months, geo-targeted to Fairfax and
 Loudoun counties, one trade (§5), landing on the regional page. Read leads
 and call recordings, not revenue.
 
-**Phase 5 — read and decide, 2026-12-15.** The "before" it compares against is
-frozen in `docs/phase-5-baseline-2026-09-18.md`, captured the day this work
-shipped: 5 mobile clicks site-wide in three months, **zero** across the 23
-Northern Virginia URLs that returned any impression (of ~61 in the catalog; the
-rest returned zero impressions), and **zero mobile impressions for any query
-containing "northern virginia"**. The regional page starts from nothing, which makes any
-impression it earns attributable to it.
-
 **Phase 5 — read and decide, 2026-12-15.** Ninety days after the WV routes
-went live and roughly ninety after the regional page would. Mobile-filtered
-Search Console: does the regional page take the "northern virginia"
-queries; do the Tier B town pages lose theirs to it (then 301 them) or keep
-theirs (then leave them); does the Fairfax query follow (then no Fairfax
-page) or not (then build it); did paid produce a lead you would have taken.
-Only then a second trade at regional altitude.
+went live and roughly ninety after the regional page would.
+
+The "before" it compares against is frozen in
+`docs/phase-5-baseline-2026-09-18.md`, captured the day this work shipped: 5
+mobile clicks site-wide in three months, **zero** across the 23 Northern
+Virginia URLs that returned any impression (of ~61 in the catalog; the rest
+returned zero impressions), and **zero mobile impressions for any query
+containing "northern virginia"**. The regional page starts from nothing, which
+makes any impression it earns attributable to it.
+
+What to read, mobile-filtered, in Search Console: does the regional page take
+the "northern virginia" queries; do the Tier B town pages lose theirs to it
+(then 301 them) or keep theirs (then leave them); does the Fairfax query follow
+(then no Fairfax page) or not (then build it); did paid produce a lead you would
+have taken. Only then a second trade at regional altitude.
 
 ---
 
