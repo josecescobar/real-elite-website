@@ -206,12 +206,21 @@ describe('every claim-bearing file is accounted for', () => {
    * scanner reads no claims. Two unfalsifiable tests have already shipped in
    * this feature, so the scan proves itself first.
    */
-  it('actually walks the source tree and finds claim-bearing files', () => {
+  it('actually walks the source tree and reads its runtime text', () => {
     expect(modules.length).toBeGreaterThan(50);
-    const bearing = modules.filter(
-      (f) => claimsFoundIn(runtimeTextOfFile(f)).some((c) => c.status === 'unconfirmed')
-    );
-    expect(bearing.length).toBeGreaterThan(10);
+
+    // The scan must prove itself WITHOUT requiring that any claim still be
+    // unconfirmed. A floor on claim-bearing files fails once the owner has
+    // retracted enough copy, which is the outcome this register exists to
+    // reach — the same error the built-output guard had, in the file I did not
+    // fix when I fixed that one. Codex found it on #148.
+    //
+    // So: the extractor returns real text from a real module, and the matcher
+    // recognises a claim's own label when handed it. Neither depends on the
+    // site still publishing anything.
+    expect(runtimeTextOfFile('src/lib/constants.ts').length).toBeGreaterThan(2000);
+    const sample = OPERATIONAL_CLAIMS[0];
+    expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
     // And the runtime scanner must be reading strings, not comments: the combo
     // route carries claim text ONLY in comments now, so it must NOT register.
     expect(
@@ -314,22 +323,27 @@ describe('unconfirmed claims do not spread', () => {
 
 describe('the altitude doc’s §9 worklist', () => {
   /**
-   * Not a behavioural assertion — a visible count. The altitude recommendation
-   * gates its Northern Virginia pages on the owner ruling on these claims, and
-   * this makes the size of the outstanding decision impossible to lose track
-   * of. Drop this test once every claim is resolved.
+   * Every claim still awaiting a decision must be ACTIONABLE — the owner needs
+   * to know what was promised, where it is published, and why it matters.
+   *
+   * This replaces a test that pinned the list to exactly seven ids. That
+   * version failed on the FIRST confirmation, not merely the last, and its own
+   * docblock said "drop this test once every claim is resolved" — which is a
+   * known blocker handed to the owner as a chore. The visibility it was for is
+   * better served now by tests/claim-pages.json, which names all 603 affected
+   * pages, and by §8 of the altitude doc.
    */
-  it('still has claims awaiting an owner decision', () => {
-    const outstanding = UNCONFIRMED_CLAIMS.map((c) => c.id);
-    expect(outstanding.length).toBe(7);
-    expect(outstanding).toEqual([
-      'written-workmanship-warranty',
-      'named-project-lead',
-      'daily-progress-photos',
-      'daily-updates',
-      'clean-job-site',
-      'same-day-response',
-      'active-work-timeline',
-    ]);
+  it('gives the owner what they need to rule on each outstanding claim', () => {
+    for (const claim of UNCONFIRMED_CLAIMS) {
+      expect(claim.label.trim().length, `${claim.id} has no label`).toBeGreaterThan(0);
+      expect(claim.patterns.length, `${claim.id} has no patterns`).toBeGreaterThan(0);
+      expect(claim.note?.trim().length ?? 0, `${claim.id} has no note`).toBeGreaterThan(0);
+      expect(claim.publishedIn, `${claim.id} records nowhere it is published`).toBeDefined();
+    }
+    // The outstanding set is exactly the register's unconfirmed entries — no
+    // frozen count, so resolving claims is progress rather than a failure.
+    expect(UNCONFIRMED_CLAIMS.map((c) => c.id)).toEqual(
+      OPERATIONAL_CLAIMS.filter((c) => c.status === 'unconfirmed').map((c) => c.id)
+    );
   });
 });

@@ -398,6 +398,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
     label: 'The job site is left clean at the end of every day.',
     status: 'unconfirmed',
     patterns: [/clean job site/i],
+    note:
+      'A daily operational promise, and the easiest of the seven for a homeowner to check — they are standing in the room at 6pm. It is also the one most likely to be broken by a subcontractor rather than by the crew, which makes it a claim about scheduling and supervision rather than about intent. Published on 135 of 182 built pages including the homepage.',
     publishedIn: {
       comboKeys: [
         'roofing-hagerstown-md', 'remodeling-hagerstown-md', 'basements-frederick-md',
