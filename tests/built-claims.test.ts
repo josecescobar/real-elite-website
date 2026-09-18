@@ -301,11 +301,17 @@ describe('unconfirmed claims in rendered pages', () => {
   it.runIf(UPDATING)('regenerates the snapshot from the current build', () => {
     const next: Record<string, string[]> = {};
     for (const id of snapshotClaimIds()) {
-      const routes = actual.get(id);
-      if (routes) next[id] = [...routes].sort();
+      // EMPTY ARRAY, not omission. A claim whose last occurrence has been
+      // retracted has no routes, and skipping it wrote a file the next normal
+      // run rejected as missing an unconfirmed claim — so the updater exited 0
+      // and produced something broken. That is the retraction case, which is
+      // the outcome this register exists to reach. Codex found it on #148.
+      next[id] = [...(actual.get(id) ?? [])].sort();
     }
     fs.writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(next, null, 2)}\n`);
-    expect(fs.existsSync(SNAPSHOT_PATH)).toBe(true);
+    // Every unconfirmed claim must be a key, including one with no pages left,
+    // or the file this just wrote fails the next ordinary run.
+    expect(Object.keys(next).sort()).toEqual(snapshotClaimIds().sort());
   });
 
   it.skipIf(UPDATING)('publishes each unconfirmed claim on exactly the recorded pages', () => {
