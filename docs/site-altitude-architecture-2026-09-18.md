@@ -769,6 +769,53 @@ should land, since those trades have no regional page by design — was put to
 the owner, who chose the town's own area overview page. §3.3 and §8 record the
 resulting rule and the 42 unconfirmed-claim occurrences the retirement removed.
 
+**Technical debt recorded 2026-09-18 — the two guards #148 grew are the wrong
+shape, and I recommend replacing them.**
+
+#148 took nine review rounds and sixteen findings. Every finding was correct,
+and the distribution is the useful part: **ten of the sixteen were in two files
+that did not exist when the PR opened** — `src/lib/internal-links.test.ts` and
+`src/lib/runtime-text.ts`, both written in response to earlier rounds. The
+site-facing content drew no finding after round three. Eight of the sixteen
+were defects in a guard written to answer the previous finding, and two of
+those were regressions where my own fix opened a false negative while closing
+one.
+
+That is not carelessness in one file; it is the wrong technique. Both guards
+reason about **source text** to answer a question about **rendered output**:
+
+- `internal-links.test.ts` decides whether a link resolves by pattern-matching
+  link syntax — three capture patterns and a gate on interpolation. Four
+  findings landed on exactly that logic. A lexical rule cannot distinguish
+  `/services/kitchens/middleburg-va${suffix}` from
+  `/services/kitchens/middleburg${rest}`; the current version resolves the
+  literal area segment against the catalog, which works but is the third
+  attempt, and it still cannot see a path assigned to a variable first (a bound
+  now stated in the file).
+- `runtime-text.ts` reconstructs what a page paints from the TypeScript AST, so
+  the claims scan can ignore comments. Two findings landed on its traversal:
+  inline markup split a claim phrase, then expression-valued attributes were
+  invisible.
+
+**The better shape, for whoever picks this up.** `npm run build` already emits
+every page as static HTML. A test that parses the built output and asserts (a)
+every internal `href` resolves to a built route or a configured redirect, and
+(b) no unconfirmed claim phrase appears in the rendered text of a page not in
+the claims inventory, is strictly more complete than either scanner, has no
+lexical rules to get wrong, and needs no AST. It would catch the
+variable-indirection case both scanners miss, and it cannot drift from what
+users actually see, because it reads what users actually see.
+
+Cost: the build has to run before that test, so it belongs in a separate CI
+step rather than `npm test`. That is the only real objection, and it is a
+smaller cost than nine review rounds.
+
+**Not done in #148 deliberately.** It is a different change, and #148 was
+already carrying three concerns because the designated branch had an open PR.
+The guards as they stand are green, measured, and do catch the cases they
+claim — so this is debt to schedule, not a defect to fix. Recommended before
+the next retirement or the next claim-bearing template, whichever comes first.
+
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already
 has a Thumbtack webhook). A third of the NoVA organic field is directories;
