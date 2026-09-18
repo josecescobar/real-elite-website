@@ -6,6 +6,7 @@ import {
   defaultComboTitle,
   defaultComboDescription,
   serviceHrefForArea,
+  comboPublishesPricing,
 } from '@/lib/service-city-content';
 import {
   SERVICES,
@@ -424,5 +425,78 @@ describe('serviceHrefForArea', () => {
         ).toContain(`${service.slug}-${area.slug}`);
       }
     }
+  });
+});
+
+describe('comboPublishesPricing', () => {
+  /**
+   * Decides whether the generic SERVICE_DATA investment tiers may render
+   * beside a combo's own copy. The tiers describe the Eastern Panhandle home
+   * market: basements top out at "$90k – $140k+" while the Great Falls page
+   * publishes $250,000–$350,000 as a TYPICAL build, and bathrooms top out at
+   * "$45k – $75k+" against Great Falls' published $100,000–$200,000+. Both on
+   * one page tells a $250,000 buyer two incompatible things.
+   *
+   * Codex found it on the regional basement page. It had already shipped on
+   * thirty-seven premium combos.
+   */
+  it('is true for a premium page that quotes its own figures', () => {
+    expect(comboPublishesPricing('basements', 'northern-virginia')).toBe(true);
+    expect(comboPublishesPricing('basements', 'great-falls-va')).toBe(true);
+    expect(comboPublishesPricing('bathrooms', 'great-falls-va')).toBe(true);
+  });
+
+  /**
+   * The nine that must keep the generic tiers. These are the Loudoun exterior
+   * trades; the tiers are in the right band for them and are the only pricing
+   * those pages carry, so suppressing them would remove information rather
+   * than a contradiction. A blanket premium gate would have done exactly that
+   * — the reason this is not one.
+   */
+  it.each([
+    ['roofing', 'leesburg-va'],
+    ['roofing', 'ashburn-va'],
+    ['decks', 'leesburg-va'],
+    ['decks', 'brambleton-va'],
+    ['decks', 'ashburn-va'],
+    ['remodeling', 'leesburg-va'],
+    ['remodeling', 'ashburn-va'],
+    ['siding', 'leesburg-va'],
+    ['siding', 'ashburn-va'],
+  ])('is false for %s-%s, which publishes no figures of its own', (service, area) => {
+    expect(CONTENT).toHaveProperty(`${service}-${area}`);
+    expect(comboPublishesPricing(service, area)).toBe(false);
+  });
+
+  it('is false for a combo that does not exist', () => {
+    expect(comboPublishesPricing('roofing', 'nowhere-va')).toBe(false);
+  });
+
+  /**
+   * The count is pinned so that adding a figure to one of those nine pages —
+   * which would silently drop its investment block — shows up as a decision
+   * rather than a side effect. If you add one, update the number and say which
+   * page gained pricing.
+   */
+  it('leaves exactly nine premium combos relying on the generic tiers', () => {
+    const relying = Object.keys(CONTENT).filter((key) => {
+      const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
+      if (!area || area.market !== 'premium') return false;
+      const service = key.slice(0, key.length - area.slug.length - 1);
+      return !comboPublishesPricing(service, area.slug);
+    });
+    expect(relying.sort()).toEqual(
+      [
+        'decks-ashburn-va',
+        'decks-brambleton-va',
+        'decks-leesburg-va',
+        'remodeling-ashburn-va',
+        'remodeling-leesburg-va',
+        'roofing-ashburn-va',
+        'roofing-leesburg-va',
+        'siding-ashburn-va',
+        'siding-leesburg-va',
+      ].sort()
+    );
   });
 });

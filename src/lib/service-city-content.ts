@@ -930,6 +930,36 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
  * service in this area" is a fact about what is published, not about layout —
  * and a pure function is testable without rendering a page.
  */
+/**
+ * Does this combo's own copy quote a dollar figure?
+ *
+ * Used to decide whether the generic `SERVICE_DATA.investment` tiers should
+ * render alongside it. Those tiers describe the Eastern Panhandle home market
+ * and understate the premium markets badly: basements top out at
+ * "$90k – $140k+" while the Great Falls page publishes $250,000–$350,000 as a
+ * TYPICAL build, and bathrooms top out at "$45k – $75k+" against Great Falls'
+ * published $100,000–$200,000+. A page showing both tells a $250,000 buyer two
+ * incompatible things about the same job.
+ *
+ * Codex found this on the regional basement page, where it is sharpest because
+ * that page's snippet asserts a regional band — but it already shipped on
+ * thirty-seven premium combos.
+ *
+ * Deliberately NOT a blanket premium check. Nine premium combos publish no
+ * figures of their own — roofing, decks, remodeling and siding in Leesburg,
+ * Ashburn and Brambleton — and for those exterior trades the generic tiers are
+ * in the right band and are the only pricing the page has. Suppressing them
+ * there would remove information rather than a contradiction.
+ *
+ * The real fix is market-specific investment data in SERVICE_DATA, which is a
+ * schema change and its own PR. This stops the contradiction reaching a reader
+ * without inventing a number, which CLAUDE.md forbids.
+ */
+export function comboPublishesPricing(serviceSlug: string, areaSlug: string): boolean {
+  const entry = CONTENT[`${serviceSlug}-${areaSlug}` as keyof typeof CONTENT];
+  return entry ? /\$[\d,]+/.test(JSON.stringify(entry)) : false;
+}
+
 export function serviceHrefForArea(serviceSlug: string, areaSlug: string): string {
   return `${serviceSlug}-${areaSlug}` in CONTENT
     ? `/services/${serviceSlug}/${areaSlug}`

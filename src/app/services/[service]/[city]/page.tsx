@@ -24,6 +24,7 @@ import {
   CONTENT,
   defaultComboTitle,
   defaultComboDescription,
+  comboPublishesPricing,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
@@ -214,6 +215,17 @@ export default async function ServiceCityPage({
   // No per-market LocalBusiness duplication (the global GeneralContractor in
   // layout.tsx already covers areaServed).
   const richServiceData = SERVICE_DATA[serviceData.slug];
+
+  // The generic investment tiers describe the home market. On a premium page
+  // that publishes its own figures they contradict it — basements top out at
+  // "$90k – $140k+" while Great Falls publishes $250,000–$350,000 as a typical
+  // build — so the page's own numbers win. Where a premium page publishes no
+  // figures (the Loudoun exterior trades) the tiers stay: there they are in
+  // the right band and are the only pricing the page has. See the helper.
+  const showGenericInvestment = !(
+    cityData.market === 'premium' && comboPublishesPricing(service, city)
+  );
+
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -344,7 +356,7 @@ export default async function ServiceCityPage({
               </div>
 
               {/* Investment ranges (when SERVICE_DATA has them) */}
-              {richServiceData?.investment && (
+              {richServiceData?.investment && showGenericInvestment && (
                 <InvestmentRanges
                   startingAt={richServiceData.investment.startingAt}
                   tiers={richServiceData.investment.tiers}
