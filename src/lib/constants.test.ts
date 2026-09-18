@@ -166,20 +166,28 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
         `${area.slug} redirects to its own URL (${area.redirectTo}), which is an infinite redirect`
       ).not.toBe(source);
 
-      // When the destination is another area page, that area has to still
-      // publish one. Retired → the redirect chains or loops; unknown → 404.
+      // A retired area's replacement must be another area page — and this is
+      // required, not conditional. Skipping the checks for any other local
+      // path meant a destination like '/does-not-exist' passed while the
+      // retired URL 404'd, because nothing validates an arbitrary path.
       const target = /^\/service-areas\/([a-z0-9-]+)\/?$/.exec(destination);
-      if (target) {
-        const destination = getServiceArea(target[1]);
-        expect(
-          destination,
-          `${area.slug} redirects to ${destination}, which is not an area in the catalog`
-        ).not.toBeNull();
-        expect(
-          destination!.status,
-          `${area.slug} redirects to ${target[1]}, which is itself consolidated — that chains or loops instead of landing`
-        ).toBe('active');
-      }
+      expect(
+        target,
+        `${area.slug} redirects to ${destination}, which is not an area page. A retired area's replacement has to be another area page so this test can prove the destination exists; an arbitrary local path cannot be verified here and a typo or a removed route turns the retired URL into a 404. If a non-area destination is genuinely needed, add a check that resolves it rather than widening this pattern`
+      ).not.toBeNull();
+
+      // Named `destinationArea`, not `destination`: an earlier version of this
+      // edit shadowed the destination PATH with the resolved row, so the
+      // failure message below interpolated an object instead of the URL.
+      const destinationArea = getServiceArea(target![1]);
+      expect(
+        destinationArea,
+        `${area.slug} redirects to ${destination}, which is not an area in the catalog`
+      ).not.toBeNull();
+      expect(
+        destinationArea!.status,
+        `${area.slug} redirects to ${target![1]}, which is itself consolidated — that chains or loops instead of landing`
+      ).toBe('active');
     }
   });
 
