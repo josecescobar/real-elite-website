@@ -62,17 +62,40 @@
  * unconfirmed claims the template already makes, and nothing here trips.
  *
  * That happened when the `northern-virginia` region row landed: its hub page
- * renders `written-workmanship-warranty`, `named-project-lead` and
+ * rendered `written-workmanship-warranty`, `named-project-lead` and
  * `clean-job-site` from CityPageTemplate, exactly as the twenty-five area
- * pages before it do. The claims did not spread to a new *template* — they
+ * pages before it did. The claims did not spread to a new *template* — they
  * reached a new URL in the market where the altitude doc calls them
  * "contract-dispute material" against a $250,000 job.
  *
- * Not closed here on purpose. Closing it means inventorying area slugs, and
- * the next area row would then have to be added to that allowlist in its own
- * PR — which is the move this file's header tells the reader never to make.
- * The real fix is the owner ruling on the seven claims, after which the
- * template copy is either verified or removed and the gap stops mattering.
+ * **Narrowed, not closed, and the residual is named.** CityPageTemplate's
+ * per-market trust block ("Why {place} homeowners choose Real Elite") now
+ * withholds those three from every `market: 'premium'` page, the new hub
+ * included, keeping only the verified licensing line.
+ *
+ * What still reaches the hub, measured in the built HTML rather than assumed:
+ * the warranty line appears twice more, from `AssurancesBand` ("Every project
+ * gets our written workmanship warranty") and from `PROCESS_STEPS` in this
+ * file's own `constants.ts` neighbour, via `PrecisionProcess` ("workmanship
+ * warranty issued in writing"). Both are sitewide components on roughly fifty
+ * pages including the homepage and /process.
+ *
+ * Those are deliberately NOT gated. Removing the claim from one market's hub
+ * while the homepage still makes it does not reduce the contract exposure —
+ * the same buyer reads it two clicks later — so it is a sitewide content
+ * decision, which is §9 of the altitude doc and belongs to the owner. Gating
+ * it per-market would also mean the same sentence being true in Martinsburg
+ * and absent in Fairfax, which is not a coherent thing for the site to say.
+ *
+ * So: the per-market copy is gated, the sitewide copy is inventoried and
+ * waiting on a decision. Do not read the gate as "the hub makes no
+ * unconfirmed claims" — it makes two, from shared components.
+ *
+ * Closing it completely would mean inventorying area slugs, and the next area
+ * row would then have to be added to that allowlist in its own PR — the move
+ * this file's header tells the reader never to make. The real fix is the owner
+ * ruling on the seven claims below: confirm them and the gate comes out,
+ * retract them and the copy goes.
  */
 
 export type ClaimStatus = 'verified' | 'unconfirmed';

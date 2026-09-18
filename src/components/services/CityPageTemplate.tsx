@@ -86,6 +86,33 @@ export default function CityPageTemplate({ city, data }: Props) {
   const children = isLocalityArea(city) ? [] : childAreasOf(city.slug);
   const [heroHead, heroTail] = heroLines(city);
 
+  // "Why {place} homeowners choose Real Elite", gated by market.
+  //
+  // Three of these four are registered `unconfirmed` in src/lib/claims.ts —
+  // named project lead, daily updates / clean job site, written workmanship
+  // warranty. CLAUDE.md: claims about how the business operates go in only
+  // once the owner has confirmed them, and the altitude doc calls these
+  // "contract-dispute material" against a $250,000 Great Falls basement.
+  //
+  // They are therefore withheld in the premium markets, which is where the
+  // exposure is. That includes the Northern Virginia hub this gate was added
+  // for: a new URL making an unconfirmed promise is the claim spreading, and
+  // "it was already on the other pages" is not a defence — it is thirteen
+  // more pages that should not have carried it either.
+  //
+  // Only the licensing line is left there. It is verified and it is the one
+  // an out-of-state homeowner most needs. Flip the three claims to
+  // `verified` in claims.ts and delete this gate to restore them everywhere.
+  const trustPoints =
+    city.market === 'home'
+      ? [
+          'One named project lead from estimate through final walk-through.',
+          'Daily updates, clean job site, 24-hour response standard.',
+          'Written workmanship warranty on every project, every time.',
+          'Licensed and insured across West Virginia, Maryland, and Virginia.',
+        ]
+      : ['Licensed and insured across West Virginia, Maryland, and Virginia.'];
+
   // Order services by marketEmphasis, then append remaining for completeness
   const emphasized = data.marketEmphasis
     .map((slug) => SERVICES.find((s) => s.slug === slug))
@@ -405,22 +432,12 @@ export default function CityPageTemplate({ city, data }: Props) {
                   Why {city.city} homeowners choose Real Elite
                 </p>
                 <ul className="space-y-3 text-charcoal-700">
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>One named project lead from estimate through final walk-through.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>Daily updates, clean job site, 24-hour response standard.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>Written workmanship warranty on every project, every time.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>Licensed and insured across West Virginia, Maryland, and Virginia.</span>
-                  </li>
+                  {trustPoints.map((point) => (
+                    <li key={point} className="flex items-start gap-3">
+                      <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

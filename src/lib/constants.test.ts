@@ -472,8 +472,20 @@ describe('the Northern Virginia region row', () => {
   it('is not a locality, so it takes AdministrativeArea in schema', () => {
     expect(isLocalityArea(nova())).toBe(false);
     expect(areaSchemaType(nova())).toBe('AdministrativeArea');
-    expect(areaSchemaType(getServiceArea('vienna-va')!)).toBe('City');
     expect(areaSchemaType(getServiceArea('loudoun-county-va')!)).toBe('AdministrativeArea');
+  });
+
+  /**
+   * Localities stay `Place`. An earlier version of this promoted every `town`
+   * row to `City`, which is false for the half of them that are census-
+   * designated places or planned communities — Reston, McLean, Great Falls,
+   * Burke, Fairfax Station, Brambleton. That traded an accurate generic type
+   * for a false specific one.
+   */
+  it('leaves localities on the generic Place type rather than claiming City', () => {
+    for (const slug of ['vienna-va', 'reston-va', 'brambleton-va', 'martinsburg-wv']) {
+      expect(areaSchemaType(getServiceArea(slug)!), slug).toBe('Place');
+    }
   });
 
   it('omits the state from its display name and keeps it everywhere else', () => {

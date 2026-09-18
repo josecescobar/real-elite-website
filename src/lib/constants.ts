@@ -653,12 +653,24 @@ export const formatAreaPlace = (area: ServiceArea): string =>
   area.kind === 'region' ? area.city : `${area.city}, ${area.state}`;
 
 /**
- * The schema.org type for a row. A town or city is a `City`; a county or
- * region is an `AdministrativeArea`. Emitting `City` for "Northern Virginia"
- * tells Google the wrong kind of thing about the page.
+ * The schema.org type for a row.
+ *
+ * A county or region is an `AdministrativeArea` — emitting `City` for
+ * "Northern Virginia" tells Google the wrong kind of thing about the page,
+ * and that is the whole reason this helper exists.
+ *
+ * Localities keep the generic `Place` the template already emitted, and
+ * deliberately do NOT become `City`. Half the `town` rows here are not
+ * municipalities: Reston, McLean, Great Falls, Burke and Fairfax Station are
+ * census-designated places and Brambleton is a planned community, as their
+ * own comments in the catalog say. Classifying them as `City` would trade an
+ * accurate generic type for a false specific one. Splitting incorporated
+ * towns from CDPs would need the incorporation status of twenty-odd places
+ * verified one by one, which CLAUDE.md requires before it goes in the repo —
+ * so it is a separate, evidence-backed change, not a guess made here.
  */
-export const areaSchemaType = (area: ServiceArea): 'City' | 'AdministrativeArea' =>
-  isLocalityArea(area) ? 'City' : 'AdministrativeArea';
+export const areaSchemaType = (area: ServiceArea): 'Place' | 'AdministrativeArea' =>
+  isLocalityArea(area) ? 'Place' : 'AdministrativeArea';
 
 /** Active rows sitting directly inside this one, in catalog order. */
 export const childAreasOf = (slug: string): ServiceArea[] =>
