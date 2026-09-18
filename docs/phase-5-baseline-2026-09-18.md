@@ -37,7 +37,8 @@ Everything else on the site took **zero mobile clicks**.
 > **Added 2026-09-18, after this baseline was frozen — read the zero-impression
 > rows differently.** `docs/index-coverage-2026-09-18.md` finds that **30 of the
 > 62 service+city combo pages live for this window have zero impressions, and
-> all 8 of those inspected are *"URL is unknown to Google"*** — never fetched.
+> of the 20 still live, all 20 are *"URL is unknown to Google"*** — never
+> fetched; the other 10 were retired and can no longer be checked.
 > (That figure was corrected twice: first for counting 8 combos published days
 > before this window closed, then for dropping the 10 combos #148 retired on
 > 2026-09-18 — which this file already counted, and which were live throughout.)
