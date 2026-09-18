@@ -232,16 +232,42 @@ describe('every app route declares its own canonical', () => {
     name: string,
     suppliesSection: (spread: ts.Expression) => boolean = () => false
   ): SectionWrite {
+    /**
+     * One spread source's effect. `undefined` means it leaves `name` alone,
+     * which is only knowable when the source can be read — so a spread the
+     * guard cannot resolve is assumed to overwrite. Being wrong that way costs
+     * a route an explicit canonical; being wrong the other way ships a page
+     * that silently has none.
+     */
+    const spreadWrite = (source: ts.Expression): SectionWrite | undefined => {
+      if (suppliesSection(source)) return { kind: 'helper' };
+      const object = objectOf(source);
+      if (!object) return { kind: 'unset' };
+      const member = memberOf(object, name);
+      return member ? writtenBy(member) : undefined;
+    };
+
     let state: SectionWrite = { kind: 'unset' };
     for (const property of object.properties) {
       if (ts.isSpreadAssignment(property)) {
-        if (suppliesSection(property.expression)) {
-          state = { kind: 'helper' };
-          continue;
-        }
-        const source = objectOf(property.expression);
-        const member = source && memberOf(source, name);
-        if (member) state = writtenBy(member);
+        // `...(cond ? { alternates } : {})` is two possible spreads and the
+        // guard cannot know which runs, so it only keeps a spread's write when
+        // every branch agrees on it. A ternary where one arm replaces the
+        // section and the other does not clears it. `branches` is the same
+        // splitter the redirect rules use.
+        const writes = branches(property.expression).map(spreadWrite);
+        if (writes.every((write) => write === undefined)) continue;
+        const [first] = writes;
+        const unanimous =
+          first !== undefined &&
+          writes.every(
+            (write) =>
+              write !== undefined &&
+              write.kind === first.kind &&
+              (write.kind !== 'value' ||
+                (first.kind === 'value' && write.value === first.value))
+          );
+        state = unanimous ? first : { kind: 'unset' };
         continue;
       }
       if (named(property, name)) state = writtenBy(property);
