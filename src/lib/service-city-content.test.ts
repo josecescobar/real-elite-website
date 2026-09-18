@@ -468,6 +468,42 @@ describe('comboPublishesPricing', () => {
     expect(comboPublishesPricing(service, area)).toBe(false);
   });
 
+  /**
+   * The hole in the predicate, closed. `comboPublishesPricing` matches any
+   * `$`-figure anywhere in the entry, so a number mentioned in passing — a
+   * permit fee, a deposit — would suppress a premium page's investment block
+   * and leave it with no pricing at all.
+   *
+   * No premium combo does that today: the lowest top figure among those that
+   * trip the predicate is $40,000, on roofing-loudoun-county-va, which is a
+   * real project range. The threshold is set well under that so ordinary copy
+   * edits do not trip it, and it exists so that adding a small incidental
+   * figure to a premium page fails here instead of silently dropping the
+   * block. If this fails, do not raise the threshold — either the figure is
+   * incidental and should not be there, or the page needs real pricing.
+   */
+  it('never suppresses a premium investment block on an incidental figure', () => {
+    const INCIDENTAL_CEILING = 25_000;
+    const offenders: string[] = [];
+
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
+      if (!area || area.market !== 'premium') continue;
+      const service = key.slice(0, key.length - area.slug.length - 1);
+      if (!comboPublishesPricing(service, area.slug)) continue;
+
+      const figures = (JSON.stringify(entry).match(/\$[\d,]+/g) ?? []).map((f) =>
+        Number(f.replace(/[$,]/g, ''))
+      );
+      const top = Math.max(...figures);
+      if (top <= INCIDENTAL_CEILING) {
+        offenders.push(`${key} suppresses its investment block on a top figure of only $${top}`);
+      }
+    }
+
+    expect(offenders, offenders.join('; ')).toEqual([]);
+  });
+
   it('is false for a combo that does not exist', () => {
     expect(comboPublishesPricing('roofing', 'nowhere-va')).toBe(false);
   });
