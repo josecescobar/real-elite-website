@@ -7,6 +7,8 @@ import {
   SERVICES,
   ALL_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
+  formatAreaPlace,
+  areaSchemaType,
 } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import Container from '@/components/shared/Container';
@@ -22,11 +24,13 @@ import {
   CONTENT,
   defaultComboTitle,
   defaultComboDescription,
+  comboPublishesPricing,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
 import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-intent';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { selectTrustBullets } from '@/lib/trust-bullets';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -113,11 +117,15 @@ export async function generateMetadata({
   // metadata it shipped with.
   const meta = CONTENT[`${service}-${city}` as keyof typeof CONTENT];
 
-  const title =
-    meta?.metaTitle ?? defaultComboTitle(serviceData.title, cityData.city, cityData.state);
+  // "Northern Virginia", not "Northern Virginia, VA". Every combo city was a
+  // town or a city until the region landed, so `${city}, ${state}` was safe
+  // everywhere; it is not any more, and the fallbacks are byte-identical for
+  // the 69 combos that predate it.
+  const place = formatAreaPlace(cityData);
+
+  const title = meta?.metaTitle ?? defaultComboTitle(serviceData.title, place);
   const description =
-    meta?.metaDescription ??
-    defaultComboDescription(serviceData.title, cityData.city, cityData.state);
+    meta?.metaDescription ?? defaultComboDescription(serviceData.title, place);
 
   return {
     title,
@@ -125,7 +133,7 @@ export async function generateMetadata({
     keywords: [
       `${serviceData.title.toLowerCase()} ${cityData.city}`,
       `${cityData.city} ${serviceData.title.toLowerCase()}`,
-      `${serviceData.title.toLowerCase()} contractor ${cityData.city} ${cityData.state}`,
+      `${serviceData.title.toLowerCase()} contractor ${place}`,
       `${cityData.city} home improvement`,
       `${cityData.state} contractor`,
     ],
@@ -170,26 +178,53 @@ export default async function ServiceCityPage({
         ? 'Enter your address, choose a roofing material, and get a ballpark replacement range in about 60 seconds.'
         : 'Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walkthrough.';
 
-  // SEO: Service schema scoped to this specific city, plus a
-  // BreadcrumbList. No per-market LocalBusiness duplication (the global
-  // GeneralContractor in layout.tsx already covers areaServed).
+  const place = formatAreaPlace(cityData);
+
+  // Which trust bullets this page may publish. The rule lives in
+  // src/lib/trust-bullets.ts, not here: three of these four bullets publish
+  // claims registered `unconfirmed` in src/lib/claims.ts, and a rule that
+  // lives in a page component can only be tested by rendering the page or by
+  // copying the rule into the test. The copy is what shipped, and Codex showed
+  // it was vacuous AND blind to the route's filter being weakened from `every`
+  // to `some`. Same mistake serviceHrefForArea was extracted to fix.
+  const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
+
+  // SEO: Service schema scoped to this specific area, plus a BreadcrumbList.
+  // No per-market LocalBusiness duplication (the global GeneralContractor in
+  // layout.tsx already covers areaServed).
   const richServiceData = SERVICE_DATA[serviceData.slug];
+
+  // The generic investment tiers describe the home market. On a premium page
+  // that publishes its own figures they contradict it — basements top out at
+  // "$90k – $140k+" while Great Falls publishes $250,000–$350,000 as a typical
+  // build — so the page's own numbers win. Where a premium page publishes no
+  // figures (the Loudoun exterior trades) the tiers stay: there they are in
+  // the right band and are the only pricing the page has. See the helper.
+  const showGenericInvestment = !(
+    cityData.market === 'premium' && comboPublishesPricing(service, city)
+  );
+
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: `${serviceData.title} in ${cityData.city}, ${cityData.state}`,
+    name: `${serviceData.title} in ${place}`,
     serviceType: richServiceData?.serviceType ?? serviceData.title,
     description:
       richServiceData?.metaDescription ??
-      `${serviceData.title} services for ${cityData.city}, ${cityData.state} homeowners by Real Elite Contracting.`,
+      `${serviceData.title} services for ${place} homeowners by Real Elite Contracting.`,
     provider: {
       '@type': 'GeneralContractor',
       name: BUSINESS.name,
       url: `${BUSINESS.url}/`,
       telephone: '+1-681-534-5515',
     },
+    // `City` was hardcoded, which is wrong twice over: "Northern Virginia" is
+    // not a city, and neither are the CDPs already in this list (Reston,
+    // McLean, Great Falls, Burke, Fairfax Station). areaSchemaType emits the
+    // generic `Place` for a locality and `AdministrativeArea` for a county or
+    // region — the same correction #146 made to the area-page schema.
     areaServed: {
-      '@type': 'City',
+      '@type': areaSchemaType(cityData),
       name: cityData.city,
       containedInPlace: { '@type': 'State', name: cityData.state },
     },
@@ -200,7 +235,7 @@ export default async function ServiceCityPage({
     { name: 'Home', item: BUSINESS.url },
     { name: 'Services', item: `${BUSINESS.url}/services` },
     { name: serviceData.title, item: `${BUSINESS.url}/services/${service}` },
-    { name: `${cityData.city}, ${cityData.state}`, item: `${BUSINESS.url}/services/${service}/${city}` },
+    { name: place, item: `${BUSINESS.url}/services/${service}/${city}` },
   ]);
 
   // Cross-link rails — derived from what's actually published in CONTENT.
@@ -242,12 +277,12 @@ export default async function ServiceCityPage({
               href={`/service-areas/${cityData.slug}`}
               className="hover:text-white transition-colors"
             >
-              {cityData.city}, {cityData.state}
+              {place}
             </Link>
           </nav>
 
           <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {cityData.city}, {cityData.state}
+            <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {place}
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight max-w-4xl">
             {serviceData.title}
@@ -299,7 +334,7 @@ export default async function ServiceCityPage({
               </div>
 
               {/* Investment ranges (when SERVICE_DATA has them) */}
-              {richServiceData?.investment && (
+              {richServiceData?.investment && showGenericInvestment && (
                 <InvestmentRanges
                   startingAt={richServiceData.investment.startingAt}
                   tiers={richServiceData.investment.tiers}
@@ -313,31 +348,12 @@ export default async function ServiceCityPage({
                   Why {cityData.city} homeowners choose Real Elite
                 </p>
                 <ul className="space-y-3 text-charcoal-700">
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      One named project lead on every {cityData.city}{' '}
-                      {serviceData.title.toLowerCase()} job — from estimate through final walkthrough.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      Daily updates, clean job site, 24-hour response standard.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      Written workmanship warranty + manufacturer warranties registered on your behalf.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      Licensed and insured in {cityData.state} — local permitting + inspections handled.
-                    </span>
-                  </li>
+                  {trustPoints.map((point) => (
+                    <li key={point} className="flex items-start gap-3">
+                      <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -405,7 +421,7 @@ export default async function ServiceCityPage({
                           href={`/services/${serviceData.slug}/${c.slug}`}
                           className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
                         >
-                          {c.city}, {c.state} <ArrowUpRight className="w-3.5 h-3.5" />
+                          {formatAreaPlace(c)} <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
                       ))}
                     </div>

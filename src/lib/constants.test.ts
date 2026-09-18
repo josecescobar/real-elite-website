@@ -50,10 +50,23 @@ describe('service areas', () => {
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
-  it('has a CITY_DATA entry for every primary and secondary service area', () => {
-    for (const area of [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS]) {
-      expect(CITY_DATA[area.slug], `missing CITY_DATA for ${area.slug}`).toBeDefined();
-    }
+  /**
+   * EVERY active row, not just the primary and secondary legacy tiers.
+   *
+   * /service-areas/[slug] calls notFound() when CITY_DATA has no entry, while
+   * the footer, the service-areas index and childAreasOf all render links from
+   * ALL_SERVICE_AREAS — so a row without an entry is the site advertising a
+   * link to its own 404. That is the bug class #145 fixed for consolidated
+   * rows, and the tier-scoped version of this test could not see it: the
+   * `northern-virginia` region row carries `legacyTiers: []`, so its own
+   * CITY_DATA entry was covered by nothing.
+   */
+  it('has a CITY_DATA entry for every active service area', () => {
+    const missing = ALL_SERVICE_AREAS.filter((area) => !CITY_DATA[area.slug]).map((a) => a.slug);
+    expect(
+      missing,
+      `these areas render as links but /service-areas/[slug] would notFound(): ${missing.join(', ')}`
+    ).toEqual([]);
   });
 });
 

@@ -68,37 +68,66 @@
  * reached a new URL in the market where the altitude doc calls them
  * "contract-dispute material" against a $250,000 job.
  *
- * **Narrowed, not closed, and the residual is named.** CityPageTemplate's
- * per-market trust block ("Why {place} homeowners choose Real Elite") now
- * withholds those three from every `market: 'premium'` page, the new hub
- * included, keeping only the verified licensing line.
+ * **Narrowed, not closed, and the residual is named.** The per-market trust
+ * block ("Why {place} homeowners choose Real Elite") withholds those claims
+ * and keeps only the verified licensing line. The gate is in BOTH templates
+ * that render the block: `CityPageTemplate` (the area pages, gated in #146)
+ * and the combo route (the service+area pages). Gating only the first left
+ * /service-areas/mclean-va withholding the promises while
+ * /services/kitchens/mclean-va went on making them.
  *
- * What still reaches the hub, traced occurrence by occurrence in the built
- * HTML rather than inferred from a count — an earlier version of this note got
- * it wrong by measuring the warranty and not following the others:
+ * **The combo route gates PER BULLET, not per market.** A bullet renders only
+ * when the page's own localized copy already makes every claim that bullet
+ * would introduce; a bullet carrying two claims needs both. Two wider
+ * predicates were refuted on review before this one:
  *
- *   - `AssurancesBand` — "Every project gets our written workmanship
- *     warranty", and "Named project lead. Daily updates while we work.
- *     24-hour response standard. Clean job site every day."
- *   - `PROCESS_STEPS` in `constants.ts`, via `PrecisionProcess` — "workmanship
- *     warranty issued in writing" and "Daily updates from your project lead.
- *     Clean job site. 24-hour response standard."
- *   - one `SERVICES` description in `constants.ts` — "Full interior
- *     renovations under one project lead".
+ *   - `market === 'premium'` alone, justified by specificity. 36 of the 47
+ *     premium combos already publish these promises in their own paragraphs at
+ *     that same service-and-town specificity, so withholding the bullets there
+ *     reduced nothing and pre-applied part of a retraction that is the owner's
+ *     to decide — which makes THIS register's worklist wrong.
+ *   - "the copy makes no unconfirmed claim". A new premium page whose copy
+ *     carried only an unrelated claim (`active-work-timeline`, as
+ *     bathrooms-ashburn-va does) would have been handed all four bullets,
+ *     defeating the new-page boundary the gate exists for.
  *
- * So three of the claims survive there, not one, on roughly fifty pages
- * including the homepage and /process.
+ * See `unconfirmedClaimIdsInCombo` in service-city-content.ts and
+ * `trust-bullets.test.ts`, which checks the bullets' claim annotations against
+ * this register's own patterns rather than trusting them — an annotation that
+ * understates a bullet would wave it onto a page that must not carry it.
  *
- * Those are deliberately NOT gated. Removing the claim from one market's hub
- * while the homepage still makes it does not reduce the contract exposure —
- * the same buyer reads it two clicks later — so it is a sitewide content
- * decision, which is §9 of the altitude doc and belongs to the owner. Gating
- * it per-market would also mean the same sentence being true in Martinsburg
- * and absent in Fairfax, which is not a coherent thing for the site to say.
+ * ## What still reaches a premium page, measured
  *
- * So: the per-market copy is gated, the sitewide copy is inventoried and
- * waiting on a decision. Do not read the gate as "the hub makes no
- * unconfirmed claims" — it makes two, from shared components.
+ * Corrected 2026-09-18, third pass. The two earlier versions of this note were
+ * both wrong, in the same way: they described the residual instead of running
+ * the register against the source. Measured with `claimsFoundIn`:
+ *
+ *   - `AssurancesBand.tsx` — FOUR claims: `written-workmanship-warranty`,
+ *     `named-project-lead`, `daily-updates`, `clean-job-site`.
+ *   - `PRECISION_PROCESS` in `constants.ts`, rendered by `PrecisionProcess`
+ *     on the homepage, /process and every area and combo page — THREE:
+ *     `written-workmanship-warranty`, `daily-updates`, `clean-job-site`.
+ *   - `constants.ts`'s sitewide FAQ — `written-workmanship-warranty`.
+ *
+ * The union is FOUR claims on roughly fifty pages including the homepage.
+ * Previous versions of this note said "two" and "three", named a symbol
+ * (`PROCESS_STEPS`) that does not exist in this repo, and credited a
+ * `SERVICES` description ("Full interior renovations under one project lead")
+ * as a `named-project-lead` occurrence. That last one is real copy but it
+ * matches none of the claim's patterns, so it is a GAP IN THE PATTERNS, not an
+ * occurrence — worth fixing when the owner rules, and recorded here so the
+ * retraction worklist does not miss it.
+ *
+ * Those four are deliberately NOT gated. Removing a claim from one market's
+ * pages while the homepage still makes it does not reduce the contract
+ * exposure — the same buyer reads it two clicks later — so it is a sitewide
+ * content decision. The owner was asked directly and chose to ship the
+ * Northern Virginia pages with it outstanding rather than hold them; the
+ * decision is on PR #146 and the claims stay open below.
+ *
+ * So: the per-market copy is gated in both templates, the sitewide copy is
+ * inventoried and waiting on a decision. Do not read the gates as "premium
+ * pages make no unconfirmed claims" — they make four, from shared components.
  *
  * Closing it completely would mean inventorying area slugs, and the next area
  * row would then have to be added to that allowlist in its own PR — the move
@@ -142,13 +171,14 @@ export type OperationalClaim = {
  * The files the guard watches at file level, because each puts its text on
  * dozens of pages at once.
  *
- * The last two were added after the Northern Virginia hub shipped: tracing the
- * built HTML showed `AssurancesBand` and `PROCESS_STEPS` in `constants.ts`
- * were the actual sitewide source of the warranty, project-lead, daily-updates
- * and clean-job-site claims on roughly fifty pages — not just the warranty, as
- * an earlier version of the note below wrongly said. Watching them does not
- * change what they publish; it stops a NEW claim being added to the two files
- * that reach the whole site.
+ * The last two were added after the Northern Virginia hub shipped:
+ * `AssurancesBand` and `PRECISION_PROCESS` in `constants.ts` are the actual
+ * sitewide source of the warranty, project-lead, daily-updates and
+ * clean-job-site claims on roughly fifty pages — not just the warranty, as an
+ * earlier version of the note below wrongly said. (It also called that array
+ * `PROCESS_STEPS`, which is not a symbol in this repo. The header above
+ * records both corrections.) Watching these files does not change what they
+ * publish; it stops a NEW claim being added to the two that reach every page.
  */
 export const GUARDED_TEMPLATES = [
   'src/app/services/[service]/[city]/page.tsx',

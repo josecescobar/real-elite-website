@@ -5,8 +5,17 @@ import {
   FEATURED_SERVICE_SLUGS,
   defaultComboTitle,
   defaultComboDescription,
+  serviceHrefForArea,
+  comboPublishesPricing,
+  unconfirmedClaimIdsInCombo,
 } from '@/lib/service-city-content';
-import { SERVICES, ALL_SERVICE_AREAS, CITY_DATA, LUXURY_CITY_SLUGS } from '@/lib/constants';
+import {
+  SERVICES,
+  ALL_SERVICE_AREAS,
+  CITY_DATA,
+  LUXURY_CITY_SLUGS,
+  formatAreaPlace,
+} from '@/lib/constants';
 import { TITLE_MAX } from '@/lib/seo';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
@@ -202,7 +211,7 @@ describe('snippet overrides earn their place', () => {
     expect(
       entry.metaTitle,
       `${key} overrides metaTitle with the generic template — drop it or say something`
-    ).not.toBe(defaultComboTitle(serviceTitle, area.city, area.state));
+    ).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
   });
 
   it.each(overrides.map((o) => o.key))('%s does not restate the default description', (key) => {
@@ -211,7 +220,7 @@ describe('snippet overrides earn their place', () => {
     expect(
       entry.metaDescription,
       `${key} overrides metaDescription with the generic template`
-    ).not.toBe(defaultComboDescription(serviceTitle, area.city, area.state));
+    ).not.toBe(defaultComboDescription(serviceTitle, formatAreaPlace(area)));
   });
 });
 
@@ -241,6 +250,341 @@ describe('combo content shape', () => {
         expect(entry!.metaDescription.trim().length, `${key} metaDescription is empty`)
           .toBeGreaterThan(0);
       }
+    }
+  });
+});
+
+describe('Northern Virginia at region altitude', () => {
+  /**
+   * The altitude decision this whole change exists for. Keyword data pulled
+   * 2026-09-18: "basement remodeling northern virginia" 110/mo, "basement
+   * finishing northern virginia" 90, against every town-level basement term in
+   * the same market below the reporting floor bar Alexandria (70) and McLean
+   * (30). See docs/site-altitude-architecture-2026-09-18.md §1.5.
+   */
+  it('publishes the regional basement combo', () => {
+    expect(Object.keys(CONTENT)).toContain('basements-northern-virginia');
+  });
+
+  /**
+   * The load-bearing assertion, and the one most likely to be broken by good
+   * intentions. "kitchen remodeling mclean va" is 260/mo and Vienna 140, so
+   * kitchens and bathrooms stay at TOWN altitude in this market — one market,
+   * two altitudes, decided per trade.
+   *
+   * Fanning the region out across the other trades would manufacture pages for
+   * demand that does not exist at that altitude, which is the exact failure
+   * the altitude doc accuses the original site build of. If a future keyword
+   * pull shows regional volume for another trade, delete this test and cite
+   * the pull — do not just add the key.
+   */
+  it('keeps the region to basements only', () => {
+    const regionCombos = Object.keys(CONTENT).filter((k) => k.endsWith('-northern-virginia'));
+    expect(regionCombos).toEqual(['basements-northern-virginia']);
+  });
+
+  /**
+   * The towns are deliberately NOT consolidated into the region for the trades
+   * where they carry their own demand. A consolidation that removed these
+   * would be trading reported volume for a hub that has none yet.
+   */
+  it.each(['kitchens-mclean-va', 'kitchens-vienna-va', 'bathrooms-mclean-va'])(
+    'keeps %s at town altitude',
+    (key) => {
+      expect(Object.keys(CONTENT)).toContain(key);
+    }
+  );
+
+  /**
+   * CLAUDE.md: basement snippets must quote a dollar figure the site already
+   * publishes elsewhere, and prices must not be invented. A REGIONAL page is
+   * where that rule is easiest to break — there is no single regional number,
+   * so the temptation is to make one up. Every figure on the regional page has
+   * to be an endpoint some other page already publishes.
+   */
+  it('quotes only dollar figures published elsewhere on the site', () => {
+    const entry = CONTENT['basements-northern-virginia']!;
+    const own = JSON.stringify(entry);
+    const figures = [...new Set(own.match(/\$[\d,]+/g) ?? [])];
+    expect(figures.length, 'the regional page quotes no figure at all').toBeGreaterThan(0);
+
+    const elsewhere = Object.entries(CONTENT)
+      .filter(([key]) => key !== 'basements-northern-virginia')
+      .map(([, e]) => JSON.stringify(e))
+      .join(' ');
+
+    for (const figure of figures) {
+      expect(
+        elsewhere.includes(figure),
+        `the regional page quotes ${figure}, which no other page publishes — either it is invented (CLAUDE.md forbids that) or the page that published it was removed`
+      ).toBe(true);
+    }
+  });
+
+  /**
+   * The bug this altitude change had to fix before it could ship. Both
+   * fallbacks interpolated `${city}, ${state}`, which reads "Northern
+   * Virginia, VA". Pinned in both directions: unchanged for a locality, and
+   * state-free for the region.
+   */
+  it('formats a region without appending its state', () => {
+    const region = ALL_SERVICE_AREAS.find((a) => a.slug === 'northern-virginia')!;
+    const town = ALL_SERVICE_AREAS.find((a) => a.slug === 'vienna-va')!;
+
+    expect(defaultComboTitle('Basements', formatAreaPlace(region))).toBe(
+      'Basements in Northern Virginia | Real Elite'
+    );
+    expect(defaultComboTitle('Basements', formatAreaPlace(town))).toBe(
+      'Basements in Vienna, VA | Real Elite'
+    );
+    expect(defaultComboDescription('Basements', formatAreaPlace(region))).toContain(
+      'services in Northern Virginia.'
+    );
+  });
+
+  it('never says "Northern Virginia, VA" in a snippet override', () => {
+    const entry = CONTENT['basements-northern-virginia']!;
+    expect(entry.metaTitle).not.toContain('Northern Virginia, VA');
+    expect(entry.metaDescription).not.toContain('Northern Virginia, VA');
+  });
+});
+
+describe('serviceHrefForArea', () => {
+  /**
+   * An area page should send visitors — and its internal links — to its own
+   * service+area page when one is published, not to the generic pillar.
+   *
+   * CityPageTemplate decided this with a hardcoded allowlist: four service
+   * slugs crossed with ['winchester-va', 'frederick-md', 'leesburg-va',
+   * 'ashburn-va']. Twenty areas have published service+area pages, so most of
+   * them linked past their own local page. The tests below are written to fail
+   * against that allowlist, not merely to restate the current implementation:
+   * the completeness assertion is the one that catches it.
+   */
+  it('links to the published service+area page when one exists', () => {
+    expect(serviceHrefForArea('basements', 'northern-virginia')).toBe(
+      '/services/basements/northern-virginia'
+    );
+    expect(serviceHrefForArea('bathrooms', 'vienna-va')).toBe('/services/bathrooms/vienna-va');
+  });
+
+  it('falls back to the service pillar when no combo is published', () => {
+    // No roofing content for Vienna, and none is planned — the NoVA markets
+    // are positioned on interior remodels.
+    expect(CONTENT).not.toHaveProperty('roofing-vienna-va');
+    expect(serviceHrefForArea('roofing', 'vienna-va')).toBe('/services/roofing');
+    expect(serviceHrefForArea('handyman', 'martinsburg-wv')).toBe('/services/handyman');
+  });
+
+  /**
+   * Completeness OF THE HELPER, and the assertion the allowlist failed.
+   *
+   * Scoped deliberately in the name, because the first version was called
+   * "deep-links every published combo and nothing else" — a claim about the
+   * PAGE, which this cannot make. It calls the helper for every service, so it
+   * says nothing about which call sites use it, and it passed while seven
+   * published combos went unlinked: CityPageTemplate's ServiceCard renders
+   * only the first six services and its overflow list hardcoded the pillar
+   * path. Inwood's only published page, and siding on all three Loudoun pages,
+   * were among them. Codex caught it.
+   *
+   * Page-level coverage is CityPageTemplate.links.test.tsx, which reads the
+   * rendered anchors. This one stays because it pins the helper's own contract
+   * cheaply, and because it is what fails if the allowlist ever comes back.
+   */
+  it('returns a deep link for exactly the combos published for an area', () => {
+    for (const area of ALL_SERVICE_AREAS) {
+      const published = Object.keys(CONTENT)
+        .filter((k) => k.endsWith(`-${area.slug}`))
+        .map((k) => k.slice(0, k.length - area.slug.length - 1))
+        .sort();
+
+      const deepLinked = SERVICES.map((s) => s.slug)
+        .filter((slug) => serviceHrefForArea(slug, area.slug) !== `/services/${slug}`)
+        .sort();
+
+      expect(deepLinked, `${area.slug} does not deep-link its published combos`).toEqual(
+        published
+      );
+    }
+  });
+
+  /**
+   * A deep link must never point at a combo the route did not build:
+   * /services/[service]/[city] sets dynamicParams = false, so an unpublished
+   * combo is a hard 404, and an area page advertising one would be linking to
+   * its own 404 — the same failure #145 fixed for consolidated area rows.
+   */
+  it('never returns a path the combo route did not publish', () => {
+    for (const area of ALL_SERVICE_AREAS) {
+      for (const service of SERVICES) {
+        const href = serviceHrefForArea(service.slug, area.slug);
+        if (href === `/services/${service.slug}`) continue;
+        expect(
+          Object.keys(CONTENT),
+          `${href} is linked but not published`
+        ).toContain(`${service.slug}-${area.slug}`);
+      }
+    }
+  });
+});
+
+describe('comboPublishesPricing', () => {
+  /**
+   * Decides whether the generic SERVICE_DATA investment tiers may render
+   * beside a combo's own copy. The tiers describe the Eastern Panhandle home
+   * market: basements top out at "$90k – $140k+" while the Great Falls page
+   * publishes $250,000–$350,000 as a TYPICAL build, and bathrooms top out at
+   * "$45k – $75k+" against Great Falls' published $100,000–$200,000+. Both on
+   * one page tells a $250,000 buyer two incompatible things.
+   *
+   * Codex found it on the regional basement page. It had already shipped on
+   * thirty-seven premium combos.
+   */
+  it('is true for a premium page that quotes its own figures', () => {
+    expect(comboPublishesPricing('basements', 'northern-virginia')).toBe(true);
+    expect(comboPublishesPricing('basements', 'great-falls-va')).toBe(true);
+    expect(comboPublishesPricing('bathrooms', 'great-falls-va')).toBe(true);
+  });
+
+  /**
+   * The nine that must keep the generic tiers. These are the Loudoun exterior
+   * trades; the tiers are in the right band for them and are the only pricing
+   * those pages carry, so suppressing them would remove information rather
+   * than a contradiction. A blanket premium gate would have done exactly that
+   * — the reason this is not one.
+   */
+  it.each([
+    ['roofing', 'leesburg-va'],
+    ['roofing', 'ashburn-va'],
+    ['decks', 'leesburg-va'],
+    ['decks', 'brambleton-va'],
+    ['decks', 'ashburn-va'],
+    ['remodeling', 'leesburg-va'],
+    ['remodeling', 'ashburn-va'],
+    ['siding', 'leesburg-va'],
+    ['siding', 'ashburn-va'],
+  ])('is false for %s-%s, which publishes no figures of its own', (service, area) => {
+    expect(CONTENT).toHaveProperty(`${service}-${area}`);
+    expect(comboPublishesPricing(service, area)).toBe(false);
+  });
+
+  /**
+   * The hole in the predicate, closed. `comboPublishesPricing` matches any
+   * `$`-figure anywhere in the entry, so a number mentioned in passing — a
+   * permit fee, a deposit — would suppress a premium page's investment block
+   * and leave it with no pricing at all.
+   *
+   * No premium combo does that today: the lowest top figure among those that
+   * trip the predicate is $40,000, on roofing-loudoun-county-va, which is a
+   * real project range. The threshold is set well under that so ordinary copy
+   * edits do not trip it, and it exists so that adding a small incidental
+   * figure to a premium page fails here instead of silently dropping the
+   * block. If this fails, do not raise the threshold — either the figure is
+   * incidental and should not be there, or the page needs real pricing.
+   */
+  it('never suppresses a premium investment block on an incidental figure', () => {
+    const INCIDENTAL_CEILING = 25_000;
+    const offenders: string[] = [];
+
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
+      if (!area || area.market !== 'premium') continue;
+      const service = key.slice(0, key.length - area.slug.length - 1);
+      if (!comboPublishesPricing(service, area.slug)) continue;
+
+      const figures = (JSON.stringify(entry).match(/\$[\d,]+/g) ?? []).map((f) =>
+        Number(f.replace(/[$,]/g, ''))
+      );
+      const top = Math.max(...figures);
+      if (top <= INCIDENTAL_CEILING) {
+        offenders.push(`${key} suppresses its investment block on a top figure of only $${top}`);
+      }
+    }
+
+    expect(offenders, offenders.join('; ')).toEqual([]);
+  });
+
+  it('is false for a combo that does not exist', () => {
+    expect(comboPublishesPricing('roofing', 'nowhere-va')).toBe(false);
+  });
+
+  /**
+   * The count is pinned so that adding a figure to one of those nine pages —
+   * which would silently drop its investment block — shows up as a decision
+   * rather than a side effect. If you add one, update the number and say which
+   * page gained pricing.
+   */
+  it('leaves exactly nine premium combos relying on the generic tiers', () => {
+    const relying = Object.keys(CONTENT).filter((key) => {
+      const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
+      if (!area || area.market !== 'premium') return false;
+      const service = key.slice(0, key.length - area.slug.length - 1);
+      return !comboPublishesPricing(service, area.slug);
+    });
+    expect(relying.sort()).toEqual(
+      [
+        'decks-ashburn-va',
+        'decks-brambleton-va',
+        'decks-leesburg-va',
+        'remodeling-ashburn-va',
+        'remodeling-leesburg-va',
+        'roofing-ashburn-va',
+        'roofing-leesburg-va',
+        'siding-ashburn-va',
+        'siding-leesburg-va',
+      ].sort()
+    );
+  });
+});
+
+describe('unconfirmedClaimIdsInCombo', () => {
+  /**
+   * Feeds the combo template's per-bullet trust gate: a bullet renders only
+   * when the page's own copy already makes every claim it would introduce.
+   *
+   * Two earlier predicates were refuted on review. `market === 'premium'`
+   * alone ignored that 36 of 47 premium combos already publish these promises
+   * in their own paragraphs. Replacing it with "makes ANY unconfirmed claim"
+   * then let a page carrying only `active-work-timeline` be handed all four
+   * bullets — which defeated the new-page boundary the gate exists for.
+   */
+  it('is empty for the regional page, whose copy was written clean', () => {
+    expect(unconfirmedClaimIdsInCombo('basements', 'northern-virginia')).toEqual([]);
+  });
+
+  it('lists the claims a page makes in its own paragraphs', () => {
+    expect(unconfirmedClaimIdsInCombo('bathrooms', 'mclean-va')).toContain('named-project-lead');
+    expect(unconfirmedClaimIdsInCombo('basements', 'great-falls-va')).toContain(
+      'written-workmanship-warranty'
+    );
+  });
+
+  it('is empty for a premium page whose own copy makes none', () => {
+    expect(unconfirmedClaimIdsInCombo('decks', 'ashburn-va')).toEqual([]);
+    expect(unconfirmedClaimIdsInCombo('roofing', 'leesburg-va')).toEqual([]);
+  });
+
+  it('is empty for a combo that does not exist', () => {
+    expect(unconfirmedClaimIdsInCombo('roofing', 'nowhere-va')).toEqual([]);
+  });
+
+  /**
+   * The exact case Codex used to refute the any-claim predicate. This page's
+   * copy carries `active-work-timeline` and NONE of the four the trust bullets
+   * publish, so a predicate that only asked "any claim?" would have handed it
+   * all four.
+   */
+  it('does not report the trust bullets\u2019 claims for a page carrying only an unrelated one', () => {
+    const ids = unconfirmedClaimIdsInCombo('bathrooms', 'ashburn-va');
+    expect(ids).toContain('active-work-timeline');
+    for (const id of [
+      'named-project-lead',
+      'daily-updates',
+      'clean-job-site',
+      'written-workmanship-warranty',
+    ]) {
+      expect(ids, `${id} should not be reported for bathrooms-ashburn-va`).not.toContain(id);
     }
   });
 });
