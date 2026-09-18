@@ -78,14 +78,37 @@ const PAGE_COUNTS: Readonly<Record<string, number>> = {
   'same-day-response': 8,
 };
 
-/** Text a visitor can read: tags, scripts, styles and entities removed. */
+/**
+ * Text a visitor can perceive: body copy plus the attribute values that reach
+ * people through assistive technology or a tooltip.
+ *
+ * Attributes must be lifted out BEFORE tags are stripped. Removing `<[^>]+>`
+ * deletes `alt`, `aria-label` and `title` along with the markup, so a claim
+ * added only through one of those would leave every count below unchanged and
+ * this guard would pass — while `runtime-text.ts` counts exactly those
+ * attributes as published copy, having been fixed to do so earlier in this
+ * same PR. The two guards disagreeing about what "published" means, with the
+ * backstop being the weaker one, defeats the point of having a backstop.
+ * Codex found it on #148.
+ *
+ * Each value becomes its own chunk, newline-separated, so an attribute cannot
+ * fuse with the body text beside it into a phrase no one reads. The register's
+ * patterns use literal spaces rather than `\s+`, so a newline reliably breaks
+ * a match.
+ */
+const PERCEIVABLE_ATTRS = /\b(?:alt|aria-label|aria-description|title|placeholder)="([^"]*)"/gi;
+
 function visibleText(html: string): string {
-  return html
+  const withoutCode = html
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&[a-z]+;|&#\d+;/gi, ' ')
-    .replace(/\s+/g, ' ');
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ');
+
+  const chunks = [withoutCode.replace(/<[^>]+>/g, ' ')];
+  for (const m of withoutCode.matchAll(PERCEIVABLE_ATTRS)) chunks.push(m[1]);
+
+  return chunks
+    .map((c) => c.replace(/&[a-z]+;|&#\d+;/gi, ' ').replace(/[^\S\n]+/g, ' ').trim())
+    .join('\n');
 }
 
 function builtPages(): string[] {
