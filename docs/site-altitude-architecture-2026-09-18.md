@@ -82,9 +82,17 @@ Console 2026-03-15 → 2026-09-15, **mobile only**, per the convention in
    regional pages, which are cheap, slow, and worth doing once — not
    sixty-nine times.
 
-6. **Nothing above can be read until GA4 counts `generate_lead` and
-   `phone_click`.** That is the first line of the sequence in §8, and it is
-   yours.
+6. **GA4's CONVERSION REPORTING counts none of this, until `generate_lead` and
+   `phone_click` are marked as key events.** That is the first line of the
+   sequence in §8, and it is yours.
+
+   Corrected 2026-09-18: an earlier version of this line said nothing above
+   could be *read* until then. That is wrong, and it would stall work that is
+   not actually blocked. **Raw event counts are already queryable** — the flag
+   governs conversion reporting, not whether an event is recorded. The Phase 5
+   lead comparison uses raw `generate_lead` counts and does not wait on this.
+   See `docs/ga4-conversion-tracking.md` and
+   `docs/phase-5-baseline-2026-09-18.md`.
 
 ---
 
@@ -529,8 +537,13 @@ than the same $4,000 spent on pages.
 
 Three conditions, all before the first dollar:
 
-1. GA4 key events for `generate_lead` and `phone_click`, or the spend cannot
-   be evaluated at all.
+1. GA4 key events for `generate_lead` and `phone_click`, **and then the Google
+   Ads link plus conversion import**. The GA4 flag alone gives Ads nothing —
+   the account link and import are a separate step (`MILLION-DOLLAR-WEBSITE-PLAN.md`
+   item 0.6). Without both, the campaign bids blind and your dashboard reads
+   zero. (Corrected 2026-09-18: this said "or the spend
+   cannot be evaluated at all", which is false — raw event counts are
+   queryable without the flag and can evaluate the spend.)
 2. A landing page whose claims are verified (§3.5). Paid traffic reads the
    page; an unverified "same-day response standard" in front of a paid
    $132 click is the worst place for it.
@@ -639,8 +652,15 @@ Every step is gated by the one above it where it says so.
 
 **Phase 0 — owner-only, this week, before any code.**
 1. GA4 → Admin → Key events → add `generate_lead`, `phone_click`
-   (`ga4-conversion-tracking.md`). Two minutes. Nothing downstream is
-   readable without it.
+   (`ga4-conversion-tracking.md`). Two minutes. It fixes your own dashboard
+   and anything Google Ads optimises toward, both of which currently read zero
+   conversions.
+
+   **It does NOT gate Phase 5, and an earlier version of this line said it
+   did.** Raw event counts are queryable without the flag, so the December
+   lead comparison uses those. Marking a key event is also not retroactive, so
+   comparing key events across the change would show a rise that measures when
+   the checkbox was ticked rather than demand.
 2. Answer §9 — the six claims, the job-size floor, the NoVA job history.
 3. GBP service area: add Berkeley County, WV in the free slot
    (`gbp-service-area-rebalance.md`). Unrelated to NoVA; it is the home-market
@@ -854,6 +874,14 @@ live, and a tracking number.** Three months, geo-targeted to Fairfax and
 Loudoun counties, one trade (§5), landing on the regional page. Read leads
 and call recordings, not revenue.
 
+**Phase 5 — read and decide, 2026-12-15.** The "before" it compares against is
+frozen in `docs/phase-5-baseline-2026-09-18.md`, captured the day this work
+shipped: 5 mobile clicks site-wide in three months, **zero** across the 23
+Northern Virginia URLs that returned any impression (of ~61 in the catalog; the
+rest returned zero impressions), and **zero mobile impressions for any query
+containing "northern virginia"**. The regional page starts from nothing, which makes any
+impression it earns attributable to it.
+
 **Phase 5 — read and decide, 2026-12-15.** Ninety days after the WV routes
 went live and roughly ninety after the regional page would. Mobile-filtered
 Search Console: does the regional page take the "northern virginia"
@@ -863,6 +891,30 @@ page) or not (then build it); did paid produce a lead you would have taken.
 Only then a second trade at regional altitude.
 
 ---
+
+**Loudoun County queries are the majority on Leesburg's page — 2026-09-18.**
+
+Surfaced by freezing query-level rows for the Phase 5 baseline, and it bears
+directly on §2. `/service-areas/leesburg-va` takes **243 of its 381 mobile
+impressions (64%) from "loudoun county" queries** across 18 query strings —
+the majority, though the page does also rank on 17 Leesburg-scoped strings
+carrying the other 108 impressions (28%). Meanwhile "northern virginia" returns
+**zero** mobile impressions.
+
+Precisely, because two earlier versions of this note overstated it: the top
+three county queries carry 188 impressions at positions 12.5–19.2, and **two
+of those three** outrank every town query — the third (19.2) is beaten by
+`basement finishing contractor in leesburg va` at 19.0. The remaining 15 county
+queries carry 55 impressions at positions **26.3–44.7**, where nothing is
+visible.
+
+The regional-altitude thesis may therefore be right about altitude and wrong
+about the place name: the demand that exists at a level above the town is
+phrased as the *county*, not as the region. This is one quarter of data and it
+is recorded as an observation, not a recommendation — acting on it means a
+county-level page, which is the owner's decision. But if the December read
+finds the regional page flat, check this before concluding that regional
+altitude failed. Detail in `docs/phase-5-baseline-2026-09-18.md`.
 
 **The timeline claim was too narrow three rounds running, and what is left is
 structural — 2026-09-18.**

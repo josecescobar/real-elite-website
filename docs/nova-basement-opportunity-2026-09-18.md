@@ -102,10 +102,22 @@ more pages on the same template.**
 
 ## Measurement is still broken
 
-None of the above is readable until GA4 counts conversions. The three key events
+GA4's **conversion reporting** counts none of this. The three key events
 configured are stock defaults the site never fires; `generate_lead` and
 `phone_click` are not key events, so key events over 90 days = 0 while the site
 fired three leads and two phone clicks. See `ga4-conversion-tracking.md`.
 Owner-only fix, two minutes, not retroactive.
 
-Do this before spending on anything above, or the spend cannot be evaluated.
+Corrected 2026-09-18: this section previously opened "none of the above is
+readable until GA4 counts conversions." **Raw event counts are queryable
+without the key-event flag** — it governs conversion reporting, not whether an
+event is recorded — so the figures above can be read against leads today. The
+flag still needs setting for the owner's dashboard and for Ads.
+
+**Set the flag before spending**, because paid traffic is where the dashboard
+and Ads optimisation actually bite — Ads cannot bid toward a conversion GA4
+does not report. But the spend *can* still be evaluated without it, from raw
+`generate_lead` and `phone_click` counts, and an earlier version of this line
+("do this before spending on anything above, or the spend cannot be
+evaluated") sat one line below the correction above it and reasserted the very
+gate that correction removes.
