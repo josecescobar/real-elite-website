@@ -854,6 +854,13 @@ live, and a tracking number.** Three months, geo-targeted to Fairfax and
 Loudoun counties, one trade (§5), landing on the regional page. Read leads
 and call recordings, not revenue.
 
+**Phase 5 — read and decide, 2026-12-15.** The "before" it compares against is
+frozen in `docs/phase-5-baseline-2026-09-18.md`, captured the day this work
+shipped: 5 mobile clicks site-wide in three months, **zero** across all 23
+Northern Virginia pages, and **zero mobile impressions for any query containing
+"northern virginia"**. The regional page starts from nothing, which makes any
+impression it earns attributable to it.
+
 **Phase 5 — read and decide, 2026-12-15.** Ninety days after the WV routes
 went live and roughly ninety after the regional page would. Mobile-filtered
 Search Console: does the regional page take the "northern virginia"
