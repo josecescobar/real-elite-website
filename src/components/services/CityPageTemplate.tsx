@@ -17,7 +17,9 @@ import {
   BUSINESS,
   LUXURY_CITY_SLUGS,
   selectGalleryFor,
+  areaRegionLabel,
   type CityDataEntry,
+  type ServiceArea,
 } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import { getRecentPosts, getPostBySlug } from '@/lib/blog';
@@ -49,10 +51,13 @@ function permitGuideSlugForCity(citySlug: string): string | null {
   return null;
 }
 
-type City = { city: string; state: string; slug: string };
-
 type Props = {
-  city: City;
+  /**
+   * The full catalog row, not a `{city, state, slug}` literal. The template
+   * needs `market` to decide which service-level promises it may make, and
+   * `kind`/`parent` to name the surrounding region correctly.
+   */
+  city: ServiceArea;
   data: CityDataEntry;
 };
 
@@ -85,19 +90,29 @@ export default function CityPageTemplate({ city, data }: Props) {
   // Localized projects: prefer city-tagged photos, fall back to
   // state-tagged, then the full gallery. selectGalleryFor handles
   // the cascade.
-  const projectShots = selectGalleryFor(
-    city.slug,
-    city.state as 'WV' | 'MD' | 'VA',
-    6
-  );
+  const projectShots = selectGalleryFor(city.slug, city.state, 6);
 
   // Localized FAQ — answers the common pre-quote questions in a way
   // that AI Overviews / SGE can quote directly. Adds FAQPage structured
   // data on every city page for SEO + AI-search coverage.
+  // Scheduling promise, gated on market.
+  //
+  // This FAQ used to tell every area that it "sits inside our primary service
+  // radius, so on-site visits are typically scheduled within the same week."
+  // That is plausible for the Eastern Panhandle home market and indefensible
+  // sixty miles away in Fairfax County, where the business has no presence
+  // beyond its pin. CLAUDE.md requires owner confirmation for claims about how
+  // the business operates, and this one is unconfirmed for the premium markets,
+  // so premium pages now answer the question without the radius promise.
+  const quotePromise =
+    city.market === 'home'
+      ? ` ${city.city} sits inside our primary service radius, so on-site visits are typically scheduled within the same week.`
+      : '';
+
   const localFaqs: { question: string; answer: string }[] = [
     {
       question: `Does Real Elite Contracting serve ${city.city}, ${city.state}?`,
-      answer: `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${city.state === 'WV' ? 'Eastern Panhandle' : city.state === 'MD' ? 'Cumberland Valley and Frederick County area' : 'Northern Shenandoah Valley and Loudoun County area'}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`,
+      answer: `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`,
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,
@@ -105,7 +120,7 @@ export default function CityPageTemplate({ city, data }: Props) {
     },
     {
       question: `How fast can I get a quote in ${city.city}?`,
-      answer: `For roofing, our AI Instant Roof Quote returns a ballpark price from your address in about 60 seconds — no ladder, no appointment. For other services, a project lead follows up within 24 business hours with a free written estimate. ${city.city} sits inside our primary service radius, so on-site visits are typically scheduled within the same week.`,
+      answer: `For roofing, our AI Instant Roof Quote returns a ballpark price from your address in about 60 seconds — no ladder, no appointment. For other services, a project lead follows up within 24 business hours with a free written estimate.${quotePromise}`,
     },
     {
       question: `Is Real Elite Contracting really veteran-owned?`,
