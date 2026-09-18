@@ -26,24 +26,47 @@ export const BUSINESS = {
   },
   url: 'https://www.realelitecontracting.com',
   /**
-   * Social URLs are verified-live links. LinkedIn and Thumbtack profiles
-   * were previously listed but returned 404 — removed to avoid broken
-   * trust signals in the footer and broken sameAs references in JSON-LD.
-   * Add them back here once the real profiles exist.
+   * Social URLs. LinkedIn and Thumbtack profiles were previously listed but
+   * returned 404 — removed to avoid broken trust signals in the footer and
+   * broken sameAs references in JSON-LD. Add them back here once the real
+   * profiles exist.
    *
-   * Yelp is left in because Yelp blocks automated checks (403 on bots);
-   * verify the profile manually in a browser before linking it from the
-   * footer.
+   * Yelp is left in because Yelp blocks automated checks (403 on bots), so it
+   * has never been confirmed to be Real Elite's profile. It is therefore
+   * UNVERIFIED and is deliberately absent from `VERIFIED_PROFILE_URLS` below.
+   * Verify it manually in a browser, then add it there — that one edit
+   * enables both the footer link and the sameAs assertion.
    */
   social: {
     facebook: 'https://www.facebook.com/realelitecontracting',
     instagram: 'https://www.instagram.com/realelitecontracting',
     google: 'https://share.google/yuA4SUQ5zDrSKAyHm',
+    /** UNVERIFIED — see the note above. Not in `VERIFIED_PROFILE_URLS`. */
     yelp: 'https://www.yelp.com/biz/real-elite-contracting',
   },
   hours: 'Mon–Fri: 7:00 AM – 6:00 PM | Sat: 8:00 AM – 2:00 PM',
   veteranOwned: true,
 } as const;
+
+/**
+ * The subset of `BUSINESS.social` confirmed to belong to Real Elite, and
+ * therefore safe to assert as an external identity in the sitewide
+ * LocalBusiness `sameAs`.
+ *
+ * `sameAs` is a machine-readable claim that this business owns these
+ * profiles. An unverified URL in it tells Google the business owns a page
+ * that may belong to someone else — which is why the 404'd LinkedIn and
+ * Thumbtack URLs were removed rather than left in place.
+ *
+ * Yelp is absent for the same reason: Yelp 403s bots, so its URL has never
+ * been confirmed. Once a human opens it and confirms it is Real Elite's, add
+ * `BUSINESS.social.yelp` here — that single edit is the whole change.
+ */
+export const VERIFIED_PROFILE_URLS = [
+  BUSINESS.social.facebook,
+  BUSINESS.social.instagram,
+  BUSINESS.social.google,
+] as const;
 
 /**
  * Social-proof / trust signals — single source of truth for the rating,

@@ -21,6 +21,7 @@ import {
   GALLERY_IMAGES,
   selectGalleryFor,
   BUSINESS,
+  VERIFIED_PROFILE_URLS,
 } from '@/lib/constants';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
@@ -615,5 +616,29 @@ describe('BUSINESS', () => {
     expect(BUSINESS.name.length).toBeGreaterThan(0);
     expect(BUSINESS.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
     expect(BUSINESS.phoneRaw).toMatch(/^\+?\d+$/);
+  });
+});
+
+describe('VERIFIED_PROFILE_URLS', () => {
+  // `sameAs` asserts that this business owns these profiles. An unverified
+  // URL in it claims an external identity that may belong to someone else,
+  // which is why the 404'd LinkedIn and Thumbtack URLs were removed rather
+  // than left in place. Yelp 403s bots and has never been confirmed, so it
+  // must stay out until a human checks it — at which point this test is the
+  // thing to delete, deliberately, alongside adding the URL.
+  it('excludes the unverified Yelp URL', () => {
+    expect(VERIFIED_PROFILE_URLS).not.toContain(BUSINESS.social.yelp);
+  });
+
+  it('only contains URLs that exist in BUSINESS.social', () => {
+    const known = new Set<string>(Object.values(BUSINESS.social));
+    for (const url of VERIFIED_PROFILE_URLS) {
+      expect(known).toContain(url);
+    }
+  });
+
+  it('is non-empty and free of duplicates', () => {
+    expect(VERIFIED_PROFILE_URLS.length).toBeGreaterThan(0);
+    expect(new Set(VERIFIED_PROFILE_URLS).size).toBe(VERIFIED_PROFILE_URLS.length);
   });
 });

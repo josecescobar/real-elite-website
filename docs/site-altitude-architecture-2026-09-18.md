@@ -853,42 +853,93 @@ inventory counts 21 FILES. At page level:
 
 | Claim | Pages publishing it (of 182) |
 | --- | --- |
-| written workmanship warranty | **148** |
+| written workmanship warranty | **149** |
 | one named project lead | **143** |
 | daily updates | **140** |
 | clean job site every evening | **135** |
-| active-work timeline | 16 |
+| active-work timeline | **37** |
 | daily progress photos | 13 |
 | same-day response | 8 |
 
 None of the seven is confirmed. That is the size of §9's second question, and
 it is a far stronger argument for answering it than "21 files" was.
 
+**Corrected 2026-09-18:** two rows above were stale from the day they were
+written. The table was transcribed from a scan taken partway through #148,
+while the same commit's `tests/claim-pages.json` was regenerated after the
+`active-work-timeline` patterns were widened. It read `148` and `16`; the
+generated worklist read **149** and **37**, and the table now matches it.
+`tests/claim-pages.json` is the source of truth — it is regenerated from built
+HTML, and this table is a transcription of it.
+
 **Phase 3 — off-repo, parallel with Phase 2.**
-Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already
-has a Thumbtack webhook). A third of the NoVA organic field is directories;
-being listed in them is cheaper than outranking them.
+Directory profiles. The reasoning holds — being listed in a directory is
+cheaper than outranking it — but the named list was generic and is superseded
+by `docs/phase-3-directories-2026-09-18.md`.
+
+Two things that file establishes, both of which change the work:
+
+**The repo already answers most of it.** `constants.ts` carries a Yelp profile
+URL that is unverified because Yelp blocks bots; records that the Thumbtack and
+LinkedIn profiles 404'd and were removed; and holds BBB and Angi as trust
+badges with `href: null`, which its own comment defines as *"not yet
+verified"*. So Yelp, BBB and Angi are all **verify-before-create** — all three
+platforms generate unclaimed listings, and null does not mean "no listing".
+Thumbtack has a webhook but no profile.
+
+**And the two null badges are not a Phase 3 deliverable.** They read "BBB
+Accredited" and "Angi Certified" — credentials, not profiles. A free listing
+earns neither, so filling in an `href` off the back of one would publish an
+unconfirmed claim to a homeowner. The badge waits on the owner confirming the
+credential, which is §9's question, not this phase's.
+
+**And one SERP snapshot proves very little.** Three same-day snapshots of
+`basement remodeling northern virginia` — §1.3's and two of mine minutes apart
+— churn two to three domains between them. Yelp and BestPickReports appear in
+all three; Angi in §1.3's only. Rank directories from repeated observation, not
+from one look. Seven snapshots across five queries back that file, §1.3's
+included.
+
+**One ranked item, then an unordered set.** **Yelp** first — the only directory
+in all five queries and every snapshot — and the action there is *verify*, not
+create. Everything after it (**BBB, Houzz, BestPickReports, Angi, HomeAdvisor**,
+plus the GAF certified-installer locator) is deliberately **unordered**: an
+earlier version numbered them, which implied a ranking two-of-five observations
+cannot carry, and put BBB above BestPickReports even though BestPickReports is
+the only directory besides Yelp in the *target* market. Cost, eligibility and
+conversion would order that set; none of them was measured. BuildZoom has no
+signal; Thumbtack has no profile.
+
+**One live fix came out of it.** `layout.tsx` was emitting the unverified Yelp
+URL in the sitewide LocalBusiness `sameAs` — a machine-readable claim that the
+business owns that profile, on all 182 pages, for the one URL `constants.ts`
+flags as unconfirmed. The comment there had removed the 404'd LinkedIn and
+Thumbtack URLs for exactly that reason, so the policy was right and only its
+enforcement stopped at the footer. `sameAs` now reads from a new
+`VERIFIED_PROFILE_URLS` allowlist, Yelp is out until someone confirms it, and a
+test fails if it returns.
 
 **Phase 4 — paid test, gated on Phase 0.1, Phase 1.3 green, Phase 2.1
 live, and a tracking number.** Three months, geo-targeted to Fairfax and
 Loudoun counties, one trade (§5), landing on the regional page. Read leads
 and call recordings, not revenue.
 
-**Phase 5 — read and decide, 2026-12-15.** The "before" it compares against is
-frozen in `docs/phase-5-baseline-2026-09-18.md`, captured the day this work
-shipped: 5 mobile clicks site-wide in three months, **zero** across the 23
-Northern Virginia URLs that returned any impression (of ~61 in the catalog; the
-rest returned zero impressions), and **zero mobile impressions for any query
-containing "northern virginia"**. The regional page starts from nothing, which makes any
-impression it earns attributable to it.
-
 **Phase 5 — read and decide, 2026-12-15.** Ninety days after the WV routes
-went live and roughly ninety after the regional page would. Mobile-filtered
-Search Console: does the regional page take the "northern virginia"
-queries; do the Tier B town pages lose theirs to it (then 301 them) or keep
-theirs (then leave them); does the Fairfax query follow (then no Fairfax
-page) or not (then build it); did paid produce a lead you would have taken.
-Only then a second trade at regional altitude.
+went live and roughly ninety after the regional page would.
+
+The "before" it compares against is frozen in
+`docs/phase-5-baseline-2026-09-18.md`, captured the day this work shipped: 5
+mobile clicks site-wide in three months, **zero** across the 23 Northern
+Virginia URLs that returned any impression (of ~61 in the catalog; the rest
+returned zero impressions), and **zero mobile impressions for any query
+containing "northern virginia"**. The regional page starts from nothing, which
+makes any impression it earns attributable to it.
+
+What to read, mobile-filtered, in Search Console: does the regional page take
+the "northern virginia" queries; do the Tier B town pages lose theirs to it
+(then 301 them) or keep theirs (then leave them); does the Fairfax query follow
+(then no Fairfax page) or not (then build it); did paid produce a lead you would
+have taken. Only then a second trade at regional altitude.
 
 ---
 
