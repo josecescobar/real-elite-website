@@ -322,7 +322,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
     example: 'a written workmanship warranty on every job',
     label: 'Every project carries a written workmanship warranty.',
     status: 'unconfirmed',
-    patterns: [/workmanship warranty/i],
+    patterns: [/workmanship (?:warrant|guarantee)/i],
     note:
       'The broadest-reaching of the seven and the one with the most legal weight. Also published in the sitewide FAQ in constants.ts, on eight standalone pages, and in 15 blog posts — all outside this guard. A retraction is a repo-wide sweep, not a 30-key edit.',
     publishedIn: {
@@ -333,8 +333,14 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'bathrooms-vienna-va', 'kitchens-vienna-va', 'basements-vienna-va',
         'bathrooms-great-falls-va', 'kitchens-great-falls-va', 'basements-great-falls-va',
         'bathrooms-reston-va', 'kitchens-reston-va', 'basements-reston-va',
-        'bathrooms-burke-va', 'kitchens-burke-va', ],
-      serviceSlugs: ['kitchens', 'roofing', 'general-repairs'],
+        'bathrooms-burke-va', 'kitchens-burke-va',
+        // Detected 2026-09-18 when the pattern widened to cover "workmanship
+        // guarantee" and the PLURAL "workmanship warranties". This copy dates
+        // to 2026-07-06 (#63) — it is not new, it was never matched. Adding it
+        // here is the one legitimate reason to grow an inventory; growing it to
+        // silence a guard that caught NEW copy is what the header forbids.
+        'roofing-frederick-md', 'roofing-hagerstown-md', 'roofing-loudoun-county-va', ],
+      serviceSlugs: ['kitchens', 'roofing', 'general-repairs', 'handyman'],
       templates: [
         'src/lib/trust-bullets.ts',
         'src/components/services/CityPageTemplate.tsx',
@@ -462,7 +468,14 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
     label:
       'Named week-range timelines for active work (3-5 weeks for a bath up to 14-22 weeks for a Great Falls basement).',
     status: 'unconfirmed',
-    patterns: [/\d+–\d+ weeks of active work/i],
+    // The site writes this range three ways — an en dash in the combo content
+    // map, and "N to N" in seven blog articles. The en-dash-only pattern missed
+    // every blog occurrence, and content/blog is NOT walked by the source-level
+    // scan, so those pages published an unconfirmed promise with nothing
+    // watching: absent from the retraction worklist, absent from the count, and
+    // a new page using the site's own "N to N" phrasing would not have moved
+    // the snapshot or failed CI. Codex found it on #148.
+    patterns: [/\d+\s*(?:–|—|-|to)\s*\d+ weeks of active work/i],
     note:
       'Registered as one claim across all markets rather than only the 8-22 week NoVA figures the brief flagged, because they are the same kind of promise and the owner will want to rule on them together. A schedule quoted on a page becomes the baseline a late job is measured against.',
     publishedIn: {

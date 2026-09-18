@@ -875,6 +875,24 @@ Only then a second trade at regional altitude.
    timelines of 8–14 weeks (Vienna, Reston) and 14–22 weeks (Great Falls).
    Confirm, retract, or restate. Retractions have to come off the WV and
    service pages too, not only the NoVA pages.
+
+   **Two phrasings the detection patterns were missing, found 2026-09-18.**
+   The site writes the timeline range as `8–14 weeks of active work` in the
+   combo content and as `6 to 10 weeks of active work` in seven blog articles;
+   the pattern only matched the en dash, so those seven pages published the
+   promise unwatched. Same for `workmanship guarantee`, which one deck article
+   uses where everything else says `workmanship warranty`. Both patterns are
+   widened, and the page counts rose from 16 to 23 and 148 to 149 — no new copy,
+   just copy that was always there and never counted.
+
+   **One phrasing I have NOT folded in, because it is your call, not mine.**
+   Three pages promise a *single point of contact* — the capability statement,
+   the full-property-perimeter page, and a whole-home blog article. Is that the
+   same promise as *one named project lead*, or a weaker one about who answers
+   the phone? If it is the same, say so and it joins the register, which adds
+   those pages to the retraction worklist. I can argue it either way, which is
+   why I am not deciding it: a claim's scope is a statement about how the
+   business runs.
 3. **Has a Northern Virginia job been completed, and are there photos?** The
    Springfield reviews suggest yes. One verified project page is worth more
    than any five town pages.

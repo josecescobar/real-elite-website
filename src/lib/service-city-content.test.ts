@@ -598,7 +598,7 @@ describe('unconfirmedClaimIdsInCombo', () => {
    * visible measure, so a copy edit or a retirement that changes the footprint
    * surfaces as a decision rather than a side effect.
    */
-  it('splits the premium combos 26 carrying claims to 11 not', () => {
+  it('splits the premium combos 27 carrying claims to 10 not', () => {
     let carrying = 0;
     let clean = 0;
     for (const key of Object.keys(CONTENT)) {
@@ -608,7 +608,12 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    expect({ carrying, clean }).toEqual({ carrying: 26, clean: 11 });
+    // 27/10 as of 2026-09-18, was 26/11. One combo moved from clean to
+    // carrying when the warranty pattern widened to cover "workmanship
+    // guarantee" and the plural "workmanship warranties" — the copy dates to
+    // 2026-07-06 (#63) and never changed; only detection did. A rise here
+    // caused by NEW copy is a defect; this one is the scan catching up.
+    expect({ carrying, clean }).toEqual({ carrying: 27, clean: 10 });
   });
 
   /**
