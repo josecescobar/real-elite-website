@@ -79,32 +79,55 @@ const PAGE_COUNTS: Readonly<Record<string, number>> = {
 };
 
 /**
- * Text a visitor can perceive: body copy plus the attribute values that reach
- * people through assistive technology or a tooltip.
+ * Everything on a page that can put a claim in front of a person.
  *
- * Attributes must be lifted out BEFORE tags are stripped. Removing `<[^>]+>`
- * deletes `alt`, `aria-label` and `title` along with the markup, so a claim
- * added only through one of those would leave every count below unchanged and
- * this guard would pass — while `runtime-text.ts` counts exactly those
- * attributes as published copy, having been fixed to do so earlier in this
- * same PR. The two guards disagreeing about what "published" means, with the
- * backstop being the weaker one, defeats the point of having a backstop.
- * Codex found it on #148.
+ * Three surfaces beyond the body copy, and all three are invisible to a naive
+ * tag strip:
  *
- * Each value becomes its own chunk, newline-separated, so an attribute cannot
- * fuse with the body text beside it into a phrase no one reads. The register's
- * patterns use literal spaces rather than `\s+`, so a newline reliably breaks
- * a match.
+ *   - PERCEIVABLE ATTRIBUTES — `alt`, `aria-label`, `title` and friends reach
+ *     people through assistive technology and tooltips. `runtime-text.ts`
+ *     counts them as published copy, and this file stripping them meant the
+ *     two guards disagreed, with the backstop being the weaker one.
+ *   - META CONTENT — a description is read by a homeowner in the search
+ *     result, before they ever load the page. This one matters most for
+ *     `content/blog`, which the source-level claims scan does not walk at all
+ *     (it walks `src`), so blog frontmatter has no other guard anywhere.
+ *   - JSON-LD — structured data surfaces in rich results.
+ *
+ * Codex found the attribute gap and then the metadata gap on #148. JSON-LD is
+ * included in the same pass rather than left as a stated bound, because the
+ * argument for it is identical and a bound I have to remember is a bound I
+ * will forget — this PR has two examples of exactly that.
+ *
+ * Meta `content` is captured WITHOUT an allowlist of names. An allowlist would
+ * be one more list to keep current, which is the failure mode the claims
+ * register's prose scope list already demonstrated; and a machine-directive
+ * meta like `viewport` cannot match a claim pattern, since those are specific
+ * English phrases. Over-capturing here is safe, under-capturing is not.
+ *
+ * Each value is its own newline-separated chunk so nothing fuses with its
+ * neighbour into a phrase no one reads. The register's patterns use literal
+ * spaces rather than `\s+`, so a newline reliably breaks a match.
  */
 const PERCEIVABLE_ATTRS = /\b(?:alt|aria-label|aria-description|title|placeholder)="([^"]*)"/gi;
+const META_CONTENT = /<meta[^>]+content="([^"]*)"[^>]*>/gi;
+const JSON_LD = /<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi;
 
 function visibleText(html: string): string {
+  const chunks: string[] = [];
+
+  // Before scripts are dropped: structured data is user-facing via rich results.
+  for (const m of html.matchAll(JSON_LD)) chunks.push(m[1]);
+
   const withoutCode = html
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ');
 
-  const chunks = [withoutCode.replace(/<[^>]+>/g, ' ')];
+  // Before tags are dropped: metadata and attribute text live inside them.
+  for (const m of withoutCode.matchAll(META_CONTENT)) chunks.push(m[1]);
   for (const m of withoutCode.matchAll(PERCEIVABLE_ATTRS)) chunks.push(m[1]);
+
+  chunks.push(withoutCode.replace(/<[^>]+>/g, ' '));
 
   return chunks
     .map((c) => c.replace(/&[a-z]+;|&#\d+;/gi, ' ').replace(/[^\S\n]+/g, ' ').trim())
