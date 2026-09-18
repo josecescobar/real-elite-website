@@ -3,16 +3,18 @@
  * helper returns.
  *
  * `serviceHrefForArea` is unit-tested in src/lib/service-city-content.test.ts,
- * and that test passed while four published combos stayed unlinked — Inwood's
- * only one among them. The helper was correct; `ServiceCard` only renders the
- * first six services, and the "Show all services" overflow hardcoded
- * `/services/{slug}`. A test that calls the helper cannot see that, because
- * the gap is in which call sites use it.
+ * and that test passed while SEVEN published combos stayed unlinked — Inwood's
+ * only one among them, and siding on all three Loudoun pages. The helper was
+ * correct; `ServiceCard` renders only the first six services, and the "Show
+ * all services" overflow hardcoded `/services/{slug}`. A test that calls the
+ * helper cannot see that, because the gap is in which call sites use it.
  *
- * So this test renders the template and reads the anchors. It is the second
- * time on this feature that an assertion has been weaker than the comment
- * beside it (see the docblock on the consolidated-redirect test in
- * constants.test.ts for the first, and its eight successors).
+ * So this test renders the template and reads the anchors.
+ *
+ * It is the fifth time on this feature that an assertion has been weaker than
+ * its own name or the comment beside it. The consolidated-redirect docblock in
+ * constants.test.ts carries the first four. The pattern is worth naming:
+ * testing the thing that is easy to call rather than the thing that ships.
  */
 import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
@@ -125,16 +127,21 @@ describe('CityPageTemplate links to every combo published for its area', () => {
   );
 
   /**
-   * The general case, over every area that has a CITY_DATA entry. This is the
-   * assertion the helper-level completeness test was standing in for, and
-   * could not make: it checks the anchors, so a call site that bypasses
+   * The general case, over every active area — no row skipped for any reason.
+   * This is the assertion the helper-level completeness test was standing in
+   * for and could not make: it reads the anchors, so a call site that bypasses
    * `serviceHrefForArea` fails here.
    */
   it('renders exactly the published combo links on every area page', () => {
     const offenders: string[] = [];
 
     for (const area of ALL_SERVICE_AREAS) {
-      if (!CITY_DATA[area.slug]) continue;
+      // No `continue` here. Skipping a row with no CITY_DATA entry would let
+      // this test go quiet on exactly the row most likely to be new — and such
+      // a row is a link to a 404 anyway, since /service-areas/[slug] calls
+      // notFound() without one. constants.test.ts asserts every active row has
+      // an entry; this asserts it rather than tolerating its absence.
+      expect(CITY_DATA[area.slug], `${area.slug} has no CITY_DATA entry`).toBeDefined();
       const rendered = renderedComboLinks(area.slug);
       const published = publishedComboLinks(area.slug);
 
