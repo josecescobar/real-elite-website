@@ -86,6 +86,25 @@ const SNAPSHOT_PATH = 'tests/claim-pages.json';
 const SNAPSHOT: Record<string, string[]> = JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
 
 /**
+ * Update mode replaces the snapshot, so nothing may be ASSERTED against the old
+ * one in the same run.
+ *
+ * The regenerator alone was not enough: the stale-entry and unknown-route
+ * checks still compared against the file being replaced, so the documented
+ * command exited 1 while correctly rewriting it — and the result only passed on
+ * a second invocation. An owner following the instructions would have seen a
+ * failure and reasonably concluded it had not worked.
+ *
+ * Codex found it on #148, one round after I claimed to have verified this exact
+ * flow end to end. I had, except that I ran the update step as
+ * `... >/dev/null 2>&1` and never looked at its exit code — the same mistake as
+ * the `npm run build | grep -c error; echo BUILD_OK` at the start of this PR,
+ * where an unconditional echo printed success over a failing build. Twice in
+ * one PR I threw away the exit status of the thing I was checking.
+ */
+const UPDATING = Boolean(process.env.UPDATE_CLAIM_PAGES);
+
+/**
  * Everything on a page that can put a claim in front of a person.
  *
  * Body copy is the obvious surface and the only one a naive tag strip keeps.
@@ -214,7 +233,7 @@ describe('unconfirmed claims in rendered pages', () => {
     expect((actual.get('written-workmanship-warranty') ?? new Set()).size).toBeGreaterThan(100);
   });
 
-  it('records a page list for every unconfirmed claim in the register', () => {
+  it.skipIf(UPDATING)('records a page list for every unconfirmed claim in the register', () => {
     const unconfirmed = snapshotClaimIds();
     const missing = unconfirmed.filter((id) => !(id in SNAPSHOT));
     expect(
@@ -236,7 +255,7 @@ describe('unconfirmed claims in rendered pages', () => {
    * looking for a page this app does not have, and would not have been told
    * about the homepage — which carries four of the seven claims.
    */
-  it('names only routes the site actually serves', () => {
+  it.skipIf(UPDATING)('names only routes the site actually serves', () => {
     const built = new Set(pages.map(routeOf));
     const unknown = [...new Set(Object.values(SNAPSHOT).flat())]
       .filter((route) => !built.has(route))
@@ -274,23 +293,22 @@ describe('unconfirmed claims in rendered pages', () => {
    * page losing the claim while another gains it — leaves the totals identical
    * and is caught here as one addition and one removal.
    */
-  it('publishes each unconfirmed claim on exactly the recorded pages', () => {
-    if (process.env.UPDATE_CLAIM_PAGES) {
-      const next: Record<string, string[]> = {};
-      // UNCONFIRMED only. Writing every registered claim put a newly verified
-      // one straight back into the file, which the validation above then
-      // rejected as stale — so the documented confirmation workflow (owner
-      // confirms a claim, regenerate) could not produce a valid file at all.
-      // The updater was broken for the one flow this whole register exists to
-      // support. Codex found it on #148.
-      for (const id of snapshotClaimIds()) {
-        const routes = actual.get(id);
-        if (routes) next[id] = [...routes].sort();
-      }
-      fs.writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(next, null, 2)}\n`);
-      return;
+  /**
+   * Update mode: rewrite the file and assert nothing. UNCONFIRMED claims only —
+   * writing every registered claim put a newly verified one straight back, so
+   * the confirmation workflow could not produce a valid file at all.
+   */
+  it.runIf(UPDATING)('regenerates the snapshot from the current build', () => {
+    const next: Record<string, string[]> = {};
+    for (const id of snapshotClaimIds()) {
+      const routes = actual.get(id);
+      if (routes) next[id] = [...routes].sort();
     }
+    fs.writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(next, null, 2)}\n`);
+    expect(fs.existsSync(SNAPSHOT_PATH)).toBe(true);
+  });
 
+  it.skipIf(UPDATING)('publishes each unconfirmed claim on exactly the recorded pages', () => {
     const problems: string[] = [];
     for (const [id, recorded] of Object.entries(SNAPSHOT)) {
       const now = actual.get(id) ?? new Set<string>();
