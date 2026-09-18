@@ -735,22 +735,35 @@ describe('every app route declares its own canonical', () => {
      * the returned object. Resolving the spread to its declaration is one hop of
      * the same lookup `objectOf` already does, so the excuse no longer holds.
      */
+    /** What a name is bound to, one hop, unwrapped. */
+    const boundTo = (value: ts.Expression): ts.Expression | undefined => {
+      if (!ts.isIdentifier(value)) return undefined;
+      const declaration = declarationInScope(value);
+      return declaration?.initializer ? unwrap(declaration.initializer) : undefined;
+    };
+
+    /** The helper's result, named or written inline. */
+    const isHelperResult = (value: ts.Expression): boolean => {
+      const expression = unwrap(value);
+      if (isHelperCall(expression)) return true;
+      const bound = boundTo(expression);
+      return bound !== undefined && isHelperCall(bound);
+    };
+
     const yieldsCanonical = (value: ts.Expression): boolean => {
-      if (isHelperCall(value)) return true;
+      // `return buildMetadata({ … })`, and `const base = buildMetadata({ … });
+      // return base` — the second is why this is not just `isHelperCall`.
+      if (isHelperResult(value)) return true;
+      // `hasCanonical` resolves an identifier to its object literal already.
       if (hasCanonical(value)) return true;
 
       const object = objectOf(value);
       if (!object) return false;
-      return object.properties.some((property) => {
-        if (!ts.isSpreadAssignment(property)) return false;
-        const spread = unwrap(property.expression);
-        if (isHelperCall(spread)) return true;
-        if (!ts.isIdentifier(spread)) return false;
-        const declaration = declarationInScope(spread);
-        if (!declaration?.initializer) return false;
-        const initializer = unwrap(declaration.initializer);
-        return isHelperCall(initializer) || hasCanonical(initializer);
-      });
+      return object.properties.some(
+        (property) =>
+          ts.isSpreadAssignment(property) &&
+          (isHelperResult(property.expression) || hasCanonical(property.expression))
+      );
     };
 
     const carriesCanonical = (node: ts.Node) => valuesOf(node).some(yieldsCanonical);
