@@ -865,9 +865,24 @@ None of the seven is confirmed. That is the size of §9's second question, and
 it is a far stronger argument for answering it than "21 files" was.
 
 **Phase 3 — off-repo, parallel with Phase 2.**
-Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already
-has a Thumbtack webhook). A third of the NoVA organic field is directories;
-being listed in them is cheaper than outranking them.
+Directory profiles. The reasoning holds — being listed in a directory is
+cheaper than outranking it — but **the list below was generic and is
+superseded** by `docs/phase-3-directories-2026-09-18.md`, which checked it
+against five live SERPs on 2026-09-18.
+
+Originally: *"Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already has a
+Thumbtack webhook). A third of the NoVA organic field is directories."*
+
+Measured: **BuildZoom and Thumbtack appear in none of the five.** Angi and
+Houzz appear only in the *home market*, not in either Northern Virginia query.
+Yelp appears in all five. Three that do rank — BestPickReports (NoVA only),
+BBB and HomeAdvisor (home market) — were not on the list. And directory share
+in the home market runs at least as high as in NoVA on either way of counting,
+so framing this as a Northern Virginia play is not supported.
+
+Revised order: **Yelp, BBB, Houzz, Angi/HomeAdvisor, BestPickReports**, plus
+the GAF certified-installer locator, which is a manufacturer listing rather
+than a directory. Detail, method and limits in that file.
 
 **Phase 4 — paid test, gated on Phase 0.1, Phase 1.3 green, Phase 2.1
 live, and a tracking number.** Three months, geo-targeted to Fairfax and
