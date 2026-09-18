@@ -772,21 +772,22 @@ resulting rule and the 42 unconfirmed-claim occurrences the retirement removed.
 **Technical debt recorded 2026-09-18 — the two guards #148 grew are the wrong
 shape, and I recommend replacing them.**
 
-#148 took nine review rounds and sixteen findings. Every finding was correct,
-and the distribution is the useful part: **ten of the sixteen were in two files
-that did not exist when the PR opened** — `src/lib/internal-links.test.ts` and
-`src/lib/runtime-text.ts`, both written in response to earlier rounds. The
-site-facing content drew no finding after round three. Eight of the sixteen
-were defects in a guard written to answer the previous finding, and two of
-those were regressions where my own fix opened a false negative while closing
-one.
+#148 took ten review rounds and eighteen findings. Every finding was correct,
+and the distribution is the useful part: **twelve of the eighteen were in two
+files that did not exist when the PR opened** — `src/lib/internal-links.test.ts`
+and `src/lib/runtime-text.ts`, both written in response to earlier rounds. The
+site-facing content drew no finding after round three. Ten of the eighteen were
+defects in a guard written to answer the previous finding, and two of those were
+regressions where my own fix opened a false negative while closing one. The
+final round also turned up a defect in the round-nine fix that the reviewer had
+not named, found only by working through the cases before pushing.
 
 That is not carelessness in one file; it is the wrong technique. Both guards
 reason about **source text** to answer a question about **rendered output**:
 
 - `internal-links.test.ts` decides whether a link resolves by pattern-matching
-  link syntax — three capture patterns and a gate on interpolation. Four
-  findings landed on exactly that logic. A lexical rule cannot distinguish
+  link syntax — three capture patterns, a gate on interpolation and a path-depth
+  rule. Five findings landed on exactly that logic. A lexical rule cannot distinguish
   `/services/kitchens/middleburg-va${suffix}` from
   `/services/kitchens/middleburg${rest}`; the current version resolves the
   literal area segment against the catalog, which works but is the third

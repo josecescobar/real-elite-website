@@ -85,6 +85,19 @@ function renderedTextOf(
     const parts = [node.head.text, ...node.templateSpans.map((s) => s.literal.text)];
     node.templateSpans.forEach((s) => consumed.add(s.literal));
     consumed.add(node.head);
+    // The INTERPOLATIONS carry literals too. `${enabled ? 'copy' : ''}` put
+    // its text nowhere: this branch recorded only the static head and tails,
+    // and `visit` returns straight after a TemplateExpression, so the generic
+    // walk never reached the expressions either. Codex found it on #148.
+    //
+    // This is the same omission as the JSX one fixed a commit earlier, in the
+    // other syntax — `{expr}` was handled and `${expr}` was not. Each
+    // interpolation resolves through renderedTextOf, so its literals land as
+    // SEPARATE runs and a conditional's branches are still never fused.
+    node.templateSpans.forEach((s) => {
+      const inner = renderedTextOf(s.expression, consumed, sideRuns);
+      if (inner.trim()) sideRuns.push(inner);
+    });
     return parts.join(' ');
   }
 

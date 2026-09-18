@@ -80,7 +80,14 @@ const PUBLISHED = new Set(Object.keys(CONTENT));
 const RETIRED = new Set(Object.keys(RETIRED_COMBOS));
 const BASE = 'https://www.realelitecontracting.com';
 
-type ComboLink = { key: string; service: string; area: string; raw: string };
+type ComboLink = {
+  key: string;
+  service: string;
+  area: string;
+  raw: string;
+  /** Path segments under `/services/`. Only 2 can resolve; more is a 404. */
+  depth: number;
+};
 
 /**
  * Every link in `source` whose path is `/services/<something>/<something>`.
@@ -132,8 +139,24 @@ export function extractComboLinks(source: string): ComboLink[] {
     // The service segment needs no such test: a `/` follows it, so it is always
     // complete (an interpolation inside it would leave the prefix one segment
     // short and fail the path shape below).
+    // SEGMENT COUNT is the rule, rather than a regex that happens to match two.
+    // `/services` and `/services/<service>` are real routes; the combo route is
+    // exactly two; NOTHING is deeper. So depth alone decides whether a URL can
+    // resolve, and `/services/kitchens/vienna-va/${id}/details` is a 404 no
+    // matter what `id` holds. The previous version truncated at the first `${`,
+    // stripped the trailing slash and read that as the published combo
+    // `kitchens-vienna-va`, so the deepest, most certain 404 passed. It also
+    // skipped a purely literal `/services/kitchens/vienna-va/details`, which
+    // nothing had ever caught.
     const interp = raw.indexOf('${');
-    const literalPath = (interp === -1 ? raw : raw.slice(0, interp)).split(/[?#]/)[0];
+    const firstSuffix = raw.search(/[?#]/);
+    // An interpolation only bears on the PATH if it sits before the first
+    // literal `?` or `#`. One inside a query string cannot add a segment and
+    // cannot make the path derived — and treating it as if it could was a
+    // second defect in the previous gate: `/services/roofing/nowhere-zz?x=${c}`
+    // has a fully literal path and was skipped for failing the area test.
+    const interpInPath = interp !== -1 && (firstSuffix === -1 || interp < firstSuffix);
+    const literalPath = (interpInPath ? raw.slice(0, interp) : raw).split(/[?#]/)[0];
 
     let pathname: string;
     try {
@@ -142,17 +165,35 @@ export function extractComboLinks(source: string): ComboLink[] {
     } catch {
       continue;
     }
-    const trimmed = pathname.replace(/\/+$/, '');
-    const m = /^\/services\/([^/]+)\/([^/]+)$/.exec(trimmed);
-    if (!m) continue;
+    const segments = pathname.replace(/\/+$/, '').split('/').filter(Boolean);
+    if (segments[0] !== 'services') continue;
+    const after = segments.slice(1);
 
-    const key = `${m[1]}-${m[2]}`;
-    // With an interpolation present the area segment must be a slug the
-    // catalog knows; otherwise that segment was itself derived and this is a
-    // template link CityPageTemplate.links.test.tsx already covers.
-    if (interp !== -1 && !AREA_SLUGS.has(m[2])) continue;
+    // The interpolation begins a new segment when the literal path ended on a
+    // slash, and adds further ones when the remainder carries a slash of its
+    // own. Both are measured against the path portion only.
+    const restPath = interpInPath ? raw.slice(interp).split(/[?#]/)[0] : '';
+    const addsSegment = interpInPath && (/\/$/.test(literalPath) || restPath.includes('/'));
+    const depth = after.length + (addsSegment ? 1 : 0);
 
-    out.push({ key, service: m[1], area: m[2], raw });
+    // A service pillar or the index — real routes, nothing to check.
+    if (depth <= 1) continue;
+
+    const [service, area] = after;
+    if (depth > 2) {
+      // Too deep for any route, whatever the derived parts hold.
+      out.push({ key: `${service}-${area ?? ''}`, service, area: area ?? '', raw, depth });
+      continue;
+    }
+
+    // Exactly two, but the second is the interpolation itself — a derived area
+    // segment, which CityPageTemplate.links.test.tsx covers.
+    if (addsSegment) continue;
+    // With an interpolation inside the path, the area segment must be a slug
+    // the catalog knows; otherwise that segment was itself partly derived.
+    if (interpInPath && !AREA_SLUGS.has(area)) continue;
+
+    out.push({ key: `${service}-${area}`, service, area, raw, depth });
   }
   return out;
 }
@@ -228,6 +269,40 @@ describe('extractComboLinks', () => {
       'href={`/services/kitchens/middleburg${rest}`}',
       null,
     ],
+    // A literal segment AFTER an interpolated one. Truncating at the first
+    // `${` and stripping the trailing slash read this as the published combo
+    // `kitchens-vienna-va`, so the deepest 404 in the set passed.
+    [
+      'interpolated segment followed by more literal path',
+      'href={`/services/kitchens/vienna-va/${id}/details`}',
+      'deep:3',
+    ],
+    [
+      'interpolated trailing segment',
+      'href={`/services/kitchens/vienna-va/${id}`}',
+      'deep:3',
+    ],
+    [
+      'interpolation that carries its own extra segment',
+      'href={`/services/kitchens/vienna-va${rest}/details`}',
+      'deep:3',
+    ],
+    // Purely literal and too deep — no interpolation involved at all. Nothing
+    // had ever caught this one.
+    ['literal path deeper than the combo route', '[V](/services/kitchens/vienna-va/details)', 'deep:3'],
+    // A slash inside a QUERY STRING is not a path segment.
+    [
+      'slash in an interpolated query is not a segment',
+      'href={`/services/kitchens/middleburg-va?to=${a}/b`}',
+      'kitchens-middleburg-va',
+    ],
+    // Fully literal path, interpolation only in the query. The area test must
+    // not apply here — it made this unknown area silently skip.
+    [
+      'literal path with an unknown area and an interpolated query',
+      'href={`/services/roofing/nowhere-zz?x=${c}`}',
+      'roofing-nowhere-zz',
+    ],
     // Both segments complete and real, the combo NEVER PUBLISHED. The gate
     // that only preserved known combos dropped this — the worst case again,
     // since a suffix that is a query, a fragment or the empty string leaves a
@@ -247,9 +322,13 @@ describe('extractComboLinks', () => {
   ];
 
   it.each(cases)('%s', (_name, source, expected) => {
-    const keys = extractComboLinks(source).map((l) => l.key);
-    if (expected === null) expect(keys).toEqual([]);
-    else expect(keys).toEqual([expected]);
+    // A resolvable link reports its key; a too-deep one reports its depth, so
+    // the table cannot read a 404 as a valid combo.
+    const got = extractComboLinks(source).map((l) =>
+      l.depth === 2 ? l.key : `deep:${l.depth}`
+    );
+    if (expected === null) expect(got).toEqual([]);
+    else expect(got).toEqual([expected]);
   });
 
   /**
@@ -290,7 +369,7 @@ describe('internal links to service+area pages', () => {
   it('never links to a retired combo', () => {
     const offenders = scanned.flatMap(({ file, links }) =>
       links
-        .filter((l) => RETIRED.has(l.key))
+        .filter((l) => l.depth === 2 && RETIRED.has(l.key))
         .map(
           (l) =>
             `${file} links ${l.raw} — retired, so this click takes a 308. Point it at ${RETIRED_COMBOS[l.key]} or at whatever the anchor text actually names`
@@ -302,10 +381,34 @@ describe('internal links to service+area pages', () => {
   it('never links to a combo that was never published', () => {
     const offenders = scanned.flatMap(({ file, links }) =>
       links
-        .filter((l) => SERVICE_SLUGS.has(l.service) && !PUBLISHED.has(l.key) && !RETIRED.has(l.key))
+        .filter(
+          (l) =>
+            l.depth === 2 &&
+            SERVICE_SLUGS.has(l.service) &&
+            !PUBLISHED.has(l.key) &&
+            !RETIRED.has(l.key)
+        )
         .map(
           (l) =>
             `${file} links ${l.raw}, which is neither published in CONTENT nor retired with a redirect — dynamicParams is false, so that is a hard 404`
+        )
+    );
+    expect(offenders, offenders.join('; ')).toEqual([]);
+  });
+
+  /**
+   * Too many path segments to resolve at all. `/services` and
+   * `/services/<service>` are real routes and the combo route is exactly two;
+   * nothing is deeper, so a third segment is a 404 regardless of what any
+   * interpolation in it holds.
+   */
+  it('never links deeper than the combo route', () => {
+    const offenders = scanned.flatMap(({ file, links }) =>
+      links
+        .filter((l) => l.depth > 2)
+        .map(
+          (l) =>
+            `${file} links ${l.raw}, which has ${l.depth} path segments under /services/ — the deepest route is /services/[service]/[city] at two, so that URL cannot resolve`
         )
     );
     expect(offenders, offenders.join('; ')).toEqual([]);
@@ -319,7 +422,7 @@ describe('internal links to service+area pages', () => {
   it('never links to an unknown service', () => {
     const offenders = scanned.flatMap(({ file, links }) =>
       links
-        .filter((l) => !SERVICE_SLUGS.has(l.service))
+        .filter((l) => l.depth === 2 && !SERVICE_SLUGS.has(l.service))
         .map(
           (l) =>
             `${file} links ${l.raw}, but "${l.service}" is not a service slug — that URL cannot resolve`

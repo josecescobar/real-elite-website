@@ -215,3 +215,53 @@ describe('runtimeTextOfSource — expression-valued attributes', () => {
     expect(text).not.toMatch(/workmanship warranty/i);
   });
 });
+
+/**
+ * Literals inside a template literal's INTERPOLATIONS.
+ *
+ * The template branch recorded only the static head and tails, and `visit`
+ * returns immediately after a TemplateExpression, so nothing reached the
+ * expressions. The same omission as the JSX-expression one above, in the other
+ * syntax: `{expr}` was traversed and `${expr}` was not.
+ *
+ * Latent, measured: no claim copy sits inside any template interpolation in
+ * `src` today, so nothing was escaping — but the shape is one line of ordinary
+ * code away.
+ */
+describe('runtimeTextOfSource — literals inside template interpolations', () => {
+  it('finds a literal behind a conditional interpolation', () => {
+    const text = runtimeTextOfSource(
+      "const s = `${enabled ? 'written workmanship warranty' : ''}`;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('finds a bare literal interpolation', () => {
+    const text = runtimeTextOfSource("const s = `Includes ${'one named project lead'} per job.`;");
+    expect(text).toMatch(/named project lead/i);
+  });
+
+  it('finds a literal behind a call in an interpolation', () => {
+    const text = runtimeTextOfSource("const s = `${t('daily updates')} weekly.`;");
+    expect(text).toMatch(/daily updates/i);
+  });
+
+  it('does not fuse the branches of a conditional interpolation', () => {
+    const text = runtimeTextOfSource("const s = `${ok ? 'clean job' : 'site'}`;");
+    expect(text).not.toMatch(/clean job site/i);
+  });
+
+  it('does not fuse the static text around an opaque interpolation', () => {
+    const text = runtimeTextOfSource('const s = `workmanship ${x} warranty`;');
+    expect(text).not.toMatch(/workmanship warranty/i);
+  });
+
+  it('finds a literal in a template inside a JSX attribute interpolation', () => {
+    // Both fixes meeting: an attribute holding a template whose interpolation
+    // holds the literal.
+    const text = runtimeTextOfSource(
+      "const C = ({ ok }) => <div title={`${ok ? 'written workmanship warranty' : ''}`}>x</div>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+});
