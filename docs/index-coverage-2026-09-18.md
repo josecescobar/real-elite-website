@@ -197,6 +197,44 @@ impressions and later fall out.
 | **Internal linking** | `/services/roofing/frederick-md` has **15 inbound pages against a median of 11**; `basements/great-falls-va` has 4 inbound and earns 218 impressions. The relationship runs backwards. |
 | **Content volume** | `kitchens-burke-va` is **7,631 characters, 4× the median**, live since July, and unknown to Google. |
 | **Trade** | Ruled out above. |
+| **Internal links from crawled pages** | Ruled out in its own section below. Medians differ (4 vs 7) but the ranges overlap almost entirely, and the metric is partly circular. |
+
+## What was looked for and not found: a structural discriminator
+
+**Negative result, recorded because it rules out the obvious remedy.**
+
+The observation table shows indexed combos are mostly referred by *other indexed
+combos* — `kitchens/alexandria-va` from `basements/alexandria-va`,
+`basements/reston-va` from `basements/frederick-md`, and so on. That suggests a
+connected cluster Google crawls, with the unindexed pages stranded outside it.
+If true, the fix would be internal linking, which is cheap and entirely in the
+repo's control.
+
+It is not true. Counting, for every combo, how many inbound links come from
+pages that earned impressions (so pages Google had indexed):
+
+| | n | median | range |
+| --- | --- | --- | --- |
+| Unindexed combos | 20 | 4.0 | 0–10 |
+| Indexed combos | 32 | 7.0 | 1–14 |
+
+A real difference in the medians, and **almost complete overlap**: 8 of 20
+indexed pages sit at or below the *unindexed* median, and 3 of 20 unindexed sit
+at or above the *indexed* one. One pair settles it —
+**`bathrooms/hagerstown-md` has 10 inbound links from crawled pages and is
+unknown to Google, while `bathrooms/reston-va` has 2 and is indexed.**
+
+**And the metric is partly circular**, which is the more important caveat.
+Combos link to each other, so "inbound from indexed pages" is partly a
+restatement of "belongs to the indexed cluster". The direction of causation
+cannot be read off it. This is the same shape as the discarded roofing control
+in Wrong turn 1, caught this time before it became a conclusion.
+
+So internal linking does not explain the split, on top of content volume, raw
+link count, trade, and page age. **Nothing in the repo distinguishes the pages
+Google fetched from the ones it did not** — which is itself informative: it
+moves the likely cause to Google's side, and it means adding links or copy is
+not the lever.
 
 ## The hypothesis
 
@@ -257,6 +295,9 @@ to consolidate.
   were all checked and all are unknown to Google; the other 10 serve 301s and
   can no longer be checked at all, so their state is inferred from their
   zero-impression record, not measured.
+- **Not** that internal linking is irrelevant to SEO generally. The claim is
+  narrower: it does not distinguish *these* indexed pages from *these*
+  unindexed ones, so adding links is not the lever for this problem.
 - **Not** that the June/July recrawl pattern is an established mechanism. It
   holds across the 12 impression-bearing pages inspected and is offered as the
   next thing to test, not as the answer.
