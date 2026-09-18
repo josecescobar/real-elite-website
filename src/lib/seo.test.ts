@@ -112,20 +112,6 @@ describe('every app route declares its own canonical', () => {
     );
   }
 
-  function some(root: ts.Node, match: (node: ts.Node) => boolean): boolean {
-    let found = false;
-    const visit = (node: ts.Node) => {
-      if (found) return;
-      if (match(node)) {
-        found = true;
-        return;
-      }
-      ts.forEachChild(node, visit);
-    };
-    visit(root);
-    return found;
-  }
-
   /**
    * A call to `name`, where `name` still means the import it was bound to.
    * A local `const buildMetadata = () => ({ title })` inside the metadata
@@ -767,9 +753,7 @@ describe('every app route declares its own canonical', () => {
       });
     };
 
-    const carriesCanonical = (node: ts.Node) =>
-      valuesOf(node).some(yieldsCanonical) ||
-      (helper !== undefined && some(node, calls(helper)));
+    const carriesCanonical = (node: ts.Node) => valuesOf(node).some(yieldsCanonical);
 
     const exits: string[] = [];
 
