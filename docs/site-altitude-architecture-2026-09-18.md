@@ -821,7 +821,9 @@ fourth traversal finding made the pattern clear: the supply of ways to build a
 string in JavaScript is unbounded, so the AST scan cannot be completed, only
 extended. `tests/built-claims.test.ts` counts unconfirmed claims in the built
 HTML — construction-independent, because it reads what the browser receives —
-as a ceiling that may fall but never rise. Attribution stays with the AST,
+as an exact snapshot — a rise means new copy inherited an unconfirmed claim, a
+fall must be recorded so the reduction is locked in rather than left as
+headroom for a later page. Attribution stays with the AST,
 completeness comes from the build, and a gap in the AST scan can now only make
 the retraction worklist incomplete rather than let a claim reach a homeowner
 unnoticed.

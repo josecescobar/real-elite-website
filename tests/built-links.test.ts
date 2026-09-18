@@ -69,22 +69,29 @@ const pageRoute = (file: string): string =>
   norm(file.slice(APP.length).replace(/\.html$/, ''));
 
 /**
- * Hrefs a page renders, restricted to internal page links.
+ * Every internal href a page renders. Only build output is excluded here.
  *
- * Framework assets and files are excluded: `/_next/*` is build output, and a
- * path with a file extension is a static asset rather than a route.
+ * Deciding what is an "asset" is deliberately NOT done in this function. It
+ * used to drop any path with a file extension, which silently swallowed the
+ * six legacy `.html` redirect sources this site still configures —
+ * `/about.html`, `/services.html`, `/reviews.html` and friends. Those are
+ * redirects, not assets, so a reintroduced link to one would have been dropped
+ * before either assertion ran. Codex found it on #148. The caller now consults
+ * the redirect set first, where that set is in scope.
  */
 function internalHrefs(html: string): string[] {
   const out: string[] = [];
   for (const m of html.matchAll(/href="(\/[^"]*)"/g)) {
     const raw = m[1];
     if (raw.startsWith('/_next') || raw.startsWith('//')) continue;
-    const p = norm(raw.split(/[?#]/)[0]);
-    if (p === '/' || /\.[a-z0-9]{2,5}$/i.test(p)) continue;
     out.push(raw);
   }
   return out;
 }
+
+/** A path that is a file rather than a route — but never a configured redirect. */
+const isAssetPath = (p: string, redirects: ReadonlySet<string>): boolean =>
+  !redirects.has(p) && /\.[a-z0-9]{2,5}$/i.test(p);
 
 describe('rendered internal links', () => {
   const hasBuild = fs.existsSync(APP) && fs.existsSync(ROUTES_MANIFEST);
@@ -135,13 +142,18 @@ describe('rendered internal links', () => {
   );
 
   const pages = builtPages();
-  const links = pages.flatMap((file) =>
-    internalHrefs(fs.readFileSync(file, 'utf8')).map((raw) => ({
-      page: pageRoute(file),
-      raw,
-      target: norm(raw.split(/[?#]/)[0]),
-    }))
-  );
+  const redirectSources: ReadonlySet<string> = new Set(redirects.keys());
+  const links = pages
+    .flatMap((file) =>
+      internalHrefs(fs.readFileSync(file, 'utf8')).map((raw) => ({
+        page: pageRoute(file),
+        raw,
+        target: norm(raw.split(/[?#]/)[0]),
+      }))
+    )
+    // The site root is always fine; assets are files, and a configured
+    // redirect is never treated as one.
+    .filter((l) => l.target !== '/' && !isAssetPath(l.target, redirectSources));
 
   /**
    * Proves the scan before anything is concluded from it. A walker that found
@@ -187,6 +199,22 @@ describe('rendered internal links', () => {
       runtimeDynamic.every((r: { page: string }) => r.page.startsWith('/api/') || r.page.includes('opengraph-image')),
       `a page route is being accepted by shape: ${runtimeDynamic.map((r: { page: string }) => r.page).join(', ')}`
     ).toBe(true);
+  });
+
+  /**
+   * The six legacy `.html` paths are redirects, and must not be mistaken for
+   * static assets. Pinned because the old extension filter dropped them before
+   * either assertion, so reintroducing such a link would have gone unnoticed.
+   */
+  it('treats a configured redirect as a link, not an asset', () => {
+    // These are real redirect sources in next.config.ts.
+    expect(redirects.has('/about.html')).toBe(true);
+    expect(redirects.has('/reviews.html')).toBe(true);
+    expect(isAssetPath('/about.html', redirectSources)).toBe(false);
+    expect(isAssetPath('/reviews.html', redirectSources)).toBe(false);
+    // A genuine asset still is one.
+    expect(isAssetPath('/images/hero.jpg', redirectSources)).toBe(true);
+    expect(isAssetPath('/sitemap.xml', redirectSources)).toBe(true);
   });
 
   it('resolves every internal link it renders', () => {

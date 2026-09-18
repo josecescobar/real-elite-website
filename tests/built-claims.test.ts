@@ -51,16 +51,24 @@ const ROOT = '.next/server/app';
 /**
  * Pages publishing each claim, as of 2026-09-18 on the Tier C build.
  *
- * A CEILING. Lower is the goal — the number falls when the owner retracts a
- * claim or a page stops carrying it. It rises only when new copy inherits one,
- * which is the thing this exists to catch.
+ * An EXACT SNAPSHOT, not a ceiling, and the difference matters. A ceiling only
+ * fails when the count rises above it, which leaves headroom: retract a claim
+ * from ten pages, then later add it to ten different ones, and both changes
+ * pass while the recorded number never moves. That is a fixed maximum wearing
+ * a ratchet's name — Codex found the gap on #148, in wording I had written
+ * myself.
  *
- * Raising a number here is legitimate ONLY when the owner has confirmed that
- * claim, in which case its status in `claims.ts` changes and it leaves this
- * table entirely. Raising it to make a failure go away is the move
+ * Requiring equality makes it a real ratchet: a reduction fails too, and the
+ * only way to clear that failure is to write the smaller number here, so
+ * progress is locked in and cannot be spent later.
+ *
+ * Lowering a number is therefore routine and good — it records a retraction or
+ * a retired page. RAISING one is legitimate only when the owner has confirmed
+ * that claim, at which point its status in `claims.ts` changes and it leaves
+ * this table entirely. Raising it to silence a failure is the move
  * `claims.ts`'s howToFix forbids.
  */
-const PAGE_CEILINGS: Readonly<Record<string, number>> = {
+const PAGE_COUNTS: Readonly<Record<string, number>> = {
   'written-workmanship-warranty': 148,
   'named-project-lead': 143,
   'daily-updates': 140,
@@ -130,28 +138,34 @@ describe('unconfirmed claims in rendered pages', () => {
     expect(counts.get('written-workmanship-warranty') ?? 0).toBeGreaterThan(100);
   });
 
-  it('counts a ceiling for every unconfirmed claim in the register', () => {
+  it('records a page count for every unconfirmed claim in the register', () => {
     const unconfirmed = OPERATIONAL_CLAIMS.filter((c) => c.status === 'unconfirmed').map((c) => c.id);
-    const missing = unconfirmed.filter((id) => !(id in PAGE_CEILINGS));
+    const missing = unconfirmed.filter((id) => !(id in PAGE_COUNTS));
     expect(
       missing,
-      `unconfirmed claims with no page ceiling: ${missing.join(', ')} — add one, measured, or this claim can spread unwatched`
+      `unconfirmed claims with no recorded page count: ${missing.join(', ')} — add one, measured, or this claim can spread unwatched`
     ).toEqual([]);
     // And no stale entry for a claim that has been confirmed or removed.
-    const stale = Object.keys(PAGE_CEILINGS).filter((id) => !unconfirmed.includes(id));
+    const stale = Object.keys(PAGE_COUNTS).filter((id) => !unconfirmed.includes(id));
     expect(
       stale,
-      `page ceilings for claims no longer unconfirmed: ${stale.join(', ')} — remove them`
+      `page counts for claims no longer unconfirmed: ${stale.join(', ')} — remove them`
     ).toEqual([]);
   });
 
-  it('does not publish an unconfirmed claim on more pages than before', () => {
-    const risen = Object.entries(PAGE_CEILINGS)
-      .filter(([id, ceiling]) => (counts.get(id) ?? 0) > ceiling)
-      .map(
-        ([id, ceiling]) =>
-          `${id} now renders on ${counts.get(id)} pages, up from ${ceiling} (e.g. ${examples.get(id)}) — new copy inherited a claim the owner has not confirmed. Remove it, or raise the ceiling only once the owner confirms the claim`
-      );
-    expect(risen, risen.join('; ')).toEqual([]);
+  /**
+   * Equality in both directions. A rise is new copy inheriting an unconfirmed
+   * claim. A fall is progress, and it must be recorded rather than banked as
+   * headroom for a future rise.
+   */
+  it('publishes each unconfirmed claim on exactly the recorded number of pages', () => {
+    const drift = Object.entries(PAGE_COUNTS).flatMap(([id, recorded]) => {
+      const actual = counts.get(id) ?? 0;
+      if (actual === recorded) return [];
+      return actual > recorded
+        ? `${id} now renders on ${actual} pages, up from ${recorded} (e.g. ${examples.get(id)}) — new copy inherited a claim the owner has not confirmed. Remove it; only a confirmation from the owner justifies a higher number, and that moves the claim out of this table entirely`
+        : `${id} now renders on ${actual} pages, down from ${recorded} — good. Record ${actual} here so the reduction is locked in and cannot be spent on a later page`;
+    });
+    expect(drift, drift.join('; ')).toEqual([]);
   });
 });
