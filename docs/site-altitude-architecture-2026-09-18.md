@@ -864,6 +864,38 @@ Only then a second trade at regional altitude.
 
 ---
 
+**The timeline claim was too narrow three rounds running, and what is left is
+structural — 2026-09-18.**
+
+`active-work-timeline` was reported as under-matching on #148 in rounds 26, 27
+and 28. Each round widened a different axis of the same sentence: the dash, then
+the noun phrase after "of", then the forms with no "of" at all. The count went
+16 → 23 → 28 → 35 pages. Twice the fix covered the axis that was reported and
+left the next one, which is the mistake worth naming — when a pattern is found
+too narrow, the sweep has to enumerate every axis of the phrasing before it
+ships, not the one in the review comment.
+
+The three rounds found seven genuinely unwatched pages, and two of them matter
+more than their number suggests: **`/services/kitchens` and `/services/bathrooms`
+have promised a demo-to-final week range since 2026-07-06, unwatched.** Those
+are the two highest-traffic service pillars on the site.
+
+**What is still not matched, deliberately.** A bare range with no qualifier —
+"kitchen: 6–12 weeks" in a comparison table, "5–8 weeks is typical". There are
+roughly fifty of these on the site and most are permitting windows, curing
+times, or savings-buffer figures, so a regex that caught them would flood your
+retraction worklist with pages that do not belong on it. Deciding which are
+promises needs the surrounding prose.
+
+The sweep that would close it, if it is ever worth the cost: a snapshot of
+every duration range in the scanned source alongside the files it appears in,
+with a test that fails when the set changes. Each new or edited phrasing then
+forces a one-time "promise or not a promise" call instead of passing silently.
+That is a separate piece of work with a real maintenance cost — every content
+edit that touches a number churns the snapshot — and it should not ride on a
+PR that is already twenty-eight rounds deep. It is recorded here so it is a
+decision rather than an oversight.
+
 ## 9. Decisions I need from you
 
 1. **Will you take a Northern Virginia basement at sixty miles, and what is

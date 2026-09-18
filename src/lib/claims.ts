@@ -307,6 +307,8 @@ export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
   'src/lib/paving-data.ts': 'paving data, untracked',
   'src/lib/projects/data/composite-deck-build-martinsburg.ts':
     'project record — missing from the prose list',
+  'src/lib/projects/data/walk-in-shower-bathroom-remodel.ts':
+    'project record — surfaced by the "N weeks on site" pattern, added 2026-09-18',
   'src/lib/projects/data/new-construction-framing-to-finish.ts':
     'project record — missing from the prose list',
   'src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts':
@@ -315,6 +317,23 @@ export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
   // The register quotes the claims it tracks, in labels and notes.
   'src/lib/claims.ts': 'the register itself',
 };
+
+/**
+ * The numeric span at the front of every duration promise, shared by the
+ * `active-work-timeline` patterns below.
+ *
+ * It exists as ONE constant because this claim has now been found too narrow
+ * three review rounds running, each time on a different axis of the same
+ * phrasing, and twice the fix widened one copy of the range and left another
+ * axis untouched. A shared prefix cannot drift from itself; three literals
+ * repeating it can, and did.
+ *
+ * Covers digits and the spelled-out numerals the site actually uses, either
+ * dash, and weeks or days. NOT months — every month-range on the site is a
+ * curing time, a savings-buffer figure or a design phase, none of them a
+ * promise about how long a crew is in someone's house.
+ */
+const DURATION_RANGE = String.raw`(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve)\s*(?:\u2013|\u2014|-|to)\s*(?:\d+|two|three|four|five|six|seven|eight|nine|ten|twelve|twenty)\s*(?:weeks?|days?)`;
 
 export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   {
@@ -468,30 +487,50 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
     label:
       'Named week-range timelines for active work (3-5 weeks for a bath up to 14-22 weeks for a Great Falls basement).',
     status: 'unconfirmed',
-    // The site writes this range three ways — an en dash in the combo content
-    // map, and "N to N" in seven blog articles. The en-dash-only pattern missed
-    // every blog occurrence, and content/blog is NOT walked by the source-level
-    // scan, so those pages published an unconfirmed promise with nothing
-    // watching: absent from the retraction worklist, absent from the count, and
-    // a new page using the site's own "N to N" phrasing would not have moved
-    // the snapshot or failed CI. Codex found it on #148.
-    // THE NOUN PHRASE VARIES TOO, not only the dash. Widening the separator
-    // last round fixed one axis of variation and left the other, immediately
-    // after being shown that this claim's phrasing varies. The site publishes
-    // the same promise four ways:
+    // THIS CLAIM'S DETECTION HAS BEEN FOUND NARROWER THAN ITS PUBLICATION
+    // THREE ROUNDS RUNNING, each time on a different axis of the same promise,
+    // and twice the fix widened the axis that was reported and left the next
+    // one. The patterns below are built from one shared range prefix for that
+    // reason. The full inventory of how the site says it:
     //
-    //   "8–14 weeks of active work"          combo content map
-    //   "6-10 weeks of active construction"  kitchen + bathroom cost articles
-    //   "6–10 weeks of on-site work"         signature-kitchen project record
-    //   "6-12 weeks of work"                 basement-finishing Frederick guide
+    //   SEPARATOR   "8–14 weeks", "6-10 weeks", "6 to 10 weeks",
+    //               "two to four weeks"
+    //   QUALIFIER   "of active work"        combo content map
+    //               "of active construction" kitchen + bathroom cost articles
+    //               "of on-site work"        signature-kitchen project record
+    //               "of work"                basement + Frederick permits guides
+    //               "on site"                deck + walk-in-shower project records
+    //               "from demo to final"     services-data kitchens + bathrooms
+    //               "from approved estimate to final walk-through"
+    //                                        full-property-perimeter
+    //               "from permit to final walkthrough"  deck-season article
     //
     // Deliberately NOT matched, because they are different promises that happen
     // to share the shape: "2-3 weeks of Frederick County permitting", "1-2
-    // weeks of plan review", "3-6 months of expenses in liquid savings", and
-    // one article's "2-3 weeks of takeout-heavy living". A false positive here
-    // puts a page on the owner's retraction worklist that does not belong on it.
+    // weeks of plan review", "2-4 weeks of approval before the build", "3-6
+    // months of expenses in liquid savings", one article's "2-3 weeks of
+    // takeout-heavy living", and "4-8 weeks out for project starts" (booking
+    // lead time, not duration). A false positive here puts a page on the
+    // owner's retraction worklist that does not belong on it.
+    //
+    // STILL NOT MATCHED, AND STRUCTURAL: a bare range with no qualifier
+    // ("kitchen: 6–12 weeks" in a table, "5–8 weeks is typical"). Deciding
+    // whether one of those is this promise needs the surrounding prose, not a
+    // regex, and roughly fifty of them are permitting or curing figures. A
+    // regex that caught them would flood the worklist. §8 of
+    // docs/site-altitude-architecture-2026-09-18.md records this as the known
+    // residual and proposes the sweep that would close it.
     patterns: [
-      /\d+\s*(?:–|—|-|to)\s*\d+\s*(?:weeks?|days?) of (?:active work|active construction|on-site work|work)/i,
+      // "8–14 weeks of active work", "6-12 weeks of work"
+      new RegExp(`${DURATION_RANGE} of (?:active work|active construction|on-site work|work)`, 'i'),
+      // "3–5 weeks on site", "1–3 weeks on site once the permit is issued"
+      new RegExp(`${DURATION_RANGE} on[- ]site`, 'i'),
+      // "3–5 weeks from demo to final walk-through", "5–7 weeks from approved
+      // estimate to final walk-through", "two to four weeks from permit to
+      // final walkthrough". The range prefix is what keeps this off the many
+      // `named project lead from estimate to final walk-through` lines, which
+      // are a different claim.
+      new RegExp(`${DURATION_RANGE} from (?:\\w+[ -]){0,3}to final`, 'i'),
     ],
     note:
       'Registered as one claim across all markets rather than only the 8-22 week NoVA figures the brief flagged, because they are the same kind of promise and the owner will want to rule on them together. A schedule quoted on a page becomes the baseline a late job is measured against.',
@@ -503,8 +542,17 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'kitchens-loudoun-county-va', 'basements-frederick-md', 'basements-mclean-va',
         'basements-vienna-va', 'kitchens-great-falls-va', 'basements-great-falls-va',
         'basements-reston-va',
+        // "3–5 weeks from demo to final walkthrough" — visible only once the
+        // patterns covered the no-"of" forms. git log -S dates the line to
+        // 2026-07-06 (#63), so the scan caught up; the copy did not spread.
+        'bathrooms-frederick-md',
       ],
-      serviceSlugs: [],
+      // Same round, same evidence: services-data.ts has said "3–5 weeks from
+      // demo to final walk-through" (bathrooms) and "6–10 weeks from demo to
+      // final" (kitchens) since #63 on 2026-07-06. These are the two highest-
+      // traffic service pillars on the site, and the promise was unwatched on
+      // both of them for two months.
+      serviceSlugs: ['bathrooms', 'kitchens'],
       templates: [],
     },
   },
