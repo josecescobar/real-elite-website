@@ -197,6 +197,71 @@ impressions and later fall out.
 | **Internal linking** | `/services/roofing/frederick-md` has **15 inbound pages against a median of 11**; `basements/great-falls-va` has 4 inbound and earns 218 impressions. The relationship runs backwards. |
 | **Content volume** | `kitchens-burke-va` is **7,631 characters, 4× the median**, live since July, and unknown to Google. |
 | **Trade** | Ruled out above. |
+| **Internal links from crawled pages** | **Not ruled out — untestable retrospectively.** See the section below: the current link graph postdates the crawls it would explain. |
+
+## An analysis that cannot be done with the data available
+
+**Attempted, inconclusive, and withdrawn.** Recorded so the next person does not
+spend the same hours, and because the first version of this section claimed a
+negative result it had not earned.
+
+The inspection data made internal linking look like the answer. Search Console
+reports indexed combos as referred by *other indexed combos* —
+`kitchens/alexandria-va` from `basements/alexandria-va`, `basements/reston-va`
+from `basements/frederick-md`. That reads as a connected cluster Google crawls,
+with the unindexed pages stranded outside it, and the fix would be internal
+linking: cheap, and entirely in the repo's control.
+
+Counting inbound links from pages that earned impressions gives medians of
+**4.0 across the 20 unindexed combos against 7.0 across the 32 indexed ones**,
+with heavy overlap — 12 of 32 indexed pages sit at or below the unindexed
+median, and `bathrooms/hagerstown-md` has 10 such links while unknown to Google
+against `bathrooms/reston-va` with 2 while indexed.
+
+### Why that proves nothing
+
+**The link graph measured is not the graph Google crawled.** This counts
+today's build. The index states being explained come from crawls in June and
+July. And `c8ff33b`, merged **2026-09-18**, replaced a hardcoded deep-link
+allowlist — `roofing/decks/remodeling/siding` across four cities only — with
+`serviceHrefForArea`, which links every area page to its own published combos.
+Its own commit message records what that added: *"seven published combos had no
+link from their own area page, including Inwood's only one and siding across
+all three Loudoun pages."*
+
+So an unknown share of the inbound links counted here **did not exist when
+Google made the crawl decisions being explained**. The measurement postdates its
+own outcome.
+
+**And it cannot be repaired by rebuilding an older tree.** There is no single
+crawl-time graph: the pages were crawled across June, July, August and
+September, so each one would need the graph as it stood on its own crawl date.
+The data to reconstruct that does not exist.
+
+**The overlap does not carry the weight put on it either.** Overlapping ranges
+and a counterexample refute a *deterministic threshold* — "N inbound links
+guarantees indexing" — not a probabilistic effect. A median of 7 against 4 is a
+substantial difference, and this analysis cannot say whether it is causal,
+reversed, or an artefact of the stale graph.
+
+**The metric is also partly circular**, which was the flaw caught before
+publishing rather than after: combos link to each other, so "inbound from
+indexed pages" partly restates "belongs to the indexed cluster".
+
+### What this leaves
+
+**Link provenance is not ruled out. It is untested.** The first version of this
+section said internal linking "is not the lever" and that nothing in the repo
+distinguishes the fetched pages from the unfetched — both withdrawn. The other
+four candidates below were tested against data that does not have this problem
+and stand as they are.
+
+What would test it properly is prospective, not retrospective: `c8ff33b` has
+already added the missing area→combo links, so **whether the pages it newly
+linked get crawled is a natural experiment now running.** Re-inspecting the
+seven combos it gave a first area-page link would answer the question the wrong
+way round — forward instead of backward — and that is the only way it can be
+answered.
 
 ## The hypothesis
 
@@ -257,6 +322,9 @@ to consolidate.
   were all checked and all are unknown to Google; the other 10 serve 301s and
   can no longer be checked at all, so their state is inferred from their
   zero-impression record, not measured.
+- **Not** that internal linking has been ruled out. It was tested against a link
+  graph that postdates the crawls, which makes the result inconclusive rather
+  than negative; the recommendation that followed from it is withdrawn.
 - **Not** that the June/July recrawl pattern is an established mechanism. It
   holds across the 12 impression-bearing pages inspected and is offered as the
   next thing to test, not as the answer.
