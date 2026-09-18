@@ -112,11 +112,13 @@ page at position 14 with this much exposure is the clearest available measure of
 what ranking improvement would be worth, whenever that question is asked with
 better instrumentation.
 
-## Two properties of the posts themselves, tested and eliminated
+## Two properties of the posts themselves, tested
 
-Both were free to check and both are recorded so nobody repeats them.
+Both were free to check and both are recorded so nobody repeats them. **Neither
+came out as cleanly as the first draft of this section claimed** — see the
+corrections in each.
 
-### Age — ruled out, and it runs backwards
+### Age — one direction refuted, the other still live
 
 The obvious explanation is that the unfetched posts are simply newer. They are
 not. **The four newest posts, all published 2026-07-06, have all been fetched**
@@ -138,11 +140,37 @@ Google".)
 | 2026-07-06 | **4** | **0** |
 | **total** | **15** | **16** |
 
-**Every cohort that contains more than one post contains both states**, and the
-tendency, such as it is, favours newer posts being indexed. This is the same
-confound that inflated the service+city figures earlier today (see
-`index-coverage-2026-09-18.md`, wrong turn 3); here it was checked first and it
-does not apply.
+**But this eliminates one direction of the hypothesis, not the hypothesis.** An
+earlier version of this section said "every cohort with more than one post
+contains both states", which the table above contradicts: **2026-07-06 is four
+fetched and zero never-fetched.** Fetched rate by cohort:
+
+| Published | Fetched rate |
+| --- | --- |
+| 2026-05-19 | 1/5 = 20% |
+| 2026-05-27 | 1/1 = 100% |
+| 2026-05-30 | 4/10 = 40% |
+| 2026-06-07 | 5/11 = 45% |
+| 2026-07-06 | **4/4 = 100%** |
+
+So what is refuted is *"the unfetched posts are the newer ones"*. **The reverse —
+older posts being less likely to have been fetched — is consistent with this
+data and is not tested away.** Oldest cohort against newest is 1 of 5 versus 4
+of 4, one-sided Fisher exact **p = 0.040**.
+
+That p-value should not be leaned on. The two cohorts were chosen *because* they
+were the extremes, after seeing the table, on nine posts in total — the same
+post-hoc selection that makes the cost-guide result below weak. It is reported
+so the direction is on record, not because it is established.
+
+**If it is real it fits the crawl-budget hypothesis rather than competing with
+it:** Google sampled the site early, has broadly kept up with what was published
+since, and has never gone back for the older material. That is testable the same
+way everything else here is — by whether an indexing request moves anything.
+
+This was the same confound that inflated the service+city figures earlier today
+(`index-coverage-2026-09-18.md`, wrong turn 3). Checking it first was right;
+declaring it eliminated was not.
 
 ### Post type — not established, and weaker than it looks
 
@@ -169,10 +197,15 @@ predicting it beforehand — a post-hoc p-value on a pattern spotted by eye
 overstates its own confidence. It is recorded as a tendency to keep an eye on if
 the sample ever grows, not as a finding.
 
-**So nothing about the posts themselves — their age, their type, their
-topic format — predicts whether Google fetched them.** That matches the
-service+city result, where content volume, raw link count, trade and page age
-were all eliminated too.
+**So no property of the posts tested here is established as a predictor — which
+is not the same as none of them predicting anything.** Type is unestablished
+rather than absent (p = 0.09 on 8 posts), age survives in the opposite direction
+to the one proposed (p = 0.040, post-hoc), and "topic format" was never tested
+at all; an earlier version of this line listed it anyway.
+
+The service+city result is the stronger of the two: there, content volume, raw
+link count, trade and same-commit page age were each eliminated against data
+that did not have these sample-size problems.
 
 ## What follows
 
