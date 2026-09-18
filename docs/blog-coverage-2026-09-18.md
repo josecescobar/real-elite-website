@@ -1,11 +1,18 @@
 # The blog is the only channel that works, and half of it is invisible — 2026-09-18
 
 **16 of the 31 blog posts have zero mobile impressions, and all 16 are "URL is
-unknown to Google" — complete, no exceptions.** The blog earns **58% of the
-site's non-homepage clicks from 29% of its non-homepage impressions**, at 3.5× the CTR of the
-service and area pages. So the half of the blog Google has never fetched is a
-larger loss than the 20 unindexed service+city pages already recorded in
-`index-coverage-2026-09-18.md`.
+unknown to Google" — complete, no exceptions.** Separately, among the pages that
+*are* indexed, the blog earns **58% of the site's non-homepage clicks from 29%
+of its non-homepage impressions**, at 3.5× the CTR of the service and area
+pages.
+
+**Those are two findings, and joining them is a leap this file does not make.**
+An earlier version said the unfetched blog posts were therefore "a larger loss"
+than the 20 unindexed service+city pages. That applies the measured CTR of the
+15 posts Google *has* fetched to the 16 it has not, which nothing here supports
+— and the caveats at the foot of this file said so while the opening sentence
+ignored them. The coverage finding stands on its own; the CTR finding stands on
+its own; what the unfetched posts would earn is unknown.
 
 This file also **corrects a claim made in that document earlier today**. See
 "What this refutes" below.
@@ -107,17 +114,31 @@ better instrumentation.
 
 ## What follows
 
-1. **The unindexed blog posts are the better target for any indexing request.**
-   If crawl attention is the scarce resource, spending it on pages that convert
-   at 0.54% beats spending it on pages that convert at 0.16%. The Search Console
-   request in `index-coverage-2026-09-18.md` should include
-   `kitchen-remodel-cost-wv-md-va-2026` and the Loudoun luxury guides alongside
-   the service+city URLs.
+1. **Include unindexed blog posts in the indexing request — but the reason is
+   not the CTR figure above.** An earlier version of this line argued they were
+   the better target because the blog converts at 0.54% against 0.16%. **That
+   0.54% was measured on the 15 posts that already earn impressions, not on the
+   16 that have never been fetched**, and this file's own caveats say those 16
+   may earn nothing. Ranking the request on a number drawn from a different set
+   of pages could send the effort at the wrong URLs.
+
+   What can be said without that leap: the request is a diagnostic, and a
+   diagnostic is more informative when its subjects differ. Including both a
+   service+city page and a blog post tests whether the coverage problem responds
+   the same way across templates, which is the open question. **That is a reason
+   to include blog URLs, not a reason to prefer them.**
+
+   Establishing a real priority needs demand data for the specific unfetched
+   topics — search volume for what `kitchen-remodel-cost-wv-md-va-2026` and the
+   Loudoun guides target. That has not been pulled, and this file should not
+   imply otherwise.
 2. **It sharpens the consolidation question rather than answering it.** If the
    site is over-built for the crawl attention it receives, the 60 templated
-   service+city pages are the obvious candidate to thin and the blog is the
-   obvious thing to protect. That is a decision for the owner and it still rests
-   on a cause that is not established.
+   service+city pages are the candidate to thin and the blog the thing to
+   protect. **That judges the two templates by how their *indexed* pages
+   perform**, which is the right evidence for a question about page types —
+   unlike ranking individual unfetched URLs, which it is not. It remains the
+   owner's decision and it still rests on a cause that is not established.
 3. **It does not follow that more blog posts should be written.** Sixteen
    existing ones have never been fetched. Adding to a set Google is already not
    reading is the same error as adding service+city pages.
@@ -128,7 +149,10 @@ better instrumentation.
   different intent than service pages; the comparison shows where clicks come
   from, not why.
 - **Not** that the 16 unindexed posts would earn clicks if indexed. The 15
-  indexed posts average well, but one of them carries most of the impressions.
+  indexed posts average well, but one of them carries most of the impressions —
+  and an earlier draft of recommendation 1 made exactly this leap, applying the
+  indexed posts' CTR to the unfetched ones while this caveat sat two screens
+  below contradicting it.
 - **Not** a cause for the coverage problem. It widens the finding from one
   template to the whole site and refutes one proposed mechanism; it establishes
   nothing new about why.
