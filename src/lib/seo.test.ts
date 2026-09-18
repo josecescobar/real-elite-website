@@ -281,12 +281,24 @@ describe('every app route declares its own canonical', () => {
     return resolve(object, new Set()) ?? { kind: 'unset' };
   }
 
-  /** An explicit `undefined` or `null` is a key that emits nothing. */
+  /**
+   * An explicit `undefined` or `null` is a key that emits nothing — written
+   * inline, or reached through the name it is bound to. `{ alternates: {
+   * canonical } }` over `const canonical = null` is a present key and an
+   * absent value, and only the value decides what Next emits.
+   */
   const isAbsent = (value: ts.Expression): boolean => {
     const emitted = unwrap(value);
+    if (emitted.kind === ts.SyntaxKind.NullKeyword) return true;
+    if (!ts.isIdentifier(emitted)) return false;
+    if (emitted.text === 'undefined') return true;
+
+    const declaration = declarationInScope(emitted);
+    if (!declaration?.initializer) return false;
+    const bound = unwrap(declaration.initializer);
     return (
-      (ts.isIdentifier(emitted) && emitted.text === 'undefined') ||
-      emitted.kind === ts.SyntaxKind.NullKeyword
+      bound.kind === ts.SyntaxKind.NullKeyword ||
+      (ts.isIdentifier(bound) && bound.text === 'undefined')
     );
   };
 
