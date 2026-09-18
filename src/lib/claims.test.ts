@@ -69,6 +69,17 @@ describe('operational claims register', () => {
       expect(claim.id, 'claim id should be kebab-case').toMatch(/^[a-z0-9-]+$/);
       expect(claim.label.trim().length, claim.id).toBeGreaterThan(0);
       expect(claim.patterns.length, `${claim.id} has no detection patterns`).toBeGreaterThan(0);
+      // `example` must match its OWN claim, or the matcher guard built on it
+      // is decoration. This is the guarantee that lets that guard stop
+      // depending on how a label happens to be worded.
+      expect(
+        claim.patterns.some((p) => p.test(claim.example)),
+        `${claim.id}: example ${JSON.stringify(claim.example)} matches none of its own patterns`
+      ).toBe(true);
+      expect(
+        claimsFoundIn(claim.example).map((c) => c.id),
+        `${claim.id}: claimsFoundIn does not find it in its own example`
+      ).toContain(claim.id);
     }
   });
 
@@ -230,16 +241,17 @@ describe('every claim-bearing file is accounted for', () => {
     // Guarding rather than asserting is honest here: with no claims registered
     // there is nothing for the matcher to find, and a synthetic fixture would
     // test a pattern the register does not contain.
-    // SELECTED, not indexed. A label is a sentence for the owner and a pattern
-    // is the site's phrasing, and four of the seven claims differ — e.g.
-    // daily-progress-photos is labelled "progress photos every day" while its
-    // pattern is /daily progress photos/i. Taking [0] therefore asserted that
-    // whichever claim happened to be first had a self-matching label, which
-    // broke as soon as retracting the first two promoted one that does not.
-    // Codex found it on #148, one round after the same line's previous fix.
-    const sample = OPERATIONAL_CLAIMS.find((c) => c.patterns.some((p) => p.test(c.label)));
+    // Uses `example`, which the register GUARANTEES matches its own claim, so
+    // this runs for every nonempty register regardless of which claims remain.
+    //
+    // Two previous versions were wrong in opposite directions, both built on
+    // `label`: indexing [0] FAILED whenever a non-self-matching claim was
+    // first, and selecting a self-matching one SILENTLY SKIPPED once the three
+    // that happen to self-match were retracted — trading a false failure for
+    // an unfalsifiable test, which is the worse of the two. Codex found both.
+    const [sample] = OPERATIONAL_CLAIMS;
     if (sample) {
-      expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
+      expect(claimsFoundIn(sample.example).map((c) => c.id)).toContain(sample.id);
     }
     // And the runtime scanner must be reading strings, not comments: the combo
     // route carries claim text ONLY in comments now, so it must NOT register.

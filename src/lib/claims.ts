@@ -168,6 +168,22 @@
 export type ClaimStatus = 'verified' | 'unconfirmed';
 
 export type OperationalClaim = {
+  /**
+   * A fragment of the site's OWN phrasing that this claim's patterns match.
+   *
+   * Exists so a guard can exercise the matcher against any claim without
+   * depending on `label` wording. A label is a sentence written for the owner
+   * and four of the seven do NOT match their own patterns — `daily-progress-photos`
+   * is labelled "progress photos every day" while its pattern is
+   * /daily progress photos/i. An anti-vacuity check built on labels therefore
+   * ran or silently skipped depending on which claims remained registered,
+   * which is how a broken matcher could go unexercised. Codex found both halves
+   * of that on #148.
+   *
+   * `every example matches its own claim` enforces the guarantee, so this
+   * cannot drift from the patterns beside it.
+   */
+  example: string;
   /** Stable id, used in test failure messages. */
   id: string;
   /** The promise in plain terms — this is what the owner confirms or retracts. */
@@ -303,6 +319,7 @@ export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
 export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   {
     id: 'written-workmanship-warranty',
+    example: 'a written workmanship warranty on every job',
     label: 'Every project carries a written workmanship warranty.',
     status: 'unconfirmed',
     patterns: [/workmanship warranty/i],
@@ -328,6 +345,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'named-project-lead',
+    example: 'one named project lead from estimate to punch list',
     label: 'One named project lead runs the job from estimate through final punch list.',
     status: 'unconfirmed',
     patterns: [/named project lead/i, /project lead on every/i, /accountable project lead/i],
@@ -354,6 +372,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'daily-progress-photos',
+    example: 'daily progress photos shared with you',
     label: 'The homeowner receives progress photos every day.',
     status: 'unconfirmed',
     patterns: [/daily progress photos/i],
@@ -372,6 +391,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'daily-updates',
+    example: 'daily updates while the crew is on site',
     label: 'The homeowner gets an update every day the job is active.',
     status: 'unconfirmed',
     patterns: [/daily updates/i, /updates? you daily/i, /update you daily/i],
@@ -395,6 +415,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'clean-job-site',
+    example: 'a clean job site at the end of every day',
     label: 'The job site is left clean at the end of every day.',
     status: 'unconfirmed',
     patterns: [/clean job site/i],
@@ -420,6 +441,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'same-day-response',
+    example: 'a same-day response to every enquiry',
     label: 'Enquiries and questions get a same-day response.',
     status: 'unconfirmed',
     patterns: [/same[- ]day response/i],
@@ -436,6 +458,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
   },
   {
     id: 'active-work-timeline',
+    example: 'typically 8–14 weeks of active work',
     label:
       'Named week-range timelines for active work (3-5 weeks for a bath up to 14-22 weeks for a Great Falls basement).',
     status: 'unconfirmed',

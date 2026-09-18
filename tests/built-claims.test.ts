@@ -261,16 +261,17 @@ describe('unconfirmed claims in rendered pages', () => {
     // Guarding rather than asserting is honest here: with no claims registered
     // there is nothing for the matcher to find, and a synthetic fixture would
     // test a pattern the register does not contain.
-    // SELECTED, not indexed. A label is a sentence for the owner and a pattern
-    // is the site's phrasing, and four of the seven claims differ — e.g.
-    // daily-progress-photos is labelled "progress photos every day" while its
-    // pattern is /daily progress photos/i. Taking [0] therefore asserted that
-    // whichever claim happened to be first had a self-matching label, which
-    // broke as soon as retracting the first two promoted one that does not.
-    // Codex found it on #148, one round after the same line's previous fix.
-    const sample = OPERATIONAL_CLAIMS.find((c) => c.patterns.some((p) => p.test(c.label)));
+    // Uses `example`, which the register GUARANTEES matches its own claim, so
+    // this runs for every nonempty register regardless of which claims remain.
+    //
+    // Two previous versions were wrong in opposite directions, both built on
+    // `label`: indexing [0] FAILED whenever a non-self-matching claim was
+    // first, and selecting a self-matching one SILENTLY SKIPPED once the three
+    // that happen to self-match were retracted — trading a false failure for
+    // an unfalsifiable test, which is the worse of the two. Codex found both.
+    const [sample] = OPERATIONAL_CLAIMS;
     if (sample) {
-      expect(claimsFoundIn(sample.label).map((c) => c.id)).toContain(sample.id);
+      expect(claimsFoundIn(sample.example).map((c) => c.id)).toContain(sample.id);
     }
   });
 
