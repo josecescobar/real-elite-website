@@ -172,20 +172,28 @@ pages inspected was crawled on **2026-07-07 or later** (four on 2026-07-09, then
 07-19, 07-28, 08-22, 09-11, 09-16). Twelve of twelve fall on the right side of
 that line.
 
-So the shape is not simply "half the pages were never fetched". It is that
-**Google crawled in June, made a broader pass from early July, and the pages it
-did not return to are the ones that fell out of the index** — having earned a
-handful of impressions first, which is why they show up on the impression side
-at all.
+That suggested a shape: Google crawled in June, made a broader pass from early
+July, and the pages it did not return to are the ones that fell out of the
+index. It was recorded as an observation across 12 pages rather than a
+mechanism, which was the right hedge.
 
-This is an observation across 12 pages, not an established mechanism. It is
-recorded because it is checkable and because it sharpens what to test: if a
-requested recrawl restores them, crawl frequency is the lever.
+> **Refuted the same day — see `blog-coverage-2026-09-18.md`.** Widening the
+> inspection to the blog found
+> `storm-damage-roof-repair-insurance-eastern-panhandle-2026`, last crawled
+> **2026-07-29** — three weeks the right side of that line — and **"Crawled –
+> currently not indexed"**. A recent crawl does not imply indexing, and the
+> June/July split was an artefact of which twelve pages happened to be
+> inspected.
+>
+> **This changes what to expect from the indexing request.** That test is still
+> worth running, because it distinguishes "never fetched" from "fetched and
+> declined". But a recrawl on its own should no longer be expected to fix
+> anything: `storm-damage` is a page Google recrawled unprompted and declined
+> to index anyway.
 
-Index state and impressions are therefore **consistent with two exceptions**,
-both explained by the same recrawl gap. Six-month impression totals and a
-point-in-time inspection are not contemporaneous, so a page can earn
-impressions and later fall out.
+Index state and impressions are **consistent with two exceptions** on the combo
+side. Six-month impression totals and a point-in-time inspection are not
+contemporaneous, so a page can earn impressions and later fall out.
 
 ## What does not explain it
 
@@ -333,5 +341,8 @@ to consolidate.
 - **Not** anything about the eight pages published 2026-09-15 or later. They are
   too new to measure and are excluded from every figure above.
 - **Not** a measurement of the whole site. **37 of 178 sitemap URLs** were
-  inspected — complete for the still-live zero-impression combos, a sample
+  inspected here — complete for the still-live zero-impression combos, a sample
   everywhere else. Area pages, pillars and the homepage all sampled as indexed.
+  `blog-coverage-2026-09-18.md` adds 22 more and finds the same pattern in the
+  blog: **36 of 36 zero-impression pages across both templates have never been
+  fetched.**
