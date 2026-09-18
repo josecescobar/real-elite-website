@@ -375,12 +375,22 @@ describe('serviceHrefForArea', () => {
   });
 
   /**
-   * Completeness, and the assertion the allowlist failed. For every area, the
-   * set of services that deep-link must be exactly the set of combos actually
-   * published for it — no published page left unlinked, and nothing linked
-   * that was never built.
+   * Completeness OF THE HELPER, and the assertion the allowlist failed.
+   *
+   * Scoped deliberately in the name, because the first version was called
+   * "deep-links every published combo and nothing else" — a claim about the
+   * PAGE, which this cannot make. It calls the helper for every service, so it
+   * says nothing about which call sites use it, and it passed while seven
+   * published combos went unlinked: CityPageTemplate's ServiceCard renders
+   * only the first six services and its overflow list hardcoded the pillar
+   * path. Inwood's only published page, and siding on all three Loudoun pages,
+   * were among them. Codex caught it.
+   *
+   * Page-level coverage is CityPageTemplate.links.test.tsx, which reads the
+   * rendered anchors. This one stays because it pins the helper's own contract
+   * cheaply, and because it is what fails if the allowlist ever comes back.
    */
-  it('deep-links every published combo and nothing else', () => {
+  it('returns a deep link for exactly the combos published for an area', () => {
     for (const area of ALL_SERVICE_AREAS) {
       const published = Object.keys(CONTENT)
         .filter((k) => k.endsWith(`-${area.slug}`))

@@ -348,10 +348,19 @@ export default function CityPageTemplate({ city, data }: Props) {
                     Show all services we offer in {city.city}
                   </summary>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 pl-6">
+                    {/* Through the same helper as ServiceCard above. This list
+                        hardcoded /services/{slug}, and ServiceCard renders only
+                        the first six services — so seven published combos had
+                        no link from their own area page, including Inwood's
+                        only one and siding across all three Loudoun pages.
+                        CityPageTemplate.links.test.tsx asserts the rendered
+                        anchors rather than the helper's return value, because a
+                        helper-level test cannot see a call site that bypasses
+                        it. */}
                     {orderedServices.slice(6).map((s) => (
                       <Link
                         key={s.slug}
-                        href={`/services/${s.slug}`}
+                        href={serviceHrefForArea(s.slug, city.slug)}
                         className="text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors"
                       >
                         {s.title} →
