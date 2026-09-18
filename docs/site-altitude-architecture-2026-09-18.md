@@ -919,6 +919,15 @@ enforcement stopped at the footer. `sameAs` now reads from a new
 `VERIFIED_PROFILE_URLS` allowlist, Yelp is out until someone confirms it, and a
 test fails if it returns.
 
+**And the first version of that fix had the same shape as the bug.** It said
+verifying Yelp was one edit that would enable the footer link and the `sameAs`
+entry together — while `Footer.tsx` built its social links from a separate
+hard-coded array that never consulted the allowlist. A gate applied in one of
+two places, described as if it covered both, which is what `layout.tsx` had
+been doing all along. The footer now filters on the same list, so *removal* is
+symmetric; *addition* still takes two edits (the URL, plus a `SOCIAL_LINKS`
+entry with an icon) and both files now say so.
+
 **Phase 4 — paid test, gated on Phase 0.1, Phase 1.3 green, Phase 2.1
 live, and a tracking number.** Three months, geo-targeted to Fairfax and
 Loudoun counties, one trade (§5), landing on the regional page. Read leads
