@@ -20,7 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const city = ALL_SERVICE_AREAS.find((c) => c.slug === slug);
-  if (!city) return { title: 'Not Found' };
+  if (!city) return { title: 'Not Found', robots: { index: false } };
 
   const title = `Contractor in ${city.city}, ${city.state} | ${BUSINESS.name}`;
   // Kept under the 160-char SERP budget for the longest city name in the

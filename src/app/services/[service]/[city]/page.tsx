@@ -104,7 +104,8 @@ export async function generateMetadata({
   const serviceData = SERVICES.find((s) => s.slug === service);
   const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
 
-  if (!serviceData || !cityData) return { title: 'Not Found' };
+  if (!serviceData || !cityData)
+    return { title: 'Not Found', robots: { index: false } };
 
   // Home-turf combos override the generic template so the snippet can lead
   // with the thing the query actually asks for (price, response time). The

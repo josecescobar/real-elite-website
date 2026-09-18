@@ -20,7 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { location: slug } = await params;
   const location = getPavingLocation(slug);
-  if (!location) return { title: 'Not Found' };
+  if (!location) return { title: 'Not Found', robots: { index: false } };
 
   const title = fitTitle(`${location.metaTitle} | ${BUSINESS.name}`);
   return {

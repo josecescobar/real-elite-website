@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const cat = GUIDE_CATEGORIES.find((c) => c.slug === category);
-  if (!cat) return {};
+  if (!cat) return { robots: { index: false } };
   // Avoid "Homeowner Guides Guides" when the category name already ends in "Guides".
   const titleBase = cat.name.endsWith('Guides') ? cat.name : `${cat.name} Guides`;
   return buildMetadata({

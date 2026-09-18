@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post) return {};
+  if (!post) return { robots: { index: false } };
   // Article URLs stay canonical at /blog/[slug]. Spread buildMetadata for the
   // consistent canonical + twitter card, then swap the default social card
   // for the post's featured image.
