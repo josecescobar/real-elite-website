@@ -295,10 +295,16 @@ a page edit moves.
 
 ### The finding that was not in the page-level view
 
-`/service-areas/leesburg-va` is not ranking on Leesburg queries. **243 of its
-381 impressions — 64% — are Loudoun County queries**, spread across 18 query
-strings. The top three carry 188 of those impressions and outrank its town
-queries:
+**County queries are the majority of `/service-areas/leesburg-va`, though the
+page does also rank on Leesburg terms.** 243 of its 381 impressions — 64% —
+are Loudoun County queries across 18 strings; the other 108 impressions (28%)
+come from 17 Leesburg-scoped strings, led by `home remodeling leesburg va` (29
+at 22.2), `siding contractor in leesburg` (15 at 28.6) and `tile contractors
+leesburg` (14 at 20.5).
+
+Two of the three biggest county queries outrank **every** town query; the
+third does not — `basement finishing contractor in leesburg va` sits at 19.0,
+ahead of the county row at 19.2:
 
 | Query | Impr | Pos |
 | --- | --- | --- |
@@ -311,8 +317,13 @@ That is regional-altitude demand already present in the data, and §2's thesis
 is visible in it — **but at county altitude, not at "northern virginia"
 altitude.** "Northern virginia" returns zero mobile impressions.
 
-**Stated precisely, because an earlier draft overstated it.** The three queries
-above carry 188 impressions at positions 12.5–19.2. The other 15 county queries
+**Stated precisely, because two earlier drafts overstated it.** The three
+queries above carry 188 impressions at positions 12.5–19.2, and the first
+version of this passage claimed the page was "not ranking on Leesburg queries"
+and that all three outranked the town terms. Both were false: town demand is
+present at 108 impressions, and one town query outranks the third county one.
+A December reader could have retired this page believing town demand was
+absent. The other 15 county queries
 carry 55 impressions at positions **26.3–44.7** — pages three and four, where
 nothing is visible. Describing all 243 as ranking 12.5–19.2, as the reviewed
 draft did, inflates the opportunity in a passage whose whole purpose is to help
@@ -356,19 +367,60 @@ page where a snippet argument could be made honestly — 228 impressions at
 12.3, genuinely on the page-one boundary." **The query rows disprove that, and
 they are the reason the rows are now here.**
 
-96% of Hedgesville's impressions — 215 of 223 — are plumbing-stoppage queries:
-`vanity stoppage hedgesville wv` (99 impressions, position 10.3), `pop repair
-service hedgesville wv` (95, position 7.0), `vanity blockage`, `bathtub
-stoppage`. Real Elite does not do drain work. The page ranks well for demand
-the business cannot serve, and 8 impressions remain for anything it can. A
-snippet improvement there would convert nothing.
+**94.3% of Hedgesville's impressions — 215 of 228 — are plumbing-stoppage
+queries**, across four strings: `vanity stoppage hedgesville wv` (99
+impressions, position 10.3), `pop repair service hedgesville wv` (95, position
+7.0), `vanity blockage hedgesville wv` (16), `bathtub stoppage hedgesville wv`
+(5). Real Elite does not do drain work.
+
+That leaves **13 impressions across six queries** for anything the business
+sells — and not one of them is even Hedgesville:
+
+| Query | Impr | Pos |
+| --- | --- | --- |
+| house siding shepherdstown wv | 4 | 37.3 |
+| siding contractor shepherdstown wv | 4 | 28.5 |
+| asphalt shingle roofing hainesville wv | 2 | 37.0 |
+| siding company hainesville wv | 1 | 50.0 |
+| siding contractor berkley springs wv | 1 | 49.0 |
+| siding replacement shepherdstown wv | 1 | 29.0 |
+
+All ten rows are listed; they sum to 228, matching the page total exactly, with
+no suppressed remainder. A snippet improvement here would convert nothing.
+
+*(Corrected after review: the first version of this passage said "96%, 215 of
+223" and "8 impressions remain". Those came from a ≥3-impression filtered pull
+— **the same abridging error this document had just been corrected for, in the
+passage written to correct it**. The conclusion held; the arithmetic did not.)*
 
 The page that actually holds page-one positions on real service demand is
-**`/service-areas/inwood-wv`** — ten queries at position 11.1 or better,
-162 impressions, all of them roofing, siding or basement terms in the home
-market: `house siding inwood wv` (5.1), `basement remodeling inwood wv` (5.4),
-`siding contractor inwood wv` (6.3), `siding company inwood wv` (7.5),
-`roofing contractor inwood wv` (9.7).
+**`/service-areas/inwood-wv`** — 31 queries at position 11.1 or better,
+189 impressions. Split honestly, because the split matters:
+
+| | Queries | Impr | What they are |
+| --- | --- | --- | --- |
+| Inwood-specific service terms | 9 | **154** | roofing, siding, basements |
+| Generic / "near me" | 22 | 35 | local-pack territory |
+
+The nine that carry the volume:
+
+| Query | Impr | Pos |
+| --- | --- | --- |
+| siding company inwood wv | 34 | 7.5 |
+| roofing contractor inwood wv | 28 | 9.7 |
+| siding replacement inwood wv | 24 | 7.8 |
+| house siding inwood wv | 19 | 5.1 |
+| siding contractor inwood wv | 16 | 6.3 |
+| residential roofers inwood wv | 11 | 9.6 |
+| roof repair inwood wv | 9 | 10.9 |
+| basement remodeling inwood wv | 8 | 5.4 |
+| roof installation inwood wv | 5 | 10.2 |
+
+*(Corrected after review: the first version said "ten queries, 162
+impressions", from the same ≥3-impression filtered pull that produced the wrong
+Hedgesville figures. The true band is three times larger. The correction runs
+in the same direction as the Hedgesville one — filtering understated the
+page — which is what makes the habit rather than the arithmetic the problem.)*
 
 That is a real position, in the home market, on services the business sells,
 and it takes zero clicks. It is the one place on this site where the

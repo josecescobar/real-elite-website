@@ -114,4 +114,10 @@ without the key-event flag** — it governs conversion reporting, not whether an
 event is recorded — so the figures above can be read against leads today. The
 flag still needs setting for the owner's dashboard and for Ads.
 
-Do this before spending on anything above, or the spend cannot be evaluated.
+**Set the flag before spending**, because paid traffic is where the dashboard
+and Ads optimisation actually bite — Ads cannot bid toward a conversion GA4
+does not report. But the spend *can* still be evaluated without it, from raw
+`generate_lead` and `phone_click` counts, and an earlier version of this line
+("do this before spending on anything above, or the spend cannot be
+evaluated") sat one line below the correction above it and reasserted the very
+gate that correction removes.
