@@ -112,6 +112,101 @@ page at position 14 with this much exposure is the clearest available measure of
 what ranking improvement would be worth, whenever that question is asked with
 better instrumentation.
 
+## Two properties of the posts themselves, tested
+
+Both were free to check and both are recorded so nobody repeats them. **Neither
+came out as cleanly as the first draft of this section claimed** — see the
+corrections in each.
+
+### Age — one direction refuted, the other still live
+
+The obvious explanation is that the unfetched posts are simply newer. They are
+not. **The four newest posts, all published 2026-07-06, have all been fetched**
+(`basement-egress-window-cost`, `deck-cost-per-square-foot`,
+`roof-replacement-cost`, `walk-in-shower-cost`), while the oldest cohort,
+2026-05-19, is four never-fetched against one.
+
+("Fetched" rather than "indexed" because one of the fifteen —
+`storm-damage-roof-repair-insurance` — is crawled-but-not-indexed, as the
+section above records. All sixteen in the other column are literally "unknown to
+Google".)
+
+| Published | Fetched | Never fetched |
+| --- | --- | --- |
+| 2026-05-19 | 1 | 4 |
+| 2026-05-27 | 1 | 0 |
+| 2026-05-30 | 4 | 6 |
+| 2026-06-07 | 5 | 6 |
+| 2026-07-06 | **4** | **0** |
+| **total** | **15** | **16** |
+
+**But this eliminates one direction of the hypothesis, not the hypothesis.** An
+earlier version of this section said "every cohort with more than one post
+contains both states", which the table above contradicts: **2026-07-06 is four
+fetched and zero never-fetched.** Fetched rate by cohort:
+
+| Published | Fetched rate |
+| --- | --- |
+| 2026-05-19 | 1/5 = 20% |
+| 2026-05-27 | 1/1 = 100% |
+| 2026-05-30 | 4/10 = 40% |
+| 2026-06-07 | 5/11 = 45% |
+| 2026-07-06 | **4/4 = 100%** |
+
+So what is refuted is *"the unfetched posts are the newer ones"*. **The reverse —
+older posts being less likely to have been fetched — is consistent with this
+data and is not tested away.** Oldest cohort against newest is 1 of 5 versus 4
+of 4, one-sided Fisher exact **p = 0.040**.
+
+That p-value should not be leaned on. The two cohorts were chosen *because* they
+were the extremes, after seeing the table, on nine posts in total — the same
+post-hoc selection that makes the cost-guide result below weak. It is reported
+so the direction is on record, not because it is established.
+
+**If it is real it fits the crawl-budget hypothesis rather than competing with
+it:** Google sampled the site early, has broadly kept up with what was published
+since, and has never gone back for the older material. That is testable the same
+way everything else here is — by whether an indexing request moves anything.
+
+This was the same confound that inflated the service+city figures earlier today
+(`index-coverage-2026-09-18.md`, wrong turn 3). Checking it first was right;
+declaring it eliminated was not.
+
+### Post type — not established, and weaker than it looks
+
+Sorting by the `type` field in the frontmatter shows cost guides doing better
+than the 48% base rate (15 of 31):
+
+| `type` | Fetched | Never fetched |
+| --- | --- | --- |
+| cost-guide | 6 | 2 |
+| how-to | 4 | 6 |
+| buying-guide | 2 | 3 |
+| comparison | 2 | 1 |
+| permit-guide | 1 | 2 |
+| maintenance | 0 | 2 |
+| **total** | **15** | **16** |
+
+Cost guides are 6 of 8 fetched against 3.9 expected. **P(≥6 of 8 by chance) =
+0.09**, and the related "slug contains *cost*" cut gives 5 of 7, **p = 0.17**.
+
+Neither is worth acting on, and the 0.09 is weaker than the number suggests for
+two reasons. **Two tests were run, not one.** And **the pattern was noticed in
+the output of the age test and then tested**, which is not the same as
+predicting it beforehand — a post-hoc p-value on a pattern spotted by eye
+overstates its own confidence. It is recorded as a tendency to keep an eye on if
+the sample ever grows, not as a finding.
+
+**So no property of the posts tested here is established as a predictor — which
+is not the same as none of them predicting anything.** Type is unestablished
+rather than absent (p = 0.09 on 8 posts), age survives in the opposite direction
+to the one proposed (p = 0.040, post-hoc), and "topic format" was never tested
+at all; an earlier version of this line listed it anyway.
+
+The service+city result is the stronger of the two: there, content volume, raw
+link count, trade and same-commit page age were each eliminated against data
+that did not have these sample-size problems.
+
 ## What follows
 
 1. **Include unindexed blog posts in the indexing request — but the reason is
