@@ -59,6 +59,60 @@ describe('runtimeTextOfSource — adjacency', () => {
   });
 });
 
+describe('runtimeTextOfSource — literals inside opaque expressions', () => {
+  /**
+   * The rendered-run rewrite stopped traversing into JSX expressions, so
+   * `{enabled && 'copy'}` scanned as a bare space and the copy vanished. The
+   * flat version it replaced did collect it, which makes this a regression I
+   * introduced while fixing adjacency. Codex caught it on #148.
+   */
+  it('finds a literal behind a logical-and', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <p>{enabled && 'written workmanship warranty'}</p>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('finds literals in both branches of a conditional', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <p>{ok ? 'one named project lead' : 'daily updates'}</p>;"
+    );
+    expect(text).toMatch(/named project lead/i);
+    expect(text).toMatch(/daily updates/i);
+  });
+
+  /**
+   * But it must NOT fuse the branches: only one of them ever renders, so
+   * joining them would invent a phrase the page never shows. This is why the
+   * descendants become separate runs rather than being inlined.
+   */
+  it('does not fuse two branches of a conditional into one phrase', () => {
+    const text = runtimeTextOfSource("const C = () => <p>{ok ? 'clean job' : 'site'}</p>;");
+    expect(text).not.toMatch(/clean job site/i);
+  });
+
+  it('finds a literal behind a function call', () => {
+    const text = runtimeTextOfSource(
+      "const C = () => <p>{t('written workmanship warranty')}</p>;"
+    );
+    expect(text).toMatch(/workmanship warranty/i);
+  });
+
+  it('finds a template literal behind an expression', () => {
+    const text = runtimeTextOfSource(
+      'const C = () => <p>{cond && `One named project lead on ${n} jobs`}</p>;'
+    );
+    expect(text).toMatch(/named project lead/i);
+  });
+
+  it('keeps the surrounding text separated from the expression', () => {
+    // "workmanship" and "warranty" sit either side of an opaque value; fusing
+    // them would invent the claim.
+    const text = runtimeTextOfSource('const C = () => <p>workmanship {x} warranty</p>;');
+    expect(text).not.toMatch(/workmanship warranty/i);
+  });
+});
+
 describe('runtimeTextOfSource — what counts as published', () => {
   it('excludes line comments', () => {
     const text = runtimeTextOfSource('// written workmanship warranty\nconst x = 1;');

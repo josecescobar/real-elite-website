@@ -83,33 +83,44 @@ export function extractComboLinks(source: string): ComboLink[] {
 
   const out: ComboLink[] = [];
   for (const raw of urls) {
-    // Only the PATH portion decides whether this link is derived.
+    // Where the interpolation sits decides whether the PATH is derived.
     //
-    // The first version skipped the whole URL whenever `${` appeared anywhere
-    // in it. That dropped
-    //   href={`/services/kitchens/middleburg-va?campaign=${campaign}`}
-    // which is a hand-written retired-combo link with an interpolated query —
-    // and nothing else covers it, because CityPageTemplate.links.test.tsx only
-    // knows about links IT derives. A false negative, the bad direction.
+    // Two earlier versions were both wrong, in opposite directions:
     //
-    // So: split off query and fragment first, and skip only when a PATH
-    // SEGMENT is interpolated (href={`/services/${slug}/${city}`}), which is
-    // the derived case that test does cover.
-    const rawPath = raw.split(/[?#]/)[0];
-    if (rawPath.includes('${')) continue;
+    //   1. Skip the URL if `${` appears anywhere. Dropped
+    //      `/services/kitchens/middleburg-va?campaign=${c}` — a hand-written
+    //      retired link with a derived query. False negative.
+    //   2. Skip if `${` appears before the first literal `?` or `#`. Dropped
+    //      `/services/kitchens/middleburg-va${suffix}`, where the suffix
+    //      supplies its own `?`. Same false negative, one layer down.
+    //
+    // A purely lexical rule cannot separate "suffix appended after a complete
+    // slug" from "slug partially derived" — `/services/kitchens/middleburg${x}`
+    // looks identical to the first but the area slug is really derived. So
+    // when an interpolation is present, the literal prefix is RESOLVED: it
+    // counts only if it already forms a combo key this repo knows. That is
+    // sound in both directions, and it declines to guess where it cannot know.
+    const interp = raw.indexOf('${');
+    const literalPath = (interp === -1 ? raw : raw.slice(0, interp)).split(/[?#]/)[0];
 
     let pathname: string;
     try {
-      // Parsed from rawPath, not raw, so an interpolated query or fragment
-      // cannot affect parsing at all.
-      pathname = new URL(rawPath, BASE).pathname;
+      // Parsed from the literal path, so nothing derived affects parsing.
+      pathname = new URL(literalPath, BASE).pathname;
     } catch {
       continue;
     }
     const trimmed = pathname.replace(/\/+$/, '');
     const m = /^\/services\/([^/]+)\/([^/]+)$/.exec(trimmed);
     if (!m) continue;
-    out.push({ key: `${m[1]}-${m[2]}`, service: m[1], area: m[2], raw });
+
+    const key = `${m[1]}-${m[2]}`;
+    // With an interpolation present the prefix must resolve to a real combo,
+    // otherwise the segment itself was derived and this is a template link
+    // that CityPageTemplate.links.test.tsx already covers.
+    if (interp !== -1 && !RETIRED.has(key) && !PUBLISHED.has(key)) continue;
+
+    out.push({ key, service: m[1], area: m[2], raw });
   }
   return out;
 }
@@ -170,6 +181,20 @@ describe('extractComboLinks', () => {
       'hard-coded path with interpolated fragment',
       'href={`/services/kitchens/middleburg-va#${anchor}`}',
       'kitchens-middleburg-va',
+    ],
+    // The suffix supplies its own delimiter, so there is no literal `?` or
+    // `#` to split on. Resolving the literal prefix is what catches it.
+    [
+      'hard-coded path with an interpolated suffix that carries its own ?',
+      'href={`/services/kitchens/middleburg-va${suffix}`}',
+      'kitchens-middleburg-va',
+    ],
+    // Looks the same lexically, but the area slug is genuinely derived —
+    // `middleburg` is not a combo this repo publishes or retires.
+    [
+      'partially derived area slug is skipped',
+      'href={`/services/kitchens/middleburg${rest}`}',
+      null,
     ],
   ];
 

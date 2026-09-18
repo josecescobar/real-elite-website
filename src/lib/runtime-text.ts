@@ -70,7 +70,11 @@ const isJsxContainer = (node: ts.Node): node is ts.JsxElement | ts.JsxFragment =
  * it renders *something* and the neutral assumption is that it separates the
  * text around it rather than fusing it.
  */
-function renderedTextOf(node: ts.Node, consumed: Set<ts.Node>): string {
+function renderedTextOf(
+  node: ts.Node,
+  consumed: Set<ts.Node>,
+  sideRuns: string[]
+): string {
   consumed.add(node);
 
   if (ts.isJsxText(node)) return node.text;
@@ -87,18 +91,48 @@ function renderedTextOf(node: ts.Node, consumed: Set<ts.Node>): string {
   // `JsxExpression` is TypeScript's name for a `{...}` child. There is no
   // `isJsxExpressionContainer` in the TS API — that is Babel's name for it.
   if (ts.isJsxExpression(node)) {
-    return node.expression ? renderedTextOf(node.expression, consumed) : '';
+    return node.expression ? renderedTextOf(node.expression, consumed, sideRuns) : '';
   }
 
   if (isJsxContainer(node)) {
-    return node.children.map((child) => renderedTextOf(child, consumed)).join('');
+    return node.children.map((child) => renderedTextOf(child, consumed, sideRuns)).join('');
   }
 
   if (ts.isJsxSelfClosingElement(node)) return '';
 
-  // Any other expression renders an unknown value; treat it as a separator
-  // rather than fusing the text on either side of it.
+  // Any OTHER expression — `{enabled && 'copy'}`, `{ok ? 'a' : 'b'}`, a call —
+  // renders an unknown value, so it separates the text around it. But its
+  // string-literal descendants can still reach the page, and returning a bare
+  // space here lost them: `<p>{enabled && 'written workmanship warranty'}</p>`
+  // scanned as " " and the claim vanished. The flat version this replaced did
+  // collect it, so that was a regression, and Codex caught it on #148.
+  //
+  // Descendant literals are collected as SEPARATE runs rather than inlined.
+  // Inlining them would fuse the branches of a conditional — `{ok ? 'clean
+  // job' : 'site'}` would read as "clean job site", a phrase the page never
+  // renders. Separate runs capture each literal without inventing a phrase,
+  // and the space returned here keeps the surrounding text apart.
+  collectLiterals(node, consumed, sideRuns);
   return ' ';
+}
+
+/** Every string-literal descendant of an opaque expression, as its own run. */
+function collectLiterals(node: ts.Node, consumed: Set<ts.Node>, sideRuns: string[]): void {
+  ts.forEachChild(node, (child) => {
+    consumed.add(child);
+    if (ts.isStringLiteral(child) || ts.isNoSubstitutionTemplateLiteral(child)) {
+      sideRuns.push(child.text);
+    } else if (ts.isTemplateExpression(child)) {
+      consumed.add(child.head);
+      child.templateSpans.forEach((sp) => consumed.add(sp.literal));
+      sideRuns.push([child.head.text, ...child.templateSpans.map((sp) => sp.literal.text)].join(' '));
+    } else if (isJsxContainer(child) || ts.isJsxSelfClosingElement(child)) {
+      // Nested JSX inside an expression is still a rendered run of its own.
+      sideRuns.push(renderedTextOf(child, consumed, sideRuns));
+    } else {
+      collectLiterals(child, consumed, sideRuns);
+    }
+  });
 }
 
 export function runtimeTextOfSource(source: string, fileName = 'file.tsx'): string {
@@ -118,7 +152,7 @@ export function runtimeTextOfSource(source: string, fileName = 'file.tsx'): stri
     // run. Its descendants are marked consumed so they are not also emitted
     // as separate runs, which would reintroduce the split.
     if (isJsxContainer(node) && !(node.parent && isJsxContainer(node.parent))) {
-      runs.push(renderedTextOf(node, consumed));
+      runs.push(renderedTextOf(node, consumed, runs));
       // Attributes are NOT part of the painted run, but alt/aria text is still
       // published copy, so walk them separately.
       ts.forEachChild(node, function attrs(child: ts.Node) {
@@ -136,7 +170,7 @@ export function runtimeTextOfSource(source: string, fileName = 'file.tsx'): stri
     }
 
     if (ts.isTemplateExpression(node)) {
-      runs.push(renderedTextOf(node, consumed));
+      runs.push(renderedTextOf(node, consumed, runs));
       return;
     }
 
