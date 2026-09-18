@@ -233,46 +233,56 @@ describe('every app route declares its own canonical', () => {
     suppliesSection: (spread: ts.Expression) => boolean = () => false
   ): SectionWrite {
     /**
-     * One spread source's effect. `undefined` means it leaves `name` alone,
-     * which is only knowable when the source can be read — so a spread the
-     * guard cannot resolve is assumed to overwrite. Being wrong that way costs
-     * a route an explicit canonical; being wrong the other way ships a page
-     * that silently has none.
+     * `undefined` means the object never writes `name`, which is different from
+     * writing it with nothing useful — the first leaves an outer state alone,
+     * the second replaces it. Collapsing the two is what let a nested spread
+     * hide an overwrite.
      */
-    const spreadWrite = (source: ts.Expression): SectionWrite | undefined => {
-      if (suppliesSection(source)) return { kind: 'helper' };
-      const object = objectOf(source);
-      if (!object) return { kind: 'unset' };
-      const member = memberOf(object, name);
-      return member ? writtenBy(member) : undefined;
+    const resolve = (
+      source: ts.ObjectLiteralExpression,
+      seen: ReadonlySet<ts.Node>
+    ): SectionWrite | undefined => {
+      if (seen.has(source)) return undefined; // `const a = { ...b }` pointing back
+      const visited = new Set(seen).add(source);
+
+      const fromSpread = (spread: ts.Expression): SectionWrite | undefined => {
+        if (suppliesSection(spread)) return { kind: 'helper' };
+        const resolved = objectOf(spread);
+        // Unreadable, so assume it replaces the section.
+        if (!resolved) return { kind: 'unset' };
+        // The source gets the same ordered treatment, or a spread inside it
+        // could hide an overwrite of the very section being asked about.
+        return resolve(resolved, visited);
+      };
+
+      let state: SectionWrite | undefined;
+      for (const property of source.properties) {
+        if (ts.isSpreadAssignment(property)) {
+          // `...(cond ? { alternates } : {})` is two possible spreads and the
+          // guard cannot know which runs, so a spread's write is kept only
+          // when every branch agrees on it. `branches` is the same splitter
+          // the redirect rules use.
+          const writes = branches(property.expression).map(fromSpread);
+          if (writes.every((write) => write === undefined)) continue;
+          const [first] = writes;
+          const unanimous =
+            first !== undefined &&
+            writes.every(
+              (write) =>
+                write !== undefined &&
+                write.kind === first.kind &&
+                (write.kind !== 'value' ||
+                  (first.kind === 'value' && write.value === first.value))
+            );
+          state = unanimous ? first : { kind: 'unset' };
+          continue;
+        }
+        if (named(property, name)) state = writtenBy(property);
+      }
+      return state;
     };
 
-    let state: SectionWrite = { kind: 'unset' };
-    for (const property of object.properties) {
-      if (ts.isSpreadAssignment(property)) {
-        // `...(cond ? { alternates } : {})` is two possible spreads and the
-        // guard cannot know which runs, so it only keeps a spread's write when
-        // every branch agrees on it. A ternary where one arm replaces the
-        // section and the other does not clears it. `branches` is the same
-        // splitter the redirect rules use.
-        const writes = branches(property.expression).map(spreadWrite);
-        if (writes.every((write) => write === undefined)) continue;
-        const [first] = writes;
-        const unanimous =
-          first !== undefined &&
-          writes.every(
-            (write) =>
-              write !== undefined &&
-              write.kind === first.kind &&
-              (write.kind !== 'value' ||
-                (first.kind === 'value' && write.value === first.value))
-          );
-        state = unanimous ? first : { kind: 'unset' };
-        continue;
-      }
-      if (named(property, name)) state = writtenBy(property);
-    }
-    return state;
+    return resolve(object, new Set()) ?? { kind: 'unset' };
   }
 
   /** Does the winning `alternates` carry a `canonical`? */
