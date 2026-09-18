@@ -1,59 +1,71 @@
 # Nearly half the service+city pages are not in Google's index — 2026-09-18
 
-**28 of 60 service+city combo pages have zero mobile impressions in six
-months. Every one of the 13 sampled is "URL is unknown to Google" — not
-ranked badly, not crawled and rejected, but never fetched at all**, despite
-sitting in the sitemap since 2026-07-06.
+**30 of the 62 service+city combo pages that were live for the measurement
+window have zero mobile impressions. All 8 of those inspected are "URL is
+unknown to Google" — not ranked badly, not crawled and rejected, but never
+fetched**, though they have been in the sitemap since 2026-07-06 alongside the
+pages Google did index.
 
-This started as a look at one page and turned into something structural. Two
-hypotheses were tested and discarded along the way; both are recorded below,
-because the wrong turns are the reason the conclusion is trustworthy.
+> **This file's headline number has now been wrong twice, in opposite
+> directions, and both corrections came from review.**
+>
+> | Version | Claimed | Error |
+> | --- | --- | --- |
+> | first | 28 of 60 (47%) | counted 8 combos published days before the window closed |
+> | second | 20 of 52 (38%) | dropped 10 retired pages that were live all window |
+> | **now** | **30 of 62 (48%)** | — |
+>
+> The first version was close to right by accident: two errors in opposite
+> directions largely cancelled. **Wrong turns 3 and 4** below have the detail.
+> The finding has survived both corrections. Its size has moved each time, which
+> is the reason the figure is now derived explicitly rather than counted off the
+> filesystem.
+
+This started as a look at one page and became structural. Four hypotheses were
+tested and discarded on the way, and all four are recorded, because the wrong
+turns are the reason what is left can be trusted.
 
 ## How this started
 
 §1.2 flagged `roofing frederick md` — **880 searches a month, KD 9**, the
-largest geo-modified term in any of these audits, eight times the biggest
-Northern Virginia basement term. The site has `/services/roofing/frederick-md`.
-It said Search Console showed no impressions and that this "deserves its own
-look."
+largest geo-modified term in any of these audits. The site has
+`/services/roofing/frederick-md`. It said Search Console showed no impressions,
+and that this "deserves its own look."
 
 It does, but not for the reason implied. The page is not ranking poorly.
 
 | | |
 | --- | --- |
 | Coverage state | **Crawled – currently not indexed** |
-| Last crawled | **2026-06-01** (three and a half months ago) |
+| Last crawled | **2026-06-01** |
 | robots.txt | ALLOWED |
 | Fetch | SUCCESSFUL |
 | Canonical | self, and Google agrees |
 
 Google fetched the page, found nothing technically wrong, and **chose not to
 index it**. Zero impressions is not a symptom to investigate — it is the
-arithmetic consequence of not being in the index. No amount of copy, keyword
-or snippet work moves a page Google has not indexed.
+arithmetic consequence of not being in the index.
 
-**One correction to §1.2 while we are here:** it says "no impressions for any
-Frederick roofing query". The page has **3** mobile impressions in six months,
-not zero. The distinction does not change the conclusion, but the doc should
-say what the data says.
+**Correction to §1.2:** it says "no impressions for any Frederick roofing
+query". The page has **3** mobile impressions in six months, not zero.
 
 ## Wrong turn 1: "it is roofing"
 
 Five of the eight roofing combos came back unindexed, and the first four
 non-roofing pages sampled were all indexed. That looked decisive.
 
-**It was selection bias, and the sample was rigged by construction.** Those
-four were picked *because they appeared in the impressions report* — and a page
-with impressions is necessarily indexed. The control could not have come back
-any other way.
+**It was selection bias, built into the sample by construction.** Those four
+were picked *because they appeared in the impressions report* — and a page with
+impressions is necessarily indexed. The control could not have come back any
+other way.
 
-Rebuilt properly: of the 28 zero-impression combos, **23 are not roofing**.
-Roofing is 5 of 28. There is no roofing story.
+Rebuilt: of the 30 zero-impression combos, most are not roofing. There is no
+roofing story.
 
 ## Wrong turn 2: "the combo template is unindexable"
 
-Also wrong, and worth stating because it would condemn the whole architecture.
-Combo pages index and earn impressions perfectly well:
+Also false, and worth stating because it would condemn the architecture. Combo
+pages index and earn impressions:
 
 | Page | Impressions | Index state |
 | --- | --- | --- |
@@ -62,109 +74,161 @@ Combo pages index and earn impressions perfectly well:
 | `/services/kitchens/alexandria-va` | 341 | Submitted and indexed |
 | `/services/basements/great-falls-va` | 218 | Submitted and indexed |
 
-The template works. Thirty-two of sixty are in the index.
+The template works. Thirty-two combos earn impressions.
 
-## What the data actually shows
+## Wrong turn 3: counting pages that were days old
 
-Nineteen URLs inspected. **Index state and impressions correspond exactly** —
-no page with impressions was unindexed, and no page without them was indexed.
+The one that changed the numbers. Eight combos are far younger than the rest:
+
+| Added | Commit | Pages |
+| --- | --- | --- |
+| 2026-09-15 | `15ae01e` | roofing: martinsburg-wv, charles-town-wv |
+| 2026-09-15 | `e1e6a5b` | basements: charles-town-wv, inwood-wv, ranson-wv; decks: martinsburg-wv |
+| 2026-09-15 | `bcf0f45` | decks: brambleton-va |
+| 2026-09-18 | `c8ff33b` | basements: northern-virginia |
+
+The impression window ends **2026-09-17**. These pages had at most two days in
+it, and one was published after it closed. Of course they have no impressions,
+and of course Google has not fetched them yet — that is the expected state for
+a page that age, not evidence of anything.
+
+**They were in the first version's totals anyway.** That inflated the
+zero-impression group from 20 to 28 and the denominator from 52 to 60, and
+**5 of the 13 "unknown to Google" results used as evidence were these new
+pages.** The valid evidence is the other 8.
+
+It also invalidated a specific claim: the first version used
+`roofing-martinsburg-wv` (2,213 characters, above median, unindexed) to argue
+content volume does not explain the pattern. That page is three days old. The
+argument still holds, but on a page that actually earns it —
+**`kitchens-burke-va` is 7,631 characters, four times the median, live since
+July, and unknown to Google.**
+
+The signal I ignored: when dating the combos, eight returned no add-date from
+the search and I moved on instead of asking why. Those eight were exactly the
+recent ones.
+
+## Wrong turn 4: counting only the pages that still exist
+
+The correction to the correction, and the one with a name: **survivorship
+bias.**
+
+The combo list was built by walking `.next/server/app/services/**` — the pages
+that exist *now*. But **#148 retired ten Tier C combos on 2026-09-18**, and the
+measurement window ends **2026-09-17**. Those ten were live for the entire
+window. `src/lib/retired-combos.ts` records why they were retired: they "had
+ZERO mobile Search Console impressions in six months".
+
+So ten pages that were live all window and earned nothing were dropped from the
+denominator *because they had since been deleted for earning nothing*. That is
+the definition of the bias, and it made the coverage rate look better than it
+was.
+
+The Phase 5 baseline already had this right and I did not check it. It counts
+"**47** NoVA combo URLs (37 live plus the 10 #148 retired on 2026-09-18)" — the
+inventory for a window is what was live during the window, not what survived it.
+
+| | Pages | Zero impressions |
+| --- | --- | --- |
+| Established and still live | 52 | 20 |
+| Retired 2026-09-18, live all window | 10 | **10** |
+| **Live during the window** | **62** | **30** |
+
+Published 2026-09-15 or later (8) stay excluded: too new to measure either way.
+
+## What the data shows, scoped to what was inspected
+
+Nineteen URLs inspected: **8 of the 30 zero-impression combos**, 6 of the 32
+impression-bearing ones, and 5 of the new pages.
 
 | Group | Inspected | Result |
 | --- | --- | --- |
-| Zero-impression combos | 13 | **13 unknown to Google** |
-| Combos with impressions | 6 | 5 indexed, 1 crawled-not-indexed (3 impressions) |
+| Zero impressions, live during window | 8 of 30 | **8 unknown to Google** |
+| Any impressions | 6 of 32 | 5 indexed; 1 crawled-not-indexed |
+| Added 2026-09-15 or later | 5 of 8 | 5 unknown — expected at that age |
 
-"Unknown to Google" is the important state. It does not mean rejected. It
-means **Google has never fetched the URL**.
+Of the 22 zero-impression pages not inspected, **12 are still live and can be
+checked**; the other 10 are the retired ones, which now serve 301s and can no
+longer be inspected as pages. Their zero-impression status during the window is
+still evidence; their current index state is not recoverable.
+
+Index state and impressions are **consistent with one exception**, not exact:
+`/services/roofing/frederick-md` has 3 impressions and is currently
+crawled-not-indexed. Six-month impression totals and a point-in-time inspection
+are not contemporaneous measurements, so a page can have earned impressions
+before falling out of the index. The first version of this file claimed exact
+correspondence while printing the counterexample in its own table.
+
+**This does not establish that all 30 are unindexed.** Eight were checked.
 
 ## What does not explain it
 
-Each of these was checked and eliminated:
-
 | Candidate cause | Finding |
 | --- | --- |
-| **Page age** | Indexed and unindexed combos were added in the **same commit, 2026-07-06**. Same cohort, same day. |
-| **Missing from sitemap** | All 8 roofing combos, and every combo checked, are in `sitemap-0.xml`. 178 URLs for 182 built pages. |
-| **robots / canonical / fetch** | On the one page Google did crawl: ALLOWED, self-canonical accepted, fetch SUCCESSFUL. |
-| **Internal linking** | `/services/roofing/frederick-md` has **15 inbound pages against a median of 11**. `basements/great-falls-va` has 4 inbound and earns 218 impressions. The relationship runs the wrong way. |
-| **Content volume** | Unindexed `roofing-martinsburg-wv` is 2,213 characters, **above** the 1,913 median. Indexed `remodeling-winchester-va` is 1,774, below it. |
+| **Page age** | Ruled out **within the established cohort only** — indexed and unindexed July pages were added in the same commit, 2026-07-06. It is *not* ruled out for the eight recent pages, which is why they are now excluded. |
+| **Missing from sitemap** | All present. 178 URLs for 182 built pages. |
+| **robots / canonical / fetch** | On the one page Google crawled: ALLOWED, self-canonical accepted, fetch SUCCESSFUL. |
+| **Internal linking** | `/services/roofing/frederick-md` has **15 inbound pages against a median of 11**; `basements/great-falls-va` has 4 inbound and earns 218 impressions. The relationship runs backwards. |
+| **Content volume** | `kitchens-burke-va` is **7,631 characters, 4× the median**, live since July, and unknown to Google. |
 | **Trade** | Ruled out above. |
 
-Google read the sitemap — it is listed among the referring URLs for the one
-combo it did crawl — and then fetched roughly half of what the sitemap
-offered.
+## The hypothesis
 
-## What this most likely is, stated as a hypothesis
+**Crawl budget and selection on a low-authority domain.** Google read the
+sitemap — it is among the referring URLs for the one combo it crawled — and
+fetched part of what was offered. That fits the observations and is the ordinary
+behaviour for a small site publishing 52 templated pages at once.
 
-**Crawl budget and selection on a low-authority domain.** Google discovered the
-sitemap, sampled it, indexed part of a large set of templated pages, and has not
-returned. That is the ordinary behaviour for a small site publishing 60
-near-patterned pages at once, and it fits every observation here. It is
-**not confirmed**, and this file should not be read as if it were.
+**It is not confirmed.** With 8 established pages inspected, it is a hypothesis
+supported by a consistent sample, not a measured property of the site.
 
-What would confirm or refute it: whether newly-published pages get crawled
-promptly (the Northern Virginia pages shipped this week are a natural
-experiment — they are currently "unknown", which is expected at this age), and
-whether requesting indexing on a handful of unindexed URLs causes them to be
-fetched.
+## Why it matters
 
-## Why this matters more than the phase it interrupted
+**It reframes the Phase 5 baseline** without changing a number. For the
+unindexed share, a zero-impression row is not a statement about demand or
+ranking — those pages were never in the running.
 
-**It reframes the Phase 5 baseline.** `phase-5-baseline-2026-09-18.md` records
-zero mobile clicks across 23 impression-bearing Northern Virginia URLs and zero
-impressions for the rest. That was read as a demand-and-ranking baseline. For
-the unindexed share it is neither — those pages were never in the running.
+**It bears on what the next unit of work should be.** Phases 2 and 3 add pages
+and profiles; Phase 4 buys traffic. None of that acts on pages Google has not
+fetched. This is a reason to establish the cause before spending, not a mandate
+to consolidate.
 
-**It changes what the next unit of work should be.** Phases 2 and 3 add pages
-and profiles. Phase 4 buys traffic. None of that acts on 28 pages Google has
-never fetched. Getting existing pages into the index is cheaper than building
-more of them, and it is a prerequisite for reading any of it in December.
-
-**It does not invalidate the altitude thesis.** The regional page argument
-stands on its own; this is about whether Google ever sees any of it.
+**It does not invalidate the altitude thesis**, which stands on its own.
 
 ## What to do, cheapest first
 
-1. **Request indexing** on a handful of the highest-value unindexed URLs in
-   Search Console — `/services/roofing/frederick-md` first, since it targets
-   880 searches a month. This is a GBP-style owner action in the GSC UI; it
-   cannot be done from this repo. **Treat it as a test, not a fix:** if
-   requested URLs get crawled and indexed, the diagnosis is crawl budget and
-   the remedy is consolidation. Ten URLs is enough to learn from.
-2. **Do *not* switch on `autoLastmod` — the omission is deliberate.** The
-   sitemap has no `<lastmod>`, and an earlier draft of this file recommended
-   adding one before reading `next-sitemap.config.js`, which says:
+1. **Request indexing on ~10 unindexed URLs in Search Console**, starting with
+   `/services/roofing/frederick-md` (880 searches a month). An owner action in
+   the GSC UI; it cannot be done from this repo. **A test, not a fix:** if they
+   get crawled, the diagnosis is crawl budget. If they do not, it is a quality
+   judgement and the remedy is different. Right now nobody knows which.
+2. **Do *not* switch on `autoLastmod`.** The sitemap has no `<lastmod>` and an
+   earlier draft recommended adding one before reading
+   `next-sitemap.config.js`, which omits it deliberately:
 
    > *"A deployment timestamp is not a content modification date. Omit lastmod
    > until each content model exposes a reliable authored/updated value."*
 
-   That is correct and the flag would have made things worse: `autoLastmod`
-   stamps **every** URL with build time, so all 178 would claim to have changed
-   on each deploy. A sitemap that says everything changed yesterday, every day,
-   is a false freshness signal on a domain whose crawl allowance is the
-   suspected constraint.
-
-   The legitimate version is per-model: **blog posts already carry a real
-   `date`** (`src/lib/blog.ts`), so they could emit a true `lastmod` today.
-   Combo and area pages have no authored date to emit, which is exactly what
-   the config comment anticipated. Worth doing for the models that have real
-   dates; not worth faking for the ones that do not, and not a response to this
-   finding in any case.
-3. **Consider consolidation, not expansion.** Tier C retired ten combos in
-   #148 on the grounds that dead pages cost more than they return. This
-   finding says the same logic applies more widely: 60 templated pages
-   competing for a small crawl allowance may be why half of them are invisible.
-   That is a decision for the owner, not a change to make unilaterally, and it
-   should wait on the outcome of step 1.
+   That is correct, and the flag would stamp **all 178 URLs as changed on every
+   deploy** — a false freshness signal aimed at the exact resource this
+   hypothesis says is scarce. Blog posts carry a real `date` and could emit a
+   true one; combo pages have none to emit.
+3. **Inspect the 12 still-live zero-impression combos that have not been
+   checked** before any consolidation decision rests on this. It is cheap and it
+   would take the sample from 8 of 30 to 20 of 30. The other 10 retired on
+   2026-09-18 and now serve 301s, so their index state is gone for good — a
+   reason to measure before retiring pages, not after.
+4. **Consolidation is a strategy decision for the owner**, and it should wait on
+   1 and 3. #148 retired ten Tier C combos on impression evidence; whether that
+   logic extends further depends on a cause that is not yet established.
 
 ## What this file does not claim
 
-- **Not** that the combo pages are bad, or that the template is wrong. Thirty-two
-  are indexed and some earn hundreds of impressions.
-- **Not** that the cause is established. Crawl budget is the best-fitting
-  hypothesis and no more.
-- **Not** that this generalises beyond combo pages. Area pages, service pillars
-  and the homepage were all sampled as indexed; blog posts earn the site's
-  largest impression numbers.
-- **Not** a measurement of the whole site. Nineteen of 178 sitemap URLs were
-  inspected.
+- **Not** that all 30 zero-impression pages are unindexed. Eight were checked,
+  and 10 of the rest can no longer be checked at all.
+- **Not** that the template is bad. Thirty-two combos earn impressions.
+- **Not** that the cause is established.
+- **Not** anything about the eight pages published 2026-09-15 or later. They are
+  too new to measure and are excluded from every figure above.
+- **Not** a measurement of the whole site. 19 of 178 sitemap URLs were inspected;
+  area pages, pillars and the homepage all sampled as indexed.
