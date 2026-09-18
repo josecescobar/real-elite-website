@@ -1,4 +1,11 @@
 import type { NextConfig } from 'next';
+// Imported from its own dependency-free module, NOT from
+// service-city-content: Next loads this config outside the app's module
+// graph, where the `@/` alias does not resolve, so reaching through a module
+// that uses aliased imports fails the build with "Cannot find module
+// './src/lib/claims'". Vitest resolves `@/` fine, so the whole test suite
+// passed while the build was broken. Keep this import chain alias-free.
+import { RETIRED_COMBOS } from './src/lib/retired-combos';
 
 /**
  * Content-Security-Policy.
@@ -95,6 +102,25 @@ const nextConfig: NextConfig = {
       // /resources; article URLs at /blog/[slug] are canonical and unchanged.
       { source: '/guides', destination: '/resources', permanent: true },
       { source: '/guides/:category', destination: '/resources/:category', permanent: true },
+
+      // Tier C — the ten service+area pages retired on 2026-09-18, generated
+      // from the same declaration that un-published them so the two cannot
+      // drift. RETIRED_COMBOS in src/lib/service-city-content.ts carries the
+      // evidence for each and the rule that picks its destination.
+      //
+      // Generated rather than hand-listed because the combo route sets
+      // dynamicParams = false: a key removed from CONTENT with no matching
+      // redirect is a hard 404, and two hand-maintained lists is how that
+      // happens. The retired-combo redirect test asserts these rules are
+      // literal, unconditional, permanent, and land on a page that exists.
+      ...Object.entries(RETIRED_COMBOS).map(([key, destination]) => {
+        const dash = key.indexOf('-');
+        return {
+          source: `/services/${key.slice(0, dash)}/${key.slice(dash + 1)}`,
+          destination,
+          permanent: true,
+        };
+      }),
     ];
   },
 };

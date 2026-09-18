@@ -21,8 +21,10 @@ Console 2026-03-15 → 2026-09-15, **mobile only**, per the convention in
 > `kitchen remodeling ashburn va` 480/mo, `kitchen remodeling alexandria va`
 > 390, `bathroom remodeling alexandria va` 320, `kitchen remodeling mclean va`
 > 260, `kitchen remodeling vienna va` 140. §2's name test and §3.3's Tier C
-> are corrected in place below, and Tier C consolidation is **on hold** for
-> the reasons in §8. Full data in §1.5. Nothing in "The short version" is
+> are corrected in place below. Tier C consolidation was held for the reasons
+> in §8 and **shipped on 2026-09-18** once Phase 2.1 gave its basement combos
+> a target; that correction is what split its ten combos across two
+> destinations. Full data in §1.5. Nothing in "The short version" is
 > withdrawn; item 1 is sharpened from "a property of each market" to "a
 > property of each market and trade."
 
@@ -390,7 +392,7 @@ Sorted by evidence, not by one rule. Risk column is SEO risk of the action.
 | --- | --- | --- | --- |
 | **A — keep and invest** | All WV town pages (`/service-areas/*-wv`, the six WV combos); Frederick, Hagerstown, Winchester; Leesburg, Ashburn, Loudoun, Brambleton decks | No structural change. These pass the name test or hold positions. | None. Redirecting any of these would be the single most damaging move available. |
 | **B — keep, freeze, re-parent** | NoVA combos with mobile impressions: `basements-{alexandria, great-falls, vienna, reston}-va`; the `/service-areas/` overview for every NoVA town | Stay indexed, self-canonical. Gain `parent: northern-virginia`, link up to the hub, and the hub links down. Strip unverified claims to the verified set (§3.5). Re-read at 90 days. | Low. The pages hold positions 12–20 on real long-tail; a redirect now would trade observed impressions for a hub that has none yet. Cannibalisation risk with the hub is small: Google matches "northern virginia" queries to the page that says Northern Virginia. |
-| **C — consolidate** *(corrected, and on hold — see §8)* | The 10 combos with zero mobile impressions in six months **and** no Ads row in any trade: all three of `{bathrooms, kitchens, basements}-{clifton, fairfax-station, middleburg}-va`, plus `basements-burke-va`. | `status: 'consolidated'`, 301, same deploy as the key removal. | Negligible — no impressions means no rankings to lose. But the doc's original redirect target does not exist yet, which is why this is on hold rather than done. |
+| **C — consolidate** *(DONE 2026-09-18)* | The 10 combos with zero mobile impressions in six months **and** no Ads row in any trade: all three of `{bathrooms, kitchens, basements}-{clifton, fairfax-station, middleburg}-va`, plus `basements-burke-va`. | Shipped: CONTENT keys removed, permanent redirects generated from `src/lib/retired-combos.ts`. **Two destinations, one rule** — most specific surviving page that still serves the query. Basements → `/services/basements/northern-virginia` (trade kept, place widened). Kitchens and baths → the town's own `/service-areas/` page, because those trades have no regional page by design. | Negligible — no impressions means no rankings to lose. The towns' area pages are Tier D and survive, so the kitchen/bath 301s land on live pages. |
 | **D — leave alone** | `/service-areas/{burke, clifton, fairfax-station, middleburg, mclean}-va` overview pages | Keep. Clifton's area page holds 48 impressions at 15.2; McLean's 209. They become children of the hub and gate their operational FAQ by `kind`. | None. |
 
 Alexandria is the interesting case and the proof the name test works: it is a
@@ -659,18 +661,27 @@ Every step is gated by the one above it where it says so.
    the footprint is wider than §3.5 said: the warranty language alone is on
    30 of the 69 combos, 3 service pages, both templates, the sitewide FAQ,
    eight standalone pages and 15 blog posts.
-4. Tier C consolidation. **On hold, deliberately — two reasons.**
-   - **The redirect target does not exist.** §3.3 sends the consolidated
-     combos to `/services/{service}/northern-virginia`, which Phase 2 builds.
-     Shipping 301s into a 404 is worse than leaving the pages up, and
-     redirecting them somewhere else instead (the town overview page, or the
-     service pillar) is a different decision from the one this document made.
-     Tier C therefore belongs *after* Phase 2.1, not in Phase 1.
-   - **The list was wrong and is now corrected** (§1.5 and the Tier C note in
-     §3.3). It is 10 combos in three towns, not 5 in five towns, and it no
-     longer touches McLean.
+4. Tier C consolidation. **Shipped 2026-09-18, after Phase 2.1.** It was held
+   for two reasons, both now resolved:
+   - **The redirect target did not exist.** §3.3 sent the consolidated combos
+     to `/services/{service}/northern-virginia`, which Phase 2.1 built.
+     Shipping 301s into a 404 would have been worse than leaving the pages up.
+   - **The list was wrong and was corrected** (§1.5 and the Tier C note in
+     §3.3). 10 combos in three towns, not 5 in five towns, and McLean withdrawn.
 
-   Nothing else in Phase 1 depended on it, so items 1-3 shipped without it.
+   **§3.3 assumed one regional page per trade, and that was wrong.** Only
+   basements has a regional page; kitchens and baths stay at town altitude by
+   design, so six of the ten combos had no `/services/{service}/northern-virginia`
+   to land on. The owner chose the town's own area overview page for those,
+   which preserves the place match the query carried where the service pillar
+   would throw it away. So one rule — redirect to the most specific surviving
+   page that still serves the query — with two outcomes.
+
+   Side effect worth recording: retiring these ten pages removed **42
+   published occurrences of unconfirmed operational claims** across six of the
+   seven registered claims, on pages nobody was reading. Retiring dead pages is
+   the cheapest reduction in contract exposure available and needed no content
+   decision from the owner.
 
 **Phase 1 status, 2026-09-18.** Items 1 and 2 shipped in #142 (the catalog,
 the `market`-gated service-radius claim, the corrected regional geography,
@@ -752,14 +763,11 @@ dead import). Item 3 shipped in #143. Item 4 is above.
    across kitchens and bathrooms is the single easiest way to undo §1.5 with
    good intentions — `kitchen remodeling mclean va` is 260/mo and Vienna 140.
 
-**Tier C is now unblocked, with one open decision.** Its 301 target exists for
-basements. But six of the ten combos are kitchen and bathroom pages in Clifton,
-Fairfax Station and Middleburg, and those trades have no regional page by
-design — so those six have no `/services/{service}/northern-virginia` to land
-on. The two candidate targets are the town's own area overview page (Tier D,
-kept, and it preserves the place match the query carried) or the service pillar
-(which loses the place entirely). That is a decision this document has not
-made; §3.3 assumed one regional page per trade. Recommend the area overview.
+**Tier C shipped 2026-09-18**, in #148, once Phase 2.1 gave the basement
+combos a target. The open question — where the six kitchen and bathroom combos
+should land, since those trades have no regional page by design — was put to
+the owner, who chose the town's own area overview page. §3.3 and §8 record the
+resulting rule and the 42 unconfirmed-claim occurrences the retirement removed.
 
 **Phase 3 — off-repo, parallel with Phase 2.**
 Directory profiles: Angi, Houzz, Yelp, BuildZoom, Thumbtack (the repo already

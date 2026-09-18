@@ -8,6 +8,7 @@ import {
   serviceHrefForArea,
   comboPublishesPricing,
   unconfirmedClaimIdsInCombo,
+  RETIRED_COMBOS,
 } from '@/lib/service-city-content';
 import {
   SERVICES,
@@ -171,6 +172,11 @@ describe('basement snippets lead with price', () => {
   const basementKeys = Object.keys(CONTENT).filter((k) => k.startsWith('basements-'));
 
   it('has basement combos to check', () => {
+    // Exactly 10 after Tier C retired four of the original 14, so this floor
+    // now has ZERO margin: retiring one more basement page fails here. That is
+    // deliberate — basements are the site's strongest cluster by position
+    // (§1 of the altitude doc), so thinning them further should be a decision,
+    // not something a cleanup notices after the fact.
     expect(basementKeys.length).toBeGreaterThanOrEqual(10);
   });
 
@@ -570,6 +576,37 @@ describe('unconfirmedClaimIdsInCombo', () => {
   });
 
   /**
+   * How many premium pages the trust-bullet rule bites on, pinned.
+   *
+   * I told the reviewer on #147 that this split was "pinned by count" — and it
+   * was not: the pin was dropped in the same commit that said so, when the
+   * predicate changed from a boolean to an id list. Tier C then moved it from
+   * 36/11 to 26/11 with nothing failing. Restored, because the count IS the
+   * site's published-claim footprint and the register exists to track it.
+   *
+   * 26 premium combos publish an unconfirmed claim in their own copy; 11 do
+   * not. It was 36/11 before Tier C retired ten pages — a reduction of ten
+   * pages carrying these promises, which is the direction that matters.
+   *
+   * Correctness does not rest on this number: `trust-bullets.test.ts` asserts
+   * per claim that no page is handed one its copy does not make. This is the
+   * visible measure, so a copy edit or a retirement that changes the footprint
+   * surfaces as a decision rather than a side effect.
+   */
+  it('splits the premium combos 26 carrying claims to 11 not', () => {
+    let carrying = 0;
+    let clean = 0;
+    for (const key of Object.keys(CONTENT)) {
+      const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
+      if (!area || area.market !== 'premium') continue;
+      const service = key.slice(0, key.length - area.slug.length - 1);
+      if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
+      else clean += 1;
+    }
+    expect({ carrying, clean }).toEqual({ carrying: 26, clean: 11 });
+  });
+
+  /**
    * The exact case Codex used to refute the any-claim predicate. This page's
    * copy carries `active-work-timeline` and NONE of the four the trust bullets
    * publish, so a predicate that only asked "any claim?" would have handed it
@@ -587,4 +624,227 @@ describe('unconfirmedClaimIdsInCombo', () => {
       expect(ids, `${id} should not be reported for bathrooms-ashburn-va`).not.toContain(id);
     }
   });
+});
+
+describe('Tier C retired combos', () => {
+  /**
+   * Ten service+area pages retired 2026-09-18 (§3.3 of the altitude doc): zero
+   * mobile impressions in six months AND no Ads row in any trade.
+   *
+   * The combo route builds generateStaticParams from CONTENT keys and sets
+   * dynamicParams = false, so a key removed from CONTENT is a HARD 404 unless
+   * next.config.ts redirects it. These tests are what stop a retirement
+   * shipping half-done.
+   */
+  it('retires exactly the ten combos the doc names', () => {
+    expect(Object.keys(RETIRED_COMBOS).sort()).toEqual(
+      [
+        'basements-burke-va',
+        'basements-clifton-va',
+        'basements-fairfax-station-va',
+        'basements-middleburg-va',
+        'bathrooms-clifton-va',
+        'bathrooms-fairfax-station-va',
+        'bathrooms-middleburg-va',
+        'kitchens-clifton-va',
+        'kitchens-fairfax-station-va',
+        'kitchens-middleburg-va',
+      ].sort()
+    );
+  });
+
+  /**
+   * A page cannot be both published and retired. If it is, CONTENT wins (the
+   * route builds it) and the 301 never fires, so the retirement is a no-op
+   * that looks done.
+   */
+  it('publishes nothing it has retired', () => {
+    for (const key of Object.keys(RETIRED_COMBOS)) {
+      expect(CONTENT, `${key} is retired but still published in CONTENT`).not.toHaveProperty(key);
+    }
+  });
+
+  /**
+   * McLean was in an earlier draft of this list and was withdrawn: Ads rows in
+   * all three trades (basements 30/mo, kitchens 260, bathrooms 140). Pinned
+   * because re-adding it would delete pages for reported demand, which is the
+   * error the altitude doc exists to stop repeating.
+   */
+  it.each(['basements-mclean-va', 'kitchens-mclean-va', 'bathrooms-mclean-va'])(
+    'keeps %s — McLean was withdrawn from Tier C',
+    (key) => {
+      expect(RETIRED_COMBOS).not.toHaveProperty(key);
+      expect(Object.keys(CONTENT)).toContain(key);
+    }
+  );
+
+  /**
+   * Burke keeps its kitchen and bathroom combos (10/mo apiece — tiny, but
+   * reported) and lost only its basement page.
+   */
+  it('retires only the basement page in Burke', () => {
+    expect(RETIRED_COMBOS).toHaveProperty('basements-burke-va');
+    expect(Object.keys(CONTENT)).toContain('kitchens-burke-va');
+    expect(Object.keys(CONTENT)).toContain('bathrooms-burke-va');
+  });
+
+  /**
+   * The destination rule: the most specific SURVIVING page that still serves
+   * the query. Basements keep the trade and widen the place to the region;
+   * kitchens and bathrooms have no regional page by design, so they keep the
+   * place and drop to the area page.
+   */
+  it('sends basements to the regional page and the rest to the area page', () => {
+    for (const [key, destination] of Object.entries(RETIRED_COMBOS)) {
+      if (key.startsWith('basements-')) {
+        expect(destination, `${key} should keep its trade`).toBe(
+          '/services/basements/northern-virginia'
+        );
+      } else {
+        const area = key.slice(key.indexOf('-') + 1);
+        expect(destination, `${key} should keep its place`).toBe(`/service-areas/${area}`);
+      }
+    }
+  });
+
+  /**
+   * The redirect assertion, carrying the conditions the AREA-level version in
+   * constants.test.ts took nine rounds of review to arrive at. Read its
+   * docblock before changing this one; the holes it closed were, in order:
+   * proxy-not-invariant, Map-vs-ordered-list, literal-vs-dynamic matching,
+   * hand-written types hiding has/missing, self-redirects, query-string
+   * bypass, non-resolving targets, and protocol-relative origins.
+   *
+   * It proves a named sufficient condition rather than predicting Next's
+   * router:
+   *
+   *   (a) no redirect has a dynamic source that could overlap `/services/`,
+   *   (b) exactly one rule's source is the retired combo's literal path, with
+   *       the declared destination and `permanent: true`,
+   *   (c) that rule is unconditional — no `has`, no `missing`, and
+   *   (d) the destination resolves to a page that exists: same-origin, not
+   *       itself, and either an active area page or a published combo.
+   *
+   * Given (a), literal matching is Next's behaviour for these paths; given
+   * (c) the rule always fires; so (b) and (d) decide the outcome.
+   */
+  it('redirects every retired combo to a page that exists', async () => {
+    const { default: nextConfig } = await import('../../next.config');
+    // Typed from the config's own signature, never by hand: a hand-written
+    // shape is what hid the has/missing hole in the area-level version.
+    const redirects = await nextConfig.redirects!();
+    const retired = Object.entries(RETIRED_COMBOS);
+
+    // (a) Nothing dynamic may overlap /services/.
+    if (retired.length > 0) {
+      const DYNAMIC = /[:*(]/;
+      for (const rule of redirects.filter((r) => DYNAMIC.test(r.source))) {
+        const staticPrefix = rule.source.split(DYNAMIC)[0];
+        const couldOverlap =
+          '/services/'.startsWith(staticPrefix) || staticPrefix.startsWith('/services/');
+        expect(
+          couldOverlap,
+          `redirect "${rule.source}" is dynamic and could match paths under /services/, so it may preempt a retirement redirect. This test cannot predict which rule Next picks once that is true — make the overlapping rule specific, or order it after these and narrow this check`
+        ).toBe(false);
+      }
+    }
+
+    const BASE = 'https://www.realelitecontracting.com';
+    const activeAreaSlugs = new Set(ALL_SERVICE_AREAS.map((a) => a.slug));
+    const publishedCombos = new Set(Object.keys(CONTENT));
+
+    for (const [key, declared] of retired) {
+      const dash = key.indexOf('-');
+      const source = `/services/${key.slice(0, dash)}/${key.slice(dash + 1)}`;
+
+      // (b) Exactly one literal rule, declared destination, 301.
+      const matching = redirects.filter((r) => r.source === source);
+      expect(
+        matching.length,
+        `${key} is retired but next.config.ts has no redirect from ${source}, so that URL is a hard 404 (dynamicParams = false)`
+      ).toBeGreaterThan(0);
+      expect(
+        matching.length,
+        `${source} has ${matching.length} redirect rules. Next uses the first match, so a stale duplicate would silently win — remove the extras`
+      ).toBe(1);
+
+      const configured = matching[0];
+      expect(
+        configured.destination,
+        `${source} redirects to "${configured.destination}" but RETIRED_COMBOS declares "${declared}" — one of the two is wrong`
+      ).toBe(declared);
+      // Permanent, not temporary. Next emits 308 for `permanent: true`, not
+      // 301; Google treats both as permanent for canonicalisation, so the
+      // destination inherits the retired page's signals either way.
+      expect(
+        configured.permanent,
+        `${source} is a temporary redirect; a retired page should redirect permanently so the destination inherits its ranking signals`
+      ).toBe(true);
+
+      // (c) Unconditional, or every non-matching request 404s on the dead route.
+      expect(
+        configured.has,
+        `${source} redirects only when its \`has\` conditions match; every other request 404s on the retired route`
+      ).toBeUndefined();
+      expect(
+        configured.missing,
+        `${source} redirects only when its \`missing\` conditions match; every other request 404s on the retired route`
+      ).toBeUndefined();
+
+      // (d) The destination resolves. Parse once and check the origin BEFORE
+      // trusting the pathname: '//other.example/x' passes a leading-slash test
+      // and resolves to a local-looking pathname while sending visitors
+      // off-site. That was finding 9 on the area-level version.
+      expect(
+        declared.startsWith('/'),
+        `${key} redirects to "${declared}", which is not a site-relative path`
+      ).toBe(true);
+      const url = new URL(declared, BASE);
+      expect(
+        url.origin,
+        `${key} redirects off-site to ${url.host} — "${declared}" is not same-origin`
+      ).toBe(BASE);
+
+      const path = url.pathname.replace(/\/$/, '');
+      expect(path, `${key} redirects to itself, which is an infinite redirect`).not.toBe(source);
+
+      // Either an active area page or a published combo. Anything else — a
+      // typo, a removed route, another retired combo — is a link to a 404.
+      const areaMatch = /^\/service-areas\/([a-z0-9-]+)$/.exec(path);
+      const comboMatch = /^\/services\/([a-z0-9-]+)\/([a-z0-9-]+)$/.exec(path);
+
+      if (areaMatch) {
+        expect(
+          activeAreaSlugs.has(areaMatch[1]),
+          `${key} redirects to ${path}, but "${areaMatch[1]}" is not an active service area, so the destination 404s`
+        ).toBe(true);
+      } else if (comboMatch) {
+        const targetKey = `${comboMatch[1]}-${comboMatch[2]}`;
+        expect(
+          publishedCombos.has(targetKey),
+          `${key} redirects to ${path}, but "${targetKey}" is not published in CONTENT, so the destination 404s`
+        ).toBe(true);
+      } else {
+        throw new Error(
+          `${key} redirects to ${path}, which is neither an area page nor a service+area page. Those are the two shapes this test can prove resolve. If another destination is genuinely needed, extend this check to prove THAT route exists — do not widen the pattern and lose the guarantee.`
+        );
+      }
+    }
+  });
+
+  /**
+   * The area pages the kitchen and bathroom redirects land on are Tier D —
+   * kept deliberately, not retired. Clifton's holds 48 impressions at position
+   * 15.2. If one were ever consolidated, these 301s would chain into another
+   * 301 or a 404, which (d) above cannot see because it only checks the
+   * immediate destination.
+   */
+  it.each(['clifton-va', 'fairfax-station-va', 'middleburg-va', 'burke-va'])(
+    'keeps the %s area page, which retirement redirects depend on',
+    (slug) => {
+      const area = ALL_SERVICE_AREAS.find((a) => a.slug === slug);
+      expect(area, `${slug} is a redirect destination but is no longer an active area`).toBeDefined();
+      expect(area!.status).toBe('active');
+    }
+  );
 });

@@ -31,6 +31,27 @@
  * claim and the retraction is a mechanical edit against a known list rather
  * than a repo-wide hunt.
  *
+ * ## Shrinking an inventory when a page is RETIRED, not when it is awkward
+ *
+ * 2026-09-18: Tier C retired ten service+area pages (see `RETIRED_COMBOS` in
+ * service-city-content.ts), and 42 inventory entries across six claims pointed
+ * at them. Those entries are removed.
+ *
+ * This is NOT the move this file's `howToFix` forbids. That prohibition is on
+ * ADDING a location so a failing guard goes quiet, which hides a claim
+ * spreading to a new page. Here the pages ceased to exist: the
+ * `records only combo keys and service slugs that actually exist` test fails
+ * if a retired key stays, precisely so a stale inventory cannot quietly turn
+ * the ratchet into a no-op for that claim.
+ *
+ * The net effect is real and in the right direction — 42 fewer published
+ * occurrences of unconfirmed operational promises, on pages that had zero
+ * mobile impressions in six months. Retiring dead pages is the cheapest
+ * reduction in contract exposure available, and it needed no content decision
+ * from the owner because nothing was read there.
+ *
+ * The remaining worklist is smaller but the seven claims are unresolved.
+ *
  * ## How to resolve a claim
  *
  * - **Owner confirms it** → set `status: 'verified'` and empty its
@@ -203,11 +224,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'bathrooms-vienna-va', 'kitchens-vienna-va', 'basements-vienna-va',
         'bathrooms-great-falls-va', 'kitchens-great-falls-va', 'basements-great-falls-va',
         'bathrooms-reston-va', 'kitchens-reston-va', 'basements-reston-va',
-        'bathrooms-burke-va', 'kitchens-burke-va', 'basements-burke-va',
-        'bathrooms-fairfax-station-va', 'kitchens-fairfax-station-va', 'basements-fairfax-station-va',
-        'bathrooms-clifton-va', 'kitchens-clifton-va', 'basements-clifton-va',
-        'bathrooms-middleburg-va', 'kitchens-middleburg-va', 'basements-middleburg-va',
-      ],
+        'bathrooms-burke-va', 'kitchens-burke-va', ],
       serviceSlugs: ['kitchens', 'roofing', 'general-repairs'],
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
@@ -234,11 +251,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'kitchens-vienna-va', 'basements-vienna-va', 'bathrooms-great-falls-va',
         'kitchens-great-falls-va', 'basements-great-falls-va', 'bathrooms-reston-va',
         'kitchens-reston-va', 'basements-reston-va', 'bathrooms-burke-va',
-        'kitchens-burke-va', 'basements-burke-va', 'bathrooms-fairfax-station-va',
-        'kitchens-fairfax-station-va', 'basements-fairfax-station-va', 'bathrooms-clifton-va',
-        'kitchens-clifton-va', 'basements-clifton-va', 'bathrooms-middleburg-va',
-        'kitchens-middleburg-va', 'basements-middleburg-va',
-      ],
+        'kitchens-burke-va', ],
       serviceSlugs: ['bathrooms', 'kitchens', 'remodeling'],
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
@@ -261,10 +274,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'basements-alexandria-va', 'bathrooms-vienna-va', 'kitchens-vienna-va',
         'bathrooms-great-falls-va', 'kitchens-great-falls-va', 'bathrooms-reston-va',
         'kitchens-reston-va', 'bathrooms-burke-va', 'kitchens-burke-va',
-        'bathrooms-fairfax-station-va', 'kitchens-fairfax-station-va',
-        'bathrooms-clifton-va', 'kitchens-clifton-va', 'bathrooms-middleburg-va',
-        'kitchens-middleburg-va',
-      ],
+        ],
       serviceSlugs: ['bathrooms'],
       templates: [],
     },
@@ -282,9 +292,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'bathrooms-leesburg-va', 'bathrooms-winchester-va', 'kitchens-frederick-md',
         'kitchens-leesburg-va', 'kitchens-ashburn-va', 'kitchens-loudoun-county-va',
         'basements-frederick-md', 'basements-mclean-va', 'basements-vienna-va',
-        'basements-great-falls-va', 'basements-reston-va', 'basements-burke-va',
-        'basements-fairfax-station-va', 'basements-clifton-va', 'basements-middleburg-va',
-      ],
+        'basements-great-falls-va', 'basements-reston-va', ],
       serviceSlugs: ['bathrooms', 'kitchens', 'decks', 'remodeling'],
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
@@ -307,11 +315,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         'basements-vienna-va', 'bathrooms-great-falls-va', 'kitchens-great-falls-va',
         'basements-great-falls-va', 'bathrooms-reston-va', 'kitchens-reston-va',
         'basements-reston-va', 'bathrooms-burke-va', 'kitchens-burke-va',
-        'basements-burke-va', 'bathrooms-fairfax-station-va', 'kitchens-fairfax-station-va',
-        'basements-fairfax-station-va', 'bathrooms-clifton-va', 'kitchens-clifton-va',
-        'basements-clifton-va', 'bathrooms-middleburg-va', 'kitchens-middleburg-va',
-        'basements-middleburg-va',
-      ],
+        ],
       serviceSlugs: ['bathrooms', 'kitchens', 'remodeling', 'general-repairs', 'handyman'],
       templates: [
         'src/app/services/[service]/[city]/page.tsx',
@@ -332,9 +336,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       comboKeys: [
         'bathrooms-mclean-va', 'kitchens-mclean-va', 'kitchens-alexandria-va',
         'bathrooms-vienna-va', 'kitchens-vienna-va', 'kitchens-great-falls-va',
-        'kitchens-reston-va', 'kitchens-burke-va', 'kitchens-fairfax-station-va',
-        'kitchens-clifton-va',
-      ],
+        'kitchens-reston-va', 'kitchens-burke-va', ],
       serviceSlugs: [],
       templates: [],
     },

@@ -357,11 +357,15 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
         `${source} redirects to "${configured.destination}" but the catalog declares redirectTo: "${area.redirectTo}" — one of the two is wrong`
       ).toBe(area.redirectTo);
 
-      // 301, not 302: a retired area's ranking signals should pass to the page
-      // that replaced it. The altitude plan specifies 301 for consolidation.
+      // Permanent, not temporary: a retired area's ranking signals should pass
+      // to the page that replaced it. Note Next emits 308 for
+      // `permanent: true`, not the 301 the altitude plan's prose says; Google
+      // treats both as permanent for canonicalisation, so the plan's intent
+      // holds. Corrected here because the comment asserted a status code the
+      // config does not actually produce.
       expect(
         configured.permanent,
-        `${source} is a temporary redirect; a retired area should 301 so the destination inherits its ranking signals`
+        `${source} is a temporary redirect; a retired area should redirect permanently so the destination inherits its ranking signals`
       ).toBe(true);
 
       // (c) Unconditional. A `has`/`missing` predicate means the redirect only
