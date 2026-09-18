@@ -334,13 +334,31 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'brambleton-va', city: 'Brambleton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['secondary'] },
 ];
 
+/**
+ * Keep only the rows that still publish pages.
+ *
+ * EVERY derived view runs through this, and that is not incidental. The legacy
+ * tier views are rendered as links — the service-areas index, the homepage
+ * service-area map, the footer, LocalAreasServed — while `ALL_SERVICE_AREAS`
+ * decides which pages get generated. If the two disagree about a consolidated
+ * row, the site advertises a link to its own 404. `/service-areas/[slug]` sets
+ * no `dynamicParams`, so a slug missing from generateStaticParams renders on
+ * demand and hits `notFound()`.
+ *
+ * Generic over the row type so it can be unit-tested against synthetic rows
+ * rather than only against the real catalog, where nothing is consolidated yet
+ * and the bug would therefore stay invisible.
+ */
+export const activeAreas = <T extends { status: AreaStatus }>(rows: readonly T[]): T[] =>
+  rows.filter((row) => row.status === 'active');
+
 const byLegacyTier = (tier: 'primary' | 'secondary' | 'expansion'): ServiceArea[] =>
-  SERVICE_AREA_CATALOG.filter((a) => a.legacyTiers.includes(tier));
+  activeAreas(SERVICE_AREA_CATALOG.filter((a) => a.legacyTiers.includes(tier)));
 
 /**
  * Derived compatibility views. Each preserves the membership and the order
  * the hand-written array had, so no consumer changed when the catalog landed;
- * `constants.test.ts` pins both.
+ * `constants.test.ts` pins both. All three are active-only — see `activeAreas`.
  */
 export const PRIMARY_SERVICE_AREAS = byLegacyTier('primary');
 export const SECONDARY_SERVICE_AREAS = byLegacyTier('secondary');
@@ -537,14 +555,14 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
  * removes the need for. Consolidated rows drop out here, which is how an
  * area stops generating pages.
  */
-export const ALL_SERVICE_AREAS: readonly ServiceArea[] = SERVICE_AREA_CATALOG.filter(
-  (a) => a.status === 'active'
-);
+export const ALL_SERVICE_AREAS: readonly ServiceArea[] = activeAreas(SERVICE_AREA_CATALOG);
 
 /**
  * Areas whose own pages have been retired. Each must carry `redirectTo`, and
- * the matching redirect has to exist in next.config.ts — a consolidated row
- * with no redirect is a hard 404, so constants.test.ts fails the build on one.
+ * `next.config.ts` must actually redirect `/service-areas/<slug>` — without
+ * that the retired URL is a 404, not a redirect. `constants.test.ts` reads the
+ * real redirect list out of the config and fails the build on a row that is
+ * missing one, rather than only checking that `redirectTo` looks like a path.
  */
 export const CONSOLIDATED_SERVICE_AREAS: readonly ServiceArea[] =
   SERVICE_AREA_CATALOG.filter((a) => a.status === 'consolidated');

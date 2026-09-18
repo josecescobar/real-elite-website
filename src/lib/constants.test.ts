@@ -9,6 +9,7 @@ import {
   CONSOLIDATED_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
   getServiceArea,
+  activeAreas,
   isLocalityArea,
   areaRegionLabel,
   CITY_DATA,
@@ -143,11 +144,78 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
     }
   });
 
+  /**
+   * The real invariant, not a proxy for it.
+   *
+   * An earlier version of this file checked only that `redirectTo` started
+   * with a slash, while the comment beside it claimed the redirect had to
+   * exist in next.config.ts. Those are different things: a consolidated row
+   * drops out of ALL_SERVICE_AREAS, so with no redirect configured its old URL
+   * is a 404 and the string check would have passed anyway. This reads the
+   * config's actual redirect list.
+   */
+  it('has a configured redirect for every consolidated area URL', async () => {
+    const { default: nextConfig } = await import('../../next.config');
+    const redirects = (await nextConfig.redirects!()) as { source: string }[];
+    const sources = new Set(redirects.map((r) => r.source));
+    for (const area of CONSOLIDATED_SERVICE_AREAS) {
+      expect(
+        sources.has(`/service-areas/${area.slug}`),
+        `${area.slug} is consolidated but next.config.ts has no redirect from /service-areas/${area.slug}, so that URL is a 404`
+      ).toBe(true);
+    }
+  });
+
   it('never lists a consolidated row as active', () => {
     const active = new Set(ALL_SERVICE_AREAS.map((a) => a.slug));
     for (const area of CONSOLIDATED_SERVICE_AREAS) {
       expect(active.has(area.slug), `${area.slug} is both active and consolidated`).toBe(false);
     }
+  });
+
+  /**
+   * The legacy tier views are rendered as links by the service-areas index,
+   * the homepage area map, the footer and LocalAreasServed, while
+   * ALL_SERVICE_AREAS decides what gets generated. If a consolidated row
+   * survives in the tier views, the site links to its own 404.
+   */
+  it('keeps consolidated rows out of the legacy tier views', () => {
+    for (const [name, view] of [
+      ['PRIMARY_SERVICE_AREAS', PRIMARY_SERVICE_AREAS],
+      ['SECONDARY_SERVICE_AREAS', SECONDARY_SERVICE_AREAS],
+      ['EXPANSION_SERVICE_AREAS', EXPANSION_SERVICE_AREAS],
+    ] as const) {
+      for (const area of view) {
+        expect(area.status, `${name} still lists consolidated area ${area.slug}`).toBe('active');
+      }
+    }
+  });
+});
+
+/**
+ * Tested against synthetic rows on purpose. Nothing in the real catalog is
+ * consolidated yet, so an assertion over SERVICE_AREA_CATALOG would pass
+ * whether or not the filtering works — which is exactly how this shipped
+ * missing from the legacy tier views in the first place.
+ */
+describe('activeAreas', () => {
+  const rows = [
+    { slug: 'kept', status: 'active' as const },
+    { slug: 'retired', status: 'consolidated' as const },
+    { slug: 'also-kept', status: 'active' as const },
+  ];
+
+  it('drops consolidated rows and preserves the order of the rest', () => {
+    expect(activeAreas(rows).map((r) => r.slug)).toEqual(['kept', 'also-kept']);
+  });
+
+  it('returns an empty list when every row is consolidated', () => {
+    expect(activeAreas([{ slug: 'gone', status: 'consolidated' as const }])).toEqual([]);
+  });
+
+  it('leaves an all-active list untouched', () => {
+    const allActive = [rows[0], rows[2]];
+    expect(activeAreas(allActive)).toEqual(allActive);
   });
 });
 
