@@ -197,19 +197,65 @@ describe('every app route declares its own canonical', () => {
     return ts.isObjectLiteralExpression(initializer) ? initializer : undefined;
   }
 
-  /**
-   * The object a property's value is: its initializer longhand, or the binding it
-   * names when written shorthand (`{ alternates }`).
-   */
-  const valueObject = (property: ts.Node): ts.ObjectLiteralExpression | undefined => {
-    if (ts.isPropertyAssignment(property)) return objectOf(property.initializer);
-    if (ts.isShorthandPropertyAssignment(property)) return objectOf(property.name);
-    return undefined;
-  };
-
   /** A direct member of `object` named `name`. */
   const memberOf = (object: ts.ObjectLiteralExpression, name: string) =>
     object.properties.find((property) => named(property, name));
+
+  /**
+   * What `name` holds once the object's properties are applied in source order.
+   *
+   * `.find()` was wrong twice over: it takes the *first* match, and it cannot
+   * see a spread at all. JavaScript takes the last writer, and a spread is a
+   * writer — so `{ ...buildMetadata({ path, … }), alternates: { languages } }`
+   * drops the canonical the spread supplied. That is not an exotic shape; it is
+   * what adding hreflang to a canonicalised page looks like if you forget that
+   * `alternates` is replaced wholesale rather than merged.
+   *
+   * `suppliesSection` reports a spread source known to provide the section
+   * without being resolvable to an object literal — buildMetadata()'s
+   * `alternates`. A spread whose source does not mention the section leaves it
+   * alone, which is why there is no `else` clearing the state.
+   */
+  type SectionWrite =
+    | { kind: 'unset' }
+    | { kind: 'helper' }
+    | { kind: 'value'; value: ts.Expression };
+
+  const writtenBy = (property: ts.ObjectLiteralElementLike): SectionWrite => {
+    if (ts.isPropertyAssignment(property)) return { kind: 'value', value: property.initializer };
+    if (ts.isShorthandPropertyAssignment(property)) return { kind: 'value', value: property.name };
+    return { kind: 'unset' };
+  };
+
+  function lastWriteOf(
+    object: ts.ObjectLiteralExpression,
+    name: string,
+    suppliesSection: (spread: ts.Expression) => boolean = () => false
+  ): SectionWrite {
+    let state: SectionWrite = { kind: 'unset' };
+    for (const property of object.properties) {
+      if (ts.isSpreadAssignment(property)) {
+        if (suppliesSection(property.expression)) {
+          state = { kind: 'helper' };
+          continue;
+        }
+        const source = objectOf(property.expression);
+        const member = source && memberOf(source, name);
+        if (member) state = writtenBy(member);
+        continue;
+      }
+      if (named(property, name)) state = writtenBy(property);
+    }
+    return state;
+  }
+
+  /** Does the winning `alternates` carry a `canonical`? */
+  const sectionHasCanonical = (write: SectionWrite): boolean => {
+    if (write.kind === 'helper') return true;
+    if (write.kind !== 'value') return false;
+    const section = objectOf(write.value);
+    return !!section && memberOf(section, 'canonical') !== undefined;
+  };
 
   /**
    * Does this metadata *value* carry `alternates.canonical`? Anchored to the
@@ -220,11 +266,7 @@ describe('every app route declares its own canonical', () => {
    */
   const hasCanonical = (value: ts.Expression): boolean => {
     const object = objectOf(value);
-    if (!object) return false;
-    const alternates = memberOf(object, 'alternates');
-    if (!alternates) return false;
-    const section = valueObject(alternates);
-    return !!section && memberOf(section, 'canonical') !== undefined;
+    return !!object && sectionHasCanonical(lastWriteOf(object, 'alternates'));
   };
 
   /**
@@ -238,15 +280,13 @@ describe('every app route declares its own canonical', () => {
   const hasNoIndex = (value: ts.Expression): boolean => {
     const object = objectOf(value);
     if (!object) return false;
-    const robots = memberOf(object, 'robots');
-    if (!robots) return false;
+    const write = lastWriteOf(object, 'robots');
+    if (write.kind !== 'value') return false;
 
-    if (ts.isPropertyAssignment(robots)) {
-      const directive = unwrap(robots.initializer);
-      if (ts.isStringLiteral(directive) && /\bnoindex\b/.test(directive.text)) return true;
-    }
+    const directive = unwrap(write.value);
+    if (ts.isStringLiteral(directive) && /\bnoindex\b/.test(directive.text)) return true;
 
-    const section = valueObject(robots);
+    const section = objectOf(write.value);
     const index = section && memberOf(section, 'index');
     return (
       !!index &&
@@ -754,16 +794,14 @@ describe('every app route declares its own canonical', () => {
       // `return buildMetadata({ … })`, and `const base = buildMetadata({ … });
       // return base` — the second is why this is not just `isHelperCall`.
       if (isHelperResult(value)) return true;
-      // `hasCanonical` resolves an identifier to its object literal already.
-      if (hasCanonical(value)) return true;
 
+      // Otherwise the object decides, and the *last* writer of `alternates`
+      // wins — a spread of the helper's result included. `isHelperResult` is
+      // what tells the walk that such a spread supplies the canonical, since
+      // a call does not resolve to an object literal.
       const object = objectOf(value);
       if (!object) return false;
-      return object.properties.some(
-        (property) =>
-          ts.isSpreadAssignment(property) &&
-          (isHelperResult(property.expression) || hasCanonical(property.expression))
-      );
+      return sectionHasCanonical(lastWriteOf(object, 'alternates', isHelperResult));
     };
 
     const carriesCanonical = (node: ts.Node) => valuesOf(node).some(yieldsCanonical);
