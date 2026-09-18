@@ -537,9 +537,11 @@ than the same $4,000 spent on pages.
 
 Three conditions, all before the first dollar:
 
-1. GA4 key events for `generate_lead` and `phone_click`. Google Ads optimises
-   toward imported key events, so without them the campaign bids blind and
-   your dashboard reads zero. (Corrected 2026-09-18: this said "or the spend
+1. GA4 key events for `generate_lead` and `phone_click`, **and then the Google
+   Ads link plus conversion import**. The GA4 flag alone gives Ads nothing —
+   the account link and import are a separate step (`MILLION-DOLLAR-WEBSITE-PLAN.md`
+   item 0.6). Without both, the campaign bids blind and your dashboard reads
+   zero. (Corrected 2026-09-18: this said "or the spend
    cannot be evaluated at all", which is false — raw event counts are
    queryable without the flag and can evaluate the spend.)
 2. A landing page whose claims are verified (§3.5). Paid traffic reads the
@@ -874,9 +876,10 @@ and call recordings, not revenue.
 
 **Phase 5 — read and decide, 2026-12-15.** The "before" it compares against is
 frozen in `docs/phase-5-baseline-2026-09-18.md`, captured the day this work
-shipped: 5 mobile clicks site-wide in three months, **zero** across all 23
-Northern Virginia pages, and **zero mobile impressions for any query containing
-"northern virginia"**. The regional page starts from nothing, which makes any
+shipped: 5 mobile clicks site-wide in three months, **zero** across the 23
+Northern Virginia URLs that returned any impression (of ~61 in the catalog; the
+rest returned zero impressions), and **zero mobile impressions for any query
+containing "northern virginia"**. The regional page starts from nothing, which makes any
 impression it earns attributable to it.
 
 **Phase 5 — read and decide, 2026-12-15.** Ninety days after the WV routes

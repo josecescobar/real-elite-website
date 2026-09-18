@@ -36,12 +36,19 @@ Everything else on the site took **zero mobile clicks**.
 
 ## Northern Virginia, which is what Phase 5 is actually testing
 
-| Segment | Pages | Impressions | Clicks |
+**These 23 are the Northern Virginia URLs that returned any mobile impression,
+not the inventory.** During this window the catalog held **14** NoVA area URLs
+and **47** NoVA combo URLs (37 live plus the 10 #148 retired on 2026-09-18) —
+about 61 in all. The ~38 absent from this table returned **zero mobile
+impressions**, which is their baseline: any of them appearing in December is a
+change from nothing, exactly like the regional page.
+
+| Segment | Pages with impressions | Impressions | Clicks |
 | --- | --- | --- | --- |
-| NoVA service+city combos | 19 | 461 | **0** |
+| NoVA service+city combos | 19 of 47 | 461 | **0** |
 | — of which basements | 5 | 177 | **0** |
-| NoVA area pages (Leesburg, McLean, Great Falls, Clifton) | 4 | 744 | **0** |
-| **All Northern Virginia** | **23** | **1,205** | **0** |
+| NoVA area pages (Leesburg, McLean, Great Falls, Clifton) | 4 of 14 | 744 | **0** |
+| **All impression-bearing NoVA URLs** | **23 of ~61** | **1,205** | **0** |
 
 And the number the regional page is being measured on:
 
@@ -313,10 +320,18 @@ a page edit moves.
 
 **County queries are the majority of `/service-areas/leesburg-va`, though the
 page does also rank on Leesburg terms.** 243 of its 381 impressions — 64% —
-are Loudoun County queries across 18 strings; the other 108 impressions (28%)
-come from 17 Leesburg-scoped strings, led by `home remodeling leesburg va` (29
-at 22.2), `siding contractor in leesburg` (15 at 28.6) and `tile contractors
-leesburg` (14 at 20.5).
+are Loudoun County queries across 18 strings. The page splits three ways, and
+the three sum to its 381:
+
+| Bucket | Strings | Impr |
+| --- | --- | --- |
+| Loudoun County | 18 | 243 |
+| Leesburg-scoped | 17 | 108 |
+| Branded / generic (`home restoration near me` 22, `elite *` 6, `local remodelers` 2) | 7 | 30 |
+
+The Leesburg-scoped ones are led by `home remodeling leesburg va` (29 at 22.2),
+`siding contractor in leesburg` (15 at 28.6) and `tile contractors leesburg`
+(14 at 20.5).
 
 Two of the three biggest county queries outrank **every** town query; the
 third does not — `basement finishing contractor in leesburg va` sits at 19.0,
