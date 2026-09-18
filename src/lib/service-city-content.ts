@@ -119,6 +119,22 @@ type ComboContent = {
    */
   metaTitle?: string;
   metaDescription?: string;
+  /**
+   * Blog slugs to surface in the Related Guides module at the foot of the page.
+   *
+   * AUTHORED, NEVER DERIVED. The module exists to answer a different intent
+   * than the page it sits on — someone reading a service+place page is closer
+   * to hiring than someone reading a guide — so the pairing is a judgement
+   * about which article a buyer on THIS page would still want, not a category
+   * match. Deriving it would surface the nearest article by tag and quietly
+   * cannibalise the page it is meant to support.
+   *
+   * Every slug here must resolve to a published post; `service-city-content.test.ts`
+   * fails the build otherwise. That guard is not decoration: `RelatedGuides`
+   * falls back to the three most recent posts when a slug does not resolve, so
+   * a typo would silently publish three unrelated articles rather than error.
+   */
+  relatedGuideSlugs?: readonly string[];
 };
 
 /**
@@ -636,6 +652,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Budget varies more by house than by town, which is the honest version of a regional price. Across the Northern Virginia pages this site publishes, finished lower-level scope runs from $55,000 at the smaller Burke and Reston end to $400,000+ for an estate-scale Great Falls build with a media room, wine room and second entertaining kitchen. Most Fairfax and Loudoun County projects land between those poles, and the variables that move a number are square footage, the feature mix, and how much millwork and stone the build carries. Estimates are issued line by line — framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone and finishes broken out separately — so the figure can be read rather than taken on trust.",
       "Permitting is the one part of a Northern Virginia basement that is genuinely not regional. Fairfax County, Loudoun County and the City of Alexandria each run their own permit and inspection process, and a lower level with bedrooms, a bath or a bar needs framing, electrical, plumbing, mechanical and final inspections in whichever jurisdiction the house sits in. Real Elite Contracting is veteran-owned, headquartered in Martinsburg, West Virginia, and licensed and insured in West Virginia, Maryland and Virginia.",
     ],
+    // §2.3 of the architecture doc. The Loudoun luxury-basement guide covers
+    // the room programme and finish tiers — theatre, wet bar, wine room, guest
+    // suite — which this page deliberately does not, because it is a hiring
+    // page and that is a research question. Different intent, so linking it
+    // adds a reason to stay rather than a competing landing page.
+    relatedGuideSlugs: ['luxury-basement-finishing-loudoun-northern-virginia-2026'],
   },
 
   // ── BATHROOMS · MCLEAN, VA ───────────────────────────────────────────────

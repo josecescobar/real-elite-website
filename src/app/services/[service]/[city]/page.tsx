@@ -18,6 +18,7 @@ import LuxuryConsultationRail from '@/components/services/LuxuryConsultationRail
 import InvestmentRanges from '@/components/services/InvestmentRanges';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import RelatedGuides from '@/components/services/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import {
@@ -165,6 +166,8 @@ export default async function ServiceCityPage({
   if (!serviceData || !cityData || !content) {
     notFound();
   }
+
+  const relatedGuideSlugs = content.relatedGuideSlugs ?? [];
 
   const consultationType = CONSULTATION_TYPE_FOR_SERVICE[service as FeaturedServiceSlug];
   const primaryCta = primaryCtaForService(service, {
@@ -453,6 +456,23 @@ export default async function ServiceCityPage({
 
       {/* Assurances */}
       <AssurancesBand />
+
+      {/* Related guides — authored per combo, and rendered ONLY when authored.
+          RelatedGuides falls back to the three most recent posts when it is
+          handed nothing, which on a hiring page would publish whatever was
+          written last. The length check is what keeps that fallback off the
+          59 combos with no pairing; fallbackCount={0} is the second lock, so
+          neither one silently doing nothing can publish arbitrary articles.
+          A slug that does not resolve is caught at build time by
+          service-city-content.test.ts rather than degrading to the same
+          fallback. */}
+      {relatedGuideSlugs.length > 0 && (
+        <section className="bg-white py-16 md:py-24">
+          <Container size="wide">
+            <RelatedGuides slugs={relatedGuideSlugs} fallbackCount={0} />
+          </Container>
+        </section>
+      )}
 
       {/* Final CTA */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
