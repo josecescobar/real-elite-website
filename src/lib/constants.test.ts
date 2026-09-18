@@ -173,25 +173,42 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
    * exercising Next's router, which is an integration test and out of
    * proportion here.
    *
+   * 5. A hand-written type for the rules hid the fields that decide whether a
+   *    redirect fires at all. Next supports `has` and `missing` predicates on
+   *    a redirect; one carrying either is conditional, and a normal request
+   *    that fails the predicate falls through to the retired route and 404s.
+   *    The narrow cast meant those fields were invisible here, so the
+   *    "sufficient condition" below did not actually establish an
+   *    unconditional redirect.
+   *
+   *    Root-cause fix: the rules are typed from the config's own signature
+   *    rather than by hand, so no supported field can be silently omitted
+   *    again.
+   *
+   * The root cause running through all five is that this is config data being
+   * used to predict a routing outcome. Verifying the outcome properly means
+   * exercising Next's router, which is an integration test and out of
+   * proportion here.
+   *
    * So the assertion below proves a SUFFICIENT CONDITION instead, and says so
    * rather than implying more:
    *
    *   (a) no redirect in the list has a dynamic source that could match
-   *       anything under `/service-areas/`, and
+   *       anything under `/service-areas/`,
    *   (b) exactly one rule's source is the retired area's literal path, with
-   *       the declared destination and `permanent: true`.
+   *       the declared destination and `permanent: true`, and
+   *   (c) that rule is unconditional — no `has`, no `missing`.
    *
-   * Given (a), literal matching IS Next's behaviour for these paths, so (b)
-   * decides the outcome. No path-to-regexp reimplementation, and the
-   * assumption is named instead of hidden.
+   * Given (a) literal matching IS Next's behaviour for these paths, and given
+   * (c) the matched rule always fires, so (b) decides the outcome. No
+   * path-to-regexp reimplementation, and every assumption is named.
    */
   it('redirects every consolidated area URL to its declared destination', async () => {
     const { default: nextConfig } = await import('../../next.config');
-    const redirects = (await nextConfig.redirects!()) as {
-      source: string;
-      destination: string;
-      permanent?: boolean;
-    }[];
+    // Typed from the config's own signature, not by hand. A hand-written shape
+    // omitted `has`/`missing` and so hid the conditional-redirect hole that
+    // finding 5 found.
+    const redirects = await nextConfig.redirects!();
 
     // (a) Nothing dynamic may overlap /service-areas/. Only checked when a row
     // is actually consolidated, so this does not constrain unrelated config.
@@ -240,6 +257,18 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
         configured.permanent,
         `${source} is a temporary redirect; a retired area should 301 so the destination inherits its ranking signals`
       ).toBe(true);
+
+      // (c) Unconditional. A `has`/`missing` predicate means the redirect only
+      // fires for some requests; every other request falls through to a route
+      // that no longer exists and 404s.
+      expect(
+        configured.has,
+        `${source} redirects only when its \`has\` conditions match; every other request 404s on the retired route`
+      ).toBeUndefined();
+      expect(
+        configured.missing,
+        `${source} redirects only when its \`missing\` conditions match; every other request 404s on the retired route`
+      ).toBeUndefined();
     }
   });
 
