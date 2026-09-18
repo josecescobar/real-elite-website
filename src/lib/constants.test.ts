@@ -137,10 +137,40 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
     }
   });
 
-  it('gives every consolidated row a redirect target that resolves', () => {
+  /**
+   * Named "resolves" and meaning it.
+   *
+   * The first version of this only checked that `redirectTo` began with a
+   * slash, which let two whole classes through: a row pointing at its own URL
+   * (an infinite redirect that satisfies every other assertion, because the
+   * configured and declared destinations agree), and a row pointing at an area
+   * that is itself retired or does not exist (a chain, a loop, or a 404).
+   */
+  it('gives every consolidated row a redirect target that actually resolves', () => {
     for (const area of CONSOLIDATED_SERVICE_AREAS) {
+      const source = `/service-areas/${area.slug}`;
+
       expect(area.redirectTo, `${area.slug} is consolidated with no redirectTo`).toBeTruthy();
       expect(area.redirectTo, `${area.slug} redirects off-site`).toMatch(/^\//);
+      expect(
+        area.redirectTo,
+        `${area.slug} redirects to its own URL, which is an infinite redirect`
+      ).not.toBe(source);
+
+      // When the destination is another area page, that area has to still
+      // publish one. Retired → the redirect chains or loops; unknown → 404.
+      const target = /^\/service-areas\/([a-z0-9-]+)$/.exec(area.redirectTo!);
+      if (target) {
+        const destination = getServiceArea(target[1]);
+        expect(
+          destination,
+          `${area.slug} redirects to /service-areas/${target[1]}, which is not an area in the catalog`
+        ).not.toBeNull();
+        expect(
+          destination!.status,
+          `${area.slug} redirects to ${target[1]}, which is itself consolidated — that chains or loops instead of landing`
+        ).toBe('active');
+      }
     }
   });
 
