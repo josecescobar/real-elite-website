@@ -147,21 +147,48 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
   /**
    * The real invariant, not a proxy for it.
    *
-   * An earlier version of this file checked only that `redirectTo` started
-   * with a slash, while the comment beside it claimed the redirect had to
-   * exist in next.config.ts. Those are different things: a consolidated row
-   * drops out of ALL_SERVICE_AREAS, so with no redirect configured its old URL
-   * is a 404 and the string check would have passed anyway. This reads the
-   * config's actual redirect list.
+   * Two earlier versions of this test each checked a weaker thing than the
+   * comment beside it claimed, so both are spelled out here:
+   *
+   * 1. Checking that `redirectTo` starts with a slash says nothing about
+   *    whether next.config.ts redirects anything. A consolidated row drops out
+   *    of ALL_SERVICE_AREAS, so with no redirect configured its old URL is a
+   *    404 and the string check passes regardless.
+   * 2. Checking only that a redirect *source* exists leaves `redirectTo`
+   *    decorative: a stale or unrelated redirect from the same source would
+   *    pass while sending visitors somewhere the catalog never declared.
+   *
+   * So this asserts the whole redirect — source, destination and permanence —
+   * against the row that requires it.
    */
-  it('has a configured redirect for every consolidated area URL', async () => {
+  it('redirects every consolidated area URL to its declared destination', async () => {
     const { default: nextConfig } = await import('../../next.config');
-    const redirects = (await nextConfig.redirects!()) as { source: string }[];
-    const sources = new Set(redirects.map((r) => r.source));
+    const redirects = (await nextConfig.redirects!()) as {
+      source: string;
+      destination: string;
+      permanent?: boolean;
+    }[];
+    const bySource = new Map(redirects.map((r) => [r.source, r]));
+
     for (const area of CONSOLIDATED_SERVICE_AREAS) {
+      const source = `/service-areas/${area.slug}`;
+      const configured = bySource.get(source);
+
       expect(
-        sources.has(`/service-areas/${area.slug}`),
-        `${area.slug} is consolidated but next.config.ts has no redirect from /service-areas/${area.slug}, so that URL is a 404`
+        configured,
+        `${area.slug} is consolidated but next.config.ts has no redirect from ${source}, so that URL is a 404`
+      ).toBeDefined();
+
+      expect(
+        configured!.destination,
+        `${source} redirects to "${configured!.destination}" but the catalog declares redirectTo: "${area.redirectTo}" — one of the two is wrong`
+      ).toBe(area.redirectTo);
+
+      // 301, not 302: a retired area's ranking signals should pass to the page
+      // that replaced it. The altitude plan specifies 301 for consolidation.
+      expect(
+        configured!.permanent,
+        `${source} is a temporary redirect; a retired area should 301 so the destination inherits its ranking signals`
       ).toBe(true);
     }
   });
