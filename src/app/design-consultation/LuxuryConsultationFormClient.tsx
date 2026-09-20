@@ -2,17 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import LuxuryConsultationForm from '@/components/consultation/LuxuryConsultationForm';
-
-const ALLOWED_TYPES = new Set([
-  'kitchen',
-  'bathroom',
-  'basement',
-  'whole-home',
-  'addition',
-  'other',
-]);
-
-type ProjectType = 'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'addition' | 'other';
+import { CONSULTATION_PROJECT_TYPES } from '@/lib/cta-intent';
 
 /**
  * Reads `?type=kitchen` (etc.) from the URL — set by deep-link CTAs on the
@@ -22,7 +12,6 @@ type ProjectType = 'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'additio
 export default function LuxuryConsultationFormClient() {
   const params = useSearchParams();
   const raw = params.get('type');
-  const initialProjectType =
-    raw && ALLOWED_TYPES.has(raw) ? (raw as ProjectType) : undefined;
+  const initialProjectType = CONSULTATION_PROJECT_TYPES.find((type) => type.value === raw)?.value;
   return <LuxuryConsultationForm initialProjectType={initialProjectType} />;
 }
