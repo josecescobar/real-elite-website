@@ -67,7 +67,7 @@ const project: Project = {
   ],
 
   gallery: [
-    { src: '/images/framing-scaffold-work.webp', alt: 'Interior framing crew working on scaffolding' },
+    { src: '/images/framing-walls-work.webp', alt: 'Timber wall framing with window openings on a home under construction' },
     { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction' },
     { src: '/images/crew-dusk.jpg', alt: 'Real Elite crew member framing a custom addition by work light at dusk' },
   ],

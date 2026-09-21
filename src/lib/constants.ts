@@ -1146,7 +1146,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway', category: 'Remodeling', state: 'WV' },
   { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring in living space', category: 'Remodeling', state: 'WV' },
   // New Construction
-  { src: '/images/framing-scaffold-work.webp', alt: 'Interior framing crew working on scaffolding', category: 'New Construction', state: 'WV' },
+  { src: '/images/framing-walls-work.webp', alt: 'Timber wall framing with window openings on a home under construction', category: 'New Construction', state: 'WV' },
   { src: '/images/new-build-weather-barrier.webp', alt: 'New home under construction with weather barrier and exposed roof trusses', category: 'New Construction', state: 'WV' },
   { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction', category: 'New Construction', state: 'WV' },
   // Additions

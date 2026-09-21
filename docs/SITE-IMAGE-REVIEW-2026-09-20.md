@@ -24,14 +24,14 @@ All outputs use WebP, maximum 1600 px on the long edge, retain proportions, and 
 | Output | Original | Size |
 |---|---|---|
 | `siding-window-work.webp` | `images/Exterior & Sheathing/siding-and-window-replacement.jpg` | 900 × 1600; 206 KiB |
-| `shed-trim-upright.webp` | `images/Exterior & Sheathing/installing-trim-on-custom-built-shed.jpg` | 1200 × 1600; 371 KiB |
+| `shed-trim-upright.webp` | `images/Exterior & Sheathing/installing-trim-on-custom-built-shed.jpg` | 960 × 1280; 283 KiB |
 | `crew-stone-work.webp` | `images/Exterior & Sheathing/stone-veneer-installation-worker.jpg` | 1200 × 1600; 290 KiB |
-| `framing-scaffold-work.webp` | `images/Wall Framing & Interior/worker-scaffolding-framing-walls.jpeg` | 1200 × 1600; 286 KiB |
+| `framing-walls-work.webp` | `images/Wall Framing & Interior/wall-framing-front-elevation.jpeg` | 1280 × 960; 287 KiB |
 | `new-build-weather-barrier.webp` | `images/Exterior & Sheathing/new-build-house-wrap-roof-trusses.jpeg` | 1182 × 665; 209 KiB |
 | `inspiration/wholehome-kitchen-refresh.webp` | `images/new-images/pexels-artbovich-6587899.jpg` | 1600 × 1068; 73 KiB |
 | `inspiration/kitchenette-refresh.webp` | `images/new-images/pexels-andreaedavis-6253541.jpg` | 1065 × 1600; 42 KiB |
 
-Pexels inspiration source links: [kitchen, photo 6587899](https://www.pexels.com/photo/6587899/) (local filename credits Artbovich) and [kitchenette, photo 6253541](https://www.pexels.com/photo/6253541/) (local filename credits Andrea Davis). Both originals already existed in the source library. The photo landing pages could not be retrieved during this review; photographer names above are filename provenance, not independently verified profiles. The [Pexels license](https://www.pexels.com/license/) was checked on September 20, 2026 and permits website use without required attribution. No visible credit is added.
+Pexels inspiration source links: [kitchen, photo 6587899](https://www.pexels.com/photo/interior-of-modern-apartment-with-light-walls-and-expensive-furniture-6587899/) by Max Vakhtbovych and [kitchenette, photo 6253541](https://www.pexels.com/photo/minimal-design-of-white-kitchen-sink-and-cabinets-6253541/) by Andrea Davis. Both originals already existed in the source library. Both photo landing pages, photographer credits, and original dimensions were verified in the browser. The [Pexels license](https://www.pexels.com/license/) was checked on September 20, 2026 and permits website use without required attribution. No visible credit is added.
 
 ## Complete inventory
 
