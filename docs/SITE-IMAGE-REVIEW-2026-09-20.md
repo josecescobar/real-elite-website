@@ -4,7 +4,7 @@ Reviewed all 100 raster files in `public/images`; 91 are referenced by current s
 
 ## First preview
 
-Seven prepared assets replace ten published image files across existing references. Originals remain intact. Sideways siding, shed, and team images are re-exported with EXIF rotation applied. Framing and construction receive sharper local source photos. A foyer mislabeled as a kitchen and an empty room mislabeled as a wet bar receive correctly described Pexels inspiration images.
+Seven prepared assets replace ten published image files across existing references. Originals remain intact. Sideways siding, shed, and team images are re-exported with EXIF rotation applied. Framing and construction receive sharper local source photos. A foyer-dominated kitchen view and an empty, wood-paneled bar area receive more focused Pexels kitchen and kitchenette inspiration images with accurate captions.
 
 The consultation gallery now calls stock interiors inspiration. The unfinished construction pair is removed from build-to-finished comparisons; the sharper construction photo remains in relevant service/project placements. Existing portfolio narratives still need owner confirmation wherever stock matches are flagged below.
 
@@ -139,3 +139,11 @@ Pexels inspiration source links: [kitchen, photo 6587899](https://www.pexels.com
 | `stone-veneer-finish.jpg` | 1024 × 576 | Keep | Suitable at current placement; no urgent visual defect found. |
 | `suburban-neighborhood-houses.jpg` | 1920 × 1280 | Unused | Not referenced by current source; retained, not published by this change. |
 | `team.jpg` | 1600 × 1200 | Fixed in preview | Upright source export |
+
+## Validation
+
+- Production build and TypeScript checks passed; 774 unit tests passed.
+- Built link checks: 16 passed, one pre-existing skip.
+- Lint: zero errors, three pre-existing test-mock warnings. Production dependency audit: zero vulnerabilities.
+- Full site audit: 178 routes, zero errors, five existing long-description warnings, one existing thin-content informational finding. Same findings as the live baseline. This crawl preceded the final framing-photo selection and crew focal-position adjustment; those final visual changes were checked on the Vercel preview.
+- Desktop (1440 px) and mobile (390 px) image placements checked. Gallery filtering, keyboard opening, Escape dismissal, and restored focus checked.
