@@ -235,11 +235,11 @@ export default function AboutPage() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative aspect-[3/2] rounded-lg overflow-hidden shadow-card-elevated">
                 <Image
-                  src="/images/team.jpg"
-                  alt="The Real Elite Contracting crew on the job site"
+                  src="/images/crew-stone-work.webp"
+                  alt="Real Elite crew member installing stone veneer on a home exterior"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
             </div>

@@ -42,7 +42,7 @@ A builder-grade basement and a luxury one can have the same square footage. The 
 - **Solid-core doors, substantial trim, and consistent hardware** — the small things your eye reads as "quality" without quite knowing why.
 - **Sound control** — insulation in the theater walls and ceiling, and an acoustic strategy so movie night doesn't take over the whole house.
 
-![A residential wet bar with wood cabinetry, open shelving, and counter stools](/images/inspiration/basement-wet-bar.jpg)
+![Kitchenette inspiration with white cabinetry, a sink, and a compact refrigerator](/images/inspiration/kitchenette-refresh.webp)
 
 ## What luxury basements get right behind the walls
 

@@ -1,25 +1,10 @@
 import Image from 'next/image';
 
-/* ─────────────────────────────────────────────────────────────────────────
- * LuxuryGallery
- *
- * Two clearly-distinguished bands of imagery:
- *
- *   1. RECENT WORK — actual Real Elite project photos pulled from
- *      /public/images/projects/* (kitchens, bathrooms, basements).
- *      Labeled as recent Real Elite work without naming specific clients.
- *
- *   2. DESIGN INSPIRATION — clearly-labeled inspiration imagery from
- *      /public/images/inspiration/* showing the kind of work the
- *      consultation can produce. Honest framing: this band is about
- *      possibilities, not portfolio claims. Critical to avoid
- *      misrepresentation in a luxury market where one credibility hit
- *      ends the deal.
- * ───────────────────────────────────────────────────────────────────── */
+// Stock photography is presented as design inspiration, not completed client work.
 
 type Img = { src: string; alt: string; tag: string };
 
-const RECENT_WORK: Img[] = [
+const INTERIOR_INSPIRATION: Img[] = [
   {
     src: '/images/projects/kitchens/gray-marble-waterfall.jpg',
     alt: 'Finished kitchen with gray-marble waterfall island and modern cabinetry',
@@ -59,7 +44,7 @@ const INSPIRATION: Img[] = [
     tag: 'Primary Bath',
   },
   {
-    src: '/images/inspiration/wholehome-open-kitchen.jpg',
+    src: '/images/inspiration/wholehome-kitchen-refresh.webp',
     alt: 'Inspiration: open-concept luxury kitchen with island and pendant lighting',
     tag: 'Kitchen',
   },
@@ -74,8 +59,8 @@ const INSPIRATION: Img[] = [
     tag: 'Primary Bath',
   },
   {
-    src: '/images/inspiration/basement-wet-bar.jpg',
-    alt: 'Inspiration: lower-level wet bar with stone counter and pendant lighting',
+    src: '/images/inspiration/kitchenette-refresh.webp',
+    alt: 'Inspiration: compact kitchenette with white cabinetry, a sink, and a small refrigerator',
     tag: 'Lower Level',
   },
   {
@@ -86,7 +71,7 @@ const INSPIRATION: Img[] = [
 ];
 
 type Props = {
-  /** Section title. Defaults to "Recent Work & Inspiration" but the
+  /** Section title. Defaults to "Interior & Design Inspiration" but the
    * consultation page may want different copy. */
   title?: string;
   /** Subtitle / kicker. */
@@ -94,15 +79,15 @@ type Props = {
 };
 
 export default function LuxuryGallery({
-  title = 'Recent Work & Design Inspiration',
-  subtitle = 'A look at finished Real Elite projects (top) and the kind of work the consultation can produce (below).',
+  title = 'Interior & Design Inspiration',
+  subtitle = 'Explore kitchen, bathroom, and whole-home design ideas for your consultation. Images are inspiration, not Real Elite project photographs.',
 }: Props) {
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-3xl">
           <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
-            Portfolio
+            Design Ideas
           </p>
           <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 leading-tight">
             {title}
@@ -110,18 +95,18 @@ export default function LuxuryGallery({
           <p className="text-charcoal-600 mt-3 text-base leading-relaxed">{subtitle}</p>
         </div>
 
-        {/* Recent Work — real Real Elite projects */}
+        {/* Interior design inspiration */}
         <div className="mt-12">
           <div className="flex items-baseline justify-between mb-5">
             <h3 className="font-heading text-lg md:text-xl font-bold text-navy-800">
-              Recent Real Elite Work
+              Kitchen & Bath Inspiration
             </h3>
             <span className="text-charcoal-500 text-xs uppercase tracking-[0.15em] font-semibold">
-              Finished Projects
+              Design Inspiration
             </span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {RECENT_WORK.map((img) => (
+            {INTERIOR_INSPIRATION.map((img) => (
               <figure
                 key={img.src}
                 className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-card-elevated bg-charcoal-100 group"

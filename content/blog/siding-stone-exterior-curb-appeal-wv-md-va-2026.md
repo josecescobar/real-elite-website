@@ -24,7 +24,7 @@ Three things happen at once when you re-side a home or add stone:
 - **Resale value follows.** Exterior projects consistently rank among the best returns in national cost-vs-value studies, because buyers judge a home by its exterior before they ever walk in.
 - **The house is protected.** Siding and its weather barrier are what keep wind-driven rain, snowmelt, and humidity out of your walls. Failing siding isn't just ugly — it's a moisture problem waiting to happen.
 
-![New siding and windows being installed on a home exterior](/images/inspiration/exterior-siding-windows.jpg)
+![New siding and windows being installed on a home exterior](/images/siding-window-work.webp)
 
 ## Your material options
 
@@ -59,7 +59,7 @@ This is where siding projects are made or ruined. Beautiful panels over a bad we
 - **Correct fastening and expansion gaps** so panels don't buckle through the seasons.
 - **Attention to trim and transitions** so the finished exterior is clean, tight, and weather-sealed.
 
-![Fresh siding installed on a home exterior](/images/inspiration/exterior-siding-replacement.jpg)
+![Window installation and weather barrier on a home under construction](/images/siding-window-work.webp)
 
 ## Stone veneer: the accent that transforms a facade
 
