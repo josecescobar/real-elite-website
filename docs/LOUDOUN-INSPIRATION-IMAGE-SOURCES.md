@@ -14,8 +14,9 @@ or attributed to a Loudoun job.
 
 [Pexels License](https://www.pexels.com/license/), checked 2026-09-20: permits
 free website use and modification. Attribution is optional under the license;
-both images are nevertheless credited and linked to their source on the page.
-The section makes no endorsement claim.
+the owner requested removal of the visible photo credits after release.
+Source links and photographer attribution are retained here for provenance.
+The section remains labeled as inspiration and makes no endorsement claim.
 
 Original download URLs:
 

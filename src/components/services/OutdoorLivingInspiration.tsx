@@ -48,12 +48,6 @@ export default function OutdoorLivingInspiration() {
             <p className="mt-2 text-sm leading-relaxed text-charcoal-700">
               Open views, a little shade, and an easy connection to the house.
             </p>
-            <a
-              href="https://www.pexels.com/photo/chairs-on-porch-16501257/"
-              className="focus-ring mt-2 inline-flex min-h-11 items-center text-xs text-charcoal-600 underline underline-offset-4 hover:text-navy-800"
-            >
-              Photo: Curtis Adams / Pexels
-            </a>
           </figcaption>
         </figure>
 
@@ -75,12 +69,6 @@ export default function OutdoorLivingInspiration() {
             <p className="mt-2 text-sm leading-relaxed text-charcoal-700">
               Timber ceilings and natural textures bring character to a covered gathering space.
             </p>
-            <a
-              href="https://www.pexels.com/photo/wooden-porch-in-a-forest-with-a-garden-table-and-chairs-8583538/"
-              className="focus-ring mt-2 inline-flex min-h-11 items-center text-xs text-charcoal-600 underline underline-offset-4 hover:text-navy-800"
-            >
-              Photo: Curtis Adams / Pexels
-            </a>
           </figcaption>
         </figure>
       </div>
