@@ -1,22 +1,20 @@
 export type CtaIntent = 'estimate' | 'roof-quote' | 'consultation';
 
-/**
- * Project types the luxury design-consultation form can be deep-linked with.
- * Declared once here because three places need to agree: the service+city
- * route that maps a service to a type, the sticky rail that builds the
- * consultation href, and the form that renders the matching option. They had
- * drifted into three separate copies of the same union, so adding
- * 'outdoor-living' broke the build in two of them.
- *
- * The form also offers 'other', which is deliberately not deep-linkable.
- */
-export type ConsultationProjectType =
-  | 'kitchen'
-  | 'bathroom'
-  | 'basement'
-  | 'whole-home'
-  | 'addition'
-  | 'outdoor-living';
+/** Shared by consultation links, query preselection, and the form choices. */
+export const CONSULTATION_PROJECT_TYPES = [
+  { value: 'kitchen', label: 'Kitchen Renovation' },
+  { value: 'bathroom', label: 'Primary Bath / Suite' },
+  { value: 'basement', label: 'Lower-Level Finishing' },
+  { value: 'whole-home', label: 'Whole-Home Renovation' },
+  { value: 'addition', label: 'Addition or Expansion' },
+  { value: 'outdoor-living', label: 'Outdoor Living / Custom Deck' },
+  { value: 'other', label: 'Other Premium Project' },
+] as const;
+
+export type ConsultationFormProjectType = (typeof CONSULTATION_PROJECT_TYPES)[number]['value'];
+
+/** Service-specific CTAs use a named scope; the form also accepts "other". */
+export type ConsultationProjectType = Exclude<ConsultationFormProjectType, 'other'>;
 
 export type PrimaryCta = {
   intent: CtaIntent;

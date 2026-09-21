@@ -5,13 +5,17 @@ import { ArrowRight, Check } from 'lucide-react';
 import { trackEvent, trackEstimateStep, trackLead } from '@/lib/analytics';
 import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
+import {
+  CONSULTATION_PROJECT_TYPES as PROJECT_TYPES,
+  type ConsultationFormProjectType as ProjectType,
+} from '@/lib/cta-intent';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 
 /* ─────────────────────────────────────────────────────────────────────────
  * LuxuryConsultationForm
  *
- * Dedicated intake for $50k+ design-build projects across our luxury
+ * Dedicated intake for design-build and outdoor-living projects across our luxury
  * NoVA markets (McLean, Great Falls, Vienna, Reston, Old Town Alexandria,
  * Middleburg, the upper-tier Loudoun pockets, etc.).
  *
@@ -26,20 +30,9 @@ import PrivacyNotice from '@/components/shared/PrivacyNotice';
  *     the inbox without us building a parallel pipe.
  * ───────────────────────────────────────────────────────────────────── */
 
-const PROJECT_TYPES = [
-  { value: 'kitchen', label: 'Kitchen Renovation' },
-  { value: 'bathroom', label: 'Primary Bath / Suite' },
-  { value: 'basement', label: 'Lower-Level Finishing' },
-  { value: 'whole-home', label: 'Whole-Home Renovation' },
-  { value: 'addition', label: 'Addition or Expansion' },
-  // Outdoor living is the luxury line already ranking in Loudoun, and the
-  // service+city deck pages preselect it. Without an option here those pages
-  // sent a high-value enquiry into a form with nothing that described the job.
-  { value: 'outdoor-living', label: 'Outdoor Living / Custom Deck' },
-  { value: 'other', label: 'Other Premium Project' },
-] as const;
-
 const BUDGET_TIERS = [
+  { value: 'under-25', label: 'Under $25k' },
+  { value: '25-50', label: '$25k – $50k' },
   { value: '50-100', label: '$50k – $100k' },
   { value: '100-200', label: '$100k – $200k' },
   { value: '200-500', label: '$200k – $500k' },
@@ -71,7 +64,6 @@ const CALL_WINDOWS = [
   { value: 'evening', label: 'Evenings after 5 PM' },
 ] as const;
 
-type ProjectType = (typeof PROJECT_TYPES)[number]['value'];
 type Budget = (typeof BUDGET_TIERS)[number]['value'];
 type Timeline = (typeof TIMELINES)[number]['value'];
 type Designer = (typeof DESIGNER_OPTIONS)[number]['value'];
