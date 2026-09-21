@@ -44,8 +44,8 @@ const project: Project = {
     heading: 'Custom Addition, Foundation to Finish',
     sub: 'Block foundation, squared-and-braced framing, weather barrier, and roof — a new structure raised from bare ground and inspected at every phase.',
     image: {
-      src: '/images/new-build-sunset.jpg',
-      alt: 'New construction addition wrapped in weather barrier at sunset',
+      src: '/images/new-build-weather-barrier.webp',
+      alt: 'New home under construction with weather barrier and exposed roof trusses',
     },
   },
 
@@ -66,15 +66,8 @@ const project: Project = {
     'New square footage that reads as original to the house — on a structure inspected and documented at every phase.',
   ],
 
-  beforeAfter: [
-    {
-      label: 'Wrap and framing to dried-in shell',
-      before: { src: '/images/house-wrap-worker.jpg', alt: 'House wrap and framing in progress before siding install' },
-      after: { src: '/images/new-build-sunset.jpg', alt: 'Finished new construction exterior at sunset' },
-    },
-  ],
   gallery: [
-    { src: '/images/framing-crew.jpg', alt: 'Interior framing crew working on scaffolding' },
+    { src: '/images/framing-scaffold-work.webp', alt: 'Interior framing crew working on scaffolding' },
     { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction' },
     { src: '/images/crew-dusk.jpg', alt: 'Real Elite crew member framing a custom addition by work light at dusk' },
   ],

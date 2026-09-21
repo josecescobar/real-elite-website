@@ -961,8 +961,8 @@ export const HOMEPAGE_FEATURED_SERVICES = [
     eyebrow: 'New Space',
     scope: 'Additions that seamlessly extend your existing home — engineered to last.',
     href: '/services/additions',
-    image: '/images/new-build-sunset.jpg',
-    imageAlt: 'New construction with house wrap at sunset',
+    image: '/images/new-build-weather-barrier.webp',
+    imageAlt: 'New home under construction with weather barrier and exposed roof trusses',
     span: 'standard',
   },
   {
@@ -1038,12 +1038,6 @@ export const HOMEPAGE_PROJECT_SPOTLIGHT = {
  * to "Before / After" in BeforeAfter.tsx + the home section header.
  */
 export const BEFORE_AFTER_PAIRS = [
-  {
-    label: 'New-build exterior',
-    category: 'Exterior',
-    before: { src: '/images/house-wrap-worker.jpg', alt: 'House wrap and framing in progress before siding install' },
-    after: { src: '/images/new-build-sunset.jpg', alt: 'Finished new construction exterior at sunset' },
-  },
   {
     label: 'Composite deck transformation',
     category: 'Decks',
@@ -1144,7 +1138,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/projects/basements/hero-framing.jpg', alt: 'Basement build in framing phase — stud walls and floor joists before finishes', category: 'Basements' },
   // Siding & Exterior
   { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior', state: 'WV' },
-  { src: '/images/siding-windows.jpg', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
+  { src: '/images/siding-window-work.webp', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
   { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer foundation detail on home exterior', category: 'Exterior', state: 'WV' },
   { src: '/images/exterior-brick-victorian.jpg', alt: 'Brick Victorian-style home with multiple gables and dark architectural shingle roof', category: 'Exterior' },
   // Remodeling / Interior
@@ -1152,11 +1146,11 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway', category: 'Remodeling', state: 'WV' },
   { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring in living space', category: 'Remodeling', state: 'WV' },
   // New Construction
-  { src: '/images/framing-crew.jpg', alt: 'Interior framing crew working on scaffolding', category: 'New Construction', state: 'WV' },
-  { src: '/images/new-build-sunset.jpg', alt: 'New construction house wrap at sunset', category: 'New Construction', state: 'WV' },
+  { src: '/images/framing-scaffold-work.webp', alt: 'Interior framing crew working on scaffolding', category: 'New Construction', state: 'WV' },
+  { src: '/images/new-build-weather-barrier.webp', alt: 'New home under construction with weather barrier and exposed roof trusses', category: 'New Construction', state: 'WV' },
   { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction', category: 'New Construction', state: 'WV' },
   // Additions
-  { src: '/images/shed-trim.jpg', alt: 'Custom built shed with trim and siding', category: 'Additions', state: 'WV' },
+  { src: '/images/shed-trim-upright.webp', alt: 'Custom built shed with trim and siding', category: 'Additions', state: 'WV' },
 ];
 
 /**
