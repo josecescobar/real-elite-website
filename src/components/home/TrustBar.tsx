@@ -8,7 +8,7 @@ export const TrustBar = () => {
   const rating = ratingLabel() ?? { number: 'Client', label: 'Recommended' };
 
   const stats = [
-    { number: '40+', label: 'Years of Experience' },
+    { number: 'Named', label: 'Project Lead' },
     { number: 'Written', label: 'Workmanship Warranty' },
     { number: rating.number, label: rating.label },
     { number: 'Veteran', label: 'Owned & Operated' },
