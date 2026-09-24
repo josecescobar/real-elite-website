@@ -59,7 +59,7 @@ const VALUES = [
 ];
 
 const NUMBERS = [
-  { value: '40+', label: 'Years of Experience' },
+  { value: 'Named', label: 'Project Lead' },
   { value: 'Written', label: 'Workmanship Warranty' },
   { value: 'Client', label: 'Recommended' },
 ];
