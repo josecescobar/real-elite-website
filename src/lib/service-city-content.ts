@@ -411,7 +411,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Loudoun County homes — kitchens, baths, additions, and whole-home work — and we lead the western corridor first. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Everywhere else, LandMARC handles building and zoning.",
       "A county permit is not HOA approval. Exterior scopes run both tracks in parallel. Historic-district exteriors in Old Town Leesburg or Middleburg add a Certificate of Appropriateness. Load-bearing changes need stamped structural drawings before the county will issue.",
-      "We do not publish invented $40,000–$200,000 kitchen and bath bands, named fixture packages as if they were standard, or completed-project counts we cannot show. Line items go in the written estimate.",
+      "We do not publish invented kitchen or bath price bands, named fixture packages as if they were standard, or completed-project counts we cannot show. Line items go in the written estimate.",
       "Daily updates. Inspections in order.",
     ],
   },
@@ -440,7 +440,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting installs and replaces siding for Leesburg homeowners — vinyl, fiber cement, and engineered wood when the job calls for them. A Leesburg mailing address is not Town limits. We check the parcel before we file. We do not advertise a James Hardie or manufacturer Pro badge we do not hold.",
       "Siding is exterior work. Inside Town, Town zoning comes first and the county building permit follows. H-1 Old and Historic District parcels need a Certificate of Appropriateness before material or color changes. Outside Town, LandMARC handles building and zoning. HOA review is a separate track.",
-      "We do not publish HOA color lists from blogs, and we do not invent ROI rankings or $40,000+ siding bands. House wrap, window and door flashing, and a moisture check of the sheathing are part of the scope we write down.",
+      "We do not publish HOA color lists from blogs, and we do not invent ROI rankings or siding price bands. House wrap, window and door flashing, and a moisture check of the sheathing are part of the scope we write down.",
       "Current Town and county fees go in the written estimate. Manufacturer warranties are registered when the product qualifies.",
     ],
   },
@@ -465,7 +465,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'siding-loudoun-county-va': {
     paragraphs: [
-      "Real Elite Contracting installs and replaces siding across Loudoun County — vinyl, fiber cement, and stone veneer when the job calls for them. We work the western corridor first. We do not advertise a James Hardie certification or manufacturer Pro badge we do not hold, and we do not publish invented $40,000+ siding bands.",
+      "Real Elite Contracting installs and replaces siding across Loudoun County — vinyl, fiber cement, and stone veneer when the job calls for them. We work the western corridor first. We do not advertise a James Hardie certification or manufacturer Pro badge we do not hold, and we do not publish invented siding price bands.",
       "Leesburg, Purcellville, and Middleburg issue town zoning first. Historic-district exteriors need a Certificate of Appropriateness. Unincorporated parcels use LandMARC for building and zoning. A county permit is not HOA approval. Brambleton reviews essentially all exterior changes. South Riding requires written Architectural Standards approval before exterior work.",
       "Substrate, weather barrier, weep screed, and flashing are in the written scope when the wall needs them. Color and profile come from the current association packet, not a blog list.",
       "Fees and review days go in the estimate. Manufacturer warranties are registered when the product qualifies. Written workmanship warranty on labor.",
@@ -487,7 +487,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Leesburg bathrooms — showers, tile, vanities, and full primary-suite rebuilds. A Leesburg mailing address is not Town limits. We check the parcel before we file.",
       "Plumbing or electrical relocation needs a Loudoun County building permit (and the matching trade permits). Inside Town, that county permit waits on Town zoning. A purely interior bath with no window or exterior change usually skips HOA review; a new window, skylight, or exterior wall opening does not. H-1 exteriors need a Certificate of Appropriateness.",
-      "We do not publish invented $40,000–$100,000 bands or named fixture packages as if they were standard. Waterproofing, slope-to-drain, and the inspection sequence (rough plumbing, rough electrical, final) are in the written scope. Line items go in the estimate.",
+      "We do not publish invented bathroom price bands or named fixture packages as if they were standard. Waterproofing, slope-to-drain, and the inspection sequence (rough plumbing, rough electrical, final) are in the written scope. Line items go in the estimate.",
       "Named project lead, daily updates.",
     ],
   },
@@ -496,8 +496,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Ashburn bathrooms — showers, tile, vanities, and full primary-suite rebuilds. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
       "Plumbing or electrical relocation needs county permits and inspections (rough-in, then final). HOA review usually applies only if the bath changes a window, skylight, or other exterior element. A county permit is not HOA approval when both apply — we file them in parallel.",
-      "We do not claim we remodel Ashburn primary suites every week, and we do not publish invented $30,000–$60,000 bands. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed.",
-      "County inspections run in published order — rough plumbing, rough electrical, then final.",
+      "We do not claim we remodel Ashburn primary suites every week, and we do not publish invented bathroom price bands. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed.",
+      "County inspections run in published order — rough plumbing, rough electrical, then final. Most Ashburn primary baths run 4–6 weeks of active work from demo through final walkthrough.",
     ],
   },
 
@@ -505,7 +505,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Loudoun County bathrooms and we lead the western corridor first. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit when the work needs one. Unincorporated parcels use LandMARC.",
       "Plumbing or electrical relocation needs county trade permits and inspections. Exterior openings need the association packet in parallel. Historic-district exteriors need a Certificate of Appropriateness. Load-bearing changes need stamped drawings.",
-      "We do not publish invented $50,000–$120,000 bands or named fixture catalogs as if they were the standard package. Waterproofing, slope-to-drain, and the inspection order are in the written scope.",
+      "We do not publish invented bathroom price bands or named fixture catalogs as if they were the standard package. Waterproofing, slope-to-drain, and the inspection order are in the written scope.",
       "Named project lead.",
     ],
   },
@@ -543,7 +543,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Leesburg kitchens — layout, cabinetry, counters, and the trades behind the walls. A Leesburg mailing address is not Town limits.",
       "Opening a load-bearing wall needs stamped structural drawings and a Loudoun County building permit. Plumbing or electrical relocation needs the matching trade permits. Inside Town, the county building permit waits on Town zoning. HOA review usually applies only if the kitchen changes windows or another exterior element. H-1 exteriors need a Certificate of Appropriateness.",
-      "We do not publish invented $80,000–$200,000 bands or named appliance packages as if they were standard. Cabinet lead time is what it is — we put the real weeks in the written timeline before demo.",
+      "We do not publish invented kitchen price bands or named appliance packages as if they were standard. Cabinet lead time is what it is — we put the real weeks in the written timeline before demo.",
       "Named project lead, daily updates, inspections in order.",
     ],
   },
@@ -552,7 +552,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Ashburn kitchens — layout, cabinetry, counters, and the trades behind the walls. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
       "A load-bearing opening needs stamped drawings and a county building permit. Plumbing or electrical relocation needs trade permits. HOA review usually applies only if windows or another exterior element changes. We do not claim these remodels happen every week.",
-      "We do not publish invented $50,000–$110,000 bands or brand packages as if they were standard. Cabinets, counters, appliances, electrical, plumbing, and finishes are separate line items on the estimate.",
+      "We do not publish invented kitchen price bands or brand packages as if they were standard. Cabinets, counters, appliances, electrical, plumbing, and finishes are separate line items on the estimate.",
       "Named project lead, daily updates, written timeline before demo.",
     ],
   },
@@ -561,12 +561,14 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Loudoun County kitchens and we lead the western corridor first. Towns (Leesburg, Purcellville, Middleburg) issue zoning before the county building permit when the work needs one. Unincorporated parcels use LandMARC.",
       "Load-bearing changes need stamped drawings. Plumbing and electrical relocation need trade permits. Exterior openings need the association packet in parallel. Historic-district exteriors need a Certificate of Appropriateness.",
-      "We do not publish invented $100,000–$250,000 bands or named appliance catalogs as if they were the standard package. Cabinet and stone lead times go in the written timeline before demo. Adjacent rooms stay on one contract when they are part of the same job.",
+      "We do not publish invented kitchen price bands or named appliance catalogs as if they were the standard package. Cabinet and stone lead times go in the written timeline before demo. Adjacent rooms stay on one contract when they are part of the same job.",
       "Named project lead, daily updates.",
     ],
   },
 
   'basements-leesburg-va': {
+    metaDescription:
+      'Finished basements in Leesburg. Typical county path is 1% plus $65 minimum; a kitchen adds $165. Town zoning first inside Town limits.',
     paragraphs: [
       "Real Elite Contracting finishes Leesburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
       "Inside Town limits the order is fixed. The Town's published home-improvement table treats interior or basement finish-out as Town zoning (typically without engineering review) plus a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. A bedroom needs an emergency egress window — sill height, opening size, and window-well dimensions go on the plans — and that opening is exterior work. In the H-1 Old and Historic District it also needs a Certificate of Appropriateness.",
@@ -576,6 +578,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'basements-ashburn-va': {
+    metaDescription:
+      'Finished basements in Ashburn. Typical Loudoun path is 1% plus $65 minimum; a kitchen adds $165. LandMARC plus HOA when egress is cut.',
     paragraphs: [
       "Real Elite Contracting finishes Ashburn lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. Ashburn is unincorporated Loudoun County, not a town. Building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
       "Every finished basement needs a Loudoun County building and zoning application, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. A bedroom needs an emergency egress window; that opening is exterior work.",
@@ -585,6 +589,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'basements-loudoun-county-va': {
+    metaDescription:
+      'Finished basements in Loudoun County. Typical path is 1% plus $65 minimum; full plans add $130; a kitchen adds $165.',
     paragraphs: [
       "Real Elite Contracting finishes Loudoun County lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg.",
       "Every finished basement needs a Loudoun County building and zoning application, plus trade permits when electrical, plumbing, mechanical, or gas is in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. Leesburg, Purcellville, and Middleburg issue town zoning first — the county will not release the building permit without it. A bedroom needs an emergency egress window.",
@@ -948,11 +954,11 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
  * that page's snippet asserts a regional band — but it already shipped on
  * thirty-seven premium combos.
  *
- * Deliberately NOT a blanket premium check. Nine premium combos publish no
- * figures of their own — roofing, decks, remodeling and siding in Leesburg,
- * Ashburn and Brambleton — and for those exterior trades the generic tiers are
- * in the right band and are the only pricing the page has. Suppressing them
- * there would remove information rather than a contradiction.
+ * Deliberately NOT a blanket premium check. Loudoun pages that publish only
+ * official permit fees (Typical Deck $265, Typical Basement $65, additions
+ * $395) must keep the generic tiers — those fees are not a job range.
+ * Suppressing the block there would remove information rather than a
+ * contradiction.
  *
  * The real fix is market-specific investment data in SERVICE_DATA, which is a
  * schema change and its own PR. This stops the contradiction reaching a reader
@@ -1018,9 +1024,21 @@ export function unconfirmedClaimIdsInCombo(serviceSlug: string, areaSlug: string
     .map((c) => c.id);
 }
 
+/**
+ * County permit fees ($65, $265, $395) are not job pricing. Treating any
+ * `$` figure as a published range hid the generic investment block on
+ * Loudoun pages whose only dollars are official Typical / full-plans fees.
+ * A figure at or under this floor is incidental; above it is a project range.
+ */
+const JOB_PRICING_FLOOR = 25_000;
+
 export function comboPublishesPricing(serviceSlug: string, areaSlug: string): boolean {
   const entry = CONTENT[`${serviceSlug}-${areaSlug}` as keyof typeof CONTENT];
-  return entry ? /\$[\d,]+/.test(JSON.stringify(entry)) : false;
+  if (!entry) return false;
+  const figures = (JSON.stringify(entry).match(/\$[\d,]+/g) ?? []).map((f) =>
+    Number(f.replace(/[$,]/g, ''))
+  );
+  return figures.some((n) => n > JOB_PRICING_FLOOR);
 }
 
 export function serviceHrefForArea(serviceSlug: string, areaSlug: string): string {
