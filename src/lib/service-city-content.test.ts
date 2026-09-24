@@ -490,11 +490,10 @@ describe('comboPublishesPricing', () => {
   });
 
   /**
-   * The nine that must keep the generic tiers. These are the Loudoun exterior
-   * trades; the tiers are in the right band for them and are the only pricing
-   * those pages carry, so suppressing them would remove information rather
-   * than a contradiction. A blanket premium gate would have done exactly that
-   * — the reason this is not one.
+   * Loudoun pages that publish only official permit fees, or no dollars at
+   * all, must keep the generic tiers. A `$265` Typical Deck fee is not a job
+   * range; treating it as one hid the investment block. A blanket premium
+   * gate would have done the same — the reason this is not one.
    */
   it.each([
     ['roofing', 'leesburg-va'],
@@ -512,18 +511,11 @@ describe('comboPublishesPricing', () => {
   });
 
   /**
-   * The hole in the predicate, closed. `comboPublishesPricing` matches any
-   * `$`-figure anywhere in the entry, so a number mentioned in passing — a
-   * permit fee, a deposit — would suppress a premium page's investment block
-   * and leave it with no pricing at all.
-   *
-   * No premium combo does that today: the lowest top figure among those that
-   * trip the predicate is $40,000, on roofing-loudoun-county-va, which is a
-   * real project range. The threshold is set well under that so ordinary copy
-   * edits do not trip it, and it exists so that adding a small incidental
-   * figure to a premium page fails here instead of silently dropping the
-   * block. If this fails, do not raise the threshold — either the figure is
-   * incidental and should not be there, or the page needs real pricing.
+   * Permit fees must not suppress the investment block. `comboPublishesPricing`
+   * ignores figures at or under $25,000 so a Typical Deck / Typical Basement /
+   * addition fee can live on the page. The test still fails if a premium page
+   * trips the predicate on nothing larger than that floor — that would mean
+   * the helper started counting incidental dollars as job pricing again.
    */
   it('never suppresses a premium investment block on an incidental figure', () => {
     const INCIDENTAL_CEILING = 25_000;
@@ -552,12 +544,12 @@ describe('comboPublishesPricing', () => {
   });
 
   /**
-   * The count is pinned so that adding a figure to one of those nine pages —
-   * which would silently drop its investment block — shows up as a decision
-   * rather than a side effect. If you add one, update the number and say which
-   * page gained pricing.
+   * Pinned so that adding a real job-range figure — which would silently drop
+   * the investment block — shows up as a decision rather than a side effect.
+   * Loudoun additions, basements, and Middleburg decks joined the original
+   * nine because they publish county fees, not project bands.
    */
-  it('leaves exactly nine premium combos relying on the generic tiers', () => {
+  it('leaves the premium combos that have no job-range figure on the generic tiers', () => {
     const relying = Object.keys(CONTENT).filter((key) => {
       const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
       if (!area || area.market !== 'premium') return false;
@@ -566,15 +558,32 @@ describe('comboPublishesPricing', () => {
     });
     expect(relying.sort()).toEqual(
       [
+        'additions-ashburn-va',
+        'additions-leesburg-va',
+        'additions-loudoun-county-va',
+        'additions-middleburg-va',
+        'basements-ashburn-va',
+        'basements-leesburg-va',
+        'basements-loudoun-county-va',
+        'bathrooms-ashburn-va',
+        'bathrooms-leesburg-va',
+        'bathrooms-loudoun-county-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
+        'decks-middleburg-va',
+        'kitchens-ashburn-va',
+        'kitchens-leesburg-va',
+        'kitchens-loudoun-county-va',
         'remodeling-ashburn-va',
         'remodeling-leesburg-va',
+        'remodeling-loudoun-county-va',
         'roofing-ashburn-va',
         'roofing-leesburg-va',
+        'roofing-loudoun-county-va',
         'siding-ashburn-va',
         'siding-leesburg-va',
+        'siding-loudoun-county-va',
       ].sort()
     );
   });
@@ -629,7 +638,7 @@ describe('unconfirmedClaimIdsInCombo', () => {
    * visible measure, so a copy edit or a retirement that changes the footprint
    * surfaces as a decision rather than a side effect.
    */
-  it('splits the premium combos 27 carrying claims to 10 not', () => {
+  it('splits the premium combos 27 carrying claims to 18 not', () => {
     let carrying = 0;
     let clean = 0;
     for (const key of Object.keys(CONTENT)) {
@@ -639,12 +648,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 27/10 as of 2026-09-18, was 26/11. One combo moved from clean to
-    // carrying when the warranty pattern widened to cover "workmanship
-    // guarantee" and the plural "workmanship warranties" — the copy dates to
-    // 2026-07-06 (#63) and never changed; only detection did. A rise here
-    // caused by NEW copy is a defect; this one is the scan catching up.
-    expect({ carrying, clean }).toEqual({ carrying: 27, clean: 10 });
+    // 27/18 after Loudoun additions, Loudoun basements, and Middleburg decks
+    // landed as clean pages (permit facts, no unconfirmed operational claims).
+    // Carrying stayed at 27 — new copy must not raise that number.
+    expect({ carrying, clean }).toEqual({ carrying: 27, clean: 18 });
   });
 
   /**

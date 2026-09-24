@@ -541,15 +541,15 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'leesburg-va': {
     description:
-      "Leesburg is Loudoun County's seat — Town limits around Old Town and the western approach from Route 7 and Route 9, plus Leesburg-address neighborhoods that sit in unincorporated county (Lansdowne, River Creek). A Leesburg mailing address is not automatically Town zoning. We lead here with decks and outdoor living, then kitchens, baths, and additions, and we file Town zoning before the county building permit when the parcel is inside Town. Real Elite Contracting works western Leesburg first from Martinsburg.",
+      "Leesburg is Loudoun County's seat — Town limits around Old Town and the western approach from Route 7 and Route 9, plus Leesburg-address neighborhoods that sit in unincorporated county (Lansdowne, River Creek). A Leesburg mailing address is not automatically Town zoning. We lead here with decks and outdoor living, then kitchens, baths, room additions, and in-law basement finish, and we file Town zoning before the county building permit when the parcel is inside Town. Real Elite Contracting works western Leesburg first from Martinsburg.",
     neighborhoods: ['Historic Old Town Leesburg', 'West of Route 15', 'Lansdowne on the Potomac', 'River Creek'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
   },
   'ashburn-va': {
     description:
-      "Ashburn is unincorporated Loudoun County — county building and zoning through LandMARC, plus HOA architectural review in nearly every master-planned community. We lead here with decks and outdoor living, then kitchens, baths, and additions. A county permit is not HOA approval; we file both tracks in parallel. Real Elite Contracting works Brambleton, Broadlands, Ashburn Farm, and One Loudoun from Martinsburg.",
+      "Ashburn is unincorporated Loudoun County — county building and zoning through LandMARC, plus HOA architectural review in nearly every master-planned community. We lead here with decks and outdoor living, then kitchens, baths, room additions, and in-law basement finish. A county permit is not HOA approval; we file both tracks in parallel. Real Elite Contracting works Brambleton, Broadlands, Ashburn Farm, and One Loudoun from Martinsburg.",
     neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
   },
   'brambleton-va': {
     description:
@@ -582,9 +582,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'loudoun-county-va': {
     description:
-      "Loudoun County is one of the wealthiest and fastest-growing counties in the United States — home to Leesburg, Ashburn, Sterling, Purcellville, and a network of master-planned communities reshaping Northern Virginia. From estate properties in horse country west of Route 15 to data-center-adjacent neighborhoods along the Silver Line Metro corridor, Loudoun homeowners share an expectation of premium craftsmanship and clean execution. Real Elite Contracting brings veteran-led precision and high-end remodeling to Loudoun County — luxury decks and outdoor living, custom kitchens, premium bathrooms, and full home transformations done to the standard this market expects.",
-    neighborhoods: ['Leesburg', 'Ashburn', 'Lansdowne', 'Brambleton', 'One Loudoun', 'Cascades', 'Purcellville', 'Sterling'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+      "Loudoun County decks run two tracks: county building and zoning through LandMARC, plus HOA review in most master-planned communities. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen drops you onto full plans at $395 — the county publishes a screened porch as a residential addition. Leesburg, Purcellville, and Middleburg permit separately. We lead the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then kitchens, baths, room additions, and in-law basement finish. A county permit is not HOA approval. Real Elite Contracting works Loudoun from Martinsburg.",
+    neighborhoods: ['Purcellville', 'Leesburg', 'Middleburg', 'Ashburn', 'Brambleton', 'Lansdowne'],
+    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
   },
 
   /* ---------- Fairfax County, VA (luxury Northern Virginia) ---------- */

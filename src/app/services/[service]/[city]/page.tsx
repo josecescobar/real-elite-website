@@ -26,6 +26,7 @@ import {
   defaultComboTitle,
   defaultComboDescription,
   comboPublishesPricing,
+  unconfirmedClaimIdsInCombo,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
@@ -47,6 +48,7 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
   kitchens: 'kitchen',
   basements: 'basement',
   remodeling: 'whole-home',
+  additions: 'addition',
   // Outdoor living is the luxury line that actually ranks in Loudoun: decks
   // hold four top-10 and twelve top-20 positions there, against zero top-10
   // for kitchen/bath. Without this mapping those pages rendered the luxury
@@ -191,6 +193,14 @@ export default async function ServiceCityPage({
   // it was vacuous AND blind to the route's filter being weakened from `every`
   // to `some`. Same mistake serviceHrefForArea was extracted to fix.
   const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
+
+  // AssurancesBand and PrecisionProcess publish four unconfirmed claims
+  // sitewide. Trust bullets are already gated per page; these two bands were
+  // not. `tests/built-claims.test.ts` treats a NEW combo URL inheriting them
+  // as the claim spreading. Home market keeps both. A premium combo whose own
+  // copy makes no unconfirmed claim does not get them from the template.
+  const showSitewideClaimBands =
+    cityData.market === 'home' || unconfirmedClaimIdsInCombo(service, city).length > 0;
 
   // SEO: Service schema scoped to this specific area, plus a BreadcrumbList.
   // No per-market LocalBusiness duplication (the global GeneralContractor in
@@ -451,11 +461,8 @@ export default async function ServiceCityPage({
         </Container>
       </section>
 
-      {/* Process module */}
-      <PrecisionProcess />
-
-      {/* Assurances */}
-      <AssurancesBand />
+      {showSitewideClaimBands && <PrecisionProcess />}
+      {showSitewideClaimBands && <AssurancesBand />}
 
       {/* Related guides — authored per combo, and rendered ONLY when authored.
           RelatedGuides falls back to the three most recent posts when it is
