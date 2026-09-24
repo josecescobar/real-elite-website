@@ -10,7 +10,11 @@ import StickyMobileCTA from '@/components/layout/StickyMobileCTA';
 import AttributionTracker from '@/components/analytics/AttributionTracker';
 import DeferredAnalytics from '@/components/analytics/DeferredAnalytics';
 import JsonLd from '@/components/seo/JsonLd';
-import { BUSINESS, GENERAL_CONTRACTOR_AREA_SERVED } from '@/lib/constants';
+import {
+  BUSINESS,
+  GENERAL_CONTRACTOR_AREA_SERVED,
+  VERIFIED_PROFILE_URLS,
+} from '@/lib/constants';
 import { env } from '@/lib/env';
 import { aggregateRatingSchema } from '@/lib/social-proof';
 
@@ -174,12 +178,9 @@ export default function RootLayout({
                 closes: '14:00',
               },
             ],
-            sameAs: [
-              BUSINESS.social.facebook,
-              BUSINESS.social.instagram,
-              BUSINESS.social.google,
-              BUSINESS.social.yelp,
-            ],
+            // Only profiles confirmed to be Real Elite's. Yelp is excluded
+            // until a human verifies it — see VERIFIED_PROFILE_URLS.
+            sameAs: [...VERIFIED_PROFILE_URLS],
             ...(aggregateRating ? { aggregateRating } : {}),
           }}
         />

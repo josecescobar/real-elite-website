@@ -10,6 +10,7 @@ import OwnerCard from '@/components/shared/OwnerCard';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`),
@@ -234,11 +235,11 @@ export default function AboutPage() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative aspect-[3/2] rounded-lg overflow-hidden shadow-card-elevated">
                 <Image
-                  src="/images/team.jpg"
-                  alt="The Real Elite Contracting crew on the job site"
+                  src="/images/crew-stone-work.webp"
+                  alt="Real Elite crew member installing stone veneer on a home exterior"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
@@ -296,12 +297,12 @@ export default function AboutPage() {
               Get My Free Estimate
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="about_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

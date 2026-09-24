@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Container from '@/components/shared/Container';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS } from '@/lib/constants';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata = buildMetadata({
   path: '/privacy',
@@ -28,7 +29,7 @@ const sections = [
   {
     title: 'Service providers',
     body: [
-      'We use trusted providers to operate the website and deliver requested services. Depending on which features are configured, these may include Vercel for hosting and performance measurement, Google Analytics for site measurement, Microsoft Clarity for heatmaps and session recordings, Resend for email delivery, Twilio for call and text delivery, Supabase for lead records, Upstash for abuse prevention, and Google Maps or Solar APIs for address and roof measurements.',
+      'We use trusted providers to operate the website and deliver requested services. Depending on which features are configured, these may include Vercel for hosting and performance measurement, Google Analytics for site measurement, Microsoft Clarity for heatmaps and session recordings, Resend for email delivery, Twilio for call and text delivery, Supabase for lead records, Upstash for abuse prevention, Google Maps or Solar APIs for address and roof measurements, and Thumbtack when a homeowner contacts us through that marketplace.',
       'These providers receive only the information needed to perform their function and process it under their own privacy and security terms.',
     ],
   },
@@ -102,9 +103,9 @@ export default function PrivacyPage() {
                   {BUSINESS.email}
                 </a>{' '}
                 or discussed by calling{' '}
-                <a className="font-semibold text-navy-800 underline" href={`tel:${BUSINESS.phoneRaw}`}>
+                <PhoneLink className="font-semibold text-navy-800 underline" location="privacy_body">
                   {BUSINESS.phone}
-                </a>
+                </PhoneLink>
                 . You can also return to the <Link className="font-semibold text-navy-800 underline" href="/contact">contact page</Link>.
               </p>
             </section>

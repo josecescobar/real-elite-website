@@ -7,6 +7,7 @@ import Container from '@/components/shared/Container';
 import FAQSchema from '@/components/seo/FAQSchema';
 import FaqAccordion from '@/components/faq/FaqAccordion';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`FAQ — Remodel Costs, Timelines & Permits | ${BUSINESS.name}`),
@@ -194,12 +195,12 @@ export default function FAQPage() {
               Get My Free Estimate
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="faq_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

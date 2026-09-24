@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { BUSINESS } from '@/lib/constants';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 const MultiStepEstimateForm = dynamic(
   () => import('@/components/shared/MultiStepEstimateForm'),
@@ -59,12 +60,12 @@ export default function HomeEstimate() {
               </p>
               <p className="text-sm text-charcoal-200 leading-relaxed">
                 Call{' '}
-                <a
-                  href={`tel:${BUSINESS.phoneRaw}`}
+                <PhoneLink
+                  location="home_estimate"
                   className="text-white hover:text-brand-red-light font-semibold underline transition-colors"
                 >
                   {BUSINESS.phone}
-                </a>{' '}
+                </PhoneLink>{' '}
                 or{' '}
                 <a
                   href={SMS_URL}

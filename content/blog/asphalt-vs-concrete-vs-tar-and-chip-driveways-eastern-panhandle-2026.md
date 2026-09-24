@@ -3,7 +3,7 @@ title: "Asphalt vs. Concrete vs. Tar-and-Chip Driveways: Which Is Right for Your
 seoTitle: "Asphalt vs. Concrete vs. Tar-and-Chip Driveways"
 date: "2026-06-07"
 excerpt: "Your driveway is one of the largest surfaces on your property — and the material you pick shapes its look, lifespan, maintenance, and cost. A straight comparison of asphalt, concrete, and tar-and-chip for the Eastern Panhandle climate, plus where sealcoating fits in."
-seoDescription: "Compare asphalt, concrete, and tar-and-chip driveway cost, lifespan, maintenance, and freeze-thaw performance for Eastern Panhandle homes."
+seoDescription: "Asphalt runs $4–$7 per square foot installed here, or $4,000–$10,000 for a typical driveway. How it compares with concrete and tar-and-chip on life and upkeep."
 slug: "asphalt-vs-concrete-vs-tar-and-chip-driveways-eastern-panhandle-2026"
 featuredImage: "/images/inspiration/paving-aplus-driveway.jpg"
 category: "Exteriors"
@@ -74,9 +74,11 @@ If you go with asphalt, **seal coating is the single best thing you can do to pr
 
 ## What it costs — and getting it right
 
-Driveway costs swing widely with the material, the size and shape of the drive, the condition of what's there now, and how much base work is needed — so we don't quote a number sight-unseen. We come out, look at your driveway, and give you a **free, written estimate** with honest options.
+Driveway costs swing widely with the material, the size and shape of the drive, the condition of what's there now, and how much base work is needed. Here's the starting point we can give you without seeing your property.
 
-What we'd tell you for free: the cheapest bid usually isn't the best value if it skips the base prep. Pay for the foundation; the surface is the easy part.
+For **asphalt** — the option most homes here land on — figure roughly **$4–$7 per square foot installed**, with a typical Eastern Panhandle driveway running **$4,000–$10,000**. A standard two-car drive often lands in the $4,000–$7,000 range; long rural lanes and gravel conversions run higher. **Concrete** sits above that as the premium option, and **tar-and-chip** below it, but both swing enough with site conditions that we'd rather look before putting a number on them. Full detail on the asphalt side is on our [driveway paving page](/paving/driveway-paving).
+
+A range is a sanity check, not a quote. We come out, measure, and give you a **free, written estimate** with honest options — and what we'd tell you for free: the cheapest bid usually isn't the best value if it skips the base prep. Pay for the foundation; the surface is the easy part.
 
 ## The Real Elite approach
 

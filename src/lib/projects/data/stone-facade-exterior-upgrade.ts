@@ -74,7 +74,7 @@ const project: Project = {
   ],
   gallery: [
     { src: '/images/stone-veneer-finish.jpg', alt: 'Finished stone veneer detail on home exterior' },
-    { src: '/images/siding-windows.jpg', alt: 'Siding and window replacement in progress' },
+    { src: '/images/siding-window-work.webp', alt: 'Siding and window replacement in progress' },
     { src: '/images/exterior-brick-victorian.jpg', alt: 'Brick Victorian-style home with multiple gables and dark architectural shingle roof' },
   ],
 

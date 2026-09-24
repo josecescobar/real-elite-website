@@ -20,7 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { service: slug } = await params;
   const service = getPavingService(slug);
-  if (!service) return { title: 'Not Found' };
+  if (!service) return { title: 'Not Found', robots: { index: false } };
 
   const title = fitTitle(`${service.metaTitle} | ${BUSINESS.name}`);
   return {

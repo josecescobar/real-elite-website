@@ -5,8 +5,10 @@ import { ChevronRight, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 import {
   BUSINESS,
   SERVICES,
-  EXPANSION_SERVICE_AREAS,
+  ALL_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
+  formatAreaPlace,
+  areaSchemaType,
 } from '@/lib/constants';
 import { SERVICE_DATA } from '@/lib/services-data';
 import Container from '@/components/shared/Container';
@@ -16,14 +18,20 @@ import LuxuryConsultationRail from '@/components/services/LuxuryConsultationRail
 import InvestmentRanges from '@/components/services/InvestmentRanges';
 import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import RelatedGuides from '@/components/services/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import {
   CONTENT,
+  defaultComboTitle,
+  defaultComboDescription,
+  comboPublishesPricing,
   type FeaturedServiceSlug,
-  type ExpansionCitySlug,
+  type ComboCitySlug,
 } from '@/lib/service-city-content';
-import { primaryCtaForService } from '@/lib/cta-intent';
+import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-intent';
+import PhoneLink from '@/components/analytics/PhoneLink';
+import { selectTrustBullets } from '@/lib/trust-bullets';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -33,16 +41,20 @@ import { primaryCtaForService } from '@/lib/cta-intent';
  * on /design-consultation?type=bathroom with the field pre-selected.
  */
 const CONSULTATION_TYPE_FOR_SERVICE: Partial<
-  Record<
-    FeaturedServiceSlug,
-    'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'addition'
-  >
+  Record<FeaturedServiceSlug, ConsultationProjectType>
 > = {
   bathrooms: 'bathroom',
   kitchens: 'kitchen',
   basements: 'basement',
   remodeling: 'whole-home',
   additions: 'addition',
+  // Outdoor living is the luxury line that actually ranks in Loudoun: decks
+  // hold four top-10 and twelve top-20 positions there, against zero top-10
+  // for kitchen/bath. Without this mapping those pages rendered the luxury
+  // consultation rail with nothing preselected while the header CTA fell
+  // through to "Free Estimate" — a $60k Brambleton deck enquiry treated like
+  // a handyman call.
+  decks: 'outdoor-living',
 };
 
 // ─── Static Params ────────────────────────────────────────────────────────────
@@ -63,7 +75,7 @@ export const dynamicParams = false;
  * route on next build.
  */
 export function generateStaticParams() {
-  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[]).map(
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[]).map(
     (key) => {
       const dashIdx = key.indexOf('-');
       return {
@@ -76,13 +88,13 @@ export function generateStaticParams() {
 
 // Cross-link helpers — derived from what's actually published in CONTENT.
 function citiesForService(serviceSlug: string): readonly string[] {
-  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[])
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[])
     .filter((k) => k.startsWith(`${serviceSlug}-`))
     .map((k) => k.slice(serviceSlug.length + 1));
 }
 
 function servicesForCity(citySlug: string): readonly string[] {
-  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ExpansionCitySlug}`[])
+  return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[])
     .filter((k) => k.endsWith(`-${citySlug}`))
     .map((k) => k.slice(0, k.length - citySlug.length - 1));
 }
@@ -96,12 +108,26 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { service, city } = await params;
   const serviceData = SERVICES.find((s) => s.slug === service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
+  const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
 
-  if (!serviceData || !cityData) return { title: 'Not Found' };
+  if (!serviceData || !cityData)
+    return { title: 'Not Found', robots: { index: false } };
 
-  const title = `${serviceData.title} in ${cityData.city}, ${cityData.state} | Real Elite`;
-  const description = `Expert ${serviceData.title.toLowerCase()} services in ${cityData.city}, ${cityData.state}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+  // Home-turf combos override the generic template so the snippet can lead
+  // with the thing the query actually asks for (price, response time). The
+  // fallback is unchanged, so every combo without an override keeps the
+  // metadata it shipped with.
+  const meta = CONTENT[`${service}-${city}` as keyof typeof CONTENT];
+
+  // "Northern Virginia", not "Northern Virginia, VA". Every combo city was a
+  // town or a city until the region landed, so `${city}, ${state}` was safe
+  // everywhere; it is not any more, and the fallbacks are byte-identical for
+  // the 69 combos that predate it.
+  const place = formatAreaPlace(cityData);
+
+  const title = meta?.metaTitle ?? defaultComboTitle(serviceData.title, place);
+  const description =
+    meta?.metaDescription ?? defaultComboDescription(serviceData.title, place);
 
   return {
     title,
@@ -109,7 +135,7 @@ export async function generateMetadata({
     keywords: [
       `${serviceData.title.toLowerCase()} ${cityData.city}`,
       `${cityData.city} ${serviceData.title.toLowerCase()}`,
-      `${serviceData.title.toLowerCase()} contractor ${cityData.city} ${cityData.state}`,
+      `${serviceData.title.toLowerCase()} contractor ${place}`,
       `${cityData.city} home improvement`,
       `${cityData.state} contractor`,
     ],
@@ -134,13 +160,15 @@ export default async function ServiceCityPage({
 }) {
   const { service, city } = await params;
   const serviceData = SERVICES.find((s) => s.slug === service);
-  const cityData = EXPANSION_SERVICE_AREAS.find((a) => a.slug === city);
+  const cityData = ALL_SERVICE_AREAS.find((a) => a.slug === city);
   const contentKey = `${service}-${city}` as keyof typeof CONTENT;
   const content = CONTENT[contentKey];
 
   if (!serviceData || !cityData || !content) {
     notFound();
   }
+
+  const relatedGuideSlugs = content.relatedGuideSlugs ?? [];
 
   const consultationType = CONSULTATION_TYPE_FOR_SERVICE[service as FeaturedServiceSlug];
   const primaryCta = primaryCtaForService(service, {
@@ -154,26 +182,53 @@ export default async function ServiceCityPage({
         ? 'Enter your address, choose a roofing material, and get a ballpark replacement range in about 60 seconds.'
         : 'Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walkthrough.';
 
-  // SEO: Service schema scoped to this specific city, plus a
-  // BreadcrumbList. No per-market LocalBusiness duplication (the global
-  // GeneralContractor in layout.tsx already covers areaServed).
+  const place = formatAreaPlace(cityData);
+
+  // Which trust bullets this page may publish. The rule lives in
+  // src/lib/trust-bullets.ts, not here: three of these four bullets publish
+  // claims registered `unconfirmed` in src/lib/claims.ts, and a rule that
+  // lives in a page component can only be tested by rendering the page or by
+  // copying the rule into the test. The copy is what shipped, and Codex showed
+  // it was vacuous AND blind to the route's filter being weakened from `every`
+  // to `some`. Same mistake serviceHrefForArea was extracted to fix.
+  const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
+
+  // SEO: Service schema scoped to this specific area, plus a BreadcrumbList.
+  // No per-market LocalBusiness duplication (the global GeneralContractor in
+  // layout.tsx already covers areaServed).
   const richServiceData = SERVICE_DATA[serviceData.slug];
+
+  // The generic investment tiers describe the home market. On a premium page
+  // that publishes its own figures they contradict it — basements top out at
+  // "$90k – $140k+" while Great Falls publishes $250,000–$350,000 as a typical
+  // build — so the page's own numbers win. Where a premium page publishes no
+  // figures (the Loudoun exterior trades) the tiers stay: there they are in
+  // the right band and are the only pricing the page has. See the helper.
+  const showGenericInvestment = !(
+    cityData.market === 'premium' && comboPublishesPricing(service, city)
+  );
+
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: `${serviceData.title} in ${cityData.city}, ${cityData.state}`,
+    name: `${serviceData.title} in ${place}`,
     serviceType: richServiceData?.serviceType ?? serviceData.title,
     description:
       richServiceData?.metaDescription ??
-      `${serviceData.title} services for ${cityData.city}, ${cityData.state} homeowners by Real Elite Contracting.`,
+      `${serviceData.title} services for ${place} homeowners by Real Elite Contracting.`,
     provider: {
       '@type': 'GeneralContractor',
       name: BUSINESS.name,
       url: `${BUSINESS.url}/`,
       telephone: '+1-681-534-5515',
     },
+    // `City` was hardcoded, which is wrong twice over: "Northern Virginia" is
+    // not a city, and neither are the CDPs already in this list (Reston,
+    // McLean, Great Falls, Burke, Fairfax Station). areaSchemaType emits the
+    // generic `Place` for a locality and `AdministrativeArea` for a county or
+    // region — the same correction #146 made to the area-page schema.
     areaServed: {
-      '@type': 'City',
+      '@type': areaSchemaType(cityData),
       name: cityData.city,
       containedInPlace: { '@type': 'State', name: cityData.state },
     },
@@ -184,12 +239,12 @@ export default async function ServiceCityPage({
     { name: 'Home', item: BUSINESS.url },
     { name: 'Services', item: `${BUSINESS.url}/services` },
     { name: serviceData.title, item: `${BUSINESS.url}/services/${service}` },
-    { name: `${cityData.city}, ${cityData.state}`, item: `${BUSINESS.url}/services/${service}/${city}` },
+    { name: place, item: `${BUSINESS.url}/services/${service}/${city}` },
   ]);
 
   // Cross-link rails — derived from what's actually published in CONTENT.
   const publishedOtherCities = new Set(citiesForService(serviceData.slug));
-  const otherCitiesForThisService = EXPANSION_SERVICE_AREAS.filter(
+  const otherCitiesForThisService = ALL_SERVICE_AREAS.filter(
     (a) => a.slug !== cityData.slug && publishedOtherCities.has(a.slug)
   ).slice(0, 5);
 
@@ -226,12 +281,12 @@ export default async function ServiceCityPage({
               href={`/service-areas/${cityData.slug}`}
               className="hover:text-white transition-colors"
             >
-              {cityData.city}, {cityData.state}
+              {place}
             </Link>
           </nav>
 
           <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4 inline-flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {cityData.city}, {cityData.state}
+            <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {place}
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight max-w-4xl">
             {serviceData.title}
@@ -249,12 +304,12 @@ export default async function ServiceCityPage({
             >
               {primaryCta.label} →
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="combo_page_hero"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>
@@ -283,7 +338,7 @@ export default async function ServiceCityPage({
               </div>
 
               {/* Investment ranges (when SERVICE_DATA has them) */}
-              {richServiceData?.investment && (
+              {richServiceData?.investment && showGenericInvestment && (
                 <InvestmentRanges
                   startingAt={richServiceData.investment.startingAt}
                   tiers={richServiceData.investment.tiers}
@@ -297,31 +352,12 @@ export default async function ServiceCityPage({
                   Why {cityData.city} homeowners choose Real Elite
                 </p>
                 <ul className="space-y-3 text-charcoal-700">
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      One named project lead on every {cityData.city}{' '}
-                      {serviceData.title.toLowerCase()} job — from estimate through final walkthrough.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      Daily updates, clean job site, 24-hour response standard.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      Written workmanship warranty + manufacturer warranties registered on your behalf.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-red font-bold flex-shrink-0">·</span>
-                    <span>
-                      Licensed and insured in {cityData.state} — local permitting + inspections handled.
-                    </span>
-                  </li>
+                  {trustPoints.map((point) => (
+                    <li key={point} className="flex items-start gap-3">
+                      <span className="text-brand-red font-bold flex-shrink-0">·</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -389,7 +425,7 @@ export default async function ServiceCityPage({
                           href={`/services/${serviceData.slug}/${c.slug}`}
                           className="inline-flex items-center gap-1.5 bg-white border border-charcoal-200 hover:border-brand-red text-navy-800 hover:text-brand-red rounded-md px-3 py-2 text-sm font-medium transition-colors"
                         >
-                          {c.city}, {c.state} <ArrowUpRight className="w-3.5 h-3.5" />
+                          {formatAreaPlace(c)} <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
                       ))}
                     </div>
@@ -422,6 +458,23 @@ export default async function ServiceCityPage({
       {/* Assurances */}
       <AssurancesBand />
 
+      {/* Related guides — authored per combo, and rendered ONLY when authored.
+          RelatedGuides falls back to the three most recent posts when it is
+          handed nothing, which on a hiring page would publish whatever was
+          written last. The length check is what keeps that fallback off the
+          59 combos with no pairing; fallbackCount={0} is the second lock, so
+          neither one silently doing nothing can publish arbitrary articles.
+          A slug that does not resolve is caught at build time by
+          service-city-content.test.ts rather than degrading to the same
+          fallback. */}
+      {relatedGuideSlugs.length > 0 && (
+        <section className="bg-white py-16 md:py-24">
+          <Container size="wide">
+            <RelatedGuides slugs={relatedGuideSlugs} fallbackCount={0} />
+          </Container>
+        </section>
+      )}
+
       {/* Final CTA */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <Container size="default" className="text-center">
@@ -439,12 +492,12 @@ export default async function ServiceCityPage({
               {primaryCta.label}
               <ArrowRight className="w-4 h-4" />
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="combo_page_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

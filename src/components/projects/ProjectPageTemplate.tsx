@@ -13,6 +13,7 @@ import ProjectCard from './ProjectCard';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import { BUSINESS, SERVICES } from '@/lib/constants';
 import { resolveCity, getRelatedProjects, type Project } from '@/lib/projects';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export default function ProjectPageTemplate({ project }: { project: Project }) {
   const city = resolveCity(project.citySlug);
@@ -96,12 +97,12 @@ export default function ProjectPageTemplate({ project }: { project: Project }) {
               >
                 Start a Project Like This →
               </a>
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="project_page_hero"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
               >
                 Call {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </Container>
@@ -313,12 +314,12 @@ export default function ProjectPageTemplate({ project }: { project: Project }) {
               Get My Free Estimate
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="project_page_cta"
               className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
             >
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

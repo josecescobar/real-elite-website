@@ -4,6 +4,7 @@ import Container from '@/components/shared/Container';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS } from '@/lib/constants';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata = buildMetadata({
   path: '/estimate',
@@ -129,13 +130,13 @@ export default function EstimateHubPage() {
           <div className="mt-10 text-center">
             <p className="text-charcoal-600">
               Prefer to talk it through?{' '}
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="estimate_page"
                 className="inline-flex items-center gap-1.5 font-bold text-navy-800 hover:text-brand-red transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 Call {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </p>
           </div>
         </Container>

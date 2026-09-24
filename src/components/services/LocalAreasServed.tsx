@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
-import { PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS, EXPANSION_SERVICE_AREAS } from '@/lib/constants';
-import { CONTENT } from '@/lib/service-city-content';
+import { PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS } from '@/lib/constants';
+import { serviceHrefForArea } from '@/lib/service-city-content';
 
 type Props = {
   serviceSlug: string;
@@ -39,12 +39,7 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {priorityCities.map((area) => {
-          const deepLinkAvailable = Boolean(
-            CONTENT[`${serviceSlug}-${area.slug}` as keyof typeof CONTENT]
-          );
-          const href = deepLinkAvailable
-            ? `/services/${serviceSlug}/${area.slug}`
-            : `/service-areas/${area.slug}`;
+          const href = serviceHrefForArea(serviceSlug, area.slug);
           return (
             <Link
               key={area.slug}

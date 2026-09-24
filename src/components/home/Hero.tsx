@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { BUSINESS } from '@/lib/constants';
 import TrackedLink from '@/components/analytics/TrackedLink';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const Hero = () => {
   return (
@@ -78,14 +79,12 @@ export const Hero = () => {
             >
               Instant Roof Quote →
             </TrackedLink>
-            <TrackedLink
-              href={`tel:${BUSINESS.phoneRaw}`}
-              eventName="phone_click"
-              eventParams={{ location: 'hero' }}
+            <PhoneLink
+              location="hero"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 focus-visible:ring-white/40"
             >
               Call {BUSINESS.phone}
-            </TrackedLink>
+            </PhoneLink>
           </div>
 
           {/* Trust strip */}

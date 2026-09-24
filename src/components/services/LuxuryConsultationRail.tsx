@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ArrowUpRight, Calendar, Clock, ShieldCheck } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import type { ConsultationProjectType } from '@/lib/cta-intent';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 /**
  * Right-rail block shown on luxury market pages (the McLean / Great Falls /
@@ -20,7 +22,7 @@ type Props = {
    * consultation page (set on service-city combo pages so a Bathroom →
    * McLean visitor lands with "Primary Bath / Suite" already filled).
    */
-  initialProjectType?: 'kitchen' | 'bathroom' | 'basement' | 'whole-home' | 'addition';
+  initialProjectType?: ConsultationProjectType;
 };
 
 export default function LuxuryConsultationRail({ initialProjectType }: Props) {
@@ -77,13 +79,13 @@ export default function LuxuryConsultationRail({ initialProjectType }: Props) {
           <p className="text-[0.65rem] uppercase tracking-[0.15em] text-charcoal-300 font-semibold mb-2">
             Or speak directly
           </p>
-          <a
-            href={`tel:${BUSINESS.phoneRaw}`}
+          <PhoneLink
+            location="luxury_rail"
             className="inline-flex items-center gap-1.5 text-white font-bold hover:text-brand-red transition-colors"
           >
             {BUSINESS.phone}
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </PhoneLink>
         </div>
       </div>
     </aside>

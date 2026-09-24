@@ -502,7 +502,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         "Your home's siding is more than aesthetics — it's your first line of defense against the elements. Real Elite Contracting installs vinyl, fiber cement, and stone veneer siding using premium materials that protect your home while transforming its curb appeal.",
         "Whether you're upgrading dated siding, repairing storm damage, or doing a complete exterior makeover, our team delivers flawless installations with attention to every detail.",
       ],
-      image: { src: '/images/siding-windows.jpg', alt: 'Siding and window replacement in progress' },
+      image: { src: '/images/siding-window-work.webp', alt: 'Siding and window replacement in progress' },
     },
     scope: {
       items: [
@@ -525,7 +525,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     gallery: [
       { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade' },
       { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer foundation detail' },
-      { src: '/images/siding-replacement.jpg', alt: 'Siding replacement in progress' },
+      { src: '/images/siding-window-work.webp', alt: 'Siding replacement in progress' },
     ],
     whyChooseUs: [
       'Extensive experience with all major siding materials and stone veneer systems.',
@@ -845,14 +845,14 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'New Space',
       heading: 'Home Additions',
       sub: 'Additions that seamlessly extend your existing home — engineered to last, matched to your existing architecture, project-managed end-to-end.',
-      image: { src: '/images/new-build-sunset.jpg', alt: 'New construction with house wrap at sunset' },
+      image: { src: '/images/new-build-weather-barrier.webp', alt: 'New home under construction with weather barrier and exposed roof trusses' },
     },
     overview: {
       paragraphs: [
         "Sometimes the right answer isn't moving — it's adding. Real Elite Contracting designs and builds home additions that look like they were always part of the original structure. Roofline, siding, foundation, interior finish — matched so you can't tell where the original house ends and the new build begins.",
         "We handle structural engineering, permitting, foundation work, framing, roofing tie-in, exterior matching, and interior finish coordination. One project lead, transparent line-itemed pricing.",
       ],
-      image: { src: '/images/framing-crew.jpg', alt: 'Interior framing crew working on a home addition' },
+      image: { src: '/images/framing-walls-work.webp', alt: 'Timber wall framing and window openings during construction' },
     },
     scope: {
       items: [
@@ -876,7 +876,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     gallery: [
       { src: '/images/framing-windows.jpg', alt: 'Window framing on a home addition' },
       { src: '/images/house-wrap-worker.jpg', alt: 'House wrap install on new addition' },
-      { src: '/images/new-build-sunset.jpg', alt: 'Finished addition at sunset' },
+      { src: '/images/new-build-weather-barrier.webp', alt: 'New home under construction with weather barrier and exposed roof trusses' },
     ],
     whyChooseUs: [
       'Matched architecture — additions that look original.',

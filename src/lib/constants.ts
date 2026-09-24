@@ -30,24 +30,54 @@ export const BUSINESS = {
   },
   url: 'https://www.realelitecontracting.com',
   /**
-   * Social URLs are verified-live links. LinkedIn and Thumbtack profiles
-   * were previously listed but returned 404 — removed to avoid broken
-   * trust signals in the footer and broken sameAs references in JSON-LD.
-   * Add them back here once the real profiles exist.
+   * Social URLs. LinkedIn and Thumbtack profiles were previously listed but
+   * returned 404 — removed to avoid broken trust signals in the footer and
+   * broken sameAs references in JSON-LD. Add them back here once the real
+   * profiles exist.
    *
-   * Yelp is left in because Yelp blocks automated checks (403 on bots);
-   * verify the profile manually in a browser before linking it from the
-   * footer.
+   * Yelp is left in because Yelp blocks automated checks (403 on bots), so it
+   * has never been confirmed to be Real Elite's profile. It is therefore
+   * UNVERIFIED and is deliberately absent from `VERIFIED_PROFILE_URLS` below.
+   * Verify it manually in a browser, then add it there to enable the sameAs
+   * assertion. The footer needs a SECOND edit: an entry in `SOCIAL_LINKS` in
+   * Footer.tsx carrying an icon, since a bare URL has nothing to render.
    */
   social: {
     facebook: 'https://www.facebook.com/realelitecontracting',
     instagram: 'https://www.instagram.com/realelitecontracting',
     google: 'https://share.google/yuA4SUQ5zDrSKAyHm',
+    /** UNVERIFIED — see the note above. Not in `VERIFIED_PROFILE_URLS`. */
     yelp: 'https://www.yelp.com/biz/real-elite-contracting',
   },
   hours: 'Mon–Fri: 7:00 AM – 6:00 PM | Sat: 8:00 AM – 2:00 PM',
   veteranOwned: true,
 } as const;
+
+/**
+ * The subset of `BUSINESS.social` confirmed to belong to Real Elite, and
+ * therefore safe to assert as an external identity in the sitewide
+ * LocalBusiness `sameAs`.
+ *
+ * `sameAs` is a machine-readable claim that this business owns these
+ * profiles. An unverified URL in it tells Google the business owns a page
+ * that may belong to someone else — which is why the 404'd LinkedIn and
+ * Thumbtack URLs were removed rather than left in place.
+ *
+ * Yelp is absent for the same reason: Yelp 403s bots, so its URL has never
+ * been confirmed. Once a human opens it and confirms it is Real Elite's, add
+ * `BUSINESS.social.yelp` here.
+ *
+ * Footer.tsx gates `SOCIAL_LINKS` on this same list, so removing a URL here
+ * withdraws it from both the footer and `sameAs` at once. Adding one is not
+ * symmetric: a new platform also needs a `SOCIAL_LINKS` entry with an icon
+ * before the footer can show it. An earlier version of this comment claimed
+ * one edit covered both, and it did not.
+ */
+export const VERIFIED_PROFILE_URLS = [
+  BUSINESS.social.facebook,
+  BUSINESS.social.instagram,
+  BUSINESS.social.google,
+] as const;
 
 /**
  * Social-proof / trust signals — single source of truth for the rating,
@@ -107,6 +137,35 @@ export const FINANCING = {
  * Service catalog — ordered by homepage / mega-menu priority.
  * Premium remodeling categories lead; small-job services trail.
  */
+/**
+ * Services whose pillar page does NOT live under `/services/`.
+ *
+ * Paving was consolidated into a dedicated `/paving` pillar — hub, service
+ * templates and location pages — and `/services/paving` redirects there. But
+ * the row stays in SERVICES because the trade is still offered, so every
+ * caller deriving a link from the slug produced `/services/paving` and sent
+ * the visitor through a 308. It was on 27 live pages: all 26 service-area
+ * pages and the `/services` index.
+ *
+ * Found by the built-HTML link assertion in `tests/built-links.test.ts` on its
+ * first run. No source-level scan could have seen it — the href is derived
+ * from the slug, so the string `/services/paving` appears nowhere in `src`.
+ * That is the argument for asserting over rendered output, made concrete.
+ */
+const PILLAR_HREF_OVERRIDES: Readonly<Record<string, string>> = {
+  paving: '/paving',
+};
+
+/**
+ * The canonical pillar URL for a service slug.
+ *
+ * Every caller that turns a service slug into a link must use this rather than
+ * interpolating `/services/${slug}` — that is what produced the 27-page
+ * redirect above.
+ */
+export const servicePillarHref = (slug: string): string =>
+  PILLAR_HREF_OVERRIDES[slug] ?? `/services/${slug}`;
+
 export const SERVICES = [
   {
     title: 'Bathroom Remodeling',
@@ -197,63 +256,192 @@ export const SERVICES = [
 /* --------------------------------------------------------------------- */
 /*  Service Areas                                                        */
 /*                                                                       */
-/*  Tiers reflect actual market emphasis, not "expansion." Frederick MD, */
-/*  Winchester VA, Leesburg VA, Ashburn VA, and Hagerstown MD are        */
-/*  first-class primary markets alongside the Eastern Panhandle WV.      */
+/*  ONE catalog, several derived views. Every area the site publishes a   */
+/*  page for is a row in SERVICE_AREA_CATALOG below, and the exported     */
+/*  lists (PRIMARY_/SECONDARY_/EXPANSION_SERVICE_AREAS, ALL_SERVICE_AREAS,*/
+/*  LUXURY_CITY_SLUGS) are computed from it. A market's tier is stated    */
+/*  once on its row instead of being inferred from which of four          */
+/*  overlapping arrays it happened to appear in.                          */
+/*                                                                       */
+/*  Why the catalog carries `kind` and `parent`: the demand this site     */
+/*  serves is not all at one altitude. See                                */
+/*  docs/site-altitude-architecture-2026-09-18.md — the name people type   */
+/*  after a trade is a town in the Eastern Panhandle, a city in MD and     */
+/*  the Shenandoah, and a region or county in Northern Virginia. A model   */
+/*  that only knows about cities cannot express that, which is how a       */
+/*  county (Loudoun) and a planned community (Brambleton) both ended up    */
+/*  in a field called `city`.                                             */
 /* --------------------------------------------------------------------- */
 
-export const PRIMARY_SERVICE_AREAS = [
-  { city: 'Martinsburg', state: 'WV', slug: 'martinsburg-wv' },
-  { city: 'Inwood', state: 'WV', slug: 'inwood-wv' },
-  { city: 'Charles Town', state: 'WV', slug: 'charles-town-wv' },
-  { city: 'Ranson', state: 'WV', slug: 'ranson-wv' },
-  { city: 'Hedgesville', state: 'WV', slug: 'hedgesville-wv' },
-  { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
-  { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
-  { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
-  { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
-  { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
-  { city: 'McLean', state: 'VA', slug: 'mclean-va' },
-  { city: 'Alexandria', state: 'VA', slug: 'alexandria-va' },
-  { city: 'Vienna', state: 'VA', slug: 'vienna-va' },
-  { city: 'Great Falls', state: 'VA', slug: 'great-falls-va' },
-  { city: 'Reston', state: 'VA', slug: 'reston-va' },
-  { city: 'Burke', state: 'VA', slug: 'burke-va' },
-  { city: 'Fairfax Station', state: 'VA', slug: 'fairfax-station-va' },
-  { city: 'Clifton', state: 'VA', slug: 'clifton-va' },
-  { city: 'Middleburg', state: 'VA', slug: 'middleburg-va' },
-] as const;
-
-export const SECONDARY_SERVICE_AREAS = [
-  { city: 'Spring Mills', state: 'WV', slug: 'spring-mills-wv' },
-  { city: 'Falling Waters', state: 'WV', slug: 'falling-waters-wv' },
-  { city: 'Berkeley Springs', state: 'WV', slug: 'berkeley-springs-wv' },
-  { city: 'Shepherdstown', state: 'WV', slug: 'shepherdstown-wv' },
-  { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
-] as const;
+/**
+ * What kind of place a row names. Drives JSON-LD (`City` vs
+ * `AdministrativeArea`), heading phrasing, and which template sections a
+ * page renders.
+ *
+ * `town` and `city` behave identically today and are kept apart because the
+ * distinction is real — Vienna is an incorporated town, Reston a
+ * census-designated place, Alexandria an independent city — and because
+ * consumers key off `isLocalityArea` rather than the literal, so adding a
+ * kind later does not mean visiting call sites.
+ */
+export type AreaKind = 'town' | 'city' | 'county' | 'region';
 
 /**
- * VA / MD growth-market cities. A distinct subset — not a duplicate of
- * PRIMARY_SERVICE_AREAS. Drives the "VA / MD" grouping in the regional
- * grid and the service+city combo pages under /services/[service]/[city].
+ * Which buying psychology a market has, and therefore which conversion path
+ * its pages use: `premium` routes to /design-consultation (calibrated for
+ * $50k+ intake), `home` routes to the free-estimate path. This is the single
+ * source for that decision — LUXURY_CITY_SLUGS is now derived from it.
  */
-export const EXPANSION_SERVICE_AREAS = [
-  { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
-  { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
-  { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
-  { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
-  { city: 'McLean', state: 'VA', slug: 'mclean-va' },
-  { city: 'Alexandria', state: 'VA', slug: 'alexandria-va' },
-  { city: 'Vienna', state: 'VA', slug: 'vienna-va' },
-  { city: 'Great Falls', state: 'VA', slug: 'great-falls-va' },
-  { city: 'Reston', state: 'VA', slug: 'reston-va' },
-  { city: 'Burke', state: 'VA', slug: 'burke-va' },
-  { city: 'Fairfax Station', state: 'VA', slug: 'fairfax-station-va' },
-  { city: 'Clifton', state: 'VA', slug: 'clifton-va' },
-  { city: 'Middleburg', state: 'VA', slug: 'middleburg-va' },
-  { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
-  { city: 'Loudoun County', state: 'VA', slug: 'loudoun-county-va' },
-] as const;
+export type AreaMarket = 'home' | 'premium';
+
+/**
+ * `active` — the area gets its own pages.
+ * `consolidated` — the area's own pages are retired in favour of a broader
+ *   page, and `redirectTo` says where they go.
+ *
+ * This is AREA-level retirement. Retiring one service+city combo while
+ * keeping the area's overview page is a different operation: remove the key
+ * from CONTENT in src/lib/service-city-content.ts and add the matching
+ * redirect in next.config.ts. Because that route sets `dynamicParams = false`,
+ * removing a key without the redirect ships a hard 404, so the two have to
+ * land in the same deploy.
+ */
+export type AreaStatus = 'active' | 'consolidated';
+
+export type ServiceArea = {
+  slug: string;
+  /**
+   * The place name as it appears in copy.
+   *
+   * Named `city` for historical reasons: roughly sixty call sites read
+   * `.city`, and the name is also load-bearing in the unrelated paving and
+   * sales modules. It holds a place name of any `kind`, not necessarily a
+   * city. Renaming it to `name` is worthwhile follow-up debt, deliberately
+   * not bundled into the tiering change.
+   */
+  city: string;
+  state: 'WV' | 'MD' | 'VA';
+  kind: AreaKind;
+  market: AreaMarket;
+  status: AreaStatus;
+  /**
+   * The broader area this one sits inside, as a slug in this catalog. Sets
+   * the breadcrumb trail and the hub/child link graph.
+   *
+   * Left unset where no parent row exists. The Fairfax-County towns get one
+   * when the Northern Virginia region is added; the WV towns deliberately get
+   * none, because `roofing berkeley county wv` and every other Eastern
+   * Panhandle regional phrasing returns no measurable search volume, so a
+   * county row would only generate pages nobody looks for.
+   */
+  parent?: string;
+  /** Required when `status` is 'consolidated'. Enforced by constants.test.ts. */
+  redirectTo?: string;
+  /**
+   * Which of the legacy exported lists this row belonged to, so those lists
+   * can be derived rather than hand-maintained. A compatibility shim: prefer
+   * `kind`, `market` and `parent` for new work.
+   */
+  legacyTiers: readonly ('primary' | 'secondary' | 'expansion')[];
+};
+
+/**
+ * The catalog. Order is load-bearing: ALL_SERVICE_AREAS preserves it, and it
+ * drives generateStaticParams plus the rendered order of several area grids.
+ * Home-market WV first, then MD/Shenandoah, then the Northern Virginia
+ * premium markets, then the secondary rows.
+ */
+export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
+  /* ---------- Eastern Panhandle WV — the home market ---------- */
+  { slug: 'martinsburg-wv', city: 'Martinsburg', state: 'WV', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary'] },
+  { slug: 'inwood-wv', city: 'Inwood', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['primary'] },
+  { slug: 'charles-town-wv', city: 'Charles Town', state: 'WV', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary'] },
+  { slug: 'ranson-wv', city: 'Ranson', state: 'WV', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary'] },
+  { slug: 'hedgesville-wv', city: 'Hedgesville', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['primary'] },
+
+  /* ---------- MD and the Northern Shenandoah — first-class markets ---------- */
+  { slug: 'frederick-md', city: 'Frederick', state: 'MD', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'hagerstown-md', city: 'Hagerstown', state: 'MD', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'winchester-va', city: 'Winchester', state: 'VA', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
+
+  /* ---------- Loudoun County — premium, and the one NoVA county with a row ---------- */
+  { slug: 'leesburg-va', city: 'Leesburg', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'ashburn-va', city: 'Ashburn', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['primary', 'expansion'] },
+
+  /* ---------- Fairfax County and the inner NoVA suburbs — premium ----------
+   * Parented to the `northern-virginia` region row below. That row exists
+   * because the basement demand in this market is regional: "basement
+   * remodeling northern virginia" reports 110/mo and "basement finishing
+   * northern virginia" 90/mo, while every town-level basement term here except
+   * Alexandria (70) and McLean (30) is below the reporting floor.
+   *
+   * Their kitchen and bathroom pages are a different story and stay town-level
+   * on purpose — "kitchen remodeling mclean va" is 260/mo and "vienna va" 140.
+   * See docs/site-altitude-architecture-2026-09-18.md §1.5.
+   */
+  { slug: 'mclean-va', city: 'McLean', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'alexandria-va', city: 'Alexandria', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'vienna-va', city: 'Vienna', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'great-falls-va', city: 'Great Falls', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'reston-va', city: 'Reston', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'burke-va', city: 'Burke', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'fairfax-station-va', city: 'Fairfax Station', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'clifton-va', city: 'Clifton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'middleburg-va', city: 'Middleburg', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['primary', 'expansion'] },
+
+  /* ---------- Secondary rows ---------- */
+  { slug: 'spring-mills-wv', city: 'Spring Mills', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['secondary'] },
+  { slug: 'falling-waters-wv', city: 'Falling Waters', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['secondary'] },
+  { slug: 'berkeley-springs-wv', city: 'Berkeley Springs', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['secondary'] },
+  { slug: 'shepherdstown-wv', city: 'Shepherdstown', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: ['secondary'] },
+  { slug: 'loudoun-county-va', city: 'Loudoun County', state: 'VA', kind: 'county', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['secondary', 'expansion'] },
+  // Brambleton is a planned community inside Ashburn's orbit rather than a
+  // town, but it earns its own row: Search Console shows seven distinct
+  // "deck builder / composite decking brambleton va" queries at positions
+  // 9-23, all otherwise answered by the Ashburn page. It is the strongest
+  // named-place demand signal in Loudoun with no page of its own.
+  { slug: 'brambleton-va', city: 'Brambleton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['secondary'] },
+
+  /* ---------- The region ----------
+   * The one row at region altitude, and the reason the catalog has a `kind`
+   * at all. It carries no legacy tier: the three compatibility views reproduce
+   * the pre-catalog arrays exactly, and this row did not exist then. It is
+   * reached through ALL_SERVICE_AREAS, its own hub page, and the parent links
+   * on the rows above.
+   */
+  { slug: 'northern-virginia', city: 'Northern Virginia', state: 'VA', kind: 'region', market: 'premium', status: 'active', legacyTiers: [] },
+];
+
+/**
+ * Keep only the rows that still publish pages.
+ *
+ * EVERY derived view runs through this, and that is not incidental. The legacy
+ * tier views are rendered as links — the service-areas index, the homepage
+ * service-area map, the footer, LocalAreasServed — while `ALL_SERVICE_AREAS`
+ * decides which pages get generated. If the two disagree about a consolidated
+ * row, the site advertises a link to its own 404. `/service-areas/[slug]` sets
+ * no `dynamicParams`, so a slug missing from generateStaticParams renders on
+ * demand and hits `notFound()`.
+ *
+ * Generic over the row type so it can be unit-tested against synthetic rows
+ * rather than only against the real catalog, where nothing is consolidated yet
+ * and the bug would therefore stay invisible.
+ */
+export const activeAreas = <T extends { status: AreaStatus }>(rows: readonly T[]): T[] =>
+  rows.filter((row) => row.status === 'active');
+
+const byLegacyTier = (tier: 'primary' | 'secondary' | 'expansion'): ServiceArea[] =>
+  activeAreas(SERVICE_AREA_CATALOG.filter((a) => a.legacyTiers.includes(tier)));
+
+/**
+ * Derived compatibility views. Each preserves the membership and the order
+ * the hand-written array had, so no consumer changed when the catalog landed;
+ * `constants.test.ts` pins both. All three are active-only — see `activeAreas`.
+ */
+export const PRIMARY_SERVICE_AREAS = byLegacyTier('primary');
+export const SECONDARY_SERVICE_AREAS = byLegacyTier('secondary');
+/** Legacy VA/MD growth-market alias. Entirely a subset of the catalog. */
+export const EXPANSION_SERVICE_AREAS = byLegacyTier('expansion');
 
 /**
  * Per-city marketEmphasis encodes the service slugs we lead with on
@@ -363,6 +551,35 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
     marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
   },
+  'brambleton-va': {
+    description:
+      "Brambleton is one of Loudoun County's largest planned communities, a walkable collection of villages built around Brambleton Town Center with the Dulles Greenway and the Silver Line's Ashburn station a short drive away. Homes here are newer, closely spaced, and held to an active architectural review process, which makes the back yard the one place a family can genuinely make their own. That is why outdoor living is the dominant project type in Brambleton: composite decks, covered porches, and multi-zone entertaining space rather than wholesale exterior changes. Real Elite Contracting builds those spaces to Loudoun County code and carries the HOA design submission from drawing to approval.",
+    neighborhoods: ['Brambleton Town Center', 'Birchwood at Brambleton', 'West Park at Brambleton', 'Summerfield at Brambleton'],
+    marketEmphasis: ['decks', 'bathrooms', 'kitchens', 'remodeling', 'basements', 'siding'],
+  },
+  /**
+   * The region row's page data. Its `neighborhoods` are the counties and the
+   * independent city the site actually serves, not subdivisions — for a region
+   * that is the useful granularity, and every name here is real and is a place
+   * the business already publishes pages for.
+   *
+   * No operational claims in this copy. The seven promises registered in
+   * src/lib/claims.ts are unconfirmed, and this is the page a Fairfax County
+   * homeowner reads before a six-figure decision.
+   */
+  'northern-virginia': {
+    description:
+      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements with walkout or areaway access — space the house already has and is not using. That is why the regional demand here concentrates on basements rather than on any single town: homeowners search for a Northern Virginia or Fairfax County contractor first and narrow down afterwards. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia, and works this market from its Eastern Panhandle base.",
+    neighborhoods: [
+      'Fairfax County',
+      'Loudoun County',
+      'Alexandria',
+      'McLean',
+      'Vienna',
+      'Great Falls',
+    ],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'decks'],
+  },
   'loudoun-county-va': {
     description:
       "Loudoun County decks run two tracks: county building and zoning through LandMARC, plus HOA review in most master-planned communities. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen drops you onto full plans at $395 — the county publishes a screened porch as a residential addition. Leesburg, Purcellville, and Middleburg permit separately. We lead the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then kitchens, baths, room additions, and in-law basement finish. A county permit is not HOA approval. Real Elite Contracting works Loudoun from Martinsburg.",
@@ -429,22 +646,122 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
 };
 
-/** Flat list of all service areas for convenience */
 /**
- * De-duplicated flat list. Several VA/MD cities now live in
- * PRIMARY_SERVICE_AREAS and also in the legacy EXPANSION_SERVICE_AREAS
- * alias, so we dedupe by slug here.
+ * Every area that currently publishes its own pages. Drives
+ * generateStaticParams on /service-areas/[slug] and the city lookup on
+ * /services/[service]/[city].
+ *
+ * Reads straight off the catalog now — the old version concatenated three
+ * overlapping arrays and de-duplicated by slug, which is what the catalog
+ * removes the need for. Consolidated rows drop out here, which is how an
+ * area stops generating pages.
  */
-const _seen = new Set<string>();
-export const ALL_SERVICE_AREAS = [
-  ...PRIMARY_SERVICE_AREAS,
-  ...SECONDARY_SERVICE_AREAS,
-  ...EXPANSION_SERVICE_AREAS,
-].filter((a) => {
-  if (_seen.has(a.slug)) return false;
-  _seen.add(a.slug);
-  return true;
-});
+export const ALL_SERVICE_AREAS: readonly ServiceArea[] = activeAreas(SERVICE_AREA_CATALOG);
+
+/**
+ * Areas whose own pages have been retired. Each must carry `redirectTo`, and
+ * `next.config.ts` must actually redirect `/service-areas/<slug>` — without
+ * that the retired URL is a 404, not a redirect. `constants.test.ts` reads the
+ * real redirect list out of the config and fails the build on a row that is
+ * missing one, rather than only checking that `redirectTo` looks like a path.
+ */
+export const CONSOLIDATED_SERVICE_AREAS: readonly ServiceArea[] =
+  SERVICE_AREA_CATALOG.filter((a) => a.status === 'consolidated');
+
+/** Look a row up by slug, across active and consolidated rows alike. */
+export const getServiceArea = (slug: string): ServiceArea | null =>
+  SERVICE_AREA_CATALOG.find((a) => a.slug === slug) ?? null;
+
+/**
+ * True for rows that name a single settlement, as opposed to a county or a
+ * region. Consumers test this rather than enumerating `kind` literals, so a
+ * new kind does not mean editing call sites.
+ */
+export const isLocalityArea = (area: Pick<ServiceArea, 'kind'>): boolean =>
+  area.kind === 'town' || area.kind === 'city';
+
+/**
+ * The regional phrase for copy like "across {city} and the surrounding
+ * {region}".
+ *
+ * Derived from the catalog rather than from `state`, because keying off state
+ * alone described the Fairfax-County towns as the "Northern Shenandoah Valley
+ * and Loudoun County area" — Vienna, McLean, Reston and Great Falls are in
+ * none of those.
+ */
+export function areaRegionLabel(area: ServiceArea): string {
+  // A region has no surrounding region. Callers that phrase this as
+  // "{place} and the surrounding {region}" must gate on `isLocalityArea`
+  // first, or they render "Northern Virginia and the surrounding Northern
+  // Virginia" — CityPageTemplate does exactly that gating.
+  if (area.kind === 'region') return area.city;
+  if (area.state === 'WV') return 'Eastern Panhandle';
+  if (area.state === 'MD') return 'Cumberland Valley and Frederick County area';
+  if (area.slug === 'loudoun-county-va' || area.parent === 'loudoun-county-va') {
+    return 'Loudoun County area';
+  }
+  // Winchester is the one VA row on the home-market side of the split.
+  return area.market === 'home' ? 'Northern Shenandoah Valley' : 'Northern Virginia';
+}
+
+/**
+ * The place name as copy should say it.
+ *
+ * A locality or a county takes its state ("Vienna, VA", "Loudoun County, VA").
+ * A region does not, because the state is already inside the name — the
+ * generic templates produced "Northern Virginia, VA" in headings, breadcrumbs
+ * and titles before this existed.
+ */
+export const formatAreaPlace = (area: ServiceArea): string =>
+  area.kind === 'region' ? area.city : `${area.city}, ${area.state}`;
+
+/**
+ * The schema.org type for a row.
+ *
+ * A county or region is an `AdministrativeArea` — emitting `City` for
+ * "Northern Virginia" tells Google the wrong kind of thing about the page,
+ * and that is the whole reason this helper exists.
+ *
+ * Localities keep the generic `Place` the template already emitted, and
+ * deliberately do NOT become `City`. Half the `town` rows here are not
+ * municipalities: Reston, McLean, Great Falls, Burke and Fairfax Station are
+ * census-designated places and Brambleton is a planned community, as their
+ * own comments in the catalog say. Classifying them as `City` would trade an
+ * accurate generic type for a false specific one. Splitting incorporated
+ * towns from CDPs would need the incorporation status of twenty-odd places
+ * verified one by one, which CLAUDE.md requires before it goes in the repo —
+ * so it is a separate, evidence-backed change, not a guess made here.
+ */
+export const areaSchemaType = (area: ServiceArea): 'Place' | 'AdministrativeArea' =>
+  isLocalityArea(area) ? 'Place' : 'AdministrativeArea';
+
+/** Active rows sitting directly inside this one, in catalog order. */
+export const childAreasOf = (slug: string): ServiceArea[] =>
+  ALL_SERVICE_AREAS.filter((a) => a.parent === slug);
+
+/**
+ * Ancestors, nearest first — Middleburg gives
+ * `[Loudoun County, Northern Virginia]`. Used for the breadcrumb trail, which
+ * is why the order matters.
+ *
+ * The catalog allows a town inside a county inside a region, so this walks
+ * rather than reading `parent` once. The loop is bounded: `constants.test.ts`
+ * caps the chain at two hops and rejects cycles, and the guard here means a
+ * bad row cannot hang a build even so.
+ */
+export function areaAncestors(area: ServiceArea): ServiceArea[] {
+  const chain: ServiceArea[] = [];
+  const seen = new Set<string>([area.slug]);
+  let current = area.parent;
+  while (current && !seen.has(current) && chain.length < 8) {
+    const next = getServiceArea(current);
+    if (!next) break;
+    chain.push(next);
+    seen.add(next.slug);
+    current = next.parent;
+  }
+  return chain;
+}
 
 /** Legacy flat list (primary + secondary city names) for simple iterations */
 export const SERVICE_AREAS = [
@@ -506,29 +823,17 @@ export const SERVICE_PAGE_AREA_SERVED: string[] = [
 ];
 
 /**
- * Luxury market city slugs. Pages for these cities swap the standard
- * estimate rail for the dedicated /design-consultation conversion path,
- * which is calibrated for $50k+ project intake (pre-qualification, designer
- * status, budget tier, in-home consultation booking).
+ * Premium-market slugs — the areas whose pages swap the standard estimate
+ * rail for the /design-consultation path, calibrated for $50k+ project
+ * intake (pre-qualification, designer status, budget tier, in-home booking).
  *
- * Adding a slug here automatically rewires the CTAs on:
- *   - /service-areas/[slug]
- *   - /services/[service]/[slug] (the deep-link combos)
+ * Derived from `market: 'premium'` on the catalog rather than maintained by
+ * hand, so a row's tier and its conversion path cannot drift apart. It
+ * rewires the CTAs on /service-areas/[slug] and /services/[service]/[slug].
  */
-export const LUXURY_CITY_SLUGS = new Set<string>([
-  'mclean-va',
-  'alexandria-va',
-  'vienna-va',
-  'great-falls-va',
-  'reston-va',
-  'burke-va',
-  'fairfax-station-va',
-  'clifton-va',
-  'middleburg-va',
-  'leesburg-va',
-  'ashburn-va',
-  'loudoun-county-va',
-]);
+export const LUXURY_CITY_SLUGS: ReadonlySet<string> = new Set<string>(
+  SERVICE_AREA_CATALOG.filter((a) => a.market === 'premium').map((a) => a.slug)
+);
 
 /**
  * Client reviews moved to the unified Review contract and single source at
@@ -660,8 +965,8 @@ export const HOMEPAGE_FEATURED_SERVICES = [
     eyebrow: 'New Space',
     scope: 'Additions that seamlessly extend your existing home — engineered to last.',
     href: '/services/additions',
-    image: '/images/new-build-sunset.jpg',
-    imageAlt: 'New construction with house wrap at sunset',
+    image: '/images/new-build-weather-barrier.webp',
+    imageAlt: 'New home under construction with weather barrier and exposed roof trusses',
     span: 'standard',
   },
   {
@@ -737,12 +1042,6 @@ export const HOMEPAGE_PROJECT_SPOTLIGHT = {
  * to "Before / After" in BeforeAfter.tsx + the home section header.
  */
 export const BEFORE_AFTER_PAIRS = [
-  {
-    label: 'New-build exterior',
-    category: 'Exterior',
-    before: { src: '/images/house-wrap-worker.jpg', alt: 'House wrap and framing in progress before siding install' },
-    after: { src: '/images/new-build-sunset.jpg', alt: 'Finished new construction exterior at sunset' },
-  },
   {
     label: 'Composite deck transformation',
     category: 'Decks',
@@ -843,7 +1142,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/projects/basements/hero-framing.jpg', alt: 'Basement build in framing phase — stud walls and floor joists before finishes', category: 'Basements' },
   // Siding & Exterior
   { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior', state: 'WV' },
-  { src: '/images/siding-windows.jpg', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
+  { src: '/images/siding-window-work.webp', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
   { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer foundation detail on home exterior', category: 'Exterior', state: 'WV' },
   { src: '/images/exterior-brick-victorian.jpg', alt: 'Brick Victorian-style home with multiple gables and dark architectural shingle roof', category: 'Exterior' },
   // Remodeling / Interior
@@ -851,11 +1150,11 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway', category: 'Remodeling', state: 'WV' },
   { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring in living space', category: 'Remodeling', state: 'WV' },
   // New Construction
-  { src: '/images/framing-crew.jpg', alt: 'Interior framing crew working on scaffolding', category: 'New Construction', state: 'WV' },
-  { src: '/images/new-build-sunset.jpg', alt: 'New construction house wrap at sunset', category: 'New Construction', state: 'WV' },
+  { src: '/images/framing-walls-work.webp', alt: 'Timber wall framing with window openings on a home under construction', category: 'New Construction', state: 'WV' },
+  { src: '/images/new-build-weather-barrier.webp', alt: 'New home under construction with weather barrier and exposed roof trusses', category: 'New Construction', state: 'WV' },
   { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction', category: 'New Construction', state: 'WV' },
   // Additions
-  { src: '/images/shed-trim.jpg', alt: 'Custom built shed with trim and siding', category: 'Additions', state: 'WV' },
+  { src: '/images/shed-trim-upright.webp', alt: 'Custom built shed with trim and siding', category: 'Additions', state: 'WV' },
 ];
 
 /**

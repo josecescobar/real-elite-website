@@ -250,4 +250,40 @@ describe('POST /api/estimate — delivery', () => {
     expect(sent.html).toContain('&amp;');
     expect(sent.html).toContain('Line one<br>Line two');
   });
+
+  it('adds the AI heads-up block to the owner email when AI_GATEWAY_API_KEY is set', async () => {
+    process.env.AI_GATEWAY_API_KEY = 'test_gateway_key';
+    const fetchMock = vi.fn().mockImplementation((url: string) => {
+      if (url === 'https://ai-gateway.vercel.sh/v1/chat/completions') {
+        return Promise.resolve(
+          new Response(
+            JSON.stringify({ choices: [{ message: { content: 'Wants a quote this week.' } }] }),
+            { status: 200 }
+          )
+        );
+      }
+      return Promise.resolve(new Response('{"id":"e1"}', { status: 200 }));
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.48'));
+    expect(res.status).toBe(200);
+
+    const ownerCall = fetchMock.mock.calls.find(
+      ([url]) => url === 'https://api.resend.com/emails'
+    );
+    const owner = JSON.parse(ownerCall![1].body as string);
+    expect(owner.html).toContain('AI Heads-Up');
+    expect(owner.html).toContain('Wants a quote this week.');
+    delete process.env.AI_GATEWAY_API_KEY;
+  });
+
+  it('does not call the AI Gateway and omits the AI block when AI_GATEWAY_API_KEY is unset', async () => {
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    await POST(makeRequest(validBody, '203.0.113.49'));
+    expect(fetchMock).toHaveBeenCalledTimes(2); // owner + confirmation only, no Gateway call
+    const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    expect(owner.html).not.toContain('AI Heads-Up');
+  });
 });

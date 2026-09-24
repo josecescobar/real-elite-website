@@ -6,9 +6,22 @@ import {
   UTILITY_LINKS,
   PRIMARY_SERVICE_AREAS,
   SECONDARY_SERVICE_AREAS,
+  VERIFIED_PROFILE_URLS,
 } from '@/lib/constants';
 import TrackedLink from '@/components/analytics/TrackedLink';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
+/**
+ * Every platform the footer can show. An entry renders only if its URL is in
+ * `VERIFIED_PROFILE_URLS` — the same gate the LocalBusiness `sameAs` uses — so
+ * the footer and the structured data can never disagree about which profiles
+ * this business claims. Removing a URL from the verified set withdraws it from
+ * both at once.
+ *
+ * Adding a NEW platform takes two edits, and this is the one people forget:
+ * the URL in `VERIFIED_PROFILE_URLS`, AND an entry here with its icon. A URL
+ * on its own reaches `sameAs` but has nothing to render in the footer.
+ */
 const SOCIAL_LINKS = [
   {
     label: 'Facebook',
@@ -39,7 +52,7 @@ const SOCIAL_LINKS = [
       </svg>
     ),
   },
-];
+].filter((link) => (VERIFIED_PROFILE_URLS as readonly string[]).includes(link.href));
 
 const FEATURED_FOOTER_SERVICES = [
   { label: 'Whole-Home Remodeling', href: '/services/remodeling' },
@@ -53,10 +66,13 @@ const FEATURED_FOOTER_SERVICES = [
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const featuredAreas = [
+    // The region leads: it is the only row at region altitude and the hub the
+    // Northern Virginia town pages link up to, so it needs a site-wide entry
+    // rather than being reachable only from its children.
+    { city: 'Northern Virginia', state: 'VA', slug: 'northern-virginia' },
     { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
     { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
     { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
-    { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
     ...PRIMARY_SERVICE_AREAS.slice(0, 3),
     ...SECONDARY_SERVICE_AREAS.slice(0, 1),
   ];
@@ -88,14 +104,12 @@ export default function Footer() {
               Veteran-owned. Built with military precision.
             </p>
             <p className="text-sm">
-              <TrackedLink
-                href={`tel:${BUSINESS.phoneRaw}`}
-                eventName="phone_click"
-                eventParams={{ location: 'footer' }}
+              <PhoneLink
+                location="footer"
                 className="block hover:text-white transition-colors font-semibold"
               >
                 {BUSINESS.phone}
-              </TrackedLink>
+              </PhoneLink>
               <TrackedLink
                 href={`mailto:${BUSINESS.email}`}
                 eventName="email_click"
@@ -144,7 +158,7 @@ export default function Footer() {
                     href={`/service-areas/${area.slug}`}
                     className="min-h-11 inline-flex items-center hover:text-white transition-colors"
                   >
-                    {area.city}, {area.state}
+                    {area.slug === 'northern-virginia' ? area.city : `${area.city}, ${area.state}`}
                   </Link>
                 </li>
               ))}

@@ -124,7 +124,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
 
   // Step view tracking
   useEffect(() => {
-    trackEstimateStep('view', step);
+    trackEstimateStep('view', step, 'estimate');
   }, [step]);
 
   // Move focus to the step heading when advancing/going back so screen-reader
@@ -145,7 +145,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   useEffect(() => {
     const onLeave = () => {
       if (hasStarted.current && !hasSubmitted.current) {
-        trackEstimateStep('abandon', stepRef.current);
+        trackEstimateStep('abandon', stepRef.current, 'estimate');
       }
     };
     const onVisibilityChange = () => {
@@ -160,7 +160,12 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   }, []);
 
   const update = <K extends keyof FormData>(key: K, value: FormData[K]) => {
-    if (!hasStarted.current) hasStarted.current = true;
+    // First real interaction with a field — the engagement signal that `view`
+    // (which fires on mount, on every page carrying this form) is not.
+    if (!hasStarted.current) {
+      hasStarted.current = true;
+      trackEstimateStep('start', stepRef.current, 'estimate');
+    }
     setData((prev) => ({ ...prev, [key]: value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
   };
@@ -189,7 +194,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
 
   const next = () => {
     if (!validateStep(step)) return;
-    trackEstimateStep('advance', step);
+    trackEstimateStep('advance', step, 'estimate');
     setStep((s) => (s === 1 ? 2 : 3));
   };
 
@@ -234,7 +239,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
         service: data.service || undefined,
         value_band: data.budgetRange ? labelFor(BUDGET_OPTIONS, data.budgetRange) : undefined,
       });
-      trackEstimateStep('submit', 3, { service: data.service });
+      trackEstimateStep('submit', 3, 'estimate', { service: data.service });
       setIsSuccess(true);
     } catch (err) {
       console.error('Multi-step estimate submission error:', err);

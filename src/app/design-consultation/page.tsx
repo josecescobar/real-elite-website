@@ -18,6 +18,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
 import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: fitTitle(`Design Consultation — Kitchen, Bath & Basement | ${BUSINESS.name}`),
@@ -68,8 +69,8 @@ const FIT_ITEMS = [
   'Loudoun County (Leesburg, Ashburn, Brambleton, Lansdowne, Middleburg)',
   'Fairfax County (McLean, Great Falls, Vienna, Reston, Burke, Fairfax Station, Clifton)',
   'Alexandria (Old Town, Belle Haven, Rosemont, North Ridge, Beverley Hills)',
-  'Kitchens · primary baths · lower-level finishing · whole-home renovation · additions',
-  'Project budgets from $50,000 through $500,000+',
+  'Kitchens · primary baths · lower-level finishing · whole-home renovation · additions · outdoor living · custom decks',
+  'Share your scope and budget, including projects under $25,000 or an early idea without a set budget',
   'Working with a designer, considering one, or open to a recommendation',
 ];
 
@@ -92,7 +93,7 @@ const FAQ_ITEMS = [
   {
     question: 'What project size makes sense for this consultation path?',
     answer:
-      'The design consultation path is the right fit for primary kitchen, bath, basement, addition, and whole-home projects in the $50,000+ range. For smaller-scope work, the standard estimate form on our service pages is faster and more efficient.',
+      'Tell us about your kitchen, bath, basement, addition, whole-home, outdoor-living, or custom-deck project. Share the scope and budget you have in mind, or choose “Not sure yet.” We’ll use the conversation to discuss whether the project is a fit.',
   },
   {
     question: 'What is the typical response time?',
@@ -150,7 +151,7 @@ export default function DesignConsultationPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               A 20–30 minute phone consultation for kitchens, primary baths, lower-level
-              finishing, and whole-home renovations across Loudoun, Fairfax, and Alexandria. You
+              finishing, whole-home renovations, custom decks, and outdoor living across Loudoun, Fairfax, and Alexandria. You
               tell us the brief and the best time to be called; we call inside the window. Only
               when the fit is right do we schedule an in-home visit.
             </p>
@@ -180,12 +181,12 @@ export default function DesignConsultationPage() {
               >
                 Request a Call →
               </a>
-              <a
-                href={`tel:${BUSINESS.phoneRaw}`}
+              <PhoneLink
+                location="design_consult_hero"
                 className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" /> {BUSINESS.phone}
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </Container>
@@ -240,12 +241,12 @@ export default function DesignConsultationPage() {
                   </p>
                   <p className="text-charcoal-700 text-sm leading-relaxed">
                     Direct line to the project lead:{' '}
-                    <a
-                      href={`tel:${BUSINESS.phoneRaw}`}
+                    <PhoneLink
+                      location="design_consult_body"
                       className="font-bold text-navy-800 hover:text-brand-red transition-colors"
                     >
                       {BUSINESS.phone}
-                    </a>
+                    </PhoneLink>
                   </p>
                 </div>
               </div>
@@ -269,9 +270,9 @@ export default function DesignConsultationPage() {
                 Is this the right path?
               </h2>
               <p className="text-charcoal-600 mt-4 text-base leading-relaxed">
-                The design consultation path is calibrated for premium kitchen, bath, lower-level,
-                addition, and whole-home work. For smaller-scope repairs and quick estimates, our
-                standard request form on each service page is faster.
+                Use this form to start a conversation about kitchen, bath, lower-level, addition,
+                whole-home, or outdoor-living work. Tell us what you have in mind, even if the scope
+                or budget is still taking shape.
               </p>
             </div>
             <div className="lg:col-span-7">

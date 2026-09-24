@@ -7,6 +7,14 @@
  * generateStaticParams derives the published list from CONTENT keys).
  */
 
+import { claimsFoundIn } from '@/lib/claims';
+import { servicePillarHref } from '@/lib/constants';
+
+// Re-exported so callers have one import site for combo facts. The declaration
+// lives in its own dependency-free module because next.config.ts loads it
+// outside the app's module graph, where `@/` does not resolve — see that file.
+export { RETIRED_COMBOS } from '@/lib/retired-combos';
+
 export const FEATURED_SERVICE_SLUGS = [
   'roofing',
   'decks',
@@ -20,10 +28,16 @@ export const FEATURED_SERVICE_SLUGS = [
 export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
 
 /**
- * Service+city deep-link combos exist for these 6 cities. Each pairing
- * has hand-written localized content in the CONTENT map below.
+ * Areas that have service+area deep-link pages. Each pairing has
+ * hand-written localized content in the CONTENT map below.
  *
- * NOTE: this list is INTENTIONALLY decoupled from EXPANSION_SERVICE_AREAS
+ * Mostly towns and cities, but not exclusively: `loudoun-county-va` is a
+ * county and `northern-virginia` is a region, because the altitude a trade's
+ * demand sits at is a property of the trade and the market, not of the route.
+ * Anything in here must be a slug in ALL_SERVICE_AREAS — the route resolves
+ * against that list and calls notFound() on a miss.
+ *
+ * NOTE: this list is INTENTIONALLY decoupled from the service-area lists
  * in constants.ts. Adding a city-overview page (in constants) should NOT
  * automatically create per-service deep-link pages here without the
  * localized content also being written.
@@ -35,28 +49,139 @@ export type FeaturedServiceSlug = (typeof FEATURED_SERVICE_SLUGS)[number];
  * ship as 404s.
  */
 export const COMBO_CITY_SLUGS = [
+  // Home turf (Eastern Panhandle WV). The closest, highest-intent markets, and
+  // where the site's best commercial positions sit: Search Console shows
+  // "basement remodeling ranson wv" at 3.2 and "basement remodeling inwood wv"
+  // at 5.7, both currently answered by a generic /service-areas/ page. Copy
+  // here quotes real published figures rather than deferring to a form.
+  'martinsburg-wv',
+  'charles-town-wv',
+  'ranson-wv',
+  'inwood-wv',
+
+  // Loudoun outdoor living. Brambleton is a community inside Ashburn's orbit
+  // rather than a town, but it carries seven distinct deck queries of its own
+  // at positions 9-23, all currently answered by the Ashburn page. See the
+  // decks-brambleton-va entry for how the two are kept from competing.
+  'brambleton-va',
+
   'winchester-va',
   'frederick-md',
   'leesburg-va',
   'ashburn-va',
   'hagerstown-md',
   'loudoun-county-va',
+
+  // Northern Virginia at region altitude. The only combo city that is not a
+  // town, city or county: keyword data pulled 2026-09-18 puts "basement
+  // remodeling northern virginia" at 110/mo and "basement finishing northern
+  // virginia" at 90, while every town-level basement term in the same market
+  // except Alexandria (70) and McLean (30) sits below the reporting floor.
+  //
+  // Deliberately basements ONLY. "kitchen remodeling mclean va" is 260/mo and
+  // Vienna 140, so kitchens and baths stay at town altitude here — one market,
+  // two altitudes, decided per trade. See §1.5 of
+  // docs/site-altitude-architecture-2026-09-18.md.
+  'northern-virginia',
+
   'mclean-va',
   'alexandria-va',
   'vienna-va',
   'great-falls-va',
   'reston-va',
   'burke-va',
-  'fairfax-station-va',
-  'clifton-va',
+
+  // Middleburg is back for decks and additions only. Tier C still retires
+  // kitchens, bathrooms, and basements there (see RETIRED_COMBOS). Those
+  // three 301s stay; they are a different trade than the two pages that
+  // publish here.
   'middleburg-va',
+
+  // Fairfax Station and Clifton stay gone. Tier C retired every combo they
+  // had, so keeping their slugs here would leave entries this map can never
+  // key. Burke stays: it keeps its kitchen and bathroom combos and lost only
+  // its basement page.
 ] as const;
-export type ExpansionCitySlug = (typeof COMBO_CITY_SLUGS)[number];
+export type ComboCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
 // Unique body content for each service × city combination.
 // Partial — only combos with hand-written content are listed.
-export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug}`, { paragraphs: string[] }>> = {
+type ComboContent = {
+  paragraphs: string[];
+  /**
+   * Optional search-snippet overrides. Omit both and the route falls back to
+   * its generic `{Service} in {City}, {State}` template, which is what every
+   * VA/MD combo still uses. Set them where the query has a specific shape the
+   * template cannot answer — the WV roofing pages target "roof replacement
+   * cost <town> wv", so their snippet leads with the price range instead of
+   * "Expert roofing services".
+   */
+  metaTitle?: string;
+  metaDescription?: string;
+  /**
+   * Blog slugs to surface in the Related Guides module at the foot of the page.
+   *
+   * AUTHORED, NEVER DERIVED. The module exists to answer a different intent
+   * than the page it sits on — someone reading a service+place page is closer
+   * to hiring than someone reading a guide — so the pairing is a judgement
+   * about which article a buyer on THIS page would still want, not a category
+   * match. Deriving it would surface the nearest article by tag and quietly
+   * cannibalise the page it is meant to support.
+   *
+   * Every slug here must resolve to a published post; `service-city-content.test.ts`
+   * fails the build otherwise. That guard is not decoration: `RelatedGuides`
+   * falls back to the three most recent posts when a slug does not resolve, so
+   * a typo would silently publish three unrelated articles rather than error.
+   */
+  relatedGuideSlugs?: readonly string[];
+};
+
+/**
+ * The generic metadata every combo gets when it defines no override.
+ * Exported so the route and the tests share one definition: an override
+ * that merely reproduces the fallback is dead weight, and the only way to
+ * detect that is to compare against the real template rather than a copy.
+ *
+ * `place` is a formatted place name and callers pass `formatAreaPlace(area)`,
+ * not `${city}, ${state}`. The interpolated form produced "Basements in
+ * Northern Virginia, VA | Real Elite" once a region became a combo city; the
+ * helper returns "Vienna, VA" for a locality and "Northern Virginia" for a
+ * region, so every pre-existing combo title and description is unchanged.
+ */
+export function defaultComboTitle(serviceTitle: string, place: string) {
+  return `${serviceTitle} in ${place} | Real Elite`;
+}
+
+export function defaultComboDescription(serviceTitle: string, place: string) {
+  return `Expert ${serviceTitle.toLowerCase()} services in ${place}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
+}
+
+export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
+
+  'roofing-martinsburg-wv': {
+    metaTitle: 'Roof Replacement Cost in Martinsburg, WV | Real Elite',
+    metaDescription:
+      'What a roof replacement really costs in Martinsburg, WV — the $9,000 to $22,000 range, what moves the number, and a free written estimate within 24 business hours.',
+    paragraphs: [
+      "Martinsburg sits in the Eastern Panhandle along the I-81 corridor, where roofs take a beating from both directions: humid summers with fast-moving thunderstorms and hail, then a winter of freeze-thaw cycles that work water under shingles and into flashing. Most roofs here reach the end of their service life somewhere between year eighteen and year twenty-five, and the first sign is rarely a leak — it is granule loss in the gutters, curling at the edges, or a stain on an upstairs ceiling after a hard rain.",
+      "A roof replacement in the Eastern Panhandle typically runs about $9,000 to $22,000. Where your roof lands in that range comes down to four things: square footage and pitch, how many old layers have to come off, whether you choose architectural shingles or standing seam metal, and whether rotted decking turns up once the old roof is stripped. We put all four in writing before the job starts, and we will tell you what the decking allowance is rather than discovering it on invoice day.",
+      "We work across Berkeley County — the older homes around downtown and Queen Street, where steeper pitches and original framing need a careful hand, and the newer subdivisions out toward Spring Mills, Hedgesville and the Route 11 corridor, where full replacements move quickly. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia. The crew that quotes your roof is the crew that installs it, and every roof starts with a written estimate you can hold the final invoice against.",
+      "If a storm came through, do not wait on the insurance company to tell you what happened. We will inspect the roof, document the damage properly, and deal with the adjuster directly. If the roof can be repaired rather than replaced, we will say so — an honest repair keeps you as a customer longer than a replacement you did not need.",
+    ],
+  },
+
+  'roofing-charles-town-wv': {
+    metaTitle: 'Roof Replacement Cost in Charles Town, WV | Real Elite',
+    metaDescription:
+      'Roof replacement in Charles Town, WV — the real $9,000 to $22,000 range, storm and insurance claims, and a free written estimate within 24 business hours.',
+    paragraphs: [
+      "Charles Town and the surrounding Jefferson County communities sit at the eastern edge of the Panhandle, close enough to the Blue Ridge to catch the weather that rolls over it. Summer storms arrive fast and hard, winter brings ice and the freeze-thaw cycle that opens seams around chimneys and valleys, and the shade from mature trees keeps north-facing slopes damp long enough to grow moss and algae. All of it shortens the life of a roof that looked fine three years ago.",
+      "Expect a roof replacement here to fall in the $9,000 to $22,000 range. Size and pitch set the baseline; tear-off of multiple old layers, the material tier you pick, and any decking that has to be replaced move it from there. You get that broken out as line items on a written estimate, not a single number over the phone. Any contractor who will not itemize is hiding where the money goes.",
+      "The historic streets around Washington and George have homes with steep pitches, dormers, slate, and detailing that does not forgive a rushed install, and Jefferson County's historic review adds a step that is easy to get wrong. Out toward Ranson, Route 9 and the Route 340 corridor, the newer subdivisions are straightforward architectural shingle replacements we can turn around fast. We handle permitting for both, and we know which one you are.",
+      "Storm damage is where most Charles Town homeowners meet us. We will get out to look, photograph what we find for the claim, and give you a straight read on whether you are looking at a repair or a replacement. Real Elite Contracting is veteran-owned, licensed across WV, MD and VA, and backs every roof with both the manufacturer warranty and our own labor guarantee. The same crew that climbs up to quote your roof is the one that tears it off and installs the new one.",
+    ],
+  },
 
   'roofing-winchester-va': {
     paragraphs: [
@@ -81,7 +206,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting replaces and repairs roofs for Leesburg homeowners. A Leesburg mailing address is not Town limits — Lansdowne and River Creek often sit in unincorporated Loudoun. We check the parcel before we file. We install architectural shingles and standing-seam metal when the job calls for them; we do not advertise a manufacturer Pro, Platinum, or Master Elite badge we do not hold.",
       "Inside Town, exterior work that also needs a Loudoun County building permit starts with Town zoning through eTRAKiT. The county issues the building permit after that. If the parcel is in the H-1 Old and Historic District, a roof replacement or material change needs a Certificate of Appropriateness. Outside Town, county building and zoning run through LandMARC. We put the current Town and county fees in the written estimate instead of guessing them here.",
       "A county permit is not HOA approval. We submit both tracks in parallel when the lot has an association. We do not publish One Loudoun or Lansdowne approved-color lists from contractor blogs — we use the current packet.",
-      "What you get is the paperwork product: Town or county path, whether a COA is in play, and an honest read on repair versus replacement from on-roof photos. Manufacturer warranties are registered when the product qualifies. We back labor with a written workmanship warranty.",
+      "What you get is the paperwork product: Town or county path, whether a COA is in play, and an honest read on repair versus replacement from on-roof photos. Manufacturer warranties are registered when the product qualifies.",
     ],
   },
 
@@ -90,7 +215,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting replaces and repairs roofs for Ashburn homeowners. Ashburn is unincorporated Loudoun County — building and zoning run through LandMARC, not a town office. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations. We do not advertise a manufacturer Pro, Platinum, or Master Elite badge we do not hold.",
       "A county permit is not HOA approval. In Brambleton, official design review covers essentially all exterior changes, including color and material, and removals. In South Riding, staff can rubber-stamp a short list that includes roof replacement; a county permit still does not substitute for Architectural Standards approval. For One Loudoun and Ashburn Farm we submit the current packet — we do not publish approved-color lists from blogs.",
       "We photograph the roof, tell you whether repair or replacement is the honest call, and put published county fees and the association's current review window in the written estimate. We do not promise a one-day replacement as a rule — weather, material lead time, and HOA approval set the calendar.",
-      "Debris comes off the site and we magnet-sweep the yard. Manufacturer warranties are registered when the product qualifies. Labor is backed with a written workmanship warranty.",
+      "Debris comes off the site and we magnet-sweep the yard. Manufacturer warranties are registered when the product qualifies.",
     ],
   },
 
@@ -114,12 +239,31 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
 
   // ── DECKS ──────────────────────────────────────────────────────────────
 
+  /**
+   * Home-turf decks. "composite decking martinsburg" (29 impressions, position
+   * 26.4) and "decking martinsburg" (12, position 33) currently land on the
+   * generic /services/decks hub, which names no town. The per-square-foot
+   * figures here are the ones the deck-cost guide already publishes for the
+   * Eastern Panhandle, so the site does not contradict itself.
+   */
+  'decks-martinsburg-wv': {
+    metaTitle: 'Composite Deck Builder in Martinsburg, WV | Real Elite',
+    metaDescription:
+      'Composite and pressure-treated decks in Martinsburg. Installed cost runs about $30 to $55 per square foot for Trex or TimberTech, $15 to $25 for pressure-treated.',
+    paragraphs: [
+      "Martinsburg decks take the full Eastern Panhandle year: humid summers with fast thunderstorms, then a winter of freeze and thaw that works water into every fastener and board end. That cycle is why pressure-treated pine here needs sanding and staining by about year three and why so many Berkeley County homeowners replacing a fifteen-year-old deck do not replace it in kind.",
+      "Installed cost in this market runs roughly $15 to $25 per square foot for pressure-treated pine and $30 to $55 per square foot for composite like Trex or TimberTech. On a typical 400 square foot deck that is a real spread, and it is worth being honest about where it goes: composite costs more up front and gives back the annual maintenance weekend, holds colour through the west-facing exposures common out toward Spring Mills, and does not splinter where children are barefoot.",
+      "We build across Berkeley County — the older homes near downtown and Queen Street, where grade and existing framing need a careful look before anything is designed, and the newer subdivisions toward Spring Mills, Hedgesville and the Route 11 corridor, where a straightforward replacement moves quickly. Footings go below the frost line, which in this part of West Virginia is not a detail to eyeball.",
+      "Berkeley County permits and inspections are ours to handle. You get a written, itemized estimate before anything is torn out, with framing, decking, railing, footings and any structural work broken out separately so the number is checkable. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
   'decks-winchester-va': {
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Winchester homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. A Winchester mailing address is not automatically City limits: parcels along Route 7, Senseny Road, and the county line often sit in Frederick County, Virginia. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Inside the City, building permits run through City of Winchester Zoning and Inspections on the City permit portal. The 2021 Virginia Uniform Statewide Building Code is what the City reviews against. Outside City limits, Frederick County, Virginia issues the building permit. We do not publish a made-up Winchester deck-permit fee — the City points applicants to the municipal fee schedule, and we put the current amount in the written estimate.",
       "What you file with the application is the paperwork product: a site plan with setbacks, framing and footing details, and ledger, railing, and stair notes. If the parcel is in Old Town, we check whether historic-district design review applies before we lock materials. HOA review, when the lot has one, is a separate track from the City or county building permit.",
-      "We install to the approved plans and the Virginia Residential Code, document each inspection, and back the work with a written workmanship warranty. Named project lead from estimate through final walkthrough.",
+      "We install to the approved plans and the Virginia Residential Code, and document each inspection.",
     ],
   },
 
@@ -128,25 +272,58 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting builds decks and outdoor living for Frederick County homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. The City of Frederick and the Town of Mt. Airy issue their own building permits. Everywhere else in the county, building permits and zoning certificates run through Frederick County Permits and Inspections on the County application portal. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "The County's published deck-and-porch process treats three designs as different jobs: an open deck has no covering; a covered porch adds a roof; a screened porch adds a roof and screened walls. A site plan or plot plan with setbacks is required on every application. A permit is required when a deck or porch is replaced, even in the same location, and when railings or structural members are replaced. After staff marks the application complete, review agencies have a published one-week due date from assignment.",
       "We put the current County fee-schedule line items in the written estimate instead of guessing them here — the County publishes separate building, zoning-review, filing, and automation fees, and incorporated towns drop the zoning-review fee. Historic-district or municipal design review, when it applies, is a separate track from the building permit.",
-      "What you get is the paperwork product: we tell you whether you are in the City, Mt. Airy, or the County, which path the design is on (open deck vs covered vs screened), and we file the portal set. We install to the approved plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: we tell you whether you are in the City, Mt. Airy, or the County, which path the design is on (open deck vs covered vs screened), and we file the portal set. We install to the approved plans and document each inspection.",
     ],
   },
 
   'decks-leesburg-va': {
+    metaTitle: 'Composite Deck Builder in Leesburg, VA | Real Elite',
+    metaDescription:
+      'Premium composite decks and outdoor living in Leesburg — Lansdowne, Cascades and Countryside. TimberTech, Azek and Trex, with HOA and historic-district approvals handled.',
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Leesburg homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. We work the Town and western Leesburg first because that is the practical truck path from Martinsburg. A Leesburg mailing address is not the same as Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Inside Town limits the order is fixed. The Town of Leesburg issues the zoning permit first through eTRAKiT — decks, balconies, and exterior stairs need Town zoning (typically without engineering review). Loudoun County issues the building permit after that; the county will not release a building permit until the Town zoning permit is approved. Typical Deck Detail still applies to the county building set when the design qualifies: single-level, attached, residential, joist overhangs of 2 feet or less, and no roof, screen, hot tub, gazebo, or detached structure. Published county fees inside an incorporated town are $100 for Typical under 1,000 sq ft (building permit only) and $230 for full plans under 1,000 sq ft (building plus plan review). Outside Town limits those same county paths are $265 and $395 because they include county zoning. Town zoning has its own fee — we put the current Town amount in the written estimate instead of guessing it here. County inspections still apply: footing before concrete, framing before decking, final. Framing and final may combine when framing is at least 42 inches above grade.",
       "If the parcel is in the H-1 Old and Historic District, every exterior construction project — including a new deck — needs a Certificate of Appropriateness. Some COAs are staff-approved; others go to the Board of Architectural Review. A National Register listing is honorary and is not the same as the Town H-1 overlay. Gateway District rules are lighter on single-family detached houses. Any HOA review is a separate track from Town zoning and the county building permit. We submit what applies in parallel so the layers do not stack.",
-      "What you get is the paperwork product: we tell you whether you are in Town or unincorporated county, which county path the design is on (Typical vs full plans), and whether a COA is in play. We prepare the Town eTRAKiT zoning set (plat to engineer's scale, owner consent) and the county LandMARC building set. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: we tell you whether you are in Town or unincorporated county, which county path the design is on (Typical vs full plans), and whether a COA is in play. We prepare the Town eTRAKiT zoning set (plat to engineer's scale, owner consent) and the county LandMARC building set. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
+    ],
+  },
+
+  /**
+   * Brambleton gets its own page rather than more Ashburn copy because it
+   * carries its own named demand: "composite deck builder in brambleton va"
+   * (pos 11.1), "pvc decking brambleton va" (9.2), "deck installation
+   * brambleton va" (10.6) and four more, ~172 impressions, every one of them
+   * currently served by /services/decks/ashburn-va.
+   *
+   * To keep the two from competing, this page is about Brambleton's HOA design
+   * review and its small, closely-spaced lots, while the Ashburn page's snippet
+   * (below) is retargeted at Ashburn's own communities. The bodies overlap only
+   * where a homeowner would genuinely expect them to.
+   */
+  'decks-brambleton-va': {
+    metaTitle: 'Composite Deck Builder in Brambleton, VA | Real Elite',
+    metaDescription:
+      'Custom composite and PVC decks in Brambleton — Trex, TimberTech and Azek, built to Loudoun County code. We carry the HOA design review from drawing to approval.',
+    paragraphs: [
+      "Brambleton was built dense and built quickly, and that shapes every deck we put in here. Lots are close together, sight lines to neighbours are short, and the grade behind a townhome or single-family often drops away faster than owners expect. A deck in Brambleton has to earn its space: the right height to sit level with the kitchen door, the right railing to keep the yard feeling open rather than fenced in, and a footprint that leaves usable ground underneath instead of a dead shaded strip.",
+      "Nearly every project in Brambleton passes through the community's architectural review before a single post goes in. We prepare the submission the way the committee expects to receive it — dimensioned plan, elevation, material and colour selections, and the finished-height detail that causes most of the rejections we see on plans homeowners drew themselves. The Loudoun County permit runs in parallel. You are not chasing either one; that is our job, and it is the part that usually decides whether you are entertaining on the deck in June or in September.",
+      "Composite and PVC are the right call on these lots and it is not close. Trex, TimberTech and Azek hold their colour through the full-sun western exposures common in Brambleton, they do not splinter where children are barefoot, and they skip the annual sanding and staining that pressure-treated boards demand by year three. We will walk you through the boards in daylight rather than off a chip, because the greys and the warm browns read very differently against Brambleton's brick and siding palettes than they do in a showroom.",
+      "Most Brambleton decks we build are doing more than one job: a dining zone that clears the door swing, a lounge corner that catches evening light, lighting worked into the posts and risers so the space survives past dusk, and often a pergola or roof over part of it for the July afternoons. We design it as one space, price it as fixed line items before demolition, and build it with the same crew start to finish.",
     ],
   },
 
   'decks-ashburn-va': {
+    // Snippet retargeted to Ashburn's own communities now that Brambleton has
+    // a dedicated page. The body still mentions Brambleton in passing, which is
+    // natural for a neighbouring community and not worth rewriting.
+    metaTitle: 'Custom Deck Builder in Ashburn, VA | Real Elite',
+    metaDescription:
+      'Composite decks and outdoor living in Ashburn — One Loudoun, Broadlands and Ashburn Farm. Trex, TimberTech and Azek, with HOA submissions and Loudoun permits handled.',
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Ashburn homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. Ashburn is unincorporated Loudoun County, not a town: there is no separate municipal zoning office. County building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Every Ashburn deck needs a Loudoun County building permit and a county zoning permit. Typical Deck Detail is the fast path: single-level, attached, residential, joist overhangs of 2 feet or less, and no roof, screen, hot tub, gazebo, or detached structure. Published county fee on that path is $265 (building plus zoning) under 1,000 sq ft. A roofed patio, screened porch, or three-season room drops out of Typical and needs full structural plans: $395 under 1,000 sq ft. Those numbers are from Loudoun Building and Development — not a contractor guess. County inspections: footing before concrete, framing before decking, final. Framing and final may combine when framing is at least 42 inches above grade. Published minimum footing depth is 24 inches on solid soil.",
       "A county permit is not HOA approval. The county does not enforce covenants. We submit both tracks in parallel so they do not stack. In Brambleton, official design review covers essentially all exterior changes, permanent or temporary; the Covenants Committee typically meets the second Monday, applications are due 9:00 AM Friday ten days prior (holiday weeks shift — we use the published calendar), and decision letters usually follow 5–7 business days after the meeting. In Broadlands, Declaration 7.5 requires prior written consent for any exterior addition; decks are a listed Modifications Subcommittee project. Applications are due at noon Wednesday, one week before the meeting; March–October the subcommittee meets the first and third Wednesdays at 7:00 PM, November–February the third Wednesday; result letters are normally emailed within a week of the meeting. For One Loudoun and Ashburn Farm we submit the current association packet — we do not publish approved-color lists or worksheet rules from contractor blogs or third-party form sites.",
-      "What you get is the paperwork product: we tell you which county path the design is on (Typical vs full plans), which association reviews the lot, and we prepare the LandMARC set plus the ARC packet. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: we tell you which county path the design is on (Typical vs full plans), which association reviews the lot, and we prepare the LandMARC set plus the ARC packet. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
     ],
   },
 
@@ -155,11 +332,17 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting builds decks and outdoor living for Hagerstown homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. A Hagerstown mailing address is not automatically City limits: Halfway, Robinwood, and Fountain Head often sit in Washington County. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Inside the City, a building permit is required for decks. Applications go to the Department of Engineering and Permits at One E. Franklin Street, 3rd floor, or through the City's online building-permit form. The City's published packet asks for a completed application, a scaled plot plan with existing structures and distances to property lines, owner permission if you are not the owner, plan sets (two paper and one digital on the current guidelines), and the contractor's City license number when a contractor is hired. Inspections for building and trade permits are requested through the City inspection-request page. We do not publish a made-up Hagerstown fee or a fake 2–3 week timeline — we put the current City amount and review window in the written estimate.",
       "Historic-district design review and zoning setbacks, when they apply, are a separate track from the building permit. Outside City limits, Washington County issues the building permit. We tell you which office files the job before we lock the schedule.",
-      "What you get is the paperwork product: City or county path, plot plan, and inspection sequence (footing before concrete; framing before decking). We install to the approved plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: City or county path, plot plan, and inspection sequence (footing before concrete; framing before decking). We install to the approved plans and document each inspection.",
     ],
   },
 
   'decks-loudoun-county-va': {
+    // The body already publishes the $25k-$75k+ range this market works in, so
+    // the snippet leads with it. A homeowner pricing an outdoor-living buildout
+    // self-qualifies before the click, which is the point on a consultation CTA.
+    metaTitle: 'Outdoor Living & Deck Builder — Loudoun County, VA',
+    metaDescription:
+      'Multi-level composite decks, outdoor kitchens and pergolas across Loudoun County. Most projects run $25,000 to $75,000+. Trex, TimberTech and Azek, built to county code.',
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Loudoun County homeowners — composite builds, railing and lighting, and the next step up when you want a roof or screen. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Every Loudoun County deck needs a building permit and a zoning permit. The county's Typical Deck Detail is the fast path: it applies only to a single-level, residential, attached deck with no roof, no screen, no hot tub, no gazebo, and no detached structure. On that path the published county fee is $265, building review is 2 days, and zoning review is 2 days (intake completeness is 2–5 business days). A roofed patio, screened porch, or three-season room drops out of Typical and needs full structural plans: $395, 15-day building review, and 10-day zoning review. Those numbers are from Loudoun Building and Development — not a contractor guess. Leesburg, Purcellville, and Middleburg permit separately from the county. Published minimum footing depth is 24 inches on solid soil.",
@@ -173,7 +356,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting builds decks and outdoor living for selected Middleburg homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. A Middleburg mailing address is not automatically Town limits: parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Inside Town limits the order is fixed. The Town of Middleburg issues a Zoning Location Permit first — required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit. The county issues the building permit after that. Typical Deck Detail still applies to the county building set when the design qualifies; published county fees inside an incorporated town are $100 for Typical under 1,000 sq ft (building permit only) and $230 for full plans under 1,000 sq ft. Outside Town those same county paths are $265 and $395 because they include county zoning. Town zoning has its own fee — we put the current Town amount in the written estimate.",
       "If the parcel is in the Middleburg Historic District, exterior work — including a new deck — needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA, and a COA is not a building permit. We submit what applies in parallel so the layers do not stack.",
-      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC building set. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC building set. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
     ],
   },
 
@@ -199,19 +382,19 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
 
   'remodeling-leesburg-va': {
     paragraphs: [
-      "Real Elite Contracting remodels Leesburg homes — kitchens, baths, additions, and whole-home work under one named project lead. A Leesburg mailing address is not Town limits. We check the parcel before we file.",
+      "Real Elite Contracting remodels Leesburg homes — kitchens, baths, additions, and whole-home work. A Leesburg mailing address is not Town limits. We check the parcel before we file.",
       "Pure interior cosmetic work (paint, cabinet fronts in place, tile-on-tile in an unchanged footprint) usually skips both Town zoning and HOA review. Anything that relocates plumbing or electrical, opens a wall, or changes the exterior needs Loudoun County permits. Inside Town, that county building permit waits on Town zoning. H-1 Old and Historic District exteriors also need a Certificate of Appropriateness.",
       "A county permit is not HOA approval. We submit what applies in parallel so the layers do not stack. We do not publish invented kitchen or bath price bands, and we do not claim completed Loudoun project counts we cannot show.",
-      "Written scope, line-item estimate, daily updates, clean job site, inspections documented, written workmanship warranty.",
+      "Written scope, line-item estimate, inspections documented.",
     ],
   },
 
   'remodeling-ashburn-va': {
     paragraphs: [
-      "Real Elite Contracting remodels Ashburn homes — kitchens, baths, finished lower levels, and whole-home work under one named project lead. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
+      "Real Elite Contracting remodels Ashburn homes — kitchens, baths, finished lower levels, and whole-home work. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
       "Interior work that relocates plumbing or electrical, or that opens a load-bearing wall, needs county permits and, when the wall is structural, stamped drawings. Purely cosmetic interior work usually skips HOA review. Exterior changes (windows, siding, additions, decks) need the association packet in parallel with the county set. Brambleton reviews essentially all exterior changes. We do not publish One Loudoun color lists from blogs.",
       "We do not claim a pipeline of completed Ashburn projects we cannot show, and we do not publish invented remodel price bands. The written estimate is the number.",
-      "Named project lead, daily updates, clean job site, inspections documented, written workmanship warranty.",
+      "Inspections documented. The written estimate is the number.",
     ],
   },
 
@@ -229,7 +412,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting remodels Loudoun County homes — kitchens, baths, additions, and whole-home work — and we lead the western corridor first. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Everywhere else, LandMARC handles building and zoning.",
       "A county permit is not HOA approval. Exterior scopes run both tracks in parallel. Historic-district exteriors in Old Town Leesburg or Middleburg add a Certificate of Appropriateness. Load-bearing changes need stamped structural drawings before the county will issue.",
       "We do not publish invented $40,000–$200,000 kitchen and bath bands, named fixture packages as if they were standard, or completed-project counts we cannot show. Line items go in the written estimate.",
-      "One named lead, daily updates, inspections in order, written workmanship warranty.",
+      "Daily updates. Inspections in order.",
     ],
   },
 
@@ -258,7 +441,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting installs and replaces siding for Leesburg homeowners — vinyl, fiber cement, and engineered wood when the job calls for them. A Leesburg mailing address is not Town limits. We check the parcel before we file. We do not advertise a James Hardie or manufacturer Pro badge we do not hold.",
       "Siding is exterior work. Inside Town, Town zoning comes first and the county building permit follows. H-1 Old and Historic District parcels need a Certificate of Appropriateness before material or color changes. Outside Town, LandMARC handles building and zoning. HOA review is a separate track.",
       "We do not publish HOA color lists from blogs, and we do not invent ROI rankings or $40,000+ siding bands. House wrap, window and door flashing, and a moisture check of the sheathing are part of the scope we write down.",
-      "Current Town and county fees go in the written estimate. Manufacturer warranties are registered when the product qualifies. Labor is backed with a written workmanship warranty.",
+      "Current Town and county fees go in the written estimate. Manufacturer warranties are registered when the product qualifies.",
     ],
   },
 
@@ -267,7 +450,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting installs and replaces siding for Ashburn homeowners. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC. We do not advertise a James Hardie or manufacturer Pro badge we do not hold.",
       "Siding is an exterior change. A county permit is not HOA approval. Brambleton reviews essentially all exterior changes, including color and material. Broadlands requires Modifications Subcommittee written consent before visible exterior work. For One Loudoun and Ashburn Farm we use the current packet — no blog color lists.",
       "We inspect sheathing before we cover it, install house wrap and flashing, and put published county fees plus the association's current review window in the written estimate.",
-      "Manufacturer warranties are registered when the product qualifies. Labor is backed with a written workmanship warranty.",
+      "Manufacturer warranties are registered when the product qualifies.",
     ],
   },
 
@@ -305,7 +488,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting remodels Leesburg bathrooms — showers, tile, vanities, and full primary-suite rebuilds. A Leesburg mailing address is not Town limits. We check the parcel before we file.",
       "Plumbing or electrical relocation needs a Loudoun County building permit (and the matching trade permits). Inside Town, that county permit waits on Town zoning. A purely interior bath with no window or exterior change usually skips HOA review; a new window, skylight, or exterior wall opening does not. H-1 exteriors need a Certificate of Appropriateness.",
       "We do not publish invented $40,000–$100,000 bands or named fixture packages as if they were standard. Waterproofing, slope-to-drain, and the inspection sequence (rough plumbing, rough electrical, final) are in the written scope. Line items go in the estimate.",
-      "Named project lead, daily updates, clean job site, written workmanship warranty.",
+      "Named project lead, daily updates.",
     ],
   },
 
@@ -314,7 +497,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting remodels Ashburn bathrooms — showers, tile, vanities, and full primary-suite rebuilds. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
       "Plumbing or electrical relocation needs county permits and inspections (rough-in, then final). HOA review usually applies only if the bath changes a window, skylight, or other exterior element. A county permit is not HOA approval when both apply — we file them in parallel.",
       "We do not claim we remodel Ashburn primary suites every week, and we do not publish invented $30,000–$60,000 bands. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed.",
-      "Named project lead, daily updates, clean job site, written workmanship warranty.",
+      "County inspections run in published order — rough plumbing, rough electrical, then final.",
     ],
   },
 
@@ -323,7 +506,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting remodels Loudoun County bathrooms and we lead the western corridor first. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit when the work needs one. Unincorporated parcels use LandMARC.",
       "Plumbing or electrical relocation needs county trade permits and inspections. Exterior openings need the association packet in parallel. Historic-district exteriors need a Certificate of Appropriateness. Load-bearing changes need stamped drawings.",
       "We do not publish invented $50,000–$120,000 bands or named fixture catalogs as if they were the standard package. Waterproofing, slope-to-drain, and the inspection order are in the written scope.",
-      "Named project lead, daily updates, written workmanship warranty.",
+      "Named project lead.",
     ],
   },
 
@@ -361,7 +544,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting remodels Leesburg kitchens — layout, cabinetry, counters, and the trades behind the walls. A Leesburg mailing address is not Town limits.",
       "Opening a load-bearing wall needs stamped structural drawings and a Loudoun County building permit. Plumbing or electrical relocation needs the matching trade permits. Inside Town, the county building permit waits on Town zoning. HOA review usually applies only if the kitchen changes windows or another exterior element. H-1 exteriors need a Certificate of Appropriateness.",
       "We do not publish invented $80,000–$200,000 bands or named appliance packages as if they were standard. Cabinet lead time is what it is — we put the real weeks in the written timeline before demo.",
-      "Named project lead, daily updates, inspections in order, written workmanship warranty.",
+      "Named project lead, daily updates, inspections in order.",
     ],
   },
 
@@ -370,7 +553,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting remodels Ashburn kitchens — layout, cabinetry, counters, and the trades behind the walls. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
       "A load-bearing opening needs stamped drawings and a county building permit. Plumbing or electrical relocation needs trade permits. HOA review usually applies only if windows or another exterior element changes. We do not claim these remodels happen every week.",
       "We do not publish invented $50,000–$110,000 bands or brand packages as if they were standard. Cabinets, counters, appliances, electrical, plumbing, and finishes are separate line items on the estimate.",
-      "Named project lead, daily updates, written timeline before demo, written workmanship warranty.",
+      "Named project lead, daily updates, written timeline before demo.",
     ],
   },
 
@@ -379,7 +562,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting remodels Loudoun County kitchens and we lead the western corridor first. Towns (Leesburg, Purcellville, Middleburg) issue zoning before the county building permit when the work needs one. Unincorporated parcels use LandMARC.",
       "Load-bearing changes need stamped drawings. Plumbing and electrical relocation need trade permits. Exterior openings need the association packet in parallel. Historic-district exteriors need a Certificate of Appropriateness.",
       "We do not publish invented $100,000–$250,000 bands or named appliance catalogs as if they were the standard package. Cabinet and stone lead times go in the written timeline before demo. Adjacent rooms stay on one contract when they are part of the same job.",
-      "Named project lead, daily updates, written workmanship warranty.",
+      "Named project lead, daily updates.",
     ],
   },
 
@@ -388,7 +571,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting finishes Leesburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
       "Inside Town limits the order is fixed. The Town's published home-improvement table treats interior or basement finish-out as Town zoning (typically without engineering review) plus a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. A bedroom needs an emergency egress window — sill height, opening size, and window-well dimensions go on the plans — and that opening is exterior work. In the H-1 Old and Historic District it also needs a Certificate of Appropriateness.",
       "Outside Town limits, county building and zoning run through LandMARC. HOA review usually applies only if we cut a new window or door. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum; full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. Trade permits are separate. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor. We do not publish invented basement price bands.",
-      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC building set. County inspections run in published order — trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC building set. County inspections run in published order — trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
     ],
   },
 
@@ -397,7 +580,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting finishes Ashburn lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. Ashburn is unincorporated Loudoun County, not a town. Building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
       "Every finished basement needs a Loudoun County building and zoning application, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. A bedroom needs an emergency egress window; that opening is exterior work.",
       "A county permit is not HOA approval. We file the association packet in parallel when we cut a new window or door. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands needs Modifications Subcommittee written consent before visible exterior work; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet — we do not invent approved-color lists. Moisture comes first. We do not publish invented basement price bands or claim a pipeline of finished Ashburn lower levels we cannot show.",
-      "What you get is the paperwork product: Typical vs full plans, which association reviews the lot, and the LandMARC set plus the ARC packet when egress is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: Typical vs full plans, which association reviews the lot, and the LandMARC set plus the ARC packet when egress is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
     ],
   },
 
@@ -406,19 +589,110 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting finishes Loudoun County lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg.",
       "Every finished basement needs a Loudoun County building and zoning application, plus trade permits when electrical, plumbing, mechanical, or gas is in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. Leesburg, Purcellville, and Middleburg issue town zoning first — the county will not release the building permit without it. A bedroom needs an emergency egress window.",
       "A county permit is not HOA approval. An egress cut is exterior work: HOA review in master-planned communities, and a Certificate of Appropriateness in Old Town Leesburg or the Middleburg Historic District. Moisture comes first. We do not publish invented basement price bands or treat wine cellars and media rooms as the typical Loudoun brief.",
-      "What you get is the paperwork product: Typical vs full plans, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: Typical vs full plans, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
     ],
   },
 
   // ── BASEMENTS ────────────────────────────────────────────────────────────
 
+  /**
+   * Eastern Panhandle basements. These carry the best commercial positions on
+   * the site — "basement remodeling ranson wv" at 3.2, "basement remodel ranson
+   * wv" at 5.1, "basement remodeling inwood wv" at 5.7 — all currently answered
+   * by a generic /service-areas/ page with a template snippet.
+   *
+   * No whole-project WV basement range is published anywhere on the site, so
+   * these deliberately do NOT quote one. The egress window figure is published
+   * (see the basement-egress-window-cost guide) and is used instead: it is true,
+   * specific, and it is the line item that actually catches WV homeowners out.
+   */
+  'basements-ranson-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Ranson, WV | Real Elite',
+    metaDescription:
+      'Finished basements in Ranson — family room, guest suite, full bath, and the egress window Jefferson County code requires, $3,500 to $6,500 installed.',
+    paragraphs: [
+      "Ranson has more unfinished basement square footage than almost anywhere else in Jefferson County, and it is nearly all recent. The Flowing Springs and Powhatan Place developments put hundreds of homes up with full-height lower levels roughed for nothing but a furnace, and the families who bought them are now out of room upstairs. That is the typical Ranson brief: a family room, a guest bedroom with its own bath, and somewhere to put the things that have taken over the garage.",
+      "The part that catches people out is egress. West Virginia code will not let you call a lower-level room a bedroom without a compliant egress window, and on the newer Ranson builds that usually means cutting the foundation wall and setting a window well. That is a real line item, $3,500 to $6,500 installed, and we put it on the estimate at the start rather than after the framing is up. If your plan does not include a bedroom, you do not need one, and we will tell you that too.",
+      "Everything before the finishes decides how the basement ages. We check the perimeter and the slab for moisture before a single stud goes up, verify the sump and its backup, and use an insulated subfloor system where the slab reads cold or damp. Then framing to code, a properly sized HVAC run or a dedicated mini-split rather than a prayer that the existing system reaches, full electrical, and insulation that makes the lower level comfortable in February instead of merely finished.",
+      "We pull the Jefferson County permits and meet the inspector ourselves. You get a written, itemized estimate before demolition, covering framing, electrical, plumbing, HVAC, insulation, drywall, flooring and finishes as separate lines, so you can see exactly where the money goes and hold the final invoice against it. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
+  'basements-inwood-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Inwood, WV | Real Elite',
+    metaDescription:
+      'Finished basements in Inwood and the Route 51 corridor — family room, guest suite, full bath, plus the egress window WV code requires from $3,500.',
+    paragraphs: [
+      "Inwood grew fast and it grew new. The subdivisions along the Route 51 corridor and out toward Gerrardstown Road went up on what was farmland a generation ago, and almost all of them came with a full basement left unfinished. Families here tend to finish them for the same reasons: a second living space that is not the front room, a bedroom for a relative or a returning adult child, and a place for the treadmill that is currently a coat rack.",
+      "Berkeley County enforces egress the way the code is written. A lower-level bedroom needs a compliant egress window, which on most Inwood builds means cutting the foundation and setting a well — $3,500 to $6,500 installed, quoted up front, not discovered later. Plenty of Inwood basements do not need one, because the plan is a family room and a bath rather than a bedroom. We will tell you which one you are looking at before you are committed to anything.",
+      "Because these houses are newer, the slabs are usually sound and the moisture work is quick, but we still check rather than assume: perimeter inspection, sump and battery backup verified, insulated subfloor where the slab needs it. From there it is code framing, an HVAC run sized for the space or a dedicated mini-split, full electrical, insulation, and the finishes. Skipping the moisture step is the shortcut that shows up three years later in the baseboards.",
+      "We handle the Berkeley County permit and the inspections. The estimate is written and itemized before any work starts, with each trade broken out so the number is something you can check rather than something you have to trust. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
+  'basements-charles-town-wv': {
+    metaTitle: 'Basement Finishing & Remodeling in Charles Town, WV',
+    metaDescription:
+      'Finished basements in Charles Town, from historic-district stone cellars to newer full-height builds. Egress windows to Jefferson County code from $3,500.',
+    paragraphs: [
+      "Charles Town basements come in two very different shapes and the difference decides the whole project. The historic streets around Washington and George sit on older stone or block foundations with lower headroom, uneven floors and, often, a moisture history worth taking seriously. The newer subdivisions out toward Route 9 and the Ranson line have full-height poured walls roughed in for a future finish. We quote them differently because they genuinely are different jobs.",
+      "On the older homes, the honest conversation happens before design. Some of those cellars want a dehumidification and drainage plan and a modest finish rather than a full build-out, and we would rather say so than sell you drywall that will not last. Where the headroom and the foundation do support a full finish, the result is worth having: a guest suite, a library or den, a workshop that is not the garage.",
+      "Newer Charles Town builds are straightforward, and the main code point is egress. Jefferson County requires a compliant egress window for any lower-level bedroom — $3,500 to $6,500 installed on a typical foundation, on the estimate from the start. Moisture control still comes first regardless of the home's age: perimeter check, sump and backup, insulated subfloor where the slab calls for it.",
+      "We pull the Jefferson County permits, coordinate the inspections, and where the property sits in the historic district we handle that review too. Every job starts with a written, itemized estimate. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia.",
+    ],
+  },
+
   'basements-frederick-md': {
+    metaDescription:
+      'Basement finishing in Frederick, MD — family room, guest suite, full bath, proper moisture control. Most projects run $55,000 to $70,000, itemized up front.',
     paragraphs: [
       "Frederick, Maryland is the strongest basement-finishing market in our service area. The combination of Frederick County's housing stock — most newer homes in Ballenger Creek, Urbana, Jefferson, and New Market have full unfinished basements as standard construction — and the local demand for additional living space at a fraction of an addition's cost makes basement finishing one of the highest-ROI projects a Frederick homeowner can build.",
       "Real Elite Contracting builds Frederick basements that pass inspection on the first walkthrough, every time. Moisture control comes first — sump pump verification, perimeter waterproofing assessment, vapor barrier installation under any framing — because the cheap shortcut on moisture is what creates mold problems in year three. Then code-compliant framing with proper egress windows where required, full electrical and plumbing rough-in to Frederick County code, HVAC extension or dedicated mini-split installation, and the insulation and drywall that turn raw space into living space.",
       "Typical Frederick basement-finishing scope in 2026 runs $35,000–$85,000 depending on square footage and feature mix. Standard finished family room with full bath, wet bar, and laundry rough-in lands around $55,000–$70,000. In-law suites with full kitchens, bedrooms, and accessible bathrooms run higher. We provide detailed line-item estimates with everything broken out — framing, electrical, plumbing, HVAC, insulation, drywall, flooring, finishes — so you see exactly where the budget goes.",
       "Frederick County permits and inspections are required for any basement finishing work — framing, electrical, plumbing, mechanical, final. The inspector sequence matters; we coordinate it so trades don't lose days waiting on each other. Most full Frederick basement projects run 6–12 weeks of active work depending on scope, with a named project lead, daily updates, and a clean job site every day. Egress windows, fire-blocking, and the other code requirements that separate properly finished basements from problem basements are non-negotiable in our work.",
     ],
+  },
+
+  // ── BASEMENTS · NORTHERN VIRGINIA (region) ───────────────────────────────
+  //
+  // The one combo at region altitude, and the reason the altitude doc exists.
+  // "basement remodeling northern virginia" 110/mo KD 0 $31 CPC, "basement
+  // finishing northern virginia" 90/mo $99 CPC, "basement remodeling fairfax
+  // va" 70/mo $132 CPC — against every town-level basement term in the same
+  // market sitting below the reporting floor bar Alexandria and McLean.
+  //
+  // FAIRFAX COUNTY IS COVERED IN PROSE, NOT AS AN H2. §3.2 of the altitude doc
+  // specified a Fairfax County H2 here; ComboContent has no headings, and
+  // adding a `sections` shape for a single consumer buys an abstraction the
+  // rest of the map would not use. Fairfax County is named substantively in
+  // three of the four paragraphs instead. Whether the "fairfax va" query
+  // follows this page is a Phase 5 read, and the doc already gates a dedicated
+  // /services/basements/fairfax-va page on that answer.
+  //
+  // Every figure below is an endpoint this site already publishes: $55,000 is
+  // the low end of the Burke range, $400,000+ the high end of Great Falls.
+  // No new price is introduced here — CLAUDE.md forbids it, and a regional
+  // page inventing a regional number would be the easiest way to break it.
+  'basements-northern-virginia': {
+    // The title takes "basement remodeling" (110/mo) and the description takes
+    // "basement finishing" (90/mo), so the page targets both head terms
+    // without either field reading as a keyword list. The generic fallback
+    // would say "Basements in Northern Virginia", which is neither term.
+    metaTitle: 'Basement Remodeling in Northern Virginia | Real Elite',
+    metaDescription:
+      'Basement finishing across Fairfax, Loudoun and Alexandria. Published scope runs $55,000 in Burke to $400,000+ in Great Falls, itemized before work starts.',
+    paragraphs: [
+      "Northern Virginia's basement demand is regional before it is local, and the housing stock is why. Fairfax County, Loudoun County and the city of Alexandria were built out largely between the 1960s and the 2000s on full-height unfinished lower levels with walkout or areaway access — square footage the house already has, already heats, and is not using. A homeowner in Vienna, Burke, Ashburn or Belle Haven is usually not shopping for a Vienna contractor or a Burke contractor; they are shopping for someone who finishes lower levels in Northern Virginia, and they narrow down afterwards.",
+      "The technical order of work is the same across the region, and the sequence matters more than the finish schedule. Moisture and vapor control come first: perimeter inspection, sump pump and battery backup verification, and dimple-mat or insulated subfloor systems where the slab condition calls for them. The shortcut taken there is the one that resurfaces three years later as a mold problem behind finished cabinetry. From there it is code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or a dedicated mini-split where the existing system will not carry the added load, surround pre-wire, and the millwork and finishes that make the space read as a room rather than a finished basement.",
+      "Budget varies more by house than by town, which is the honest version of a regional price. Across the Northern Virginia pages this site publishes, finished lower-level scope runs from $55,000 at the smaller Burke and Reston end to $400,000+ for an estate-scale Great Falls build with a media room, wine room and second entertaining kitchen. Most Fairfax and Loudoun County projects land between those poles, and the variables that move a number are square footage, the feature mix, and how much millwork and stone the build carries. Estimates are issued line by line — framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone and finishes broken out separately — so the figure can be read rather than taken on trust.",
+      "Permitting is the one part of a Northern Virginia basement that is genuinely not regional. Fairfax County, Loudoun County and the City of Alexandria each run their own permit and inspection process, and a lower level with bedrooms, a bath or a bar needs framing, electrical, plumbing, mechanical and final inspections in whichever jurisdiction the house sits in. Real Elite Contracting is veteran-owned, headquartered in Martinsburg, West Virginia, and licensed and insured in West Virginia, Maryland and Virginia.",
+    ],
+    // §2.3 of the architecture doc. The Loudoun luxury-basement guide covers
+    // the room programme and finish tiers — theatre, wet bar, wine room, guest
+    // suite — which this page deliberately does not, because it is a hiring
+    // page and that is a research question. Different intent, so linking it
+    // adds a reason to stay rather than a competing landing page.
+    relatedGuideSlugs: ['luxury-basement-finishing-loudoun-northern-virginia-2026'],
   },
 
   // ── BATHROOMS · MCLEAN, VA ───────────────────────────────────────────────
@@ -463,6 +737,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
 
   // ── BASEMENTS · MCLEAN, VA ───────────────────────────────────────────────
   'basements-mclean-va': {
+    metaDescription:
+      'Lower-level finishing in McLean — media room, wet bar, wine room, guest suite. Most builds run $150,000 to $220,000, with every line itemized up front.',
     paragraphs: [
       "McLean homes generally have generous unfinished lower levels with full ceiling height and walkout access, which makes finished-basement entertainment suites one of the highest-impact projects an estate-class home can build. The McLean basement brief tends to be ambitious: a true media room with tiered seating, a separate wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space to an already substantial home.",
       "Real Elite Contracting builds McLean lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the cheap shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -473,6 +749,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
 
   // ── BASEMENTS · ALEXANDRIA, VA ───────────────────────────────────────────
   'basements-alexandria-va': {
+    metaDescription:
+      'Finished lower levels in Alexandria, from row-house basements to full entertainment levels. Typical scope runs $80,000 to $200,000+, itemized up front.',
     paragraphs: [
       "Alexandria basement work splits cleanly into two categories: historic Old Town townhouse cellars, which need a very specific technical approach (often around moisture, ceiling height, and structure), and the larger walkout or full lower levels in the colonial and contemporary homes of Belle Haven, Rosemont, North Ridge, and Beverley Hills. Real Elite Contracting handles both, and the right answer for each is rarely the same.",
       "For Belle Haven and the post-war neighborhoods, lower-level finishes follow the same playbook as a luxury Fairfax County build: moisture control first, code-compliant framing with proper egress, full electrical and plumbing rough-in, HVAC, surround pre-wire, and millwork that elevates the space. Typical scope runs $80,000–$200,000+ depending on square footage and feature mix — finished family room, full bath, wet bar, guest suite, and dedicated gym or office.",
@@ -503,6 +781,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
 
   // ── BASEMENTS · VIENNA, VA ───────────────────────────────────────────────
   'basements-vienna-va': {
+    metaDescription:
+      'Finished lower levels in Vienna — media room, wet bar, guest suite, full bath. Most projects run $130,000 to $180,000, itemized before work starts.',
     paragraphs: [
       "Vienna homes typically have generous unfinished lower levels with full ceiling height and walkout access, which makes a finished entertainment lower level one of the highest-impact projects the home can build. The typical Vienna basement brief includes a true media room with tiered seating, a wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space.",
       "Real Elite Contracting builds Vienna lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -533,6 +813,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
 
   // ── BASEMENTS · GREAT FALLS, VA ──────────────────────────────────────────
   'basements-great-falls-va': {
+    metaDescription:
+      'Estate-scale lower levels in Great Falls — media room, wet bar, wine room, fitness, guest suite. Most builds run $250,000 to $350,000, fully itemized.',
     paragraphs: [
       "Great Falls lower levels are some of the most ambitious finished-basement projects in our service area. The typical brief includes a media room with tiered seating and acoustic treatment, a true wet bar that functions as a second entertaining kitchen, a wine room with dedicated cooling, a fitness room with rubber flooring and mirrored wall, a guest suite with full bath, and sometimes a separate game room or family lounge. Lower levels at this scale function as an entire additional tier of the home.",
       "Real Elite Contracting builds Great Falls lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where required — because the shortcut on moisture is the one that surfaces years later. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, dedicated HVAC systems where the existing capacity doesn't carry the load, surround pre-wire, acoustic treatment, and the millwork and stone that turn the space into a true room.",
@@ -563,6 +845,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
 
   // ── BASEMENTS · RESTON, VA ───────────────────────────────────────────────
   'basements-reston-va': {
+    metaDescription:
+      'Finished lower levels in Reston — media room, wet bar, full bath, guest suite. Most projects run $110,000 to $160,000, itemized line by line up front.',
     paragraphs: [
       "Reston homes typically have generous lower levels — often walkouts with full ceiling height — and a finished lower level is one of the highest-impact projects the home can build. The typical Reston basement brief includes a media room, wet bar, full bath, guest suite, and sometimes a dedicated gym or yoga room. The build adds a full additional tier of livable space.",
       "Real Elite Contracting builds Reston lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump verification, dimple-mat or insulated subfloor systems where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
@@ -591,106 +875,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
     ],
   },
 
-  // ── BASEMENTS · BURKE, VA ────────────────────────────────────────────────
-  'basements-burke-va': {
-    paragraphs: [
-      "Burke homes typically have generous unfinished lower levels, and a finished lower level is one of the highest-impact projects a Burke homeowner can build. The typical Burke basement brief includes a finished family room, full bath, wet bar or kitchenette, guest suite or office, and sometimes a dedicated gym or media room.",
-      "Real Elite Contracting builds Burke lower levels with proper moisture control as the foundation: perimeter inspection, sump pump verification, vapor barrier installation under any framing, dimple-mat or insulated subfloor where the slab condition requires it. From there: code-compliant framing, egress where bedrooms are planned, full electrical, HVAC extension, and the insulation, drywall, and finishes that turn raw space into living space.",
-      "Typical Burke basement-finishing scope in 2026 runs $55,000–$140,000+ depending on square footage and feature mix. A finished family room with full bath, wet bar, guest suite, and laundry rough-in usually lands in the $80,000–$120,000 range. We provide detailed line-item estimates with everything broken out.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
-    ],
-  },
-
-  // ── BATHROOMS · FAIRFAX STATION, VA ──────────────────────────────────────
-  'bathrooms-fairfax-station-va': {
-    paragraphs: [
-      "Fairfax Station primary baths trend larger and more architecturally ambitious than the typical Fairfax County remodel — a reflection of the larger lots, the longer-term ownership pattern, and the homeowner expectation that a primary bath should function as a private retreat. Typical Fairfax Station primary-bath scope in 2026 runs $60,000–$130,000+ depending on size, layout changes, and material grade.",
-      "Real Elite Contracting renovates Fairfax Station primary baths with the craft this market expects. Featured projects routinely include curbless walk-in showers with linear drains, freestanding soaking tubs, double-vanity layouts with stone tops, slab-edge mitered details, premium fixture lines, heated floors, and lighting designed scene by scene.",
-      "Many Fairfax Station primary-bath renovations are part of a primary-suite expansion that opens into the closet or an adjoining bedroom. We bring a structural engineer in early when those changes are on the table, model the geometry for the homeowner and designer, and value-engineer the parts of the budget that won't change the visible result.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. One named project lead from estimate through final walkthrough, daily progress photos, clean job site every evening, and a written workmanship warranty.",
-    ],
-  },
-
-  // ── KITCHENS · FAIRFAX STATION, VA ───────────────────────────────────────
-  'kitchens-fairfax-station-va': {
-    paragraphs: [
-      "Fairfax Station kitchens skew larger and more architecturally substantial than typical Fairfax County kitchens. The homes are bigger, the entertaining is more serious, and the brief often includes a separate scullery or butler's pantry, professional-spec ventilation, integrated panel-front appliance suites, and a full-height refrigerator and freezer column. Typical scope in 2026 runs $130,000–$300,000+.",
-      "Real Elite Contracting builds Fairfax Station kitchens in close collaboration with the designers this market relies on. Featured scope includes custom inset cabinetry from a tier-one shop, full-slab quartzite or natural-stone countertops with mitered apron edges, integrated panel-front appliance suites (Sub-Zero, Wolf, Miele), professional ventilation that disappears into millwork, scullery build-outs, and layered lighting.",
-      "Where there's an opportunity to reshape the plan — removing the bearing wall to the family room, expanding into a former breakfast area, relocating mechanical to clean up ceiling height — those structural moves often deliver the highest-impact result. We bring a structural engineer in early, model the changes, value-engineer the parts that won't be visible, and protect the spend for the cabinetry, stone, and fixtures.",
-      "Communication runs through one named project lead from estimate through final punch list. Daily progress photos, clean job site every evening, same-day response standard, and a written workmanship warranty. Fairfax County permitting, mechanical and electrical inspections, and design coordination are handled by us.",
-    ],
-  },
-
-  // ── BASEMENTS · FAIRFAX STATION, VA ──────────────────────────────────────
-  'basements-fairfax-station-va': {
-    paragraphs: [
-      "Fairfax Station lower levels are some of the most substantial finished-basement projects in southern Fairfax County. The typical brief includes a media room with tiered seating, a wet bar that functions as a second entertaining kitchen, a guest suite with full bath, a fitness or yoga room, and sometimes a wine room or family lounge.",
-      "Real Elite Contracting builds Fairfax Station lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor where required. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
-      "Typical Fairfax Station basement-finishing scope in 2026 runs $100,000–$250,000+ depending on square footage, feature mix, and the level of millwork and stone. A finished entertainment lower level with media room, wet bar, full bath, guest suite, and gym usually lands in the $150,000–$200,000 range. We provide detailed line-item estimates with everything broken out.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
-    ],
-  },
-
-  // ── BATHROOMS · CLIFTON, VA ──────────────────────────────────────────────
-  'bathrooms-clifton-va': {
-    paragraphs: [
-      "Clifton primary baths divide naturally into two project briefs: historic homes in the Clifton Village proper, where period accuracy and restrained luxury are the priority, and the larger country estates along Compton Road, Ridge Road, and Yates Ford Road, where the brief is closer to a Great Falls primary-suite expansion. Real Elite Contracting handles both, calibrated to the architectural character of the address.",
-      "For historic Clifton Village homes, we specify period-respectful tile patterns (hex mosaic, marble basketweave, subway with pencil liners), traditional vanity profiles in inset cabinetry, polished nickel or unlacquered brass fittings, and clawfoot or freestanding tubs that belong in a historic envelope. Typical scope runs $50,000–$110,000+ depending on the level of structural and plumbing work the floor plan requires.",
-      "For the country estates, the brief tends to be larger and more contemporary — curbless walk-in showers with linear drains, freestanding soaking tubs, double-vanity layouts with stone tops, slab-edge mitered details, premium fixture lines, heated floors, and lighting designed scene by scene. Typical scope runs $70,000–$150,000+.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. For homes inside Clifton Town's historic district, any change affecting building exteriors requires Town review; we carry the paperwork. One named project lead from estimate through final walkthrough, daily progress photos, clean job site every evening, and a written workmanship warranty.",
-    ],
-  },
-
-  // ── KITCHENS · CLIFTON, VA ───────────────────────────────────────────────
-  'kitchens-clifton-va': {
-    paragraphs: [
-      "Clifton kitchens range from period-respectful historic-village renovations to substantial estate kitchens on the surrounding country lots. Each calls for a different sensibility, and the right contractor in this market is one who can read which sensibility the home is asking for and execute to it without compromise.",
-      "Real Elite Contracting builds Clifton kitchens with the same craft we bring to the McLean / Great Falls market, calibrated to the architectural pedigree of the address. Typical scope in 2026 runs $90,000–$280,000+ depending on the home, the cabinetry brief (inset paint-grade vs. period furniture-style), the stone, and the appliance specification. Historic Clifton kitchens often need creative plumbing and electrical routing inside plaster walls; we handle that as part of the scope.",
-      "For estate-class country properties, the brief is closer to Great Falls or Fairfax Station: full inset cabinetry from a tier-one shop, professional-spec ventilation, integrated panel-front appliances, scullery or butler's pantry, and structural changes (bearing wall removal, ceiling height changes) where the plan supports them. We bring a structural engineer in early when needed.",
-      "Communication runs through one named project lead from estimate through final punch list. Daily progress photos, clean job site every evening, same-day response standard, and a written workmanship warranty. Fairfax County permitting, mechanical and electrical inspections, and design coordination are handled by us.",
-    ],
-  },
-
-  // ── BASEMENTS · CLIFTON, VA ──────────────────────────────────────────────
-  'basements-clifton-va': {
-    paragraphs: [
-      "Clifton lower levels mirror the same two-track pattern as the upstairs: restrained, period-respectful finishes in the historic village homes, and large entertainment-tier builds in the country estates. Real Elite Contracting handles both, with the right answer determined by the home.",
-      "For historic Clifton Village homes, we often recommend a restrained finish in the lower level — wine storage, a quiet workshop, a guest room with its own bath, a family lounge — that respects the period character above. Where moisture control or structural reinforcement is required, we do it correctly and document it. Typical scope runs $60,000–$160,000+.",
-      "For the country estates, the brief is closer to a Great Falls or Fairfax Station build: media room with tiered seating, wet bar that functions as a second entertaining kitchen, guest suite with full bath, fitness room, sometimes a wine room. Typical scope runs $130,000–$300,000+ depending on square footage and feature mix.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. One named project lead, daily updates, clean job site, written workmanship warranty.",
-    ],
-  },
-
-  // ── BATHROOMS · MIDDLEBURG, VA ───────────────────────────────────────────
-  'bathrooms-middleburg-va': {
-    paragraphs: [
-      "Real Elite Contracting remodels selected Middleburg bathrooms. A Middleburg mailing address is not Town limits — Atoka, Foxcroft, and Goose Creek parcels are often unincorporated Loudoun. We check the parcel before we file.",
-      "Plumbing or electrical relocation needs a Loudoun County building permit. Inside Town, work that needs a county building permit also needs a Town Zoning Location Permit first. Historic District exteriors — including a new window on a bath — need a Certificate of Appropriateness from the Historic District Review Committee, with complete applications due 14 days before the meeting.",
-      "We do not publish invented $80,000–$180,000 bands, featured-project photo claims, or hunt-country spa lists. Waterproofing and the inspection sequence are in the written scope.",
-      "Named project lead, daily updates, written workmanship warranty.",
-    ],
-  },
-
-  // ── KITCHENS · MIDDLEBURG, VA ────────────────────────────────────────────
-  'kitchens-middleburg-va': {
-    paragraphs: [
-      "Real Elite Contracting remodels selected Middleburg kitchens. A Middleburg mailing address is not Town limits. We check the parcel before we file.",
-      "A load-bearing opening needs stamped drawings and a Loudoun County building permit. Inside Town, that county permit waits on a Zoning Location Permit. Historic District exteriors need a Certificate of Appropriateness; complete COA applications are due 14 days before the HDRC meeting.",
-      "We do not publish invented $150,000–$450,000 bands or named range brands as if they were the standard package. Cabinet lead time goes in the written timeline before demo.",
-      "Named project lead, daily updates, written workmanship warranty.",
-    ],
-  },
-
-  // ── BASEMENTS · MIDDLEBURG, VA ───────────────────────────────────────────
-  'basements-middleburg-va': {
-    paragraphs: [
-      "Real Elite Contracting finishes selected Middleburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. A Middleburg mailing address is not Town limits: parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun. We check the parcel before we file.",
-      "Inside Town limits the order is fixed. Work that needs a Loudoun County building permit also needs a Town Zoning Location Permit first. County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum; full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. A bedroom needs an emergency egress window — that opening is exterior work.",
-      "If the parcel is in the Historic District, an egress opening needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor. We do not publish invented basement price bands or treat wine cellars, tasting rooms, and gun rooms as the typical Middleburg brief.",
-      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC building set. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, document each inspection, and back the work with a written workmanship warranty.",
-    ],
-  },
-
   // ── ADDITIONS · LOUDOUN ───────────────────────────────────────────────────
 
   'additions-leesburg-va': {
@@ -698,7 +882,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting builds Leesburg additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
       "Inside Town limits the order is fixed. The Town's published home-improvement table treats home additions and expansions as Town zoning plus engineering review, then a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. The county set needs a plat (house, addition location, distances to the sides and rear) and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Trade permits are separate. If the addition adds a bedroom on well and septic, Health Department approval comes before the county application.",
       "If the parcel is in the H-1 Old and Historic District, the addition needs a Certificate of Appropriateness. Outside Town limits, county building and zoning run through LandMARC. A county permit is not HOA approval — we file the association packet in parallel. Environmentally sensitive lots and conservation easements can add review; we check those before we lock the design. We do not publish invented addition price bands or a completed Leesburg project count we cannot show.",
-      "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC addition set. County inspections for additions: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC addition set. County inspections for additions: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
 
@@ -707,7 +891,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting builds Ashburn additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. Ashburn is unincorporated Loudoun County, not a town. Building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
       "Every addition needs a Loudoun County building and zoning application, a plat showing the house, the addition, and setbacks, and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Trade permits (electrical, plumbing, mechanical, gas) are separate. Gas permits for residential additions have required plan review since October 1, 2025.",
       "A county permit is not HOA approval. We file the association packet in parallel. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands Declaration 7.5 requires Modifications Subcommittee written consent before an exterior addition; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet — we do not invent approved-color lists. We do not publish invented addition price bands or claim a pipeline of finished Ashburn additions we cannot show.",
-      "What you get is the paperwork product: the published fee path, which association reviews the lot, and the LandMARC set plus the ARC packet. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: the published fee path, which association reviews the lot, and the LandMARC set plus the ARC packet. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
 
@@ -716,7 +900,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting builds Loudoun County additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. The county publishes a screened porch as a residential addition, not a Typical Deck. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg.",
       "Every addition needs a Loudoun County building and zoning application, a plat with setbacks, and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg issue town zoning first — the county will not release the building permit without it. If the addition adds a bedroom on well and septic, Health Department approval comes before the county application. Conservation easements are more common in western Loudoun; we check the parcel before we lock the design.",
       "A county permit is not HOA approval. An addition is exterior work: HOA review in master-planned communities, and a Certificate of Appropriateness in Old Town Leesburg or the Middleburg Historic District. We do not publish invented addition price bands or treat wine cellars and media wings as the typical Loudoun brief.",
-      "What you get is the paperwork product: the published fee path, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: the published fee path, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
 
@@ -725,8 +909,124 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ExpansionCitySlug
       "Real Elite Contracting builds selected Middleburg additions — a bump-out, a single room, or a screened porch when the lot and the architecture allow it. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. A Middleburg mailing address is not Town limits: parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun. We check the parcel before we file.",
       "Inside Town limits the order is fixed. An addition needs a Town Zoning Location Permit first, then the Loudoun County building permit. The county set needs a plat (house, addition, setbacks) and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Town zoning has its own fee — we put the current Town amount in the written estimate. If the addition adds a bedroom on well and septic, Health Department approval comes first. Conservation easements can limit what the lot will take.",
       "If the parcel is in the Historic District, the addition needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA. We do not publish invented addition price bands or treat tasting rooms, wine cellars, and gun rooms as the typical Middleburg brief.",
-      "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC addition set. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, document each inspection, and back the work with a written workmanship warranty.",
+      "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC addition set. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
 };
 
+/**
+ * The most specific published URL for a service in a given area: the
+ * service+area page when one exists, the service pillar otherwise.
+ *
+ * Derived from CONTENT because CONTENT is exactly what the combo route's
+ * generateStaticParams publishes, so this can never return a path that 404s.
+ *
+ * It replaced a hardcoded allowlist in CityPageTemplate — four service slugs
+ * crossed with four city slugs — which had gone badly stale: twenty areas have
+ * published service+area pages, so most area pages were sending visitors and
+ * internal links to the generic pillar while their own local page went
+ * unlinked. The Northern Virginia hub pointed at /services/basements rather
+ * than /services/basements/northern-virginia, the regional page the altitude
+ * plan is built around.
+ *
+ * Lives here rather than in the template because "which URL represents this
+ * service in this area" is a fact about what is published, not about layout —
+ * and a pure function is testable without rendering a page.
+ */
+/**
+ * Does this combo's own copy quote a dollar figure?
+ *
+ * Used to decide whether the generic `SERVICE_DATA.investment` tiers should
+ * render alongside it. Those tiers describe the Eastern Panhandle home market
+ * and understate the premium markets badly: basements top out at
+ * "$90k – $140k+" while the Great Falls page publishes $250,000–$350,000 as a
+ * TYPICAL build, and bathrooms top out at "$45k – $75k+" against Great Falls'
+ * published $100,000–$200,000+. A page showing both tells a $250,000 buyer two
+ * incompatible things about the same job.
+ *
+ * Codex found this on the regional basement page, where it is sharpest because
+ * that page's snippet asserts a regional band — but it already shipped on
+ * thirty-seven premium combos.
+ *
+ * Deliberately NOT a blanket premium check. Nine premium combos publish no
+ * figures of their own — roofing, decks, remodeling and siding in Leesburg,
+ * Ashburn and Brambleton — and for those exterior trades the generic tiers are
+ * in the right band and are the only pricing the page has. Suppressing them
+ * there would remove information rather than a contradiction.
+ *
+ * The real fix is market-specific investment data in SERVICE_DATA, which is a
+ * schema change and its own PR. This stops the contradiction reaching a reader
+ * without inventing a number, which CLAUDE.md forbids.
+ */
+/**
+ * The ids of the unconfirmed operational claims this combo's OWN localized
+ * copy already publishes.
+ *
+ * Used per-bullet: the combo template may render a trust bullet only when the
+ * page's copy already makes every claim that bullet would introduce.
+ *
+ * ## Why this exists, and the argument it replaces
+ *
+ * I gated the template's bullets on `market === 'premium'` and justified it by
+ * specificity: a promise scoped to the exact service and town is worse in a
+ * dispute than the same promise in a sitewide banner. Codex refuted that on
+ * the pages the gate actually affects, and it was right. THIRTY-SIX of the
+ * forty-seven premium combos already make those promises in their own
+ * paragraphs — copy scoped to the exact service and town. On those pages the
+ * bullets add nothing in kind, so withholding them reduces nothing and only
+ * churns live copy.
+ *
+ * So the gate now acts where it reduces exposure and nowhere else:
+ *
+ *   - home market                    → bullets render, unchanged.
+ *   - premium, own copy makes claims → bullets render. Unchanged from what
+ *     ships today, and `claims.ts` stays the accurate retraction worklist
+ *     rather than being partially pre-applied by template logic.
+ *   - premium, own copy makes none   → bullets withheld. Here the template IS
+ *     the only source of the town-and-service-scoped promise, which is the
+ *     case the specificity argument was always about. Eleven existing pages,
+ *     and every new premium page — including
+ *     /services/basements/northern-virginia, whose copy was written clean.
+ *
+ * That last line is the one that matters: the original finding on #146 was a
+ * NEW url publishing unconfirmed claims, and this keeps them off one.
+ *
+ * ## Why this returns ids rather than a boolean
+ *
+ * It was a boolean — "does the copy make ANY unconfirmed claim" — and I called
+ * the resulting coarseness an acceptable stopping point. Codex showed it was
+ * not, with the case I had underweighted: a NEW premium combo whose copy
+ * carries only an unrelated claim such as `active-work-timeline` would satisfy
+ * that predicate and be handed all four bullets, none of which its copy made.
+ * That defeats the new-page boundary, which is the gate's whole remaining
+ * justification. `bathrooms-ashburn-va` is the existing page that shows the
+ * classification.
+ *
+ * So the question is asked per bullet, against the claims that bullet would
+ * introduce. A bullet carrying two claims needs BOTH already present — half
+ * the bullet's copy being pre-existing does not license the other half.
+ *
+ * This is still a workaround for a decision that has not been made. The real
+ * fix is the owner ruling on the seven claims in claims.ts: confirm them and
+ * every gate comes out, retract them and that file is the worklist.
+ */
+export function unconfirmedClaimIdsInCombo(serviceSlug: string, areaSlug: string): string[] {
+  const entry = CONTENT[`${serviceSlug}-${areaSlug}` as keyof typeof CONTENT];
+  if (!entry) return [];
+  return claimsFoundIn(JSON.stringify(entry))
+    .filter((c) => c.status === 'unconfirmed')
+    .map((c) => c.id);
+}
+
+export function comboPublishesPricing(serviceSlug: string, areaSlug: string): boolean {
+  const entry = CONTENT[`${serviceSlug}-${areaSlug}` as keyof typeof CONTENT];
+  return entry ? /\$[\d,]+/.test(JSON.stringify(entry)) : false;
+}
+
+export function serviceHrefForArea(serviceSlug: string, areaSlug: string): string {
+  return `${serviceSlug}-${areaSlug}` in CONTENT
+    ? `/services/${serviceSlug}/${areaSlug}`
+    : // Not `/services/${serviceSlug}` — paving's pillar is `/paving`, and
+      // interpolating the slug here put a 308 on all 26 area pages.
+      servicePillarHref(serviceSlug);
+}

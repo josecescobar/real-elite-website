@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, RotateCcw } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export default function Error({
   error,
@@ -58,12 +59,12 @@ export default function Error({
 
       <p className="text-charcoal-500 text-sm mt-12">
         Need help now?{' '}
-        <a
-          href={`tel:${BUSINESS.phoneRaw}`}
+        <PhoneLink
+          location="error_page"
           className="text-charcoal-300 hover:text-white transition-colors"
         >
           {BUSINESS.phone}
-        </a>
+        </PhoneLink>
         {' · '}
         <a
           href={`mailto:${BUSINESS.email}`}

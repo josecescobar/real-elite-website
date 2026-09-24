@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MultiStepEstimateForm from './MultiStepEstimateForm';
+import { trackEstimateStep } from '@/lib/analytics';
 
 vi.mock('lucide-react', () => ({
   ArrowLeft: () => <span data-testid="arrow-left">←</span>,
@@ -343,6 +344,51 @@ describe('MultiStepEstimateForm', () => {
 
       await advancePastStep2(user);
       expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '3');
+    });
+  });
+
+  describe('funnel analytics', () => {
+    // The outer beforeEach uses restoreAllMocks, which does not clear call
+    // history on a vi.fn() from a module factory — so these counts would
+    // accumulate across the whole file without this.
+    beforeEach(() => {
+      vi.mocked(trackEstimateStep).mockClear();
+    });
+
+    const calls = (action: string) =>
+      vi.mocked(trackEstimateStep).mock.calls.filter((c) => c[0] === action);
+
+    /**
+     * `view` fires on mount, and this form renders on the homepage, /contact,
+     * /paving, /storm-damage and every service+city page — so it counts form
+     * impressions, not intent. A page load alone must not look like a start.
+     */
+    it('fires view but not start on mount', () => {
+      render(<MultiStepEstimateForm />);
+      expect(calls('view')).toHaveLength(1);
+      expect(calls('start')).toHaveLength(0);
+    });
+
+    it('fires start on the first field interaction', async () => {
+      render(<MultiStepEstimateForm />);
+      await user.selectOptions(screen.getByLabelText(/service/i), 'roofing');
+      expect(calls('start')).toHaveLength(1);
+    });
+
+    it('fires start only once no matter how many fields change', async () => {
+      render(<MultiStepEstimateForm />);
+      await fillStep1(user);
+      await user.click(screen.getByRole('button', { name: /continue/i }));
+      await fillStep2(user);
+      expect(calls('start')).toHaveLength(1);
+    });
+
+    it('tags every event with the estimate funnel', async () => {
+      render(<MultiStepEstimateForm />);
+      await advancePastStep1(user);
+      for (const call of vi.mocked(trackEstimateStep).mock.calls) {
+        expect(call[2], `${call[0]} is missing its funnel tag`).toBe('estimate');
+      }
     });
   });
 });

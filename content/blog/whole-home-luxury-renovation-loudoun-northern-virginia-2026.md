@@ -37,7 +37,7 @@ Every project is scoped to the home and the homeowner, but full renovations comm
 - **Lighting and electrical** brought up to modern standards, with a real lighting plan across the home.
 - **Finishing the lower level** where it adds living space — see our [luxury basement guide](/blog/luxury-basement-finishing-loudoun-northern-virginia-2026).
 
-![An upscale open-concept kitchen and dining area near a staircase in a bright home](/images/inspiration/wholehome-open-kitchen.jpg)
+![Kitchen inspiration with white cabinetry, a gray island, and an adjoining living area](/images/inspiration/wholehome-kitchen-refresh.webp)
 
 ## The real advantage: one project lead
 

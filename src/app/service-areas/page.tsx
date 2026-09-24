@@ -5,10 +5,12 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import {
   BUSINESS,
-  PRIMARY_SERVICE_AREAS,
-  SECONDARY_SERVICE_AREAS,
+  ALL_SERVICE_AREAS,
   CITY_DATA,
+  formatAreaPlace,
+  type AreaKind,
 } from '@/lib/constants';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
   title: `Service Areas | ${BUSINESS.name}`,
@@ -41,6 +43,32 @@ export const metadata: Metadata = {
 };
 
 /**
+ * Rows for one state, broader areas first.
+ *
+ * Built from ALL_SERVICE_AREAS rather than the legacy tier lists, because the
+ * Northern Virginia region row carries no legacy tier and would otherwise be
+ * missing from this index entirely — reachable only from the pages that link
+ * up to it. Regions and counties sort above the towns inside them so the grid
+ * reads as the hierarchy it now is.
+ */
+const KIND_ORDER: Record<AreaKind, number> = {
+  region: 0,
+  county: 1,
+  city: 2,
+  town: 2,
+};
+
+const areasIn = (state: 'WV' | 'MD' | 'VA') =>
+  // Sorted by kind, not just partitioned by it. Splitting non-localities out
+  // kept catalog order among them, and the region row is appended last in the
+  // catalog — so Virginia listed Loudoun County above its own parent, which is
+  // the opposite of the hierarchy this is for. Stable within a rank, so
+  // localities keep catalog order.
+  [...ALL_SERVICE_AREAS.filter((a) => a.state === state)].sort(
+    (a, b) => KIND_ORDER[a.kind] - KIND_ORDER[b.kind]
+  );
+
+/**
  * Regional groups for the index — equal-tier treatment per the rebuild
  * plan. No "expansion" gray tier; VA + MD are first-class alongside WV.
  */
@@ -50,27 +78,21 @@ const REGIONS = [
     state: 'WV',
     blurb:
       'Our Eastern Panhandle home market. Headquartered in Martinsburg, serving Berkeley, Jefferson, and Morgan counties.',
-    cities: [
-      ...PRIMARY_SERVICE_AREAS.filter((a) => a.state === 'WV'),
-      ...SECONDARY_SERVICE_AREAS.filter((a) => a.state === 'WV'),
-    ],
+    cities: areasIn('WV'),
   },
   {
     label: 'Maryland',
     state: 'MD',
     blurb:
       'Frederick County and the Cumberland Valley — bathrooms, kitchens, basements, and roofing for the I-70 corridor.',
-    cities: [...PRIMARY_SERVICE_AREAS.filter((a) => a.state === 'MD')],
+    cities: areasIn('MD'),
   },
   {
     label: 'Virginia',
     state: 'VA',
     blurb:
       'Loudoun County and the Northern Shenandoah Valley — premium decks, outdoor living, custom kitchens, and full remodels.',
-    cities: [
-      ...PRIMARY_SERVICE_AREAS.filter((a) => a.state === 'VA'),
-      ...SECONDARY_SERVICE_AREAS.filter((a) => a.state === 'VA'),
-    ],
+    cities: areasIn('VA'),
   },
 ];
 
@@ -122,7 +144,7 @@ export default function ServiceAreasPage() {
                           {c.city}
                         </h3>
                         <p className="text-charcoal-500 text-xs uppercase tracking-[0.15em] font-semibold mt-1">
-                          {c.state}
+                          {c.kind === 'region' ? 'Region' : c.state}
                         </p>
                       </div>
                       <ArrowUpRight className="w-5 h-5 text-charcoal-300 group-hover:text-brand-red transition-colors flex-shrink-0" />
@@ -161,13 +183,13 @@ export default function ServiceAreasPage() {
               Get a Free Estimate
               <ArrowUpRight className="w-4 h-4" />
             </a>
-            <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+            <PhoneLink
+              location="service_areas_cta"
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"
             >
               <MapPin className="w-4 h-4" />
               Call {BUSINESS.phone}
-            </a>
+            </PhoneLink>
           </div>
         </Container>
       </section>

@@ -1,5 +1,21 @@
 export type CtaIntent = 'estimate' | 'roof-quote' | 'consultation';
 
+/** Shared by consultation links, query preselection, and the form choices. */
+export const CONSULTATION_PROJECT_TYPES = [
+  { value: 'kitchen', label: 'Kitchen Renovation' },
+  { value: 'bathroom', label: 'Primary Bath / Suite' },
+  { value: 'basement', label: 'Lower-Level Finishing' },
+  { value: 'whole-home', label: 'Whole-Home Renovation' },
+  { value: 'addition', label: 'Addition or Expansion' },
+  { value: 'outdoor-living', label: 'Outdoor Living / Custom Deck' },
+  { value: 'other', label: 'Other Premium Project' },
+] as const;
+
+export type ConsultationFormProjectType = (typeof CONSULTATION_PROJECT_TYPES)[number]['value'];
+
+/** Service-specific CTAs use a named scope; the form also accepts "other". */
+export type ConsultationProjectType = Exclude<ConsultationFormProjectType, 'other'>;
+
 export type PrimaryCta = {
   intent: CtaIntent;
   href: string;
