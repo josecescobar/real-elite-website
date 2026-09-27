@@ -1,0 +1,15 @@
+---
+description: Canonical local folder, GitHub repo, and Vercel project for Real Elite
+alwaysApply: true
+---
+
+# Canonical destinations
+
+This checkout is the shared local workspace. Do not assume another path is current.
+
+- **Local:** `/Volumes/Silver T7/Projects/real-elite-website`
+- **GitHub:** https://github.com/josecescobar/real-elite-website (`origin` = `josecescobar/real-elite-website`)
+- **Vercel:** https://vercel.com/josecapacho-gmailcoms-projects/real-elite-contracting (project name `real-elite-contracting`)
+- **Live site:** https://www.realelitecontracting.com
+
+Cloud agents (Claude Code, Cursor Cloud, Codex) only see what is pushed to GitHub. Local tools opening this folder see the same files — do not edit the same file in two tools at once.

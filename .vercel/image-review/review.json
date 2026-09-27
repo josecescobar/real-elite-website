@@ -1,0 +1,1499 @@
+[
+  {
+    "id": 1,
+    "path": "public/images/crew-dusk.jpg",
+    "url": "/images/crew-dusk.jpg",
+    "width": 768,
+    "height": 1024,
+    "bytes": 233880,
+    "hash": "80f45314581d3d2e68eb2e6cb51633d050e1e25f0b8cb6b689995ff548b04c34",
+    "refs": [
+      "src/app/about/page.tsx",
+      "src/lib/constants.ts",
+      "src/lib/projects/data/new-construction-framing-to-finish.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 2,
+    "path": "public/images/deck-construction.jpg",
+    "url": "/images/deck-construction.jpg",
+    "width": 921,
+    "height": 845,
+    "bytes": 112729,
+    "hash": "5f6791b24d3355bcad4f4c175be9731fc42c79f09be03ee0353df74c5ce5ee9f",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/composite-deck-build-martinsburg.ts",
+      "content/blog/how-to-choose-deck-material-west-virginia-weather.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 3,
+    "path": "public/images/deck-finished-railings.jpg",
+    "url": "/images/deck-finished-railings.jpg",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 259595,
+    "hash": "005256779550a02796cf3797bcfb2dcdcbb13ce6627c778def913721e681186f",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/composite-deck-build-martinsburg.ts",
+      "src/lib/services-data.ts",
+      "content/blog/deck-cost-per-square-foot-eastern-panhandle-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 4,
+    "path": "public/images/deck-garden-path-view.jpg",
+    "url": "/images/deck-garden-path-view.jpg",
+    "width": 1024,
+    "height": 665,
+    "bytes": 114131,
+    "hash": "ef48991af3cee610acfef72ccb3b94acaed044cd9cf354832dcf93b6ff2c3e24",
+    "refs": [
+      "src/lib/constants.ts"
+    ],
+    "decision": "Source review",
+    "reason": "Local source library includes watermarked stock versions; confirm licensed original or replace. Not reused in this refresh."
+  },
+  {
+    "id": 5,
+    "path": "public/images/deck-ipe-modern.jpg",
+    "url": "/images/deck-ipe-modern.jpg",
+    "width": 1024,
+    "height": 682,
+    "bytes": 104540,
+    "hash": "6ac378f0073cc637e1c3f9aad01427f047acece6da3ebaaf76d92d4beebb1a94",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Source review",
+    "reason": "Local source library includes watermarked stock versions; confirm licensed original or replace. Not reused in this refresh."
+  },
+  {
+    "id": 6,
+    "path": "public/images/deck-lounge.jpg",
+    "url": "/images/deck-lounge.jpg",
+    "width": 1350,
+    "height": 1800,
+    "bytes": 254120,
+    "hash": "7780577a31c05ee1ddce04aec237d1071edac7fd12f28bc332bb23faae650365",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/composite-deck-build-martinsburg.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 7,
+    "path": "public/images/deck-multilevel-step-lights.jpg",
+    "url": "/images/deck-multilevel-step-lights.jpg",
+    "width": 1024,
+    "height": 683,
+    "bytes": 156856,
+    "hash": "0179223be7472ea8eda1fe295087467d1ee074afb8de677eac51ca522cad7861",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Source review",
+    "reason": "Local source library includes watermarked stock versions; confirm licensed original or replace. Not reused in this refresh."
+  },
+  {
+    "id": 8,
+    "path": "public/images/deck-night-lights.jpg",
+    "url": "/images/deck-night-lights.jpg",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 159710,
+    "hash": "b242aff8ad86a3671f89b5032ee757a764eea7e5d7f629f99cb8706b54faac7c",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/composite-deck-build-martinsburg.ts",
+      "src/lib/services-data.ts",
+      "content/blog/composite-vs-pressure-treated-decks-loudoun-county-va.md"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Dark wide view emphasizes house over deck; replace hero with daylight finished-deck photography."
+  },
+  {
+    "id": 9,
+    "path": "public/images/deck-night-stairs.jpg",
+    "url": "/images/deck-night-stairs.jpg",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 170982,
+    "hash": "d49583e29f6637add91f7b866f4019dc8e83d0232eaa8ea66bfd8e8e06ded2cc",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 10,
+    "path": "public/images/deck-pebble-detail.jpg",
+    "url": "/images/deck-pebble-detail.jpg",
+    "width": 1024,
+    "height": 683,
+    "bytes": 140619,
+    "hash": "b90be4370e64ccb4f78deed4e85bb2ec6a81baf29d36be5ce67992416317a80d",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Source review",
+    "reason": "Local source library includes watermarked stock versions; confirm licensed original or replace. Not reused in this refresh."
+  },
+  {
+    "id": 11,
+    "path": "public/images/deck-permit-blueprint.jpg",
+    "url": "/images/deck-permit-blueprint.jpg",
+    "width": 1600,
+    "height": 2400,
+    "bytes": 293462,
+    "hash": "9f9204fe795ad4c64a8ecb18ca414fff6c15ed2b9d73236e1bb5e9b55e822e30",
+    "refs": [
+      "content/blog/deck-permits-berkeley-jefferson-county-wv-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 12,
+    "path": "public/images/deck-railing-install.jpg",
+    "url": "/images/deck-railing-install.jpg",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 261510,
+    "hash": "00d4225fa227f71802bf387825e905f0d43c453b44c39b70217257f9ea0017c1",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/composite-deck-build-martinsburg.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 13,
+    "path": "public/images/deck-screened-porch.jpg",
+    "url": "/images/deck-screened-porch.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 292045,
+    "hash": "1567c0c2c607d7c78a9750e0a91c76ce4cd06e20db22adbdebfab5357bc9bb98",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/composite-deck-build-martinsburg.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 14,
+    "path": "public/images/deck-white-skirt.jpg",
+    "url": "/images/deck-white-skirt.jpg",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 265349,
+    "hash": "a464147abd583cbd6838d4a342508d3f1e2517570c8ebd0a33b6df31e52b59a1",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 15,
+    "path": "public/images/exterior-brick-victorian.jpg",
+    "url": "/images/exterior-brick-victorian.jpg",
+    "width": 1920,
+    "height": 2880,
+    "bytes": 275492,
+    "hash": "8d3ba322c3d5a8aea211dc933c97d7466ef4945186d8faa95d000e285cd5e4e0",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/stone-facade-exterior-upgrade.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 16,
+    "path": "public/images/flooring-dark-living.jpg",
+    "url": "/images/flooring-dark-living.jpg",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 248391,
+    "hash": "4c151b8cc1c1f4c4c7c7aaa07ce0a65e2ad5f67c6267a5d6907bb1afa0ea243d",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Furniture and angled framing weaken finished-floor presentation."
+  },
+  {
+    "id": 17,
+    "path": "public/images/flooring-light-hallway.jpg",
+    "url": "/images/flooring-light-hallway.jpg",
+    "width": 1350,
+    "height": 1800,
+    "bytes": 299855,
+    "hash": "de87596518c126864eef04d3f07f9463c63650c70e0a372ef64257bcc613392d",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Tilted job-site view; keep for documentation, reshoot for hero use."
+  },
+  {
+    "id": 18,
+    "path": "public/images/flooring-light-living.jpg",
+    "url": "/images/flooring-light-living.jpg",
+    "width": 1350,
+    "height": 1800,
+    "bytes": 257351,
+    "hash": "726f7926dbb3f6b6a00be7f7e82f11cfc02a2a4cb82c2df22486c7a1f4ec805c",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts",
+      "content/blog/kitchen-remodel-cost-wv-md-va-2026.md"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Job-site clutter and unfinished presentation; reshoot after cleanup."
+  },
+  {
+    "id": 19,
+    "path": "public/images/foundation-block.jpg",
+    "url": "/images/foundation-block.jpg",
+    "width": 768,
+    "height": 1024,
+    "bytes": 202108,
+    "hash": "d0fb2b1c2a973b0187ee2a0c1f81e514489067d3f781effb5a8398c9a1868963",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/new-construction-framing-to-finish.ts",
+      "content/blog/basement-finishing-frederick-md-guide.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 20,
+    "path": "public/images/framing-crew.jpg",
+    "url": "/images/framing-crew.jpg",
+    "width": 360,
+    "height": 480,
+    "bytes": 119977,
+    "hash": "48dbb2e3ded9fd858229eb1c6d02ec0ed4d8cdaf6a923ceac4cfe448351dfa54",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/new-construction-framing-to-finish.ts",
+      "src/lib/services-data.ts"
+    ],
+    "replacement": "framing-walls-work.webp",
+    "decision": "Fixed in preview",
+    "reason": "Sharper, relevant replacement"
+  },
+  {
+    "id": 21,
+    "path": "public/images/framing-windows.jpg",
+    "url": "/images/framing-windows.jpg",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 273513,
+    "hash": "9dbd8c80a06d221c135fc68c8604d99cd5a833fe22eac67b7bd85751148dbdb9",
+    "refs": [
+      "src/lib/services-data.ts",
+      "content/blog/basement-egress-window-cost-eastern-panhandle-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 22,
+    "path": "public/images/handyman-tools-pricing.jpg",
+    "url": "/images/handyman-tools-pricing.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 288557,
+    "hash": "471eb97e642aa171a7be3917fedd06c436078040edf7a8d22a5728904ea1db8d",
+    "refs": [
+      "content/blog/financing-a-kitchen-remodel-options-2026.md",
+      "content/blog/handyman-pricing-eastern-panhandle-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 23,
+    "path": "public/images/hero-bg.jpg",
+    "url": "/images/hero-bg.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 270053,
+    "hash": "1e64782be6a1d2ca9d2a7e4f9124a5071d660b3ec138fe7239ab4049a44e1805",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 24,
+    "path": "public/images/home-hero.jpg",
+    "url": "/images/home-hero.jpg",
+    "width": 1920,
+    "height": 1282,
+    "bytes": 262165,
+    "hash": "4b8912380eed9ab664fe2cd2618d2459c0d69ad1c2c95688d245b0a58a6d05c0",
+    "refs": [
+      "src/components/home/Hero.tsx"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 25,
+    "path": "public/images/house-wrap-worker.jpg",
+    "url": "/images/house-wrap-worker.jpg",
+    "width": 768,
+    "height": 1024,
+    "bytes": 286608,
+    "hash": "4efa412eb18db2d81ebc38d30c0a3173a1c7111b302b085ccc3620a94b7ca01e",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/new-construction-framing-to-finish.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 26,
+    "path": "public/images/inspiration/addition-family-room.jpg",
+    "url": "/images/inspiration/addition-family-room.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 510058,
+    "hash": "6478d7776a901fc22ac14072b0f09f5aee6c5928928e3d2784a0e1377fb33fcf",
+    "refs": [
+      "content/blog/home-additions-in-law-suites-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 27,
+    "path": "public/images/inspiration/addition-open-concept.jpg",
+    "url": "/images/inspiration/addition-open-concept.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 432646,
+    "hash": "5f4a452c9570f50e94c0488c5c022935bc68a03a34a3c7ad07869612836895ae",
+    "refs": [
+      "content/blog/home-additions-in-law-suites-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 28,
+    "path": "public/images/inspiration/addition-sunroom-fireplace.jpg",
+    "url": "/images/inspiration/addition-sunroom-fireplace.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 785609,
+    "hash": "4a8d3461bf2e87db470caae558a575950303fd716124123ebe85c1aacd607100",
+    "refs": [
+      "content/blog/home-additions-in-law-suites-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 29,
+    "path": "public/images/inspiration/addition-sunroom.jpg",
+    "url": "/images/inspiration/addition-sunroom.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 599787,
+    "hash": "73fc87d727f88c2f7ce01d42893cd03512db52785e45d4d157b60d8246ba76fc",
+    "refs": [
+      "content/blog/home-additions-in-law-suites-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 30,
+    "path": "public/images/inspiration/basement-home-theater.jpg",
+    "url": "/images/inspiration/basement-home-theater.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 657594,
+    "hash": "4e803d319321b25ca188fc53647eb8d2ba31070b0dbcef35265e3c9689c11b07",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "content/blog/luxury-basement-finishing-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 31,
+    "path": "public/images/inspiration/basement-media-lounge.jpg",
+    "url": "/images/inspiration/basement-media-lounge.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 588782,
+    "hash": "07dc3fc7d5249980816e5338766d72c392331061a17047ed73c7ddcb6419590c",
+    "refs": [
+      "content/blog/luxury-basement-finishing-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 32,
+    "path": "public/images/inspiration/basement-wet-bar.jpg",
+    "url": "/images/inspiration/basement-wet-bar.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 555168,
+    "hash": "c65a6cfec000c7b939bcc0970a5cea38245160e87e6756d6834d776993fa9dc0",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "content/blog/luxury-basement-finishing-loudoun-northern-virginia-2026.md"
+    ],
+    "replacement": "inspiration/kitchenette-refresh.webp",
+    "decision": "Fixed in preview",
+    "reason": "Sharper, relevant replacement"
+  },
+  {
+    "id": 33,
+    "path": "public/images/inspiration/exterior-siding-replacement.jpg",
+    "url": "/images/inspiration/exterior-siding-replacement.jpg",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 271489,
+    "hash": "91ff62b5a8446b780159087d71834bc8cd062ca8ae5ffe3be764495ee3c4c75e",
+    "refs": [
+      "content/blog/siding-stone-exterior-curb-appeal-wv-md-va-2026.md"
+    ],
+    "replacement": "siding-window-work.webp",
+    "decision": "Fixed in preview",
+    "reason": "Upright source export"
+  },
+  {
+    "id": 34,
+    "path": "public/images/inspiration/exterior-siding-windows.jpg",
+    "url": "/images/inspiration/exterior-siding-windows.jpg",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 271489,
+    "hash": "91ff62b5a8446b780159087d71834bc8cd062ca8ae5ffe3be764495ee3c4c75e",
+    "refs": [
+      "content/blog/siding-stone-exterior-curb-appeal-wv-md-va-2026.md"
+    ],
+    "replacement": "siding-window-work.webp",
+    "decision": "Fixed in preview",
+    "reason": "Upright source export"
+  },
+  {
+    "id": 35,
+    "path": "public/images/inspiration/exterior-stone-detail.jpg",
+    "url": "/images/inspiration/exterior-stone-detail.jpg",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 279562,
+    "hash": "2f764bdd88e8c39dbdfcec207714f573898b8b0c375e5b05b439bb25159397ac",
+    "refs": [
+      "content/blog/siding-stone-exterior-curb-appeal-wv-md-va-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 36,
+    "path": "public/images/inspiration/flooring-bright-living.jpg",
+    "url": "/images/inspiration/flooring-bright-living.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 498180,
+    "hash": "3122e2c473cee4225d206addbfa4e9bbf81a77116bbc1cdc09222bb53f843412",
+    "refs": [
+      "content/blog/luxury-flooring-hardwood-wide-plank-wv-md-va-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 37,
+    "path": "public/images/inspiration/flooring-elegant-living.jpg",
+    "url": "/images/inspiration/flooring-elegant-living.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 350764,
+    "hash": "bab6b5fd2b7710b8aab3ebb379c28bccd4a578a03426be17a072a8c3d0a5f030",
+    "refs": [
+      "content/blog/luxury-flooring-hardwood-wide-plank-wv-md-va-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 38,
+    "path": "public/images/inspiration/flooring-fireplace.jpg",
+    "url": "/images/inspiration/flooring-fireplace.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 522493,
+    "hash": "9266afec38d653a7f889752f9e57b413fb5e014b3796d5b5f2e9b4fdcb623ead",
+    "refs": [
+      "content/blog/luxury-flooring-hardwood-wide-plank-wv-md-va-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 39,
+    "path": "public/images/inspiration/flooring-hardwood-living.jpg",
+    "url": "/images/inspiration/flooring-hardwood-living.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 409849,
+    "hash": "f8e2eeee6b33423893bf2361033fea7aa6fdc43a3412ba7c8b2dc2f7d7dd8a1f",
+    "refs": [
+      "content/blog/luxury-flooring-hardwood-wide-plank-wv-md-va-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 40,
+    "path": "public/images/inspiration/home-exterior-hero.jpg",
+    "url": "/images/inspiration/home-exterior-hero.jpg",
+    "width": 2560,
+    "height": 1709,
+    "bytes": 665937,
+    "hash": "61a9434c794e7ec689cc04bc3def7a318d1d76df4d5c6e15a5c2c83e0e3a7c88",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 41,
+    "path": "public/images/inspiration/loudoun-screened-porch.webp",
+    "url": "/images/inspiration/loudoun-screened-porch.webp",
+    "width": 1440,
+    "height": 960,
+    "bytes": 196798,
+    "hash": "3b238651c8ac74da35f18150413e576f5b40bcd9e5b3ab6e5b18adcaf12e1dbe",
+    "refs": [
+      "src/components/services/OutdoorLivingInspiration.tsx"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 42,
+    "path": "public/images/inspiration/loudoun-timber-porch.webp",
+    "url": "/images/inspiration/loudoun-timber-porch.webp",
+    "width": 1440,
+    "height": 960,
+    "bytes": 263142,
+    "hash": "f2dac908ca00c25785ba7292b1379b30c20e53b3f981677c15e52b6c2c942af7",
+    "refs": [
+      "src/components/services/OutdoorLivingInspiration.tsx"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 43,
+    "path": "public/images/inspiration/luxury-bathroom-contemporary.jpg",
+    "url": "/images/inspiration/luxury-bathroom-contemporary.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 457108,
+    "hash": "3eb0384965e58c1a1231882aa121d6319a39fc72727b21dff2997604243bd16a",
+    "refs": [
+      "content/blog/how-to-plan-luxury-bathroom-renovation-choose-contractor-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 44,
+    "path": "public/images/inspiration/luxury-bathroom-marble-tile.jpg",
+    "url": "/images/inspiration/luxury-bathroom-marble-tile.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 440875,
+    "hash": "f1d5d2b16fedc24a33e9a2f15025ce072d05bcbeccf8c039ffee987767943882",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "content/blog/how-to-plan-luxury-bathroom-renovation-choose-contractor-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 45,
+    "path": "public/images/inspiration/luxury-bathroom-shower-tub.jpg",
+    "url": "/images/inspiration/luxury-bathroom-shower-tub.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 360849,
+    "hash": "3c28c290c22a7065f19d3e2f32c833ced0a4ead69729b16c5c15f2a4765d77ab",
+    "refs": [
+      "content/blog/how-to-plan-luxury-bathroom-renovation-choose-contractor-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 46,
+    "path": "public/images/inspiration/luxury-bathroom-spa-tub.jpg",
+    "url": "/images/inspiration/luxury-bathroom-spa-tub.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 419837,
+    "hash": "4b4ec3e0c28e1cf1b6fe5f5cf2aac12e2eb3973927f61c968d62df4406c59670",
+    "refs": [
+      "content/blog/how-to-plan-luxury-bathroom-renovation-choose-contractor-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 47,
+    "path": "public/images/inspiration/outdoor-living-deck-dining.jpg",
+    "url": "/images/inspiration/outdoor-living-deck-dining.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 928268,
+    "hash": "2b0f5f7860869d0e195dc383fc2625635cb62a8f8f3540fc28eb44bfb4050143",
+    "refs": [
+      "content/blog/luxury-outdoor-living-decks-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 48,
+    "path": "public/images/inspiration/outdoor-living-deck-lounge.jpg",
+    "url": "/images/inspiration/outdoor-living-deck-lounge.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 692543,
+    "hash": "0d2026b2fc88b8bfdcb13904a95db189600cfce3e6de33fc81215deb4fc17e5b",
+    "refs": [
+      "content/blog/luxury-outdoor-living-decks-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 49,
+    "path": "public/images/inspiration/outdoor-living-firepit-pergola.jpg",
+    "url": "/images/inspiration/outdoor-living-firepit-pergola.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 767693,
+    "hash": "f8de17f72e83776edd74909c0c7fdccb75b800cbe47a24ef26ec127224dd4210",
+    "refs": [
+      "content/blog/luxury-outdoor-living-decks-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 50,
+    "path": "public/images/inspiration/outdoor-living-pergola-dining.jpg",
+    "url": "/images/inspiration/outdoor-living-pergola-dining.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 855967,
+    "hash": "e3e978ae3597ed938bdb30c39b8396eb79fd303e4ff871d734cb1a59dc56d735",
+    "refs": [
+      "content/blog/luxury-outdoor-living-decks-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 51,
+    "path": "public/images/inspiration/paving-aplus-commercial.jpg",
+    "url": "/images/inspiration/paving-aplus-commercial.jpg",
+    "width": 1284,
+    "height": 953,
+    "bytes": 481991,
+    "hash": "cbcec98f172fc2163566ee4b2c5a42489c82b5660ad84d529f288c25790a80c6",
+    "refs": [
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 52,
+    "path": "public/images/inspiration/paving-aplus-driveway-2.jpg",
+    "url": "/images/inspiration/paving-aplus-driveway-2.jpg",
+    "width": 887,
+    "height": 442,
+    "bytes": 106676,
+    "hash": "f538fc1527386f92156b2c25af1abf22c9151f77522fc1d679ae34e3deddf8a0",
+    "refs": [
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 53,
+    "path": "public/images/inspiration/paving-aplus-driveway.jpg",
+    "url": "/images/inspiration/paving-aplus-driveway.jpg",
+    "width": 1223,
+    "height": 800,
+    "bytes": 666646,
+    "hash": "b3d6e75c1af2c12b69c8c851221001555582e12354c620921e3cd2b8a1687861",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts",
+      "content/blog/asphalt-vs-concrete-vs-tar-and-chip-driveways-eastern-panhandle-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 54,
+    "path": "public/images/inspiration/paving-aplus-roller.jpg",
+    "url": "/images/inspiration/paving-aplus-roller.jpg",
+    "width": 784,
+    "height": 444,
+    "bytes": 87845,
+    "hash": "afdce68915dd1ddf872a0d349a3cda32a158780577727989135cff9b20b03f20",
+    "refs": [
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Tilted, low-resolution equipment view; use only as process documentation."
+  },
+  {
+    "id": 55,
+    "path": "public/images/inspiration/paving-fresh-asphalt.jpg",
+    "url": "/images/inspiration/paving-fresh-asphalt.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 602894,
+    "hash": "c87ac5895f9f8e01346221b3dd9b0eab73a842505ac1b821fb59a3ab77197ffc",
+    "refs": [
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 56,
+    "path": "public/images/inspiration/suite-bedroom.jpg",
+    "url": "/images/inspiration/suite-bedroom.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 759857,
+    "hash": "969248819ee64328dbfe843ceb815f273933619d0046609b752415a269546489",
+    "refs": [
+      "content/blog/luxury-primary-suite-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Busy ornate styling and visible television content; seek a calmer bedroom image."
+  },
+  {
+    "id": 57,
+    "path": "public/images/inspiration/suite-spa-bath.jpg",
+    "url": "/images/inspiration/suite-spa-bath.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 586929,
+    "hash": "fc537278bf0e770c3a94caf54f4fd575f3e99b11235791fe4f13dcffd9bf7058",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "content/blog/luxury-primary-suite-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 58,
+    "path": "public/images/inspiration/suite-walk-in-closet.jpg",
+    "url": "/images/inspiration/suite-walk-in-closet.jpg",
+    "width": 2560,
+    "height": 1707,
+    "bytes": 332069,
+    "hash": "d9a91b3560f41b1b5de1df41c19d33c7e86714885e9a0cb333a706a68bed4ffc",
+    "refs": [
+      "content/blog/luxury-primary-suite-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 59,
+    "path": "public/images/inspiration/wholehome-foyer-staircase.jpg",
+    "url": "/images/inspiration/wholehome-foyer-staircase.jpg",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 138893,
+    "hash": "fe497eb566102fbe17c8a200281b96115166687a073bc214aa9b7081e946866a",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "content/blog/whole-home-luxury-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 60,
+    "path": "public/images/inspiration/wholehome-living.jpg",
+    "url": "/images/inspiration/wholehome-living.jpg",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 186575,
+    "hash": "35f4adaa6044b579ed456b15d8fd4443c09bf6f4aef83ffbe3d6d1f60890ad67",
+    "refs": [
+      "content/blog/whole-home-luxury-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 61,
+    "path": "public/images/inspiration/wholehome-open-kitchen.jpg",
+    "url": "/images/inspiration/wholehome-open-kitchen.jpg",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 215824,
+    "hash": "2c246c616d2a909703b9a54961b3f8efaf31283b140faa59d457ddb80d34bb5d",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "content/blog/whole-home-luxury-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "replacement": "inspiration/wholehome-kitchen-refresh.webp",
+    "decision": "Fixed in preview",
+    "reason": "Sharper, relevant replacement"
+  },
+  {
+    "id": 62,
+    "path": "public/images/licensed-contractor.jpg",
+    "url": "/images/licensed-contractor.jpg",
+    "width": 1024,
+    "height": 576,
+    "bytes": 278037,
+    "hash": "be785b6ee54d6f26ba87fb850ef9b15770bcfe4f61154164bbb005edb5746b34",
+    "refs": [
+      "content/blog/why-hiring-licensed-contractor-wv-saves-money.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 63,
+    "path": "public/images/logo.png",
+    "url": "/images/logo.png",
+    "width": 400,
+    "height": 400,
+    "bytes": 35898,
+    "hash": "80217c1b784d80fa72ee16ea93f7dce3a64969922c95e2ff52f11c9c94b72f86",
+    "refs": [
+      "src/app/error.tsx",
+      "src/app/layout.tsx",
+      "src/app/manifest.ts",
+      "src/app/not-found.tsx",
+      "src/components/blog/AuthorBox.tsx",
+      "src/components/layout/Footer.tsx",
+      "src/components/layout/Header.tsx",
+      "src/components/seo/ArticleSchema.tsx"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 64,
+    "path": "public/images/logo.webp",
+    "url": "/images/logo.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 21692,
+    "hash": "122a2ff4fff9e50545d313f6464214fe33bcb408b225b204920527e20dc1067f",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 65,
+    "path": "public/images/new-build-sunset.jpg",
+    "url": "/images/new-build-sunset.jpg",
+    "width": 480,
+    "height": 360,
+    "bytes": 99457,
+    "hash": "9c7325c8b936fc8d548752724b83e6e43c86056c1ce55338c7f80a8cf8c1b0a1",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/new-construction-framing-to-finish.ts",
+      "src/lib/services-data.ts",
+      "content/blog/frederick-md-home-improvement-permits-costs-2026.md"
+    ],
+    "replacement": "new-build-weather-barrier.webp",
+    "decision": "Fixed in preview",
+    "reason": "Sharper, relevant replacement"
+  },
+  {
+    "id": 66,
+    "path": "public/images/og-image.jpg",
+    "url": "/images/og-image.jpg",
+    "width": 1200,
+    "height": 630,
+    "bytes": 72324,
+    "hash": "c068bcb56ccc57af58e51479542fc73b36bf56394685a26c93ae946d3ae8a835",
+    "refs": [
+      "src/app/layout.tsx",
+      "src/lib/seo.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 67,
+    "path": "public/images/projects/basements/hero-framing.jpg",
+    "url": "/images/projects/basements/hero-framing.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 291090,
+    "hash": "75df06918ec02309c94ccebdfdebc4b6e713d28583e5c332bbe68a7f74033884",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts",
+      "content/blog/luxury-basement-finishing-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 68,
+    "path": "public/images/projects/bathrooms/hero.jpg",
+    "url": "/images/projects/bathrooms/hero.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 245144,
+    "hash": "e490c59095c357af48fc7826b67781116f0c2f288aa617fffc26fa10542e1383",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/walk-in-shower-bathroom-remodel.ts",
+      "src/lib/services-data.ts",
+      "content/blog/luxury-bathroom-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 69,
+    "path": "public/images/projects/bathrooms/shower-black-frame.jpg",
+    "url": "/images/projects/bathrooms/shower-black-frame.jpg",
+    "width": 1920,
+    "height": 2880,
+    "bytes": 255331,
+    "hash": "1e97e73752d8057cbd6ca4b370e0fa83d0a3565c0f75807a036a2300b26711c2",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/walk-in-shower-bathroom-remodel.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 70,
+    "path": "public/images/projects/bathrooms/shower-stone-accent.jpg",
+    "url": "/images/projects/bathrooms/shower-stone-accent.jpg",
+    "width": 1920,
+    "height": 1281,
+    "bytes": 304685,
+    "hash": "6dec4d7f6d529e1858b1436680c33901224155269d2793c980e5bf61ae7530b9",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "src/lib/constants.ts",
+      "src/lib/projects/data/walk-in-shower-bathroom-remodel.ts",
+      "src/lib/services-data.ts",
+      "content/blog/walk-in-shower-cost-wv-md-va-2026.md"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 71,
+    "path": "public/images/projects/bathrooms/tub-shower-tile.jpg",
+    "url": "/images/projects/bathrooms/tub-shower-tile.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 207548,
+    "hash": "62475907acaa93e721e4692614ead83ce4ec677535bb5804a4baaaae4f0672a7",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "src/lib/constants.ts",
+      "src/lib/projects/data/walk-in-shower-bathroom-remodel.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 72,
+    "path": "public/images/projects/kitchens/gray-marble-waterfall.jpg",
+    "url": "/images/projects/kitchens/gray-marble-waterfall.jpg",
+    "width": 1920,
+    "height": 1281,
+    "bytes": 213910,
+    "hash": "d27200970fe6f6cb69ac87bde896e839f0e25bbc9e2b2a8ca28635f97a6798a2",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "src/lib/constants.ts",
+      "src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts",
+      "src/lib/services-data.ts",
+      "content/blog/luxury-kitchen-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 73,
+    "path": "public/images/projects/kitchens/hero.jpg",
+    "url": "/images/projects/kitchens/hero.jpg",
+    "width": 1920,
+    "height": 1281,
+    "bytes": 295258,
+    "hash": "4046f871a3b5a130d67456a6b24b2cd23a8d5d8f8a32c09c10edaea7e14ae505",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts",
+      "src/lib/services-data.ts",
+      "content/blog/luxury-kitchen-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 74,
+    "path": "public/images/projects/kitchens/island-lantern-pendants.jpg",
+    "url": "/images/projects/kitchens/island-lantern-pendants.jpg",
+    "width": 1920,
+    "height": 1361,
+    "bytes": 240625,
+    "hash": "7b6b93256bd239966751b8e446e74b79338b9f23a501c06b9f8d312211bdccbd",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "src/lib/constants.ts",
+      "src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 75,
+    "path": "public/images/projects/kitchens/two-tone-black-hood.jpg",
+    "url": "/images/projects/kitchens/two-tone-black-hood.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 199785,
+    "hash": "8b96bda76801d1be8ea876fbe153e96743efa6a3620c588365c5503673fe4aa6",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "src/lib/constants.ts",
+      "src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts",
+      "src/lib/services-data.ts",
+      "content/blog/luxury-kitchen-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 76,
+    "path": "public/images/projects/kitchens/white-herringbone.jpg",
+    "url": "/images/projects/kitchens/white-herringbone.jpg",
+    "width": 1920,
+    "height": 1281,
+    "bytes": 242590,
+    "hash": "9a61d1c3b273187473820c9b759bbffcb658c62978c13bf991e69be8d8aa99f8",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts",
+      "src/lib/services-data.ts",
+      "content/blog/luxury-kitchen-renovation-loudoun-northern-virginia-2026.md"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 77,
+    "path": "public/images/projects/kitchens/white-island-chairs.jpg",
+    "url": "/images/projects/kitchens/white-island-chairs.jpg",
+    "width": 1920,
+    "height": 1281,
+    "bytes": 221918,
+    "hash": "30146fad75ebaf003c84abfa00c774c6a148fcf76b3ac6a49b1a8225db0ce405",
+    "refs": [
+      "src/components/consultation/LuxuryGallery.tsx",
+      "src/lib/constants.ts",
+      "src/lib/projects/data/signature-kitchen-remodel-eastern-panhandle.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 78,
+    "path": "public/images/roofing-complete.jpg",
+    "url": "/images/roofing-complete.jpg",
+    "width": 1382,
+    "height": 979,
+    "bytes": 267921,
+    "hash": "34b0cd2c517e20706c1d414a3e90085bab7fca33c5d669223dfb3466d4c633f5",
+    "refs": [
+      "src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts",
+      "content/blog/5-signs-you-need-a-new-roof-eastern-panhandle.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 79,
+    "path": "public/images/roofing-crew.jpg",
+    "url": "/images/roofing-crew.jpg",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 295207,
+    "hash": "dab4eccd7f7141c9061423aff75d4ea511a57ce4f3803fac1c18c1bc1e7cbaef",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts",
+      "src/lib/services-data.ts",
+      "content/blog/storm-damage-roof-repair-insurance-eastern-panhandle-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 80,
+    "path": "public/images/roofing-dark.jpg",
+    "url": "/images/roofing-dark.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 270053,
+    "hash": "1e64782be6a1d2ca9d2a7e4f9124a5071d660b3ec138fe7239ab4049a44e1805",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 81,
+    "path": "public/images/roofing-hero.jpg",
+    "url": "/images/roofing-hero.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 270053,
+    "hash": "1e64782be6a1d2ca9d2a7e4f9124a5071d660b3ec138fe7239ab4049a44e1805",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 82,
+    "path": "public/images/roofing-overhead.jpg",
+    "url": "/images/roofing-overhead.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 300999,
+    "hash": "d3ef88ddd61ea447aa49215a7d3bb545a9f331c8f08d27f6d25eb0e2a63cd010",
+    "refs": [
+      "content/blog/architectural-vs-3-tab-shingles-eastern-panhandle.md",
+      "content/blog/roof-replacement-cost-eastern-panhandle-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 83,
+    "path": "public/images/roofing-ridge-vent.jpg",
+    "url": "/images/roofing-ridge-vent.jpg",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 284156,
+    "hash": "bc16e4f6748e6a24382b914af2d7db9fd5c63aa2fc7f7e3fca127e53882c337e",
+    "refs": [
+      "src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 84,
+    "path": "public/images/roofing-shingle-install.jpg",
+    "url": "/images/roofing-shingle-install.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 284696,
+    "hash": "fc4d6c0a25ff0553aaaf90d7a868df17e4190e26ccf1949acc6abc21dc4bf5b3",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 85,
+    "path": "public/images/roofing-slope.jpg",
+    "url": "/images/roofing-slope.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 300355,
+    "hash": "9769700b99f22a18dbb01d5c49f591581aa2566e3ead8b35816285ed44ecbedb",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Repetitive roof angle and photographer shadow; lower priority than a clean wide view."
+  },
+  {
+    "id": 86,
+    "path": "public/images/roofing-tearoff.jpg",
+    "url": "/images/roofing-tearoff.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 278355,
+    "hash": "e0c59d5121ea0bde8e67720035ff5d4ba5d8177a98fe1414e87ef1a15fd12248",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 87,
+    "path": "public/images/roofing-valley.jpg",
+    "url": "/images/roofing-valley.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 278922,
+    "hash": "7d38f4b73688ea7ce5a66b41e30fc89712a20031feb464bbf65504e10d7d75e1",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Reshoot / replace next",
+    "reason": "Prominent photographer shadow; replace with a clean finished-roof photograph."
+  },
+  {
+    "id": 88,
+    "path": "public/images/roofing-victorian-reroof.jpg",
+    "url": "/images/roofing-victorian-reroof.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 282208,
+    "hash": "328e143bc27857977aa2fb509d90bfa74bd416d3ebd34ff09b4abb72ce4effa4",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts"
+    ],
+    "decision": "Attribution review",
+    "reason": "Matches a Pexels original in the local library. Visually usable as inspiration; project ownership claims require confirmation."
+  },
+  {
+    "id": 89,
+    "path": "public/images/shed-custom.jpg",
+    "url": "/images/shed-custom.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 291228,
+    "hash": "3b5438a1d777e4daf32fe9e9c1808444c9de78b9cb0b7c4fac7e42c35790501c",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 90,
+    "path": "public/images/shed-trim.jpg",
+    "url": "/images/shed-trim.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 290802,
+    "hash": "ad66f416b1b5a9be32215d9e4f6644da33008d9972d24dd516561d40d2646a7d",
+    "refs": [
+      "src/lib/constants.ts"
+    ],
+    "replacement": "shed-trim-upright.webp",
+    "decision": "Fixed in preview",
+    "reason": "Upright source export"
+  },
+  {
+    "id": 91,
+    "path": "public/images/siding-replacement.jpg",
+    "url": "/images/siding-replacement.jpg",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 265154,
+    "hash": "09c2c0f418197d92a6675259fc3ebca5a65aba7f44fb0d01c5148ef9cfae39b2",
+    "refs": [
+      "src/lib/services-data.ts"
+    ],
+    "replacement": "siding-window-work.webp",
+    "decision": "Fixed in preview",
+    "reason": "Upright source export"
+  },
+  {
+    "id": 92,
+    "path": "public/images/siding-windows.jpg",
+    "url": "/images/siding-windows.jpg",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 265154,
+    "hash": "09c2c0f418197d92a6675259fc3ebca5a65aba7f44fb0d01c5148ef9cfae39b2",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/stone-facade-exterior-upgrade.ts",
+      "src/lib/services-data.ts"
+    ],
+    "replacement": "siding-window-work.webp",
+    "decision": "Fixed in preview",
+    "reason": "Upright source export"
+  },
+  {
+    "id": 93,
+    "path": "public/images/spring-deck-backyard-patio-eastern-panhandle.jpg",
+    "url": "/images/spring-deck-backyard-patio-eastern-panhandle.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 276173,
+    "hash": "3142fb7ea8af409be499d8ee72460ba394232c41135a007d618cc3f4163f53c9",
+    "refs": [
+      "content/blog/spring-deck-building-season-eastern-panhandle.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 94,
+    "path": "public/images/spring-house-blooming-trees.jpg",
+    "url": "/images/spring-house-blooming-trees.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 296440,
+    "hash": "fa9c3997e303b0cb04965ae891b28382ea907caabdf2705c5eb9eb748d211bd8",
+    "refs": [
+      "content/blog/ultimate-spring-exterior-checklist-eastern-panhandle.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 95,
+    "path": "public/images/spring-house-green-trees.jpg",
+    "url": "/images/spring-house-green-trees.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 306829,
+    "hash": "58421ff971b074d42d0998b706ae141c8db67499cf8af881a33305bb13d6d236",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 96,
+    "path": "public/images/stone-facade-finished.jpg",
+    "url": "/images/stone-facade-finished.jpg",
+    "width": 1024,
+    "height": 576,
+    "bytes": 278037,
+    "hash": "be785b6ee54d6f26ba87fb850ef9b15770bcfe4f61154164bbb005edb5746b34",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/stone-facade-exterior-upgrade.ts",
+      "src/lib/services-data.ts",
+      "content/blog/bathroom-remodel-cost-frederick-md-2026.md",
+      "content/blog/loudoun-county-permits-hoa-guide-2026.md",
+      "content/blog/siding-stone-exterior-curb-appeal-wv-md-va-2026.md"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 97,
+    "path": "public/images/stone-veneer-detail.jpg",
+    "url": "/images/stone-veneer-detail.jpg",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 284181,
+    "hash": "efc1ea61ca7a7278b4cde7ccfbe318463afcbe9d40d0b2fb8b63e46be61b381f",
+    "refs": [
+      "src/lib/constants.ts",
+      "src/lib/projects/data/stone-facade-exterior-upgrade.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 98,
+    "path": "public/images/stone-veneer-finish.jpg",
+    "url": "/images/stone-veneer-finish.jpg",
+    "width": 1024,
+    "height": 576,
+    "bytes": 278037,
+    "hash": "be785b6ee54d6f26ba87fb850ef9b15770bcfe4f61154164bbb005edb5746b34",
+    "refs": [
+      "src/lib/projects/data/stone-facade-exterior-upgrade.ts",
+      "src/lib/services-data.ts"
+    ],
+    "decision": "Keep",
+    "reason": "Suitable at current placement; no urgent visual defect found."
+  },
+  {
+    "id": 99,
+    "path": "public/images/suburban-neighborhood-houses.jpg",
+    "url": "/images/suburban-neighborhood-houses.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 304014,
+    "hash": "3967300bf2cb1fdbfb1e803d7ab5949a37cecfa973c75a484e2168501ddadb86",
+    "refs": [],
+    "decision": "Unused",
+    "reason": "Not referenced by current source; retained, not published by this change."
+  },
+  {
+    "id": 100,
+    "path": "public/images/team.jpg",
+    "url": "/images/team.jpg",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 285584,
+    "hash": "50d88cb292d2ce320c28f6367f5abd16ef96bc0ec862b61b540766aeeba7ccc7",
+    "refs": [
+      "src/app/about/page.tsx"
+    ],
+    "replacement": "crew-stone-work.webp",
+    "decision": "Fixed in preview",
+    "reason": "Upright source export"
+  }
+]

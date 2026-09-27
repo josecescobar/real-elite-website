@@ -1,0 +1,82 @@
+[
+  {
+    "id": 39,
+    "out": "siding-window-work.webp",
+    "old": [
+      "siding-windows.jpg",
+      "siding-replacement.jpg",
+      "inspiration/exterior-siding-windows.jpg",
+      "inspiration/exterior-siding-replacement.jpg"
+    ],
+    "source": "images/Exterior & Sheathing/siding-and-window-replacement.jpg",
+    "width": 900,
+    "height": 1600,
+    "bytes": 210552
+  },
+  {
+    "id": 9,
+    "out": "shed-trim-upright.webp",
+    "old": [
+      "shed-trim.jpg"
+    ],
+    "source": "images/Exterior & Sheathing/installing-trim-on-custom-built-shed.jpg",
+    "width": 960,
+    "height": 1280,
+    "bytes": 290228
+  },
+  {
+    "id": 42,
+    "out": "crew-stone-work.webp",
+    "old": [
+      "team.jpg"
+    ],
+    "source": "images/Exterior & Sheathing/stone-veneer-installation-worker.jpg",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 297012
+  },
+  {
+    "id": 84,
+    "out": "framing-walls-work.webp",
+    "old": [
+      "framing-crew.jpg"
+    ],
+    "source": "images/Wall Framing & Interior/wall-framing-front-elevation.jpeg",
+    "width": 1280,
+    "height": 960,
+    "bytes": 293918
+  },
+  {
+    "id": 18,
+    "out": "new-build-weather-barrier.webp",
+    "old": [
+      "new-build-sunset.jpg"
+    ],
+    "source": "images/Exterior & Sheathing/new-build-house-wrap-roof-trusses.jpeg",
+    "width": 1182,
+    "height": 665,
+    "bytes": 214488
+  },
+  {
+    "id": 107,
+    "out": "inspiration/wholehome-kitchen-refresh.webp",
+    "old": [
+      "inspiration/wholehome-open-kitchen.jpg"
+    ],
+    "source": "images/new-images/pexels-artbovich-6587899.jpg",
+    "width": 1600,
+    "height": 1068,
+    "bytes": 74562
+  },
+  {
+    "id": 105,
+    "out": "inspiration/kitchenette-refresh.webp",
+    "old": [
+      "inspiration/basement-wet-bar.jpg"
+    ],
+    "source": "images/new-images/pexels-andreaedavis-6253541.jpg",
+    "width": 1065,
+    "height": 1600,
+    "bytes": 42570
+  }
+]

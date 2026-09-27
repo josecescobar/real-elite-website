@@ -1,9 +1,22 @@
 # Working on This Repo Across Multiple Tools
 
-This website is edited from more than one place — mainly **Claude Code**, but
-also **Grok**, **ChatGPT**, and **Cursor**. Each tool has its *own separate
-clone* of the repo. None of them can see another's changes until those changes
-go through **GitHub**. GitHub is the single source of truth.
+## Canonical destinations
+
+| What | Where |
+|---|---|
+| Local folder (shared) | `/Volumes/Silver T7/Projects/real-elite-website` |
+| GitHub | https://github.com/josecescobar/real-elite-website |
+| Vercel | https://vercel.com/josecapacho-gmailcoms-projects/real-elite-contracting |
+| Live site | https://www.realelitecontracting.com |
+
+This folder is the shared local workspace for Cursor, Claude, Codex, Grok, and
+Hermes. Tools that open **this path** see the same files immediately — do not
+edit the same file in two local tools at once.
+
+Cloud agents (Claude Code on the web, Cursor Cloud, etc.) still have their
+**own separate clone**. They cannot see local edits until those changes go
+through **GitHub**. GitHub remains the source of truth for anything that is
+not sitting in this folder.
 
 Follow these rules and you'll almost never hit a conflict or lose work.
 
