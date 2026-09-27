@@ -129,6 +129,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${newsreader.variable} ${inter.variable}`}>
       <head>
+        <link rel="alternate" type="application/rss+xml" title="Real Elite Contracting Guides" href="/rss.xml" />
         <JsonLd
           schema={{
             '@context': 'https://schema.org',

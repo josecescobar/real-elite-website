@@ -23,6 +23,8 @@ module.exports = {
     '/sales',
     // Legacy index; now a permanent redirect to /resources.
     '/blog',
+    // Syndication feed, not an HTML landing page.
+    '/rss.xml',
   ],
   // Ensure all pages are included
   changefreq: 'weekly',
