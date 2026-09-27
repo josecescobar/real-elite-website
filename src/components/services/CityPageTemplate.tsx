@@ -24,6 +24,7 @@ import {
   childAreasOf,
   areaAncestors,
   isLocalityArea,
+  ALL_SERVICE_AREAS,
   type CityDataEntry,
   type ServiceArea,
 } from '@/lib/constants';
@@ -47,7 +48,21 @@ const BERKELEY_JEFFERSON_WV = new Set([
   'martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'falling-waters-wv', 'spring-mills-wv',
   'charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'kearneysville-wv', 'harpers-ferry-wv',
 ]);
-const LOUDOUN_VA = new Set(['leesburg-va', 'ashburn-va', 'loudoun-county-va', 'middleburg-va']);
+const LOUDOUN_VA = new Set([
+  'leesburg-va',
+  'ashburn-va',
+  'loudoun-county-va',
+  'middleburg-va',
+  'purcellville-va',
+  'round-hill-va',
+  'lovettsville-va',
+  'waterford-va',
+  'hamilton-va',
+  'aldie-va',
+  'lansdowne-va',
+  'south-riding-va',
+  'sterling-va',
+]);
 
 function permitGuideSlugForCity(citySlug: string): string | null {
   if (BERKELEY_JEFFERSON_WV.has(citySlug)) return 'deck-permits-berkeley-jefferson-county-wv-2026';
@@ -84,44 +99,22 @@ export default function CityPageTemplate({ city, data }: Props) {
 
   // A county or region lists the areas inside it; a town lists neighbourhoods.
   const children = isLocalityArea(city) ? [] : childAreasOf(city.slug);
+  // The other county hubs, for the cross-link row on a county page.
+  const siblingCounties =
+    city.kind === 'county'
+      ? ALL_SERVICE_AREAS.filter((a) => a.kind === 'county' && a.slug !== city.slug)
+      : [];
   const [heroHead, heroTail] = heroLines(city);
 
-  // "Why {place} homeowners choose Real Elite", gated by market.
-  //
-  // Three of these four are registered `unconfirmed` in src/lib/claims.ts —
-  // named project lead, daily updates / clean job site, written workmanship
-  // warranty. CLAUDE.md: claims about how the business operates go in only
-  // once the owner has confirmed them, and the altitude doc calls these
-  // "contract-dispute material" against a $250,000 Great Falls basement.
-  //
-  // They are therefore withheld in the premium markets, which is where the
-  // exposure is. That includes the Northern Virginia hub this gate was added
-  // for: a new URL making an unconfirmed promise is the claim spreading, and
-  // "it was already on the other pages" is not a defence — it is thirteen
-  // more pages that should not have carried it either.
-  //
-  // Only the licensing line is left there. It is verified and it is the one
-  // an out-of-state homeowner most needs. Flip the three claims to
-  // `verified` in claims.ts and delete this gate to restore them everywhere.
-  const trustPoints =
-    city.market === 'home'
-      ? [
-          'One named project lead from estimate through final walk-through.',
-          'Daily updates, clean job site, 24-hour response standard.',
-          'Written workmanship warranty on every project, every time.',
-          'Licensed and insured across West Virginia, Maryland, and Virginia.',
-        ]
-      : ['Licensed and insured across West Virginia, Maryland, and Virginia.'];
+  // Shared trust copy uses credentials supplied in REA-55.
+  const trustPoints = [
+    'Veteran-owned remodeling and exterior contracting.',
+    city.state === 'MD'
+      ? 'Frederick is a service-area location; no Maryland contractor license is claimed.'
+      : 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
+  ];
 
-  // The hero sub carried the same unconfirmed `named-project-lead` claim as
-  // the trust block above — "the same project lead from estimate to final
-  // walk-through" — and the first version of that gate missed it. Gated on the
-  // same condition, with the verified licensing fact in its place so the
-  // premium hero still says something concrete.
-  const heroSub =
-    city.market === 'home'
-      ? `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, communication-first, and the same project lead from estimate to final walk-through.`
-      : `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, and licensed and insured across West Virginia, Maryland and Virginia.`;
+  const heroSub = `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, with project scope discussed at the estimate.`;
 
   // Order services by marketEmphasis, then append remaining for completeness
   const emphasized = data.marketEmphasis
@@ -180,8 +173,8 @@ export default function CityPageTemplate({ city, data }: Props) {
           ? `Yes. Real Elite Contracting works across ${city.city}, including ${children
               .slice(0, 5)
               .map((a) => a.city)
-              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`
-          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Maryland, and Virginia.`,
+              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia and Virginia.`
+          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia and Virginia.`,
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,
@@ -189,7 +182,7 @@ export default function CityPageTemplate({ city, data }: Props) {
     },
     {
       question: `How fast can I get a quote in ${city.city}?`,
-      answer: `For roofing, our AI Instant Roof Quote returns a ballpark price from your address in about 60 seconds — no ladder, no appointment. For other services, a project lead follows up within 24 business hours with a free written estimate.${quotePromise}`,
+      answer: `For roofing, our AI Instant Roof Quote returns a ballpark price from your address in about 60 seconds — no ladder, no appointment. For other services, a project lead follows up after reviewing your request with a free written estimate.${quotePromise}`,
     },
     {
       question: `Is Real Elite Contracting really veteran-owned?`,
@@ -410,6 +403,27 @@ export default function CityPageTemplate({ city, data }: Props) {
                       </li>
                     ))}
                   </ul>
+                )}
+                {/* County hubs cross-link the other counties served, so a
+                    Loudoun reader who lives over the line finds Fairfax or
+                    Prince William without going back to the index. */}
+                {siblingCounties.length > 0 && (
+                  <p className="mt-6 pt-4 border-t border-steel-200 text-sm text-charcoal-600">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-charcoal-500 mr-3">
+                      Also serving
+                    </span>
+                    {siblingCounties.map((a, i) => (
+                      <span key={a.slug}>
+                        <Link
+                          href={`/service-areas/${a.slug}`}
+                          className="link-editorial font-medium text-navy-900"
+                        >
+                          {a.city}
+                        </Link>
+                        {i < siblingCounties.length - 1 ? ' · ' : ''}
+                      </span>
+                    ))}
+                  </p>
                 )}
               </div>
 

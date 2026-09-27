@@ -7,10 +7,11 @@ import type { Project } from '../types';
  * TODO(owner): confirm the city/date match the job these photos came from,
  * and add the customer's consented review — see docs/PROJECT-INTAKE.md.
  */
+// REA-55: held until Jose confirms the real job facts and publication permission.
 const project: Project = {
   slug: 'stone-facade-exterior-upgrade',
   title: 'Stone Facade Exterior Upgrade',
-  status: 'published',
+  status: 'draft',
 
   service: 'siding',
   secondaryServices: ['exterior-repairs'],

@@ -25,10 +25,18 @@ export type PrimaryCta = {
 
 const ROOF_TERMS = ['roof', 'roofing', 'shingle', 'storm-damage'];
 
+/**
+ * Surfaces that lead with design-build. Their sticky CTA is the consultation:
+ * the homepage no longer hosts the #estimate form, and the portfolio and
+ * investment pages are read by the luxury buyer.
+ */
+const CONSULTATION_PATHS = ['/', '/design-consultation', '/investment', '/projects', '/process'];
+
 export function primaryCtaForPath(pathname: string): PrimaryCta {
   const lower = pathname.toLowerCase();
+  const base = lower.replace(/\/+$/, '') || '/';
 
-  if (lower.startsWith('/design-consultation')) {
+  if (CONSULTATION_PATHS.some((p) => base === p || (p !== '/' && base.startsWith(`${p}/`)))) {
     return {
       intent: 'consultation',
       href: '/design-consultation',
@@ -48,7 +56,7 @@ export function primaryCtaForPath(pathname: string): PrimaryCta {
 
   return {
     intent: 'estimate',
-    href: pathname === '/' || pathname === '/contact' ? '#estimate' : '/contact#estimate',
+    href: pathname === '/contact' ? '#estimate' : '/contact#estimate',
     label: 'Free Estimate',
     eventName: 'estimate_cta_click',
   };

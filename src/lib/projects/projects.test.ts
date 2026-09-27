@@ -134,19 +134,15 @@ describe('Project query helpers', () => {
     }
   });
 
-  it('getProjectBySlug resolves a known project and returns null for unknown', () => {
-    const known = getAllProjects()[0];
-    expect(known).toBeDefined();
-    expect(getProjectBySlug(known.slug)?.slug).toBe(known.slug);
-    expect(getProjectBySlug('does-not-exist')).toBeNull();
-  });
-
-  it('getProjectsByService and getProjectsByCity match the sample', () => {
-    const sample = getProjectBySlug('victorian-roof-replacement-martinsburg-wv');
-    expect(sample).not.toBeNull();
-    expect(getProjectsByService('roofing').some((p) => p.slug === sample!.slug)).toBe(true);
-    expect(getProjectsByCity('martinsburg-wv').some((p) => p.slug === sample!.slug)).toBe(true);
-    expect(getProjectsByService('roofing', 1).length).toBeLessThanOrEqual(1);
+  it('withholds unconfirmed case-study drafts from every public query', () => {
+    expect(PROJECT_MODULES).toHaveLength(6);
+    expect(getAllProjects()).toEqual([]);
+    for (const draft of PROJECT_MODULES) {
+      expect(draft.status).toBe('draft');
+      expect(getProjectBySlug(draft.slug)).toBeNull();
+    }
+    expect(getProjectsByService('roofing')).toEqual([]);
+    expect(getProjectsByCity('martinsburg-wv')).toEqual([]);
   });
 
   it('getFeaturedProjects returns only featured projects', () => {
@@ -154,9 +150,8 @@ describe('Project query helpers', () => {
   });
 
   it('getRelatedProjects excludes the project itself and respects the limit', () => {
-    const all = getAllProjects();
-    const related = getRelatedProjects(all[0].slug, 3);
-    expect(related.some((p) => p.slug === all[0].slug)).toBe(false);
+    const related = getRelatedProjects('victorian-roof-replacement-martinsburg-wv', 3);
+    expect(related).toEqual([]);
     expect(related.length).toBeLessThanOrEqual(3);
     expect(getRelatedProjects('does-not-exist')).toEqual([]);
   });

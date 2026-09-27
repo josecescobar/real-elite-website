@@ -498,7 +498,7 @@ export default function RoofQuoteTool() {
             {range ? 'Where do we send your written estimate?' : 'Where can we reach you?'}
           </h2>
           <p className="text-charcoal-600 text-sm mb-6">
-            Real person, no spam. A project lead reaches out within 24 business hours
+            Real person, no spam. A project lead reaches out after reviewing your request
             {range ? ' to confirm your free, exact estimate.' : '.'}
           </p>
 
@@ -583,7 +583,7 @@ export default function RoofQuoteTool() {
           </h2>
           <p className="text-charcoal-600 leading-relaxed max-w-md mx-auto">
             Thanks — we&apos;ve got your details{range ? ' and your ballpark range' : ''}. A project
-            lead will reach out within 24 business hours to schedule your free, no-obligation
+            lead will reach out after reviewing your request to schedule your free, no-obligation
             on-site estimate.
           </p>
           <SuccessNextSteps

@@ -104,7 +104,7 @@ describe('service areas', () => {
 describe('SERVICE_AREA_CATALOG derived views', () => {
   const PRIMARY_AT_32E6856 = [
     'martinsburg-wv', 'inwood-wv', 'charles-town-wv', 'ranson-wv', 'hedgesville-wv',
-    'frederick-md', 'hagerstown-md', 'winchester-va', 'leesburg-va', 'ashburn-va',
+    'frederick-md', 'winchester-va', 'leesburg-va', 'ashburn-va',
     'mclean-va', 'alexandria-va', 'vienna-va', 'great-falls-va', 'reston-va',
     'burke-va', 'fairfax-station-va', 'clifton-va', 'middleburg-va',
   ];
@@ -128,16 +128,30 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     // of the altitude plan). It carries no legacy tier, which is why the two
     // pins above still hold unchanged. Listed by name rather than regenerated:
     // anything else appearing here should fail until someone says why.
+    // Loudoun town rows added 2026-09-27. Empty legacyTiers, so they sit
+    // after the historical primary/secondary pins and the region row.
+    const LOUDOUN_TOWNS_2026_09_27 = [
+      'purcellville-va', 'round-hill-va', 'lovettsville-va', 'waterford-va',
+      'hamilton-va', 'aldie-va', 'lansdowne-va', 'south-riding-va', 'sterling-va',
+    ];
+    // Fairfax and Prince William rows added 2026-09-27. Empty legacyTiers.
+    const FAIRFAX_PWC_2026_09_27 = [
+      'fairfax-county-va', 'prince-william-county-va',
+      'oakton-va', 'dunn-loring-va', 'fort-hunt-va',
+      'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
       'northern-virginia',
+      ...LOUDOUN_TOWNS_2026_09_27,
+      ...FAIRFAX_PWC_2026_09_27,
     ]);
   });
 
   it('keeps the expansion alias a subset of the catalog, VA/MD only', () => {
     const slugs = new Set(SERVICE_AREA_CATALOG.map((a) => a.slug));
-    expect(EXPANSION_SERVICE_AREAS.length).toBe(15);
+    expect(EXPANSION_SERVICE_AREAS.length).toBe(14);
     for (const area of EXPANSION_SERVICE_AREAS) {
       expect(slugs.has(area.slug)).toBe(true);
       expect(area.state, `${area.slug} is not VA/MD`).not.toBe('WV');
@@ -148,7 +162,28 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     // Same historical set plus the region row, which is a premium market and
     // so routes to /design-consultation like the towns inside it.
     expect([...LUXURY_CITY_SLUGS].sort()).toEqual(
-      [...LUXURY_AT_32E6856, 'northern-virginia'].sort()
+      [
+        ...LUXURY_AT_32E6856,
+        'northern-virginia',
+        'purcellville-va',
+        'round-hill-va',
+        'lovettsville-va',
+        'waterford-va',
+        'hamilton-va',
+        'aldie-va',
+        'lansdowne-va',
+        'south-riding-va',
+        'sterling-va',
+        'fairfax-county-va',
+        'prince-william-county-va',
+        'oakton-va',
+        'dunn-loring-va',
+        'fort-hunt-va',
+        'haymarket-va',
+        'gainesville-va',
+        'bristow-va',
+        'nokesville-va',
+      ].sort()
     );
   });
 
@@ -471,10 +506,20 @@ describe('areaRegionLabel', () => {
    * `state` alone told Fairfax-County homeowners they were in the "Northern
    * Shenandoah Valley and Loudoun County area".
    */
-  it('names Northern Virginia for the Fairfax-County towns, not the Shenandoah', () => {
-    for (const slug of ['vienna-va', 'mclean-va', 'reston-va', 'great-falls-va', 'clifton-va']) {
-      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Northern Virginia');
+  it('names Fairfax County for the county and the towns inside it', () => {
+    for (const slug of ['fairfax-county-va', 'vienna-va', 'mclean-va', 'reston-va', 'great-falls-va', 'clifton-va', 'oakton-va']) {
+      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Fairfax County area');
     }
+  });
+
+  it('names Prince William County for the county and the towns inside it', () => {
+    for (const slug of ['prince-william-county-va', 'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va']) {
+      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Prince William County area');
+    }
+  });
+
+  it('keeps Alexandria on Northern Virginia — it is an independent city', () => {
+    expect(areaRegionLabel(getServiceArea('alexandria-va')!)).toBe('Northern Virginia');
   });
 
   it('still names the Shenandoah for Winchester', () => {
@@ -531,22 +576,65 @@ describe('the Northern Virginia region row', () => {
     expect(formatAreaPlace(getServiceArea('loudoun-county-va')!)).toBe('Loudoun County, VA');
   });
 
-  it('holds the Fairfax-County towns, Alexandria and Loudoun County directly', () => {
+  it('holds Alexandria and the three county hubs directly', () => {
     expect(childAreasOf('northern-virginia').map((a) => a.slug)).toEqual([
-      'mclean-va',
       'alexandria-va',
+      'loudoun-county-va',
+      'fairfax-county-va',
+      'prince-william-county-va',
+    ]);
+  });
+
+  it('lists Fairfax towns under the county, two hops up to the region', () => {
+    expect(childAreasOf('fairfax-county-va').map((a) => a.slug)).toEqual([
+      'mclean-va',
       'vienna-va',
       'great-falls-va',
       'reston-va',
       'burke-va',
       'fairfax-station-va',
       'clifton-va',
-      'loudoun-county-va',
+      'oakton-va',
+      'dunn-loring-va',
+      'fort-hunt-va',
+    ]);
+    for (const slug of ['mclean-va', 'oakton-va', 'dunn-loring-va', 'fort-hunt-va', 'clifton-va']) {
+      expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
+        'fairfax-county-va',
+        'northern-virginia',
+      ]);
+    }
+  });
+
+  it('lists the western Prince William towns under the county', () => {
+    expect(childAreasOf('prince-william-county-va').map((a) => a.slug)).toEqual([
+      'haymarket-va',
+      'gainesville-va',
+      'bristow-va',
+      'nokesville-va',
+    ]);
+    expect(areaAncestors(getServiceArea('haymarket-va')!).map((a) => a.slug)).toEqual([
+      'prince-william-county-va',
+      'northern-virginia',
     ]);
   });
 
   it('reaches the Loudoun towns through the county, two hops up', () => {
-    for (const slug of ['leesburg-va', 'ashburn-va', 'brambleton-va', 'middleburg-va']) {
+    for (const slug of [
+      'leesburg-va',
+      'ashburn-va',
+      'brambleton-va',
+      'middleburg-va',
+      'purcellville-va',
+      'round-hill-va',
+      'lovettsville-va',
+      'waterford-va',
+      'hamilton-va',
+      'aldie-va',
+      'lansdowne-va',
+      'south-riding-va',
+      'sterling-va',
+    ]) {
       expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
         'loudoun-county-va',
         'northern-virginia',
@@ -554,8 +642,26 @@ describe('the Northern Virginia region row', () => {
     }
   });
 
+  it('lists the Loudoun towns as children of the county, in catalog order', () => {
+    expect(childAreasOf('loudoun-county-va').map((a) => a.slug)).toEqual([
+      'leesburg-va',
+      'ashburn-va',
+      'middleburg-va',
+      'brambleton-va',
+      'purcellville-va',
+      'round-hill-va',
+      'lovettsville-va',
+      'waterford-va',
+      'hamilton-va',
+      'aldie-va',
+      'lansdowne-va',
+      'south-riding-va',
+      'sterling-va',
+    ]);
+  });
+
   it('leaves the home market and the Shenandoah unparented', () => {
-    for (const slug of ['martinsburg-wv', 'frederick-md', 'winchester-va', 'hagerstown-md']) {
+    for (const slug of ['martinsburg-wv', 'frederick-md', 'winchester-va']) {
       expect(areaAncestors(getServiceArea(slug)!), slug).toEqual([]);
     }
   });

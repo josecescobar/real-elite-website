@@ -8,7 +8,7 @@ slug: "siding-stone-exterior-curb-appeal-wv-md-va-2026"
 featuredImage: "/images/stone-facade-finished.jpg"
 category: "Siding & Stone"
 type: "buying-guide"
-answer: "For homes across West Virginia, Maryland, and Virginia, new siding and stone veneer are among the highest-return exterior upgrades because they transform curb appeal, return strongly at resale, and protect the walls from moisture. Options run from cost-effective vinyl to premium fiber cement (like James Hardie) that resists fire, rot, and freeze-thaw, plus stone veneer used as a facade or accent. What makes or breaks the job is the part you do not see: a properly lapped house wrap, correct flashing at windows and penetrations, and right fastening and expansion gaps. Most siding projects run 1 to 3 weeks of active work depending on the size of the home and the materials."
+answer: "For homes across West Virginia, Maryland, and Virginia, new siding and stone veneer are among the highest-return exterior upgrades because they transform curb appeal, return strongly at resale, and protect the walls from moisture. Options run from cost-effective vinyl to premium fiber cement (like James Hardie) that resists fire, rot, and freeze-thaw, plus stone veneer used as a facade or accent. What makes or breaks the job is the part you do not see: a properly lapped house wrap, correct flashing at windows and penetrations, and right fastening and expansion gaps. The project schedule depends on scope, approvals, selections, and availability."
 author: "Real Elite Contracting Team"
 ---
 
@@ -69,14 +69,14 @@ If there's one upgrade that delivers an outsized "wow" for the investment, it's 
 
 Siding and stone projects range widely with the size of the home and the materials: a vinyl re-side sits at one end, a full fiber-cement-and-stone facade at the other. Because it's both a curb-appeal and a protection upgrade, it's one of the most worthwhile exterior investments you can make. We provide a written, line-itemed scope so the numbers are clear.
 
-Most siding projects run **1 to 3 weeks** of active work depending on the size of the home and the materials, with a written timeline, a named project lead, and daily updates.
+Discuss site supervision, communication, and cleanup arrangements during the estimate.
 
 ## The Real Elite approach
 
-We treat the exterior as the home's armor: a clear written scope and pricing, the weather barrier and flashing done right behind the finish, premium materials installed to manufacturer spec (so warranties hold), clean transitions and trim, and a written workmanship warranty at the end. Veteran-owned precision, applied to the face your home shows the world.
+Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to the face your home shows the world.
 
-If you're considering new siding or a stone facade in **the Eastern Panhandle, Frederick MD, Hagerstown, Winchester, Loudoun County, or anywhere across the WV–MD–VA region**, we'd be glad to take a look and give you a straight, written estimate.
+If you're considering new siding or a stone facade in **the Eastern Panhandle, Frederick MD, Winchester, Loudoun County, or anywhere across the WV–MD–VA region**, we'd be glad to take a look and give you a straight, written estimate.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [siding & stone services](/services/siding) and [exterior repairs](/services/exterior-repairs).
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.

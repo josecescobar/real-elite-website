@@ -88,4 +88,4 @@ If you're weighing a new driveway, a repair, or a reseal in **Martinsburg, Inwoo
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Learn more about our [paving & seal coating services](/paving).
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.

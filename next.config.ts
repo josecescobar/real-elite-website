@@ -86,7 +86,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/index.html', destination: '/', permanent: true },
-      { source: '/about.html', destination: '/about', permanent: true },
+      // The old social image contains an unsupported ranking; serve the current card.
+      { source: '/images/og-image.jpg', destination: '/opengraph-image', statusCode: 301 },
+      // Unconfirmed case studies are retained as drafts (REA-55).
+      { source: '/projects/composite-deck-build-martinsburg', destination: '/projects', statusCode: 301 },
+      { source: '/projects/new-construction-framing-to-finish', destination: '/projects', statusCode: 301 },
+      { source: '/projects/signature-kitchen-remodel-eastern-panhandle', destination: '/projects', statusCode: 301 },
+      { source: '/projects/stone-facade-exterior-upgrade', destination: '/projects', statusCode: 301 },
+      { source: '/projects/victorian-roof-replacement-martinsburg-wv', destination: '/projects', statusCode: 301 },
+      { source: '/projects/walk-in-shower-bathroom-remodel', destination: '/projects', statusCode: 301 },
+      { source: '/about.html', destination: '/about', statusCode: 301 },
       { source: '/services.html', destination: '/services', permanent: true },
       { source: '/contact.html', destination: '/contact', permanent: true },
       { source: '/gallery.html', destination: '/gallery', permanent: true },
@@ -102,6 +111,13 @@ const nextConfig: NextConfig = {
       // /resources; article URLs at /blog/[slug] are canonical and unchanged.
       { source: '/guides', destination: '/resources', permanent: true },
       { source: '/guides/:category', destination: '/resources/:category', permanent: true },
+
+      // Hagerstown, MD was dropped from the service area on 2026-09-27. Its
+      // area page and paving location page have no surviving equivalent, so
+      // they go to the nearest index. Its five service+area combos are in
+      // RETIRED_COMBOS below and redirect to their service pillars.
+      { source: '/service-areas/hagerstown-md', destination: '/service-areas', permanent: true },
+      { source: '/paving/locations/hagerstown-md', destination: '/paving', permanent: true },
 
       // Tier C — the ten service+area pages retired on 2026-09-18, generated
       // from the same declaration that un-published them so the two cannot

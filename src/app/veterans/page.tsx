@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { FEDERAL_REGISTRATION } from '@/lib/claims';
 import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
@@ -19,12 +20,12 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Veteran-Owned Contractor — SDVOSB · VA · Federal | ${BUSINESS.name}`),
+  title: fitTitle(`Veteran-Owned Contractor — WV · VA | ${BUSINESS.name}`),
   description:
     'Veteran-owned general contractor serving WV, MD and VA — pursuing SDVOSB certification and federal work at the Martinsburg VA, Fort Detrick and Quantico.',
   keywords: [
     'veteran-owned contractor WV',
-    'SDVOSB roofing contractor',
+    'veteran-owned roofing contractor',
     'veteran roofer Martinsburg',
     'VA Medical Center contractor',
     'service-disabled veteran-owned',
@@ -60,9 +61,9 @@ const PILLARS = [
   {
     icon: Building2,
     eyebrow: 'Geographic Edge',
-    title: '8 Miles From The Martinsburg VAMC',
+    title: 'Based in Martinsburg, WV',
     body:
-      'Our home market is the Eastern Panhandle of West Virginia — minutes from the Martinsburg VA Medical Center and within 90 minutes of Fort Detrick, Aberdeen Proving Ground, Quantico, and Joint Base Andrews.',
+      'Based in the Eastern Panhandle of West Virginia, with a residential remodeling focus in Loudoun County and surrounding service areas.',
   },
 ];
 
@@ -77,9 +78,8 @@ const CERT_TRACKS = [
   {
     name: 'SAM.gov',
     full: 'System for Award Management Registration',
-    status: 'Active',
-    body:
-      'Real Elite is registered in the federal contracting system, the prerequisite for bidding on any federal opportunity and for prime/sub team-ups on larger projects.',
+    status: 'Registered',
+    body: `${FEDERAL_REGISTRATION.summary}. Primary NAICS: 236220. Additional NAICS: 238160, 238320, 238330, 238990, 236118. Registration does not establish a veteran certification or expand state license specialties.`,
   },
   {
     name: 'State Preferences',
@@ -140,12 +140,12 @@ const FAQ_ITEMS = [
   {
     question: 'Which veteran certifications and designations does Real Elite hold?',
     answer:
-      'Real Elite is veteran-owned in fact and is actively pursuing SDVOSB certification through SBA VetCert. We are registered in SAM.gov for federal contracting. We do not advertise a GAF Master Elite, manufacturer Pro, or Platinum badge we do not hold.',
+      `Real Elite is veteran-owned and is pursuing SDVOSB certification; certification has not been awarded. ${FEDERAL_REGISTRATION.summary}. No specific Virginia veteran-program certification is claimed.`,
   },
   {
     question: 'How does "Military Precision" actually show up in our project?',
     answer:
-      'Three places, every project: (1) a named project lead from estimate through final walk-through — no handoffs; (2) daily updates and a 24-hour response standard while we work; (3) a clean job site every day and a written workmanship warranty backing the result. The discipline shows up in the schedule, the cleanup, and the follow-through.',
+      "Review the proposed scope and warranty terms before signing. The discipline shows up in the schedule, the cleanup, and the follow-through.",
   },
   {
     question: 'How can other veteran-owned contractors partner with Real Elite?',
@@ -161,7 +161,6 @@ const govEntitySchema = {
   url: `${BUSINESS.url}/veterans`,
   description:
     'Veteran-owned general contractor based in Martinsburg, WV serving the WV/MD/VA tri-state. Pursuing SDVOSB federal certification.',
-  award: 'Veteran-Owned · SDVOSB Application In Progress',
   areaServed: ['West Virginia', 'Maryland', 'Virginia'],
 };
 
@@ -196,7 +195,7 @@ export default function VeteransPage() {
 
             <div className="flex flex-wrap gap-4 mt-10">
               <Link
-                href="/#estimate"
+                href="/contact#estimate"
                 className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
               >
                 Get My Free Estimate →
@@ -333,12 +332,10 @@ export default function VeteransPage() {
             <div className="lg:col-span-7">
               <ul className="space-y-4">
                 {[
-                  'A named project lead from estimate to final walk-through — never bounced between phone numbers.',
-                  'Daily updates while crews are on site. Job-site cleanup is non-negotiable.',
-                  '24-hour response standard. If you call, text, or email, you hear back the same business day.',
-                  'Written workmanship warranty on every project, every time. Manufacturer warranties stacked on top.',
-                  'Licensed and insured across West Virginia, Maryland, and Virginia.',
-                  'A digital quote experience that respects your time — including a 60-second AI roof quote for ballpark numbers before any sales conversation.',
+                  'Veteran-owned remodeling and exterior contracting.',
+                  'Discuss the project scope, communication, and site arrangements before work begins.',
+                  'Review license, insurance, and warranty documentation for the proposed work.',
+                  'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
@@ -398,7 +395,7 @@ export default function VeteransPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/#estimate"
+              href="/contact#estimate"
               className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-md inline-flex items-center justify-center gap-2"
             >
               Get a Free Estimate

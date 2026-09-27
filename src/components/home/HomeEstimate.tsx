@@ -33,7 +33,7 @@ export default function HomeEstimate() {
             <SectionHeader
               eyebrow="Free Estimate"
               title="Tell us what you're picturing."
-              subtitle="Three short steps. About 60 seconds. A real project lead — not a call center — reaches out within 24 business hours to schedule your free on-site walk-through."
+              subtitle="Three short steps. About 60 seconds. A real project lead — not a call center — reaches out after reviewing your request to schedule your free on-site walk-through."
               tone="light"
             />
 
@@ -73,7 +73,7 @@ export default function HomeEstimate() {
                 >
                   text the same number
                 </a>
-                . A real person picks up — leave a voicemail if we miss you and we&apos;ll call back the same day.
+                . A real person picks up — leave a voicemail if we miss you and include your contact details.
               </p>
             </div>
           </div>

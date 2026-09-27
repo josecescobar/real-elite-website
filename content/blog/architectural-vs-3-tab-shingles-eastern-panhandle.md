@@ -73,7 +73,7 @@ Real Elite Contracting installs architectural shingles from **GAF** (Timberline 
 
 - High wind ratings (130 mph with proper installation)
 - Algae-resistance technology (very relevant to our greenhouse summers)
-- Manufacturer warranties that we register on your behalf so you don't have to remember
+Review the proposed scope and warranty terms before signing.
 
 Premium and designer lines are available when a homeowner wants a specific look — but standard architectural from these two is a fantastic roof for almost any home.
 
@@ -87,10 +87,10 @@ Shingles matter. Installation matters more. A premium architectural shingle inst
 - **Ridge venting** so the attic can breathe — an under-ventilated attic cooks shingles from below like a slow oven
 - **A clean tear-off** down to the deck, with any rotted sheathing replaced before we go on
 
-Every Real Elite roof carries both the manufacturer warranty and our own workmanship warranty in writing.
+Review the proposed scope and warranty terms before signing.
 
 ## Getting an Honest Assessment
 
 Not sure if your roof actually needs replacement yet? Our free inspection gives you a straight answer — we bring photos down from the roof and walk you through what we found. If you've got years left, that's what we'll tell you. If it's time, we'll show you exactly why.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA, serving the Eastern Panhandle, Frederick County, the Northern Shenandoah Valley, and Loudoun County.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA, serving the Eastern Panhandle, Frederick County, the Northern Shenandoah Valley, and Loudoun County.

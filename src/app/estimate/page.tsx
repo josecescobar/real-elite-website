@@ -10,7 +10,7 @@ export const metadata = buildMetadata({
   path: '/estimate',
   title: `Get an Estimate | ${BUSINESS.name}`,
   description:
-    'Three ways to start: a 60-second instant roof quote, a free written estimate, or a private design consultation. Licensed across WV, MD and VA.',
+    'Three ways to start: a 60-second instant roof quote, a free written estimate, or a private design consultation. Licensed across WV and VA.',
   keywords: ['free estimate', 'roofing quote', 'remodeling estimate', 'design consultation', 'Eastern Panhandle contractor'],
 });
 
@@ -31,7 +31,7 @@ const PATHS = [
     eyebrow: 'Most popular',
     title: 'Free Written Estimate',
     forWho: 'Any project — remodels, decks, siding, additions',
-    body: 'Tell us about your project in about 60 seconds. A real project lead reviews it and reaches out within one business day to schedule a free on-site estimate.',
+    body: 'Tell us about your project in about 60 seconds. A real project lead reviews it and reaches out after reviewing your request to schedule a free on-site estimate.',
     cta: 'Get my free estimate',
     featured: true,
   },
@@ -62,7 +62,7 @@ export default function EstimateHubPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Three ways in, each built for a different kind of project. Pick the one that fits —
-              a real person responds within one business day, never a call center.
+              a real person responds after reviewing your request, never a call center.
             </p>
           </div>
         </Container>

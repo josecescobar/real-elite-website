@@ -82,7 +82,7 @@ When you call us after a storm, the process is straightforward and free:
 - **A free, no-pressure inspection.** We get on the roof, document what we find with photos, and bring them down to walk you through it.
 - **A straight assessment.** If you've got years of life left and only minor damage, we'll say so. If it's time to replace, we'll show you why — with pictures, not pressure.
 - **Claim support, done honestly.** We document the damage clearly and can meet your adjuster on site. We don't waive deductibles or invent damage — we help you get a fair claim for the damage that's actually there.
-- **A written estimate and workmanship warranty.** Every roof we put on comes with the manufacturer warranty (registered on your behalf) and our own workmanship warranty in writing.
+Review the proposed scope and warranty terms before signing.
 
 ## Don't wait on a damaged roof
 
@@ -90,4 +90,4 @@ A small storm opening turns into wet attic insulation and a ceiling stain shaped
 
 **Call us at (681) 534-5515** or [request a free inspection and estimate](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Spring Mills, Shepherdstown, Berkeley Springs, Frederick County MD, the Northern Shenandoah Valley, and Loudoun County VA.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA. For more on what goes into a quality roof, see our guide on [architectural vs. 3-tab shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle) or our full [roofing services](/services/roofing).
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA. For more on what goes into a quality roof, see our guide on [architectural vs. 3-tab shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle) or our full [roofing services](/services/roofing).
