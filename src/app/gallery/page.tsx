@@ -93,7 +93,7 @@ export default function GalleryPage() {
             Want one of these on your block?
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Tell us what you&apos;re picturing. Free written estimate within 24 business hours.
+            Tell us what you&apos;re picturing. Free written estimate after reviewing your request.
           </p>
           <Link
             href="/contact#estimate"

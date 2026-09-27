@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CONTRACTOR_LICENSES } from '@/lib/claims';
 import Image from 'next/image';
 import {
   BUSINESS,
@@ -214,7 +215,8 @@ export default function Footer() {
           {/* suppressHydrationWarning: prebuilt HTML can carry last year's date after New Year */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-charcoal-400">
             <p suppressHydrationWarning>
-              &copy; 2024–{currentYear} {BUSINESS.name}. Licensed &amp; Insured across WV, MD, VA.
+              &copy; {currentYear} {BUSINESS.name}.
+              <span className="block mt-2">{CONTRACTOR_LICENSES.summary}</span>
             </p>
             <Link className="min-h-11 inline-flex items-center underline underline-offset-2 hover:text-white transition-colors" href="/privacy">
               Privacy Policy

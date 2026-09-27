@@ -8,7 +8,7 @@ slug: "luxury-kitchen-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/projects/kitchens/hero.jpg"
 category: "Kitchens"
 type: "how-to"
-answer: "A luxury kitchen in Loudoun County and Northern Virginia is defined by layout first and finishes second: a genuine work zone, an island that earns its size (a double-island layout in larger homes), and increasingly a scullery or butler's pantry that keeps the main kitchen pristine. The features that set it apart include custom or semi-custom cabinetry to the ceiling, premium stone counters, often with a waterfall island and full-height backsplash, a statement pro-style range under a custom hood, and paneled built-in appliances. High-end kitchens sit at the top of the remodeling range because they combine cabinetry, stone, appliances, and structural work in one room, coordinated across every trade. A full luxury kitchen generally runs 6 to 10 weeks of active work, with custom cabinetry and stone lead times planned several weeks ahead of demolition."
+answer: "A luxury kitchen in Loudoun County and Northern Virginia is defined by layout first and finishes second: a genuine work zone, an island that earns its size (a double-island layout in larger homes), and increasingly a scullery or butler's pantry that keeps the main kitchen pristine. The features that set it apart include custom or semi-custom cabinetry to the ceiling, premium stone counters, often with a waterfall island and full-height backsplash, a statement pro-style range under a custom hood, and paneled built-in appliances. High-end kitchens sit at the top of the remodeling range because they combine cabinetry, stone, appliances, and structural work in one room, coordinated across every trade. The project schedule depends on scope, approvals, selections, and availability."
 author: "Real Elite Contracting Team"
 ---
 
@@ -72,11 +72,11 @@ The short version: a luxury kitchen is a significant investment, and it's also t
 
 ## How long it takes
 
-A full luxury kitchen generally runs **6 to 10 weeks** of active work, and custom cabinetry and stone lead times often mean planning several weeks ahead of demolition. We give you a written timeline and a named project lead before we break ground, and we keep you updated daily — a kitchen out of commission is a real disruption, and managing it tightly is part of the job.
+The project schedule depends on scope, approvals, selections, and availability. Discuss site supervision, communication, and cleanup arrangements during the estimate.
 
 ## The Real Elite approach
 
-We build premium kitchens for families who actually cook — and we treat the project like the coordination challenge it is: a clear written scope and line-item pricing up front, one project lead from design through final walkthrough, careful sequencing across every trade, a clean job site, and a written workmanship warranty at the end.
+Review the proposed scope and warranty terms before signing.
 
 If you're planning a high-end kitchen in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, we'd love to walk the space with you.
 
@@ -86,4 +86,4 @@ If you're planning a high-end kitchen in **Loudoun County, Ashburn, Leesburg, Fr
 
 Beyond Loudoun, we renovate premium kitchens across Fairfax County and Alexandria — including [McLean](/services/kitchens/mclean-va), [Great Falls](/services/kitchens/great-falls-va), [Vienna](/services/kitchens/vienna-va), [Reston](/services/kitchens/reston-va), [Old Town Alexandria](/services/kitchens/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=kitchen) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.

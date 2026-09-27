@@ -54,7 +54,7 @@ A deck is a real investment, and not every "deck guy" is the same. Before you si
 - Are you licensed and insured in West Virginia?
 - Will you pull the building permit and schedule the inspections?
 - Can you show references from deck projects finished in the last 12 months?
-- Do you offer a workmanship warranty on top of the manufacturer's material warranty?
+Review the proposed scope and warranty terms before signing.
 
 If someone gets squirmy on any of these, that's not your builder. Keep looking.
 

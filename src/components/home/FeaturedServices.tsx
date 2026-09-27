@@ -20,7 +20,7 @@ export default function FeaturedServices() {
           <SectionHeader
             eyebrow="What We Build"
             title="Premium remodeling. Honest exteriors. Real craftsmanship."
-            subtitle="Every project — large or small — gets the same disciplined process, the same crew accountability, and the same warranty in writing."
+            subtitle="Discuss site supervision, communication, and cleanup arrangements during the estimate."
           />
           <Link
             href="/services"

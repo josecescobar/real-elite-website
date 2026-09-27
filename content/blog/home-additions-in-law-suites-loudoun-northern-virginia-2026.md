@@ -74,11 +74,11 @@ Before committing, it's worth weighing the options honestly: a **bump-out or bas
 
 Additions span a wide range: a modest bump-out sits at one end, a full in-law suite or second-story addition at the other. Because they involve foundation, framing, and full mechanical work, they're a significant investment — and one of the most impactful ways to make a home fit your life for the long term. We provide a written, line-itemed scope so the numbers are clear before you commit.
 
-Timelines typically run **6 to 16 weeks** depending on size and complexity, plus design and permitting time up front. You'll have a written timeline, a named project lead, and daily updates throughout.
+Timelines typically run **6 to 16 weeks** depending on size and complexity, plus design and permitting time up front. Discuss site supervision, communication, and cleanup arrangements during the estimate.
 
 ## The Real Elite approach
 
-We treat an addition like the serious construction it is: a clear written scope and pricing, architectural and structural details done right, permits and zoning handled, finishes that match your existing home, one project lead from first walkthrough to final, and a written workmanship warranty at the end. Veteran-owned precision, applied to growing your home without leaving it.
+Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to growing your home without leaving it.
 
 If you're considering an addition or in-law suite in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the space and talk through what's possible.
 
@@ -88,6 +88,6 @@ If you're considering an addition or in-law suite in **Loudoun County, Ashburn, 
 
 Beyond Loudoun, we build additions and in-law suites across Fairfax County and Alexandria — including [McLean](/service-areas/mclean-va), [Great Falls](/service-areas/great-falls-va), [Vienna](/service-areas/vienna-va), [Reston](/service-areas/reston-va), [Old Town Alexandria](/service-areas/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=addition) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

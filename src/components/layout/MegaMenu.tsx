@@ -54,7 +54,7 @@ export default function ServicesMegaMenu() {
         </div>
         <div className="bg-charcoal-50 border-t border-charcoal-100 px-6 py-3 flex items-center justify-between gap-4">
           <span className="text-xs text-charcoal-600">
-            Veteran-owned · Licensed across WV, MD, VA
+            Veteran-owned · Licensed across WV and VA
           </span>
           <div className="flex items-center gap-5">
             <Link

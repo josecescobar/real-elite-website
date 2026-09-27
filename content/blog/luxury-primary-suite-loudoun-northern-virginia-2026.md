@@ -71,11 +71,11 @@ The magic is in the cohesion: a shared material and color palette across all thr
 
 A luxury primary suite is a significant investment that scales with whether it's a remodel or an addition and the level of finish — but it transforms daily life in the room you spend the most private time in, and it's a strong resale feature in premium homes. We provide a written, line-itemed scope so the numbers are clear.
 
-Timelines typically run **6 to 12 weeks** for a remodel and longer for an addition, with a written schedule, a named project lead, and daily updates throughout.
+Discuss site supervision, communication, and cleanup arrangements during the estimate.
 
 ## The Real Elite approach
 
-We design and build primary suites as a single retreat: one cohesive plan, one project lead from first walkthrough to final, careful coordination across the bedroom, bath, and closet, and a written workmanship warranty at the end. Veteran-owned precision, applied to your most personal space.
+Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to your most personal space.
 
 If you're planning a primary suite in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the space and design the retreat together.
 
@@ -85,6 +85,6 @@ If you're planning a primary suite in **Loudoun County, Ashburn, Leesburg, Frede
 
 Beyond Loudoun, we design primary suites across Fairfax County and Alexandria — including [McLean](/services/bathrooms/mclean-va), [Great Falls](/services/bathrooms/great-falls-va), [Vienna](/services/bathrooms/vienna-va), [Reston](/services/bathrooms/reston-va), [Old Town Alexandria](/services/bathrooms/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=bathroom) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

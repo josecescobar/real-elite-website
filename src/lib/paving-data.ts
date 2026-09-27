@@ -106,9 +106,9 @@ export const PAVING_SERVICES: PavingService[] = [
       { title: 'Inspect', body: 'We walk the finished surface with you, confirm drainage, and tell you exactly when it can take traffic and when it should be sealcoated.' },
     ],
     signals: [
-      'Veteran-owned, with a named project lead from estimate to final walk-through',
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       'Proper base prep and drainage — not just a thin top coat',
-      'Licensed and insured across West Virginia, Maryland, and Virginia',
+      'WV Contractor License WV062432; Virginia Class A 2705198604 (residential HIC). Confirm the paving contractor and scope before work begins.',
       'Written workmanship standards on every project',
     ],
     investment: {
@@ -385,7 +385,7 @@ export const PAVING_SERVICES: PavingService[] = [
       'Specs engineered for real commercial traffic loads',
       'Phased scheduling that keeps your site operating',
       'ADA-compliant layout and striping',
-      'Licensed, insured, and accountable across WV, MD, VA',
+      'WV and VA contractor licenses; discuss paving scope and contractor credentials before work begins.',
     ],
     investment: {
       range: 'Detailed written proposal after a site assessment',
@@ -661,10 +661,10 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'sealcoating Winchester VA',
     ],
     heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Winchester and the Northern Shenandoah Valley — veteran-owned and licensed in Virginia.',
+      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Winchester and the Northern Shenandoah Valley — veteran-owned. Contact us to discuss the paving contractor and project scope.',
     intro: [
       "Winchester is the gateway to Virginia's Shenandoah Valley and the commercial anchor of the region — a city that pairs a vibrant, walkable Old Town with fast-growing residential corridors along Route 7, Route 522, and Senseny Road. That growth drives steady demand for both new residential driveways in the expanding neighborhoods and durable commercial lots for the retail and office development following the rooftops.",
-      "We pave and repair driveways and parking lots throughout the Winchester area, licensed and insured in Virginia just as we are in West Virginia and Maryland. From Old Town's established homes to the newer subdivisions out the Route 7 and Senseny Road corridors, and the commercial sites serving them, we bring proper base work, drainage-first grading, and the same accountable, single-point-of-contact approach our Eastern Panhandle customers already know.",
+      "We pave and repair driveways and parking lots throughout the Winchester area, with contractor credentials and project responsibilities to be confirmed before work begins. From Old Town's established homes to the newer subdivisions out the Route 7 and Senseny Road corridors, and the commercial sites serving them, we bring proper base work, drainage-first grading, and the same accountable, single-point-of-contact approach our Eastern Panhandle customers already know.",
     ],
     localFactors: [
       { title: 'Roads & neighborhoods', body: 'Old Town Winchester, the Senseny Road and Route 7 corridors, the Route 522 growth areas, and the Millwood Avenue commercial stretch.' },
@@ -672,7 +672,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       { title: 'Shenandoah Valley climate', body: 'Valley freeze-thaw and humid summers stress asphalt the same way they do across the line in WV — base, drainage, and sealcoating discipline are what make it last.' },
     ],
     faqs: [
-      { question: 'Are you licensed to pave in Virginia?', answer: 'Yes. Real Elite Contracting is licensed and insured in Virginia, Maryland, and West Virginia. Winchester and the Northern Shenandoah Valley are an established part of our service area.' },
+      { question: 'What credentials apply to a Virginia paving project?', answer: 'Our Virginia license is Class A with the residential HIC specialty. Contact us to confirm the project scope and the credentials of the paving contractor before any work is agreed.' },
       { question: 'Do you pave both driveways and commercial lots in Winchester?', answer: 'Both. We install and replace residential driveways across Winchester’s growing neighborhoods and pave and resurface commercial parking lots — with phased scheduling and ADA-compliant striping — for businesses along the Route 7, Route 522, and Millwood corridors.' },
       { question: 'How does Winchester’s climate affect my driveway?', answer: 'The Shenandoah Valley sees the same freeze-thaw cycles and humid summers as the rest of the region, which work water into any crack and break down the asphalt binder over time. Proper base, drainage-first grading, and sealcoating on a 3–5 year cycle are what keep a Winchester driveway lasting.' },
     ],
@@ -695,10 +695,10 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'sealcoating Frederick MD',
     ],
     heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — veteran-owned and licensed in Maryland.',
+      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — veteran-owned and licensed in West Virginia and Virginia.',
     intro: [
       "Frederick is one of the Mid-Atlantic's most desirable and fastest-growing markets — a historic market town transformed by the revitalized Carroll Creek and Market Street downtown and a steady wave of development along the I-70 corridor through Urbana, Jefferson, and New Market. That growth fuels constant demand for both residential driveways in the new communities and commercial lots for the retail, office, and medical development following them.",
-      "We pave and repair driveways and parking lots throughout Frederick and Frederick County, licensed and insured in Maryland. From the historic downtown's older homes to the new subdivisions out toward Urbana and the commercial sites along the growth corridor, we bring proper base work, drainage-first grading, ADA-compliant lot striping, and the accountable, single-point-of-contact approach that has built our name across the region.",
+      "We pave and repair driveways and parking lots throughout Frederick and Frederick County, licensed in West Virginia and Virginia. From the historic downtown's older homes to the new subdivisions out toward Urbana and the commercial sites along the growth corridor, we bring proper base work, drainage-first grading, ADA-compliant lot striping, and the accountable, single-point-of-contact approach that has built our name across the region.",
     ],
     localFactors: [
       { title: 'Roads & neighborhoods', body: 'Historic downtown Frederick and the Carroll Creek corridor, plus the fast-growing Ballenger Creek, Urbana, Jefferson, and New Market areas along I-70.' },
@@ -706,7 +706,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       { title: 'Mid-Atlantic climate', body: 'Nor’easters, summer storms, and freeze-thaw all stress asphalt here. Proper base, drainage, and sealcoating discipline are what make a Frederick surface last.' },
     ],
     faqs: [
-      { question: 'Are you licensed to pave in Frederick County, Maryland?', answer: 'Yes. Real Elite Contracting is licensed and insured in Maryland, West Virginia, and Virginia. Frederick and the I-70 corridor are an established part of our service area.' },
+      { question: 'Is Frederick in your service area?', answer: 'Frederick is a service-area location. We do not claim a Maryland contractor license. Contact us to discuss the project scope and the credentials required before any work is agreed.' },
       { question: 'Do you pave commercial lots as well as driveways in Frederick?', answer: 'Both. Frederick’s growth means strong demand for new residential driveways and for commercial parking lots serving the retail, office, and medical development along the corridor. We pave and resurface both, with ADA-compliant striping and phasing that keeps businesses open.' },
       { question: 'Can you handle a driveway in Frederick’s historic downtown?', answer: 'Yes. Historic downtown properties often have tighter access and original drainage that need a careful approach, while the newer Urbana and Ballenger Creek subdivisions need durable, well-based asphalt. We tailor the work to the property.' },
     ],

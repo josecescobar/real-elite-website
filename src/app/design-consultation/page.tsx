@@ -61,7 +61,7 @@ const HOW_IT_RUNS = [
   {
     step: 4,
     title: 'Build phase',
-    body: 'A single project lead from contract through final walkthrough. Daily progress, clean job site, written workmanship warranty.',
+    body: "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing.",
   },
 ];
 
@@ -83,12 +83,12 @@ const FAQ_ITEMS = [
   {
     question: 'Do you work with designers and architects?',
     answer:
-      'Yes, frequently. A meaningful portion of our luxury work is design-build collaboration with established Northern Virginia designers and architects. We execute to the spec the design calls for and respect that relationship through the build.',
+      'If you have a designer or architect, bring their drawings to the consultation so we can discuss the scope and responsibilities.',
   },
   {
     question: 'What if we have not chosen a designer yet?',
     answer:
-      'We can recommend designers we have worked with successfully across the markets we serve. For projects where the homeowner prefers a single design-build relationship through us, we manage the design phase in-house.',
+      'The consultation is a place to discuss whether your project needs a designer, architect, or engineer before a construction scope is agreed.',
   },
   {
     question: 'What project size makes sense for this consultation path?',
@@ -98,7 +98,7 @@ const FAQ_ITEMS = [
   {
     question: 'What is the typical response time?',
     answer:
-      'Within 4 business hours during the work week, and same-day for inquiries submitted before 4 PM. The first conversation is typically a 20–30 minute call to confirm fit, talk through the brief, and schedule the in-home consultation.',
+      'After reviewing your request, we can discuss fit, the project brief, and consultation availability.',
   },
 ];
 
@@ -170,7 +170,7 @@ export default function DesignConsultationPage() {
               </li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-red" /> Licensed VA · MD · WV
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-red" /> Licensed VA · WV
               </li>
             </ul>
 
@@ -217,7 +217,7 @@ export default function DesignConsultationPage() {
                   How It Runs
                 </p>
                 <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 leading-tight mb-6">
-                  Four steps. One project lead.
+                  Four steps to discuss your project.
                 </h2>
                 <ol className="space-y-5">
                   {HOW_IT_RUNS.map((s) => (

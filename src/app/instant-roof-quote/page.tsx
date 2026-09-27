@@ -40,7 +40,7 @@ const STEPS = [
   {
     icon: FileCheck,
     title: 'We confirm it in writing',
-    body: 'A project lead follows up within 24 business hours with a free, exact written estimate.',
+    body: 'A project lead follows up after reviewing your request with a free, exact written estimate.',
   },
 ];
 

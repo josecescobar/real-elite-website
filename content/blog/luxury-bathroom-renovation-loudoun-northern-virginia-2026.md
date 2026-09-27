@@ -8,7 +8,7 @@ slug: "luxury-bathroom-renovation-loudoun-northern-virginia-2026"
 featuredImage: "/images/projects/bathrooms/hero.jpg"
 category: "Bathrooms"
 type: "how-to"
-answer: "A high-end primary bath in the Loudoun County and Northern Virginia market is typically a $50,000-plus investment, and a full primary-suite renovation with structural or layout changes, premium stone, and custom cabinetry can run well beyond that depending on size and selections. The defining features tend to include a curbless walk-in shower with frameless glass, a freestanding soaking tub, heated floors, and double vanities with natural stone or premium quartz tops. The value is built where you never see it, in a real bonded waterproofing system behind the tile, relocated plumbing, and ventilation sized to the room. A full luxury primary bath generally runs 3 to 6 weeks of active work once underway."
+answer: "A high-end primary bath in the Loudoun County and Northern Virginia market is typically a $50,000-plus investment, and a full primary-suite renovation with structural or layout changes, premium stone, and custom cabinetry can run well beyond that depending on size and selections. The defining features tend to include a curbless walk-in shower with frameless glass, a freestanding soaking tub, heated floors, and double vanities with natural stone or premium quartz tops. The value is built where you never see it, in a real bonded waterproofing system behind the tile, relocated plumbing, and ventilation sized to the room. The project schedule depends on scope, approvals, selections, and availability."
 author: "Real Elite Contracting Team"
 ---
 
@@ -68,11 +68,11 @@ The right way to think about it: a primary bath is a room you use every single d
 
 ## How long it takes
 
-A full luxury primary bath generally runs **3 to 6 weeks** of active work once it's underway, depending on the scope of demolition, whether plumbing is moving, and lead times on custom cabinetry and stone. We give you a written timeline before we break ground, assign a named project lead, and update you daily — because a month of construction in your primary suite should never feel like a mystery.
+The project schedule depends on scope, approvals, selections, and availability. Discuss site supervision, communication, and cleanup arrangements during the estimate.
 
 ## The Real Elite approach
 
-We treat a luxury bathroom the way it deserves: a clear written scope and line-item pricing up front, a single project lead who's there from the first walkthrough to the final punch list, a clean job site, and a written workmanship warranty when we're done. We bring military-precision standards to high-end finish work — the alignment, the flatness, the details that separate a bathroom that looks expensive from one that simply *is* exceptional.
+Review the proposed scope and warranty terms before signing. We bring military-precision standards to high-end finish work — the alignment, the flatness, the details that separate a bathroom that looks expensive from one that simply *is* exceptional.
 
 If you're planning a high-end primary bath in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, we'd love to walk the space with you.
 
@@ -82,4 +82,4 @@ If you're planning a high-end primary bath in **Loudoun County, Ashburn, Leesbur
 
 Beyond Loudoun, we renovate primary baths across Fairfax County and Alexandria — including [McLean](/services/bathrooms/mclean-va), [Great Falls](/services/bathrooms/great-falls-va), [Vienna](/services/bathrooms/vienna-va), [Reston](/services/bathrooms/reston-va), [Old Town Alexandria](/services/bathrooms/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=bathroom) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.

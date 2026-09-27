@@ -606,11 +606,9 @@ describe('unconfirmedClaimIdsInCombo', () => {
     expect(unconfirmedClaimIdsInCombo('basements', 'northern-virginia')).toEqual([]);
   });
 
-  it('lists the claims a page makes in its own paragraphs', () => {
-    expect(unconfirmedClaimIdsInCombo('bathrooms', 'mclean-va')).toContain('named-project-lead');
-    expect(unconfirmedClaimIdsInCombo('basements', 'great-falls-va')).toContain(
-      'written-workmanship-warranty'
-    );
+  it('keeps previously claim-bearing pages clear after REA-55', () => {
+    expect(unconfirmedClaimIdsInCombo('bathrooms', 'mclean-va')).toEqual([]);
+    expect(unconfirmedClaimIdsInCombo('basements', 'great-falls-va')).toEqual([]);
   });
 
   it('is empty for a premium page whose own copy makes none', () => {
@@ -640,7 +638,7 @@ describe('unconfirmedClaimIdsInCombo', () => {
    * visible measure, so a copy edit or a retirement that changes the footprint
    * surfaces as a decision rather than a side effect.
    */
-  it('splits the premium combos 27 carrying claims to 18 not', () => {
+  it('publishes no registered unconfirmed claims on premium combos', () => {
     let carrying = 0;
     let clean = 0;
     for (const key of Object.keys(CONTENT)) {
@@ -653,7 +651,7 @@ describe('unconfirmedClaimIdsInCombo', () => {
     // 27/18 after Loudoun additions, Loudoun basements, and Middleburg decks
     // landed as clean pages (permit facts, no unconfirmed operational claims).
     // Carrying stayed at 27 — new copy must not raise that number.
-    expect({ carrying, clean }).toEqual({ carrying: 27, clean: 18 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 45 });
   });
 
   /**
@@ -664,7 +662,7 @@ describe('unconfirmedClaimIdsInCombo', () => {
    */
   it('does not report the trust bullets\u2019 claims for a page carrying only an unrelated one', () => {
     const ids = unconfirmedClaimIdsInCombo('bathrooms', 'ashburn-va');
-    expect(ids).toContain('active-work-timeline');
+    expect(ids).toEqual([]);
     for (const id of [
       'named-project-lead',
       'daily-updates',
