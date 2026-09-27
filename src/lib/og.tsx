@@ -3,13 +3,13 @@ import { ImageResponse } from 'next/og';
 /**
  * Shared Open Graph image renderer used by every opengraph-image.tsx
  * convention file across the app. Renders a branded 1200×630 PNG with
- * the navy/red Real Elite identity, generated at request time via
+ * the ink/bronze Real Elite identity, generated at request time via
  * Satori (next/og).
  *
  * System fonts only — Satori does not have next/font access, and
  * shipping the Saira / Inter binaries through every OG request would
- * add cold-start latency. The visual identity comes from the navy
- * gradient + brand-red accent + composition, which carries the brand
+ * add cold-start latency. The visual identity comes from the ink
+ * gradient + bronze accent + composition, which carries the brand
  * without needing custom fonts.
  */
 
@@ -36,7 +36,7 @@ export function renderOgCard({ eyebrow, title, subtitle }: Args) {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          backgroundImage: 'linear-gradient(135deg, #0f1b2d 0%, #1a2744 100%)',
+          backgroundImage: 'linear-gradient(135deg, #151a22 0%, #1f2530 100%)',
           padding: '72px 80px',
           fontFamily: FONT_STACK,
           color: 'white',
@@ -44,15 +44,15 @@ export function renderOgCard({ eyebrow, title, subtitle }: Args) {
           position: 'relative',
         }}
       >
-        {/* Brand-red accent bar */}
+        {/* Bronze accent bar */}
         <div
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
-            width: '12px',
+            width: '10px',
             height: '100%',
-            backgroundColor: '#c0392b',
+            backgroundColor: '#8a6236',
           }}
         />
 
@@ -60,7 +60,7 @@ export function renderOgCard({ eyebrow, title, subtitle }: Args) {
         <div
           style={{
             fontSize: 22,
-            color: '#c0392b',
+            color: '#d6b285',
             textTransform: 'uppercase',
             letterSpacing: '4px',
             fontWeight: 700,
@@ -75,7 +75,7 @@ export function renderOgCard({ eyebrow, title, subtitle }: Args) {
           <div
             style={{
               fontSize: titleSize,
-              fontWeight: 800,
+              fontWeight: 600,
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               display: 'flex',
@@ -87,7 +87,7 @@ export function renderOgCard({ eyebrow, title, subtitle }: Args) {
             <div
               style={{
                 fontSize: 28,
-                color: '#c0c8d4',
+                color: '#d6d3cd',
                 marginTop: 28,
                 lineHeight: 1.4,
                 maxWidth: 920,
@@ -106,15 +106,15 @@ export function renderOgCard({ eyebrow, title, subtitle }: Args) {
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: 18,
-            color: '#a4afc1',
+            color: '#b3afa7',
             textTransform: 'uppercase',
             letterSpacing: '3px',
             fontWeight: 600,
           }}
         >
           <div style={{ display: 'flex' }}>Real Elite Contracting</div>
-          <div style={{ display: 'flex', color: '#c0392b' }}>
-            Built With Military Precision
+          <div style={{ display: 'flex', color: '#d6b285' }}>
+            Veteran-Owned Design-Build · Loudoun County, VA
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Saira_Condensed, Inter } from 'next/font/google';
+import { Newsreader, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
@@ -25,13 +25,15 @@ const GTM_ID = env.gtmId();
 const CLARITY_ID = env.clarityId();
 const VERCEL_ENV = env.vercelEnv();
 
-// Headings use font-bold (700) and font-extrabold (800) only — 600 was
-// preloaded on every page and never applied. Inter is a variable font;
-// omitting weight ships one file instead of four static cuts.
-const saira = Saira_Condensed({
+// Display face: Newsreader, a variable editorial serif with optical sizing.
+// Headings render at 500 sitewide (globals.css); the italic axis is used for
+// the accent word in hero headlines. One variable file per style, no static
+// cuts. Inter stays as the body/UI face.
+const newsreader = Newsreader({
   subsets: ['latin'],
-  weight: ['700', '800'],
-  variable: '--font-saira',
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  variable: '--font-newsreader',
   display: 'swap',
 });
 
@@ -48,24 +50,20 @@ export const metadata: Metadata = {
   metadataBase: new URL(BUSINESS.url),
   // 60-char SERP budget (see fitTitle in src/lib/seo.ts): the short brand form
   // keeps the city + service keywords, which is what the title is for.
-  title: 'General Contractor in Martinsburg, WV | Real Elite',
+  title: 'Design-Build Remodeling in Loudoun County, VA | Real Elite',
   description:
-    'Veteran-owned general contractor serving the Eastern Panhandle — roofing, siding, decks and remodeling. Free written estimates within 24 business hours.',
+    'Veteran-owned design-build remodeler for Loudoun County — kitchens, primary suites, lower levels, additions and outdoor living for Leesburg, Ashburn, Middleburg and Purcellville homes. Also serving the Eastern Panhandle.',
   keywords: [
-    'contractor',
-    'roofing',
-    'siding',
-    'decks',
-    'remodeling',
-    'Eastern Panhandle',
-    'West Virginia',
-    'WV',
+    'design-build remodeling Loudoun County',
+    'kitchen remodeling Ashburn VA',
+    'basement remodeling Loudoun County',
+    'primary bathroom remodel Leesburg VA',
+    'home additions Northern Virginia',
+    'outdoor living Loudoun County',
+    'veteran-owned contractor',
+    'remodeling contractor Middleburg VA',
+    'Eastern Panhandle contractor',
     'Martinsburg contractor',
-    'Inwood contractor',
-    'Charles Town contractor',
-    'Ranson contractor',
-    'Hedgesville contractor',
-    'veteran-owned',
   ],
   authors: [{ name: BUSINESS.name }],
   creator: BUSINESS.name,
@@ -79,23 +77,23 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: BUSINESS.url,
     siteName: BUSINESS.name,
-    title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
+    title: 'Design-Build Remodeling in Loudoun County, VA | Real Elite Contracting',
     description:
-      'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
+      'Veteran-owned design-build remodeler for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
     images: [
       {
         url: `${BUSINESS.url}/images/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Real Elite Contracting - Eastern Panhandle\'s Most Trusted Contractor',
+        alt: 'Real Elite Contracting — design-build remodeling for Loudoun County, VA',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
+    title: 'Design-Build Remodeling in Loudoun County, VA | Real Elite Contracting',
     description:
-      'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
+      'Veteran-owned design-build remodeler for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
     images: [`${BUSINESS.url}/images/og-image.jpg`],
   },
   alternates: {
@@ -115,7 +113,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#1a2744',
+  themeColor: '#151a22',
   colorScheme: 'light',
 };
 
@@ -129,7 +127,7 @@ export default function RootLayout({
   const aggregateRating = aggregateRatingSchema();
 
   return (
-    <html lang="en" className={`${saira.variable} ${inter.variable}`}>
+    <html lang="en" className={`${newsreader.variable} ${inter.variable}`}>
       <head>
         <JsonLd
           schema={{
@@ -137,7 +135,7 @@ export default function RootLayout({
             '@type': 'GeneralContractor',
             name: BUSINESS.name,
             description:
-              "Premium regional remodeling and exterior contractor — built on military precision, communication, reliability, and high-end execution.",
+              'Veteran-owned design-build remodeler serving Loudoun County, Virginia and the Eastern Panhandle of West Virginia — kitchens, primary suites, lower levels, additions and outdoor living.',
             image: `${BUSINESS.url}/images/logo.png`,
             url: `${BUSINESS.url}/`,
             telephone: BUSINESS.phoneRaw,
@@ -152,8 +150,9 @@ export default function RootLayout({
             areaServed: GENERAL_CONTRACTOR_AREA_SERVED,
             priceRange: '$$$',
             knowsAbout: [
-              'Bathroom Remodeling',
+              'Design-Build Remodeling',
               'Kitchen Remodeling',
+              'Primary Suite and Bathroom Remodeling',
               'Basement Finishing',
               'Roofing',
               'Siding',
