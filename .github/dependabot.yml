@@ -24,6 +24,21 @@ updates:
       # the TypeScript 7 upgrade land as its own reviewed PR.
       - dependency-name: typescript
         update-types: ['version-update:semver-major']
+      # ESLint 10 crashes `npm run lint` with eslint-config-next@16.
+      # Next's vendored Babel parser (`eslint-config-next/parser` →
+      # `next/dist/compiled/babel/eslint-parser`) returns a ScopeManager
+      # without `addGlobals`, which ESLint 10 calls during SourceCode.finalize:
+      #   TypeError: scopeManager.addGlobals is not a function
+      # eslint-plugin-react@7 (also vendored by eslint-config-next) still
+      # calls the removed `context.getFilename` API.
+      # Upstream: https://github.com/vercel/next.js/issues/89764
+      #
+      # The dev-dependency group bundled this major with the jsdom bump and
+      # failed CI on PR #162. Ignore only the major so 9.x updates still land.
+      #
+      # REMOVE THIS once eslint-config-next supports ESLint 10.
+      - dependency-name: eslint
+        update-types: ['version-update:semver-major']
     groups:
       production-dependencies:
         dependency-type: production
