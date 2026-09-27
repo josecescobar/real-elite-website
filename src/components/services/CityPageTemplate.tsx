@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, MapPin } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
@@ -19,6 +19,7 @@ import {
   LUXURY_CITY_SLUGS,
   selectGalleryFor,
   areaRegionLabel,
+  areaHeroLane,
   formatAreaPlace,
   areaSchemaType,
   childAreasOf,
@@ -36,6 +37,7 @@ import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import { getReviewsByCity } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import TrackedLink from '@/components/analytics/TrackedLink';
 import { serviceHrefForArea } from '@/lib/service-city-content';
 
 /**
@@ -114,7 +116,13 @@ export default function CityPageTemplate({ city, data }: Props) {
       : 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
   ];
 
-  const heroSub = `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, with project scope discussed at the estimate.`;
+  // Consultation on the premium counties; the free estimate on the Panhandle
+  // and the other home-market rows. The lane comes from the catalog county
+  // (see areaHeroLane), not from a slug list in this template.
+  const consultationHero = areaHeroLane(city) === 'consultation';
+  const heroSub = consultationHero
+    ? `Design-build remodeling for ${city.city} homes. Kitchens, primary suites, lower levels, additions and outdoor living, with one project lead from the first call to the final walkthrough.`
+    : `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, with project scope discussed at the estimate.`;
 
   // Order services by marketEmphasis, then append remaining for completeness
   const emphasized = data.marketEmphasis
@@ -271,18 +279,40 @@ export default function CityPageTemplate({ city, data }: Props) {
           </ul>
 
           <div className="flex flex-wrap gap-4 mt-10">
-            <a
-              href="#estimate"
-              className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
-            >
-              Get My Free Estimate →
-            </a>
-            <PhoneLink
-              location="city_page_cta"
-              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
-            >
-              Call {BUSINESS.phone}
-            </PhoneLink>
+            {consultationHero ? (
+              <>
+                <TrackedLink
+                  href="/design-consultation"
+                  eventName="consultation_cta_click"
+                  eventParams={{ location: 'city_hero', area: city.slug }}
+                  className="inline-flex items-center gap-2 bg-white text-navy-900 px-7 py-3.5 rounded-md font-semibold text-sm hover:bg-brand-red-light transition-colors focus-ring-on-navy"
+                >
+                  Schedule a design consultation
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </TrackedLink>
+                <Link
+                  href="/investment"
+                  className="inline-flex items-center gap-2 border border-white/35 text-white px-7 py-3.5 rounded-md font-semibold text-sm hover:bg-white/10 transition-colors focus-ring-on-navy"
+                >
+                  View investment ranges
+                </Link>
+              </>
+            ) : (
+              <>
+                <a
+                  href="#estimate"
+                  className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40 focus-ring-on-navy"
+                >
+                  Get My Free Estimate →
+                </a>
+                <PhoneLink
+                  location="city_page_cta"
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors"
+                >
+                  Call {BUSINESS.phone}
+                </PhoneLink>
+              </>
+            )}
           </div>
         </Container>
       </section>
