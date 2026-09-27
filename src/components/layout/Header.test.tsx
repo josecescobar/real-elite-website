@@ -31,28 +31,38 @@ vi.mock('./MegaMenu', () => ({
 }));
 
 vi.mock('@/lib/constants', () => ({
-  NAV_LINKS: [
-    { label: 'Home', href: '/' },
-    { label: 'Services', href: '/services' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
-  ],
-  UTILITY_LINKS: [
-    { label: 'Our Process', href: '/process' },
-    { label: 'Photo Gallery', href: '/gallery' },
-  ],
   BUSINESS: {
     phone: '(681) 534-5515',
     phoneRaw: '+16815345515',
   },
-  SERVICES_MEGA_MENU: [
+}));
+
+vi.mock('@/lib/navigation', () => ({
+  PRIMARY_NAV: [
+    { label: 'Design-Build', href: '/services', mega: true },
+    { label: 'Portfolio', href: '/projects' },
+    { label: 'Process', href: '/process' },
+    { label: 'Investment', href: '/investment' },
+    { label: 'Service Areas', href: '/service-areas' },
+    { label: 'About', href: '/about' },
+  ],
+  NAV_CTA: { label: 'Consultation', href: '/design-consultation' },
+  DESIGN_BUILD_MENU: [
     {
-      heading: 'Exteriors',
+      heading: 'Signature Projects',
       items: [
-        { label: 'Roofing', href: '/services/roofing', description: 'Roof work' },
-        { label: 'Siding', href: '/services/siding', description: 'Siding work' },
+        { label: 'Kitchens', href: '/services/kitchens', description: 'Kitchens' },
+        { label: 'Lower Levels & Basements', href: '/services/basements', description: 'Basements' },
       ],
     },
+    {
+      heading: 'Exteriors & Repairs',
+      items: [{ label: 'Roofing', href: '/services/roofing' }],
+    },
+  ],
+  MOBILE_UTILITY_NAV: [
+    { label: 'Contact', href: '/contact' },
+    { label: 'Instant Roof Quote', href: '/instant-roof-quote' },
   ],
 }));
 
@@ -61,14 +71,32 @@ describe('Header', () => {
     render(<Header />);
     expect(screen.getByAltText('Real Elite Contracting Logo')).toBeInTheDocument();
     expect(screen.getByText('Real Elite')).toBeInTheDocument();
-    expect(screen.getByText('Contracting')).toBeInTheDocument();
   });
 
-  it('renders desktop navigation links', () => {
+  it('leads the desktop navigation with Design-Build and ends with About', () => {
     render(<Header />);
-    expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute('href', '/about');
-    expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute('href', '/contact');
+    const primary = screen.getByRole('navigation', { name: 'Primary' });
+    const labels = Array.from(primary.querySelectorAll('a')).map((a) => a.textContent?.trim());
+    expect(labels).toEqual([
+      'Design-Build▼',
+      'Portfolio',
+      'Process',
+      'Investment',
+      'Service Areas',
+      'About',
+    ]);
+    expect(screen.getByRole('link', { name: /portfolio/i })).toHaveAttribute('href', '/projects');
+    expect(screen.getByRole('link', { name: /^investment$/i })).toHaveAttribute('href', '/investment');
+  });
+
+  it('renders the mega-menu under the Design-Build trigger', () => {
+    render(<Header />);
+    expect(screen.getByTestId('mega-menu')).toBeInTheDocument();
+    const primary = screen.getByRole('navigation', { name: 'Primary' });
+    const trigger = Array.from(primary.querySelectorAll('a')).find((a) =>
+      a.textContent?.includes('Design-Build')
+    );
+    expect(trigger).toHaveAttribute('aria-haspopup', 'true');
   });
 
   it('renders phone call link', () => {
@@ -78,10 +106,12 @@ describe('Header', () => {
     expect(callLinks[0]).toHaveAttribute('href', 'tel:+16815345515');
   });
 
-  it('renders Free Estimate button', () => {
+  it('renders the Consultation CTA, not a free-estimate button', () => {
     render(<Header />);
-    const estimateLinks = screen.getAllByRole('link', { name: /free estimate/i });
-    expect(estimateLinks.length).toBeGreaterThan(0);
+    const cta = screen.getAllByRole('link', { name: /consultation/i });
+    expect(cta.length).toBeGreaterThan(0);
+    expect(cta[0]).toHaveAttribute('href', '/design-consultation');
+    expect(screen.queryByRole('link', { name: /free estimate/i })).not.toBeInTheDocument();
   });
 
   describe('mobile menu', () => {
@@ -112,28 +142,41 @@ describe('Header', () => {
       expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
     });
 
-    it('closes mobile menu when a non-Services link is clicked', async () => {
+    it('closes mobile menu when a non-mega link is clicked', async () => {
       const user = userEvent.setup();
       render(<Header />);
 
       await user.click(screen.getByLabelText(/open menu/i));
       expect(screen.getByTestId('x-icon')).toBeInTheDocument();
 
-      const aboutLinks = screen.getAllByRole('link', { name: /about/i });
+      const aboutLinks = screen.getAllByRole('link', { name: /^about$/i });
       await user.click(aboutLinks[aboutLinks.length - 1]);
 
       expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
     });
 
-    it('expands services submenu in mobile menu', async () => {
+    it('expands the design-build submenu in the mobile menu', async () => {
       const user = userEvent.setup();
       render(<Header />);
 
       await user.click(screen.getByLabelText(/open menu/i));
-      await user.click(screen.getByLabelText(/toggle services menu/i));
+      await user.click(screen.getByLabelText(/toggle design-build menu/i));
 
+      expect(screen.getByRole('link', { name: /kitchens/i })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /roofing/i })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /siding/i })).toBeInTheDocument();
+    });
+
+    it('keeps the secondary routes reachable from the drawer', async () => {
+      const user = userEvent.setup();
+      render(<Header />);
+
+      await user.click(screen.getByLabelText(/open menu/i));
+
+      expect(screen.getByRole('link', { name: /^contact$/i })).toHaveAttribute('href', '/contact');
+      expect(screen.getByRole('link', { name: /instant roof quote/i })).toHaveAttribute(
+        'href',
+        '/instant-roof-quote'
+      );
     });
   });
 });

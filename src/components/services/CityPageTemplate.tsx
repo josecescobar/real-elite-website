@@ -24,6 +24,7 @@ import {
   childAreasOf,
   areaAncestors,
   isLocalityArea,
+  ALL_SERVICE_AREAS,
   type CityDataEntry,
   type ServiceArea,
 } from '@/lib/constants';
@@ -98,6 +99,11 @@ export default function CityPageTemplate({ city, data }: Props) {
 
   // A county or region lists the areas inside it; a town lists neighbourhoods.
   const children = isLocalityArea(city) ? [] : childAreasOf(city.slug);
+  // The other county hubs, for the cross-link row on a county page.
+  const siblingCounties =
+    city.kind === 'county'
+      ? ALL_SERVICE_AREAS.filter((a) => a.kind === 'county' && a.slug !== city.slug)
+      : [];
   const [heroHead, heroTail] = heroLines(city);
 
   // Shared trust copy uses credentials supplied in REA-55.
@@ -397,6 +403,27 @@ export default function CityPageTemplate({ city, data }: Props) {
                       </li>
                     ))}
                   </ul>
+                )}
+                {/* County hubs cross-link the other counties served, so a
+                    Loudoun reader who lives over the line finds Fairfax or
+                    Prince William without going back to the index. */}
+                {siblingCounties.length > 0 && (
+                  <p className="mt-6 pt-4 border-t border-steel-200 text-sm text-charcoal-600">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-charcoal-500 mr-3">
+                      Also serving
+                    </span>
+                    {siblingCounties.map((a, i) => (
+                      <span key={a.slug}>
+                        <Link
+                          href={`/service-areas/${a.slug}`}
+                          className="link-editorial font-medium text-navy-900"
+                        >
+                          {a.city}
+                        </Link>
+                        {i < siblingCounties.length - 1 ? ' · ' : ''}
+                      </span>
+                    ))}
+                  </p>
                 )}
               </div>
 

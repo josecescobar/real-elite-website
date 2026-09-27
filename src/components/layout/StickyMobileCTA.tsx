@@ -9,12 +9,11 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 /**
  * Mobile-only sticky CTA bar.
  *
- * "Free Estimate" routes to the in-page #estimate anchor when the user
- * is already on the homepage or /contact (where the form lives), and
- * to "/contact#estimate" otherwise so a click navigates straight to
- * the dedicated estimate form on the contact page instead of dropping
- * the user back onto the homepage. Matches the cross-page CTA pattern
- * used across the site.
+ * The primary action follows the page: design-build surfaces (home,
+ * portfolio, process, investment, consultation) get the consultation;
+ * roofing pages get the instant quote; everything else gets "Free
+ * Estimate", which routes to the in-page #estimate anchor on /contact and
+ * to "/contact#estimate" elsewhere. See src/lib/cta-intent.ts.
  */
 export default function StickyMobileCTA() {
   const pathname = usePathname();
