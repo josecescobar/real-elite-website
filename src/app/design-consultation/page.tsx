@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import { fitTitle } from '@/lib/seo';
 import { Suspense } from 'react';
+import Link from 'next/link';
 import {
   Calendar,
-  Clock,
   Home,
   Layers,
   MapPin,
   Phone,
   ShieldCheck,
-  Star,
 } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import { CONSULTATION_THRESHOLD_LABEL } from '@/lib/investment-guide';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
@@ -21,22 +21,22 @@ import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Design Consultation — Kitchen, Bath & Basement | ${BUSINESS.name}`),
+  title: fitTitle(`Design Consultation — Loudoun County Design-Build | ${BUSINESS.name}`),
   description:
-    'Book a phone consultation for your kitchen, primary bath or lower-level project across Loudoun, Fairfax and Alexandria. Veteran-owned design-build.',
+    'Start a design-build project in Loudoun County: a short call about the house, the rooms and the range, then a site visit if it fits. Kitchens, primary suites, lower levels, additions and outdoor living. Veteran-owned.',
   keywords: [
-    'luxury kitchen consultation Northern Virginia',
-    'design build phone consultation McLean',
-    'primary bathroom consultation Great Falls',
-    'basement design consultation Fairfax',
-    'luxury renovation Alexandria',
+    'design consultation Loudoun County',
+    'design build consultation Leesburg VA',
+    'kitchen design consultation Ashburn',
+    'basement design consultation Loudoun',
+    'primary suite consultation Northern Virginia',
     'design build contractor phone consultation',
   ],
   alternates: { canonical: `${BUSINESS.url}/design-consultation` },
   openGraph: {
-    title: `Phone Consultation | ${BUSINESS.name}`,
+    title: `Design Consultation | ${BUSINESS.name}`,
     description:
-      'Schedule a phone consultation — kitchens, primary baths, and lower-level projects across Loudoun, Fairfax, and Alexandria.',
+      'A short call about the house, the rooms and the range. Design-build for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
     url: `${BUSINESS.url}/design-consultation`,
     type: 'website',
   },
@@ -45,60 +45,59 @@ export const metadata: Metadata = {
 const HOW_IT_RUNS = [
   {
     step: 1,
-    title: 'Brief intake',
-    body: 'You share the project type, address, budget tier, timeline, and the best window to be called.',
+    title: 'The brief',
+    body: 'You share the project type, the town, an investment range, a timeline, and the best window to be called. Five minutes.',
   },
   {
     step: 2,
-    title: 'Phone consultation',
-    body: 'A 20–30 minute call inside your requested window. We talk through the project, answer your questions, and confirm fit on both sides — no pressure, no quota.',
+    title: 'The call',
+    body: 'A short conversation inside your window about the house, the rooms and the range. We tell you honestly whether it is a design-build fit or a project the standard estimate serves better.',
   },
   {
     step: 3,
-    title: 'In-home walkthrough (only if it fits)',
-    body: 'If the project, the budget, and the timing all line up, we schedule a no-charge in-home visit to measure, photograph, and write the scope.',
+    title: 'The site visit, if it fits',
+    body: 'If the project, the range and the timing line up, we come out to measure, photograph and look at structure and mechanicals before anything is drawn.',
   },
   {
     step: 4,
-    title: 'Build phase',
-    body: 'A single project lead from contract through final walkthrough. Daily progress, clean job site, written workmanship warranty.',
+    title: 'Design, approvals, build',
+    body: 'Drawings and selections, then county and HOA approvals, then the build with one project lead from the first day to the walkthrough. Workmanship warranty issued in writing.',
   },
 ];
 
 const FIT_ITEMS = [
-  'Loudoun County (Leesburg, Ashburn, Brambleton, Lansdowne, Middleburg)',
-  'Fairfax County (McLean, Great Falls, Vienna, Reston, Burke, Fairfax Station, Clifton)',
-  'Alexandria (Old Town, Belle Haven, Rosemont, North Ridge, Beverley Hills)',
-  'Kitchens · primary baths · lower-level finishing · whole-home renovation · additions · outdoor living · custom decks',
-  'Share your scope and budget, including projects under $25,000 or an early idea without a set budget',
-  'Working with a designer, considering one, or open to a recommendation',
+  'Loudoun County first: Leesburg, Ashburn, Brambleton, Lansdowne, Middleburg, Purcellville, Waterford and Round Hill',
+  'Fairfax County by conversation, and the Eastern Panhandle of West Virginia, where the company is based',
+  'Kitchens · primary suites and baths · lower levels · additions · outdoor living · whole-home renovation',
+  `Projects of ${CONSULTATION_THRESHOLD_LABEL}. Smaller projects and repairs are welcome through the standard estimate, which is faster for that work`,
+  'Working with a designer or architect, considering one, or not sure whether the project needs one',
 ];
 
 const FAQ_ITEMS = [
   {
-    question: 'Is the consultation actually free?',
+    question: 'Is the consultation free?',
     answer:
-      'Yes — both the initial conversation and the in-home consultation are at no charge. We use the in-home walkthrough to scope the project properly and to confirm fit on both sides before either party commits.',
+      'The call and the first site visit are at no charge. They exist to decide, on both sides, whether the project is a fit before anyone commits to a design phase.',
   },
   {
     question: 'Do you work with designers and architects?',
     answer:
-      'Yes, frequently. A meaningful portion of our luxury work is design-build collaboration with established Northern Virginia designers and architects. We execute to the spec the design calls for and respect that relationship through the build.',
+      'If you have a designer or an architect, we build their set. If you do not, we will tell you whether this project needs one before we pretend to be the design firm. Additions and structural changes need engineered drawings for the county either way.',
   },
   {
-    question: 'What if we have not chosen a designer yet?',
+    question: 'What project size is this path for?',
     answer:
-      'We can recommend designers we have worked with successfully across the markets we serve. For projects where the homeowner prefers a single design-build relationship through us, we manage the design phase in-house.',
+      `The consultation is calibrated for projects of ${CONSULTATION_THRESHOLD_LABEL}: kitchens, primary suites, lower levels, additions and outdoor living. If the number you have in mind is closer to a repair, we will say so on the call and point you to the standard estimate, which is the faster path for that work.`,
   },
   {
-    question: 'What project size makes sense for this consultation path?',
+    question: 'How do Loudoun HOA and permit reviews affect the timeline?',
     answer:
-      'Tell us about your kitchen, bath, basement, addition, whole-home, outdoor-living, or custom-deck project. Share the scope and budget you have in mind, or choose “Not sure yet.” We’ll use the conversation to discuss whether the project is a fit.',
+      'They sit between design and construction. The county permit and the HOA architectural application run in parallel, and inside Leesburg, Purcellville and Middleburg the town zoning approval comes first. We sequence both before demolition so the start date is real.',
   },
   {
-    question: 'What is the typical response time?',
+    question: 'When will we hear from you?',
     answer:
-      'Within 4 business hours during the work week, and same-day for inquiries submitted before 4 PM. The first conversation is typically a 20–30 minute call to confirm fit, talk through the brief, and schedule the in-home consultation.',
+      'Inside the call window you choose on the form, during business hours. If you would rather talk now, the direct line is on this page.',
   },
 ];
 
@@ -109,16 +108,16 @@ export default function DesignConsultationPage() {
         schema={{
           '@context': 'https://schema.org',
           '@type': 'Service',
-          name: 'Luxury Design Consultation',
+          name: 'Design-Build Consultation',
           provider: {
             '@type': 'GeneralContractor',
             name: BUSINESS.name,
             url: BUSINESS.url,
             telephone: BUSINESS.phone,
           },
-          areaServed: ['Virginia', 'Maryland', 'West Virginia'],
+          areaServed: ['Loudoun County, VA', 'Fairfax County, VA', 'Eastern Panhandle, WV'],
           description:
-            'Phone consultation for luxury kitchen, primary bath, basement, and whole-home renovation projects across Loudoun, Fairfax, and Alexandria.',
+            'Design-build consultation for kitchens, primary suites, lower levels, additions and outdoor living in Loudoun County, Virginia.',
         }}
       />
       <JsonLd
@@ -134,58 +133,51 @@ export default function DesignConsultationPage() {
       />
 
       {/* Hero */}
-      <section className="bg-navy-900 text-white pt-16 pb-16 md:pt-24 md:pb-20">
+      <section className="bg-navy-900 text-white pt-20 pb-16 md:pt-28 md:pb-20">
         <Container size="wide">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5 mb-6">
-              <Star className="w-3 h-3 text-brand-red" />
-              <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
-                Phone Consultation · No Obligation
-              </span>
-            </div>
-
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-              Pick a window.
-              <br />
-              <span className="text-brand-red">We&apos;ll call you.</span>
-            </h1>
-            <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              A 20–30 minute phone consultation for kitchens, primary baths, lower-level
-              finishing, whole-home renovations, custom decks, and outdoor living across Loudoun, Fairfax, and Alexandria. You
-              tell us the brief and the best time to be called; we call inside the window. Only
-              when the fit is right do we schedule an in-home visit.
+            <p className="text-brand-red-light text-xs uppercase tracking-[0.22em] font-semibold mb-5">
+              Design consultation · Loudoun County
             </p>
 
-            <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02]">
+              Tell us about the house.
+              <br />
+              We&apos;ll call <em>inside your window</em>.
+            </h1>
+            <p className="text-charcoal-300 text-lg md:text-xl mt-7 leading-relaxed max-w-2xl">
+              For Loudoun County projects we start with a short call about the rooms, the range
+              and the timing. If the house, the scope and the investment fit, we come out to
+              measure. If the number you have in mind is closer to a repair, we say so on the
+              call and point you to the faster path.
+            </p>
+
+            <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-charcoal-300">
               <li className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-brand-red" /> Phone First
+                <Phone className="w-3.5 h-3.5 text-brand-red-light" aria-hidden="true" /> Call first
               </li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-brand-red" /> 4-Hour Response
+                <Calendar className="w-3.5 h-3.5 text-brand-red-light" aria-hidden="true" /> Site visit only if it fits
               </li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-brand-red" /> No In-Home Until It Fits
-              </li>
-              <li aria-hidden="true" className="text-white/30">·</li>
-              <li className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-red" /> Licensed VA · MD · WV
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-red-light" aria-hidden="true" /> Virginia Class A · WV licensed
               </li>
             </ul>
 
             <div className="flex flex-wrap gap-3 mt-10">
               <a
                 href="#consult-form"
-                className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
+                className="inline-flex items-center gap-2 bg-white text-navy-900 px-7 py-3.5 rounded-md font-semibold text-sm hover:bg-brand-red-light transition-colors focus-ring-on-navy"
               >
-                Request a Call →
+                Request a call →
               </a>
               <PhoneLink
                 location="design_consult_hero"
-                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 border border-white/35 text-white px-7 py-3.5 rounded-md font-semibold text-sm hover:bg-white/10 transition-colors focus-ring-on-navy"
               >
-                <Phone className="w-4 h-4" /> {BUSINESS.phone}
+                <Phone className="w-4 h-4" aria-hidden="true" /> {BUSINESS.phone}
               </PhoneLink>
             </div>
           </div>
@@ -201,7 +193,7 @@ export default function DesignConsultationPage() {
               <SectionHeader
                 eyebrow="Project Brief"
                 title="Tell us about the project."
-                subtitle="Fields are quick — five minutes total. Everything you share helps us prepare for the in-home consultation."
+                subtitle="Five minutes. The project type, the town and the range let us come to the call prepared, and let us tell you quickly whether a site visit makes sense."
               />
               <div className="mt-10">
                 <Suspense fallback={<div className="h-[800px]" />}>
@@ -216,8 +208,8 @@ export default function DesignConsultationPage() {
                 <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
                   How It Runs
                 </p>
-                <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 leading-tight mb-6">
-                  Four steps. One project lead.
+                <h2 className="font-heading text-2xl md:text-3xl text-navy-800 leading-tight mb-6">
+                  Four steps. One team.
                 </h2>
                 <ol className="space-y-5">
                   {HOW_IT_RUNS.map((s) => (
@@ -266,13 +258,16 @@ export default function DesignConsultationPage() {
               <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
                 Best Fit
               </p>
-              <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 leading-tight">
+              <h2 className="font-heading text-3xl md:text-4xl text-navy-800 leading-tight">
                 Is this the right path?
               </h2>
               <p className="text-charcoal-600 mt-4 text-base leading-relaxed">
-                Use this form to start a conversation about kitchen, bath, lower-level, addition,
-                whole-home, or outdoor-living work. Tell us what you have in mind, even if the scope
-                or budget is still taking shape.
+                This form starts a design-build conversation. If the scope or the range is still
+                taking shape, say so; the{' '}
+                <Link href="/investment" className="link-editorial font-medium text-navy-900">
+                  investment guide
+                </Link>{' '}
+                shows typical Loudoun ranges for each project type before you decide.
               </p>
             </div>
             <div className="lg:col-span-7">
@@ -310,13 +305,13 @@ export default function DesignConsultationPage() {
               },
               {
                 icon: Layers,
-                title: 'Designer-collaborative',
-                body: 'We are comfortable working alongside your designer or architect, and we have recommendations when you need one.',
+                title: 'Your designer, or an honest answer',
+                body: 'If you have a designer or architect, we build their set. If you do not, we tell you whether the project needs one before we pretend to be the design firm.',
               },
               {
                 icon: ShieldCheck,
-                title: 'A written brief, before the bid',
-                body: 'You leave the consultation with a written scope, a realistic budget range, and a proposed timeline — not a one-line quote.',
+                title: 'A written scope, before the price',
+                body: 'Design-build means the drawings and selections come first, so the number is built from what will actually be built, not from a one-line quote.',
               },
             ].map((p) => {
               const Icon = p.icon;
