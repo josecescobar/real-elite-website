@@ -47,7 +47,21 @@ const BERKELEY_JEFFERSON_WV = new Set([
   'martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'falling-waters-wv', 'spring-mills-wv',
   'charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'kearneysville-wv', 'harpers-ferry-wv',
 ]);
-const LOUDOUN_VA = new Set(['leesburg-va', 'ashburn-va', 'loudoun-county-va', 'middleburg-va']);
+const LOUDOUN_VA = new Set([
+  'leesburg-va',
+  'ashburn-va',
+  'loudoun-county-va',
+  'middleburg-va',
+  'purcellville-va',
+  'round-hill-va',
+  'lovettsville-va',
+  'waterford-va',
+  'hamilton-va',
+  'aldie-va',
+  'lansdowne-va',
+  'south-riding-va',
+  'sterling-va',
+]);
 
 function permitGuideSlugForCity(citySlug: string): string | null {
   if (BERKELEY_JEFFERSON_WV.has(citySlug)) return 'deck-permits-berkeley-jefferson-county-wv-2026';

@@ -409,6 +409,26 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
    * on the rows above.
    */
   { slug: 'northern-virginia', city: 'Northern Virginia', state: 'VA', kind: 'region', market: 'premium', status: 'active', legacyTiers: [] },
+
+  /* ---------- Loudoun towns added 2026-09-27 ----------
+   * Western corridor (Route 9 from Martinsburg, then Route 7) and the
+   * eastern planned communities that did not have their own rows.
+   * Empty legacyTiers, same as northern-virginia: these publish pages and
+   * appear as Loudoun County children without rewriting the pre-catalog
+   * primary/secondary arrays pinned in constants.test.ts.
+   *
+   * `town` here includes incorporated towns and unincorporated places.
+   * Localities stay schema.org Place either way — see areaSchemaType.
+   */
+  { slug: 'purcellville-va', city: 'Purcellville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'round-hill-va', city: 'Round Hill', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'lovettsville-va', city: 'Lovettsville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'waterford-va', city: 'Waterford', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'hamilton-va', city: 'Hamilton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'aldie-va', city: 'Aldie', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'lansdowne-va', city: 'Lansdowne', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'south-riding-va', city: 'South Riding', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'sterling-va', city: 'Sterling', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
 ];
 
 /**
@@ -533,15 +553,15 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'leesburg-va': {
     description:
-      "Leesburg is Loudoun County's seat — Town limits around Old Town and the western approach from Route 7 and Route 9, plus Leesburg-address neighborhoods that sit in unincorporated county (Lansdowne, River Creek). A Leesburg mailing address is not automatically Town zoning. We lead here with decks and outdoor living, then kitchens, baths, room additions, and in-law basement finish, and we file Town zoning before the county building permit when the parcel is inside Town. Real Elite Contracting works western Leesburg first from Martinsburg.",
+      "Leesburg is Loudoun County's seat and an incorporated town. Town limits cover Old Town and the streets around it. A Leesburg mailing address is not Town zoning: Lansdowne and River Creek sit in unincorporated county and have their own pages. Exterior work in the Old and Historic District goes through the Town Board of Architectural Review. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The drive from Martinsburg is Route 9, which meets Route 7 in Leesburg. The remodeling this page is for is kitchens, primary suites, finished lower levels, additions, and outdoor living.",
     neighborhoods: ['Historic Old Town Leesburg', 'West of Route 15', 'Lansdowne on the Potomac', 'River Creek'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'ashburn-va': {
     description:
-      "Ashburn is unincorporated Loudoun County — county building and zoning through LandMARC, plus HOA architectural review in nearly every master-planned community. We lead here with decks and outdoor living, then kitchens, baths, room additions, and in-law basement finish. A county permit is not HOA approval; we file both tracks in parallel. Real Elite Contracting works Brambleton, Broadlands, Ashburn Farm, and One Loudoun from Martinsburg.",
+      "Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC, and nearly every master-planned community also requires HOA architectural review. A county permit is not HOA approval. Most of the housing is 1990s through 2010s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. Brambleton, Broadlands, Ashburn Farm, One Loudoun, Loudoun Valley Estates, and Belmont Greene are the communities this page covers. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
     neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'brambleton-va': {
     description:
@@ -574,9 +594,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'loudoun-county-va': {
     description:
-      "Loudoun County decks run two tracks: county building and zoning through LandMARC, plus HOA review in most master-planned communities. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen drops you onto full plans at $395 — the county publishes a screened porch as a residential addition. Leesburg, Purcellville, and Middleburg permit separately. We lead the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then kitchens, baths, room additions, and in-law basement finish. A county permit is not HOA approval. Real Elite Contracting works Loudoun from Martinsburg.",
-    neighborhoods: ['Purcellville', 'Leesburg', 'Middleburg', 'Ashburn', 'Brambleton', 'Lansdowne'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'basements', 'additions', 'roofing'],
+      "Loudoun County is two remodeling markets. Eastern communities such as Ashburn, Lansdowne, South Riding, and Sterling are mostly 1990s–2010s houses on public water and sewer. Exterior work there also needs HOA architectural review, and many basements were left unfinished. Western and southern places — Purcellville, Round Hill, Hamilton, Lovettsville, Waterford, and Aldie — are older village houses or custom homes on acreage, often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Waterford and Aldie sit in county historic districts, so exterior changes need a Certificate of Appropriateness from the Historic District Review Committee. Incorporated towns, including Leesburg, Purcellville, Hamilton, Round Hill, Lovettsville, and Middleburg, approve their own zoning before the county issues the building permit. County deck review still has a published fast path (Typical Deck Detail, $265) and a full-plan path at $395 when a roof or screen is added; the county treats a screened porch as an addition. The drive from Martinsburg is Route 9 to Leesburg, then Route 7. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Purcellville', 'Round Hill', 'Waterford', 'Aldie', 'Lansdowne', 'South Riding', 'Sterling', 'Hamilton', 'Lovettsville', 'Leesburg', 'Ashburn'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
 
   /* ---------- Fairfax County, VA (luxury Northern Virginia) ---------- */
@@ -632,9 +652,63 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'middleburg-va': {
     description:
-      "Middleburg is an incorporated Loudoun town. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). We lead here with decks and outdoor living, then additions, kitchens, and baths, and we work selected Middleburg from Martinsburg.",
+      "Middleburg is an incorporated Loudoun town on Route 50. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county, and many of those lots are on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
     neighborhoods: ['Historic District', 'Main Street', 'Atoka Road', 'Foxcroft Road', 'Goose Creek'],
-    marketEmphasis: ['decks', 'additions', 'kitchens', 'bathrooms', 'remodeling'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
+  },
+  'purcellville-va': {
+    description:
+      "Purcellville is an incorporated town on Route 7 in western Loudoun. A Purcellville mailing address is not always inside town limits: Wright Farm and Mayfair sit in the county's Joint Land Management Area beside the town. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The housing is a late-19th and early-20th century village along Main Street (Business Route 7), plus later subdivisions. Lots outside the town sewer are often on well and septic, and a bedroom addition on those lots needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, basements, additions, and outdoor living.",
+    neighborhoods: ['Historic downtown', 'Main Street', 'Route 7', 'Wright Farm', 'Mayfair'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
+  },
+  'round-hill-va': {
+    description:
+      "Round Hill is an incorporated town on Route 7, west of Purcellville. The village core is small. Newer houses sit on larger lots toward the county line, and many of those lots are on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Round Hill is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, additions, basements, and outdoor living.",
+    neighborhoods: ['Historic village', 'Loudoun Street', 'Route 7', 'West of town'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'basements', 'decks', 'remodeling'],
+  },
+  'lovettsville-va': {
+    description:
+      "Lovettsville is an incorporated town in northern Loudoun, near the Potomac and the Maryland line. The approach from the south is Route 287, the Berlin Turnpike, off Route 9. The town is a 19th-century village with later houses on lots that are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Lovettsville is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9, then north on Route 287. The remodeling this page is for is kitchens, primary suites, additions, basements, and outdoor living.",
+    neighborhoods: ['Historic downtown', 'Berlin Turnpike', 'Route 287', 'North of Route 9'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'basements', 'decks', 'remodeling'],
+  },
+  'waterford-va': {
+    description:
+      "Waterford is an unincorporated village northwest of Leesburg. Loudoun County's Waterford Historic and Cultural Conservation District covers the central village, and most exterior changes there — additions, porches, new accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Ordinary repairs that do not change design, material, or appearance are the exception the county publishes. The National Historic Landmark boundary is larger than the county district, which is limited to the central village. Interior kitchens, primary baths, and lower levels do not need that exterior review unless the work changes the outside. Many village and edge lots are on well and septic, so a bedroom addition also needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 through Hillsboro, then the local roads north of Leesburg. The remodeling this page is for is kitchens, primary suites, careful additions, and outdoor living that can pass historic review.",
+    neighborhoods: ['Main Street', 'Second Street', 'The mill', 'Village edge'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
+  },
+  'hamilton-va': {
+    description:
+      "Hamilton is an incorporated town on Route 7 between Purcellville and Leesburg. The core is a small 19th-century village. Houses toward the edges often sit on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Hamilton is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, basements, additions, and outdoor living.",
+    neighborhoods: ['Historic downtown', 'Route 7', 'East toward Leesburg', 'West toward Purcellville'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
+  },
+  'aldie-va': {
+    description:
+      "Aldie is an unincorporated village on Route 50 in southern Loudoun. The village and its mill sit in the Aldie Historic and Cultural Conservation District. Exterior changes there — additions, porches, accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Newer communities nearby, including Willowsford, are a separate review from the village overlay: county permits, and the community's own architectural standards where those apply. Acreage lots are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+    neighborhoods: ['Aldie village', 'The mill', 'Route 50', 'Willowsford'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
+  },
+  'lansdowne-va': {
+    description:
+      "Lansdowne is a planned community on the Potomac, east of Leesburg along Route 7. It is unincorporated Loudoun County. Many houses use a Leesburg mailing address, which does not make the parcel Town of Leesburg zoning. County building and zoning run through LandMARC, and exterior changes also go through the community's architectural review. The housing is mostly 1990s and 2000s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. This is not a well-and-septic market. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Lansdowne on the Potomac', 'Resort corridor', 'Route 7', 'Residential villages'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'south-riding-va': {
+    description:
+      "South Riding is a census-designated planned community in southeastern Loudoun, along Route 50. The Board of Supervisors approved it in 1993, and houses have been built since the mid-1990s. It is unincorporated county: schools and building permits are Loudoun's, and the South Riding Proprietary — incorporated in 1995 — governs common areas and architectural standards. Exterior changes need that review as well as the county permit. Homes are on public water and sewer, and many still have unfinished basements and builder-grade kitchens and primary baths. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Town Center', 'Center Street', 'Route 50', 'Residential sections'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'sterling-va': {
+    description:
+      "Sterling is an unincorporated community in eastern Loudoun, between Route 7 and Route 28. Sterling Park dates from the early 1960s. Later planned communities — Cascades, Potomac Falls, Sugarland Run, Countryside, and Lowes Island — are mostly 1980s through 2000s houses on public water and sewer. Several of those communities require HOA architectural review for exterior work, separate from the county permit through LandMARC. Older Sterling Park houses are the ones most often opened up for a new kitchen, a primary suite, or a finished lower level. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Sterling Park', 'Cascades', 'Potomac Falls', 'Sugarland Run', 'Countryside', 'Lowes Island'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
 };
 

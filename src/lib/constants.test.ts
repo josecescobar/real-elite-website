@@ -128,10 +128,17 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     // of the altitude plan). It carries no legacy tier, which is why the two
     // pins above still hold unchanged. Listed by name rather than regenerated:
     // anything else appearing here should fail until someone says why.
+    // Loudoun town rows added 2026-09-27. Empty legacyTiers, so they sit
+    // after the historical primary/secondary pins and the region row.
+    const LOUDOUN_TOWNS_2026_09_27 = [
+      'purcellville-va', 'round-hill-va', 'lovettsville-va', 'waterford-va',
+      'hamilton-va', 'aldie-va', 'lansdowne-va', 'south-riding-va', 'sterling-va',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
       'northern-virginia',
+      ...LOUDOUN_TOWNS_2026_09_27,
     ]);
   });
 
@@ -148,7 +155,19 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     // Same historical set plus the region row, which is a premium market and
     // so routes to /design-consultation like the towns inside it.
     expect([...LUXURY_CITY_SLUGS].sort()).toEqual(
-      [...LUXURY_AT_32E6856, 'northern-virginia'].sort()
+      [
+        ...LUXURY_AT_32E6856,
+        'northern-virginia',
+        'purcellville-va',
+        'round-hill-va',
+        'lovettsville-va',
+        'waterford-va',
+        'hamilton-va',
+        'aldie-va',
+        'lansdowne-va',
+        'south-riding-va',
+        'sterling-va',
+      ].sort()
     );
   });
 
@@ -546,12 +565,44 @@ describe('the Northern Virginia region row', () => {
   });
 
   it('reaches the Loudoun towns through the county, two hops up', () => {
-    for (const slug of ['leesburg-va', 'ashburn-va', 'brambleton-va', 'middleburg-va']) {
+    for (const slug of [
+      'leesburg-va',
+      'ashburn-va',
+      'brambleton-va',
+      'middleburg-va',
+      'purcellville-va',
+      'round-hill-va',
+      'lovettsville-va',
+      'waterford-va',
+      'hamilton-va',
+      'aldie-va',
+      'lansdowne-va',
+      'south-riding-va',
+      'sterling-va',
+    ]) {
       expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
         'loudoun-county-va',
         'northern-virginia',
       ]);
     }
+  });
+
+  it('lists the Loudoun towns as children of the county, in catalog order', () => {
+    expect(childAreasOf('loudoun-county-va').map((a) => a.slug)).toEqual([
+      'leesburg-va',
+      'ashburn-va',
+      'middleburg-va',
+      'brambleton-va',
+      'purcellville-va',
+      'round-hill-va',
+      'lovettsville-va',
+      'waterford-va',
+      'hamilton-va',
+      'aldie-va',
+      'lansdowne-va',
+      'south-riding-va',
+      'sterling-va',
+    ]);
   });
 
   it('leaves the home market and the Shenandoah unparented', () => {
