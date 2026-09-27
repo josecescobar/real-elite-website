@@ -925,6 +925,29 @@ export function areaAncestors(area: ServiceArea): ServiceArea[] {
   return chain;
 }
 
+export type AreaHeroLane = 'consultation' | 'estimate';
+
+/**
+ * Which hero a town or county page leads with.
+ *
+ * The two-lane rule: Loudoun, Fairfax and Prince William (and the places
+ * inside those counties) open on a design consultation. West Virginia and
+ * the other home-market rows keep the free estimate.
+ *
+ * The county row decides. A town inherits the lane of the county above it
+ * in the catalog, so the template never carries a slug list. A row with no
+ * county ancestor — the Eastern Panhandle towns, Frederick, Winchester,
+ * Alexandria, the Northern Virginia region — follows its own `market`,
+ * except West Virginia, which stays on the estimate even if a later edit
+ * marks a Panhandle row premium.
+ */
+export function areaHeroLane(area: ServiceArea): AreaHeroLane {
+  if (area.state === 'WV') return 'estimate';
+  const county = [area, ...areaAncestors(area)].find((row) => row.kind === 'county');
+  if (county) return county.market === 'premium' ? 'consultation' : 'estimate';
+  return area.market === 'premium' ? 'consultation' : 'estimate';
+}
+
 /** Legacy flat list (primary + secondary city names) for simple iterations */
 export const SERVICE_AREAS = [
   ...PRIMARY_SERVICE_AREAS.map((a) => a.city),

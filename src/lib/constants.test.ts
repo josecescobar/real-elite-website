@@ -16,6 +16,7 @@ import {
   areaSchemaType,
   childAreasOf,
   areaAncestors,
+  areaHeroLane,
   areaRegionLabel,
   CITY_DATA,
   GALLERY_IMAGES,
@@ -538,6 +539,41 @@ describe('areaRegionLabel', () => {
     // value they would otherwise interpolate.
     const nova = getServiceArea('northern-virginia')!;
     expect(areaRegionLabel(nova)).toBe('Northern Virginia');
+  });
+});
+
+describe('areaHeroLane', () => {
+  const PREMIUM_COUNTIES = [
+    'loudoun-county-va',
+    'fairfax-county-va',
+    'prince-william-county-va',
+  ] as const;
+
+  it('puts each premium county, and every place inside it, on the consultation lane', () => {
+    for (const slug of PREMIUM_COUNTIES) {
+      const county = getServiceArea(slug)!;
+      expect(areaHeroLane(county), slug).toBe('consultation');
+      for (const child of childAreasOf(slug)) {
+        expect(areaHeroLane(child), child.slug).toBe('consultation');
+      }
+    }
+  });
+
+  it('keeps West Virginia and the other home-market rows on the estimate lane', () => {
+    for (const area of ALL_SERVICE_AREAS) {
+      if (area.state === 'WV' || area.market === 'home') {
+        expect(areaHeroLane(area), area.slug).toBe('estimate');
+      }
+    }
+  });
+
+  it('follows the county row, not a slug list on the town', () => {
+    const leesburg = getServiceArea('leesburg-va')!;
+    const loudoun = getServiceArea('loudoun-county-va')!;
+    expect(areaAncestors(leesburg)[0]?.slug).toBe('loudoun-county-va');
+    expect(areaHeroLane(leesburg)).toBe(
+      loudoun.market === 'premium' ? 'consultation' : 'estimate'
+    );
   });
 });
 
