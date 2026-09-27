@@ -44,7 +44,7 @@ const HUB_FAQS = [
   {
     question: 'What areas do you serve for paving?',
     answer:
-      'We pave across the Eastern Panhandle of West Virginia (Martinsburg, Inwood, Spring Mills, Hedgesville, Falling Waters, Charles Town, Shepherdstown), the Northern Shenandoah Valley in Virginia (Winchester), and the Cumberland Valley and I-70 corridor in Maryland (Hagerstown, Frederick). We are headquartered in Martinsburg and licensed in all three states.',
+      'We pave across the Eastern Panhandle of West Virginia (Martinsburg, Inwood, Spring Mills, Hedgesville, Falling Waters, Charles Town, Shepherdstown), the Northern Shenandoah Valley in Virginia (Winchester), and the I-70 corridor in Maryland (Frederick). We are headquartered in Martinsburg and licensed in all three states.',
   },
   {
     question: 'Is paving really part of a remodeling and roofing company?',

@@ -69,7 +69,6 @@ export const COMBO_CITY_SLUGS = [
   'frederick-md',
   'leesburg-va',
   'ashburn-va',
-  'hagerstown-md',
   'loudoun-county-va',
 
   // Northern Virginia at region altitude. The only combo city that is not a
@@ -219,15 +218,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
-  'roofing-hagerstown-md': {
-    paragraphs: [
-      "Hagerstown's location at the I-70 / I-81 crossroads in the Cumberland Valley means your roof faces the full Mid-Atlantic weather mix — nor'easters from the east, snow squalls funneling down from the Allegheny ridges, and summer thunderstorms that have travelled across the valley. As Washington County's county seat and largest city, Hagerstown homeowners need a roofing contractor familiar with both the historic brick row homes near Public Square and the newer suburban construction along the Halfway and Robinwood corridors.",
-      "Real Elite Contracting provides professional roofing services across Hagerstown and the surrounding Cumberland Valley. Our crews handle architectural shingle replacements on the Federal and Victorian-era homes that line the historic North End and Fountain Head, where rooflines often feature steep pitches, multiple dormers, and intricate valleys that demand precision. For newer subdivisions in the South End and along the I-81 commercial corridor, we offer efficient full replacements with predictable timelines and clean job sites.",
-      "Hagerstown's roofs deal with a freeze-thaw cycle that's particularly hard on flashing, valleys, and chimney saddles — the bridge climate where the Eastern Panhandle's milder winters meet Pennsylvania's colder ones. We install only premium architectural shingles from GAF and Owens Corning, backed by manufacturer warranties and our own workmanship guarantee in writing. Ridge venting, proper underlayment, and ice-and-water shield in the right places are standard, not upsells.",
-      "Insurance claims after the regular wind events that hit the Cumberland Valley are handled directly with your carrier — we document damage with on-roof photos, provide the detailed scope insurers expect, and coordinate inspections so the claim moves through quickly. For Hagerstown homeowners replacing a roof at the end of its service life rather than after storm damage, our free inspections include an honest read on whether the roof has years left or whether replacement is the right call now.",
-    ],
-  },
-
   'roofing-loudoun-county-va': {
     paragraphs: [
       "Real Elite Contracting replaces and repairs roofs across Loudoun County. We work the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then the master-planned communities when the parcel is there. We install architectural shingles and standing-seam metal when the job calls for them; we do not advertise a manufacturer Pro, Platinum, or Master Elite badge we do not hold, and we do not publish invented replacement price bands.",
@@ -327,15 +317,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
-  'decks-hagerstown-md': {
-    paragraphs: [
-      "Real Elite Contracting builds decks and outdoor living for Hagerstown homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. A Hagerstown mailing address is not automatically City limits: Halfway, Robinwood, and Fountain Head often sit in Washington County. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
-      "Inside the City, a building permit is required for decks. Applications go to the Department of Engineering and Permits at One E. Franklin Street, 3rd floor, or through the City's online building-permit form. The City's published packet asks for a completed application, a scaled plot plan with existing structures and distances to property lines, owner permission if you are not the owner, plan sets (two paper and one digital on the current guidelines), and the contractor's City license number when a contractor is hired. Inspections for building and trade permits are requested through the City inspection-request page. We do not publish a made-up Hagerstown fee or a fake 2–3 week timeline — we put the current City amount and review window in the written estimate.",
-      "Historic-district design review and zoning setbacks, when they apply, are a separate track from the building permit. Outside City limits, Washington County issues the building permit. We tell you which office files the job before we lock the schedule.",
-      "What you get is the paperwork product: City or county path, plot plan, and inspection sequence (footing before concrete; framing before decking). We install to the approved plans and document each inspection.",
-    ],
-  },
-
   'decks-loudoun-county-va': {
     // The body already publishes the $25k-$75k+ range this market works in, so
     // the snippet leads with it. A homeowner pricing an outdoor-living buildout
@@ -398,15 +379,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
-  'remodeling-hagerstown-md': {
-    paragraphs: [
-      "Hagerstown's housing stock is one of its strongest assets — solid brick row homes in the historic district, mid-century single-family homes along the established corridors, and newer construction in the rapidly growing Halfway, Robinwood, and Fountain Head neighborhoods. Each comes with its own remodeling considerations, and Real Elite Contracting brings the right approach to whatever the project is.",
-      "For Washington County homeowners updating older properties — bathroom remodels in 1950s-era brick homes, kitchen remodels in mid-century ranches, basement finishing in established neighborhoods — the work always starts with understanding what's behind the walls. Older Hagerstown homes often have plumbing and electrical that needs attention before any cosmetic update is worth doing, and we'll tell you upfront if those underlying systems need investment first. The cost is real but ignoring it always costs more.",
-      "For newer suburban remodels — open-concept kitchen updates, primary suite bathroom upgrades, mudroom and laundry buildouts — we deliver premium finishes with the same project management discipline. Named project lead, daily updates, clean job site every day, and a written workmanship warranty when the work is done.",
-      "Typical timelines: bathroom remodels run 3–5 weeks of active work in the Hagerstown market, kitchens 6–10 weeks, basements 6–12 weeks. We give you a written timeline before we break ground and update you daily if anything shifts. Permitting through Washington County and the City of Hagerstown is included as part of every project.",
-    ],
-  },
-
   'remodeling-loudoun-county-va': {
     paragraphs: [
       "Real Elite Contracting remodels Loudoun County homes — kitchens, baths, additions, and whole-home work — and we lead the western corridor first. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Everywhere else, LandMARC handles building and zoning.",
@@ -454,15 +426,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
-  'siding-hagerstown-md': {
-    paragraphs: [
-      "Hagerstown's varied housing stock — historic brick, mid-century clapboard, modern fiber cement, newer vinyl construction — means siding work in this market requires real range. Real Elite Contracting handles vinyl replacement, fiber cement (James Hardie and comparable) installation, and stone veneer accent work across Washington County, from the historic Public Square area through the growing Halfway and Robinwood corridors.",
-      "For homeowners in newer Hagerstown developments — the rapidly growing South End, communities along the I-81 corridor, and newer subdivisions in the surrounding county — fiber cement siding is increasingly the standard. James Hardie holds up to the Cumberland Valley climate beautifully, requires minimal maintenance, and dramatically improves resale value. We're certified on the install process and can show you completed projects in the area.",
-      "For older Hagerstown properties — the brick row homes near downtown, mid-century clapboard houses in the established neighborhoods — siding work often involves restoration alongside replacement. We can match historic profiles, repair sound original siding rather than ripping it all out, and integrate new materials with existing in ways that respect the property's character. For homeowners in historic preservation districts, we coordinate with the Hagerstown HARB (Historic District Commission) on any required reviews.",
-      "Hagerstown's weather — humid summers, snowy winters, the freeze-thaw cycle, occasional wind events — is what siding has to survive. Cheap vinyl over poor underlayment fails inside a decade; properly installed fiber cement or premium vinyl with house wrap, flashing, and proper trim details lasts 30+ years. We install for the long term, not the lowest bid.",
-    ],
-  },
-
   'siding-loudoun-county-va': {
     paragraphs: [
       "Real Elite Contracting installs and replaces siding across Loudoun County — vinyl, fiber cement, and stone veneer when the job calls for them. We work the western corridor first. We do not advertise a James Hardie certification or manufacturer Pro badge we do not hold, and we do not publish invented siding price bands.",
@@ -507,15 +470,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Plumbing or electrical relocation needs county trade permits and inspections. Exterior openings need the association packet in parallel. Historic-district exteriors need a Certificate of Appropriateness. Load-bearing changes need stamped drawings.",
       "We do not publish invented bathroom price bands or named fixture catalogs as if they were the standard package. Waterproofing, slope-to-drain, and the inspection order are in the written scope.",
       "Named project lead.",
-    ],
-  },
-
-  'bathrooms-hagerstown-md': {
-    paragraphs: [
-      "Hagerstown bathroom remodels span the full range. Historic brick row homes in the North End and around Public Square have original 1920s and 1930s bathrooms — small, dated, often with structural surprises behind the plaster. Mid-century ranches along the established corridors typically have one full bath plus a half bath, both badly in need of refresh. Newer construction in Halfway, Robinwood, and the South End mostly needs primary-suite upgrades or basement-bath buildouts.",
-      "Real Elite Contracting handles Washington County bathroom projects across that whole range. For older homes, we always start by checking what's behind the walls — galvanized supply lines, cast iron drain stacks, and old electrical that needs attention before any cosmetic finish work is worth doing. We tell you upfront if the underlying systems need investment first. The cost is real but ignoring it always costs more.",
-      "For newer Hagerstown homes — primary baths in 1990s and 2000s construction — the typical project is a curbless walk-in shower conversion replacing the original cultured marble surround, double-vanity rebuild, new tile floor, frameless glass, and modernized lighting. Schluter-Kerdi waterproofing is standard on every shower we build, not an upsell. Typical investment runs $20,000–$40,000 for a full primary bath in this market.",
-      "Permits and inspections through Washington County and the City of Hagerstown are part of every project that involves plumbing or electrical changes. We pull the permits, coordinate the inspections (rough-in and final), and document everything on your behalf. Most full bathroom remodels in Hagerstown run 3–5 weeks of active work; powder rooms and partial refreshes run 1–2 weeks.",
     ],
   },
 

@@ -75,7 +75,7 @@ Most siding projects run **1 to 3 weeks** of active work depending on the size o
 
 We treat the exterior as the home's armor: a clear written scope and pricing, the weather barrier and flashing done right behind the finish, premium materials installed to manufacturer spec (so warranties hold), clean transitions and trim, and a written workmanship warranty at the end. Veteran-owned precision, applied to the face your home shows the world.
 
-If you're considering new siding or a stone facade in **the Eastern Panhandle, Frederick MD, Hagerstown, Winchester, Loudoun County, or anywhere across the WV–MD–VA region**, we'd be glad to take a look and give you a straight, written estimate.
+If you're considering new siding or a stone facade in **the Eastern Panhandle, Frederick MD, Winchester, Loudoun County, or anywhere across the WV–MD–VA region**, we'd be glad to take a look and give you a straight, written estimate.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [siding & stone services](/services/siding) and [exterior repairs](/services/exterior-repairs).
 

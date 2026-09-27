@@ -366,7 +366,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       'The broadest-reaching of the seven and the one with the most legal weight. Also published in the sitewide FAQ in constants.ts, on eight standalone pages, and in 15 blog posts — all outside this guard. A retraction is a repo-wide sweep, not a 30-key edit.',
     publishedIn: {
       comboKeys: [
-        'decks-loudoun-county-va', 'remodeling-hagerstown-md', 'siding-loudoun-county-va',
+        'decks-loudoun-county-va', 'siding-loudoun-county-va',
         'bathrooms-mclean-va', 'bathrooms-alexandria-va', 'kitchens-mclean-va',
         'kitchens-alexandria-va', 'basements-mclean-va', 'basements-alexandria-va',
         'bathrooms-vienna-va', 'kitchens-vienna-va', 'basements-vienna-va',
@@ -378,7 +378,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
         // to 2026-07-06 (#63) — it is not new, it was never matched. Adding it
         // here is the one legitimate reason to grow an inventory; growing it to
         // silence a guard that caught NEW copy is what the header forbids.
-        'roofing-frederick-md', 'roofing-hagerstown-md', 'roofing-loudoun-county-va', ],
+        'roofing-frederick-md', 'roofing-loudoun-county-va', ],
       serviceSlugs: ['kitchens', 'roofing', 'general-repairs', 'handyman'],
       templates: [
         'src/lib/trust-bullets.ts',
@@ -398,7 +398,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       'A staffing claim. It is falsifiable by a single job run by two people, and it is asserted on 35 of the 69 combo pages.',
     publishedIn: {
       comboKeys: [
-        'remodeling-hagerstown-md', 'bathrooms-leesburg-va', 'bathrooms-loudoun-county-va',
+        'bathrooms-leesburg-va', 'bathrooms-loudoun-county-va',
         'kitchens-frederick-md', 'kitchens-leesburg-va', 'kitchens-ashburn-va',
         'kitchens-loudoun-county-va', 'basements-frederick-md', 'bathrooms-mclean-va',
         'bathrooms-alexandria-va', 'kitchens-mclean-va', 'kitchens-alexandria-va',
@@ -444,7 +444,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       'The softer sibling of daily-progress-photos, and registered separately because the owner may well be able to confirm this one and not the photos.',
     publishedIn: {
       comboKeys: [
-        'remodeling-hagerstown-md', 'remodeling-loudoun-county-va', 'bathrooms-frederick-md',
+        'remodeling-loudoun-county-va', 'bathrooms-frederick-md',
         'bathrooms-leesburg-va', 'bathrooms-winchester-va', 'kitchens-frederick-md',
         'kitchens-leesburg-va', 'kitchens-ashburn-va', 'kitchens-loudoun-county-va',
         'basements-frederick-md', 'basements-mclean-va', 'basements-vienna-va',
@@ -468,7 +468,7 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       'A daily operational promise, and the easiest of the seven for a homeowner to check — they are standing in the room at 6pm. It is also the one most likely to be broken by a subcontractor rather than by the crew, which makes it a claim about scheduling and supervision rather than about intent. Published on 135 of 182 built pages including the homepage.',
     publishedIn: {
       comboKeys: [
-        'roofing-hagerstown-md', 'remodeling-hagerstown-md', 'basements-frederick-md',
+        'basements-frederick-md',
         'kitchens-mclean-va', 'kitchens-alexandria-va', 'basements-mclean-va',
         'basements-alexandria-va', 'bathrooms-vienna-va', 'kitchens-vienna-va',
         'basements-vienna-va', 'bathrooms-great-falls-va', 'kitchens-great-falls-va',
@@ -562,8 +562,8 @@ export const OPERATIONAL_CLAIMS: readonly OperationalClaim[] = [
       'Registered as one claim across all markets rather than only the 8-22 week NoVA figures the brief flagged, because they are the same kind of promise and the owner will want to rule on them together. A schedule quoted on a page becomes the baseline a late job is measured against.',
     publishedIn: {
       comboKeys: [
-        'remodeling-hagerstown-md', 'bathrooms-leesburg-va', 'bathrooms-ashburn-va',
-        'bathrooms-loudoun-county-va', 'bathrooms-hagerstown-md', 'bathrooms-winchester-va',
+        'bathrooms-leesburg-va', 'bathrooms-ashburn-va',
+        'bathrooms-loudoun-county-va', 'bathrooms-winchester-va',
         'kitchens-frederick-md', 'kitchens-leesburg-va', 'kitchens-ashburn-va',
         'kitchens-loudoun-county-va', 'basements-frederick-md', 'basements-mclean-va',
         'basements-vienna-va', 'kitchens-great-falls-va', 'basements-great-falls-va',

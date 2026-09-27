@@ -48,7 +48,7 @@ const FAQ_SECTIONS = [
       {
         question: 'What areas do you serve?',
         answer:
-          'Eastern Panhandle WV (Martinsburg, Inwood, Charles Town, Ranson, Hedgesville, Spring Mills, Falling Waters, Berkeley Springs, Shepherdstown), plus Frederick MD, Hagerstown MD, Winchester VA, Leesburg VA, Ashburn VA, and the wider Loudoun County. If you are nearby and not listed, ask — we will tell you upfront if we are the right fit.',
+          'Eastern Panhandle WV (Martinsburg, Inwood, Charles Town, Ranson, Hedgesville, Spring Mills, Falling Waters, Berkeley Springs, Shepherdstown), plus Frederick MD, Winchester VA, Leesburg VA, Ashburn VA, and the wider Loudoun County. If you are nearby and not listed, ask — we will tell you upfront if we are the right fit.',
       },
       {
         question: 'How do I get a free estimate?',

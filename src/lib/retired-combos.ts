@@ -76,4 +76,17 @@ export const RETIRED_COMBOS: Readonly<Record<string, string>> = {
 
   // Burke, VA — basements only. Its kitchen and bathroom pages survive.
   'basements-burke-va': '/services/basements/northern-virginia',
+
+  // Hagerstown, MD — the whole area was dropped from the service area on
+  // 2026-09-27 (feat/luxury-loudoun-2026-09), not retired for low demand like
+  // Tier C above. With no Hagerstown area page left to land on, and no
+  // regional page for these trades in that market, each combo goes to its
+  // service pillar: the trade survives, the place match does not. The area
+  // page itself (/service-areas/hagerstown-md) and the paving location page
+  // are redirected by hand in next.config.ts.
+  'roofing-hagerstown-md': '/services/roofing',
+  'decks-hagerstown-md': '/services/decks',
+  'remodeling-hagerstown-md': '/services/remodeling',
+  'siding-hagerstown-md': '/services/siding',
+  'bathrooms-hagerstown-md': '/services/bathrooms',
 };

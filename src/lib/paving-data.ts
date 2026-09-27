@@ -202,7 +202,7 @@ export const PAVING_SERVICES: PavingService[] = [
     },
     intro: [
       "A parking lot is the first impression of your business and a real safety and liability surface. Standing water, faded striping, potholes, and crumbling edges don't just look bad — they create trip hazards, ADA compliance gaps, and drainage problems that accelerate failure. A well-built lot does the opposite: it directs traffic cleanly, sheds water, and signals that the business behind it is run with care.",
-      "Real Elite Contracting and our paving partner pave and resurface commercial and institutional parking lots throughout the Eastern Panhandle, Hagerstown and Frederick in Maryland, and the Winchester area of Virginia. We work with retail centers, offices, churches, medical and dental practices, restaurants, and homeowner associations. We understand that your lot has to stay usable — so we phase the work, schedule around your hours, and keep access open wherever possible.",
+      "Real Elite Contracting and our paving partner pave and resurface commercial and institutional parking lots throughout the Eastern Panhandle, Frederick in Maryland, and the Winchester area of Virginia. We work with retail centers, offices, churches, medical and dental practices, restaurants, and homeowner associations. We understand that your lot has to stay usable — so we phase the work, schedule around your hours, and keep access open wherever possible.",
     ],
     whatsIncluded: [
       { title: 'Engineered drainage & grading', body: 'We grade lots to move storm water to the right outlets and eliminate the standing-water spots that crack and pothole first.' },
@@ -312,7 +312,7 @@ export const PAVING_SERVICES: PavingService[] = [
     },
     intro: [
       "Asphalt almost never fails all at once. It starts with a hairline crack, a soft spot, a crumbling edge — and the Mid-Atlantic freeze-thaw cycle does the rest, working water into the damage and prying it apart every winter. The homeowners and businesses who stay ahead of those small problems get years of extra life out of their asphalt. The ones who wait end up replacing the whole surface.",
-      "Real Elite Contracting and our paving partner handle the full range of asphalt repair across the Eastern Panhandle, Hagerstown, Frederick, and Winchester areas: pothole patching, crack filling, sunken-area repair, edge repair, and resurfacing overlays when a surface is worn but the base is still sound. We'll always tell you honestly whether a repair buys you real time or whether you'd be throwing good money after bad on a surface that needs replacement.",
+      "Real Elite Contracting and our paving partner handle the full range of asphalt repair across the Eastern Panhandle, Frederick, and Winchester areas: pothole patching, crack filling, sunken-area repair, edge repair, and resurfacing overlays when a surface is worn but the base is still sound. We'll always tell you honestly whether a repair buys you real time or whether you'd be throwing good money after bad on a surface that needs replacement.",
     ],
     whatsIncluded: [
       { title: 'Pothole patching', body: 'Proper cut-out, clean, and compacted hot-mix patching that bonds and lasts — not a shovel of cold mix that pops out by spring.' },
@@ -367,7 +367,7 @@ export const PAVING_SERVICES: PavingService[] = [
     },
     intro: [
       "Commercial asphalt is a different discipline from a residential driveway. The traffic loads are heavier, the drainage spans are larger, the downtime costs real money, and the liability is higher. A business or municipal surface has to carry delivery trucks and constant turning, drain a much larger footprint, meet accessibility requirements, and do it all while staying usable. That takes a heavier base, a thicker asphalt section, and a contractor who plans the work around your operation.",
-      "Real Elite Contracting and our paving partner take on commercial and institutional paving across the Eastern Panhandle, Hagerstown and Frederick in Maryland, and the Winchester corridor in Virginia — retail and office sites, churches, medical practices, restaurants, HOAs, and private roads. We bring the same accountability our name is built on: one point of contact, a written phasing plan, clean execution, and a finished surface specced for the traffic it actually has to carry.",
+      "Real Elite Contracting and our paving partner take on commercial and institutional paving across the Eastern Panhandle, Frederick in Maryland, and the Winchester corridor in Virginia — retail and office sites, churches, medical practices, restaurants, HOAs, and private roads. We bring the same accountability our name is built on: one point of contact, a written phasing plan, clean execution, and a finished surface specced for the traffic it actually has to carry.",
     ],
     whatsIncluded: [
       { title: 'Heavy-duty base & section', body: 'Base depth and asphalt thickness engineered for commercial traffic loads — trucks, constant turning movements, and sustained parking.' },
@@ -547,7 +547,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     state: 'WV',
     county: 'Berkeley County',
     zips: ['25419'],
-    nearby: ['martinsburg-wv', 'spring-mills-wv', 'hedgesville-wv', 'hagerstown-md'],
+    nearby: ['martinsburg-wv', 'spring-mills-wv', 'hedgesville-wv', 'inwood-wv'],
     metaTitle: 'Paving Falling Waters WV — Asphalt Driveways & Repair',
     metaDescription:
       'Asphalt paving, driveways, sealcoating and repair in Falling Waters, WV — drainage-smart paving for riverside and rural lots near the Potomac.',
@@ -615,7 +615,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     state: 'WV',
     county: 'Jefferson County',
     zips: ['25443'],
-    nearby: ['charles-town-wv', 'martinsburg-wv', 'hagerstown-md', 'winchester-va'],
+    nearby: ['charles-town-wv', 'martinsburg-wv', 'frederick-md', 'winchester-va'],
     metaTitle: 'Paving Shepherdstown WV — Asphalt Driveways & Repair',
     metaDescription:
       'Asphalt paving, driveways, sealcoating and repair in Shepherdstown, WV — drainage-smart work for historic and university-area properties.',
@@ -678,46 +678,12 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     ],
   },
   {
-    slug: 'hagerstown-md',
-    city: 'Hagerstown',
-    state: 'MD',
-    county: 'Washington County',
-    zips: ['21740', '21742'],
-    nearby: ['falling-waters-wv', 'martinsburg-wv', 'frederick-md', 'shepherdstown-wv'],
-    metaTitle: 'Paving Hagerstown MD — Asphalt Driveways & Parking Lots',
-    metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating and repair in Hagerstown, MD — veteran-owned paving for the Cumberland Valley.',
-    keywords: [
-      'paving Hagerstown MD',
-      'asphalt driveway Hagerstown',
-      'parking lot paving Hagerstown',
-      'driveway paving Hagerstown MD',
-      'sealcoating Hagerstown',
-    ],
-    heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Hagerstown and the Cumberland Valley — veteran-owned and licensed in Maryland.',
-    intro: [
-      "Hagerstown sits at the crossroads of I-70 and I-81 — the commercial hub of Maryland's Cumberland Valley, with a mix of historic neighborhoods near Public Square and growing suburban development along the Halfway and Robinwood corridors. That crossroads location means heavy commercial activity and parking lots that take real traffic, alongside a deep stock of residential driveways spanning century-old brick homes to newer construction.",
-      "We pave and repair driveways and commercial lots throughout the Hagerstown and Washington County area, licensed and insured in Maryland. The Cumberland Valley's freeze-thaw winters are hard on asphalt, so we put particular emphasis on base, drainage, and timely maintenance here. Whether it's a Robinwood-area driveway or a commercial lot off the Dual Highway, we bring proper specs and an accountable, single-point-of-contact approach.",
-    ],
-    localFactors: [
-      { title: 'Roads & neighborhoods', body: 'The Public Square historic district, the North End, and the Halfway, Robinwood, and Dual Highway corridors — plus the commercial lots that come with an I-70/I-81 hub.' },
-      { title: 'Commercial traffic', body: 'As a regional commercial center, Hagerstown has lots that carry serious traffic. We spec base depth and asphalt thickness for the real load, not a residential number.' },
-      { title: 'Cumberland Valley freeze-thaw', body: 'Hagerstown winters cycle hard between freeze and thaw, prying open any crack. Crack filling, drainage, and sealcoating on schedule are essential to making asphalt last here.' },
-    ],
-    faqs: [
-      { question: 'Are you licensed to pave in Maryland?', answer: 'Yes. Real Elite Contracting is licensed and insured in Maryland, West Virginia, and Virginia. Hagerstown and Washington County are an established part of our service area.' },
-      { question: 'Do you pave commercial parking lots in Hagerstown?', answer: 'Yes. As a commercial hub, Hagerstown has lots that take heavy traffic, and we pave and resurface them with the proper base and asphalt section, ADA-compliant striping, and phased scheduling that keeps the business open.' },
-      { question: 'Why does Hagerstown’s climate matter for paving?', answer: 'The Cumberland Valley cycles hard between freezing and thawing through winter, which works water into any crack and expands it, accelerating failure. We emphasize drainage, crack filling, and sealcoating on schedule here because that freeze-thaw is the main thing breaking asphalt down.' },
-    ],
-  },
-  {
     slug: 'frederick-md',
     city: 'Frederick',
     state: 'MD',
     county: 'Frederick County, MD',
     zips: ['21701', '21702', '21703', '21704'],
-    nearby: ['hagerstown-md', 'martinsburg-wv', 'falling-waters-wv', 'winchester-va'],
+    nearby: ['shepherdstown-wv', 'martinsburg-wv', 'falling-waters-wv', 'winchester-va'],
     metaTitle: 'Paving Frederick MD — Asphalt Driveways & Parking Lots',
     metaDescription:
       'Asphalt paving, driveways, parking lots, sealcoating and repair in Frederick, MD — veteran-owned paving for the I-70 corridor.',

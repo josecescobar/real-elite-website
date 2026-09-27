@@ -104,7 +104,7 @@ describe('service areas', () => {
 describe('SERVICE_AREA_CATALOG derived views', () => {
   const PRIMARY_AT_32E6856 = [
     'martinsburg-wv', 'inwood-wv', 'charles-town-wv', 'ranson-wv', 'hedgesville-wv',
-    'frederick-md', 'hagerstown-md', 'winchester-va', 'leesburg-va', 'ashburn-va',
+    'frederick-md', 'winchester-va', 'leesburg-va', 'ashburn-va',
     'mclean-va', 'alexandria-va', 'vienna-va', 'great-falls-va', 'reston-va',
     'burke-va', 'fairfax-station-va', 'clifton-va', 'middleburg-va',
   ];
@@ -137,7 +137,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
 
   it('keeps the expansion alias a subset of the catalog, VA/MD only', () => {
     const slugs = new Set(SERVICE_AREA_CATALOG.map((a) => a.slug));
-    expect(EXPANSION_SERVICE_AREAS.length).toBe(15);
+    expect(EXPANSION_SERVICE_AREAS.length).toBe(14);
     for (const area of EXPANSION_SERVICE_AREAS) {
       expect(slugs.has(area.slug)).toBe(true);
       expect(area.state, `${area.slug} is not VA/MD`).not.toBe('WV');
@@ -555,7 +555,7 @@ describe('the Northern Virginia region row', () => {
   });
 
   it('leaves the home market and the Shenandoah unparented', () => {
-    for (const slug of ['martinsburg-wv', 'frederick-md', 'winchester-va', 'hagerstown-md']) {
+    for (const slug of ['martinsburg-wv', 'frederick-md', 'winchester-va']) {
       expect(areaAncestors(getServiceArea(slug)!), slug).toEqual([]);
     }
   });

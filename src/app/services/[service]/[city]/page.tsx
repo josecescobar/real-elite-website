@@ -62,7 +62,7 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
 
 /**
  * Refuse to render service+city combos outside generateStaticParams.
- * Hagerstown MD + Loudoun County VA would otherwise be rendered
+ * Unpublished combos would otherwise be rendered
  * on-demand and hit notFound() at runtime — visible as soft 404s in
  * Search Console. With dynamicParams=false, Next returns a hard 404
  * for any combo not in the list.

@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import nodePath from 'node:path';
 import {
   CONTENT,
   COMBO_CITY_SLUGS,
@@ -684,9 +686,24 @@ describe('Tier C retired combos', () => {
    * next.config.ts redirects it. These tests are what stop a retirement
    * shipping half-done.
    */
-  it('retires exactly the ten combos the doc names', () => {
+  /**
+   * Hagerstown, MD was dropped from the service area on 2026-09-27. Its five
+   * combos share RETIRED_COMBOS (and so the redirect guard below) but follow
+   * their own destination rule, so they are split out of the Tier C checks.
+   */
+  const HAGERSTOWN_COMBOS = [
+    'bathrooms-hagerstown-md',
+    'decks-hagerstown-md',
+    'remodeling-hagerstown-md',
+    'roofing-hagerstown-md',
+    'siding-hagerstown-md',
+  ];
+  const isHagerstown = (key: string) => key.endsWith('-hagerstown-md');
+
+  it('retires exactly the ten Tier C combos plus the five Hagerstown ones', () => {
     expect(Object.keys(RETIRED_COMBOS).sort()).toEqual(
       [
+        ...HAGERSTOWN_COMBOS,
         'basements-burke-va',
         'basements-clifton-va',
         'basements-fairfax-station-va',
@@ -744,6 +761,7 @@ describe('Tier C retired combos', () => {
    */
   it('sends basements to the regional page and the rest to the area page', () => {
     for (const [key, destination] of Object.entries(RETIRED_COMBOS)) {
+      if (isHagerstown(key)) continue;
       if (key.startsWith('basements-')) {
         expect(destination, `${key} should keep its trade`).toBe(
           '/services/basements/northern-virginia'
@@ -860,6 +878,7 @@ describe('Tier C retired combos', () => {
       // typo, a removed route, another retired combo — is a link to a 404.
       const areaMatch = /^\/service-areas\/([a-z0-9-]+)$/.exec(path);
       const comboMatch = /^\/services\/([a-z0-9-]+)\/([a-z0-9-]+)$/.exec(path);
+      const pillarMatch = /^\/services\/([a-z0-9-]+)$/.exec(path);
 
       if (areaMatch) {
         expect(
@@ -872,9 +891,16 @@ describe('Tier C retired combos', () => {
           publishedCombos.has(targetKey),
           `${key} redirects to ${path}, but "${targetKey}" is not published in CONTENT, so the destination 404s`
         ).toBe(true);
+      } else if (pillarMatch) {
+        // A service pillar is a static route, so it exists iff its page file does.
+        const pillarPage = nodePath.join(process.cwd(), 'src/app/services', pillarMatch[1], 'page.tsx');
+        expect(
+          fs.existsSync(pillarPage),
+          `${key} redirects to ${path}, but src/app/services/${pillarMatch[1]}/page.tsx does not exist, so the destination 404s`
+        ).toBe(true);
       } else {
         throw new Error(
-          `${key} redirects to ${path}, which is neither an area page nor a service+area page. Those are the two shapes this test can prove resolve. If another destination is genuinely needed, extend this check to prove THAT route exists — do not widen the pattern and lose the guarantee.`
+          `${key} redirects to ${path}, which is neither an area page, a service+area page, nor a service pillar. Those are the two shapes this test can prove resolve. If another destination is genuinely needed, extend this check to prove THAT route exists — do not widen the pattern and lose the guarantee.`
         );
       }
     }

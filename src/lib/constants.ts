@@ -361,7 +361,6 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- MD and the Northern Shenandoah — first-class markets ---------- */
   { slug: 'frederick-md', city: 'Frederick', state: 'MD', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'hagerstown-md', city: 'Hagerstown', state: 'MD', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
   { slug: 'winchester-va', city: 'Winchester', state: 'VA', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
 
   /* ---------- Loudoun County — premium, and the one NoVA county with a row ---------- */
@@ -452,7 +451,6 @@ export const EXPANSION_SERVICE_AREAS = byLegacyTier('expansion');
  *     kitchens, bathrooms
  *   Frederick MD -> bathrooms, basements, kitchens, roofing
  *   Winchester VA -> decks, roofing, whole-home remodeling
- *   Hagerstown MD -> roofing, siding, bathrooms
  *   Eastern Panhandle WV -> all services, home market
  */
 export type CityDataEntry = {
@@ -524,12 +522,6 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       "Frederick is the county seat and largest city in Frederick County, Maryland — a rapidly growing community of over 75,000 residents that has transformed from a historic market town into one of the Mid-Atlantic's most desirable places to live. The revitalization of Carroll Creek and the Market Street corridor has breathed new life into Frederick's historic downtown, while the I-70 growth corridor continues to attract new developments in Urbana, Jefferson, and New Market. Real Elite Contracting serves Frederick homeowners who want professional-grade results on bathrooms, kitchens, basements, and roofing — the projects that drive the most value in this market.",
     neighborhoods: ['Historic Downtown Frederick', 'Ballenger Creek', 'Urbana', 'Jefferson', 'New Market', 'Buckeystown'],
     marketEmphasis: ['bathrooms', 'basements', 'kitchens', 'roofing', 'remodeling', 'additions'],
-  },
-  'hagerstown-md': {
-    description:
-      "Hagerstown is the county seat of Washington County, Maryland and the largest city in the Cumberland Valley — a strategically located commercial hub at the intersection of I-70 and I-81. With a mix of historic neighborhoods near Public Square and growing suburban development along the Halfway and Robinwood corridors, Hagerstown's housing stock spans turn-of-the-century brick homes to newer single-family construction. Real Elite Contracting brings premium roofing, siding, and bathroom remodels to Hagerstown homeowners who want craftsmanship that respects both the historic character and modern demands of the region.",
-    neighborhoods: ['Public Square Historic District', 'North End', 'Halfway', 'Robinwood', 'South End', 'Fountain Head Heights'],
-    marketEmphasis: ['roofing', 'siding', 'bathrooms', 'remodeling', 'decks', 'exterior-repairs'],
   },
 
   /* ---------- Northern Shenandoah Valley + Loudoun County VA ---------- */
@@ -805,7 +797,6 @@ export const GENERAL_CONTRACTOR_AREA_SERVED: string[] = [
   'Leesburg, VA',
   'Ashburn, VA',
   'Loudoun County, VA',
-  'Hagerstown, MD',
   'Frederick, MD',
 ];
 
@@ -815,7 +806,6 @@ export const SERVICE_PAGE_AREA_SERVED: string[] = [
   'Shepherdstown, WV',
   'Inwood, WV',
   'Frederick, MD',
-  'Hagerstown, MD',
   'Winchester, VA',
   'Leesburg, VA',
   'Ashburn, VA',
