@@ -34,6 +34,8 @@ export type InvestmentCategory = {
   from: string | null;
   /** One-line span for summary rows. */
   typical: string;
+  /** Six to ten words for a service card. */
+  tagline: string;
   summary: string;
   tiers: InvestmentTier[];
   /** What tends to move the number, in plain words. */
@@ -58,6 +60,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     eyebrow: 'Signature project',
     from: '$75K',
     typical: '$75K – $350K+',
+    tagline: 'Media rooms, bars, guest suites and gyms below grade.',
     summary:
       'Most eastern-Loudoun homes built after 2000 came with a full, unfinished lower level. Finishing it is the largest block of new living space a house can gain without changing its footprint.',
     tiers: [
@@ -99,6 +102,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     eyebrow: 'Signature project',
     from: '$60K',
     typical: '$60K – $200K+',
+    tagline: 'Custom cabinetry, stone and light, planned as one room.',
     summary:
       'The room that sets the tone for the whole house. In Loudoun, a design-build kitchen usually means custom or semi-custom cabinetry, natural or engineered stone, a real appliance package and lighting designed in layers.',
     tiers: [
@@ -140,6 +144,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     eyebrow: 'Signature project',
     from: '$40K',
     typical: '$40K – $250K',
+    tagline: 'Curbless showers, stone, heated floors, real closets.',
     summary:
       'The primary bath is where builder-grade shows first. A design-build suite brings the shower, tub, vanity wall and closet into one composed room, with the mechanicals and waterproofing done to match.',
     tiers: [
@@ -181,6 +186,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     eyebrow: 'Signature project',
     from: '$30K',
     typical: '$30K – $150K+',
+    tagline: 'Composite decks, screened rooms and evening light.',
     summary:
       'In HOA communities the yard is the one place a family can genuinely make its own. Capped composite, black aluminum rail, a screened or covered room, and lighting that makes it a room after dark.',
     tiers: [
@@ -222,6 +228,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     eyebrow: 'Signature project',
     from: '$80K',
     typical: '$80K – $500K',
+    tagline: 'Bump-outs, family rooms and second stories that belong.',
     summary:
       'When the house is right but the space is not. Additions are engineered, permitted and built to read as though they were always part of the home, inside and out.',
     tiers: [
@@ -269,6 +276,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     eyebrow: 'By design phase',
     from: null,
     typical: 'Scoped after design',
+    tagline: 'Several signature projects under one design and one team.',
     summary:
       'A whole-home program combines several of the ranges above under one design, one contract and one team. It is priced after a design phase, from a real drawing set, rather than from a guess on the first visit.',
     tiers: [

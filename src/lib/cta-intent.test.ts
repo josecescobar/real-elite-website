@@ -12,7 +12,18 @@ describe('CTA intent routing', () => {
       intent: 'estimate',
       href: '/contact#estimate',
     });
-    expect(primaryCtaForPath('/')).toMatchObject({ intent: 'estimate', href: '#estimate' });
+    expect(primaryCtaForPath('/contact')).toMatchObject({ intent: 'estimate', href: '#estimate' });
+  });
+
+  it('routes the design-build surfaces to the consultation', () => {
+    for (const path of ['/', '/investment', '/projects', '/projects/some-slug', '/process', '/design-consultation']) {
+      expect(primaryCtaForPath(path)).toMatchObject({
+        intent: 'consultation',
+        href: '/design-consultation',
+      });
+    }
+    // A prefix is not a match: /processes would be a different page.
+    expect(primaryCtaForPath('/projects-archive').intent).toBe('estimate');
   });
 
   it('routes authored luxury markets to a preselected consultation', () => {

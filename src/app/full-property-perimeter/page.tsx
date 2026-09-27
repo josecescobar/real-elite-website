@@ -207,7 +207,7 @@ export default function FullPropertyPerimeterPage() {
 
             <div className="flex flex-wrap gap-4 mt-10">
               <Link
-                href="/#estimate"
+                href="/contact#estimate"
                 className="bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
               >
                 Get My Bundle Estimate →
@@ -449,7 +449,7 @@ export default function FullPropertyPerimeterPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/#estimate"
+              href="/contact#estimate"
               className="bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-md inline-flex items-center justify-center gap-2"
             >
               Get a Bundle Estimate

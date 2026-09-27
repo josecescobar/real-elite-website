@@ -1,21 +1,16 @@
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import { BUSINESS } from '@/lib/constants';
 import Hero from '@/components/home/Hero';
-import TrustBar from '@/components/home/TrustBar';
-import FeaturedServices from '@/components/home/FeaturedServices';
-import PrecisionProcess from '@/components/home/PrecisionProcess';
-import ProjectSpotlight from '@/components/home/ProjectSpotlight';
-import FeaturedGuides from '@/components/home/FeaturedGuides';
+import CredentialsStrip from '@/components/home/CredentialsStrip';
+import SignatureServices from '@/components/home/SignatureServices';
+import ProcessPreview from '@/components/home/ProcessPreview';
+import PortfolioTeaser from '@/components/home/PortfolioTeaser';
+import InvestmentPreview from '@/components/home/InvestmentPreview';
+import VeteranTrust from '@/components/home/VeteranTrust';
 import Testimonials from '@/components/home/Testimonials';
-import LuxuryBand from '@/components/home/LuxuryBand';
-import ServiceAreaMap from '@/components/home/ServiceAreaMap';
 import AssurancesBand from '@/components/home/AssurancesBand';
-import HomeEstimate from '@/components/home/HomeEstimate';
-import HomeFAQ from '@/components/home/HomeFAQ';
-import CTASection from '@/components/home/CTASection';
-
-const BeforeAfter = dynamic(() => import('@/components/home/BeforeAfter'));
+import LoudounAreas from '@/components/home/LoudounAreas';
+import ConsultationCTA from '@/components/home/ConsultationCTA';
 
 export const metadata: Metadata = {
   alternates: {
@@ -23,23 +18,28 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Homepage — the luxury design-build front door for Loudoun County.
+ *
+ * Order is the argument: what we build, how we work, proof, what it costs,
+ * who we are, where, then the consultation. The roof quote, paving and
+ * handyman lanes keep their pages and their navigation entries; they no longer
+ * appear here.
+ */
 export default function Home() {
   return (
     <>
       <Hero />
-      <TrustBar />
-      <FeaturedServices />
-      <PrecisionProcess />
-      <ProjectSpotlight />
-      <BeforeAfter />
-      <FeaturedGuides />
+      <CredentialsStrip />
+      <SignatureServices />
+      <ProcessPreview />
+      <PortfolioTeaser />
+      <InvestmentPreview />
+      <VeteranTrust />
       <Testimonials />
-      <LuxuryBand />
-      <ServiceAreaMap />
       <AssurancesBand />
-      <HomeEstimate />
-      <HomeFAQ />
-      <CTASection />
+      <LoudounAreas />
+      <ConsultationCTA />
     </>
   );
 }
