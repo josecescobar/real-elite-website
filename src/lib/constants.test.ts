@@ -134,11 +134,18 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'purcellville-va', 'round-hill-va', 'lovettsville-va', 'waterford-va',
       'hamilton-va', 'aldie-va', 'lansdowne-va', 'south-riding-va', 'sterling-va',
     ];
+    // Fairfax and Prince William rows added 2026-09-27. Empty legacyTiers.
+    const FAIRFAX_PWC_2026_09_27 = [
+      'fairfax-county-va', 'prince-william-county-va',
+      'oakton-va', 'dunn-loring-va', 'fort-hunt-va',
+      'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
       'northern-virginia',
       ...LOUDOUN_TOWNS_2026_09_27,
+      ...FAIRFAX_PWC_2026_09_27,
     ]);
   });
 
@@ -167,6 +174,15 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'lansdowne-va',
         'south-riding-va',
         'sterling-va',
+        'fairfax-county-va',
+        'prince-william-county-va',
+        'oakton-va',
+        'dunn-loring-va',
+        'fort-hunt-va',
+        'haymarket-va',
+        'gainesville-va',
+        'bristow-va',
+        'nokesville-va',
       ].sort()
     );
   });
@@ -490,10 +506,20 @@ describe('areaRegionLabel', () => {
    * `state` alone told Fairfax-County homeowners they were in the "Northern
    * Shenandoah Valley and Loudoun County area".
    */
-  it('names Northern Virginia for the Fairfax-County towns, not the Shenandoah', () => {
-    for (const slug of ['vienna-va', 'mclean-va', 'reston-va', 'great-falls-va', 'clifton-va']) {
-      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Northern Virginia');
+  it('names Fairfax County for the county and the towns inside it', () => {
+    for (const slug of ['fairfax-county-va', 'vienna-va', 'mclean-va', 'reston-va', 'great-falls-va', 'clifton-va', 'oakton-va']) {
+      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Fairfax County area');
     }
+  });
+
+  it('names Prince William County for the county and the towns inside it', () => {
+    for (const slug of ['prince-william-county-va', 'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va']) {
+      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Prince William County area');
+    }
+  });
+
+  it('keeps Alexandria on Northern Virginia — it is an independent city', () => {
+    expect(areaRegionLabel(getServiceArea('alexandria-va')!)).toBe('Northern Virginia');
   });
 
   it('still names the Shenandoah for Winchester', () => {
@@ -550,17 +576,46 @@ describe('the Northern Virginia region row', () => {
     expect(formatAreaPlace(getServiceArea('loudoun-county-va')!)).toBe('Loudoun County, VA');
   });
 
-  it('holds the Fairfax-County towns, Alexandria and Loudoun County directly', () => {
+  it('holds Alexandria and the three county hubs directly', () => {
     expect(childAreasOf('northern-virginia').map((a) => a.slug)).toEqual([
-      'mclean-va',
       'alexandria-va',
+      'loudoun-county-va',
+      'fairfax-county-va',
+      'prince-william-county-va',
+    ]);
+  });
+
+  it('lists Fairfax towns under the county, two hops up to the region', () => {
+    expect(childAreasOf('fairfax-county-va').map((a) => a.slug)).toEqual([
+      'mclean-va',
       'vienna-va',
       'great-falls-va',
       'reston-va',
       'burke-va',
       'fairfax-station-va',
       'clifton-va',
-      'loudoun-county-va',
+      'oakton-va',
+      'dunn-loring-va',
+      'fort-hunt-va',
+    ]);
+    for (const slug of ['mclean-va', 'oakton-va', 'dunn-loring-va', 'fort-hunt-va', 'clifton-va']) {
+      expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
+        'fairfax-county-va',
+        'northern-virginia',
+      ]);
+    }
+  });
+
+  it('lists the western Prince William towns under the county', () => {
+    expect(childAreasOf('prince-william-county-va').map((a) => a.slug)).toEqual([
+      'haymarket-va',
+      'gainesville-va',
+      'bristow-va',
+      'nokesville-va',
+    ]);
+    expect(areaAncestors(getServiceArea('haymarket-va')!).map((a) => a.slug)).toEqual([
+      'prince-william-county-va',
+      'northern-virginia',
     ]);
   });
 
