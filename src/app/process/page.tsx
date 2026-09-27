@@ -13,7 +13,7 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 export const metadata: Metadata = {
   title: fitTitle(`Our Design-Build Process | ${BUSINESS.name}`),
   description:
-    'How a Real Elite design-build project runs in Loudoun County: conversation, design and scope, county and HOA approvals, the build, and the walkthrough. Five steps, in order.',
+    'How a Real Elite design-build project runs in Loudoun County: conversation, design, county and HOA approvals, the build, and the walkthrough.',
   keywords: [
     'design-build process',
     'remodeling process Loudoun County',

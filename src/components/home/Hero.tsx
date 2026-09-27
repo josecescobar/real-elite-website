@@ -18,7 +18,7 @@ export const Hero = () => {
       <div className="absolute inset-0 -z-10">
         <Image
           src="/images/home-hero.jpg"
-          alt=""
+          alt="Dusk view of a large home with a circular driveway, stone and siding facade, and a three-car garage"
           fill
           priority
           fetchPriority="high"

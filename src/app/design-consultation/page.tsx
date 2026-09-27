@@ -23,7 +23,7 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 export const metadata: Metadata = {
   title: fitTitle(`Design Consultation — Loudoun County Design-Build | ${BUSINESS.name}`),
   description:
-    'Start a design-build project in Loudoun County: a short call about the house, the rooms and the range, then a site visit if it fits. Kitchens, primary suites, lower levels, additions and outdoor living. Veteran-owned.',
+    'Start a Loudoun County design-build project with a short call about the house, the rooms and the range, then a site visit if it fits.',
   keywords: [
     'design consultation Loudoun County',
     'design build consultation Leesburg VA',

@@ -33,4 +33,12 @@ module.exports = {
   // until each content model exposes a reliable authored/updated value.
   autoLastmod: false,
   sitemapSize: 5000,
+  // These pages read searchParams, so Next renders them on demand and
+  // next-sitemap never sees them in the prerender manifest. They are
+  // indexable HTML and belong in the sitemap. /sales and /review-request
+  // stay out: they are noindexed internal tools listed in `exclude`.
+  additionalPaths: async (config) => [
+    await config.transform(config, '/projects'),
+    await config.transform(config, '/reviews'),
+  ],
 };
