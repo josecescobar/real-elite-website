@@ -287,3 +287,40 @@ describe('POST /api/estimate — delivery', () => {
     expect(owner.html).not.toContain('AI Heads-Up');
   });
 });
+
+describe('POST /api/estimate — consultation intake fields (town, referralSource)', () => {
+  it('accepts the optional fields and puts them in the owner email', async () => {
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(
+      makeRequest(
+        {
+          ...validBody,
+          service: '[Luxury Consultation] Kitchen Renovation',
+          town: 'Ashburn',
+          referralSource: 'A real estate agent',
+        },
+        '203.0.113.60'
+      )
+    );
+    expect(res.status).toBe(200);
+    const ownerEmail = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    expect(ownerEmail.html).toContain('Ashburn');
+    expect(ownerEmail.html).toContain('Heard about us');
+    expect(ownerEmail.html).toContain('A real estate agent');
+  });
+
+  it('still accepts a body that omits them (backward compatible)', async () => {
+    mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.61'));
+    expect(res.status).toBe(200);
+  });
+
+  it('rejects an over-length town with 400', async () => {
+    const POST = await loadPOST();
+    const res = await POST(makeRequest({ ...validBody, town: 'a'.repeat(81) }, '203.0.113.62'));
+    expect(res.status).toBe(400);
+    expect((await res.json()).error).toBe('town is too long');
+  });
+});
