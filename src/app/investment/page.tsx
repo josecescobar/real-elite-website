@@ -131,7 +131,7 @@ export default function InvestmentPage() {
                     className="object-cover"
                   />
                 </div>
-                <p className="text-charcoal-400 text-[0.65rem] uppercase tracking-[0.16em] mt-3">
+                <p className="text-charcoal-500 text-[0.65rem] uppercase tracking-[0.16em] mt-3">
                   Design inspiration
                 </p>
                 <div className="mt-8">

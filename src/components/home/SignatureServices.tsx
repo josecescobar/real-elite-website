@@ -92,7 +92,7 @@ export default function SignatureServices() {
               </Link>
             </p>
           )}
-          <p className="text-charcoal-400 text-[0.65rem] uppercase tracking-[0.16em] flex-shrink-0">
+          <p className="text-charcoal-500 text-[0.65rem] uppercase tracking-[0.16em] flex-shrink-0">
             Imagery is design inspiration · <Link href="/projects" className="hover:text-navy-900 transition-colors">See completed work</Link>
           </p>
         </div>
