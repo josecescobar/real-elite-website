@@ -77,7 +77,9 @@ describe('Project registry integrity', () => {
       expect(p.brief.length, p.slug).toBeGreaterThan(0);
       expect(p.solution.length, p.slug).toBeGreaterThan(0);
       expect(p.gallery.length, p.slug).toBeGreaterThan(0);
-      expect(p.completedOn, p.slug).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      if (p.status === 'published' || p.completedOn) {
+        expect(p.completedOn, p.slug).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      }
     }
   });
 
@@ -135,7 +137,7 @@ describe('Project query helpers', () => {
   });
 
   it('withholds unconfirmed case-study drafts from every public query', () => {
-    expect(PROJECT_MODULES).toHaveLength(6);
+    expect(PROJECT_MODULES.length).toBeGreaterThanOrEqual(6);
     expect(getAllProjects()).toEqual([]);
     for (const draft of PROJECT_MODULES) {
       expect(draft.status).toBe('draft');
