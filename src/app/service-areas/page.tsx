@@ -15,7 +15,7 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 export const metadata: Metadata = {
   title: `Service Areas | ${BUSINESS.name}`,
   description:
-    'Premium remodeling and exterior contracting across the WV-MD-VA region — Frederick, Winchester, Leesburg, Ashburn and the Eastern Panhandle.',
+    'Premium remodeling across the Eastern Panhandle, Frederick, Winchester, Loudoun County, Fairfax County, and Prince William County.',
   keywords: [
     'service areas',
     'Eastern Panhandle',
@@ -26,6 +26,8 @@ export const metadata: Metadata = {
     'Leesburg VA',
     'Ashburn VA',
     'Loudoun County VA',
+    'Fairfax County VA',
+    'Prince William County VA',
     'contractor service area',
     'WV contractor',
     'MD contractor',
@@ -90,7 +92,7 @@ const REGIONS = [
     label: 'Virginia',
     state: 'VA',
     blurb:
-      'Loudoun County and the Northern Shenandoah Valley — premium decks, outdoor living, custom kitchens, and full remodels.',
+      'Loudoun, Fairfax, and Prince William counties, plus Winchester — premium kitchens, lower levels, and outdoor living.',
     cities: areasIn('VA'),
   },
 ];
@@ -112,7 +114,7 @@ export default function ServiceAreasPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Headquartered in Martinsburg. Trusted across the Eastern Panhandle, the
-              Cumberland Valley, the Shenandoah Valley, Frederick County, and Loudoun County.
+              Cumberland Valley, the Shenandoah Valley, Frederick County, Loudoun County, Fairfax County, and Prince William County.
             </p>
           </div>
         </Container>

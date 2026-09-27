@@ -41,8 +41,13 @@ when mirrored from the verified Google Business Profile.
 ## Service areas
 - WV Eastern Panhandle: Martinsburg, Inwood, Charles Town, Ranson, Hedgesville, Shepherdstown
 - Maryland: Frederick
-- Virginia: Winchester, Leesburg, Ashburn, Loudoun County, and Northern Virginia luxury markets
-  (McLean, Great Falls, Vienna, Reston, Middleburg, Old Town Alexandria)
+- Virginia: Winchester, Leesburg, Ashburn, Loudoun County, Fairfax County,
+  Prince William County, and Northern Virginia luxury markets
+  (McLean, Great Falls, Vienna, Oakton, Dunn Loring, Reston, Fort Hunt, Middleburg, Old Town Alexandria).
+  Loudoun town pages also cover Purcellville, Round Hill, Lovettsville, Waterford,
+  Hamilton, Aldie, Lansdowne, South Riding, and Sterling.
+  Prince William town pages cover Haymarket, Gainesville, Bristow, and Nokesville.
+  Headquarters stay in Martinsburg, WV. No local office is claimed in those counties.
 - Full list: https://www.realelitecontracting.com/service-areas
 
 ## Cost & planning guides (honest local price ranges)
