@@ -1276,15 +1276,19 @@ export const HOME_FAQ = [
 ] as const;
 
 /**
- * Project gallery — every entry tagged with category + state (the
- * region the project was completed in). The optional `citySlug` field
- * is for true city-specific tagging once new shoots come in for
- * Frederick/Loudoun/etc. — at that point the city page filter on
- * CityPageTemplate prefers exact-city matches over state-level matches.
+ * Project gallery — the /projects "photo wall", related-project rails, and
+ * the city-page gallery (via selectGalleryFor).
  *
- * Existing photos are all from the WV Eastern Panhandle home market;
- * leaving citySlug undefined keeps the city page filter from over-
- * claiming specific localized work that didn't happen there.
+ * HONESTY RULE: every entry must be a photograph of Real Elite's own work.
+ * No stock, no AI imagery, no manufacturer catalogue shots — those belong in
+ * /images/inspiration with an "inspiration" label, never here.
+ *
+ * `state` / `citySlug` are set only where the job location is verified
+ * (photo EXIF GPS matched against the job file in AI-SHARED/Jobs). Leave them
+ * undefined rather than guess; the city filter must not over-claim local work.
+ *
+ * Order matters: selectGalleryFor falls back to the first six entries, so the
+ * strongest finished-work photos lead.
  */
 export type GalleryImage = {
   src: string;
@@ -1295,52 +1299,29 @@ export type GalleryImage = {
 };
 
 export const GALLERY_IMAGES: GalleryImage[] = [
-  // Roofing
+  // Primary bath remodel, Frederick MD (completed Aug 2026).
+  { src: '/images/work/bath-primary-frameless-shower.webp', alt: 'Walk-in shower with frameless glass, blue subway tile, marble-look hex floor, and matte black fixtures', category: 'Bathrooms', state: 'MD', citySlug: 'frederick-md' },
+  // Composite deck with vinyl railings, Fairfax County VA (June 2024).
+  { src: '/images/work/deck-composite-stairs-front.webp', alt: 'Composite deck with white vinyl railings and a wide stair down to the patio', category: 'Decks', state: 'VA' },
+  { src: '/images/work/roofing-finished-dormer.webp', alt: 'New charcoal architectural shingles finished around a dormer', category: 'Roofing', state: 'WV' },
+  { src: '/images/work/bath-primary-shower-and-vanity.webp', alt: 'Primary bath with walk-in tile shower beside a quartz-topped navy vanity', category: 'Bathrooms', state: 'MD', citySlug: 'frederick-md' },
+  { src: '/images/work/deck-composite-surface.webp', alt: 'Brown composite decking with a curved run of white vinyl railing', category: 'Decks', state: 'VA' },
+  { src: '/images/work/deck-composite-night-stairs.webp', alt: 'Deck stair and railings lit by post-cap lights at night', category: 'Decks', state: 'VA' },
+  { src: '/images/work/roofing-finished-overhead.webp', alt: 'Completed architectural shingle roof seen from the ridge', category: 'Roofing', state: 'WV' },
+  { src: '/images/work/bath-primary-navy-vanity.webp', alt: 'Navy shaker vanity with matte black pulls and a quartz top', category: 'Bathrooms', state: 'MD', citySlug: 'frederick-md' },
+  { src: '/images/deck-lounge.jpg', alt: 'Composite deck set up with outdoor lounge furniture', category: 'Decks', state: 'VA' },
   { src: '/images/roofing-hero.jpg', alt: 'Completed dark architectural shingle roof with clean ridge cap', category: 'Roofing', state: 'WV' },
-  { src: '/images/roofing-valley.jpg', alt: 'Architectural shingle roof valley and flashing detail', category: 'Roofing', state: 'WV' },
-  { src: '/images/roofing-slope.jpg', alt: 'New charcoal shingle roof with clean valley lines', category: 'Roofing', state: 'WV' },
-  { src: '/images/roofing-crew.jpg', alt: 'Roofing crew working on full tear-off and re-roof', category: 'Roofing', state: 'WV' },
-  { src: '/images/roofing-victorian-reroof.jpg', alt: 'Crew re-roofing a Victorian home with porch and dormers', category: 'Roofing', state: 'WV' },
-  { src: '/images/roofing-shingle-install.jpg', alt: 'Close-up of architectural shingle install with nail gun', category: 'Roofing', state: 'WV' },
-  { src: '/images/roofing-tearoff.jpg', alt: 'Full roof tear-off in progress with ABC Pro Guard underlayment', category: 'Roofing', state: 'WV' },
-  // Decks
-  { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night', category: 'Decks', state: 'WV' },
-  { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture set', category: 'Decks', state: 'WV' },
-  { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white horizontal railings and stairs', category: 'Decks', state: 'WV' },
-  { src: '/images/deck-railing-install.jpg', alt: 'Installing white railing on composite deck', category: 'Decks', state: 'WV' },
-  { src: '/images/deck-screened-porch.jpg', alt: 'Screened porch with stained wood ceiling, black railings, and wooded view', category: 'Decks' },
-  { src: '/images/deck-multilevel-step-lights.jpg', alt: 'Multi-level wood deck with built-in bench, recessed step lights, and landscaped garden', category: 'Decks' },
-  { src: '/images/deck-ipe-modern.jpg', alt: 'IPE hardwood deck wrapping a modern glass-walled home with white woven dining chairs', category: 'Decks' },
-  { src: '/images/deck-pebble-detail.jpg', alt: 'Weathered wood deck corner with white pebble accent inlay and grass edge', category: 'Decks' },
-  { src: '/images/deck-garden-path-view.jpg', alt: 'Low-angle dark-stained deck looking out to a landscaped garden path', category: 'Decks' },
-  // Bathrooms
-  { src: '/images/projects/bathrooms/hero.jpg', alt: 'Custom marble walk-in shower with frameless glass enclosure', category: 'Bathrooms' },
-  { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower', category: 'Bathrooms' },
-  { src: '/images/projects/bathrooms/shower-black-frame.jpg', alt: 'Contemporary walk-in shower with black-frame glass and wood-look tile', category: 'Bathrooms' },
-  { src: '/images/projects/bathrooms/tub-shower-tile.jpg', alt: 'Tile tub-and-shower combination with frameless glass', category: 'Bathrooms' },
-  // Kitchens
-  { src: '/images/projects/kitchens/hero.jpg', alt: 'Editorial white kitchen with double islands and lantern pendant lighting', category: 'Kitchens' },
-  { src: '/images/projects/kitchens/island-lantern-pendants.jpg', alt: 'White kitchen with marble-topped island and lantern pendants', category: 'Kitchens' },
-  { src: '/images/projects/kitchens/gray-marble-waterfall.jpg', alt: 'Modern gray kitchen with marble waterfall island and chrome chandelier', category: 'Kitchens' },
-  { src: '/images/projects/kitchens/white-herringbone.jpg', alt: 'White kitchen with herringbone backsplash and shiplap ceiling', category: 'Kitchens' },
-  { src: '/images/projects/kitchens/white-island-chairs.jpg', alt: 'Open white kitchen with center island and navy chairs', category: 'Kitchens' },
-  { src: '/images/projects/kitchens/two-tone-black-hood.jpg', alt: 'Two-tone kitchen with dark cabinetry, warm wood uppers, and black hood', category: 'Kitchens' },
-  // Basements
-  { src: '/images/projects/basements/hero-framing.jpg', alt: 'Basement build in framing phase — stud walls and floor joists before finishes', category: 'Basements' },
-  // Siding & Exterior
+  { src: '/images/work/roofing-finished-ridge.webp', alt: 'New architectural shingles and ridge cap along a roof line', category: 'Roofing', state: 'WV' },
   { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior', state: 'WV' },
-  { src: '/images/siding-window-work.webp', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
+  { src: '/images/work/bath-primary-tile-leveling.webp', alt: 'Large-format marble-look floor tile set with a tile leveling system', category: 'Bathrooms', state: 'MD', citySlug: 'frederick-md' },
   { src: '/images/stone-veneer-detail.jpg', alt: 'Stone veneer foundation detail on home exterior', category: 'Exterior', state: 'WV' },
-  { src: '/images/exterior-brick-victorian.jpg', alt: 'Brick Victorian-style home with multiple gables and dark architectural shingle roof', category: 'Exterior' },
-  // Remodeling / Interior
-  { src: '/images/flooring-dark-living.jpg', alt: 'Dark laminate flooring installed in living room', category: 'Remodeling', state: 'WV' },
-  { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway', category: 'Remodeling', state: 'WV' },
-  { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring in living space', category: 'Remodeling', state: 'WV' },
-  // New Construction
+  { src: '/images/siding-window-work.webp', alt: 'Siding and window replacement in progress', category: 'Siding', state: 'WV' },
+  { src: '/images/deck-railing-install.jpg', alt: 'Installing white railing on a composite deck', category: 'Decks' },
+  { src: '/images/roofing-crew.jpg', alt: 'Roofing crew working on a full tear-off and re-roof', category: 'Roofing', state: 'WV' },
+  { src: '/images/work/flooring-laminate-finished.webp', alt: 'Newly installed light wood-look laminate flooring', category: 'Remodeling', state: 'WV' },
   { src: '/images/framing-walls-work.webp', alt: 'Timber wall framing with window openings on a home under construction', category: 'New Construction', state: 'WV' },
   { src: '/images/new-build-weather-barrier.webp', alt: 'New home under construction with weather barrier and exposed roof trusses', category: 'New Construction', state: 'WV' },
   { src: '/images/foundation-block.jpg', alt: 'Block foundation piers for new construction', category: 'New Construction', state: 'WV' },
-  // Additions
   { src: '/images/shed-trim-upright.webp', alt: 'Custom built shed with trim and siding', category: 'Additions', state: 'WV' },
 ];
 

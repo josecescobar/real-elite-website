@@ -76,14 +76,11 @@ describe('GalleryGrid', () => {
     expect(screen.getAllByRole('img')).toHaveLength(4);
   });
 
-  it('shows empty state when category has no images', async () => {
-    const user = userEvent.setup();
+  it('only offers category filters that have photos', () => {
     render(<GalleryGrid />);
-
-    await user.click(screen.getByRole('button', { name: 'Exterior' }));
-
-    expect(screen.queryAllByRole('img')).toHaveLength(0);
-    expect(screen.getByText(/no projects in this category/i)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Exterior' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Kitchens' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Basements' })).not.toBeInTheDocument();
   });
 
   it('sets aria-pressed on the active category button', async () => {
