@@ -1,114 +1,176 @@
 # 10 — Sprint #002 Proposal
 
-**Theme:** *Pay down the top scaling ceiling and ship the highest-ROI GEO win — without slowing content.*
-
-A focused two-week sprint that (1) bags the cheap high-value wins, (2) starts the keystone refactor that
-unblocks the v2 flywheel, and (3) merges the AI-citation feature that's already built. Scoped to be
-**achievable and low-risk**, with a clear "definition of done" per item.
-
-> Assumes a small team (1–2 engineers). If solo, cut the **Stretch** section and treat **B8** as
-> spilling into Sprint #003 — the data extraction is designed to be incremental.
+> **Revised per CTO decision (2026-06-29).** Sprint #002 is reduced from a two-week, multi-epic sprint
+> to a **tight 1–3 day, single-objective sprint.** The foundation refactors and resilience/hygiene work
+> previously proposed here have been moved to the future-sprint backlog (see *Deferred* below and
+> [09](09-priority-backlog.md)). This document now scopes **only** the GEO/AEO quick win.
 
 ---
 
-## Sprint goals (the three outcomes)
+## Objective (the one thing)
 
-1. **GEO:** Service pages emit a citable Answer Block + a connected entity graph — the site becomes
-   measurably more AI-citable.
-2. **Architecture:** The service×city content is no longer a 1,085-line route monolith; shared data
-   primitives exist; the path to the Project flywheel is unblocked.
-3. **Resilience & hygiene:** Branded error handling, env validation, formatter, clean branches, triaged
-   security — the guardrails that make fast iteration safe.
+**Ship the GEO/AEO Answer Block to production** by rebasing and merging the already-built work from
+**PR #52 (`claude/v2-service-answer-block`)** onto current `main`, plus **only** the minimum supporting
+metadata/structured-data work required for that feature to be **clean, tested, and production-ready**.
 
----
+Nothing else ships in Sprint #002.
 
-## Committed scope
-
-### Epic A — GEO quick wins (≈2–3 days)
-- **A1 (B1):** Rebase **`AnswerBlock`** (PR #52) onto current `main`; wire into `ServicePageTemplate`
-  via `services-data`. *DoD:* every service page renders a 2–3 sentence citable answer; snapshot test
-  on output; visible on `/services/roofing`.
-- **A2 (B11):** Add **`OrganizationSchema` + `WebSiteSchema`** with stable `@id`s; link
-  `Service`/`Article`/`Breadcrumb`/`Project` `provider`/`publisher`/`isPartOf` to the Org `@id`.
-  *DoD:* one Org/WebSite graph site-wide; JSON-LD validates; entities reference the Org `@id`.
-- **A3 (B6):** Source all NAP from `BUSINESS` in schema components (kill the `Martinsburg/WV/25401`
-  literals). *DoD:* grep shows no hardcoded NAP in `components/seo` or `layout`.
-
-### Epic B — Foundation refactor (≈4–6 days)
-- **B-1 (B9):** Extract **shared data primitives** — `FAQItem`, `ImageRef`, `InvestmentTier`,
-  `AreaServed` — into `src/lib/content/types.ts`; refactor `services-data`, `paving-data`, `projects`
-  to compose them. *DoD:* one definition each; typecheck clean; tests green; no output change.
-- **B-2 (B8, phase 1 of 2):** Extract the **`CONTENT` monolith** out of
-  `services/[service]/[city]/page.tsx` into `src/lib/service-city/` keyed by `(service, city)`,
-  **test-validated** against `SERVICES` + `ALL_SERVICE_AREAS`. Route file becomes a thin template.
-  *DoD:* route file < 200 lines; build output byte-equivalent (spot-checked on 3 pages); referential
-  test passes. *(If the full extraction is large, land the data move this sprint; collapse the template
-  next sprint.)*
-
-### Epic C — Resilience & hygiene (≈2–3 days)
-- **C1 (B3):** `app/error.tsx` + `app/global-error.tsx` + `app/loading.tsx` — branded "something went
-  wrong, call us" with the phone CTA. *DoD:* forced error renders the branded fallback, not a stack.
-- **C2 (B7):** `zod` env schema in `env.ts`, validated once at dev/build start (preserve live-read
-  semantics for runtime). *DoD:* a missing `RESEND_API_KEY` fails fast in dev with a clear message.
-- **C3 (B4):** `npm audit` triage; patch the high deliberately; add a scheduled audit (Dependabot or CI
-  step). *DoD:* high vuln resolved or documented-as-accepted; recurring check enabled.
-- **C4 (B5):** Add Prettier + `eslint-config-prettier`; one formatting commit; lint `scripts/**`.
-  *DoD:* `npm run format:check` clean in CI.
-- **C5 (B2):** Branch cleanup — delete merged branches; re-cut #54 strategy docs from `main` and merge.
-  *DoD:* remote branch list shows only `main` + active work.
-
-### Epic D — Verify (≈1 day, parallelizable)
-- **D1 (B19):** **[live]** Lighthouse + axe on home, a service×city page, a blog post, the estimate
-  form. Confirm AVIF/WebP delivery, hero `priority`/`sizes`, no CLS. *DoD:* a short findings note in
-  `docs/engineering/`; any P0 regressions filed.
+**Why this, why now:** the Answer Block is the single highest-ROI move available — it is the citable
+2–3 sentence summary that Google AI Overviews, ChatGPT, and Perplexity lift and cite. The code already
+exists; the work is to land it correctly, not to build it. It directly advances the strategic shift
+from rankings to AI-citation (`V2-BLUEPRINT.md` §4) at minimal risk.
 
 ---
 
-## Stretch (only if ahead)
-- **S1 (B12):** `Section` + `Card` primitives + spacing scale; adopt in the service template. (Seeds
-  Sprint #003's design-system epic.)
-- **S2 (B10):** Extend `buildMetadata` to blog/guides/paving routes + canonical test.
-- **S3 (B13, seed):** Author **2** real `Project` records end-to-end to validate the model against
-  reality before scaling. *(Content-gated — needs real photos from Jose; see session-notes action.)*
+## Context: the state of PR #52
+
+PR #52's branch is **stale** — it forked an older `main` (pre–Project System merge #53), so its raw
+diff shows large phantom deletions. **It must not be merged as-is.** The sprint's real work is to
+**re-apply the intended additions onto a fresh branch cut from current `main`**:
+
+- `src/components/services/AnswerBlock.tsx` (+ `AnswerBlock.test.tsx`)
+- the `answer`/answer-block field(s) added to `src/lib/services-data.ts`
+- the wiring into `src/components/services/ServicePageTemplate.tsx`
+
+Treat PR #52 as the **source of the intended change**, not a mergeable branch.
 
 ---
 
-## Explicitly OUT of scope (and why)
-- Project Gallery faceting, Review Center, Resources consolidation — **v2 epics**, multi-sprint
-  ([11](11-long-term-roadmap.md)). Don't start until B9/B12/B16 primitives exist.
-- Nav/IA overhaul — needs design; not a code sprint.
-- AI features / portal — design data contracts later; no build yet.
-- Any redesign / pixel changes beyond the intentional Section/Card pass — keep the diff reviewable.
+## In scope (explicit)
+
+1. **Re-create the branch** `claude/v2-service-answer-block` content on a fresh branch off current
+   `main` (proposed name below). Extract only the AnswerBlock additions; discard the stale diff.
+2. **`AnswerBlock` component** — render a concise, citable 2–3 sentence answer ("What does Real Elite
+   do for [service], and who is it for?") plus the short scannable "what's included" lead, per
+   blueprint §4.
+3. **`services-data` content** — populate the answer-block field for **all active service pages** that
+   render `ServicePageTemplate` (no service page ships with an empty/placeholder answer).
+4. **Template wiring** — `ServicePageTemplate` renders the AnswerBlock in the correct position (directly
+   under the hero, above scope), responsive and accessible.
+5. **Minimum supporting structured data (only what THIS feature needs to be clean):**
+   - Ensure the answer-block content is consistent with the existing `FAQPage`/`Service` JSON-LD on the
+     page (no contradictory copy between the visible answer and schema).
+   - If — and only if — the AnswerBlock introduces a new answer string that belongs in structured data,
+     expose it via the **existing** schema components (e.g. as a `Service.description` / lead). **Do not**
+     build the new `@id` Organization/WebSite entity graph here — that is deferred (see below); only the
+     minimum needed for the AnswerBlock to be coherent and valid.
+6. **Tests** for the component and its data wiring (carry forward / update `AnswerBlock.test.tsx`).
+7. **Accessibility pass** on the new block (heading level, contrast, no layout shift).
 
 ---
 
-## Risks & mitigations
-| Risk | Mitigation |
+## Out of scope (explicit — deferred to future sprints)
+
+Per the CTO decision, the following are **moved to the backlog** ([09](09-priority-backlog.md)) and
+**must not** be started in Sprint #002:
+
+- ❌ **CONTENT monolith extraction** (D1 / B8)
+- ❌ **Full offering-model unification** — services/paving/projects shared primitives (D2 / B9)
+- ❌ **Retiring testimonials/gallery models** in favor of the Project Object (D3 / B17)
+- ❌ **Global error/loading boundaries** (D4 / B3)
+- ❌ **Env validation (zod)** (D6 / B7)
+- ❌ **npm audit remediation** — *unless a specific advisory blocks CI*, in which case patch **only**
+  that advisory (no broad upgrade, no `audit fix --force`)
+- ❌ The broad **`@id` Organization/WebSite entity graph** (B11) — only the minimal coherence work in
+  scope item 5 is permitted
+- ❌ Full **`buildMetadata` migration** (B10), design-system primitives (B12), E2E (B18), and all v2
+  epics
+
+Also explicitly out: any redesign, dependency upgrades, new packages, or pixel changes beyond the
+AnswerBlock's own markup.
+
+---
+
+## Acceptance criteria
+
+The sprint is **done** when **all** of the following are true:
+
+1. A fresh branch off current `main` contains the AnswerBlock component, its tests, the `services-data`
+   answer content, and the `ServicePageTemplate` wiring — and **none** of PR #52's stale phantom
+   deletions.
+2. **Every** active service page renders a populated, human-written Answer Block in the correct position
+   (verified on at least `/services/roofing`, `/services/kitchens`, and one more) — no empty,
+   placeholder, or "lorem" answers.
+3. The visible answer copy does **not** contradict the page's existing `Service`/`FAQPage` JSON-LD.
+4. The rendered JSON-LD on a service page still **validates** (Google Rich Results Test / schema
+   validator) — no regressions introduced.
+5. The AnswerBlock is **accessible**: correct heading hierarchy (no skipped levels, single `<h1>`
+   preserved), AA contrast, no cumulative layout shift from the new block.
+6. No file under `src/app/services/[service]/[city]/`, no offering-model files, and no error-boundary /
+   env / schema-graph files are modified (scope guard — confirms the deferred items weren't touched).
+7. CI is green (see below) and the PR is open for review (not merged).
+
+---
+
+## Test & build requirements
+
+Must all pass **before** the PR is marked ready:
+
+```bash
+npm run lint        # clean (no new warnings beyond the known pre-existing set)
+npm run typecheck   # clean
+npm run test        # all green, including AnswerBlock.test.tsx
+SKIP_IMAGE_OPTIMIZE=1 npm run build   # production build succeeds; sitemap generates
+```
+
+Plus:
+- **New/updated unit tests** for `AnswerBlock` (renders given content; handles missing/empty content
+  safely) and for the `services-data` answer field (every active service has a non-empty answer —
+  a data-integrity test in the spirit of the existing `constants.test.ts` / `projects.test.ts`).
+- **Manual verification:** dev server up, spot-check 3 service pages for correct rendering + position;
+  run the page's JSON-LD through a schema validator.
+- **CI gate:** the existing GitHub Actions workflow (lint + typecheck + test + build) must pass on the
+  PR. The **only** dependency change permitted is a single targeted patch if an `npm audit` advisory
+  hard-blocks CI.
+
+---
+
+## Suggested PR title
+
+```
+feat(seo): Answer Block on service pages (GEO/AEO) — re-land PR #52 on main
+```
+
+*(Alternative if you prefer issue-style:* `feat(geo): citable Answer Block for service pages`*.)*
+Reference and supersede PR #52 in the body; close #52 once this lands.
+
+---
+
+## Rollback plan
+
+The change is **low-risk and trivially reversible** — additive UI + content, no data migration, no
+schema-graph rewrite, no route changes.
+
+1. **Pre-merge:** it's a single PR against `main`; if review finds issues, iterate or close the PR —
+   nothing is in production until merge + Vercel deploy.
+2. **Post-merge regression:** `git revert <merge_commit>` on `main` and push → Vercel auto-deploys the
+   reverted state. Because the change is one component + content + one template hook, the revert is
+   clean (no entangled refactors — that's *why* the heavy items were deferred).
+3. **Instant mitigation without a revert:** the AnswerBlock reads from a `services-data` field; if a
+   specific page's copy is wrong, blank that field (the component must render nothing gracefully when
+   the answer is empty — covered by acceptance criterion + test) and redeploy. No code change needed
+   for a content-only fix.
+4. **Verification after rollback/mitigation:** re-run the build + JSON-LD validation on the affected
+   service pages to confirm the page returns to its prior valid state.
+
+---
+
+## Estimated effort
+
+**1–3 days**, single engineer:
+
+| Day | Work |
 |---|---|
-| `CONTENT` extraction causes SEO/content diffs | Byte-equivalence spot-check on representative pages; referential test; ship behind a verified build (the Phase-1 playbook). |
-| Schema `@id` changes confuse crawlers temporarily | Additive, not destructive; validate with Rich Results Test before deploy. |
-| Bleeding-edge dep churn during audit fix | Patch only the specific advisory; avoid `audit fix --force`. |
-| Solo-dev overcommit | B8 is explicitly splittable; Stretch is droppable. |
+| **Day 1** | Cut fresh branch off `main`; re-apply AnswerBlock component + template wiring from PR #52; restore/author the `services-data` answer content for all active services. |
+| **Day 2** | Tests (component + data-integrity); schema-coherence check + JSON-LD validation; a11y pass; manual spot-checks. |
+| **Day 3 (buffer)** | CI green; PR opened for review; address review feedback. Close PR #52. |
 
 ---
 
-## Definition of done (sprint)
-- CI green: lint + **format** + typecheck + test + build.
-- Service pages show an Answer Block; one `@id` entity graph site-wide.
-- `services/[service]/[city]/page.tsx` < 200 lines; content in a tested data module.
-- Branded error/loading boundaries live; env fails fast in dev.
-- `npm audit` high resolved; Prettier enforced; branch list clean.
-- A live CWV/a11y findings note committed under `docs/engineering/`.
+## Deferred work (pointer)
 
----
-
-## Suggested sequencing (2 weeks)
-
-| | Mon–Tue | Wed–Thu | Fri |
-|---|---|---|---|
-| **Wk 1** | C5 branch cleanup · A1 AnswerBlock · C4 Prettier | A2 entity graph · A3 NAP · C1 boundaries | B-1 shared primitives (start) |
-| **Wk 2** | B-1 finish · B-2 CONTENT extraction (start) | B-2 finish · C2 env validation · C3 audit | D1 live verify · buffer · demo |
-
-> Each item maps to a backlog ID in [09](09-priority-backlog.md). Land Tier-0 early (low risk, unblocks
-> confidence), then the foundation refactor mid-sprint when the team is warm.
+Everything previously proposed in this document — the CONTENT refactor, offering-model unification,
+proof-model migration, error boundaries, env validation, audit remediation, metadata migration, design
+primitives, E2E — now lives in [09 — Priority Backlog](09-priority-backlog.md) (Tiers 0–4) and the
+[11 — Long-Term Roadmap](11-long-term-roadmap.md), to be scoped into their own future sprints.
 </content>
