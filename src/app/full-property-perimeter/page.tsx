@@ -48,7 +48,7 @@ const SCOPE_ITEMS = [
     icon: Home,
     title: 'New Roof',
     by: 'Real Elite',
-    body: 'Architectural shingle replacement, valley flashing, full tear-off, manufacturer warranty registered on your behalf.',
+    body: "Review the proposed scope and warranty terms before signing.",
   },
   {
     icon: Layers,
@@ -87,7 +87,7 @@ const WHY_PILLARS = [
     icon: Shield,
     title: 'One Warranty Conversation',
     body:
-      'You get a single point of contact for the entire scope. Workmanship warranty on every line item. Manufacturer warranties registered on your behalf.',
+      "You get a single point of contact for the entire scope. Review the proposed scope and warranty terms before signing.",
   },
   {
     icon: Home,
@@ -114,7 +114,7 @@ const TIMELINE = [
     step: 'Weeks 3–5',
     title: 'Roof, siding, deck',
     body:
-      'Real Elite executes the building envelope first — clean job site every day, daily homeowner updates, military-precision finish work.',
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
   {
     step: 'Weeks 5–6',
@@ -159,7 +159,7 @@ const FAQ_ITEMS = [
   {
     question: 'How long does the full bundle take?',
     answer:
-      'A typical full-perimeter project runs 5–7 weeks from approved estimate to final walk-through, weather permitting. Building-envelope work (roof / siding / deck) is sequenced first, with driveway and landscaping closing out the scope so heavy equipment never damages finished landscaping.',
+      'The schedule depends on the agreed scope, approvals, trade availability, and weather. Building-envelope work (roof / siding / deck) is sequenced first, with driveway and landscaping closing out the scope so heavy equipment never damages finished landscaping.',
   },
 ];
 

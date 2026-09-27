@@ -62,16 +62,9 @@ export default async function ReviewsPage({
   const allReviews = getAllReviews();
   const reviews = activeService ? getReviewsByService(activeService) : allReviews;
 
-  // Rating block reflects the full corpus, never the filtered view. Until the
-  // real Google rating is verified in SOCIAL_PROOF we present these honestly as
-  // featured client stories, not an implied verified aggregate.
-  const featuredAverage =
-    allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length;
   const verified = hasVerifiedReviews();
-  const displayRating = verified ? SOCIAL_PROOF.googleRating! : featuredAverage;
-  const ratingCaption = verified
-    ? `From ${SOCIAL_PROOF.googleReviewCount} Google reviews`
-    : 'Average across our featured client stories';
+  const displayRating = verified ? SOCIAL_PROOF.googleRating! : null;
+  const ratingCaption = verified ? `From ${SOCIAL_PROOF.googleReviewCount} Google reviews` : null;
 
   // Only offer filters when there's more than one facet to choose between.
   const showFilters = reviewedServices.length > 1;
@@ -89,9 +82,8 @@ export default async function ReviewsPage({
               The receipts.
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Reviews from homeowners we have actually worked for, across the
-              Eastern Panhandle, Frederick MD, Winchester VA, and Loudoun County —
-              many linked to the actual project behind them.
+              Visit our Google profile to read customer feedback. On-site testimonials
+              will appear here once their source and publication permission are confirmed.
             </p>
           </div>
         </Container>
@@ -100,6 +92,7 @@ export default async function ReviewsPage({
       {/* Rating block */}
       <section className="bg-white border-b border-charcoal-100">
         <Container size="default" className="py-12 sm:py-16 text-center">
+          {displayRating !== null && <>
           <div className="font-heading text-6xl sm:text-7xl font-extrabold text-navy-800 leading-none tracking-tight">
             {displayRating.toFixed(1)}
           </div>
@@ -107,6 +100,7 @@ export default async function ReviewsPage({
           <p className="text-charcoal-500 text-sm mt-3 uppercase tracking-[0.15em] font-semibold">
             {ratingCaption}
           </p>
+          </>}
           <a
             href={BUSINESS.social.google}
             target="_blank"
@@ -124,7 +118,7 @@ export default async function ReviewsPage({
         <Container size="wide">
           <SectionHeader
             eyebrow={verified ? 'Verified Reviews' : 'Client Stories'}
-            title="What clients say."
+            title={reviews.length ? "What clients say." : "Read customer feedback on Google."}
           />
 
           {showFilters && (
@@ -188,7 +182,7 @@ export default async function ReviewsPage({
             Join the list of homeowners we&apos;ve actually worked for.
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Three steps, about 60 seconds — a real project lead reaches out within 24 business hours.
+            Three steps, about 60 seconds — a real project lead reaches out after reviewing your request.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

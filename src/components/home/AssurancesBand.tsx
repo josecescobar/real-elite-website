@@ -3,24 +3,9 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 
 const ASSURANCES = [
-  {
-    icon: DollarSign,
-    title: 'Financing Available',
-    body:
-      'Monthly payment options on qualified projects. We walk you through the numbers on your free estimate so you know what fits before you commit.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Workmanship Warranty',
-    body:
-      "Every project gets our written workmanship warranty. Manufacturer material warranties (architectural shingles, composite decking, fiber cement) stack on top — and we register them on your behalf.",
-  },
-  {
-    icon: MessageSquareText,
-    title: 'Communication Standards',
-    body:
-      'Named project lead. Daily updates while we work. 24-hour response standard. Clean job site every day. No ghosting, no surprises, no chasing your contractor.',
-  },
+  { icon: DollarSign, title: 'Discuss the Scope', body: 'Bring your plans, priorities, and budget to the estimate. Review what is included before committing to construction.' },
+  { icon: ShieldCheck, title: 'Review the Details', body: 'Ask for current license and insurance documents, proposed warranty terms, and the responsibilities of each contractor on your project.' },
+  { icon: MessageSquareText, title: 'Plan Communication', body: 'Discuss site supervision, progress reporting, access, and cleanup arrangements before work begins.' },
 ];
 
 export default function AssurancesBand() {
@@ -28,9 +13,9 @@ export default function AssurancesBand() {
     <section className="bg-white py-20 md:py-28 border-t border-charcoal-100">
       <Container size="wide">
         <SectionHeader
-          eyebrow="What You Can Count On"
-          title="Three guarantees, every project."
-          subtitle="The stuff most contractors quietly skip — and the reason homeowners stop calling them."
+          eyebrow="Before Work Begins"
+          title="Start with a clear agreement."
+          subtitle="Use the estimate to discuss the details that matter in your home."
           align="center"
           className="mx-auto"
         />

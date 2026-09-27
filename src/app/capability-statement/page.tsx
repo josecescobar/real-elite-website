@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { FEDERAL_REGISTRATION } from '@/lib/claims';
 import Link from 'next/link';
 import {
   Award,
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   keywords: [
     'capability statement',
     'veteran-owned contractor capability statement',
-    'SDVOSB contractor WV',
+    'veteran-owned contractor WV',
     'federal contractor Martinsburg',
     'VA Medical Center contractor capability',
     'NAICS 236118 238160 contractor',
@@ -51,29 +52,17 @@ const SNAPSHOT = [
   { label: 'Service Region', value: 'WV · MD · VA Tri-State' },
   { label: 'Business Type', value: 'Veteran-Owned Small Business' },
   { label: 'SDVOSB Status', value: 'VetCert Application In Progress' },
-  { label: 'SAM.gov UEI', value: 'Available On Request' },
-  { label: 'CAGE Code', value: 'In Process' },
-  { label: 'DUNS', value: 'Migrated to UEI (Apr 2022)' },
-  { label: 'Bonding', value: 'Available On Request' },
+  { label: 'SAM.gov Registration', value: FEDERAL_REGISTRATION.summary },
+  { label: 'VA HIC Bond', value: '$50,000 · Residential HIC' },
 ];
 
-const NAICS_CODES = [
-  { code: '236118', label: 'Residential Remodelers', primary: true },
-  { code: '236220', label: 'Commercial & Institutional Building Construction' },
-  { code: '238160', label: 'Roofing Contractors' },
-  { code: '238170', label: 'Siding Contractors' },
-  { code: '238190', label: 'Other Foundation, Structure & Building Exterior' },
-  { code: '238210', label: 'Electrical Contractors (Subcontract)' },
-  { code: '238910', label: 'Site Preparation Contractors' },
-  { code: '238990', label: 'All Other Specialty Trade Contractors' },
-  { code: '561730', label: 'Landscaping Services (via partner)' },
-];
+const NAICS_CODES = FEDERAL_REGISTRATION.naics;
 
 const COMPETENCIES = [
   {
     title: 'Roofing & Exterior Envelope',
     body:
-      'Architectural shingle replacement, full tear-offs, valley flashing, ice-and-water shield, ridge venting, soffit / fascia, gutter systems. We install GAF and Owens Corning when the job calls for them; we do not advertise a Master Elite, Pro, or Platinum badge we do not hold. Manufacturer warranties registered on behalf of the owner.',
+      'Architectural shingle replacement, full tear-offs, valley flashing, ice-and-water shield, ridge venting, soffit / fascia, gutter systems. We install GAF and Owens Corning when the job calls for them. Review product coverage and registration requirements in the proposed agreement.',
   },
   {
     title: 'Siding & Facade',
@@ -106,7 +95,7 @@ const DIFFERENTIATORS = [
   {
     title: 'Veteran-Owned · Military Precision Process',
     body:
-      'Owned and led by a US military veteran. Operational discipline shows up in three places, every project: a named project lead from estimate to final walk-through, daily updates with a 24-hour response standard, and a written workmanship warranty on every line item.',
+      "Owned and led by a US military veteran. Review the proposed scope and warranty terms before signing.",
   },
   {
     title: 'Geographic Advantage — 8 Miles From Martinsburg VAMC',
@@ -121,7 +110,7 @@ const DIFFERENTIATORS = [
   {
     title: 'Licensed Tri-State Coverage',
     body:
-      'Licensed and insured in West Virginia, Maryland, and Virginia. Same crew quality and same project lead across all three states — not a referral-handoff model.',
+      "Licensed and insured in West Virginia and Virginia. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
 ];
 
@@ -441,11 +430,11 @@ export default function CapabilityStatementPage() {
                 <Shield className="w-3 h-3 text-brand-red-light" /> Veteran-Owned
               </span>
               <span>·</span>
-              <span>Licensed WV · MD · VA</span>
+              <span>Licensed WV · VA</span>
               <span>·</span>
               <span>SDVOSB In Progress</span>
               <span>·</span>
-              <span>SAM.gov Registration</span>
+              <span>Registered in SAM.gov</span>
             </div>
           </div>
         </Container>

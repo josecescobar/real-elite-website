@@ -69,7 +69,7 @@ This is where most reputable handyman work in the Eastern Panhandle lands, and i
 - A business, not a side hustle — they file taxes, carry insurance, and have a real phone number
 - **General liability insurance** (typically $1M coverage)
 - Written estimates and invoices
-- Usually a workmanship warranty (30 days to a year, depending on the pro)
+Review the proposed scope and warranty terms before signing.
 - Someone who will still be findable in a year if something goes wrong
 
 **Why the rate looks so much higher than Tier 1:** Because it actually reflects the cost of running a legitimate business. Let's do the math.
@@ -145,7 +145,7 @@ Five questions that will separate the legit pros from the rest in under three mi
 2. **Are you licensed in West Virginia?** (For jobs over $5,000, this is a legal requirement, not a nice-to-have.)
 3. **Can I see one review or reference from the last six months?** Someone active and legitimate always has recent work.
 4. **Will you pull permits if required?** The honest answer when permits apply is "yes, that's included."
-5. **What's your workmanship warranty?** Even a 30-day callback policy beats nothing. Many pros offer a year.
+5. Review the proposed scope and warranty terms before signing. Many pros offer a year.
 
 If they can't answer the first one clearly, stop there.
 

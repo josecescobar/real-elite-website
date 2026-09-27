@@ -126,7 +126,7 @@ export default function PavingHubPage() {
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
               <li>Veteran-Owned</li>
               <li aria-hidden="true" className="text-white/30">·</li>
-              <li>Licensed WV · MD · VA</li>
+              <li>Licensed WV · VA</li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li className="text-brand-red-light">Proper Base &amp; Drainage</li>
             </ul>
@@ -222,7 +222,7 @@ export default function PavingHubPage() {
                   'Cracks filled before sealcoating, always — never sealed over to hide a problem.',
                   'Honest repair-vs-replace advice from a contractor who has to live in this community.',
                   'Veteran-owned, with one named point of contact from estimate to final walk-through.',
-                  'Licensed and insured across West Virginia, Maryland, and Virginia.',
+                  'Licensed and insured across West Virginia and Virginia.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
@@ -241,7 +241,7 @@ export default function PavingHubPage() {
           <SectionHeader
             eyebrow="Free Paving Estimate"
             title="Tell us about your project."
-            subtitle={`Pre-set to paving so your request reaches the right crew. A project lead follows up within 24 business hours — or call ${BUSINESS.phone}.`}
+            subtitle={`Pre-set to paving so your request reaches the right crew. A project lead follows up after reviewing your request — or call ${BUSINESS.phone}.`}
             align="center"
             className="mx-auto"
           />

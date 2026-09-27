@@ -475,7 +475,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             Where do we send your estimate?
           </legend>
           <p className="text-charcoal-600 text-sm mb-6">
-            Real person, no spam. We&apos;ll reach out within 24 business hours.
+            Real person, no spam. We&apos;ll reach out after reviewing your request.
           </p>
 
           <div>

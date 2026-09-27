@@ -13,7 +13,7 @@ export const OWNER = {
 
 export const BUSINESS = {
   name: 'Real Elite Contracting',
-  tagline: "Eastern Panhandle's Most Trusted Contractor",
+  tagline: "Veteran-Owned Remodeling Contractor",
   phone: '(681) 534-5515',
   phoneRaw: '+16815345515',
   email: 'info@realelitecontracting.com',
@@ -192,7 +192,7 @@ export const SERVICES = [
     title: 'Whole-Home Remodeling',
     slug: 'remodeling',
     description:
-      'Interior and exterior remodels — kitchens, bathrooms, basements, and full home renovations under one project lead.',
+      'Interior and exterior remodels — kitchens, bathrooms, basements, and full home renovations with a coordinated scope.',
     icon: 'Hammer' as const,
   },
   {
@@ -561,7 +561,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
    */
   'northern-virginia': {
     description:
-      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements with walkout or areaway access — space the house already has and is not using. That is why the regional demand here concentrates on basements rather than on any single town: homeowners search for a Northern Virginia or Fairfax County contractor first and narrow down afterwards. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia, and works this market from its Eastern Panhandle base.",
+      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements with walkout or areaway access — space the house already has and is not using. That is why the regional demand here concentrates on basements rather than on any single town: homeowners search for a Northern Virginia or Fairfax County contractor first and narrow down afterwards. Real Elite Contracting is veteran-owned and licensed in West Virginia and Virginia, and works this market from its Eastern Panhandle base.",
     neighborhoods: [
       'Fairfax County',
       'Loudoun County',
@@ -885,7 +885,7 @@ export const SERVICES_MEGA_MENU = [
       { label: 'Bathroom Remodeling', href: '/services/bathrooms', description: 'Walk-in showers, tile, vanities, master baths' },
       { label: 'Kitchen Remodeling', href: '/services/kitchens', description: 'Custom cabinetry, islands, layout changes' },
       { label: 'Basement Finishing', href: '/services/basements', description: 'Family rooms, in-law suites, basement bars' },
-      { label: 'Whole-Home Remodeling', href: '/services/remodeling', description: 'Full interior renovations under one project lead' },
+      { label: 'Whole-Home Remodeling', href: '/services/remodeling', description: 'Full interior renovations with a coordinated scope' },
       { label: 'Home Additions', href: '/services/additions', description: 'Bump-outs, single rooms, second stories' },
     ],
   },
@@ -996,12 +996,12 @@ export const PRECISION_PROCESS = [
   {
     step: '03',
     title: 'Execute',
-    summary: 'Daily updates from your project lead. Clean job site. 24-hour response standard. The crew that started your job is the crew that finishes it.',
+    summary: "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
   {
     step: '04',
     title: 'Inspect',
-    summary: 'Final walkthrough, punch list cleared, workmanship warranty issued in writing. You only sign off when the project is right.',
+    summary: "Review the proposed scope and warranty terms before signing. You only sign off when the project is right.",
   },
 ] as const;
 
@@ -1054,12 +1054,12 @@ export const HOME_FAQ = [
   {
     question: 'Are you licensed and insured?',
     answer:
-      "Yes — Real Elite Contracting is fully licensed and insured across West Virginia, Maryland, and Virginia. We carry general liability and workers' compensation, and we'll send copies of every certificate before work begins.",
+      "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
   },
   {
     question: 'How long does a typical remodel take?',
     answer:
-      "Most full bathroom remodels run 3–5 weeks. Kitchens run 6–10 weeks. Decks take 1–3 weeks. We give you a written timeline before we break ground and update you daily — if anything shifts, you hear it from us first.",
+      "Most full bathroom remodels run 3–5 weeks. Kitchens run 6–10 weeks. Decks take 1–3 weeks. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
   {
     question: 'Do you offer financing?',
@@ -1069,7 +1069,7 @@ export const HOME_FAQ = [
   {
     question: 'What does your warranty cover?',
     answer:
-      "Every project includes our written workmanship warranty. Material warranties from our manufacturers (architectural shingles, composite decking, fiber cement siding) stack on top of that and we register them on your behalf.",
+      "Review the proposed scope and warranty terms before signing. Manufacturer coverage depends on the selected product and installation requirements.",
   },
   {
     question: 'Do you pull permits?',

@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   // keeps the city + service keywords, which is what the title is for.
   title: 'General Contractor in Martinsburg, WV | Real Elite',
   description:
-    'Veteran-owned general contractor serving the Eastern Panhandle — roofing, siding, decks and remodeling. Free written estimates within 24 business hours.',
+    'Veteran-owned general contractor serving the Eastern Panhandle — roofing, siding, decks and remodeling. Free written estimates after reviewing your request.',
   keywords: [
     'contractor',
     'roofing',
@@ -81,13 +81,13 @@ export const metadata: Metadata = {
     siteName: BUSINESS.name,
     title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
     description:
-      'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
+      'Veteran-owned remodeling and exterior contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
     images: [
       {
-        url: `${BUSINESS.url}/images/og-image.jpg`,
+        url: `${BUSINESS.url}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: 'Real Elite Contracting - Eastern Panhandle\'s Most Trusted Contractor',
+        alt: 'Real Elite Contracting - Veteran-Owned Remodeling Contractor',
       },
     ],
   },
@@ -95,8 +95,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'General Contractor in Martinsburg, WV | Real Elite Contracting',
     description:
-      'Eastern Panhandle\'s most trusted veteran-owned contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
-    images: [`${BUSINESS.url}/images/og-image.jpg`],
+      'Veteran-owned remodeling and exterior contracting company. Specializing in roofing, siding, decks, remodeling, and more.',
+    images: [`${BUSINESS.url}/opengraph-image`],
   },
   alternates: {
     canonical: BUSINESS.url,

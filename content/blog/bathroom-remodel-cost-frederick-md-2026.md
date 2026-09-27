@@ -101,7 +101,7 @@ Three things make the Frederick market a bit different from the broader Mid-Atla
 
 ## Timeline expectations
 
-A full bathroom remodel in Frederick MD in 2026 runs 3-5 weeks of active construction:
+The project schedule depends on scope, approvals, selections, and availability.
 
 - **Week 1:** Demo, rough-in plumbing and electrical, framing changes
 - **Week 2:** Inspection, waterproofing system installed, shower pan and substrate
@@ -123,6 +123,6 @@ Everywhere else — tile, fixtures, vanity — you can scale up or down based on
 
 ## How we work in Frederick MD
 
-Real Elite Contracting handles full bathroom remodels across Frederick MD — from the historic downtown through Urbana, Ballenger Creek, Jefferson, and New Market. Veteran-owned, licensed and insured in Maryland, and every estimate is line-itemed in writing before you sign anything.
+Real Elite Contracting handles full bathroom remodels across Frederick MD — from the historic downtown through Urbana, Ballenger Creek, Jefferson, and New Market. Veteran-owned, licensed in West Virginia and Virginia, and every estimate is line-itemed in writing before you sign anything.
 
 Most importantly: we tell you upfront which tier your project belongs in, what each line item costs, and where adding budget actually buys you something durable. No upsells on things that don't matter.

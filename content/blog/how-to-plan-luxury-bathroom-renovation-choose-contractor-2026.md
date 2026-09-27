@@ -8,7 +8,7 @@ slug: "how-to-plan-luxury-bathroom-renovation-choose-contractor-2026"
 featuredImage: "/images/inspiration/luxury-bathroom-shower-tub.jpg"
 category: "Bathrooms"
 type: "how-to"
-answer: "To plan a luxury bathroom renovation, start with how you actually use the room, set a realistic budget with a 10-15% contingency for hidden surprises, and lock in every selection (layout, materials, fixtures, and lighting) before demo begins so changes do not cause delays and change orders. Luxury primary baths in the WV-MD-VA region typically start around $50,000 and climb with layout changes, premium stone, and custom cabinetry, and a full build generally runs 3 to 6 weeks of active work. To choose the right contractor, verify they are licensed and insured (West Virginia requires a state license for work over $5,000), insist on a written line-item estimate and a clear contract, confirm a named point of contact and a written workmanship warranty, and walk away from high-pressure sales, large cash deposits, or reluctance to show a license."
+answer: "To plan a luxury bathroom renovation, start with how you actually use the room, set a realistic budget with a 10-15% contingency for hidden surprises, and lock in every selection (layout, materials, fixtures, and lighting) before demo begins so changes do not cause delays and change orders. The project schedule depends on scope, approvals, selections, and availability. Review the proposed scope and warranty terms before signing."
 author: "Real Elite Contracting Team"
 ---
 
@@ -76,7 +76,7 @@ You can pick perfect finishes and still end up unhappy if the wrong crew install
 - **A written, line-item estimate and a clear contract.** The scope, materials, payment schedule, and timeline should all be in writing. Vague one-line quotes are a red flag.
 - **A sane payment schedule.** Reasonable deposits tied to milestones — not a demand for most of the money up front.
 - **A named point of contact.** You should know exactly who's running your project and how you'll get updates.
-- **A written workmanship warranty** on top of the manufacturer warranties.
+Review the proposed scope and warranty terms before signing.
 - **They pull the permits.** A pro handles permitting and inspections; you shouldn't be chasing paperwork on your own remodel.
 
 **Red flags to walk away from:** high-pressure, sign-today sales; large cash deposits; no written contract; reluctance to show a license or insurance; and prices that seem too good to be true. (Our guide on [why hiring a licensed contractor saves money](/blog/why-hiring-licensed-contractor-wv-saves-money) goes deeper on the real cost of cutting this corner.)
@@ -100,16 +100,16 @@ The answers tell you almost everything about what working with that contractor w
 
 ## 7. What to expect during the build
 
-A full luxury primary bath generally runs **3 to 6 weeks** of active work. A good contractor will give you a written timeline before breaking ground, protect the rest of your home from dust, keep the job site clean, and finish with a final walkthrough and punch list before you sign off. You should never feel like you're in the dark about your own project.
+The project schedule depends on scope, approvals, selections, and availability. A good contractor will give you a written timeline before breaking ground, protect the rest of your home from dust, keep the job site clean, and finish with a final walkthrough and punch list before you sign off. You should never feel like you're in the dark about your own project.
 
 ## The Real Elite approach
 
-We built Real Elite Contracting around exactly the standards above: licensed and insured across WV, MD, and VA, written line-item pricing, a named project lead from the first walkthrough to the last, permits and inspections handled, and a written workmanship warranty at the end. Veteran-owned precision, applied to a room you'll use every day.
+Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to a room you'll use every day.
 
 If you're planning a high-end bathroom in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, we'd be glad to walk the space with you and give you a straight, written estimate.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Learn more about our [bathroom remodeling services](/services/bathrooms) and [our process](/process).
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

@@ -52,7 +52,7 @@ function escapeHtml(s: string) {
 /**
  * Warm, plain confirmation sent to the customer after any form submission.
  * Text-forward with a single call CTA — keeps it out of spam folders and
- * sets the "a real person will call within one business day" expectation.
+ * sets the "a real person will call after reviewing your request" expectation.
  * `safeFirstName` must already be HTML-escaped by the caller.
  */
 function customerConfirmationHtml(safeFirstName: string) {
@@ -66,14 +66,14 @@ function customerConfirmationHtml(safeFirstName: string) {
         <p style="margin: 0 0 14px;">Hi ${safeFirstName},</p>
         <p style="margin: 0 0 14px;">Thanks for reaching out — we&#39;ve got your request and it&#39;s with a project lead now. Here&#39;s what happens next:</p>
         <ul style="margin: 0 0 16px; padding-left: 20px;">
-          <li style="margin-bottom: 6px;">A real person from our team will call you within one business day — no call center, no runaround.</li>
+          <li style="margin-bottom: 6px;">A real person from our team will call you after reviewing your request — no call center, no runaround.</li>
           <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>
         </ul>
         <p style="margin: 0 0 20px;">If you&#39;d rather not wait, you&#39;re always welcome to call or text us directly:</p>
         <div style="text-align: center; margin: 0 0 20px;">
           <a href="tel:${BUSINESS.phoneRaw}" style="display: inline-block; background-color: #c0392b; color: #ffffff; text-decoration: none; font-weight: bold; padding: 12px 28px; border-radius: 6px; font-size: 15px;">Call ${BUSINESS.phone}</a>
         </div>
-        <p style="margin: 0; color: #5d5d5d; font-size: 13px;">Veteran-owned. Licensed &amp; insured across WV, MD, and VA.</p>
+        <p style="margin: 0; color: #5d5d5d; font-size: 13px;">Veteran-owned. Licensed &amp; insured across WV and VA.</p>
       </div>
     </div>
   `;

@@ -38,7 +38,7 @@ const FAQ_SECTIONS = [
       {
         question: 'Are you licensed and insured?',
         answer:
-          "Yes — Real Elite Contracting is fully licensed and insured across West Virginia, Maryland, and Virginia. We carry general liability and workers' compensation, and we'll send copies of every certificate before work begins.",
+          "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
       },
       {
         question: 'Are you really veteran-owned?',
@@ -53,7 +53,7 @@ const FAQ_SECTIONS = [
       {
         question: 'How do I get a free estimate?',
         answer:
-          `Three ways: call ${BUSINESS.phone}, text the same number, or use the multi-step estimate form on the homepage. A real project lead reaches out within 24 business hours. If you call and miss us, leave a voicemail — we return calls the same day.`,
+          `Three ways: call ${BUSINESS.phone}, text the same number, or use the multi-step estimate form on the homepage. A real project lead reaches out after reviewing your request. If you call and miss us, leave a voicemail — include your contact details and project location.`,
       },
     ],
   },
@@ -108,7 +108,7 @@ const FAQ_SECTIONS = [
       {
         question: 'How will you communicate during the project?',
         answer:
-          'Named project lead from day one. Daily updates with progress photos. 24-hour response standard on calls, texts, and emails during business days. If anything shifts on the schedule, you hear it from us first.',
+          "Discuss site supervision, communication, and cleanup arrangements during the estimate. If anything shifts on the schedule, you hear it from us first.",
       },
       {
         question: 'Do you handle permits and inspections?',
@@ -128,7 +128,7 @@ const FAQ_SECTIONS = [
       {
         question: 'What does your warranty cover?',
         answer:
-          'Every project gets our written workmanship warranty. Manufacturer material warranties (architectural shingles, composite decking, fiber cement siding, fixtures) stack on top of that, and we register them on your behalf.',
+          "Review the proposed scope and warranty terms before signing. Manufacturer coverage depends on the selected product and installation requirements.",
       },
       {
         question: 'What if there is a problem after the job is done?',
@@ -185,7 +185,7 @@ export default function FAQPage() {
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
             Easiest way to get a real answer: tell us what you&apos;re thinking about. A project
-            lead reaches out within 24 business hours.
+            lead reaches out after reviewing your request.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

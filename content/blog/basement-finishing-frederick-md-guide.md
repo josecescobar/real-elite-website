@@ -87,4 +87,4 @@ Frederick County permitting adds 2-3 weeks before the start. Basement finishes r
 
 Real Elite Contracting treats the moisture and egress work as seriously as the finished space — because that's what determines whether the basement is still dry and comfortable in 15 years. We do a free assessment before quoting, we'll tell you honestly if your basement needs remediation first, and every estimate is line-itemed in writing.
 
-Veteran-owned, licensed and insured in Maryland, and we pull and pass every permit Frederick County requires — your inspector signs off, not just us.
+Veteran-owned, licensed in West Virginia and Virginia, and we pull and pass every permit Frederick County requires — your inspector signs off, not just us.

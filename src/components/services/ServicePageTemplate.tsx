@@ -32,7 +32,7 @@ export default function ServicePageTemplate({ data }: Props) {
   const ctaDescription =
     primaryCta.intent === 'roof-quote'
       ? 'Enter your address, choose a roofing material, and get a ballpark replacement range in about 60 seconds.'
-      : 'Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walk-through.';
+      : 'Three short steps, about 60 seconds — a real project lead reaches out after reviewing your request to schedule your free on-site walk-through.';
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

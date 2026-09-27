@@ -49,7 +49,7 @@ export function fitTitle(title: string): string {
 
 /** The shared 1200×630 social card used when a route has no custom OG image. */
 const DEFAULT_OG_IMAGE = {
-  url: `${BUSINESS.url}/images/og-image.jpg`,
+  url: `${BUSINESS.url}/opengraph-image`,
   width: 1200,
   height: 630,
 } as const;

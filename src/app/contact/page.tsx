@@ -45,7 +45,7 @@ const CONTACT_BLOCKS = [
     label: 'Call',
     primary: BUSINESS.phone,
     href: `tel:${BUSINESS.phoneRaw}`,
-    sub: "Real person, no call center. If I don't pick up, leave a voicemail and I'll call you back the same day.",
+    sub: "Real person, no call center. If I don't pick up, leave a voicemail and include your contact details.",
   },
   {
     icon: MessageSquare,
@@ -59,7 +59,7 @@ const CONTACT_BLOCKS = [
     label: 'Email',
     primary: BUSINESS.email,
     href: `mailto:${BUSINESS.email}`,
-    sub: 'Replies within 24 business hours.',
+    sub: 'Send your project details by email.',
   },
   {
     icon: MapPin,
@@ -92,7 +92,7 @@ export default function ContactPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Call, text, email, or fill out the form — whichever is easiest. A real
-              project lead reaches out within 24 business hours, no high-pressure sales calls.
+              project lead reaches out after reviewing your request, no high-pressure sales calls.
             </p>
           </div>
         </Container>
@@ -152,7 +152,7 @@ export default function ContactPage() {
                   Prefer to talk?
                 </p>
                 <p className="text-sm text-charcoal-700 leading-relaxed">
-                  Call <PhoneLink location="contact_body" className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">{BUSINESS.phone}</PhoneLink> and a real person picks up. If I miss you, leave a voicemail — I&apos;ll get back to you the same day.
+                  Call <PhoneLink location="contact_body" className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">{BUSINESS.phone}</PhoneLink> and a real person picks up. If I miss you, leave a voicemail — include your contact details.
                 </p>
                 <p className="text-sm text-charcoal-700 leading-relaxed mt-3">
                   You can also <a href={SMS_URL} className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">text the same number</a> — quick texts usually get the fastest reply.

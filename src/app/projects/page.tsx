@@ -17,7 +17,7 @@ export const metadata = buildMetadata({
   path: '/projects',
   title: `Our Projects | ${BUSINESS.name}`,
   description:
-    'Completed remodeling and exterior projects across WV, MD, and VA — real homes, real before-and-afters, and the craftsmanship behind every Real Elite job.',
+    'Explore remodeling and exterior photography. Detailed case studies are published after project facts and permissions are confirmed.',
   keywords: ['contractor projects', 'before and after', 'remodeling portfolio', 'Eastern Panhandle'],
 });
 
@@ -97,7 +97,7 @@ export default async function ProjectsPage({
               ))}
             </div>
           ) : (
-            <p className="text-charcoal-600 text-lg">New projects are being added soon.</p>
+            <p className="text-charcoal-600 text-lg">Detailed case studies will appear after project facts and publication permissions are confirmed.</p>
           )}
         </Container>
       </section>

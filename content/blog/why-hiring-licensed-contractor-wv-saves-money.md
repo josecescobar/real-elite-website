@@ -115,4 +115,4 @@ We're veteran-owned and local, which means our reputation here isn't a marketing
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Let us show you what licensed, professional contracting actually feels like.
 
-*Real Elite Contracting — Eastern Panhandle's most trusted contractor.*
+*Real Elite Contracting — Veteran-owned remodeling contractor.*

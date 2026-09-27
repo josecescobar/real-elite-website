@@ -181,7 +181,7 @@ export default async function ServiceCityPage({
       ? 'Share the brief and choose a call window. A project lead will review the fit before scheduling an in-home consultation.'
       : primaryCta.intent === 'roof-quote'
         ? 'Enter your address, choose a roofing material, and get a ballpark replacement range in about 60 seconds.'
-        : 'Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walkthrough.';
+        : 'Three short steps, about 60 seconds — a real project lead reaches out after reviewing your request to schedule your free on-site walkthrough.';
 
   const place = formatAreaPlace(cityData);
 

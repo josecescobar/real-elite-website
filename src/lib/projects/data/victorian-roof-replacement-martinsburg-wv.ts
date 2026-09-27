@@ -8,10 +8,11 @@ import type { Project } from '../types';
  * city), a before/after reveal, a spec panel, an embedded review, FAQs, and
  * guide cross-links — all public-lens safe.
  */
+// REA-55: held until Jose confirms the real job facts and publication permission.
 const project: Project = {
   slug: 'victorian-roof-replacement-martinsburg-wv',
   title: 'Historic Victorian Re-Roof in Martinsburg',
-  status: 'published',
+  status: 'draft',
   featured: true,
 
   service: 'roofing',

@@ -89,7 +89,7 @@ export const Hero = () => {
 
           {/* Trust strip */}
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
-            <li>Licensed WV · MD · VA</li>
+            <li>Licensed WV · VA</li>
             <li aria-hidden="true" className="text-white/30">·</li>
             <li>Insured</li>
             <li aria-hidden="true" className="text-white/30">·</li>

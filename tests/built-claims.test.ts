@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import { OPERATIONAL_CLAIMS, claimsFoundIn } from '../src/lib/claims';
+import { OPERATIONAL_CLAIMS, RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_REGISTRATION, claimsFoundIn } from '../src/lib/claims';
 
 /**
  * How many BUILT PAGES publish each unconfirmed operational claim, read from
@@ -215,6 +215,46 @@ describe('unconfirmed claims in rendered pages', () => {
   if (!hasBuild) return;
 
   const pages = builtPages();
+
+  it('publishes no retracted credentials, ratings, or certification titles', () => {
+    for (const file of pages) {
+      const html = fs.readFileSync(file, 'utf8');
+      const text = visibleText(html);
+      for (const claim of RETRACTED_TRUST_CLAIMS) {
+        expect(claim.patterns.some(p => p.test(text)), `${routeOf(file)}: ${claim.id}`).toBe(false);
+      }
+      const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? '';
+      expect(title, routeOf(file)).not.toMatch(/SDVOSB|certified VOSB/i);
+      expect(html, routeOf(file)).not.toMatch(/"@type"\s*:\s*"(?:AggregateRating|Review)"/);
+    }
+  });
+
+  it('publishes the confirmed SAM facts and withholds unverified proof', () => {
+    for (const route of ['/veterans', '/capability-statement']) {
+      const file = pages.find(file => routeOf(file) === route)!;
+      const text = visibleText(fs.readFileSync(file, 'utf8'));
+      expect(text).toContain(FEDERAL_REGISTRATION.summary);
+      for (const { code } of FEDERAL_REGISTRATION.naics) expect(text).toContain(code);
+    }
+    expect(pages.filter(file => routeOf(file).startsWith('/projects/'))).toEqual([]);
+    const reviews = pages.find(file => routeOf(file) === '/reviews');
+    if (reviews) {
+      const text = visibleText(fs.readFileSync(reviews, 'utf8'));
+      expect(text).not.toMatch(/Mike & Sarah|Jennifer R\.|David & Linda|Average across our featured/);
+    }
+  });
+
+  it('renders the license numbers in the footer and About content', () => {
+    for (const route of ['/', '/about']) {
+      const file = pages.find(file => routeOf(file) === route)!;
+      const text = visibleText(fs.readFileSync(file, 'utf8'));
+      expect(text).toContain(CONTRACTOR_LICENSES.wv);
+      expect(text).toContain(CONTRACTOR_LICENSES.va);
+      if (route === '/about') {
+        expect(text.match(/WV062432/g)?.length).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
   /** claim id -> the routes whose rendered output publishes it. */
   const actual = new Map<string, Set<string>>();
   for (const file of pages) {

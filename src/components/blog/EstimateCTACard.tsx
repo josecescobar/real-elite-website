@@ -20,7 +20,7 @@ type Props = {
 
 export default function EstimateCTACard({
   heading = 'Request an estimate for a project like this',
-  body = 'Tell us what you’re picturing. Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walk-through.',
+  body = 'Tell us what you’re picturing. Three short steps, about 60 seconds — a real project lead reaches out after reviewing your request to schedule your free on-site walk-through.',
   href = '/contact#estimate',
   label = 'Get My Free Estimate',
   eyebrow = 'Free, written estimate',

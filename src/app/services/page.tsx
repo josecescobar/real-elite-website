@@ -77,10 +77,9 @@ export default function ServicesPage() {
               What we build.
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Premium remodeling and high-end exterior contracting across the WV–MD–VA region.
-              Every project gets the same disciplined process, the same project lead, and the same
-              workmanship warranty in writing.
-            </p>
+
+                Premium remodeling and high-end exterior contracting across the WV–MD–VA region. Explore kitchens, bathrooms, lower levels, outdoor living, and exterior work. Discuss scope, selections, and site requirements at your estimate.
+              </p>
           </div>
         </Container>
       </section>
