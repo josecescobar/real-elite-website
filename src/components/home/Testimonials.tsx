@@ -15,7 +15,8 @@ const renderStars = () => (
 export default function Testimonials() {
   // Lead with the two strongest reviews editorially, from the single review
   // source (src/lib/reviews). Same voices, now one source of truth.
-  const [a, b] = getFeaturedReviews(2);
+  const reviews = getFeaturedReviews(2);
+  if (!reviews.length) return null;
 
   return (
     <section className="bg-white py-20 md:py-28">
@@ -26,7 +27,7 @@ export default function Testimonials() {
         />
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-          {[a, b].map((t) => (
+          {reviews.map((t) => (
             <figure
               key={t.id}
               className="relative bg-steel-50 rounded-lg p-8 md:p-10 shadow-sm flex flex-col"

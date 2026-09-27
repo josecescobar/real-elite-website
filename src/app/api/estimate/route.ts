@@ -27,6 +27,11 @@ const MAX = {
   propertyType: 200,
   timeline: 60,
   budgetRange: 60,
+  // Qualifying intake fields from the design-consultation form (2026-09).
+  // Optional, so every older client and the standard estimate form keep
+  // working unchanged.
+  town: 80,
+  referralSource: 80,
   // First-touch attribution (client-captured; see src/lib/attribution.ts).
   utmSource: 200,
   utmMedium: 200,
@@ -52,7 +57,7 @@ function escapeHtml(s: string) {
 /**
  * Warm, plain confirmation sent to the customer after any form submission.
  * Text-forward with a single call CTA — keeps it out of spam folders and
- * sets the "a real person will call within one business day" expectation.
+ * sets the "a real person will call after reviewing your request" expectation.
  * `safeFirstName` must already be HTML-escaped by the caller.
  */
 function customerConfirmationHtml(safeFirstName: string) {
@@ -66,14 +71,14 @@ function customerConfirmationHtml(safeFirstName: string) {
         <p style="margin: 0 0 14px;">Hi ${safeFirstName},</p>
         <p style="margin: 0 0 14px;">Thanks for reaching out — we&#39;ve got your request and it&#39;s with a project lead now. Here&#39;s what happens next:</p>
         <ul style="margin: 0 0 16px; padding-left: 20px;">
-          <li style="margin-bottom: 6px;">A real person from our team will call you within one business day — no call center, no runaround.</li>
+          <li style="margin-bottom: 6px;">A real person from our team will call you after reviewing your request — no call center, no runaround.</li>
           <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>
         </ul>
         <p style="margin: 0 0 20px;">If you&#39;d rather not wait, you&#39;re always welcome to call or text us directly:</p>
         <div style="text-align: center; margin: 0 0 20px;">
           <a href="tel:${BUSINESS.phoneRaw}" style="display: inline-block; background-color: #c0392b; color: #ffffff; text-decoration: none; font-weight: bold; padding: 12px 28px; border-radius: 6px; font-size: 15px;">Call ${BUSINESS.phone}</a>
         </div>
-        <p style="margin: 0; color: #5d5d5d; font-size: 13px;">Veteran-owned. Licensed &amp; insured across WV, MD, and VA.</p>
+        <p style="margin: 0; color: #5d5d5d; font-size: 13px;">Veteran-owned. Licensed &amp; insured across WV and VA.</p>
       </div>
     </div>
   `;
@@ -87,6 +92,8 @@ const OPTIONAL: Field[] = [
   'propertyType',
   'timeline',
   'budgetRange',
+  'town',
+  'referralSource',
   'utmSource',
   'utmMedium',
   'utmCampaign',
@@ -177,10 +184,12 @@ export async function POST(request: Request) {
       { label: 'Phone', html: `<a href="tel:${safe.phone}">${safe.phone}</a>` },
       { label: 'Service', html: safe.service ?? '' },
     ];
+    if (safe.town) rows.push({ label: 'Town', html: safe.town });
     if (safe.zip) rows.push({ label: 'ZIP', html: safe.zip });
     if (safe.propertyType) rows.push({ label: 'Property', html: safe.propertyType });
     if (safe.timeline) rows.push({ label: 'Timeline', html: safe.timeline });
     if (safe.budgetRange) rows.push({ label: 'Budget', html: safe.budgetRange });
+    if (safe.referralSource) rows.push({ label: 'Heard about us', html: safe.referralSource });
 
     // Attribution: where this lead came from — the number that makes paid
     // spend optimizable. Falls back to the referring host, then "(direct)".
@@ -217,7 +226,9 @@ export async function POST(request: Request) {
       fullName: values.fullName!,
       service: values.service!,
       message: values.message,
-      propertyType: values.propertyType,
+      propertyType: values.town
+        ? `${values.propertyType ?? ''}${values.propertyType ? ' · ' : ''}Town: ${values.town}`
+        : values.propertyType,
       timeline: values.timeline,
       budgetRange: values.budgetRange,
       zip: values.zip,
@@ -282,6 +293,7 @@ export async function POST(request: Request) {
       const smsBody = [
         isLuxury ? '🔔 LUXURY LEAD' : '🔔 New Lead',
         `${values.fullName} · ${values.service}`,
+        values.town ? `Town: ${values.town}` : null,
         values.budgetRange ? `Budget: ${values.budgetRange}` : null,
         values.timeline ? `Timeline: ${values.timeline}` : null,
         values.zip ? `ZIP: ${values.zip}` : null,
@@ -329,6 +341,17 @@ export async function POST(request: Request) {
     // and the SMS is dispatched, and it never throws, so a ledger outage can
     // neither block nor delay lead delivery. See src/lib/leads.ts.
     const isLuxuryLead = (values.service ?? '').startsWith('[Luxury Consultation]');
+    // The ledger schema has no town / referral columns (docs/LEAD_LEDGER_SETUP.md),
+    // so the two intake fields ride along in the message text rather than
+    // as columns an insert would reject.
+    const intakeNotes = [
+      values.town ? `Town: ${values.town}` : null,
+      values.referralSource ? `Heard about us: ${values.referralSource}` : null,
+    ].filter(Boolean);
+    const ledgerMessage =
+      intakeNotes.length > 0
+        ? [values.message, intakeNotes.join(' · ')].filter(Boolean).join('\n\n')
+        : values.message;
     await recordLead({
       leadType: inferLeadType(values.service ?? ''),
       luxury: isLuxuryLead,
@@ -340,7 +363,7 @@ export async function POST(request: Request) {
       budgetRange: values.budgetRange,
       timeline: values.timeline,
       propertyType: values.propertyType,
-      message: values.message,
+      message: ledgerMessage,
       aiSummary: aiSummary ?? undefined,
       attribution: {
         utmSource: values.utmSource,

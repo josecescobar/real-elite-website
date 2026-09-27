@@ -85,6 +85,6 @@ The I-70 corridor expansion — Urbana, Jefferson, New Market, Buckeystown — h
 
 Real Elite Contracting serves Frederick MD across the full project range — bathrooms, kitchens, basements, roofing, decks, siding, and additions — from the historic downtown through Ballenger Creek, Urbana, Jefferson, and New Market.
 
-We're veteran-owned and licensed and insured in Maryland. We handle Frederick County and City of Frederick permitting as part of every project, coordinate HPC review where the historic district requires it, and give you a written, line-itemed estimate with a realistic timeline before you commit to anything.
+We're veteran-owned and licensed in West Virginia and Virginia. We handle Frederick County and City of Frederick permitting as part of every project, coordinate HPC review where the historic district requires it, and give you a written, line-itemed estimate with a realistic timeline before you commit to anything.
 
 If you're starting to plan a 2026 project, the free estimate is the right first step — it costs nothing and it gives you real numbers to plan around.

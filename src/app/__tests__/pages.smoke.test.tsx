@@ -341,17 +341,16 @@ describe('project system smoke tests', () => {
     expect(() => render(el)).not.toThrow();
   });
 
-  it('/projects/[slug] exposes the sample project via generateStaticParams', async () => {
+  it('/projects/[slug] withholds unconfirmed sample projects', async () => {
     const { generateStaticParams } = await import('@/app/projects/[slug]/page');
     const params = generateStaticParams();
-    expect(params.some((p) => p.slug === SAMPLE)).toBe(true);
+    expect(params.some((p) => p.slug === SAMPLE)).toBe(false);
   });
 
   it('renders the exemplary project through ProjectPageTemplate', async () => {
     const { default: ProjectPageTemplate } = await import('@/components/projects/ProjectPageTemplate');
-    const { getProjectBySlug } = await import('@/lib/projects');
-    const project = getProjectBySlug(SAMPLE);
-    expect(project).not.toBeNull();
+    // Render the retained draft as a fixture; the public route excludes it.
+    const { default: project } = await import('@/lib/projects/data/victorian-roof-replacement-martinsburg-wv');
     expect(() => render(<ProjectPageTemplate project={project!} />)).not.toThrow();
   });
 });

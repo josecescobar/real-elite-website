@@ -41,10 +41,9 @@ export default function ResourcesIndexPage() {
               Resource Center.
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Pricing breakdowns, material comparisons, permit walk-throughs, and the
-              questions every homeowner should ask before signing a contract — written by
-              the same crew that runs the projects.
-            </p>
+
+                Planning guides for remodeling and exterior projects, from materials and design choices to questions to ask at your estimate.
+              </p>
           </div>
         </Container>
       </section>

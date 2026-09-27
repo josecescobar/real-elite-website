@@ -23,7 +23,7 @@
 
 import type { Review } from './types';
 
-export const REVIEWS: readonly Review[] = [
+export const REVIEW_DRAFTS: readonly Review[] = [
   {
     id: 'mike-sarah-t-martinsburg-roofing',
     author: 'Mike & Sarah T.',
@@ -63,3 +63,9 @@ export const REVIEWS: readonly Review[] = [
     citySlug: 'shepherdstown-wv',
   },
 ];
+
+/** Source/consent evidence must be recorded before a quote is published. */
+export const REVIEW_PUBLICATION_EVIDENCE: Readonly<Record<string, string>> = {};
+export const REVIEWS: readonly Review[] = REVIEW_DRAFTS.filter(
+  review => Boolean(REVIEW_PUBLICATION_EVIDENCE[review.id]?.trim())
+);

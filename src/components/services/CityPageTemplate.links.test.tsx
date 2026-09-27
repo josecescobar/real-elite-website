@@ -156,3 +156,47 @@ describe('CityPageTemplate links to every combo published for its area', () => {
     expect(offenders, offenders.join('; ')).toEqual([]);
   });
 });
+
+describe('CityPageTemplate hero lane', () => {
+  function heroText(slug: string): { text: string; hrefs: string[] } {
+    const area = ALL_SERVICE_AREAS.find((a) => a.slug === slug);
+    if (!area) throw new Error(`no catalog row for ${slug}`);
+    const data = CITY_DATA[slug];
+    if (!data) throw new Error(`no CITY_DATA for ${slug}`);
+    const { container, unmount } = render(<CityPageTemplate city={area} data={data} />);
+    const text = container.textContent ?? '';
+    const hrefs = [...container.querySelectorAll('a[href]')].map((a) => a.getAttribute('href')!);
+    unmount();
+    return { text, hrefs };
+  }
+
+  it.each([
+    'loudoun-county-va',
+    'fairfax-county-va',
+    'prince-william-county-va',
+    'leesburg-va',
+    'mclean-va',
+    'haymarket-va',
+  ])('%s leads with a design consultation and the investment ranges', (slug) => {
+    const { text, hrefs } = heroText(slug);
+    expect(text).toContain('Schedule a design consultation');
+    expect(text).toContain('View investment ranges');
+    expect(text).toContain('Design-build remodeling');
+    expect(text).not.toContain('discussed at the estimate');
+    expect(text).not.toContain('Get My Free Estimate');
+    expect(hrefs).toContain('/design-consultation');
+    expect(hrefs).toContain('/investment');
+  });
+
+  it.each(['martinsburg-wv', 'inwood-wv', 'charles-town-wv', 'frederick-md', 'winchester-va'])(
+    '%s keeps the free-estimate hero',
+    (slug) => {
+      const { text, hrefs } = heroText(slug);
+      expect(text).toContain('Get My Free Estimate');
+      expect(text).toContain('discussed at the estimate');
+      expect(text).not.toContain('Schedule a design consultation');
+      expect(hrefs).not.toContain('/design-consultation');
+      expect(hrefs).not.toContain('/investment');
+    }
+  );
+});

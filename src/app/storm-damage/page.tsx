@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Storm Damage Roof Inspection — Free | ${BUSINESS.name}`,
     description:
-      'Hail and wind damage documented for your insurance carrier. Veteran-owned, licensed in WV / MD / VA.',
+      'Hail and wind damage documented for your insurance carrier. Veteran-owned, licensed in WV and VA.',
     url: `${BUSINESS.url}/storm-damage`,
     type: 'website',
   },
@@ -98,7 +98,7 @@ const PROCESS = [
     step: '4',
     title: 'Coordinated repair / replacement',
     body:
-      'If a claim is approved, we coordinate scope, scheduling, and final inspection. Workmanship warranty on every project. Manufacturer warranties registered on your behalf.',
+      "If a claim is approved, we coordinate scope, scheduling, and final inspection. Review the proposed scope and warranty terms before signing.",
   },
 ];
 
@@ -140,9 +140,9 @@ const FAQ_ITEMS = [
       'Most homeowner policies require notice within one year of the storm event, but many specify shorter windows — sometimes 60 or 90 days. Check your policy or call your carrier. The longer you wait, the harder it is to prove damage came from a specific storm rather than wear-and-tear, which is why same-week inspection matters.',
   },
   {
-    question: 'Are you licensed and insured in WV, MD, and VA?',
+    question: 'Are you licensed and insured in WV and VA?',
     answer:
-      'Yes. Real Elite Contracting is licensed and insured in West Virginia, Maryland, and Virginia. Veteran-owned and operated. Workmanship warranty on every project.',
+      "Yes. Real Elite Contracting is licensed and insured in West Virginia and Virginia. Veteran-owned and operated. Review the proposed scope and warranty terms before signing.",
   },
   {
     question: 'What about emergency tarping or temporary repairs?',
@@ -178,7 +178,7 @@ export default function StormDamagePage() {
             <div className="inline-flex items-center gap-2 bg-brand-red/15 backdrop-blur-sm border border-brand-red/40 rounded-full px-4 py-1.5 mb-6">
               <AlertTriangle className="w-3.5 h-3.5 text-brand-red-light" />
               <span className="text-white text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
-                Free Storm Inspection · 24-Hour Response
+                Request a Storm Inspection
               </span>
             </div>
 
@@ -190,7 +190,7 @@ export default function StormDamagePage() {
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Hail and wind damage often isn&apos;t visible from the ground. Get a free, written
               roof inspection from a veteran-owned local roofer — documented slope-by-slope for
-              your insurance carrier. Licensed in WV, MD, and VA.
+              your insurance carrier. Licensed in WV and VA.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
@@ -211,7 +211,7 @@ export default function StormDamagePage() {
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
               <li>Veteran-Owned</li>
               <li aria-hidden="true" className="text-white/30">·</li>
-              <li>Licensed WV · MD · VA</li>
+              <li>Licensed WV · VA</li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li>Insurance-Friendly</li>
               <li aria-hidden="true" className="text-white/30">·</li>
@@ -340,7 +340,7 @@ export default function StormDamagePage() {
           <SectionHeader
             eyebrow="Book Your Free Inspection"
             title="Tell us about the storm damage."
-            subtitle={`Pre-set to storm damage so your request reaches us with the right urgency. A project lead follows up within 24 business hours — or call ${BUSINESS.phone} for an active leak.`}
+            subtitle={`Pre-set to storm damage so your request reaches us with the right urgency. A project lead follows up after reviewing your request — or call ${BUSINESS.phone} for an active leak.`}
             align="center"
             className="mx-auto"
           />
@@ -394,7 +394,7 @@ export default function StormDamagePage() {
             <span className="text-brand-red-light">Free storm inspection.</span>
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Same-week appointments across Martinsburg, Frederick, Winchester, Hagerstown,
+            Same-week appointments across Martinsburg, Frederick, Winchester,
             Leesburg, and the surrounding tri-state.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

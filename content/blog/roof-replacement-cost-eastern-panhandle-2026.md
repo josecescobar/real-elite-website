@@ -72,6 +72,6 @@ We can give you a solid ballpark. Our [Instant Roof Quote](/instant-roof-quote) 
 
 The best way to know where your roof lands in the $9,000–$22,000 range is to have someone actually look at it and put the number in writing. That's exactly what we do — no pressure, no vague round numbers, no invented damage.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA, serving [Martinsburg](/services/roofing/martinsburg-wv), [Charles Town](/services/roofing/charles-town-wv), and the surrounding Berkeley and Jefferson County communities. Every roof we quote comes with a line-itemed written estimate — including how we handle decking if we find it — and every roof we install comes with the manufacturer warranty registered on your behalf plus our own workmanship warranty in writing.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA, serving [Martinsburg](/services/roofing/martinsburg-wv), [Charles Town](/services/roofing/charles-town-wv), and the surrounding Berkeley and Jefferson County communities. Review the proposed scope and warranty terms before signing.
 
 Start with a fast ballpark from the [Instant Roof Quote](/instant-roof-quote) tool, learn more about our full [roofing services](/services/roofing), or [request a free estimate](/contact#estimate) and we'll get you a real number to plan around.

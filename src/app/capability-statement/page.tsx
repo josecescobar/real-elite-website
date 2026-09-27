@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { FEDERAL_REGISTRATION } from '@/lib/claims';
 import Link from 'next/link';
 import {
   Award,
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   keywords: [
     'capability statement',
     'veteran-owned contractor capability statement',
-    'SDVOSB contractor WV',
+    'veteran-owned contractor WV',
     'federal contractor Martinsburg',
     'VA Medical Center contractor capability',
     'NAICS 236118 238160 contractor',
@@ -44,38 +45,29 @@ export const metadata: Metadata = {
 const SNAPSHOT = [
   { label: 'Legal Name', value: 'Real Elite Contracting LLC' },
   { label: 'Established', value: 'West Virginia LLC · Veteran-Owned' },
-  { label: 'HQ', value: 'Martinsburg, WV 25401' },
+  {
+    label: 'HQ',
+    value: `${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`,
+  },
   { label: 'Service Region', value: 'WV · MD · VA Tri-State' },
   { label: 'Business Type', value: 'Veteran-Owned Small Business' },
   { label: 'SDVOSB Status', value: 'VetCert Application In Progress' },
-  { label: 'SAM.gov UEI', value: 'Available On Request' },
-  { label: 'CAGE Code', value: 'In Process' },
-  { label: 'DUNS', value: 'Migrated to UEI (Apr 2022)' },
-  { label: 'Bonding', value: 'Available On Request' },
+  { label: 'SAM.gov Registration', value: FEDERAL_REGISTRATION.summary },
+  { label: 'VA HIC Bond', value: '$50,000 · Residential HIC' },
 ];
 
-const NAICS_CODES = [
-  { code: '236118', label: 'Residential Remodelers', primary: true },
-  { code: '236220', label: 'Commercial & Institutional Building Construction' },
-  { code: '238160', label: 'Roofing Contractors' },
-  { code: '238170', label: 'Siding Contractors' },
-  { code: '238190', label: 'Other Foundation, Structure & Building Exterior' },
-  { code: '238210', label: 'Electrical Contractors (Subcontract)' },
-  { code: '238910', label: 'Site Preparation Contractors' },
-  { code: '238990', label: 'All Other Specialty Trade Contractors' },
-  { code: '561730', label: 'Landscaping Services (via partner)' },
-];
+const NAICS_CODES = FEDERAL_REGISTRATION.naics;
 
 const COMPETENCIES = [
   {
     title: 'Roofing & Exterior Envelope',
     body:
-      'Architectural shingle replacement, full tear-offs, valley flashing, ice-and-water shield, ridge venting, soffit / fascia, gutter systems. GAF Master Elite track. Manufacturer warranties registered on behalf of the owner.',
+      'Architectural shingle replacement, full tear-offs, valley flashing, ice-and-water shield, ridge venting, soffit / fascia, gutter systems. We install GAF and Owens Corning when the job calls for them. Review product coverage and registration requirements in the proposed agreement.',
   },
   {
     title: 'Siding & Facade',
     body:
-      'Vinyl, fiber cement (James Hardie experience), and stone veneer installation. Weather-resistant barrier (WRB) and air-sealing detail to current code. CertainTeed and James Hardie certification path.',
+      'Vinyl, fiber cement, and stone veneer installation when the job calls for them. Weather-resistant barrier (WRB) and air-sealing detail to current code. We do not advertise a James Hardie or CertainTeed certification we do not hold.',
   },
   {
     title: 'Interior Remodeling',
@@ -103,7 +95,7 @@ const DIFFERENTIATORS = [
   {
     title: 'Veteran-Owned · Military Precision Process',
     body:
-      'Owned and led by a US military veteran. Operational discipline shows up in three places, every project: a named project lead from estimate to final walk-through, daily updates with a 24-hour response standard, and a written workmanship warranty on every line item.',
+      "Owned and led by a US military veteran. Review the proposed scope and warranty terms before signing.",
   },
   {
     title: 'Geographic Advantage — 8 Miles From Martinsburg VAMC',
@@ -118,7 +110,7 @@ const DIFFERENTIATORS = [
   {
     title: 'Licensed Tri-State Coverage',
     body:
-      'Licensed and insured in West Virginia, Maryland, and Virginia. Same crew quality and same project lead across all three states — not a referral-handoff model.',
+      "Licensed and insured in West Virginia and Virginia. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
 ];
 
@@ -126,17 +118,17 @@ const PAST_PERFORMANCE = [
   {
     market: 'Eastern Panhandle WV',
     scope: 'Full exterior renovations (roof + siding + deck) for residential homeowners across Martinsburg, Inwood, Charles Town, Hedgesville, and Shepherdstown',
-    detail: '200+ projects completed across the home market. Representative project documentation available on request under NDA.',
+    detail: 'Home-market work across Martinsburg, Inwood, Charles Town, Hedgesville, and Shepherdstown. We do not publish an invented completed-project count.',
   },
   {
     market: 'Frederick County MD',
     scope: 'Bathroom, kitchen, and basement remodels along the I-70 growth corridor (Frederick, Urbana, Jefferson, New Market)',
-    detail: 'Premium tier work ($30K–$90K project range) for homeowners in the Maryland Mid-Atlantic corridor.',
+    detail: 'Bathroom, kitchen, and basement work along the I-70 corridor. Line items go in the written estimate — we do not publish invented price bands here.',
   },
   {
     market: 'Loudoun County VA',
-    scope: 'Premium decks, outdoor living, and full home additions in Leesburg, Ashburn, Brambleton, Lansdowne, and Cascades',
-    detail: 'High-spec work for one of the highest-income counties in the United States. HOA-submission discipline.',
+    scope: 'Decks, outdoor living, and additions in Loudoun — western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg)',
+    detail: 'County Typical Deck and Typical Finished Basement paths, town zoning first in Leesburg / Purcellville / Middleburg, HOA packets in parallel. We do not invent a completed Loudoun project count.',
   },
 ];
 
@@ -438,11 +430,11 @@ export default function CapabilityStatementPage() {
                 <Shield className="w-3 h-3 text-brand-red-light" /> Veteran-Owned
               </span>
               <span>·</span>
-              <span>Licensed WV · MD · VA</span>
+              <span>Licensed WV · VA</span>
               <span>·</span>
               <span>SDVOSB In Progress</span>
               <span>·</span>
-              <span>SAM.gov Registration</span>
+              <span>Registered in SAM.gov</span>
             </div>
           </div>
         </Container>

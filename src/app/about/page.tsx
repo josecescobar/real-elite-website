@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
+import { CONTRACTOR_LICENSES } from '@/lib/claims';
 import { fitTitle } from '@/lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Hammer, MessageSquareText, MapPin, Award, ArrowRight } from 'lucide-react';
-import { BUSINESS, OWNER } from '@/lib/constants';
+import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import OwnerCard from '@/components/shared/OwnerCard';
@@ -49,7 +50,7 @@ const VALUES = [
   {
     icon: MessageSquareText,
     title: 'Communication',
-    body: 'Named project lead. Daily updates. 24-hour response standard. You always know what is happening on your project.',
+    body: "Discuss site supervision, communication, and cleanup arrangements during the estimate. You always know what is happening on your project.",
   },
   {
     icon: MapPin,
@@ -59,20 +60,12 @@ const VALUES = [
 ];
 
 const NUMBERS = [
-  { value: '40+', label: 'Years of Experience' },
-  { value: 'Written', label: 'Workmanship Warranty' },
-  { value: 'Client', label: 'Recommended' },
+  { value: 'Class A', label: 'Virginia · HIC' },
+  { value: 'WV062432', label: 'WV Contractor License' },
+  { value: 'Veteran', label: 'Owned' },
 ];
 
 export default function AboutPage() {
-  /**
-   * AboutPage schema linking the page to the organization, plus an
-   * embedded Person founder reference so Google understands the
-   * veteran-owned positioning as structured data rather than just
-   * marketing copy. Portrait is added conditionally — once
-   * OWNER.portrait is set in constants.ts the image field appears in
-   * the schema automatically.
-   */
   const aboutSchema = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
@@ -86,13 +79,6 @@ export default function AboutPage() {
       foundingLocation: {
         '@type': 'Place',
         name: `${BUSINESS.address.city}, ${BUSINESS.address.state}`,
-      },
-      founder: {
-        '@type': 'Person',
-        name: OWNER.name,
-        jobTitle: OWNER.title,
-        worksFor: { '@id': `${BUSINESS.url}/#business` },
-        ...(OWNER.portrait ? { image: `${BUSINESS.url}${OWNER.portrait}` } : {}),
       },
       knowsAbout: [
         'Bathroom Remodeling',
@@ -162,23 +148,17 @@ export default function AboutPage() {
                 title="Service first. Standards always."
               />
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
-                Real Elite Contracting was founded by a U.S. military veteran who
-                carried the same standard from service into civilian work: when you say you&apos;ll
-                do something, you do it — to the spec, on the timeline, and you communicate every
-                step. Construction in this region had drifted from that. We built Real Elite to
-                bring it back.
+                Real Elite Contracting is a veteran-owned remodeling and exterior contractor.
+                Our work includes kitchens, bathrooms, lower levels, and outdoor living.
               </p>
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
-                That foundation shapes every decision: how we estimate (written and line-itemed),
-                how we schedule (no double-booking your project lead), how we communicate (daily
-                updates, named lead, 24-hour response standard), and how we close (final walkthrough
-                with a written workmanship warranty before you sign off).
+
+                Review the proposed scope and warranty terms before signing.
               </p>
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
                 Today we build premium bathrooms, kitchens, basements, decks, roofs, and full home
                 additions across the Eastern Panhandle WV, Frederick MD, Winchester VA, Loudoun
-                County, and the surrounding region. The customers who hire us tend to send their
-                neighbors next.
+                County, and the surrounding region.
               </p>
             </div>
             <div className="lg:col-span-5">
@@ -248,14 +228,13 @@ export default function AboutPage() {
                 The Crew
               </p>
               <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 mb-5 leading-tight">
-                The crew that starts your job is the crew that finishes it.
+
+                Discuss the team before work begins.
               </h2>
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
-                We don&apos;t hand off projects between teams or rotate strangers through your
-                house. Your project lead introduces themselves on day one and stays through the
-                final walkthrough. The trades on your job are people we&apos;ve worked with for
-                years — vetted, accountable, and held to the same standard the rest of the company
-                runs on.
+                Use the estimate to discuss who will supervise the work, which trades the
+                project requires, and how updates, site access, and cleanup will be handled.
+                Confirm those responsibilities in the project agreement.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <div className="inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-medium text-navy-800">
@@ -264,7 +243,7 @@ export default function AboutPage() {
                 </div>
                 <div className="inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-medium text-navy-800">
                   <ShieldCheck className="w-4 h-4 text-brand-red" aria-hidden="true" />
-                  Licensed &amp; Insured · WV · MD · VA
+                  {CONTRACTOR_LICENSES.summary}
                 </div>
               </div>
               <OwnerCard className="mt-7" />
@@ -287,7 +266,7 @@ export default function AboutPage() {
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
             Tell us what you&apos;re picturing — three short steps, about 60 seconds, free written
-            estimate within 24 business hours.
+            estimate after reviewing your request.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

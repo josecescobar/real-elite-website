@@ -114,7 +114,7 @@ Here's what a real $35,000 composite deck build in Ashburn looks like in 2026:
 
 **Total: $34,800**
 
-Active construction time: 9 working days, plus 2 weeks of permitting / HOA approval before start.
+The project schedule depends on scope, approvals, selections, and availability.
 
 20-year lifecycle cost: roughly $35,500 (essentially flat, with a $1,200 board replacement around year 18 thanks to a hot-grill incident we won't name names on).
 

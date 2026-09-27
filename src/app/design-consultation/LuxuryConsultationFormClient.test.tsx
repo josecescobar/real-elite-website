@@ -32,8 +32,14 @@ function renderDeckConsultation() {
   render(<LuxuryConsultationFormClient />);
 }
 
-function completeIntake(budget: string) {
+function completeIntake(budget: string, opts: { referral?: string } = {}) {
+  fireEvent.change(screen.getByLabelText('Where is the house?'), { target: { value: 'ashburn' } });
   fireEvent.change(screen.getByLabelText('Investment range'), { target: { value: budget } });
+  if (opts.referral) {
+    fireEvent.change(screen.getByLabelText(/How did you hear about us/), {
+      target: { value: opts.referral },
+    });
+  }
   fireEvent.change(screen.getByLabelText('Project timeline'), { target: { value: '3-6' } });
   fireEvent.click(screen.getByRole('button', { name: 'Undecided / open to it' }));
   fireEvent.change(screen.getByLabelText("When's a good time to call?"), {
@@ -88,12 +94,12 @@ describe('consultation query preselection', () => {
 
 describe('outdoor-living consultation submission', () => {
   it.each([
-    ['under-25', 'Under $25k'],
-    ['25-50', '$25k – $50k'],
+    ['under-50', 'Under $50K'],
+    ['50-100', '$50K – $100K'],
   ])('submits the %s budget through the existing lead contract', async (budget, budgetLabel) => {
     vi.mocked(fetch).mockResolvedValue(new Response('{}', { status: 200 }));
     renderDeckConsultation();
-    completeIntake(budget);
+    completeIntake(budget, { referral: 'agent' });
 
     fireEvent.click(screen.getByRole('button', { name: 'Request Phone Consultation' }));
 
@@ -110,16 +116,18 @@ describe('outdoor-living consultation submission', () => {
       phone: '2025550123',
       service: '[Luxury Consultation] Outdoor Living / Custom Deck',
       zip: '20147',
+      town: 'Ashburn',
       propertyType: 'Designer: Undecided / open to it · Call window: Sometime next week',
       timeline: '3–6 months',
       budgetRange: budgetLabel,
+      referralSource: 'A real estate agent',
       message: 'A covered deck for our backyard.',
       utm_source: 'loudoun-campaign',
       landing_page: '/services/decks/loudoun-county-va',
       website: '',
     });
     expect(trackEvent).toHaveBeenCalledWith('form_submit', {
-      form: 'luxury_consultation', projectType: 'outdoor-living', budget,
+      form: 'luxury_consultation', projectType: 'outdoor-living', budget, town: 'ashburn',
     });
     expect(trackLead).toHaveBeenCalledExactlyOnceWith({
       lead_type: 'luxury_consultation',
@@ -127,24 +135,54 @@ describe('outdoor-living consultation submission', () => {
       value_band: budgetLabel,
     });
     expect(trackEstimateStep).toHaveBeenCalledWith('submit', 1, 'luxury_consultation', {
-      projectType: 'outdoor-living', budget,
+      projectType: 'outdoor-living', budget, town: 'ashburn',
     });
   });
 
-  it('retains the existing budget options', () => {
+  it('omits referralSource from the payload when the optional field is blank', async () => {
+    vi.mocked(fetch).mockResolvedValue(new Response('{}', { status: 200 }));
+    renderDeckConsultation();
+    completeIntake('100-200');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Request Phone Consultation' }));
+    await screen.findByRole('status');
+
+    const [, request] = vi.mocked(fetch).mock.calls[0];
+    const body = JSON.parse(request?.body as string);
+    expect(body).not.toHaveProperty('referralSource');
+    expect(body.town).toBe('Ashburn');
+  });
+
+  it('starts the budget bands at Under $50K so smaller leads are routed, not rejected', () => {
     renderDeckConsultation();
     expect(within(screen.getByLabelText('Investment range')).getAllByRole('option').map((option) => [
       (option as HTMLOptionElement).value, option.textContent,
     ])).toEqual([
-      ['', 'Select an investment tier…'],
-      ['under-25', 'Under $25k'],
-      ['25-50', '$25k – $50k'],
-      ['50-100', '$50k – $100k'],
-      ['100-200', '$100k – $200k'],
-      ['200-500', '$200k – $500k'],
-      ['500-plus', '$500k+'],
+      ['', 'Select an investment range…'],
+      ['under-50', 'Under $50K'],
+      ['50-100', '$50K – $100K'],
+      ['100-200', '$100K – $200K'],
+      ['200-400', '$200K – $400K'],
+      ['400-plus', '$400K+'],
       ['unsure', 'Not sure yet'],
     ]);
+
+    fireEvent.change(screen.getByLabelText('Investment range'), { target: { value: 'under-50' } });
+    const note = screen.getByText(/usually move faster through our/);
+    expect(note).toBeInTheDocument();
+    expect(within(note).getByRole('link', { name: 'standard estimate' })).toHaveAttribute('href', '/estimate');
+  });
+
+  it('requires a town before submitting', async () => {
+    vi.mocked(fetch).mockResolvedValue(new Response('{}', { status: 200 }));
+    renderDeckConsultation();
+    completeIntake('100-200');
+    fireEvent.change(screen.getByLabelText('Where is the house?'), { target: { value: '' } });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Request Phone Consultation' }));
+
+    expect(await screen.findByText('Tell us where the house is.')).toBeInTheDocument();
+    expect(fetch).not.toHaveBeenCalled();
   });
 
   it('keeps the intake after a failed request and records a lead only after a successful retry', async () => {
@@ -153,13 +191,13 @@ describe('outdoor-living consultation submission', () => {
       .mockResolvedValueOnce(new Response('{"error":"Try again"}', { status: 503 }))
       .mockResolvedValueOnce(new Response('{}', { status: 200 }));
     renderDeckConsultation();
-    completeIntake('25-50');
+    completeIntake('50-100');
 
     fireEvent.click(screen.getByRole('button', { name: 'Request Phone Consultation' }));
 
     expect(await screen.findByRole('alert')).toHaveTextContent('Something went wrong. Please call');
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
-    expect(screen.getByLabelText('Investment range')).toHaveValue('25-50');
+    expect(screen.getByLabelText('Investment range')).toHaveValue('50-100');
     expect(screen.getByLabelText('Full name')).toHaveValue('Test Homeowner');
     expect(trackLead).not.toHaveBeenCalled();
     expect(trackEvent).not.toHaveBeenCalledWith('form_submit', expect.anything());

@@ -26,6 +26,7 @@ import {
   defaultComboTitle,
   defaultComboDescription,
   comboPublishesPricing,
+  unconfirmedClaimIdsInCombo,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
@@ -47,6 +48,7 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
   kitchens: 'kitchen',
   basements: 'basement',
   remodeling: 'whole-home',
+  additions: 'addition',
   // Outdoor living is the luxury line that actually ranks in Loudoun: decks
   // hold four top-10 and twelve top-20 positions there, against zero top-10
   // for kitchen/bath. Without this mapping those pages rendered the luxury
@@ -60,7 +62,7 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
 
 /**
  * Refuse to render service+city combos outside generateStaticParams.
- * Hagerstown MD + Loudoun County VA would otherwise be rendered
+ * Unpublished combos would otherwise be rendered
  * on-demand and hit notFound() at runtime — visible as soft 404s in
  * Search Console. With dynamicParams=false, Next returns a hard 404
  * for any combo not in the list.
@@ -179,7 +181,7 @@ export default async function ServiceCityPage({
       ? 'Share the brief and choose a call window. A project lead will review the fit before scheduling an in-home consultation.'
       : primaryCta.intent === 'roof-quote'
         ? 'Enter your address, choose a roofing material, and get a ballpark replacement range in about 60 seconds.'
-        : 'Three short steps, about 60 seconds — a real project lead reaches out within 24 business hours to schedule your free on-site walkthrough.';
+        : 'Three short steps, about 60 seconds — a real project lead reaches out after reviewing your request to schedule your free on-site walkthrough.';
 
   const place = formatAreaPlace(cityData);
 
@@ -191,6 +193,14 @@ export default async function ServiceCityPage({
   // it was vacuous AND blind to the route's filter being weakened from `every`
   // to `some`. Same mistake serviceHrefForArea was extracted to fix.
   const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
+
+  // AssurancesBand and PrecisionProcess publish four unconfirmed claims
+  // sitewide. Trust bullets are already gated per page; these two bands were
+  // not. `tests/built-claims.test.ts` treats a NEW combo URL inheriting them
+  // as the claim spreading. Home market keeps both. A premium combo whose own
+  // copy makes no unconfirmed claim does not get them from the template.
+  const showSitewideClaimBands =
+    cityData.market === 'home' || unconfirmedClaimIdsInCombo(service, city).length > 0;
 
   // SEO: Service schema scoped to this specific area, plus a BreadcrumbList.
   // No per-market LocalBusiness duplication (the global GeneralContractor in
@@ -451,11 +461,8 @@ export default async function ServiceCityPage({
         </Container>
       </section>
 
-      {/* Process module */}
-      <PrecisionProcess />
-
-      {/* Assurances */}
-      <AssurancesBand />
+      {showSitewideClaimBands && <PrecisionProcess />}
+      {showSitewideClaimBands && <AssurancesBand />}
 
       {/* Related guides — authored per combo, and rendered ONLY when authored.
           RelatedGuides falls back to the three most recent posts when it is

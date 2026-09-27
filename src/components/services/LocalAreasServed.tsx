@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
 import { PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS } from '@/lib/constants';
+import { serviceHrefForArea } from '@/lib/service-city-content';
 
 type Props = {
   serviceSlug: string;
@@ -27,12 +28,6 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
     ? areaScope.cities.slice(4)
     : [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
 
-  // Service-city deep links only exist for the featured (roofing/decks/remodeling/siding)
-  // service × VA/MD city combinations. For the rest, link to the city overview page.
-  const FEATURED_DEEP_LINK = ['roofing', 'decks', 'remodeling', 'siding'].includes(
-    serviceSlug
-  );
-
   return (
     <section>
       <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-2">
@@ -44,9 +39,7 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {priorityCities.map((area) => {
-          const href = FEATURED_DEEP_LINK
-            ? `/services/${serviceSlug}/${area.slug}`
-            : `/service-areas/${area.slug}`;
+          const href = serviceHrefForArea(serviceSlug, area.slug);
           return (
             <Link
               key={area.slug}

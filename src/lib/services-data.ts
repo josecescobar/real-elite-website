@@ -109,7 +109,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'bathroom remodel Eastern Panhandle',
     ],
     answer:
-      'Real Elite Contracting remodels bathrooms across Eastern Panhandle WV, Frederick MD, and Winchester VA — walk-in showers, tile work, and full master-bath transformations with real Schluter-Kerdi waterproofing, typically running 3–5 weeks with a named project lead.',
+      'Real Elite Contracting offers bathroom remodeling, walk-in showers, tile work, and vanity installation. Discuss waterproofing, access, and finish selections when scoping the project.',
     hero: {
       eyebrow: 'Premium Interior',
       heading: 'Bathroom Remodeling',
@@ -122,7 +122,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     overview: {
       paragraphs: [
         "Your bathroom is the room you start every day in and end every day in — so the build has to be right. Real Elite Contracting handles full bathroom remodels, walk-in shower conversions, and tile work for homeowners across Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County. Premium materials. Real waterproofing systems. The veteran-led communication standards that make remodels feel less like construction and more like a managed project.",
-        "We build with the long-term in mind: Schluter-Kerdi waterproofing systems, real tile setting (no cheap shortcuts), curbless and accessibility-aware shower designs, and the fit-and-finish you'd expect from a higher-end design-build firm. Most full bathroom remodels run 3–5 weeks with a clean job site, daily updates, and a named project lead from start to finish.",
+        "We build with the long-term in mind: Schluter-Kerdi waterproofing systems, real tile setting (no cheap shortcuts), curbless and accessibility-aware shower designs, and the fit-and-finish you'd expect from a higher-end design-build firm. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       ],
     },
     scope: {
@@ -149,14 +149,13 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     whyChooseUs: [
       'Real waterproofing systems (Schluter-Kerdi) — not cheap green board shortcuts.',
-      'Clean job site protocol: daily cleanup, dust containment, walked surfaces protected.',
-      'Named project lead, 24-hour response standard, daily progress photos.',
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
     ],
     faqs: [
       {
         question: 'How long does a bathroom remodel take?',
         answer:
-          'Most full bathroom remodels run 3–5 weeks from demo to final walk-through. Walk-in shower conversions in an otherwise intact bathroom can run 2–3 weeks. We give you a written timeline before we break ground and update you daily if anything shifts.',
+          "The construction schedule depends on the approved scope, selections, permits, and material availability. A shower conversion has a different scope from a full bathroom rebuild. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       },
       {
         question: 'How much does a bathroom remodel cost in this region?',
@@ -205,7 +204,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'kitchen remodel Loudoun County',
     ],
     answer:
-      'Real Elite Contracting builds custom kitchens across Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County — cabinetry, countertops, islands, and layout changes under one accountable project lead, with most full remodels running 6–10 weeks.',
+      'Real Elite Contracting offers kitchen remodeling, cabinetry, countertops, islands, and layout updates. Discuss the drawings, materials, and trade responsibilities at the estimate.',
     hero: {
       eyebrow: 'Premium Interior',
       heading: 'Kitchen Remodeling',
@@ -217,8 +216,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     overview: {
       paragraphs: [
-        "Real Elite Contracting builds custom kitchens for homeowners across Eastern Panhandle WV, Frederick MD, Winchester VA, Loudoun County, and the surrounding region. We handle every part of a kitchen remodel — design coordination, cabinetry, countertops, layout changes, plumbing and electrical, tile, lighting — under one accountable project lead.",
-        "Most full kitchen remodels run 6–10 weeks depending on cabinetry lead time, layout complexity, and structural work. Daily updates, clean job site, named project lead, and a written workmanship warranty are standard. We don't take on more kitchens than we can deliver well — when we say yes to your project, you get our full attention.",
+        "Real Elite Contracting builds custom kitchens for homeowners across Eastern Panhandle WV, Frederick MD, Winchester VA, Loudoun County, and the surrounding region. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
+        "The construction schedule depends on the approved scope, selections, permits, and material availability. Review the proposed scope and warranty terms before signing. We don't take on more kitchens than we can deliver well — when we say yes to your project, you get our full attention.",
       ],
     },
     scope: {
@@ -245,7 +244,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       ],
     },
     whyChooseUs: [
-      'One project lead from design through final walk-through.',
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       'We coordinate cabinetry lead times so demo lines up with delivery — no half-built kitchens sitting for weeks.',
       'Daily cleanup, dust containment, and protected walking paths through the rest of your home.',
     ],
@@ -253,7 +252,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'How long does a kitchen remodel take?',
         answer:
-          'Most full kitchen remodels run 6–10 weeks from demo to final. Cabinetry lead time is usually the longest item — we plan around it so you only lose your kitchen during the demo-and-install window, not the full ordering period.',
+          'The construction schedule depends on the approved scope, selections, permits, and material availability. Cabinetry lead time is usually the longest item — we plan around it so you only lose your kitchen during the demo-and-install window, not the full ordering period.',
       },
       {
         question: 'How much does a kitchen remodel cost in this region?',
@@ -373,8 +372,16 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         answer:
           "Yes — proper rim joist insulation, perimeter wall insulation, and an HVAC extension (or independent zone, depending on your system) keep finished basements comfortable year-round. We don't cut corners on insulation.",
       },
+      {
+        question: 'Do I need a permit to finish a basement in Loudoun County?',
+        answer:
+          'Yes. Loudoun requires a building and zoning application for architectural and structural work, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Typical Finished Basement Details can stand in for custom drawings unless you alter a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum; a kitchen in the basement adds a published $165 zoning fee; full plans add a published $130 plan review fee. Leesburg, Purcellville, and Middleburg issue town zoning first. A bedroom needs an emergency egress window. We put the current fees in the written estimate.',
+      },
     ],
-    relatedGuideSlugs: ['basement-egress-window-cost-eastern-panhandle-2026'],
+    relatedGuideSlugs: [
+      'basement-egress-window-cost-eastern-panhandle-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
     icon: 'Home',
   },
 
@@ -438,8 +445,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     ],
     whyChooseUs: [
       'Premium materials from industry-leading manufacturers (GAF, Owens Corning).',
-      'Licensed and insured roofing specialists.',
-      'Workmanship guarantees in writing on every install.',
+      'WV and VA contractor licenses; request insurance documentation.',
+      'Review warranty terms before signing.',
     ],
     faqs: [
       {
@@ -455,7 +462,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'What roofing materials do you use?',
         answer:
-          'We primarily install premium architectural shingles from GAF and Owens Corning, backed by manufacturer warranties — and our own workmanship warranty in writing.',
+          'Architectural shingles and standing-seam metal are options to discuss during your estimate. Warranty coverage depends on the selected product and installation requirements.',
       },
       {
         question: 'Do you handle insurance claims for storm damage?',
@@ -723,12 +730,12 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'Do I need a permit for a deck?',
         answer:
-          "Usually yes — decks above a certain height or square footage typically require a building permit in WV, MD, and VA. We handle the permitting and inspection coordination as part of the project.",
+          "Yes in the markets we publish. Loudoun County requires a building permit and a zoning permit on every deck. Typical Deck Detail is the published fast path at $265 with 2-day building and 2-day zoning review when the design qualifies; a roof or screen needs full plans at $395. Leesburg, Purcellville, and Middleburg issue town zoning first. Frederick County MD requires a permit for a new or replacement deck (City of Frederick and Mt. Airy permit separately). We tell you which office files the job and put the published fee in the written estimate.",
       },
       {
         question: 'How long does it take to build a deck?',
         answer:
-          'Most standard deck builds complete in 1–2 weeks. Multi-level decks and outdoor living buildouts run 2–4 weeks. Weather and material lead times can shift the schedule — we update you daily.',
+          "Deck schedules depend on the design, permit review, weather, and material availability. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       },
     ],
   },
@@ -750,7 +757,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Eastern Panhandle',
     ],
     answer:
-      'Real Elite Contracting manages interior and exterior remodels across the WV–MD–VA region — kitchens, bathrooms, basements, and full home renovations under one accountable project lead, from design consultation through final inspection.',
+      'Real Elite Contracting offers whole-home remodeling, kitchens, bathrooms, and basement finishing. Start by defining which rooms and finishes belong in the scope.',
     hero: {
       eyebrow: 'Premium Interior',
       heading: 'Whole-Home Remodeling',
@@ -760,7 +767,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     overview: {
       paragraphs: [
         "Your home should evolve with your family. Real Elite Contracting specializes in kitchen remodels, bathroom renovations, basement finishing, and complete interior updates that transform your living spaces while preserving the character of your home.",
-        "We manage every aspect — from design consultation through final inspection — keeping projects on schedule, on budget, and on standard. One project lead, daily updates, clean job site.",
+        "We manage every aspect — from design consultation through final inspection — keeping projects on schedule, on budget, and on standard. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       ],
       image: { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring in remodeled living space' },
     },
@@ -832,7 +839,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Eastern Panhandle',
     ],
     answer:
-      'Real Elite Contracting designs and builds home additions across the WV–MD–VA region that match the existing architecture — bump-outs, single-room, second-story, and in-law suite additions with structural engineering and permitting handled in-house.',
+      'Real Elite Contracting designs and builds home additions across the WV–MD–VA region that match the existing architecture — bump-outs, single-room, second-story, and in-law suite additions with design and permit responsibilities established before construction.',
     hero: {
       eyebrow: 'New Space',
       heading: 'Home Additions',
@@ -842,7 +849,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     overview: {
       paragraphs: [
         "Sometimes the right answer isn't moving — it's adding. Real Elite Contracting designs and builds home additions that look like they were always part of the original structure. Roofline, siding, foundation, interior finish — matched so you can't tell where the original house ends and the new build begins.",
-        "We handle structural engineering, permitting, foundation work, framing, roofing tie-in, exterior matching, and interior finish coordination. One project lead, transparent line-itemed pricing.",
+        "Additions require a defined design, engineering, permit, and construction scope. Confirm each professional and contractor responsibility before signing.",
       ],
       image: { src: '/images/framing-walls-work.webp', alt: 'Timber wall framing and window openings during construction' },
     },
@@ -872,8 +879,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     ],
     whyChooseUs: [
       'Matched architecture — additions that look original.',
-      'Structural engineering and permitting handled in-house.',
-      'Foundation, framing, roof tie-in, and finish coordinated under one project lead.',
+      'Discuss any engineering, permits, and additional contractor qualifications the project requires.',
+      'Foundation, framing, roof tie-in, and finish coordinated with a coordinated scope.',
     ],
     faqs: [
       {
@@ -896,7 +903,13 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         answer:
           'That\'s the goal on every project. We match rooflines, siding, trim profiles, and interior finishes carefully. Matching can never be 100% on older homes (material weathering, discontinued products), but we get it as close as the materials allow.',
       },
+      {
+        question: 'Do I need a permit for a home addition in Loudoun County?',
+        answer:
+          'Yes. Loudoun requires a building and zoning application, a plat with setbacks, and a comprehensive structural plan. Screened porches are published as residential additions, not Typical Deck jobs. Published county fees are $395 at or under 1,000 square feet (building, plan review, and county zoning bundled). Over 1,000 square feet the building fee is 1% of construction cost plus a $335 plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg issue town zoning first. A bedroom added on well and septic needs Health Department approval before the county application. We put the current fees in the written estimate.',
+      },
     ],
+    relatedGuideSlugs: ['loudoun-county-permits-hoa-guide-2026'],
   },
 
   'exterior-repairs': {
@@ -984,7 +997,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Eastern Panhandle',
     ],
     answer:
-      'Real Elite Contracting handles general home repairs and maintenance across the WV–MD–VA region — doors, drywall, trim, and deck fixes done with the same project lead and workmanship warranty as the larger remodels.',
+      'Real Elite Contracting offers general repairs and home maintenance, including doors, drywall, trim, and deck repairs. Discuss the repair scope at the estimate.',
     hero: {
       eyebrow: 'Smaller Projects',
       heading: 'General Repairs & Maintenance',
@@ -993,7 +1006,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     overview: {
       paragraphs: [
         "Most of what keeps a home in great shape is the small stuff — a door that doesn't latch quite right, drywall damage in the hallway, a deck board that's started to lift. Real Elite Contracting handles general repairs and home maintenance with the same discipline we bring to remodels.",
-        "Same project lead, same warranty, same clean job site. Just smaller scope.",
+        "Discuss site supervision, communication, and cleanup arrangements during the estimate. Just smaller scope.",
       ],
     },
     scope: {
@@ -1009,7 +1022,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     whyChooseUs: [
       "Veteran-led discipline on every project — even the small ones.",
-      'Same workmanship warranty as our larger work.',
+      'Ask about coverage for the proposed repair.',
       'One scheduled visit, in and out clean.',
     ],
     faqs: [
@@ -1026,7 +1039,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'Do you guarantee repair work?',
         answer:
-          'Yes — every repair gets our standard workmanship warranty in writing.',
+          "Review the proposed scope and warranty terms before signing.",
       },
     ],
   },
@@ -1076,7 +1089,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     whyChooseUs: [
       'Real scheduling — your visit happens when we say it will.',
-      'Clean job site. Workmanship guaranteed.',
+      'Discuss cleanup and coverage before work begins.',
       'Same trustworthy crew, even on the small jobs.',
     ],
     faqs: [

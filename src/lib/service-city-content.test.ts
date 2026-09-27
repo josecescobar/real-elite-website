@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import nodePath from 'node:path';
 import {
   CONTENT,
   COMBO_CITY_SLUGS,
@@ -490,11 +492,10 @@ describe('comboPublishesPricing', () => {
   });
 
   /**
-   * The nine that must keep the generic tiers. These are the Loudoun exterior
-   * trades; the tiers are in the right band for them and are the only pricing
-   * those pages carry, so suppressing them would remove information rather
-   * than a contradiction. A blanket premium gate would have done exactly that
-   * — the reason this is not one.
+   * Loudoun pages that publish only official permit fees, or no dollars at
+   * all, must keep the generic tiers. A `$265` Typical Deck fee is not a job
+   * range; treating it as one hid the investment block. A blanket premium
+   * gate would have done the same — the reason this is not one.
    */
   it.each([
     ['roofing', 'leesburg-va'],
@@ -512,18 +513,11 @@ describe('comboPublishesPricing', () => {
   });
 
   /**
-   * The hole in the predicate, closed. `comboPublishesPricing` matches any
-   * `$`-figure anywhere in the entry, so a number mentioned in passing — a
-   * permit fee, a deposit — would suppress a premium page's investment block
-   * and leave it with no pricing at all.
-   *
-   * No premium combo does that today: the lowest top figure among those that
-   * trip the predicate is $40,000, on roofing-loudoun-county-va, which is a
-   * real project range. The threshold is set well under that so ordinary copy
-   * edits do not trip it, and it exists so that adding a small incidental
-   * figure to a premium page fails here instead of silently dropping the
-   * block. If this fails, do not raise the threshold — either the figure is
-   * incidental and should not be there, or the page needs real pricing.
+   * Permit fees must not suppress the investment block. `comboPublishesPricing`
+   * ignores figures at or under $25,000 so a Typical Deck / Typical Basement /
+   * addition fee can live on the page. The test still fails if a premium page
+   * trips the predicate on nothing larger than that floor — that would mean
+   * the helper started counting incidental dollars as job pricing again.
    */
   it('never suppresses a premium investment block on an incidental figure', () => {
     const INCIDENTAL_CEILING = 25_000;
@@ -552,12 +546,12 @@ describe('comboPublishesPricing', () => {
   });
 
   /**
-   * The count is pinned so that adding a figure to one of those nine pages —
-   * which would silently drop its investment block — shows up as a decision
-   * rather than a side effect. If you add one, update the number and say which
-   * page gained pricing.
+   * Pinned so that adding a real job-range figure — which would silently drop
+   * the investment block — shows up as a decision rather than a side effect.
+   * Loudoun additions, basements, and Middleburg decks joined the original
+   * nine because they publish county fees, not project bands.
    */
-  it('leaves exactly nine premium combos relying on the generic tiers', () => {
+  it('leaves the premium combos that have no job-range figure on the generic tiers', () => {
     const relying = Object.keys(CONTENT).filter((key) => {
       const area = ALL_SERVICE_AREAS.find((a) => key.endsWith(`-${a.slug}`));
       if (!area || area.market !== 'premium') return false;
@@ -566,15 +560,32 @@ describe('comboPublishesPricing', () => {
     });
     expect(relying.sort()).toEqual(
       [
+        'additions-ashburn-va',
+        'additions-leesburg-va',
+        'additions-loudoun-county-va',
+        'additions-middleburg-va',
+        'basements-ashburn-va',
+        'basements-leesburg-va',
+        'basements-loudoun-county-va',
+        'bathrooms-ashburn-va',
+        'bathrooms-leesburg-va',
+        'bathrooms-loudoun-county-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
+        'decks-middleburg-va',
+        'kitchens-ashburn-va',
+        'kitchens-leesburg-va',
+        'kitchens-loudoun-county-va',
         'remodeling-ashburn-va',
         'remodeling-leesburg-va',
+        'remodeling-loudoun-county-va',
         'roofing-ashburn-va',
         'roofing-leesburg-va',
+        'roofing-loudoun-county-va',
         'siding-ashburn-va',
         'siding-leesburg-va',
+        'siding-loudoun-county-va',
       ].sort()
     );
   });
@@ -595,11 +606,9 @@ describe('unconfirmedClaimIdsInCombo', () => {
     expect(unconfirmedClaimIdsInCombo('basements', 'northern-virginia')).toEqual([]);
   });
 
-  it('lists the claims a page makes in its own paragraphs', () => {
-    expect(unconfirmedClaimIdsInCombo('bathrooms', 'mclean-va')).toContain('named-project-lead');
-    expect(unconfirmedClaimIdsInCombo('basements', 'great-falls-va')).toContain(
-      'written-workmanship-warranty'
-    );
+  it('keeps previously claim-bearing pages clear after REA-55', () => {
+    expect(unconfirmedClaimIdsInCombo('bathrooms', 'mclean-va')).toEqual([]);
+    expect(unconfirmedClaimIdsInCombo('basements', 'great-falls-va')).toEqual([]);
   });
 
   it('is empty for a premium page whose own copy makes none', () => {
@@ -629,7 +638,7 @@ describe('unconfirmedClaimIdsInCombo', () => {
    * visible measure, so a copy edit or a retirement that changes the footprint
    * surfaces as a decision rather than a side effect.
    */
-  it('splits the premium combos 27 carrying claims to 10 not', () => {
+  it('publishes no registered unconfirmed claims on premium combos', () => {
     let carrying = 0;
     let clean = 0;
     for (const key of Object.keys(CONTENT)) {
@@ -639,12 +648,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 27/10 as of 2026-09-18, was 26/11. One combo moved from clean to
-    // carrying when the warranty pattern widened to cover "workmanship
-    // guarantee" and the plural "workmanship warranties" — the copy dates to
-    // 2026-07-06 (#63) and never changed; only detection did. A rise here
-    // caused by NEW copy is a defect; this one is the scan catching up.
-    expect({ carrying, clean }).toEqual({ carrying: 27, clean: 10 });
+    // 27/18 after Loudoun additions, Loudoun basements, and Middleburg decks
+    // landed as clean pages (permit facts, no unconfirmed operational claims).
+    // Carrying stayed at 27 — new copy must not raise that number.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 45 });
   });
 
   /**
@@ -655,7 +662,7 @@ describe('unconfirmedClaimIdsInCombo', () => {
    */
   it('does not report the trust bullets\u2019 claims for a page carrying only an unrelated one', () => {
     const ids = unconfirmedClaimIdsInCombo('bathrooms', 'ashburn-va');
-    expect(ids).toContain('active-work-timeline');
+    expect(ids).toEqual([]);
     for (const id of [
       'named-project-lead',
       'daily-updates',
@@ -677,9 +684,24 @@ describe('Tier C retired combos', () => {
    * next.config.ts redirects it. These tests are what stop a retirement
    * shipping half-done.
    */
-  it('retires exactly the ten combos the doc names', () => {
+  /**
+   * Hagerstown, MD was dropped from the service area on 2026-09-27. Its five
+   * combos share RETIRED_COMBOS (and so the redirect guard below) but follow
+   * their own destination rule, so they are split out of the Tier C checks.
+   */
+  const HAGERSTOWN_COMBOS = [
+    'bathrooms-hagerstown-md',
+    'decks-hagerstown-md',
+    'remodeling-hagerstown-md',
+    'roofing-hagerstown-md',
+    'siding-hagerstown-md',
+  ];
+  const isHagerstown = (key: string) => key.endsWith('-hagerstown-md');
+
+  it('retires exactly the ten Tier C combos plus the five Hagerstown ones', () => {
     expect(Object.keys(RETIRED_COMBOS).sort()).toEqual(
       [
+        ...HAGERSTOWN_COMBOS,
         'basements-burke-va',
         'basements-clifton-va',
         'basements-fairfax-station-va',
@@ -737,6 +759,7 @@ describe('Tier C retired combos', () => {
    */
   it('sends basements to the regional page and the rest to the area page', () => {
     for (const [key, destination] of Object.entries(RETIRED_COMBOS)) {
+      if (isHagerstown(key)) continue;
       if (key.startsWith('basements-')) {
         expect(destination, `${key} should keep its trade`).toBe(
           '/services/basements/northern-virginia'
@@ -853,6 +876,7 @@ describe('Tier C retired combos', () => {
       // typo, a removed route, another retired combo — is a link to a 404.
       const areaMatch = /^\/service-areas\/([a-z0-9-]+)$/.exec(path);
       const comboMatch = /^\/services\/([a-z0-9-]+)\/([a-z0-9-]+)$/.exec(path);
+      const pillarMatch = /^\/services\/([a-z0-9-]+)$/.exec(path);
 
       if (areaMatch) {
         expect(
@@ -865,9 +889,16 @@ describe('Tier C retired combos', () => {
           publishedCombos.has(targetKey),
           `${key} redirects to ${path}, but "${targetKey}" is not published in CONTENT, so the destination 404s`
         ).toBe(true);
+      } else if (pillarMatch) {
+        // A service pillar is a static route, so it exists iff its page file does.
+        const pillarPage = nodePath.join(process.cwd(), 'src/app/services', pillarMatch[1], 'page.tsx');
+        expect(
+          fs.existsSync(pillarPage),
+          `${key} redirects to ${path}, but src/app/services/${pillarMatch[1]}/page.tsx does not exist, so the destination 404s`
+        ).toBe(true);
       } else {
         throw new Error(
-          `${key} redirects to ${path}, which is neither an area page nor a service+area page. Those are the two shapes this test can prove resolve. If another destination is genuinely needed, extend this check to prove THAT route exists — do not widen the pattern and lose the guarantee.`
+          `${key} redirects to ${path}, which is neither an area page, a service+area page, nor a service pillar. Those are the two shapes this test can prove resolve. If another destination is genuinely needed, extend this check to prove THAT route exists — do not widen the pattern and lose the guarantee.`
         );
       }
     }

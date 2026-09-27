@@ -13,15 +13,19 @@ export const OWNER = {
 
 export const BUSINESS = {
   name: 'Real Elite Contracting',
-  tagline: "Eastern Panhandle's Most Trusted Contractor",
+  tagline: "Veteran-Owned Remodeling Contractor",
   phone: '(681) 534-5515',
   phoneRaw: '+16815345515',
   email: 'info@realelitecontracting.com',
   address: {
-    street: 'Martinsburg',
+    /**
+     * HQ street is also the home address. Never publish it on the site,
+     * in schema, or in llms.txt. Treat this as a service-area business.
+     */
+    street: null as string | null,
     city: 'Martinsburg',
     state: 'WV',
-    zip: '25401',
+    zip: '25405',
     region: 'Eastern Panhandle, WV',
   },
   url: 'https://www.realelitecontracting.com',
@@ -188,7 +192,7 @@ export const SERVICES = [
     title: 'Whole-Home Remodeling',
     slug: 'remodeling',
     description:
-      'Interior and exterior remodels — kitchens, bathrooms, basements, and full home renovations under one project lead.',
+      'Interior and exterior remodels — kitchens, bathrooms, basements, and full home renovations with a coordinated scope.',
     icon: 'Hammer' as const,
   },
   {
@@ -357,7 +361,6 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- MD and the Northern Shenandoah — first-class markets ---------- */
   { slug: 'frederick-md', city: 'Frederick', state: 'MD', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'hagerstown-md', city: 'Hagerstown', state: 'MD', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
   { slug: 'winchester-va', city: 'Winchester', state: 'VA', kind: 'city', market: 'home', status: 'active', legacyTiers: ['primary', 'expansion'] },
 
   /* ---------- Loudoun County — premium, and the one NoVA county with a row ---------- */
@@ -365,24 +368,26 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'ashburn-va', city: 'Ashburn', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['primary', 'expansion'] },
 
   /* ---------- Fairfax County and the inner NoVA suburbs — premium ----------
-   * Parented to the `northern-virginia` region row below. That row exists
-   * because the basement demand in this market is regional: "basement
-   * remodeling northern virginia" reports 110/mo and "basement finishing
-   * northern virginia" 90/mo, while every town-level basement term here except
-   * Alexandria (70) and McLean (30) is below the reporting floor.
+   * Towns sit under `fairfax-county-va`. Alexandria stays on the region:
+   * it is an independent city, and Fairfax County Land Development Services
+   * does not issue its building permits.
    *
-   * Their kitchen and bathroom pages are a different story and stay town-level
-   * on purpose — "kitchen remodeling mclean va" is 260/mo and "vienna va" 140.
-   * See docs/site-altitude-architecture-2026-09-18.md §1.5.
+   * The region row still exists because basement demand here is regional:
+   * "basement remodeling northern virginia" reports 110/mo and "basement
+   * finishing northern virginia" 90/mo, while every town-level basement term
+   * except Alexandria (70) and McLean (30) is below the reporting floor.
+   * Kitchen and bathroom pages stay town-level — "kitchen remodeling mclean
+   * va" is 260/mo and "vienna va" 140. See
+   * docs/site-altitude-architecture-2026-09-18.md §1.5.
    */
-  { slug: 'mclean-va', city: 'McLean', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'mclean-va', city: 'McLean', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: ['primary', 'expansion'] },
   { slug: 'alexandria-va', city: 'Alexandria', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'vienna-va', city: 'Vienna', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'great-falls-va', city: 'Great Falls', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'reston-va', city: 'Reston', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'burke-va', city: 'Burke', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'fairfax-station-va', city: 'Fairfax Station', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
-  { slug: 'clifton-va', city: 'Clifton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'vienna-va', city: 'Vienna', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'great-falls-va', city: 'Great Falls', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'reston-va', city: 'Reston', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'burke-va', city: 'Burke', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'fairfax-station-va', city: 'Fairfax Station', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: ['primary', 'expansion'] },
+  { slug: 'clifton-va', city: 'Clifton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: ['primary', 'expansion'] },
   { slug: 'middleburg-va', city: 'Middleburg', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: ['primary', 'expansion'] },
 
   /* ---------- Secondary rows ---------- */
@@ -406,6 +411,49 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
    * on the rows above.
    */
   { slug: 'northern-virginia', city: 'Northern Virginia', state: 'VA', kind: 'region', market: 'premium', status: 'active', legacyTiers: [] },
+
+  /* ---------- Loudoun towns added 2026-09-27 ----------
+   * Western corridor (Route 9 from Martinsburg, then Route 7) and the
+   * eastern planned communities that did not have their own rows.
+   * Empty legacyTiers, same as northern-virginia: these publish pages and
+   * appear as Loudoun County children without rewriting the pre-catalog
+   * primary/secondary arrays pinned in constants.test.ts.
+   *
+   * `town` here includes incorporated towns and unincorporated places.
+   * Localities stay schema.org Place either way — see areaSchemaType.
+   */
+  { slug: 'purcellville-va', city: 'Purcellville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'round-hill-va', city: 'Round Hill', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'lovettsville-va', city: 'Lovettsville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'waterford-va', city: 'Waterford', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'hamilton-va', city: 'Hamilton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'aldie-va', city: 'Aldie', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'lansdowne-va', city: 'Lansdowne', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'south-riding-va', city: 'South Riding', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'sterling-va', city: 'Sterling', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+
+  /* ---------- Fairfax County + Prince William County, added 2026-09-27 ----------
+   * Empty legacyTiers, same as the Loudoun towns above, so the pre-catalog
+   * primary/secondary pins in constants.test.ts stay put.
+   *
+   * Fairfax towns that already had rows (McLean, Vienna, Great Falls, Reston,
+   * Burke, Fairfax Station, Clifton) keep those rows and now parent here.
+   * Oakton, Dunn Loring, and Fort Hunt are the wealthy ZIPs that had no row.
+   * Alexandria stays a child of Northern Virginia: independent city.
+   *
+   * Prince William pages are the western ZIPs along I-66 and Route 15.
+   * Woodbridge and Dumfries are a different, lower-income market and have
+   * no rows.
+   */
+  { slug: 'fairfax-county-va', city: 'Fairfax County', state: 'VA', kind: 'county', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
+  { slug: 'prince-william-county-va', city: 'Prince William County', state: 'VA', kind: 'county', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
+  { slug: 'oakton-va', city: 'Oakton', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  { slug: 'dunn-loring-va', city: 'Dunn Loring', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  { slug: 'fort-hunt-va', city: 'Fort Hunt', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  { slug: 'haymarket-va', city: 'Haymarket', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
+  { slug: 'gainesville-va', city: 'Gainesville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
+  { slug: 'bristow-va', city: 'Bristow', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
+  { slug: 'nokesville-va', city: 'Nokesville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
 ];
 
 /**
@@ -448,7 +496,6 @@ export const EXPANSION_SERVICE_AREAS = byLegacyTier('expansion');
  *     kitchens, bathrooms
  *   Frederick MD -> bathrooms, basements, kitchens, roofing
  *   Winchester VA -> decks, roofing, whole-home remodeling
- *   Hagerstown MD -> roofing, siding, bathrooms
  *   Eastern Panhandle WV -> all services, home market
  */
 export type CityDataEntry = {
@@ -521,12 +568,6 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     neighborhoods: ['Historic Downtown Frederick', 'Ballenger Creek', 'Urbana', 'Jefferson', 'New Market', 'Buckeystown'],
     marketEmphasis: ['bathrooms', 'basements', 'kitchens', 'roofing', 'remodeling', 'additions'],
   },
-  'hagerstown-md': {
-    description:
-      "Hagerstown is the county seat of Washington County, Maryland and the largest city in the Cumberland Valley — a strategically located commercial hub at the intersection of I-70 and I-81. With a mix of historic neighborhoods near Public Square and growing suburban development along the Halfway and Robinwood corridors, Hagerstown's housing stock spans turn-of-the-century brick homes to newer single-family construction. Real Elite Contracting brings premium roofing, siding, and bathroom remodels to Hagerstown homeowners who want craftsmanship that respects both the historic character and modern demands of the region.",
-    neighborhoods: ['Public Square Historic District', 'North End', 'Halfway', 'Robinwood', 'South End', 'Fountain Head Heights'],
-    marketEmphasis: ['roofing', 'siding', 'bathrooms', 'remodeling', 'decks', 'exterior-repairs'],
-  },
 
   /* ---------- Northern Shenandoah Valley + Loudoun County VA ---------- */
   'winchester-va': {
@@ -537,15 +578,15 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'leesburg-va': {
     description:
-      "Leesburg is the historic county seat of Loudoun County, Virginia — one of the wealthiest counties in the United States and one of the fastest-growing. Its walkable, brick-lined historic downtown along King Street, its proximity to Dulles International Airport, and its stunning setting in the Loudoun Valley make it one of Northern Virginia's most desirable addresses. From estate homes in Lansdowne on the Potomac to restored historic properties in the Old Town district, Leesburg homeowners demand premium craftsmanship. Real Elite Contracting delivers it.",
-    neighborhoods: ['Historic Old Town Leesburg', 'Lansdowne on the Potomac', 'Cascades', 'Countryside', 'River Creek'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+      "Leesburg is Loudoun County's seat and an incorporated town. Town limits cover Old Town and the streets around it. A Leesburg mailing address is not Town zoning: Lansdowne and River Creek sit in unincorporated county and have their own pages. Exterior work in the Old and Historic District goes through the Town Board of Architectural Review. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The drive from Martinsburg is Route 9, which meets Route 7 in Leesburg. The remodeling this page is for is kitchens, primary suites, finished lower levels, additions, and outdoor living.",
+    neighborhoods: ['Historic Old Town Leesburg', 'West of Route 15', 'Lansdowne on the Potomac', 'River Creek'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'ashburn-va': {
     description:
-      "Ashburn is at the heart of Loudoun County's explosive growth — a master-planned tech corridor and residential powerhouse housing thousands of data centers alongside growing young families. Communities like Broadlands, Brambleton, One Loudoun, and Ashburn Farm offer modern homes in well-maintained neighborhoods where curb appeal and property values are taken seriously. With the Silver Line Metro now connecting Ashburn directly to Washington, D.C., this market only continues to appreciate. Real Elite Contracting is Ashburn's trusted partner for premium decks, outdoor living, kitchens, and bathroom remodels.",
-    neighborhoods: ['One Loudoun', 'Broadlands', 'Brambleton', 'Ashburn Farm', 'Loudoun Valley Estates', 'Belmont Greene'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+      "Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC, and nearly every master-planned community also requires HOA architectural review. A county permit is not HOA approval. Most of the housing is 1990s through 2010s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. Brambleton, Broadlands, Ashburn Farm, One Loudoun, Loudoun Valley Estates, and Belmont Greene are the communities this page covers. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'brambleton-va': {
     description:
@@ -565,80 +606,199 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
    */
   'northern-virginia': {
     description:
-      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements with walkout or areaway access — space the house already has and is not using. That is why the regional demand here concentrates on basements rather than on any single town: homeowners search for a Northern Virginia or Fairfax County contractor first and narrow down afterwards. Real Elite Contracting is veteran-owned and licensed in West Virginia, Maryland and Virginia, and works this market from its Eastern Panhandle base.",
+      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements. Prince William's western communities — Haymarket, Gainesville, and Bristow — are newer planned neighborhoods along I-66 and Route 15. Homeowners search for a Northern Virginia or county contractor first and narrow down afterwards. Real Elite Contracting is veteran-owned and licensed in West Virginia and Virginia, and works this market from its Eastern Panhandle base. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, Route 15, or Route 28 onto I-66.",
     neighborhoods: [
       'Fairfax County',
       'Loudoun County',
+      'Prince William County',
       'Alexandria',
       'McLean',
-      'Vienna',
       'Great Falls',
     ],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'decks'],
   },
   'loudoun-county-va': {
     description:
-      "Loudoun County is one of the wealthiest and fastest-growing counties in the United States — home to Leesburg, Ashburn, Sterling, Purcellville, and a network of master-planned communities reshaping Northern Virginia. From estate properties in horse country west of Route 15 to data-center-adjacent neighborhoods along the Silver Line Metro corridor, Loudoun homeowners share an expectation of premium craftsmanship and clean execution. Real Elite Contracting brings veteran-led precision and high-end remodeling to Loudoun County — luxury decks and outdoor living, custom kitchens, premium bathrooms, and full home transformations done to the standard this market expects.",
-    neighborhoods: ['Leesburg', 'Ashburn', 'Lansdowne', 'Brambleton', 'One Loudoun', 'Cascades', 'Purcellville', 'Sterling'],
-    marketEmphasis: ['decks', 'kitchens', 'bathrooms', 'remodeling', 'additions', 'roofing'],
+      "Loudoun County is two remodeling markets. Eastern communities such as Ashburn, Lansdowne, South Riding, and Sterling are mostly 1990s–2010s houses on public water and sewer. Exterior work there also needs HOA architectural review, and many basements were left unfinished. Western and southern places — Purcellville, Round Hill, Hamilton, Lovettsville, Waterford, and Aldie — are older village houses or custom homes on acreage, often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Waterford and Aldie sit in county historic districts, so exterior changes need a Certificate of Appropriateness from the Historic District Review Committee. Incorporated towns, including Leesburg, Purcellville, Hamilton, Round Hill, Lovettsville, and Middleburg, approve their own zoning before the county issues the building permit. County deck review still has a published fast path (Typical Deck Detail, $265) and a full-plan path at $395 when a roof or screen is added; the county treats a screened porch as an addition. The drive from Martinsburg is Route 9 to Leesburg, then Route 7. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Purcellville', 'Round Hill', 'Waterford', 'Aldie', 'Lansdowne', 'South Riding', 'Sterling', 'Hamilton', 'Lovettsville', 'Leesburg', 'Ashburn'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
 
-  /* ---------- Fairfax County, VA (luxury Northern Virginia) ---------- */
+  /* ---------- Fairfax County, VA ---------- */
+  'fairfax-county-va': {
+    description:
+      "Fairfax County building permits go through Land Development Services, including inside the towns of Vienna and Clifton. Vienna reviews its own zoning and site plans; the county is the building official. Inside Clifton, a project needs a town use permit, a certificate of appropriateness from the Clifton Architectural Review Board, and the mayor's signature before Land Development Services will accept the building permit. Outside those towns, county zoning and the building permit are both Fairfax County's. Planned communities such as Reston and Burke Centre also require their own architectural review. A county permit is not HOA approval. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The housing this page covers runs from McLean and Great Falls estates to Vienna and Oakton colonials, Dunn Loring near the Metro, Fort Hunt along the parkway, and larger-lot houses in Fairfax Station and Clifton. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, or Route 7 to Route 28 and I-66. ZIP codes served: 22101 and 22102 McLean, 22066 Great Falls, 22180, 22181, and 22182 Vienna, 22124 Oakton, 22027 Dunn Loring, 22039 Fairfax Station, 20124 Clifton, 22308 Fort Hunt, 20190, 20191, and 20194 Reston, and 22015 Burke.",
+    neighborhoods: [
+      '22101 McLean',
+      '22066 Great Falls',
+      '22039 Fairfax Station',
+      '22027 Dunn Loring',
+      '22124 Oakton',
+      '20124 Clifton',
+      '22181 Vienna',
+      '22182 Vienna',
+      '22308 Fort Hunt',
+      '22015 Burke',
+    ],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
   'mclean-va': {
     description:
-      "McLean is one of the most affluent communities in the United States — a Fairfax County address known for estate homes, gracious mid-century properties, and discreet, executive-class neighborhoods inside the Beltway. From the long-established streets of Langley Forest and Salona Village to the newer estates along Old Dominion Drive and the wooded enclaves bordering the Potomac, McLean homes are large, architecturally distinct, and held to a standard. Real Elite Contracting brings veteran-led precision and luxury interior work to McLean — primary-bath spa renovations, designer kitchens, finished lower-level entertainment suites, and whole-home renovations executed with the discretion and attention to detail this market expects.",
-    neighborhoods: ['Langley Forest', 'Salona Village', 'Chesterbrook', 'Franklin Park', 'Kent Gardens', 'McLean Hamlet'],
+      "McLean is unincorporated Fairfax County. ZIP 22101 covers the estate streets along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road: large lots and one-off custom houses. ZIP 22102 is closer to Tysons and Route 123, with more attached housing around the commercial core. Building permits go through Fairfax County Land Development Services. Some neighborhoods require HOA architectural review, and many estate streets do not. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east, or Route 7 to Route 28 and I-66 to the Beltway. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+    neighborhoods: ['Georgetown Pike', 'Old Dominion Drive', 'Chain Bridge Road', 'Langley', 'Chesterbrook', 'ZIP 22102'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'alexandria-va': {
     description:
-      "Alexandria is one of the most architecturally distinctive cities in the country — a historic Potomac River port whose Old Town district carries one of the most concentrated collections of 18th- and 19th-century homes in the United States, alongside premium 20th-century neighborhoods like Belle Haven, Rosemont, North Ridge, and Beverley Hills. Alexandria homeowners care deeply about period accuracy and finish quality, and many of the most beautiful interior renovations in the city are done inside historic envelopes that demand a contractor who can work to museum-grade detail. Real Elite Contracting brings that level of care to Alexandria — historic-respectful kitchens and primary baths, sensitively finished lower levels, and whole-home renovations that honor the architectural pedigree of the address.",
-    neighborhoods: ['Old Town', 'Belle Haven', 'Rosemont', 'North Ridge', 'Beverley Hills', 'Del Ray'],
+      "Alexandria is an independent city, not Fairfax County. Building permits are issued by the city's Code Administration. Exterior work in the Old and Historic Alexandria District or the Parker-Gray District, and on buildings the council has designated as 100-year-old, needs a Certificate of Appropriateness from the Board of Architectural Review when the change is visible from a public way. Interior kitchens and baths do not need that review unless the work changes the outside. Demolition of more than 25 square feet of material needs a Permit to Demolish regardless of visibility. Belle Haven, Rosemont, and North Ridge are later neighborhoods inside the city. Fort Hunt, ZIP 22308, uses an Alexandria mailing address and is mostly Fairfax County; it has its own page. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495. The remodeling this page is for is kitchens, primary suites, careful additions, and finished lower levels.",
+    neighborhoods: ['Old Town', 'Parker-Gray', 'Belle Haven', 'Rosemont', 'North Ridge', 'Del Ray'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
-
-  /* ---------- Fairfax County, VA — Phase 2 luxury cities ---------- */
   'vienna-va': {
     description:
-      "Vienna is one of the most desirable interior-renovation markets in Northern Virginia — a Fairfax County town whose homes range from refined mid-century properties on tree-lined streets to substantial newer custom builds along the Maple Avenue corridor and west into Hunter Mill. Vienna homeowners are well-informed, design-conscious, and serious about doing things right; the typical Vienna primary kitchen or primary bath is a thoughtful, designer-collaborative project where finish quality and execution discipline matter more than any single line item. Real Elite Contracting brings veteran-led precision to Vienna — custom kitchens, primary-suite renovations, finished lower-level entertainment suites, and whole-home renovations executed to the standard the address expects.",
-    neighborhoods: ['Hunter Mill', 'Tysons-adjacent', 'Wolftrap', 'Maple Avenue corridor', 'Vienna Woods', 'Country Club Manor'],
+      "Vienna is an incorporated town in Fairfax County. A Vienna mailing address is not always inside town limits: Oakton and Dunn Loring have their own pages. Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+    neighborhoods: ['Maple Avenue', 'Hunter Mill Road', 'ZIP 22180', 'ZIP 22181', 'ZIP 22182', 'Town limits'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'great-falls-va': {
     description:
-      "Great Falls is one of the most exclusive addresses in Fairfax County — a community of large lots, mature trees, and discreet estate homes ranging from refined mid-century properties to substantial custom builds with multi-acre privacy. Great Falls projects are some of the most ambitious residential remodels in our service area: primary suites that read as private wings, kitchens designed around catering and entertaining rather than weeknight family dinners, and finished lower levels that include media rooms, wine cellars, gyms, and guest suites under one envelope. Real Elite Contracting brings the craft, the discretion, and the project discipline this market expects.",
-    neighborhoods: ['Falls Estates', 'Riverbend', 'Hickory Hill', 'Potomac River corridor', 'Old Dominion Drive', 'Georgetown Pike'],
+      "Great Falls is an unincorporated community in northern Fairfax County, ZIP 22066. The housing is large-lot custom houses along Georgetown Pike, Riverbend Road, and Seneca Road. It is not one master-planned community. Building permits go through Fairfax County Land Development Services. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east toward Georgetown Pike. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+    neighborhoods: ['Georgetown Pike', 'Riverbend Road', 'Seneca Road', 'ZIP 22066', 'Walker Road', 'Springvale Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'reston-va': {
     description:
-      "Reston is a uniquely large premium-remodel market — a planned community that has matured into one of the most active high-end renovation pipelines in Fairfax County. The original master-planned villages, the lakefront homes around Lake Anne and Lake Audubon, and the larger custom properties west of Reston Parkway all share a common dynamic: design-conscious owners renovating homes that were architecturally distinctive on day one and now deserve current-spec interiors. Real Elite Contracting renovates Reston kitchens, primary baths, and lower levels with the design sensitivity these homes were built to live up to.",
-    neighborhoods: ['Lake Anne', 'Lake Audubon', 'Hunters Woods', 'North Point', 'South Lakes', 'Reston Town Center area'],
+      "Reston is an unincorporated planned community in Fairfax County. Building permits go through Land Development Services. Exterior changes also go through Reston Association design review. A county permit is not that approval. The original villages and the houses around Lake Anne and Lake Audubon are mostly 1960s through 1980s, on public water and sewer, with later housing toward Reston Town Center and the Silver Line. ZIPs 20190, 20191, and 20194 cover the community. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and the Dulles Toll Road, or I-66 to Route 28. The remodeling this page is for is kitchens, primary suites, finished lower levels, and outdoor living.",
+    neighborhoods: ['Lake Anne', 'Lake Audubon', 'Hunters Woods', 'South Lakes', 'Reston Town Center', 'North Point'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'burke-va': {
     description:
-      "Burke is one of the strongest mid-to-upper-tier remodeling markets in Fairfax County — a well-established community of substantial homes on generous lots, with neighborhoods like Burke Centre, Lake Braddock, and Burke Lake Park drawing families who tend to stay for the long term and invest in the home accordingly. Burke kitchens, primary baths, and lower-level family rooms are bread-and-butter premium remodels — well-specified, beautifully executed, and built to add real value at resale or simply to make the home work better for the family living in it. Real Elite Contracting brings the same craft we bring to the Mclean / Great Falls market, calibrated to the Burke project brief.",
-    neighborhoods: ['Burke Centre', 'Lake Braddock', 'Longwood Knolls', 'Burke Station', 'Burke Lake Park area', 'Kings Park West'],
+      "Burke is unincorporated Fairfax County, ZIP 22015. Burke Centre, Lake Braddock, and the streets around Burke Lake are mostly 1970s through 1990s single-family houses on public water and sewer. Burke Centre has its own architectural review, separate from the Fairfax County building permit through Land Development Services. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south on the Fairfax County Parkway. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+    neighborhoods: ['Burke Centre', 'Lake Braddock', 'Burke Lake', 'ZIP 22015', 'Burke Station', 'Longwood Knolls'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'fairfax-station-va': {
     description:
-      "Fairfax Station is a community of larger lots and substantial custom homes south of the Fairfax County core — a quieter, more private corner of the county where one-acre and multi-acre properties are common, equestrian neighbors are not unusual, and the home itself is treated as a long-term family asset. Fairfax Station projects skew larger and more architecturally ambitious than typical Fairfax County remodels — full primary-suite expansions, kitchens designed around catering and entertaining, lower-level builds that include guest suites, gyms, and media rooms. Real Elite Contracting brings the craft this market expects.",
-    neighborhoods: ['Burke Lake Road corridor', 'Lake Braddock-adjacent', 'Hampton Forest', 'South Run', 'Hooes Road area', 'Pohick Road area'],
+      "Fairfax Station is unincorporated Fairfax County, ZIP 22039. The housing is larger-lot custom houses south of the county core, including Crosspointe and the South Run corridor, with more acreage toward Clifton. Building permits go through Fairfax County Land Development Services. Some subdivisions have an HOA architectural review. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+    neighborhoods: ['Crosspointe', 'South Run', 'ZIP 22039', 'Burke Lake Road', 'Hampton Road', 'Clifton Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'clifton-va': {
     description:
-      "Clifton is the small-town heart of southern Fairfax County — an old railroad village whose historic downtown and surrounding country estates form one of the most distinctive luxury enclaves in the area. Clifton properties trend large, private, and architecturally substantial: refined historic homes in the village proper, custom estates on multi-acre parcels along the rural corridors, and a homeowner population that values craft, character, and long-term ownership. Real Elite Contracting renovates Clifton kitchens, primary baths, and lower levels with the discretion and craft this market expects.",
-    neighborhoods: ['Historic Clifton Village', 'Clifton Forest', 'Bull Run Estates', 'Compton Road corridor', 'Ridge Road area', 'Yates Ford Road area'],
+      "Clifton is an incorporated town in southern Fairfax County, and most of ZIP 20124 is unincorporated county around the village, not inside the town. A Clifton mailing address is not Town zoning. Inside the town, a project needs a use permit from the Planning Commission and Town Council, a certificate of appropriateness from the Clifton Architectural Review Board, and a building permit from Fairfax County Land Development Services. The county will not accept the building-permit application without those town approvals and the mayor's signature. Outside town limits, county building and zoning apply. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south toward Clifton Road. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+    neighborhoods: ['Clifton village', 'Main Street', 'ZIP 20124', 'Clifton Road', 'Compton Road', 'Newman Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'middleburg-va': {
     description:
-      "Middleburg is the historic anchor of Virginia's hunt country — a Loudoun County village whose stone Main Street and surrounding equestrian estates form one of the most distinctive luxury markets in the Mid-Atlantic. Middleburg interior renovations are some of the most architecturally significant projects in our service area: stone-and-timber kitchens designed around catering and entertaining, primary suites in genuine historic envelopes, finished lower levels in estate homes that include tasting rooms, gun rooms, and guest wings. The brief here is restraint, period sensitivity, and craft. Real Elite Contracting brings all three.",
-    neighborhoods: ['Historic Middleburg Village', 'Main Street corridor', 'Goose Creek Estate area', 'Foxcroft Road area', 'Atoka Road area', 'Halfway hunt country'],
+      "Middleburg is an incorporated Loudoun town on Route 50. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county, and many of those lots are on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+    neighborhoods: ['Historic District', 'Main Street', 'Atoka Road', 'Foxcroft Road', 'Goose Creek'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
+  },
+  'purcellville-va': {
+    description:
+      "Purcellville is an incorporated town on Route 7 in western Loudoun. A Purcellville mailing address is not always inside town limits: Wright Farm and Mayfair sit in the county's Joint Land Management Area beside the town. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The housing is a late-19th and early-20th century village along Main Street (Business Route 7), plus later subdivisions. Lots outside the town sewer are often on well and septic, and a bedroom addition on those lots needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, basements, additions, and outdoor living.",
+    neighborhoods: ['Historic downtown', 'Main Street', 'Route 7', 'Wright Farm', 'Mayfair'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
+  },
+  'round-hill-va': {
+    description:
+      "Round Hill is an incorporated town on Route 7, west of Purcellville. The village core is small. Newer houses sit on larger lots toward the county line, and many of those lots are on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Round Hill is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, additions, basements, and outdoor living.",
+    neighborhoods: ['Historic village', 'Loudoun Street', 'Route 7', 'West of town'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'basements', 'decks', 'remodeling'],
+  },
+  'lovettsville-va': {
+    description:
+      "Lovettsville is an incorporated town in northern Loudoun, near the Potomac and the Maryland line. The approach from the south is Route 287, the Berlin Turnpike, off Route 9. The town is a 19th-century village with later houses on lots that are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Lovettsville is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9, then north on Route 287. The remodeling this page is for is kitchens, primary suites, additions, basements, and outdoor living.",
+    neighborhoods: ['Historic downtown', 'Berlin Turnpike', 'Route 287', 'North of Route 9'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'basements', 'decks', 'remodeling'],
+  },
+  'waterford-va': {
+    description:
+      "Waterford is an unincorporated village northwest of Leesburg. Loudoun County's Waterford Historic and Cultural Conservation District covers the central village, and most exterior changes there — additions, porches, new accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Ordinary repairs that do not change design, material, or appearance are the exception the county publishes. The National Historic Landmark boundary is larger than the county district, which is limited to the central village. Interior kitchens, primary baths, and lower levels do not need that exterior review unless the work changes the outside. Many village and edge lots are on well and septic, so a bedroom addition also needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 through Hillsboro, then the local roads north of Leesburg. The remodeling this page is for is kitchens, primary suites, careful additions, and outdoor living that can pass historic review.",
+    neighborhoods: ['Main Street', 'Second Street', 'The mill', 'Village edge'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
+  },
+  'hamilton-va': {
+    description:
+      "Hamilton is an incorporated town on Route 7 between Purcellville and Leesburg. The core is a small 19th-century village. Houses toward the edges often sit on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Hamilton is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, basements, additions, and outdoor living.",
+    neighborhoods: ['Historic downtown', 'Route 7', 'East toward Leesburg', 'West toward Purcellville'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
+  },
+  'aldie-va': {
+    description:
+      "Aldie is an unincorporated village on Route 50 in southern Loudoun. The village and its mill sit in the Aldie Historic and Cultural Conservation District. Exterior changes there — additions, porches, accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Newer communities nearby, including Willowsford, are a separate review from the village overlay: county permits, and the community's own architectural standards where those apply. Acreage lots are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+    neighborhoods: ['Aldie village', 'The mill', 'Route 50', 'Willowsford'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
+  },
+  'lansdowne-va': {
+    description:
+      "Lansdowne is a planned community on the Potomac, east of Leesburg along Route 7. It is unincorporated Loudoun County. Many houses use a Leesburg mailing address, which does not make the parcel Town of Leesburg zoning. County building and zoning run through LandMARC, and exterior changes also go through the community's architectural review. The housing is mostly 1990s and 2000s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. This is not a well-and-septic market. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Lansdowne on the Potomac', 'Resort corridor', 'Route 7', 'Residential villages'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'south-riding-va': {
+    description:
+      "South Riding is a census-designated planned community in southeastern Loudoun, along Route 50. The Board of Supervisors approved it in 1993, and houses have been built since the mid-1990s. It is unincorporated county: schools and building permits are Loudoun's, and the South Riding Proprietary — incorporated in 1995 — governs common areas and architectural standards. Exterior changes need that review as well as the county permit. Homes are on public water and sewer, and many still have unfinished basements and builder-grade kitchens and primary baths. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Town Center', 'Center Street', 'Route 50', 'Residential sections'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'sterling-va': {
+    description:
+      "Sterling is an unincorporated community in eastern Loudoun, between Route 7 and Route 28. Sterling Park dates from the early 1960s. Later planned communities — Cascades, Potomac Falls, Sugarland Run, Countryside, and Lowes Island — are mostly 1980s through 2000s houses on public water and sewer. Several of those communities require HOA architectural review for exterior work, separate from the county permit through LandMARC. Older Sterling Park houses are the ones most often opened up for a new kitchen, a primary suite, or a finished lower level. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Sterling Park', 'Cascades', 'Potomac Falls', 'Sugarland Run', 'Countryside', 'Lowes Island'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+
+  /* ---------- Prince William County + Fairfax towns added 2026-09-27 ---------- */
+  'prince-william-county-va': {
+    description:
+      "Prince William County on this page is the western end of the county, along I-66, Route 15, and Route 28. Haymarket, Gainesville, and Bristow are mostly 1990s through 2010s houses in planned communities on public water and sewer. Those communities also require HOA architectural review. A county permit is not HOA approval. Nokesville is more acreage, and many of those lots are on well and septic. Building permits are issued by the Prince William County Department of Development Services. Haymarket is an incorporated town: since January 15, 2018 the county issues the building permit, and the town still requires zoning approval first. A bedroom addition on a well-and-septic lot needs Prince William Health District approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south, or Route 7 to Route 28 and I-66 west. ZIP codes with their own pages: 20169 Haymarket, 20155 Gainesville, 20136 Bristow, and 20181 Nokesville. ZIP 20112 uses a Manassas mailing address on the county side of the independent city, and ZIP 20143 is Catharpin. Both sit in this western band and do not have their own pages. Woodbridge and Dumfries are a different market and are not listed here.",
+    neighborhoods: ['20169 Haymarket', '20155 Gainesville', '20136 Bristow', '20181 Nokesville', '20112 Manassas', '20143 Catharpin'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'oakton-va': {
+    description:
+      "Oakton is an unincorporated community in Fairfax County, ZIP 22124, between Vienna and Fairfax along Route 123. It is not part of the Town of Vienna. Building and zoning run through Fairfax County Land Development Services. The housing is mostly 1960s through 1990s colonials on wooded lots, with newer infill closer to I-66. Some clusters have an HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+    neighborhoods: ['Route 123', 'ZIP 22124', 'Hunter Mill', 'Jermantown Road', 'Oakton', 'I-66'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'dunn-loring-va': {
+    description:
+      "Dunn Loring is an unincorporated community in Fairfax County, ZIP 22027, at I-66 and the Beltway beside the Dunn Loring-Merrifield Metro. The housing is a mix of mid-century ramblers, later colonials, and townhouses, on public water and sewer. Building permits go through Fairfax County Land Development Services. Some communities require HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+    neighborhoods: ['ZIP 22027', 'Gallows Road', 'Idylwood', 'I-66', 'Prosperity Avenue', 'Merrifield'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'fort-hunt-va': {
+    description:
+      "Fort Hunt is an unincorporated community in southeastern Fairfax County. ZIP 22308 uses an Alexandria mailing address, which does not make the parcel part of the City of Alexandria. Building permits go through Fairfax County Land Development Services, not Alexandria Code Administration. The housing is mostly mid-century houses on larger lots along Fort Hunt Road and the George Washington Memorial Parkway, including Hollin Hills. Hollin Hills is a historic overlay, so exterior changes there are a separate county review from a typical building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495 and the parkway. The remodeling this page is for is kitchens, primary suites, additions, and finished lower levels.",
+    neighborhoods: ['Fort Hunt Road', 'Hollin Hills', 'ZIP 22308', 'Wellington', 'Collingwood', 'George Washington Parkway'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+  },
+  'haymarket-va': {
+    description:
+      "Haymarket is an incorporated town in western Prince William County, ZIP 20169, at I-66 and Route 15. The incorporated town is the village along Washington Street. Piedmont and Dominion Valley sit in the county around it and use the same ZIP. Since January 15, 2018, the Prince William County Department of Development Services issues building permits inside the town, and the town still requires zoning approval before that application. Outside town, county building and zoning apply, and the planned communities require HOA architectural review. A county permit is not HOA approval. The houses are mostly 1990s through 2010s production and custom homes on public water and sewer. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Washington Street', 'Piedmont', 'Dominion Valley', 'Route 15', 'I-66', 'ZIP 20169'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'gainesville-va': {
+    description:
+      "Gainesville is unincorporated Prince William County, ZIP 20155, along I-66 and Route 29. Heritage Hunt and the subdivisions off Route 29 and Virginia Gateway are mostly 1990s through 2010s houses on public water and sewer. Building permits go through the Prince William County Department of Development Services, and most of those communities also require HOA architectural review. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to I-66, or Route 7 to Route 28 and I-66 west. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Heritage Hunt', 'Route 29', 'Virginia Gateway', 'I-66', 'ZIP 20155', 'Heathcote'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'bristow-va': {
+    description:
+      "Bristow is unincorporated Prince William County, ZIP 20136, along Linton Hall Road between Gainesville and Nokesville. Braemar, Victory Lakes, and the Linton Hall subdivisions are mostly 1990s and 2000s houses on public water and sewer, many with unfinished basements. Building permits go through the Prince William County Department of Development Services. Those communities also require HOA architectural review. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to I-66 and Linton Hall, or Route 7 to Route 28. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+    neighborhoods: ['Linton Hall Road', 'Braemar', 'Victory Lakes', 'ZIP 20136', 'Route 28', 'I-66'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+  },
+  'nokesville-va': {
+    description:
+      "Nokesville is an unincorporated rural community in southwestern Prince William County, ZIP 20181. Houses sit on larger lots along Route 28 and Aden Road, and many of those lots are on well and septic rather than public sewer. A bedroom addition on a well-and-septic lot needs Prince William Health District approval before the building permit. Building permits otherwise go through the Prince William County Department of Development Services. This is not a master-planned HOA market. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to Route 28. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+    neighborhoods: ['Route 28', 'Aden Road', 'ZIP 20181', 'Bristow Road', 'Nokesville village', 'Marsteller Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
   },
 };
 
@@ -695,6 +855,12 @@ export function areaRegionLabel(area: ServiceArea): string {
   if (area.state === 'MD') return 'Cumberland Valley and Frederick County area';
   if (area.slug === 'loudoun-county-va' || area.parent === 'loudoun-county-va') {
     return 'Loudoun County area';
+  }
+  if (area.slug === 'fairfax-county-va' || area.parent === 'fairfax-county-va') {
+    return 'Fairfax County area';
+  }
+  if (area.slug === 'prince-william-county-va' || area.parent === 'prince-william-county-va') {
+    return 'Prince William County area';
   }
   // Winchester is the one VA row on the home-market side of the split.
   return area.market === 'home' ? 'Northern Shenandoah Valley' : 'Northern Virginia';
@@ -759,6 +925,29 @@ export function areaAncestors(area: ServiceArea): ServiceArea[] {
   return chain;
 }
 
+export type AreaHeroLane = 'consultation' | 'estimate';
+
+/**
+ * Which hero a town or county page leads with.
+ *
+ * The two-lane rule: Loudoun, Fairfax and Prince William (and the places
+ * inside those counties) open on a design consultation. West Virginia and
+ * the other home-market rows keep the free estimate.
+ *
+ * The county row decides. A town inherits the lane of the county above it
+ * in the catalog, so the template never carries a slug list. A row with no
+ * county ancestor — the Eastern Panhandle towns, Frederick, Winchester,
+ * Alexandria, the Northern Virginia region — follows its own `market`,
+ * except West Virginia, which stays on the estimate even if a later edit
+ * marks a Panhandle row premium.
+ */
+export function areaHeroLane(area: ServiceArea): AreaHeroLane {
+  if (area.state === 'WV') return 'estimate';
+  const county = [area, ...areaAncestors(area)].find((row) => row.kind === 'county');
+  if (county) return county.market === 'premium' ? 'consultation' : 'estimate';
+  return area.market === 'premium' ? 'consultation' : 'estimate';
+}
+
 /** Legacy flat list (primary + secondary city names) for simple iterations */
 export const SERVICE_AREAS = [
   ...PRIMARY_SERVICE_AREAS.map((a) => a.city),
@@ -801,7 +990,8 @@ export const GENERAL_CONTRACTOR_AREA_SERVED: string[] = [
   'Leesburg, VA',
   'Ashburn, VA',
   'Loudoun County, VA',
-  'Hagerstown, MD',
+  'Fairfax County, VA',
+  'Prince William County, VA',
   'Frederick, MD',
 ];
 
@@ -811,11 +1001,12 @@ export const SERVICE_PAGE_AREA_SERVED: string[] = [
   'Shepherdstown, WV',
   'Inwood, WV',
   'Frederick, MD',
-  'Hagerstown, MD',
   'Winchester, VA',
   'Leesburg, VA',
   'Ashburn, VA',
   'Loudoun County, VA',
+  'Fairfax County, VA',
+  'Prince William County, VA',
 ];
 
 /**
@@ -891,7 +1082,7 @@ export const SERVICES_MEGA_MENU = [
       { label: 'Bathroom Remodeling', href: '/services/bathrooms', description: 'Walk-in showers, tile, vanities, master baths' },
       { label: 'Kitchen Remodeling', href: '/services/kitchens', description: 'Custom cabinetry, islands, layout changes' },
       { label: 'Basement Finishing', href: '/services/basements', description: 'Family rooms, in-law suites, basement bars' },
-      { label: 'Whole-Home Remodeling', href: '/services/remodeling', description: 'Full interior renovations under one project lead' },
+      { label: 'Whole-Home Remodeling', href: '/services/remodeling', description: 'Full interior renovations with a coordinated scope' },
       { label: 'Home Additions', href: '/services/additions', description: 'Bump-outs, single rooms, second stories' },
     ],
   },
@@ -1002,12 +1193,12 @@ export const PRECISION_PROCESS = [
   {
     step: '03',
     title: 'Execute',
-    summary: 'Daily updates from your project lead. Clean job site. 24-hour response standard. The crew that started your job is the crew that finishes it.',
+    summary: "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
   {
     step: '04',
     title: 'Inspect',
-    summary: 'Final walkthrough, punch list cleared, workmanship warranty issued in writing. You only sign off when the project is right.',
+    summary: "Review the proposed scope and warranty terms before signing. You only sign off when the project is right.",
   },
 ] as const;
 
@@ -1060,12 +1251,12 @@ export const HOME_FAQ = [
   {
     question: 'Are you licensed and insured?',
     answer:
-      "Yes — Real Elite Contracting is fully licensed and insured across West Virginia, Maryland, and Virginia. We carry general liability and workers' compensation, and we'll send copies of every certificate before work begins.",
+      "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
   },
   {
     question: 'How long does a typical remodel take?',
     answer:
-      "Most full bathroom remodels run 3–5 weeks. Kitchens run 6–10 weeks. Decks take 1–3 weeks. We give you a written timeline before we break ground and update you daily — if anything shifts, you hear it from us first.",
+      "Most full bathroom remodels run 3–5 weeks. Kitchens run 6–10 weeks. Decks take 1–3 weeks. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
   {
     question: 'Do you offer financing?',
@@ -1075,7 +1266,7 @@ export const HOME_FAQ = [
   {
     question: 'What does your warranty cover?',
     answer:
-      "Every project includes our written workmanship warranty. Material warranties from our manufacturers (architectural shingles, composite decking, fiber cement siding) stack on top of that and we register them on your behalf.",
+      "Review the proposed scope and warranty terms before signing. Manufacturer coverage depends on the selected product and installation requirements.",
   },
   {
     question: 'Do you pull permits?',

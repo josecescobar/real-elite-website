@@ -8,7 +8,7 @@ slug: "luxury-outdoor-living-decks-loudoun-northern-virginia-2026"
 featuredImage: "/images/inspiration/outdoor-living-pergola-dining.jpg"
 category: "Decks & Outdoor Living"
 type: "how-to"
-answer: "A luxury outdoor living space in Loudoun County and Northern Virginia is designed as a second living level organized into distinct zones: a dining zone near the kitchen, a lounging zone under shade, a cooking or bar zone, and a fire zone that stretches the season into spring and fall. The build scales with scope, from a premium composite deck with quality railings at one end to a full build-out with a pergola, outdoor kitchen, fire feature, and layered lighting at the other. In our freeze-thaw climate, composite or PVC decking, aluminum or stainless railings, and correctly sized footings and ledger connections are what keep it low-maintenance and solid for decades. Most outdoor-living builds run 2 to 6 weeks of active work, with permits and HOA approval handled for you."
+answer: "A luxury outdoor living space in Loudoun County and Northern Virginia is designed as a second living level organized into distinct zones: a dining zone near the kitchen, a lounging zone under shade, a cooking or bar zone, and a fire zone that stretches the season into spring and fall. The build scales with scope, from a premium composite deck with quality railings at one end to a full build-out with a pergola, outdoor kitchen, fire feature, and layered lighting at the other. In our freeze-thaw climate, composite or PVC decking, aluminum or stainless railings, and correctly sized footings and ledger connections are what keep it low-maintenance and solid for decades. The project schedule depends on scope, approvals, selections, and availability."
 author: "Real Elite Contracting Team"
 ---
 
@@ -74,11 +74,11 @@ Decks and many outdoor structures require permits across our service area, and H
 
 A luxury outdoor living project scales with scope: a premium composite deck with quality railings sits at one end, a full build-out with a pergola, outdoor kitchen, fire feature, and lighting at the other. We'll give you a written, line-itemed scope so you can see exactly where the investment goes and phase it if you'd like.
 
-Most outdoor-living builds run **2 to 6 weeks** of active work depending on size, levels, and features — with a written timeline, a named project lead, and daily updates throughout.
+Discuss site supervision, communication, and cleanup arrangements during the estimate.
 
 ## The Real Elite approach
 
-We build outdoor spaces the way we build interiors: a clear written scope and pricing up front, one project lead from first walkthrough to final, structure and flashing done right underneath the finishes, permits and HOA paperwork handled, and a written workmanship warranty at the end. Veteran-owned precision, applied to the part of the home where summer actually happens.
+Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to the part of the home where summer actually happens.
 
 If you're planning a deck or full outdoor-living space in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the yard and talk through what it could become.
 
@@ -88,6 +88,6 @@ If you're planning a deck or full outdoor-living space in **Loudoun County, Ashb
 
 Beyond Loudoun, we build outdoor-living spaces for homeowners across Fairfax County and Alexandria — including [McLean](/service-areas/mclean-va), [Great Falls](/service-areas/great-falls-va), [Vienna](/service-areas/vienna-va), [Reston](/service-areas/reston-va), [Old Town Alexandria](/service-areas/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

@@ -69,7 +69,7 @@ export type Project = {
   citySlug: string;
 
   // ── Facts / spec panel ─────────────────────────────────────────────────
-  /** ISO date (YYYY-MM-DD) the project completed; used for sorting + schema. */
+  /** ISO completion date (YYYY-MM-DD); empty only for an unconfirmed draft. */
   completedOn: string;
   durationLabel?: string;
   budgetBand?: BudgetBand;

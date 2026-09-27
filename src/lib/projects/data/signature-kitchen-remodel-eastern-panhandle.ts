@@ -8,10 +8,11 @@ import type { Project } from '../types';
  * TODO(owner): replace the placeholder city/date with a real completed job's
  * details, and add the customer's consented review — see docs/PROJECT-INTAKE.md.
  */
+// REA-55: held until Jose confirms the real job facts and publication permission.
 const project: Project = {
   slug: 'signature-kitchen-remodel-eastern-panhandle',
   title: 'Signature Kitchen Remodel',
-  status: 'published',
+  status: 'draft',
   featured: true,
 
   service: 'kitchens',

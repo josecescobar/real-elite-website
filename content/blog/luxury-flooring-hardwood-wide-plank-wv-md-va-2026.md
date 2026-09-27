@@ -8,7 +8,7 @@ slug: "luxury-flooring-hardwood-wide-plank-wv-md-va-2026"
 featuredImage: "/images/inspiration/flooring-hardwood-living.jpg"
 category: "Remodeling"
 type: "buying-guide"
-answer: "For luxury homes across the WV-MD-VA region, the flooring that reads high-end is matched to the room and the climate: solid or engineered hardwood on main living levels, with engineered the safer bet against seasonal humidity; engineered or premium LVP below grade, never solid hardwood; and tile or waterproof LVP in baths, mudrooms, and entries. Wide planks of 7 inches or more, herringbone or chevron patterns, and lower-gloss wire-brushed finishes are what make a floor feel custom and European. A premium floor is only as good as the prep beneath it, which means a flat, sound subfloor, proper acclimation, vapor barriers where needed, and correct expansion gaps. Most flooring projects run 1 to 3 weeks of active work."
+answer: "For luxury homes across the WV-MD-VA region, the flooring that reads high-end is matched to the room and the climate: solid or engineered hardwood on main living levels, with engineered the safer bet against seasonal humidity; engineered or premium LVP below grade, never solid hardwood; and tile or waterproof LVP in baths, mudrooms, and entries. Wide planks of 7 inches or more, herringbone or chevron patterns, and lower-gloss wire-brushed finishes are what make a floor feel custom and European. A premium floor is only as good as the prep beneath it, which means a flat, sound subfloor, proper acclimation, vapor barriers where needed, and correct expansion gaps. The project schedule depends on scope, approvals, selections, and availability."
 author: "Real Elite Contracting Team"
 ---
 
@@ -74,16 +74,16 @@ A premium floor is only as good as the prep underneath it:
 
 Flooring scales with the material and the square footage: premium LVP sits at one end, wide-plank or herringbone hardwood at the other. Because it covers the whole home and lasts decades (and hardwood can be refinished rather than replaced), it's one of the best long-term values in a renovation. We provide a written, line-itemed scope so the numbers are clear.
 
-Most flooring projects run **1 to 3 weeks** of active work depending on square footage, the material, and any subfloor repair — with a written timeline, a named project lead, and daily updates.
+Discuss site supervision, communication, and cleanup arrangements during the estimate.
 
 ## The Real Elite approach
 
-We treat flooring as the foundation of the finished home: careful subfloor prep, proper acclimation and moisture control, clean transitions, and precise installation — with a written workmanship warranty at the end. Veteran-owned precision, applied to the surface you walk on every day.
+Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to the surface you walk on every day.
 
 If you're planning new flooring in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, we'd be glad to walk the space and give you a straight, written estimate.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [remodeling services](/services/remodeling) or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va).
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV, MD, and VA.
+Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

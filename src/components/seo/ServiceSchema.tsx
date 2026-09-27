@@ -33,9 +33,9 @@ export default function ServiceSchema({
       telephone: BUSINESS.phoneRaw,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Martinsburg',
-        addressRegion: 'WV',
-        postalCode: '25401',
+        addressLocality: BUSINESS.address.city,
+        addressRegion: BUSINESS.address.state,
+        postalCode: BUSINESS.address.zip,
         addressCountry: 'US',
       },
     },

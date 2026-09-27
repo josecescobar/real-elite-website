@@ -1,283 +1,268 @@
 import type { Metadata } from 'next';
 import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
-import {
-  ClipboardList,
-  FileText,
-  HardHat,
-  CheckCircle2,
-  MessageSquareText,
-  Shield,
-  Clock,
-  Sparkles,
-  DollarSign,
-  CalendarClock,
-  ArrowRight,
-} from 'lucide-react';
-import { BUSINESS, PRECISION_PROCESS } from '@/lib/constants';
+import { ArrowRight } from 'lucide-react';
+import { BUSINESS } from '@/lib/constants';
+import { DESIGN_BUILD_PROCESS } from '@/lib/design-build-process';
 import Container from '@/components/shared/Container';
-import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import JsonLd from '@/components/seo/JsonLd';
+import { buildBreadcrumbSchema } from '@/lib/seo';
+import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Our Process | Built With Military Precision | ${BUSINESS.name}`),
+  title: fitTitle(`Our Design-Build Process | ${BUSINESS.name}`),
   description:
-    'Recon, Plan, Execute, Inspect — the four-step process behind every Real Elite project, with communication standards and daily site cleanup.',
+    'How a Real Elite design-build project runs in Loudoun County: conversation, design and scope, county and HOA approvals, the build, and the walkthrough. Five steps, in order.',
   keywords: [
-    'contractor process',
-    'remodel process',
-    'how we work',
-    'project communication',
-    'daily cleanup',
-    'workmanship warranty',
+    'design-build process',
+    'remodeling process Loudoun County',
+    'how design-build works',
+    'HOA approval remodel Loudoun',
+    'remodel permits Loudoun County',
     'Real Elite Contracting',
   ],
   alternates: { canonical: `${BUSINESS.url}/process` },
   openGraph: {
-    title: `Our Process | ${BUSINESS.name}`,
+    title: `Our Design-Build Process | ${BUSINESS.name}`,
     description:
-      'The four-step Military Precision Process. Recon, Plan, Execute, Inspect.',
+      'Conversation, design and scope, approvals, build, walkthrough. How a design-build project runs.',
     url: `${BUSINESS.url}/process`,
     type: 'website',
   },
 };
 
-const STEP_ICONS = [ClipboardList, FileText, HardHat, CheckCircle2];
-
-const STEP_DEEP_DIVE: Record<string, string[]> = {
-  Recon: [
-    'Free, no-pressure on-site walkthrough — typically 30–60 minutes.',
-    'We listen first. What are you trying to solve, what have you already considered, what is the must-have list vs. the nice-to-have list.',
-    'Photos, measurements, and any obvious red flags (moisture, structural, code) noted on the spot.',
-    'Written, line-itemed estimate back to you within a few business days — not a single inflated number.',
-  ],
-  Plan: [
-    'Final scope locked in writing — what is and is not included, with line items.',
-    'Material selection: we bring real samples, suppliers, and tradeoffs (not just brand names).',
-    'Financing walkthrough on qualified projects so the monthly number is clear before you commit.',
-    'Project lead introduced. They are your point of contact from this moment to final walkthrough.',
-    "Realistic timeline with milestones. We don't pad it; we don't shave it.",
-  ],
-  Execute: [
-    'Crew arrives on the start date you were given — not a moving window.',
-    'Daily updates from your project lead with progress photos.',
-    'Dust containment, walked surfaces protected, clean job site at end of every day.',
-    '24-hour response standard on any question or concern you raise.',
-    "Sub-trades are people we've worked with for years. They're held to our standard, not theirs.",
-  ],
-  Inspect: [
-    'Final walkthrough with you, your project lead, and a punch list.',
-    'Every item on the punch list is cleared before we ask you to sign off.',
-    'Workmanship warranty issued in writing.',
-    'Manufacturer warranties (shingles, decking, siding, fixtures) registered on your behalf — you get the documentation.',
-    'A real follow-up call from the office, not a marketing drip campaign.',
-  ],
-};
-
-const STANDARDS = [
+/**
+ * What the homeowner can expect across the calendar, written as the shape of
+ * a project rather than as a promised duration. Loudoun approvals sit in the
+ * middle of it, which is the part most homeowners are not told about.
+ */
+const CALENDAR = [
   {
-    icon: MessageSquareText,
-    title: 'Communication',
-    body: 'Named project lead from day one. Daily updates with progress photos. 24-hour response standard on every question. No ghosting.',
+    phase: 'Weeks one to three',
+    title: 'Conversation and site visit',
+    body: 'The first call, then the measure-and-photograph visit if the project fits. You see the investment guide range for your project type before we meet.',
   },
   {
-    icon: Sparkles,
-    title: 'Daily Cleanup',
-    body: 'Dust containment in place before demo. Surfaces protected. Site swept end-of-day. Nail sweep on every roofing project. Your home stays livable.',
+    phase: 'Design phase',
+    title: 'Drawings, selections, scope',
+    body: 'Layout options, showroom selections and the engineered drawings the county will want. The length depends on how many decisions there are and how quickly they are made.',
   },
   {
-    icon: Clock,
-    title: 'Response Time',
-    body: "24-hour reply standard on calls, texts, and emails during business days. If we're going to be late on something, you hear it from us first.",
+    phase: 'Approvals',
+    title: 'County, town and HOA',
+    body: 'Loudoun permit review runs alongside the HOA architectural application, and inside Leesburg, Purcellville and Middleburg the town zoning approval comes first. Historic districts add a committee date to plan around.',
   },
   {
-    icon: Shield,
-    title: 'Workmanship Warranty',
-    body: 'Written warranty on every project. Manufacturer warranties stacked on top and registered on your behalf.',
+    phase: 'Construction',
+    title: 'Protection, rough-ins, finish',
+    body: 'The house is protected first, then demolition, structure and rough-ins, inspections, drywall, and the finish work where a project reads as custom. Changes are priced in writing before they are built.',
   },
   {
-    icon: DollarSign,
-    title: 'Transparent Pricing',
-    body: 'Line-itemed written estimates. No moving target. Financing options walked through clearly before you commit.',
-  },
-  {
-    icon: CalendarClock,
-    title: 'Realistic Timelines',
-    body: "We don't pad. We don't shave. We give you a real schedule with milestones and we hold ourselves to it.",
+    phase: 'Close-out',
+    title: 'Walkthrough, documents, follow-up',
+    body: 'Punch list cleared, permit closed, warranties and as-builts handed over, and a visit after you have lived in the space.',
   },
 ];
 
-const WHAT_TO_EXPECT = [
-  {
-    week: 'Before Day 1',
-    body: 'Final scope, materials, timeline, and payment milestones confirmed in writing. Project lead introduces themselves. Permit timeline reviewed.',
-  },
-  {
-    week: 'Week 1',
-    body: "Site prep, dust containment, demo as needed. You'll hear the most noise this week — we coordinate around your schedule where we can.",
-  },
-  {
-    week: 'Mid-project',
-    body: 'Rough-in inspections, framing/structural work, materials staged. Daily progress updates. This is where most of the heavy work happens.',
-  },
-  {
-    week: 'Finish phase',
-    body: 'Tile, paint, trim, fixtures, final details. The site quiets down. You start to see the project come together.',
-  },
-  {
-    week: 'Final walkthrough',
-    body: 'You, your project lead, and a punch list. Every issue resolved before sign-off. Warranty documentation handed off. Final cleanup complete.',
-  },
+const HANDOVER = [
+  'Approved drawings and the as-built set',
+  'Selections schedule with product names and finishes',
+  'Closed permit and inspection record',
+  'Manufacturer warranties, registered where the manufacturer allows',
+  'The warranty terms as written in your agreement',
+  'Care instructions for stone, cabinetry and decking',
 ];
 
 export default function ProcessPage() {
+  const breadcrumb = buildBreadcrumbSchema([
+    { name: 'Home', item: BUSINESS.url },
+    { name: 'Process', item: `${BUSINESS.url}/process` },
+  ]);
+
   return (
     <>
+      <JsonLd schema={breadcrumb} />
+
       {/* Hero */}
-      <section className="bg-navy-900 text-white pt-16 pb-20 md:pt-24 md:pb-28">
+      <section className="bg-navy-900 text-white pt-20 pb-20 md:pt-28 md:pb-28">
         <Container size="wide">
-          <div className="max-w-3xl">
-            <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
-              The Military Precision Process
-            </p>
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-              Four steps.
-              <br />
-              <span className="text-brand-red-light">No surprises.</span>
-            </h1>
-            <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              The same disciplined operating system every project follows — from the first phone
-              call through the final walkthrough. Here&apos;s exactly what we do, in order, and
-              what to expect from each phase.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+            <div className="lg:col-span-8">
+              <p className="text-brand-red-light text-xs uppercase tracking-[0.22em] font-semibold mb-5">
+                Our process
+              </p>
+              <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02]">
+                Design first.
+                <br />
+                Then a price you can <em>hold us to</em>.
+              </h1>
+              <p className="text-charcoal-300 text-lg md:text-xl mt-7 leading-relaxed max-w-2xl">
+                Design-build means the drawings, the selections and the approvals come before
+                the construction price. The number is built from what will actually be built,
+                and one team carries it from the first call to the walkthrough.
+              </p>
+            </div>
+            <div className="lg:col-span-4 lg:pb-2">
+              <ol className="space-y-2 border-l border-white/15 pl-5">
+                {DESIGN_BUILD_PROCESS.map((s) => (
+                  <li key={s.step} className="flex items-baseline gap-3">
+                    <span className="font-heading text-brand-red-light tabular-nums text-sm">{s.step}</span>
+                    <a href={`#step-${s.step}`} className="font-heading text-lg text-white hover:text-brand-red-light transition-colors">
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* 4-step deep dive */}
+      {/* Five steps, deep */}
       <section className="bg-white py-16 md:py-24">
         <Container size="wide">
-          <SectionHeader
-            eyebrow="The Four Steps"
-            title="Recon. Plan. Execute. Inspect."
-          />
-          <ol className="mt-14 space-y-12 lg:space-y-16">
-            {PRECISION_PROCESS.map((step, idx) => {
-              const Icon = STEP_ICONS[idx] ?? ClipboardList;
-              const detail = STEP_DEEP_DIVE[step.title] ?? [];
-              return (
-                <li
-                  key={step.step}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
-                >
-                  <div className="lg:col-span-4">
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center justify-center w-14 h-14 rounded-md bg-brand-red text-white font-heading font-extrabold text-xl shadow-md flex-shrink-0">
-                        {step.step}
-                      </div>
-                      <div className="text-charcoal-400">
-                        <Icon className="w-7 h-7" aria-hidden="true" />
-                      </div>
-                    </div>
-                    <h3 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 mt-5 leading-tight">
-                      {step.title}
-                    </h3>
-                    <p className="text-charcoal-600 mt-3 leading-relaxed">{step.summary}</p>
-                  </div>
-                  <ul className="lg:col-span-8 bg-steel-50 rounded-lg border-l-4 border-brand-red p-7 md:p-8 space-y-3 text-charcoal-700">
-                    {detail.map((line) => (
-                      <li key={line} className="flex items-start gap-3">
-                        <span className="text-brand-red font-bold flex-shrink-0 mt-0.5">·</span>
+          <ol className="divide-y divide-steel-200">
+            {DESIGN_BUILD_PROCESS.map((step) => (
+              <li
+                key={step.step}
+                id={`step-${step.step}`}
+                className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 py-14 md:py-16 first:pt-0 reveal"
+              >
+                <div className="lg:col-span-5">
+                  <p className="font-heading text-brand-red text-3xl tabular-nums">{step.step}</p>
+                  <h2 className="font-heading text-3xl md:text-4xl text-navy-900 mt-3 leading-tight">
+                    {step.title}
+                  </h2>
+                  <p className="text-charcoal-600 mt-4 leading-relaxed max-w-md">{step.summary}</p>
+                </div>
+                <div className="lg:col-span-7">
+                  <ul className="space-y-4">
+                    {step.detail.map((line) => (
+                      <li key={line} className="flex gap-4 text-charcoal-700 leading-relaxed">
+                        <span aria-hidden="true" className="mt-2.5 w-1.5 h-px bg-brand-red flex-shrink-0" />
                         <span>{line}</span>
                       </li>
                     ))}
                   </ul>
-                </li>
-              );
-            })}
-          </ol>
-        </Container>
-      </section>
-
-      {/* Standards strip */}
-      <section className="bg-steel-50 py-16 md:py-24 border-y border-charcoal-100">
-        <Container size="wide">
-          <SectionHeader
-            eyebrow="What You Can Count On"
-            title="Six standards. Every project."
-            subtitle="The stuff most contractors quietly skip — and why homeowners stop calling them. Here is exactly what we hold ourselves to."
-            align="center"
-            className="mx-auto"
-          />
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {STANDARDS.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={s.title}
-                  className="bg-white rounded-lg p-6 shadow-sm border-t-4 border-brand-red"
-                >
-                  <div className="inline-flex items-center justify-center w-11 h-11 rounded-md bg-navy-800 text-white mb-4">
-                    <Icon className="w-5 h-5" aria-hidden="true" />
+                  <div className="mt-6 bg-steel-50 border-l-2 border-brand-red rounded-r-md px-5 py-4">
+                    <p className="text-[0.65rem] uppercase tracking-[0.2em] text-charcoal-500 font-semibold mb-1">
+                      What you have at the end
+                    </p>
+                    <p className="text-navy-900">{step.deliverable}</p>
                   </div>
-                  <h3 className="font-heading text-lg font-extrabold text-navy-800 mb-2">
-                    {s.title}
-                  </h3>
-                  <p
-                    className="text-charcoal-600 text-sm leading-relaxed"
-                  >{s.body}</p>
                 </div>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* What to expect during your remodel */}
-      <section className="bg-white py-16 md:py-24">
-        <Container size="wide">
-          <SectionHeader
-            eyebrow="What To Expect"
-            title="A typical remodel, week by week."
-            subtitle="Most homeowners have never been through a project like this. Here is the rough cadence so you know what each phase will feel like in your home."
-          />
-          <ol className="mt-12 relative border-l-2 border-charcoal-200 ml-3">
-            {WHAT_TO_EXPECT.map((phase) => (
-              <li key={phase.week} className="pl-7 pb-10 relative last:pb-0">
-                <span
-                  aria-hidden="true"
-                  className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-brand-red border-2 border-white shadow"
-                />
-                <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-1">
-                  {phase.week}
-                </p>
-                <p className="text-charcoal-700 leading-relaxed">{phase.body}</p>
               </li>
             ))}
           </ol>
         </Container>
       </section>
 
-      {/* Assurances */}
+      {/* Calendar shape */}
+      <section className="bg-steel-50 py-16 md:py-24 border-y border-steel-200">
+        <Container size="wide">
+          <div className="max-w-2xl mb-12">
+            <p className="text-brand-red text-xs uppercase tracking-[0.22em] font-semibold mb-4">
+              The shape of the calendar
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl text-navy-900 leading-tight">
+              Where the time actually goes.
+            </h2>
+            <p className="text-charcoal-600 mt-4 leading-relaxed">
+              Most of a Loudoun project&rsquo;s calendar is decided before demolition: design
+              decisions, county review and the HOA. Knowing that up front is the difference
+              between a schedule and a hope.
+            </p>
+          </div>
+          <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {CALENDAR.map((c, i) => (
+              <li key={c.title} className="reveal border-t border-steel-300 pt-4">
+                <p className="text-[0.65rem] uppercase tracking-[0.2em] text-charcoal-500 font-semibold">
+                  {c.phase}
+                </p>
+                <h3 className="font-heading text-xl text-navy-900 mt-2 leading-snug">
+                  <span className="text-brand-red mr-2 tabular-nums">{i + 1}</span>
+                  {c.title}
+                </h3>
+                <p className="text-charcoal-600 text-sm leading-relaxed mt-2">{c.body}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      {/* Designers, and the handover */}
+      <section className="bg-white py-16 md:py-24">
+        <Container size="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <div className="lg:col-span-6">
+              <p className="text-brand-red text-xs uppercase tracking-[0.22em] font-semibold mb-4">
+                Designers and architects
+              </p>
+              <h2 className="font-heading text-3xl md:text-4xl text-navy-900 leading-tight">
+                If you have a designer, we build their set.
+              </h2>
+              <p className="text-charcoal-600 mt-4 leading-relaxed">
+                If you do not, we will tell you whether this project needs one before we pretend
+                to be the design firm. Kitchens and primary suites usually benefit from a
+                designer at the selections stage; additions and structural changes need an
+                architect or engineer for the drawings the county will ask for. Either way, the
+                scope is written from the set, and the set is what gets built.
+              </p>
+            </div>
+            <div className="lg:col-span-6">
+              <p className="text-brand-red text-xs uppercase tracking-[0.22em] font-semibold mb-4">
+                What you keep
+              </p>
+              <h2 className="font-heading text-3xl md:text-4xl text-navy-900 leading-tight">
+                The handover package.
+              </h2>
+              <ul className="mt-6 divide-y divide-steel-200 border-y border-steel-200">
+                {HANDOVER.map((item) => (
+                  <li key={item} className="py-3 text-charcoal-700 flex gap-4">
+                    <span aria-hidden="true" className="mt-2.5 w-1.5 h-px bg-brand-red flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <AssurancesBand />
 
       {/* CTA */}
       <section className="bg-navy-900 text-white py-16 md:py-24">
-        <Container size="default" className="text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-5">
-            See what this looks like for your project.
-          </h2>
-          <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Three short steps. About 60 seconds. A real project lead reaches out within 24
-            business hours.
-          </p>
-          <Link
-            href="/contact#estimate"
-            className="inline-flex items-center gap-2 bg-brand-red text-white px-8 py-4 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-navy-950/40"
-          >
-            Get My Free Estimate
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+        <Container size="default">
+          <div className="max-w-2xl">
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl leading-[1.05]">
+              See what this looks like for your house.
+            </h2>
+            <p className="text-charcoal-300 mt-5 leading-relaxed">
+              A short call about the rooms, the range and the timing. If it fits, we come out to
+              measure. Or call{' '}
+              <PhoneLink location="process_cta" className="text-white font-medium link-editorial">
+                {BUSINESS.phone}
+              </PhoneLink>
+              .
+            </p>
+            <div className="flex flex-wrap gap-4 mt-8">
+              <Link
+                href="/design-consultation"
+                className="inline-flex items-center gap-2 bg-white text-navy-900 px-7 py-4 rounded-md font-semibold text-sm hover:bg-brand-red-light transition-colors focus-ring-on-navy"
+              >
+                Schedule a design consultation
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/investment"
+                className="inline-flex items-center gap-2 border border-white/35 text-white px-7 py-4 rounded-md font-semibold text-sm hover:bg-white/10 transition-colors focus-ring-on-navy"
+              >
+                Read the investment guide
+              </Link>
+            </div>
+          </div>
         </Container>
       </section>
     </>
