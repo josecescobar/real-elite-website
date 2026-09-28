@@ -68,4 +68,4 @@ We proudly serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepher
 
 **Get your free deck estimate** — call **(681) 534-5515** or [request one online](/contact#estimate).
 
-*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*
+*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.*

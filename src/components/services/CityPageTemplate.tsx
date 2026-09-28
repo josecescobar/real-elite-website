@@ -101,7 +101,7 @@ export default function CityPageTemplate({ city, data }: Props) {
     'Family-run remodeling and exterior contracting.',
     city.state === 'MD'
       ? 'Frederick is a service-area location; no Maryland contractor license is claimed.'
-      : 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
+      : 'Licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
   ];
 
   // Consultation on the premium counties; the free estimate on the Panhandle
@@ -176,8 +176,8 @@ export default function CityPageTemplate({ city, data }: Props) {
           ? `Yes. Real Elite Contracting works across ${city.city}, including ${children
               .slice(0, 5)
               .map((a) => a.city)
-              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia and Virginia.`
-          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia and Virginia.`,
+              .join(', ')}. We are headquartered in Martinsburg, WV and are insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).`
+          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).`,
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,
@@ -189,7 +189,7 @@ export default function CityPageTemplate({ city, data }: Props) {
     },
     {
       question: `Who runs Real Elite Contracting?`,
-      answer: `Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The motto — "Military Precision. Civilian Excellence." — is how we talk about the standard of the work.`,
+      answer: `Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. The motto — "Military Precision. Civilian Excellence." — is how we talk about the standard of the work.`,
     },
   ];
 

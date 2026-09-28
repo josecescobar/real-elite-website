@@ -7,7 +7,7 @@ import Container from '@/components/shared/Container';
  */
 const CREDENTIALS = [
   { label: 'Who runs it', value: 'Jose & Miguel' },
-  { label: 'Virginia', value: 'Class A · 2705198604' },
+  { label: 'Virginia', value: 'Class A Home Improvement Contractor' },
   { label: 'West Virginia', value: 'Licensed · WV062432' },
   { label: 'Languages', value: 'English · Español' },
   { label: 'Federal', value: 'Registered in SAM.gov' },

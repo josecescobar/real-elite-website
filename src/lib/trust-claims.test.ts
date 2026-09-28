@@ -53,7 +53,10 @@ describe('credential and ranking claims', () => {
   });
 
   it('provides the exact license disclosure on both requested surfaces', () => {
-    expect(CONTRACTOR_LICENSES.summary).toBe('WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC)');
+    expect(CONTRACTOR_LICENSES.summary).toBe(
+      'Licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
+    );
+    expect(CONTRACTOR_LICENSES).not.toHaveProperty('va');
     for (const file of ['src/app/about/page.tsx', 'src/components/layout/Footer.tsx']) {
       expect(fs.readFileSync(file, 'utf8')).toContain('{CONTRACTOR_LICENSES.summary}');
     }

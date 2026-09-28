@@ -88,4 +88,4 @@ If you're weighing a new driveway, a repair, or a reseal in **Martinsburg, Inwoo
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Learn more about our [paving & seal coating services](/paving).
 
-Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Real Elite Contracting is insured, and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).

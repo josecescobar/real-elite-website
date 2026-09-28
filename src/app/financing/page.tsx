@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   }),
   title: fitTitle(`Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`),
   description:
-    'Spread your remodel, roof or addition into manageable monthly payments. Family-run contractor licensed across WV and VA — start the project now.',
+    'Spread your remodel, roof or addition into manageable monthly payments. Family-run contractor licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432) — start the project now.',
 };
 
 // When a lending partner is signed, FINANCING.applyUrl flips the primary
@@ -116,7 +116,7 @@ const FAQ_ITEMS = [
   {
     question: 'Do you offer financing across WV, MD, and VA?',
     answer:
-      'Yes. Real Elite Contracting is licensed and insured across West Virginia and Virginia, and we can discuss payment options with homeowners throughout our service area in the Eastern Panhandle and surrounding counties.',
+      'Yes. Real Elite Contracting is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432), and we can discuss payment options with homeowners throughout our service area in the Eastern Panhandle and surrounding counties.',
   },
 ];
 

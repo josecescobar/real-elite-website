@@ -70,7 +70,7 @@ const project: Project = {
   solution: [
     'We handle the permit and drawings, then build the frame the inspection wants to see: proper footers below frost line, a flashed and bolted ledger, and joists sized and spaced for composite spans.',
     'Composite boards go down with hidden fasteners for a clean face, the railing system is set plumb and true, and solar post caps finish the build — light for evening use with zero wiring to maintain.',
-    'The site gets a full cleanup and magnetic sweep, and the homeowners get a written workmanship warranty on the structure.',
+    'The site gets a full cleanup and magnetic sweep.',
   ],
   outcome: [
     'An outdoor room that gets used from spring through late fall — and a frame built to outlast the boards on top of it.',
@@ -106,7 +106,7 @@ const project: Project = {
     {
       question: 'How long does a deck build take?',
       answer:
-        'Most decks run 1–3 weeks on site once the permit is issued — footers and framing first, then decking, railings, and finish details.',
+        'The schedule depends on the permit, the size of the deck, and material lead times. The written estimate includes the timeline for that job.',
     },
   ],
   relatedGuideSlugs: [

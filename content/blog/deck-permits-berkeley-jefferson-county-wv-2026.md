@@ -132,8 +132,8 @@ If all six of those are squared away, you're ready to break ground.
 
 Real Elite Contracting handles the entire permitting process for every deck we build in Berkeley and Jefferson County. We pull the permit, draw up the plans, schedule every inspection, and handle any corrections the inspector flags — so you can focus on picking out your grill instead of making trips to Stephen Street.
 
-We're licensed, fully insured, and we've been building decks across the Eastern Panhandle for years. We know both county processes inside and out.
+Real Elite Contracting is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). Permits for Berkeley County and Jefferson County decks are pulled where that license covers the work.
 
 **Call (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
 
-*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*
+*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.*

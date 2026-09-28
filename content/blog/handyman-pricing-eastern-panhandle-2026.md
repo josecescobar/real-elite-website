@@ -151,7 +151,7 @@ If they can't answer the first one clearly, stop there.
 
 ## Our Pricing Philosophy
 
-Full disclosure: Real Elite Contracting operates as a licensed West Virginia general contractor with full liability and workers compensation insurance. Our rates sit in the upper end of the Tier 2 / lower Tier 3 range depending on the scope of work. We're not the cheapest quote you'll get. We're not the most expensive either.
+Full disclosure: Real Elite Contracting is insured and licensed in West Virginia (WV062432) and Virginia (Class A Home Improvement Contractor). Our rates sit in the upper end of the Tier 2 / lower Tier 3 range depending on the scope of work. We're not the cheapest quote you'll get. We're not the most expensive either.
 
 What we are is accountable. Every job is written up in advance, every dollar is itemized, and every bit of work is inspected, warrantied, and backed by insurance the state of West Virginia verifies annually. If a repair fails six months from now, we're still here, still at the same number, and we make it right.
 
@@ -165,4 +165,4 @@ We'll tell you honestly. If your job is small enough that a Tier 2 handyman is t
 
 **Call us at (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
 
-*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*
+*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.*

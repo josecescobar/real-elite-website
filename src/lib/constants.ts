@@ -55,13 +55,13 @@ export const BUSINESS = {
 /**
  * Who runs the company, as Jose stated on 2026-09-28.
  * The ownership split is undocumented, and no federal veteran certification
- * is held. Publish the sentence below. Miguel's service and Purple Heart are
- * facts about him. No branch of service is documented.
+ * is held. Publish the sentence below. No branch of service and no military
+ * award is documented for publication.
  */
 export const FAMILY_RUN = {
   short: 'Family-Run',
   sentence:
-    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.',
 } as const;
 
 /**
@@ -121,8 +121,6 @@ export const SOCIAL_PROOF = {
    *  live profile URL — keep `null` for any platform not yet verified. */
   badges: [
     { name: 'Google', label: 'Google Reviews', href: BUSINESS.social.google as string | null },
-    { name: 'BBB', label: 'BBB Accredited', href: null as string | null },
-    { name: 'Angi', label: 'Angi Certified', href: null as string | null },
   ],
 } as const;
 
@@ -617,7 +615,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
    */
   'northern-virginia': {
     description:
-      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements. Prince William's western communities — Haymarket, Gainesville, and Bristow — are newer planned neighborhoods along I-66 and Route 15. Homeowners search for a Northern Virginia or county contractor first and narrow down afterwards. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed in West Virginia and Virginia, and works this market from its Eastern Panhandle base. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, Route 15, or Route 28 onto I-66.",
+      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements. Prince William's western communities — Haymarket, Gainesville, and Bristow — are newer planned neighborhoods along I-66 and Route 15. Homeowners search for a Northern Virginia or county contractor first and narrow down afterwards. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Real Elite Contracting is licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432), and works this market from its Eastern Panhandle base. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, Route 15, or Route 28 onto I-66.",
     neighborhoods: [
       'Fairfax County',
       'Loudoun County',
@@ -1262,17 +1260,17 @@ export const HOME_FAQ = [
   {
     question: 'Are you licensed and insured?',
     answer:
-      "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
+      "Yes — Real Elite Contracting is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). Request current insurance documentation for your project.",
   },
   {
     question: 'How long does a typical remodel take?',
     answer:
-      "Most full bathroom remodels run 3–5 weeks. Kitchens run 6–10 weeks. Decks take 1–3 weeks. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
+      "Schedules depend on scope, approvals, materials, and weather. The timeline goes in the written estimate before work starts.",
   },
   {
     question: 'Do you offer financing?',
     answer:
-      "Yes. We work with several home-improvement financing partners that offer monthly payment plans on qualified projects. We'll walk you through the options on your free estimate so the numbers make sense before you commit.",
+      "We'll walk you through payment options on your free estimate so the numbers make sense before you commit. No lender is named here.",
   },
   {
     question: 'What does your warranty cover?',

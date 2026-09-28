@@ -86,4 +86,4 @@ If you're planning a high-end kitchen in **Loudoun County, Ashburn, Leesburg, Fr
 
 Beyond Loudoun, we renovate premium kitchens across Fairfax County and Alexandria — including [McLean](/services/kitchens/mclean-va), [Great Falls](/services/kitchens/great-falls-va), [Vienna](/services/kitchens/vienna-va), [Reston](/services/kitchens/reston-va), [Old Town Alexandria](/services/kitchens/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=kitchen) and we'll call inside the window you choose.
 
-Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Real Elite Contracting is insured, and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).

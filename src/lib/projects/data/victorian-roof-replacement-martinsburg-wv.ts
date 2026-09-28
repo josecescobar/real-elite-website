@@ -93,7 +93,7 @@ const project: Project = {
     {
       question: 'Do you repair the decking under the old roof?',
       answer:
-        'Yes. We tear off to the bare deck so nothing is hidden, then replace any softened or rotted sheathing before the new system goes down — it is the only way to warranty the result.',
+        'Yes. We tear off to the bare deck so nothing is hidden, then replace any softened or rotted sheathing before the new system goes down — it is the only way to fasten the new roof to sound wood.',
     },
     {
       question: 'What roofing system did this project use?',

@@ -160,7 +160,7 @@ export default function DesignConsultationPage() {
               </li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-red-light" aria-hidden="true" /> Virginia Class A · WV licensed
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-red-light" aria-hidden="true" /> VA Class A HIC · WV062432
               </li>
             </ul>
 

@@ -108,8 +108,8 @@ export const PAVING_SERVICES: PavingService[] = [
     signals: [
       "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       'Proper base prep and drainage — not just a thin top coat',
-      'WV Contractor License WV062432; Virginia Class A 2705198604 (residential HIC). Confirm the paving contractor and scope before work begins.',
-      'Written workmanship standards on every project',
+      'WV Contractor License WV062432; Virginia Class A Home Improvement Contractor. Confirm the paving contractor and scope before work begins.',
+      'Review the written estimate before work begins.',
     ],
     investment: {
       range: 'Most residential driveways: $4–$7 / sq ft installed',
@@ -460,7 +460,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'Asphalt driveways, paving, sealcoating, and repair for Inwood and the Route 51 corridor — from a contractor based just up the road in Martinsburg.',
     intro: [
       "Inwood has gone from a quiet Berkeley County crossroads to one of the busiest residential growth areas in the Eastern Panhandle, and a lot of that growth is brand-new homes on brand-new lots. New construction means a lot of fresh driveways — some still gravel, some poured cheaply by the builder and already showing problems, many ready for a proper asphalt surface that matches the home.",
-      "We pave and repair driveways throughout Inwood, from the established neighborhoods near Route 51 and Gerrardstown Road to the newer subdivisions filling in around the area. Because Inwood sits just minutes south of our Martinsburg base, we are quick to respond and easy to reach — and because so many lots here are newer, we spend a lot of time getting the base and drainage right on first-time asphalt installations.",
+      "We pave and repair driveways throughout Inwood, from the established neighborhoods near Route 51 and Gerrardstown Road to the newer subdivisions filling in around the area. Inwood sits just minutes south of our Martinsburg base, and so many lots here are newer that a lot of the work is getting the base and drainage right on first-time asphalt installations.",
     ],
     localFactors: [
       { title: 'Roads & neighborhoods', body: 'The Route 51 and Gerrardstown Road corridors, the Ridge Road area, and the wave of newer subdivisions that have reshaped Inwood from farmland into a fast-growing suburb.' },
@@ -695,10 +695,10 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'sealcoating Frederick MD',
     ],
     heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — family-run and licensed in West Virginia and Virginia.',
+      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — family-run and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
     intro: [
       "Frederick is one of the Mid-Atlantic's most desirable and fastest-growing markets — a historic market town transformed by the revitalized Carroll Creek and Market Street downtown and a steady wave of development along the I-70 corridor through Urbana, Jefferson, and New Market. That growth fuels constant demand for both residential driveways in the new communities and commercial lots for the retail, office, and medical development following them.",
-      "We pave and repair driveways and parking lots throughout Frederick and Frederick County, licensed in West Virginia and Virginia. From the historic downtown's older homes to the new subdivisions out toward Urbana and the commercial sites along the growth corridor, we bring proper base work, drainage-first grading, ADA-compliant lot striping, and the accountable, single-point-of-contact approach that has built our name across the region.",
+      "We pave and repair driveways and parking lots throughout Frederick and Frederick County, licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). From the historic downtown's older homes to the new subdivisions out toward Urbana and the commercial sites along the growth corridor, we bring proper base work, drainage-first grading, ADA-compliant lot striping, and the accountable, single-point-of-contact approach that has built our name across the region.",
     ],
     localFactors: [
       { title: 'Roads & neighborhoods', body: 'Historic downtown Frederick and the Carroll Creek corridor, plus the fast-growing Ballenger Creek, Urbana, Jefferson, and New Market areas along I-70.' },

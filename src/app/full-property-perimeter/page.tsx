@@ -106,7 +106,7 @@ const TIMELINE = [
     step: 'Week 2',
     title: 'Approval & permits',
     body:
-      'We handle WV / MD / VA permitting and HOA approval across all trades. One project lead, one set of paperwork.',
+      'Permits are pulled where the license covers the work. Maryland permit requirements are discussed before any Frederick work is agreed. One set of paperwork.',
   },
   {
     step: 'Weeks 3–5',
@@ -137,7 +137,7 @@ const FAQ_ITEMS = [
   {
     question: 'How much money does the bundle actually save me?',
     answer:
-      'Bundling saves 5–8% versus the sum of separately quoted projects. The savings come from shared mobilization, fewer separate estimate cycles, and one consolidated permit pull rather than three. You get the discount with no quality compromise — both companies are family-operated, and licensed/insured across the tri-state.',
+      'Bundling saves 5–8% versus the sum of separately quoted projects. The savings come from shared mobilization, fewer separate estimate cycles, and one consolidated permit pull rather than three. Real Elite Contracting is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). No Maryland contractor license is claimed.',
   },
   {
     question: 'Who is A+ Paving & Landscaping?',

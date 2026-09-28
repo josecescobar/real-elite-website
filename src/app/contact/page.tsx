@@ -160,7 +160,7 @@ export default function ContactPage() {
               <div className="flex flex-wrap gap-2 pt-4">
                 <span className="inline-flex items-center gap-1.5 bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
                   <ShieldCheck className="w-3.5 h-3.5 text-brand-red" />
-                  Licensed &amp; Insured
+                  Insured · VA Class A HIC · WV062432
                 </span>
                 <span className="inline-flex items-center bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
                   Family-Run
