@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { loudounGuidesFor } from '@/lib/loudoun-guides';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronRight, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
@@ -169,7 +170,9 @@ export default async function ServiceCityPage({
     notFound();
   }
 
-  const relatedGuideSlugs = content.relatedGuideSlugs ?? [];
+  // Authored per-combo guides win; Loudoun combos without them fall back to
+  // the authored Loudoun pairing for the service (src/lib/loudoun-guides.ts).
+  const relatedGuideSlugs = content.relatedGuideSlugs ?? loudounGuidesFor(service, city);
 
   const consultationType = CONSULTATION_TYPE_FOR_SERVICE[service as FeaturedServiceSlug];
   const primaryCta = primaryCtaForService(service, {

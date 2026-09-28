@@ -67,4 +67,4 @@ Do not treat a published renovation percentage as an appraisal of your home. Set
 
 ## Bring the layout, then the finish ideas
 
-Photograph the existing room and note the storage and access problems you want solved. [Schedule a design consultation](/design-consultation) and see our [bathroom remodeling service](/services/bathrooms) for the next step.
+Photograph the existing room and note the storage and access problems you want solved. [Schedule a design consultation](/design-consultation) and see our [bathroom remodeling service](/services/bathrooms) for the next step. Local pages: [bathroom remodeling in Leesburg](/services/bathrooms/leesburg-va), [bathroom remodeling in Ashburn](/services/bathrooms/ashburn-va), and [bathroom remodeling across Loudoun County](/services/bathrooms/loudoun-county-va).

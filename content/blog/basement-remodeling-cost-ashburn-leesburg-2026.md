@@ -75,4 +75,4 @@ Confirm your association's rules. A new window well, exterior opening, or walkou
 
 ## Start with a walkthrough
 
-Bring a sketch, room priorities, and any records for prior basement work. [Schedule a design consultation](/design-consultation) and review our [basement finishing service](/services/basements) to discuss the space.
+Bring a sketch, room priorities, and any records for prior basement work. [Schedule a design consultation](/design-consultation) and review our [basement finishing service](/services/basements) to discuss the space. Local pages: [basement finishing in Ashburn](/services/basements/ashburn-va), [basement finishing in Leesburg](/services/basements/leesburg-va), and [basement finishing across Loudoun County](/services/basements/loudoun-county-va).

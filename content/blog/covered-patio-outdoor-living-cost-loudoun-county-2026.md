@@ -77,4 +77,4 @@ The checked sources do not establish a reliable Loudoun-specific range for that 
 
 ## Draw the room before selecting the boards
 
-[Schedule a design consultation](/design-consultation) and see our [decks and outdoor-living service](/services/decks). If your proposal is enclosed living space, review [addition services](/services/additions) as well.
+[Schedule a design consultation](/design-consultation) and see our [decks and outdoor-living service](/services/decks). If your proposal is enclosed living space, review [addition services](/services/additions) as well. Local pages: [decks and outdoor living in Ashburn](/services/decks/ashburn-va), [Brambleton](/services/decks/brambleton-va), [Leesburg](/services/decks/leesburg-va), and [across Loudoun County](/services/decks/loudoun-county-va).
