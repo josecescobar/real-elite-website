@@ -55,6 +55,7 @@ export default async function ProjectsPage({
             title="Projects"
             subtitle="Real homes across the Eastern Panhandle and beyond — the work itself, start to finish."
             tone="light"
+            headingLevel={1}
           />
         </Container>
       </section>

@@ -18,7 +18,7 @@ export const Hero = () => {
       <div className="absolute inset-0 -z-10">
         <Image
           src="/images/home-hero.jpg"
-          alt=""
+          alt="Dusk view of a large home with a circular driveway, stone and siding facade, and a three-car garage"
           fill
           priority
           fetchPriority="high"
@@ -33,7 +33,7 @@ export const Hero = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-24 md:pt-36 md:pb-32 lg:pt-44 lg:pb-40">
         <div className="max-w-3xl">
           <p className="text-brand-red-light text-[0.7rem] font-semibold tracking-[0.24em] uppercase mb-7">
-            Loudoun County, Virginia · Veteran-Owned Design-Build
+            Loudoun County, Virginia · Family-Run Design-Build
           </p>
 
           <h1 className="font-heading text-[2.75rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.25rem] text-white">
@@ -73,7 +73,7 @@ export const Hero = () => {
             <li aria-hidden="true" className="text-white/30">·</li>
             <li>
               <Link href="/veterans" className="hover:text-brand-red-light transition-colors">
-                Veteran-Owned
+                Family-Run
               </Link>
             </li>
             <li aria-hidden="true" className="text-white/30">·</li>

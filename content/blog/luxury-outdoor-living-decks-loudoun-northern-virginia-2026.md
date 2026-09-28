@@ -78,7 +78,7 @@ Discuss site supervision, communication, and cleanup arrangements during the est
 
 ## The Real Elite approach
 
-Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to the part of the home where summer actually happens.
+Review the proposed scope and warranty terms before signing. Military precision, applied to the part of the home where summer actually happens.
 
 If you're planning a deck or full outdoor-living space in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the yard and talk through what it could become.
 
@@ -88,6 +88,6 @@ If you're planning a deck or full outdoor-living space in **Loudoun County, Ashb
 
 Beyond Loudoun, we build outdoor-living spaces for homeowners across Fairfax County and Alexandria — including [McLean](/service-areas/mclean-va), [Great Falls](/service-areas/great-falls-va), [Vienna](/service-areas/vienna-va), [Reston](/service-areas/reston-va), [Old Town Alexandria](/service-areas/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

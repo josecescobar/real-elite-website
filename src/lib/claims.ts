@@ -235,17 +235,10 @@ export const RETRACTED_TRUST_CLAIMS: readonly OperationalClaim[] = [
       "templates": []
 },
   },
-  {
-    id: 'unsupported-veteran-certification', label: 'Certification must not be represented as awarded',
-    example: 'Certified VOSB', status: 'unconfirmed',
-    note: 'Withdrawn by REA-55; require owner-supplied substantiation before publication.',
-    patterns: [/certified (?:SDVOSB|VOSB)/i, /(?:SDVOSB|VOSB)[- ]certified/i],
-    publishedIn: {
-      "comboKeys": [],
-      "serviceSlugs": [],
-      "templates": []
-},
-  },
+  // Certification-as-awarded and ownership-status detectors live in
+  // src/lib/__tests__/forbidden-claim-terms.ts. They stay out of this module
+  // so the production bundle does not carry those matcher strings. Tests still
+  // apply them to source and built HTML. Do not re-import that module here.
   {
     id: 'unsupported-maryland-license', label: 'Maryland licensing is not substantiated',
     example: 'Licensed and insured across West Virginia, Maryland, and Virginia', status: 'unconfirmed',

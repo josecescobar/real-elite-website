@@ -4,8 +4,10 @@ import {
   BUSINESS,
   ALL_SERVICE_AREAS,
   CITY_DATA,
+  areaHeroLane,
   formatAreaPlace,
 } from '@/lib/constants';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import CityPageTemplate from '@/components/services/CityPageTemplate';
 
 type Params = { slug: string };
@@ -25,34 +27,47 @@ export async function generateMetadata({
 
   // formatAreaPlace, not `${city}, ${state}` — the region row is called
   // "Northern Virginia" and the generic form rendered "Northern Virginia, VA".
-  const title = `Contractor in ${formatAreaPlace(city)} | ${BUSINESS.name}`;
+  const place = formatAreaPlace(city);
+  // The premium (design-consultation) counties are searched as "remodeling
+  // contractor <town>", so their title leads with that phrase and the
+  // description names the rooms those pages sell. fitTitle drops to the short
+  // brand when the long one would pass 60 characters. The Panhandle and other
+  // home-market rows keep the original title and estimate-led description.
+  const consultation = areaHeroLane(city) === 'consultation';
+  const title = consultation
+    ? fitTitle(`Remodeling Contractor in ${place} | ${BUSINESS.name}`)
+    : `Contractor in ${place} | ${BUSINESS.name}`;
   // Kept under the 160-char SERP budget for the longest city name in the
-  // catalog ("Berkeley Springs, WV") — see fitTitle/TITLE_MAX in src/lib/seo.ts
-  // for the sibling title rule, and scripts/audit-site.mjs which enforces both.
-  const description = `Bathroom remodels, kitchens, decks, roofing and additions in ${formatAreaPlace(city)} — veteran-owned, built with military precision. Free written estimate.`;
+  // catalog ("Berkeley Springs, WV" / "Prince William County, VA") — see
+  // fitTitle/TITLE_MAX in src/lib/seo.ts for the sibling title rule, and
+  // scripts/audit-site.mjs which enforces both.
+  const description = consultation
+    ? `Bathroom remodels, kitchens, decks, roofing and additions in ${place} — family-run, built with military precision. Free written estimate.`
+    : `Bathroom remodels, kitchens, decks, roofing and additions in ${place} — family-run, built with military precision. Free written estimate.`;
 
   return {
-    title,
-    description,
-    keywords: [
-      `${city.city} contractor`,
-      `${city.city} general contractor`,
-      `${city.city} bathroom remodel`,
-      `${city.city} kitchen remodel`,
-      `${city.city} roofing`,
-      `${city.city} siding`,
-      `${city.city} decks`,
-      `${city.city} remodeling`,
-      `${city.city} home additions`,
-      `${city.state} contractor`,
-    ],
-    alternates: { canonical: `${BUSINESS.url}/service-areas/${slug}` },
-    openGraph: {
+    ...buildMetadata({
+      path: `/service-areas/${slug}`,
       title,
       description,
-      url: `${BUSINESS.url}/service-areas/${slug}`,
-      type: 'website',
-    },
+      keywords: [
+        ...(consultation
+          ? [`remodeling contractor ${city.city}`, `design-build ${city.city}`]
+          : []),
+        `${city.city} contractor`,
+        `${city.city} general contractor`,
+        `${city.city} bathroom remodel`,
+        `${city.city} kitchen remodel`,
+        `${city.city} roofing`,
+        `${city.city} siding`,
+        `${city.city} decks`,
+        `${city.city} remodeling`,
+        `${city.city} home additions`,
+        `${city.state} contractor`,
+      ],
+      omitSocialImage: true,
+    }),
+    title,
   };
 }
 

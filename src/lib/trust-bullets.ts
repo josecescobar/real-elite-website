@@ -8,7 +8,7 @@ export type TrustBullet = {
 /** Only substantiated credentials and scope questions belong in this shared block. */
 export function trustBullets(city: string, serviceTitle: string, state: string): readonly TrustBullet[] {
   return [
-    { text: 'Veteran-owned remodeling and exterior contracting.', claims: [] },
+    { text: 'Family-run remodeling and exterior contracting.', claims: [] },
     { text: `Discuss the scope of your ${city} ${serviceTitle.toLowerCase()} project at the estimate.`, claims: [] },
     {
       text: state === 'MD'

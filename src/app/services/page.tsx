@@ -3,6 +3,7 @@ import Link from 'next/link';
 import * as LucideIcons from 'lucide-react';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { BUSINESS, SERVICES, servicePillarHref } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 import { SERVICE_DATA } from '@/lib/services-data';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
@@ -10,29 +11,26 @@ import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 
 export const metadata: Metadata = {
-  title: `Services | ${BUSINESS.name}`,
-  description:
-    'Premium remodeling and exterior contracting — bathrooms, kitchens, basements, decks, roofing, siding, additions across the WV–MD–VA region.',
-  keywords: [
-    'contractor services',
-    'bathroom remodeling',
-    'kitchen remodeling',
-    'basement finishing',
-    'roofing',
-    'siding',
-    'decks',
-    'home additions',
-    'remodeling',
-    'WV MD VA contractor',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/services` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/services',
     title: `Services | ${BUSINESS.name}`,
     description:
-      'Premium remodeling + exteriors across the WV–MD–VA region. Veteran-owned. Built with military precision.',
-    url: `${BUSINESS.url}/services`,
-    type: 'website',
-  },
+      'Premium remodeling + exteriors across the WV–MD–VA region. Family-run. Built with military precision.',
+    keywords: [
+      'contractor services',
+      'bathroom remodeling',
+      'kitchen remodeling',
+      'basement finishing',
+      'roofing',
+      'siding',
+      'decks',
+      'home additions',
+      'remodeling',
+      'WV MD VA contractor',
+    ],
+  }),
+  description:
+    'Premium remodeling and exterior contracting — bathrooms, kitchens, basements, decks, roofing, siding, additions across the WV–MD–VA region.',
 };
 
 type IconName =

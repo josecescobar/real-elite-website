@@ -58,7 +58,7 @@ The finishes get the compliments, but the value is built where you'll never see 
 - **Real ventilation** sized to the room, so a steam-friendly spa shower doesn't become a mold problem.
 - **Blocking in the walls** for current and future fixtures — towel bars, a bench, grab bars if you're planning to age in place — done now, while the walls are open.
 
-This is also where veteran-owned precision matters most. The standard we hold on every project is the one that protects a luxury bath for the long run.
+This is also where military precision matters most. The standard we hold on every project is the one that protects a luxury bath for the long run.
 
 ## What a luxury bath is an investment in
 
@@ -82,4 +82,4 @@ If you're planning a high-end primary bath in **Loudoun County, Ashburn, Leesbur
 
 Beyond Loudoun, we renovate primary baths across Fairfax County and Alexandria — including [McLean](/services/bathrooms/mclean-va), [Great Falls](/services/bathrooms/great-falls-va), [Vienna](/services/bathrooms/vienna-va), [Reston](/services/bathrooms/reston-va), [Old Town Alexandria](/services/bathrooms/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=bathroom) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.

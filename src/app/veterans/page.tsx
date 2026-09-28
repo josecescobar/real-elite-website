@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { FEDERAL_REGISTRATION } from '@/lib/claims';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   ShieldCheck,
@@ -20,47 +20,42 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Veteran-Owned Contractor — WV · VA | ${BUSINESS.name}`),
-  description:
-    'Veteran-owned general contractor serving WV, MD and VA — pursuing SDVOSB certification and federal work at the Martinsburg VA, Fort Detrick and Quantico.',
-  keywords: [
-    'veteran-owned contractor WV',
-    'veteran-owned roofing contractor',
-    'veteran roofer Martinsburg',
-    'VA Medical Center contractor',
-    'service-disabled veteran-owned',
-    'military precision contractor',
-    'federal contracting WV MD VA',
-    'HUBZone contractor Martinsburg',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/veterans` },
-  openGraph: {
-    title: `Veteran-Owned Contractor | ${BUSINESS.name}`,
+  ...buildMetadata({
+    path: '/veterans',
+    title: `Family-Run Contractor | ${BUSINESS.name}`,
     description:
-      'Military Precision. Civilian Excellence. Veteran-owned contracting across WV, MD, and VA — with the discipline federal and VA work demands.',
-    url: `${BUSINESS.url}/veterans`,
-    type: 'website',
-  },
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Remodeling across WV, MD, and VA.',
+    keywords: [
+      'family-run contractor WV',
+      'Martinsburg remodeling contractor',
+      'Purple Heart',
+      'military precision contractor',
+      'Loudoun design-build contractor',
+    ],
+  }),
+  title: fitTitle(`Family-Run Contractor — WV · VA | ${BUSINESS.name}`),
+  description:
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Serving WV, MD, and VA.',
 };
 
 const PILLARS = [
   {
     icon: ShieldCheck,
-    eyebrow: 'Discipline',
-    title: 'Veteran-Owned & Operated',
+    eyebrow: 'Who runs it',
+    title: 'Two brothers',
     body:
-      'Owned and led by a veteran. Every crew lead carries the same standards we carried in uniform — accountability, time discipline, and finishing what we start.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The ownership split is not published, and the company does not hold a federal veteran certification.',
   },
   {
     icon: Award,
-    eyebrow: 'Federal Track',
-    title: 'SDVOSB Certification In Progress',
+    eyebrow: 'Registration',
+    title: 'Registered in SAM.gov',
     body:
-      'We are pursuing Service-Disabled Veteran-Owned Small Business (SDVOSB) certification through SBA VetCert — unlocking VA, DoD, and federal set-aside work for residential, light commercial, and facilities contracts.',
+      `${FEDERAL_REGISTRATION.summary}. That registration is not a veteran certification and does not expand the state licenses.`,
   },
   {
     icon: Building2,
-    eyebrow: 'Geographic Edge',
+    eyebrow: 'Home base',
     title: 'Based in Martinsburg, WV',
     body:
       'Based in the Eastern Panhandle of West Virginia, with a residential remodeling focus in Loudoun County and surrounding service areas.',
@@ -69,24 +64,22 @@ const PILLARS = [
 
 const CERT_TRACKS = [
   {
-    name: 'SDVOSB',
-    full: 'Service-Disabled Veteran-Owned Small Business',
-    status: 'Application In Progress',
-    body:
-      'SBA VetCert verifies veteran ownership and control. SDVOSBs are eligible for federal set-aside and sole-source contracts up to $5M at the Department of Veterans Affairs and $4.5M across other agencies.',
-  },
-  {
     name: 'SAM.gov',
     full: 'System for Award Management Registration',
     status: 'Registered',
     body: `${FEDERAL_REGISTRATION.summary}. Primary NAICS: 236220. Additional NAICS: 238160, 238320, 238330, 238990, 236118. Registration does not establish a veteran certification or expand state license specialties.`,
   },
   {
-    name: 'State Preferences',
-    full: 'WV §5A-3-37 · MD VSBE · VA SDV / SWaM',
-    status: 'On The Roadmap',
-    body:
-      'West Virginia resident-vendor + veteran preference (up to 5% bid edge), Maryland Veteran-Owned Small Business Enterprise (3% target), Virginia Service-Disabled Veteran designation — all free, all open new procurement lanes.',
+    name: 'West Virginia',
+    full: 'WV Contractor License WV062432',
+    status: 'Active',
+    body: 'State contractor license for work in West Virginia. This is a trade license, not a veteran certification.',
+  },
+  {
+    name: 'Virginia',
+    full: 'Class A Contractor 2705198604 (HIC)',
+    status: 'Active',
+    body: 'Virginia Class A, specialty HIC, residential. No Virginia veteran-program designation is claimed.',
   },
 ];
 
@@ -96,61 +89,61 @@ const FEDERAL_TARGETS = [
     site: 'Martinsburg VA Medical Center',
     distance: '8 miles from HQ',
     body:
-      '175 acres, 2,200+ employees, 7 outpatient clinics across WV/MD/VA/PA. Statutory SDVOSB priority with $5M sole-source authority per contract.',
+      '175 acres and 7 outpatient clinics across WV, MD, VA, and PA. Proximity is a fact about the drive. It is not a set-aside or a certification.',
   },
   {
     location: 'Frederick, MD',
     site: 'Fort Detrick',
     distance: '35 minutes',
     body:
-      'Medical and biological research installation. Recurring facility maintenance, roofing, and renovation set-asides.',
+      'Medical and biological research installation, about 35 minutes from Martinsburg.',
   },
   {
     location: 'Aberdeen, MD',
     site: 'Aberdeen Proving Ground',
     distance: '90 minutes',
     body:
-      'Major Army installation with continuous facilities, family-housing, and small-construction opportunities.',
+      'A large installation about 90 minutes from Martinsburg.',
   },
   {
     location: 'Quantico, VA',
     site: 'Marine Corps Base Quantico',
     distance: '90 minutes',
     body:
-      'USMC and FBI Academy footprint with regular DoD facility and infrastructure contracts.',
+      'About 90 minutes from Martinsburg.',
   },
 ];
 
 const FAQ_ITEMS = [
   {
-    question: 'Is Real Elite Contracting really veteran-owned?',
+    question: 'Who runs Real Elite Contracting?',
     answer:
-      'Yes. Real Elite Contracting LLC is owned and led by a US military veteran. Our brand promise — "Military Precision. Civilian Excellence." — is grounded in the standards of service.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The motto — "Military Precision. Civilian Excellence." — is how we talk about the standard of the work.',
   },
   {
-    question: 'What is SDVOSB and why does it matter?',
+    question: 'Does Real Elite hold a federal veteran certification?',
     answer:
-      'SDVOSB stands for Service-Disabled Veteran-Owned Small Business. It is a federal certification administered by the SBA through VetCert that allows qualifying veteran-owned firms to compete for set-aside and sole-source federal contracts. At the Department of Veterans Affairs, SDVOSBs receive first priority, with sole-source authority up to $5 million per contract. SDVOSB status also signals discipline, ownership integrity, and federal accountability — values residential customers value too.',
+      `No. ${FEDERAL_REGISTRATION.summary}. Registration is not a veteran certification. No branch of service is stated.`,
   },
   {
     question: 'Do I need to be a federal customer to hire Real Elite?',
     answer:
-      'No. The vast majority of our work is residential — roofing, siding, decks, remodeling, kitchens, baths, and exterior repairs for homeowners across the Eastern Panhandle of WV, Frederick County MD, and Loudoun County VA. The federal track is a parallel growth lane, not a requirement for working with us.',
+      'No. Most of the work is residential — roofing, siding, decks, remodeling, kitchens, baths, and exterior repairs for homeowners across the Eastern Panhandle of WV, Frederick County MD, and Loudoun County VA.',
   },
   {
-    question: 'Which veteran certifications and designations does Real Elite hold?',
+    question: 'Which licenses does Real Elite hold?',
     answer:
-      `Real Elite is veteran-owned and is pursuing SDVOSB certification; certification has not been awarded. ${FEDERAL_REGISTRATION.summary}. No specific Virginia veteran-program certification is claimed.`,
+      `WV Contractor License WV062432 and Virginia Class A Contractor 2705198604 (HIC). ${FEDERAL_REGISTRATION.summary}. No Maryland contractor license is claimed.`,
   },
   {
     question: 'How does "Military Precision" actually show up in our project?',
     answer:
-      "Review the proposed scope and warranty terms before signing. The discipline shows up in the schedule, the cleanup, and the follow-through.",
+      'Review the proposed scope and warranty terms before signing. The discipline shows up in the schedule, the cleanup, and the follow-through.',
   },
   {
-    question: 'How can other veteran-owned contractors partner with Real Elite?',
+    question: 'How can another contractor partner with Real Elite?',
     answer:
-      'We are open to JV and teaming arrangements with other veteran-owned firms — particularly on Martinsburg VAMC and Mid-Atlantic federal opportunities. Reach out via our contact form with capability statement and SAM.gov UEI for a teaming conversation.',
+      'Reach out through the contact form with a capability statement and a SAM.gov UEI if you have one. Teaming is a conversation, not a certification claim.',
   },
 ];
 
@@ -160,7 +153,7 @@ const govEntitySchema = {
   name: BUSINESS.name,
   url: `${BUSINESS.url}/veterans`,
   description:
-    'Veteran-owned general contractor based in Martinsburg, WV serving the WV/MD/VA tri-state. Pursuing SDVOSB federal certification.',
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Based in Martinsburg, WV, serving WV, MD, and VA.',
   areaServed: ['West Virginia', 'Maryland', 'Virginia'],
 };
 
@@ -187,10 +180,9 @@ export default function VeteransPage() {
               <span className="text-brand-red">The craftsmanship of a custom shop.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Real Elite Contracting is a veteran-owned general contractor headquartered in
-              Martinsburg, WV — 8 miles from the Martinsburg VA Medical Center. We bring military
-              standards of accountability, time discipline, and finish quality to every roof,
-              kitchen, deck, and addition we build across WV, MD, and VA.
+              Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and
+              Purple Heart recipient. Real Elite Contracting is headquartered in Martinsburg, WV,
+              and builds roofs, kitchens, decks, and additions across WV, MD, and VA.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
@@ -215,9 +207,9 @@ export default function VeteransPage() {
       <section className="bg-white py-16 md:py-24">
         <Container size="wide">
           <SectionHeader
-            eyebrow="Why Veteran-Owned Matters Here"
-            title="Three things you get with a veteran-led contractor."
-            subtitle="Beyond the badge — the operating standards that come with the identity."
+            eyebrow="Who runs Real Elite"
+            title="Two brothers. One standard of work."
+            subtitle="Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient."
             align="center"
             className="mx-auto"
           />
@@ -251,9 +243,9 @@ export default function VeteransPage() {
       <section className="bg-steel-50 py-16 md:py-24">
         <Container size="wide">
           <SectionHeader
-            eyebrow="Certifications & Designations"
-            title="Where we are on the credential roadmap."
-            subtitle="We publish our certification status so customers and federal partners always know exactly where we stand."
+            eyebrow="What is on file"
+            title="Licenses and registration, stated exactly."
+            subtitle="These are the credentials Real Elite actually holds. A federal veteran certification is not one of them."
           />
 
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -292,9 +284,9 @@ export default function VeteransPage() {
       <section className="bg-white py-16 md:py-24">
         <Container size="wide">
           <SectionHeader
-            eyebrow="Federal Footprint"
-            title="The installations within reach."
-            subtitle="Our home market is the Eastern Panhandle — but the federal demand sits right next door."
+            eyebrow="Nearby"
+            title="Installations within a short drive."
+            subtitle="Distance from Martinsburg. Not a claim of eligibility for any set-aside."
           />
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -332,7 +324,7 @@ export default function VeteransPage() {
             <div className="lg:col-span-7">
               <ul className="space-y-4">
                 {[
-                  'Veteran-owned remodeling and exterior contracting.',
+                  'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
                   'Discuss the project scope, communication, and site arrangements before work begins.',
                   'Review license, insurance, and warranty documentation for the proposed work.',
                   'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
@@ -353,7 +345,7 @@ export default function VeteransPage() {
         <Container size="default">
           <SectionHeader
             eyebrow="Frequently Asked"
-            title="Veteran-owned, in plain English."
+            title="In plain English."
             align="center"
             className="mx-auto"
           />
@@ -391,7 +383,7 @@ export default function VeteransPage() {
             <span className="text-brand-red">Military precision, every project.</span>
           </h2>
           <p className="text-charcoal-300 mb-8 max-w-2xl mx-auto">
-            Residential homeowner, federal prime, or veteran-owned partner — get in touch.
+            Homeowner or teaming inquiry — get in touch.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

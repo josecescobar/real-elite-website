@@ -93,4 +93,4 @@ Review the proposed scope and warranty terms before signing.
 
 Not sure if your roof actually needs replacement yet? Our free inspection gives you a straight answer — we bring photos down from the roof and walk you through what we found. If you've got years left, that's what we'll tell you. If it's time, we'll show you exactly why.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA, serving the Eastern Panhandle, Frederick County, the Northern Shenandoah Valley, and Loudoun County.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA, serving the Eastern Panhandle, Frederick County, the Northern Shenandoah Valley, and Loudoun County.

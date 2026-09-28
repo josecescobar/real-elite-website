@@ -123,7 +123,7 @@ export function draftCustomerReply(input: DraftInput): DraftResult {
     '',
     `— ${SALES_OWNER.firstName}, ${SALES_OWNER.company}`,
     BUSINESS.phone,
-    'Veteran-owned · Licensed & insured in WV and VA',
+    'Family-run · Licensed & insured in WV and VA',
   ]
     .filter((line, i, arr) => !(line === '' && arr[i - 1] === ''))
     .join('\n');

@@ -14,26 +14,24 @@ import {
   getReviewedServiceSlugs,
 } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: `Review Center | ${BUSINESS.name}`,
-  description:
-    'Reviews from homeowners across the WV–MD–VA region — many linked to the actual project behind them. Veteran-owned, licensed, and insured.',
-  keywords: [
-    'customer reviews',
-    'testimonials',
-    'contractor reviews',
-    'Real Elite Contracting reviews',
-    'Eastern Panhandle reviews',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/reviews` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/reviews',
     title: `Review Center | ${BUSINESS.name}`,
     description:
       'Reviews from homeowners we have actually worked for — linked to the work behind them.',
-    url: `${BUSINESS.url}/reviews`,
-    type: 'website',
-  },
+    keywords: [
+      'customer reviews',
+      'testimonials',
+      'contractor reviews',
+      'Real Elite Contracting reviews',
+      'Eastern Panhandle reviews',
+    ],
+  }),
+  description:
+    'Reviews from homeowners across the WV–MD–VA region — many linked to the actual project behind them. Family-run, licensed, and insured.',
 };
 
 const SERVICE_LABEL = new Map<string, string>(SERVICES.map((s) => [s.slug, s.title]));

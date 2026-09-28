@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   // keeps the city + service keywords, which is what the title is for.
   title: 'Design-Build Remodeling in Loudoun County, VA | Real Elite',
   description:
-    'Veteran-owned design-build remodeler for Loudoun County — kitchens, primary suites, lower levels, additions and outdoor living for Leesburg, Ashburn, Middleburg and Purcellville homes. Also serving the Eastern Panhandle.',
+    'Family-run design-build remodeler in Loudoun County and the Eastern Panhandle. Kitchens, primary suites, lower levels, additions and outdoor living.',
   keywords: [
     'design-build remodeling Loudoun County',
     'kitchen remodeling Ashburn VA',
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     'primary bathroom remodel Leesburg VA',
     'home additions Northern Virginia',
     'outdoor living Loudoun County',
-    'veteran-owned contractor',
+    'family-run contractor',
     'remodeling contractor Middleburg VA',
     'Eastern Panhandle contractor',
     'Martinsburg contractor',
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     siteName: BUSINESS.name,
     title: 'Design-Build Remodeling in Loudoun County, VA | Real Elite Contracting',
     description:
-      'Veteran-owned design-build remodeler for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
+      'Family-run design-build remodeler for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
     images: [
       {
         url: `${BUSINESS.url}/opengraph-image`,
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Design-Build Remodeling in Loudoun County, VA | Real Elite Contracting',
     description:
-      'Veteran-owned design-build remodeler for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
+      'Family-run design-build remodeler for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
     images: [`${BUSINESS.url}/opengraph-image`],
   },
   alternates: {
@@ -134,9 +134,10 @@ export default function RootLayout({
           schema={{
             '@context': 'https://schema.org',
             '@type': 'GeneralContractor',
+            '@id': `${BUSINESS.url}/#business`,
             name: BUSINESS.name,
             description:
-              'Veteran-owned design-build remodeler serving Loudoun County, Virginia and the Eastern Panhandle of West Virginia — kitchens, primary suites, lower levels, additions and outdoor living.',
+              'Family-run design-build remodeler serving Loudoun County, Virginia and the Eastern Panhandle of West Virginia — kitchens, primary suites, lower levels, additions and outdoor living.',
             image: `${BUSINESS.url}/images/logo.png`,
             url: `${BUSINESS.url}/`,
             telephone: BUSINESS.phoneRaw,

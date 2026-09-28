@@ -102,7 +102,7 @@ export default function Footer() {
             </div>
             <p className="text-sm leading-relaxed mb-4">
               Premium remodeling and exterior contracting across the WV–MD–VA region.
-              Veteran-owned. Built with military precision.
+              Family-run. Built with military precision.
             </p>
             <p className="text-sm">
               <PhoneLink
@@ -223,7 +223,7 @@ export default function Footer() {
             </Link>
           </div>
           <p className="text-charcoal-500 uppercase tracking-[0.15em] font-semibold">
-            Veteran-Owned · Built With Military Precision
+            Family-Run · Built With Military Precision
           </p>
         </div>
       </div>

@@ -75,7 +75,7 @@ Discuss site supervision, communication, and cleanup arrangements during the est
 
 ## The Real Elite approach
 
-Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to your most personal space.
+Review the proposed scope and warranty terms before signing. Military precision, applied to your most personal space.
 
 If you're planning a primary suite in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the space and design the retreat together.
 
@@ -85,6 +85,6 @@ If you're planning a primary suite in **Loudoun County, Ashburn, Leesburg, Frede
 
 Beyond Loudoun, we design primary suites across Fairfax County and Alexandria — including [McLean](/services/bathrooms/mclean-va), [Great Falls](/services/bathrooms/great-falls-va), [Vienna](/services/bathrooms/vienna-va), [Reston](/services/bathrooms/reston-va), [Old Town Alexandria](/services/bathrooms/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=bathroom) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

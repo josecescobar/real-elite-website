@@ -78,7 +78,7 @@ function customerConfirmationHtml(safeFirstName: string) {
         <div style="text-align: center; margin: 0 0 20px;">
           <a href="tel:${BUSINESS.phoneRaw}" style="display: inline-block; background-color: #c0392b; color: #ffffff; text-decoration: none; font-weight: bold; padding: 12px 28px; border-radius: 6px; font-size: 15px;">Call ${BUSINESS.phone}</a>
         </div>
-        <p style="margin: 0; color: #5d5d5d; font-size: 13px;">Veteran-owned. Licensed &amp; insured across WV and VA.</p>
+        <p style="margin: 0; color: #5d5d5d; font-size: 13px;">Family-run. Licensed &amp; insured across WV and VA.</p>
       </div>
     </div>
   `;

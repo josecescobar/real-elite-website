@@ -39,6 +39,9 @@ import { getReviewsByCity } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import TrackedLink from '@/components/analytics/TrackedLink';
 import { serviceHrefForArea } from '@/lib/service-city-content';
+import { TownServiceLinksForTown } from '@/components/services/TownServiceCrossLinks';
+import { LOUDOUN_PERMIT_GUIDE, isLoudounArea, loudounTownGuides } from '@/lib/loudoun-guides';
+import { isVerifiedWorkImage } from '@/lib/stock-images';
 
 /**
  * Map a city to the permit guide that genuinely covers its jurisdiction, so
@@ -50,26 +53,11 @@ const BERKELEY_JEFFERSON_WV = new Set([
   'martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'falling-waters-wv', 'spring-mills-wv',
   'charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'kearneysville-wv', 'harpers-ferry-wv',
 ]);
-const LOUDOUN_VA = new Set([
-  'leesburg-va',
-  'ashburn-va',
-  'loudoun-county-va',
-  'middleburg-va',
-  'purcellville-va',
-  'round-hill-va',
-  'lovettsville-va',
-  'waterford-va',
-  'hamilton-va',
-  'aldie-va',
-  'lansdowne-va',
-  'south-riding-va',
-  'sterling-va',
-]);
 
 function permitGuideSlugForCity(citySlug: string): string | null {
   if (BERKELEY_JEFFERSON_WV.has(citySlug)) return 'deck-permits-berkeley-jefferson-county-wv-2026';
   if (citySlug === 'frederick-md') return 'frederick-md-home-improvement-permits-costs-2026';
-  if (LOUDOUN_VA.has(citySlug)) return 'loudoun-county-permits-hoa-guide-2026';
+  if (isLoudounArea(citySlug)) return LOUDOUN_PERMIT_GUIDE;
   return null;
 }
 
@@ -110,7 +98,7 @@ export default function CityPageTemplate({ city, data }: Props) {
 
   // Shared trust copy uses credentials supplied in REA-55.
   const trustPoints = [
-    'Veteran-owned remodeling and exterior contracting.',
+    'Family-run remodeling and exterior contracting.',
     city.state === 'MD'
       ? 'Frederick is a service-area location; no Maryland contractor license is claimed.'
       : 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
@@ -122,7 +110,7 @@ export default function CityPageTemplate({ city, data }: Props) {
   const consultationHero = areaHeroLane(city) === 'consultation';
   const heroSub = consultationHero
     ? `Design-build remodeling for ${city.city} homes. Kitchens, primary suites, lower levels, additions and outdoor living, with one project lead from the first call to the final walkthrough.`
-    : `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, with project scope discussed at the estimate.`;
+    : `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Family-run, with project scope discussed at the estimate.`;
 
   // Order services by marketEmphasis, then append remaining for completeness
   const emphasized = data.marketEmphasis
@@ -138,19 +126,26 @@ export default function CityPageTemplate({ city, data }: Props) {
   // guide first (accurate local content = local SEO + trust), then fill with
   // recent guides. Only cities whose jurisdiction a permit guide actually
   // covers are mapped — never over-claim a guide for the wrong county.
+  // Loudoun areas get authored pairings instead of "recent": the county
+  // permit guide plus the cost guides for the town's lead services, so the
+  // links survive the next blog post. The catalog decides what is Loudoun
+  // (Brambleton was missing from the old hand-kept list).
   const permitSlug = permitGuideSlugForCity(city.slug);
   const permitPost = permitSlug ? getPostBySlug(permitSlug) : null;
-  const guidePosts = [
-    permitPost,
-    ...getRecentPosts(4).filter((p) => p.slug !== permitPost?.slug),
-  ]
+  const guidePosts = (
+    isLoudounArea(city.slug)
+      ? loudounTownGuides(data.marketEmphasis).map((slug) => getPostBySlug(slug))
+      : [permitPost, ...getRecentPosts(4).filter((p) => p.slug !== permitPost?.slug)]
+  )
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
     .slice(0, 3);
 
   // Localized projects: prefer city-tagged photos, fall back to
   // state-tagged, then the full gallery. selectGalleryFor handles
   // the cascade.
-  const projectShots = selectGalleryFor(city.slug, city.state, 6);
+  const projectShots = selectGalleryFor(city.slug, city.state, 6).filter((img) =>
+    isVerifiedWorkImage(img.src),
+  );
 
   // Localized FAQ — answers the common pre-quote questions in a way
   // that AI Overviews / SGE can quote directly. Adds FAQPage structured
@@ -186,15 +181,15 @@ export default function CityPageTemplate({ city, data }: Props) {
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,
-      answer: `In ${city.city} we focus on ${data.marketEmphasis.slice(0, 5).map((s) => SERVICES.find((sv) => sv.slug === s)?.title ?? s).join(', ')}, plus general remodeling, additions, and exterior repairs. Our work is veteran-owned and built with military precision.`,
+      answer: `In ${city.city} we focus on ${data.marketEmphasis.slice(0, 5).map((s) => SERVICES.find((sv) => sv.slug === s)?.title ?? s).join(', ')}, plus general remodeling, additions, and exterior repairs. Our work is family-run and built with military precision.`,
     },
     {
       question: `How fast can I get a quote in ${city.city}?`,
       answer: `For roofing, our AI Instant Roof Quote returns a ballpark price from your address in about 60 seconds — no ladder, no appointment. For other services, a project lead follows up after reviewing your request with a free written estimate.${quotePromise}`,
     },
     {
-      question: `Is Real Elite Contracting really veteran-owned?`,
-      answer: `Yes. Real Elite Contracting is veteran-owned and operated, with SDVOSB (Service-Disabled Veteran-Owned Small Business) federal certification in progress. Our tagline — "Military Precision. Civilian Excellence." — is grounded in the standards of service.`,
+      question: `Who runs Real Elite Contracting?`,
+      answer: `Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The motto — "Military Precision. Civilian Excellence." — is how we talk about the standard of the work.`,
     },
   ];
 
@@ -258,6 +253,13 @@ export default function CityPageTemplate({ city, data }: Props) {
             <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> Service Area
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
+            {/* The premium pages rank for "remodeling contractor <town>"; the
+                place name alone gave the h1 no topic. */}
+            {consultationHero && (
+              <span className="block text-xl sm:text-2xl md:text-3xl font-bold text-charcoal-200 mb-3">
+                Remodeling contractor in
+              </span>
+            )}
             {heroHead}
             <br />
             <span className="text-brand-red">{heroTail}</span>
@@ -394,6 +396,8 @@ export default function CityPageTemplate({ city, data }: Props) {
                 </details>
               </div>
 
+              <TownServiceLinksForTown townSlug={city.slug} />
+
               {city.slug === 'loudoun-county-va' && <OutdoorLivingInspiration />}
 
               {/* Areas inside this one (region/county) or neighbourhoods (town). */}
@@ -463,7 +467,8 @@ export default function CityPageTemplate({ city, data }: Props) {
                 heading={`Recent projects in ${city.city}`}
               />
 
-              {/* Recent projects */}
+              {/* Recent projects — stock and unverified photos never count as work. */}
+              {projectShots.length > 0 && (
               <div>
                 <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-3">
                   Recent project work
@@ -489,6 +494,7 @@ export default function CityPageTemplate({ city, data }: Props) {
                   ))}
                 </div>
               </div>
+              )}
 
               {/* Why this market trusts us */}
               <div className="bg-steel-50 rounded-lg border-t-4 border-brand-red p-7 md:p-9">
@@ -602,7 +608,9 @@ function ServiceCard({
   const href = serviceHrefForArea(serviceSlug, citySlug);
 
   const svcData = SERVICE_DATA[serviceSlug];
-  const heroImage = svcData?.hero?.image ?? svcData?.overview?.image;
+  const heroCandidate = svcData?.hero?.image ?? svcData?.overview?.image;
+  const heroImage =
+    heroCandidate && isVerifiedWorkImage(heroCandidate.src) ? heroCandidate : undefined;
   const eyebrow = svcData?.hero?.eyebrow;
   const startingAt = svcData?.investment?.startingAt;
 

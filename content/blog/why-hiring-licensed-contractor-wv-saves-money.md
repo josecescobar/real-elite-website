@@ -111,8 +111,8 @@ If a contractor treats "what's your license number?" like a personal insult, tha
 
 Real Elite Contracting is a fully licensed and insured general contractor based in Martinsburg, WV, serving the Eastern Panhandle and surrounding communities. We pull permits on every applicable job, build to WV code, and carry full general liability and workers' comp.
 
-We're veteran-owned and local, which means our reputation here isn't a marketing line — it's the people we run into at the grocery store. We're not about to torch it to win a bid.
+We're family-run by brothers Jose and Miguel — Miguel is a U.S. military veteran and Purple Heart recipient — and local, which means our reputation here isn't a marketing line — it's the people we run into at the grocery store. We're not about to torch it to win a bid.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Let us show you what licensed, professional contracting actually feels like.
 
-*Real Elite Contracting — Veteran-owned remodeling contractor.*
+*Real Elite Contracting — family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*

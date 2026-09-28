@@ -1,4 +1,15 @@
 /** @type {import('next-sitemap').IConfig} */
+
+/**
+ * Pages Next renders on demand (`ƒ` in `next build`) because they read
+ * `searchParams`. next-sitemap builds its URL set from build-manifest pages,
+ * AMP pages, prerender-manifest routes, and static-export HTML. It never
+ * reads the App Router dynamic route table, so these never land in the
+ * sitemap unless added here. Listing them does not change rendering: the
+ * query-string filters stay request-time.
+ */
+const dynamicIndexablePaths = ['/projects', '/reviews'];
+
 module.exports = {
   siteUrl: 'https://www.realelitecontracting.com',
   generateRobotsTxt: true,
@@ -25,6 +36,12 @@ module.exports = {
     '/blog',
     // Syndication feed, not an HTML landing page.
     '/rss.xml',
+    // Town-first alternates of /services/{service}/{town}. One indexed URL
+    // per intent; see canonicalServicePath in src/lib/town-service-pages.ts.
+    '/service-areas/ashburn-va/basements',
+    '/service-areas/ashburn-va/kitchens',
+    '/service-areas/leesburg-va/basements',
+    '/service-areas/leesburg-va/kitchens',
   ],
   // Ensure all pages are included
   changefreq: 'weekly',
@@ -33,4 +50,9 @@ module.exports = {
   // until each content model exposes a reliable authored/updated value.
   autoLastmod: false,
   sitemapSize: 5000,
+  // /sales and /review-request stay out: they are noindexed internal tools
+  // listed in `exclude`. (Merged from #168 and #173, same fix; #173's list
+  // form kept because its sitemap-coverage test exercises it.)
+  additionalPaths: async (config) =>
+    Promise.all(dynamicIndexablePaths.map((route) => config.transform(config, route))),
 };

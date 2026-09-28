@@ -14,6 +14,13 @@ const project: Project = {
   title: 'Signature Kitchen Remodel',
   status: 'draft',
   featured: true,
+  // Photo hold (2026-09-27 stock audit): see docs/STOCK-IMAGE-AUDIT-2026-09-27.md.
+  needsRealPhotos: true,
+  photoNotes: [
+    'All six images were Pexels stock photos and have been removed. No real kitchen photos are attached.',
+    'Needed from the finished kitchen: a wide shot from the doorway, the island or range wall straight on, and two details (hardware, backsplash), in daylight with counters cleared.',
+    'Needed: a before photo from the same doorway angle, if one exists.',
+  ],
 
   service: 'kitchens',
   // TODO(owner): set to the real job's city slug.
@@ -46,10 +53,8 @@ const project: Project = {
     eyebrow: 'Kitchens',
     heading: 'Signature Kitchen Remodel',
     sub: 'Custom cabinetry, a stone-topped island, and layered lighting — a complete kitchen transformation, managed by one project lead from demo day to final walkthrough.',
-    image: {
-      src: '/images/projects/kitchens/hero.jpg',
-      alt: 'Remodeled white kitchen with double islands and lantern pendant lighting',
-    },
+    // No verified photo of this job exists yet. Stays empty until one does.
+    image: { src: '', alt: '' },
   },
 
   brief: [
@@ -69,13 +74,7 @@ const project: Project = {
     'A kitchen that works the way the family lives — and reads as the signature room of the house.',
   ],
 
-  gallery: [
-    { src: '/images/projects/kitchens/island-lantern-pendants.jpg', alt: 'White kitchen with marble-topped island and lantern pendants' },
-    { src: '/images/projects/kitchens/gray-marble-waterfall.jpg', alt: 'Modern gray kitchen with marble waterfall island and chrome chandelier' },
-    { src: '/images/projects/kitchens/white-herringbone.jpg', alt: 'White kitchen with herringbone backsplash and shiplap ceiling' },
-    { src: '/images/projects/kitchens/white-island-chairs.jpg', alt: 'Open white kitchen with center island and navy chairs' },
-    { src: '/images/projects/kitchens/two-tone-black-hood.jpg', alt: 'Two-tone kitchen with dark cabinetry, warm wood uppers, and black hood' },
-  ],
+  gallery: [],
 
   // TODO(owner): add the real customer's consented review here (author first
   // name + city + quote) once collected — see docs/PROJECT-INTAKE.md.

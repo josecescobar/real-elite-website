@@ -4,11 +4,11 @@ export const runtime = 'nodejs';
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 export const alt =
-  'Real Elite Contracting — veteran-owned design-build remodeling for Loudoun County, VA';
+  'Real Elite Contracting — family-run design-build remodeling for Loudoun County, VA';
 
 export default async function OG() {
   return renderOgCard({
-    eyebrow: 'Veteran-Owned Design-Build',
+    eyebrow: 'Family-Run Design-Build',
     title: 'Design-build remodeling for Loudoun homes.',
     subtitle:
       'Kitchens, primary suites, lower levels, additions and outdoor living — Leesburg, Ashburn, Middleburg and Hunt Country.',

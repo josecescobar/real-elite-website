@@ -114,7 +114,7 @@ export function renderOgCard({ eyebrow, title, subtitle }: Args) {
         >
           <div style={{ display: 'flex' }}>Real Elite Contracting</div>
           <div style={{ display: 'flex', color: '#d6b285' }}>
-            Veteran-Owned Design-Build · Loudoun County, VA
+            Family-Run Design-Build · Loudoun County, VA
           </div>
         </div>
       </div>

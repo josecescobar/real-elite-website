@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import {
   SERVICES,
@@ -733,6 +735,19 @@ describe('GALLERY_IMAGES', () => {
       expect(img.category.trim().length).toBeGreaterThan(0);
     }
   });
+
+  it('never lists stock or inspiration imagery as project work', () => {
+    for (const img of GALLERY_IMAGES) {
+      expect(img.src).not.toMatch(/inspiration|pexels|unsplash|stock/i);
+      expect(img.src.startsWith('/images/projects/')).toBe(false);
+    }
+  });
+
+  it('points every photo at a file that exists', () => {
+    for (const img of GALLERY_IMAGES) {
+      expect(existsSync(join(process.cwd(), 'public', img.src))).toBe(true);
+    }
+  });
 });
 
 describe('selectGalleryFor', () => {
@@ -742,9 +757,20 @@ describe('selectGalleryFor', () => {
     for (const img of result) expect(img.state).toBe('WV');
   });
 
-  it('falls back to the full gallery when no local matches exist', () => {
+  it('prefers photos tagged with the exact city', () => {
     const result = selectGalleryFor('frederick-md', 'MD');
-    expect(result).toEqual(GALLERY_IMAGES.slice(0, 6));
+    expect(result.length).toBeGreaterThanOrEqual(3);
+    for (const img of result) expect(img.citySlug).toBe('frederick-md');
+  });
+
+  it('falls back to the first six photos when neither city nor state has three', () => {
+    const vaCount = GALLERY_IMAGES.filter((g) => g.state === 'VA').length;
+    const result = selectGalleryFor('leesburg-va', 'VA');
+    if (vaCount >= 3) {
+      for (const img of result) expect(img.state).toBe('VA');
+    } else {
+      expect(result).toEqual(GALLERY_IMAGES.slice(0, 6));
+    }
   });
 
   it('never returns more images than the limit', () => {

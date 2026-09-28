@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -18,26 +18,24 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`),
-  description:
-    'Spread your remodel, roof or addition into manageable monthly payments. Veteran-owned contractor licensed across WV and VA — start the project now.',
-  keywords: [
-    'home improvement financing',
-    'remodel financing',
-    'roof financing',
-    'monthly payment contractor',
-    'home renovation loan',
-    'financing Eastern Panhandle',
-    'pay over time contractor WV',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/financing` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/financing',
     title: `Home Improvement Financing | ${BUSINESS.name}`,
     description:
       'Start your project now and pay over time. Flexible financing options for roofing, remodeling, additions, and more.',
-    url: `${BUSINESS.url}/financing`,
-    type: 'website',
-  },
+    keywords: [
+      'home improvement financing',
+      'remodel financing',
+      'roof financing',
+      'monthly payment contractor',
+      'home renovation loan',
+      'financing Eastern Panhandle',
+      'pay over time contractor WV',
+    ],
+  }),
+  title: fitTitle(`Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`),
+  description:
+    'Spread your remodel, roof or addition into manageable monthly payments. Family-run contractor licensed across WV and VA — start the project now.',
 };
 
 // When a lending partner is signed, FINANCING.applyUrl flips the primary

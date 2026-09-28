@@ -3,15 +3,13 @@ import { ArrowRight } from 'lucide-react';
 import Container from '@/components/shared/Container';
 
 /**
- * Who is behind the work: veteran-owned, family-run, bilingual. Written as
- * character rather than slogan, and without owner names, which the public site
- * does not publish. No portrait yet; the composition is typographic until a
- * photograph of the owners exists.
+ * Who is behind the work. Jose, 2026-09-28: two brothers, and Miguel is a
+ * Purple Heart veteran. No portrait yet.
  */
 const FACTS = [
   {
-    title: 'Veteran-owned and family-run',
-    body: 'Real Elite is owned and run by two brothers. The discipline shows up where it matters to a homeowner: a written scope, a real schedule, a protected house and a decision-maker who answers the phone.',
+    title: 'Two brothers',
+    body: 'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The discipline shows up where it matters to a homeowner: a written scope, a real schedule, a protected house and a decision-maker who answers the phone.',
   },
   {
     title: 'English and Spanish, fluently',
@@ -33,9 +31,9 @@ export default function VeteranTrust() {
               Who builds it
             </p>
             <h2 className="font-heading text-4xl md:text-5xl text-navy-900 leading-[1.05]">
-              Veteran-owned.
-              <br />
               Family-run.
+              <br />
+              Purple Heart veteran.
               <br />
               <em>Bilingual.</em>
             </h2>

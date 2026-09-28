@@ -61,6 +61,13 @@ type BuildMetadataInput = {
   description: string;
   keywords?: Metadata['keywords'];
   ogType?: 'website' | 'article';
+  /**
+   * Skip the default social image. A route with its own `opengraph-image`
+   * file must pass this: Next.js keeps that file only when metadata does not
+   * set `images`. Twitter then copies the same file, because this card also
+   * omits `images`.
+   */
+  omitSocialImage?: boolean;
 };
 
 /**
@@ -75,32 +82,35 @@ export function buildMetadata({
   description,
   keywords,
   ogType = 'website',
+  omitSocialImage = false,
 }: BuildMetadataInput): Metadata {
   const url = absoluteUrl(path);
   // The <title> is length-budgeted; og:title and twitter:title keep the full
   // string, since social cards render far more characters than a SERP row.
   const fittedTitle = fitTitle(title);
+  const openGraph: Metadata['openGraph'] = {
+    title,
+    description,
+    url,
+    type: ogType,
+    ...(omitSocialImage ? {} : { images: [DEFAULT_OG_IMAGE] }),
+  };
+  const twitter: Metadata['twitter'] = {
+    card: 'summary_large_image',
+    title,
+    description,
+    ...(omitSocialImage ? {} : { images: [DEFAULT_OG_IMAGE.url] }),
+  };
   return {
     title: fittedTitle,
     description,
     ...(keywords ? { keywords } : {}),
     alternates: { canonical: url },
-    openGraph: {
-      title,
-      description,
-      url,
-      type: ogType,
-      images: [DEFAULT_OG_IMAGE],
-    },
+    openGraph,
     // Without a per-page twitter block, Next.js inherits the root layout's
     // (homepage) twitter card wholesale, so every subpage would advertise the
     // homepage title/description. Emit a matching card per page.
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [DEFAULT_OG_IMAGE.url],
-    },
+    twitter,
   };
 }
 

@@ -62,7 +62,7 @@ The finishes get photographed; the value is built where you don't see it:
 - **Ventilation sized for a pro range** — a powerful range needs real make-up air and a properly vented hood, not a recirculating afterthought.
 - **Structural work done right** when a wall comes down — proper beams and support, permitted and inspected.
 
-This is where veteran-owned precision matters: a luxury kitchen is a coordination project across cabinetry, stone, appliances, electrical, and plumbing, and the details have to land in the right order.
+This is where military precision matters: a luxury kitchen is a coordination project across cabinetry, stone, appliances, electrical, and plumbing, and the details have to land in the right order.
 
 ## What a luxury kitchen is an investment in
 
@@ -86,4 +86,4 @@ If you're planning a high-end kitchen in **Loudoun County, Ashburn, Leesburg, Fr
 
 Beyond Loudoun, we renovate premium kitchens across Fairfax County and Alexandria — including [McLean](/services/kitchens/mclean-va), [Great Falls](/services/kitchens/great-falls-va), [Vienna](/services/kitchens/vienna-va), [Reston](/services/kitchens/reston-va), [Old Town Alexandria](/services/kitchens/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=kitchen) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.

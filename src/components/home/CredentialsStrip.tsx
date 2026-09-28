@@ -6,7 +6,7 @@ import Container from '@/components/shared/Container';
  * no counts, no promises about how a job runs.
  */
 const CREDENTIALS = [
-  { label: 'Ownership', value: 'Veteran-owned, family-run' },
+  { label: 'Who runs it', value: 'Jose & Miguel' },
   { label: 'Virginia', value: 'Class A · 2705198604' },
   { label: 'West Virginia', value: 'Licensed · WV062432' },
   { label: 'Languages', value: 'English · Español' },

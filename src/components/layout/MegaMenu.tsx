@@ -82,7 +82,7 @@ export default function ServicesMegaMenu() {
 
         <div className="bg-navy-900 px-7 py-3.5 flex items-center justify-between gap-4">
           <span className="text-xs text-charcoal-300">
-            Veteran-owned · Virginia Class A · Serving Loudoun County and the Eastern Panhandle
+            Family-run · Virginia Class A · Serving Loudoun County and the Eastern Panhandle
           </span>
           <div className="flex items-center gap-6">
             <Link

@@ -11,7 +11,7 @@ export function buildReviewMessage(firstName: string, link: string): string {
     `Hi ${firstName}, it's Jose with Real Elite Contracting. Thank you for ` +
     `trusting us with your project! If you were happy with our work, would ` +
     `you take 60 seconds to leave us a quick Google review? It means the ` +
-    `world to our veteran-owned team: ${link}`
+    `world to our family-run team: ${link}`
   );
 }
 

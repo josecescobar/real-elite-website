@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import {
   AlertTriangle,
   ShieldCheck,
@@ -21,27 +21,25 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Storm Damage Roof Inspection (Free) — WV / MD / VA | ${BUSINESS.name}`),
-  description:
-    'Free post-storm roof inspection from a veteran-owned local roofer. Hail and wind damage documented for your insurance carrier. Same-week appointments.',
-  keywords: [
-    'storm damage roof inspection',
-    'hail damage roofer WV',
-    'wind damage roof Frederick MD',
-    'insurance roof claim help',
-    'free storm roof inspection Martinsburg',
-    'roof repair after storm Eastern Panhandle',
-    'veteran-owned storm roofer',
-    'emergency tarping WV MD VA',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/storm-damage` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/storm-damage',
     title: `Storm Damage Roof Inspection — Free | ${BUSINESS.name}`,
     description:
-      'Hail and wind damage documented for your insurance carrier. Veteran-owned, licensed in WV and VA.',
-    url: `${BUSINESS.url}/storm-damage`,
-    type: 'website',
-  },
+      'Hail and wind damage documented for your insurance carrier. Family-run, licensed in WV and VA.',
+    keywords: [
+      'storm damage roof inspection',
+      'hail damage roofer WV',
+      'wind damage roof Frederick MD',
+      'insurance roof claim help',
+      'free storm roof inspection Martinsburg',
+      'roof repair after storm Eastern Panhandle',
+      'family-run storm roofer',
+      'emergency tarping WV MD VA',
+    ],
+  }),
+  title: fitTitle(`Storm Damage Roof Inspection (Free) — WV / MD / VA | ${BUSINESS.name}`),
+  description:
+    'Free post-storm roof inspection from a family-run local roofer. Hail and wind damage documented for your insurance carrier. Same-week appointments.',
 };
 
 const WHAT_WE_CHECK = [
@@ -142,7 +140,7 @@ const FAQ_ITEMS = [
   {
     question: 'Are you licensed and insured in WV and VA?',
     answer:
-      "Yes. Real Elite Contracting is licensed and insured in West Virginia and Virginia. Veteran-owned and operated. Review the proposed scope and warranty terms before signing.",
+      "Yes. Real Elite Contracting is licensed and insured in West Virginia and Virginia. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Review the proposed scope and warranty terms before signing.",
   },
   {
     question: 'What about emergency tarping or temporary repairs?',
@@ -189,7 +187,7 @@ export default function StormDamagePage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Hail and wind damage often isn&apos;t visible from the ground. Get a free, written
-              roof inspection from a veteran-owned local roofer — documented slope-by-slope for
+              roof inspection from a family-run local roofer — documented slope-by-slope for
               your insurance carrier. Licensed in WV and VA.
             </p>
 
@@ -209,7 +207,7 @@ export default function StormDamagePage() {
             </div>
 
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
-              <li>Veteran-Owned</li>
+              <li>Family-Run</li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li>Licensed WV · VA</li>
               <li aria-hidden="true" className="text-white/30">·</li>
@@ -389,7 +387,7 @@ export default function StormDamagePage() {
         <Container size="default" className="text-center">
           <ShieldCheck className="w-12 h-12 text-brand-red-light mx-auto mb-6" />
           <h2 className="font-heading text-3xl md:text-4xl font-extrabold mb-6">
-            Veteran-owned. Insurance-friendly.
+            Family-run. Insurance-friendly.
             <br />
             <span className="text-brand-red-light">Free storm inspection.</span>
           </h2>

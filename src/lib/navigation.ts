@@ -91,7 +91,7 @@ export const MOBILE_UTILITY_NAV: readonly NavItem[] = [
   { label: 'Reviews', href: '/reviews' },
   { label: 'Financing', href: '/financing' },
   { label: 'FAQ', href: '/faq' },
-  { label: 'Veteran-Owned', href: '/veterans' },
+  { label: 'Family-Run', href: '/veterans' },
   { label: 'Capability Statement', href: '/capability-statement' },
   { label: 'Storm Damage', href: '/storm-damage' },
   { label: 'Full Property Bundle', href: '/full-property-perimeter' },

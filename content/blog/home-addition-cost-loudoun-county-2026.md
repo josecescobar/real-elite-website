@@ -75,4 +75,4 @@ The plat, any existing plans, association details, well-and-septic records if re
 
 ## Price the property and the room together
 
-[Schedule a design consultation](/design-consultation) and review our [addition services](/services/additions) to discuss the proposed scope and the assessments it needs.
+[Schedule a design consultation](/design-consultation) and review our [addition services](/services/additions) to discuss the proposed scope and the assessments it needs. Local pages: [home additions in Ashburn](/services/additions/ashburn-va), [Leesburg](/services/additions/leesburg-va), [Middleburg](/services/additions/middleburg-va), and [across Loudoun County](/services/additions/loudoun-county-va).

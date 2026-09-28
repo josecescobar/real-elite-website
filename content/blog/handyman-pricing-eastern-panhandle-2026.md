@@ -165,4 +165,4 @@ We'll tell you honestly. If your job is small enough that a Tier 2 handyman is t
 
 **Call us at (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
 
-*Real Elite Contracting — veteran-owned, licensed, honestly priced, and weirdly unbothered by "this is too small for you."*
+*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*
