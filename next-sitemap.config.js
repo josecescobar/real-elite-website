@@ -1,4 +1,13 @@
 /** @type {import('next-sitemap').IConfig} */
+
+/**
+ * Pages Next renders on demand (`ƒ` in `next build`) because they read
+ * `searchParams`. next-sitemap only copies prerender-manifest routes, so
+ * these never land in the sitemap unless added here. Listing them does not
+ * change rendering: the query-string filters stay request-time.
+ */
+const dynamicIndexablePaths = ['/projects', '/reviews'];
+
 module.exports = {
   siteUrl: 'https://www.realelitecontracting.com',
   generateRobotsTxt: true,
@@ -33,12 +42,9 @@ module.exports = {
   // until each content model exposes a reliable authored/updated value.
   autoLastmod: false,
   sitemapSize: 5000,
-  // These pages read searchParams, so Next renders them on demand and
-  // next-sitemap never sees them in the prerender manifest. They are
-  // indexable HTML and belong in the sitemap. /sales and /review-request
-  // stay out: they are noindexed internal tools listed in `exclude`.
-  additionalPaths: async (config) => [
-    await config.transform(config, '/projects'),
-    await config.transform(config, '/reviews'),
-  ],
+  // /sales and /review-request stay out: they are noindexed internal tools
+  // listed in `exclude`. (Merged from #168 and #173, same fix; #173's list
+  // form kept because its sitemap-coverage test exercises it.)
+  additionalPaths: async (config) =>
+    Promise.all(dynamicIndexablePaths.map((route) => config.transform(config, route))),
 };
