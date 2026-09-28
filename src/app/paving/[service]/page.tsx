@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BUSINESS } from '@/lib/constants';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import { getPavingService, PAVING_SERVICE_SLUGS } from '@/lib/paving-data';
 import PavingServiceTemplate from '@/components/paving/PavingServiceTemplate';
 
@@ -24,16 +24,14 @@ export async function generateMetadata({
 
   const title = fitTitle(`${service.metaTitle} | ${BUSINESS.name}`);
   return {
-    title,
-    description: service.metaDescription,
-    keywords: service.keywords,
-    alternates: { canonical: `${BUSINESS.url}/paving/${service.slug}` },
-    openGraph: {
+    ...buildMetadata({
+      path: `/paving/${service.slug}`,
       title,
       description: service.metaDescription,
-      url: `${BUSINESS.url}/paving/${service.slug}`,
-      type: 'website',
-    },
+      keywords: service.keywords,
+      omitSocialImage: true,
+    }),
+    title,
   };
 }
 

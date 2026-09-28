@@ -14,32 +14,30 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import JsonLd from '@/components/seo/JsonLd';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: `Capability Statement | ${BUSINESS.name}`,
-  description:
-    'Federal capability statement for Real Elite Contracting LLC — veteran-owned Martinsburg WV contractor. NAICS codes, core competencies and teaming contact.',
-  keywords: [
-    'capability statement',
-    'veteran-owned contractor capability statement',
-    'veteran-owned contractor WV',
-    'federal contractor Martinsburg',
-    'VA Medical Center contractor capability',
-    'NAICS 236118 238160 contractor',
-    'GSA Schedule contractor WV',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/capability-statement` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/capability-statement',
     title: `Capability Statement | ${BUSINESS.name}`,
     description:
       'Veteran-owned general contractor — federal capability statement for VA, DoD, and prime/sub teaming.',
-    url: `${BUSINESS.url}/capability-statement`,
-    type: 'website',
-  },
+    keywords: [
+      'capability statement',
+      'veteran-owned contractor capability statement',
+      'veteran-owned contractor WV',
+      'federal contractor Martinsburg',
+      'VA Medical Center contractor capability',
+      'NAICS 236118 238160 contractor',
+      'GSA Schedule contractor WV',
+    ],
+  }),
+  description:
+    'Federal capability statement for Real Elite Contracting LLC — veteran-owned Martinsburg WV contractor. NAICS codes, core competencies and teaming contact.',
 };
 
 const SNAPSHOT = [

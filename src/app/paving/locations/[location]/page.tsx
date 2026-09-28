@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BUSINESS } from '@/lib/constants';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import { getPavingLocation, PAVING_LOCATION_SLUGS } from '@/lib/paving-data';
 import PavingLocationTemplate from '@/components/paving/PavingLocationTemplate';
 
@@ -24,16 +24,14 @@ export async function generateMetadata({
 
   const title = fitTitle(`${location.metaTitle} | ${BUSINESS.name}`);
   return {
-    title,
-    description: location.metaDescription,
-    keywords: location.keywords,
-    alternates: { canonical: `${BUSINESS.url}/paving/locations/${location.slug}` },
-    openGraph: {
+    ...buildMetadata({
+      path: `/paving/locations/${location.slug}`,
       title,
       description: location.metaDescription,
-      url: `${BUSINESS.url}/paving/locations/${location.slug}`,
-      type: 'website',
-    },
+      keywords: location.keywords,
+      omitSocialImage: true,
+    }),
+    title,
   };
 }
 

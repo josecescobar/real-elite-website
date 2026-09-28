@@ -10,29 +10,27 @@ import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
-import { buildBreadcrumbSchema, fitTitle } from '@/lib/seo';
+import { buildBreadcrumbSchema, buildMetadata, fitTitle } from '@/lib/seo';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`),
-  description:
-    'Veteran-owned paving across WV, MD and VA — driveways, parking lots, sealcoating, asphalt repair and commercial work. Proper base, real drainage.',
-  keywords: [
-    'paving contractor WV',
-    'asphalt paving Eastern Panhandle',
-    'driveway paving near me',
-    'sealcoating WV MD VA',
-    'commercial paving Martinsburg',
-    'parking lot paving',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/paving` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/paving',
     title: `Paving Contractor — WV, MD & VA | ${BUSINESS.name}`,
     description:
       'Asphalt paving, driveways, parking lots, sealcoating, and repair across the Eastern Panhandle and Mid-Atlantic. Veteran-owned. Built with military precision.',
-    url: `${BUSINESS.url}/paving`,
-    type: 'website',
-  },
+    keywords: [
+      'paving contractor WV',
+      'asphalt paving Eastern Panhandle',
+      'driveway paving near me',
+      'sealcoating WV MD VA',
+      'commercial paving Martinsburg',
+      'parking lot paving',
+    ],
+  }),
+  title: fitTitle(`Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`),
+  description:
+    'Veteran-owned paving across WV, MD and VA — driveways, parking lots, sealcoating, asphalt repair and commercial work. Proper base, real drainage.',
 };
 
 const HUB_FAQS = [

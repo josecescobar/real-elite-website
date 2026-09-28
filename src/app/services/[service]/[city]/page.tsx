@@ -21,7 +21,7 @@ import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import RelatedGuides from '@/components/services/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
-import { buildBreadcrumbSchema } from '@/lib/seo';
+import { buildBreadcrumbSchema, buildMetadata } from '@/lib/seo';
 import {
   CONTENT,
   defaultComboTitle,
@@ -132,24 +132,24 @@ export async function generateMetadata({
     meta?.metaDescription ?? defaultComboDescription(serviceData.title, place);
 
   return {
-    title,
-    description,
-    keywords: [
-      `${serviceData.title.toLowerCase()} ${cityData.city}`,
-      `${cityData.city} ${serviceData.title.toLowerCase()}`,
-      `${serviceData.title.toLowerCase()} contractor ${place}`,
-      `${cityData.city} home improvement`,
-      `${cityData.state} contractor`,
-    ],
-    alternates: {
-      canonical: `${BUSINESS.url}/services/${service}/${city}`,
-    },
-    openGraph: {
+    ...buildMetadata({
+      path: `/services/${service}/${city}`,
       title,
       description,
-      url: `${BUSINESS.url}/services/${service}/${city}`,
-      type: 'website',
-    },
+      keywords: [
+        `${serviceData.title.toLowerCase()} ${cityData.city}`,
+        `${cityData.city} ${serviceData.title.toLowerCase()}`,
+        `${serviceData.title.toLowerCase()} contractor ${place}`,
+        `${cityData.city} home improvement`,
+        `${cityData.state} contractor`,
+      ],
+      // The route's opengraph-image.tsx is the card. Setting images here
+      // would replace that file with the default social image.
+      omitSocialImage: true,
+    }),
+    // Keep the authored document title. buildMetadata length-budgets <title>
+    // and these combo titles are already the string that ships.
+    title,
   };
 }
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { CONTRACTOR_LICENSES } from '@/lib/claims';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata } from '@/lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, Hammer, MessageSquareText, MapPin, Award, ArrowRight } from 'lucide-react';
@@ -14,26 +14,23 @@ import JsonLd from '@/components/seo/JsonLd';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`),
-  description:
-    'Real Elite Contracting is a veteran-owned premium remodeling and exterior contractor serving the WV–MD–VA region. Built with military precision.',
-  keywords: [
-    'about Real Elite Contracting',
-    'veteran-owned contractor',
-    'WV contractor',
-    'Eastern Panhandle contractor',
-    'Frederick MD contractor',
-    'Winchester VA contractor',
-    'premium remodeling contractor',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/about` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/about',
     title: `About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`,
     description:
       'Veteran-owned remodeling and exterior contractor — built on military precision, communication, and high-end execution.',
-    url: `${BUSINESS.url}/about`,
-    type: 'website',
-  },
+    keywords: [
+      'about Real Elite Contracting',
+      'veteran-owned contractor',
+      'WV contractor',
+      'Eastern Panhandle contractor',
+      'Frederick MD contractor',
+      'Winchester VA contractor',
+      'premium remodeling contractor',
+    ],
+  }),
+  description:
+    'Real Elite Contracting is a veteran-owned premium remodeling and exterior contractor serving the WV–MD–VA region. Built with military precision.',
 };
 
 const VALUES = [

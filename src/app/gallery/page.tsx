@@ -2,31 +2,30 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 import Container from '@/components/shared/Container';
 import GalleryGrid from '@/components/shared/GalleryGrid';
 import AssurancesBand from '@/components/home/AssurancesBand';
 
 export const metadata: Metadata = {
-  title: `Our Work | Project Gallery | ${BUSINESS.name}`,
-  description:
-    'Real projects from across the WV–MD–VA region — roofing, decks, siding, stone exteriors, remodeling, and additions. Click any project to see it full-size.',
-  keywords: [
-    'project gallery',
-    'contractor portfolio',
-    'completed projects',
-    'roofing projects',
-    'deck construction',
-    'stone veneer projects',
-    'Eastern Panhandle gallery',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/gallery` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/gallery',
     title: `Our Work | ${BUSINESS.name}`,
     description:
       'Real Real Elite projects across the WV–MD–VA region — filter by category, click any image to view full-size.',
-    url: `${BUSINESS.url}/gallery`,
-    type: 'website',
-  },
+    keywords: [
+      'project gallery',
+      'contractor portfolio',
+      'completed projects',
+      'roofing projects',
+      'deck construction',
+      'stone veneer projects',
+      'Eastern Panhandle gallery',
+    ],
+  }),
+  title: `Our Work | Project Gallery | ${BUSINESS.name}`,
+  description:
+    'Real projects from across the WV–MD–VA region — roofing, decks, siding, stone exteriors, remodeling, and additions. Click any project to see it full-size.',
 };
 
 export default function GalleryPage() {

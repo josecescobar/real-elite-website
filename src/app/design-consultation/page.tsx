@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import { Suspense } from 'react';
 import Link from 'next/link';
 import {
@@ -21,25 +21,23 @@ import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Design Consultation — Loudoun County Design-Build | ${BUSINESS.name}`),
-  description:
-    'Start a Loudoun County design-build project with a short call about the house, the rooms and the range, then a site visit if it fits.',
-  keywords: [
-    'design consultation Loudoun County',
-    'design build consultation Leesburg VA',
-    'kitchen design consultation Ashburn',
-    'basement design consultation Loudoun',
-    'primary suite consultation Northern Virginia',
-    'design build contractor phone consultation',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/design-consultation` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/design-consultation',
     title: `Design Consultation | ${BUSINESS.name}`,
     description:
       'A short call about the house, the rooms and the range. Design-build for Loudoun County: kitchens, primary suites, lower levels, additions and outdoor living.',
-    url: `${BUSINESS.url}/design-consultation`,
-    type: 'website',
-  },
+    keywords: [
+      'design consultation Loudoun County',
+      'design build consultation Leesburg VA',
+      'kitchen design consultation Ashburn',
+      'basement design consultation Loudoun',
+      'primary suite consultation Northern Virginia',
+      'design build contractor phone consultation',
+    ],
+  }),
+  title: fitTitle(`Design Consultation — Loudoun County Design-Build | ${BUSINESS.name}`),
+  description:
+    'Start a Loudoun County design-build project with a short call about the house, the rooms and the range, then a site visit if it fits.',
 };
 
 const HOW_IT_RUNS = [

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, MessageSquare, Mail, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import { buildMetadata } from '@/lib/seo';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
@@ -18,25 +19,22 @@ const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
 )}`;
 
 export const metadata: Metadata = {
-  title: `Contact | ${BUSINESS.name}`,
-  description:
-    'Contact Real Elite Contracting — call, email, or request a free written estimate. Veteran-owned premium contractor serving the WV–MD–VA region.',
-  keywords: [
-    'contact Real Elite Contracting',
-    'free estimate contractor',
-    'WV contractor contact',
-    'Eastern Panhandle contractor',
-    'Frederick MD contractor contact',
-    'Winchester VA contractor contact',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/contact` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/contact',
     title: `Contact | ${BUSINESS.name}`,
     description:
       'Call, email, or request a free written estimate from Real Elite Contracting.',
-    url: `${BUSINESS.url}/contact`,
-    type: 'website',
-  },
+    keywords: [
+      'contact Real Elite Contracting',
+      'free estimate contractor',
+      'WV contractor contact',
+      'Eastern Panhandle contractor',
+      'Frederick MD contractor contact',
+      'Winchester VA contractor contact',
+    ],
+  }),
+  description:
+    'Contact Real Elite Contracting — call, email, or request a free written estimate. Veteran-owned premium contractor serving the WV–MD–VA region.',
 };
 
 const CONTACT_BLOCKS = [
