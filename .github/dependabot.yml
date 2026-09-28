@@ -24,6 +24,33 @@ updates:
       # the TypeScript 7 upgrade land as its own reviewed PR.
       - dependency-name: typescript
         update-types: ['version-update:semver-major']
+      # ESLint 10 is not usable here yet. `eslint-config-next` 16.3.6
+      # declares peer `eslint >= 9`, but it still cannot lint on ESLint 10:
+      #   - Its parser (`eslint-config-next/parser` →
+      #     `next/dist/compiled/babel/eslint-parser`) returns a ScopeManager
+      #     without `addGlobals`. `npm run lint` dies inside ESLint itself:
+      #       TypeError: scopeManager.addGlobals is not a function
+      #       at eslint/lib/languages/js/source-code/source-code.js:221
+      #   - `eslint-plugin-react` 7.37.5 (vendored by eslint-config-next)
+      #     still calls the removed `context.getFilename` API:
+      #       TypeError: Error while loading rule 'react/display-name':
+      #       contextOrFilename.getFilename is not a function
+      #   - The same package vendors `eslint-plugin-import` 2.32.0 and
+      #     `eslint-plugin-jsx-a11y` 6.10.2, whose peers stop at ESLint 9.
+      # This repo's `eslint.config.mjs` spreads the flat
+      # `eslint-config-next/core-web-vitals` array directly. `@eslint/eslintrc`
+      # FlatCompat is installed and unused; it is not the piece that breaks.
+      # Upstream: https://github.com/vercel/next.js/issues/89764
+      #
+      # The dev-dependency group bundled this major with wanted patch bumps
+      # and failed CI on PR #162 and PR #176. Ignoring only the major keeps
+      # 9.x patch/minor updates (including security fixes) flowing normally.
+      #
+      # REMOVE THIS once eslint-config-next ships a parser and plugin stack
+      # that support ESLint 10, then let the ESLint 10 upgrade land as its
+      # own reviewed PR.
+      - dependency-name: eslint
+        update-types: ['version-update:semver-major']
     groups:
       production-dependencies:
         dependency-type: production
