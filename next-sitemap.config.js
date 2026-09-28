@@ -2,9 +2,11 @@
 
 /**
  * Pages Next renders on demand (`ƒ` in `next build`) because they read
- * `searchParams`. next-sitemap only copies prerender-manifest routes, so
- * these never land in the sitemap unless added here. Listing them does not
- * change rendering: the query-string filters stay request-time.
+ * `searchParams`. next-sitemap builds its URL set from build-manifest pages,
+ * AMP pages, prerender-manifest routes, and static-export HTML. It never
+ * reads the App Router dynamic route table, so these never land in the
+ * sitemap unless added here. Listing them does not change rendering: the
+ * query-string filters stay request-time.
  */
 const dynamicIndexablePaths = ['/projects', '/reviews'];
 
