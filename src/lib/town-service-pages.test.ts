@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { describe, expect, it } from 'vitest';
 import { getPostBySlug } from '@/lib/blog';
 import { claimsFoundIn } from '@/lib/claims';
@@ -6,7 +8,9 @@ import { CONTENT } from '@/lib/service-city-content';
 import { fitTitle, TITLE_MAX } from '@/lib/seo';
 import {
   TOWN_SERVICE_PAGES,
+  canonicalServicePath,
   collectTownServiceText,
+  includedInSitemap,
   townServiceComboKey,
   townServicePath,
 } from '@/lib/town-service-pages';
@@ -21,6 +25,26 @@ const EXPECTED_PATHS = [
 describe('town-by-service pages', () => {
   it('publishes the four Loudoun URLs and no others', () => {
     expect(TOWN_SERVICE_PAGES.map(townServicePath)).toEqual(EXPECTED_PATHS);
+  });
+
+  it('keeps one canonical per intent, the existing service URL, and leaves the town URL out of the sitemap', () => {
+    const canonicals = [
+      '/services/basements/ashburn-va',
+      '/services/kitchens/ashburn-va',
+      '/services/basements/leesburg-va',
+      '/services/kitchens/leesburg-va',
+    ];
+    expect(TOWN_SERVICE_PAGES.map(canonicalServicePath)).toEqual(canonicals);
+    expect(new Set(canonicals).size).toBe(TOWN_SERVICE_PAGES.length);
+    for (const page of TOWN_SERVICE_PAGES) {
+      expect(canonicalServicePath(page)).not.toBe(townServicePath(page));
+      expect(includedInSitemap(page)).toBe(false);
+    }
+
+    const sitemapConfig = fs.readFileSync(path.join(process.cwd(), 'next-sitemap.config.js'), 'utf8');
+    for (const townPath of EXPECTED_PATHS) {
+      expect(sitemapConfig, townPath).toContain(`'${townPath}'`);
+    }
   });
 
   it('keeps titles and descriptions inside the SERP budgets and unique', () => {

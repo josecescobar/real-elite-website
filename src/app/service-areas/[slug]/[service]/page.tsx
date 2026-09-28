@@ -17,6 +17,7 @@ import {
   consultationTypeFor,
   getTownServicePage,
   serviceFaqsFor,
+  canonicalServicePath,
   townServiceArea,
   townServiceComboKey,
   townServicePath,
@@ -58,7 +59,7 @@ export async function generateMetadata({
   if (!page) return { title: 'Not Found', robots: { index: false } };
 
   return buildMetadata({
-    path: townServicePath(page),
+    path: canonicalServicePath(page),
     title: page.title,
     description: page.description,
   });
@@ -81,8 +82,8 @@ export default async function TownServiceRoute({
   if (!town || !combo || !serviceData || !serviceNav) notFound();
 
   const place = formatAreaPlace(area);
-  const path = townServicePath(page);
-  const url = `${BUSINESS.url}${path}`;
+  const canonicalPath = canonicalServicePath(page);
+  const url = `${BUSINESS.url}${canonicalPath}`;
   const townHref = `/service-areas/${page.townSlug}`;
   const serviceHref = `/services/${page.serviceSlug}`;
   const guideHref = `/blog/${page.costGuideSlug}`;

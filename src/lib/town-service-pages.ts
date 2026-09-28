@@ -174,6 +174,24 @@ export function townServicePath(page: Pick<TownServicePage, 'townSlug' | 'servic
   return `/service-areas/${page.townSlug}/${page.serviceSlug}`;
 }
 
+/**
+ * The indexed URL for this intent. The town-first page is an alternate of the
+ * service-by-town page that already exists, so it does not get its own
+ * canonical or its own sitemap entry.
+ */
+export function canonicalServicePath(
+  page: Pick<TownServicePage, 'townSlug' | 'serviceSlug'>
+): string {
+  return `/services/${page.serviceSlug}/${page.townSlug}`;
+}
+
+/** Town-first URLs stay reachable and are omitted from the sitemap. */
+export function includedInSitemap(
+  _page: Pick<TownServicePage, 'townSlug' | 'serviceSlug'>
+): boolean {
+  return false;
+}
+
 export function townServiceComboKey(
   page: Pick<TownServicePage, 'townSlug' | 'serviceSlug'>
 ): `${FeaturedServiceSlug}-${ComboCitySlug}` {

@@ -25,6 +25,12 @@ module.exports = {
     '/blog',
     // Syndication feed, not an HTML landing page.
     '/rss.xml',
+    // Town-first alternates of /services/{service}/{town}. One indexed URL
+    // per intent; see canonicalServicePath in src/lib/town-service-pages.ts.
+    '/service-areas/ashburn-va/basements',
+    '/service-areas/ashburn-va/kitchens',
+    '/service-areas/leesburg-va/basements',
+    '/service-areas/leesburg-va/kitchens',
   ],
   // Ensure all pages are included
   changefreq: 'weekly',
