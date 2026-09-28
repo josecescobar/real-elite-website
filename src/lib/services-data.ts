@@ -119,7 +119,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     overview: {
       paragraphs: [
-        "Your bathroom is the room you start every day in and end every day in — so the build has to be right. Real Elite Contracting handles full bathroom remodels, walk-in shower conversions, and tile work for homeowners across Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County. Premium materials. Real waterproofing systems. The veteran-led communication standards that make remodels feel less like construction and more like a managed project.",
+        "Your bathroom is the room you start every day in and end every day in — so the build has to be right. Real Elite Contracting handles full bathroom remodels, walk-in shower conversions, and tile work for homeowners across Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County. Premium materials. Real waterproofing systems. The clear communication standards that make remodels feel less like construction and more like a managed project.",
         "We build with the long-term in mind: Schluter-Kerdi waterproofing systems, real tile setting (no cheap shortcuts), curbless and accessibility-aware shower designs, and the fit-and-finish you'd expect from a higher-end design-build firm. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       ],
       image: {
@@ -199,7 +199,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     serviceType: 'Kitchen Remodeling',
     metaTitle: 'Kitchen Remodeling in WV, MD & VA | Real Elite Contracting',
     metaDescription:
-      'Custom kitchen remodels across the WV–MD–VA region — cabinetry, countertops, islands, and layout changes, built with veteran-led precision.',
+      'Custom kitchen remodels across the WV–MD–VA region — cabinetry, countertops, islands, and layout changes, built with military precision.',
     keywords: [
       'kitchen remodel',
       'kitchen renovation',
@@ -396,7 +396,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     serviceType: 'Roofing',
     metaTitle: 'Roofing in Eastern Panhandle, WV | Real Elite Contracting',
     metaDescription:
-      'Expert roof replacement and repair with premium architectural shingles. Veteran-owned roofing contractor serving WV, MD, VA.',
+      'Expert roof replacement and repair with premium architectural shingles. Family-run roofing contractor serving WV, MD, VA.',
     keywords: [
       'roofing',
       'roof replacement',
@@ -408,7 +408,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Winchester VA roofing',
     ],
     answer:
-      'Real Elite Contracting is a veteran-owned roofing contractor serving WV, MD, and VA — full tear-off replacement, storm-damage repair, and premium architectural shingle installs (GAF, Owens Corning), most jobs completed in 1–3 days.',
+      'Real Elite Contracting is a family-run roofing contractor serving WV, MD, and VA — full tear-off replacement, storm-damage repair, and premium architectural shingle installs (GAF, Owens Corning), most jobs completed in 1–3 days.',
     hero: {
       eyebrow: 'Exterior',
       heading: 'Roofing Services',
@@ -836,7 +836,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     serviceType: 'Home Additions',
     metaTitle: 'Home Additions in WV, MD & VA | Real Elite Contracting',
     metaDescription:
-      'Home additions that seamlessly extend your existing home — engineered to last. Built across the WV–MD–VA region with veteran-led precision.',
+      'Home additions that seamlessly extend your existing home — engineered to last. Built across the WV–MD–VA region with military precision.',
     keywords: [
       'home additions',
       'house addition',
@@ -997,7 +997,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     serviceType: 'General Repairs',
     metaTitle: 'General Repairs & Maintenance | Real Elite Contracting',
     metaDescription:
-      'Door and window repairs, drywall, trim work, deck fixes, and the smaller jobs that keep your home in great shape. Veteran-owned, across the WV–MD–VA region.',
+      'Door and window repairs, drywall, trim work, deck fixes, and the smaller jobs that keep your home in great shape. Family-run, across the WV–MD–VA region.',
     keywords: [
       'general repairs',
       'home repair',
@@ -1032,7 +1032,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       ],
     },
     whyChooseUs: [
-      "Veteran-led discipline on every project — even the small ones.",
+      "Clear standards on every project — even the small ones.",
       'Ask about coverage for the proposed repair.',
       'One scheduled visit, in and out clean.',
     ],
@@ -1061,7 +1061,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     serviceType: 'Handyman Services',
     metaTitle: 'Handyman Services in WV, MD & VA | Real Elite Contracting',
     metaDescription:
-      'Drywall repair, door installation, pressure washing, gutter cleaning, fence repair, TV mounting, and dozens of other reliable home repairs. Veteran-owned.',
+      'Drywall repair, door installation, pressure washing, gutter cleaning, fence repair, TV mounting, and dozens of other reliable home repairs. Family-run.',
     keywords: [
       'handyman services',
       'home repair',

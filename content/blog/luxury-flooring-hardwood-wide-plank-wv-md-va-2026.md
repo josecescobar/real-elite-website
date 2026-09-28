@@ -78,12 +78,12 @@ Discuss site supervision, communication, and cleanup arrangements during the est
 
 ## The Real Elite approach
 
-Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to the surface you walk on every day.
+Review the proposed scope and warranty terms before signing. Military precision, applied to the surface you walk on every day.
 
 If you're planning new flooring in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, we'd be glad to walk the space and give you a straight, written estimate.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [remodeling services](/services/remodeling) or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va).
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

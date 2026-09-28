@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     path: '/faq',
     title: `FAQ | ${BUSINESS.name}`,
     description:
-      'Pricing, timelines, permits, communication, and warranties — straight answers from a veteran-owned WV–MD–VA contractor.',
+      'Pricing, timelines, permits, communication, and warranties — straight answers from a family-run WV–MD–VA contractor.',
     keywords: [
       'contractor FAQ',
       'how much does a bathroom remodel cost',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   }),
   title: fitTitle(`FAQ — Remodel Costs, Timelines & Permits | ${BUSINESS.name}`),
   description:
-    'Straight answers on remodel costs, roofing and deck pricing, timelines, permits and warranties — from a veteran-owned WV-MD-VA contractor.',
+    'Straight answers on remodel costs, roofing and deck pricing, timelines, permits and warranties — from a family-run WV-MD-VA contractor.',
 };
 
 const FAQ_SECTIONS = [
@@ -39,9 +39,9 @@ const FAQ_SECTIONS = [
           "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
       },
       {
-        question: 'Are you really veteran-owned?',
+        question: 'Who runs Real Elite Contracting?',
         answer:
-          'Yes. Real Elite Contracting is a proud veteran-owned and operated business. The discipline, communication, and accountability that shape how we run projects come straight from that background.',
+          'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The discipline, communication, and accountability that shape how we run projects come from that.',
       },
       {
         question: 'What areas do you serve?',

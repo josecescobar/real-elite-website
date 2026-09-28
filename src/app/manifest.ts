@@ -10,7 +10,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Real Elite Contracting',
     short_name: 'Real Elite',
     description:
-      'Premium veteran-owned remodeling and exterior contractor — built with military precision across the WV–MD–VA region.',
+      'Premium family-run remodeling and exterior contractor — built with military precision across the WV–MD–VA region.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0f1b2d',

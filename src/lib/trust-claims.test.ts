@@ -25,9 +25,16 @@ describe('credential and ranking claims', () => {
     }
   });
 
-  it('allows service-area language and an explicitly pending certification', () => {
-    const text = 'Serving Frederick, Maryland. Licensed in West Virginia and Virginia. SDVOSB certification in progress.';
+  it('allows a Maryland service-area mention that is not a license claim', () => {
+    const text = 'Serving Frederick, Maryland. Licensed in West Virginia and Virginia.';
     expect(RETRACTED_TRUST_CLAIMS.filter(c => c.patterns.some(p => p.test(text)))).toEqual([]);
+  });
+
+  it('rejects veteran-owned wording and VOSB or SDVOSB certification claims', () => {
+    const text = 'Real Elite is veteran-owned. SDVOSB certification in progress. Certified VOSB. VetCert application in progress.';
+    const hits = RETRACTED_TRUST_CLAIMS.filter(c => c.patterns.some(p => p.test(text))).map(c => c.id);
+    expect(hits).toContain('unsupported-veteran-ownership');
+    expect(hits).toContain('unsupported-veteran-certification');
   });
 
   it('provides the exact license disclosure on both requested surfaces', () => {

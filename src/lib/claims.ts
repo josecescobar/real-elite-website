@@ -247,6 +247,19 @@ export const RETRACTED_TRUST_CLAIMS: readonly OperationalClaim[] = [
 },
   },
   {
+    id: 'unsupported-veteran-ownership',
+    label: 'Veteran-owned status is not documented, and no VOSB or SDVOSB certification is held',
+    example: 'veteran-owned',
+    status: 'unconfirmed',
+    note: 'Jose, 2026-09-28: family-run by brothers Jose and Miguel; Miguel is a Purple Heart veteran; ownership split undocumented; no federal veteran certification is held.',
+    patterns: [/veteran[-\s]owned/i, /\bVOSBs?\b/i, /\bSDVOSBs?\b/i, /vetcert/i, /service-disabled/i],
+    publishedIn: {
+      "comboKeys": [],
+      "serviceSlugs": [],
+      "templates": []
+},
+  },
+  {
     id: 'unsupported-maryland-license', label: 'Maryland licensing is not substantiated',
     example: 'Licensed and insured across West Virginia, Maryland, and Virginia', status: 'unconfirmed',
     note: 'Withdrawn by REA-55; require owner-supplied substantiation before publication.',

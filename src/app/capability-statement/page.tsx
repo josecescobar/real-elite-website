@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     path: '/capability-statement',
     title: `Capability Statement | ${BUSINESS.name}`,
     description:
-      'Veteran-owned general contractor — federal capability statement for VA, DoD, and prime/sub teaming.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
     keywords: [
       'capability statement',
-      'veteran-owned contractor capability statement',
-      'veteran-owned contractor WV',
+      'Real Elite Contracting capability statement',
+      'Martinsburg contractor WV',
       'federal contractor Martinsburg',
       'VA Medical Center contractor capability',
       'NAICS 236118 238160 contractor',
@@ -37,19 +37,19 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Federal capability statement for Real Elite Contracting LLC — veteran-owned Martinsburg WV contractor. NAICS codes, core competencies and teaming contact.',
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
 };
 
 const SNAPSHOT = [
   { label: 'Legal Name', value: 'Real Elite Contracting LLC' },
-  { label: 'Established', value: 'West Virginia LLC · Veteran-Owned' },
+  { label: 'Established', value: 'West Virginia LLC · Family-Run' },
   {
     label: 'HQ',
     value: `${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`,
   },
   { label: 'Service Region', value: 'WV · MD · VA Tri-State' },
-  { label: 'Business Type', value: 'Veteran-Owned Small Business' },
-  { label: 'SDVOSB Status', value: 'VetCert Application In Progress' },
+  { label: 'Business Type', value: 'Family-run LLC' },
+  { label: 'Who runs it', value: 'Brothers Jose and Miguel' },
   { label: 'SAM.gov Registration', value: FEDERAL_REGISTRATION.summary },
   { label: 'VA HIC Bond', value: '$50,000 · Residential HIC' },
 ];
@@ -91,9 +91,9 @@ const COMPETENCIES = [
 
 const DIFFERENTIATORS = [
   {
-    title: 'Veteran-Owned · Military Precision Process',
+    title: 'Family-Run · Military Precision Process',
     body:
-      "Owned and led by a US military veteran. Review the proposed scope and warranty terms before signing.",
+      "Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Review the proposed scope and warranty terms before signing.",
   },
   {
     title: 'Geographic Advantage — 8 Miles From Martinsburg VAMC',
@@ -132,7 +132,7 @@ const PAST_PERFORMANCE = [
 
 const TEAMING = [
   'Prime contractor relationships welcomed for VA, DoD, and federal civilian construction opportunities in the WV/MD/VA corridor.',
-  'Open to JV / Mentor-Protégé arrangements with other SDVOSBs and small business primes.',
+  'Open to joint-venture conversations with other small-business primes.',
   'Subcontractor teaming on facilities maintenance, exterior envelope, and small construction task orders.',
   'Capability statements, capabilities briefs, and Past Performance Questionnaires (PPQ) provided on request.',
 ];
@@ -147,7 +147,7 @@ export default function CapabilityStatementPage() {
           name: BUSINESS.name,
           url: `${BUSINESS.url}/capability-statement`,
           description:
-            'Veteran-owned general contractor in Martinsburg, WV — federal capability statement covering NAICS codes, core competencies, differentiators, and contact for VA, DoD, and prime/sub teaming.',
+            'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Capability statement for Real Elite Contracting in Martinsburg, WV.',
           areaServed: ['West Virginia', 'Maryland', 'Virginia'],
           telephone: BUSINESS.phone,
           email: BUSINESS.email,
@@ -178,9 +178,9 @@ export default function CapabilityStatementPage() {
               <span className="text-brand-red-light">Capability Statement.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Veteran-owned general contractor based in Martinsburg, WV — 8 miles from the
-              Martinsburg VA Medical Center. SDVOSB certification in progress. Available for
-              federal, VA, DoD, and prime/sub teaming opportunities across WV, MD, and VA.
+              Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and
+              Purple Heart recipient. Based in Martinsburg, WV. No federal veteran certification
+              is held. Available for teaming conversations across WV, MD, and VA.
             </p>
 
             <div className="flex flex-wrap gap-3 mt-8">
@@ -394,10 +394,10 @@ export default function CapabilityStatementPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <p className="text-[0.65rem] uppercase tracking-[0.18em] text-brand-red-light font-bold mb-1">
-                  Owner & Point Of Contact
+                  Point of contact
                 </p>
                 <p className="font-heading text-xl font-extrabold">Jose Escobar</p>
-                <p className="text-charcoal-300 text-sm">Owner · Veteran</p>
+                <p className="text-charcoal-300 text-sm">Runs Real Elite with his brother Miguel</p>
               </div>
               <div className="space-y-3">
                 <PhoneLink
@@ -425,12 +425,10 @@ export default function CapabilityStatementPage() {
 
             <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-4 text-[0.65rem] uppercase tracking-[0.18em] font-bold text-charcoal-300">
               <span className="flex items-center gap-1.5">
-                <Shield className="w-3 h-3 text-brand-red-light" /> Veteran-Owned
+                <Shield className="w-3 h-3 text-brand-red-light" /> Family-Run
               </span>
               <span>·</span>
               <span>Licensed WV · VA</span>
-              <span>·</span>
-              <span>SDVOSB In Progress</span>
               <span>·</span>
               <span>Registered in SAM.gov</span>
             </div>
@@ -445,8 +443,7 @@ export default function CapabilityStatementPage() {
             Ready to talk teaming?
           </h2>
           <p className="text-charcoal-300 mb-7 max-w-2xl mx-auto">
-            Federal primes, contracting officers, and SDVOSB partners — reach out for capability
-            briefings, past-performance references, and bonding capacity confirmation.
+            Primes and contracting officers — reach out for a capability briefing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

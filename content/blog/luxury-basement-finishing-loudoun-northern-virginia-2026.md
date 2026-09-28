@@ -69,7 +69,7 @@ The project schedule depends on scope, approvals, selections, and availability. 
 
 ## The Real Elite approach
 
-Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to the room with the most untapped potential in your house.
+Review the proposed scope and warranty terms before signing. Military precision, applied to the room with the most untapped potential in your house.
 
 If you're planning a high-end basement in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the space and talk through what it could become.
 
@@ -79,6 +79,6 @@ If you're planning a high-end basement in **Loudoun County, Ashburn, Leesburg, F
 
 Beyond Loudoun, we build finished lower levels across Fairfax County and Alexandria. Our [basement remodeling in Northern Virginia](/services/basements/northern-virginia) page covers the regional picture — how scope and budget move from Burke to Great Falls, and how permitting differs between Fairfax County, Loudoun County and the City of Alexandria. For a specific town, we work in [McLean](/services/basements/mclean-va), [Great Falls](/services/basements/great-falls-va), [Vienna](/services/basements/vienna-va), [Reston](/services/basements/reston-va), [Old Town Alexandria](/services/basements/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=basement) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
 *Finished-room photography in this article is for design inspiration; the header photo is a Real Elite basement during the framing stage.*

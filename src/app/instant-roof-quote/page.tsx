@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   }),
   title: fitTitle(`Instant Roof Quote — Ballpark Price From Your Address | ${BUSINESS.name}`),
   description:
-    'Get a ballpark roof replacement price in about a minute — enter your address, pick a shingle, see an estimated range. Veteran-owned WV-MD-VA roofer.',
+    'Get a ballpark roof replacement price in about a minute — enter your address, pick a shingle, see an estimated range. Family-run WV-MD-VA roofer.',
 };
 
 const STEPS = [
@@ -59,7 +59,7 @@ export default function InstantRoofQuotePage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Enter your address, pick a material, and see a ballpark range in about a minute. No
-              pressure, no obligation — just a real starting number from a veteran-owned
+              pressure, no obligation — just a real starting number from a family-run
               contractor.
             </p>
             <div className="mt-8">

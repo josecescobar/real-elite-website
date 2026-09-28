@@ -104,12 +104,12 @@ The project schedule depends on scope, approvals, selections, and availability. 
 
 ## The Real Elite approach
 
-Review the proposed scope and warranty terms before signing. Veteran-owned precision, applied to a room you'll use every day.
+Review the proposed scope and warranty terms before signing. Military precision, applied to a room you'll use every day.
 
 If you're planning a high-end bathroom in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, we'd be glad to walk the space with you and give you a straight, written estimate.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Learn more about our [bathroom remodeling services](/services/bathrooms) and [our process](/process).
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

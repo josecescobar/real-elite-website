@@ -109,4 +109,4 @@ Real Elite Contracting builds custom decks across the Eastern Panhandle — from
 
 **Call us at (681) 534-5515** or [request your free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, and surrounding communities.
 
-*Real Elite Contracting — veteran-owned. Locally trusted. Allergic to rotten decking.*
+*Real Elite Contracting — family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Locally trusted. Allergic to rotten decking.*

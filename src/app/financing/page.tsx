@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   }),
   title: fitTitle(`Home Improvement Financing | Monthly Payment Options | ${BUSINESS.name}`),
   description:
-    'Spread your remodel, roof or addition into manageable monthly payments. Veteran-owned contractor licensed across WV and VA — start the project now.',
+    'Spread your remodel, roof or addition into manageable monthly payments. Family-run contractor licensed across WV and VA — start the project now.',
 };
 
 // When a lending partner is signed, FINANCING.applyUrl flips the primary

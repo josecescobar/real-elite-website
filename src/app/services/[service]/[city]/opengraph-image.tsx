@@ -47,8 +47,8 @@ export default async function OG({ params }: { params: Params }) {
   // and surrounding VA communities". Same class of bug as the city FAQ #146
   // fixed on the area pages.
   const subtitle = isLocalityArea(cityData)
-    ? `Veteran-owned, licensed & insured across WV and VA. Free estimates in ${cityData.city} and surrounding ${cityData.state} communities.`
-    : `Veteran-owned, licensed & insured across WV and VA. Free estimates across ${cityData.city}.`;
+    ? `Family-run, licensed & insured across WV and VA. Free estimates in ${cityData.city} and surrounding ${cityData.state} communities.`
+    : `Family-run, licensed & insured across WV and VA. Free estimates across ${cityData.city}.`;
 
   return renderOgCard({
     eyebrow: formatAreaPlace(cityData),

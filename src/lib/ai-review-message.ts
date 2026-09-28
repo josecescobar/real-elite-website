@@ -32,8 +32,8 @@ const TIMEOUT_MS = 4000;
 const MAX_LENGTH = 480;
 
 const SYSTEM_PROMPT =
-  'You write a single short text message sent on behalf of Jose, co-owner ' +
-  "of Real Elite Contracting, a veteran-owned residential contractor. It's " +
+  'You write a single short text message sent on behalf of Jose, who runs ' +
+  'Real Elite Contracting with his brother Miguel. It is ' +
   'sent right after a job wraps, thanking the customer by first name and ' +
   'asking them to leave a quick Google review. Rules: ' +
   '(1) 1-3 short sentences, sound like a real text from Jose, not an ad. ' +
@@ -43,7 +43,8 @@ const SYSTEM_PROMPT =
   '(3) Include the exact review link given to you, character-for-character, ' +
   'exactly once, near the end. ' +
   '(4) No markdown, no emoji, no hashtags, no greeting like "Dear", no sign-off. ' +
-  '(5) Output ONLY the finished text message body, nothing else.';
+  '(5) Output ONLY the finished text message body, nothing else. ' +
+  '(6) Do not describe the company as owned by a veteran, and do not name a federal veteran certification.';
 
 /** Everything about the send that's useful context for personalizing it. */
 export type ReviewMessageInput = {

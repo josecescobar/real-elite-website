@@ -4,7 +4,7 @@ export const TrustBar = () => {
   const stats = [
     { number: 'Class A', label: 'Virginia · HIC' },
     { number: 'WV062432', label: 'WV Contractor License' },
-    { number: 'Veteran', label: 'Owned' },
+    { number: 'Brothers', label: 'Jose & Miguel' },
     { number: 'Residential', label: 'Remodeling' },
     { number: 'Loudoun', label: 'Design-Build' },
   ];

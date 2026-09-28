@@ -79,4 +79,4 @@ At Real Elite Contracting, we do free roof assessments for homeowners in Martins
 
 **Don't wait for the bucket-in-the-living-room stage.** Call us at (681) 534-5515 or [book a free estimate online](/contact#estimate).
 
-*Real Elite Contracting — veteran-owned, locally operated, and genuinely happy when the answer is "your roof is fine."*
+*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*

@@ -76,6 +76,6 @@ Yes, though once the walls are open it's often the right time to address anythin
 
 ## Let's price your shower honestly
 
-Real Elite Contracting builds walk-in showers across West Virginia, Maryland, and Virginia — from straightforward tiled stalls to curbless, frameless primary-suite builds. We're veteran-owned, licensed and insured, and every estimate is line-itemed in writing before you sign anything, including exactly what waterproofing system goes in behind your tile.
+Real Elite Contracting builds walk-in showers across West Virginia, Maryland, and Virginia — from straightforward tiled stalls to curbless, frameless primary-suite builds. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. We're licensed and insured, and every estimate is line-itemed in writing before you sign anything, including exactly what waterproofing system goes in behind your tile.
 
 Most importantly, we'll tell you which tier your project actually belongs in and where spending more buys something durable — and where it doesn't. [Get a free estimate](/contact#estimate) and we'll walk your bathroom with you.

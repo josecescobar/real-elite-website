@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     path: '/services',
     title: `Services | ${BUSINESS.name}`,
     description:
-      'Premium remodeling + exteriors across the WV–MD–VA region. Veteran-owned. Built with military precision.',
+      'Premium remodeling + exteriors across the WV–MD–VA region. Family-run. Built with military precision.',
     keywords: [
       'contractor services',
       'bathroom remodeling',

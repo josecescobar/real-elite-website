@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     path: '/paving',
     title: `Paving Contractor — WV, MD & VA | ${BUSINESS.name}`,
     description:
-      'Asphalt paving, driveways, parking lots, sealcoating, and repair across the Eastern Panhandle and Mid-Atlantic. Veteran-owned. Built with military precision.',
+      'Asphalt paving, driveways, parking lots, sealcoating, and repair across the Eastern Panhandle and Mid-Atlantic. Family-run. Built with military precision.',
     keywords: [
       'paving contractor WV',
       'asphalt paving Eastern Panhandle',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   }),
   title: fitTitle(`Paving Contractor — Asphalt, Driveways & Sealcoating | ${BUSINESS.name}`),
   description:
-    'Veteran-owned paving across WV, MD and VA — driveways, parking lots, sealcoating, asphalt repair and commercial work. Proper base, real drainage.',
+    'Family-run paving across WV, MD and VA — driveways, parking lots, sealcoating, asphalt repair and commercial work. Proper base, real drainage.',
 };
 
 const HUB_FAQS = [
@@ -122,7 +122,7 @@ export default function PavingHubPage() {
             </div>
 
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
-              <li>Veteran-Owned</li>
+              <li>Family-Run</li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li>Licensed WV · VA</li>
               <li aria-hidden="true" className="text-white/30">·</li>
@@ -219,7 +219,7 @@ export default function PavingHubPage() {
                   'Hot-mix asphalt placed and compacted to the right thickness for your actual use.',
                   'Cracks filled before sealcoating, always — never sealed over to hide a problem.',
                   'Honest repair-vs-replace advice from a contractor who has to live in this community.',
-                  'Veteran-owned, with one named point of contact from estimate to final walk-through.',
+                  'Family-run, with one named point of contact from estimate to final walk-through.',
                   'Licensed and insured across West Virginia and Virginia.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">

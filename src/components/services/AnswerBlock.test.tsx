@@ -4,9 +4,9 @@ import AnswerBlock from './AnswerBlock';
 
 describe('AnswerBlock', () => {
   it('renders the answer text', () => {
-    render(<AnswerBlock text="Veteran-owned roofing across WV, MD, VA." />);
+    render(<AnswerBlock text="Family-run roofing across WV and VA." />);
     expect(
-      screen.getByText('Veteran-owned roofing across WV, MD, VA.')
+      screen.getByText('Family-run roofing across WV and VA.')
     ).toBeInTheDocument();
   });
 

@@ -136,4 +136,4 @@ We're licensed, fully insured, and we've been building decks across the Eastern 
 
 **Call (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
 
-*Real Elite Contracting — veteran-owned, locally trusted, and the friend you actually want at the county counter.*
+*Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*

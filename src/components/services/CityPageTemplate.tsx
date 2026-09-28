@@ -98,7 +98,7 @@ export default function CityPageTemplate({ city, data }: Props) {
 
   // Shared trust copy uses credentials supplied in REA-55.
   const trustPoints = [
-    'Veteran-owned remodeling and exterior contracting.',
+    'Family-run remodeling and exterior contracting.',
     city.state === 'MD'
       ? 'Frederick is a service-area location; no Maryland contractor license is claimed.'
       : 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
@@ -110,7 +110,7 @@ export default function CityPageTemplate({ city, data }: Props) {
   const consultationHero = areaHeroLane(city) === 'consultation';
   const heroSub = consultationHero
     ? `Design-build remodeling for ${city.city} homes. Kitchens, primary suites, lower levels, additions and outdoor living, with one project lead from the first call to the final walkthrough.`
-    : `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Veteran-owned, with project scope discussed at the estimate.`;
+    : `Premium remodeling and exterior craftsmanship for ${city.city} homeowners. Family-run, with project scope discussed at the estimate.`;
 
   // Order services by marketEmphasis, then append remaining for completeness
   const emphasized = data.marketEmphasis
@@ -181,15 +181,15 @@ export default function CityPageTemplate({ city, data }: Props) {
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,
-      answer: `In ${city.city} we focus on ${data.marketEmphasis.slice(0, 5).map((s) => SERVICES.find((sv) => sv.slug === s)?.title ?? s).join(', ')}, plus general remodeling, additions, and exterior repairs. Our work is veteran-owned and built with military precision.`,
+      answer: `In ${city.city} we focus on ${data.marketEmphasis.slice(0, 5).map((s) => SERVICES.find((sv) => sv.slug === s)?.title ?? s).join(', ')}, plus general remodeling, additions, and exterior repairs. Our work is family-run and built with military precision.`,
     },
     {
       question: `How fast can I get a quote in ${city.city}?`,
       answer: `For roofing, our AI Instant Roof Quote returns a ballpark price from your address in about 60 seconds — no ladder, no appointment. For other services, a project lead follows up after reviewing your request with a free written estimate.${quotePromise}`,
     },
     {
-      question: `Is Real Elite Contracting really veteran-owned?`,
-      answer: `Yes. Real Elite Contracting is veteran-owned and operated, with SDVOSB (Service-Disabled Veteran-Owned Small Business) federal certification in progress. Our tagline — "Military Precision. Civilian Excellence." — is grounded in the standards of service.`,
+      question: `Who runs Real Elite Contracting?`,
+      answer: `Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The motto — "Military Precision. Civilian Excellence." — is how we talk about the standard of the work.`,
     },
   ];
 

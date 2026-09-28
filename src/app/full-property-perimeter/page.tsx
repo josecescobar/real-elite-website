@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     path: '/full-property-perimeter',
     title: `Full Property Perimeter | ${BUSINESS.name} × A+ Paving`,
     description:
-      'From the roof to the road — one team, one standard, one warranty. Veteran-owned exterior renovation bundle.',
+      'From the roof to the road — one team, one standard, one warranty. Family-run exterior renovation bundle.',
     keywords: [
       'roof and driveway bundle',
       'full exterior renovation WV',
@@ -137,7 +137,7 @@ const FAQ_ITEMS = [
   {
     question: 'How much money does the bundle actually save me?',
     answer:
-      'Bundling saves 5–8% versus the sum of separately quoted projects. The savings come from shared mobilization, fewer separate estimate cycles, and one consolidated permit pull rather than three. You get the discount with no quality compromise — both companies are veteran-friendly, family-operated, and licensed/insured across the tri-state.',
+      'Bundling saves 5–8% versus the sum of separately quoted projects. The savings come from shared mobilization, fewer separate estimate cycles, and one consolidated permit pull rather than three. You get the discount with no quality compromise — both companies are family-operated, and licensed/insured across the tri-state.',
   },
   {
     question: 'Who is A+ Paving & Landscaping?',
@@ -233,7 +233,7 @@ export default function FullPropertyPerimeterPage() {
                 Real Elite Contracting
               </p>
               <p className="text-charcoal-500 text-xs mt-1">
-                Veteran-Owned · Martinsburg, WV
+                Family-Run · Martinsburg, WV
               </p>
             </div>
             <div className="text-3xl text-brand-red font-light hidden md:block">×</div>

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Reviews from homeowners across the WV–MD–VA region — many linked to the actual project behind them. Veteran-owned, licensed, and insured.',
+    'Reviews from homeowners across the WV–MD–VA region — many linked to the actual project behind them. Family-run, licensed, and insured.',
 };
 
 const SERVICE_LABEL = new Map<string, string>(SERVICES.map((s) => [s.slug, s.title]));

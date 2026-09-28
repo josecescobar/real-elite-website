@@ -73,7 +73,7 @@ Discuss site supervision, communication, and cleanup arrangements during the est
 
 ## The Real Elite approach
 
-A whole-home renovation is the ultimate test of coordination — and coordination is exactly what veteran-owned discipline is built for. Review the proposed scope and warranty terms before signing.
+A whole-home renovation is the ultimate test of coordination — and coordination is exactly what careful coordination is built for. Review the proposed scope and warranty terms before signing.
 
 If you're considering a full renovation in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the home and build the vision together.
 
@@ -83,6 +83,6 @@ If you're considering a full renovation in **Loudoun County, Ashburn, Leesburg, 
 
 Beyond Loudoun, we take on whole-home renovations across Fairfax County and Alexandria — including [McLean](/service-areas/mclean-va), [Great Falls](/service-areas/great-falls-va), [Vienna](/service-areas/vienna-va), [Reston](/service-areas/reston-va), [Old Town Alexandria](/service-areas/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=whole-home) and we'll call inside the window you choose.
 
-Real Elite Contracting is veteran-owned and licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
 *Photography in this article is for design inspiration.*

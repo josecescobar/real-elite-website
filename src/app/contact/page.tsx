@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Contact Real Elite Contracting — call, email, or request a free written estimate. Veteran-owned premium contractor serving the WV–MD–VA region.',
+    'Contact Real Elite Contracting — call, email, or request a free written estimate. Family-run premium contractor serving the WV–MD–VA region.',
 };
 
 const CONTACT_BLOCKS = [
@@ -163,7 +163,7 @@ export default function ContactPage() {
                   Licensed &amp; Insured
                 </span>
                 <span className="inline-flex items-center bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
-                  Veteran-Owned
+                  Family-Run
                 </span>
                 <span className="inline-flex items-center bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
                   WV · MD · VA

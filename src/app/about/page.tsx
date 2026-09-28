@@ -16,12 +16,12 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 export const metadata: Metadata = {
   ...buildMetadata({
     path: '/about',
-    title: `About | Veteran-Owned Premium Contractor | ${BUSINESS.name}`,
+    title: `About | Family-Run Premium Contractor | ${BUSINESS.name}`,
     description:
-      'Veteran-owned remodeling and exterior contractor — built on military precision, communication, and high-end execution.',
+      'Family-run remodeling and exterior contractor — built on military precision, communication, and high-end execution.',
     keywords: [
       'about Real Elite Contracting',
-      'veteran-owned contractor',
+      'family-run contractor',
       'WV contractor',
       'Eastern Panhandle contractor',
       'Frederick MD contractor',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Real Elite Contracting is a veteran-owned premium remodeling and exterior contractor serving the WV–MD–VA region. Built with military precision.',
+    'Real Elite Contracting is a family-run premium remodeling and exterior contractor serving the WV–MD–VA region. Built with military precision.',
 };
 
 const VALUES = [
@@ -59,7 +59,7 @@ const VALUES = [
 const NUMBERS = [
   { value: 'Class A', label: 'Virginia · HIC' },
   { value: 'WV062432', label: 'WV Contractor License' },
-  { value: 'Veteran', label: 'Owned' },
+  { value: 'Brothers', label: 'Jose & Miguel' },
 ];
 
 export default function AboutPage() {
@@ -101,7 +101,7 @@ export default function AboutPage() {
               About Real Elite Contracting
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-              Veteran-owned.
+              Family-run.
               <br />
               <span className="text-brand-red-light">Built with precision.</span>
             </h1>
@@ -145,8 +145,8 @@ export default function AboutPage() {
                 title="Service first. Standards always."
               />
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
-                Real Elite Contracting is a veteran-owned remodeling and exterior contractor.
-                Our work includes kitchens, bathrooms, lower levels, and outdoor living.
+                Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.
+                The work is kitchens, bathrooms, lower levels, and outdoor living.
               </p>
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
 
@@ -236,7 +236,7 @@ export default function AboutPage() {
               <div className="mt-7 flex flex-wrap gap-3">
                 <div className="inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-medium text-navy-800">
                   <Award className="w-4 h-4 text-brand-red" aria-hidden="true" />
-                  Veteran-Owned &amp; Operated
+                  Family-Run
                 </div>
                 <div className="inline-flex items-center gap-2 bg-steel-50 border border-charcoal-100 rounded-md px-4 py-2 text-sm font-medium text-navy-800">
                   <ShieldCheck className="w-4 h-4 text-brand-red" aria-hidden="true" />

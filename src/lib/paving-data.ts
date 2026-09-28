@@ -414,7 +414,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['inwood-wv', 'spring-mills-wv', 'hedgesville-wv', 'falling-waters-wv'],
     metaTitle: 'Paving Martinsburg WV — Asphalt, Driveways & Sealcoating',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating and repair in Martinsburg, WV. Veteran-owned and locally based in Berkeley County.',
+      'Asphalt paving, driveways, parking lots, sealcoating and repair in Martinsburg, WV. Family-run and locally based in Berkeley County.',
     keywords: [
       'paving Martinsburg WV',
       'asphalt paving Martinsburg',
@@ -448,7 +448,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['martinsburg-wv', 'spring-mills-wv', 'hedgesville-wv', 'winchester-va'],
     metaTitle: 'Paving Inwood WV — Asphalt Driveways & Sealcoating',
     metaDescription:
-      'Asphalt paving, driveways, sealcoating and repair in Inwood, WV — veteran-owned paving for the Route 51 corridor and its growing subdivisions.',
+      'Asphalt paving, driveways, sealcoating and repair in Inwood, WV — family-run paving for the Route 51 corridor and its growing subdivisions.',
     keywords: [
       'paving Inwood WV',
       'asphalt driveway Inwood',
@@ -482,7 +482,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['martinsburg-wv', 'falling-waters-wv', 'hedgesville-wv', 'inwood-wv'],
     metaTitle: 'Paving Spring Mills WV — Asphalt Driveways & Sealcoating',
     metaDescription:
-      'Asphalt paving, driveways, sealcoating and repair in Spring Mills, WV — veteran-owned paving for the Route 11 corridor and new subdivisions.',
+      'Asphalt paving, driveways, sealcoating and repair in Spring Mills, WV — family-run paving for the Route 11 corridor and new subdivisions.',
     keywords: [
       'paving Spring Mills WV',
       'asphalt driveway Spring Mills',
@@ -491,7 +491,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'Route 11 paving',
     ],
     heroSub:
-      'Asphalt driveways, paving, sealcoating, and repair for Spring Mills and the Route 11 corridor — local, veteran-owned, and quick to respond.',
+      'Asphalt driveways, paving, sealcoating, and repair for Spring Mills and the Route 11 corridor — local, family-run, and quick to respond.',
     intro: [
       "Spring Mills is one of the fastest-growing communities in West Virginia, and it shows in the driveways. What was a quiet stretch of Route 11 north of Martinsburg is now a wave of modern subdivisions — Sunridge, Spring Ridge, and the neighborhoods anchored around Spring Mills High School — full of newer homes that deserve a driveway to match.",
       "We pave and seal driveways throughout Spring Mills, and because the housing stock here is relatively new, much of our work is fresh asphalt installs and protecting newer driveways before the Eastern Panhandle climate gets a chance to break them down. A new driveway sealcoated on the right cycle from the start will outlast one that gets ignored until the cracks show. Spring Mills is minutes from our Martinsburg base, so we are fast to estimate and easy to reach.",
@@ -584,7 +584,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['shepherdstown-wv', 'martinsburg-wv', 'inwood-wv', 'winchester-va'],
     metaTitle: 'Paving Charles Town WV — Asphalt Driveways & Lots',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating and repair in Charles Town, WV — veteran-owned paving for Jefferson County.',
+      'Asphalt paving, driveways, parking lots, sealcoating and repair in Charles Town, WV — family-run paving for Jefferson County.',
     keywords: [
       'paving Charles Town WV',
       'asphalt driveway Charles Town',
@@ -593,7 +593,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'sealcoating Charles Town',
     ],
     heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Charles Town and Jefferson County — from a veteran-owned contractor who knows the area.',
+      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Charles Town and Jefferson County — from a family-run contractor who knows the area.',
     intro: [
       "Charles Town blends deep history with fast growth. The Jefferson County seat — founded by George Washington's brother — has a historic downtown of period homes alongside a steady stream of new commuter neighborhoods filling in as residents trade Northern Virginia prices for Eastern Panhandle living. That range, plus the traffic the Hollywood Casino and racetrack bring to the area, means everything from delicate historic-home driveways to commercial lots that take real punishment.",
       "We pave and repair driveways and lots throughout Charles Town and the surrounding Jefferson County area, from the historic downtown to the newer developments out toward Flowing Springs and the Ranson line. Historic properties need a careful eye for access and drainage that respects original construction; newer subdivisions and commercial sites need durable, well-graded asphalt. We bring the same accountability to both.",
@@ -652,7 +652,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['charles-town-wv', 'inwood-wv', 'martinsburg-wv', 'shepherdstown-wv'],
     metaTitle: 'Paving Winchester VA — Asphalt Driveways & Parking Lots',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating, and repair in Winchester, VA. Veteran-owned paving for the Northern Shenandoah Valley. Free estimate.',
+      'Asphalt paving, driveways, parking lots, sealcoating, and repair in Winchester, VA. Family-run paving for the Northern Shenandoah Valley. Free estimate.',
     keywords: [
       'paving Winchester VA',
       'asphalt driveway Winchester',
@@ -661,7 +661,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'sealcoating Winchester VA',
     ],
     heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Winchester and the Northern Shenandoah Valley — veteran-owned. Contact us to discuss the paving contractor and project scope.',
+      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Winchester and the Northern Shenandoah Valley — family-run. Contact us to discuss the paving contractor and project scope.',
     intro: [
       "Winchester is the gateway to Virginia's Shenandoah Valley and the commercial anchor of the region — a city that pairs a vibrant, walkable Old Town with fast-growing residential corridors along Route 7, Route 522, and Senseny Road. That growth drives steady demand for both new residential driveways in the expanding neighborhoods and durable commercial lots for the retail and office development following the rooftops.",
       "We pave and repair driveways and parking lots throughout the Winchester area, with contractor credentials and project responsibilities to be confirmed before work begins. From Old Town's established homes to the newer subdivisions out the Route 7 and Senseny Road corridors, and the commercial sites serving them, we bring proper base work, drainage-first grading, and the same accountable, single-point-of-contact approach our Eastern Panhandle customers already know.",
@@ -686,7 +686,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
     nearby: ['shepherdstown-wv', 'martinsburg-wv', 'falling-waters-wv', 'winchester-va'],
     metaTitle: 'Paving Frederick MD — Asphalt Driveways & Parking Lots',
     metaDescription:
-      'Asphalt paving, driveways, parking lots, sealcoating and repair in Frederick, MD — veteran-owned paving for the I-70 corridor.',
+      'Asphalt paving, driveways, parking lots, sealcoating and repair in Frederick, MD — family-run paving for the I-70 corridor.',
     keywords: [
       'paving Frederick MD',
       'asphalt driveway Frederick',
@@ -695,7 +695,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'sealcoating Frederick MD',
     ],
     heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — veteran-owned and licensed in West Virginia and Virginia.',
+      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — family-run and licensed in West Virginia and Virginia.',
     intro: [
       "Frederick is one of the Mid-Atlantic's most desirable and fastest-growing markets — a historic market town transformed by the revitalized Carroll Creek and Market Street downtown and a steady wave of development along the I-70 corridor through Urbana, Jefferson, and New Market. That growth fuels constant demand for both residential driveways in the new communities and commercial lots for the retail, office, and medical development following them.",
       "We pave and repair driveways and parking lots throughout Frederick and Frederick County, licensed in West Virginia and Virginia. From the historic downtown's older homes to the new subdivisions out toward Urbana and the commercial sites along the growth corridor, we bring proper base work, drainage-first grading, ADA-compliant lot striping, and the accountable, single-point-of-contact approach that has built our name across the region.",

@@ -6,14 +6,14 @@
  */
 export const OWNER = {
   name: 'Real Elite Contracting Team',
-  title: 'Veteran-Owned · Built With Military Precision',
+  title: 'Family-Run · Built With Military Precision',
   /** Set to '/images/team/owner.jpg' once the real portrait lands. */
   portrait: null as string | null,
 } as const;
 
 export const BUSINESS = {
   name: 'Real Elite Contracting',
-  tagline: "Veteran-Owned Remodeling Contractor",
+  tagline: 'Family-Run Remodeling Contractor',
   phone: '(681) 534-5515',
   phoneRaw: '+16815345515',
   email: 'info@realelitecontracting.com',
@@ -50,7 +50,18 @@ export const BUSINESS = {
     yelp: 'https://www.yelp.com/biz/real-elite-contracting',
   },
   hours: 'Mon–Fri: 7:00 AM – 6:00 PM | Sat: 8:00 AM – 2:00 PM',
-  veteranOwned: true,
+} as const;
+
+/**
+ * Who runs the company, as Jose stated on 2026-09-28.
+ * The ownership split is undocumented, and no federal veteran certification
+ * is held. Publish the sentence below. Miguel's service and Purple Heart are
+ * facts about him. No branch of service is documented.
+ */
+export const FAMILY_RUN = {
+  short: 'Family-Run',
+  sentence:
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
 } as const;
 
 /**
@@ -606,7 +617,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
    */
   'northern-virginia': {
     description:
-      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements. Prince William's western communities — Haymarket, Gainesville, and Bristow — are newer planned neighborhoods along I-66 and Route 15. Homeowners search for a Northern Virginia or county contractor first and narrow down afterwards. Real Elite Contracting is veteran-owned and licensed in West Virginia and Virginia, and works this market from its Eastern Panhandle base. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, Route 15, or Route 28 onto I-66.",
+      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements. Prince William's western communities — Haymarket, Gainesville, and Bristow — are newer planned neighborhoods along I-66 and Route 15. Homeowners search for a Northern Virginia or county contractor first and narrow down afterwards. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed in West Virginia and Virginia, and works this market from its Eastern Panhandle base. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, Route 15, or Route 28 onto I-66.",
     neighborhoods: [
       'Fairfax County',
       'Loudoun County',
@@ -1065,7 +1076,7 @@ export const UTILITY_LINKS = [
   { label: 'Financing', href: '/financing' },
   { label: 'Reviews', href: '/reviews' },
   { label: 'FAQ', href: '/faq' },
-  { label: 'Veteran-Owned', href: '/veterans' },
+  { label: 'Family-Run', href: '/veterans' },
   { label: 'Capability Statement', href: '/capability-statement' },
   { label: 'Storm Damage', href: '/storm-damage' },
   { label: 'Full Property Bundle', href: '/full-property-perimeter' },

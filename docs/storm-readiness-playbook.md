@@ -88,12 +88,12 @@ LSA "Job Types" to keep **always on** during storm season (May–October):
 
 **Headlines (15 max — Google rotates):**
 1. Storm Hit Your Roof? Free Inspection
-2. Veteran-Owned Roofer — [City] WV/MD/VA
+2. Family-Run Roofer — [City] WV/MD/VA
 3. Hail Damage? We Document It Free
 4. Roof Damage from Last Night's Storm?
 5. Real Elite — Free Storm Roof Inspection
 6. Free Post-Storm Roof Inspection
-7. Veteran-Owned · Licensed in WV/MD/VA
+7. Family-Run · Licensed in WV and VA
 8. 60-Sec Instant Roof Quote Online
 9. Storm Damage? We Help With Insurance
 10. Trusted Roofer, 200+ Local Projects
@@ -104,19 +104,19 @@ LSA "Job Types" to keep **always on** during storm season (May–October):
 15. Local Storm Roof Help — Call Today
 
 **Descriptions (4 max):**
-1. After last night's storm in [City], get a free, no-obligation roof inspection from a veteran-owned local roofer. We document damage for your insurance carrier. Licensed in WV, MD, VA.
-2. Don't wait for shingles to leak. Free post-storm roof inspection from Real Elite Contracting — Eastern Panhandle's trusted veteran-owned roofer. Same-week appointments.
+1. After last night's storm in [City], get a free, no-obligation roof inspection from a family-run local roofer. We document damage for your insurance carrier. Licensed in WV and VA.
+2. Don't wait for shingles to leak. Free post-storm roof inspection from Real Elite Contracting — a family-run Eastern Panhandle roofer. Same-week appointments.
 3. Hail or wind damage? We work directly with your insurance carrier. Free inspection, written damage report, and a transparent roof replacement quote.
-4. 200+ local projects. Licensed WV, MD, VA. Veteran-owned. Workmanship warranty on every roof. Call (681) 534-5515 or get an instant ballpark quote online in 60 seconds.
+4. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Licensed in WV and VA. Call (681) 534-5515 or get an instant ballpark quote online in 60 seconds.
 
 **Sitelinks:**
 - Free Storm Inspection → `/contact`
 - Instant Roof Quote → `/instant-roof-quote`
 - Insurance Claim Help → `/services/roofing` (anchor to insurance section if available)
-- Veteran-Owned Story → `/veterans`
+- Family-Run Story → `/veterans`
 
 **Callouts:**
-- Veteran-Owned & Operated
+- Family-Run · Purple Heart Veteran
 - 200+ Local Projects
 - Licensed WV · MD · VA
 - 60-Second Instant Quote
@@ -132,15 +132,15 @@ diy, do it yourself, how to, repair myself, free shingles, salvage, used, scrap,
 
 ### Reel script (30 seconds, owner-to-camera)
 
-> "I'm Jose, owner of Real Elite Contracting — and a US military veteran. Last night's storm hit [Town] hard. If you're seeing shingle granules in the gutters or dark spots on your roof, call us. The inspection's free. We document everything your insurance carrier needs. No high-pressure sales — just an honest look from a local crew. Number's on screen, link's in the bio."
+> "I'm Jose at Real Elite Contracting. We're family-run — my brother Miguel is a U.S. military veteran and a Purple Heart recipient. Last night's storm hit [Town] hard. If you're seeing shingle granules in the gutters or dark spots on your roof, call us. The inspection's free. We document everything your insurance carrier needs. No high-pressure sales — just an honest look from a local crew. Number's on screen, link's in the bio."
 
-Caption: `Free storm roof inspection — [City] WV/MD/VA. Veteran-owned. Insurance-friendly. Tap the link.`
+Caption: `Free storm roof inspection — [City] WV and VA. Family-run. Miguel is a Purple Heart veteran. Tap the link.`
 
 ### Carousel ad (4 slides)
 
 1. **Slide 1:** Drone storm-damage photo + headline "Last Night's Storm Hit [Town]"
 2. **Slide 2:** Close-up of hail-impacted shingles + "Hail damage often isn't visible from the ground"
-3. **Slide 3:** Crew photo + "Free inspection from a veteran-owned local roofer"
+3. **Slide 3:** Crew photo + "Free inspection from a family-run local roofer"
 4. **Slide 4:** Phone + URL + "Tap to book. (681) 534-5515 · realelitecontracting.com"
 
 ### Lead form questions (in-Meta)
@@ -160,9 +160,9 @@ Caption: `Free storm roof inspection — [City] WV/MD/VA. Veteran-owned. Insuran
 
 **Front:**
 - Hero photo: Real Elite crew on a roof (drone angle preferred)
-- Overlay banner (top right): "VETERAN-OWNED · LICENSED WV · MD · VA"
+- Overlay banner (top right): "FAMILY-RUN · LICENSED WV AND VA"
 - Big headline: **"Did the [DAY OF WEEK] storm hit your roof?"**
-- Subhead: "Free post-storm inspection from your local veteran-owned roofer."
+- Subhead: "Free post-storm inspection from your local family-run roofer."
 - Bottom strip: phone + URL
 
 **Back:**
@@ -174,7 +174,7 @@ Caption: `Free storm roof inspection — [City] WV/MD/VA. Veteran-owned. Insuran
   - Soft decking and visible interior water signs (where accessible)
 - "Why Real Elite" mini-section:
   - 200+ local projects · 5.0★ Google
-  - Veteran-owned & operated
+  - Family-run. Miguel is a U.S. military veteran and Purple Heart recipient.
   - Insurance-friendly — we document everything your carrier needs
 - CTA box: **"Call (681) 534-5515 · Get instant quote: realelitecontracting.com/instant-roof-quote"**
 - Mandatory USPS EDDM indicia (bottom right, per current USPS spec)
@@ -216,7 +216,7 @@ Why it works: high relevance (you're already in the neighborhood), high trust (n
 - **No incentives for Google reviews.** Google bans this outright; listing can be suspended. (FTC Consumer Reviews Rule, Oct 2024, also applies broadly.)
 - **No "fake before-and-after" creative in Meta ads.** If using AI tools to generate after-photos for marketing speculation, label it clearly or do not use it. Real after-photos only.
 - **Insurance claim language:** never promise a specific claim outcome. Always say "we document damage for your insurance carrier" — never "we'll get your claim approved."
-- **Storm chasing reputation risk:** lead with the veteran identity and the local 200+ project history. Do not impersonate insurance adjusters. Do not knock on doors past 8 PM.
+- **Storm chasing reputation risk:** lead with the family story — Miguel is a Purple Heart veteran — and stay local. Do not impersonate insurance adjusters. Do not knock on doors past 8 PM. Do not say veteran-owned, VOSB, or SDVOSB.
 
 ---
 
