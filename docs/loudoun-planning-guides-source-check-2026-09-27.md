@@ -1,6 +1,23 @@
 # Loudoun planning guides source check, September 27, 2026
 
-These are the next three pieces from `AI-SHARED/ventures/LOUDOUN-SEO-CONTENT-PLAN.md`, items 1–3 in its "Ten pieces to publish next" list. Each one links to the six PR #165 cost guides and does not repeat their tables. Branch `content/loudoun-next-three-2026-09`, based on `origin/main` at `6c8e149`. PRs #167 and #169 were open, and none of the files they change is touched here.
+These are the next three pieces from `AI-SHARED/ventures/LOUDOUN-SEO-CONTENT-PLAN.md`, items 1–3 in its "Ten pieces to publish next" list. Each one links to the six PR #165 guides and does not repeat their tables. Branch `content/loudoun-next-three-2026-09`, based on `origin/main` at `6c8e149`. PRs #167 and #169 were open, and none of the files they change is touched here.
+
+The six PR #165 guides, and the slug each of these three articles links:
+
+| Guide | Slug |
+|---|---|
+| Kitchen remodel cost | `kitchen-remodel-cost-loudoun-county-2026` |
+| Primary bathroom cost | `primary-bathroom-remodel-cost-loudoun-county-2026` |
+| Basement remodeling cost | `basement-remodeling-cost-ashburn-leesburg-2026` |
+| Home addition cost | `home-addition-cost-loudoun-county-2026` |
+| Covered patio and outdoor living cost | `covered-patio-outdoor-living-cost-loudoun-county-2026` |
+| HOA approval | `hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026` |
+
+The covered-patio guide is linked from the closing paragraph of each article. The other five are linked in the body where the topic comes up, and again from the closing when that article had not already named them.
+
+## How answer-block citations render
+
+The three `answer:` blocks cite with markdown links. `GuideTemplate` used to print `post.answer` as plain text, so those links would have stayed as raw markdown. The change is `AnswerText`: it turns `[label](https://…)` and `[label](/…)` in that one paragraph into anchors, and leaves every other answer block as plain text. Body citations stay ordinary markdown, which MDX already renders as links.
 
 All source pages were opened on September 27, 2026. "Verified" means the publisher prints the figure or rule for the scope described. It does not mean an independent audit, a Loudoun average, or a Real Elite quote.
 
@@ -98,6 +115,25 @@ All three articles were run through `claimsFoundIn()` from `src/lib/claims.ts` a
   - **Access note:** leesburgva.gov returned HTTP 403 to automated fetches. The text was read from the Wayback Machine copy dated July 16, 2026 (`web.archive.org/web/20260716194429/…`). Recheck it on the live page before merging.
 - [Virginia USBC §108.2](https://law.lis.virginia.gov/admincode/title13/agency5/chapter63/section80/): no permit for replacing cabinetry or trim, floor finishes, paint, or plumbing fixtures without altering the piping. Items 14.2, 14.7, 14.9, and 14.10. §108.1 requires a permit for adding or removing walls, water supply work, and wiring. Countertops are not listed, and the article says so.
 - [18VAC50-22-30](https://law.lis.virginia.gov/admincode/title18/agency50/chapter22/section30/): HIC covers improvements to existing dwellings. It excludes electrical, plumbing, HVAC, and gas fitting, and "new construction functions beyond the existing building structure" other than certain decks, patios, driveways, and outbuildings. [18VAC50-22-20](https://law.lis.virginia.gov/admincode/title18/agency50/chapter22/section20/): RBC covers construction of dwellings.
+
+## Inline citations added for repeated claims
+
+Each figure below was already in the source list above. The link is the citation a reader sees. No new Real Elite project, history, founding-year, tenure, headcount, or veteran-owned wording was added.
+
+| Claim | Where | Source linked |
+|---|---|---|
+| 6 to 12 weeks from demolition, plus 2 to 6 weeks of design and 1 to 4 weeks of permitting | Kitchen answer | [EA Home Design 2026 NoVA kitchen guide](https://eahomedesign.com/how-much-does-a-kitchen-remodel-cost-in-northern-virginia-2026-price-guide/) |
+| Custom cabinets, three to six months | Kitchen answer | [Fixr kitchen timeline](https://www.fixr.com/articles/how-long-does-a-kitchen-remodel-take) |
+| Stock, semi-custom, and custom cabinet lead times | Kitchen body, cabinet section | Same Fixr page |
+| Half bath $10,000–$18,000, full bath with shower $18,000–$30,000, with tub $25,000–$40,000, egress about $2,500–$5,000 | Basement-bath answer | [Mayflower Virginia](https://mayflowerva.com/blog/how-much-does-a-basement-remodel-cost-in-northern-virginia/) |
+| Basement bedroom needs a compliant emergency escape opening | Basement-bath answer, and the egress-dimension section | [Loudoun typical finished basement details](http://www.loudoun.gov/DocumentCenter/View/897) |
+| New plumbing fixtures need a plumbing permit | Basement-bath answer | [Loudoun Finished Basements](https://www.loudoun.gov/1172/Finished-Basements) |
+| Main-level suite $180,000–$350,000; basement finish $60,000–$180,000 | In-law answer | [EA Home Design Loudoun additions](https://eahomedesign.com/home-additions-loudoun-county/) |
+| A new wing needs a plat, setbacks, and possibly Health Department review | In-law answer, and the septic-bedroom FAQ | [Loudoun Residential Additions and Alterations](https://www.loudoun.gov/5387/Residential-Additions-and-Alterations) |
+| A new wing needs a contractor licensed for new construction | In-law answer | [18VAC50-22-30](https://law.lis.virginia.gov/admincode/title18/agency50/chapter22/section30/) |
+| Basement permit fee 1% excluding trades, $65 minimum, plus $130 plan review | In-law body, after the kitchen-fee bullet | [Loudoun Finished Basements](https://www.loudoun.gov/1172/Finished-Basements) |
+| A dwelling unit is defined by independent cooking, sanitation, and sleeping | In-law FAQ | [Zoning ordinance text](https://online.encodeplus.com/regs/loudouncounty-va-zo/) |
+| $165 zoning fee for a personal kitchen | In-law FAQ | [Loudoun Finished Basements](https://www.loudoun.gov/1172/Finished-Basements) |
 
 ## License statement
 

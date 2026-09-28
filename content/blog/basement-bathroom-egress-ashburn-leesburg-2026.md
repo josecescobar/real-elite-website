@@ -8,7 +8,7 @@ slug: "basement-bathroom-egress-ashburn-leesburg-2026"
 featuredImage: "/images/guides/basement-bathroom-egress-loudoun.webp"
 category: "Basements"
 type: "cost-guide"
-answer: "Mayflower Virginia publishes Northern Virginia basement bathroom costs of $10,000–$18,000 for a half bath, $18,000–$30,000 for a full bath with a shower, and $25,000–$40,000 with a tub, and about $2,500–$5,000 per egress window. These are one contractor's published ranges, not Real Elite quotes. In Loudoun, a basement bedroom needs a compliant emergency escape opening, and new plumbing fixtures need a plumbing permit."
+answer: "[Mayflower Virginia](https://mayflowerva.com/blog/how-much-does-a-basement-remodel-cost-in-northern-virginia/) publishes Northern Virginia basement bathroom costs of $10,000–$18,000 for a half bath, $18,000–$30,000 for a full bath with a shower, and $25,000–$40,000 with a tub, and about $2,500–$5,000 per egress window. These are one contractor's published ranges, not Real Elite quotes. In Loudoun, a basement bedroom needs a compliant emergency escape opening ([Loudoun typical finished basement details](http://www.loudoun.gov/DocumentCenter/View/897)), and new plumbing fixtures need a plumbing permit ([Loudoun Finished Basements](https://www.loudoun.gov/1172/Finished-Basements))."
 author: "Real Elite Contracting Team"
 ---
 
@@ -60,7 +60,7 @@ For the finishes themselves, our [Loudoun primary bathroom cost guide](/blog/pri
 
 ## Egress for a basement bedroom
 
-Loudoun's typical details say every sleeping room needs at least one operable window or exterior door approved for emergency escape or rescue. The dimensions on the county drawing are:
+Loudoun's [typical details](http://www.loudoun.gov/DocumentCenter/View/897) say every sleeping room needs at least one operable window or exterior door approved for emergency escape or rescue. The dimensions on the county drawing are:
 
 - **Clear opening height:** 24 inches minimum
 - **Clear opening width:** 20 inches minimum
@@ -112,4 +112,4 @@ That depends on how you will use the space. We won't quote a resale percentage f
 
 ## Plan the lower level together
 
-Bring photos of the unfinished space, the location of any rough-in, and a note on who will use the rooms. [Schedule a design consultation](/design-consultation), see our [basement finishing service](/services/basements), or read about [basement finishing in Ashburn](/services/basements/ashburn-va) and [in Leesburg](/services/basements/leesburg-va). If the plan includes a bedroom suite for a family member, our [basement in-law suite vs. addition guide](/blog/basement-in-law-suite-vs-home-addition-loudoun-county-2026) compares the options. For budget framing, see the [investment guide](/investment).
+Bring photos of the unfinished space, the location of any rough-in, and a note on who will use the rooms. [Schedule a design consultation](/design-consultation), see our [basement finishing service](/services/basements), or read about [basement finishing in Ashburn](/services/basements/ashburn-va) and [in Leesburg](/services/basements/leesburg-va). If the plan includes a bedroom suite for a family member, our [basement in-law suite vs. addition guide](/blog/basement-in-law-suite-vs-home-addition-loudoun-county-2026) compares the options. For budget framing, see the [investment guide](/investment). The other guides in this series, which this article does not restate, are the [Loudoun kitchen remodel cost guide](/blog/kitchen-remodel-cost-loudoun-county-2026), the [Loudoun addition cost guide](/blog/home-addition-cost-loudoun-county-2026), and the [covered patio and outdoor living cost guide](/blog/covered-patio-outdoor-living-cost-loudoun-county-2026).

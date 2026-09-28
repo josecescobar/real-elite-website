@@ -14,6 +14,7 @@ import EstimateCTACard from './EstimateCTACard';
 import InlineTestimonial from './InlineTestimonial';
 import RelatedProjectsInline from './RelatedProjectsInline';
 import RelatedGuides from './RelatedGuides';
+import AnswerText from './AnswerText';
 import { primaryCtaForPath } from '@/lib/cta-intent';
 import ArticleSchema from '@/components/seo/ArticleSchema';
 import JsonLd from '@/components/seo/JsonLd';
@@ -214,7 +215,7 @@ export default function GuideTemplate({ post }: Props) {
                   answer engines) get it first. Optional frontmatter. */}
               {post.answer && (
                 <p className="text-charcoal-800 text-lg md:text-xl leading-relaxed border-l-4 border-brand-red pl-5 mb-10">
-                  {post.answer}
+                  <AnswerText text={post.answer} />
                 </p>
               )}
 

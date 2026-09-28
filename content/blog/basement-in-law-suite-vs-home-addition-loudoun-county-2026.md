@@ -8,7 +8,7 @@ slug: "basement-in-law-suite-vs-home-addition-loudoun-county-2026"
 featuredImage: "/images/guides/in-law-suite-vs-addition-loudoun.webp"
 category: "Remodeling"
 type: "comparison"
-answer: "EA Home Design publishes $180,000–$350,000 for a 400–600 square foot main-level bedroom and bath suite in Loudoun, and $60,000–$180,000 to finish an 800–1,200 square foot basement. These are one firm's design-build benchmarks, not Real Elite quotes. A basement suite stays inside the existing house. A new wing adds footprint, needs a plat, setbacks, and possibly Health Department review, and needs a contractor licensed for new construction."
+answer: "[EA Home Design](https://eahomedesign.com/home-additions-loudoun-county/) publishes $180,000–$350,000 for a 400–600 square foot main-level bedroom and bath suite in Loudoun, and $60,000–$180,000 to finish an 800–1,200 square foot basement. These are one firm's design-build benchmarks, not Real Elite quotes. A basement suite stays inside the existing house. A new wing adds footprint and needs a plat, setbacks, and possibly Health Department review ([Loudoun Residential Additions and Alterations](https://www.loudoun.gov/5387/Residential-Additions-and-Alterations)), and a contractor licensed for new construction ([18VAC50-22-30](https://law.lis.virginia.gov/admincode/title18/agency50/chapter22/section30/))."
 author: "Real Elite Contracting Team"
 ---
 
@@ -50,7 +50,7 @@ A lower-level suite is mostly a question of what the basement will support:
 - **Kitchenette or kitchen:** Loudoun's [Finished Basements page](https://www.loudoun.gov/1172/Finished-Basements) says a finished basement with a personal kitchen needs a zoning permit and an additional $165 zoning fee.
 - **Entrance:** A new exterior door or areaway changes the outside of the house. That brings HOA review wherever an association governs the property; see the [HOA approval guide](/blog/hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026).
 
-The county's basement permit fee is 1% of construction cost, excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. It adds $130 for plan review when the job needs full plans. Trade permits are separate.
+The county's [Finished Basements page](https://www.loudoun.gov/1172/Finished-Basements) sets the basement permit fee at 1% of construction cost, excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. It adds $130 for plan review when the job needs full plans. Trade permits are separate.
 
 ## The addition: new footprint on the lot
 
@@ -105,11 +105,11 @@ What we won't promise: that one option adds more resale value. EA's appraisal no
 
 ### Does a basement suite with a kitchen count as a second dwelling?
 
-It may. The ordinance defines a dwelling unit by its independent cooking, sanitation, and sleeping facilities. Ask county zoning before you add a kitchen, and expect the $165 zoning fee for a personal kitchen in a finished basement.
+It may. The [zoning ordinance](https://online.encodeplus.com/regs/loudouncounty-va-zo/) defines a dwelling unit by its independent cooking, sanitation, and sleeping facilities. Ask county zoning before you add a kitchen, and expect the [$165 zoning fee](https://www.loudoun.gov/1172/Finished-Basements) for a personal kitchen in a finished basement.
 
 ### Can I add a bedroom on a septic lot?
 
-Only with Health Department approval, and the county says to get it before you apply for permits. Bring your septic permit records to the first meeting.
+Only with [Health Department approval](https://www.loudoun.gov/5387/Residential-Additions-and-Alterations), and the county says to get it before you apply for permits. Bring your septic permit records to the first meeting.
 
 ### Which should I price first?
 
@@ -117,4 +117,4 @@ Price the one that meets the need. If both do, get a basement walkthrough first.
 
 ## Talk it through
 
-Bring the plat, your septic records if you have them, HOA details, and a note on who will live in the suite and for how long. [Schedule a design consultation](/design-consultation), and see our [basement finishing](/services/basements) and [addition](/services/additions) services, or our wider [Loudoun County page](/service-areas/loudoun-county-va).
+Bring the plat, your septic records if you have them, HOA details, and a note on who will live in the suite and for how long. [Schedule a design consultation](/design-consultation), and see our [basement finishing](/services/basements) and [addition](/services/additions) services, or our wider [Loudoun County page](/service-areas/loudoun-county-va). The other guides in this series, which this article does not restate, are the [Loudoun kitchen remodel cost guide](/blog/kitchen-remodel-cost-loudoun-county-2026), the [Loudoun primary bathroom cost guide](/blog/primary-bathroom-remodel-cost-loudoun-county-2026), and the [covered patio and outdoor living cost guide](/blog/covered-patio-outdoor-living-cost-loudoun-county-2026).

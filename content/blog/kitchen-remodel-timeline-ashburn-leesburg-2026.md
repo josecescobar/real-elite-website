@@ -8,7 +8,7 @@ slug: "kitchen-remodel-timeline-ashburn-leesburg-2026"
 featuredImage: "/images/guides/kitchen-remodel-timeline-loudoun.webp"
 category: "Kitchens"
 type: "how-to"
-answer: "EA Home Design says a typical full kitchen remodel in Northern Virginia takes 6 to 12 weeks from demolition to completion, after 2 to 6 weeks of design and 1 to 4 weeks of permitting. Fixr says custom cabinets alone can take three to six months to be made and delivered. These are published estimates, not Real Elite schedules. In Ashburn and Leesburg, the scope, cabinet order, and permits decide when construction can start."
+answer: "[EA Home Design](https://eahomedesign.com/how-much-does-a-kitchen-remodel-cost-in-northern-virginia-2026-price-guide/) says a typical full kitchen remodel in Northern Virginia takes 6 to 12 weeks from demolition to completion, after 2 to 6 weeks of design and 1 to 4 weeks of permitting. [Fixr](https://www.fixr.com/articles/how-long-does-a-kitchen-remodel-take) says custom cabinets alone can take three to six months to be made and delivered. These are published estimates, not Real Elite schedules. In Ashburn and Leesburg, the scope, cabinet order, and permits decide when construction can start."
 author: "Real Elite Contracting Team"
 ---
 
@@ -50,7 +50,7 @@ Every published timeline agrees on one thing: the delays come from decisions and
 
 **Appliance models.** List the actual models, even if you are buying them yourself. Their dimensions, venting, and power requirements set the cabinet sizes. EA notes that special-order materials are among the most common causes of delay.
 
-**Cabinet construction.** This is the biggest schedule choice in the room. Fixr's published lead times:
+**Cabinet construction.** This is the biggest schedule choice in the room. [Fixr's published lead times](https://www.fixr.com/articles/how-long-does-a-kitchen-remodel-take):
 
 - **Stock:** one to two weeks for delivery, then two to three days to install
 - **Semi-custom:** four to eight weeks for delivery, plus two to three days to install
@@ -125,4 +125,4 @@ Work backward from your cabinet delivery date, not forward from a start date. If
 
 ## Start with a measured plan
 
-Bring a rough floor plan, photos, your appliance list, and the changes you want most. [Schedule a design consultation](/design-consultation), read about [kitchen remodeling in Ashburn](/services/kitchens/ashburn-va) and [in Leesburg](/services/kitchens/leesburg-va), and see [how our process works](/process). Our [kitchen remodeling service](/services/kitchens) page has more.
+Bring a rough floor plan, photos, your appliance list, and the changes you want most. [Schedule a design consultation](/design-consultation), read about [kitchen remodeling in Ashburn](/services/kitchens/ashburn-va) and [in Leesburg](/services/kitchens/leesburg-va), and see [how our process works](/process). Our [kitchen remodeling service](/services/kitchens) page has more. The other guides in this series, which this article does not restate, are the [Ashburn and Leesburg basement cost guide](/blog/basement-remodeling-cost-ashburn-leesburg-2026), the [Loudoun primary bathroom cost guide](/blog/primary-bathroom-remodel-cost-loudoun-county-2026), and the [covered patio and outdoor living cost guide](/blog/covered-patio-outdoor-living-cost-loudoun-county-2026).
