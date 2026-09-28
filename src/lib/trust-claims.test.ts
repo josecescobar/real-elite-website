@@ -2,8 +2,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_REGISTRATION } from './claims';
+import { FORBIDDEN_VETERAN_CLAIMS } from './__tests__/forbidden-claim-terms';
 import { runtimeTextOfFile } from './runtime-text';
 import nextConfig from '../../next.config';
+
+const retractedTrustClaims = [...RETRACTED_TRUST_CLAIMS, ...FORBIDDEN_VETERAN_CLAIMS];
+const detectorSources = new Set([
+  'src/lib/claims.ts',
+  'src/lib/__tests__/forbidden-claim-terms.ts',
+]);
 
 function filesIn(dir: string): string[] {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
@@ -14,12 +21,12 @@ function filesIn(dir: string): string[] {
 
 describe('credential and ranking claims', () => {
   it('keeps retracted trust claims off all source and editorial surfaces', () => {
-    const files = filesIn('src').filter(file => /\.(ts|tsx)$/.test(file) && !file.includes('.test.') && file !== 'src/lib/claims.ts');
+    const files = filesIn('src').filter(file => /\.(ts|tsx)$/.test(file) && !file.includes('.test.') && !detectorSources.has(file));
     const surfaces = files.map(file => [file, runtimeTextOfFile(path.resolve(file))]);
     surfaces.push(...filesIn('content/blog').filter(f => f.endsWith('.md')).map(file => [file, fs.readFileSync(file, 'utf8')]));
     surfaces.push(['public/llms.txt', fs.readFileSync('public/llms.txt', 'utf8')]);
     for (const [file, text] of surfaces) {
-      for (const claim of RETRACTED_TRUST_CLAIMS) {
+      for (const claim of retractedTrustClaims) {
         expect(claim.patterns.some(pattern => pattern.test(text)), `${file}: ${claim.id}`).toBe(false);
       }
     }
@@ -27,12 +34,20 @@ describe('credential and ranking claims', () => {
 
   it('allows a Maryland service-area mention that is not a license claim', () => {
     const text = 'Serving Frederick, Maryland. Licensed in West Virginia and Virginia.';
-    expect(RETRACTED_TRUST_CLAIMS.filter(c => c.patterns.some(p => p.test(text)))).toEqual([]);
+    expect(retractedTrustClaims.filter(c => c.patterns.some(p => p.test(text)))).toEqual([]);
+  });
+
+  it('keeps the forbidden-term registry out of production modules', () => {
+    const files = filesIn('src').filter(file => /\.(ts|tsx)$/.test(file) && !file.includes('.test.') && !file.endsWith('forbidden-claim-terms.ts'));
+    for (const file of files) {
+      const text = fs.readFileSync(file, 'utf8');
+      expect(text, file).not.toMatch(/from\s+['"][^'"]*forbidden-claim-terms['"]/);
+    }
   });
 
   it('rejects veteran-owned wording and VOSB or SDVOSB certification claims', () => {
     const text = 'Real Elite is veteran-owned. SDVOSB certification in progress. Certified VOSB. VetCert application in progress.';
-    const hits = RETRACTED_TRUST_CLAIMS.filter(c => c.patterns.some(p => p.test(text))).map(c => c.id);
+    const hits = retractedTrustClaims.filter(c => c.patterns.some(p => p.test(text))).map(c => c.id);
     expect(hits).toContain('unsupported-veteran-ownership');
     expect(hits).toContain('unsupported-veteran-certification');
   });

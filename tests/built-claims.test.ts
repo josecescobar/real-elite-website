@@ -2,6 +2,9 @@ import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 import { OPERATIONAL_CLAIMS, RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_REGISTRATION, claimsFoundIn } from '../src/lib/claims';
+import { FORBIDDEN_VETERAN_CLAIMS } from '../src/lib/__tests__/forbidden-claim-terms';
+
+const retractedTrustClaims = [...RETRACTED_TRUST_CLAIMS, ...FORBIDDEN_VETERAN_CLAIMS];
 
 /**
  * How many BUILT PAGES publish each unconfirmed operational claim, read from
@@ -220,7 +223,7 @@ describe('unconfirmed claims in rendered pages', () => {
     for (const file of pages) {
       const html = fs.readFileSync(file, 'utf8');
       const text = visibleText(html);
-      for (const claim of RETRACTED_TRUST_CLAIMS) {
+      for (const claim of retractedTrustClaims) {
         expect(claim.patterns.some(p => p.test(text)), `${routeOf(file)}: ${claim.id}`).toBe(false);
       }
       const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? '';
