@@ -1,4 +1,13 @@
 /** @type {import('next-sitemap').IConfig} */
+
+/**
+ * Pages Next renders on demand (`ƒ` in `next build`) because they read
+ * `searchParams`. next-sitemap only copies prerender-manifest routes, so
+ * these never land in the sitemap unless added here. Listing them does not
+ * change rendering: the query-string filters stay request-time.
+ */
+const dynamicIndexablePaths = ['/projects', '/reviews'];
+
 module.exports = {
   siteUrl: 'https://www.realelitecontracting.com',
   generateRobotsTxt: true,
@@ -33,4 +42,6 @@ module.exports = {
   // until each content model exposes a reliable authored/updated value.
   autoLastmod: false,
   sitemapSize: 5000,
+  additionalPaths: async (config) =>
+    Promise.all(dynamicIndexablePaths.map((route) => config.transform(config, route))),
 };
