@@ -13,6 +13,13 @@ const project: Project = {
   title: 'Custom Addition, Foundation to Finish',
   status: 'draft',
   featured: true,
+  // Photo hold (2026-09-27 stock audit): see docs/STOCK-IMAGE-AUDIT-2026-09-27.md.
+  needsRealPhotos: true,
+  photoNotes: [
+    'No stock photos were attached. All four photos are Real Elite job-site photos.',
+    'The framing photo carries GPS for Morgan County, WV (October 2025), not Inwood. Jose to confirm which job this is, its city, and whether it was finished before using the "to finish" story.',
+    'Needed: finished exterior and interior photos of the same house, taken from the framing-photo angles.',
+  ],
 
   service: 'additions',
   citySlug: 'inwood-wv',

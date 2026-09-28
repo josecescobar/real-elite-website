@@ -7,32 +7,32 @@ type Img = { src: string; alt: string; tag: string };
 const INTERIOR_INSPIRATION: Img[] = [
   {
     src: '/images/projects/kitchens/gray-marble-waterfall.jpg',
-    alt: 'Finished kitchen with gray-marble waterfall island and modern cabinetry',
+    alt: 'Inspiration: kitchen with gray-marble waterfall island and modern cabinetry',
     tag: 'Kitchen',
   },
   {
     src: '/images/projects/bathrooms/shower-stone-accent.jpg',
-    alt: 'Finished primary bath with stone-accent shower and marble tile',
+    alt: 'Inspiration: primary bath with stone-accent shower and marble tile',
     tag: 'Primary Bath',
   },
   {
     src: '/images/projects/kitchens/island-lantern-pendants.jpg',
-    alt: 'Finished kitchen with custom island and lantern pendants',
+    alt: 'Inspiration: kitchen with custom island and lantern pendants',
     tag: 'Kitchen',
   },
   {
     src: '/images/projects/bathrooms/tub-shower-tile.jpg',
-    alt: 'Finished primary bath with freestanding tub and large-format tile',
+    alt: 'Inspiration: primary bath with freestanding tub and large-format tile',
     tag: 'Primary Bath',
   },
   {
     src: '/images/projects/kitchens/two-tone-black-hood.jpg',
-    alt: 'Finished kitchen with two-tone cabinetry and matte-black hood',
+    alt: 'Inspiration: kitchen with two-tone cabinetry and matte-black hood',
     tag: 'Kitchen',
   },
   {
     src: '/images/projects/kitchens/white-island-chairs.jpg',
-    alt: 'Finished white kitchen with island seating',
+    alt: 'Inspiration: white kitchen with island seating',
     tag: 'Kitchen',
   },
 ];

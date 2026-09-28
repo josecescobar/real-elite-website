@@ -11,9 +11,11 @@ import {
   getFeaturedProjects,
   getRelatedProjects,
   resolveCity,
+  isPublished,
 } from './index';
 import { SERVICES, ALL_SERVICE_AREAS } from '@/lib/constants';
 import { getAllPosts } from '@/lib/blog';
+import { isStockImage } from '@/lib/stock-images';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const CITY_SLUGS = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
@@ -55,6 +57,51 @@ describe('Project media integrity', () => {
   });
 });
 
+describe('Project photo honesty', () => {
+  const imagesOf = (p: (typeof PROJECTS)[number]) =>
+    [
+      p.hero.image.src,
+      ...p.gallery.map((g) => g.src),
+      ...(p.beforeAfter ?? []).flatMap((ba) => [ba.before.src, ba.after.src]),
+    ].filter((s) => s.length > 0);
+
+  it('never uses a stock or inspiration image in a case study, draft or not', () => {
+    for (const p of PROJECTS) {
+      for (const src of imagesOf(p)) {
+        expect(isStockImage(src), `${p.slug} → stock image ${src}`).toBe(false);
+      }
+    }
+  });
+
+  it('keeps every photo-held project a draft with notes on what is missing', () => {
+    for (const p of PROJECTS.filter((x) => x.needsRealPhotos)) {
+      expect(p.status, p.slug).toBe('draft');
+      expect(p.photoNotes?.length ?? 0, p.slug).toBeGreaterThan(0);
+    }
+  });
+
+  it('holds the six pre-import case studies until real photos are confirmed', () => {
+    const held = [
+      'composite-deck-build-martinsburg',
+      'new-construction-framing-to-finish',
+      'signature-kitchen-remodel-eastern-panhandle',
+      'stone-facade-exterior-upgrade',
+      'victorian-roof-replacement-martinsburg-wv',
+      'walk-in-shower-bathroom-remodel',
+    ];
+    for (const slug of held) {
+      expect(PROJECTS.find((p) => p.slug === slug)?.needsRealPhotos, slug).toBe(true);
+    }
+  });
+
+  it('withholds a photo-held project even if its status is flipped to published', () => {
+    const held = PROJECTS.find((p) => p.needsRealPhotos);
+    expect(held).toBeDefined();
+    expect(isPublished({ ...held!, status: 'published' })).toBe(false);
+    expect(isPublished({ ...held!, status: 'published', needsRealPhotos: false })).toBe(true);
+  });
+});
+
 describe('Project registry integrity', () => {
   it('has unique project slugs', () => {
     const slugs = PROJECTS.map((p) => p.slug);
@@ -72,11 +119,15 @@ describe('Project registry integrity', () => {
       expect(p.summary.trim().length, p.slug).toBeGreaterThan(0);
       expect(p.hero.heading.trim().length, p.slug).toBeGreaterThan(0);
       expect(p.hero.sub.trim().length, p.slug).toBeGreaterThan(0);
-      expect(p.hero.image.src.trim().length, p.slug).toBeGreaterThan(0);
-      expect(p.hero.image.alt.trim().length, p.slug).toBeGreaterThan(0);
+      // A photo-held draft may have no images at all; everything else needs
+      // a hero and a gallery.
+      if (!p.needsRealPhotos) {
+        expect(p.hero.image.src.trim().length, p.slug).toBeGreaterThan(0);
+        expect(p.hero.image.alt.trim().length, p.slug).toBeGreaterThan(0);
+        expect(p.gallery.length, p.slug).toBeGreaterThan(0);
+      }
       expect(p.brief.length, p.slug).toBeGreaterThan(0);
       expect(p.solution.length, p.slug).toBeGreaterThan(0);
-      expect(p.gallery.length, p.slug).toBeGreaterThan(0);
       if (p.status === 'published' || p.completedOn) {
         expect(p.completedOn, p.slug).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       }

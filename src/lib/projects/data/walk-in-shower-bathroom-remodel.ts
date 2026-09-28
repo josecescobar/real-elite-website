@@ -1,7 +1,8 @@
 import type { Project } from '../types';
 
 /**
- * Capability showcase — built on the site's existing bathroom photography.
+ * Capability showcase. Its stock bathroom photos were replaced on 2026-09-27
+ * with Real Elite's own Frederick, MD primary-bath photos (see photoNotes).
  * Copy is intentionally general (no named customer, no price, no invented
  * specifics); it describes how Real Elite executes this class of project.
  *
@@ -13,13 +14,21 @@ const project: Project = {
   slug: 'walk-in-shower-bathroom-remodel',
   title: 'Walk-In Shower Bathroom Remodel',
   status: 'draft',
+  // Photo hold (2026-09-27 stock audit): see docs/STOCK-IMAGE-AUDIT-2026-09-27.md.
+  needsRealPhotos: true,
+  photoNotes: [
+    'The four Pexels stock photos were removed.',
+    'Attached instead: the real primary-bath photos from the Frederick, MD job (job file status done; GPS and dates in docs/PROJECT-PHOTO-SOURCES-2026-09-27.md). citySlug now points at that job instead of the Martinsburg placeholder.',
+    'Jose to confirm: the narrative (tub-to-shower conversion, flood test) matches the Frederick job; the completion date; customer consent to publish.',
+    'Needed: a wide shot of the finished room from the doorway, and a before photo from the same angle.',
+  ],
 
   service: 'bathrooms',
-  // TODO(owner): set to the real job's city slug.
-  citySlug: 'martinsburg-wv',
+  // Frederick, MD primary-bath job: the only bathroom job with verified photos.
+  citySlug: 'frederick-md',
 
-  // TODO(owner): set to the real completion date.
-  completedOn: '2026-06-05',
+  // TODO(owner): set to the real completion date (finished photos are dated 2026-08-27).
+  completedOn: '',
   style: 'Modern / Spa',
   materials: [
     { name: 'Large-Format Tile' },
@@ -32,10 +41,10 @@ const project: Project = {
   metaDescription:
     'A tub-to-walk-in-shower conversion — full waterproofing, floor-to-ceiling tile and frameless glass, built from tear-out to final seal.',
   keywords: [
-    'bathroom remodel WV',
+    'bathroom remodel Frederick MD',
     'walk-in shower conversion',
     'tub to shower remodel',
-    'bathroom contractor Eastern Panhandle',
+    'bathroom contractor Frederick MD',
     'frameless glass shower',
   ],
   summary:
@@ -46,8 +55,8 @@ const project: Project = {
     heading: 'Walk-In Shower Bathroom Remodel',
     sub: 'Tub out, full-height tiled walk-in shower in — waterproofed as a system, tiled floor to ceiling, and finished with frameless glass.',
     image: {
-      src: '/images/projects/bathrooms/hero.jpg',
-      alt: 'Custom marble walk-in shower with frameless glass enclosure',
+      src: '/images/work/bath-primary-frameless-shower.webp',
+      alt: 'Walk-in shower with frameless glass, blue subway tile, marble-look hex floor, and matte black fixtures',
     },
   },
 
@@ -69,9 +78,9 @@ const project: Project = {
   ],
 
   gallery: [
-    { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower' },
-    { src: '/images/projects/bathrooms/shower-black-frame.jpg', alt: 'Contemporary walk-in shower with black-frame glass and wood-look tile' },
-    { src: '/images/projects/bathrooms/tub-shower-tile.jpg', alt: 'Tile tub-and-shower combination with frameless glass' },
+    { src: '/images/work/bath-primary-shower-and-vanity.webp', alt: 'Primary bath with walk-in tile shower beside a quartz-topped navy vanity' },
+    { src: '/images/work/bath-primary-navy-vanity.webp', alt: 'Navy shaker vanity with matte black pulls and a quartz top' },
+    { src: '/images/work/bath-primary-tile-leveling.webp', alt: 'Large-format marble-look floor tile set with a tile leveling system' },
   ],
 
   // TODO(owner): add the real customer's consented review here (author first

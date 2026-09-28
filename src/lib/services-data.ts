@@ -2,10 +2,12 @@
  * Service page data layer. Every service page renders through
  * ServicePageTemplate using one of these entries.
  *
- * Bathrooms / Kitchens / Basements ship without project photography — their
- * `hero.image` and `gallery` fields are intentionally undefined so the
- * template falls back to a gradient hero and omits the gallery section.
- * Swap those in once real bathroom / kitchen / basement projects are shot.
+ * Honesty rule: a hero, overview or "Recent projects" image must be Real
+ * Elite's own photograph. Kitchens and Basements have none yet, so their
+ * `hero.image` is undefined and the template renders the gradient hero.
+ * Stock images left in a `gallery` are moved by RelatedProjects under a
+ * "Design inspiration" heading (see src/lib/stock-images.ts); a test fails if
+ * a hero or overview image is stock. Swap in real photos once jobs are shot.
  */
 
 export type ServiceImage = { src: string; alt: string };
@@ -114,16 +116,16 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'Premium Interior',
       heading: 'Bathroom Remodeling',
       sub: 'Walk-in showers, tile work, vanities, and full master-bath transformations across the WV–MD–VA region. The clean, communication-first remodel premium homeowners actually recommend.',
-      image: {
-        src: '/images/projects/bathrooms/hero.jpg',
-        alt: 'Custom marble walk-in shower with frameless glass enclosure and herringbone tile floor',
-      },
     },
     overview: {
       paragraphs: [
         "Your bathroom is the room you start every day in and end every day in — so the build has to be right. Real Elite Contracting handles full bathroom remodels, walk-in shower conversions, and tile work for homeowners across Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County. Premium materials. Real waterproofing systems. The veteran-led communication standards that make remodels feel less like construction and more like a managed project.",
         "We build with the long-term in mind: Schluter-Kerdi waterproofing systems, real tile setting (no cheap shortcuts), curbless and accessibility-aware shower designs, and the fit-and-finish you'd expect from a higher-end design-build firm. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       ],
+      image: {
+        src: '/images/work/bath-primary-frameless-shower.webp',
+        alt: 'Walk-in shower with frameless glass, blue subway tile, marble-look hex floor, and matte black fixtures',
+      },
     },
     scope: {
       title: "What's in scope",
@@ -178,12 +180,16 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
           "Yes — we work in both modern and traditional/historic homes. We can pull tile, fixtures, and finishes that respect the original character of a Frederick rowhouse or a Winchester historic property, or carry a modern aesthetic across an existing home with confidence.",
       },
     ],
-    relatedGuideSlugs: ['walk-in-shower-cost-wv-md-va-2026'],
+    relatedGuideSlugs: [
+      'walk-in-shower-cost-wv-md-va-2026',
+      'primary-bathroom-remodel-cost-loudoun-county-2026',
+      'bathroom-remodel-cost-frederick-md-2026',
+    ],
     icon: 'Bath',
     gallery: [
-      { src: '/images/projects/bathrooms/shower-stone-accent.jpg', alt: 'Modern bathroom with stone accent wall and walk-in glass shower' },
-      { src: '/images/projects/bathrooms/shower-black-frame.jpg', alt: 'Contemporary walk-in shower with black-frame glass enclosure and wood-look tile' },
-      { src: '/images/projects/bathrooms/tub-shower-tile.jpg', alt: 'Tile tub-and-shower combination with frameless glass and travertine accents' },
+      { src: '/images/work/bath-primary-shower-and-vanity.webp', alt: 'Primary bath with walk-in tile shower beside a quartz-topped navy vanity' },
+      { src: '/images/work/bath-primary-navy-vanity.webp', alt: 'Navy shaker vanity with matte black pulls and a quartz top' },
+      { src: '/images/work/bath-primary-tile-leveling.webp', alt: 'Large-format marble-look floor tile set with a tile leveling system' },
     ],
   },
 
@@ -209,10 +215,6 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'Premium Interior',
       heading: 'Kitchen Remodeling',
       sub: 'Custom cabinetry, islands, layout changes, and full kitchen transformations across the WV–MD–VA region. Premium kitchens built for the family that actually cooks in them.',
-      image: {
-        src: '/images/projects/kitchens/hero.jpg',
-        alt: 'Editorial white kitchen with double islands, lantern pendant lighting, and dark hardwood floors',
-      },
     },
     overview: {
       paragraphs: [
@@ -275,7 +277,11 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
           "We work across the semi-custom and full-custom range — we don't lock you into one brand. We'll discuss your budget, style, and lead-time tolerance on the estimate and recommend the right tier.",
       },
     ],
-    relatedGuideSlugs: [],
+    relatedGuideSlugs: [
+      'kitchen-remodel-cost-loudoun-county-2026',
+      'kitchen-remodel-cost-wv-md-va-2026',
+      'financing-a-kitchen-remodel-options-2026',
+    ],
     icon: 'ChefHat',
     gallery: [
       { src: '/images/projects/kitchens/island-lantern-pendants.jpg', alt: 'White kitchen with marble-topped island, lantern pendants, and dark hardwood floors' },
@@ -308,10 +314,6 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'New Living Space',
       heading: 'Basement Finishing',
       sub: 'Family rooms, in-law suites, home gyms, and basement bars across the WV–MD–VA region. The kind of basement build that adds usable square footage and resale value — done to code, done right.',
-      image: {
-        src: '/images/projects/basements/hero-framing.jpg',
-        alt: 'Basement build in framing phase showing open floor joists, stud walls, and subfloor before finishes',
-      },
     },
     overview: {
       paragraphs: [
@@ -379,6 +381,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       },
     ],
     relatedGuideSlugs: [
+      'basement-remodeling-cost-ashburn-leesburg-2026',
       'basement-egress-window-cost-eastern-panhandle-2026',
       'loudoun-county-permits-hoa-guide-2026',
     ],
@@ -582,7 +585,6 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       eyebrow: 'Driveways & Lots',
       heading: 'Paving & Seal Coating',
       sub: 'New driveways and parking lots, repairs, and seal coating — asphalt, concrete, and tar-and-chip, done right and built to last across the Eastern Panhandle.',
-      image: { src: '/images/inspiration/paving-fresh-asphalt.jpg', alt: 'A road roller compacting fresh asphalt' },
     },
     overview: {
       paragraphs: [
@@ -704,12 +706,12 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       ],
     },
     gallery: [
-      { src: '/images/deck-multilevel-step-lights.jpg', alt: 'Multi-level wood deck with built-in bench, recessed step lights, and landscaped garden' },
-      { src: '/images/deck-ipe-modern.jpg', alt: 'IPE hardwood deck wrapping a modern glass-walled home with white dining chairs' },
+      { src: '/images/work/deck-composite-stairs-front.webp', alt: 'Composite deck with white vinyl railings and a wide stair down to the patio' },
+      { src: '/images/work/deck-composite-surface.webp', alt: 'Brown composite decking with a curved run of white vinyl railing' },
       { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture' },
       { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white railings' },
       { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night' },
-      { src: '/images/deck-pebble-detail.jpg', alt: 'Weathered wood deck corner with white pebble accent inlay and grass edge' },
+      { src: '/images/work/deck-composite-night-stairs.webp', alt: 'Deck stair and railings lit by post-cap lights at night' },
     ],
     whyChooseUs: [
       'Custom designs tailored to your home and how you actually use the space.',
@@ -737,6 +739,11 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         answer:
           "Deck schedules depend on the design, permit review, weather, and material availability. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       },
+    ],
+    relatedGuideSlugs: [
+      'deck-cost-per-square-foot-eastern-panhandle-2026',
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'composite-vs-pressure-treated-decks-loudoun-county-va',
     ],
   },
 
@@ -909,7 +916,11 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
           'Yes. Loudoun requires a building and zoning application, a plat with setbacks, and a comprehensive structural plan. Screened porches are published as residential additions, not Typical Deck jobs. Published county fees are $395 at or under 1,000 square feet (building, plan review, and county zoning bundled). Over 1,000 square feet the building fee is 1% of construction cost plus a $335 plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg issue town zoning first. A bedroom added on well and septic needs Health Department approval before the county application. We put the current fees in the written estimate.',
       },
     ],
-    relatedGuideSlugs: ['loudoun-county-permits-hoa-guide-2026'],
+    relatedGuideSlugs: [
+      'home-addition-cost-loudoun-county-2026',
+      'home-additions-in-law-suites-loudoun-northern-virginia-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
   },
 
   'exterior-repairs': {

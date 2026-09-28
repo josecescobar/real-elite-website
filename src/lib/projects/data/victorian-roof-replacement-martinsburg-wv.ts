@@ -3,10 +3,11 @@ import type { Project } from '../types';
 /**
  * Exemplary project — the first record authored on the new Project System.
  *
- * Uses only images already present in /public/images (no new binaries). It
- * demonstrates every facet a real project will carry: relationships (service +
- * city), a before/after reveal, a spec panel, an embedded review, FAQs, and
- * guide cross-links — all public-lens safe.
+ * Demonstrates the facets a real project carries: relationships (service +
+ * city), a spec panel, FAQs, and guide cross-links. Its Victorian hero and
+ * before/after were Pexels stock and were removed on 2026-09-27, along with an
+ * unverified review; the Victorian narrative must be confirmed against a real
+ * job or rewritten before this can publish.
  */
 // REA-55: held until Jose confirms the real job facts and publication permission.
 const project: Project = {
@@ -14,6 +15,15 @@ const project: Project = {
   title: 'Historic Victorian Re-Roof in Martinsburg',
   status: 'draft',
   featured: true,
+  // Photo hold (2026-09-27 stock audit): see docs/STOCK-IMAGE-AUDIT-2026-09-27.md.
+  needsRealPhotos: true,
+  photoNotes: [
+    'Removed as Pexels stock: roofing-victorian-reroof.jpg (hero), roofing-tearoff.jpg (before), roofing-shingle-install.jpg.',
+    'Removed roofing-complete.jpg (the "after"): no original on the T7 drive, and it shows a suburban house, not a Victorian.',
+    'Kept: roofing-valley, roofing-ridge-vent and roofing-crew, which match originals in the Roofing folder on the T7 drive. They show a WV roof, not necessarily a Victorian; Jose to confirm the job.',
+    'Removed the attached review: it is unverified. Reviews come through the separate verified intake (docs/CASE-STUDY-PIPELINE.md).',
+    'Needed: a ground-level wide shot of the finished roof with no shadow in frame, and a before photo from the same spot.',
+  ],
 
   service: 'roofing',
   citySlug: 'martinsburg-wv',
@@ -47,7 +57,8 @@ const project: Project = {
     eyebrow: 'Roofing · Martinsburg, WV',
     heading: 'Historic Victorian Re-Roof in Martinsburg',
     sub: 'A failing roof on a steep, dormered Victorian — torn off, re-decked where needed, and rebuilt with a full GAF architectural-shingle system in three days.',
-    image: { src: '/images/roofing-victorian-reroof.jpg', alt: 'Finished architectural-shingle roof on a historic Victorian home in Martinsburg, WV' },
+    // No verified photo of this job exists yet. Stays empty until one does.
+    image: { src: '', alt: '' },
   },
 
   brief: [
@@ -67,27 +78,12 @@ const project: Project = {
     'A 50-year architectural-shingle roof that looks like it has always belonged on the house — and an attic that finally breathes.',
   ],
 
-  beforeAfter: [
-    {
-      label: 'Tear-off to finished system',
-      before: { src: '/images/roofing-tearoff.jpg', alt: 'Victorian roof torn off to the bare deck before the new system' },
-      after: { src: '/images/roofing-complete.jpg', alt: 'Completed GAF architectural-shingle roof on the Victorian home' },
-    },
-  ],
   gallery: [
-    { src: '/images/roofing-shingle-install.jpg', alt: 'Crew installing GAF architectural shingles on the steep Victorian slope' },
     { src: '/images/roofing-valley.jpg', alt: 'Ice-and-water shield and shingles worked into a roof valley' },
     { src: '/images/roofing-ridge-vent.jpg', alt: 'Cobra ridge vent installed along the roof ridge' },
     { src: '/images/roofing-crew.jpg', alt: 'Real Elite roofing crew on the Martinsburg job site' },
   ],
 
-  review: {
-    author: 'Mike & Sarah T.',
-    location: 'Martinsburg, WV',
-    rating: 5,
-    quote:
-      'Real Elite replaced our entire roof in just two days of real work and left the yard cleaner than they found it. They respected the age of our home and the result looks incredible.',
-  },
   faqs: [
     {
       question: 'How long does a roof replacement take on a historic Victorian?',
