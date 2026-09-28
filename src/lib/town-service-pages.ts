@@ -175,9 +175,11 @@ export function townServicePath(page: Pick<TownServicePage, 'townSlug' | 'servic
 }
 
 /**
- * The indexed URL for this intent. The town-first page is an alternate of the
- * service-by-town page that already exists, so it does not get its own
- * canonical or its own sitemap entry.
+ * The indexed URL for this intent. The town-first page repeats the service-city
+ * permit copy, the service scope list, and excerpts from the cost guide, so it
+ * is not a separate document. It stays an alternate of the service-by-town page
+ * that already exists: no self-canonical, and no sitemap entry. Inbound links
+ * from the town page, the service page, and the cost guide still point here.
  */
 export function canonicalServicePath(
   page: Pick<TownServicePage, 'townSlug' | 'serviceSlug'>

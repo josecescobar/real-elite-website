@@ -47,6 +47,33 @@ describe('town-by-service pages', () => {
     }
   });
 
+  it('is linked from the town pages, the service pages, and the matching cost guides', () => {
+    const root = process.cwd();
+    const townTemplate = fs.readFileSync(
+      path.join(root, 'src/components/services/CityPageTemplate.tsx'),
+      'utf8'
+    );
+    const serviceTemplate = fs.readFileSync(
+      path.join(root, 'src/components/services/ServicePageTemplate.tsx'),
+      'utf8'
+    );
+    expect(townTemplate).toContain('<TownServiceLinksForTown townSlug={city.slug} />');
+    expect(serviceTemplate).toContain('<TownServiceLinksForService serviceSlug={data.slug} />');
+
+    const basementGuide = fs.readFileSync(
+      path.join(root, 'content/blog/basement-remodeling-cost-ashburn-leesburg-2026.md'),
+      'utf8'
+    );
+    const kitchenGuide = fs.readFileSync(
+      path.join(root, 'content/blog/kitchen-remodel-cost-loudoun-county-2026.md'),
+      'utf8'
+    );
+    expect(basementGuide).toContain('](/service-areas/ashburn-va/basements)');
+    expect(basementGuide).toContain('](/service-areas/leesburg-va/basements)');
+    expect(kitchenGuide).toContain('](/service-areas/ashburn-va/kitchens)');
+    expect(kitchenGuide).toContain('](/service-areas/leesburg-va/kitchens)');
+  });
+
   it('keeps titles and descriptions inside the SERP budgets and unique', () => {
     const titles = TOWN_SERVICE_PAGES.map((page) => page.title);
     const descriptions = TOWN_SERVICE_PAGES.map((page) => page.description);

@@ -10,6 +10,7 @@ import StickyEstimateRail from './StickyEstimateRail';
 import RelatedProjects from './RelatedProjects';
 import RelatedGuides from './RelatedGuides';
 import LocalAreasServed from './LocalAreasServed';
+import { TownServiceLinksForService } from './TownServiceCrossLinks';
 import ServiceFAQ from './ServiceFAQ';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import JsonLd from '@/components/seo/JsonLd';
@@ -201,6 +202,8 @@ export default function ServicePageTemplate({ data }: Props) {
 
               {/* Local areas served */}
               <LocalAreasServed serviceSlug={data.slug} serviceTitle={data.title} areaScope={data.areaScope} />
+
+              <TownServiceLinksForService serviceSlug={data.slug} />
 
               {/* FAQ */}
               <ServiceFAQ items={data.faqs} />

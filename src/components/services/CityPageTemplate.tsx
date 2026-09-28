@@ -39,6 +39,7 @@ import { getReviewsByCity } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import TrackedLink from '@/components/analytics/TrackedLink';
 import { serviceHrefForArea } from '@/lib/service-city-content';
+import { TownServiceLinksForTown } from '@/components/services/TownServiceCrossLinks';
 import { LOUDOUN_PERMIT_GUIDE, isLoudounArea, loudounTownGuides } from '@/lib/loudoun-guides';
 import { isVerifiedWorkImage } from '@/lib/stock-images';
 
@@ -394,6 +395,8 @@ export default function CityPageTemplate({ city, data }: Props) {
                   </div>
                 </details>
               </div>
+
+              <TownServiceLinksForTown townSlug={city.slug} />
 
               {city.slug === 'loudoun-county-va' && <OutdoorLivingInspiration />}
 
