@@ -13,6 +13,15 @@ const project: Project = {
   title: 'Composite Deck Build',
   status: 'draft',
   featured: true,
+  // Photo hold (2026-09-27 stock audit): see docs/STOCK-IMAGE-AUDIT-2026-09-27.md.
+  needsRealPhotos: true,
+  photoNotes: [
+    'Removed deck-screened-porch.jpg: it is a Pexels stock photo, not this job.',
+    'deck-lounge.jpg carries GPS for Fairfax County, VA, not Martinsburg. Either this is the Fairfax deck (change citySlug) or drop it.',
+    'No original was found on the T7 drive for deck-finished-railings.jpg (the hero) or deck-construction.jpg. Confirm both are this job.',
+    'deck-railing-install.jpg: iPhone 11, 2023-08-14, no GPS. Confirm it is this job.',
+    'Needed: a daylight wide shot of the finished deck and the matching before photo from the same angle.',
+  ],
 
   service: 'decks',
   citySlug: 'martinsburg-wv',
@@ -78,7 +87,6 @@ const project: Project = {
     { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night' },
     { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture set' },
     { src: '/images/deck-railing-install.jpg', alt: 'Installing white railing on composite deck' },
-    { src: '/images/deck-screened-porch.jpg', alt: 'Screened porch with stained wood ceiling and black railings' },
   ],
 
   // TODO(owner): add the real customer's consented review here (author first

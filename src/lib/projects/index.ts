@@ -27,7 +27,9 @@ const ALL: Project[] = [...PROJECT_MODULES].sort((a, b) =>
 /** Full registry (published + draft), newest-first. */
 export const PROJECTS: readonly Project[] = ALL;
 
-const isPublished = (p: Project) => p.status === 'published';
+// A photo hold beats the status flag: a record with no verified job photos
+// never reaches a public surface, whatever `status` says.
+export const isPublished = (p: Project) => p.status === 'published' && !p.needsRealPhotos;
 
 /** Published projects only, newest-first. The default public surface. */
 export function getAllProjects(): Project[] {

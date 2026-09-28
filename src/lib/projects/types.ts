@@ -59,6 +59,15 @@ export type Project = {
   status: ProjectStatus;
   /** Surfaced on the homepage Proof Wall and featured rails. */
   featured?: boolean;
+  /**
+   * Publishing hold: the record lacks verified photographs of THIS job.
+   * While true the project is withheld from every public query even if
+   * `status` says `published`, and tests fail on that combination. Clear it
+   * only when every image is Jose's own photo of this job (no stock, no AI).
+   */
+  needsRealPhotos?: boolean;
+  /** What is missing or unverified, for whoever picks the draft up next. */
+  photoNotes?: string[];
 
   // ── Relationships (validated against canonical catalogs) ───────────────
   /** Primary service slug — must exist in SERVICES (src/lib/constants). */
@@ -88,6 +97,7 @@ export type Project = {
     eyebrow?: string;
     heading: string;
     sub: string;
+    /** `src` may be empty only while `needsRealPhotos` holds the draft. */
     image: ProjectImage;
   };
   /** What the homeowners wanted, in human terms. */

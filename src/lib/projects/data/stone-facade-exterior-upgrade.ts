@@ -12,6 +12,13 @@ const project: Project = {
   slug: 'stone-facade-exterior-upgrade',
   title: 'Stone Facade Exterior Upgrade',
   status: 'draft',
+  // Photo hold (2026-09-27 stock audit): see docs/STOCK-IMAGE-AUDIT-2026-09-27.md.
+  needsRealPhotos: true,
+  photoNotes: [
+    'Removed exterior-brick-victorian.jpg: it is a Pexels stock photo, not this job.',
+    'The remaining photos match originals on the T7 drive (Exterior & Sheathing), but those files carry no EXIF, so the city and date cannot be confirmed from the photos. Jose to confirm they are all one job.',
+    'stone-facade-finished.jpg and stone-veneer-finish.jpg are only 1024 x 576. Needed: the full-resolution original, plus a daylight wide shot of the finished facade and a matching before photo.',
+  ],
 
   service: 'siding',
   secondaryServices: ['exterior-repairs'],
@@ -76,7 +83,6 @@ const project: Project = {
   gallery: [
     { src: '/images/stone-veneer-finish.jpg', alt: 'Finished stone veneer detail on home exterior' },
     { src: '/images/siding-window-work.webp', alt: 'Siding and window replacement in progress' },
-    { src: '/images/exterior-brick-victorian.jpg', alt: 'Brick Victorian-style home with multiple gables and dark architectural shingle roof' },
   ],
 
   // TODO(owner): add the real customer's consented review here (author first
