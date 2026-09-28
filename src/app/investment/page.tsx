@@ -22,7 +22,7 @@ export const metadata: Metadata = buildMetadata({
   path: '/investment',
   title: 'Loudoun County Remodel Cost Guide 2026 | Real Elite',
   description:
-    'Typical Loudoun County remodel investment ranges for lower levels, kitchens, primary suites, additions and outdoor living — market ranges, not quotes — plus what moves the number in Loudoun.',
+    'Typical Loudoun County remodel ranges for lower levels, kitchens, primary suites, additions and outdoor living. Market ranges, not quotes.',
   keywords: [
     'basement remodel cost Loudoun County',
     'kitchen remodel cost Ashburn VA',

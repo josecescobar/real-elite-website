@@ -7,6 +7,8 @@ type SectionHeaderProps = {
   align?: 'left' | 'center';
   tone?: 'dark' | 'light';
   className?: string;
+  /** Page heroes need an h1. Every other section stays an h2. */
+  headingLevel?: 1 | 2;
 };
 
 export default function SectionHeader({
@@ -16,6 +18,7 @@ export default function SectionHeader({
   align = 'left',
   tone = 'dark',
   className = '',
+  headingLevel = 2,
 }: SectionHeaderProps) {
   const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left';
   // On dark sections (tone="light" = light text on dark) the brand red fails
@@ -23,6 +26,7 @@ export default function SectionHeader({
   const eyebrowColor = tone === 'light' ? 'text-brand-red-light' : 'text-brand-red';
   const titleColor = tone === 'light' ? 'text-white' : 'text-navy-800';
   const subtitleColor = tone === 'light' ? 'text-charcoal-300' : 'text-charcoal-500';
+  const Heading = headingLevel === 1 ? 'h1' : 'h2';
 
   return (
     <div className={`${alignment} ${className} max-w-3xl`}>
@@ -31,9 +35,9 @@ export default function SectionHeader({
           {eyebrow}
         </p>
       )}
-      <h2 className={`font-heading ${titleColor} font-extrabold text-3xl sm:text-4xl md:text-5xl leading-[1.05] tracking-tight`}>
+      <Heading className={`font-heading ${titleColor} font-extrabold text-3xl sm:text-4xl md:text-5xl leading-[1.05] tracking-tight`}>
         {title}
-      </h2>
+      </Heading>
       {subtitle && (
         <p className={`${subtitleColor} text-base sm:text-lg mt-4 leading-relaxed`}>
           {subtitle}

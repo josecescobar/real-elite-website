@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   // keeps the city + service keywords, which is what the title is for.
   title: 'Design-Build Remodeling in Loudoun County, VA | Real Elite',
   description:
-    'Veteran-owned design-build remodeler for Loudoun County — kitchens, primary suites, lower levels, additions and outdoor living for Leesburg, Ashburn, Middleburg and Purcellville homes. Also serving the Eastern Panhandle.',
+    'Veteran-owned design-build remodeler in Loudoun County and the Eastern Panhandle. Kitchens, primary suites, lower levels, additions and outdoor living.',
   keywords: [
     'design-build remodeling Loudoun County',
     'kitchen remodeling Ashburn VA',
