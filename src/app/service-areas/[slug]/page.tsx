@@ -42,7 +42,7 @@ export async function generateMetadata({
   // fitTitle/TITLE_MAX in src/lib/seo.ts for the sibling title rule, and
   // scripts/audit-site.mjs which enforces both.
   const description = consultation
-    ? `Design-build kitchens, primary baths, basements and additions in ${place}. Veteran-owned remodeling contractor. Book a design consultation.`
+    ? `Bathroom remodels, kitchens, decks, roofing and additions in ${place} — veteran-owned, built with military precision. Free written estimate.`
     : `Bathroom remodels, kitchens, decks, roofing and additions in ${place} — veteran-owned, built with military precision. Free written estimate.`;
 
   return {

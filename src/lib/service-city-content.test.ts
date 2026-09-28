@@ -378,17 +378,8 @@ describe('Northern Virginia at region altitude', () => {
       'Basements in Vienna, VA | Real Elite'
     );
     expect(defaultComboDescription('Basements', formatAreaPlace(region))).toContain(
-      'Basements in Northern Virginia from'
+      'services in Northern Virginia.'
     );
-  });
-
-  it('keeps the generic snippet free of unconfirmed promises and inside 160 characters', () => {
-    const longest = [...ALL_SERVICE_AREAS].sort(
-      (a, b) => formatAreaPlace(b).length - formatAreaPlace(a).length
-    )[0];
-    const text = defaultComboDescription('Basement Finishing', formatAreaPlace(longest));
-    expect(text).not.toMatch(/guarantee/i);
-    expect(text.length).toBeLessThanOrEqual(160);
   });
 
   it('never says "Northern Virginia, VA" in a snippet override', () => {

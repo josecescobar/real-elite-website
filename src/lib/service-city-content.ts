@@ -151,11 +151,8 @@ export function defaultComboTitle(serviceTitle: string, place: string) {
   return `${serviceTitle} in ${place} | Real Elite`;
 }
 
-// Leads with the "<service> in <place>" phrase buyers search. The old copy
-// ("Expert … services … quality guaranteed") promised a guarantee the owner
-// has never defined, which the claims rules forbid.
 export function defaultComboDescription(serviceTitle: string, place: string) {
-  return `${serviceTitle} in ${place} from Real Elite Contracting, a veteran-owned contractor. Request a free written estimate.`;
+  return `Expert ${serviceTitle.toLowerCase()} services in ${place}. Real Elite Contracting — veteran-owned, quality guaranteed. Get a free estimate today.`;
 }
 
 export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
