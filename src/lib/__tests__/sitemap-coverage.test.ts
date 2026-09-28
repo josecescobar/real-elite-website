@@ -35,7 +35,7 @@ function matchesExcludePattern(route: string, pattern: string): boolean {
   const negated = pattern.startsWith('!');
   const body = negated ? pattern.slice(1) : pattern;
   const escaped = body
-    .replace(/[|\\{}()[\]^$+?.]/g, '\\$&')
+    .replace(/[|\\{}()[\]^$+?.*]/g, '\\$&')
     .replace(/-/g, '\\x2d')
     .replace(/\\\*/g, '[\\s\\S]*');
   const matched = new RegExp(`^${escaped}$`, 'i').test(route);
@@ -222,6 +222,27 @@ function collectPages(): PageRoute[] {
     };
   });
 }
+
+describe('matchesExcludePattern', () => {
+  it('treats * as [\\s\\S]* and stays anchored and case-insensitive', () => {
+    expect(matchesExcludePattern('/projects/opengraph-image', '/*/opengraph-image')).toBe(true);
+    expect(matchesExcludePattern('/projects', '/*/opengraph-image')).toBe(false);
+    expect(matchesExcludePattern('/PROJECTS/Opengraph-Image', '/*/opengraph-image')).toBe(true);
+    expect(matchesExcludePattern('/projects/opengraph-image/extra', '/*/opengraph-image')).toBe(false);
+  });
+
+  it('matches a literal pattern only against itself', () => {
+    expect(matchesExcludePattern('/review-request', '/review-request')).toBe(true);
+    expect(matchesExcludePattern('/review-request/extra', '/review-request')).toBe(false);
+    expect(matchesExcludePattern('/review-requests', '/review-request')).toBe(false);
+    expect(matchesExcludePattern('/prefix/review-request', '/review-request')).toBe(false);
+  });
+
+  it('inverts a negated pattern', () => {
+    expect(matchesExcludePattern('/review-request', '!/review-request')).toBe(false);
+    expect(matchesExcludePattern('/projects', '!/review-request')).toBe(true);
+  });
+});
 
 describe('sitemap covers every public page route', () => {
   const exclude = sitemapConfig.exclude ?? [];
