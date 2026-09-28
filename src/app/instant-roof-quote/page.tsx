@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import { Satellite, SlidersHorizontal, FileCheck, Phone } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import Container from '@/components/shared/Container';
@@ -7,23 +7,21 @@ import RoofQuoteTool from '@/components/roof-quote/RoofQuoteTool';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Instant Roof Quote — Ballpark Price From Your Address | ${BUSINESS.name}`),
-  description:
-    'Get a ballpark roof replacement price in about a minute — enter your address, pick a shingle, see an estimated range. Veteran-owned WV-MD-VA roofer.',
-  keywords: [
-    'instant roof quote',
-    'roof estimate by address',
-    'roof replacement cost calculator',
-    'free roof estimate WV MD VA',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/instant-roof-quote` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/instant-roof-quote',
     title: `Instant Roof Quote | ${BUSINESS.name}`,
     description:
       'Enter your address, pick a material, and see a ballpark roof price in about a minute.',
-    url: `${BUSINESS.url}/instant-roof-quote`,
-    type: 'website',
-  },
+    keywords: [
+      'instant roof quote',
+      'roof estimate by address',
+      'roof replacement cost calculator',
+      'free roof estimate WV MD VA',
+    ],
+  }),
+  title: fitTitle(`Instant Roof Quote — Ballpark Price From Your Address | ${BUSINESS.name}`),
+  description:
+    'Get a ballpark roof replacement price in about a minute — enter your address, pick a shingle, see an estimated range. Veteran-owned WV-MD-VA roofer.',
 };
 
 const STEPS = [

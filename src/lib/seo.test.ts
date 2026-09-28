@@ -59,6 +59,47 @@ describe('buildMetadata', () => {
     const meta = buildMetadata({ path: '/about', title: 'About', description: 'd' });
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/about'));
   });
+
+  it('omits social images when the route file supplies the card', () => {
+    const meta = buildMetadata({
+      path: '/services/basements/ashburn-va',
+      title: 'Basement Finishing in Ashburn, VA | Real Elite',
+      description: 'Finished basements in Ashburn.',
+      omitSocialImage: true,
+    });
+    expect(meta.twitter?.title).toBe(meta.openGraph?.title);
+    expect(meta.twitter?.description).toBe(meta.openGraph?.description);
+    expect(meta.openGraph).not.toHaveProperty('images');
+    expect(meta.twitter).not.toHaveProperty('images');
+  });
+});
+
+describe('route twitter cards match open graph', () => {
+  it('matches on an Ashburn basement page and an Inwood paving location', async () => {
+    const { generateMetadata: serviceCity } = await import(
+      '@/app/services/[service]/[city]/page'
+    );
+    const basement = await serviceCity({
+      params: Promise.resolve({ service: 'basements', city: 'ashburn-va' }),
+    });
+    expect(basement.twitter?.title).toBe(basement.openGraph?.title);
+    expect(basement.twitter?.description).toBe(basement.openGraph?.description);
+    expect(basement.openGraph?.title).toBe('Basement Finishing in Ashburn, VA | Real Elite');
+    expect(basement.openGraph).not.toHaveProperty('images');
+    expect(basement.twitter).not.toHaveProperty('images');
+
+    const { generateMetadata: pavingLocation } = await import(
+      '@/app/paving/locations/[location]/page'
+    );
+    const paving = await pavingLocation({
+      params: Promise.resolve({ location: 'inwood-wv' }),
+    });
+    expect(paving.twitter?.title).toBe(paving.openGraph?.title);
+    expect(paving.twitter?.description).toBe(paving.openGraph?.description);
+    expect(String(paving.openGraph?.title)).toContain('Inwood');
+    expect(paving.openGraph).not.toHaveProperty('images');
+    expect(paving.twitter).not.toHaveProperty('images');
+  });
 });
 
 /**

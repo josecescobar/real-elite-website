@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
@@ -10,25 +10,23 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`FAQ — Remodel Costs, Timelines & Permits | ${BUSINESS.name}`),
-  description:
-    'Straight answers on remodel costs, roofing and deck pricing, timelines, permits and warranties — from a veteran-owned WV-MD-VA contractor.',
-  keywords: [
-    'contractor FAQ',
-    'how much does a bathroom remodel cost',
-    'how much does a kitchen remodel cost',
-    'how much does a new roof cost',
-    'home remodel timeline',
-    'home improvement permits WV',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/faq` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/faq',
     title: `FAQ | ${BUSINESS.name}`,
     description:
       'Pricing, timelines, permits, communication, and warranties — straight answers from a veteran-owned WV–MD–VA contractor.',
-    url: `${BUSINESS.url}/faq`,
-    type: 'website',
-  },
+    keywords: [
+      'contractor FAQ',
+      'how much does a bathroom remodel cost',
+      'how much does a kitchen remodel cost',
+      'how much does a new roof cost',
+      'home remodel timeline',
+      'home improvement permits WV',
+    ],
+  }),
+  title: fitTitle(`FAQ — Remodel Costs, Timelines & Permits | ${BUSINESS.name}`),
+  description:
+    'Straight answers on remodel costs, roofing and deck pricing, timelines, permits and warranties — from a veteran-owned WV-MD-VA contractor.',
 };
 
 const FAQ_SECTIONS = [

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
@@ -7,29 +6,26 @@ import { DESIGN_BUILD_PROCESS } from '@/lib/design-build-process';
 import Container from '@/components/shared/Container';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
-import { buildBreadcrumbSchema } from '@/lib/seo';
+import { buildBreadcrumbSchema, buildMetadata } from '@/lib/seo';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Our Design-Build Process | ${BUSINESS.name}`),
-  description:
-    'How a Real Elite design-build project runs in Loudoun County: conversation, design and scope, county and HOA approvals, the build, and the walkthrough. Five steps, in order.',
-  keywords: [
-    'design-build process',
-    'remodeling process Loudoun County',
-    'how design-build works',
-    'HOA approval remodel Loudoun',
-    'remodel permits Loudoun County',
-    'Real Elite Contracting',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/process` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/process',
     title: `Our Design-Build Process | ${BUSINESS.name}`,
     description:
       'Conversation, design and scope, approvals, build, walkthrough. How a design-build project runs.',
-    url: `${BUSINESS.url}/process`,
-    type: 'website',
-  },
+    keywords: [
+      'design-build process',
+      'remodeling process Loudoun County',
+      'how design-build works',
+      'HOA approval remodel Loudoun',
+      'remodel permits Loudoun County',
+      'Real Elite Contracting',
+    ],
+  }),
+  description:
+    'How a Real Elite design-build project runs in Loudoun County: conversation, design and scope, county and HOA approvals, the build, and the walkthrough. Five steps, in order.',
 };
 
 /**

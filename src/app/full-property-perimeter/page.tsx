@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   Home,
@@ -21,26 +21,24 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Full Property Perimeter — Roof to Road Bundle | ${BUSINESS.name}`),
-  description:
-    'Roof, siding, deck, driveway and landscaping under one coordinated project. Real Elite with A+ Paving & Landscaping, serving WV, MD and VA.',
-  keywords: [
-    'roof and driveway bundle',
-    'full exterior renovation WV',
-    'roofing and paving package',
-    'exterior remodeling bundle WV MD VA',
-    'Real Elite A+ Paving',
-    'full property exterior contractor',
-    'Eastern Panhandle exterior renovation',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/full-property-perimeter` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/full-property-perimeter',
     title: `Full Property Perimeter | ${BUSINESS.name} × A+ Paving`,
     description:
       'From the roof to the road — one team, one standard, one warranty. Veteran-owned exterior renovation bundle.',
-    url: `${BUSINESS.url}/full-property-perimeter`,
-    type: 'website',
-  },
+    keywords: [
+      'roof and driveway bundle',
+      'full exterior renovation WV',
+      'roofing and paving package',
+      'exterior remodeling bundle WV MD VA',
+      'Real Elite A+ Paving',
+      'full property exterior contractor',
+      'Eastern Panhandle exterior renovation',
+    ],
+  }),
+  title: fitTitle(`Full Property Perimeter — Roof to Road Bundle | ${BUSINESS.name}`),
+  description:
+    'Roof, siding, deck, driveway and landscaping under one coordinated project. Real Elite with A+ Paving & Landscaping, serving WV, MD and VA.',
 };
 
 const SCOPE_ITEMS = [

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import {
   AlertTriangle,
   ShieldCheck,
@@ -21,27 +21,25 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Storm Damage Roof Inspection (Free) — WV / MD / VA | ${BUSINESS.name}`),
-  description:
-    'Free post-storm roof inspection from a veteran-owned local roofer. Hail and wind damage documented for your insurance carrier. Same-week appointments.',
-  keywords: [
-    'storm damage roof inspection',
-    'hail damage roofer WV',
-    'wind damage roof Frederick MD',
-    'insurance roof claim help',
-    'free storm roof inspection Martinsburg',
-    'roof repair after storm Eastern Panhandle',
-    'veteran-owned storm roofer',
-    'emergency tarping WV MD VA',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/storm-damage` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/storm-damage',
     title: `Storm Damage Roof Inspection — Free | ${BUSINESS.name}`,
     description:
       'Hail and wind damage documented for your insurance carrier. Veteran-owned, licensed in WV and VA.',
-    url: `${BUSINESS.url}/storm-damage`,
-    type: 'website',
-  },
+    keywords: [
+      'storm damage roof inspection',
+      'hail damage roofer WV',
+      'wind damage roof Frederick MD',
+      'insurance roof claim help',
+      'free storm roof inspection Martinsburg',
+      'roof repair after storm Eastern Panhandle',
+      'veteran-owned storm roofer',
+      'emergency tarping WV MD VA',
+    ],
+  }),
+  title: fitTitle(`Storm Damage Roof Inspection (Free) — WV / MD / VA | ${BUSINESS.name}`),
+  description:
+    'Free post-storm roof inspection from a veteran-owned local roofer. Hail and wind damage documented for your insurance carrier. Same-week appointments.',
 };
 
 const WHAT_WE_CHECK = [

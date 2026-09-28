@@ -7,6 +7,7 @@ import {
   formatAreaPlace,
 } from '@/lib/constants';
 import CityPageTemplate from '@/components/services/CityPageTemplate';
+import { buildMetadata } from '@/lib/seo';
 
 type Params = { slug: string };
 
@@ -32,27 +33,25 @@ export async function generateMetadata({
   const description = `Bathroom remodels, kitchens, decks, roofing and additions in ${formatAreaPlace(city)} — veteran-owned, built with military precision. Free written estimate.`;
 
   return {
-    title,
-    description,
-    keywords: [
-      `${city.city} contractor`,
-      `${city.city} general contractor`,
-      `${city.city} bathroom remodel`,
-      `${city.city} kitchen remodel`,
-      `${city.city} roofing`,
-      `${city.city} siding`,
-      `${city.city} decks`,
-      `${city.city} remodeling`,
-      `${city.city} home additions`,
-      `${city.state} contractor`,
-    ],
-    alternates: { canonical: `${BUSINESS.url}/service-areas/${slug}` },
-    openGraph: {
+    ...buildMetadata({
+      path: `/service-areas/${slug}`,
       title,
       description,
-      url: `${BUSINESS.url}/service-areas/${slug}`,
-      type: 'website',
-    },
+      keywords: [
+        `${city.city} contractor`,
+        `${city.city} general contractor`,
+        `${city.city} bathroom remodel`,
+        `${city.city} kitchen remodel`,
+        `${city.city} roofing`,
+        `${city.city} siding`,
+        `${city.city} decks`,
+        `${city.city} remodeling`,
+        `${city.city} home additions`,
+        `${city.state} contractor`,
+      ],
+      omitSocialImage: true,
+    }),
+    title,
   };
 }
 

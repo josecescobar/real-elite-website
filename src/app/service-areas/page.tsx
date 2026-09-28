@@ -11,36 +11,34 @@ import {
   type AreaKind,
 } from '@/lib/constants';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: `Service Areas | ${BUSINESS.name}`,
-  description:
-    'Premium remodeling across the Eastern Panhandle, Frederick, Winchester, Loudoun County, Fairfax County, and Prince William County.',
-  keywords: [
-    'service areas',
-    'Eastern Panhandle',
-    'Martinsburg WV',
-    'Charles Town WV',
-    'Frederick MD',
-    'Winchester VA',
-    'Leesburg VA',
-    'Ashburn VA',
-    'Loudoun County VA',
-    'Fairfax County VA',
-    'Prince William County VA',
-    'contractor service area',
-    'WV contractor',
-    'MD contractor',
-    'VA contractor',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/service-areas` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/service-areas',
     title: `Service Areas | ${BUSINESS.name}`,
     description:
       'Premium contracting across the WV–MD–VA region. Veteran-owned. Built with military precision.',
-    url: `${BUSINESS.url}/service-areas`,
-    type: 'website',
-  },
+    keywords: [
+      'service areas',
+      'Eastern Panhandle',
+      'Martinsburg WV',
+      'Charles Town WV',
+      'Frederick MD',
+      'Winchester VA',
+      'Leesburg VA',
+      'Ashburn VA',
+      'Loudoun County VA',
+      'Fairfax County VA',
+      'Prince William County VA',
+      'contractor service area',
+      'WV contractor',
+      'MD contractor',
+      'VA contractor',
+    ],
+  }),
+  description:
+    'Premium remodeling across the Eastern Panhandle, Frederick, Winchester, Loudoun County, Fairfax County, and Prince William County.',
 };
 
 /**

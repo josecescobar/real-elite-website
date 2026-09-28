@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { FEDERAL_REGISTRATION } from '@/lib/claims';
-import { fitTitle } from '@/lib/seo';
+import { buildMetadata, fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
   ShieldCheck,
@@ -20,27 +20,25 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata: Metadata = {
-  title: fitTitle(`Veteran-Owned Contractor — WV · VA | ${BUSINESS.name}`),
-  description:
-    'Veteran-owned general contractor serving WV, MD and VA — pursuing SDVOSB certification and federal work at the Martinsburg VA, Fort Detrick and Quantico.',
-  keywords: [
-    'veteran-owned contractor WV',
-    'veteran-owned roofing contractor',
-    'veteran roofer Martinsburg',
-    'VA Medical Center contractor',
-    'service-disabled veteran-owned',
-    'military precision contractor',
-    'federal contracting WV MD VA',
-    'HUBZone contractor Martinsburg',
-  ],
-  alternates: { canonical: `${BUSINESS.url}/veterans` },
-  openGraph: {
+  ...buildMetadata({
+    path: '/veterans',
     title: `Veteran-Owned Contractor | ${BUSINESS.name}`,
     description:
       'Military Precision. Civilian Excellence. Veteran-owned contracting across WV, MD, and VA — with the discipline federal and VA work demands.',
-    url: `${BUSINESS.url}/veterans`,
-    type: 'website',
-  },
+    keywords: [
+      'veteran-owned contractor WV',
+      'veteran-owned roofing contractor',
+      'veteran roofer Martinsburg',
+      'VA Medical Center contractor',
+      'service-disabled veteran-owned',
+      'military precision contractor',
+      'federal contracting WV MD VA',
+      'HUBZone contractor Martinsburg',
+    ],
+  }),
+  title: fitTitle(`Veteran-Owned Contractor — WV · VA | ${BUSINESS.name}`),
+  description:
+    'Veteran-owned general contractor serving WV, MD and VA — pursuing SDVOSB certification and federal work at the Martinsburg VA, Fort Detrick and Quantico.',
 };
 
 const PILLARS = [
