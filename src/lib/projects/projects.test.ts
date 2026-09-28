@@ -15,7 +15,7 @@ import {
 } from './index';
 import { SERVICES, ALL_SERVICE_AREAS } from '@/lib/constants';
 import { getAllPosts } from '@/lib/blog';
-import { isStockImage } from '@/lib/stock-images';
+import { isVerifiedWorkImage } from '@/lib/stock-images';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const CITY_SLUGS = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
@@ -65,10 +65,10 @@ describe('Project photo honesty', () => {
       ...(p.beforeAfter ?? []).flatMap((ba) => [ba.before.src, ba.after.src]),
     ].filter((s) => s.length > 0);
 
-  it('never uses a stock or inspiration image in a case study, draft or not', () => {
+  it('never uses stock, inspiration, or an unverified image in a case study, draft or not', () => {
     for (const p of PROJECTS) {
       for (const src of imagesOf(p)) {
-        expect(isStockImage(src), `${p.slug} → stock image ${src}`).toBe(false);
+        expect(isVerifiedWorkImage(src), `${p.slug} → not verified work ${src}`).toBe(true);
       }
     }
   });

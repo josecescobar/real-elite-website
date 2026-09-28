@@ -17,8 +17,10 @@ hash was run against the 1,524 JPEG/PNG files in `real-elite-contracting/` on
 the T7 drive to find the originals behind the case-study photos.
 
 `src/lib/stock-images.ts` now holds the 24 matches. It also treats everything
-under `/images/inspiration/` as inspiration, except the A+ Paving partner photos.
-Tests read from it.
+under `/images/inspiration/` as inspiration, except the A+ Paving partner photos
+and `UNVERIFIED_IMAGE_MATCHES`. That second list is not proven stock: it holds
+removed assets with no perceptual-hash match. `isVerifiedWorkImage` is false
+for stock, inspiration, and unverified assets. Tests read from it.
 
 ## The 24 stock matches
 
@@ -51,9 +53,56 @@ Tests read from it.
 
 The other `inspiration/*.jpg` files did not match the local library, but they
 are stock-style photos kept in the inspiration folder, so they are treated as
-inspiration. The service paving hero `inspiration/paving-fresh-asphalt.jpg` was
-removed. `/services/paving` redirects to `/paving`, so that removal has no
-visible effect.
+inspiration. That folder rule is not a hash match and does not by itself prove
+stock. `inspiration/paving-fresh-asphalt.jpg` was removed as a service hero and
+is in the unverified bucket below, not in the 24. `/services/paving` redirects
+to `/paving`, so that removal has no visible effect.
+
+## Swap and removal inventory
+
+Twenty-one image paths were removed or replaced on this branch relative to
+`feat/projects-better-images`. Each path is in exactly one bucket. Proven stock
+means a perceptual-hash distance of 0–1 in the table above. Nothing in the
+unverified bucket is called stock.
+
+### Stock (19)
+
+These are rows in the 24-match table, and their previous placements were
+removed or replaced on this branch:
+
+- `projects/kitchens/hero.jpg`
+- `projects/kitchens/island-lantern-pendants.jpg`
+- `projects/kitchens/gray-marble-waterfall.jpg`
+- `projects/kitchens/white-herringbone.jpg`
+- `projects/kitchens/white-island-chairs.jpg`
+- `projects/kitchens/two-tone-black-hood.jpg`
+- `projects/bathrooms/hero.jpg`
+- `projects/bathrooms/shower-stone-accent.jpg`
+- `projects/bathrooms/shower-black-frame.jpg`
+- `projects/bathrooms/tub-shower-tile.jpg`
+- `projects/basements/hero-framing.jpg`
+- `deck-multilevel-step-lights.jpg`
+- `deck-ipe-modern.jpg`
+- `deck-pebble-detail.jpg`
+- `deck-screened-porch.jpg`
+- `exterior-brick-victorian.jpg`
+- `roofing-victorian-reroof.jpg`
+- `roofing-tearoff.jpg`
+- `roofing-shingle-install.jpg`
+
+The other five hash matches were not removed on this branch. `deck-garden-path-view.jpg`
+was already unused (taken off the photo wall in #167). The four
+`inspiration/*.webp` rows stayed, already labelled as inspiration. They remain
+stock only.
+
+### Unverified (2)
+
+| File | Why this bucket |
+|---|---|
+| `roofing-complete.jpg` | Removed from the Victorian draft's "after" slot. No original on the T7 drive, and it shows a suburban house, not a Victorian. Not a hash match. Still the featured image of `5-signs-you-need-a-new-roof-eastern-panhandle`, which now carries an "Unverified photo" label. |
+| `inspiration/paving-fresh-asphalt.jpg` | Removed as the paving service hero. Not in the 24 hash matches, so it is not proven stock. |
+
+19 stock + 2 unverified = 21. No swapped or removed path is in more than one bucket.
 
 ## Surface-level changes
 
@@ -137,4 +186,4 @@ stay drafts, and that the hero and gallery may be empty only while the hold is o
   in the FAQ, but the gallery heading reads "Recent Paving projects".
 - The Basements service copy says "we handle … electrical". The case-study pipeline
   doc says Real Elite does not take electrical work.
-- `roofing-complete.jpg` (used on one blog post) has no original on the drive.
+- `roofing-complete.jpg` is classified unverified above. It is still the featured image on one blog post, now labelled "Unverified photo". Replacing that image needs a real roof photo.

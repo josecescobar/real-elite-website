@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import type { ServiceImage } from '@/lib/services-data';
-import { isStockImage } from '@/lib/stock-images';
+import { isStockImage, isVerifiedWorkImage } from '@/lib/stock-images';
 
 type Props = {
   images: readonly ServiceImage[] | ServiceImage[];
@@ -29,14 +29,16 @@ function Grid({ images }: { images: readonly ServiceImage[] }) {
 }
 
 /**
- * The service-page photo gallery. Only Real Elite's own photos appear under
- * "Recent … projects". Stock photography is split out under a labelled
- * "Design inspiration" heading, so it can never read as a completed job.
+ * The service-page photo gallery. Only photos that pass `isVerifiedWorkImage`
+ * appear under "Recent … projects". Proven stock is split out under a labelled
+ * "Design inspiration" heading. Unverified assets are omitted from both, so
+ * they are neither claimed as Real Elite work nor labelled as stock.
  */
 export default function RelatedProjects({ images, serviceTitle }: Props) {
   if (!images || images.length === 0) return null;
-  const work = images.filter((img) => !isStockImage(img.src));
+  const work = images.filter((img) => isVerifiedWorkImage(img.src));
   const inspiration = images.filter((img) => isStockImage(img.src));
+  if (work.length === 0 && inspiration.length === 0) return null;
 
   return (
     <section className="space-y-12">

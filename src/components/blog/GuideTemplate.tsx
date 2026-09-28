@@ -16,7 +16,7 @@ import RelatedProjectsInline from './RelatedProjectsInline';
 import RelatedGuides from './RelatedGuides';
 import { primaryCtaForPath } from '@/lib/cta-intent';
 import ArticleSchema from '@/components/seo/ArticleSchema';
-import { isStockImage } from '@/lib/stock-images';
+import { isStockImage, isUnverifiedImage } from '@/lib/stock-images';
 import JsonLd from '@/components/seo/JsonLd';
 import {
   formatDate,
@@ -73,6 +73,7 @@ const mdxComponents = {
   img: ({ src, alt }: { src?: string; alt?: string }) => {
     const source = typeof src === 'string' ? src : '';
     const stock = isStockImage(source);
+    const unverified = isUnverifiedImage(source);
     const image = (
       <Image
         src={source}
@@ -81,15 +82,15 @@ const mdxComponents = {
         height={1707}
         quality={82}
         sizes="(max-width: 768px) 100vw, 768px"
-        className={`rounded-lg w-full h-auto ${stock ? '!my-0' : 'my-8'}`}
+        className={`rounded-lg w-full h-auto ${stock || unverified ? '!my-0' : 'my-8'}`}
       />
     );
-    if (!stock) return image;
+    if (!stock && !unverified) return image;
     return (
       <span className="block my-8">
         {image}
         <span className="block mt-2 text-xs uppercase tracking-[0.14em] text-charcoal-500">
-          Design inspiration · not a Real Elite project
+          {unverified ? 'Unverified photo · not confirmed as a Real Elite project' : 'Design inspiration · not a Real Elite project'}
         </span>
       </span>
     );
@@ -201,6 +202,11 @@ export default function GuideTemplate({ post }: Props) {
             {isStockImage(post.featuredImage) && (
               <span className="absolute bottom-3 left-3 rounded bg-navy-950/75 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
                 Design inspiration
+              </span>
+            )}
+            {isUnverifiedImage(post.featuredImage) && (
+              <span className="absolute bottom-3 left-3 rounded bg-navy-950/75 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
+                Unverified photo
               </span>
             )}
           </div>

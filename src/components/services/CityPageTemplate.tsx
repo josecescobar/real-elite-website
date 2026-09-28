@@ -40,6 +40,7 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 import TrackedLink from '@/components/analytics/TrackedLink';
 import { serviceHrefForArea } from '@/lib/service-city-content';
 import { LOUDOUN_PERMIT_GUIDE, isLoudounArea, loudounTownGuides } from '@/lib/loudoun-guides';
+import { isVerifiedWorkImage } from '@/lib/stock-images';
 
 /**
  * Map a city to the permit guide that genuinely covers its jurisdiction, so
@@ -141,7 +142,9 @@ export default function CityPageTemplate({ city, data }: Props) {
   // Localized projects: prefer city-tagged photos, fall back to
   // state-tagged, then the full gallery. selectGalleryFor handles
   // the cascade.
-  const projectShots = selectGalleryFor(city.slug, city.state, 6);
+  const projectShots = selectGalleryFor(city.slug, city.state, 6).filter((img) =>
+    isVerifiedWorkImage(img.src),
+  );
 
   // Localized FAQ — answers the common pre-quote questions in a way
   // that AI Overviews / SGE can quote directly. Adds FAQPage structured
@@ -461,7 +464,8 @@ export default function CityPageTemplate({ city, data }: Props) {
                 heading={`Recent projects in ${city.city}`}
               />
 
-              {/* Recent projects */}
+              {/* Recent projects — stock and unverified photos never count as work. */}
+              {projectShots.length > 0 && (
               <div>
                 <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-3">
                   Recent project work
@@ -487,6 +491,7 @@ export default function CityPageTemplate({ city, data }: Props) {
                   ))}
                 </div>
               </div>
+              )}
 
               {/* Why this market trusts us */}
               <div className="bg-steel-50 rounded-lg border-t-4 border-brand-red p-7 md:p-9">
@@ -600,7 +605,9 @@ function ServiceCard({
   const href = serviceHrefForArea(serviceSlug, citySlug);
 
   const svcData = SERVICE_DATA[serviceSlug];
-  const heroImage = svcData?.hero?.image ?? svcData?.overview?.image;
+  const heroCandidate = svcData?.hero?.image ?? svcData?.overview?.image;
+  const heroImage =
+    heroCandidate && isVerifiedWorkImage(heroCandidate.src) ? heroCandidate : undefined;
   const eyebrow = svcData?.hero?.eyebrow;
   const startingAt = svcData?.investment?.startingAt;
 

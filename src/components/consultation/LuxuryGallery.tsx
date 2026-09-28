@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import { isStockImage, isVerifiedWorkImage } from '@/lib/stock-images';
 
 // Stock photography is presented as design inspiration, not completed client work.
+// Verified work photos and unverified assets are left out of this gallery.
 
 type Img = { src: string; alt: string; tag: string };
 
@@ -70,6 +72,10 @@ const INSPIRATION: Img[] = [
   },
 ];
 
+function labelledInspiration(images: readonly Img[]): Img[] {
+  return images.filter((img) => isStockImage(img.src) && !isVerifiedWorkImage(img.src));
+}
+
 type Props = {
   /** Section title. Defaults to "Interior & Design Inspiration" but the
    * consultation page may want different copy. */
@@ -106,7 +112,7 @@ export default function LuxuryGallery({
             </span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {INTERIOR_INSPIRATION.map((img) => (
+            {labelledInspiration(INTERIOR_INSPIRATION).map((img) => (
               <figure
                 key={img.src}
                 className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-card-elevated bg-charcoal-100 group"
@@ -139,7 +145,7 @@ export default function LuxuryGallery({
             </span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {INSPIRATION.map((img) => (
+            {labelledInspiration(INSPIRATION).map((img) => (
               <figure
                 key={img.src}
                 className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-sm bg-charcoal-100 group"
