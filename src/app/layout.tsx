@@ -134,6 +134,7 @@ export default function RootLayout({
           schema={{
             '@context': 'https://schema.org',
             '@type': 'GeneralContractor',
+            '@id': `${BUSINESS.url}/#business`,
             name: BUSINESS.name,
             description:
               'Veteran-owned design-build remodeler serving Loudoun County, Virginia and the Eastern Panhandle of West Virginia — kitchens, primary suites, lower levels, additions and outdoor living.',
