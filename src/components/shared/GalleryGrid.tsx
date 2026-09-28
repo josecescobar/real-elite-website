@@ -6,7 +6,16 @@ import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import { GALLERY_IMAGES } from '@/lib/constants';
 import Container from './Container';
 
-const CATEGORIES = ['All', 'Roofing', 'Decks', 'Bathrooms', 'Kitchens', 'Basements', 'Siding', 'Exterior', 'Remodeling', 'New Construction', 'Additions'];
+const CATEGORY_ORDER = ['Bathrooms', 'Decks', 'Roofing', 'Kitchens', 'Basements', 'Exterior', 'Siding', 'Remodeling', 'New Construction', 'Additions'];
+
+// Only offer filters that have photos behind them — an empty category reads
+// as "we don't do this" and invites padding the wall with photos that aren't ours.
+const present = new Set(GALLERY_IMAGES.map((img) => img.category));
+const CATEGORIES = [
+  'All',
+  ...CATEGORY_ORDER.filter((c) => present.has(c)),
+  ...[...present].filter((c) => !CATEGORY_ORDER.includes(c)),
+];
 
 export default function GalleryGrid() {
   const [selectedCategory, setSelectedCategory] = useState('All');
