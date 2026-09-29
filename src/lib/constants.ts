@@ -1143,7 +1143,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   /* ---------- Franklin County, Pennsylvania. Sources read 2026-09-29. ---------- */
   'greencastle-pa': {
     description:
-      "Greencastle is a borough in Franklin County, Pennsylvania, ZIP 17225. It is not a township and not Greencastle in any other state. The borough permits page says work inside borough limits needs a land-use/zoning permit from the borough zoning officer before a building permit. The borough office is 60 North Washington Street, Greencastle, PA 17225, phone 717-597-7143. After that permit, the building permit goes to PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. The zoning page points at Historic District Maps. This page does not name which parcels those maps cover, and it does not name an HOA.",
+      "Greencastle is a borough in Franklin County, Pennsylvania, ZIP 17225. It is not a township. The borough permits page says work inside borough limits needs a land-use/zoning permit from the borough zoning officer before a building permit. The borough office is 60 North Washington Street, Greencastle, PA 17225, phone 717-597-7143. After that permit, the building permit goes to PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. The zoning page points at Historic District Maps. This page does not name which parcels those maps cover, and it does not name an HOA.",
     neighborhoods: ['Borough of Greencastle', 'ZIP 17225', 'Franklin County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
@@ -1160,13 +1160,13 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does the historic-district map cover the whole ZIP?',
         answer:
-          'The zoning page references Historic District Maps. It does not say the map is the whole ZIP. Check the parcel.',
+          'The zoning page references Historic District Maps. Check the parcel.',
       },
     ],
   },
   'chambersburg-pa': {
     description:
-      "Chambersburg is a borough and the county seat of Franklin County. It is not the rest of the county. The borough permits page says a land-use permit from Land Use and Community Development comes first for construction, additions, remodeling, and demolition. That office is on the second floor of Borough Hall, 100 South Second Street, Chambersburg, PA 17201, phone 717-251-2417. After the borough approves, the applicant contacts PA Municipal Code Alliance at 717-496-4996 for the construction permit. Chapter 113 of the borough code adopts the Pennsylvania Uniform Construction Code. This page does not name neighborhoods or HOAs.",
+      "Chambersburg is a borough and the county seat of Franklin County. It is not the rest of the county. The borough permits page says a land-use permit from Land Use and Community Development comes first. That office is on the second floor of Borough Hall, 100 South Second Street, Chambersburg, PA 17201, phone 717-251-2417. After the borough approves, the applicant contacts PA Municipal Code Alliance at 717-496-4996 for the construction permit. Chapter 113 of the borough code adopts the Pennsylvania Uniform Construction Code. This page does not name neighborhoods or HOAs.",
     neighborhoods: ['Borough of Chambersburg', 'Borough Hall', 'Franklin County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
@@ -1178,12 +1178,12 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'What code does the borough say it enforces?',
         answer:
-          'Chapter 113 adopts the Pennsylvania Uniform Construction Code, Act 45 of 1999, and says a land-use permit is required before a construction-permit application is accepted.',
+          'Chapter 113 adopts the Pennsylvania Uniform Construction Code and says a land-use permit is required before a construction-permit application is accepted.',
       },
       {
         question: 'Is every Franklin County address a Chambersburg borough address?',
         answer:
-          'No. Townships and the other boroughs run their own land-use step. A Chambersburg mailing address is not the test.',
+          'No. The borough is not the rest of the county.',
       },
     ],
   },
@@ -1212,8 +1212,8 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'mercersburg-pa': {
     description:
-      "Mercersburg is a borough in Franklin County, inside the area Peters Township describes, and it has its own government. The borough permits page says land use is handled by borough staff under the subdivision and land-use ordinance, and that PA Municipal Code Alliance is the building-code agency for the borough. A project needs the borough land-use permit first, then the building permit from that agency. The page also says other borough permits, such as sidewalk or curb work, can apply. This page does not name an HOA or a historic district.",
-    neighborhoods: ['Borough of Mercersburg', 'Franklin County', 'Peters Township area'],
+      "Mercersburg is a borough in Franklin County, and it has its own government. The borough permits page says land use is handled by borough staff under the subdivision and land-use ordinance, and that PA Municipal Code Alliance is the building-code agency for the borough. A project needs the borough land-use permit first, then the building permit from that agency. The page also says other borough permits, such as sidewalk or curb work, can apply. This page does not name an HOA or a historic district.",
+    neighborhoods: ['Borough of Mercersburg', 'Franklin County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
       {
@@ -1258,7 +1258,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'fayetteville-pa': {
     description:
-      "Fayetteville is an unincorporated community and census-designated place in Franklin County. It is not a borough. The place sits in Greene Township and Guilford Township, so one mailing address is not one permit counter. Greene Township's land-use page, 1145 Garver Lane, Chambersburg, says the township inspects a complete application and then the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. Guilford Township's zoning page, 115 Spring Valley Road, Chambersburg, says land-use and driveway permit requests go through that office, phone 717-264-0077. This page does not name an HOA. Check the parcel before choosing an office.",
+      "Fayetteville is an unincorporated community and census-designated place in Franklin County. It is not a borough. The place sits in Greene Township and Guilford Township, so one mailing address is not one permit counter. Greene Township's land-use page lists the office at 1145 Garver Lane, Chambersburg. After a land-use permit, the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. Guilford Township's zoning page, 115 Spring Valley Road, Chambersburg, says land-use and driveway permit requests go through that office, phone 717-264-0077. This page does not name an HOA. Check the parcel before choosing an office.",
     neighborhoods: ['Fayetteville', 'Greene Township', 'Guilford Township'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
