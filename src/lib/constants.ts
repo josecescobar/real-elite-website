@@ -309,6 +309,10 @@ export type AreaMarket = 'home' | 'premium';
  * `active` — the area gets its own pages.
  * `consolidated` — the area's own pages are retired in favour of a broader
  *   page, and `redirectTo` says where they go.
+ * `staged` — the row is in the catalog but must not publish. No pages, no
+ *   sitemap entry, no nav or internal link. Used for markets that are not
+ *   licensed yet (Maryland MHIC, Pennsylvania HICPA). It is not a redirect:
+ *   the URL 404s until the row is flipped to `active`.
  *
  * This is AREA-level retirement. Retiring one service+city combo while
  * keeping the area's overview page is a different operation: remove the key
@@ -317,7 +321,10 @@ export type AreaMarket = 'home' | 'premium';
  * removing a key without the redirect ships a hard 404, so the two have to
  * land in the same deploy.
  */
-export type AreaStatus = 'active' | 'consolidated';
+export type AreaStatus = 'active' | 'consolidated' | 'staged';
+
+/** Postal abbreviation stored on a catalog row. */
+export type AreaState = 'WV' | 'MD' | 'VA' | 'PA';
 
 export type ServiceArea = {
   slug: string;
@@ -331,7 +338,7 @@ export type ServiceArea = {
    * not bundled into the tiering change.
    */
   city: string;
-  state: 'WV' | 'MD' | 'VA';
+  state: AreaState;
   kind: AreaKind;
   market: AreaMarket;
   status: AreaStatus;
@@ -474,13 +481,16 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
  * tier views are rendered as links — the service-areas index, the homepage
  * service-area map, the footer, LocalAreasServed — while `ALL_SERVICE_AREAS`
  * decides which pages get generated. If the two disagree about a consolidated
- * row, the site advertises a link to its own 404. `/service-areas/[slug]` sets
- * no `dynamicParams`, so a slug missing from generateStaticParams renders on
- * demand and hits `notFound()`.
+ * or staged row, the site advertises a link to its own 404.
+ * `/service-areas/[slug]` sets no `dynamicParams`, so a slug missing from
+ * generateStaticParams renders on demand and hits `notFound()`.
+ *
+ * `staged` is excluded here on purpose. A row waiting on a license is not a
+ * page, a sitemap URL, or a link. Flipping it to `active` is what publishes it.
  *
  * Generic over the row type so it can be unit-tested against synthetic rows
- * rather than only against the real catalog, where nothing is consolidated yet
- * and the bug would therefore stay invisible.
+ * rather than only against the real catalog, where a missing filter would
+ * otherwise stay invisible.
  */
 export const activeAreas = <T extends { status: AreaStatus }>(rows: readonly T[]): T[] =>
   rows.filter((row) => row.status === 'active');
@@ -820,8 +830,8 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
  *
  * Reads straight off the catalog now — the old version concatenated three
  * overlapping arrays and de-duplicated by slug, which is what the catalog
- * removes the need for. Consolidated rows drop out here, which is how an
- * area stops generating pages.
+ * removes the need for. Consolidated and staged rows drop out here, which is
+ * how an area stops generating pages or stays unpublished.
  */
 export const ALL_SERVICE_AREAS: readonly ServiceArea[] = activeAreas(SERVICE_AREA_CATALOG);
 
@@ -835,7 +845,15 @@ export const ALL_SERVICE_AREAS: readonly ServiceArea[] = activeAreas(SERVICE_ARE
 export const CONSOLIDATED_SERVICE_AREAS: readonly ServiceArea[] =
   SERVICE_AREA_CATALOG.filter((a) => a.status === 'consolidated');
 
-/** Look a row up by slug, across active and consolidated rows alike. */
+/**
+ * Rows held out of the site until a license gate clears. They stay in the
+ * catalog so the place list is reviewable, and `activeAreas` keeps them out
+ * of pages, the sitemap, and internal links.
+ */
+export const STAGED_SERVICE_AREAS: readonly ServiceArea[] =
+  SERVICE_AREA_CATALOG.filter((a) => a.status === 'staged');
+
+/** Look a row up by slug, across active, consolidated, and staged rows. */
 export const getServiceArea = (slug: string): ServiceArea | null =>
   SERVICE_AREA_CATALOG.find((a) => a.slug === slug) ?? null;
 
@@ -864,6 +882,10 @@ export function areaRegionLabel(area: ServiceArea): string {
   if (area.kind === 'region') return area.city;
   if (area.state === 'WV') return 'Eastern Panhandle';
   if (area.state === 'MD') return 'Cumberland Valley and Frederick County area';
+  // The staged Pennsylvania batch is Franklin County (Chambersburg /
+  // Greencastle). A later county needs its own label before that row is
+  // activated; this must not fall through to "Northern Virginia".
+  if (area.state === 'PA') return 'Franklin County area';
   if (area.slug === 'loudoun-county-va' || area.parent === 'loudoun-county-va') {
     return 'Loudoun County area';
   }
@@ -1025,12 +1047,16 @@ export const SERVICE_PAGE_AREA_SERVED: string[] = [
  * rail for the /design-consultation path, calibrated for $50k+ project
  * intake (pre-qualification, designer status, budget tier, in-home booking).
  *
- * Derived from `market: 'premium'` on the catalog rather than maintained by
- * hand, so a row's tier and its conversion path cannot drift apart. It
- * rewires the CTAs on /service-areas/[slug] and /services/[service]/[slug].
+ * Derived from `market: 'premium'` on active rows rather than maintained by
+ * hand, so a row's tier and its conversion path cannot drift apart. Staged
+ * rows are excluded: a premium market that is not licensed yet must not swap
+ * a CTA onto a page that does not exist. It rewires the CTAs on
+ * /service-areas/[slug] and /services/[service]/[slug].
  */
 export const LUXURY_CITY_SLUGS: ReadonlySet<string> = new Set<string>(
-  SERVICE_AREA_CATALOG.filter((a) => a.market === 'premium').map((a) => a.slug)
+  activeAreas(SERVICE_AREA_CATALOG)
+    .filter((a) => a.market === 'premium')
+    .map((a) => a.slug)
 );
 
 /**
@@ -1305,7 +1331,7 @@ export type GalleryImage = {
   src: string;
   alt: string;
   category: string;
-  state?: 'WV' | 'MD' | 'VA';
+  state?: AreaState;
   citySlug?: string;
 };
 
@@ -1343,7 +1369,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
  *   2. Else prefer photos tagged with this state
  *   3. Else fall back to the full gallery
  */
-export function selectGalleryFor(citySlug: string, state: 'WV' | 'MD' | 'VA', limit = 6): GalleryImage[] {
+export function selectGalleryFor(citySlug: string, state: AreaState, limit = 6): GalleryImage[] {
   const byCity = GALLERY_IMAGES.filter((g) => g.citySlug === citySlug);
   if (byCity.length >= 3) return byCity.slice(0, limit);
   const byState = GALLERY_IMAGES.filter((g) => g.state === state);

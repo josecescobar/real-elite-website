@@ -10,6 +10,7 @@ import {
   EXPANSION_SERVICE_AREAS,
   ALL_SERVICE_AREAS,
   CONSOLIDATED_SERVICE_AREAS,
+  STAGED_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
   getServiceArea,
   activeAreas,
@@ -464,6 +465,14 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
       }
     }
   });
+
+  it('keeps staged rows out of the published area list', () => {
+    const active = new Set(ALL_SERVICE_AREAS.map((a) => a.slug));
+    for (const area of STAGED_SERVICE_AREAS) {
+      expect(active.has(area.slug), `${area.slug} is both staged and published`).toBe(false);
+      expect(LUXURY_CITY_SLUGS.has(area.slug), `${area.slug} is staged and a luxury CTA`).toBe(false);
+    }
+  });
 });
 
 /**
@@ -476,10 +485,11 @@ describe('activeAreas', () => {
   const rows = [
     { slug: 'kept', status: 'active' as const },
     { slug: 'retired', status: 'consolidated' as const },
+    { slug: 'held', status: 'staged' as const },
     { slug: 'also-kept', status: 'active' as const },
   ];
 
-  it('drops consolidated rows and preserves the order of the rest', () => {
+  it('drops consolidated and staged rows and preserves the order of the rest', () => {
     expect(activeAreas(rows).map((r) => r.slug)).toEqual(['kept', 'also-kept']);
   });
 
@@ -487,8 +497,12 @@ describe('activeAreas', () => {
     expect(activeAreas([{ slug: 'gone', status: 'consolidated' as const }])).toEqual([]);
   });
 
+  it('returns an empty list when every row is staged', () => {
+    expect(activeAreas([{ slug: 'held', status: 'staged' as const }])).toEqual([]);
+  });
+
   it('leaves an all-active list untouched', () => {
-    const allActive = [rows[0], rows[2]];
+    const allActive = [rows[0], rows[3]];
     expect(activeAreas(allActive)).toEqual(allActive);
   });
 });
@@ -527,6 +541,20 @@ describe('areaRegionLabel', () => {
 
   it('still names the Shenandoah for Winchester', () => {
     expect(areaRegionLabel(getServiceArea('winchester-va')!)).toBe('Northern Shenandoah Valley');
+  });
+
+  it('names Franklin County for a Pennsylvania row instead of Northern Virginia', () => {
+    expect(
+      areaRegionLabel({
+        slug: 'chambersburg-pa',
+        city: 'Chambersburg',
+        state: 'PA',
+        kind: 'town',
+        market: 'home',
+        status: 'staged',
+        legacyTiers: [],
+      })
+    ).toBe('Franklin County area');
   });
 
   it('covers every row in the catalog', () => {
