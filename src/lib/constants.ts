@@ -492,6 +492,22 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'warrenton-va', city: 'Warrenton', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'stephens-city-va', city: 'Stephens City', state: 'VA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'middletown-va', city: 'Middletown', state: 'VA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+
+  /* ---------- Pennsylvania, Franklin County, 2026-09-29 ----------
+   * Jose confirmed the PA home-improvement registration is already held, so
+   * these rows are active. The registration number is still unpublished:
+   * see PA_HIC_REGISTRATION_NUMBER. Maryland gap towns stay staged on the
+   * stacked branch. Optional later markets (Shippensburg, Carlisle,
+   * Mechanicsburg, Gettysburg) are not in this list. `market: 'home'` keeps
+   * the estimate hero. It does not mean the same-week radius promise —
+   * areaQuotesSameWeek withholds that for Pennsylvania.
+   */
+  { slug: 'greencastle-pa', city: 'Greencastle', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'chambersburg-pa', city: 'Chambersburg', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'fort-loudon-pa', city: 'Fort Loudon', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'mercersburg-pa', city: 'Mercersburg', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'waynesboro-pa', city: 'Waynesboro', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'fayetteville-pa', city: 'Fayetteville', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -1119,6 +1135,145 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  /* ---------- Franklin County, Pennsylvania. Sources read 2026-09-29. ---------- */
+  'greencastle-pa': {
+    description:
+      "Greencastle is a borough in Franklin County, Pennsylvania, ZIP 17225. It is not a township and not Greencastle in any other state. The borough permits page says work inside borough limits needs a land-use/zoning permit from the borough zoning officer before a building permit. The borough office is 60 North Washington Street, Greencastle, PA 17225, phone 717-597-7143. After that permit, the building permit goes to PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. The zoning page points at Historic District Maps. This page does not name which parcels those maps cover, and it does not name an HOA.",
+    neighborhoods: ['Borough of Greencastle', 'ZIP 17225', 'Franklin County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Which permit comes first in the borough?',
+        answer:
+          'The land-use/zoning permit from the borough zoning officer. The building permit from PA Municipal Code Alliance comes after it, and the agency will want the borough permit in hand.',
+      },
+      {
+        question: 'Where is the borough office?',
+        answer:
+          '60 North Washington Street, Greencastle, PA 17225. Phone 717-597-7143.',
+      },
+      {
+        question: 'Does the historic-district map cover the whole ZIP?',
+        answer:
+          'The zoning page references Historic District Maps. It does not say the map is the whole ZIP. Check the parcel.',
+      },
+    ],
+  },
+  'chambersburg-pa': {
+    description:
+      "Chambersburg is a borough and the county seat of Franklin County. It is not the rest of the county. The borough permits page says a land-use permit from Land Use and Community Development comes first for construction, additions, remodeling, and demolition. That office is on the second floor of Borough Hall, 100 South Second Street, Chambersburg, PA 17201, phone 717-251-2417. After the borough approves, the applicant contacts PA Municipal Code Alliance at 717-496-4996 for the construction permit. Chapter 113 of the borough code adopts the Pennsylvania Uniform Construction Code. This page does not name neighborhoods or HOAs.",
+    neighborhoods: ['Borough of Chambersburg', 'Borough Hall', 'Franklin County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Does the county issue the Chambersburg land-use permit?',
+        answer:
+          'No. Inside the borough, land use starts at Borough Hall. The construction permit is the next step, through PA Municipal Code Alliance.',
+      },
+      {
+        question: 'What code does the borough say it enforces?',
+        answer:
+          'Chapter 113 adopts the Pennsylvania Uniform Construction Code, Act 45 of 1999, and says a land-use permit is required before a construction-permit application is accepted.',
+      },
+      {
+        question: 'Is every Franklin County address a Chambersburg borough address?',
+        answer:
+          'No. Townships and the other boroughs run their own land-use step. A Chambersburg mailing address is not the test.',
+      },
+    ],
+  },
+  'fort-loudon-pa': {
+    description:
+      "Fort Loudon is a community in Peters Township, Franklin County. It is not a borough. The township site lists Fort Loudon with Upton, Lemasters, Markes, and Cove Gap as places under the township supervisors, and it says Mercersburg is a separate borough. The municipal office is 5000 Steel Avenue, Lemasters, PA 17231, open Monday, Tuesday, and Thursday, 8:00 AM to 4:00 PM. Permit steps were not on the township homepage retrieved on 2026-09-29, so this page does not name a building-code agency for Fort Loudon. It is not Loudoun County, Virginia.",
+    neighborhoods: ['Fort Loudon', 'Peters Township', 'Lemasters'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Is Fort Loudon its own borough?',
+        answer:
+          'No. Peters Township lists it as a community under the township supervisors. Mercersburg, which the same page names, is the borough with its own government.',
+      },
+      {
+        question: 'Which permit office does this page name?',
+        answer:
+          'The township office at 5000 Steel Avenue, Lemasters. The homepage did not publish the building-permit steps, so this page does not guess an inspection agency.',
+      },
+      {
+        question: 'Is this Loudoun County, Virginia?',
+        answer:
+          'No. Fort Loudon is in Franklin County, Pennsylvania. Loudoun County, Virginia already has its own pages.',
+      },
+    ],
+  },
+  'mercersburg-pa': {
+    description:
+      "Mercersburg is a borough in Franklin County, inside the area Peters Township describes, and it has its own government. The borough permits page says land use is handled by borough staff under the subdivision and land-use ordinance, and that PA Municipal Code Alliance is the building-code agency for the borough. A project needs the borough land-use permit first, then the building permit from that agency. The page also says other borough permits, such as sidewalk or curb work, can apply. This page does not name an HOA or a historic district.",
+    neighborhoods: ['Borough of Mercersburg', 'Franklin County', 'Peters Township area'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Does Peters Township permit a house inside the borough?',
+        answer:
+          'No. The township site says Mercersburg has its own government. Borough staff issue the land-use permit. PA Municipal Code Alliance issues the building permit.',
+      },
+      {
+        question: 'What is the order of the two permits?',
+        answer:
+          'Land-use permit from the borough, then the building permit from PA Municipal Code Alliance.',
+      },
+      {
+        question: 'Is sidewalk work included in the land-use permit?',
+        answer:
+          'Not necessarily. The borough page says sidewalk or curb work can require an additional borough permit.',
+      },
+    ],
+  },
+  'waynesboro-pa': {
+    description:
+      "Waynesboro is a borough in Franklin County. The borough zoning page says most projects need a zoning/land-use permit from the borough before a building permit, and that the borough permit or an exemption is required first. Building permits are issued by PA Municipal Code Alliance at 380 Wayne Avenue, Chambersburg, phone 717-496-4996, or by Commonwealth Code Inspection Services at 1102 Sheller Avenue, Chambersburg, phone 717-264-9191. The page says to check the deed for restrictions. This page does not name an HOA.",
+    neighborhoods: ['Borough of Waynesboro', 'Franklin County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Can the building permit be pulled first?',
+        answer:
+          'No. The borough says a land-use permit or a land-use exemption has to come first, and the building-permit office will require it.',
+      },
+      {
+        question: 'Who issues the building permit?',
+        answer:
+          'The borough names two agencies: PA Municipal Code Alliance at 380 Wayne Avenue, and Commonwealth Code Inspection Services at 1102 Sheller Avenue, both in Chambersburg.',
+      },
+      {
+        question: 'Does the borough page name an HOA?',
+        answer:
+          'No. It says to check the deed for restrictions. This page does not add an association name.',
+      },
+    ],
+  },
+  'fayetteville-pa': {
+    description:
+      "Fayetteville is an unincorporated community and census-designated place in Franklin County. It is not a borough. The place sits in Greene Township and Guilford Township, so one mailing address is not one permit counter. Greene Township's land-use page, 1145 Garver Lane, Chambersburg, says the township inspects a complete application and then the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. Guilford Township's zoning page, 115 Spring Valley Road, Chambersburg, says land-use and driveway permit requests go through that office, phone 717-264-0077. This page does not name an HOA. Check the parcel before choosing an office.",
+    neighborhoods: ['Fayetteville', 'Greene Township', 'Guilford Township'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Is Fayetteville one township?',
+        answer:
+          'No. It is a census-designated place in Greene Township and Guilford Township. The parcel decides which office applies.',
+      },
+      {
+        question: 'What does Greene Township publish?',
+        answer:
+          'A land-use permit first, from the office at 1145 Garver Lane. After that, the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue.',
+      },
+      {
+        question: 'What does Guilford Township publish?',
+        answer:
+          'Land-use and driveway permit requests go through the zoning office at 115 Spring Valley Road, phone 717-264-0077. This page does not copy Greene Township\'s building-code step onto Guilford.',
+      },
+    ],
+  },
 };
 
 /**
@@ -1180,9 +1335,9 @@ export function areaRegionLabel(area: ServiceArea): string {
   if (area.kind === 'region') return area.city;
   if (area.state === 'WV') return 'Eastern Panhandle';
   if (area.state === 'MD') return 'Cumberland Valley and Frederick County area';
-  // The staged Pennsylvania batch is Franklin County (Chambersburg /
-  // Greencastle). A later county needs its own label before that row is
-  // activated; this must not fall through to "Northern Virginia".
+  // Every current Pennsylvania row is Franklin County. A later county needs
+  // its own label before that row is added; this must not fall through to
+  // "Northern Virginia".
   if (area.state === 'PA') return 'Franklin County area';
   if (area.slug === 'loudoun-county-va' || area.parent === 'loudoun-county-va') {
     return 'Loudoun County area';
@@ -1280,6 +1435,18 @@ export function areaHeroLane(area: ServiceArea): AreaHeroLane {
   const county = [area, ...areaAncestors(area)].find((row) => row.kind === 'county');
   if (county) return county.market === 'premium' ? 'consultation' : 'estimate';
   return area.market === 'premium' ? 'consultation' : 'estimate';
+}
+
+/**
+ * Whether the city-page quote FAQ may promise a same-week visit.
+ *
+ * That sentence is the Eastern Panhandle home market. Franklin County is
+ * farther out, and Jose has not confirmed the radius there, so Pennsylvania
+ * stays on the estimate hero without the scheduling promise.
+ */
+export function areaQuotesSameWeek(area: Pick<ServiceArea, 'market' | 'state'>): boolean {
+  if (area.state === 'PA') return false;
+  return area.market === 'home';
 }
 
 /** Legacy flat list (primary + secondary city names) for simple iterations */

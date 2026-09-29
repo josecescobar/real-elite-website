@@ -20,6 +20,7 @@ import {
   childAreasOf,
   areaAncestors,
   areaHeroLane,
+  areaQuotesSameWeek,
   areaRegionLabel,
   CITY_DATA,
   GALLERY_IMAGES,
@@ -152,6 +153,12 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'lake-ridge-va', 'woodbridge-va',
       'warrenton-va', 'stephens-city-va', 'middletown-va',
     ];
+    // Franklin County towns. Active because the PA registration is held.
+    // The registration number is still unpublished.
+    const PA_BATCH_2026_09_29 = [
+      'greencastle-pa', 'chambersburg-pa', 'fort-loudon-pa',
+      'mercersburg-pa', 'waynesboro-pa', 'fayetteville-pa',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
@@ -159,6 +166,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...LOUDOUN_TOWNS_2026_09_27,
       ...FAIRFAX_PWC_2026_09_27,
       ...VA_BATCH_2026_09_29,
+      ...PA_BATCH_2026_09_29,
     ]);
   });
 
@@ -568,18 +576,22 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('middletown-va')!)).toBe('Northern Shenandoah Valley');
   });
 
-  it('names Franklin County for a Pennsylvania row instead of Northern Virginia', () => {
-    expect(
-      areaRegionLabel({
-        slug: 'chambersburg-pa',
-        city: 'Chambersburg',
-        state: 'PA',
-        kind: 'town',
-        market: 'home',
-        status: 'staged',
-        legacyTiers: [],
-      })
-    ).toBe('Franklin County area');
+  it('names Franklin County for the Pennsylvania towns and withholds the same-week promise', () => {
+    const slugs = [
+      'greencastle-pa', 'chambersburg-pa', 'fort-loudon-pa',
+      'mercersburg-pa', 'waynesboro-pa', 'fayetteville-pa',
+    ];
+    for (const slug of slugs) {
+      const area = getServiceArea(slug)!;
+      expect(area.status, slug).toBe('active');
+      expect(area.market, slug).toBe('home');
+      expect(areaRegionLabel(area), slug).toBe('Franklin County area');
+      expect(areaHeroLane(area), slug).toBe('estimate');
+      expect(areaQuotesSameWeek(area), slug).toBe(false);
+      expect(LUXURY_CITY_SLUGS.has(slug), slug).toBe(false);
+      expect(STAGED_SERVICE_AREAS.some((row) => row.slug === slug), slug).toBe(false);
+    }
+    expect(areaQuotesSameWeek(getServiceArea('martinsburg-wv')!)).toBe(true);
   });
 
   it('covers every row in the catalog', () => {

@@ -18,6 +18,24 @@ export const CONTRACTOR_LICENSES = {
   summary: 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC)',
 } as const;
 
+/**
+ * Pennsylvania Home Improvement Consumer Protection Act registration number.
+ *
+ * TODO(HIC): Jose confirmed on 2026-09-29 that Real Elite already holds this
+ * registration. He has not supplied the number. Leave this null. Do not invent
+ * one. Pennsylvania pages, contracts, and ads must read `paHicRegistrationLine()`
+ * so a number cannot be typed into one surface only.
+ */
+export const PA_HIC_REGISTRATION_NUMBER: string | null = null;
+
+/** Public sentence for Pennsylvania pages, contracts, and ads. */
+export function paHicRegistrationLine(): string {
+  if (PA_HIC_REGISTRATION_NUMBER) {
+    return `Pennsylvania HIC registration ${PA_HIC_REGISTRATION_NUMBER}`;
+  }
+  return 'Pennsylvania home-improvement registration is on file. The registration number is not printed until the owner supplies it.';
+}
+
 /** Confirmed by Jose in REA-55 board comment 59567b88 (2026-09-27).
  * SAM registration and NAICS codes do not establish veteran certification
  * or expand state contractor license specialties.
