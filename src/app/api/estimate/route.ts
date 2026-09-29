@@ -4,6 +4,12 @@ import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { recordLead, inferLeadType } from '@/lib/leads';
 import { summarizeLead } from '@/lib/ai-lead-summary';
+import { readSmsConsent } from '@/lib/sms-consent';
+import {
+  buildLeadWebhookPayload,
+  postLeadWebhook,
+  websiteLeadCallSid,
+} from '@/lib/lead-webhook';
 
 const RESEND_API_KEY = env.resendApiKey();
 const TO_EMAIL = env.estimateToEmail() || 'info@realelitecontracting.com';
@@ -32,6 +38,7 @@ const MAX = {
   // working unchanged.
   town: 80,
   referralSource: 80,
+  address: 300,
   // First-touch attribution (client-captured; see src/lib/attribution.ts).
   utmSource: 200,
   utmMedium: 200,
@@ -94,6 +101,7 @@ const OPTIONAL: Field[] = [
   'budgetRange',
   'town',
   'referralSource',
+  'address',
   'utmSource',
   'utmMedium',
   'utmCampaign',
@@ -155,6 +163,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400 });
     }
 
+    const consent = readSmsConsent(body, {
+      ip,
+      userAgent: request.headers.get('user-agent') ?? '',
+    });
+
     if (!RESEND_API_KEY) {
       console.error(
         'RESEND_API_KEY is not set — add it in Vercel project settings ' +
@@ -182,8 +195,15 @@ export async function POST(request: Request) {
       { label: 'Name', html: safe.fullName ?? '' },
       { label: 'Email', html: `<a href="mailto:${safe.email}">${safe.email}</a>` },
       { label: 'Phone', html: `<a href="tel:${safe.phone}">${safe.phone}</a>` },
+      {
+        label: 'Call/text consent',
+        html: consent.consent
+          ? `Yes (${escapeHtml(consent.textVersion)})`
+          : 'No',
+      },
       { label: 'Service', html: safe.service ?? '' },
     ];
+    if (safe.address) rows.push({ label: 'Address', html: safe.address });
     if (safe.town) rows.push({ label: 'Town', html: safe.town });
     if (safe.zip) rows.push({ label: 'ZIP', html: safe.zip });
     if (safe.propertyType) rows.push({ label: 'Property', html: safe.propertyType });
@@ -372,7 +392,29 @@ export async function POST(request: Request) {
         referrer: values.referrer,
         landingPath: values.landingPath,
       },
+      consent,
     });
+
+    // Job Board ingest. Same JSON shape as elite-agent phone leads, plus
+    // the consent record. Unset LEAD_WEBHOOK_URL is a no-op and never fails
+    // the request. See src/lib/lead-webhook.ts.
+    await postLeadWebhook(
+      buildLeadWebhookPayload(
+        {
+          name: values.fullName!,
+          phone: values.phone!,
+          email: values.email!,
+          service: values.service!,
+          message: values.message,
+          zip: values.zip,
+          town: values.town,
+          address: values.address,
+          howHeard: values.utmSource || values.referralSource || values.referrer || 'website',
+          consent,
+        },
+        websiteLeadCallSid()
+      )
+    );
 
     // Customer confirmation — a warm receipt so they know it landed and what
     // happens next. Non-fatal: the owner email above already captured the

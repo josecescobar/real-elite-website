@@ -42,7 +42,14 @@ out fast — so a database hiccup can never block or delay a lead. Code: `src/li
      utm_campaign  text,
      referrer      text,
      landing_path  text,
-     ai_summary    text            -- see AI_GATEWAY_API_KEY in .env.example
+     ai_summary    text,           -- see AI_GATEWAY_API_KEY in .env.example
+     sms_consent   boolean,
+     sms_consent_at timestamptz,
+     sms_consent_page_url text,
+     sms_consent_text_version text,
+     sms_consent_text text,
+     client_ip     text,
+     user_agent    text
    );
 
    -- The app writes with the service-role key (server-only), which bypasses RLS.
@@ -58,7 +65,17 @@ out fast — so a database hiccup can never block or delay a lead. Code: `src/li
 
    ```sql
    alter table public.leads add column if not exists ai_summary text;
+   alter table public.leads add column if not exists sms_consent boolean;
+   alter table public.leads add column if not exists sms_consent_at timestamptz;
+   alter table public.leads add column if not exists sms_consent_page_url text;
+   alter table public.leads add column if not exists sms_consent_text_version text;
+   alter table public.leads add column if not exists sms_consent_text text;
+   alter table public.leads add column if not exists client_ip text;
+   alter table public.leads add column if not exists user_agent text;
    ```
+
+   Run the consent columns before deploying the TCPA form change. Until they exist,
+   the ledger insert logs a failure and the owner email still goes out.
 
 3. **Grab the two credentials** from Supabase → Project Settings:
    - **Project URL** → `SUPABASE_URL` (e.g. `https://abcdefgh.supabase.co`)

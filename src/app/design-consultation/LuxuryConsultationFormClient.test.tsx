@@ -125,6 +125,9 @@ describe('outdoor-living consultation submission', () => {
       utm_source: 'loudoun-campaign',
       landing_page: '/services/decks/loudoun-county-va',
       website: '',
+      smsConsent: false,
+      smsConsentTextVersion: '2026-09-29',
+      pageUrl: window.location.href,
     });
     expect(trackEvent).toHaveBeenCalledWith('form_submit', {
       form: 'luxury_consultation', projectType: 'outdoor-living', budget, town: 'ashburn',

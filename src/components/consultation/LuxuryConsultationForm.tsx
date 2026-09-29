@@ -12,6 +12,8 @@ import {
 } from '@/lib/cta-intent';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
+import SmsConsentField from '@/components/shared/SmsConsentField';
+import { smsConsentPayload } from '@/lib/sms-consent';
 
 /* ─────────────────────────────────────────────────────────────────────────
  * LuxuryConsultationForm
@@ -161,6 +163,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -250,6 +253,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           ...(data.referral ? { referralSource: labelFor(REFERRAL_SOURCES, data.referral) } : {}),
           message: data.scope,
           ...attributionPayload(),
+          ...smsConsentPayload(smsConsent),
           website: honeypot,
         }),
       });
@@ -615,6 +619,11 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                     {errors.phone}
                   </p>
                 )}
+                <SmsConsentField
+                  id="luxury-sms-consent"
+                  checked={smsConsent}
+                  onChange={setSmsConsent}
+                />
               </div>
 
               <div>

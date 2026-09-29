@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { inferLeadType, recordLead } from '@/lib/leads';
+import { SMS_CONSENT_TEXT, SMS_CONSENT_TEXT_VERSION } from '@/lib/sms-consent';
 
 const baseInput = {
   leadType: 'estimate' as const,
@@ -70,6 +71,37 @@ describe('recordLead', () => {
     });
     expect(typeof row.id).toBe('string');
     expect(row.ts).toBeTruthy();
+    expect(row.sms_consent).toBeNull();
+  });
+
+  it('stores the TCPA consent record on the ledger row', async () => {
+    configureSupabase();
+    const fetchMock = vi.fn().mockResolvedValue(new Response(null, { status: 201 }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await recordLead({
+      ...baseInput,
+      consent: {
+        consent: true,
+        timestamp: '2026-09-29T22:00:00.000Z',
+        pageUrl: 'https://www.realelitecontracting.com/contact',
+        textVersion: SMS_CONSENT_TEXT_VERSION,
+        text: SMS_CONSENT_TEXT,
+        ip: '203.0.113.9',
+        userAgent: 'TestAgent',
+      },
+    });
+
+    const row = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    expect(row).toMatchObject({
+      sms_consent: true,
+      sms_consent_at: '2026-09-29T22:00:00.000Z',
+      sms_consent_page_url: 'https://www.realelitecontracting.com/contact',
+      sms_consent_text_version: '2026-09-29',
+      client_ip: '203.0.113.9',
+      user_agent: 'TestAgent',
+    });
+    expect(row.sms_consent_text).toMatch(/Reply STOP to opt out/);
   });
 
   it('resolves (never throws) when the insert rejects', async () => {
