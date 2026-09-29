@@ -63,11 +63,16 @@ function escapeHtml(s: string) {
 
 /**
  * Warm, plain confirmation sent to the customer after any form submission.
- * Text-forward with a single call CTA — keeps it out of spam folders and
- * sets the "a real person will call after reviewing your request" expectation.
+ * Text-forward with a single call CTA. A call is promised only when the
+ * visitor checked the optional consent box.
  * `safeFirstName` must already be HTML-escaped by the caller.
  */
-function customerConfirmationHtml(safeFirstName: string) {
+function customerConfirmationHtml(safeFirstName: string, consent: boolean) {
+  const nextSteps = consent
+    ? `<li style="margin-bottom: 6px;">A real person from our team will call you after reviewing your request — no call center, no runaround.</li>
+          <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>`
+    : `<li style="margin-bottom: 6px;">A project lead will review your request and reply by email.</li>
+          <li style="margin-bottom: 6px;">We won&#39;t call or text this number unless you checked the consent box on the form.</li>`;
   return `
     <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2744;">
       <div style="background-color: #1a2744; padding: 20px; text-align: center;">
@@ -78,8 +83,7 @@ function customerConfirmationHtml(safeFirstName: string) {
         <p style="margin: 0 0 14px;">Hi ${safeFirstName},</p>
         <p style="margin: 0 0 14px;">Thanks for reaching out — we&#39;ve got your request and it&#39;s with a project lead now. Here&#39;s what happens next:</p>
         <ul style="margin: 0 0 16px; padding-left: 20px;">
-          <li style="margin-bottom: 6px;">A real person from our team will call you after reviewing your request — no call center, no runaround.</li>
-          <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>
+          ${nextSteps}
         </ul>
         <p style="margin: 0 0 20px;">If you&#39;d rather not wait, you&#39;re always welcome to call or text us directly:</p>
         <div style="text-align: center; margin: 0 0 20px;">
@@ -432,7 +436,7 @@ export async function POST(request: Request) {
           to: [values.email],
           reply_to: TO_EMAIL,
           subject: 'We got your request — here’s what happens next',
-          html: customerConfirmationHtml(escapeHtml(firstName)),
+          html: customerConfirmationHtml(escapeHtml(firstName), consent.consent),
         }),
       });
     } catch (err) {

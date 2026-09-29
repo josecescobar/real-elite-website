@@ -104,7 +104,8 @@ describe('outdoor-living consultation submission', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Request Phone Consultation' }));
 
     const success = await screen.findByRole('status');
-    expect(success).toHaveTextContent("We'll call you.");
+    expect(success).toHaveTextContent('Request received.');
+    expect(success).not.toHaveTextContent("We'll call you.");
     await waitFor(() => expect(success).toHaveFocus());
     expect(fetch).toHaveBeenCalledOnce();
     const [url, request] = vi.mocked(fetch).mock.calls[0];
@@ -140,6 +141,19 @@ describe('outdoor-living consultation submission', () => {
     expect(trackEstimateStep).toHaveBeenCalledWith('submit', 1, 'luxury_consultation', {
       projectType: 'outdoor-living', budget, town: 'ashburn',
     });
+  });
+
+  it('promises a call on the confirmation only after the consent box is checked', async () => {
+    vi.mocked(fetch).mockResolvedValue(new Response('{}', { status: 200 }));
+    renderDeckConsultation();
+    completeIntake('50-100');
+    fireEvent.click(
+      screen.getByRole('checkbox', {
+        name: /i agree that real elite contracting may call or text/i,
+      })
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Request Phone Consultation' }));
+    expect(await screen.findByRole('status')).toHaveTextContent("We'll call you.");
   });
 
   it('omits referralSource from the payload when the optional field is blank', async () => {

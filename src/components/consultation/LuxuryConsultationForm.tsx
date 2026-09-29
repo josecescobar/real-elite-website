@@ -303,11 +303,13 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-navy-900 text-white mb-5">
           <Check className="w-7 h-7" />
         </div>
-        <h3 className="font-heading text-3xl text-navy-900 mb-3">We&apos;ll call you.</h3>
+        <h3 className="font-heading text-3xl text-navy-900 mb-3">
+          {smsConsent ? "We'll call you." : 'Request received.'}
+        </h3>
         <p className="text-charcoal-600 leading-relaxed max-w-md mx-auto">
-          Thank you. A project lead will call within your requested window. The first
-          conversation is a short call to review the brief together, answer your questions and
-          decide whether a site visit is the right next step.
+          {smsConsent
+            ? 'Thank you. A project lead will call within your requested window. The first conversation is a short call to review the brief together, answer your questions and decide whether a site visit is the right next step.'
+            : "Thank you. A project lead will review your brief and reply by email. We won't call or text this number unless you checked the consent box."}
         </p>
         <SuccessNextSteps guideHref="/investment" guideLabel="Read the Loudoun investment guide" />
       </div>

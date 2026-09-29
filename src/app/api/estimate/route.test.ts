@@ -197,6 +197,8 @@ describe('POST /api/estimate — delivery', () => {
     // Warm, on-voice, and personalized to the first name.
     expect(confirmation.html).toContain('Hi Jane');
     expect(confirmation.html).toContain(BUSINESS.phone);
+    expect(confirmation.html).toContain('reply by email');
+    expect(confirmation.html).not.toContain('will call you');
   });
 
   it('still returns 200 when the customer confirmation email fails', async () => {
@@ -343,6 +345,12 @@ describe('POST /api/estimate — delivery', () => {
     const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
     expect(owner.html).toContain('Call/text consent');
     expect(owner.html).toContain('Yes (2026-09-29)');
+    const confirmation = JSON.parse(
+      fetchMock.mock.calls
+        .filter(([url]) => url === 'https://api.resend.com/emails')
+        .at(-1)![1].body as string
+    );
+    expect(confirmation.html).toContain('will call you');
   });
 
   it('stores consent=false when the box is unchecked or the text version does not match', async () => {
