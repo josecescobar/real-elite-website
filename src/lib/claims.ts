@@ -19,21 +19,19 @@ export const CONTRACTOR_LICENSES = {
 } as const;
 
 /**
- * Pennsylvania Home Improvement Consumer Protection Act registration number.
+ * Pennsylvania home-improvement registration.
  *
- * TODO(HIC): Jose confirmed on 2026-09-29 that Real Elite already holds this
- * registration. He has not supplied the number. Leave this null. Do not invent
- * one. Pennsylvania pages, contracts, and ads must read `paHicRegistrationLine()`
- * so a number cannot be typed into one surface only.
+ * Jose confirmed this on 2026-09-29. It is also in
+ * ventures/REAL-ELITE-LOUDOUN-MASTER-PLAN.md. It covers existing-house home
+ * improvement only. It is not a commercial contractor license. Pennsylvania
+ * pages, contracts, and ads must read `paHicRegistrationLine()`.
  */
-export const PA_HIC_REGISTRATION_NUMBER: string | null = null;
+export const PA_HIC_REGISTRATION_NUMBER = 'PA225060';
+export const PA_HIC_EXPIRES = '2028-09-02';
 
 /** Public sentence for Pennsylvania pages, contracts, and ads. */
 export function paHicRegistrationLine(): string {
-  if (PA_HIC_REGISTRATION_NUMBER) {
-    return `Pennsylvania HIC registration ${PA_HIC_REGISTRATION_NUMBER}`;
-  }
-  return 'Pennsylvania home-improvement registration is on file. The registration number is not printed until the owner supplies it.';
+  return `PA HIC #${PA_HIC_REGISTRATION_NUMBER}. Existing-house home improvement only. Expires ${PA_HIC_EXPIRES}.`;
 }
 
 /** Confirmed by Jose in REA-55 board comment 59567b88 (2026-09-27).

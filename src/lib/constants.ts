@@ -495,8 +495,8 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- Pennsylvania, Franklin County, 2026-09-29 ----------
    * Jose confirmed the PA home-improvement registration is already held, so
-   * these rows are active. The registration number is still unpublished:
-   * see PA_HIC_REGISTRATION_NUMBER. Maryland gap towns stay staged on the
+   * these rows are active. The public line is PA HIC #PA225060, existing-house
+   * home improvement only. Maryland gap towns stay staged on the
    * stacked branch. Optional later markets (Shippensburg, Carlisle,
    * Mechanicsburg, Gettysburg) are not in this list. `market: 'home'` keeps
    * the estimate hero. It does not mean the same-week radius promise —

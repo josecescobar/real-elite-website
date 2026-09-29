@@ -27,8 +27,8 @@ export const SALES_MARKETS = {
 } as const;
 
 /**
- * Contract and ad copy for the Pennsylvania registration. The number stays
- * null until Jose supplies it. Do not type a number into a proposal or an ad.
+ * Contract and ad copy for the Pennsylvania registration. Existing-house
+ * home improvement only. Do not describe this number as a commercial license.
  */
 export const SALES_PA_HIC = {
   number: PA_HIC_REGISTRATION_NUMBER,
