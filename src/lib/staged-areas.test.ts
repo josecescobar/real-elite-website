@@ -21,9 +21,9 @@ import { generateStaticParams as townServiceStaticParams } from '@/app/service-a
 
 /**
  * A staged row is in the catalog and nowhere else. These assertions are
- * written against whatever the catalog marks `staged`, so adding the
- * Maryland rows on the stacked branch makes the same tests prove those URLs
- * 404 and stay out of the sitemap.
+ * written against whatever the catalog marks `staged`, so the Maryland rows
+ * and the Virginia permit gaps prove those URLs 404 and stay out of the
+ * sitemap. Pennsylvania stays active.
  *
  * The digest is the string Next's `notFound()` throws
  * (`NEXT_HTTP_ERROR_FALLBACK;404`). Matching the message is not enough:
@@ -44,12 +44,52 @@ const STAGED_VA_PERMIT_GAPS = [
   'middletown-va',
 ] as const;
 
+/**
+ * Gap towns from the 2026-09-29 expansion spec. Optional far markets are
+ * intentionally absent. Frederick, MD is already active and must not appear
+ * here.
+ */
+const STAGED_MD_SLUGS = [
+  'monrovia-md',
+  'ijamsville-md',
+  'new-market-md',
+  'urbana-md',
+  'mount-airy-md',
+  'middletown-md',
+  'adamstown-md',
+  'point-of-rocks-md',
+  'brunswick-md',
+  'boonsboro-md',
+  'sharpsburg-md',
+  'williamsport-md',
+] as const;
+
+const ACTIVE_PA_SLUGS = [
+  'greencastle-pa',
+  'chambersburg-pa',
+  'fort-loudon-pa',
+  'mercersburg-pa',
+  'waynesboro-pa',
+  'fayetteville-pa',
+] as const;
+
 describe('staged service areas stay unpublished', () => {
   const stagedSlugs = STAGED_SERVICE_AREAS.map((area) => area.slug);
 
-  it('stages the Virginia towns whose notes lack a verified permit process', () => {
-    expect(stagedSlugs).toEqual([...STAGED_VA_PERMIT_GAPS]);
+  it('stages the Virginia permit gaps and the Maryland towns, and keeps Pennsylvania active', () => {
+    expect(stagedSlugs).toEqual([...STAGED_VA_PERMIT_GAPS, ...STAGED_MD_SLUGS]);
     expect(dynamicParams).toBe(false);
+    for (const area of STAGED_SERVICE_AREAS.filter((row) => row.state === 'MD')) {
+      expect(area.market, area.slug).toBe('home');
+      expect(area.legacyTiers, area.slug).toEqual([]);
+      expect(area.parent, area.slug).toBeUndefined();
+    }
+    expect(stagedSlugs).not.toContain('frederick-md');
+    expect(stagedSlugs).not.toContain('hagerstown-md');
+    for (const slug of ACTIVE_PA_SLUGS) {
+      expect(stagedSlugs, slug).not.toContain(slug);
+      expect(ALL_SERVICE_AREAS.some((area) => area.slug === slug), slug).toBe(true);
+    }
   });
 
   it('excludes staged rows from active lists, luxury CTAs, and child links', () => {
@@ -103,8 +143,12 @@ describe('staged service areas stay unpublished', () => {
   });
 
   it('keeps staged URLs out of the built sitemap', () => {
+    // next-sitemap writes this in postbuild, and CI runs tests before the
+    // build, so the file is often absent. The static-params test above is
+    // what keeps a staged slug out of that build. When the file is present
+    // (after `npm run build`), this locks the generated XML too.
     const sitemap = join(process.cwd(), 'public', 'sitemap-0.xml');
-    if (!existsSync(sitemap) || stagedSlugs.length === 0) return;
+    if (!existsSync(sitemap)) return;
 
     const xml = readFileSync(sitemap, 'utf8');
     for (const slug of stagedSlugs) {

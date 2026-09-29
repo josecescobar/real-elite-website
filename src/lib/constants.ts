@@ -501,10 +501,10 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   /* ---------- Pennsylvania, Franklin County, 2026-09-29 ----------
    * Jose confirmed the PA home-improvement registration is already held, so
    * these rows are active. The public line is PA HIC #PA225060, existing-house
-   * home improvement only. Maryland gap towns stay staged on the
-   * stacked branch. Optional later markets (Shippensburg, Carlisle,
-   * Mechanicsburg, Gettysburg) are not in this list. `market: 'home'` keeps
-   * the estimate hero. It does not mean the same-week radius promise —
+   * home improvement only. Maryland gap towns stay staged below.
+   * Optional later markets (Shippensburg, Carlisle, Mechanicsburg, Gettysburg)
+   * are not in this list. `market: 'home'` keeps the estimate hero. It does
+   * not mean the same-week radius promise —
    * areaQuotesSameWeek withholds that for Pennsylvania.
    */
   { slug: 'greencastle-pa', city: 'Greencastle', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
@@ -513,6 +513,29 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'mercersburg-pa', city: 'Mercersburg', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'waynesboro-pa', city: 'Waynesboro', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'fayetteville-pa', city: 'Fayetteville', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+
+  /* ---------- STAGED Maryland — do not publish ----------
+   * TODO(MHIC): keep status 'staged' until Jose confirms a Maryland MHIC
+   * license. activeAreas excludes these rows, so they do not render, are not
+   * in the sitemap, and are not linked. Do not flip them to 'active' here.
+   * Frederick, MD is already active and is intentionally not in this list.
+   * Hagerstown stays omitted. Far-market places (Potomac, Bethesda,
+   * Clarksville, Glenwood, Fulton) stay omitted until Jose says the drive
+   * is in range.
+   * Empty legacyTiers so the pinned primary/secondary lists do not move.
+   */
+  { slug: 'monrovia-md', city: 'Monrovia', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'ijamsville-md', city: 'Ijamsville', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'new-market-md', city: 'New Market', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'urbana-md', city: 'Urbana', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'mount-airy-md', city: 'Mount Airy', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'middletown-md', city: 'Middletown', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'adamstown-md', city: 'Adamstown', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'point-of-rocks-md', city: 'Point of Rocks', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'brunswick-md', city: 'Brunswick', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'boonsboro-md', city: 'Boonsboro', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'sharpsburg-md', city: 'Sharpsburg', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'williamsport-md', city: 'Williamsport', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
 ];
 
 /**
