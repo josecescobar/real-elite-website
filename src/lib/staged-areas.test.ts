@@ -55,7 +55,7 @@ describe('staged service areas stay unpublished', () => {
   it('omits staged slugs from static params and service+city content', () => {
     const areaSlugs = new Set(areaStaticParams().map((params) => params.slug));
     const comboCities = new Set(comboStaticParams().map((params) => params.city));
-    const townSlugs = new Set(townServiceStaticParams().map((params) => params.slug));
+    const townSlugs = new Set<string>(townServiceStaticParams().map((params) => params.slug));
     const contentCities = new Set(
       Object.keys(CONTENT).map((key) => key.slice(key.indexOf('-') + 1)),
     );
