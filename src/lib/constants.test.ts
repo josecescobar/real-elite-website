@@ -144,12 +144,21 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'oakton-va', 'dunn-loring-va', 'fort-hunt-va',
       'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va',
     ];
+    // Verified Virginia towns from the 2026-09-29 research notes.
+    // West Virginia gap towns are intentionally absent.
+    const VA_BATCH_2026_09_29 = [
+      'springfield-va', 'herndon-va', 'chantilly-va', 'centreville-va',
+      'falls-church-va', 'fairfax-va', 'manassas-va',
+      'lake-ridge-va', 'woodbridge-va',
+      'warrenton-va', 'stephens-city-va', 'middletown-va',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
       'northern-virginia',
       ...LOUDOUN_TOWNS_2026_09_27,
       ...FAIRFAX_PWC_2026_09_27,
+      ...VA_BATCH_2026_09_29,
     ]);
   });
 
@@ -187,6 +196,16 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'gainesville-va',
         'bristow-va',
         'nokesville-va',
+        'springfield-va',
+        'herndon-va',
+        'chantilly-va',
+        'centreville-va',
+        'falls-church-va',
+        'fairfax-va',
+        'manassas-va',
+        'lake-ridge-va',
+        'woodbridge-va',
+        'warrenton-va',
       ].sort()
     );
   });
@@ -543,6 +562,12 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('winchester-va')!)).toBe('Northern Shenandoah Valley');
   });
 
+  it('names Fauquier for Warrenton and the Shenandoah for Stephens City', () => {
+    expect(areaRegionLabel(getServiceArea('warrenton-va')!)).toBe('Fauquier County area');
+    expect(areaRegionLabel(getServiceArea('stephens-city-va')!)).toBe('Northern Shenandoah Valley');
+    expect(areaRegionLabel(getServiceArea('middletown-va')!)).toBe('Northern Shenandoah Valley');
+  });
+
   it('names Franklin County for a Pennsylvania row instead of Northern Virginia', () => {
     expect(
       areaRegionLabel({
@@ -648,6 +673,9 @@ describe('the Northern Virginia region row', () => {
       'loudoun-county-va',
       'fairfax-county-va',
       'prince-william-county-va',
+      'falls-church-va',
+      'fairfax-va',
+      'manassas-va',
     ]);
   });
 
@@ -663,6 +691,10 @@ describe('the Northern Virginia region row', () => {
       'oakton-va',
       'dunn-loring-va',
       'fort-hunt-va',
+      'springfield-va',
+      'herndon-va',
+      'chantilly-va',
+      'centreville-va',
     ]);
     for (const slug of ['mclean-va', 'oakton-va', 'dunn-loring-va', 'fort-hunt-va', 'clifton-va']) {
       expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
@@ -678,6 +710,8 @@ describe('the Northern Virginia region row', () => {
       'gainesville-va',
       'bristow-va',
       'nokesville-va',
+      'lake-ridge-va',
+      'woodbridge-va',
     ]);
     expect(areaAncestors(getServiceArea('haymarket-va')!).map((a) => a.slug)).toEqual([
       'prince-william-county-va',

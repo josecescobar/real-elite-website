@@ -165,6 +165,7 @@ export default function CityPageTemplate({ city, data }: Props) {
       : '';
 
   const localFaqs: { question: string; answer: string }[] = [
+    ...(data.faqs ?? []),
     {
       question: `Does Real Elite Contracting serve ${formatAreaPlace(city)}?`,
       // A region or county has no "surrounding region" — phrasing it that way
