@@ -77,7 +77,7 @@ vi.mock('@/components/analytics/PhoneLink', () => ({
 }));
 
 const { default: CityPageTemplate } = await import('@/components/services/CityPageTemplate');
-const { ALL_SERVICE_AREAS, CITY_DATA, SERVICES } = await import('@/lib/constants');
+const { ALL_SERVICE_AREAS, CITY_DATA, SERVICES, getServiceArea } = await import('@/lib/constants');
 const { CONTENT } = await import('@/lib/service-city-content');
 
 /** Every `/services/<service>/<area>` href the rendered page contains. */
@@ -198,5 +198,31 @@ describe('CityPageTemplate hero lane', () => {
       expect(hrefs).not.toContain('/design-consultation');
       expect(hrefs).not.toContain('/investment');
     }
+  );
+});
+
+const SAME_WEEK_SENTENCE = 'on-site visits are typically scheduled within the same week';
+
+describe('same-week visit promise', () => {
+  function pageText(slug: string): string {
+    const area = getServiceArea(slug);
+    if (!area) throw new Error(`no catalog row for ${slug}`);
+    const data = CITY_DATA[slug];
+    if (!data) throw new Error(`no CITY_DATA for ${slug}`);
+    const { container, unmount } = render(<CityPageTemplate city={area} data={data} />);
+    const text = container.textContent ?? '';
+    unmount();
+    return text;
+  }
+
+  it('renders the sentence on a town that already carried it', () => {
+    expect(pageText('martinsburg-wv')).toContain(SAME_WEEK_SENTENCE);
+  });
+
+  it.each(['stephens-city-va', 'middletown-va'])(
+    '%s does not render the same-week visit sentence',
+    (slug) => {
+      expect(pageText(slug)).not.toContain(SAME_WEEK_SENTENCE);
+    },
   );
 });

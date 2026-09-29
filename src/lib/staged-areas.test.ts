@@ -11,26 +11,46 @@ import {
   childAreasOf,
 } from '@/lib/constants';
 import { CONTENT } from '@/lib/service-city-content';
-import CityServicePage, { generateStaticParams as areaStaticParams } from '@/app/service-areas/[slug]/page';
+import CityServicePage, {
+  dynamicParams,
+  generateMetadata,
+  generateStaticParams as areaStaticParams,
+} from '@/app/service-areas/[slug]/page';
 import { generateStaticParams as comboStaticParams } from '@/app/services/[service]/[city]/page';
 import { generateStaticParams as townServiceStaticParams } from '@/app/service-areas/[slug]/[service]/page';
 
 /**
  * A staged row is in the catalog and nowhere else. These assertions are
  * written against whatever the catalog marks `staged`, so adding the
- * Maryland and Pennsylvania rows makes the same tests prove those URLs 404
- * and stay out of the sitemap. An empty staged list still checks the filter
- * in constants.test.ts; it does not publish anything.
+ * Maryland rows on the stacked branch makes the same tests prove those URLs
+ * 404 and stay out of the sitemap.
+ *
+ * The digest is the string Next's `notFound()` throws
+ * (`NEXT_HTTP_ERROR_FALLBACK;404`). Matching the message is not enough:
+ * `expect.fail("… 404")` contains that substring and used to pass this test
+ * when the page rendered successfully.
  */
-function isNotFound(error: unknown): boolean {
-  if (!error || typeof error !== 'object') return false;
-  const digest = 'digest' in error ? String((error as { digest?: unknown }).digest) : '';
-  const message = error instanceof Error ? error.message : '';
-  return digest.includes('404') || message.includes('404');
-}
+const NOT_FOUND_DIGEST = 'NEXT_HTTP_ERROR_FALLBACK;404';
+
+/**
+ * Virginia towns whose research notes do not contain a verified permit
+ * process for the jurisdiction the page would describe. Reversible: the
+ * CITY_DATA copy stays, and `status: 'active'` publishes them again.
+ */
+const STAGED_VA_PERMIT_GAPS = [
+  'herndon-va',
+  'fairfax-va',
+  'stephens-city-va',
+  'middletown-va',
+] as const;
 
 describe('staged service areas stay unpublished', () => {
   const stagedSlugs = STAGED_SERVICE_AREAS.map((area) => area.slug);
+
+  it('stages the Virginia towns whose notes lack a verified permit process', () => {
+    expect(stagedSlugs).toEqual([...STAGED_VA_PERMIT_GAPS]);
+    expect(dynamicParams).toBe(false);
+  });
 
   it('excludes staged rows from active lists, luxury CTAs, and child links', () => {
     const active = new Set(ALL_SERVICE_AREAS.map((area) => area.slug));
@@ -68,14 +88,17 @@ describe('staged service areas stay unpublished', () => {
     }
   });
 
-  it('404s /service-areas/[slug] for each staged row', async () => {
+  it('rejects each staged overview with the Next not-found digest', async () => {
+    expect(stagedSlugs.length).toBeGreaterThan(0);
     for (const slug of stagedSlugs) {
-      try {
-        await CityServicePage({ params: Promise.resolve({ slug }) });
-        expect.fail(`${slug} rendered instead of 404`);
-      } catch (error) {
-        expect(isNotFound(error), `${slug} threw ${String(error)}`).toBe(true);
-      }
+      await expect(
+        CityServicePage({ params: Promise.resolve({ slug }) }),
+        slug,
+      ).rejects.toMatchObject({ digest: NOT_FOUND_DIGEST });
+      await expect(
+        generateMetadata({ params: Promise.resolve({ slug }) }),
+        slug,
+      ).rejects.toMatchObject({ digest: NOT_FOUND_DIGEST });
     }
   });
 

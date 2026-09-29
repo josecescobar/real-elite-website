@@ -147,11 +147,13 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     ];
     // Verified Virginia towns from the 2026-09-29 research notes.
     // West Virginia gap towns are intentionally absent.
+    // Herndon, Fairfax city, Stephens City, and Middletown VA are staged
+    // (permit process unverified) and therefore absent from this active list.
     const VA_BATCH_2026_09_29 = [
-      'springfield-va', 'herndon-va', 'chantilly-va', 'centreville-va',
-      'falls-church-va', 'fairfax-va', 'manassas-va',
+      'springfield-va', 'chantilly-va', 'centreville-va',
+      'falls-church-va', 'manassas-va',
       'lake-ridge-va', 'woodbridge-va',
-      'warrenton-va', 'stephens-city-va', 'middletown-va',
+      'warrenton-va',
     ];
     // Franklin County towns. Active because the PA registration is held.
     // The registration number is still unpublished.
@@ -205,11 +207,9 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'bristow-va',
         'nokesville-va',
         'springfield-va',
-        'herndon-va',
         'chantilly-va',
         'centreville-va',
         'falls-church-va',
-        'fairfax-va',
         'manassas-va',
         'lake-ridge-va',
         'woodbridge-va',
@@ -592,6 +592,27 @@ describe('areaRegionLabel', () => {
       expect(STAGED_SERVICE_AREAS.some((row) => row.slug === slug), slug).toBe(false);
     }
     expect(areaQuotesSameWeek(getServiceArea('martinsburg-wv')!)).toBe(true);
+    expect(areaQuotesSameWeek(getServiceArea('stephens-city-va')!)).toBe(false);
+    expect(areaQuotesSameWeek(getServiceArea('middletown-va')!)).toBe(false);
+  });
+
+  it('promises a same-week visit only on towns that already carried it', () => {
+    const allowed = new Set([
+      'martinsburg-wv',
+      'inwood-wv',
+      'charles-town-wv',
+      'ranson-wv',
+      'hedgesville-wv',
+      'frederick-md',
+      'winchester-va',
+      'spring-mills-wv',
+      'falling-waters-wv',
+      'berkeley-springs-wv',
+      'shepherdstown-wv',
+    ]);
+    for (const area of SERVICE_AREA_CATALOG) {
+      expect(areaQuotesSameWeek(area), area.slug).toBe(allowed.has(area.slug));
+    }
   });
 
   it('covers every row in the catalog', () => {
@@ -686,7 +707,6 @@ describe('the Northern Virginia region row', () => {
       'fairfax-county-va',
       'prince-william-county-va',
       'falls-church-va',
-      'fairfax-va',
       'manassas-va',
     ]);
   });
@@ -704,7 +724,6 @@ describe('the Northern Virginia region row', () => {
       'dunn-loring-va',
       'fort-hunt-va',
       'springfield-va',
-      'herndon-va',
       'chantilly-va',
       'centreville-va',
     ]);

@@ -477,21 +477,26 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
    * Facts are from AI-SHARED/Website/local-pages/. Empty legacyTiers.
    * Deferred or dropped on purpose: Broad Run, Marshall, The Plains, Occoquan,
    * and every West Virginia gap town (Jose reviews that list before a build).
-   * Stephens City and Middletown stay on the home-market estimate path.
+   * Stephens City and Middletown stay staged until their permit process is verified.
    * Warrenton is unparented: there is no Fauquier County row yet.
    */
   { slug: 'springfield-va', city: 'Springfield', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
-  { slug: 'herndon-va', city: 'Herndon', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  // Staged: herndon-va.gov returned 403, so the town permit process is unverified.
+  // County rules in the note are not a substitute. Flip back to active once the town source is in the note.
+  { slug: 'herndon-va', city: 'Herndon', state: 'VA', kind: 'town', market: 'premium', status: 'staged', parent: 'fairfax-county-va', legacyTiers: [] },
   { slug: 'chantilly-va', city: 'Chantilly', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
   { slug: 'centreville-va', city: 'Centreville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
   { slug: 'falls-church-va', city: 'Falls Church', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
-  { slug: 'fairfax-va', city: 'Fairfax', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
+  // Staged: fairfaxva.gov returned 403, so the city permit process is unverified.
+  { slug: 'fairfax-va', city: 'Fairfax', state: 'VA', kind: 'city', market: 'premium', status: 'staged', parent: 'northern-virginia', legacyTiers: [] },
   { slug: 'manassas-va', city: 'Manassas', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
   { slug: 'lake-ridge-va', city: 'Lake Ridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'woodbridge-va', city: 'Woodbridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'warrenton-va', city: 'Warrenton', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'stephens-city-va', city: 'Stephens City', state: 'VA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
-  { slug: 'middletown-va', city: 'Middletown', state: 'VA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  // Staged: town site and Frederick County VA building pages were unread.
+  { slug: 'stephens-city-va', city: 'Stephens City', state: 'VA', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  // Staged: the town zoning form is not a verified building-permit process.
+  { slug: 'middletown-va', city: 'Middletown', state: 'VA', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
 
   /* ---------- Pennsylvania, Franklin County, 2026-09-29 ----------
    * Jose confirmed the PA home-improvement registration is already held, so
@@ -518,8 +523,8 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
  * service-area map, the footer, LocalAreasServed — while `ALL_SERVICE_AREAS`
  * decides which pages get generated. If the two disagree about a consolidated
  * or staged row, the site advertises a link to its own 404.
- * `/service-areas/[slug]` sets no `dynamicParams`, so a slug missing from
- * generateStaticParams renders on demand and hits `notFound()`.
+ * `/service-areas/[slug]` sets `dynamicParams = false`, so a slug missing
+ * from generateStaticParams is a hard 404 and is not pre-rendered.
  *
  * `staged` is excluded here on purpose. A row waiting on a license is not a
  * page, a sitemap URL, or a link. Flipping it to `active` is what publishes it.
@@ -1438,15 +1443,34 @@ export function areaHeroLane(area: ServiceArea): AreaHeroLane {
 }
 
 /**
+ * Towns that already published the same-week visit sentence before this
+ * expansion. That is every `market: 'home'` row on the base of this branch:
+ * the Eastern Panhandle, plus Winchester and Frederick, which already
+ * carried the sentence. New rows do not inherit it.
+ */
+const SAME_WEEK_VISIT_SLUGS: ReadonlySet<string> = new Set([
+  'martinsburg-wv',
+  'inwood-wv',
+  'charles-town-wv',
+  'ranson-wv',
+  'hedgesville-wv',
+  'frederick-md',
+  'winchester-va',
+  'spring-mills-wv',
+  'falling-waters-wv',
+  'berkeley-springs-wv',
+  'shepherdstown-wv',
+]);
+
+/**
  * Whether the city-page quote FAQ may promise a same-week visit.
  *
- * That sentence is the Eastern Panhandle home market. Franklin County is
- * farther out, and Jose has not confirmed the radius there, so Pennsylvania
- * stays on the estimate hero without the scheduling promise.
+ * Allowlist only. `market: 'home'` is not enough: Stephens City and
+ * Middletown are home-market rows and still must not say it. Pennsylvania
+ * is absent from the list for the same reason.
  */
-export function areaQuotesSameWeek(area: Pick<ServiceArea, 'market' | 'state'>): boolean {
-  if (area.state === 'PA') return false;
-  return area.market === 'home';
+export function areaQuotesSameWeek(area: Pick<ServiceArea, 'slug'>): boolean {
+  return SAME_WEEK_VISIT_SLUGS.has(area.slug);
 }
 
 /** Legacy flat list (primary + secondary city names) for simple iterations */
