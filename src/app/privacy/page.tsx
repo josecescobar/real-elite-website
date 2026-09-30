@@ -23,7 +23,16 @@ const sections = [
     title: 'How we use information',
     body: [
       'We use submitted information to respond to your request, prepare or confirm estimates, schedule conversations and site visits, provide customer service, improve our website, understand which marketing produces qualified inquiries, prevent abuse, and maintain business records.',
-      'Submitting a form authorizes us to contact you about that request by phone, email, or text. We do not sell or rent personal information, and we do not enroll form submissions in unrelated marketing campaigns without additional permission.',
+      'Submitting a form authorizes us to contact you about that request by phone or email. We do not sell or rent personal information, and we do not enroll form submissions in unrelated marketing campaigns without additional permission.',
+    ],
+  },
+  {
+    title: 'Text messages (SMS)',
+    body: [
+      'We text only after one of two opt-ins. Verbal consent on a phone call: our assistant asks the caller whether we may text them about their request, and we text only if they say yes. Or the customer texts our number first, and we reply only about their request.',
+      'Messages come from Real Elite Contracting about your call, estimate, or project. Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help.',
+      'No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties.',
+      `For help with these messages, contact ${BUSINESS.email} or ${BUSINESS.phone}.`,
     ],
   },
   {
@@ -75,7 +84,7 @@ export default function PrivacyPage() {
         <Container>
           <div className="max-w-3xl space-y-10">
             <div className="rounded-lg border border-gold-300 bg-gold-50 p-5 text-sm text-charcoal-700 leading-relaxed">
-              <strong className="text-navy-800">Effective August 22, 2026.</strong> This policy is
+              <strong className="text-navy-800">Effective September 30, 2026.</strong> This policy is
               drafted from the website&apos;s current data flows and should be reviewed whenever a
               new analytics, messaging, financing, or customer-data provider is added.
             </div>

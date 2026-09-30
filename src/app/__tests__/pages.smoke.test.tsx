@@ -5,7 +5,7 @@
  * data, and runtime errors that would cause a 500 in production.
  */
 import { describe, it, expect, vi, beforeAll } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 /* ------------------------------------------------------------------ */
 /*  Global mocks for Next.js / third-party modules                    */
@@ -196,9 +196,38 @@ describe('static page smoke tests', () => {
     expect(() => render(<FAQPage />)).not.toThrow();
   });
 
-  it('Privacy page renders', async () => {
+  it('Privacy page renders the text message section', async () => {
     const { default: PrivacyPage } = await import('@/app/privacy/page');
-    expect(() => render(<PrivacyPage />)).not.toThrow();
+    render(<PrivacyPage />);
+    expect(screen.getByRole('heading', { name: 'Text messages (SMS)' })).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties.',
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Reply STOP to opt out/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reply HELP for help/i)).toBeInTheDocument();
+    expect(screen.queryByText(/phone, email, or text/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/verbal consent on a phone call/i)).toBeInTheDocument();
+    expect(screen.getByText(/texts our number first/i)).toBeInTheDocument();
+    expect(screen.getByText('Effective September 30, 2026.')).toBeInTheDocument();
+  });
+
+  it('Text messaging terms page renders', async () => {
+    const { default: SmsTermsPage } = await import('@/app/sms-terms/page');
+    render(<SmsTermsPage />);
+    expect(screen.getByRole('heading', { name: 'Text Messaging Terms' })).toBeInTheDocument();
+    expect(screen.getByText('Real Elite Contracting customer updates')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Verbal consent on a phone call: our assistant asks the caller whether we may text them about their request, and we text only if they say yes.',
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('The customer texts our number first. We reply only about their request.'),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/text-consent box/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /privacy policy/i })).toHaveAttribute('href', '/privacy');
   });
 
   it('Process page renders', async () => {
