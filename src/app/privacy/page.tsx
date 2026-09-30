@@ -27,6 +27,14 @@ const sections = [
     ],
   },
   {
+    title: 'Text messages (SMS)',
+    body: [
+      'Messages come from Real Elite Contracting about your call, estimate, or project. Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help.',
+      'No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties.',
+      `For help with these messages, contact ${BUSINESS.email} or ${BUSINESS.phone}.`,
+    ],
+  },
+  {
     title: 'Service providers',
     body: [
       'We use trusted providers to operate the website and deliver requested services. Depending on which features are configured, these may include Vercel for hosting and performance measurement, Google Analytics for site measurement, Microsoft Clarity for heatmaps and session recordings, Resend for email delivery, Twilio for call and text delivery, Supabase for lead records, Upstash for abuse prevention, Google Maps or Solar APIs for address and roof measurements, and Thumbtack when a homeowner contacts us through that marketplace.',
@@ -75,7 +83,7 @@ export default function PrivacyPage() {
         <Container>
           <div className="max-w-3xl space-y-10">
             <div className="rounded-lg border border-gold-300 bg-gold-50 p-5 text-sm text-charcoal-700 leading-relaxed">
-              <strong className="text-navy-800">Effective August 22, 2026.</strong> This policy is
+              <strong className="text-navy-800">Effective September 30, 2026.</strong> This policy is
               drafted from the website&apos;s current data flows and should be reviewed whenever a
               new analytics, messaging, financing, or customer-data provider is added.
             </div>

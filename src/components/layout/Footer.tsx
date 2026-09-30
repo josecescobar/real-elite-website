@@ -221,6 +221,9 @@ export default function Footer() {
             <Link className="min-h-11 inline-flex items-center underline underline-offset-2 hover:text-white transition-colors" href="/privacy">
               Privacy Policy
             </Link>
+            <Link className="min-h-11 inline-flex items-center underline underline-offset-2 hover:text-white transition-colors" href="/sms-terms">
+              Text Messaging Terms
+            </Link>
           </div>
           <p className="text-charcoal-500 uppercase tracking-[0.15em] font-semibold">
             Family-Run · Built With Military Precision
