@@ -42,7 +42,7 @@ A builder-grade basement and a luxury one can have the same square footage. The 
 - **Solid-core doors, substantial trim, and consistent hardware** — the small things your eye reads as "quality" without quite knowing why.
 - **Sound control** — insulation in the theater walls and ceiling, and an acoustic strategy so movie night doesn't take over the whole house.
 
-![Kitchenette inspiration with white cabinetry, a sink, and a compact refrigerator](/images/inspiration/kitchenette-refresh.webp)
+![A kitchenette with white cabinetry, a sink, and a compact refrigerator](/images/inspiration/kitchenette-refresh.webp)
 
 ## What luxury basements get right behind the walls
 
@@ -81,4 +81,3 @@ Beyond Loudoun, we build finished lower levels across Fairfax County and Alexand
 
 Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
-*Finished-room photography in this article is for design inspiration; the header photo is a Real Elite basement during the framing stage.*

@@ -52,10 +52,15 @@ describe('REA-790 site-audit copy', () => {
     expect(hero).toContain('Schedule a design consultation');
   });
 
-  it('captions each signature card on the photo', () => {
+  it('does not label signature cards as stock', () => {
     const cards = read('src/components/home/SignatureServices.tsx');
-    expect(cards).toContain('Design inspiration · not a Real Elite project');
-    expect(cards.indexOf('Design inspiration · not a Real Elite project')).toBeLessThan(cards.indexOf('{cat.title}'));
+    expect(cards.toLowerCase()).not.toContain('design inspiration');
+    expect(cards).toContain('const photo = cat.image');
+    const guide = read('src/lib/investment-guide.ts');
+    expect(guide).toContain('VERIFIED_CATEGORY_PHOTOS.kitchen');
+    expect(guide).toContain('VERIFIED_CATEGORY_PHOTOS.bathroom');
+    expect(guide).toContain('VERIFIED_CATEGORY_PHOTOS.outdoor');
+    expect(guide).toContain('VERIFIED_CATEGORY_PHOTOS.living');
   });
 
   it('keeps the app-wide loading boundary off static routes and on /sales', () => {

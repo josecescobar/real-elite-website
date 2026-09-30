@@ -8,7 +8,6 @@ import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import StickyEstimateRail from '@/components/services/StickyEstimateRail';
 import LuxuryConsultationRail from '@/components/services/LuxuryConsultationRail';
-import OutdoorLivingInspiration from '@/components/services/OutdoorLivingInspiration';
 import RelatedGuides from '@/components/blog/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
@@ -401,8 +400,6 @@ export default function CityPageTemplate({ city, data }: Props) {
               </div>
 
               <TownServiceLinksForTown townSlug={city.slug} />
-
-              {city.slug === 'loudoun-county-va' && <OutdoorLivingInspiration />}
 
               {/* Areas inside this one (region/county) or neighbourhoods (town). */}
               <div>

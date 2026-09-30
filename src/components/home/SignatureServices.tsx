@@ -10,7 +10,8 @@ import { INVESTMENT_GUIDE } from '@/lib/investment-guide';
  * figures come from the investment guide so the homepage and /investment can
  * never disagree about a number.
  *
- * Imagery is design inspiration, and the section says so.
+ * Photos are real jobs. Basement and addition cards stay text-only until a
+ * real photo exists. Alts do not name a town.
  */
 const ORDER = ['lower-levels', 'kitchens', 'primary-suites', 'outdoor-living', 'additions'] as const;
 const SPANS: Record<(typeof ORDER)[number], string> = {
@@ -48,38 +49,49 @@ export default function SignatureServices() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
           {cards.map((cat, i) => {
             const large = i === 0;
+            const photo = cat.image;
+            const copy = (
+              <>
+                <p className="text-[0.65rem] uppercase tracking-[0.2em] font-semibold text-brand-red-light mb-2">
+                  {cat.from ? `Typically from ${cat.from}` : cat.eyebrow}
+                </p>
+                <h3 className={`font-heading text-white leading-tight ${large ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-2xl md:text-[1.75rem]'}`}>
+                  {cat.title}
+                </h3>
+                <p className={`text-charcoal-200 leading-relaxed mt-2 ${large ? 'text-base max-w-md' : 'text-sm max-w-sm'}`}>
+                  {cat.tagline}
+                </p>
+                <span className="inline-flex items-center gap-1.5 mt-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/85 group-hover:text-brand-red-light transition-colors">
+                  Explore
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                </span>
+              </>
+            );
             return (
               <Link
                 key={cat.slug}
                 href={cat.href}
                 className={`group relative overflow-hidden rounded-lg bg-navy-900 text-white photo-editorial reveal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400 ${SPANS[cat.slug as (typeof ORDER)[number]]}`}
               >
-                <Image
-                  src={cat.image.src}
-                  alt={cat.image.alt}
-                  fill
-                  sizes={large ? '(max-width: 768px) 100vw, 58vw' : '(max-width: 768px) 100vw, 42vw'}
-                  className="object-cover"
-                />
-                <div aria-hidden="true" className="absolute inset-0 gradient-navy-overlay" />
-                <p className="absolute top-3 left-3 z-10 max-w-[18rem] rounded-sm bg-navy-950/90 px-2.5 py-1.5 text-[0.7rem] font-semibold leading-snug text-white">
-                  Design inspiration · not a Real Elite project
-                </p>
-                <div className={`absolute inset-x-0 bottom-0 ${large ? 'p-7 md:p-10' : 'p-6 md:p-7'}`}>
-                  <p className="text-[0.65rem] uppercase tracking-[0.2em] font-semibold text-brand-red-light mb-2">
-                    {cat.from ? `Typically from ${cat.from}` : cat.eyebrow}
-                  </p>
-                  <h3 className={`font-heading text-white leading-tight ${large ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-2xl md:text-[1.75rem]'}`}>
-                    {cat.title}
-                  </h3>
-                  <p className={`text-charcoal-200 leading-relaxed mt-2 ${large ? 'text-base max-w-md' : 'text-sm max-w-sm'}`}>
-                    {cat.tagline}
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 mt-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/85 group-hover:text-brand-red-light transition-colors">
-                    Explore
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                  </span>
-                </div>
+                {photo ? (
+                  <>
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      sizes={large ? '(max-width: 768px) 100vw, 58vw' : '(max-width: 768px) 100vw, 42vw'}
+                      className="object-cover"
+                    />
+                    <div aria-hidden="true" className="absolute inset-0 gradient-navy-overlay" />
+                    <div className={`absolute inset-x-0 bottom-0 ${large ? 'p-7 md:p-10' : 'p-6 md:p-7'}`}>
+                      {copy}
+                    </div>
+                  </>
+                ) : (
+                  <div className={`flex h-full flex-col justify-end ${large ? 'p-7 md:p-10' : 'p-6 md:p-7'}`}>
+                    {copy}
+                  </div>
+                )}
               </Link>
             );
           })}
@@ -96,7 +108,7 @@ export default function SignatureServices() {
             </p>
           )}
           <p className="text-charcoal-500 text-[0.65rem] uppercase tracking-[0.16em] flex-shrink-0">
-            Imagery is design inspiration · <Link href="/projects" className="hover:text-navy-900 transition-colors">See completed work</Link>
+            <Link href="/projects" className="hover:text-navy-900 transition-colors">See completed work</Link>
           </p>
         </div>
       </Container>

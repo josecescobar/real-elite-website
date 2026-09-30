@@ -2,13 +2,14 @@
  * Service page data layer. Every service page renders through
  * ServicePageTemplate using one of these entries.
  *
- * Honesty rule: a hero, overview or "Recent projects" image must be Real
- * Elite's own photograph. Kitchens and Basements have none yet, so their
- * `hero.image` is undefined and the template renders the gradient hero.
- * Stock images left in a `gallery` are moved by RelatedProjects under a
- * "Design inspiration" heading (see src/lib/stock-images.ts); a test fails if
- * a hero or overview image is stock. Swap in real photos once jobs are shot.
+ * Honesty rule: a hero, overview, or gallery image must be Real Elite's own
+ * photograph. Stock is omitted. Kitchens use the verified kitchen photo.
+ * Basements and additions have no finished-room photo yet, so those signature
+ * cards stay text-only. A test fails if a hero, overview, or gallery image
+ * is stock (see src/lib/stock-images.ts).
  */
+
+import { VERIFIED_CATEGORY_PHOTOS } from '@/lib/stock-images';
 
 export type ServiceImage = { src: string; alt: string };
 
@@ -187,6 +188,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     ],
     icon: 'Bath',
     gallery: [
+      VERIFIED_CATEGORY_PHOTOS.bathroom,
       { src: '/images/work/bath-primary-shower-and-vanity.webp', alt: 'Primary bath with walk-in tile shower beside a quartz-topped navy vanity' },
       { src: '/images/work/bath-primary-navy-vanity.webp', alt: 'Navy shaker vanity with matte black pulls and a quartz top' },
       { src: '/images/work/bath-primary-tile-leveling.webp', alt: 'Large-format marble-look floor tile set with a tile leveling system' },
@@ -283,13 +285,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'financing-a-kitchen-remodel-options-2026',
     ],
     icon: 'ChefHat',
-    gallery: [
-      { src: '/images/projects/kitchens/island-lantern-pendants.jpg', alt: 'White kitchen with marble-topped island, lantern pendants, and dark hardwood floors' },
-      { src: '/images/projects/kitchens/gray-marble-waterfall.jpg', alt: 'Modern gray kitchen with marble waterfall island and chrome chandelier' },
-      { src: '/images/projects/kitchens/white-herringbone.jpg', alt: 'White kitchen with herringbone tile backsplash and shiplap ceiling' },
-      { src: '/images/projects/kitchens/white-island-chairs.jpg', alt: 'Open white kitchen with center island, navy chairs, and abstract artwork' },
-      { src: '/images/projects/kitchens/two-tone-black-hood.jpg', alt: 'Two-tone kitchen with dark cabinetry, warm wood uppers, and black range hood' },
-    ],
+    gallery: [VERIFIED_CATEGORY_PHOTOS.kitchen],
   },
 
   basements: {
@@ -706,6 +702,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       ],
     },
     gallery: [
+      VERIFIED_CATEGORY_PHOTOS.outdoor,
       { src: '/images/work/deck-composite-stairs-front.webp', alt: 'Composite deck with white vinyl railings and a wide stair down to the patio' },
       { src: '/images/work/deck-composite-surface.webp', alt: 'Brown composite decking with a curved run of white vinyl railing' },
       { src: '/images/deck-lounge.jpg', alt: 'Deck with outdoor lounge furniture' },
@@ -797,6 +794,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       ],
     },
     gallery: [
+      VERIFIED_CATEGORY_PHOTOS.living,
       { src: '/images/flooring-dark-living.jpg', alt: 'Dark laminate flooring in living room' },
       { src: '/images/flooring-light-hallway.jpg', alt: 'Light wood laminate flooring in hallway' },
       { src: '/images/flooring-light-living.jpg', alt: 'Light vinyl plank flooring' },

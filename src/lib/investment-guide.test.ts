@@ -17,7 +17,9 @@ describe('investment guide', () => {
     for (const cat of INVESTMENT_GUIDE) {
       expect(pillars.has(cat.href), `${cat.slug} → ${cat.href}`).toBe(true);
       expect(types.has(cat.consultationType), `${cat.slug} consultation type`).toBe(true);
-      expect(fs.existsSync(`public${cat.image.src}`), `${cat.slug} image ${cat.image.src}`).toBe(true);
+      if (cat.image) {
+        expect(fs.existsSync(`public${cat.image.src}`), `${cat.slug} image ${cat.image.src}`).toBe(true);
+      }
     }
   });
 

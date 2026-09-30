@@ -3,7 +3,6 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import GalleryGrid from '@/components/shared/GalleryGrid';
-import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import ProjectCard from '@/components/projects/ProjectCard';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS, SERVICES } from '@/lib/constants';
@@ -116,13 +115,6 @@ export default async function ProjectsPage({
         </Container>
       </section>
       <GalleryGrid />
-
-      {/* Stock photography, labeled as inspiration. It stays below the photo
-          wall so nothing here reads as a Real Elite project. */}
-      <LuxuryGallery
-        title="Design inspiration"
-        subtitle="Kitchen, bath, and lower-level ideas we can build for you. These images are inspiration, not Real Elite project photographs."
-      />
 
       <AssurancesBand />
     </>
