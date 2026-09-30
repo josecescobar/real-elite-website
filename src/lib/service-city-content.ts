@@ -248,6 +248,28 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
+  /**
+   * Charles Town decks. Same published Eastern Panhandle per-square-foot
+   * figures as Martinsburg (deck-cost guide). The permit path is not the
+   * same: city limits file with Charles Town, a Charles Town mailing address
+   * outside the city files with Jefferson County.
+   */
+  'decks-charles-town-wv': {
+    metaTitle: 'Composite Decks in Charles Town, WV | Real Elite',
+    metaDescription:
+      'Composite decks in Charles Town run about $30 to $55 a square foot. City permits inside limits; Jefferson County outside.',
+    relatedGuideSlugs: [
+      'deck-permits-berkeley-jefferson-county-wv-2026',
+      'deck-cost-per-square-foot-eastern-panhandle-2026',
+    ],
+    paragraphs: [
+      "Charles Town decks sit on two kinds of lots. The blocks around Washington and George are tight, often shaded, and graded toward older stone or block foundations. Toward the Ranson line, Route 9, Cavaland, and Jefferson Orchards, the usual job is a newer house whose builder deck in pressure-treated pine is ready to be replaced.",
+      "Installed cost is the Eastern Panhandle range the deck-cost guide already publishes: about $15 to $25 per square foot for pressure-treated pine and $30 to $55 per square foot for composite such as Trex or TimberTech. A Charles Town mailing address is not city limits. Inside the city, the Building Inspection office at City Hall, 101 E. Washington Street, lists decks and porches as work that needs a building permit. Apply in person or through MGO. The Department of Community Development answers at 304-724-3248.",
+      "Outside city limits, that mailing address is Jefferson County. The Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100 (304-725-2998, permits@jeffersoncountywv.org). County applications go through MGO Connect. The published deck-permit guide treats an attached deck, a walking surface more than 30 inches above grade, or permanent footings as a permit in both Berkeley and Jefferson counties. We check the parcel before we file. This page does not guess a city fee.",
+      "Footings go below the frost line. The written estimate itemizes framing, decking, railing, and footings. WV Contractor License WV062432.",
+    ],
+  },
+
   'decks-winchester-va': {
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Winchester homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. A Winchester mailing address is not automatically City limits: parcels along Route 7, Senseny Road, and the county line often sit in Frederick County, Virginia. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
@@ -437,6 +459,30 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BATHROOMS ────────────────────────────────────────────────────────────
 
+  'bathrooms-martinsburg-wv': {
+    metaTitle: 'Martinsburg Bathroom Remodels | Real Elite',
+    metaDescription:
+      'Bathroom remodels in Martinsburg. The city lists bath remodels as permit work. Berkeley County reviews parcels outside city limits.',
+    paragraphs: [
+      "Martinsburg bathrooms split the same way the houses do. Along Queen Street and in the Burke Street Historic District, the primary bath is often a small plaster room with one wet wall and a tub that was never meant to be a walk-in shower. In South Martinsburg, the North End, Pikeside, Foxcroft, and the later houses toward Spring Mills and Route 11, the bath is a builder layout: a fiberglass surround, a vanity that does not fit the storage, and a fan that does not clear the room.",
+      "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, issues the building permit. The city's published examples of permit work include remodeling bathrooms, plus plumbing and electrical systems. Applications go through MGO Connect. The Planning Department's published number is (304) 264-2131.",
+      "Outside the city, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace plumbing, electrical, gas, or mechanical systems. The county office publishes 304-264-1966. We check the parcel before we file. This page does not publish a Martinsburg bathroom price.",
+      "The written estimate itemizes the wet-area work, the fixture moves, and the trades the permit covers. WV Contractor License WV062432.",
+    ],
+  },
+
+  'bathrooms-charles-town-wv': {
+    metaTitle: 'Charles Town Bathroom Remodels | Real Elite',
+    metaDescription:
+      'Bathroom remodels in Charles Town. City permits cover remodels and plumbing. Jefferson County reviews parcels outside the city limits.',
+    paragraphs: [
+      "Charles Town bathrooms are not one housing stock. Downtown, on the older houses around Washington and George, the bath is a tight room in plaster, often sharing a stack with a kitchen that was laid out a century ago. Out toward the Ranson line, Route 9, Cavaland, Jefferson Orchards, and Flowing Springs, the primary bath is a later builder room: a tub-shower combo and a single vanity.",
+      "Inside Charles Town city limits, the Building Inspection office at City Hall, 101 E. Washington Street, requires a building permit for remodels, and its published list also names plumbing and electrical. Apply in person or through MGO. The Department of Community Development is at 304-724-3248. The city publishes the codes it enforces, including the International Residential Code 2018, on that Building Inspection page.",
+      "A Charles Town mailing address outside the city is Jefferson County. The Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work (304-725-2998, permits@jeffersoncountywv.org). County filings go through MGO Connect, which the county launched on August 25, 2025. We check the parcel before we file. This page does not publish a Charles Town bathroom price.",
+      "The written estimate itemizes waterproofing, the fixture layout, and whichever trades the permit names. WV Contractor License WV062432.",
+    ],
+  },
+
   'bathrooms-frederick-md': {
     paragraphs: [
       "Frederick, Maryland is the strongest bathroom-remodel market in our service area. The mix of historic downtown homes near Market Street and Carroll Creek, established mid-century neighborhoods, and the explosive growth in Ballenger Creek, Urbana, Jefferson, and New Market means we see the full spectrum of bathroom work — from gut renovations of original 1920s tile bathrooms to primary-suite upgrades in 1990s colonials hitting the 25-year mark.",
@@ -483,6 +529,30 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   // ── KITCHENS ─────────────────────────────────────────────────────────────
+
+  'kitchens-martinsburg-wv': {
+    metaTitle: 'Martinsburg Kitchen Remodels | Real Elite',
+    metaDescription:
+      'Kitchen remodels in Martinsburg. City of Martinsburg permits inside city limits; Berkeley County permits the parcels outside them.',
+    paragraphs: [
+      "Martinsburg kitchens follow the house. The Victorian and early houses around Queen Street and the Burke Street Historic District still have small original kitchens, plaster walls, and plumbing that was never laid out for an island. South Martinsburg, the North End, Pikeside, Foxcroft, and the subdivisions toward Spring Mills and the Route 11 corridor are later plans: builder cabinets, a peninsula, and a wall that may or may not be the one you can open into the dining room.",
+      "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, lists remodeling kitchens among the projects that need a building permit before work starts. The same permit covers plumbing and electrical when those systems change. Apply through MGO Connect. The Planning Department publishes (304) 264-2131.",
+      "Outside city limits, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace electrical, gas, mechanical, or plumbing systems. That office publishes 304-264-1966 and takes applications from 8 AM to 5 PM, Monday through Friday. We check the parcel before we file. This page does not publish a Martinsburg kitchen price.",
+      "The written estimate itemizes cabinets, counters, and any wall, plumbing, or electrical move the permit has to cover. WV Contractor License WV062432.",
+    ],
+  },
+
+  'kitchens-charles-town-wv': {
+    metaTitle: 'Charles Town Kitchen Remodels | Real Elite',
+    metaDescription:
+      'Kitchen remodels in Charles Town. City building permits at 101 E. Washington Street; Jefferson County reviews parcels outside city limits.',
+    paragraphs: [
+      "Charles Town kitchens come in two plans. On the historic streets around Washington and George, the kitchen is a small room in an older house, often with plaster, a single window, and a stack shared with the bath. Toward Ranson, Route 9, Cavaland, Jefferson Orchards, and Flowing Springs Road, the kitchen is a later builder layout: stock cabinets, a peninsula, and enough of a dining wall that opening it is a structural question, not a finish question.",
+      "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, requires a building permit for remodels. Plumbing and electrical are on the same published list. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
+      "Outside the city, a Charles Town address is Jefferson County. The Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. County applications go through MGO Connect. We check the parcel before we file. This page does not publish a Charles Town kitchen price.",
+      "The written estimate itemizes the cabinet run, the counters, and any plumbing or electrical relocation. WV Contractor License WV062432.",
+    ],
+  },
 
   'kitchens-frederick-md': {
     paragraphs: [
@@ -599,6 +669,19 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "On the older homes, the honest conversation happens before design. Some of those cellars want a dehumidification and drainage plan and a modest finish rather than a full build-out, and we would rather say so than sell you drywall that will not last. Where the headroom and the foundation do support a full finish, the result is worth having: a guest suite, a library or den, a workshop that is not the garage.",
       "Newer Charles Town builds are straightforward, and the main code point is egress. Jefferson County requires a compliant egress window for any lower-level bedroom — $3,500 to $6,500 installed on a typical foundation, on the estimate from the start. Moisture control still comes first regardless of the home's age: perimeter check, sump and backup, insulated subfloor where the slab calls for it.",
       "We pull the Jefferson County permits, coordinate the inspections, and where the property sits in the historic district we handle that review too. Every job starts with a written, itemized estimate. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed in West Virginia and Virginia.",
+    ],
+  },
+
+  'basements-martinsburg-wv': {
+    metaTitle: 'Martinsburg Basement Finishing | Real Elite',
+    metaDescription:
+      'Finished basements in Martinsburg. Egress windows run $3,500 to $6,500. City permits inside limits; Berkeley County outside.',
+    relatedGuideSlugs: ['basement-egress-window-cost-eastern-panhandle-2026'],
+    paragraphs: [
+      "Martinsburg basements are two jobs. The older houses around Queen Street and the Burke Street Historic District sit on stone or block cellars with lower headroom and, often, a moisture history that has to be read before anyone talks about drywall. The later houses in South Martinsburg, Pikeside, Foxcroft, and out toward Spring Mills and Route 11 have full-height lower levels that were left as mechanical space.",
+      "A lower-level bedroom needs a compliant egress window. The Eastern Panhandle egress-window guide publishes that opening at $3,500 to $6,500 installed, and that is the figure this page uses. A family room and a bath do not automatically need that cut. We say which one the plan is before the estimate is a commitment.",
+      "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at 232 N. Queen Street implements the West Virginia State Building Code the city has adopted, and it lists a change to the interior of a structure as permit work. Apply through MGO Connect. Outside the city, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace electrical, mechanical, or plumbing systems (304-264-1966).",
+      "Moisture is checked before framing: perimeter, sump if one is there, and the slab. The written estimate itemizes framing, the trades, and the egress opening when the plan includes a bedroom. WV Contractor License WV062432.",
     ],
   },
 
@@ -870,6 +953,30 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Inside Town limits the order is fixed. An addition needs a Town Zoning Location Permit first, then the Loudoun County building permit. The county set needs a plat (house, addition, setbacks) and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Town zoning has its own fee — we put the current Town amount in the written estimate. If the addition adds a bedroom on well and septic, Health Department approval comes first. Conservation easements can limit what the lot will take.",
       "If the parcel is in the Historic District, the addition needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA. We do not publish invented addition price bands or treat tasting rooms, wine cellars, and gun rooms as the typical Middleburg brief.",
       "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC addition set. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
+    ],
+  },
+
+  'additions-martinsburg-wv': {
+    metaTitle: 'Martinsburg Home Additions | Real Elite',
+    metaDescription:
+      'Home additions in Martinsburg. The city requires a permit to enlarge a house. Berkeley County reviews parcels outside city limits.',
+    paragraphs: [
+      "A Martinsburg addition is decided by the lot. Downtown, around Queen Street and the Burke Street Historic District, the side yard is small, the foundation is older, and a bump-out has to respect the house that is already there. Toward South Martinsburg, Pikeside, Foxcroft, Spring Mills, Hedgesville, and the Route 11 corridor, the lots are later and a single room or a second story is a different structural question.",
+      "Inside city limits, the Planning Department at City Hall, 232 N. Queen Street, lists enlarging or adding to an existing structure as work that needs a building permit. The city's own FAQ says new buildings or additions must also include a survey or site plan. Apply through MGO Connect. The published Planning number is (304) 264-2131.",
+      "Outside the city, Berkeley County requires a permit to enlarge a structure. The application at 400 West Stephen Street, Suite 202, asks for construction plans and a plot plan showing existing structures. If the work is inside a mapped 100-year floodplain, the county requires a Floodplain Certificate. The county office publishes 304-264-1966. We check the parcel before we lock a footprint. This page does not publish a Martinsburg addition price.",
+      "The written estimate itemizes foundation, framing, and the trades the permit names. WV Contractor License WV062432.",
+    ],
+  },
+
+  'additions-charles-town-wv': {
+    metaTitle: 'Charles Town Home Additions | Real Elite',
+    metaDescription:
+      'Home additions in Charles Town. The city lists additions as permit work. Jefferson County reviews parcels outside the city limits.',
+    paragraphs: [
+      "Charles Town additions start with which house you have. On the older streets around Washington and George, the addition is usually a room on a tight historic lot, tied into a stone or block foundation. Toward the Ranson border, Route 9, Cavaland, Jefferson Orchards, and Flowing Springs, the house is newer and the question is a bedroom, a larger kitchen, or a screened porch on a subdivision lot.",
+      "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, lists additions on the work that needs a building permit, along with plumbing, electrical, and HVAC when those systems are in the job. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
+      "Outside the city, Jefferson County's Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, lists building additions among the work that needs a permit, and it requires compliance with the International Residential Code version adopted by the State of West Virginia. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. Filings go through MGO Connect. We check the parcel before we file. This page does not publish a Charles Town addition price.",
+      "The written estimate itemizes the foundation, the framing, and the trades. WV Contractor License WV062432.",
     ],
   },
 };
