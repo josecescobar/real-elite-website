@@ -103,15 +103,11 @@ export default async function ProjectsPage({
         </Container>
       </section>
 
-      {/* Recent Work — the full photo wall. The case studies above are the
-          stories; this is every job-site photo, filterable by category. */}
-      <section className="bg-white pt-4 pb-10 md:pb-14">
+      <section className="bg-white pt-4 pb-6 md:pb-8">
         <Container size="wide">
-          <SectionHeader
-            eyebrow="Recent Work"
-            title="The photo wall"
-            subtitle="Job-site photography from across the WV–MD–VA region — filter by category, click any image to view full-size."
-          />
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-charcoal-500">
+            Licensed in WV · VA · PA — serving the WV–MD–VA–PA region
+          </p>
         </Container>
       </section>
       <GalleryGrid />

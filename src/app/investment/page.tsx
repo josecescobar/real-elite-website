@@ -122,18 +122,16 @@ export default function InvestmentPage() {
           <Container size="wide">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
               <div className="lg:col-span-5 reveal">
-                {cat.image && (
-                  <div className="photo-editorial relative aspect-[4/3] overflow-hidden rounded-lg">
-                    <Image
-                      src={cat.image.src}
-                      alt={cat.image.alt}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div className={cat.image ? 'mt-8' : ''}>
+                <div className="photo-editorial relative aspect-[4/3] overflow-hidden rounded-lg">
+                  <Image
+                    src={cat.image.src}
+                    alt={cat.image.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="mt-8">
                   <p className="text-xs uppercase tracking-[0.18em] text-charcoal-500 font-semibold mb-3">
                     What moves the number
                   </p>

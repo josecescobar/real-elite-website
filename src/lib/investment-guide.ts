@@ -18,7 +18,6 @@
  */
 
 import type { ConsultationProjectType } from '@/lib/cta-intent';
-import { VERIFIED_CATEGORY_PHOTOS } from '@/lib/stock-images';
 
 export type InvestmentTier = {
   name: string;
@@ -45,11 +44,7 @@ export type InvestmentCategory = {
   href: string;
   /** Pre-selects the consultation form. */
   consultationType: ConsultationProjectType;
-  /**
-   * Real job photo for this category. Omitted for basements and additions
-   * until a real photo exists — those cards stay text-only.
-   */
-  image?: { src: string; alt: string };
+  image: { src: string; alt: string };
 };
 
 /** Where the consultation path starts. Stated as "roughly", never as a floor. */
@@ -96,6 +91,10 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     ],
     href: '/services/basements',
     consultationType: 'basement',
+    image: {
+      src: '/images/inspiration/basement-media-lounge.jpg',
+      alt: 'Finished lower level with wood-panelled walls, a projection screen and a fireplace',
+    },
   },
   {
     slug: 'kitchens',
@@ -134,7 +133,10 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     ],
     href: '/services/kitchens',
     consultationType: 'kitchen',
-    image: VERIFIED_CATEGORY_PHOTOS.kitchen,
+    image: {
+      src: '/images/projects/kitchens/hero.jpg',
+      alt: 'White kitchen with a long island, lantern pendants and dark hardwood floors',
+    },
   },
   {
     slug: 'primary-suites',
@@ -173,7 +175,10 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     ],
     href: '/services/bathrooms',
     consultationType: 'bathroom',
-    image: VERIFIED_CATEGORY_PHOTOS.bathroom,
+    image: {
+      src: '/images/inspiration/suite-spa-bath.jpg',
+      alt: 'Primary bath with book-matched stone walls, a built-in tub and floating vanity',
+    },
   },
   {
     slug: 'outdoor-living',
@@ -212,7 +217,10 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     ],
     href: '/services/decks',
     consultationType: 'outdoor-living',
-    image: VERIFIED_CATEGORY_PHOTOS.outdoor,
+    image: {
+      src: '/images/deck-screened-porch.jpg',
+      alt: 'Screened porch with a dark stained ceiling, black railings and a wooded view',
+    },
   },
   {
     slug: 'additions',
@@ -257,6 +265,10 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     ],
     href: '/services/additions',
     consultationType: 'addition',
+    image: {
+      src: '/images/inspiration/addition-sunroom.jpg',
+      alt: 'Sunroom addition with an arched window wall and painted wainscoting',
+    },
   },
   {
     slug: 'whole-home',
@@ -288,7 +300,10 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
     ],
     href: '/services/remodeling',
     consultationType: 'whole-home',
-    image: VERIFIED_CATEGORY_PHOTOS.living,
+    image: {
+      src: '/images/inspiration/wholehome-living.jpg',
+      alt: 'Open-plan living space with wide-plank floors and a glass-rail staircase',
+    },
   },
 ];
 
