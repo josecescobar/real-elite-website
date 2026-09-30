@@ -171,6 +171,44 @@ describe('Eastern Panhandle home-turf coverage', () => {
   });
 });
 
+describe('REA-791 home-turf service pages', () => {
+  const PAGES = [
+    'kitchens-martinsburg-wv',
+    'kitchens-charles-town-wv',
+    'bathrooms-martinsburg-wv',
+    'bathrooms-charles-town-wv',
+    'basements-martinsburg-wv',
+    'additions-martinsburg-wv',
+    'additions-charles-town-wv',
+    'decks-charles-town-wv',
+  ] as const;
+
+  it.each(PAGES)('publishes %s with WV062432 and no banned claims', (key) => {
+    const entry = CONTENT[key];
+    expect(entry, key).toBeTruthy();
+    const body = entry!.paragraphs.join('\n');
+    expect(body).toContain('WV Contractor License WV062432');
+    expect(body).not.toMatch(/veteran-owned|24\/7|years of experience|\bawards?\b/i);
+    expect(entry!.metaTitle!.length, entry!.metaTitle).toBeLessThanOrEqual(60);
+    expect(entry!.metaDescription!.length, entry!.metaDescription).toBeGreaterThanOrEqual(50);
+    expect(entry!.metaDescription!.length, entry!.metaDescription).toBeLessThanOrEqual(160);
+  });
+
+  it('deep-links each page from the town hub helper', () => {
+    for (const key of PAGES) {
+      const dash = key.indexOf('-');
+      const service = key.slice(0, dash);
+      const city = key.slice(dash + 1);
+      expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    }
+  });
+
+  it('does not spin one opening across the eight pages', () => {
+    const openings = PAGES.map((key) => CONTENT[key]!.paragraphs[0].slice(0, 90));
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+});
+
 describe('basement snippets lead with price', () => {
   /**
    * Basements are the site's strongest cluster by position: 38 queries, 7 in
