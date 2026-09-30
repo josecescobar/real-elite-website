@@ -97,9 +97,44 @@ const FORBIDDEN_LABELS = [
   'outdoor living inspiration',
   'inspiration photography',
   'inspiration imagery',
+  'inspiration photos',
+  'inspiration images',
   '· inspiration',
   'inspiration:',
 ];
+
+const INSPIRATION_WORD = /\binspiration\b/i;
+
+function markdownVisible(text: string): string {
+  const body = text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+  return body
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/`[^`]*`/g, ' ');
+}
+
+/** Paths and code tokens may contain the word. A label is prose or the word alone. */
+function isAllowedToken(value: string): boolean {
+  const token = value.trim();
+  if (!token) return true;
+  if (/[/\\]/.test(token)) return true;
+  if (/\s/.test(token)) return false;
+  return /^[A-Za-z0-9_.:-]+$/.test(token);
+}
+
+function visibleLabels(text: string): string[] {
+  const source = text.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:])\/\/.*$/gm, '$1');
+  const labels: string[] = [];
+  for (const match of source.matchAll(/(?<![=-])>([^<>{}]+)</g)) {
+    const chunk = match[1].trim();
+    if (chunk) labels.push(chunk);
+  }
+  for (const match of source.matchAll(/(['"`])((?:\\.|(?!\1)[\s\S])*?)\1/g)) {
+    const value = match[2].replace(/\\n/g, '\n');
+    if (!isAllowedToken(value)) labels.push(value);
+  }
+  return labels;
+}
 
 function sourceFiles(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
@@ -122,6 +157,23 @@ describe('no inspiration labels', () => {
         const text = readFileSync(file, 'utf8').toLowerCase();
         for (const label of FORBIDDEN_LABELS) {
           if (text.includes(label)) hits.push(`${file} → ${label}`);
+        }
+      }
+    }
+    expect(hits).toEqual([]);
+  });
+
+  it('does not use inspiration as a rendered heading or plain label', () => {
+    const hits: string[] = [];
+    for (const root of ['src', 'content'].map((dir) => join(process.cwd(), dir))) {
+      for (const file of sourceFiles(root)) {
+        const text = readFileSync(file, 'utf8');
+        if (/\.mdx?$/.test(file)) {
+          if (INSPIRATION_WORD.test(markdownVisible(text))) hits.push(file);
+          continue;
+        }
+        for (const label of visibleLabels(text)) {
+          if (INSPIRATION_WORD.test(label)) hits.push(`${file} → ${label.slice(0, 80)}`);
         }
       }
     }
