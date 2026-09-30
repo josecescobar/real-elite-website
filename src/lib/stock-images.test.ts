@@ -130,7 +130,7 @@ describe('no inspiration labels', () => {
 
   it('uses one license line above the projects photo wall and no stock gallery', () => {
     const page = readFileSync(join(process.cwd(), 'src/app/projects/page.tsx'), 'utf8');
-    expect(page).toContain('Licensed in WV · VA · PA — serving the WV–MD–VA–PA region');
+    expect(page).toContain('Family-run · Licensed & Insured · Serving WV, MD, VA & PA');
     expect(page).not.toContain('Recent Work');
     expect(page).not.toContain('The photo wall');
     expect(page).not.toContain('filter by category');

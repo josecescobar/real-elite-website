@@ -105,8 +105,8 @@ export default async function ProjectsPage({
 
       <section className="bg-white pt-4 pb-6 md:pb-8">
         <Container size="wide">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-charcoal-500">
-            Licensed in WV · VA · PA — serving the WV–MD–VA–PA region
+          <p className="text-center text-xs font-semibold tracking-[0.18em] text-charcoal-500">
+            Family-run · Licensed & Insured · Serving WV, MD, VA & PA
           </p>
         </Container>
       </section>
