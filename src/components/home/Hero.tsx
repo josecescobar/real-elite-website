@@ -9,8 +9,9 @@ import TrackedLink from '@/components/analytics/TrackedLink';
  * One image, one sentence, two doors. The roof quote, the free-estimate
  * anchor and the motto are gone from this surface on purpose: this is the
  * page a Leesburg homeowner reads before a six-figure decision, and it has to
- * read like the firm they are hoping to find. The Eastern Panhandle lane is
- * still one click away in the navigation and the closing section.
+ * read like the firm they are hoping to find. Martinsburg and Charles Town
+ * sit under the buttons so an Eastern Panhandle homeowner still has a local
+ * path and an estimate link on the first screen.
  */
 export const Hero = () => {
   return (
@@ -65,6 +66,25 @@ export const Hero = () => {
               View the portfolio
             </Link>
           </div>
+
+          <p className="mt-6 text-sm text-charcoal-200">
+            <Link href="/service-areas/martinsburg-wv" className="underline underline-offset-4 hover:text-brand-red-light transition-colors">
+              Martinsburg
+            </Link>
+            {' and '}
+            <Link href="/service-areas/charles-town-wv" className="underline underline-offset-4 hover:text-brand-red-light transition-colors">
+              Charles Town, WV
+            </Link>
+            <span aria-hidden="true"> · </span>
+            <TrackedLink
+              href="/estimate"
+              eventName="estimate_cta_click"
+              eventParams={{ location: 'hero' }}
+              className="underline underline-offset-4 hover:text-brand-red-light transition-colors"
+            >
+              Get an estimate
+            </TrackedLink>
+          </p>
 
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-12 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-charcoal-200">
             <li>Virginia Class A</li>

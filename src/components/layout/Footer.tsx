@@ -56,12 +56,14 @@ const SOCIAL_LINKS = [
 ].filter((link) => (VERIFIED_PROFILE_URLS as readonly string[]).includes(link.href));
 
 const FEATURED_FOOTER_SERVICES = [
+  { label: 'Bathroom Remodeling', href: '/services/bathrooms' },
+  { label: 'Kitchen Remodeling', href: '/services/kitchens' },
+  { label: 'Basement Finishing', href: '/services/basements' },
   { label: 'Whole-Home Remodeling', href: '/services/remodeling' },
   { label: 'Home Additions', href: '/services/additions' },
   { label: 'Roofing', href: '/services/roofing' },
   { label: 'Siding & Stone', href: '/services/siding' },
   { label: 'Decks & Outdoor Living', href: '/services/decks' },
-  { label: 'Exterior Repairs', href: '/services/exterior-repairs' },
 ];
 
 export default function Footer() {

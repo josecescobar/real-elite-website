@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, MapPin, CheckCircle2, Phone } from 'lucide-react';
 
 import { BUSINESS } from '@/lib/constants';
+import { CONTRACTOR_LICENSES } from '@/lib/claims';
 import { PAVING_ICONS, PAVING_SERVICES, PAVING_LOCATIONS } from '@/lib/paving-data';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
@@ -42,7 +43,7 @@ const HUB_FAQS = [
   {
     question: 'What areas do you serve for paving?',
     answer:
-      'We pave across the Eastern Panhandle of West Virginia (Martinsburg, Inwood, Spring Mills, Hedgesville, Falling Waters, Charles Town, Shepherdstown), the Northern Shenandoah Valley in Virginia (Winchester), and the I-70 corridor in Maryland (Frederick). We are headquartered in Martinsburg and licensed in all three states.',
+      `We pave across the Eastern Panhandle of West Virginia (Martinsburg, Inwood, Spring Mills, Hedgesville, Falling Waters, Charles Town, Shepherdstown), the Northern Shenandoah Valley in Virginia (Winchester), and the I-70 corridor in Maryland (Frederick). We are headquartered in Martinsburg. ${CONTRACTOR_LICENSES.summary}.`,
   },
   {
     question: 'Is paving really part of a remodeling and roofing company?',
