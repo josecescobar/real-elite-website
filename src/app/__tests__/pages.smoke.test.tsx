@@ -216,7 +216,8 @@ describe('static page smoke tests', () => {
   it('Text messaging terms page renders', async () => {
     const { default: SmsTermsPage } = await import('@/app/sms-terms/page');
     render(<SmsTermsPage />);
-    expect(screen.getByRole('heading', { name: 'Text Messaging Terms' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Terms & Conditions' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'SMS Terms' })).toBeInTheDocument();
     expect(screen.getByText('Real Elite Contracting customer updates')).toBeInTheDocument();
     expect(
       screen.getByText(

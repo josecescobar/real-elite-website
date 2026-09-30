@@ -6,7 +6,7 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 
 export const metadata = buildMetadata({
   path: '/sms-terms',
-  title: `Text Messaging Terms | ${BUSINESS.name}`,
+  title: `Terms & Conditions | ${BUSINESS.name}`,
   description:
     'Terms for Real Elite Contracting customer update texts, including opt-in, message frequency, rates, and how to stop messages.',
 });
@@ -15,7 +15,7 @@ const PROGRAM_NAME = 'Real Elite Contracting customer updates';
 
 const sections = [
   {
-    title: 'Program',
+    title: 'SMS Terms',
     body: [
       PROGRAM_NAME,
       'These messages are call follow-ups, estimate scheduling, and project updates from Real Elite Contracting. They are about a conversation, estimate, or job you already have with us.',
@@ -59,10 +59,10 @@ export default function SmsTermsPage() {
       <section className="bg-navy-900 text-white py-16 md:py-24">
         <Container size="wide">
           <p className="text-brand-red-light text-xs uppercase tracking-[0.18em] font-semibold mb-4">
-            Customer texts
+            SMS Terms
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
-            Text Messaging Terms
+            Terms &amp; Conditions
           </h1>
           <p className="text-charcoal-200 mt-5 max-w-2xl leading-relaxed">
             How {PROGRAM_NAME} works, including how you opt in and how you stop messages.
@@ -75,7 +75,7 @@ export default function SmsTermsPage() {
           <div className="max-w-3xl space-y-10">
             <div className="rounded-lg border border-gold-300 bg-gold-50 p-5 text-sm text-charcoal-700 leading-relaxed">
               <strong className="text-navy-800">Effective September 30, 2026.</strong> These terms
-              cover texts from {BUSINESS.name} about your call, estimate, or project.
+              cover texts from Real Elite Contracting LLC ({BUSINESS.name}) about your call, estimate, or project.
             </div>
 
             {sections.map((section) => (
