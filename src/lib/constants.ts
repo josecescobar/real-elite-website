@@ -1310,19 +1310,24 @@ export type GalleryImage = {
 };
 
 export const GALLERY_IMAGES: GalleryImage[] = [
+  // Bethesda MD townhome (Bethesda Project folder). Color-corrected and sharpened only.
+  { src: '/images/work/bath-bethesda-chevron-shower.jpg', alt: 'Floor-to-ceiling marble chevron shower with frameless glass, tiled bench, hex floor, and matte black fixtures', category: 'Bathrooms', state: 'MD' },
+  { src: '/images/work/kitchen-bethesda-waterfall-island.jpg', alt: 'White shaker kitchen with a black waterfall-edge quartz island, black pendants, and double wall ovens', category: 'Kitchens', state: 'MD' },
+  { src: '/images/work/deck-night-full-house.jpg', alt: 'Composite deck at night with white vinyl railings and glowing post-cap lights below lit French doors', category: 'Decks' },
   // Primary bath remodel, Frederick MD (completed Aug 2026).
   { src: '/images/work/bath-primary-frameless-shower.webp', alt: 'Walk-in shower with frameless glass, blue subway tile, marble-look hex floor, and matte black fixtures', category: 'Bathrooms', state: 'MD', citySlug: 'frederick-md' },
   // Composite deck with vinyl railings, Fairfax County VA (June 2024).
   { src: '/images/work/deck-composite-stairs-front.webp', alt: 'Composite deck with white vinyl railings and a wide stair down to the patio', category: 'Decks', state: 'VA' },
   { src: '/images/work/roofing-finished-dormer.webp', alt: 'New charcoal architectural shingles finished around a dormer', category: 'Roofing', state: 'WV' },
   { src: '/images/work/deck-composite-surface.webp', alt: 'Brown composite decking with a curved run of white vinyl railing', category: 'Decks', state: 'VA' },
-  { src: '/images/work/deck-composite-night-stairs.webp', alt: 'Deck stair and railings lit by post-cap lights at night', category: 'Decks', state: 'VA' },
+  { src: '/images/work/deck-night-rail-moon.jpg', alt: 'Deck stair and railings lit by post-cap lights at night', category: 'Decks', state: 'VA' },
   { src: '/images/work/roofing-finished-overhead.webp', alt: 'Completed architectural shingle roof seen from the ridge', category: 'Roofing', state: 'WV' },
   { src: '/images/work/bath-primary-navy-vanity.webp', alt: 'Navy shaker vanity with matte black pulls and a quartz top', category: 'Bathrooms', state: 'MD', citySlug: 'frederick-md' },
   { src: '/images/deck-lounge.jpg', alt: 'Composite deck set up with outdoor lounge furniture', category: 'Decks', state: 'VA' },
-  { src: '/images/roofing-hero.jpg', alt: 'Completed dark architectural shingle roof with clean ridge cap', category: 'Roofing', state: 'WV' },
+  { src: '/images/work/roof-charcoal-gable.jpg', alt: 'Completed dark architectural shingle roof with clean ridge cap', category: 'Roofing', state: 'WV' },
   { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior', state: 'WV' },
   { src: '/images/work/flooring-laminate-finished.webp', alt: 'Newly installed light wood-look laminate flooring', category: 'Remodeling', state: 'WV' },
+  { src: '/images/work/living-bethesda-lvp-fireplace.jpg', alt: 'Open living room with wide-plank luxury vinyl plank flooring, a linear fireplace, and sliding doors to the balcony', category: 'Remodeling', state: 'MD' },
 ];
 
 /**
