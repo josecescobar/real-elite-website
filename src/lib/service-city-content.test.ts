@@ -15,6 +15,7 @@ import {
 import {
   SERVICES,
   ALL_SERVICE_AREAS,
+  SERVICE_AREA_CATALOG,
   CITY_DATA,
   LUXURY_CITY_SLUGS,
   formatAreaPlace,
@@ -97,9 +98,12 @@ describe('service-area / city-data contract', () => {
   });
 
   it('leaves no CITY_DATA entry without a service area', () => {
-    const slugs = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
+    // Staged rows keep their copy so flipping status back to active republishes
+    // the page. They are catalog rows, not orphans. A key with no catalog row
+    // is still a failure.
+    const slugs = new Set<string>(SERVICE_AREA_CATALOG.map((a) => a.slug));
     const orphans = Object.keys(CITY_DATA).filter((s) => !slugs.has(s));
-    expect(orphans, 'unreachable CITY_DATA entries').toEqual([]);
+    expect(orphans, 'CITY_DATA entries with no catalog row').toEqual([]);
   });
 
   it('keeps service-area slugs unique after dedupe', () => {

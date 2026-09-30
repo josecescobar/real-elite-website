@@ -309,6 +309,10 @@ export type AreaMarket = 'home' | 'premium';
  * `active` — the area gets its own pages.
  * `consolidated` — the area's own pages are retired in favour of a broader
  *   page, and `redirectTo` says where they go.
+ * `staged` — the row is in the catalog but must not publish. No pages, no
+ *   sitemap entry, no nav or internal link. Used for markets that are not
+ *   licensed yet (Maryland MHIC, Pennsylvania HICPA). It is not a redirect:
+ *   the URL 404s until the row is flipped to `active`.
  *
  * This is AREA-level retirement. Retiring one service+city combo while
  * keeping the area's overview page is a different operation: remove the key
@@ -317,7 +321,10 @@ export type AreaMarket = 'home' | 'premium';
  * removing a key without the redirect ships a hard 404, so the two have to
  * land in the same deploy.
  */
-export type AreaStatus = 'active' | 'consolidated';
+export type AreaStatus = 'active' | 'consolidated' | 'staged';
+
+/** Postal abbreviation stored on a catalog row. */
+export type AreaState = 'WV' | 'MD' | 'VA' | 'PA';
 
 export type ServiceArea = {
   slug: string;
@@ -331,7 +338,7 @@ export type ServiceArea = {
    * not bundled into the tiering change.
    */
   city: string;
-  state: 'WV' | 'MD' | 'VA';
+  state: AreaState;
   kind: AreaKind;
   market: AreaMarket;
   status: AreaStatus;
@@ -453,8 +460,8 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
    * Alexandria stays a child of Northern Virginia: independent city.
    *
    * Prince William pages are the western ZIPs along I-66 and Route 15.
-   * Woodbridge and Dumfries are a different, lower-income market and have
-   * no rows.
+   * Dumfries still has no row. Lake Ridge and Woodbridge were added later,
+   * from the 2026-09-29 research, as two separate CDPs.
    */
   { slug: 'fairfax-county-va', city: 'Fairfax County', state: 'VA', kind: 'county', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
   { slug: 'prince-william-county-va', city: 'Prince William County', state: 'VA', kind: 'county', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
@@ -465,6 +472,47 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'gainesville-va', city: 'Gainesville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'bristow-va', city: 'Bristow', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'nokesville-va', city: 'Nokesville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
+
+  /* ---------- Virginia batch, 2026-09-29 ----------
+   * Facts are from AI-SHARED/Website/local-pages/. Empty legacyTiers.
+   * Deferred or dropped on purpose: Broad Run, Marshall, The Plains, Occoquan,
+   * and every West Virginia gap town (Jose reviews that list before a build).
+   * Stephens City and Middletown stay staged until their permit process is verified.
+   * Warrenton is unparented: there is no Fauquier County row yet.
+   */
+  { slug: 'springfield-va', city: 'Springfield', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  // Staged: herndon-va.gov returned 403, so the town permit process is unverified.
+  // County rules in the note are not a substitute. Flip back to active once the town source is in the note.
+  { slug: 'herndon-va', city: 'Herndon', state: 'VA', kind: 'town', market: 'premium', status: 'staged', parent: 'fairfax-county-va', legacyTiers: [] },
+  { slug: 'chantilly-va', city: 'Chantilly', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  { slug: 'centreville-va', city: 'Centreville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  { slug: 'falls-church-va', city: 'Falls Church', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
+  // Staged: fairfaxva.gov returned 403, so the city permit process is unverified.
+  { slug: 'fairfax-va', city: 'Fairfax', state: 'VA', kind: 'city', market: 'premium', status: 'staged', parent: 'northern-virginia', legacyTiers: [] },
+  { slug: 'manassas-va', city: 'Manassas', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
+  { slug: 'lake-ridge-va', city: 'Lake Ridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
+  { slug: 'woodbridge-va', city: 'Woodbridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
+  { slug: 'warrenton-va', city: 'Warrenton', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  // Staged: town site and Frederick County VA building pages were unread.
+  { slug: 'stephens-city-va', city: 'Stephens City', state: 'VA', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  // Staged: the town zoning form is not a verified building-permit process.
+  { slug: 'middletown-va', city: 'Middletown', state: 'VA', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+
+  /* ---------- Pennsylvania, Franklin County, 2026-09-29 ----------
+   * Jose confirmed the PA home-improvement registration is already held, so
+   * these rows are active. The public line is PA HIC #PA225060, existing-house
+   * home improvement only. Maryland gap towns stay staged on the
+   * stacked branch. Optional later markets (Shippensburg, Carlisle,
+   * Mechanicsburg, Gettysburg) are not in this list. `market: 'home'` keeps
+   * the estimate hero. It does not mean the same-week radius promise —
+   * areaQuotesSameWeek withholds that for Pennsylvania.
+   */
+  { slug: 'greencastle-pa', city: 'Greencastle', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'chambersburg-pa', city: 'Chambersburg', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'fort-loudon-pa', city: 'Fort Loudon', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'mercersburg-pa', city: 'Mercersburg', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'waynesboro-pa', city: 'Waynesboro', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'fayetteville-pa', city: 'Fayetteville', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -474,13 +522,16 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
  * tier views are rendered as links — the service-areas index, the homepage
  * service-area map, the footer, LocalAreasServed — while `ALL_SERVICE_AREAS`
  * decides which pages get generated. If the two disagree about a consolidated
- * row, the site advertises a link to its own 404. `/service-areas/[slug]` sets
- * no `dynamicParams`, so a slug missing from generateStaticParams renders on
- * demand and hits `notFound()`.
+ * or staged row, the site advertises a link to its own 404.
+ * `/service-areas/[slug]` sets `dynamicParams = false`, so a slug missing
+ * from generateStaticParams is a hard 404 and is not pre-rendered.
+ *
+ * `staged` is excluded here on purpose. A row waiting on a license is not a
+ * page, a sitemap URL, or a link. Flipping it to `active` is what publishes it.
  *
  * Generic over the row type so it can be unit-tested against synthetic rows
- * rather than only against the real catalog, where nothing is consolidated yet
- * and the bug would therefore stay invisible.
+ * rather than only against the real catalog, where a missing filter would
+ * otherwise stay invisible.
  */
 export const activeAreas = <T extends { status: AreaStatus }>(rows: readonly T[]): T[] =>
   rows.filter((row) => row.status === 'active');
@@ -513,6 +564,8 @@ export type CityDataEntry = {
   description: string;
   neighborhoods: string[];
   marketEmphasis: string[];
+  /** Town-specific questions. Omitted on older rows, which keep the shared FAQ. */
+  faqs?: readonly { question: string; answer: string }[];
 };
 
 export const CITY_DATA: Record<string, CityDataEntry> = {
@@ -811,6 +864,421 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     neighborhoods: ['Route 28', 'Aden Road', 'ZIP 20181', 'Bristow Road', 'Nokesville village', 'Marsteller Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
   },
+  'springfield-va': {
+    description:
+      "Springfield is unincorporated Fairfax County, not its own city. The four ZIP centroids checked on 2026-09-29 all landed in the county: Newington Forest (22153, median year built 1981), West Springfield (22152, 1975), North Springfield (22151, 1962), and Springfield CDP (22150, 1978). Building permits go through Fairfax County Land Development Services and the PLUS system. The county's permit page lists finished basements, kitchen renovations, bathroom remodels, and decks among work that needs a permit. A detached shed of 256 square feet or less and one story does not. The county's named historic-overlay list does not make the whole Springfield area a historic district. Subdivision and HOA names for these ZIPs were not verified.",
+    neighborhoods: ['Newington Forest', 'West Springfield', 'North Springfield', 'ZIP 22150', 'ZIP 22151', 'ZIP 22153'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Does Springfield have its own building department?',
+        answer:
+          'No. The ZIP centroids that were checked are unincorporated Fairfax County. Building permits go through Fairfax County Land Development Services.',
+      },
+      {
+        question: 'Does a finished basement in Springfield need a county permit?',
+        answer:
+          'The county page lists finished basements under interior alterations that need a permit. Confirm the parcel is in the county before applying.',
+      },
+      {
+        question: 'Is all of Springfield in a historic district?',
+        answer:
+          'Not according to Fairfax County\'s named historic-overlay list. Check the county map before assuming an overlay applies to a house.',
+      },
+    ],
+  },
+  'herndon-va': {
+    description:
+      "A Herndon mailing address is not automatically inside the Town of Herndon. The 20170 centroid is Dranesville CDP in Fairfax County, and the 20171 centroid is Franklin Farm CDP in Fairfax County. County parcels use Fairfax County Land Development Services. The county page lists finished basements and decks as work that needs a permit. Town permit steps were not retrieved: herndon-va.gov returned HTTP 403, so this page does not describe the town's rules. Do not treat the census name Franklin Farm as an HOA. Fairfax County's named historic overlays do not include a Herndon or Franklin Farm district. Dranesville Tavern is a named overlay site, and that is not a finding that ZIP 20170 sits inside it.",
+    neighborhoods: ['ZIP 20170', 'ZIP 20171', 'Dranesville CDP', 'Franklin Farm CDP'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Which office permits a Herndon address?',
+        answer:
+          'If the parcel is in Fairfax County, it is Land Development Services. The ZIP centroids that were checked are in the county. Town-limit steps were not available from the town site.',
+      },
+      {
+        question: 'Does a county finished basement need a permit?',
+        answer:
+          'Yes, on Fairfax County\'s "when a permit is required" page. That rule is for county land, not a substitute for the town code.',
+      },
+      {
+        question: 'Is Franklin Farm an HOA this page can explain?',
+        answer:
+          'Franklin Farm is the census place name at the 20171 centroid. Any association rules are unverified, so this page does not describe them.',
+      },
+    ],
+  },
+  'chantilly-va': {
+    description:
+      "This page is Fairfax County Chantilly, ZIP 20151. That centroid is Chantilly CDP in Fairfax County, median year built 1988. ZIP 20152 is South Riding in Loudoun County and already has its own page; its income is not Chantilly's. County permits go through Fairfax County Land Development Services. The county page lists decks among additions that need a permit, and finished basements among interior work that needs a permit. The Sully Historic Overlay page is about the Sully house, which Richard Bland Lee began in 1793 and which the county park authority now runs as a museum. It does not say the overlay covers Chantilly houses. Check the map before claiming a house is inside it.",
+    neighborhoods: ['ZIP 20151', 'Chantilly CDP'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Which Chantilly is this page?',
+        answer:
+          'Fairfax County ZIP 20151. ZIP 20152 is South Riding in Loudoun County and has its own service-area page.',
+      },
+      {
+        question: 'Who permits a deck in ZIP 20151?',
+        answer:
+          'Fairfax County Land Development Services. The county page lists decks among additions and structures that need a permit.',
+      },
+      {
+        question: 'Is Chantilly inside the Sully Historic Overlay?',
+        answer:
+          'The Sully page describes the historic house and its district, now a county museum. It does not say the overlay covers Chantilly houses. Check the map.',
+      },
+    ],
+  },
+  'centreville-va': {
+    description:
+      "Centreville here is Fairfax County, not a town government. ZIP 20120's centroid is Bull Run CDP (median year built 1992) and ZIP 20121's centroid is Centreville CDP (median year built 1991). Most of that housing is 1980s and 1990s. Building permits for county land go through Fairfax County Land Development Services, and the county page lists finished basements as work that needs a permit. There is a real Centreville Historic Overlay District. The county page traces it to the old village on Braddock's Road, platted after a 1792 petition, not to the modern CDP as a whole. Work inside a county historic overlay goes to the Architectural Review Board. Which modern houses sit inside that overlay was not read off the map. HOA names were not verified.",
+    neighborhoods: ['ZIP 20120', 'ZIP 20121', 'Bull Run CDP', 'Centreville CDP'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Who permits a basement in Centreville?',
+        answer:
+          'For county land, Fairfax County Land Development Services. The county page lists finished basements as work that needs a permit. These ZIP centroids are county land.',
+      },
+      {
+        question: 'Is all of Centreville in the historic district?',
+        answer:
+          'No. The county describes the Centreville overlay as old Centreville. Most housing in ZIPs 20120 and 20121 was built in the 1980s and 1990s.',
+      },
+      {
+        question: 'Does the historic overlay change a kitchen that never touches the outside?',
+        answer:
+          'That interior-only rule was not verified from the pages that were read. The Architectural Review Board exists for overlay districts. Read the ARB procedure before assuming an interior project is covered.',
+      },
+    ],
+  },
+  'falls-church-va': {
+    description:
+      "This page is the City of Falls Church, an independent city. ZIP 22046's centroid is the city (median year built 1969). ZIPs 22042 and 22043 use a Falls Church mailing name, but their centroids are Fairfax County: West Falls Church CDP and Idylwood CDP. Those county parcels use Fairfax County Land Development Services, not the city. Inside the city, the permit counter listed on the city's requirements page is 300 Park Avenue, Falls Church, VA 22046. The city's \"when a permit is required\" page says any wall change needs a permit, moving or adding a plumbing fixture needs a permit, and any gas work, including replacing a stove or fireplace insert, needs a permit. Paint, carpet, tile, cabinet replacement, and a roof replacement that does not replace rafters or a major portion of the decking do not. The city's Historic Architectural Review Board reviews permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. That board does not apply to the county ZIPs. HOA names were not verified.",
+    neighborhoods: ['ZIP 22046', 'Park Avenue', 'City of Falls Church'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Does "Falls Church" on an envelope mean the city building department?',
+        answer:
+          'Not always. ZIP 22046\'s centroid is the city. ZIP 22042 and 22043 centroids are Fairfax County. Check the parcel.',
+      },
+      {
+        question: 'Does replacing a gas stove in the city need a permit?',
+        answer:
+          'The city page says any gas work, including replacing a stove or fireplace insert, requires a permit.',
+      },
+      {
+        question: 'Does every city house go through HARB for a kitchen?',
+        answer:
+          'The HARB page that was read covers permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. It does not say ordinary interior work goes to HARB.',
+      },
+    ],
+  },
+  'fairfax-va': {
+    description:
+      "This page is the City of Fairfax, an independent city. ZIP 22030's centroid is the city (median year built 1992). ZIP 22031's centroid is Mantua CDP in Fairfax County. ZIP 22032's centroid is Kings Park West CDP in Fairfax County, and that higher-income ZIP is not the city's income. County parcels use Fairfax County Land Development Services. City permit steps were not published here: the city site returned HTTP 403, so this page does not name a city department, address, or city permit checklist. Kings Park West and Mantua are census place names at those centroids, not verified HOA documents. The county historic-overlay list that was read does not include those two names.",
+    neighborhoods: ['ZIP 22030', 'City of Fairfax'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Is the higher-income Fairfax ZIP the city?',
+        answer:
+          'No. ZIP 22032\'s centroid is Kings Park West in Fairfax County. The city centroid that was checked is ZIP 22030.',
+      },
+      {
+        question: 'Can this page explain city basement permits?',
+        answer:
+          'Not yet. The city site did not serve its permit pages in the 2026-09-29 research. County basement rules apply to county parcels only.',
+      },
+      {
+        question: 'Is Kings Park West an HOA?',
+        answer:
+          'The census place name is verified. Any association rules are unverified, so this page does not describe them.',
+      },
+    ],
+  },
+  'manassas-va': {
+    description:
+      "This page is the City of Manassas, an independent city. ZIP 20110's centroid is the city (median year built 1986). Development Services is at 9027 Center Street, 2nd Floor, Manassas, VA 20110, phone 703-257-8278. The city lists building, trade, occupancy, site, utility, zoning, and demolition permits, and it names Walk Through Wednesdays for limited-scope projects such as decks or fences. ZIP 20109's centroid is Bull Run CDP in Prince William County. ZIP 20112's centroid is Prince William County and is not the city. ZIP 20111's centroid is the City of Manassas Park, a different city. County parcels use Prince William County Development Services. The county page says a deck needs a permit when the floor is 16.5 inches or more above finished grade. Do not apply that county number inside the city; the city threshold was not extracted. The county says Buckland is currently its only historic overlay district. No HOA name was verified for these ZIPs.",
+    neighborhoods: ['ZIP 20110', 'Center Street', 'City of Manassas'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Does a Manassas mailing address use the city permit office?',
+        answer:
+          'Only if the parcel is in the City of Manassas. ZIP 20109 and 20112 centroids are Prince William County. ZIP 20111\'s centroid is the City of Manassas Park. Check the parcel.',
+      },
+      {
+        question: 'What deck height needs a Prince William County permit?',
+        answer:
+          'The county page says a permit is required when the floor is 16.5 inches or more above finished grade. That figure was not verified for parcels inside the City of Manassas.',
+      },
+      {
+        question: 'Should this page name a Manassas HOA?',
+        answer:
+          'No association name was verified for these ZIPs. This page does not name one.',
+      },
+    ],
+  },
+  'lake-ridge-va': {
+    description:
+      "Lake Ridge is a census-designated place in Prince William County. ZIP 22192's centroid is Lake Ridge CDP (median year built 1987), even though the postal name on that ZIP is Woodbridge. It is not the Woodbridge CDP, which is ZIP 22191, and it is not Dale City. Building permits for these county parcels go through Prince William County Development Services. The county page says a deck needs a permit when the floor is 16.5 inches or more above finished grade, and that zoning approval is required for accessory structures such as decks, additions, and garages even when a separate question is whether a building permit is required. The county tells owners to check whether their HOA has covenants. It does not name an association, and the name Lake Ridge is not, in the research, an HOA charter. Buckland is the only county historic overlay the ARB page named. Lake Ridge is not on that list.",
+    neighborhoods: ['ZIP 22192', 'Lake Ridge CDP'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Are Lake Ridge and Woodbridge the same place?',
+        answer:
+          'No. ZIP 22192\'s centroid is Lake Ridge CDP. ZIP 22191\'s centroid is Woodbridge CDP. Both are Prince William County, and each has its own page.',
+      },
+      {
+        question: 'When does a deck need a Prince William County permit?',
+        answer:
+          'The county page says when the floor is 16.5 inches or more above finished grade. Zoning approval can still be required for exterior work.',
+      },
+      {
+        question: 'Does the county require HOA approval?',
+        answer:
+          'The county page tells owners to check whether their HOA has covenants. It does not name an association, and it does not say the county enforces the covenants.',
+      },
+    ],
+  },
+  'woodbridge-va': {
+    description:
+      "Woodbridge on this page is the Woodbridge census-designated place in Prince William County. ZIP 22191's centroid is that CDP (median year built 1999). ZIP 22192 is Lake Ridge CDP and has its own page. ZIP 22193's centroid is Dale City and is not this page. County permits go through Prince William County Development Services. The county page says a deck needs a permit when the floor is 16.5 inches or more above finished grade, and that exterior projects may need zoning approval even when no building permit is required. The county tells owners to check HOA covenants and does not name an association. Buckland is the only county historic overlay named on the ARB page. Woodbridge is not on that list. The Town of Occoquan is a different permit path and is not included here.",
+    neighborhoods: ['ZIP 22191', 'Woodbridge CDP'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Which Woodbridge ZIP is this page?',
+        answer:
+          'ZIP 22191, whose centroid is Woodbridge CDP in Prince William County. ZIP 22192 is Lake Ridge. ZIP 22193 is Dale City and is not this page.',
+      },
+      {
+        question: 'When does a deck need a county permit?',
+        answer:
+          'Prince William County says a permit is required when the floor is 16.5 inches or more above finished grade.',
+      },
+      {
+        question: 'Is Occoquan part of this page?',
+        answer:
+          'No. Occoquan is a town with its own zoning step. This page is the Woodbridge CDP in the county.',
+      },
+    ],
+  },
+  'warrenton-va': {
+    description:
+      "Warrenton is an incorporated town in Fauquier County. The charter dates to 1816. A Warrenton mailing address is not automatically inside the town: the centroids of ZIP 20186 and ZIP 20187 both landed in Fauquier County, outside an incorporated place. Inside the town, the Department of Community Development handles applications at the town site, phone (540) 347-1101. The town building page says a building permit is required for decks whose floor is 30 inches or more above finished grade, for finishing a basement, and for additions, garages, or carports. An areaway or egress window on a basement needs additional zoning review. A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. Which streets are inside that district was not read off the map. County permit steps outside town limits were not retrieved. HOA names outside the historic district were not verified. ZIP 20187's housing is mostly detached (median year built 1991). ZIP 20186 is a different mix (median year built 1987) and should not be averaged into one house type.",
+    neighborhoods: ['Town of Warrenton', 'ZIP 20186', 'ZIP 20187', 'Fauquier County'],
+    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Does every Warrenton address use the town\'s 30-inch deck rule?',
+        answer:
+          'Only inside the town. Both ZIP centroids that were checked landed in Fauquier County, outside an incorporated place. County rules were not readable in the research pass.',
+      },
+      {
+        question: 'Does a basement finish need a permit in town?',
+        answer:
+          'Yes. The town building page lists finishing a basement, and it says an areaway or egress window needs additional zoning review.',
+      },
+      {
+        question: 'When is the historic certificate required?',
+        answer:
+          'Before exterior alterations of property in the Warrenton Historic District. The page does not say the certificate applies to the whole ZIP.',
+      },
+    ],
+  },
+  'stephens-city-va': {
+    description:
+      "Stephens City is a chartered town in Frederick County, Virginia. It is not Winchester, which already has its own page. ZIP 22655's centroid is unincorporated Frederick County, so the ZIP is larger than the town. A Stephens City mailing address is not automatically inside the town. Town and county permit pages were not retrieved in the 2026-09-29 research, so this page does not list permit steps. Confirm the parcel before choosing a counter. No historic district or HOA name was verified. Census figures for the ZIP, not the town boundary, show a median year built of 1996.",
+    neighborhoods: ['Town of Stephens City', 'ZIP 22655', 'Frederick County, VA'],
+    marketEmphasis: ['decks', 'roofing', 'remodeling', 'bathrooms', 'kitchens', 'additions'],
+    faqs: [
+      {
+        question: 'Does ZIP 22655 equal the town?',
+        answer:
+          'No. The centroid is unincorporated Frederick County. The town exists under its charter. Check the parcel.',
+      },
+      {
+        question: 'Which permit steps does this page publish?',
+        answer:
+          'None. Both the town site and the Frederick County, Virginia site were unread in the research pass. Do not use Middletown\'s zoning form or Winchester\'s process for this town.',
+      },
+      {
+        question: 'Is this the Winchester page?',
+        answer:
+          'No. Winchester is a separate city and already has a live service-area page.',
+      },
+    ],
+  },
+  'middletown-va': {
+    description:
+      "Middletown is a town in Frederick County, Virginia, not Middletown, Maryland, and not Frederick, Maryland. The town forms page lists the office at 7875 Church Street, Middletown, VA 22645, and links a zoning application titled for zoning review of building permits. That is a zoning review. It does not name the building official. Who issues the building permit, the town or Frederick County, was not verified. ZIP 22645's census figures, which are the ZIP and not the town boundary, show a population of 4,639 and a median year built of 1985. No historic-district page or HOA name was extracted. Do not use the Frederick, Maryland permit article as this town's process.",
+    neighborhoods: ['Church Street', 'ZIP 22645', 'Town of Middletown, VA'],
+    marketEmphasis: ['decks', 'roofing', 'remodeling', 'bathrooms', 'kitchens', 'additions'],
+    faqs: [
+      {
+        question: 'Does the town review a building project?',
+        answer:
+          'The town forms page has a zoning application for zoning review of building permits, filed through the office at 7875 Church Street. That is a zoning review, not proof of who issues the building permit.',
+      },
+      {
+        question: 'Who issues the building permit?',
+        answer:
+          'That was not verified. This page does not guess Frederick County or the town.',
+      },
+      {
+        question: 'Is this Middletown, Maryland?',
+        answer:
+          'No. This is Middletown, Virginia. The Frederick, Maryland permit article is a different jurisdiction.',
+      },
+    ],
+  },
+  /* ---------- Franklin County, Pennsylvania. Sources read 2026-09-29. ---------- */
+  'greencastle-pa': {
+    description:
+      "Greencastle is a borough in Franklin County, Pennsylvania, ZIP 17225. It is not a township. The borough permits page says work inside borough limits needs a land-use/zoning permit from the borough zoning officer before a building permit. The borough office is 60 North Washington Street, Greencastle, PA 17225, phone 717-597-7143. After that permit, the building permit goes to PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. The zoning page points at Historic District Maps. This page does not name which parcels those maps cover, and it does not name an HOA.",
+    neighborhoods: ['Borough of Greencastle', 'ZIP 17225', 'Franklin County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Which permit comes first in the borough?',
+        answer:
+          'The land-use/zoning permit from the borough zoning officer. The building permit from PA Municipal Code Alliance comes after it, and the agency will want the borough permit in hand.',
+      },
+      {
+        question: 'Where is the borough office?',
+        answer:
+          '60 North Washington Street, Greencastle, PA 17225. Phone 717-597-7143.',
+      },
+      {
+        question: 'Does the historic-district map cover the whole ZIP?',
+        answer:
+          'The zoning page references Historic District Maps. Check the parcel.',
+      },
+    ],
+  },
+  'chambersburg-pa': {
+    description:
+      "Chambersburg is a borough and the county seat of Franklin County. It is not the rest of the county. The borough permits page says a land-use permit from Land Use and Community Development comes first. That office is on the second floor of Borough Hall, 100 South Second Street, Chambersburg, PA 17201, phone 717-251-2417. After the borough approves, the applicant contacts PA Municipal Code Alliance at 717-496-4996 for the construction permit. Chapter 113 of the borough code adopts the Pennsylvania Uniform Construction Code. This page does not name neighborhoods or HOAs.",
+    neighborhoods: ['Borough of Chambersburg', 'Borough Hall', 'Franklin County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Does the county issue the Chambersburg land-use permit?',
+        answer:
+          'No. Inside the borough, land use starts at Borough Hall. The construction permit is the next step, through PA Municipal Code Alliance.',
+      },
+      {
+        question: 'What code does the borough say it enforces?',
+        answer:
+          'Chapter 113 adopts the Pennsylvania Uniform Construction Code and says a land-use permit is required before a construction-permit application is accepted.',
+      },
+      {
+        question: 'Is every Franklin County address a Chambersburg borough address?',
+        answer:
+          'No. The borough is not the rest of the county.',
+      },
+    ],
+  },
+  'fort-loudon-pa': {
+    description:
+      "Fort Loudon is a community in Peters Township, Franklin County. It is not a borough. The township site lists Fort Loudon with Upton, Lemasters, Markes, and Cove Gap as places under the township supervisors, and it says Mercersburg is a separate borough. The municipal office is 5000 Steel Avenue, Lemasters, PA 17231, open Monday, Tuesday, and Thursday, 8:00 AM to 4:00 PM. Permit steps were not on the township homepage retrieved on 2026-09-29, so this page does not name a building-code agency for Fort Loudon. It is not Loudoun County, Virginia.",
+    neighborhoods: ['Fort Loudon', 'Peters Township', 'Lemasters'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Is Fort Loudon its own borough?',
+        answer:
+          'No. Peters Township lists it as a community under the township supervisors. Mercersburg, which the same page names, is the borough with its own government.',
+      },
+      {
+        question: 'Which permit office does this page name?',
+        answer:
+          'The township office at 5000 Steel Avenue, Lemasters. The homepage did not publish the building-permit steps, so this page does not guess an inspection agency.',
+      },
+      {
+        question: 'Is this Loudoun County, Virginia?',
+        answer:
+          'No. Fort Loudon is in Franklin County, Pennsylvania. Loudoun County, Virginia already has its own pages.',
+      },
+    ],
+  },
+  'mercersburg-pa': {
+    description:
+      "Mercersburg is a borough in Franklin County, and it has its own government. The borough permits page says land use is handled by borough staff under the subdivision and land-use ordinance, and that PA Municipal Code Alliance is the building-code agency for the borough. A project needs the borough land-use permit first, then the building permit from that agency. The page also says other borough permits, such as sidewalk or curb work, can apply. This page does not name an HOA or a historic district.",
+    neighborhoods: ['Borough of Mercersburg', 'Franklin County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Does Peters Township permit a house inside the borough?',
+        answer:
+          'No. The township site says Mercersburg has its own government. Borough staff issue the land-use permit. PA Municipal Code Alliance issues the building permit.',
+      },
+      {
+        question: 'What is the order of the two permits?',
+        answer:
+          'Land-use permit from the borough, then the building permit from PA Municipal Code Alliance.',
+      },
+      {
+        question: 'Is sidewalk work included in the land-use permit?',
+        answer:
+          'Not necessarily. The borough page says sidewalk or curb work can require an additional borough permit.',
+      },
+    ],
+  },
+  'waynesboro-pa': {
+    description:
+      "Waynesboro is a borough in Franklin County. The borough zoning page says most projects need a zoning/land-use permit from the borough before a building permit, and that the borough permit or an exemption is required first. Building permits are issued by PA Municipal Code Alliance at 380 Wayne Avenue, Chambersburg, phone 717-496-4996, or by Commonwealth Code Inspection Services at 1102 Sheller Avenue, Chambersburg, phone 717-264-9191. The page says to check the deed for restrictions. This page does not name an HOA.",
+    neighborhoods: ['Borough of Waynesboro', 'Franklin County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Can the building permit be pulled first?',
+        answer:
+          'No. The borough says a land-use permit or a land-use exemption has to come first, and the building-permit office will require it.',
+      },
+      {
+        question: 'Who issues the building permit?',
+        answer:
+          'The borough names two agencies: PA Municipal Code Alliance at 380 Wayne Avenue, and Commonwealth Code Inspection Services at 1102 Sheller Avenue, both in Chambersburg.',
+      },
+      {
+        question: 'Does the borough page name an HOA?',
+        answer:
+          'No. It says to check the deed for restrictions. This page does not add an association name.',
+      },
+    ],
+  },
+  'fayetteville-pa': {
+    description:
+      "Fayetteville is an unincorporated community and census-designated place in Franklin County. It is not a borough. The place sits in Greene Township and Guilford Township, so one mailing address is not one permit counter. Greene Township's land-use page lists the office at 1145 Garver Lane, Chambersburg. After a land-use permit, the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. Guilford Township's zoning page, 115 Spring Valley Road, Chambersburg, says land-use and driveway permit requests go through that office, phone 717-264-0077. This page does not name an HOA. Check the parcel before choosing an office.",
+    neighborhoods: ['Fayetteville', 'Greene Township', 'Guilford Township'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    faqs: [
+      {
+        question: 'Is Fayetteville one township?',
+        answer:
+          'No. It is a census-designated place in Greene Township and Guilford Township. The parcel decides which office applies.',
+      },
+      {
+        question: 'What does Greene Township publish?',
+        answer:
+          'A land-use permit first, from the office at 1145 Garver Lane. After that, the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue.',
+      },
+      {
+        question: 'What does Guilford Township publish?',
+        answer:
+          'Land-use and driveway permit requests go through the zoning office at 115 Spring Valley Road, phone 717-264-0077. This page does not copy Greene Township\'s building-code step onto Guilford.',
+      },
+    ],
+  },
 };
 
 /**
@@ -820,8 +1288,8 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
  *
  * Reads straight off the catalog now — the old version concatenated three
  * overlapping arrays and de-duplicated by slug, which is what the catalog
- * removes the need for. Consolidated rows drop out here, which is how an
- * area stops generating pages.
+ * removes the need for. Consolidated and staged rows drop out here, which is
+ * how an area stops generating pages or stays unpublished.
  */
 export const ALL_SERVICE_AREAS: readonly ServiceArea[] = activeAreas(SERVICE_AREA_CATALOG);
 
@@ -835,7 +1303,15 @@ export const ALL_SERVICE_AREAS: readonly ServiceArea[] = activeAreas(SERVICE_ARE
 export const CONSOLIDATED_SERVICE_AREAS: readonly ServiceArea[] =
   SERVICE_AREA_CATALOG.filter((a) => a.status === 'consolidated');
 
-/** Look a row up by slug, across active and consolidated rows alike. */
+/**
+ * Rows held out of the site until a license gate clears. They stay in the
+ * catalog so the place list is reviewable, and `activeAreas` keeps them out
+ * of pages, the sitemap, and internal links.
+ */
+export const STAGED_SERVICE_AREAS: readonly ServiceArea[] =
+  SERVICE_AREA_CATALOG.filter((a) => a.status === 'staged');
+
+/** Look a row up by slug, across active, consolidated, and staged rows. */
 export const getServiceArea = (slug: string): ServiceArea | null =>
   SERVICE_AREA_CATALOG.find((a) => a.slug === slug) ?? null;
 
@@ -864,6 +1340,10 @@ export function areaRegionLabel(area: ServiceArea): string {
   if (area.kind === 'region') return area.city;
   if (area.state === 'WV') return 'Eastern Panhandle';
   if (area.state === 'MD') return 'Cumberland Valley and Frederick County area';
+  // Every current Pennsylvania row is Franklin County. A later county needs
+  // its own label before that row is added; this must not fall through to
+  // "Northern Virginia".
+  if (area.state === 'PA') return 'Franklin County area';
   if (area.slug === 'loudoun-county-va' || area.parent === 'loudoun-county-va') {
     return 'Loudoun County area';
   }
@@ -873,6 +1353,9 @@ export function areaRegionLabel(area: ServiceArea): string {
   if (area.slug === 'prince-william-county-va' || area.parent === 'prince-william-county-va') {
     return 'Prince William County area';
   }
+  // No Fauquier County row yet. Warrenton must not inherit "Northern Virginia"
+  // or the Shenandoah label.
+  if (area.slug === 'warrenton-va') return 'Fauquier County area';
   // Winchester is the one VA row on the home-market side of the split.
   return area.market === 'home' ? 'Northern Shenandoah Valley' : 'Northern Virginia';
 }
@@ -959,6 +1442,37 @@ export function areaHeroLane(area: ServiceArea): AreaHeroLane {
   return area.market === 'premium' ? 'consultation' : 'estimate';
 }
 
+/**
+ * Towns that already published the same-week visit sentence before this
+ * expansion. That is every `market: 'home'` row on the base of this branch:
+ * the Eastern Panhandle, plus Winchester and Frederick, which already
+ * carried the sentence. New rows do not inherit it.
+ */
+const SAME_WEEK_VISIT_SLUGS: ReadonlySet<string> = new Set([
+  'martinsburg-wv',
+  'inwood-wv',
+  'charles-town-wv',
+  'ranson-wv',
+  'hedgesville-wv',
+  'frederick-md',
+  'winchester-va',
+  'spring-mills-wv',
+  'falling-waters-wv',
+  'berkeley-springs-wv',
+  'shepherdstown-wv',
+]);
+
+/**
+ * Whether the city-page quote FAQ may promise a same-week visit.
+ *
+ * Allowlist only. `market: 'home'` is not enough: Stephens City and
+ * Middletown are home-market rows and still must not say it. Pennsylvania
+ * is absent from the list for the same reason.
+ */
+export function areaQuotesSameWeek(area: Pick<ServiceArea, 'slug'>): boolean {
+  return SAME_WEEK_VISIT_SLUGS.has(area.slug);
+}
+
 /** Legacy flat list (primary + secondary city names) for simple iterations */
 export const SERVICE_AREAS = [
   ...PRIMARY_SERVICE_AREAS.map((a) => a.city),
@@ -1025,12 +1539,16 @@ export const SERVICE_PAGE_AREA_SERVED: string[] = [
  * rail for the /design-consultation path, calibrated for $50k+ project
  * intake (pre-qualification, designer status, budget tier, in-home booking).
  *
- * Derived from `market: 'premium'` on the catalog rather than maintained by
- * hand, so a row's tier and its conversion path cannot drift apart. It
- * rewires the CTAs on /service-areas/[slug] and /services/[service]/[slug].
+ * Derived from `market: 'premium'` on active rows rather than maintained by
+ * hand, so a row's tier and its conversion path cannot drift apart. Staged
+ * rows are excluded: a premium market that is not licensed yet must not swap
+ * a CTA onto a page that does not exist. It rewires the CTAs on
+ * /service-areas/[slug] and /services/[service]/[slug].
  */
 export const LUXURY_CITY_SLUGS: ReadonlySet<string> = new Set<string>(
-  SERVICE_AREA_CATALOG.filter((a) => a.market === 'premium').map((a) => a.slug)
+  activeAreas(SERVICE_AREA_CATALOG)
+    .filter((a) => a.market === 'premium')
+    .map((a) => a.slug)
 );
 
 /**
@@ -1305,7 +1823,7 @@ export type GalleryImage = {
   src: string;
   alt: string;
   category: string;
-  state?: 'WV' | 'MD' | 'VA';
+  state?: AreaState;
   citySlug?: string;
 };
 
@@ -1337,7 +1855,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
  *   2. Else prefer photos tagged with this state
  *   3. Else fall back to the full gallery
  */
-export function selectGalleryFor(citySlug: string, state: 'WV' | 'MD' | 'VA', limit = 6): GalleryImage[] {
+export function selectGalleryFor(citySlug: string, state: AreaState, limit = 6): GalleryImage[] {
   const byCity = GALLERY_IMAGES.filter((g) => g.citySlug === citySlug);
   if (byCity.length >= 3) return byCity.slice(0, limit);
   const byState = GALLERY_IMAGES.filter((g) => g.state === state);

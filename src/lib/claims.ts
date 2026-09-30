@@ -18,6 +18,22 @@ export const CONTRACTOR_LICENSES = {
   summary: 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC)',
 } as const;
 
+/**
+ * Pennsylvania home-improvement registration.
+ *
+ * Jose confirmed this on 2026-09-29. It is also in
+ * ventures/REAL-ELITE-LOUDOUN-MASTER-PLAN.md. It covers existing-house home
+ * improvement only. It is not a commercial contractor license. Pennsylvania
+ * pages, contracts, and ads must read `paHicRegistrationLine()`.
+ */
+export const PA_HIC_REGISTRATION_NUMBER = 'PA225060';
+export const PA_HIC_EXPIRES = '2028-09-02';
+
+/** Public sentence for Pennsylvania pages, contracts, and ads. */
+export function paHicRegistrationLine(): string {
+  return `PA HIC #${PA_HIC_REGISTRATION_NUMBER}. Existing-house home improvement only. Expires ${PA_HIC_EXPIRES}.`;
+}
+
 /** Confirmed by Jose in REA-55 board comment 59567b88 (2026-09-27).
  * SAM registration and NAICS codes do not establish veteran certification
  * or expand state contractor license specialties.
