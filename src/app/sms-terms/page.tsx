@@ -24,7 +24,10 @@ const sections = [
   {
     title: 'How you opt in',
     body: [
-      'You opt in by calling us and agreeing on the call, or by checking the text-consent box on the quote form. Checking that box or agreeing on the call is how we get permission to text the number you gave us. Consent is not required to request a quote or to buy services.',
+      'We text you only after one of these two opt-ins.',
+      'Verbal consent on a phone call: our assistant asks the caller whether we may text them about their request, and we text only if they say yes.',
+      'The customer texts our number first. We reply only about their request.',
+      'Consent is not required to request a quote or to buy services.',
     ],
   },
   {

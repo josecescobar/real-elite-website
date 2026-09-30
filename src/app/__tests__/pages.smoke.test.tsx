@@ -207,6 +207,9 @@ describe('static page smoke tests', () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/Reply STOP to opt out/i)).toBeInTheDocument();
     expect(screen.getByText(/Reply HELP for help/i)).toBeInTheDocument();
+    expect(screen.queryByText(/phone, email, or text/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/verbal consent on a phone call/i)).toBeInTheDocument();
+    expect(screen.getByText(/texts our number first/i)).toBeInTheDocument();
     expect(screen.getByText('Effective September 30, 2026.')).toBeInTheDocument();
   });
 
@@ -215,6 +218,15 @@ describe('static page smoke tests', () => {
     render(<SmsTermsPage />);
     expect(screen.getByRole('heading', { name: 'Text Messaging Terms' })).toBeInTheDocument();
     expect(screen.getByText('Real Elite Contracting customer updates')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Verbal consent on a phone call: our assistant asks the caller whether we may text them about their request, and we text only if they say yes.',
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('The customer texts our number first. We reply only about their request.'),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/text-consent box/i)).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: /privacy policy/i })).toHaveAttribute('href', '/privacy');
   });
 
