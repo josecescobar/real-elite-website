@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { buildMetadata, fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { BUSINESS } from '@/lib/constants';
+import { BUSINESS, FAQ_FINANCING_ANSWER } from '@/lib/constants';
 import Container from '@/components/shared/Container';
 import FAQSchema from '@/components/seo/FAQSchema';
 import FaqAccordion from '@/components/faq/FaqAccordion';
@@ -85,8 +85,7 @@ const FAQ_SECTIONS = [
       },
       {
         question: 'Do you offer financing?',
-        answer:
-          "Yes. We work with several home-improvement financing partners that offer monthly payment plans on qualified projects. We'll walk you through the options on the free estimate before you commit.",
+        answer: FAQ_FINANCING_ANSWER,
       },
       {
         question: 'What payment methods do you accept?',
