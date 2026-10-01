@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/shared/Container';
 import { buildMetadata } from '@/lib/seo';
@@ -110,6 +111,18 @@ export default function SmsTermsPage() {
                 <blockquote className="border-l-4 border-gold-300 pl-4 text-navy-800">
                   {SMS_CONSENT_TEXT}
                 </blockquote>
+                <figure>
+                  <Image
+                    src="/images/sms-optin-form.png"
+                    alt="Estimate form phone step with the SMS consent checkbox unchecked. The full label says Real Elite Contracting may text the number above about the project, including estimate scheduling and updates, that message frequency varies, that message and data rates may apply, to reply STOP to opt out and HELP for help, and that consent is not a condition of purchase."
+                    width={768}
+                    height={738}
+                    className="w-full h-auto rounded-md border border-charcoal-200"
+                  />
+                  <figcaption className="mt-2 text-sm text-charcoal-500">
+                    The estimate form as a visitor sees it. The text-message box starts unchecked.
+                  </figcaption>
+                </figure>
               </div>
             </section>
 

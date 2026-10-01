@@ -232,6 +232,10 @@ describe('static page smoke tests', () => {
       ),
     ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'estimate form' })).toHaveAttribute('href', '/estimate');
+    expect(screen.getByRole('img', { name: /checkbox unchecked/i })).toHaveAttribute(
+      'src',
+      '/images/sms-optin-form.png',
+    );
     expect(screen.getByRole('link', { name: /privacy policy/i })).toHaveAttribute('href', '/privacy');
   });
 
