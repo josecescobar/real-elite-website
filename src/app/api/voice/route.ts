@@ -25,11 +25,12 @@ export const runtime = 'nodejs';
  * public endpoint that can send SMS, so an unsigned request is rejected.
  *
  * The caller text-back is a customer SMS. Credentials and a valid signature
- * are not enough: SMS_CONSENT_CONFIRMATION_ENABLED must be on and the phone
- * must already have affirmative, not-stopped consent. The owner missed-call
- * alert is separate. It still goes to TWILIO_TO_NUMBER under the credential
- * gate above, including when the caller text is skipped. See
- * docs/SMS_ENROLLMENT_SETUP.md.
+ * are not enough: SMS_CONSENT_CONFIRMATION_ENABLED must be on, the phone
+ * must already have affirmative, not-stopped consent, and the sample-5
+ * confirmation must be accepted. A claimed or failed enrollment does not
+ * authorize this text. The owner missed-call alert is separate. It still
+ * goes to TWILIO_TO_NUMBER under the credential gate above, including when
+ * the caller text is skipped. See docs/SMS_ENROLLMENT_SETUP.md.
  */
 
 const FORWARD_TO =

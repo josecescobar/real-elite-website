@@ -3,7 +3,7 @@ import { toE164 } from '@/lib/review-request';
 import { SMS_CONSENT_TEXT_VERSION, type StoredSmsConsent } from '@/lib/sms-consent';
 import {
   claimSmsEnrollmentSend,
-  customerSmsAllowed,
+  enrollmentPreSendAllowed,
   explicitSmsFlagOn,
   finishSmsEnrollmentSend,
   storeSmsConsentEvidence,
@@ -105,7 +105,7 @@ export async function sendSmsConsentConfirmation(input: {
       return skip('persistence_failed');
     }
 
-    const stillAllowed = await customerSmsAllowed(to);
+    const stillAllowed = await enrollmentPreSendAllowed(to);
     if (!stillAllowed.allowed) {
       await finishSmsEnrollmentSend({
         phoneE164: to,

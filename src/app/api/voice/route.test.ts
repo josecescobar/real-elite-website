@@ -148,9 +148,9 @@ describe('POST /api/voice — second leg (dial result)', () => {
     expect(toValues(fetchMock)).toEqual(['+13045559999']);
   });
 
-  it('texts the caller only when the flag is on and consent is affirmative', async () => {
+  it('texts the caller only when the flag is on and the confirmation was accepted', async () => {
     fullConfig();
-    const fetchMock = consentRows([{ consent: true, stopped: false }]);
+    const fetchMock = consentRows([{ consent: true, stopped: false, send_status: 'accepted' }]);
     const POST = await loadPOST();
     const res = await POST(
       makeRequest({ From: '+15555550123', CallSid: 'CA1', DialCallStatus: 'no-answer' })
@@ -158,6 +158,25 @@ describe('POST /api/voice — second leg (dial result)', () => {
     expect(res.status).toBe(200);
     expect(toValues(fetchMock).sort()).toEqual(['+13045559999', '+15555550123']);
   });
+
+  it.each(['claimed', 'failed'])(
+    'does not text the caller while enrollment is %s, and still alerts the owner',
+    async (send_status) => {
+      fullConfig();
+      const fetchMock = consentRows([{ consent: true, stopped: false, send_status }]);
+      const POST = await loadPOST();
+      const res = await POST(
+        makeRequest({ From: '+15555550123', CallSid: 'CA1', DialCallStatus: 'no-answer' })
+      );
+      expect(res.status).toBe(200);
+      const customer = fetchMock.mock.calls
+        .filter(([url]) => String(url).includes('api.twilio.com'))
+        .map((call) => new URLSearchParams(call[1].body as string))
+        .filter((params) => params.get('To') === '+15555550123');
+      expect(customer).toEqual([]);
+      expect(toValues(fetchMock)).toEqual(['+13045559999']);
+    }
+  );
 
   it('does not text a stopped caller, and still alerts the owner', async () => {
     fullConfig();

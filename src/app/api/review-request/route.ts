@@ -124,9 +124,11 @@ export async function POST(request: Request) {
           ? 'Customer texts are off.'
           : gate.reason === 'stopped'
             ? 'This number is opted out. No text was sent.'
-            : gate.reason === 'lookup_failed' || gate.reason === 'unconfigured'
-              ? 'SMS consent could not be verified. No text was sent.'
-              : 'No affirmative SMS consent on file for this number.';
+            : gate.reason === 'confirmation_not_accepted'
+              ? 'The enrollment confirmation has not succeeded. No text was sent.'
+              : gate.reason === 'lookup_failed' || gate.reason === 'unconfigured'
+                ? 'SMS consent could not be verified. No text was sent.'
+                : 'No affirmative SMS consent on file for this number.';
       return NextResponse.json(
         { error },
         { status: gate.reason === 'disabled' ? 403 : 409 }

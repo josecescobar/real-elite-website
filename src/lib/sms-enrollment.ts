@@ -173,15 +173,27 @@ export type CustomerSmsGate =
   | { allowed: true; phone: string }
   | {
       allowed: false;
-      reason: 'disabled' | 'unconfigured' | 'invalid_phone' | 'no_consent' | 'stopped' | 'lookup_failed';
+      reason:
+        | 'disabled'
+        | 'unconfigured'
+        | 'invalid_phone'
+        | 'no_consent'
+        | 'stopped'
+        | 'lookup_failed'
+        | 'confirmation_not_accepted';
     };
 
+type PhoneStateRow = { consent?: unknown; stopped?: unknown; send_status?: unknown };
+
 /**
- * Missed-call and review-request customer texts. The shared flag defaults
- * off. A stored consent row that is not stopped is affirmative consent.
- * Owner alerts do not call this.
+ * Shared flag, phone, and stored consent/STOP lookup. Confirmation uses this
+ * before it can become accepted. Other customer texts also require
+ * send_status accepted.
  */
-export async function customerSmsAllowed(phone: string): Promise<CustomerSmsGate> {
+async function readCustomerSmsGate(
+  phone: string,
+  requireAcceptedConfirmation: boolean,
+): Promise<CustomerSmsGate> {
   if (!explicitSmsFlagOn(env.smsConsentConfirmationEnabled())) {
     return { allowed: false, reason: 'disabled' };
   }
@@ -203,16 +215,34 @@ export async function customerSmsAllowed(phone: string): Promise<CustomerSmsGate
       console.error('sms consent lookup failed', { status: res.status, body: text });
       return { allowed: false, reason: 'lookup_failed' };
     }
-    const rows = (await res.json().catch(() => null)) as
-      | { consent?: unknown; stopped?: unknown }[]
-      | null;
+    const rows = (await res.json().catch(() => null)) as PhoneStateRow[] | null;
     const row = Array.isArray(rows) ? rows[0] : null;
     if (!row) return { allowed: false, reason: 'no_consent' };
     if (row.stopped === true) return { allowed: false, reason: 'stopped' };
-    if (row.consent === true) return { allowed: true, phone: normalized };
-    return { allowed: false, reason: 'no_consent' };
+    if (row.consent !== true) return { allowed: false, reason: 'no_consent' };
+    if (requireAcceptedConfirmation && row.send_status !== 'accepted') {
+      return { allowed: false, reason: 'confirmation_not_accepted' };
+    }
+    return { allowed: true, phone: normalized };
   } catch (err) {
     console.error('sms consent lookup error', err);
     return { allowed: false, reason: 'lookup_failed' };
   }
+}
+
+/**
+ * Consent and STOP only. The enrollment confirmation calls this before the
+ * provider accepts, while send_status is still claimed.
+ */
+export function enrollmentPreSendAllowed(phone: string): Promise<CustomerSmsGate> {
+  return readCustomerSmsGate(phone, false);
+}
+
+/**
+ * Missed-call and review-request customer texts. The shared flag defaults
+ * off. These routes wait until the sample-5 confirmation is accepted.
+ * Owner alerts do not call this.
+ */
+export function customerSmsAllowed(phone: string): Promise<CustomerSmsGate> {
+  return readCustomerSmsGate(phone, true);
 }

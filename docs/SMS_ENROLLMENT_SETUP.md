@@ -10,9 +10,9 @@ This document is the setup for that store. Applying the SQL is a separate produc
 
 | Path | Who receives it | Gate |
 | --- | --- | --- |
-| Enrollment confirmation after a checked consent box | Customer | Flag on, echoed consent id, atomic claim, effective consent still yes |
-| Missed-call text-back (`/api/voice`) | Caller | Flag on and affirmative, not-stopped consent already stored for that phone |
-| Review-request SMS (`/api/review-request`) | Customer | Admin key, Twilio credentials, flag on, and the same affirmative consent |
+| Enrollment confirmation after a checked consent box | Customer | Flag on, echoed consent id, atomic claim, consent still yes and not stopped. This check does not require `send_status=accepted`, because this send is what creates that state |
+| Missed-call text-back (`/api/voice`) | Caller | Flag on, affirmative not-stopped consent, and `send_status=accepted` |
+| Review-request SMS (`/api/review-request`) | Customer | Admin key, Twilio credentials, and the same accepted-confirmation gate |
 
 ## What the flag does not cover
 
@@ -30,6 +30,7 @@ A failed or unconfigured lead-ledger write does not queue the customer text. `re
 - The form and the customer confirmation email still succeed when consent storage fails. The customer text is skipped.
 - A second submit for a phone that already has an accepted or in-flight enrollment does not send again. That decision is one database function, `claim_sms_enrollment_send`, not a check in the request after a send.
 - A provider failure is stored as `failed`, not `accepted`. A later affirmative consent can claim again. An in-flight `claimed` row is not treated as delivered.
+- Missed-call and review-request texts wait until `send_status` is `accepted`. `claimed` and `failed` leave consent true and still do not authorize those texts. The confirmation's own pre-send check stays consent and STOP only, so it can create the accepted state.
 - `stopped = true` blocks missed-call and review-request sends. Evidence stored before STOP cannot clear it or win a customer send. A later affirmative consent can re-enroll only when its `consented_at` is after `sms_phone_state.stopped_at`. A stopped row with no `stopped_at` stays stopped. This repo does not add an inbound Twilio webhook; the STOP writer must set both `stopped` and `stopped_at`.
 
 ## One-time SQL

@@ -254,6 +254,26 @@ describe('sendSmsConsentConfirmation', () => {
     expect(twilioCalls(fetchMock)).toHaveLength(0);
   });
 
+  it('still sends the confirmation while send_status is claimed', async () => {
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED = 'true';
+    enableTwilio();
+    enableStore();
+    const fetchMock = mockDurableSend({
+      lookup: [{ consent: true, stopped: false, send_status: 'claimed' }],
+    });
+
+    const result = await sendSmsConsentConfirmation({
+      phone: '(681) 555-0142',
+      consent: consent(),
+      consentId: EVIDENCE_ID,
+    });
+
+    expect(result).toEqual({ skipped: false, sent: true });
+    expect(twilioCalls(fetchMock)).toHaveLength(1);
+    const params = new URLSearchParams(twilioCalls(fetchMock)[0][1].body as string);
+    expect(params.get('Body')).toBe(SAMPLE_5);
+  });
+
   it('sends the sample-5 body once when the claim wins', async () => {
     process.env.SMS_CONSENT_CONFIRMATION_ENABLED = '1';
     enableTwilio();

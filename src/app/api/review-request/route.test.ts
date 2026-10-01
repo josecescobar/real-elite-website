@@ -58,7 +58,7 @@ function mockConsent(rows: unknown, twilioStatus = 201) {
 
 function mockTwilioOk() {
   allowCustomerSms();
-  return mockConsent([{ consent: true, stopped: false }]);
+  return mockConsent([{ consent: true, stopped: false, send_status: 'accepted' }]);
 }
 
 beforeEach(() => {
@@ -138,6 +138,23 @@ describe('POST /api/review-request — Twilio gating + delivery', () => {
     );
   });
 
+  it.each(['claimed', 'failed'])(
+    'does not send while enrollment confirmation is %s',
+    async (send_status) => {
+      allowCustomerSms();
+      const fetchMock = mockConsent([{ consent: true, stopped: false, send_status }]);
+      const POST = await loadPOST();
+      const res = await POST(makeRequest(validBody, '203.0.113.35'));
+      expect(res.status).toBe(409);
+      expect(await res.json()).toEqual({
+        error: 'The enrollment confirmation has not succeeded. No text was sent.',
+      });
+      expect(fetchMock.mock.calls.some(([url]) => String(url).includes('api.twilio.com'))).toBe(
+        false
+      );
+    }
+  );
+
   it('does not send when the number is stopped', async () => {
     allowCustomerSms();
     const fetchMock = mockConsent([{ consent: true, stopped: true }]);
@@ -162,7 +179,7 @@ describe('POST /api/review-request — Twilio gating + delivery', () => {
 
   it('returns 502 when Twilio rejects the message', async () => {
     allowCustomerSms();
-    vi.stubGlobal('fetch', mockConsent([{ consent: true, stopped: false }], 400));
+    vi.stubGlobal('fetch', mockConsent([{ consent: true, stopped: false, send_status: 'accepted' }], 400));
     const POST = await loadPOST();
     const res = await POST(makeRequest(validBody, '203.0.113.32'));
     expect(res.status).toBe(502);
@@ -178,7 +195,10 @@ describe('POST /api/review-request — rate limiting', () => {
       'fetch',
       vi.fn().mockImplementation(async (url: string) => {
         if (String(url).includes('sms_phone_state')) {
-          return new Response(JSON.stringify([{ consent: true, stopped: false }]), { status: 200 });
+          return new Response(
+            JSON.stringify([{ consent: true, stopped: false, send_status: 'accepted' }]),
+            { status: 200 }
+          );
         }
         return new Response('{"sid":"SM1"}', { status: 201 });
       })
