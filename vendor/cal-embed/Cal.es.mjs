@@ -3,8 +3,9 @@
 import { useEffect as e, useRef as t, useState as n } from "react";
 import { jsx as r } from "react/jsx-runtime";
 //#region ../../../real-elite-booking/packages/embeds/embed-snippet/src/index.ts
-var i = "http://localhost:3000/embed/embed.js";
-function a(e = i) {
+// Adapted after generation: embedJsUrl is required. There is no default script URL.
+function a(e) {
+	if (typeof e != "string" || e.length === 0) throw new Error("embedJsUrl is required");
 	return (function(e, t, n) {
 		let r = function(e, t) {
 			e.q.push(t);

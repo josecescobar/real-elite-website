@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { parseBookingUrl } from './booking';
 
-const PILOT = 'http://127.0.0.1:3340/real-elite/free-estimate-visit';
+const PILOT = 'https://booking.example.com/real-elite/free-estimate-visit';
 
 describe('parseBookingUrl', () => {
   it('returns null when the flag is missing or blank', () => {
@@ -13,9 +13,9 @@ describe('parseBookingUrl', () => {
 
   it('splits the Cal.diy event URL into origin, link, and embed script', () => {
     expect(parseBookingUrl(PILOT)).toEqual({
-      origin: 'http://127.0.0.1:3340',
+      origin: 'https://booking.example.com',
       calLink: 'real-elite/free-estimate-visit',
-      embedJsUrl: 'http://127.0.0.1:3340/embed/embed.js',
+      embedJsUrl: 'https://booking.example.com/embed/embed.js',
     });
   });
 
@@ -33,7 +33,7 @@ describe('parseBookingUrl', () => {
     expect(parseBookingUrl('not a url')).toBeNull();
     expect(parseBookingUrl('/real-elite/free-estimate-visit')).toBeNull();
     expect(parseBookingUrl('javascript:alert(1)')).toBeNull();
-    expect(parseBookingUrl('http://127.0.0.1:3340')).toBeNull();
-    expect(parseBookingUrl('http://127.0.0.1:3340/real-elite')).toBeNull();
+    expect(parseBookingUrl('https://booking.example.com')).toBeNull();
+    expect(parseBookingUrl('https://booking.example.com/real-elite')).toBeNull();
   });
 });

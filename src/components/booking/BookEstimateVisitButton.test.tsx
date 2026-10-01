@@ -23,7 +23,7 @@ vi.mock('next/image', () => ({
 
 import BookEstimateVisitButton, { BOOKING_BUTTON_LABEL } from './BookEstimateVisitButton';
 
-const PILOT = 'http://127.0.0.1:3340/real-elite/free-estimate-visit';
+const PILOT = 'https://booking.example.com/real-elite/free-estimate-visit';
 
 beforeEach(() => {
   delete process.env.NEXT_PUBLIC_BOOKING_URL;
@@ -51,12 +51,12 @@ describe('BookEstimateVisitButton', () => {
     await user.click(screen.getByRole('button', { name: BOOKING_BUTTON_LABEL }));
 
     expect(getCalApi).toHaveBeenCalledWith({
-      embedJsUrl: 'http://127.0.0.1:3340/embed/embed.js',
+      embedJsUrl: 'https://booking.example.com/embed/embed.js',
       namespace: 'free-estimate-visit',
     });
     expect(cal).toHaveBeenCalledWith('modal', {
       calLink: 'real-elite/free-estimate-visit',
-      calOrigin: 'http://127.0.0.1:3340',
+      calOrigin: 'https://booking.example.com',
       config: {
         layout: 'month_view',
         useSlotsViewOnSmallScreen: 'true',

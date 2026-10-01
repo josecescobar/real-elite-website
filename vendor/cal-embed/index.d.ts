@@ -19,7 +19,7 @@ export interface CalNamespaceApi {
   (method: 'modal', config: CalModalConfig): void;
 }
 
-export function getCalApi(options?: {
-  embedJsUrl?: string;
+export function getCalApi(options: {
+  embedJsUrl: string;
   namespace?: string;
 }): Promise<CalNamespaceApi>;

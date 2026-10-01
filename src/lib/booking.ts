@@ -1,6 +1,6 @@
 /**
  * `NEXT_PUBLIC_BOOKING_URL` is the full Cal.diy event page, for example
- * http://127.0.0.1:3340/real-elite/free-estimate-visit.
+ * https://booking.example.com/real-elite/free-estimate-visit.
  * Unset, blank, or not an event link means the booking button stays off.
  */
 export type BookingTarget = {

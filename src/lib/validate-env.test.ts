@@ -84,7 +84,7 @@ describe('validateEnv', () => {
   });
 
   it('warns when the booking URL is set but is not an event link', () => {
-    process.env.NEXT_PUBLIC_BOOKING_URL = 'http://127.0.0.1:3340';
+    process.env.NEXT_PUBLIC_BOOKING_URL = 'https://booking.example.com';
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     validateEnv();
     expect(warn).toHaveBeenCalledWith(expect.stringContaining('NEXT_PUBLIC_BOOKING_URL'));
