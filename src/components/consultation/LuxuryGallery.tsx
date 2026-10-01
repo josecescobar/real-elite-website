@@ -1,91 +1,92 @@
 import Image from 'next/image';
 import { isStockImage, isVerifiedWorkImage } from '@/lib/stock-images';
 
-// Stock photography for the consultation gallery. No caption. Verified work
-// photos and unverified assets are left out of this gallery.
+// Stock photography is presented as design inspiration, not completed client work.
+// Verified work photos and unverified assets are left out of this gallery.
 
 type Img = { src: string; alt: string; tag: string };
 
-const INTERIOR_PHOTOS: Img[] = [
+const INTERIOR_INSPIRATION: Img[] = [
   {
     src: '/images/projects/kitchens/gray-marble-waterfall.jpg',
-    alt: 'kitchen with gray-marble waterfall island and modern cabinetry',
+    alt: 'Inspiration: kitchen with gray-marble waterfall island and modern cabinetry',
     tag: 'Kitchen',
   },
   {
     src: '/images/projects/bathrooms/shower-stone-accent.jpg',
-    alt: 'primary bath with stone-accent shower and marble tile',
+    alt: 'Inspiration: primary bath with stone-accent shower and marble tile',
     tag: 'Primary Bath',
   },
   {
     src: '/images/projects/kitchens/island-lantern-pendants.jpg',
-    alt: 'kitchen with custom island and lantern pendants',
+    alt: 'Inspiration: kitchen with custom island and lantern pendants',
     tag: 'Kitchen',
   },
   {
     src: '/images/projects/bathrooms/tub-shower-tile.jpg',
-    alt: 'primary bath with freestanding tub and large-format tile',
+    alt: 'Inspiration: primary bath with freestanding tub and large-format tile',
     tag: 'Primary Bath',
   },
   {
     src: '/images/projects/kitchens/two-tone-black-hood.jpg',
-    alt: 'kitchen with two-tone cabinetry and matte-black hood',
+    alt: 'Inspiration: kitchen with two-tone cabinetry and matte-black hood',
     tag: 'Kitchen',
   },
   {
     src: '/images/projects/kitchens/white-island-chairs.jpg',
-    alt: 'white kitchen with island seating',
+    alt: 'Inspiration: white kitchen with island seating',
     tag: 'Kitchen',
   },
 ];
 
-const MORE_PHOTOS: Img[] = [
+const INSPIRATION: Img[] = [
   {
     src: '/images/inspiration/luxury-bathroom-marble-tile.jpg',
-    alt: 'luxury primary bath with marble tile and freestanding tub',
+    alt: 'Inspiration: luxury primary bath with marble tile and freestanding tub',
     tag: 'Primary Bath',
   },
   {
     src: '/images/inspiration/wholehome-kitchen-refresh.webp',
-    alt: 'open-concept luxury kitchen with island and pendant lighting',
+    alt: 'Inspiration: open-concept luxury kitchen with island and pendant lighting',
     tag: 'Kitchen',
   },
   {
     src: '/images/inspiration/basement-home-theater.jpg',
-    alt: 'finished lower-level home theater with tiered seating',
+    alt: 'Inspiration: finished lower-level home theater with tiered seating',
     tag: 'Lower Level',
   },
   {
     src: '/images/inspiration/suite-spa-bath.jpg',
-    alt: 'primary suite spa bath with double vanity',
+    alt: 'Inspiration: primary suite spa bath with double vanity',
     tag: 'Primary Bath',
   },
   {
     src: '/images/inspiration/kitchenette-refresh.webp',
-    alt: 'compact kitchenette with white cabinetry, a sink, and a small refrigerator',
+    alt: 'Inspiration: compact kitchenette with white cabinetry, a sink, and a small refrigerator',
     tag: 'Lower Level',
   },
   {
     src: '/images/inspiration/wholehome-foyer-staircase.jpg',
-    alt: 'luxury whole-home foyer and staircase',
+    alt: 'Inspiration: luxury whole-home foyer and staircase',
     tag: 'Whole-Home',
   },
 ];
 
-function stockOnly(images: readonly Img[]): Img[] {
+function labelledInspiration(images: readonly Img[]): Img[] {
   return images.filter((img) => isStockImage(img.src) && !isVerifiedWorkImage(img.src));
 }
 
 type Props = {
-  /** Section title. The consultation page may pass its own. */
+  /** Section title. Defaults to "Interior & Design Inspiration" but the
+   * consultation page may want different copy. */
   title?: string;
   /** Subtitle / kicker. */
   subtitle?: string;
 };
 
 export default function LuxuryGallery({
-  title = 'Kitchens, baths, and whole homes',
-  subtitle = 'Explore kitchen, bathroom, and whole-home finishes for your consultation.',
+  title = 'Interior & Design Inspiration',
+  subtitle = 'Explore kitchen, bathroom, and whole-home design ideas for your consultation. Images are inspiration, not Real Elite project photographs.',
 }: Props) {
   return (
     <section className="bg-white py-16 md:py-24">
@@ -100,14 +101,18 @@ export default function LuxuryGallery({
           <p className="text-charcoal-600 mt-3 text-base leading-relaxed">{subtitle}</p>
         </div>
 
+        {/* Interior design inspiration */}
         <div className="mt-12">
-          <div className="mb-5">
+          <div className="flex items-baseline justify-between mb-5">
             <h3 className="font-heading text-lg md:text-xl font-bold text-navy-800">
-              Kitchens and baths
+              Kitchen & Bath Inspiration
             </h3>
+            <span className="text-charcoal-500 text-xs uppercase tracking-[0.15em] font-semibold">
+              Design Inspiration
+            </span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {stockOnly(INTERIOR_PHOTOS).map((img) => (
+            {labelledInspiration(INTERIOR_INSPIRATION).map((img) => (
               <figure
                 key={img.src}
                 className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-card-elevated bg-charcoal-100 group"
@@ -129,14 +134,18 @@ export default function LuxuryGallery({
           </div>
         </div>
 
+        {/* Design Inspiration — clearly labeled */}
         <div className="mt-16">
-          <div className="mb-5">
+          <div className="flex items-baseline justify-between mb-5">
             <h3 className="font-heading text-lg md:text-xl font-bold text-navy-800">
-              Lower levels and whole homes
+              Design Inspiration
             </h3>
+            <span className="text-charcoal-500 text-xs uppercase tracking-[0.15em] font-semibold">
+              What&apos;s Possible
+            </span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {stockOnly(MORE_PHOTOS).map((img) => (
+            {labelledInspiration(INSPIRATION).map((img) => (
               <figure
                 key={img.src}
                 className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-sm bg-charcoal-100 group"
@@ -150,12 +159,16 @@ export default function LuxuryGallery({
                 />
                 <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy-950/70 via-navy-900/20 to-transparent p-4">
                   <span className="text-[0.65rem] uppercase tracking-[0.15em] text-white font-bold">
-                    {img.tag}
+                    {img.tag} · Inspiration
                   </span>
                 </figcaption>
               </figure>
             ))}
           </div>
+          <p className="text-charcoal-500 text-xs mt-4 italic">
+            Inspiration imagery — representative of the level of finish the consultation is
+            calibrated to produce.
+          </p>
         </div>
       </div>
     </section>

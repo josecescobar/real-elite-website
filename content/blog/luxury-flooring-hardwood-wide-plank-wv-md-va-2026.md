@@ -86,3 +86,4 @@ If you're planning new flooring in **Loudoun County, Ashburn, Leesburg, Frederic
 
 Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
+*Photography in this article is for design inspiration.*

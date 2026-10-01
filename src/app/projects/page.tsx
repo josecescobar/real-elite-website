@@ -3,6 +3,7 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import GalleryGrid from '@/components/shared/GalleryGrid';
+import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import ProjectCard from '@/components/projects/ProjectCard';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS, SERVICES } from '@/lib/constants';
@@ -103,14 +104,25 @@ export default async function ProjectsPage({
         </Container>
       </section>
 
-      <section className="bg-white pt-4 pb-6 md:pb-8">
+      {/* Recent Work — the full photo wall. The case studies above are the
+          stories; this is every job-site photo, filterable by category. */}
+      <section className="bg-white pt-4 pb-10 md:pb-14">
         <Container size="wide">
-          <p className="text-center text-xs font-semibold tracking-[0.18em] text-charcoal-500">
-            Family-run · Licensed & Insured · Serving WV, MD, VA & PA
-          </p>
+          <SectionHeader
+            eyebrow="Recent Work"
+            title="The photo wall"
+            subtitle="Job-site photography from across the WV–MD–VA region — filter by category, click any image to view full-size."
+          />
         </Container>
       </section>
       <GalleryGrid />
+
+      {/* Stock photography, labeled as inspiration. It stays below the photo
+          wall so nothing here reads as a Real Elite project. */}
+      <LuxuryGallery
+        title="Design inspiration"
+        subtitle="Kitchen, bath, and lower-level ideas we can build for you. These images are inspiration, not Real Elite project photographs."
+      />
 
       <AssurancesBand />
     </>

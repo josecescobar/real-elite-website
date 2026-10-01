@@ -37,7 +37,7 @@ Every project is scoped to the home and the homeowner, but full renovations comm
 - **Lighting and electrical** brought up to modern standards, with a real lighting plan across the home.
 - **Finishing the lower level** where it adds living space — see our [luxury basement guide](/blog/luxury-basement-finishing-loudoun-northern-virginia-2026).
 
-![A kitchen with white cabinetry, a gray island, and an adjoining living area](/images/inspiration/wholehome-kitchen-refresh.webp)
+![Kitchen inspiration with white cabinetry, a gray island, and an adjoining living area](/images/inspiration/wholehome-kitchen-refresh.webp)
 
 ## The real advantage: one project lead
 
@@ -85,3 +85,4 @@ Beyond Loudoun, we take on whole-home renovations across Fairfax County and Alex
 
 Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
+*Photography in this article is for design inspiration.*
