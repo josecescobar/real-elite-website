@@ -200,6 +200,9 @@ describe('no inspiration labels', () => {
       codeRendered('const id = "outdoor-living-inspiration";\nconst src = "/images/inspiration/a.jpg";'),
     ).not.toMatch(INSPIRATION_WORD);
     expect(codeRendered('<h2>Inspiration</h2>')).toMatch(INSPIRATION_WORD);
+    expect(codeRendered('<h2>{"Inspiration"}</h2>')).toMatch(INSPIRATION_WORD);
+    expect(codeRendered('title="Inspiration"')).toMatch(INSPIRATION_WORD);
+    expect(codeRendered('<img title="Inspiration" alt="Tile shower" />')).toMatch(INSPIRATION_WORD);
   });
 
   it('keeps the bathroom guide photos and drops the inspiration heading', () => {
