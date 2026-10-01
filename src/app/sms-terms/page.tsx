@@ -4,7 +4,11 @@ import Container from '@/components/shared/Container';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS } from '@/lib/constants';
 import PhoneLink from '@/components/analytics/PhoneLink';
-import { SMS_CONSENT_TEXT, SMS_VERBAL_OPT_IN_SCRIPT } from '@/lib/sms-consent';
+import {
+  SMS_CONSENT_TEXT,
+  SMS_OPT_IN_CONFIRMATION,
+  SMS_VERBAL_OPT_IN_SCRIPT,
+} from '@/lib/sms-consent';
 
 export const metadata = buildMetadata({
   path: '/sms-terms',
@@ -29,13 +33,9 @@ const sections = [
   },
   {
     title: 'Rates',
-    body: ['Message and data rates may apply. Your carrier sets those rates. We do not charge a fee to send or receive these texts.'],
-  },
-  {
-    title: 'STOP and HELP',
     body: [
-      'Reply STOP to opt out. After STOP, we will not send more texts in this program to that number.',
-      'Reply HELP for help. You can also contact us using the support details below.',
+      'Message and data rates may apply. Your carrier sets those rates. We do not charge a fee to send or receive these texts.',
+      'Carriers are not liable for any delayed or undelivered messages.',
     ],
   },
   {
@@ -100,13 +100,14 @@ export default function SmsTermsPage() {
                 </blockquote>
                 <h3 className="font-heading text-xl font-extrabold text-navy-800">Web form</h3>
                 <p>
-                  The{' '}
+                  The web checkbox is on step 3 of the{' '}
                   <Link className="font-semibold text-navy-800 underline" href="/estimate">
                     estimate form
-                  </Link>{' '}
-                  includes a separate optional checkbox. It starts unchecked, and you can submit
-                  the form without checking it. The same checkbox is on the contact page and on
-                  service-page estimate forms. The checkbox says:
+                  </Link>
+                  . It starts unchecked, and you can submit the form without checking it. The same
+                  checkbox is on the contact page and on service-page estimate forms. Texting our
+                  business number with a question does not enroll anyone in recurring texts. The
+                  checkbox says:
                 </p>
                 <blockquote className="border-l-4 border-gold-300 pl-4 text-navy-800">
                   {SMS_CONSENT_TEXT}
@@ -126,7 +127,53 @@ export default function SmsTermsPage() {
               </div>
             </section>
 
-            {sections.slice(1).map((section) => (
+            <section id="what-happens-after-you-opt-in">
+              <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-4">
+                What happens after you opt in
+              </h2>
+              <p className="text-charcoal-600 leading-relaxed">
+                After you opt in, we send this confirmation before any further texts in this
+                program:
+              </p>
+              <blockquote className="mt-4 border-l-4 border-gold-300 pl-4 text-navy-800">
+                {SMS_OPT_IN_CONFIRMATION}
+              </blockquote>
+            </section>
+
+            {sections.slice(1, 3).map((section) => (
+              <section key={section.title}>
+                <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-4">
+                  {section.title}
+                </h2>
+                <div className="space-y-4 text-charcoal-600 leading-relaxed">
+                  {section.body.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            ))}
+
+            <section id="stop-and-help">
+              <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-4">
+                STOP and HELP
+              </h2>
+              <div className="space-y-4 text-charcoal-600 leading-relaxed">
+                <p>
+                  <strong className="font-bold" style={{ fontWeight: 700 }}>
+                    Reply STOP to opt out.
+                  </strong>{' '}
+                  After STOP, we will not send more texts in this program to that number.
+                </p>
+                <p>
+                  <strong className="font-bold" style={{ fontWeight: 700 }}>
+                    Reply HELP for help.
+                  </strong>{' '}
+                  You can also contact us using the support details below.
+                </p>
+              </div>
+            </section>
+
+            {sections.slice(3).map((section) => (
               <section key={section.title}>
                 <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-4">
                   {section.title}

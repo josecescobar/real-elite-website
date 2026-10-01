@@ -12,9 +12,13 @@ export const SMS_CONSENT_TEXT_VERSION = '2026-09-30';
 export const SMS_CONSENT_TEXT =
   'Yes, Real Elite Contracting may text me at the number above about my project, including estimate scheduling and updates. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our SMS Terms and Privacy Policy.';
 
-/** Verbatim script the phone assistant reads before texting a caller. */
+/** Verbatim script the phone assistant (elite-agent v15) reads before texting a caller. */
 export const SMS_VERBAL_OPT_IN_SCRIPT =
-  'One more thing: is it okay if Real Elite Contracting sends you text messages at this number about your project? Message frequency varies, message and data rates may apply, and you can reply STOP anytime to opt out.';
+  'One more thing: is it okay if Real Elite Contracting sends you text messages at this number about your project, including estimate scheduling and updates? Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. Our SMS Terms are at realelitecontracting.com/sms-terms and our Privacy Policy is at realelitecontracting.com/privacy. Do you agree to receive these text messages? Please say yes or no.';
+
+/** Confirmation text sent after a valid opt-in. Published on /sms-terms. */
+export const SMS_OPT_IN_CONFIRMATION =
+  'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. Message frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out. Support: (681) 534-5515.';
 
 const PAGE_URL_MAX = 2000;
 
