@@ -4,6 +4,12 @@ import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { recordLead, inferLeadType } from '@/lib/leads';
 import { summarizeLead } from '@/lib/ai-lead-summary';
+import { readSmsConsent } from '@/lib/sms-consent';
+import {
+  buildLeadWebhookPayload,
+  postLeadWebhook,
+  websiteLeadCallSid,
+} from '@/lib/lead-webhook';
 
 const RESEND_API_KEY = env.resendApiKey();
 const TO_EMAIL = env.estimateToEmail() || 'info@realelitecontracting.com';
@@ -32,6 +38,7 @@ const MAX = {
   // working unchanged.
   town: 80,
   referralSource: 80,
+  address: 300,
   // First-touch attribution (client-captured; see src/lib/attribution.ts).
   utmSource: 200,
   utmMedium: 200,
@@ -56,11 +63,15 @@ function escapeHtml(s: string) {
 
 /**
  * Warm, plain confirmation sent to the customer after any form submission.
- * Text-forward with a single call CTA — keeps it out of spam folders and
- * sets the "a real person will call after reviewing your request" expectation.
+ * The optional checkbox is SMS-only, so a checked box never promises a call.
  * `safeFirstName` must already be HTML-escaped by the caller.
  */
-function customerConfirmationHtml(safeFirstName: string) {
+function customerConfirmationHtml(safeFirstName: string, consent: boolean) {
+  const textStep = consent
+    ? `<li style="margin-bottom: 6px;">You agreed we may text this number about your project, including estimate scheduling and updates. Reply STOP to opt out.</li>`
+    : `<li style="margin-bottom: 6px;">We won&#39;t text this number unless you checked the text-message box on the form.</li>`;
+  const nextSteps = `<li style="margin-bottom: 6px;">A project lead will review your request and reply by email.</li>
+          ${textStep}`;
   return `
     <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2744;">
       <div style="background-color: #1a2744; padding: 20px; text-align: center;">
@@ -71,8 +82,7 @@ function customerConfirmationHtml(safeFirstName: string) {
         <p style="margin: 0 0 14px;">Hi ${safeFirstName},</p>
         <p style="margin: 0 0 14px;">Thanks for reaching out — we&#39;ve got your request and it&#39;s with a project lead now. Here&#39;s what happens next:</p>
         <ul style="margin: 0 0 16px; padding-left: 20px;">
-          <li style="margin-bottom: 6px;">A real person from our team will call you after reviewing your request — no call center, no runaround.</li>
-          <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>
+          ${nextSteps}
         </ul>
         <p style="margin: 0 0 20px;">If you&#39;d rather not wait, you&#39;re always welcome to call or text us directly:</p>
         <div style="text-align: center; margin: 0 0 20px;">
@@ -94,6 +104,7 @@ const OPTIONAL: Field[] = [
   'budgetRange',
   'town',
   'referralSource',
+  'address',
   'utmSource',
   'utmMedium',
   'utmCampaign',
@@ -155,6 +166,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400 });
     }
 
+    const consent = readSmsConsent(body, {
+      ip,
+      userAgent: request.headers.get('user-agent') ?? '',
+    });
+
     if (!RESEND_API_KEY) {
       console.error(
         'RESEND_API_KEY is not set — add it in Vercel project settings ' +
@@ -182,8 +198,15 @@ export async function POST(request: Request) {
       { label: 'Name', html: safe.fullName ?? '' },
       { label: 'Email', html: `<a href="mailto:${safe.email}">${safe.email}</a>` },
       { label: 'Phone', html: `<a href="tel:${safe.phone}">${safe.phone}</a>` },
+      {
+        label: 'Text consent',
+        html: consent.consent
+          ? `Yes (${escapeHtml(consent.textVersion)})`
+          : 'No',
+      },
       { label: 'Service', html: safe.service ?? '' },
     ];
+    if (safe.address) rows.push({ label: 'Address', html: safe.address });
     if (safe.town) rows.push({ label: 'Town', html: safe.town });
     if (safe.zip) rows.push({ label: 'ZIP', html: safe.zip });
     if (safe.propertyType) rows.push({ label: 'Property', html: safe.propertyType });
@@ -372,7 +395,29 @@ export async function POST(request: Request) {
         referrer: values.referrer,
         landingPath: values.landingPath,
       },
+      consent,
     });
+
+    // Job Board ingest. Same JSON shape as elite-agent phone leads, plus
+    // the consent record. Unset LEAD_WEBHOOK_URL is a no-op and never fails
+    // the request. See src/lib/lead-webhook.ts.
+    await postLeadWebhook(
+      buildLeadWebhookPayload(
+        {
+          name: values.fullName!,
+          phone: values.phone!,
+          email: values.email!,
+          service: values.service!,
+          message: values.message,
+          zip: values.zip,
+          town: values.town,
+          address: values.address,
+          howHeard: values.utmSource || values.referralSource || values.referrer || 'website',
+          consent,
+        },
+        websiteLeadCallSid()
+      )
+    );
 
     // Customer confirmation — a warm receipt so they know it landed and what
     // happens next. Non-fatal: the owner email above already captured the
@@ -390,7 +435,7 @@ export async function POST(request: Request) {
           to: [values.email],
           reply_to: TO_EMAIL,
           subject: 'We got your request — here’s what happens next',
-          html: customerConfirmationHtml(escapeHtml(firstName)),
+          html: customerConfirmationHtml(escapeHtml(firstName), consent.consent),
         }),
       });
     } catch (err) {

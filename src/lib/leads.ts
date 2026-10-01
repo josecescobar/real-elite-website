@@ -18,6 +18,7 @@
  */
 
 import { env } from '@/lib/env';
+import type { StoredSmsConsent } from '@/lib/sms-consent';
 
 export type LeadType = 'estimate' | 'roof_quote' | 'luxury_consultation';
 
@@ -48,6 +49,8 @@ export type LeadInput = {
   /** Optional AI-generated "heads up" blurb (see src/lib/ai-lead-summary.ts).
    *  Omitted/undefined when the AI Gateway key isn't set or the call failed. */
   aiSummary?: string;
+  /** TCPA consent captured with the lead. See src/lib/sms-consent.ts. */
+  consent?: StoredSmsConsent;
 };
 
 /** How long to wait on the insert before giving up (never stall the response). */
@@ -94,6 +97,13 @@ export async function recordLead(input: LeadInput): Promise<void> {
     referrer: input.attribution?.referrer ?? null,
     landing_path: input.attribution?.landingPath ?? null,
     ai_summary: input.aiSummary ?? null,
+    sms_consent: input.consent?.consent ?? null,
+    sms_consent_at: input.consent?.timestamp ?? null,
+    sms_consent_page_url: input.consent?.pageUrl ?? null,
+    sms_consent_text_version: input.consent?.textVersion ?? null,
+    sms_consent_text: input.consent?.text ?? null,
+    client_ip: input.consent?.ip ?? null,
+    user_agent: input.consent?.userAgent ?? null,
   };
 
   try {

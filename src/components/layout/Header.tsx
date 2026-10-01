@@ -117,6 +117,12 @@ export default function Header() {
             {BUSINESS.phone}
           </PhoneLink>
           <Link
+            href="/estimate"
+            className="text-navy-800 font-medium text-sm hover:text-brand-red transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm px-1 py-1"
+          >
+            Estimate
+          </Link>
+          <Link
             href={NAV_CTA.href}
             onClick={() => trackEvent('consultation_cta_click', { location: 'header_desktop' })}
             className="bg-navy-900 text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-red transition-colors focus-ring"
@@ -141,6 +147,12 @@ export default function Header() {
           >
             Text
           </TrackedLink>
+          <Link
+            href="/estimate"
+            className="inline-flex items-center min-h-[44px] text-navy-900 px-1 py-2 text-xs font-semibold underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
+          >
+            Estimate
+          </Link>
           <button
             ref={toggleRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

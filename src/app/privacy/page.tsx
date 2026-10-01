@@ -3,6 +3,7 @@ import Container from '@/components/shared/Container';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS } from '@/lib/constants';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { SMS_CONSENT_TEXT, SMS_VERBAL_OPT_IN_SCRIPT } from '@/lib/sms-consent';
 
 export const metadata = buildMetadata({
   path: '/privacy',
@@ -29,7 +30,7 @@ const sections = [
   {
     title: 'Text messages (SMS)',
     body: [
-      'We text only after one of two opt-ins. Verbal consent on a phone call: our assistant asks the caller whether we may text them about their request, and we text only if they say yes. Or the customer texts our number first, and we reply only about their request.',
+      `We text only after one of these two opt-ins, and consent is not a condition of purchase. On a phone call, our assistant reads this script and we text only if you say yes: "${SMS_VERBAL_OPT_IN_SCRIPT}" On the estimate form, an optional checkbox starts unchecked, and submitting the form does not require it. The checkbox says: "${SMS_CONSENT_TEXT}"`,
       'Messages come from Real Elite Contracting about your call, estimate, or project. Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help.',
       'We do not sell or share your SMS opt-in data or personal information with third parties for marketing purposes. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties. Text messages are sent by Real Elite Contracting LLC (Real Elite Contracting).',
       `For help with these messages, contact ${BUSINESS.email} or ${BUSINESS.phone}.`,

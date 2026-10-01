@@ -7,6 +7,8 @@ import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
+import SmsConsentField from '@/components/shared/SmsConsentField';
+import { smsConsentPayload } from '@/lib/sms-consent';
 
 /* -------------------------------- options -------------------------------- */
 
@@ -107,6 +109,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   });
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -223,6 +226,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
           budgetRange: data.budgetRange ? labelFor(BUDGET_OPTIONS, data.budgetRange) : '',
           message: data.scope,
           ...attributionPayload(),
+          ...smsConsentPayload(smsConsent),
           website: honeypot,
         }),
       });
@@ -515,6 +519,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
               }`}
             />
             {errors.phone && <p id="phone-error" role="alert" className="text-brand-red text-sm mt-2">{errors.phone}</p>}
+            <SmsConsentField checked={smsConsent} onChange={setSmsConsent} />
           </div>
 
           <div className="mt-5">

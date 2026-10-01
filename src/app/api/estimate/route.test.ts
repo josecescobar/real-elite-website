@@ -39,12 +39,16 @@ function mockResendOk() {
 
 beforeEach(() => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
+  delete process.env.LEAD_WEBHOOK_URL;
+  delete process.env.LEAD_WEBHOOK_SECRET;
 });
 
 afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
   delete process.env.RESEND_API_KEY;
+  delete process.env.LEAD_WEBHOOK_URL;
+  delete process.env.LEAD_WEBHOOK_SECRET;
 });
 
 describe('POST /api/estimate — validation', () => {
@@ -193,6 +197,8 @@ describe('POST /api/estimate — delivery', () => {
     // Warm, on-voice, and personalized to the first name.
     expect(confirmation.html).toContain('Hi Jane');
     expect(confirmation.html).toContain(BUSINESS.phone);
+    expect(confirmation.html).toContain('reply by email');
+    expect(confirmation.html).not.toContain('will call you');
   });
 
   it('still returns 200 when the customer confirmation email fails', async () => {
@@ -276,6 +282,108 @@ describe('POST /api/estimate — delivery', () => {
     expect(owner.html).toContain('AI Heads-Up');
     expect(owner.html).toContain('Wants a quote this week.');
     delete process.env.AI_GATEWAY_API_KEY;
+  });
+
+  it('skips the Job Board webhook when LEAD_WEBHOOK_URL is unset', async () => {
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.50'));
+    expect(res.status).toBe(200);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls.every(([url]) => url === 'https://api.resend.com/emails')).toBe(true);
+  });
+
+  it('POSTs the elite-agent lead shape, including consent, when the webhook is set', async () => {
+    process.env.LEAD_WEBHOOK_URL = 'https://job-board.example/api/leads';
+    process.env.LEAD_WEBHOOK_SECRET = 'board-secret';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(
+      makeRequest(
+        {
+          ...validBody,
+          message: 'Kitchen roof leak',
+          zip: '25401',
+          town: 'Martinsburg',
+          smsConsent: true,
+          smsConsentTextVersion: '2026-09-30',
+          pageUrl: 'https://www.realelitecontracting.com/contact',
+        },
+        '203.0.113.51'
+      )
+    );
+    expect(res.status).toBe(200);
+    const webhookCall = fetchMock.mock.calls.find(
+      ([url]) => url === 'https://job-board.example/api/leads'
+    );
+    expect(webhookCall).toBeTruthy();
+    expect(webhookCall![1].headers.Authorization).toBe('Bearer board-secret');
+    const payload = JSON.parse(webhookCall![1].body as string);
+    expect(payload).toMatchObject({
+      source: 'real_elite_contracting',
+      company_name: 'Real Elite Contracting',
+      name: 'Jane Homeowner',
+      phone: '(681) 555-0142',
+      callback_number: '(681) 555-0142',
+      town: 'Martinsburg',
+      zip: '25401',
+      job_type: 'Bathroom Remodeling',
+      summary: 'Kitchen roof leak',
+      spam: false,
+      urgent: false,
+      outcome: 'website_form',
+      recording_link: null,
+      transcript_link: null,
+      consent: true,
+      consent_page_url: 'https://www.realelitecontracting.com/contact',
+      consent_text_version: '2026-09-30',
+      ip: '203.0.113.51',
+    });
+    expect(payload.consent_text).toMatch(/Reply STOP to opt out/);
+    expect(payload.call_sid).toMatch(/^web-/);
+    expect(payload.consent_timestamp).toBeTruthy();
+    const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    expect(owner.html).toContain('Text consent');
+    expect(owner.html).toContain('Yes (2026-09-30)');
+    const confirmation = JSON.parse(
+      fetchMock.mock.calls
+        .filter(([url]) => url === 'https://api.resend.com/emails')
+        .at(-1)![1].body as string
+    );
+    expect(confirmation.html).toContain('may text this number');
+  });
+
+  it('stores consent=false when the box is unchecked or the text version does not match', async () => {
+    process.env.LEAD_WEBHOOK_URL = 'https://job-board.example/api/leads';
+    process.env.LEAD_WEBHOOK_SECRET = 'board-secret';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    await POST(
+      makeRequest(
+        { ...validBody, smsConsent: true, smsConsentTextVersion: '1999-01-01' },
+        '203.0.113.52'
+      )
+    );
+    const payload = JSON.parse(
+      fetchMock.mock.calls.find(([url]) => url === 'https://job-board.example/api/leads')![1]
+        .body as string
+    );
+    expect(payload.consent).toBe(false);
+    expect(payload.consent_text_version).toBe('2026-09-30');
+  });
+
+  it('still returns 200 when the lead webhook fails', async () => {
+    process.env.LEAD_WEBHOOK_URL = 'https://job-board.example/api/leads';
+    const fetchMock = vi.fn().mockImplementation((url: string) => {
+      if (url === 'https://job-board.example/api/leads') {
+        return Promise.reject(new Error('webhook down'));
+      }
+      return Promise.resolve(new Response('{"id":"e1"}', { status: 200 }));
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.53'));
+    expect(res.status).toBe(200);
   });
 
   it('does not call the AI Gateway and omits the AI block when AI_GATEWAY_API_KEY is unset', async () => {

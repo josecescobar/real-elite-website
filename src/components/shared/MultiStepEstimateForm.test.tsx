@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MultiStepEstimateForm from './MultiStepEstimateForm';
+import { SMS_CONSENT_TEXT_VERSION } from '@/lib/sms-consent';
 import { trackEstimateStep } from '@/lib/analytics';
 
 vi.mock('lucide-react', () => ({
@@ -264,10 +265,24 @@ describe('MultiStepEstimateForm', () => {
 
     it('links the contact disclosure to the privacy policy', async () => {
       await goToStep3();
-      expect(screen.getByRole('link', { name: /privacy policy/i })).toHaveAttribute(
-        'href',
-        '/privacy'
-      );
+      const links = screen.getAllByRole('link', { name: /privacy policy/i });
+      expect(links.length).toBeGreaterThan(0);
+      for (const link of links) {
+        expect(link).toHaveAttribute('href', '/privacy');
+      }
+    });
+
+    it('shows an unchecked optional text consent box under the phone field', async () => {
+      await goToStep3();
+      const box = screen.getByRole('checkbox', {
+        name: /yes, real elite contracting may text me at the number above/i,
+      });
+      expect(box).not.toBeChecked();
+      expect(box).not.toBeRequired();
+      expect(screen.getByRole('link', { name: 'SMS Terms' })).toHaveAttribute('href', '/sms-terms');
+      expect(screen.getAllByRole('link', { name: 'Privacy Policy' }).some(
+        (link) => link.getAttribute('href') === '/privacy'
+      )).toBe(true);
     });
 
     it('shows "Sending…" while submitting', async () => {
@@ -326,10 +341,32 @@ describe('MultiStepEstimateForm', () => {
         expect(body.fullName).toBe('John Smith');
         expect(body.phone).toBe('3045550123');
         expect(body.email).toBe('john@example.com');
+        expect(body.smsConsent).toBe(false);
+        expect(body.smsConsentTextVersion).toBe(SMS_CONSENT_TEXT_VERSION);
+        expect(body.pageUrl).toBe(window.location.href);
         expect(body.service).toBe('Roofing');
         expect(body.zip).toBe('25401');
         expect(body.propertyType).toBe('Single-family home');
         expect(body.timeline).toBe('ASAP / Within a month');
+      });
+    });
+
+    it('sends consent=true only after the visitor checks the box', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(new Response(JSON.stringify({ ok: true }), { status: 200 }));
+      await goToStep3();
+      await fillStep3(user);
+      await user.click(
+        screen.getByRole('checkbox', {
+          name: /yes, real elite contracting may text me at the number above/i,
+        })
+      );
+
+      fireEvent.submit(screen.getByRole('button', { name: /get my free estimate/i }).closest('form')!);
+
+      await waitFor(() => {
+        const body = JSON.parse((fetch as ReturnType<typeof vi.fn>).mock.calls[0][1].body);
+        expect(body.smsConsent).toBe(true);
+        expect(body.smsConsentTextVersion).toBe(SMS_CONSENT_TEXT_VERSION);
       });
     });
   });

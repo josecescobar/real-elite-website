@@ -105,6 +105,7 @@ describe('outdoor-living consultation submission', () => {
 
     const success = await screen.findByRole('status');
     expect(success).toHaveTextContent("We'll call you.");
+    expect(success).toHaveTextContent("won't text this number");
     await waitFor(() => expect(success).toHaveFocus());
     expect(fetch).toHaveBeenCalledOnce();
     const [url, request] = vi.mocked(fetch).mock.calls[0];
@@ -125,6 +126,9 @@ describe('outdoor-living consultation submission', () => {
       utm_source: 'loudoun-campaign',
       landing_page: '/services/decks/loudoun-county-va',
       website: '',
+      smsConsent: false,
+      smsConsentTextVersion: '2026-09-30',
+      pageUrl: window.location.href,
     });
     expect(trackEvent).toHaveBeenCalledWith('form_submit', {
       form: 'luxury_consultation', projectType: 'outdoor-living', budget, town: 'ashburn',
@@ -137,6 +141,19 @@ describe('outdoor-living consultation submission', () => {
     expect(trackEstimateStep).toHaveBeenCalledWith('submit', 1, 'luxury_consultation', {
       projectType: 'outdoor-living', budget, town: 'ashburn',
     });
+  });
+
+  it('adds the text opt-in on the confirmation only after the consent box is checked', async () => {
+    vi.mocked(fetch).mockResolvedValue(new Response('{}', { status: 200 }));
+    renderDeckConsultation();
+    completeIntake('50-100');
+    fireEvent.click(
+      screen.getByRole('checkbox', {
+        name: /yes, real elite contracting may text me at the number above/i,
+      })
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Request Phone Consultation' }));
+    expect(await screen.findByRole('status')).toHaveTextContent('may text this number');
   });
 
   it('omits referralSource from the payload when the optional field is blank', async () => {

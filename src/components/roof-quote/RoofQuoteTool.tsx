@@ -27,6 +27,8 @@ import { attributionPayload } from '@/lib/attribution';
 import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
+import SmsConsentField from '@/components/shared/SmsConsentField';
+import { smsConsentPayload } from '@/lib/sms-consent';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[\d\s\-+().]{7,30}$/;
@@ -59,6 +61,7 @@ export default function RoofQuoteTool() {
   const [lead, setLead] = useState({ fullName: '', phone: '', email: '' });
   const [leadErrors, setLeadErrors] = useState<{ fullName?: string; phone?: string; email?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
@@ -181,7 +184,9 @@ export default function RoofQuoteTool() {
           phone: lead.phone,
           service: 'Roofing — Instant Quote',
           message: summary,
+          address: resolvedAddress,
           ...attributionPayload(),
+          ...smsConsentPayload(smsConsent),
           website: honeypot,
         }),
       });
@@ -528,6 +533,11 @@ export default function RoofQuoteTool() {
                 setLead((p) => ({ ...p, phone: v }));
                 if (leadErrors.phone) setLeadErrors((p) => ({ ...p, phone: undefined }));
               }}
+            />
+            <SmsConsentField
+              id="rq-sms-consent"
+              checked={smsConsent}
+              onChange={setSmsConsent}
             />
             <Field
               id="rq-email"
