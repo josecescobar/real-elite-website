@@ -2,7 +2,11 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { FAQ_FINANCING_ANSWER, FINANCING, HOME_FAQ } from '@/lib/constants';
-import { financingOfferAnswer, hasFinancingPartner } from '@/lib/financing-copy';
+import {
+  financingOfferAnswer,
+  hasFinancingPartner,
+  type FinancingPartnerConfig,
+} from '@/lib/financing-copy';
 
 const NO_PARTNER = {
   applyUrl: null,
@@ -13,6 +17,8 @@ const STUB_PARTNER = {
   applyUrl: 'https://example.com/apply',
   partnerName: 'GreenSky',
 } as const;
+
+const NAME_ONLY: FinancingPartnerConfig = { applyUrl: null, partnerName: 'GreenSky' };
 
 const NEUTRAL =
   'We do not have a financing partner listed yet. Ask about payment options at your free estimate, and see the Financing page for current details.';
@@ -49,7 +55,7 @@ describe('financing offer answers', () => {
 
   it('names the partner on both answers when one is set', () => {
     expect(hasFinancingPartner(STUB_PARTNER)).toBe(true);
-    expect(hasFinancingPartner({ applyUrl: null, partnerName: 'GreenSky' })).toBe(false);
+    expect(hasFinancingPartner(NAME_ONLY)).toBe(false);
 
     for (const surface of ['faq', 'home'] as const) {
       const text = financingOfferAnswer(STUB_PARTNER, surface);
