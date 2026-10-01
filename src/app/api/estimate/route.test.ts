@@ -49,6 +49,13 @@ afterEach(() => {
   delete process.env.RESEND_API_KEY;
   delete process.env.LEAD_WEBHOOK_URL;
   delete process.env.LEAD_WEBHOOK_SECRET;
+  delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+  delete process.env.TWILIO_ACCOUNT_SID;
+  delete process.env.TWILIO_AUTH_TOKEN;
+  delete process.env.TWILIO_FROM_NUMBER;
+  delete process.env.TWILIO_TO_NUMBER;
+  delete process.env.SUPABASE_URL;
+  delete process.env.SUPABASE_SERVICE_ROLE_KEY;
 });
 
 describe('POST /api/estimate — validation', () => {
@@ -393,6 +400,133 @@ describe('POST /api/estimate — delivery', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2); // owner + confirmation only, no Gateway call
     const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
     expect(owner.html).not.toContain('AI Heads-Up');
+  });
+});
+
+describe('POST /api/estimate — SMS enrollment confirmation', () => {
+  const SAMPLE_5 =
+    'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. Message frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out. Support: (681) 534-5515.';
+
+  const optedIn = {
+    ...validBody,
+    smsConsent: true,
+    smsConsentTextVersion: '2026-09-30',
+    pageUrl: 'https://www.realelitecontracting.com/contact',
+  };
+
+  function enableConfirmation() {
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED = 'true';
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    process.env.SUPABASE_URL = 'https://proj.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'service_key';
+    delete process.env.TWILIO_TO_NUMBER;
+  }
+
+  function mockFlow(mode: 'ok' | 'ledger-fail' | 'twilio-reject' = 'ok') {
+    let claims = 0;
+    const fetchMock = vi.fn().mockImplementation(async (url: string, init?: RequestInit) => {
+      const target = String(url);
+      if (target.includes('/rest/v1/leads')) {
+        if (mode === 'ledger-fail') return new Response('nope', { status: 500 });
+        const sent = JSON.parse(String(init?.body)) as { id: string; sms_consent: boolean };
+        return new Response(JSON.stringify([{ id: sent.id, sms_consent: sent.sms_consent }]), {
+          status: 201,
+        });
+      }
+      if (target.includes('/sms_consent_evidence')) {
+        const sent = JSON.parse(String(init?.body)) as { id: string; phone_e164: string };
+        return new Response(
+          JSON.stringify([{ id: sent.id, consent: true, phone_e164: sent.phone_e164 }]),
+          { status: 201 }
+        );
+      }
+      if (target.includes('/rpc/claim_sms_enrollment_send')) {
+        claims += 1;
+        const evidenceId = (JSON.parse(String(init?.body)) as { p_evidence_id: string }).p_evidence_id;
+        const body =
+          claims === 1
+            ? { claimed: true, reason: 'claimed', evidence_id: evidenceId }
+            : { claimed: false, reason: 'replay' };
+        return new Response(JSON.stringify(body), { status: 200 });
+      }
+      if (target.includes('/sms_phone_state') && init?.method !== 'PATCH') {
+        return new Response(JSON.stringify([{ consent: true, stopped: false }]), { status: 200 });
+      }
+      if (target.includes('api.twilio.com')) {
+        if (mode === 'twilio-reject') return new Response('rejected', { status: 400 });
+        return new Response('{"sid":"SM1"}', { status: 201 });
+      }
+      return new Response('{"id":"e1"}', { status: 200 });
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    return fetchMock;
+  }
+
+  it('does not text the customer when the flag is off', async () => {
+    delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.70'));
+    expect(res.status).toBe(200);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes('api.twilio.com'))).toBe(
+      false
+    );
+  });
+
+  it('still texts the owner when the customer flag is off', async () => {
+    delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    process.env.TWILIO_TO_NUMBER = '+13045559999';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.73'));
+    expect(res.status).toBe(200);
+    const twilioCalls = fetchMock.mock.calls.filter(([url]) =>
+      String(url).includes('api.twilio.com')
+    );
+    expect(twilioCalls).toHaveLength(1);
+    const params = new URLSearchParams(twilioCalls[0][1].body as string);
+    expect(params.get('To')).toBe('+13045559999');
+    expect(params.get('Body')).toContain('New Lead');
+    expect(params.get('Body')).not.toContain('You are subscribed');
+  });
+
+  it('returns 200 and skips the customer text when consent storage fails', async () => {
+    enableConfirmation();
+    const fetchMock = mockFlow('ledger-fail');
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.74'));
+    expect(res.status).toBe(200);
+    const twilioCalls = fetchMock.mock.calls.filter(([url]) =>
+      String(url).includes('api.twilio.com')
+    );
+    expect(twilioCalls).toHaveLength(0);
+    const emails = fetchMock.mock.calls.filter(([url]) => String(url).includes('api.resend.com'));
+    expect(emails.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('sends sample 5 once on replay and still returns 200 when Twilio rejects it', async () => {
+    enableConfirmation();
+    const fetchMock = mockFlow('twilio-reject');
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(optedIn, '203.0.113.71'));
+    const second = await POST(makeRequest(optedIn, '203.0.113.72'));
+    expect(first.status).toBe(200);
+    expect(second.status).toBe(200);
+    const twilioCalls = fetchMock.mock.calls.filter(([url]) =>
+      String(url).includes('api.twilio.com')
+    );
+    expect(twilioCalls).toHaveLength(1);
+    const params = new URLSearchParams(twilioCalls[0][1].body as string);
+    expect(params.get('Body')).toBe(SAMPLE_5);
+    expect(params.get('To')).toBe('+16815550142');
   });
 });
 

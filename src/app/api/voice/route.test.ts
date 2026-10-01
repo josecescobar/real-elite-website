@@ -26,6 +26,9 @@ function clearConfig() {
   delete process.env.TWILIO_TO_NUMBER;
   delete process.env.MISSED_CALL_FORWARD_NUMBER;
   delete process.env.TWILIO_WEBHOOK_BASE_URL;
+  delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+  delete process.env.SUPABASE_URL;
+  delete process.env.SUPABASE_SERVICE_ROLE_KEY;
 }
 
 async function loadPOST() {
@@ -113,7 +116,27 @@ describe('POST /api/voice — first leg (inbound call)', () => {
 });
 
 describe('POST /api/voice — second leg (dial result)', () => {
-  it('texts the caller back and alerts the owner on a missed call', async () => {
+  function consentRows(rows: unknown) {
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED = 'true';
+    process.env.SUPABASE_URL = 'https://proj.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'service_key';
+    const fetchMock = vi.fn().mockImplementation((url: string) => {
+      if (String(url).includes('sms_phone_state')) {
+        return Promise.resolve(new Response(JSON.stringify(rows), { status: 200 }));
+      }
+      return Promise.resolve(new Response('{"sid":"SM1"}', { status: 201 }));
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    return fetchMock;
+  }
+
+  function toValues(fetchMock: ReturnType<typeof vi.fn>) {
+    return fetchMock.mock.calls
+      .filter(([url]) => String(url).includes('api.twilio.com'))
+      .map((call) => new URLSearchParams(call[1].body as string).get('To'));
+  }
+
+  it('does not text the caller from credentials alone, and still alerts the owner', async () => {
     fullConfig();
     const fetchMock = vi.fn().mockResolvedValue(new Response('{"sid":"SM1"}', { status: 201 }));
     vi.stubGlobal('fetch', fetchMock);
@@ -122,11 +145,48 @@ describe('POST /api/voice — second leg (dial result)', () => {
       makeRequest({ From: '+15555550123', CallSid: 'CA1', DialCallStatus: 'no-answer' })
     );
     expect(res.status).toBe(200);
-    // Two SMS sends: caller text-back + owner alert.
-    expect(fetchMock).toHaveBeenCalledTimes(2);
-    const toNumbers = fetchMock.mock.calls.map((c) => c[1].body as string);
-    expect(toNumbers.some((b) => b.includes('%2B15555550123'))).toBe(true); // caller
-    expect(toNumbers.some((b) => b.includes('%2B13045559999'))).toBe(true); // owner
+    expect(toValues(fetchMock)).toEqual(['+13045559999']);
+  });
+
+  it('texts the caller only when the flag is on and the confirmation was accepted', async () => {
+    fullConfig();
+    const fetchMock = consentRows([{ consent: true, stopped: false, send_status: 'accepted' }]);
+    const POST = await loadPOST();
+    const res = await POST(
+      makeRequest({ From: '+15555550123', CallSid: 'CA1', DialCallStatus: 'no-answer' })
+    );
+    expect(res.status).toBe(200);
+    expect(toValues(fetchMock).sort()).toEqual(['+13045559999', '+15555550123']);
+  });
+
+  it.each(['claimed', 'failed'])(
+    'does not text the caller while enrollment is %s, and still alerts the owner',
+    async (send_status) => {
+      fullConfig();
+      const fetchMock = consentRows([{ consent: true, stopped: false, send_status }]);
+      const POST = await loadPOST();
+      const res = await POST(
+        makeRequest({ From: '+15555550123', CallSid: 'CA1', DialCallStatus: 'no-answer' })
+      );
+      expect(res.status).toBe(200);
+      const customer = fetchMock.mock.calls
+        .filter(([url]) => String(url).includes('api.twilio.com'))
+        .map((call) => new URLSearchParams(call[1].body as string))
+        .filter((params) => params.get('To') === '+15555550123');
+      expect(customer).toEqual([]);
+      expect(toValues(fetchMock)).toEqual(['+13045559999']);
+    }
+  );
+
+  it('does not text a stopped caller, and still alerts the owner', async () => {
+    fullConfig();
+    const fetchMock = consentRows([{ consent: true, stopped: true }]);
+    const POST = await loadPOST();
+    const res = await POST(
+      makeRequest({ From: '+15555550123', CallSid: 'CA1', DialCallStatus: 'no-answer' })
+    );
+    expect(res.status).toBe(200);
+    expect(toValues(fetchMock)).toEqual(['+13045559999']);
   });
 
   it('sends no SMS when the owner answered', async () => {

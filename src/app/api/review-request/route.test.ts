@@ -38,10 +38,27 @@ function makeRequest(body: unknown, ip = '203.0.113.1') {
 
 const validBody = { key: ADMIN_KEY, firstName: 'Dana', phone: '(304) 555-0142' };
 
-function mockTwilioOk() {
-  const fetchMock = vi.fn().mockResolvedValue(new Response('{"sid":"SM1"}', { status: 201 }));
+function allowCustomerSms() {
+  process.env.SMS_CONSENT_CONFIRMATION_ENABLED = 'true';
+  process.env.SUPABASE_URL = 'https://proj.supabase.co';
+  process.env.SUPABASE_SERVICE_ROLE_KEY = 'service_key';
+}
+
+function mockConsent(rows: unknown, twilioStatus = 201) {
+  const fetchMock = vi.fn().mockImplementation((url: string) => {
+    if (String(url).includes('sms_phone_state')) {
+      return Promise.resolve(new Response(JSON.stringify(rows), { status: 200 }));
+    }
+    const body = twilioStatus === 201 ? '{"sid":"SM1"}' : 'bad number';
+    return Promise.resolve(new Response(body, { status: twilioStatus }));
+  });
   vi.stubGlobal('fetch', fetchMock);
   return fetchMock;
+}
+
+function mockTwilioOk() {
+  allowCustomerSms();
+  return mockConsent([{ consent: true, stopped: false, send_status: 'accepted' }]);
 }
 
 beforeEach(() => {
@@ -55,6 +72,9 @@ afterEach(() => {
   delete process.env.TWILIO_ACCOUNT_SID;
   delete process.env.TWILIO_AUTH_TOKEN;
   delete process.env.TWILIO_FROM_NUMBER;
+  delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+  delete process.env.SUPABASE_URL;
+  delete process.env.SUPABASE_SERVICE_ROLE_KEY;
 });
 
 describe('POST /api/review-request — auth', () => {
@@ -108,21 +128,58 @@ describe('POST /api/review-request — Twilio gating + delivery', () => {
     expect(res.status).toBe(503);
   });
 
+  it('does not send from the admin key and Twilio credentials alone', async () => {
+    const fetchMock = mockConsent([{ consent: true, stopped: false }]);
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.33'));
+    expect(res.status).toBe(403);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes('api.twilio.com'))).toBe(
+      false
+    );
+  });
+
+  it.each(['claimed', 'failed'])(
+    'does not send while enrollment confirmation is %s',
+    async (send_status) => {
+      allowCustomerSms();
+      const fetchMock = mockConsent([{ consent: true, stopped: false, send_status }]);
+      const POST = await loadPOST();
+      const res = await POST(makeRequest(validBody, '203.0.113.35'));
+      expect(res.status).toBe(409);
+      expect(await res.json()).toEqual({
+        error: 'The enrollment confirmation has not succeeded. No text was sent.',
+      });
+      expect(fetchMock.mock.calls.some(([url]) => String(url).includes('api.twilio.com'))).toBe(
+        false
+      );
+    }
+  );
+
+  it('does not send when the number is stopped', async () => {
+    allowCustomerSms();
+    const fetchMock = mockConsent([{ consent: true, stopped: true }]);
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.34'));
+    expect(res.status).toBe(409);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes('api.twilio.com'))).toBe(
+      false
+    );
+  });
+
   it('sends the SMS and returns a confirmation on success', async () => {
     const fetchMock = mockTwilioOk();
     const POST = await loadPOST();
     const res = await POST(makeRequest(validBody, '203.0.113.31'));
     expect(res.status).toBe(200);
     expect((await res.json()).message).toContain('Dana');
-    expect(fetchMock).toHaveBeenCalledOnce();
-    // Posts to the Twilio Messages endpoint with the normalized E.164 number.
-    expect(fetchMock.mock.calls[0][0]).toContain('api.twilio.com');
-    expect((fetchMock.mock.calls[0][1].body as string)).toContain('%2B13045550142');
+    const twilio = fetchMock.mock.calls.filter(([url]) => String(url).includes('api.twilio.com'));
+    expect(twilio).toHaveLength(1);
+    expect((twilio[0][1].body as string)).toContain('%2B13045550142');
   });
 
   it('returns 502 when Twilio rejects the message', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(new Response('bad number', { status: 400 }));
-    vi.stubGlobal('fetch', fetchMock);
+    allowCustomerSms();
+    vi.stubGlobal('fetch', mockConsent([{ consent: true, stopped: false, send_status: 'accepted' }], 400));
     const POST = await loadPOST();
     const res = await POST(makeRequest(validBody, '203.0.113.32'));
     expect(res.status).toBe(502);
@@ -131,7 +188,21 @@ describe('POST /api/review-request — Twilio gating + delivery', () => {
 
 describe('POST /api/review-request — rate limiting', () => {
   it('returns 429 after the per-IP limit (30) is exceeded', async () => {
-    mockTwilioOk();
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED = 'true';
+    process.env.SUPABASE_URL = 'https://proj.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'service_key';
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockImplementation(async (url: string) => {
+        if (String(url).includes('sms_phone_state')) {
+          return new Response(
+            JSON.stringify([{ consent: true, stopped: false, send_status: 'accepted' }]),
+            { status: 200 }
+          );
+        }
+        return new Response('{"sid":"SM1"}', { status: 201 });
+      })
+    );
     const POST = await loadPOST();
     const ip = '203.0.113.40';
     for (let i = 0; i < 30; i++) {
