@@ -24,9 +24,12 @@ describe('callerTextBack', () => {
 });
 
 describe('ownerMissedAlert', () => {
-  it('surfaces the caller number', () => {
-    const msg = ownerMissedAlert('+13045550123');
-    expect(msg).toContain('+13045550123');
-    expect(msg).toContain('Missed call');
+  it('surfaces the caller number and whether the customer was texted', () => {
+    const skipped = ownerMissedAlert('+13045550123');
+    expect(skipped).toContain('+13045550123');
+    expect(skipped).toContain('Missed call');
+    expect(skipped).toContain('No auto-text was sent');
+    const sent = ownerMissedAlert('+13045550123', true);
+    expect(sent).toContain('They got an auto-text back');
   });
 });

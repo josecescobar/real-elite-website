@@ -123,4 +123,13 @@ export const env = {
   leadWebhookUrl: (): string | undefined => process.env.LEAD_WEBHOOK_URL,
   /** Sent as Authorization: Bearer when set. */
   leadWebhookSecret: (): string | undefined => process.env.LEAD_WEBHOOK_SECRET,
+
+  /**
+   * Customer SMS gate. Unset, or any value other than "true" / "1", sends
+   * nothing to customers: enrollment confirmation, missed-call text-back,
+   * and review-request SMS. Owner alerts are not covered by this flag.
+   * Jose sets it in Vercel only after the A2P campaign is approved.
+   */
+  smsConsentConfirmationEnabled: (): string | undefined =>
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED,
 } as const;
