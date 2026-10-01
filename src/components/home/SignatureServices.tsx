@@ -10,7 +10,7 @@ import { INVESTMENT_GUIDE } from '@/lib/investment-guide';
  * figures come from the investment guide so the homepage and /investment can
  * never disagree about a number.
  *
- * Imagery is design inspiration, and the section says so.
+ * Card photos stay as published. They carry no caption.
  */
 const ORDER = ['lower-levels', 'kitchens', 'primary-suites', 'outdoor-living', 'additions'] as const;
 const SPANS: Record<(typeof ORDER)[number], string> = {
@@ -62,9 +62,6 @@ export default function SignatureServices() {
                   className="object-cover"
                 />
                 <div aria-hidden="true" className="absolute inset-0 gradient-navy-overlay" />
-                <p className="absolute top-3 left-3 z-10 max-w-[18rem] rounded-sm bg-navy-950/90 px-2.5 py-1.5 text-[0.7rem] font-semibold leading-snug text-white">
-                  Design inspiration · not a Real Elite project
-                </p>
                 <div className={`absolute inset-x-0 bottom-0 ${large ? 'p-7 md:p-10' : 'p-6 md:p-7'}`}>
                   <p className="text-[0.65rem] uppercase tracking-[0.2em] font-semibold text-brand-red-light mb-2">
                     {cat.from ? `Typically from ${cat.from}` : cat.eyebrow}
@@ -96,7 +93,7 @@ export default function SignatureServices() {
             </p>
           )}
           <p className="text-charcoal-500 text-[0.65rem] uppercase tracking-[0.16em] flex-shrink-0">
-            Imagery is design inspiration · <Link href="/projects" className="hover:text-navy-900 transition-colors">See completed work</Link>
+            <Link href="/projects" className="hover:text-navy-900 transition-colors">See completed work</Link>
           </p>
         </div>
       </Container>

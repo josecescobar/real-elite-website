@@ -131,9 +131,6 @@ export default function InvestmentPage() {
                     className="object-cover"
                   />
                 </div>
-                <p className="text-charcoal-500 text-[0.65rem] uppercase tracking-[0.16em] mt-3">
-                  Design inspiration
-                </p>
                 <div className="mt-8">
                   <p className="text-xs uppercase tracking-[0.18em] text-charcoal-500 font-semibold mb-3">
                     What moves the number

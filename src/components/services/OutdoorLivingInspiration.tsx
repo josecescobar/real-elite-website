@@ -22,7 +22,7 @@ export default function OutdoorLivingInspiration() {
         id="outdoor-living-inspiration"
         className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800"
       >
-        Outdoor Living Inspiration
+        Outdoor living
       </h2>
       <p className="mt-4 max-w-xl text-base leading-relaxed text-charcoal-700">
         A screened porch for slow mornings. A covered space for dinner outside.
@@ -74,9 +74,6 @@ export default function OutdoorLivingInspiration() {
       </div>
 
       <div className="mt-6 border-t border-steel-200 pt-6">
-        <p className="mb-5 text-sm leading-relaxed text-charcoal-600">
-          Inspiration photography. Explore Real Elite&apos;s completed work in the gallery below.
-        </p>
         <TrackedLink
           href={consultation.href}
           eventName={consultation.eventName}

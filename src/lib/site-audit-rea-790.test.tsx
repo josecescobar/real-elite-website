@@ -52,10 +52,10 @@ describe('REA-790 site-audit copy', () => {
     expect(hero).toContain('Schedule a design consultation');
   });
 
-  it('captions each signature card on the photo', () => {
+  it('does not caption signature cards', () => {
     const cards = read('src/components/home/SignatureServices.tsx');
-    expect(cards).toContain('Design inspiration · not a Real Elite project');
-    expect(cards.indexOf('Design inspiration · not a Real Elite project')).toBeLessThan(cards.indexOf('{cat.title}'));
+    expect(cards.toLowerCase()).not.toContain('design inspiration');
+    expect(cards).toContain('src={cat.image.src}');
   });
 
   it('keeps the app-wide loading boundary off static routes and on /sales', () => {

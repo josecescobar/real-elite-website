@@ -16,9 +16,9 @@ A luxury bathroom is one of the most rewarding upgrades you can make to a home �
 
 Here's the homeowner's playbook for getting both right.
 
-## 1. Start with how you actually live — not just the inspiration photos
+## 1. Start with how you actually live
 
-Save the inspiration images (they help — that's half of what this article is). But before you fall in love with a specific tile, get clear on how the room needs to *work*:
+Before you fall in love with a specific tile, get clear on how the room needs to *work*:
 
 - Who uses it, and when? A shared primary bath has different needs than a guest suite.
 - Do you want a long soak in a freestanding tub, or is a large walk-in shower the priority? (Many homeowners discover they want a spectacular shower more than a tub.)
@@ -112,4 +112,3 @@ If you're planning a high-end bathroom in **Loudoun County, Ashburn, Leesburg, F
 
 Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
 
-*Photography in this article is for design inspiration.*

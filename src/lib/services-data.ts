@@ -2,12 +2,10 @@
  * Service page data layer. Every service page renders through
  * ServicePageTemplate using one of these entries.
  *
- * Honesty rule: a hero, overview or "Recent projects" image must be Real
- * Elite's own photograph. Kitchens and Basements have none yet, so their
- * `hero.image` is undefined and the template renders the gradient hero.
- * Stock images left in a `gallery` are moved by RelatedProjects under a
- * "Design inspiration" heading (see src/lib/stock-images.ts); a test fails if
- * a hero or overview image is stock. Swap in real photos once jobs are shot.
+ * Honesty rule: the /projects photo wall and case studies use Real Elite
+ * photographs only. A service gallery may include stock, shown with no
+ * caption. Kitchens and basements have no hero photo yet, so the template
+ * renders the gradient hero.
  */
 
 export type ServiceImage = { src: string; alt: string };
