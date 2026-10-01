@@ -49,6 +49,11 @@ afterEach(() => {
   delete process.env.RESEND_API_KEY;
   delete process.env.LEAD_WEBHOOK_URL;
   delete process.env.LEAD_WEBHOOK_SECRET;
+  delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+  delete process.env.TWILIO_ACCOUNT_SID;
+  delete process.env.TWILIO_AUTH_TOKEN;
+  delete process.env.TWILIO_FROM_NUMBER;
+  delete process.env.TWILIO_TO_NUMBER;
 });
 
 describe('POST /api/estimate — validation', () => {
@@ -393,6 +398,60 @@ describe('POST /api/estimate — delivery', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2); // owner + confirmation only, no Gateway call
     const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
     expect(owner.html).not.toContain('AI Heads-Up');
+  });
+});
+
+describe('POST /api/estimate — SMS enrollment confirmation', () => {
+  const optedIn = {
+    ...validBody,
+    smsConsent: true,
+    smsConsentTextVersion: '2026-09-30',
+    pageUrl: 'https://www.realelitecontracting.com/contact',
+  };
+
+  function enableConfirmation() {
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED = 'true';
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    delete process.env.TWILIO_TO_NUMBER;
+  }
+
+  it('does not text the customer when the flag is off', async () => {
+    delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.70'));
+    expect(res.status).toBe(200);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes('api.twilio.com'))).toBe(
+      false
+    );
+  });
+
+  it('sends the confirmation once and still returns 200 when Twilio rejects it', async () => {
+    enableConfirmation();
+    const fetchMock = vi.fn().mockImplementation((url: string) => {
+      if (String(url).includes('api.twilio.com')) {
+        return Promise.resolve(new Response('rejected', { status: 400 }));
+      }
+      return Promise.resolve(new Response('{"id":"e1"}', { status: 200 }));
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.71'));
+    expect(res.status).toBe(200);
+    const twilioCalls = fetchMock.mock.calls.filter(([url]) =>
+      String(url).includes('api.twilio.com')
+    );
+    expect(twilioCalls).toHaveLength(1);
+    const params = new URLSearchParams(twilioCalls[0][1].body as string);
+    expect(params.get('Body')).toBe(
+      'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. You can text photos of your project to this number. Msg frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out.'
+    );
+    expect(params.get('To')).toBe('+16815550142');
   });
 });
 

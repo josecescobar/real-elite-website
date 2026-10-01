@@ -5,6 +5,7 @@ import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { recordLead, inferLeadType } from '@/lib/leads';
 import { summarizeLead } from '@/lib/ai-lead-summary';
 import { readSmsConsent } from '@/lib/sms-consent';
+import { enqueueSmsConsentConfirmation } from '@/lib/sms-confirmation';
 import {
   buildLeadWebhookPayload,
   postLeadWebhook,
@@ -418,6 +419,17 @@ export async function POST(request: Request) {
         websiteLeadCallSid()
       )
     );
+
+    // One enrollment text per submission, after the lead is stored.
+    // Flag defaults off. Not awaited: a Twilio failure cannot fail the form.
+    try {
+      enqueueSmsConsentConfirmation({
+        phone: values.phone!,
+        consent,
+      });
+    } catch (err) {
+      console.error('SMS consent confirmation failed to start', err);
+    }
 
     // Customer confirmation — a warm receipt so they know it landed and what
     // happens next. Non-fatal: the owner email above already captured the

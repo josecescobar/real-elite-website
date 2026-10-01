@@ -123,4 +123,12 @@ export const env = {
   leadWebhookUrl: (): string | undefined => process.env.LEAD_WEBHOOK_URL,
   /** Sent as Authorization: Bearer when set. */
   leadWebhookSecret: (): string | undefined => process.env.LEAD_WEBHOOK_SECRET,
+
+  /**
+   * Customer enrollment text after a checked consent box. Unset, or any
+   * value other than "true" / "1", sends nothing. Jose sets this in Vercel
+   * only after the A2P campaign is approved.
+   */
+  smsConsentConfirmationEnabled: (): string | undefined =>
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED,
 } as const;
