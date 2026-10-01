@@ -105,35 +105,53 @@ const FORBIDDEN_LABELS = [
 
 const INSPIRATION_WORD = /\binspiration\b/i;
 
-function markdownVisible(text: string): string {
-  const body = text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
-  return body
+/** Drop asset paths and code identifiers. A bare "inspiration" label stays. */
+function visibleProse(text: string): string {
+  return text
+    .replace(/\/images\/inspiration\b[^\s)'"`]*/gi, ' ')
+    .replace(/\binspiration(?:[-_][A-Za-z0-9_$.-]+)\b/gi, ' ')
+    .replace(/\b(?!inspiration\b)[A-Za-z0-9_$.-]*inspiration[A-Za-z0-9_$.-]*\b/gi, ' ');
+}
+
+function frontmatterProse(source: string): string {
+  const fm = source.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!fm) return '';
+  return fm[1]
+    .split('\n')
+    .map((line) => {
+      const match = line.match(/^[\w]+\s*:\s*(.*)$/);
+      if (!match) return '';
+      const value = match[1].trim().replace(/^['"]|['"]$/g, '');
+      if (/\/images\//.test(value) || /^https?:\/\//.test(value)) return '';
+      return value;
+    })
+    .join('\n');
+}
+
+function markdownRendered(source: string): string {
+  const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
+  const visible = body
     .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
     .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
     .replace(/`[^`]*`/g, ' ');
+  return visibleProse(`${frontmatterProse(source)}\n${visible}`);
 }
 
-/** Paths and code tokens may contain the word. A label is prose or the word alone. */
-function isAllowedToken(value: string): boolean {
-  const token = value.trim();
-  if (!token) return true;
-  if (/[/\\]/.test(token)) return true;
-  if (/\s/.test(token)) return false;
-  return /^[A-Za-z0-9_.:-]+$/.test(token);
-}
-
-function visibleLabels(text: string): string[] {
-  const source = text.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:])\/\/.*$/gm, '$1');
-  const labels: string[] = [];
-  for (const match of source.matchAll(/(?<![=-])>([^<>{}]+)</g)) {
+function codeRendered(source: string): string {
+  const text = source.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:\\])\/\/.*$/gm, '$1');
+  const parts: string[] = [];
+  for (const match of text.matchAll(/(?<![=-])>([^<>{}]+)</g)) {
     const chunk = match[1].trim();
-    if (chunk) labels.push(chunk);
+    if (chunk) parts.push(chunk);
   }
-  for (const match of source.matchAll(/(['"`])((?:\\.|(?!\1)[\s\S])*?)\1/g)) {
-    const value = match[2].replace(/\\n/g, '\n');
-    if (!isAllowedToken(value)) labels.push(value);
+  for (const match of text.matchAll(/(['"`])((?:\\.|(?!\1)[\s\S])*?)\1/g)) {
+    if (match[2].trim()) parts.push(match[2]);
   }
-  return labels;
+  return visibleProse(parts.join('\n'));
+}
+
+function renderedCopy(file: string, source: string): string {
+  return /\.mdx?$/.test(file) ? markdownRendered(source) : codeRendered(source);
 }
 
 function sourceFiles(dir: string, out: string[] = []): string[] {
@@ -154,35 +172,60 @@ describe('no inspiration labels', () => {
     const hits: string[] = [];
     for (const root of ['src', 'content'].map((dir) => join(process.cwd(), dir))) {
       for (const file of sourceFiles(root)) {
-        const text = readFileSync(file, 'utf8').toLowerCase();
+        const copy = renderedCopy(file, readFileSync(file, 'utf8'));
+        const lower = copy.toLowerCase();
+        if (INSPIRATION_WORD.test(copy)) hits.push(`${file} → inspiration`);
         for (const label of FORBIDDEN_LABELS) {
-          if (text.includes(label)) hits.push(`${file} → ${label}`);
+          if (lower.includes(label)) hits.push(`${file} → ${label}`);
         }
       }
     }
     expect(hits).toEqual([]);
   });
 
-  it('does not use inspiration as a rendered heading or plain label', () => {
-    const hits: string[] = [];
-    for (const root of ['src', 'content'].map((dir) => join(process.cwd(), dir))) {
-      for (const file of sourceFiles(root)) {
-        const text = readFileSync(file, 'utf8');
-        if (/\.mdx?$/.test(file)) {
-          if (INSPIRATION_WORD.test(markdownVisible(text))) hits.push(file);
-          continue;
-        }
-        for (const label of visibleLabels(text)) {
-          if (INSPIRATION_WORD.test(label)) hits.push(`${file} → ${label.slice(0, 80)}`);
-        }
-      }
+  it('flags a rendered inspiration heading and ignores asset paths and identifiers', () => {
+    const heading = ['---', 'featuredImage: "/images/inspiration/example.jpg"', '---', '## Inspiration', ''].join(
+      '\n',
+    );
+    expect(markdownRendered(heading)).toMatch(INSPIRATION_WORD);
+    const photos = [
+      '---',
+      'featuredImage: "/images/inspiration/example.jpg"',
+      '---',
+      '![A tile shower](/images/inspiration/example.jpg)',
+      '',
+    ].join('\n');
+    expect(markdownRendered(photos)).not.toMatch(INSPIRATION_WORD);
+    expect(
+      codeRendered('const id = "outdoor-living-inspiration";\nconst src = "/images/inspiration/a.jpg";'),
+    ).not.toMatch(INSPIRATION_WORD);
+    expect(codeRendered('<h2>Inspiration</h2>')).toMatch(INSPIRATION_WORD);
+  });
+
+  it('keeps the bathroom guide photos and drops the inspiration heading', () => {
+    const file = join(
+      process.cwd(),
+      'content/blog/how-to-plan-luxury-bathroom-renovation-choose-contractor-2026.md',
+    );
+    const source = readFileSync(file, 'utf8');
+    expect(renderedCopy(file, source)).toContain('Start with how you actually live');
+    expect(renderedCopy(file, source)).not.toMatch(INSPIRATION_WORD);
+    for (const src of [
+      '/images/inspiration/luxury-bathroom-shower-tub.jpg',
+      '/images/inspiration/luxury-bathroom-marble-tile.jpg',
+      '/images/inspiration/luxury-bathroom-spa-tub.jpg',
+      '/images/inspiration/luxury-bathroom-contemporary.jpg',
+    ]) {
+      expect(source).toContain(src);
     }
-    expect(hits).toEqual([]);
   });
 
   it('uses one license line above the projects photo wall and no stock gallery', () => {
     const page = readFileSync(join(process.cwd(), 'src/app/projects/page.tsx'), 'utf8');
     expect(page).toContain('Family-run · Licensed & Insured · Serving WV, MD, VA & PA');
+    expect(page).toContain(
+      'Real homes across the Eastern Panhandle and beyond — the work itself, start to finish.',
+    );
     expect(page).not.toContain('Recent Work');
     expect(page).not.toContain('The photo wall');
     expect(page).not.toContain('filter by category');
