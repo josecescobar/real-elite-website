@@ -306,7 +306,7 @@ describe('POST /api/estimate — delivery', () => {
           zip: '25401',
           town: 'Martinsburg',
           smsConsent: true,
-          smsConsentTextVersion: '2026-09-29',
+          smsConsentTextVersion: '2026-09-30',
           pageUrl: 'https://www.realelitecontracting.com/contact',
         },
         '203.0.113.51'
@@ -336,21 +336,21 @@ describe('POST /api/estimate — delivery', () => {
       transcript_link: null,
       consent: true,
       consent_page_url: 'https://www.realelitecontracting.com/contact',
-      consent_text_version: '2026-09-29',
+      consent_text_version: '2026-09-30',
       ip: '203.0.113.51',
     });
     expect(payload.consent_text).toMatch(/Reply STOP to opt out/);
     expect(payload.call_sid).toMatch(/^web-/);
     expect(payload.consent_timestamp).toBeTruthy();
     const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
-    expect(owner.html).toContain('Call/text consent');
-    expect(owner.html).toContain('Yes (2026-09-29)');
+    expect(owner.html).toContain('Text consent');
+    expect(owner.html).toContain('Yes (2026-09-30)');
     const confirmation = JSON.parse(
       fetchMock.mock.calls
         .filter(([url]) => url === 'https://api.resend.com/emails')
         .at(-1)![1].body as string
     );
-    expect(confirmation.html).toContain('will call you');
+    expect(confirmation.html).toContain('may text this number');
   });
 
   it('stores consent=false when the box is unchecked or the text version does not match', async () => {
@@ -369,7 +369,7 @@ describe('POST /api/estimate — delivery', () => {
         .body as string
     );
     expect(payload.consent).toBe(false);
-    expect(payload.consent_text_version).toBe('2026-09-29');
+    expect(payload.consent_text_version).toBe('2026-09-30');
   });
 
   it('still returns 200 when the lead webhook fails', async () => {

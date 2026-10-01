@@ -63,16 +63,15 @@ function escapeHtml(s: string) {
 
 /**
  * Warm, plain confirmation sent to the customer after any form submission.
- * Text-forward with a single call CTA. A call is promised only when the
- * visitor checked the optional consent box.
+ * The optional checkbox is SMS-only, so a checked box never promises a call.
  * `safeFirstName` must already be HTML-escaped by the caller.
  */
 function customerConfirmationHtml(safeFirstName: string, consent: boolean) {
-  const nextSteps = consent
-    ? `<li style="margin-bottom: 6px;">A real person from our team will call you after reviewing your request — no call center, no runaround.</li>
-          <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>`
-    : `<li style="margin-bottom: 6px;">A project lead will review your request and reply by email.</li>
-          <li style="margin-bottom: 6px;">We won&#39;t call or text this number unless you checked the consent box on the form.</li>`;
+  const textStep = consent
+    ? `<li style="margin-bottom: 6px;">You agreed we may text this number about your project, including estimate scheduling and updates. Reply STOP to opt out.</li>`
+    : `<li style="margin-bottom: 6px;">We won&#39;t text this number unless you checked the text-message box on the form.</li>`;
+  const nextSteps = `<li style="margin-bottom: 6px;">A project lead will review your request and reply by email.</li>
+          ${textStep}`;
   return `
     <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2744;">
       <div style="background-color: #1a2744; padding: 20px; text-align: center;">
@@ -200,7 +199,7 @@ export async function POST(request: Request) {
       { label: 'Email', html: `<a href="mailto:${safe.email}">${safe.email}</a>` },
       { label: 'Phone', html: `<a href="tel:${safe.phone}">${safe.phone}</a>` },
       {
-        label: 'Call/text consent',
+        label: 'Text consent',
         html: consent.consent
           ? `Yes (${escapeHtml(consent.textVersion)})`
           : 'No',

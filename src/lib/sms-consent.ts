@@ -6,10 +6,15 @@
  * copy rendered on the page. The server stamps the time, IP, and user agent.
  */
 
-export const SMS_CONSENT_TEXT_VERSION = '2026-09-29';
+export const SMS_CONSENT_TEXT_VERSION = '2026-09-30';
 
+/** Verbatim web-form checkbox. "SMS Terms" and "Privacy Policy" are links on the form. */
 export const SMS_CONSENT_TEXT =
-  'I agree that Real Elite Contracting may call or text me at this number about my project, including with automated technology or an AI assistant. Consent is not required to get a quote. Msg & data rates may apply. Reply STOP to opt out.';
+  'Yes, Real Elite Contracting may text me at the number above about my project, including estimate scheduling and updates. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our SMS Terms and Privacy Policy.';
+
+/** Verbatim script the phone assistant reads before texting a caller. */
+export const SMS_VERBAL_OPT_IN_SCRIPT =
+  'One more thing: is it okay if Real Elite Contracting sends you text messages at this number about your project? Message frequency varies, message and data rates may apply, and you can reply STOP anytime to opt out.';
 
 const PAGE_URL_MAX = 2000;
 

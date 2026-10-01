@@ -97,7 +97,7 @@ describe('recordLead', () => {
       sms_consent: true,
       sms_consent_at: '2026-09-29T22:00:00.000Z',
       sms_consent_page_url: 'https://www.realelitecontracting.com/contact',
-      sms_consent_text_version: '2026-09-29',
+      sms_consent_text_version: SMS_CONSENT_TEXT_VERSION,
       client_ip: '203.0.113.9',
       user_agent: 'TestAgent',
     });
