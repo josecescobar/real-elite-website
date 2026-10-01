@@ -29,9 +29,10 @@ function Grid({ images }: { images: readonly ServiceImage[] }) {
 }
 
 /**
- * The service-page photo gallery. Verified work stays under "Recent …
- * projects". Stock photos stay on the page with no caption and no separate
- * heading. Unverified assets are omitted.
+ * The service-page photo gallery. Only photos that pass `isVerifiedWorkImage`
+ * appear under "Recent … projects". Proven stock is split out under a labelled
+ * "Design inspiration" heading. Unverified assets are omitted from both, so
+ * they are neither claimed as Real Elite work nor labelled as stock.
  */
 export default function RelatedProjects({ images, serviceTitle }: Props) {
   if (!images || images.length === 0) return null;
@@ -49,7 +50,20 @@ export default function RelatedProjects({ images, serviceTitle }: Props) {
           <Grid images={work} />
         </div>
       )}
-      {inspiration.length > 0 && <Grid images={inspiration} />}
+      {inspiration.length > 0 && (
+        <div>
+          <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-2">
+            Design inspiration
+          </p>
+          <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-3">
+            {serviceTitle} ideas
+          </h2>
+          <p className="text-charcoal-600 text-sm mb-6 max-w-2xl">
+            Stock photography for style reference. These are not Real Elite projects.
+          </p>
+          <Grid images={inspiration} />
+        </div>
+      )}
     </section>
   );
 }
