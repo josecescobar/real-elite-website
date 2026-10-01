@@ -13,6 +13,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 import { buildBreadcrumbSchema, buildMetadata, fitTitle } from '@/lib/seo';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import BookEstimateVisitButton from '@/components/booking/BookEstimateVisitButton';
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -120,6 +121,7 @@ export default function PavingHubPage() {
               >
                 <Phone className="w-4 h-4" /> {BUSINESS.phone}
               </PhoneLink>
+              <BookEstimateVisitButton surface="navy" />
             </div>
 
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">

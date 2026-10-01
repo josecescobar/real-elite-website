@@ -23,6 +23,7 @@ import { getProjectsByService } from '@/lib/projects';
 import { getReviewsByService } from '@/lib/reviews';
 import { primaryCtaForService } from '@/lib/cta-intent';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import BookEstimateVisitButton from '@/components/booking/BookEstimateVisitButton';
 
 type Props = {
   data: ServiceData;
@@ -121,6 +122,7 @@ export default function ServicePageTemplate({ data }: Props) {
               >
                 Call {BUSINESS.phone}
               </PhoneLink>
+              <BookEstimateVisitButton surface="navy" />
             </div>
           </div>
         </Container>
@@ -258,6 +260,7 @@ export default function ServicePageTemplate({ data }: Props) {
             >
               Call {BUSINESS.phone}
             </PhoneLink>
+            <BookEstimateVisitButton surface="navy" />
           </div>
         </Container>
       </section>

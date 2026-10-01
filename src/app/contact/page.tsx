@@ -10,6 +10,7 @@ import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import TrackedLink from '@/components/analytics/TrackedLink';
+import BookEstimateVisitButton from '@/components/booking/BookEstimateVisitButton';
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -138,6 +139,11 @@ export default function ContactPage() {
                 })}
               </div>
 
+              <BookEstimateVisitButton
+                surface="light"
+                caption="Choose a time for a free estimate visit."
+              />
+
               <div className="pt-6 border-t border-charcoal-200">
                 <p className="text-xs uppercase tracking-[0.15em] font-semibold text-charcoal-500 mb-3">
                   Prefer to talk?
@@ -222,6 +228,7 @@ export default function ContactPage() {
             >
               Call {BUSINESS.phone}
             </PhoneLink>
+            <BookEstimateVisitButton surface="navy" />
           </div>
         </Container>
       </section>

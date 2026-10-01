@@ -1,0 +1,22 @@
+{
+  "name": "@real-elite/cal-embed",
+  "version": "1.5.3",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./Cal.es.mjs",
+  "module": "./Cal.es.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./Cal.es.mjs",
+      "default": "./Cal.es.mjs"
+    }
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
+  }
+}

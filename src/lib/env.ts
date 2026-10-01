@@ -123,4 +123,7 @@ export const env = {
   leadWebhookUrl: (): string | undefined => process.env.LEAD_WEBHOOK_URL,
   /** Sent as Authorization: Bearer when set. */
   leadWebhookSecret: (): string | undefined => process.env.LEAD_WEBHOOK_SECRET,
+
+  /** Full Cal.diy event URL. Unset means the booking button is not rendered. */
+  bookingUrl: (): string | undefined => process.env.NEXT_PUBLIC_BOOKING_URL,
 } as const;
