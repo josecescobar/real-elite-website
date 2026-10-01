@@ -125,9 +125,10 @@ export const env = {
   leadWebhookSecret: (): string | undefined => process.env.LEAD_WEBHOOK_SECRET,
 
   /**
-   * Customer enrollment text after a checked consent box. Unset, or any
-   * value other than "true" / "1", sends nothing. Jose sets this in Vercel
-   * only after the A2P campaign is approved.
+   * Customer SMS gate. Unset, or any value other than "true" / "1", sends
+   * nothing to customers: enrollment confirmation, missed-call text-back,
+   * and review-request SMS. Owner alerts are not covered by this flag.
+   * Jose sets it in Vercel only after the A2P campaign is approved.
    */
   smsConsentConfirmationEnabled: (): string | undefined =>
     process.env.SMS_CONSENT_CONFIRMATION_ENABLED,

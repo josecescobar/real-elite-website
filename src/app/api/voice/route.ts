@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { env } from '@/lib/env';
 import { validateTwilioSignature, webhookUrl, sendSms, twiml, escapeXml } from '@/lib/twilio';
 import { callerTextBack, ownerMissedAlert, wasAnswered } from '@/lib/missed-call';
+import { customerSmsAllowed } from '@/lib/sms-enrollment';
 
 export const runtime = 'nodejs';
 
@@ -22,6 +23,13 @@ export const runtime = 'nodejs';
  *
  * Every request is verified against X-Twilio-Signature first — this is a
  * public endpoint that can send SMS, so an unsigned request is rejected.
+ *
+ * The caller text-back is a customer SMS. Credentials and a valid signature
+ * are not enough: SMS_CONSENT_CONFIRMATION_ENABLED must be on and the phone
+ * must already have affirmative, not-stopped consent. The owner missed-call
+ * alert is separate. It still goes to TWILIO_TO_NUMBER under the credential
+ * gate above, including when the caller text is skipped. See
+ * docs/SMS_ENROLLMENT_SETUP.md.
  */
 
 const FORWARD_TO =
@@ -70,10 +78,16 @@ export async function POST(request: Request) {
     if (!wasAnswered(params.DialCallStatus)) {
       const caller = params.From;
       if (caller) {
-        await Promise.all([
-          sendSms(caller, callerTextBack()),
-          OWNER_ALERT_TO ? sendSms(OWNER_ALERT_TO, ownerMissedAlert(caller)) : Promise.resolve(false),
-        ]);
+        const gate = await customerSmsAllowed(caller);
+        const customerTexted = gate.allowed
+          ? await sendSms(gate.phone, callerTextBack())
+          : false;
+        if (!gate.allowed) {
+          console.info('missed-call customer text skipped', { reason: gate.reason });
+        }
+        if (OWNER_ALERT_TO) {
+          await sendSms(OWNER_ALERT_TO, ownerMissedAlert(caller, customerTexted));
+        }
       }
     }
     // Nothing more to say; end the call cleanly.

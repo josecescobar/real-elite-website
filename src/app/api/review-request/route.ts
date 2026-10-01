@@ -5,6 +5,7 @@ import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { buildReviewMessage, toE164 } from '@/lib/review-request';
 import { draftReviewMessage } from '@/lib/ai-review-message';
+import { customerSmsAllowed } from '@/lib/sms-enrollment';
 
 /**
  * Review-request SMS — the engine behind /review-request (internal tool).
@@ -27,11 +28,14 @@ import { draftReviewMessage } from '@/lib/ai-review-message';
  * shows that fixed template; the text actually sent may read a little
  * warmer/more specific when AI personalization kicks in.
  *
- * Env-gated twice:
+ * Env-gated three times:
  *  - ADMIN_TOOLS_KEY must be set AND match the key sent by the tool
  *    page, or the endpoint refuses to send anything.
  *  - The same three Twilio vars as speed-to-lead must be set
  *    (TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN / TWILIO_FROM_NUMBER).
+ *  - SMS_CONSENT_CONFIRMATION_ENABLED must be on (default off) AND the
+ *    phone must have affirmative, not-stopped consent in the enrollment
+ *    store. The admin key and Twilio credentials are not consent.
  *
  * GOOGLE_REVIEW_LINK can override the default profile share link with
  * a direct write-review URL (https://search.google.com/local/writereview?placeid=…).
@@ -110,6 +114,22 @@ export async function POST(request: Request) {
             'Twilio is not configured: set TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, and TWILIO_FROM_NUMBER (see docs/SPEED_TO_LEAD_SETUP.md).',
         },
         { status: 503 }
+      );
+    }
+
+    const gate = await customerSmsAllowed(phone);
+    if (!gate.allowed) {
+      const error =
+        gate.reason === 'disabled'
+          ? 'Customer texts are off.'
+          : gate.reason === 'stopped'
+            ? 'This number is opted out. No text was sent.'
+            : gate.reason === 'lookup_failed' || gate.reason === 'unconfigured'
+              ? 'SMS consent could not be verified. No text was sent.'
+              : 'No affirmative SMS consent on file for this number.';
+      return NextResponse.json(
+        { error },
+        { status: gate.reason === 'disabled' ? 403 : 409 }
       );
     }
 

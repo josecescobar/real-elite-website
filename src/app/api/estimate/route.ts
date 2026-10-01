@@ -5,7 +5,7 @@ import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { recordLead, inferLeadType } from '@/lib/leads';
 import { summarizeLead } from '@/lib/ai-lead-summary';
 import { readSmsConsent } from '@/lib/sms-consent';
-import { enqueueSmsConsentConfirmation } from '@/lib/sms-confirmation';
+import { sendSmsConsentConfirmation } from '@/lib/sms-confirmation';
 import {
   buildLeadWebhookPayload,
   postLeadWebhook,
@@ -304,9 +304,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Speed-to-lead SMS — env-gated; no-op (with a debug log) when keys
-    // aren't set. Fire-and-forget on a non-blocking promise so a Twilio
-    // outage never breaks the lead-capture happy path.
+    // Owner speed-to-lead SMS. This is not a customer text. It is not gated
+    // by SMS_CONSENT_CONFIRMATION_ENABLED. It goes only to TWILIO_TO_NUMBER
+    // when all four Twilio credential vars are set. Scope is documented in
+    // docs/SMS_ENROLLMENT_SETUP.md. Fire-and-forget so a Twilio outage never
+    // breaks lead capture.
     if (
       TWILIO_ACCOUNT_SID &&
       TWILIO_AUTH_TOKEN &&
@@ -360,10 +362,10 @@ export async function POST(request: Request) {
         });
     }
 
-    // Durable lead ledger — env-gated no-op until Supabase is configured.
-    // Awaited (with an internal timeout) only AFTER the owner email is sent
-    // and the SMS is dispatched, and it never throws, so a ledger outage can
-    // neither block nor delay lead delivery. See src/lib/leads.ts.
+    // Durable lead ledger. Awaited after the owner email. It never throws.
+    // Customer enrollment SMS below runs only when this insert echoes a
+    // consent id. A ledger miss still leaves the form and customer email
+    // successful. See src/lib/leads.ts.
     const isLuxuryLead = (values.service ?? '').startsWith('[Luxury Consultation]');
     // The ledger schema has no town / referral columns (docs/LEAD_LEDGER_SETUP.md),
     // so the two intake fields ride along in the message text rather than
@@ -376,7 +378,7 @@ export async function POST(request: Request) {
       intakeNotes.length > 0
         ? [values.message, intakeNotes.join(' · ')].filter(Boolean).join('\n\n')
         : values.message;
-    await recordLead({
+    const leadWrite = await recordLead({
       leadType: inferLeadType(values.service ?? ''),
       luxury: isLuxuryLead,
       fullName: values.fullName!,
@@ -420,15 +422,17 @@ export async function POST(request: Request) {
       )
     );
 
-    // One enrollment text per submission, after the lead is stored.
-    // Flag defaults off. Not awaited: a Twilio failure cannot fail the form.
+    // Customer enrollment text. consentId is set only when Supabase echoed
+    // the lead row. A skipped or failed ledger write leaves it null, the
+    // text is not sent, and the form still succeeds.
     try {
-      enqueueSmsConsentConfirmation({
+      await sendSmsConsentConfirmation({
         phone: values.phone!,
         consent,
+        consentId: leadWrite.ok ? leadWrite.consentId : null,
       });
     } catch (err) {
-      console.error('SMS consent confirmation failed to start', err);
+      console.error('SMS consent confirmation failed', err);
     }
 
     // Customer confirmation — a warm receipt so they know it landed and what
