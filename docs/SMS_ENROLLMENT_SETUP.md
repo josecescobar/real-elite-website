@@ -30,7 +30,7 @@ A failed or unconfigured lead-ledger write does not queue the customer text. `re
 - The form and the customer confirmation email still succeed when consent storage fails. The customer text is skipped.
 - A second submit for a phone that already has an accepted or in-flight enrollment does not send again. That decision is one database function, `claim_sms_enrollment_send`, not a check in the request after a send.
 - A provider failure is stored as `failed`, not `accepted`. A later affirmative consent can claim again. An in-flight `claimed` row is not treated as delivered.
-- `stopped = true` blocks missed-call and review-request sends. A new stored affirmative consent is a re-enrollment and may claim a new confirmation. This repo does not add an inbound Twilio webhook; STOP has to be written onto `sms_phone_state.stopped` by that future writer or by hand.
+- `stopped = true` blocks missed-call and review-request sends. Evidence stored before STOP cannot clear it or win a customer send. A later affirmative consent can re-enroll only when its `consented_at` is after `sms_phone_state.stopped_at`. A stopped row with no `stopped_at` stays stopped. This repo does not add an inbound Twilio webhook; the STOP writer must set both `stopped` and `stopped_at`.
 
 ## One-time SQL
 
@@ -54,6 +54,9 @@ create table if not exists public.sms_phone_state (
   phone_e164 text primary key,
   consent boolean not null,
   stopped boolean not null default false,
+  -- Set this to the STOP event time when recording STOP. A stopped row
+  -- with a null stopped_at cannot be cleared by claim_sms_enrollment_send.
+  stopped_at timestamptz,
   text_version text,
   evidence_id uuid,
   send_status text not null default 'unsent',
@@ -123,6 +126,14 @@ begin
     return jsonb_build_object('claimed', false, 'reason', 'replay');
   end if;
 
+  -- STOP fails closed. Evidence stored before STOP, or a STOP with no
+  -- stopped_at, must not clear the flag or win a send. Only evidence
+  -- strictly newer than stopped_at is an ordered re-enrollment.
+  if st.stopped is true
+     and not (st.stopped_at is not null and ev.consented_at > st.stopped_at) then
+    return jsonb_build_object('claimed', false, 'reason', 'stopped');
+  end if;
+
   if st.stopped is not true and st.send_status in ('claimed', 'accepted') then
     return jsonb_build_object('claimed', false, 'reason', 'replay');
   end if;
@@ -130,6 +141,7 @@ begin
   update public.sms_phone_state
   set consent = true,
       stopped = false,
+      stopped_at = null,
       text_version = p_text_version,
       evidence_id = p_evidence_id,
       send_status = 'claimed',
@@ -137,12 +149,18 @@ begin
       provider_sid = null,
       updated_at = now()
   where phone_e164 = p_phone
-    and (
-      stopped is true
-      or send_status in ('unsent', 'failed')
-      or consent is not true
-    )
     and send_status is distinct from 'claimed'
+    and (
+      (
+        stopped is true
+        and stopped_at is not null
+        and ev.consented_at > stopped_at
+      )
+      or (
+        stopped is not true
+        and (send_status in ('unsent', 'failed') or consent is not true)
+      )
+    )
   returning * into st;
 
   if not found then

@@ -21,6 +21,9 @@ create table if not exists public.sms_phone_state (
   phone_e164 text primary key,
   consent boolean not null,
   stopped boolean not null default false,
+  -- Set this to the STOP event time when recording STOP. A stopped row
+  -- with a null stopped_at cannot be cleared by claim_sms_enrollment_send.
+  stopped_at timestamptz,
   text_version text,
   evidence_id uuid,
   send_status text not null default 'unsent',
@@ -90,6 +93,14 @@ begin
     return jsonb_build_object('claimed', false, 'reason', 'replay');
   end if;
 
+  -- STOP fails closed. Evidence stored before STOP, or a STOP with no
+  -- stopped_at, must not clear the flag or win a send. Only evidence
+  -- strictly newer than stopped_at is an ordered re-enrollment.
+  if st.stopped is true
+     and not (st.stopped_at is not null and ev.consented_at > st.stopped_at) then
+    return jsonb_build_object('claimed', false, 'reason', 'stopped');
+  end if;
+
   if st.stopped is not true and st.send_status in ('claimed', 'accepted') then
     return jsonb_build_object('claimed', false, 'reason', 'replay');
   end if;
@@ -97,6 +108,7 @@ begin
   update public.sms_phone_state
   set consent = true,
       stopped = false,
+      stopped_at = null,
       text_version = p_text_version,
       evidence_id = p_evidence_id,
       send_status = 'claimed',
@@ -104,12 +116,18 @@ begin
       provider_sid = null,
       updated_at = now()
   where phone_e164 = p_phone
-    and (
-      stopped is true
-      or send_status in ('unsent', 'failed')
-      or consent is not true
-    )
     and send_status is distinct from 'claimed'
+    and (
+      (
+        stopped is true
+        and stopped_at is not null
+        and ev.consented_at > stopped_at
+      )
+      or (
+        stopped is not true
+        and (send_status in ('unsent', 'failed') or consent is not true)
+      )
+    )
   returning * into st;
 
   if not found then
