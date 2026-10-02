@@ -18,6 +18,7 @@ const eslintConfig = [
       'scripts/**',
       'next-sitemap.config.js',
       '.claude/**',
+      'vendor/**',
     ],
   },
 ];

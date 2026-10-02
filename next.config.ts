@@ -6,6 +6,7 @@ import type { NextConfig } from 'next';
 // './src/lib/claims'". Vitest resolves `@/` fine, so the whole test suite
 // passed while the build was broken. Keep this import chain alias-free.
 import { RETIRED_COMBOS } from './src/lib/retired-combos';
+import { parseBookingUrl } from './src/lib/booking';
 
 /**
  * Content-Security-Policy.
@@ -24,21 +25,29 @@ import { RETIRED_COMBOS } from './src/lib/retired-combos';
  *    Without it the map silently fails to render (the iframe box lays out at
  *    full size, but Chrome refuses to frame it and logs a CSP violation).
  */
+// Present only when NEXT_PUBLIC_BOOKING_URL is an event link. Unset leaves
+// every directive identical to the site without the booking button.
+const bookingTarget = parseBookingUrl(process.env.NEXT_PUBLIC_BOOKING_URL);
+const bookingSrc = bookingTarget ? ` ${bookingTarget.origin}` : '';
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   // 'unsafe-eval' is development-only: React Refresh / React DevTools need
   // eval() under next dev. Production builds never include it.
-  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live`,
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live${bookingSrc}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://vercel.live",
   "font-src 'self' data:",
-  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com",
-  "frame-src https://www.googletagmanager.com https://www.google.com https://vercel.live",
+  `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com${bookingSrc}`,
+  `frame-src https://www.googletagmanager.com https://www.google.com https://vercel.live${bookingSrc}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'self'",
-  'upgrade-insecure-requests',
+  // An http booking host (the local pilot) cannot load through
+  // upgrade-insecure-requests. https hosts, and a build with the flag unset,
+  // keep the upgrade.
+  ...(bookingTarget?.origin.startsWith('http://') ? [] : ['upgrade-insecure-requests']),
 ].join('; ');
 
 const securityHeaders = [

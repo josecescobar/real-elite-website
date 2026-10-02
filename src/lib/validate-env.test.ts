@@ -14,6 +14,7 @@ const ENV_KEYS = [
   'UPSTASH_REDIS_REST_URL',
   'UPSTASH_REDIS_REST_TOKEN',
   'NEXT_PUBLIC_GTM_ID',
+  'NEXT_PUBLIC_BOOKING_URL',
 ];
 
 beforeEach(() => {
@@ -80,5 +81,12 @@ describe('validateEnv', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     validateEnv();
     expect(warn).toHaveBeenCalledWith(expect.stringContaining('Upstash rate limiting is only partially configured'));
+  });
+
+  it('warns when the booking URL is set but is not an event link', () => {
+    process.env.NEXT_PUBLIC_BOOKING_URL = 'https://booking.example.com';
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    validateEnv();
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('NEXT_PUBLIC_BOOKING_URL'));
   });
 });

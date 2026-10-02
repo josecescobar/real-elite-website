@@ -3,6 +3,9 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { notFoundMetadata } from '@/lib/seo';
+
+export const metadata = notFoundMetadata();
 
 export default function NotFound() {
   return (

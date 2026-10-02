@@ -124,6 +124,9 @@ export const env = {
   /** Sent as Authorization: Bearer when set. */
   leadWebhookSecret: (): string | undefined => process.env.LEAD_WEBHOOK_SECRET,
 
+  /** Full Cal.diy event URL. Unset means the booking button is not rendered. */
+  bookingUrl: (): string | undefined => process.env.NEXT_PUBLIC_BOOKING_URL,
+
   /**
    * Customer SMS gate. Unset, or any value other than "true" / "1", sends
    * nothing to customers: enrollment confirmation, missed-call text-back,

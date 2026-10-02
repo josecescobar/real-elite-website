@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { parseBookingUrl } from './booking';
 import { env } from './env';
 
 /**
@@ -71,6 +72,14 @@ export function validateEnv(): void {
       '[env] Twilio speed-to-lead SMS is only partially configured — TWILIO_ACCOUNT_SID, ' +
         'TWILIO_AUTH_TOKEN, TWILIO_FROM_NUMBER, and TWILIO_TO_NUMBER must all be set, or the ' +
         'SMS step silently no-ops.'
+    );
+  }
+
+  const bookingRaw = env.bookingUrl();
+  if (bookingRaw && !parseBookingUrl(bookingRaw)) {
+    console.warn(
+      '[env] NEXT_PUBLIC_BOOKING_URL is set but is not an http(s) Cal event link ' +
+        '(username/event). The booking button stays hidden.'
     );
   }
 

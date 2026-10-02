@@ -17,6 +17,7 @@ import {
   type PavingService,
 } from '@/lib/paving-data';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import BookEstimateVisitButton from '@/components/booking/BookEstimateVisitButton';
 
 type Props = { service: PavingService };
 
@@ -85,6 +86,7 @@ export default function PavingServiceTemplate({ service }: Props) {
             >
               <Phone className="w-4 h-4" /> {BUSINESS.phone}
             </PhoneLink>
+            <BookEstimateVisitButton surface="navy" />
           </div>
         </Container>
       </section>

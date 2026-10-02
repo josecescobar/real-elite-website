@@ -117,6 +117,51 @@ export function buildMetadata({
 export type Breadcrumb = { name: string; item: string };
 
 /**
+ * Metadata for a page that must not be indexed and must not inherit the
+ * homepage canonical or description. `buildMetadata` sets the self canonical;
+ * `robots` replaces the root layout's index/follow, including the Googlebot
+ * directive, which otherwise outranks a generic noindex.
+ */
+export function unindexedPageMetadata(input: BuildMetadataInput): Metadata {
+  return {
+    ...buildMetadata(input),
+    robots: {
+      index: false,
+      follow: false,
+      googleBot: { index: false, follow: false },
+    },
+  };
+}
+
+/** Document title for the App Router not-found page. Kept inside the SERP budget. */
+export const NOT_FOUND_TITLE = 'Page Not Found | Real Elite';
+
+/**
+ * Snippet for unknown URLs. Distinct from the homepage description so a 404
+ * is not a second copy of the homepage in the built HTML.
+ */
+export const NOT_FOUND_DESCRIPTION =
+  'That address is not a page on the Real Elite Contracting site. Go back home or call a project lead.';
+
+/**
+ * not-found.tsx does not go through `buildMetadata` because there is no single
+ * URL to canonicalize. An empty `alternates` object replaces the root layout
+ * canonical, so a missing URL is not declared to be the homepage.
+ */
+export function notFoundMetadata(): Metadata {
+  return {
+    title: { absolute: NOT_FOUND_TITLE },
+    description: NOT_FOUND_DESCRIPTION,
+    robots: {
+      index: false,
+      follow: false,
+      googleBot: { index: false, follow: false },
+    },
+    alternates: {},
+  };
+}
+
+/**
  * Build a schema.org BreadcrumbList. Positions are assigned from array order,
  * so callers just pass crumbs top-to-bottom (Home first). Mirrors the shape
  * the templates previously inlined by hand.

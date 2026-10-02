@@ -145,6 +145,44 @@ export const FINANCING = {
 } as const;
 
 /**
+ * Partner gate matches `src/app/financing/page.tsx`: a partner is live only
+ * when `applyUrl` is set. Copy still needs `partnerName` before it names anyone.
+ * Kept in this module so scripts that transpile `constants.ts` alone still load.
+ */
+export type FinancingPartnerConfig = {
+  applyUrl: string | null;
+  partnerName: string | null;
+};
+
+const FINANCING_NO_PARTNER_ANSWER =
+  'We do not have a financing partner listed yet. Ask about payment options at your free estimate, and see the Financing page for current details.';
+
+const FINANCING_PARTNER_TAILS = {
+  faq: "We'll walk you through the options on the free estimate before you commit.",
+  home: "We'll walk you through the options on your free estimate so the numbers make sense before you commit.",
+} as const;
+
+export type FinancingAnswerSurface = keyof typeof FINANCING_PARTNER_TAILS;
+
+export function hasFinancingPartner(financing: { applyUrl: string | null }): boolean {
+  return Boolean(financing.applyUrl);
+}
+
+export function financingOfferAnswer(
+  financing: FinancingPartnerConfig,
+  surface: FinancingAnswerSurface,
+): string {
+  if (!hasFinancingPartner(financing) || !financing.partnerName) {
+    return FINANCING_NO_PARTNER_ANSWER;
+  }
+
+  return `Yes. We work with ${financing.partnerName}, which offers monthly payment plans on qualified projects. ${FINANCING_PARTNER_TAILS[surface]}`;
+}
+
+/** Live FAQ answer. Stays neutral until both `applyUrl` and `partnerName` are set. */
+export const FAQ_FINANCING_ANSWER = financingOfferAnswer(FINANCING, 'faq');
+
+/**
  * Service catalog — ordered by homepage / mega-menu priority.
  * Premium remodeling categories lead; small-job services trail.
  */
@@ -1812,8 +1850,7 @@ export const HOME_FAQ = [
   },
   {
     question: 'Do you offer financing?',
-    answer:
-      "Yes. We work with several home-improvement financing partners that offer monthly payment plans on qualified projects. We'll walk you through the options on your free estimate so the numbers make sense before you commit.",
+    answer: financingOfferAnswer(FINANCING, 'home'),
   },
   {
     question: 'What does your warranty cover?',
