@@ -12,6 +12,12 @@ import CityPageTemplate from '@/components/services/CityPageTemplate';
 
 type Params = { slug: string };
 
+// Unknown and staged slugs are not in generateStaticParams. Leaving this
+// true made Next render them on demand: generateMetadata returned a 200
+// noindex document, then the page called notFound() after the response had
+// already started, so the overview URL answered HTTP 200.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return ALL_SERVICE_AREAS.map((area) => ({ slug: area.slug }));
 }
@@ -23,7 +29,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const city = ALL_SERVICE_AREAS.find((c) => c.slug === slug);
-  if (!city) return { title: 'Not Found', robots: { index: false } };
+  // Reject before any metadata object is returned. A soft "Not Found"
+  // return commits status 200 and the later notFound() only swaps the UI.
+  if (!city) notFound();
 
   // formatAreaPlace, not `${city}, ${state}` — the region row is called
   // "Northern Virginia" and the generic form rendered "Northern Virginia, VA".

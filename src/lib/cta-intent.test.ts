@@ -10,9 +10,26 @@ describe('CTA intent routing', () => {
   it('keeps general pages on the written estimate flow', () => {
     expect(primaryCtaForPath('/services/decks')).toMatchObject({
       intent: 'estimate',
+      href: '#estimate',
+      label: 'Free Estimate',
+    });
+    expect(primaryCtaForPath('/services/kitchens')).toMatchObject({ href: '#estimate' });
+    expect(primaryCtaForPath('/services/bathrooms/leesburg-va')).toMatchObject({ href: '#estimate' });
+    expect(primaryCtaForPath('/services')).toMatchObject({
+      intent: 'estimate',
       href: '/contact#estimate',
     });
     expect(primaryCtaForPath('/contact')).toMatchObject({ intent: 'estimate', href: '#estimate' });
+    expect(primaryCtaForPath('/contact/')).toMatchObject({ href: '#estimate' });
+  });
+
+  it('keeps roofing and the instant quote off the in-page estimate anchor', () => {
+    expect(primaryCtaForPath('/services/roofing')).toMatchObject({
+      intent: 'roof-quote',
+      href: '/instant-roof-quote',
+    });
+    expect(primaryCtaForPath('/services/roofing/martinsburg-wv').href).toBe('/instant-roof-quote');
+    expect(primaryCtaForPath('/instant-roof-quote').href).toBe('/instant-roof-quote');
   });
 
   it('routes the design-build surfaces to the consultation', () => {

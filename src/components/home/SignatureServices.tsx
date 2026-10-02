@@ -62,6 +62,9 @@ export default function SignatureServices() {
                   className="object-cover"
                 />
                 <div aria-hidden="true" className="absolute inset-0 gradient-navy-overlay" />
+                <p className="absolute top-3 left-3 z-10 max-w-[18rem] rounded-sm bg-navy-950/90 px-2.5 py-1.5 text-[0.7rem] font-semibold leading-snug text-white">
+                  Design inspiration · not a Real Elite project
+                </p>
                 <div className={`absolute inset-x-0 bottom-0 ${large ? 'p-7 md:p-10' : 'p-6 md:p-7'}`}>
                   <p className="text-[0.65rem] uppercase tracking-[0.2em] font-semibold text-brand-red-light mb-2">
                     {cat.from ? `Typically from ${cat.from}` : cat.eyebrow}

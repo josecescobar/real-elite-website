@@ -106,6 +106,22 @@ describe('Header', () => {
     expect(callLinks[0]).toHaveAttribute('href', 'tel:+16815345515');
   });
 
+  it('puts Text next to Call in the mobile header', () => {
+    render(<Header />);
+    const text = screen.getByRole('link', { name: /^text$/i });
+    expect(text).toHaveAttribute('href', expect.stringContaining('sms:+16815345515'));
+    expect(text.getAttribute('href')).toContain('free%20estimate');
+  });
+
+  it('links Estimate in the header in one click', () => {
+    render(<Header />);
+    const links = screen.getAllByRole('link', { name: /^estimate$/i });
+    expect(links.length).toBeGreaterThan(0);
+    for (const link of links) {
+      expect(link).toHaveAttribute('href', '/estimate');
+    }
+  });
+
   it('renders the Consultation CTA, not a free-estimate button', () => {
     render(<Header />);
     const cta = screen.getAllByRole('link', { name: /consultation/i });

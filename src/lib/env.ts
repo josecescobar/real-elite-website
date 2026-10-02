@@ -117,4 +117,19 @@ export const env = {
    *  the AI "heads up" lead summary is skipped — the owner email/SMS/ledger
    *  flow is completely unaffected. See src/lib/ai-lead-summary.ts. */
   aiGatewayApiKey: (): string | undefined => process.env.AI_GATEWAY_API_KEY,
+
+  // ── Job Board lead webhook (website + phone leads) ───────────────────────
+  /** Where finished website leads are POSTed. Unset → no-op. */
+  leadWebhookUrl: (): string | undefined => process.env.LEAD_WEBHOOK_URL,
+  /** Sent as Authorization: Bearer when set. */
+  leadWebhookSecret: (): string | undefined => process.env.LEAD_WEBHOOK_SECRET,
+
+  /**
+   * Customer SMS gate. Unset, or any value other than "true" / "1", sends
+   * nothing to customers: enrollment confirmation, missed-call text-back,
+   * and review-request SMS. Owner alerts are not covered by this flag.
+   * Jose sets it in Vercel only after the A2P campaign is approved.
+   */
+  smsConsentConfirmationEnabled: (): string | undefined =>
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED,
 } as const;

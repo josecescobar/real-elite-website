@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, MessageSquare, Mail, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import { ESTIMATE_SMS_HREF } from '@/lib/estimate-sms';
 import { buildMetadata } from '@/lib/seo';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
@@ -9,14 +10,6 @@ import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import TrackedLink from '@/components/analytics/TrackedLink';
-
-/**
- * SMS link with a prefilled greeting so the customer's text app opens
- * ready to send. iOS and Android both honor the `?&body=` parameter.
- */
-const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
-  "Hi, I'd like a free estimate from Real Elite Contracting."
-)}`;
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -49,7 +42,7 @@ const CONTACT_BLOCKS = [
     icon: MessageSquare,
     label: 'Text',
     primary: BUSINESS.phone,
-    href: SMS_URL,
+    href: ESTIMATE_SMS_HREF,
     sub: 'Same number — texts often get the fastest reply.',
   },
   {
@@ -153,7 +146,7 @@ export default function ContactPage() {
                   Call <PhoneLink location="contact_body" className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">{BUSINESS.phone}</PhoneLink> and a real person picks up. If I miss you, leave a voicemail — include your contact details.
                 </p>
                 <p className="text-sm text-charcoal-700 leading-relaxed mt-3">
-                  You can also <a href={SMS_URL} className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">text the same number</a> — quick texts usually get the fastest reply.
+                  You can also <a href={ESTIMATE_SMS_HREF} className="text-navy-800 hover:text-brand-red font-semibold underline transition-colors">text the same number</a> — quick texts usually get the fastest reply.
                 </p>
               </div>
 
@@ -166,7 +159,7 @@ export default function ContactPage() {
                   Family-Run
                 </span>
                 <span className="inline-flex items-center bg-steel-50 border border-charcoal-100 rounded-md px-3 py-1.5 text-xs font-semibold text-navy-800">
-                  WV · MD · VA
+                  Serving WV, VA, MD, and PA
                 </span>
               </div>
             </div>

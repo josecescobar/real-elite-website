@@ -5,10 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
+import { ESTIMATE_SMS_HREF } from '@/lib/estimate-sms';
 import { PRIMARY_NAV, NAV_CTA, DESIGN_BUILD_MENU, MOBILE_UTILITY_NAV } from '@/lib/navigation';
 import { trackEvent } from '@/lib/analytics';
 import ServicesMegaMenu from './MegaMenu';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import TrackedLink from '@/components/analytics/TrackedLink';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -115,6 +117,12 @@ export default function Header() {
             {BUSINESS.phone}
           </PhoneLink>
           <Link
+            href="/estimate"
+            className="text-navy-800 font-medium text-sm hover:text-brand-red transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-400 rounded-sm px-1 py-1"
+          >
+            Estimate
+          </Link>
+          <Link
             href={NAV_CTA.href}
             onClick={() => trackEvent('consultation_cta_click', { location: 'header_desktop' })}
             className="bg-navy-900 text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-red transition-colors focus-ring"
@@ -131,6 +139,20 @@ export default function Header() {
           >
             Call
           </PhoneLink>
+          <TrackedLink
+            href={ESTIMATE_SMS_HREF}
+            eventName="sms_click"
+            eventParams={{ location: 'header_mobile' }}
+            className="inline-flex items-center min-h-[44px] border border-navy-900 text-navy-900 px-3 py-2 rounded-md text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
+          >
+            Text
+          </TrackedLink>
+          <Link
+            href="/estimate"
+            className="inline-flex items-center min-h-[44px] text-navy-900 px-1 py-2 text-xs font-semibold underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy-400"
+          >
+            Estimate
+          </Link>
           <button
             ref={toggleRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -242,6 +264,14 @@ export default function Header() {
             >
               Call {BUSINESS.phone}
             </PhoneLink>
+            <TrackedLink
+              href={ESTIMATE_SMS_HREF}
+              eventName="sms_click"
+              eventParams={{ location: 'header_mobile_menu' }}
+              className="flex items-center justify-center w-full py-3 border border-navy-800 text-navy-800 font-semibold rounded-md text-sm hover:bg-steel-50 transition-colors"
+            >
+              Text {BUSINESS.phone}
+            </TrackedLink>
           </div>
         </div>
       )}

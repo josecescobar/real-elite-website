@@ -1,10 +1,7 @@
 import { BUSINESS } from '@/lib/constants';
+import { ESTIMATE_SMS_HREF } from '@/lib/estimate-sms';
 import TrackedLink from '@/components/analytics/TrackedLink';
 import PhoneLink from '@/components/analytics/PhoneLink';
-
-const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
-  "Hi, I'd like a free estimate from Real Elite Contracting."
-)}`;
 
 export const CTASection = () => {
   return (
@@ -39,7 +36,7 @@ export const CTASection = () => {
         <p className="text-xs text-charcoal-400 mt-6">
           Or{' '}
           <TrackedLink
-            href={SMS_URL}
+            href={ESTIMATE_SMS_HREF}
             eventName="sms_click"
             eventParams={{ location: 'cta_section' }}
             className="text-white hover:text-brand-red-light underline transition-colors font-semibold"

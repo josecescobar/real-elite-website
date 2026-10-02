@@ -45,7 +45,7 @@ export function primaryCtaForPath(pathname: string): PrimaryCta {
     };
   }
 
-  if (ROOF_TERMS.some((term) => lower.includes(term))) {
+  if (ROOF_TERMS.some((term) => lower.includes(term)) || base.startsWith('/instant-roof-quote')) {
     return {
       intent: 'roof-quote',
       href: '/instant-roof-quote',
@@ -54,9 +54,21 @@ export function primaryCtaForPath(pathname: string): PrimaryCta {
     };
   }
 
+  // Service templates mount StickyEstimateRail (or the luxury rail) at
+  // #estimate. The sticky bar should stay on that form. /services itself
+  // has no anchor, and roofing stays on the instant quote above.
+  if (base.startsWith('/services/')) {
+    return {
+      intent: 'estimate',
+      href: '#estimate',
+      label: 'Free Estimate',
+      eventName: 'estimate_cta_click',
+    };
+  }
+
   return {
     intent: 'estimate',
-    href: pathname === '/contact' ? '#estimate' : '/contact#estimate',
+    href: base === '/contact' ? '#estimate' : '/contact#estimate',
     label: 'Free Estimate',
     eventName: 'estimate_cta_click',
   };

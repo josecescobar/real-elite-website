@@ -4,6 +4,7 @@
  * already claim.
  */
 
+import { PA_HIC_REGISTRATION_NUMBER, paHicRegistrationLine } from '@/lib/claims';
 import { BUSINESS } from '@/lib/constants';
 
 export const SALES_OWNER = {
@@ -20,9 +21,18 @@ export const SALES_OWNER = {
 } as const;
 
 export const SALES_MARKETS = {
-  core: ['Eastern Panhandle WV', 'Northern VA / Loudoun', 'Western MD'],
-  states: ['WV', 'MD', 'VA'] as const,
+  core: ['Eastern Panhandle WV', 'Northern VA / Loudoun', 'Western MD', 'Franklin County PA'],
+  states: ['WV', 'MD', 'VA', 'PA'] as const,
   targetGrossMargin: { min: 0.38, max: 0.42 },
+} as const;
+
+/**
+ * Contract and ad copy for the Pennsylvania registration. Existing-house
+ * home improvement only. Do not describe this number as a commercial license.
+ */
+export const SALES_PA_HIC = {
+  number: PA_HIC_REGISTRATION_NUMBER,
+  line: paHicRegistrationLine(),
 } as const;
 
 /** Preferred larger work — scored higher than small-job / unknown work. */

@@ -56,12 +56,14 @@ const SOCIAL_LINKS = [
 ].filter((link) => (VERIFIED_PROFILE_URLS as readonly string[]).includes(link.href));
 
 const FEATURED_FOOTER_SERVICES = [
+  { label: 'Bathroom Remodeling', href: '/services/bathrooms' },
+  { label: 'Kitchen Remodeling', href: '/services/kitchens' },
+  { label: 'Basement Finishing', href: '/services/basements' },
   { label: 'Whole-Home Remodeling', href: '/services/remodeling' },
   { label: 'Home Additions', href: '/services/additions' },
   { label: 'Roofing', href: '/services/roofing' },
   { label: 'Siding & Stone', href: '/services/siding' },
   { label: 'Decks & Outdoor Living', href: '/services/decks' },
-  { label: 'Exterior Repairs', href: '/services/exterior-repairs' },
 ];
 
 export default function Footer() {
@@ -220,6 +222,9 @@ export default function Footer() {
             </p>
             <Link className="min-h-11 inline-flex items-center underline underline-offset-2 hover:text-white transition-colors" href="/privacy">
               Privacy Policy
+            </Link>
+            <Link className="min-h-11 inline-flex items-center underline underline-offset-2 hover:text-white transition-colors" href="/sms-terms">
+              Terms & Conditions
             </Link>
           </div>
           <p className="text-charcoal-500 uppercase tracking-[0.15em] font-semibold">

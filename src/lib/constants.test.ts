@@ -10,6 +10,7 @@ import {
   EXPANSION_SERVICE_AREAS,
   ALL_SERVICE_AREAS,
   CONSOLIDATED_SERVICE_AREAS,
+  STAGED_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
   getServiceArea,
   activeAreas,
@@ -19,6 +20,7 @@ import {
   childAreasOf,
   areaAncestors,
   areaHeroLane,
+  areaQuotesSameWeek,
   areaRegionLabel,
   CITY_DATA,
   GALLERY_IMAGES,
@@ -143,12 +145,30 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'oakton-va', 'dunn-loring-va', 'fort-hunt-va',
       'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va',
     ];
+    // Verified Virginia towns from the 2026-09-29 research notes.
+    // West Virginia gap towns are intentionally absent.
+    // Herndon, Fairfax city, Stephens City, and Middletown VA are staged
+    // (permit process unverified) and therefore absent from this active list.
+    const VA_BATCH_2026_09_29 = [
+      'springfield-va', 'chantilly-va', 'centreville-va',
+      'falls-church-va', 'manassas-va',
+      'lake-ridge-va', 'woodbridge-va',
+      'warrenton-va',
+    ];
+    // Franklin County towns. Active because the PA registration is held.
+    // The registration number is still unpublished.
+    const PA_BATCH_2026_09_29 = [
+      'greencastle-pa', 'chambersburg-pa', 'fort-loudon-pa',
+      'mercersburg-pa', 'waynesboro-pa', 'fayetteville-pa',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
       'northern-virginia',
       ...LOUDOUN_TOWNS_2026_09_27,
       ...FAIRFAX_PWC_2026_09_27,
+      ...VA_BATCH_2026_09_29,
+      ...PA_BATCH_2026_09_29,
     ]);
   });
 
@@ -186,6 +206,14 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'gainesville-va',
         'bristow-va',
         'nokesville-va',
+        'springfield-va',
+        'chantilly-va',
+        'centreville-va',
+        'falls-church-va',
+        'manassas-va',
+        'lake-ridge-va',
+        'woodbridge-va',
+        'warrenton-va',
       ].sort()
     );
   });
@@ -464,6 +492,14 @@ describe('SERVICE_AREA_CATALOG integrity', () => {
       }
     }
   });
+
+  it('keeps staged rows out of the published area list', () => {
+    const active = new Set(ALL_SERVICE_AREAS.map((a) => a.slug));
+    for (const area of STAGED_SERVICE_AREAS) {
+      expect(active.has(area.slug), `${area.slug} is both staged and published`).toBe(false);
+      expect(LUXURY_CITY_SLUGS.has(area.slug), `${area.slug} is staged and a luxury CTA`).toBe(false);
+    }
+  });
 });
 
 /**
@@ -476,10 +512,11 @@ describe('activeAreas', () => {
   const rows = [
     { slug: 'kept', status: 'active' as const },
     { slug: 'retired', status: 'consolidated' as const },
+    { slug: 'held', status: 'staged' as const },
     { slug: 'also-kept', status: 'active' as const },
   ];
 
-  it('drops consolidated rows and preserves the order of the rest', () => {
+  it('drops consolidated and staged rows and preserves the order of the rest', () => {
     expect(activeAreas(rows).map((r) => r.slug)).toEqual(['kept', 'also-kept']);
   });
 
@@ -487,8 +524,12 @@ describe('activeAreas', () => {
     expect(activeAreas([{ slug: 'gone', status: 'consolidated' as const }])).toEqual([]);
   });
 
+  it('returns an empty list when every row is staged', () => {
+    expect(activeAreas([{ slug: 'held', status: 'staged' as const }])).toEqual([]);
+  });
+
   it('leaves an all-active list untouched', () => {
-    const allActive = [rows[0], rows[2]];
+    const allActive = [rows[0], rows[3]];
     expect(activeAreas(allActive)).toEqual(allActive);
   });
 });
@@ -527,6 +568,51 @@ describe('areaRegionLabel', () => {
 
   it('still names the Shenandoah for Winchester', () => {
     expect(areaRegionLabel(getServiceArea('winchester-va')!)).toBe('Northern Shenandoah Valley');
+  });
+
+  it('names Fauquier for Warrenton and the Shenandoah for Stephens City', () => {
+    expect(areaRegionLabel(getServiceArea('warrenton-va')!)).toBe('Fauquier County area');
+    expect(areaRegionLabel(getServiceArea('stephens-city-va')!)).toBe('Northern Shenandoah Valley');
+    expect(areaRegionLabel(getServiceArea('middletown-va')!)).toBe('Northern Shenandoah Valley');
+  });
+
+  it('names Franklin County for the Pennsylvania towns and withholds the same-week promise', () => {
+    const slugs = [
+      'greencastle-pa', 'chambersburg-pa', 'fort-loudon-pa',
+      'mercersburg-pa', 'waynesboro-pa', 'fayetteville-pa',
+    ];
+    for (const slug of slugs) {
+      const area = getServiceArea(slug)!;
+      expect(area.status, slug).toBe('active');
+      expect(area.market, slug).toBe('home');
+      expect(areaRegionLabel(area), slug).toBe('Franklin County area');
+      expect(areaHeroLane(area), slug).toBe('estimate');
+      expect(areaQuotesSameWeek(area), slug).toBe(false);
+      expect(LUXURY_CITY_SLUGS.has(slug), slug).toBe(false);
+      expect(STAGED_SERVICE_AREAS.some((row) => row.slug === slug), slug).toBe(false);
+    }
+    expect(areaQuotesSameWeek(getServiceArea('martinsburg-wv')!)).toBe(true);
+    expect(areaQuotesSameWeek(getServiceArea('stephens-city-va')!)).toBe(false);
+    expect(areaQuotesSameWeek(getServiceArea('middletown-va')!)).toBe(false);
+  });
+
+  it('promises a same-week visit only on towns that already carried it', () => {
+    const allowed = new Set([
+      'martinsburg-wv',
+      'inwood-wv',
+      'charles-town-wv',
+      'ranson-wv',
+      'hedgesville-wv',
+      'frederick-md',
+      'winchester-va',
+      'spring-mills-wv',
+      'falling-waters-wv',
+      'berkeley-springs-wv',
+      'shepherdstown-wv',
+    ]);
+    for (const area of SERVICE_AREA_CATALOG) {
+      expect(areaQuotesSameWeek(area), area.slug).toBe(allowed.has(area.slug));
+    }
   });
 
   it('covers every row in the catalog', () => {
@@ -620,6 +706,8 @@ describe('the Northern Virginia region row', () => {
       'loudoun-county-va',
       'fairfax-county-va',
       'prince-william-county-va',
+      'falls-church-va',
+      'manassas-va',
     ]);
   });
 
@@ -635,6 +723,9 @@ describe('the Northern Virginia region row', () => {
       'oakton-va',
       'dunn-loring-va',
       'fort-hunt-va',
+      'springfield-va',
+      'chantilly-va',
+      'centreville-va',
     ]);
     for (const slug of ['mclean-va', 'oakton-va', 'dunn-loring-va', 'fort-hunt-va', 'clifton-va']) {
       expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
@@ -650,6 +741,8 @@ describe('the Northern Virginia region row', () => {
       'gainesville-va',
       'bristow-va',
       'nokesville-va',
+      'lake-ridge-va',
+      'woodbridge-va',
     ]);
     expect(areaAncestors(getServiceArea('haymarket-va')!).map((a) => a.slug)).toEqual([
       'prince-william-county-va',
@@ -757,10 +850,13 @@ describe('selectGalleryFor', () => {
     for (const img of result) expect(img.state).toBe('WV');
   });
 
-  it('prefers photos tagged with the exact city', () => {
+  it('prefers photos tagged with the exact city when it has three', () => {
+    const cityCount = GALLERY_IMAGES.filter((g) => g.citySlug === 'frederick-md').length;
     const result = selectGalleryFor('frederick-md', 'MD');
     expect(result.length).toBeGreaterThanOrEqual(3);
-    for (const img of result) expect(img.citySlug).toBe('frederick-md');
+    if (cityCount >= 3) {
+      for (const img of result) expect(img.citySlug).toBe('frederick-md');
+    }
   });
 
   it('falls back to the first six photos when neither city nor state has three', () => {

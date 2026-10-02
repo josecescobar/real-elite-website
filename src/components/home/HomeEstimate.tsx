@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { BUSINESS } from '@/lib/constants';
+import { ESTIMATE_SMS_HREF } from '@/lib/estimate-sms';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
 const MultiStepEstimateForm = dynamic(
@@ -15,10 +16,6 @@ const MultiStepEstimateForm = dynamic(
     ),
   }
 );
-
-const SMS_URL = `sms:${BUSINESS.phoneRaw}?&body=${encodeURIComponent(
-  "Hi, I'd like a free estimate from Real Elite Contracting."
-)}`;
 
 export default function HomeEstimate() {
   return (
@@ -68,7 +65,7 @@ export default function HomeEstimate() {
                 </PhoneLink>{' '}
                 or{' '}
                 <a
-                  href={SMS_URL}
+                  href={ESTIMATE_SMS_HREF}
                   className="text-white hover:text-brand-red-light font-semibold underline transition-colors"
                 >
                   text the same number

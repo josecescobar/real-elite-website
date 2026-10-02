@@ -12,8 +12,8 @@ export default function PrivacyNotice({
 }: PrivacyNoticeProps) {
   return (
     <p className={className}>
-      By submitting, you agree that Real Elite Contracting may contact you about this {subject}.
-      We never sell your information. See our{' '}
+      By submitting, you send this {subject} request. Text messages happen only if you
+      check the box above. We never sell your information. See our{' '}
       <Link
         href="/privacy"
         className="font-semibold text-navy-800 underline underline-offset-2 hover:text-brand-red transition-colors"

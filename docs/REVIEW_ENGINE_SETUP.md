@@ -14,7 +14,7 @@ They get this text from the business Twilio number:
 > Hi Sarah, it's Jose with Real Elite Contracting. Thank you for
 > trusting us with your project! If you were happy with our work, would
 > you take 60 seconds to leave us a quick Google review? It means the
-> world to our veteran-owned team: [review link]
+> world to our family-run team: [review link]
 
 The page is not linked anywhere on the site, is excluded from the
 sitemap, tells search engines not to index it, and the API behind it

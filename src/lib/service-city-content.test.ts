@@ -15,6 +15,7 @@ import {
 import {
   SERVICES,
   ALL_SERVICE_AREAS,
+  SERVICE_AREA_CATALOG,
   CITY_DATA,
   LUXURY_CITY_SLUGS,
   formatAreaPlace,
@@ -97,9 +98,12 @@ describe('service-area / city-data contract', () => {
   });
 
   it('leaves no CITY_DATA entry without a service area', () => {
-    const slugs = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
+    // Staged rows keep their copy so flipping status back to active republishes
+    // the page. They are catalog rows, not orphans. A key with no catalog row
+    // is still a failure.
+    const slugs = new Set<string>(SERVICE_AREA_CATALOG.map((a) => a.slug));
     const orphans = Object.keys(CITY_DATA).filter((s) => !slugs.has(s));
-    expect(orphans, 'unreachable CITY_DATA entries').toEqual([]);
+    expect(orphans, 'CITY_DATA entries with no catalog row').toEqual([]);
   });
 
   it('keeps service-area slugs unique after dedupe', () => {
@@ -164,6 +168,44 @@ describe('Eastern Panhandle home-turf coverage', () => {
     // elsewhere: the roof range, the deck per-square-foot rates, or the egress
     // window cost. None of them invents a figure that appears nowhere else.
     expect(CONTENT[key as keyof typeof CONTENT]!.metaDescription).toMatch(/\$[\d,]+/);
+  });
+});
+
+describe('REA-791 home-turf service pages', () => {
+  const PAGES = [
+    'kitchens-martinsburg-wv',
+    'kitchens-charles-town-wv',
+    'bathrooms-martinsburg-wv',
+    'bathrooms-charles-town-wv',
+    'basements-martinsburg-wv',
+    'additions-martinsburg-wv',
+    'additions-charles-town-wv',
+    'decks-charles-town-wv',
+  ] as const;
+
+  it.each(PAGES)('publishes %s with WV062432 and no banned claims', (key) => {
+    const entry = CONTENT[key];
+    expect(entry, key).toBeTruthy();
+    const body = entry!.paragraphs.join('\n');
+    expect(body).toContain('WV Contractor License WV062432');
+    expect(body).not.toMatch(/veteran-owned|24\/7|years of experience|\bawards?\b/i);
+    expect(entry!.metaTitle!.length, entry!.metaTitle).toBeLessThanOrEqual(60);
+    expect(entry!.metaDescription!.length, entry!.metaDescription).toBeGreaterThanOrEqual(50);
+    expect(entry!.metaDescription!.length, entry!.metaDescription).toBeLessThanOrEqual(160);
+  });
+
+  it('deep-links each page from the town hub helper', () => {
+    for (const key of PAGES) {
+      const dash = key.indexOf('-');
+      const service = key.slice(0, dash);
+      const city = key.slice(dash + 1);
+      expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    }
+  });
+
+  it('does not spin one opening across the eight pages', () => {
+    const openings = PAGES.map((key) => CONTENT[key]!.paragraphs[0].slice(0, 90));
+    expect(new Set(openings).size).toBe(PAGES.length);
   });
 });
 
