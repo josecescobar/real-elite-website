@@ -1,16 +1,25 @@
 import type { Metadata } from 'next';
 import Container from '@/components/shared/Container';
 import ReviewRequestTool from '@/components/admin/ReviewRequestTool';
+import { unindexedPageMetadata } from '@/lib/seo';
 
 /**
  * Internal tool — not linked from anywhere on the site, noindexed, and
  * excluded from the sitemap. The API behind it refuses to send unless
  * the access key matches ADMIN_TOOLS_KEY.
+ *
+ * `robots` is repeated on this object, not only inside the helper. The route
+ * canonical guard reads this file and does not follow helper calls.
  */
 
 export const metadata: Metadata = {
-  title: 'Review Request Tool',
-  robots: { index: false, follow: false },
+  ...unindexedPageMetadata({
+    path: '/review-request',
+    title: 'Review Request Tool',
+    description:
+      'Staff-only page for sending a Google review link after a finished job. Not a customer page.',
+  }),
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
 };
 
 export default function ReviewRequestPage() {

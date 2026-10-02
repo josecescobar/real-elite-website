@@ -3,7 +3,16 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import ts from 'typescript';
 import { BUSINESS } from '@/lib/constants';
-import { TITLE_MAX, absoluteUrl, buildMetadata, fitTitle } from '@/lib/seo';
+import {
+  NOT_FOUND_DESCRIPTION,
+  NOT_FOUND_TITLE,
+  TITLE_MAX,
+  absoluteUrl,
+  buildMetadata,
+  fitTitle,
+  notFoundMetadata,
+  unindexedPageMetadata,
+} from '@/lib/seo';
 
 const BRAND = ` | ${BUSINESS.name}`;
 
@@ -992,4 +1001,42 @@ describe('every app route declares its own canonical', () => {
           : '')
     ).toBeGreaterThan(0);
   });
+});
+
+const HOMEPAGE_DESCRIPTION =
+  'Family-run design-build remodeler in Loudoun County and the Eastern Panhandle. Kitchens, primary suites, lower levels, additions and outdoor living.';
+
+describe('pages that are not the homepage do not reuse its snippet', () => {
+  it('gives the 404 its own title and description and drops the homepage canonical', () => {
+    const meta = notFoundMetadata();
+    expect(NOT_FOUND_TITLE.length).toBeLessThanOrEqual(TITLE_MAX);
+    expect(NOT_FOUND_DESCRIPTION.length).toBeLessThanOrEqual(160);
+    expect(meta.title).toEqual({ absolute: NOT_FOUND_TITLE });
+    expect(meta.description).toBe(NOT_FOUND_DESCRIPTION);
+    expect(meta.description).not.toBe(HOMEPAGE_DESCRIPTION);
+    expect(meta.alternates).toEqual({});
+    expect(meta.robots).toMatchObject({
+      index: false,
+      follow: false,
+      googleBot: { index: false, follow: false },
+    });
+  });
+
+  it.each(['/review-request', '/sales'] as const)(
+    'gives %s a self canonical and a description that is not the homepage',
+    (path) => {
+      const meta = unindexedPageMetadata({
+        path,
+        title: 'Staff',
+        description: `Staff-only page at ${path}. Not a customer page.`,
+      });
+      expect(meta.alternates?.canonical).toBe(absoluteUrl(path));
+      expect(meta.description).not.toBe(HOMEPAGE_DESCRIPTION);
+      expect(String(meta.description).length).toBeLessThanOrEqual(160);
+      expect(meta.robots).toMatchObject({
+        index: false,
+        googleBot: { index: false, follow: false },
+      });
+    }
+  );
 });

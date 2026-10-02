@@ -4,10 +4,17 @@ import SalesCommandCenter from '@/components/admin/SalesCommandCenter';
 import { authorizeAgent } from '@/lib/sales/agents/auth';
 import { getSalesStore } from '@/lib/sales/store';
 import type { Lead, LeadBucket } from '@/lib/sales/types';
+import { unindexedPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Grokbot Command Center',
-  robots: { index: false, follow: false },
+  ...unindexedPageMetadata({
+    path: '/sales',
+    title: 'Grokbot Command Center',
+    description:
+      'Staff-only sales workspace for Real Elite Contracting. Not a public page.',
+  }),
+  // Repeated here so the route canonical guard sees noindex in this file.
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
 };
 
 export const dynamic = 'force-dynamic';
