@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Zap, ClipboardCheck, Compass, Phone, ArrowRight } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import AssurancesBand from '@/components/home/AssurancesBand';
+import MultiStepEstimateForm from '@/components/shared/MultiStepEstimateForm';
 import { buildMetadata } from '@/lib/seo';
 import { BUSINESS } from '@/lib/constants';
 import PhoneLink from '@/components/analytics/PhoneLink';
@@ -138,6 +139,20 @@ export default function EstimateHubPage() {
                 Call {BUSINESS.phone}
               </PhoneLink>
             </p>
+          </div>
+        </Container>
+      </section>
+
+      <section id="estimate-form" className="bg-white py-16 md:py-24 scroll-mt-24">
+        <Container>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-3">
+              Free written estimate
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-navy-800 mb-8">
+              Tell us about the project.
+            </h2>
+            <MultiStepEstimateForm />
           </div>
         </Container>
       </section>

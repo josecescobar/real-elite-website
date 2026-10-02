@@ -39,12 +39,23 @@ function mockResendOk() {
 
 beforeEach(() => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
+  delete process.env.LEAD_WEBHOOK_URL;
+  delete process.env.LEAD_WEBHOOK_SECRET;
 });
 
 afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
   delete process.env.RESEND_API_KEY;
+  delete process.env.LEAD_WEBHOOK_URL;
+  delete process.env.LEAD_WEBHOOK_SECRET;
+  delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+  delete process.env.TWILIO_ACCOUNT_SID;
+  delete process.env.TWILIO_AUTH_TOKEN;
+  delete process.env.TWILIO_FROM_NUMBER;
+  delete process.env.TWILIO_TO_NUMBER;
+  delete process.env.SUPABASE_URL;
+  delete process.env.SUPABASE_SERVICE_ROLE_KEY;
 });
 
 describe('POST /api/estimate — validation', () => {
@@ -193,6 +204,8 @@ describe('POST /api/estimate — delivery', () => {
     // Warm, on-voice, and personalized to the first name.
     expect(confirmation.html).toContain('Hi Jane');
     expect(confirmation.html).toContain(BUSINESS.phone);
+    expect(confirmation.html).toContain('reply by email');
+    expect(confirmation.html).not.toContain('will call you');
   });
 
   it('still returns 200 when the customer confirmation email fails', async () => {
@@ -278,6 +291,108 @@ describe('POST /api/estimate — delivery', () => {
     delete process.env.AI_GATEWAY_API_KEY;
   });
 
+  it('skips the Job Board webhook when LEAD_WEBHOOK_URL is unset', async () => {
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.50'));
+    expect(res.status).toBe(200);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls.every(([url]) => url === 'https://api.resend.com/emails')).toBe(true);
+  });
+
+  it('POSTs the elite-agent lead shape, including consent, when the webhook is set', async () => {
+    process.env.LEAD_WEBHOOK_URL = 'https://job-board.example/api/leads';
+    process.env.LEAD_WEBHOOK_SECRET = 'board-secret';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(
+      makeRequest(
+        {
+          ...validBody,
+          message: 'Kitchen roof leak',
+          zip: '25401',
+          town: 'Martinsburg',
+          smsConsent: true,
+          smsConsentTextVersion: '2026-09-30',
+          pageUrl: 'https://www.realelitecontracting.com/contact',
+        },
+        '203.0.113.51'
+      )
+    );
+    expect(res.status).toBe(200);
+    const webhookCall = fetchMock.mock.calls.find(
+      ([url]) => url === 'https://job-board.example/api/leads'
+    );
+    expect(webhookCall).toBeTruthy();
+    expect(webhookCall![1].headers.Authorization).toBe('Bearer board-secret');
+    const payload = JSON.parse(webhookCall![1].body as string);
+    expect(payload).toMatchObject({
+      source: 'real_elite_contracting',
+      company_name: 'Real Elite Contracting',
+      name: 'Jane Homeowner',
+      phone: '(681) 555-0142',
+      callback_number: '(681) 555-0142',
+      town: 'Martinsburg',
+      zip: '25401',
+      job_type: 'Bathroom Remodeling',
+      summary: 'Kitchen roof leak',
+      spam: false,
+      urgent: false,
+      outcome: 'website_form',
+      recording_link: null,
+      transcript_link: null,
+      consent: true,
+      consent_page_url: 'https://www.realelitecontracting.com/contact',
+      consent_text_version: '2026-09-30',
+      ip: '203.0.113.51',
+    });
+    expect(payload.consent_text).toMatch(/Reply STOP to opt out/);
+    expect(payload.call_sid).toMatch(/^web-/);
+    expect(payload.consent_timestamp).toBeTruthy();
+    const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    expect(owner.html).toContain('Text consent');
+    expect(owner.html).toContain('Yes (2026-09-30)');
+    const confirmation = JSON.parse(
+      fetchMock.mock.calls
+        .filter(([url]) => url === 'https://api.resend.com/emails')
+        .at(-1)![1].body as string
+    );
+    expect(confirmation.html).toContain('may text this number');
+  });
+
+  it('stores consent=false when the box is unchecked or the text version does not match', async () => {
+    process.env.LEAD_WEBHOOK_URL = 'https://job-board.example/api/leads';
+    process.env.LEAD_WEBHOOK_SECRET = 'board-secret';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    await POST(
+      makeRequest(
+        { ...validBody, smsConsent: true, smsConsentTextVersion: '1999-01-01' },
+        '203.0.113.52'
+      )
+    );
+    const payload = JSON.parse(
+      fetchMock.mock.calls.find(([url]) => url === 'https://job-board.example/api/leads')![1]
+        .body as string
+    );
+    expect(payload.consent).toBe(false);
+    expect(payload.consent_text_version).toBe('2026-09-30');
+  });
+
+  it('still returns 200 when the lead webhook fails', async () => {
+    process.env.LEAD_WEBHOOK_URL = 'https://job-board.example/api/leads';
+    const fetchMock = vi.fn().mockImplementation((url: string) => {
+      if (url === 'https://job-board.example/api/leads') {
+        return Promise.reject(new Error('webhook down'));
+      }
+      return Promise.resolve(new Response('{"id":"e1"}', { status: 200 }));
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.53'));
+    expect(res.status).toBe(200);
+  });
+
   it('does not call the AI Gateway and omits the AI block when AI_GATEWAY_API_KEY is unset', async () => {
     const fetchMock = mockResendOk();
     const POST = await loadPOST();
@@ -285,6 +400,133 @@ describe('POST /api/estimate — delivery', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2); // owner + confirmation only, no Gateway call
     const owner = JSON.parse(fetchMock.mock.calls[0][1].body as string);
     expect(owner.html).not.toContain('AI Heads-Up');
+  });
+});
+
+describe('POST /api/estimate — SMS enrollment confirmation', () => {
+  const SAMPLE_5 =
+    'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. Message frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out. Support: (681) 534-5515.';
+
+  const optedIn = {
+    ...validBody,
+    smsConsent: true,
+    smsConsentTextVersion: '2026-09-30',
+    pageUrl: 'https://www.realelitecontracting.com/contact',
+  };
+
+  function enableConfirmation() {
+    process.env.SMS_CONSENT_CONFIRMATION_ENABLED = 'true';
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    process.env.SUPABASE_URL = 'https://proj.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'service_key';
+    delete process.env.TWILIO_TO_NUMBER;
+  }
+
+  function mockFlow(mode: 'ok' | 'ledger-fail' | 'twilio-reject' = 'ok') {
+    let claims = 0;
+    const fetchMock = vi.fn().mockImplementation(async (url: string, init?: RequestInit) => {
+      const target = String(url);
+      if (target.includes('/rest/v1/leads')) {
+        if (mode === 'ledger-fail') return new Response('nope', { status: 500 });
+        const sent = JSON.parse(String(init?.body)) as { id: string; sms_consent: boolean };
+        return new Response(JSON.stringify([{ id: sent.id, sms_consent: sent.sms_consent }]), {
+          status: 201,
+        });
+      }
+      if (target.includes('/sms_consent_evidence')) {
+        const sent = JSON.parse(String(init?.body)) as { id: string; phone_e164: string };
+        return new Response(
+          JSON.stringify([{ id: sent.id, consent: true, phone_e164: sent.phone_e164 }]),
+          { status: 201 }
+        );
+      }
+      if (target.includes('/rpc/claim_sms_enrollment_send')) {
+        claims += 1;
+        const evidenceId = (JSON.parse(String(init?.body)) as { p_evidence_id: string }).p_evidence_id;
+        const body =
+          claims === 1
+            ? { claimed: true, reason: 'claimed', evidence_id: evidenceId }
+            : { claimed: false, reason: 'replay' };
+        return new Response(JSON.stringify(body), { status: 200 });
+      }
+      if (target.includes('/sms_phone_state') && init?.method !== 'PATCH') {
+        return new Response(JSON.stringify([{ consent: true, stopped: false }]), { status: 200 });
+      }
+      if (target.includes('api.twilio.com')) {
+        if (mode === 'twilio-reject') return new Response('rejected', { status: 400 });
+        return new Response('{"sid":"SM1"}', { status: 201 });
+      }
+      return new Response('{"id":"e1"}', { status: 200 });
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    return fetchMock;
+  }
+
+  it('does not text the customer when the flag is off', async () => {
+    delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.70'));
+    expect(res.status).toBe(200);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes('api.twilio.com'))).toBe(
+      false
+    );
+  });
+
+  it('still texts the owner when the customer flag is off', async () => {
+    delete process.env.SMS_CONSENT_CONFIRMATION_ENABLED;
+    process.env.TWILIO_ACCOUNT_SID = 'AC_test';
+    process.env.TWILIO_AUTH_TOKEN = 'token_test';
+    process.env.TWILIO_FROM_NUMBER = '+13045550100';
+    process.env.TWILIO_TO_NUMBER = '+13045559999';
+    const fetchMock = mockResendOk();
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.73'));
+    expect(res.status).toBe(200);
+    const twilioCalls = fetchMock.mock.calls.filter(([url]) =>
+      String(url).includes('api.twilio.com')
+    );
+    expect(twilioCalls).toHaveLength(1);
+    const params = new URLSearchParams(twilioCalls[0][1].body as string);
+    expect(params.get('To')).toBe('+13045559999');
+    expect(params.get('Body')).toContain('New Lead');
+    expect(params.get('Body')).not.toContain('You are subscribed');
+  });
+
+  it('returns 200 and skips the customer text when consent storage fails', async () => {
+    enableConfirmation();
+    const fetchMock = mockFlow('ledger-fail');
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(optedIn, '203.0.113.74'));
+    expect(res.status).toBe(200);
+    const twilioCalls = fetchMock.mock.calls.filter(([url]) =>
+      String(url).includes('api.twilio.com')
+    );
+    expect(twilioCalls).toHaveLength(0);
+    const emails = fetchMock.mock.calls.filter(([url]) => String(url).includes('api.resend.com'));
+    expect(emails.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('sends sample 5 once on replay and still returns 200 when Twilio rejects it', async () => {
+    enableConfirmation();
+    const fetchMock = mockFlow('twilio-reject');
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(optedIn, '203.0.113.71'));
+    const second = await POST(makeRequest(optedIn, '203.0.113.72'));
+    expect(first.status).toBe(200);
+    expect(second.status).toBe(200);
+    const twilioCalls = fetchMock.mock.calls.filter(([url]) =>
+      String(url).includes('api.twilio.com')
+    );
+    expect(twilioCalls).toHaveLength(1);
+    const params = new URLSearchParams(twilioCalls[0][1].body as string);
+    expect(params.get('Body')).toBe(SAMPLE_5);
+    expect(params.get('To')).toBe('+16815550142');
   });
 });
 

@@ -12,6 +12,8 @@ import {
 } from '@/lib/cta-intent';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
+import SmsConsentField from '@/components/shared/SmsConsentField';
+import { smsConsentPayload } from '@/lib/sms-consent';
 
 /* ─────────────────────────────────────────────────────────────────────────
  * LuxuryConsultationForm
@@ -161,6 +163,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -250,6 +253,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           ...(data.referral ? { referralSource: labelFor(REFERRAL_SOURCES, data.referral) } : {}),
           message: data.scope,
           ...attributionPayload(),
+          ...smsConsentPayload(smsConsent),
           website: honeypot,
         }),
       });
@@ -302,8 +306,11 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
         <h3 className="font-heading text-3xl text-navy-900 mb-3">We&apos;ll call you.</h3>
         <p className="text-charcoal-600 leading-relaxed max-w-md mx-auto">
           Thank you. A project lead will call within your requested window. The first
-          conversation is a short call to review the brief together, answer your questions and
-          decide whether a site visit is the right next step.
+          conversation is a short call to review the brief together, answer your questions
+          and decide whether a site visit is the right next step.{' '}
+          {smsConsent
+            ? 'You also agreed we may text this number about your project. Reply STOP to opt out.'
+            : "We won't text this number unless you checked the text-message box."}
         </p>
         <SuccessNextSteps guideHref="/investment" guideLabel="Read the Loudoun investment guide" />
       </div>
@@ -615,6 +622,11 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
                     {errors.phone}
                   </p>
                 )}
+                <SmsConsentField
+                  id="luxury-sms-consent"
+                  checked={smsConsent}
+                  onChange={setSmsConsent}
+                />
               </div>
 
               <div>

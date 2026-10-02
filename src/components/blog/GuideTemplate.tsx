@@ -17,6 +17,7 @@ import RelatedGuides from './RelatedGuides';
 import AnswerText from './AnswerText';
 import { primaryCtaForPath } from '@/lib/cta-intent';
 import ArticleSchema from '@/components/seo/ArticleSchema';
+import { isStockImage, isUnverifiedImage } from '@/lib/stock-images';
 import JsonLd from '@/components/seo/JsonLd';
 import {
   formatDate,
@@ -65,19 +66,36 @@ const mdxComponents = {
   // the high-res intrinsic size (2560x1707) lets next/image serve crisp retina
   // variants from high-quality sources while `sizes` keeps the delivered bytes
   // small. Lower-res 3:2 sources are simply capped at their own resolution.
-  // Article images carry no caption. Guides may illustrate with stock; they
-  // do not present those photos as Real Elite jobs.
-  img: ({ src, alt }: { src?: string; alt?: string }) => (
-    <Image
-      src={typeof src === 'string' ? src : ''}
-      alt={alt ?? ''}
-      width={2560}
-      height={1707}
-      quality={82}
-      sizes="(max-width: 768px) 100vw, 768px"
-      className="rounded-lg w-full h-auto my-8"
-    />
-  ),
+  //
+  // Stock photos get a visible "Design inspiration" caption (see
+  // src/lib/stock-images.ts) so an article image never reads as a Real Elite
+  // job. Markdown wraps images in <p>, so the caption is a <span>, not a
+  // <figure>, to keep the HTML valid.
+  img: ({ src, alt }: { src?: string; alt?: string }) => {
+    const source = typeof src === 'string' ? src : '';
+    const stock = isStockImage(source);
+    const unverified = isUnverifiedImage(source);
+    const image = (
+      <Image
+        src={source}
+        alt={alt ?? ''}
+        width={2560}
+        height={1707}
+        quality={82}
+        sizes="(max-width: 768px) 100vw, 768px"
+        className={`rounded-lg w-full h-auto ${stock || unverified ? '!my-0' : 'my-8'}`}
+      />
+    );
+    if (!stock && !unverified) return image;
+    return (
+      <span className="block my-8">
+        {image}
+        <span className="block mt-2 text-xs uppercase tracking-[0.14em] text-charcoal-500">
+          {unverified ? 'Unverified photo · not confirmed as a Real Elite project' : 'Design inspiration · not a Real Elite project'}
+        </span>
+      </span>
+    );
+  },
   InlineTestimonial,
   EstimateCTACard,
 };
@@ -182,6 +200,16 @@ export default function GuideTemplate({ post }: Props) {
               sizes="(max-width: 1024px) 100vw, 800px"
               className="object-cover"
             />
+            {isStockImage(post.featuredImage) && (
+              <span className="absolute bottom-3 left-3 rounded bg-navy-950/75 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
+                Design inspiration
+              </span>
+            )}
+            {isUnverifiedImage(post.featuredImage) && (
+              <span className="absolute bottom-3 left-3 rounded bg-navy-950/75 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
+                Unverified photo
+              </span>
+            )}
           </div>
         </Container>
         <div className="h-16 sm:h-24 bg-white" aria-hidden="true" />

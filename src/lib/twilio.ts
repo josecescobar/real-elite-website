@@ -60,16 +60,19 @@ export function webhookUrl(request: Request, pathname: string): string {
   return `https://${host}${pathname}`;
 }
 
+export type SmsSendResult = { ok: true; sid?: string } | { ok: false };
+
 /**
  * Send an SMS via the Twilio REST API. Returns whether Twilio accepted
- * it; never throws. Reads TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN /
- * TWILIO_FROM_NUMBER from the environment.
+ * it and, when present, the provider SID. Never throws. Reads
+ * TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN / TWILIO_FROM_NUMBER from the
+ * environment.
  */
-export async function sendSms(to: string, body: string): Promise<boolean> {
+export async function sendSmsDetailed(to: string, body: string): Promise<SmsSendResult> {
   const sid = env.twilioAccountSid();
   const token = env.twilioAuthToken();
   const from = env.twilioFromNumber();
-  if (!sid || !token || !from) return false;
+  if (!sid || !token || !from) return { ok: false };
 
   try {
     const res = await fetch(
@@ -86,12 +89,20 @@ export async function sendSms(to: string, body: string): Promise<boolean> {
     if (!res.ok) {
       const detail = await res.text().catch(() => '');
       console.error('Twilio SMS failed', { status: res.status, detail });
+      return { ok: false };
     }
-    return res.ok;
+    const payload = (await res.json().catch(() => null)) as { sid?: unknown } | null;
+    const providerSid = payload && typeof payload.sid === 'string' ? payload.sid : undefined;
+    return { ok: true, sid: providerSid };
   } catch (err) {
     console.error('Twilio SMS network error', err);
-    return false;
+    return { ok: false };
   }
+}
+
+/** Boolean wrapper around `sendSmsDetailed` for callers that only need acceptance. */
+export async function sendSms(to: string, body: string): Promise<boolean> {
+  return (await sendSmsDetailed(to, body)).ok;
 }
 
 const xmlHeaders = { 'Content-Type': 'text/xml; charset=utf-8' };

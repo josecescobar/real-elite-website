@@ -1832,8 +1832,8 @@ export const HOME_FAQ = [
  * the city-page gallery (via selectGalleryFor).
  *
  * HONESTY RULE: every entry must be a photograph of Real Elite's own work.
- * No stock on this photo wall or in case studies. Stock may appear unlabeled
- * on other pages.
+ * No stock, no AI imagery, no manufacturer catalogue shots — those belong in
+ * /images/inspiration with an "inspiration" label, never here.
  *
  * `state` / `citySlug` are set only where the job location is verified
  * (photo EXIF GPS matched against the job file in AI-SHARED/Jobs). Leave them

@@ -205,11 +205,15 @@ describe('static page smoke tests', () => {
         /We do not sell or share your SMS opt-in data or personal information with third parties for marketing purposes\. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes\. Text messaging originator opt-in data and consent will not be shared with any third parties\./,
       ),
     ).toBeInTheDocument();
-    expect(screen.getByText(/Reply STOP to opt out/i)).toBeInTheDocument();
-    expect(screen.getByText(/Reply HELP for help/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Reply STOP to opt out/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Reply HELP for help/i).length).toBeGreaterThan(0);
     expect(screen.queryByText(/phone, email, or text/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/verbal consent on a phone call/i)).toBeInTheDocument();
-    expect(screen.getByText(/texts our number first/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /One more thing: is it okay if Real Elite Contracting sends you text messages at this number about your project, including estimate scheduling and updates\? Message frequency varies\. Message and data rates may apply\. Reply STOP to opt out or HELP for help\. Consent is not a condition of purchase\. Our SMS Terms are at realelitecontracting\.com\/sms-terms and our Privacy Policy is at realelitecontracting\.com\/privacy\. Do you agree to receive these text messages\? Please say yes or no\./,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/optional checkbox starts unchecked/i)).toBeInTheDocument();
     expect(screen.getByText('Effective September 30, 2026.')).toBeInTheDocument();
   });
 
@@ -221,13 +225,38 @@ describe('static page smoke tests', () => {
     expect(screen.getByText('Real Elite Contracting customer updates')).toBeInTheDocument();
     expect(
       screen.getByText(
-        'Verbal consent on a phone call: our assistant asks the caller whether we may text them about their request, and we text only if they say yes.',
+        'One more thing: is it okay if Real Elite Contracting sends you text messages at this number about your project, including estimate scheduling and updates? Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. Our SMS Terms are at realelitecontracting.com/sms-terms and our Privacy Policy is at realelitecontracting.com/privacy. Do you agree to receive these text messages? Please say yes or no.',
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/step 3 of the/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/texting our business number with a question does not enroll anyone in recurring texts/i),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'What happens after you opt in' })).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. Message frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out. Support: (681) 534-5515.',
       ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText('The customer texts our number first. We reply only about their request.'),
+      screen.getByText('Carriers are not liable for any delayed or undelivered messages.'),
     ).toBeInTheDocument();
-    expect(screen.queryByText(/text-consent box/i)).not.toBeInTheDocument();
+    const stop = screen.getByText('Reply STOP to opt out.');
+    const help = screen.getByText('Reply HELP for help.');
+    expect(stop).toHaveStyle({ fontWeight: '700' });
+    expect(help).toHaveStyle({ fontWeight: '700' });
+    expect(stop.tagName).toBe('STRONG');
+    expect(help.tagName).toBe('STRONG');
+    expect(
+      screen.getByText(
+        'Yes, Real Elite Contracting may text me at the number above about my project, including estimate scheduling and updates. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our SMS Terms and Privacy Policy.',
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'estimate form' })).toHaveAttribute('href', '/estimate');
+    expect(screen.getByRole('img', { name: /checkbox unchecked/i })).toHaveAttribute(
+      'src',
+      '/images/sms-optin-form.png',
+    );
     expect(screen.getByRole('link', { name: /privacy policy/i })).toHaveAttribute('href', '/privacy');
   });
 

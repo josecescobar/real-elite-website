@@ -4,6 +4,13 @@ import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { recordLead, inferLeadType } from '@/lib/leads';
 import { summarizeLead } from '@/lib/ai-lead-summary';
+import { readSmsConsent } from '@/lib/sms-consent';
+import { sendSmsConsentConfirmation } from '@/lib/sms-confirmation';
+import {
+  buildLeadWebhookPayload,
+  postLeadWebhook,
+  websiteLeadCallSid,
+} from '@/lib/lead-webhook';
 
 const RESEND_API_KEY = env.resendApiKey();
 const TO_EMAIL = env.estimateToEmail() || 'info@realelitecontracting.com';
@@ -32,6 +39,7 @@ const MAX = {
   // working unchanged.
   town: 80,
   referralSource: 80,
+  address: 300,
   // First-touch attribution (client-captured; see src/lib/attribution.ts).
   utmSource: 200,
   utmMedium: 200,
@@ -56,11 +64,15 @@ function escapeHtml(s: string) {
 
 /**
  * Warm, plain confirmation sent to the customer after any form submission.
- * Text-forward with a single call CTA — keeps it out of spam folders and
- * sets the "a real person will call after reviewing your request" expectation.
+ * The optional checkbox is SMS-only, so a checked box never promises a call.
  * `safeFirstName` must already be HTML-escaped by the caller.
  */
-function customerConfirmationHtml(safeFirstName: string) {
+function customerConfirmationHtml(safeFirstName: string, consent: boolean) {
+  const textStep = consent
+    ? `<li style="margin-bottom: 6px;">You agreed we may text this number about your project, including estimate scheduling and updates. Reply STOP to opt out.</li>`
+    : `<li style="margin-bottom: 6px;">We won&#39;t text this number unless you checked the text-message box on the form.</li>`;
+  const nextSteps = `<li style="margin-bottom: 6px;">A project lead will review your request and reply by email.</li>
+          ${textStep}`;
   return `
     <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2744;">
       <div style="background-color: #1a2744; padding: 20px; text-align: center;">
@@ -71,8 +83,7 @@ function customerConfirmationHtml(safeFirstName: string) {
         <p style="margin: 0 0 14px;">Hi ${safeFirstName},</p>
         <p style="margin: 0 0 14px;">Thanks for reaching out — we&#39;ve got your request and it&#39;s with a project lead now. Here&#39;s what happens next:</p>
         <ul style="margin: 0 0 16px; padding-left: 20px;">
-          <li style="margin-bottom: 6px;">A real person from our team will call you after reviewing your request — no call center, no runaround.</li>
-          <li style="margin-bottom: 6px;">We&#39;ll talk through what you&#39;re planning and set up a free on-site estimate that fits your schedule.</li>
+          ${nextSteps}
         </ul>
         <p style="margin: 0 0 20px;">If you&#39;d rather not wait, you&#39;re always welcome to call or text us directly:</p>
         <div style="text-align: center; margin: 0 0 20px;">
@@ -94,6 +105,7 @@ const OPTIONAL: Field[] = [
   'budgetRange',
   'town',
   'referralSource',
+  'address',
   'utmSource',
   'utmMedium',
   'utmCampaign',
@@ -155,6 +167,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400 });
     }
 
+    const consent = readSmsConsent(body, {
+      ip,
+      userAgent: request.headers.get('user-agent') ?? '',
+    });
+
     if (!RESEND_API_KEY) {
       console.error(
         'RESEND_API_KEY is not set — add it in Vercel project settings ' +
@@ -182,8 +199,15 @@ export async function POST(request: Request) {
       { label: 'Name', html: safe.fullName ?? '' },
       { label: 'Email', html: `<a href="mailto:${safe.email}">${safe.email}</a>` },
       { label: 'Phone', html: `<a href="tel:${safe.phone}">${safe.phone}</a>` },
+      {
+        label: 'Text consent',
+        html: consent.consent
+          ? `Yes (${escapeHtml(consent.textVersion)})`
+          : 'No',
+      },
       { label: 'Service', html: safe.service ?? '' },
     ];
+    if (safe.address) rows.push({ label: 'Address', html: safe.address });
     if (safe.town) rows.push({ label: 'Town', html: safe.town });
     if (safe.zip) rows.push({ label: 'ZIP', html: safe.zip });
     if (safe.propertyType) rows.push({ label: 'Property', html: safe.propertyType });
@@ -280,9 +304,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Speed-to-lead SMS — env-gated; no-op (with a debug log) when keys
-    // aren't set. Fire-and-forget on a non-blocking promise so a Twilio
-    // outage never breaks the lead-capture happy path.
+    // Owner speed-to-lead SMS. This is not a customer text. It is not gated
+    // by SMS_CONSENT_CONFIRMATION_ENABLED. It goes only to TWILIO_TO_NUMBER
+    // when all four Twilio credential vars are set. Scope is documented in
+    // docs/SMS_ENROLLMENT_SETUP.md. Fire-and-forget so a Twilio outage never
+    // breaks lead capture.
     if (
       TWILIO_ACCOUNT_SID &&
       TWILIO_AUTH_TOKEN &&
@@ -336,10 +362,10 @@ export async function POST(request: Request) {
         });
     }
 
-    // Durable lead ledger — env-gated no-op until Supabase is configured.
-    // Awaited (with an internal timeout) only AFTER the owner email is sent
-    // and the SMS is dispatched, and it never throws, so a ledger outage can
-    // neither block nor delay lead delivery. See src/lib/leads.ts.
+    // Durable lead ledger. Awaited after the owner email. It never throws.
+    // Customer enrollment SMS below runs only when this insert echoes a
+    // consent id. A ledger miss still leaves the form and customer email
+    // successful. See src/lib/leads.ts.
     const isLuxuryLead = (values.service ?? '').startsWith('[Luxury Consultation]');
     // The ledger schema has no town / referral columns (docs/LEAD_LEDGER_SETUP.md),
     // so the two intake fields ride along in the message text rather than
@@ -352,7 +378,7 @@ export async function POST(request: Request) {
       intakeNotes.length > 0
         ? [values.message, intakeNotes.join(' · ')].filter(Boolean).join('\n\n')
         : values.message;
-    await recordLead({
+    const leadWrite = await recordLead({
       leadType: inferLeadType(values.service ?? ''),
       luxury: isLuxuryLead,
       fullName: values.fullName!,
@@ -372,7 +398,42 @@ export async function POST(request: Request) {
         referrer: values.referrer,
         landingPath: values.landingPath,
       },
+      consent,
     });
+
+    // Job Board ingest. Same JSON shape as elite-agent phone leads, plus
+    // the consent record. Unset LEAD_WEBHOOK_URL is a no-op and never fails
+    // the request. See src/lib/lead-webhook.ts.
+    await postLeadWebhook(
+      buildLeadWebhookPayload(
+        {
+          name: values.fullName!,
+          phone: values.phone!,
+          email: values.email!,
+          service: values.service!,
+          message: values.message,
+          zip: values.zip,
+          town: values.town,
+          address: values.address,
+          howHeard: values.utmSource || values.referralSource || values.referrer || 'website',
+          consent,
+        },
+        websiteLeadCallSid()
+      )
+    );
+
+    // Customer enrollment text. consentId is set only when Supabase echoed
+    // the lead row. A skipped or failed ledger write leaves it null, the
+    // text is not sent, and the form still succeeds.
+    try {
+      await sendSmsConsentConfirmation({
+        phone: values.phone!,
+        consent,
+        consentId: leadWrite.ok ? leadWrite.consentId : null,
+      });
+    } catch (err) {
+      console.error('SMS consent confirmation failed', err);
+    }
 
     // Customer confirmation — a warm receipt so they know it landed and what
     // happens next. Non-fatal: the owner email above already captured the
@@ -390,7 +451,7 @@ export async function POST(request: Request) {
           to: [values.email],
           reply_to: TO_EMAIL,
           subject: 'We got your request — here’s what happens next',
-          html: customerConfirmationHtml(escapeHtml(firstName)),
+          html: customerConfirmationHtml(escapeHtml(firstName), consent.consent),
         }),
       });
     } catch (err) {

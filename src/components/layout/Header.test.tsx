@@ -113,6 +113,15 @@ describe('Header', () => {
     expect(text.getAttribute('href')).toContain('free%20estimate');
   });
 
+  it('links Estimate in the header in one click', () => {
+    render(<Header />);
+    const links = screen.getAllByRole('link', { name: /^estimate$/i });
+    expect(links.length).toBeGreaterThan(0);
+    for (const link of links) {
+      expect(link).toHaveAttribute('href', '/estimate');
+    }
+  });
+
   it('renders the Consultation CTA, not a free-estimate button', () => {
     render(<Header />);
     const cta = screen.getAllByRole('link', { name: /consultation/i });

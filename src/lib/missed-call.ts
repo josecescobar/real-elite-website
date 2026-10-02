@@ -16,13 +16,16 @@ export function callerTextBack(): string {
   );
 }
 
-/** Alert sent to the owner so they know to call the missed caller back. */
-export function ownerMissedAlert(callerNumber: string): string {
-  return (
-    `📞 Missed call — ${BUSINESS.name}\n` +
-    `From: ${callerNumber}\n` +
-    `They got an auto-text back. Call them when you're free.`
-  );
+/**
+ * Alert sent to the owner so they know to call the missed caller back.
+ * This is an owner alert, not a customer text. `customerTexted` must be
+ * true only when the caller text-back was actually accepted.
+ */
+export function ownerMissedAlert(callerNumber: string, customerTexted = false): string {
+  const followUp = customerTexted
+    ? "They got an auto-text back. Call them when you're free."
+    : 'No auto-text was sent. Call them when you are free.';
+  return `📞 Missed call — ${BUSINESS.name}\nFrom: ${callerNumber}\n${followUp}`;
 }
 
 /**
