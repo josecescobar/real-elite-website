@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     path: '/storm-damage',
     title: `Storm Damage Roof Inspection — Free | ${BUSINESS.name}`,
     description:
-      'Hail and wind damage documented for your insurance carrier. Family-run, licensed in WV and VA.',
+      'Hail and wind damage documented for your insurance carrier. Family-run. Licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
     keywords: [
       'storm damage roof inspection',
       'hail damage roofer WV',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       'free storm roof inspection Martinsburg',
       'roof repair after storm Eastern Panhandle',
       'family-run storm roofer',
-      'emergency tarping WV MD VA',
+      'storm roof inspection Martinsburg',
     ],
   }),
   title: fitTitle(`Storm Damage Roof Inspection (Free) — WV / MD / VA | ${BUSINESS.name}`),
@@ -115,7 +115,7 @@ const FAQ_ITEMS = [
   {
     question: 'How fast can you inspect my roof after a storm?',
     answer:
-      `For confirmed storms in the Eastern Panhandle WV, Frederick County MD, or Loudoun County VA service area, we typically schedule a free inspection within the same week — often within 48 business hours. For active leaks or emergency tarping needs, call ${BUSINESS.phone} immediately and we will prioritize.`,
+      `Call to ask about a storm inspection in the Eastern Panhandle WV, Frederick County MD, or Loudoun County VA service area. Timing depends on the storm and the current schedule. We do not publish an emergency or after-hours response promise.`,
   },
   {
     question: 'Do you work directly with my insurance carrier?',
@@ -140,12 +140,12 @@ const FAQ_ITEMS = [
   {
     question: 'Are you licensed and insured in WV and VA?',
     answer:
-      "Yes. Real Elite Contracting is licensed and insured in West Virginia and Virginia. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Review the proposed scope and warranty terms before signing.",
+      "Yes. Real Elite Contracting is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Review the proposed scope and warranty terms before signing.",
   },
   {
-    question: 'What about emergency tarping or temporary repairs?',
+    question: 'What about an active leak?',
     answer:
-      `For active leaks, partially missing roofs, or anything that exposes the interior to weather, call ${BUSINESS.phone} immediately. We coordinate emergency tarping and temporary repairs to prevent further damage while the claim process moves forward.`,
+      `Call ${BUSINESS.phone} and describe what is getting in. Temporary protection is scoped in the written estimate.`,
   },
 ];
 
@@ -209,7 +209,7 @@ export default function StormDamagePage() {
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
               <li>Family-Run</li>
               <li aria-hidden="true" className="text-white/30">·</li>
-              <li>Licensed WV · VA</li>
+              <li>VA Class A HIC · WV062432</li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li>Insurance-Friendly</li>
               <li aria-hidden="true" className="text-white/30">·</li>

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Reviews from homeowners across the WV–MD–VA region — many linked to the actual project behind them. Family-run, licensed, and insured.',
+    'Reviews from homeowners across the WV–MD–VA region — many linked to the actual project behind them. Family-run, insured, and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
 };
 
 const SERVICE_LABEL = new Map<string, string>(SERVICES.map((s) => [s.slug, s.title]));

@@ -3,7 +3,7 @@ import { ShieldCheck } from 'lucide-react';
 import { OWNER } from '@/lib/constants';
 
 /**
- * Author box. Family-run by brothers Jose and Miguel; Miguel is a Purple Heart veteran.
+ * Author box. Family-run by brothers Jose and Miguel; Miguel is a U.S. military veteran.
  * Reads OWNER.portrait from constants — drop a real portrait at
  * /public/images/team/owner.jpg and update OWNER.portrait to that path
  * to swap in the real photo across every guide article.
@@ -39,12 +39,12 @@ export default function AuthorBox({ authorName }: Props) {
         </h3>
         <p className="text-charcoal-600 text-sm leading-relaxed">
 
-                Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting builds premium remodels and high-end exteriors across the Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County markets. These guides introduce planning topics to discuss for your own project.
+                Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Real Elite Contracting builds premium remodels and high-end exteriors across the Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County markets. These guides introduce planning topics to discuss for your own project.
               </p>
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-charcoal-500">
           <span className="inline-flex items-center gap-1">
             <ShieldCheck className="w-3.5 h-3.5 text-brand-red" />
-            Licensed WV &amp; VA
+            VA Class A HIC · WV062432
           </span>
           <span>Family-Run</span>
           <span>WV · MD · VA</span>

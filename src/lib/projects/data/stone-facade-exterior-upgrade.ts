@@ -65,7 +65,7 @@ const project: Project = {
     'The visible craft is in the joints — consistent coursing, tight cuts around openings, and corners that wrap convincingly.',
   ],
   solution: [
-    'We build the assembly the manufacturer warranties: weather-resistive barrier, metal lath, scratch coat, then stone hand-set piece by piece with an eye on coursing and joint rhythm.',
+    'We build the wall in layers: weather-resistive barrier, metal lath, scratch coat, then stone hand-set piece by piece with an eye on coursing and joint rhythm.',
     'Corners and terminations get full wrap details, and the porch package — railings and trim — is rebuilt to match the new weight of the facade.',
     'The result is an elevation that reads as masonry, backed by an assembly that manages water the way the wall behind it needs.',
   ],

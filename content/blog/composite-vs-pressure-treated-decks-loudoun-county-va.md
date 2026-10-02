@@ -120,6 +120,6 @@ The project schedule depends on scope, approvals, selections, and availability.
 
 ## How we work in Loudoun County
 
-Real Elite Contracting builds composite and outdoor-living decks across Loudoun County — Ashburn, Leesburg, Brambleton, Lansdowne, One Loudoun, Cascades, Sterling, and beyond. Licensed and insured in Virginia, full HOA submission handling, and every estimate is line-itemed in writing.
+Real Elite Contracting builds composite and outdoor-living decks across Loudoun County — Ashburn, Leesburg, Brambleton, Lansdowne, One Loudoun, Cascades, Sterling, and beyond. Insured, and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). Full HOA submission handling, and every estimate is line-itemed in writing.
 
 We work with all three major composite manufacturers (Trex, TimberTech, AZEK) and bring real samples to your estimate, because picking a deck color from a tiny photo on a website is a great way to spend $30,000 on regret. We'll also tell you upfront if pressure-treated is the right call for your situation — we don't sell upgrades that don't actually pay you back.

@@ -29,7 +29,7 @@ West Virginia requires contractors to be licensed through the **WV Division of L
 
 Requirements vary by trade — roofing, general contracting, electrical, and plumbing each have their own rules. Before you hire anyone, you can verify their license at the **WV Division of Labor's online portal**. It's free, it's fast, and it's a lot cheaper than the alternative.
 
-When you hire Real Elite Contracting, you're hiring a licensed, insured general contractor operating in full compliance with WV law. Boring on paper. Wonderful at 2 a.m. during a storm.
+When you hire Real Elite Contracting, you are hiring a contractor who is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).
 
 ## Reason 1: Unlicensed Work Can Void Your Homeowner's Insurance
 
@@ -82,7 +82,7 @@ An unlicensed contractor may swing a hammer beautifully and still have no formal
 
 Manufacturers like GAF, Owens Corning, and CertainTeed offer **extended material warranties** — but typically only when their products are installed by certified contractor networks. If an unlicensed installer puts on your shingles and they fail in year 8, the manufacturer points at the install and the warranty turns into a very nice-looking PDF.
 
-Licensed, certified contractors give you warranties with teeth — from both the manufacturer and the contractor.
+Ask what the written agreement covers, and ask the manufacturer what its warranty requires of the installer.
 
 ---
 
@@ -109,10 +109,10 @@ If a contractor treats "what's your license number?" like a personal insult, tha
 
 ## Real Elite Contracting: Licensed, Insured, and Local
 
-Real Elite Contracting is a fully licensed and insured general contractor based in Martinsburg, WV, serving the Eastern Panhandle and surrounding communities. We pull permits on every applicable job, build to WV code, and carry full general liability and workers' comp.
+Real Elite Contracting is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). We are based in Martinsburg, WV, and serve the Eastern Panhandle and surrounding communities.
 
-We're family-run by brothers Jose and Miguel — Miguel is a U.S. military veteran and Purple Heart recipient — and local, which means our reputation here isn't a marketing line — it's the people we run into at the grocery store. We're not about to torch it to win a bid.
+We're family-run by brothers Jose and Miguel — Miguel is a U.S. military veteran — and local, which means our reputation here isn't a marketing line — it's the people we run into at the grocery store. We're not about to torch it to win a bid.
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Let us show you what licensed, professional contracting actually feels like.
 
-*Real Elite Contracting — family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*
+*Real Elite Contracting — family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.*

@@ -408,7 +408,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Winchester VA roofing',
     ],
     answer:
-      'Real Elite Contracting is a family-run roofing contractor serving WV, MD, and VA — full tear-off replacement, storm-damage repair, and premium architectural shingle installs (GAF, Owens Corning), most jobs completed in 1–3 days.',
+      'Real Elite Contracting is a family-run roofing contractor serving WV, MD, and VA — full tear-off replacement, storm-damage repair, and premium architectural shingle installs (GAF, Owens Corning).',
     hero: {
       eyebrow: 'Exterior',
       heading: 'Roofing Services',
@@ -460,7 +460,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'How long does a roof replacement take?',
         answer:
-          'Most residential roof replacements complete in 1–3 days. Larger or more complex roofs take longer; we give you the timeline before we tear off the first shingle.',
+          'The schedule depends on size, slope, weather, and what the tear-off finds. The timeline goes in the written estimate before work starts.',
       },
       {
         question: 'What roofing materials do you use?',
@@ -815,7 +815,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'How long does a remodel take?',
         answer:
-          'Bathroom remodels run 3–5 weeks, kitchens 6–10 weeks, full home renovations several months. We give you a written timeline before breaking ground.',
+          'Schedules depend on scope, approvals, materials, and weather. The timeline goes in the written estimate before work starts.',
       },
       {
         question: 'Do you handle permits?',
@@ -898,7 +898,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'How long does an addition take?',
         answer:
-          'Bump-outs: 6–10 weeks. Single-room additions: 3–5 months. Second-story additions: 4–8 months. Permitting and structural engineering add up-front time before the first nail.',
+          'Schedules depend on scope, permits, engineering, materials, and weather. The timeline goes in the written estimate before work starts.',
       },
       {
         question: 'Do you handle structural engineering?',
@@ -970,13 +970,13 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     whyChooseUs: [
       'Detail work done to a higher standard than typical handyman quality.',
       'Materials matched to your existing home as closely as available.',
-      'Same warranty and process discipline as our larger projects.',
+      'Same process discipline as our larger projects.',
     ],
     faqs: [
       {
         question: 'Do you take on smaller exterior repair jobs?',
         answer:
-          "Yes — we have a dedicated team for smaller exterior repairs. We don't treat them as filler work; the same project lead and warranty apply.",
+          "Yes — smaller exterior repairs are in scope. We don't treat them as filler work; we scope them the same way as larger jobs.",
       },
       {
         question: 'How quickly can you get to a foundation or water issue?',
@@ -1081,7 +1081,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     overview: {
       paragraphs: [
-        "Real Elite's handyman team handles the small-job catalog that homeowners across the WV–MD–VA region need on a regular basis. Same scheduling system, same discipline, same warranty — just shorter visits.",
+        "Real Elite's handyman team handles the small-job catalog that homeowners across the WV–MD–VA region need on a regular basis. Same scheduling system, same discipline, just shorter visits.",
         "If you've got a list, we'll knock it out in a single visit when possible.",
       ],
     },

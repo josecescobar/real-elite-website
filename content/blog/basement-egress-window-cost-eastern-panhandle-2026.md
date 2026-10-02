@@ -68,6 +68,6 @@ Yes. Cutting a structural opening in a foundation and adding a required exit is 
 
 ## Talk to us before you cut a foundation
 
-An egress window is one of those projects where doing it right the first time matters — you're cutting a load-bearing wall and adding the exit that a bedroom's safety depends on. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed in West Virginia and Virginia, and every estimate is line-itemed in writing so you can see exactly what the excavation, the foundation cut, the drainage, and the permit each cost.
+An egress window is one of those projects where doing it right the first time matters — you're cutting a load-bearing wall and adding the exit that a bedroom's safety depends on. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Real Elite Contracting is licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432), and every estimate is line-itemed in writing so you can see exactly what the excavation, the foundation cut, the drainage, and the permit each cost.
 
 If you're planning a basement bedroom, thinking about more light down there, or pricing a full finish, get a free estimate at [/contact#estimate](/contact#estimate). We'll tell you honestly what your foundation and grade require, and we pull and pass every permit the job needs.
