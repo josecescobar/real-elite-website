@@ -549,7 +549,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     metaTitle: 'Bathroom Remodel Ashburn VA | Real Elite Contracting',
     h1: 'Bathroom Remodel Ashburn VA',
     metaDescription:
-      'Bathroom remodel Ashburn VA in Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. Free written estimate for your home. Free written estimate.',
+      'Bathroom remodel Ashburn VA in Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. Free written estimate for your home.',
     includeLocalBusiness: true,
     faqs: [
       {
@@ -687,7 +687,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A kitchen remodel in Winchester, VA starts with which jurisdiction the house is actually in. Old Town along Loudoun Street and the Walking Mall is the City. A Winchester mailing address along Route 7, Senseny Road, or the Shawnee edge can sit in Frederick County, Virginia. We check the parcel before we file.",
       "Inside the City, building permits run through City of Winchester Zoning and Inspections on the City permit portal. The 2021 Virginia Uniform Statewide Building Code is what the City reviews against. Outside City limits, Frederick County, Virginia issues the building permit. Opening a load-bearing wall needs stamped structural drawings on whichever set applies. Plumbing relocation needs the matching trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work, and that scope stays on the estimate as its own line.",
-      "Historic-district review can apply in Old Town before materials are locked. An association review, when the lot has one, is a separate track from the City or county building permit. We price each Winchester kitchen on a free written estimate for your home. The ranges below are our regional kitchen tiers, a planning guide rather than a Winchester-specific survey. The regional cost guide covers the Eastern Panhandle, Frederick, Maryland, and Loudoun County; it is linked here as that published tier source, not as a Winchester study.",
+      "Historic-district review can apply in Old Town before materials are locked. An association review, when the lot has one, is a separate track from the City or county building permit. We price each Winchester kitchen on a free written estimate for your home. For planning, the kitchen service lists regional tiers, and the regional cost guide covers the Eastern Panhandle, Frederick, Maryland, and Loudoun County. Those ranges are not a Winchester survey and not a quote for this house.",
       "The written estimate itemizes cabinets, counters, and any wall or plumbing move the permit has to cover. Cabinet lead time goes in the written timeline before demo. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
     ],
   },
@@ -705,7 +705,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting finishes Leesburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
       "What you get is the paperwork product: Town or unincorporated county, Typical versus full plans, and whether a Certificate of Appropriateness is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC building set. County inspections run in published order — trade rough-ins before building framing, insulation before cover, then finals.",
-      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. Every Leesburg basement is priced on a free written estimate for your home. For planning, the cost section shows the ranges from our Ashburn and Leesburg basement cost guide.",
+      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. Every Leesburg basement is priced on a free written estimate for your home. For planning, the Ashburn and Leesburg basement cost guide shows Mayflower Virginia ranges. Those ranges are one contractor's planning figures, not a Real Elite price.",
     ],
     sections: [
       {

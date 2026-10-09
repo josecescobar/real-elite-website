@@ -1110,11 +1110,31 @@ describe('REA-2342 Purcellville and Lansdowne pages', () => {
 });
 
 describe('customer copy never reads like an editor note', () => {
-  it('has no "this page" publishing/quoting phrasing in rendered content', () => {
-    const rendered = JSON.stringify(CONTENT);
-    const bad = rendered.match(
-      /[^"]*(this page (does not|doesn't|uses|is the)|already published on|written for this page|hiring page|Published planning ranges)[^"]*/gi,
-    ) ?? [];
-    expect(bad).toEqual([]);
+  function renderedCopy(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
+    if (!entry) return [];
+    return [
+      entry.h1,
+      entry.metaTitle,
+      entry.metaDescription,
+      ...entry.paragraphs,
+      ...(entry.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ...(entry.notes ?? []).flatMap((note) => [note.heading, note.body, note.linkLabel]),
+      ...(entry.sections ?? []).flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.links ?? []).map((link) => link.label),
+      ]),
+    ].filter((text): text is string => typeof text === 'string');
+  }
+
+  it('fails when rendered copy pairs "this page" with publish, quote, uses, or does not', () => {
+    const verb = /publish|quote|uses|does not/i;
+    const hits: string[] = [];
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      for (const text of renderedCopy(entry)) {
+        if (/this page/i.test(text) && verb.test(text)) hits.push(`${key}: ${text}`);
+      }
+    }
+    expect(hits).toEqual([]);
   });
 });
