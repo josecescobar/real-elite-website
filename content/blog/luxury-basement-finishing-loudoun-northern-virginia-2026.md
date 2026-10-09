@@ -73,7 +73,7 @@ Review the proposed scope and warranty terms before signing. Military precision,
 
 If you're planning a high-end basement in **Loudoun County, Ashburn, Leesburg, Frederick, the Eastern Panhandle, or anywhere across the WV–MD–VA region**, let's walk the space and talk through what it could become.
 
-**Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [basement finishing services](/services/basements) or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va).
+**Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Explore our [basement finishing services](/services/basements) or see the premium work we do across [Loudoun County](/service-areas/loudoun-county-va). Hiring pages for the two queries this guide supports: [basement finishing Leesburg VA](/services/basements/leesburg-va) and [basement finishing Loudoun County](/services/basements/loudoun-county-va).
 
 ## Also serving the wider Northern Virginia luxury market
 

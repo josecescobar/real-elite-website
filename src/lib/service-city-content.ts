@@ -147,6 +147,17 @@ type ComboContent = {
     href: string;
     linkLabel: string;
   }[];
+  /**
+   * Optional H2 blocks under the intro. Plain paragraphs stay the intro;
+   * these are the named sections a query asks for (cost, timeline, egress,
+   * permits). Links are real hrefs — combo paragraphs are not markdown.
+   */
+  sections?: readonly {
+    id: string;
+    title: string;
+    paragraphs: readonly string[];
+    links?: readonly { href: string; label: string }[];
+  }[];
 };
 
 /**
@@ -661,14 +672,102 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
-  'basements-leesburg-va': {
+  'kitchens-winchester-va': {
+    h1: 'Kitchen Remodel Winchester VA',
+    metaTitle: 'Kitchen Remodel Winchester VA | Real Elite',
     metaDescription:
-      'Finished basements in Leesburg. Typical county path is 1% plus $65 minimum; a kitchen adds $165. Town zoning first inside Town limits.',
+      'Kitchen remodel Winchester VA for Old Town and the Route 7 corridor. City permits inside limits; Frederick County, Virginia permits outside.',
+    relatedGuideSlugs: ['kitchen-remodel-cost-wv-md-va-2026'],
+    paragraphs: [
+      "A kitchen remodel in Winchester, VA starts with which jurisdiction the house is actually in. Old Town along Loudoun Street and the Walking Mall is the City. A Winchester mailing address along Route 7, Senseny Road, or the Shawnee edge can sit in Frederick County, Virginia. We check the parcel before we file.",
+      "Inside the City, building permits run through City of Winchester Zoning and Inspections on the City permit portal. The 2021 Virginia Uniform Statewide Building Code is what the City reviews against. Outside City limits, Frederick County, Virginia issues the building permit. Opening a load-bearing wall needs stamped structural drawings on whichever set applies. Plumbing relocation needs the matching trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work, and that scope stays on the estimate as its own line.",
+      "Historic-district review can apply in Old Town before materials are locked. An association review, when the lot has one, is a separate track from the City or county building permit. This page does not publish a Winchester-only kitchen price. The ranges further down are the regional kitchen tiers already published on the kitchen service, not a Winchester survey. The regional cost guide covers the Eastern Panhandle, Frederick, Maryland, and Loudoun County; it is linked here as that published tier source, not as a Winchester study.",
+      "The written estimate itemizes cabinets, counters, and any wall or plumbing move the permit has to cover. Cabinet lead time goes in the written timeline before demo. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
+    ],
+  },
+
+  'basements-leesburg-va': {
+    h1: 'Basement Finishing Leesburg VA',
+    metaTitle: 'Basement Finishing Leesburg VA | Real Elite',
+    metaDescription:
+      'Basement finishing Leesburg VA. Typical county path is 1% plus a $65 minimum; a kitchen adds $165. Town zoning first inside Town limits.',
+    relatedGuideSlugs: [
+      'basement-remodeling-cost-ashburn-leesburg-2026',
+      'luxury-basement-finishing-loudoun-northern-virginia-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
     paragraphs: [
       "Real Elite Contracting finishes Leesburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
-      "Inside Town limits the order is fixed. The Town's published home-improvement table treats interior or basement finish-out as Town zoning (typically without engineering review) plus a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. A bedroom needs an emergency egress window — sill height, opening size, and window-well dimensions go on the plans — and that opening is exterior work. In the H-1 Old and Historic District it also needs a Certificate of Appropriateness.",
-      "Outside Town limits, county building and zoning run through LandMARC. HOA review usually applies only if we cut a new window or door. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum; full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. Trade permits are separate. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor. We do not publish invented basement price bands.",
-      "What you get is the paperwork product: Town or unincorporated county, Typical vs full plans, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC building set. County inspections run in published order — trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
+      "What you get is the paperwork product: Town or unincorporated county, Typical versus full plans, and whether a Certificate of Appropriateness is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC building set. County inspections run in published order — trade rough-ins before building framing, insulation before cover, then finals.",
+      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. This page does not publish a Real Elite price band for basement finishing Leesburg VA. The cost section uses the ranges the Ashburn and Leesburg cost guide already publishes, with that guide's caveat.",
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          "The price source for basement finishing Leesburg VA is the Ashburn and Leesburg basement cost guide, not a new estimate written for this page. Mayflower Virginia publishes Northern Virginia basement tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
+          "The same guide gives a separate example of a 1,000-square-foot basement with one bathroom starting around $115,000–$165,000. That example does not describe every project in the tier table. Do not multiply a generic starting rate by floor area and assume the result includes a bathroom.",
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Ashburn and Leesburg basement cost guide',
+          },
+          {
+            href: '/services/basements/loudoun-county-va',
+            label: 'Basement finishing Loudoun County',
+          },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          "The luxury basement guide is the schedule source for Leesburg. The project schedule depends on scope, approvals, selections, and availability. In Town, that sequence starts with the parcel check: Town limits versus a Leesburg mailing address in Lansdowne or River Creek. Town zoning, when the house is inside Town, has to be approved before Loudoun County releases the building permit. Finish selections do not go on the written timeline until that order is clear.",
+        ],
+        links: [
+          {
+            href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+            label: 'Luxury basement finishing guide',
+          },
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          "A bedroom in a Leesburg lower level needs an emergency egress window. Sill height, opening size, and window-well dimensions go on the plans, and that opening is exterior work. In the H-1 Old and Historic District it also needs a Certificate of Appropriateness. The cost guide says to check the escape arrangement before calling the room a bedroom. An existing window's presence alone does not establish compliance. HOA review usually applies only when that new window or door is cut.",
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Cost guide: bedroom escape',
+          },
+          {
+            href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+            label: 'Luxury guide: egress behind the walls',
+          },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          "Inside Town limits the order is fixed. The Town's published home-improvement table treats interior or basement finish-out as Town zoning, typically without engineering review, plus a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. Outside Town limits, county building and zoning run through LandMARC.",
+          "County work has two paths: Typical Finished Basement Details in lieu of custom drawings, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. Trade permits are separate. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor.",
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Published Loudoun basement fees',
+          },
+          {
+            href: '/blog/loudoun-county-permits-hoa-guide-2026',
+            label: 'Loudoun County permits and HOA guide',
+          },
+        ],
+      },
     ],
   },
 
@@ -684,13 +783,91 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'basements-loudoun-county-va': {
+    h1: 'Basement Finishing Loudoun County',
+    metaTitle: 'Basement Finishing Loudoun County | Real Elite',
     metaDescription:
-      'Finished basements in Loudoun County. Typical path is 1% plus $65 minimum; full plans add $130; a kitchen adds $165.',
+      'Basement finishing Loudoun County. Typical path is 1% plus a $65 minimum; full plans add $130. Western corridor first.',
+    relatedGuideSlugs: [
+      'basement-remodeling-cost-ashburn-leesburg-2026',
+      'luxury-basement-finishing-loudoun-northern-virginia-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
     paragraphs: [
-      "Real Elite Contracting finishes Loudoun County lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg.",
-      "Every finished basement needs a Loudoun County building and zoning application, plus trade permits when electrical, plumbing, mechanical, or gas is in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. Leesburg, Purcellville, and Middleburg issue town zoning first — the county will not release the building permit without it. A bedroom needs an emergency egress window.",
-      "A county permit is not HOA approval. An egress cut is exterior work: HOA review in master-planned communities, and a Certificate of Appropriateness in Old Town Leesburg or the Middleburg Historic District. Moisture comes first. We do not publish invented basement price bands or treat wine cellars and media rooms as the typical Loudoun brief.",
-      "What you get is the paperwork product: Typical vs full plans, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
+      "Real Elite Contracting finishes Loudoun County lower levels and leads with the western corridor — Purcellville, Round Hill, Lovettsville, western Leesburg, and selected Middleburg — because that is the practical truck path from Martinsburg.",
+      "Town and county are different filings. Leesburg, Purcellville, and Middleburg issue town zoning before the county will release a building permit. Unincorporated parcels use LandMARC for building and zoning. We name which one the parcel is before the estimate is a commitment.",
+      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. Wine cellars and media rooms are not the typical brief on this page. The luxury basement guide covers that room program. This page is the hiring page for basement finishing Loudoun County.",
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          "Published planning ranges for basement finishing Loudoun County live in the Ashburn and Leesburg cost guide. Mayflower Virginia's Northern Virginia tiers are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
+          "Denny + Gardner describes an overall labor-and-materials range of about $50,000 to upward of $100,000 for an upscale renovation, with waste disposal, equipment, design, and permits as other budget considerations. The two sources use different scopes. Do not average them into a county number. A house in Purcellville or Round Hill is quoted from that house, not from the Ashburn tier table.",
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Ashburn and Leesburg basement cost guide',
+          },
+          {
+            href: '/services/basements/leesburg-va',
+            label: 'Basement finishing Leesburg VA',
+          },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          "How long basement finishing takes in Loudoun County is the sentence in the luxury basement guide: the project schedule depends on scope, approvals, selections, and availability. Incorporated towns add a step the unincorporated county does not. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Unincorporated parcels go through LandMARC only. That path goes in the written timeline before demo.",
+        ],
+        links: [
+          {
+            href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+            label: 'Luxury basement finishing guide',
+          },
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          "A bedroom needs an emergency egress window anywhere in the county. On a western-corridor lot the cut is often the first exterior change an association or a historic district sees. The luxury guide treats code-compliant egress as work behind the walls, not a finish upgrade. The cost guide asks for the escape arrangement to be documented before finishes are priced. A county permit is not HOA approval, and an egress cut in Old Town Leesburg or the Middleburg Historic District also needs a Certificate of Appropriateness. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor.",
+        ],
+        links: [
+          {
+            href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+            label: 'Luxury guide: code-compliant egress',
+          },
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Cost guide: document the escape first',
+          },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          "Every finished basement needs a Loudoun County building and zoning application, plus trade permits when electrical, plumbing, mechanical, or gas is in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee.",
+          "Leesburg, Purcellville, and Middleburg issue town zoning first. The county will not release the building permit without it. County inspections run in published order: trade rough-ins before building framing, insulation before cover, then finals.",
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Published Loudoun basement fees',
+          },
+          {
+            href: '/blog/loudoun-county-permits-hoa-guide-2026',
+            label: 'Loudoun County permits and HOA guide',
+          },
+          {
+            href: '/services/basements/leesburg-va',
+            label: 'Leesburg town-zoning path',
+          },
+        ],
+      },
     ],
   },
 
