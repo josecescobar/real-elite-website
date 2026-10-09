@@ -42,13 +42,43 @@ export default function LoudounAreas() {
               Route 15. Also{' '}
               <Link href="/service-areas/fairfax-county-va" className="link-editorial font-medium text-navy-900">
                 Fairfax County
-              </Link>{' '}
-              and{' '}
+              </Link>
+              ,{' '}
               <Link href="/service-areas/prince-william-county-va" className="link-editorial font-medium text-navy-900">
                 Prince William County
               </Link>
-              , and the Eastern Panhandle of West Virginia, where the company is based.
+              ,{' '}
+              <Link href="/service-areas/frederick-md" className="link-editorial font-medium text-navy-900">
+                Frederick
+              </Link>
+              {' '}and{' '}
+              <Link href="/service-areas/hagerstown-md" className="link-editorial font-medium text-navy-900">
+                Hagerstown
+              </Link>
+              {' '}in Maryland, and the Eastern Panhandle of West Virginia, where the company is based.
             </p>
+            <ul className="mt-5 space-y-2 text-sm font-semibold">
+              <li>
+                <Link href="/services/kitchens/ashburn-va" className="text-navy-900 underline hover:text-brand-red">
+                  Kitchen remodel Ashburn VA
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/bathrooms/ashburn-va" className="text-navy-900 underline hover:text-brand-red">
+                  Bathroom remodel Ashburn VA
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/decks/martinsburg-wv" className="text-navy-900 underline hover:text-brand-red">
+                  Deck builders Martinsburg WV
+                </Link>
+              </li>
+              <li>
+                <Link href="/service-areas/martinsburg-wv" className="text-navy-900 underline hover:text-brand-red">
+                  General contractor Martinsburg WV
+                </Link>
+              </li>
+            </ul>
             <Link
               href="/service-areas"
               className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-navy-900 link-editorial"

@@ -17,7 +17,6 @@ import {
   SERVICES,
   BUSINESS,
   LUXURY_CITY_SLUGS,
-  selectGalleryFor,
   areaRegionLabel,
   areaHeroLane,
   areaQuotesSameWeek,
@@ -36,13 +35,14 @@ import { buildBreadcrumbSchema } from '@/lib/seo';
 import { getProjectsByCity } from '@/lib/projects';
 import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
-import { getReviewsByCity } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import TrackedLink from '@/components/analytics/TrackedLink';
 import { serviceHrefForArea } from '@/lib/service-city-content';
 import { TownServiceLinksForTown } from '@/components/services/TownServiceCrossLinks';
 import { LOUDOUN_PERMIT_GUIDE, isLoudounArea, loudounTownGuides } from '@/lib/loudoun-guides';
 import { isVerifiedWorkImage } from '@/lib/stock-images';
+import ProofGallery from '@/components/services/ProofGallery';
+import { proofPhotosForArea, proofReviewsFor, reviewsMatchCity } from '@/lib/proof-package';
 import { paHicRegistrationLine } from '@/lib/claims';
 import { mdServingLine } from '@/lib/trust-bullets';
 
@@ -148,12 +148,8 @@ export default function CityPageTemplate({ city, data }: Props) {
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
     .slice(0, 3);
 
-  // Localized projects: prefer city-tagged photos, fall back to
-  // state-tagged, then the full gallery. selectGalleryFor handles
-  // the cascade.
-  const projectShots = selectGalleryFor(city.slug, city.state, 6).filter((img) =>
-    isVerifiedWorkImage(img.src),
-  );
+  const areaPhotos = proofPhotosForArea(city.slug, city.state, 6);
+  const areaReviews = proofReviewsFor({ citySlug: city.slug });
 
   // Localized FAQ — answers the common pre-quote questions in a way
   // that AI Overviews / SGE can quote directly. Adds FAQPage structured
@@ -499,34 +495,7 @@ export default function CityPageTemplate({ city, data }: Props) {
                 heading={`Recent projects in ${city.city}`}
               />
 
-              {/* Recent projects — stock and unverified photos never count as work. */}
-              {projectShots.length > 0 && (
-              <div>
-                <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-3">
-                  Recent project work
-                </h2>
-                <p className="text-charcoal-500 text-sm mb-6">
-                  Real Real Elite jobs from across the WV–MD–VA region. {city.city}-specific
-                  projects featured on our <Link href="/gallery" className="text-navy-800 underline hover:text-brand-red">gallery page</Link>.
-                </p>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                  {projectShots.map((img) => (
-                    <div
-                      key={img.src}
-                      className="relative aspect-[4/3] overflow-hidden rounded-md shadow-sm"
-                    >
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        sizes="(max-width: 768px) 50vw, 240px"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              )}
+              <ProofGallery photos={areaPhotos} heading="Project photos" />
 
               {/* Why this market trusts us */}
               <div className="bg-steel-50 rounded-lg border-t-4 border-brand-red p-7 md:p-9">
@@ -562,9 +531,13 @@ export default function CityPageTemplate({ city, data }: Props) {
 
       {/* Reviews in this city — renders only when a matching review exists */}
       <ReviewsSection
-        reviews={getReviewsByCity(city.slug)}
+        reviews={areaReviews}
         eyebrow="Reviews"
-        title={`What ${city.city} homeowners say.`}
+        title={
+          reviewsMatchCity(areaReviews, city.slug)
+            ? `What ${city.city} homeowners say.`
+            : 'Published reviews.'
+        }
       />
 
       {/* Localized guides */}

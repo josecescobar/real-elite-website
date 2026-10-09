@@ -35,6 +35,9 @@ import {
 import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-intent';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import { selectTrustBullets } from '@/lib/trust-bullets';
+import ProofGallery from '@/components/services/ProofGallery';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
+import { proofPhotosForService, proofReviewsFor, reviewsMatchCity } from '@/lib/proof-package';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -197,6 +200,8 @@ export default async function ServiceCityPage({
   // it was vacuous AND blind to the route's filter being weakened from `every`
   // to `some`. Same mistake serviceHrefForArea was extracted to fix.
   const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
+  const proofPhotos = proofPhotosForService(service, service === 'decks' ? 8 : 6);
+  const proofReviews = proofReviewsFor({ serviceSlug: service, citySlug: city });
 
   // AssurancesBand and PrecisionProcess publish four unconfirmed claims
   // sitewide. Trust bullets are already gated per page; these two bands were
@@ -394,6 +399,8 @@ export default async function ServiceCityPage({
                 )}
               </div>
 
+              <ProofGallery photos={proofPhotos} heading={`${serviceData.title} photos`} />
+
               {/* Investment ranges (when SERVICE_DATA has them) */}
               {richServiceData?.investment && showGenericInvestment && (
                 <InvestmentRanges
@@ -540,6 +547,16 @@ export default async function ServiceCityPage({
 
       {showSitewideClaimBands && <PrecisionProcess />}
       {showSitewideClaimBands && <AssurancesBand />}
+
+      <ReviewsSection
+        reviews={proofReviews}
+        eyebrow="Reviews"
+        title={
+          reviewsMatchCity(proofReviews, city)
+            ? `What ${cityData.city} homeowners say.`
+            : 'Published reviews.'
+        }
+      />
 
       {/* Related guides — authored per combo, and rendered ONLY when authored.
           RelatedGuides falls back to the three most recent posts when it is
