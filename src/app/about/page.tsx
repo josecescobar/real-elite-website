@@ -145,7 +145,7 @@ export default function AboutPage() {
                 title="Service first. Standards always."
               />
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">
-                Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.
+                Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.
                 The work is kitchens, bathrooms, lower levels, and outdoor living.
               </p>
               <p className="text-charcoal-700 text-base md:text-lg leading-relaxed">

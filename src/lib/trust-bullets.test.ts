@@ -13,7 +13,7 @@ describe('shared trust bullets', () => {
   });
 
   it('uses the specific residential VA license and WV license', () => {
-    expect(trustBullets('Leesburg', 'Kitchens', 'VA').map(b => b.text).join(' ')).toContain('2705198604 (HIC)');
+    expect(trustBullets('Leesburg', 'Kitchens', 'VA').map(b => b.text).join(' ')).toContain('Class A Home Improvement Contractor');
     expect(trustBullets('Martinsburg', 'Kitchens', 'WV').map(b => b.text).join(' ')).toContain('WV062432');
   });
 

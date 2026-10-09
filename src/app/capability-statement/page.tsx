@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     path: '/capability-statement',
     title: `Capability Statement | ${BUSINESS.name}`,
     description:
-      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.',
     keywords: [
       'capability statement',
       'Real Elite Contracting capability statement',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.',
 };
 
 const SNAPSHOT = [
@@ -51,7 +51,6 @@ const SNAPSHOT = [
   { label: 'Business Type', value: 'Family-run LLC' },
   { label: 'Who runs it', value: 'Brothers Jose and Miguel' },
   { label: 'SAM.gov Registration', value: FEDERAL_REGISTRATION.summary },
-  { label: 'VA HIC Bond', value: '$50,000 · Residential HIC' },
 ];
 
 const NAICS_CODES = FEDERAL_REGISTRATION.naics;
@@ -93,7 +92,7 @@ const DIFFERENTIATORS = [
   {
     title: 'Family-Run · Military Precision Process',
     body:
-      "Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Review the proposed scope and warranty terms before signing.",
+      "Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Review the proposed scope and warranty terms before signing.",
   },
   {
     title: 'Geographic Advantage — 8 Miles From Martinsburg VAMC',
@@ -103,12 +102,12 @@ const DIFFERENTIATORS = [
   {
     title: 'AI-Native Estimating',
     body:
-      'First contractor in the tri-state region to deploy AI-powered address-based roof quoting (sub-60-second ballpark estimates via Google Solar API). Internal multi-AI estimating pipeline produces line-item written estimates with documented labor and material breakdowns.',
+      'Address-based roof quoting is available on the site. The written estimate is the number to plan from.',
   },
   {
-    title: 'Licensed Tri-State Coverage',
+    title: 'Virginia and West Virginia licenses',
     body:
-      "Licensed and insured in West Virginia and Virginia. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
+      "Insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). No Maryland contractor license is claimed. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
 ];
 
@@ -147,7 +146,7 @@ export default function CapabilityStatementPage() {
           name: BUSINESS.name,
           url: `${BUSINESS.url}/capability-statement`,
           description:
-            'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Capability statement for Real Elite Contracting in Martinsburg, WV.',
+            'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Capability statement for Real Elite Contracting in Martinsburg, WV.',
           areaServed: ['West Virginia', 'Maryland', 'Virginia'],
           telephone: BUSINESS.phone,
           email: BUSINESS.email,
@@ -178,8 +177,8 @@ export default function CapabilityStatementPage() {
               <span className="text-brand-red-light">Capability Statement.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and
-              Purple Heart recipient. Based in Martinsburg, WV. No federal veteran certification
+              Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.
+              Based in Martinsburg, WV. No federal veteran certification
               is held. Available for teaming conversations across WV, MD, and VA.
             </p>
 
@@ -428,7 +427,7 @@ export default function CapabilityStatementPage() {
                 <Shield className="w-3 h-3 text-brand-red-light" /> Family-Run
               </span>
               <span>·</span>
-              <span>Licensed WV · VA</span>
+              <span>VA Class A HIC · WV062432</span>
               <span>·</span>
               <span>Registered in SAM.gov</span>
             </div>

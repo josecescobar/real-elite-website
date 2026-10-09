@@ -36,12 +36,12 @@ const FAQ_SECTIONS = [
       {
         question: 'Are you licensed and insured?',
         answer:
-          "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
+          "Yes — Real Elite Contracting is insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). Request current insurance documentation for your project.",
       },
       {
         question: 'Who runs Real Elite Contracting?',
         answer:
-          'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The discipline, communication, and accountability that shape how we run projects come from that.',
+          'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. The discipline, communication, and accountability that shape how we run projects come from that.',
       },
       {
         question: 'What areas do you serve?',
@@ -81,12 +81,12 @@ const FAQ_SECTIONS = [
       {
         question: 'How long do projects take?',
         answer:
-          'Roof replacements: 1–3 days. Decks: 1–3 weeks. Bathroom remodels: 3–5 weeks. Kitchens: 6–10 weeks. Basements: 6–12 weeks. Additions: 3 to 8 months depending on scope. We give you a written timeline before we break ground.',
+          'Schedules depend on scope, approvals, materials, and weather. The timeline goes in the written estimate before work starts.',
       },
       {
         question: 'Do you offer financing?',
         answer:
-          "Yes. We work with several home-improvement financing partners that offer monthly payment plans on qualified projects. We'll walk you through the options on the free estimate before you commit.",
+          "We'll walk you through payment options on the free estimate before you commit. No lender is named here.",
       },
       {
         question: 'What payment methods do you accept?',
@@ -131,7 +131,7 @@ const FAQ_SECTIONS = [
       {
         question: 'What if there is a problem after the job is done?',
         answer:
-          "We stand behind our work. If you notice any workmanship issue, call us and we'll make it right. We also keep your manufacturer warranty info on file for the products we installed.",
+          "Call and describe the issue. Any coverage is whatever the signed agreement says.",
       },
       {
         question: 'Do you work with insurance companies?',

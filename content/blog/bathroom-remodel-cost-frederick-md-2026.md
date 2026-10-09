@@ -123,6 +123,6 @@ Everywhere else — tile, fixtures, vanity — you can scale up or down based on
 
 ## How we work in Frederick MD
 
-Real Elite Contracting handles full bathroom remodels across Frederick MD — from the historic downtown through Urbana, Ballenger Creek, Jefferson, and New Market. Family-run, licensed in West Virginia and Virginia, and every estimate is line-itemed in writing before you sign anything.
+Real Elite Contracting handles full bathroom remodels across Frederick MD — from the historic downtown through Urbana, Ballenger Creek, Jefferson, and New Market. Family-run, licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432), and every estimate is line-itemed in writing before you sign anything.
 
 Most importantly: we tell you upfront which tier your project belongs in, what each line item costs, and where adding budget actually buys you something durable. No upsells on things that don't matter.

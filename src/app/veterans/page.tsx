@@ -24,18 +24,17 @@ export const metadata: Metadata = {
     path: '/veterans',
     title: `Family-Run Contractor | ${BUSINESS.name}`,
     description:
-      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Remodeling across WV, MD, and VA.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Remodeling across WV, MD, and VA.',
     keywords: [
       'family-run contractor WV',
       'Martinsburg remodeling contractor',
-      'Purple Heart',
       'military precision contractor',
       'Loudoun design-build contractor',
     ],
   }),
   title: fitTitle(`Family-Run Contractor — WV · VA | ${BUSINESS.name}`),
   description:
-    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Serving WV, MD, and VA.',
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Serving WV, MD, and VA.',
 };
 
 const PILLARS = [
@@ -44,7 +43,7 @@ const PILLARS = [
     eyebrow: 'Who runs it',
     title: 'Two brothers',
     body:
-      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The ownership split is not published, and the company does not hold a federal veteran certification.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. The ownership split is not published, and the company does not hold a federal veteran certification.',
   },
   {
     icon: Award,
@@ -77,7 +76,7 @@ const CERT_TRACKS = [
   },
   {
     name: 'Virginia',
-    full: 'Class A Contractor 2705198604 (HIC)',
+    full: 'Class A Home Improvement Contractor',
     status: 'Active',
     body: 'Virginia Class A, specialty HIC, residential. No Virginia veteran-program designation is claimed.',
   },
@@ -118,7 +117,7 @@ const FAQ_ITEMS = [
   {
     question: 'Who runs Real Elite Contracting?',
     answer:
-      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The motto — "Military Precision. Civilian Excellence." — is how we talk about the standard of the work.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. The motto — "Military Precision. Civilian Excellence." — is how we talk about the standard of the work.',
   },
   {
     question: 'Does Real Elite hold a federal veteran certification?',
@@ -133,7 +132,7 @@ const FAQ_ITEMS = [
   {
     question: 'Which licenses does Real Elite hold?',
     answer:
-      `WV Contractor License WV062432 and Virginia Class A Contractor 2705198604 (HIC). ${FEDERAL_REGISTRATION.summary}. No Maryland contractor license is claimed.`,
+      `Licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). ${FEDERAL_REGISTRATION.summary}. No Maryland contractor license is claimed.`,
   },
   {
     question: 'How does "Military Precision" actually show up in our project?',
@@ -153,7 +152,7 @@ const govEntitySchema = {
   name: BUSINESS.name,
   url: `${BUSINESS.url}/veterans`,
   description:
-    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Based in Martinsburg, WV, serving WV, MD, and VA.',
+    'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Based in Martinsburg, WV, serving WV, MD, and VA.',
   areaServed: ['West Virginia', 'Maryland', 'Virginia'],
 };
 
@@ -180,8 +179,8 @@ export default function VeteransPage() {
               <span className="text-brand-red">The craftsmanship of a custom shop.</span>
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and
-              Purple Heart recipient. Real Elite Contracting is headquartered in Martinsburg, WV,
+              Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.
+              Real Elite Contracting is headquartered in Martinsburg, WV,
               and builds roofs, kitchens, decks, and additions across WV, MD, and VA.
             </p>
 
@@ -209,7 +208,7 @@ export default function VeteransPage() {
           <SectionHeader
             eyebrow="Who runs Real Elite"
             title="Two brothers. One standard of work."
-            subtitle="Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient."
+            subtitle="Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran."
             align="center"
             className="mx-auto"
           />
@@ -324,10 +323,10 @@ export default function VeteransPage() {
             <div className="lg:col-span-7">
               <ul className="space-y-4">
                 {[
-                  'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
+                  'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran.',
                   'Discuss the project scope, communication, and site arrangements before work begins.',
                   'Review license, insurance, and warranty documentation for the proposed work.',
-                  'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
+                  'Licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />

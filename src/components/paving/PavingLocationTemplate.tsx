@@ -187,7 +187,7 @@ export default function PavingLocationTemplate({ location }: Props) {
                   {[
                     'Local and accountable — a named point of contact from estimate to final walk-through',
                     'Proper base prep and drainage-first grading, not just a thin top coat',
-                    'Licensed and insured across West Virginia and Virginia',
+                    'Insured and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432)',
                     'Honest repair-vs-replace advice and a sensible sealcoating cycle',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">

@@ -65,7 +65,6 @@ const HANDOVER = [
   'Approved drawings and the as-built set',
   'Selections schedule with product names and finishes',
   'Closed permit and inspection record',
-  'Manufacturer warranties, registered where the manufacturer allows',
   'The warranty terms as written in your agreement',
   'Care instructions for stone, cabinetry and decking',
 ];

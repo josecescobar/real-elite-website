@@ -75,7 +75,7 @@ export const DESIGN_BUILD_PROCESS: readonly ProcessStep[] = [
       'A punch list you sign off on, the documentation handed over, and a follow-up once you have lived in the space.',
     detail: [
       'We walk the finished work together and write the punch list. Each item is cleared before sign-off.',
-      'Manufacturer warranties, permit close-outs, care instructions and the as-built drawings are handed over in one package.',
+      'Permit close-outs, care instructions and the as-built drawings are handed over in one package.',
       'A follow-up visit after you have lived in the space, because that is when you notice what a walkthrough cannot.',
     ],
     deliverable: 'A closed permit, a documented home and a contractor who still picks up.',

@@ -247,12 +247,13 @@ describe('unconfirmed claims in rendered pages', () => {
     }
   });
 
-  it('renders the license numbers in the footer and About content', () => {
+  it('renders the confirmed licenses in the footer and About content', () => {
     for (const route of ['/', '/about']) {
       const file = pages.find(file => routeOf(file) === route)!;
       const text = visibleText(fs.readFileSync(file, 'utf8'));
       expect(text).toContain(CONTRACTOR_LICENSES.wv);
-      expect(text).toContain(CONTRACTOR_LICENSES.va);
+      expect(text).toContain('Class A Home Improvement Contractor');
+      expect(text).not.toMatch(/2705198604/);
       if (route === '/about') {
         expect(text.match(/WV062432/g)?.length).toBeGreaterThanOrEqual(2);
       }

@@ -83,6 +83,6 @@ If you're considering a full renovation in **Loudoun County, Ashburn, Leesburg, 
 
 Beyond Loudoun, we take on whole-home renovations across Fairfax County and Alexandria — including [McLean](/service-areas/mclean-va), [Great Falls](/service-areas/great-falls-va), [Vienna](/service-areas/vienna-va), [Reston](/service-areas/reston-va), [Old Town Alexandria](/service-areas/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=whole-home) and we'll call inside the window you choose.
 
-Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Real Elite Contracting is insured, and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).
 
 *Photography in this article is for design inspiration.*

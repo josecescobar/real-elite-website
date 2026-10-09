@@ -90,4 +90,4 @@ A small storm opening turns into wet attic insulation and a ceiling stain shaped
 
 **Call us at (681) 534-5515** or [request a free inspection and estimate](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Spring Mills, Shepherdstown, Berkeley Springs, Frederick County MD, the Northern Shenandoah Valley, and Loudoun County VA.
 
-Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA. For more on what goes into a quality roof, see our guide on [architectural vs. 3-tab shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle) or our full [roofing services](/services/roofing).
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran. Real Elite Contracting is insured, and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432). For more on what goes into a quality roof, see our guide on [architectural vs. 3-tab shingles](/blog/architectural-vs-3-tab-shingles-eastern-panhandle) or our full [roofing services](/services/roofing).

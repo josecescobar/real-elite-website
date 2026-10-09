@@ -98,4 +98,4 @@ Most homeowners stay in the house during a kitchen remodel. We set up a temporar
 
 Real Elite Contracting provides line-itemed written estimates for every kitchen remodel — cabinetry, counters, appliances, labor, structural, permits, all broken out. We tell you upfront which tier your project belongs in and where adding budget buys something real versus where it doesn't.
 
-The estimate is free, and it includes a financing walkthrough on qualified projects so the monthly number is clear before you commit. Family-run, licensed and insured across WV and VA.
+The estimate is free, and it includes a financing walkthrough on qualified projects so the monthly number is clear before you commit. Family-run, insured, and licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).

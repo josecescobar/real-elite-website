@@ -14,8 +14,8 @@
  */
 export const CONTRACTOR_LICENSES = {
   wv: 'WV062432',
-  va: '2705198604',
-  summary: 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC)',
+  summary:
+    'Licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
 } as const;
 
 /**
@@ -177,8 +177,6 @@ export const UNGUARDED_CLAIM_SOURCES: Readonly<Record<string, string>> = {
 
   // Data the register does not track, recorded so it is not mistaken for an
   // oversight. A retraction has to sweep these by hand.
-  'src/lib/projects/data/composite-deck-build-martinsburg.ts':
-    'project record — missing from the prose list',
   'src/lib/projects/data/walk-in-shower-bathroom-remodel.ts':
     'project record — surfaced by the "N weeks on site" pattern, added 2026-09-18',
   'src/lib/projects/data/victorian-roof-replacement-martinsburg-wv.ts':
@@ -259,7 +257,7 @@ export const RETRACTED_TRUST_CLAIMS: readonly OperationalClaim[] = [
     id: 'unsupported-maryland-license', label: 'Maryland licensing is not substantiated',
     example: 'Licensed and insured across West Virginia, Maryland, and Virginia', status: 'unconfirmed',
     note: 'Withdrawn by REA-55; require owner-supplied substantiation before publication.',
-    patterns: [/licensed(?: and insured| & insured| & Insured|, insured, and accountable)?(?: in| across)?[ :·]*(?:West Virginia[, /·]+|WV[, /·]+|Virginia[, /·]+|VA[, /·]+)?(?:MD|Maryland)\b/i, /licensed[^.\n]{0,100}(?:just as|also)[^.\n]{0,60}Maryland/i],
+    patterns: [/licensed(?: and insured| & insured| & Insured|, insured, and accountable)?(?: in| across)?[ :·]*(?:West Virginia[, /·]+|WV[, /·]+|Virginia[, /·]+|VA[, /·]+)?(?:MD|Maryland)\b/i, /licensed[^.\n]{0,100}(?:just as|also)[^.\n]{0,60}Maryland/i, /licensed in all three states/i, /licensed\/insured across the tri-state/i, /tri-state licensed/i],
     publishedIn: {
       "comboKeys": [],
       "serviceSlugs": [],

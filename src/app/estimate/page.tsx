@@ -11,7 +11,7 @@ export const metadata = buildMetadata({
   path: '/estimate',
   title: `Get an Estimate | ${BUSINESS.name}`,
   description:
-    'Three ways to start: a 60-second instant roof quote, a free written estimate, or a private design consultation. Licensed across WV and VA.',
+    'Three ways to start: a 60-second instant roof quote, a free written estimate, or a private design consultation. Licensed in Virginia (Class A Home Improvement Contractor) and West Virginia (WV062432).',
   keywords: ['free estimate', 'roofing quote', 'remodeling estimate', 'design consultation', 'Eastern Panhandle contractor'],
 });
 

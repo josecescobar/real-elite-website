@@ -14,7 +14,7 @@ export function trustBullets(city: string, serviceTitle: string, state: string):
       text: state === 'MD'
         ? 'Frederick is a service-area location; no Maryland contractor license is claimed.'
         : state === 'VA'
-          ? 'Virginia Class A Contractor 2705198604 (HIC) — residential home improvement.'
+          ? 'Virginia Class A Home Improvement Contractor (residential).'
           : 'WV Contractor License WV062432.',
       claims: [],
     },
