@@ -41,17 +41,22 @@ export async function generateMetadata({
   // description names the rooms those pages sell. fitTitle drops to the short
   // brand when the long one would pass 60 characters. The Panhandle and other
   // home-market rows keep the original title and estimate-led description.
+  const pageData = CITY_DATA[slug];
   const consultation = areaHeroLane(city) === 'consultation';
-  const title = consultation
-    ? fitTitle(`Remodeling Contractor in ${place} | ${BUSINESS.name}`)
-    : `Contractor in ${place} | ${BUSINESS.name}`;
+  // Authored seoTitle wins when the generic "Contractor in {place}" title is
+  // not the query. fitTitle only shortens a brand suffix that would pass 60.
+  const title = pageData?.seoTitle
+    ? fitTitle(pageData.seoTitle)
+    : consultation
+      ? fitTitle(`Remodeling Contractor in ${place} | ${BUSINESS.name}`)
+      : `Contractor in ${place} | ${BUSINESS.name}`;
   // Kept under the 160-char SERP budget for the longest city name in the
   // catalog ("Berkeley Springs, WV" / "Prince William County, VA") — see
   // fitTitle/TITLE_MAX in src/lib/seo.ts for the sibling title rule, and
   // scripts/audit-site.mjs which enforces both.
-  const description = consultation
-    ? `Bathroom remodels, kitchens, decks, roofing and additions in ${place} — family-run, built with military precision. Free written estimate.`
-    : `Bathroom remodels, kitchens, decks, roofing and additions in ${place} — family-run, built with military precision. Free written estimate.`;
+  const description =
+    pageData?.seoDescription ??
+    `Bathroom remodels, kitchens, decks, roofing and additions in ${place} — family-run, built with military precision. Free written estimate.`;
 
   return {
     ...buildMetadata({
@@ -64,6 +69,7 @@ export async function generateMetadata({
           : []),
         `${city.city} contractor`,
         `${city.city} general contractor`,
+        `general contractor ${city.city.toLowerCase()} ${city.state.toLowerCase()}`,
         `${city.city} bathroom remodel`,
         `${city.city} kitchen remodel`,
         `${city.city} roofing`,

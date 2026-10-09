@@ -592,6 +592,9 @@ describe('comboPublishesPricing', () => {
    * the investment block — shows up as a decision rather than a side effect.
    * Loudoun additions, basements, and Middleburg decks joined the original
    * nine because they publish county fees, not project bands.
+   * kitchens-ashburn-va left this list on purpose: its copy cites the
+   * HomeAdvisor kitchen ranges already published on the kitchen cost guide
+   * ($41,559 and $65,000+), which are job figures, not permit fees.
    */
   it('leaves the premium combos that have no job-range figure on the generic tiers', () => {
     const relying = Object.keys(CONTENT).filter((key) => {
@@ -616,7 +619,6 @@ describe('comboPublishesPricing', () => {
         'decks-brambleton-va',
         'decks-leesburg-va',
         'decks-middleburg-va',
-        'kitchens-ashburn-va',
         'kitchens-leesburg-va',
         'kitchens-loudoun-county-va',
         'remodeling-ashburn-va',

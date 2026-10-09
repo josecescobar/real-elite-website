@@ -74,6 +74,7 @@ export default function Footer() {
     // rather than being reachable only from its children.
     { city: 'Northern Virginia', state: 'VA', slug: 'northern-virginia' },
     { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
+    { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' },
     { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
     { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
     ...PRIMARY_SERVICE_AREAS.slice(0, 3),
@@ -158,7 +159,7 @@ export default function Footer() {
               {featuredAreas.map((area) => (
                 <li key={area.slug}>
                   <Link
-                    href={`/service-areas/${area.slug}`}
+                    href={'href' in area && area.href ? area.href : `/service-areas/${area.slug}`}
                     className="min-h-11 inline-flex items-center hover:text-white transition-colors"
                   >
                     {area.slug === 'northern-virginia' ? area.city : `${area.city}, ${area.state}`}

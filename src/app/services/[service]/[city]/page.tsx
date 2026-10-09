@@ -21,6 +21,7 @@ import PrecisionProcess from '@/components/home/PrecisionProcess';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import RelatedGuides from '@/components/services/RelatedGuides';
 import JsonLd from '@/components/seo/JsonLd';
+import FAQSchema from '@/components/seo/FAQSchema';
 import { buildBreadcrumbSchema, buildMetadata } from '@/lib/seo';
 import {
   CONTENT,
@@ -34,6 +35,9 @@ import {
 import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-intent';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import { selectTrustBullets } from '@/lib/trust-bullets';
+import ProofGallery from '@/components/services/ProofGallery';
+import ReviewsSection from '@/components/reviews/ReviewsSection';
+import { proofPhotosForService, proofReviewsFor, reviewsMatchCity } from '@/lib/proof-package';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -196,6 +200,8 @@ export default async function ServiceCityPage({
   // it was vacuous AND blind to the route's filter being weakened from `every`
   // to `some`. Same mistake serviceHrefForArea was extracted to fix.
   const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
+  const proofPhotos = proofPhotosForService(service, service === 'decks' ? 8 : 6);
+  const proofReviews = proofReviewsFor({ serviceSlug: service, citySlug: city });
 
   // AssurancesBand and PrecisionProcess publish four unconfirmed claims
   // sitewide. Trust bullets are already gated per page; these two bands were
@@ -223,9 +229,10 @@ export default async function ServiceCityPage({
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: `${serviceData.title} in ${place}`,
+    name: content.h1 ?? `${serviceData.title} in ${place}`,
     serviceType: richServiceData?.serviceType ?? serviceData.title,
     description:
+      content.metaDescription ??
       richServiceData?.metaDescription ??
       `${serviceData.title} services for ${place} homeowners by Real Elite Contracting.`,
     provider: {
@@ -246,6 +253,18 @@ export default async function ServiceCityPage({
     },
     url: `${BUSINESS.url}/services/${service}/${city}`,
   };
+
+  const localBusinessSchema = content.includeLocalBusiness
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        '@id': `${BUSINESS.url}/#business`,
+        name: BUSINESS.name,
+        url: `${BUSINESS.url}/`,
+        telephone: BUSINESS.phoneRaw,
+        areaServed: serviceSchema.areaServed,
+      }
+    : null;
 
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: 'Home', item: BUSINESS.url },
@@ -269,6 +288,8 @@ export default async function ServiceCityPage({
     <>
       <JsonLd schema={serviceSchema} />
       <JsonLd schema={breadcrumbSchema} />
+      {localBusinessSchema && <JsonLd schema={localBusinessSchema} />}
+      {content.faqs && content.faqs.length > 0 && <FAQSchema items={[...content.faqs]} />}
 
       {/* Hero — editorial navy with brand-red eyebrow + breadcrumb */}
       <section className="relative isolate bg-navy-900 text-white">
@@ -301,9 +322,13 @@ export default async function ServiceCityPage({
             <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> {place}
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight max-w-4xl">
-            {serviceData.title}
-            <br />
-            <span className="text-brand-red">in {cityData.city}.</span>
+            {content.h1 ?? (
+              <>
+                {serviceData.title}
+                <br />
+                <span className="text-brand-red">in {cityData.city}.</span>
+              </>
+            )}
           </h1>
           <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
             {richServiceData?.hero?.sub ?? serviceData.description}
@@ -347,7 +372,34 @@ export default async function ServiceCityPage({
                     </p>
                   ))}
                 </div>
+                {content.notes && content.notes.length > 0 && (
+                  <div className="mt-8 space-y-4">
+                    {content.notes.map((note) => (
+                      <div
+                        key={note.heading}
+                        className="bg-steel-50 rounded-lg border-l-4 border-brand-red p-6"
+                      >
+                        <h2 className="font-heading text-xl font-bold text-navy-800 mb-2">
+                          {note.heading}
+                        </h2>
+                        <p className="text-charcoal-700 leading-relaxed">{note.body}</p>
+                        <a
+                          href={note.href}
+                          className="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-brand-red hover:text-brand-red-dark"
+                          {...(note.href.startsWith('http')
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
+                        >
+                          {note.linkLabel}
+                          <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              <ProofGallery photos={proofPhotos} heading={`${serviceData.title} photos`} />
 
               {/* Investment ranges (when SERVICE_DATA has them) */}
               {richServiceData?.investment && showGenericInvestment && (
@@ -372,6 +424,35 @@ export default async function ServiceCityPage({
                   ))}
                 </ul>
               </div>
+
+              {/* Authored FAQs. The schema above only emits when this list does. */}
+              {content.faqs && content.faqs.length > 0 && (
+                <div>
+                  <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-6">
+                    Questions about {serviceData.title.toLowerCase()} in {cityData.city}
+                  </h2>
+                  <div className="space-y-3">
+                    {content.faqs.map((item) => (
+                      <details
+                        key={item.question}
+                        className="group bg-steel-50 border border-charcoal-100 rounded-lg p-5"
+                      >
+                        <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                          <span className="font-heading text-base md:text-lg font-bold text-navy-800">
+                            {item.question}
+                          </span>
+                          <span className="text-brand-red font-bold text-xl leading-none group-open:rotate-45 transition-transform">
+                            +
+                          </span>
+                        </summary>
+                        <p className="text-charcoal-700 text-sm md:text-base leading-relaxed mt-4">
+                          {item.answer}
+                        </p>
+                      </details>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Cross-links */}
               <div>
@@ -466,6 +547,16 @@ export default async function ServiceCityPage({
 
       {showSitewideClaimBands && <PrecisionProcess />}
       {showSitewideClaimBands && <AssurancesBand />}
+
+      <ReviewsSection
+        reviews={proofReviews}
+        eyebrow="Reviews"
+        title={
+          reviewsMatchCity(proofReviews, city)
+            ? `What ${cityData.city} homeowners say.`
+            : 'Published reviews.'
+        }
+      />
 
       {/* Related guides — authored per combo, and rendered ONLY when authored.
           RelatedGuides falls back to the three most recent posts when it is

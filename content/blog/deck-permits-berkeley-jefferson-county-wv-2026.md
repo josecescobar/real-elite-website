@@ -134,6 +134,6 @@ Real Elite Contracting handles the entire permitting process for every deck we b
 
 We're licensed, fully insured, and we've been building decks across the Eastern Panhandle for years. We know both county processes inside and out.
 
-**Call (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle.
+**Call (681) 534-5515** or [request a free estimate online](/contact#estimate). We serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, Falling Waters, Spring Mills, Berkeley Springs, and the surrounding Eastern Panhandle. See [deck builders Martinsburg WV](/services/decks/martinsburg-wv).
 
 *Real Elite Contracting — Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.*

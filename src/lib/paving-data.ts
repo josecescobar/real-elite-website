@@ -706,7 +706,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       { title: 'Mid-Atlantic climate', body: 'Nor’easters, summer storms, and freeze-thaw all stress asphalt here. Proper base, drainage, and sealcoating discipline are what make a Frederick surface last.' },
     ],
     faqs: [
-      { question: 'Is Frederick in your service area?', answer: 'Yes. Frederick and Frederick County, Maryland are in the service area. Contact us to discuss the project scope before any work is agreed.' },
+      { question: 'Is Frederick in your service area?', answer: 'Yes. Frederick, Hagerstown, and the rest of the published Maryland towns are in the service area, alongside the West Virginia and Virginia towns on this site. Contact us to discuss the project scope before any work is agreed.' },
       { question: 'Do you pave commercial lots as well as driveways in Frederick?', answer: 'Both. Frederick’s growth means strong demand for new residential driveways and for commercial parking lots serving the retail, office, and medical development along the corridor. We pave and resurface both, with ADA-compliant striping and phasing that keeps businesses open.' },
       { question: 'Can you handle a driveway in Frederick’s historic downtown?', answer: 'Yes. Historic downtown properties often have tighter access and original drainage that need a careful approach, while the newer Urbana and Ballenger Creek subdivisions need durable, well-based asphalt. We tailor the work to the property.' },
     ],

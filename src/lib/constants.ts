@@ -520,6 +520,7 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
    * Bethesda, Clarksville, Glenwood, Fulton) stay omitted. Empty legacyTiers
    * so the pinned primary/secondary lists do not move. `market: 'home'`
    * keeps the estimate hero and does not grant the same-week radius promise.
+   * Do not print a Maryland license caveat.
    */
   { slug: 'monrovia-md', city: 'Monrovia', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'ijamsville-md', city: 'Ijamsville', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
@@ -589,13 +590,38 @@ export type CityDataEntry = {
   faqs?: readonly { question: string; answer: string }[];
   /** Other published area pages this town should link. */
   nearbySlugs?: readonly string[];
+  /** Exact title when the generic "Contractor in {place}" title is not the query. */
+  seoTitle?: string;
+  seoDescription?: string;
+  seoH1?: string;
 };
 
 export const CITY_DATA: Record<string, CityDataEntry> = {
   /* ---------- Eastern Panhandle WV (home market) ---------- */
   'martinsburg-wv': {
+    seoTitle: 'General Contractor Martinsburg WV | Real Elite Contracting',
+    seoH1: 'General Contractor Martinsburg WV',
+    seoDescription:
+      'General contractor Martinsburg WV. WV Contractor License WV062432. Kitchens, bathrooms, decks, roofing, and additions. Free written estimate.',
+    faqs: [
+      {
+        question: 'Are you a general contractor in Martinsburg, WV?',
+        answer:
+          'Yes. This page is for general contractor Martinsburg WV. Real Elite Contracting is based in Martinsburg. WV Contractor License WV062432. Virginia Class A Contractor 2705198604 covers residential work in Virginia. The written estimate names the scope before any work starts.',
+      },
+      {
+        question: 'Which Martinsburg services have their own pages?',
+        answer:
+          'Kitchens, bathrooms, decks, roofing, basements, additions, siding, and remodeling each link from this page when that Martinsburg page is published. Deck builders Martinsburg WV is the decks page, not this overview.',
+      },
+      {
+        question: 'Do you list Martinsburg project photos on this page?',
+        answer:
+          'Only jobs that are already published on the projects page. A draft photo is not treated as a finished Martinsburg project here.',
+      },
+    ],
     description:
-      "Martinsburg is the county seat of Berkeley County and the largest city in the Eastern Panhandle. Located along the I-81 corridor, it serves as the regional hub for commerce, services, and community life. Berkeley County is the fastest-growing county in West Virginia, and Martinsburg sits at the center of that growth — attracting families and professionals drawn by affordable housing, a revitalizing historic downtown, and easy commuter access to the Washington, D.C. metro via MARC train. Homes here range from beautifully preserved Victorian-era properties in the historic district to modern developments in the surrounding suburbs. Real Elite Contracting has deep roots in Martinsburg and is the contractor neighbors trust for quality craftsmanship that protects and enhances their most valuable investment.",
+      "Real Elite Contracting is a general contractor in Martinsburg, WV. WV Contractor License WV062432. Martinsburg is the county seat of Berkeley County and the largest city in the Eastern Panhandle. Located along the I-81 corridor, it serves as the regional hub for commerce, services, and community life. Berkeley County is the fastest-growing county in West Virginia, and Martinsburg sits at the center of that growth — attracting families and professionals drawn by affordable housing, a revitalizing historic downtown, and easy commuter access to the Washington, D.C. metro via MARC train. Homes here range from beautifully preserved Victorian-era properties in the historic district to modern developments in the surrounding suburbs. Real Elite Contracting has deep roots in Martinsburg and is the contractor neighbors trust for quality craftsmanship that protects and enhances their most valuable investment.",
     neighborhoods: ['South Martinsburg', 'North End', 'Pikeside', 'Foxcroft Area', 'Burke Street Historic District'],
     marketEmphasis: ['roofing', 'kitchens', 'bathrooms', 'basements', 'decks', 'additions', 'remodeling', 'siding'],
   },

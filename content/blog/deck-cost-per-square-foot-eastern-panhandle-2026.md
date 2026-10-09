@@ -77,7 +77,7 @@ Yes. Both counties require a building permit for new deck construction. A licens
 
 At Real Elite Contracting, we build [deck building](/services/decks) projects of every size across the Eastern Panhandle — from simple backyard platforms to multi-level outdoor living spaces with custom railings and lighting. We handle permits and inspections, and every estimate is line-itemed in writing, so you can see exactly where your per-square-foot number is going.
 
-We proudly serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, and the surrounding Shenandoah Valley and Frederick, MD areas.
+We proudly serve Martinsburg, Charles Town, Inwood, Ranson, Hedgesville, Shepherdstown, and the surrounding Shenandoah Valley and Frederick, MD areas. See [deck builders Martinsburg WV](/services/decks/martinsburg-wv) and the [Martinsburg contractor page](/service-areas/martinsburg-wv).
 
 **Get your free deck estimate** — call **(681) 534-5515** or [request one online](/contact#estimate).
 
