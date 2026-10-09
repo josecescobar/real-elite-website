@@ -1108,3 +1108,13 @@ describe('REA-2342 Purcellville and Lansdowne pages', () => {
     expect(CONTENT['bathrooms-great-falls-va']?.faqs).toBeUndefined();
   });
 });
+
+describe('customer copy never reads like an editor note', () => {
+  it('has no "this page" publishing/quoting phrasing in rendered content', () => {
+    const rendered = JSON.stringify(CONTENT);
+    const bad = rendered.match(
+      /[^"]*(this page (does not|doesn't|uses|is the)|already published on|written for this page|hiring page|Published planning ranges)[^"]*/gi,
+    ) ?? [];
+    expect(bad).toEqual([]);
+  });
+});
