@@ -515,6 +515,82 @@ describe('serviceHrefForArea', () => {
   });
 });
 
+describe('REA-2292 basement keywords and Winchester kitchen', () => {
+  const COST_GUIDE = '/blog/basement-remodeling-cost-ashburn-leesburg-2026';
+  const LUXURY_GUIDE = '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026';
+
+  it.each([
+    ['leesburg-va', 'basement finishing leesburg va'],
+    ['loudoun-county-va', 'basement finishing loudoun county'],
+  ])('%s uses the exact keyword in title, H1, and meta', (city, keyword) => {
+    const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+    expect(entry?.h1?.toLowerCase()).toBe(keyword);
+    expect(entry?.metaTitle?.toLowerCase()).toContain(keyword);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(keyword);
+    expect(entry?.metaTitle?.length).toBeLessThanOrEqual(60);
+    expect(entry?.metaDescription).toMatch(/\$[\d,]+/);
+  });
+
+  it.each(['leesburg-va', 'loudoun-county-va'])(
+    '%s has cost, timeline, egress, and permit sections linked to both Loudoun basement guides',
+    (city) => {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      expect(entry?.sections?.map((section) => section.id)).toEqual([
+        'cost',
+        'timeline',
+        'egress',
+        'permit',
+      ]);
+      const hrefs = (entry?.sections ?? []).flatMap((section) =>
+        (section.links ?? []).map((link) => link.href)
+      );
+      expect(hrefs).toContain(COST_GUIDE);
+      expect(hrefs).toContain(LUXURY_GUIDE);
+      expect(entry?.relatedGuideSlugs).toEqual(
+        expect.arrayContaining([
+          'basement-remodeling-cost-ashburn-leesburg-2026',
+          'luxury-basement-finishing-loudoun-northern-virginia-2026',
+        ])
+      );
+      expect(comboPublishesPricing('basements', city)).toBe(true);
+    }
+  );
+
+  it('does not clone section copy between Leesburg and Loudoun County', () => {
+    const leesburg = CONTENT['basements-leesburg-va']!;
+    const loudoun = CONTENT['basements-loudoun-county-va']!;
+    const leesburgSections = leesburg.sections!.map((section) => section.paragraphs.join('\n'));
+    const loudounSections = loudoun.sections!.map((section) => section.paragraphs.join('\n'));
+    expect(leesburgSections).not.toEqual(loudounSections);
+    for (const paragraph of loudounSections) {
+      expect(leesburgSections).not.toContain(paragraph);
+    }
+  });
+
+  it('publishes the Winchester kitchen page on the existing combo route', () => {
+    const entry = CONTENT['kitchens-winchester-va'];
+    expect(entry?.h1?.toLowerCase()).toBe('kitchen remodel winchester va');
+    expect(entry?.metaTitle?.toLowerCase()).toContain('kitchen remodel winchester va');
+    expect(entry?.metaDescription?.toLowerCase()).toContain('kitchen remodel winchester va');
+    expect(serviceHrefForArea('kitchens', 'winchester-va')).toBe(
+      '/services/kitchens/winchester-va'
+    );
+    expect(CITY_DATA['winchester-va']?.marketEmphasis).toContain('kitchens');
+    expect(entry?.paragraphs.join('\n')).not.toMatch(/maryland license|MHIC/i);
+  });
+
+  it('links both Loudoun basement guides back to both hiring pages', () => {
+    for (const file of [
+      'content/blog/basement-remodeling-cost-ashburn-leesburg-2026.md',
+      'content/blog/luxury-basement-finishing-loudoun-northern-virginia-2026.md',
+    ]) {
+      const markdown = fs.readFileSync(nodePath.join(process.cwd(), file), 'utf8');
+      expect(markdown, file).toContain('/services/basements/leesburg-va');
+      expect(markdown, file).toContain('/services/basements/loudoun-county-va');
+    }
+  });
+});
+
 describe('comboPublishesPricing', () => {
   /**
    * Decides whether the generic SERVICE_DATA investment tiers may render
@@ -590,11 +666,12 @@ describe('comboPublishesPricing', () => {
   /**
    * Pinned so that adding a real job-range figure — which would silently drop
    * the investment block — shows up as a decision rather than a side effect.
-   * Loudoun additions, basements, and Middleburg decks joined the original
-   * nine because they publish county fees, not project bands.
-   * kitchens-ashburn-va left this list on purpose: its copy cites the
-   * HomeAdvisor kitchen ranges already published on the kitchen cost guide
-   * ($41,559 and $65,000+), which are job figures, not permit fees.
+   * Loudoun additions and Middleburg decks stay here because they publish
+   * county fees, not project bands. kitchens-ashburn-va left this list on
+   * purpose: its copy cites the HomeAdvisor kitchen ranges already published
+   * on the kitchen cost guide ($41,559 and $65,000+), which are job figures,
+   * not permit fees. Leesburg and Loudoun County basement pages left this
+   * list when they quoted the existing cost-guide ranges.
    */
   it('leaves the premium combos that have no job-range figure on the generic tiers', () => {
     const relying = Object.keys(CONTENT).filter((key) => {
@@ -610,8 +687,6 @@ describe('comboPublishesPricing', () => {
         'additions-loudoun-county-va',
         'additions-middleburg-va',
         'basements-ashburn-va',
-        'basements-leesburg-va',
-        'basements-loudoun-county-va',
         'bathrooms-ashburn-va',
         'bathrooms-leesburg-va',
         'bathrooms-loudoun-county-va',

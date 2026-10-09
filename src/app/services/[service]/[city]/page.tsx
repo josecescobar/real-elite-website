@@ -233,8 +233,10 @@ export default async function ServiceCityPage({
     serviceType: richServiceData?.serviceType ?? serviceData.title,
     description:
       content.metaDescription ??
-      richServiceData?.metaDescription ??
-      `${serviceData.title} services for ${place} homeowners by Real Elite Contracting.`,
+      (content.h1
+        ? `${serviceData.title} services for ${place} homeowners by Real Elite Contracting.`
+        : (richServiceData?.metaDescription ??
+          `${serviceData.title} services for ${place} homeowners by Real Elite Contracting.`)),
     provider: {
       '@type': 'GeneralContractor',
       name: BUSINESS.name,
@@ -398,6 +400,38 @@ export default async function ServiceCityPage({
                   </div>
                 )}
               </div>
+
+              {content.sections?.map((section) => (
+                <div key={section.id}>
+                  <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800">
+                    {section.title}
+                  </h2>
+                  <div className="mt-5 space-y-5">
+                    {section.paragraphs.map((paragraph, index) => (
+                      <p
+                        key={index}
+                        className="text-charcoal-700 text-base md:text-lg leading-relaxed"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                  {section.links && section.links.length > 0 && (
+                    <ul className="mt-5 space-y-2">
+                      {section.links.map((link) => (
+                        <li key={link.href}>
+                          <Link
+                            href={link.href}
+                            className="font-semibold text-navy-800 hover:text-brand-red transition-colors"
+                          >
+                            {link.label} →
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
 
               <ProofGallery photos={proofPhotos} heading={`${serviceData.title} photos`} />
 
