@@ -795,7 +795,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting finishes Loudoun County lower levels and leads with the western corridor — Purcellville, Round Hill, Lovettsville, western Leesburg, and selected Middleburg — because that is the practical truck path from Martinsburg.",
       "Town and county are different filings. Leesburg, Purcellville, and Middleburg issue town zoning before the county will release a building permit. Unincorporated parcels use LandMARC for building and zoning. We name which one the parcel is before the estimate is a commitment.",
-      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. Wine cellars and media rooms are not the typical brief on this page. The luxury basement guide covers that room program. This page is the hiring page for basement finishing Loudoun County.",
+      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. Planning a wine cellar or home theater? Our luxury basement guide walks through those rooms in detail.",
     ],
     sections: [
       {
@@ -820,7 +820,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'timeline',
         title: 'Timeline',
         paragraphs: [
-          "How long basement finishing takes in Loudoun County is the sentence in the luxury basement guide: the project schedule depends on scope, approvals, selections, and availability. Incorporated towns add a step the unincorporated county does not. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Unincorporated parcels go through LandMARC only. That path goes in the written timeline before demo.",
+          "How long does a Loudoun County basement take? It depends on the scope, permits and approvals, your selections, and crew availability. We give you a written schedule before work starts. Incorporated towns add a step the unincorporated county does not. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Unincorporated parcels go through LandMARC only. That path goes in the written timeline before demo.",
         ],
         links: [
           {
