@@ -517,10 +517,9 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   /* ---------- Maryland towns — active 2026-10-09 (Jose, REA-2283) ----------
    * Maryland is in the service area. These rows publish. Frederick, MD was
    * already active and is not repeated here. Far-market places (Potomac,
-   * Bethesda, Clarksville, Glenwood, Fulton) stay omitted. No Maryland
-   * license is claimed. Empty legacyTiers so the pinned primary/secondary
-   * lists do not move. `market: 'home'` keeps the estimate hero and does not
-   * grant the same-week radius promise.
+   * Bethesda, Clarksville, Glenwood, Fulton) stay omitted. Empty legacyTiers
+   * so the pinned primary/secondary lists do not move. `market: 'home'`
+   * keeps the estimate hero and does not grant the same-week radius promise.
    */
   { slug: 'monrovia-md', city: 'Monrovia', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'ijamsville-md', city: 'Ijamsville', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
