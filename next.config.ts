@@ -112,11 +112,10 @@ const nextConfig: NextConfig = {
       { source: '/guides', destination: '/resources', permanent: true },
       { source: '/guides/:category', destination: '/resources/:category', permanent: true },
 
-      // Hagerstown, MD was dropped from the service area on 2026-09-27. Its
-      // area page and paving location page have no surviving equivalent, so
-      // they go to the nearest index. Its five service+area combos are in
-      // RETIRED_COMBOS below and redirect to their service pillars.
-      { source: '/service-areas/hagerstown-md', destination: '/service-areas', permanent: true },
+      // Hagerstown's area page is published (REA-2283, 2026-10-09). Do not
+      // redirect /service-areas/hagerstown-md. The paving location URL still
+      // has no page, so it stays on the paving index. The five service+city
+      // combos stay retired and land on the area page.
       { source: '/paving/locations/hagerstown-md', destination: '/paving', permanent: true },
 
       // Tier C — the ten service+area pages retired on 2026-09-18, generated

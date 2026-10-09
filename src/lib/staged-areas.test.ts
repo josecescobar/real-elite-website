@@ -3,12 +3,14 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   ALL_SERVICE_AREAS,
+  CITY_DATA,
   EXPANSION_SERVICE_AREAS,
   LUXURY_CITY_SLUGS,
   PRIMARY_SERVICE_AREAS,
   SECONDARY_SERVICE_AREAS,
   STAGED_SERVICE_AREAS,
   childAreasOf,
+  getServiceArea,
 } from '@/lib/constants';
 import { CONTENT } from '@/lib/service-city-content';
 import CityServicePage, {
@@ -21,9 +23,9 @@ import { generateStaticParams as townServiceStaticParams } from '@/app/service-a
 
 /**
  * A staged row is in the catalog and nowhere else. These assertions are
- * written against whatever the catalog marks `staged`, so the Maryland rows
- * and the Virginia permit gaps prove those URLs 404 and stay out of the
- * sitemap. Pennsylvania stays active.
+ * written against whatever the catalog marks `staged`, so the Virginia permit
+ * gaps prove those URLs 404 and stay out of the sitemap. Maryland towns are
+ * published (REA-2283). Pennsylvania stays active.
  *
  * The digest is the string Next's `notFound()` throws
  * (`NEXT_HTTP_ERROR_FALLBACK;404`). Matching the message is not enough:
@@ -45,11 +47,10 @@ const STAGED_VA_PERMIT_GAPS = [
 ] as const;
 
 /**
- * Gap towns from the 2026-09-29 expansion spec. Optional far markets are
- * intentionally absent. Frederick, MD is already active and must not appear
- * here.
+ * Frederick County and Washington County towns published 2026-10-09.
+ * Frederick, MD was already active and is not repeated here.
  */
-const STAGED_MD_SLUGS = [
+const PUBLISHED_MD_SLUGS = [
   'monrovia-md',
   'ijamsville-md',
   'new-market-md',
@@ -59,6 +60,7 @@ const STAGED_MD_SLUGS = [
   'adamstown-md',
   'point-of-rocks-md',
   'brunswick-md',
+  'hagerstown-md',
   'boonsboro-md',
   'sharpsburg-md',
   'williamsport-md',
@@ -76,16 +78,14 @@ const ACTIVE_PA_SLUGS = [
 describe('staged service areas stay unpublished', () => {
   const stagedSlugs = STAGED_SERVICE_AREAS.map((area) => area.slug);
 
-  it('stages the Virginia permit gaps and the Maryland towns, and keeps Pennsylvania active', () => {
-    expect(stagedSlugs).toEqual([...STAGED_VA_PERMIT_GAPS, ...STAGED_MD_SLUGS]);
+  it('stages the Virginia permit gaps and keeps Maryland and Pennsylvania active', () => {
+    expect(stagedSlugs).toEqual([...STAGED_VA_PERMIT_GAPS]);
     expect(dynamicParams).toBe(false);
-    for (const area of STAGED_SERVICE_AREAS.filter((row) => row.state === 'MD')) {
-      expect(area.market, area.slug).toBe('home');
-      expect(area.legacyTiers, area.slug).toEqual([]);
-      expect(area.parent, area.slug).toBeUndefined();
-    }
     expect(stagedSlugs).not.toContain('frederick-md');
-    expect(stagedSlugs).not.toContain('hagerstown-md');
+    for (const slug of PUBLISHED_MD_SLUGS) {
+      expect(stagedSlugs, slug).not.toContain(slug);
+      expect(ALL_SERVICE_AREAS.some((area) => area.slug === slug), slug).toBe(true);
+    }
     for (const slug of ACTIVE_PA_SLUGS) {
       expect(stagedSlugs, slug).not.toContain(slug);
       expect(ALL_SERVICE_AREAS.some((area) => area.slug === slug), slug).toBe(true);
@@ -156,5 +156,33 @@ describe('staged service areas stay unpublished', () => {
       expect(xml.includes(`/${slug}<`), slug).toBe(false);
       expect(xml.includes(`/${slug}/`), slug).toBe(false);
     }
+  });
+});
+
+describe('published Maryland towns', () => {
+  it('gives each town its own copy and a link to Frederick plus a West Virginia page', () => {
+    const descriptions = PUBLISHED_MD_SLUGS.map((slug) => CITY_DATA[slug].description);
+    expect(new Set(descriptions).size).toBe(descriptions.length);
+    const wv = new Set(
+      ALL_SERVICE_AREAS.filter((area) => area.state === 'WV').map((area) => area.slug),
+    );
+    for (const slug of PUBLISHED_MD_SLUGS) {
+      const area = getServiceArea(slug);
+      expect(area?.status, slug).toBe('active');
+      expect(area?.market, slug).toBe('home');
+      expect(area?.legacyTiers, slug).toEqual([]);
+      const nearby = CITY_DATA[slug].nearbySlugs ?? [];
+      expect(nearby, slug).toContain('frederick-md');
+      expect(nearby.some((item) => wv.has(item)), slug).toBe(true);
+      expect(CITY_DATA[slug].description.length, slug).toBeGreaterThan(180);
+    }
+  });
+
+  it('does not redirect the Hagerstown area page away from itself', async () => {
+    const { default: nextConfig } = await import('../../next.config');
+    const redirects = await nextConfig.redirects!();
+    expect(
+      redirects.find((rule: { source: string }) => rule.source === '/service-areas/hagerstown-md'),
+    ).toBeUndefined();
   });
 });

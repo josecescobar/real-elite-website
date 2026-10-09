@@ -18,8 +18,9 @@ describe('shared trust bullets', () => {
   });
 
   it('does not derive Maryland licensing from a Maryland service area', () => {
-    const copy = trustBullets('Frederick', 'Kitchens', 'MD').map(b => b.text).join(' ');
-    expect(copy).toContain('no Maryland contractor license is claimed');
+    const copy = trustBullets('Frederick', 'Kitchens', 'MD').map((bullet) => bullet.text).join(' ');
+    expect(copy).toContain('Serving Frederick and Frederick County, Maryland.');
+    expect(copy).not.toMatch(/no Maryland contractor license/i);
     expect(copy).not.toMatch(/licensed.*(?:MD|Maryland)/i);
   });
 });
