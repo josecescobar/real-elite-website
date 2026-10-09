@@ -727,9 +727,9 @@ describe('Tier C retired combos', () => {
    * shipping half-done.
    */
   /**
-   * Hagerstown, MD was dropped from the service area on 2026-09-27. Its five
-   * combos share RETIRED_COMBOS (and so the redirect guard below) but follow
-   * their own destination rule, so they are split out of the Tier C checks.
+   * Hagerstown's five service+city combos stay retired. The area page is
+   * published (REA-2283). These combos share RETIRED_COMBOS and land on that
+   * area page, so they are split out of the Tier C destination checks.
    */
   const HAGERSTOWN_COMBOS = [
     'bathrooms-hagerstown-md',

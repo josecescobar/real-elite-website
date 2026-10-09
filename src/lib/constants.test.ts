@@ -161,6 +161,14 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'greencastle-pa', 'chambersburg-pa', 'fort-loudon-pa',
       'mercersburg-pa', 'waynesboro-pa', 'fayetteville-pa',
     ];
+    // Maryland towns published 2026-10-09 (REA-2283). Empty legacyTiers.
+    // Frederick was already in the primary pin. Far-market towns stay omitted.
+    const MD_TOWNS_2026_10_09 = [
+      'monrovia-md', 'ijamsville-md', 'new-market-md', 'urbana-md',
+      'mount-airy-md', 'middletown-md', 'adamstown-md', 'point-of-rocks-md',
+      'brunswick-md', 'hagerstown-md', 'boonsboro-md', 'sharpsburg-md',
+      'williamsport-md',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
@@ -169,6 +177,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...FAIRFAX_PWC_2026_09_27,
       ...VA_BATCH_2026_09_29,
       ...PA_BATCH_2026_09_29,
+      ...MD_TOWNS_2026_10_09,
     ]);
   });
 
@@ -574,6 +583,9 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('warrenton-va')!)).toBe('Fauquier County area');
     expect(areaRegionLabel(getServiceArea('stephens-city-va')!)).toBe('Northern Shenandoah Valley');
     expect(areaRegionLabel(getServiceArea('middletown-va')!)).toBe('Northern Shenandoah Valley');
+    expect(areaRegionLabel(getServiceArea('frederick-md')!)).toBe('Frederick County area');
+    expect(areaRegionLabel(getServiceArea('hagerstown-md')!)).toBe('Washington County area');
+    expect(areaRegionLabel(getServiceArea('mount-airy-md')!)).toBe('Frederick and Carroll county area');
   });
 
   it('names Franklin County for the Pennsylvania towns and withholds the same-week promise', () => {

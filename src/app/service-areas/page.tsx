@@ -24,6 +24,7 @@ export const metadata: Metadata = {
       'Eastern Panhandle',
       'Martinsburg WV',
       'Charles Town WV',
+      'Hagerstown MD',
       'Frederick MD',
       'Winchester VA',
       'Leesburg VA',
@@ -83,7 +84,7 @@ const REGIONS = [
     label: 'Maryland',
     state: 'MD',
     blurb:
-      'Frederick County and the Cumberland Valley — bathrooms, kitchens, basements, and roofing for the I-70 corridor.',
+      'Frederick County, the I-70 corridor, and Washington County, including Hagerstown.',
     cities: areasIn('MD'),
   },
   {

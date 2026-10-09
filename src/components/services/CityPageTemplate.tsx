@@ -44,6 +44,7 @@ import { TownServiceLinksForTown } from '@/components/services/TownServiceCrossL
 import { LOUDOUN_PERMIT_GUIDE, isLoudounArea, loudounTownGuides } from '@/lib/loudoun-guides';
 import { isVerifiedWorkImage } from '@/lib/stock-images';
 import { paHicRegistrationLine } from '@/lib/claims';
+import { mdServingLine } from '@/lib/trust-bullets';
 
 /**
  * Map a city to the permit guide that genuinely covers its jurisdiction, so
@@ -96,13 +97,16 @@ export default function CityPageTemplate({ city, data }: Props) {
     city.kind === 'county'
       ? ALL_SERVICE_AREAS.filter((a) => a.kind === 'county' && a.slug !== city.slug)
       : [];
+  const nearbyAreas = (data.nearbySlugs ?? [])
+    .map((slug) => ALL_SERVICE_AREAS.find((area) => area.slug === slug))
+    .filter((area): area is ServiceArea => Boolean(area));
   const [heroHead, heroTail] = heroLines(city);
 
   // Shared trust copy uses credentials supplied in REA-55.
   const trustPoints = [
     'Family-run remodeling and exterior contracting.',
     city.state === 'MD'
-      ? 'Frederick is a service-area location; no Maryland contractor license is claimed.'
+      ? mdServingLine(city.city)
       : city.state === 'PA'
         ? paHicRegistrationLine()
         : 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
@@ -459,6 +463,24 @@ export default function CityPageTemplate({ city, data }: Props) {
                           {a.city}
                         </Link>
                         {i < siblingCounties.length - 1 ? ' · ' : ''}
+                      </span>
+                    ))}
+                  </p>
+                )}
+                {nearbyAreas.length > 0 && (
+                  <p className="mt-6 pt-4 border-t border-steel-200 text-sm text-charcoal-600">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-charcoal-500 mr-3">
+                      Nearby service areas
+                    </span>
+                    {nearbyAreas.map((a, i) => (
+                      <span key={a.slug}>
+                        <Link
+                          href={`/service-areas/${a.slug}`}
+                          className="link-editorial font-medium text-navy-900"
+                        >
+                          {formatAreaPlace(a)}
+                        </Link>
+                        {i < nearbyAreas.length - 1 ? ' · ' : ''}
                       </span>
                     ))}
                   </p>

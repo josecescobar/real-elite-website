@@ -501,7 +501,7 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   /* ---------- Pennsylvania, Franklin County, 2026-09-29 ----------
    * Jose confirmed the PA home-improvement registration is already held, so
    * these rows are active. The public line is PA HIC #PA225060, existing-house
-   * home improvement only. Maryland gap towns stay staged below.
+   * home improvement only. Maryland towns are active below, per Jose 2026-10-09.
    * Optional later markets (Shippensburg, Carlisle, Mechanicsburg, Gettysburg)
    * are not in this list. `market: 'home'` keeps the estimate hero. It does
    * not mean the same-week radius promise —
@@ -514,28 +514,26 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'waynesboro-pa', city: 'Waynesboro', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'fayetteville-pa', city: 'Fayetteville', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
 
-  /* ---------- STAGED Maryland — do not publish ----------
-   * TODO(MHIC): keep status 'staged' until Jose confirms a Maryland MHIC
-   * license. activeAreas excludes these rows, so they do not render, are not
-   * in the sitemap, and are not linked. Do not flip them to 'active' here.
-   * Frederick, MD is already active and is intentionally not in this list.
-   * Hagerstown stays omitted. Far-market places (Potomac, Bethesda,
-   * Clarksville, Glenwood, Fulton) stay omitted until Jose says the drive
-   * is in range.
-   * Empty legacyTiers so the pinned primary/secondary lists do not move.
+  /* ---------- Maryland towns — active 2026-10-09 (Jose, REA-2283) ----------
+   * Maryland is in the service area. These rows publish. Frederick, MD was
+   * already active and is not repeated here. Far-market places (Potomac,
+   * Bethesda, Clarksville, Glenwood, Fulton) stay omitted. Empty legacyTiers
+   * so the pinned primary/secondary lists do not move. `market: 'home'`
+   * keeps the estimate hero and does not grant the same-week radius promise.
    */
-  { slug: 'monrovia-md', city: 'Monrovia', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'ijamsville-md', city: 'Ijamsville', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'new-market-md', city: 'New Market', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'urbana-md', city: 'Urbana', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'mount-airy-md', city: 'Mount Airy', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'middletown-md', city: 'Middletown', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'adamstown-md', city: 'Adamstown', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'point-of-rocks-md', city: 'Point of Rocks', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'brunswick-md', city: 'Brunswick', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'boonsboro-md', city: 'Boonsboro', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'sharpsburg-md', city: 'Sharpsburg', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
-  { slug: 'williamsport-md', city: 'Williamsport', state: 'MD', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
+  { slug: 'monrovia-md', city: 'Monrovia', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'ijamsville-md', city: 'Ijamsville', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'new-market-md', city: 'New Market', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'urbana-md', city: 'Urbana', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'mount-airy-md', city: 'Mount Airy', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'middletown-md', city: 'Middletown', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'adamstown-md', city: 'Adamstown', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'point-of-rocks-md', city: 'Point of Rocks', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'brunswick-md', city: 'Brunswick', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'hagerstown-md', city: 'Hagerstown', state: 'MD', kind: 'city', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'boonsboro-md', city: 'Boonsboro', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'sharpsburg-md', city: 'Sharpsburg', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'williamsport-md', city: 'Williamsport', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -589,6 +587,8 @@ export type CityDataEntry = {
   marketEmphasis: string[];
   /** Town-specific questions. Omitted on older rows, which keep the shared FAQ. */
   faqs?: readonly { question: string; answer: string }[];
+  /** Other published area pages this town should link. */
+  nearbySlugs?: readonly string[];
 };
 
 export const CITY_DATA: Record<string, CityDataEntry> = {
@@ -654,6 +654,253 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       "Frederick is the county seat and largest city in Frederick County, Maryland — a rapidly growing community of over 75,000 residents that has transformed from a historic market town into one of the Mid-Atlantic's most desirable places to live. The revitalization of Carroll Creek and the Market Street corridor has breathed new life into Frederick's historic downtown, while the I-70 growth corridor continues to attract new developments in Urbana, Jefferson, and New Market. Real Elite Contracting serves Frederick homeowners who want professional-grade results on bathrooms, kitchens, basements, and roofing — the projects that drive the most value in this market.",
     neighborhoods: ['Historic Downtown Frederick', 'Ballenger Creek', 'Urbana', 'Jefferson', 'New Market', 'Buckeystown'],
     marketEmphasis: ['bathrooms', 'basements', 'kitchens', 'roofing', 'remodeling', 'additions'],
+  },
+  'monrovia-md': {
+    description:
+      'Monrovia is an unincorporated place in eastern Frederick County, on MD 75 between the I-70 interchange and New Market. It is not a town, and it does not have a municipal permit office. Building permits go through Frederick County Department of Permits and Inspections at 30 North Market Street in Frederick. The houses are a mix of newer subdivisions off MD 75 and older lots closer to the pike. The drive from Martinsburg is I-81 south to I-70 east, then MD 75. Downtown Frederick is a short hop west on I-70. The remodeling this page is for is kitchens, bathrooms, basements, and roofing.',
+    neighborhoods: ['MD 75 corridor', 'I-70 interchange', 'Green Valley Road', 'East of New Market'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'roofing'],
+    nearbySlugs: ['frederick-md', 'new-market-md', 'ijamsville-md', 'charles-town-wv'],
+    faqs: [
+      {
+        question: 'Who issues a building permit in Monrovia?',
+        answer:
+          'Frederick County Department of Permits and Inspections. Monrovia is not an incorporated town, so there is no municipal zoning step before the county application.',
+      },
+      {
+        question: 'How do you reach Monrovia from Martinsburg?',
+        answer:
+          'I-81 south to I-70 east, then MD 75. Frederick is the next stop west on I-70.',
+      },
+    ],
+  },
+  'ijamsville-md': {
+    description:
+      'Ijamsville is an unincorporated community in Frederick County along MD 80, between Frederick and the Urbana and New Market growth corridor. It is not a municipality. Building permits go through Frederick County Department of Permits and Inspections, not a town hall. Houses sit on older rural lots and on newer subdivisions off MD 80 and MD 75. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 75 or MD 80. Frederick is west. Urbana is south, toward I-270. The remodeling this page is for is bathrooms, kitchens, basements, and additions.',
+    neighborhoods: ['MD 80 corridor', 'MD 75 south of I-70', 'West of Urbana', 'East of Ballenger Creek'],
+    marketEmphasis: ['bathrooms', 'kitchens', 'basements', 'additions'],
+    nearbySlugs: ['frederick-md', 'urbana-md', 'monrovia-md', 'martinsburg-wv'],
+    faqs: [
+      {
+        question: 'Is Ijamsville inside the City of Frederick?',
+        answer:
+          'No. Ijamsville is unincorporated Frederick County. A Frederick mailing address does not put the parcel in the city permit office.',
+      },
+      {
+        question: 'Which road is the Ijamsville page about?',
+        answer:
+          'MD 80, between Frederick and the Urbana and New Market corridor, with MD 75 as the north-south connector to I-70.',
+      },
+    ],
+  },
+  'new-market-md': {
+    description:
+      'New Market is an incorporated town in eastern Frederick County, on the Old National Pike just south of I-70. Main Street is the historic pike, not a county subdivision road. Zoning for work inside town limits is a municipal step before the Frederick County building permit. The county says a zoning certificate for a property in a municipality is applied for before the building-permit application at the Department of Permits and Inspections. The City of Frederick and Mount Airy are the municipalities that issue their own building permits. New Market is not on that list. The drive from Martinsburg is I-81 south to I-70 east. Frederick is a short drive west on I-70. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older pike houses and the newer lots around town.',
+    neighborhoods: ['Old National Pike', 'Main Street', 'I-70 east of Frederick', 'Town limits'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
+    nearbySlugs: ['frederick-md', 'monrovia-md', 'mount-airy-md', 'martinsburg-wv'],
+    faqs: [
+      {
+        question: 'Does New Market issue its own building permit?',
+        answer:
+          'No. The City of Frederick and Mount Airy issue their own. Inside New Market town limits, town zoning comes before the Frederick County building permit.',
+      },
+      {
+        question: 'Where is New Market relative to Frederick?',
+        answer:
+          'East of Frederick on I-70 and the Old National Pike. Monrovia is the unincorporated area on MD 75 just west of town.',
+      },
+    ],
+  },
+  'urbana-md': {
+    description:
+      'Urbana is an unincorporated planned community in southern Frederick County, along I-270 and MD 355 south of the city. It is not a town. A Frederick mailing address does not make a parcel part of the City of Frederick, and it does not send the permit to the city office. Building permits go through Frederick County Department of Permits and Inspections. Villages of Urbana and the subdivisions along MD 355 commonly have an HOA architectural review in addition to the county permit. A county permit is not HOA approval. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south. Downtown Frederick is north on I-270. The remodeling this page is for is bathrooms, kitchens, basements, and decks in the villages along MD 355.',
+    neighborhoods: ['Villages of Urbana', 'MD 355', 'I-270 south of Frederick', 'Worthington Boulevard'],
+    marketEmphasis: ['bathrooms', 'kitchens', 'basements', 'decks'],
+    nearbySlugs: ['frederick-md', 'ijamsville-md', 'adamstown-md', 'charles-town-wv'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Urbana?',
+        answer:
+          'Frederick County, because Urbana is unincorporated. An HOA architectural review, where the village has one, is separate from that county permit.',
+      },
+      {
+        question: 'How far is Urbana from downtown Frederick?',
+        answer:
+          'South on I-270 and MD 355, a short drive. It is not the same jurisdiction as the City of Frederick.',
+      },
+    ],
+  },
+  'mount-airy-md': {
+    description:
+      'Mount Airy is an incorporated town on the Frederick and Carroll county line, at I-70 and MD 27. Town limits include parcels in both counties. The town’s permit page says that, except for signs, fences, driveways, banners, and zoning certificates, building-permit review for work inside town limits — including the Frederick County side — goes through the Carroll County Bureau of Permits and Inspections in Westminster, after a town zoning review. That is not the Frederick County counter at 30 North Market Street, and it is not the City of Frederick’s office. The drive from Martinsburg is I-81 south to I-70 east. Frederick is west on I-70. New Market is the last Frederick County town before the line. The remodeling this page is for is kitchens, bathrooms, additions, and roofing.',
+    neighborhoods: ['I-70 and MD 27', 'Main Street', 'Frederick County side of town', 'Carroll County side of town'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'roofing'],
+    nearbySlugs: ['frederick-md', 'new-market-md', 'martinsburg-wv'],
+    faqs: [
+      {
+        question: 'Does Frederick County issue Mount Airy building permits?',
+        answer:
+          'Not for work inside town limits. Mount Airy routes those permits, including parcels on the Frederick County side of the line, through the Carroll County Bureau of Permits and Inspections after town zoning review. Signs, fences, driveways, banners, and zoning certificates stay with the town.',
+      },
+      {
+        question: 'Which county is Mount Airy in?',
+        answer:
+          'Both. The town straddles the Frederick and Carroll line at I-70 and MD 27.',
+      },
+    ],
+  },
+  'middletown-md': {
+    description:
+      'Middletown, Maryland is an incorporated town in western Frederick County, on US 40 Alternate in the valley between Catoctin Mountain and South Mountain. This is not Middletown, Virginia. The municipal center is on West Main Street. Zoning inside town limits is a town step before the Frederick County building permit. The county’s municipality list names Middletown separately from the City of Frederick, which issues its own building permits. The drive from Martinsburg is I-81 south to I-70 east, then US 40 Alternate west from Frederick. Boonsboro is the next town west, over South Mountain on the same pike, in Washington County. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older Main Street houses and the lots along the valley.',
+    neighborhoods: ['West Main Street', 'US 40 Alternate', 'Valley between the mountains', 'East of South Mountain'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
+    nearbySlugs: ['frederick-md', 'boonsboro-md', 'shepherdstown-wv'],
+    faqs: [
+      {
+        question: 'Is this Middletown, Virginia?',
+        answer:
+          'No. This page is Middletown, Maryland, on US 40 Alternate in Frederick County. Middletown, Virginia is a different town and a different page.',
+      },
+      {
+        question: 'Who permits work inside Middletown, Maryland?',
+        answer:
+          'Town zoning first, then the Frederick County building permit. The City of Frederick’s permit office does not cover Middletown.',
+      },
+    ],
+  },
+  'adamstown-md': {
+    description:
+      'Adamstown is an unincorporated community in southern Frederick County, along MD 85 south of Ballenger Creek and Buckeystown. It is not a town. Building permits go through Frederick County Department of Permits and Inspections. The MARC Brunswick Line stops here, and the houses are older village lots plus newer subdivisions off MD 85. Point of Rocks and Brunswick are farther south along the Potomac. The drive from Martinsburg is I-81 south to I-70 east into Frederick, then MD 85 south. The remodeling this page is for is bathrooms, kitchens, basements, and roofing.',
+    neighborhoods: ['MD 85', 'MARC Brunswick Line stop', 'South of Buckeystown', 'Ballenger Creek to the Potomac'],
+    marketEmphasis: ['bathrooms', 'kitchens', 'basements', 'roofing'],
+    nearbySlugs: ['frederick-md', 'point-of-rocks-md', 'brunswick-md', 'charles-town-wv'],
+    faqs: [
+      {
+        question: 'Is Adamstown an incorporated town?',
+        answer:
+          'No. It is unincorporated Frederick County. Permits go to the county office in Frederick, not to a town hall.',
+      },
+      {
+        question: 'What is the drive from Frederick to Adamstown?',
+        answer:
+          'MD 85 south, past Ballenger Creek and Buckeystown. Point of Rocks and Brunswick are the next communities toward the river.',
+      },
+    ],
+  },
+  'point-of-rocks-md': {
+    description:
+      'Point of Rocks is an unincorporated community in southern Frederick County where US 15 meets the Potomac. The railroad bridge and the MARC station sit at the river. It is not a municipality. Building permits go through Frederick County Department of Permits and Inspections. The US 15 bridge crosses into Loudoun County, Virginia. The Maryland side of the village is still Frederick County. Brunswick is the next incorporated city east along the river. Charles Town, West Virginia is the nearby page across the Potomac via US 340. The drive from Martinsburg is Route 9 to Charles Town, then US 340 east, or I-81 south to I-70 east and down US 15. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older river-village houses.',
+    neighborhoods: ['US 15 at the Potomac', 'MARC station', 'Point of Rocks bridge', 'River village'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
+    nearbySlugs: ['frederick-md', 'brunswick-md', 'charles-town-wv'],
+    faqs: [
+      {
+        question: 'Does the Virginia side of the Point of Rocks bridge use this page?',
+        answer:
+          'No. The bridge crosses into Loudoun County, Virginia. This page is the Maryland village, and the permit office is Frederick County.',
+      },
+      {
+        question: 'Which West Virginia page is closest?',
+        answer:
+          'Charles Town, via US 340. Brunswick is the next Maryland city along the river.',
+      },
+    ],
+  },
+  'brunswick-md': {
+    description:
+      'Brunswick is an incorporated city in southern Frederick County, on the Potomac along US 340, with a MARC station on the Brunswick Line. It is not unincorporated county. The city’s planning office takes the municipal application. The county’s municipality sheet lists Brunswick separately from the City of Frederick, which issues its own building permits. Zoning inside the city is a municipal step before the Frederick County building permit. Charles Town, West Virginia is the next city west on US 340. Point of Rocks is east along the river. The drive from Martinsburg is Route 9 to Charles Town, then US 340 east. The remodeling this page is for is kitchens, bathrooms, roofing, and additions.',
+    neighborhoods: ['US 340', 'MARC Brunswick station', 'Potomac riverfront', 'Downtown Brunswick'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
+    nearbySlugs: ['frederick-md', 'point-of-rocks-md', 'charles-town-wv', 'shepherdstown-wv'],
+    faqs: [
+      {
+        question: 'Does the City of Frederick permit Brunswick?',
+        answer:
+          'No. Brunswick has its own planning office for the municipal application. The building permit after that zoning step is Frederick County, not the City of Frederick.',
+      },
+      {
+        question: 'How do you reach Brunswick from Martinsburg?',
+        answer:
+          'Route 9 to Charles Town, then US 340 east along the Potomac. That is a different drive from the I-70 route into Frederick.',
+      },
+    ],
+  },
+  'hagerstown-md': {
+    description:
+      'Hagerstown is the county seat of Washington County and the largest city in Maryland’s Cumberland Valley, at the crossing of I-81 and I-70. The city issues its own building permits. That is a different office from Washington County’s Division of Permits and Inspections, which covers the county outside the city, and a different sequence from Boonsboro, Funkstown, and Williamsport, where the town zones and the county reviews the building code. A Hagerstown mailing address is not always inside the city. Williamsport is south on US 11. Boonsboro is east on US 40 Alternate. Falling Waters and Martinsburg, West Virginia are south and southwest on I-81. The drive from Martinsburg is I-81 south, about half an hour. The remodeling this page is for is kitchens, bathrooms, basements, roofing, and additions.',
+    neighborhoods: ['Downtown Hagerstown', 'I-81 and I-70', 'US 11 south toward Williamsport', 'East end toward US 40 Alternate'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'roofing', 'additions'],
+    nearbySlugs: ['frederick-md', 'williamsport-md', 'boonsboro-md', 'falling-waters-wv', 'martinsburg-wv'],
+    faqs: [
+      {
+        question: 'Does Washington County permit work inside the City of Hagerstown?',
+        answer:
+          'No. The city issues its own building permits. The county office at 80 West Baltimore Street covers the county outside the city, including the sequence used in Boonsboro and Williamsport.',
+      },
+      {
+        question: 'How do you reach Hagerstown from Martinsburg?',
+        answer:
+          'I-81 south. Williamsport is the next town south on US 11. Frederick is east on I-70, a separate drive.',
+      },
+    ],
+  },
+  'boonsboro-md': {
+    description:
+      'Boonsboro is an incorporated town in Washington County, at the west foot of South Mountain on US 40 Alternate, the old National Pike. It is not in Frederick County. Washington County’s permit arrangement for Boonsboro, Funkstown, and Williamsport is town zoning first, then building-code review by the county Division of Permits and Inspections at 80 West Baltimore Street in Hagerstown, then issuance by the town. The City of Hagerstown runs its own permit office and is a different process. Middletown is the next town east, over the mountain, in Frederick County. Shepherdstown, West Virginia is south toward the Potomac. The drive from Martinsburg is I-81 south to I-70 east, then south toward US 40 Alternate. The remodeling this page is for is kitchens, bathrooms, roofing, and decks.',
+    neighborhoods: ['US 40 Alternate', 'Main Street', 'West foot of South Mountain', 'South toward MD 67'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'decks'],
+    nearbySlugs: ['frederick-md', 'middletown-md', 'hagerstown-md', 'shepherdstown-wv'],
+    faqs: [
+      {
+        question: 'Who issues a Boonsboro building permit?',
+        answer:
+          'The town, after town zoning and a building-code review by Washington County at 80 West Baltimore Street in Hagerstown. That is not the City of Hagerstown’s permit office, and it is not Frederick County.',
+      },
+      {
+        question: 'What is on the other side of South Mountain?',
+        answer:
+          'Middletown, Maryland, on the same US 40 Alternate pike, in Frederick County. This page does not cover that town.',
+      },
+    ],
+  },
+  'sharpsburg-md': {
+    description:
+      'Sharpsburg is an incorporated town in southern Washington County, on the high ground above the Potomac, beside Antietam National Battlefield. MD 34 is Main Street. MD 65 is the road north toward the battlefield and Hagerstown. Sharpsburg is not one of the three towns — Boonsboro, Funkstown, and Williamsport — whose permit sequence the county describes as town zoning, county code review, and town issuance. Confirm town zoning with Sharpsburg before assuming a county-only permit. The county permit office is in Hagerstown. Shepherdstown, West Virginia is a short drive west on MD 34 across the river. Boonsboro is north. The drive from Martinsburg is I-81 south toward MD 65, or Route 9 to Shepherdstown and east on MD 34. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older village houses.',
+    neighborhoods: ['MD 34 Main Street', 'MD 65', 'Antietam battlefield edge', 'Potomac side of town'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
+    nearbySlugs: ['frederick-md', 'boonsboro-md', 'shepherdstown-wv'],
+    faqs: [
+      {
+        question: 'Is Sharpsburg on the same permit path as Boonsboro?',
+        answer:
+          'No. The county’s published town-then-county sequence names Boonsboro, Funkstown, and Williamsport. Sharpsburg is a separate incorporated town. Confirm town zoning before treating it as a county-only permit.',
+      },
+      {
+        question: 'Which West Virginia town is next to Sharpsburg?',
+        answer:
+          'Shepherdstown, west on MD 34 across the Potomac. That is a shorter hop than the drive back to Martinsburg.',
+      },
+    ],
+  },
+  'williamsport-md': {
+    description:
+      'Williamsport is an incorporated town in Washington County, where the Conococheague Creek meets the Potomac and the C&O Canal, just south of Hagerstown on US 11 and I-81. Like Boonsboro and Funkstown, the county’s published sequence is town zoning approval, then building-code review at the county annex in Hagerstown, then issuance by the town. The City of Hagerstown issues its own permits and is not this process. Falling Waters, West Virginia is the next community south on I-81, across the state line. The drive from Martinsburg is I-81 south, past Falling Waters. The remodeling this page is for is kitchens, bathrooms, basements, and roofing.',
+    neighborhoods: ['US 11', 'I-81 south of Hagerstown', 'Conococheague Creek', 'C&O Canal'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'roofing'],
+    nearbySlugs: ['frederick-md', 'hagerstown-md', 'falling-waters-wv'],
+    faqs: [
+      {
+        question: 'Does the City of Hagerstown permit Williamsport?',
+        answer:
+          'No. Williamsport follows the town-zoning, county-code-review, town-issuance sequence. The city permit office covers the City of Hagerstown only.',
+      },
+      {
+        question: 'What is the first West Virginia town south of Williamsport?',
+        answer:
+          'Falling Waters, on I-81 across the state line. Martinsburg is farther south on the same interstate.',
+      },
+    ],
   },
 
   /* ---------- Northern Shenandoah Valley + Loudoun County VA ---------- */
@@ -1362,7 +1609,18 @@ export function areaRegionLabel(area: ServiceArea): string {
   // Virginia" — CityPageTemplate does exactly that gating.
   if (area.kind === 'region') return area.city;
   if (area.state === 'WV') return 'Eastern Panhandle';
-  if (area.state === 'MD') return 'Cumberland Valley and Frederick County area';
+  if (area.state === 'MD') {
+    if (
+      area.slug === 'hagerstown-md' ||
+      area.slug === 'boonsboro-md' ||
+      area.slug === 'sharpsburg-md' ||
+      area.slug === 'williamsport-md'
+    ) {
+      return 'Washington County area';
+    }
+    if (area.slug === 'mount-airy-md') return 'Frederick and Carroll county area';
+    return 'Frederick County area';
+  }
   // Every current Pennsylvania row is Franklin County. A later county needs
   // its own label before that row is added; this must not fall through to
   // "Northern Virginia".

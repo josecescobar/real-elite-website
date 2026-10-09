@@ -133,7 +133,7 @@ const FAQ_ITEMS = [
   {
     question: 'Which licenses does Real Elite hold?',
     answer:
-      `WV Contractor License WV062432 and Virginia Class A Contractor 2705198604 (HIC). ${FEDERAL_REGISTRATION.summary}. No Maryland contractor license is claimed.`,
+      `WV Contractor License WV062432 and Virginia Class A Contractor 2705198604 (HIC). ${FEDERAL_REGISTRATION.summary}.`,
   },
   {
     question: 'How does "Military Precision" actually show up in our project?',
