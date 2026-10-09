@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
-import { PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS } from '@/lib/constants';
+import { ALL_SERVICE_AREAS, PRIMARY_SERVICE_AREAS, SECONDARY_SERVICE_AREAS } from '@/lib/constants';
 import { serviceHrefForArea } from '@/lib/service-city-content';
 
 type Props = {
@@ -30,7 +30,18 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
   const catalogOthers = areaScope
     ? areaScope.cities.slice(4)
     : [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
-  const others = catalogOthers;
+  // Towns added with empty legacyTiers never land in the primary or secondary
+  // lists. A published combo for this service still needs a hub link.
+  const publishedExtras = areaScope
+    ? []
+    : ALL_SERVICE_AREAS.filter(
+        (area) =>
+          !priorityCities.some((priority) => priority.slug === area.slug) &&
+          !catalogOthers.some((listed) => listed.slug === area.slug) &&
+          serviceHrefForArea(serviceSlug, area.slug) ===
+            `/services/${serviceSlug}/${area.slug}`,
+      );
+  const others = [...catalogOthers, ...publishedExtras];
   // Priority rows stay first. Any other town with a published combo for this
   // service is also a visible link — the overflow used to point at the town
   // page only, so /services/decks never linked /services/decks/martinsburg-wv.

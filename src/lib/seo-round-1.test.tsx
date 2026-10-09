@@ -76,6 +76,20 @@ describe('SEO round 1 ranking pages', () => {
     expect(container.textContent).not.toMatch(/no Maryland contractor license/i);
   });
 
+  it('links Purcellville and Lansdowne kitchens from the kitchen hub', () => {
+    const kitchens = render(
+      <LocalAreasServed serviceSlug="kitchens" serviceTitle="Kitchen Remodeling" />
+    );
+    for (const href of [
+      '/services/kitchens/purcellville-va',
+      '/services/kitchens/lansdowne-va',
+    ]) {
+      const link = kitchens.container.querySelector(`a[href="${href}"]`);
+      expect(link, href).toBeTruthy();
+      expect(link?.closest('details'), href).toBeNull();
+    }
+  });
+
   it('links Ashburn kitchens and bathrooms from those hubs', () => {
     const kitchens = render(
       <LocalAreasServed serviceSlug="kitchens" serviceTitle="Kitchen Remodeling" />
