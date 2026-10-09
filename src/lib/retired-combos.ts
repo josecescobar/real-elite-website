@@ -69,10 +69,10 @@ export const RETIRED_COMBOS: Readonly<Record<string, string>> = {
   'bathrooms-fairfax-station-va': '/service-areas/fairfax-station-va',
   'kitchens-fairfax-station-va': '/service-areas/fairfax-station-va',
 
-  // Middleburg, VA — zero impressions across all three trades.
+  // Middleburg, VA — bathrooms and basements stay retired. Kitchens is
+  // published again (REA-2329) and is no longer in this map.
   'basements-middleburg-va': '/services/basements/northern-virginia',
   'bathrooms-middleburg-va': '/service-areas/middleburg-va',
-  'kitchens-middleburg-va': '/service-areas/middleburg-va',
 
   // Burke, VA — basements only. Its kitchen and bathroom pages survive.
   'basements-burke-va': '/services/basements/northern-virginia',

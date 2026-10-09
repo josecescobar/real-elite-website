@@ -165,3 +165,12 @@ Real Elite handles the entire permit and HOA submission process as part of every
 For our homeowners that means: you sign a contract, we tell you the realistic timeline, and we run both the county and HOA tracks in parallel so the math works in your favor — not the contractor's.
 
 If you're considering a Loudoun County remodel — bathroom, kitchen, basement, deck, addition, or whole home — we offer free written estimates with the permit/HOA timeline already built in. No surprises mid-project.
+
+## Four Loudoun town pages
+
+The county path above is the shared layer. These pages are the town layer, and each one links back to this guide:
+
+- [Kitchen remodel Purcellville VA](/services/kitchens/purcellville-va) — town zoning before the county permit; Wright Farm and Mayfair are county JLMA.
+- [Kitchen remodel Middleburg VA](/services/kitchens/middleburg-va) — Zoning Location Permit inside Town; Historic District exteriors need a Certificate of Appropriateness.
+- [Basement remodel Lansdowne VA](/services/basements/lansdowne-va) — unincorporated county through LandMARC, even with a Leesburg mailing address.
+- [Bathroom remodel Brambleton VA](/services/bathrooms/brambleton-va) — LandMARC for the building permit; design review when the bath changes the exterior.

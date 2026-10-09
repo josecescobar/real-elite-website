@@ -137,6 +137,27 @@ describe('Loudoun luxury outdoor living', () => {
   });
 });
 
+describe('round 3 Lane A luxury towns', () => {
+  const PAGES = [
+    ['kitchens-purcellville-va', 'Kitchen Remodel Purcellville VA', 'kitchen remodel purcellville va'],
+    ['kitchens-middleburg-va', 'Kitchen Remodel Middleburg VA', 'kitchen remodel middleburg va'],
+    ['basements-lansdowne-va', 'Basement Remodel Lansdowne VA', 'basement remodel lansdowne va'],
+    ['bathrooms-brambleton-va', 'Bathroom Remodel Brambleton VA', 'bathroom remodel brambleton va'],
+  ] as const;
+
+  it.each(PAGES)('%s uses the exact keyword in title, H1, and meta', (key, heading, keyword) => {
+    const entry = CONTENT[key];
+    expect(entry).toBeDefined();
+    expect(entry!.h1).toBe(heading);
+    expect(entry!.metaTitle).toBe(`${heading} | Real Elite`);
+    expect(entry!.metaDescription!.toLowerCase()).toContain(keyword);
+    expect(entry!.includeLocalBusiness).toBe(true);
+    expect(entry!.townTaggedPhotosOnly).toBe(true);
+    expect(entry!.faqs?.length).toBeGreaterThanOrEqual(3);
+    expect(entry!.relatedGuideSlugs).toContain('loudoun-county-permits-hoa-guide-2026');
+  });
+});
+
 describe('Eastern Panhandle home-turf coverage', () => {
   /**
    * These carry the site's best commercial positions — basement queries in
@@ -619,8 +640,12 @@ describe('comboPublishesPricing', () => {
         'decks-brambleton-va',
         'decks-leesburg-va',
         'decks-middleburg-va',
+        'basements-lansdowne-va',
+        'bathrooms-brambleton-va',
         'kitchens-leesburg-va',
         'kitchens-loudoun-county-va',
+        'kitchens-middleburg-va',
+        'kitchens-purcellville-va',
         'remodeling-ashburn-va',
         'remodeling-leesburg-va',
         'remodeling-loudoun-county-va',
@@ -692,10 +717,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 27/18 after Loudoun additions, Loudoun basements, and Middleburg decks
-    // landed as clean pages (permit facts, no unconfirmed operational claims).
-    // Carrying stayed at 27 — new copy must not raise that number.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 45 });
+    // 0/49 after the four round-3 luxury-town pages landed clean
+    // (permit facts, no unconfirmed operational claims).
+    // Carrying stays at 0 — new copy must not raise that number.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 49 });
   });
 
   /**
@@ -742,7 +767,7 @@ describe('Tier C retired combos', () => {
   ];
   const isHagerstown = (key: string) => key.endsWith('-hagerstown-md');
 
-  it('retires exactly the ten Tier C combos plus the five Hagerstown ones', () => {
+  it('retires the remaining Tier C combos plus the five Hagerstown ones', () => {
     expect(Object.keys(RETIRED_COMBOS).sort()).toEqual(
       [
         ...HAGERSTOWN_COMBOS,
@@ -755,9 +780,13 @@ describe('Tier C retired combos', () => {
         'bathrooms-middleburg-va',
         'kitchens-clifton-va',
         'kitchens-fairfax-station-va',
-        'kitchens-middleburg-va',
       ].sort()
     );
+  });
+
+  it('publishes the Middleburg kitchen page that round 3 restored', () => {
+    expect(RETIRED_COMBOS).not.toHaveProperty('kitchens-middleburg-va');
+    expect(Object.keys(CONTENT)).toContain('kitchens-middleburg-va');
   });
 
   /**

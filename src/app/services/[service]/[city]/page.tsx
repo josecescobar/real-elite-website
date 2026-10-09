@@ -37,7 +37,12 @@ import PhoneLink from '@/components/analytics/PhoneLink';
 import { selectTrustBullets } from '@/lib/trust-bullets';
 import ProofGallery from '@/components/services/ProofGallery';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
-import { proofPhotosForService, proofReviewsFor, reviewsMatchCity } from '@/lib/proof-package';
+import {
+  proofPhotosForService,
+  proofPhotosForTown,
+  proofReviewsFor,
+  reviewsMatchCity,
+} from '@/lib/proof-package';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -200,7 +205,9 @@ export default async function ServiceCityPage({
   // it was vacuous AND blind to the route's filter being weakened from `every`
   // to `some`. Same mistake serviceHrefForArea was extracted to fix.
   const trustPoints = selectTrustBullets(cityData, service, serviceData.title);
-  const proofPhotos = proofPhotosForService(service, service === 'decks' ? 8 : 6);
+  const proofPhotos = content.townTaggedPhotosOnly
+    ? proofPhotosForTown(city)
+    : proofPhotosForService(service, service === 'decks' ? 8 : 6);
   const proofReviews = proofReviewsFor({ serviceSlug: service, citySlug: city });
 
   // AssurancesBand and PrecisionProcess publish four unconfirmed claims

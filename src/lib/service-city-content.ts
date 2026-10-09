@@ -90,11 +90,16 @@ export const COMBO_CITY_SLUGS = [
   'reston-va',
   'burke-va',
 
-  // Middleburg is back for decks and additions only. Tier C still retires
-  // kitchens, bathrooms, and basements there (see RETIRED_COMBOS). Those
-  // three 301s stay; they are a different trade than the two pages that
-  // publish here.
+  // Middleburg publishes decks, additions, and kitchens. Tier C still
+  // retires bathrooms and basements there (see RETIRED_COMBOS). The kitchen
+  // page is the round-3 restoration; the other two 301s stay.
   'middleburg-va',
+
+  // Purcellville and Lansdowne are combo cities only for the round-3 pages
+  // in the block at the bottom of CONTENT. Other trades stay on the
+  // service-area page until they have their own copy.
+  'purcellville-va',
+  'lansdowne-va',
 
   // Fairfax Station and Clifton stay gone. Tier C retired every combo they
   // had, so keeping their slugs here would leave entries this map can never
@@ -141,6 +146,11 @@ type ComboContent = {
    * Off by default so other combo pages do not each invent a second business.
    */
   includeLocalBusiness?: boolean;
+  /**
+   * Show only gallery photos tagged to this town. When none exist, the page
+   * renders no photo rather than a job from another place.
+   */
+  townTaggedPhotosOnly?: boolean;
   notes?: readonly {
     heading: string;
     body: string;
@@ -1048,6 +1058,156 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, lists additions on the work that needs a building permit, along with plumbing, electrical, and HVAC when those systems are in the job. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
       "Outside the city, Jefferson County's Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, lists building additions among the work that needs a permit, and it requires compliance with the International Residential Code version adopted by the State of West Virginia. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. Filings go through MGO Connect. We check the parcel before we file. This page does not publish a Charles Town addition price.",
       "The written estimate itemizes the foundation, the framing, and the trades. WV Contractor License WV062432.",
+    ],
+  },
+
+  // ── ROUND 3 · LANE A LUXURY TOWNS ────────────────────────────────────────
+  // Keep this block intact. Draft PR #204 (seo/round-2) also edits this file
+  // higher up; it should merge first. These four keys are new on main.
+
+  'kitchens-purcellville-va': {
+    metaTitle: 'Kitchen Remodel Purcellville VA | Real Elite',
+    h1: 'Kitchen Remodel Purcellville VA',
+    metaDescription:
+      'Kitchen remodel Purcellville VA. Town zoning before the county permit. Wright Farm and Mayfair are county JLMA, not Town limits.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'loudoun-county-permits-hoa-guide-2026',
+      'kitchen-remodel-cost-loudoun-county-2026',
+    ],
+    faqs: [
+      {
+        question: 'Does a Purcellville mailing address mean the kitchen is inside town limits?',
+        answer:
+          'No. Wright Farm and Mayfair sit in the county Joint Land Management Area beside the town. Those parcels are county zoning. Inside town limits, town zoning is approved before Loudoun County issues the building permit.',
+      },
+      {
+        question: 'Who permits a kitchen remodel in Purcellville?',
+        answer:
+          'Inside town limits, the Town of Purcellville zoning permit comes first, then the Loudoun County building permit. A load-bearing opening needs stamped drawings. Plumbing or electrical relocation needs the matching trade permit. The current town fee goes in the written estimate.',
+      },
+      {
+        question: 'What does a kitchen remodel in Purcellville, VA cost?',
+        answer:
+          'This page does not publish a Purcellville kitchen price. Cabinets, counters, and any wall or trade move are separate lines on the written estimate. The Loudoun kitchen cost guide linked below is a county guide, not a quote for this house.',
+      },
+    ],
+    paragraphs: [
+      'A kitchen remodel in Purcellville, VA starts with the house on Main Street or in a later subdivision, not with an Ashburn plan renamed. Purcellville is an incorporated town on Route 7 in western Loudoun. The older stock is a late-19th and early-20th century village along Main Street, which is Business Route 7. Later subdivisions sit beside that core. We confirm the cabinet run, the plumbing stack, and whether a wall is structure before anyone draws an island.',
+      'A Purcellville mailing address is not town limits. Wright Farm and Mayfair sit in the county Joint Land Management Area, so those kitchens are county zoning through LandMARC. Inside town limits, the Town requires a zoning permit before Loudoun County will issue the building permit. The county still reviews the building code. We check the parcel, then file town zoning and the county set in that order. The current town fee is a line in the estimate, not a number guessed on this page.',
+      'Opening a load-bearing wall needs stamped structural drawings. Moving a sink or a range circuit is a trade permit. Lots outside the town sewer are often on well and septic. A kitchen that stays inside the existing house does not add a bedroom, so it does not by itself need the Health Department bedroom clearance that a bedroom addition on those lots does. This is not a Brambleton-style design-review packet. Exterior window changes are the piece that leaves a purely interior scope.',
+      'There is no Purcellville kitchen price on this page. The written estimate itemizes cabinets, counters, and any wall or trade move. No Real Elite project photo in the gallery is tagged to Purcellville, so this page shows none instead of a job from another town.',
+    ],
+  },
+
+  'kitchens-middleburg-va': {
+    metaTitle: 'Kitchen Remodel Middleburg VA | Real Elite',
+    h1: 'Kitchen Remodel Middleburg VA',
+    metaDescription:
+      'Kitchen remodel Middleburg VA. Zoning Location Permit before the county building permit. Historic District exteriors need a Certificate of Appropriateness.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'loudoun-county-permits-hoa-guide-2026',
+      'luxury-kitchen-renovation-loudoun-northern-virginia-2026',
+    ],
+    faqs: [
+      {
+        question: 'Does a Middleburg mailing address decide the kitchen permit path?',
+        answer:
+          'No. Parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun, and those use county building and zoning. Inside Town, a Zoning Location Permit comes before the Loudoun County building permit.',
+      },
+      {
+        question: 'Does the Middleburg Historic District review an interior kitchen?',
+        answer:
+          'A purely interior kitchen does not change the exterior. Exterior work in the Historic District needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not that certificate.',
+      },
+      {
+        question: 'What does a kitchen remodel in Middleburg, VA cost?',
+        answer:
+          'This page does not publish a Middleburg kitchen price. The written estimate is line-itemed for the house. Many edge lots are on well and septic, and that changes a bedroom addition, not a kitchen that stays inside the existing footprint.',
+      },
+    ],
+    paragraphs: [
+      'A kitchen remodel in Middleburg, VA is a Route 50 town job with two different houses behind the same ZIP. Inside the Historic District the kitchen often sits in an older house on a tight lot along Main Street. Along Atoka, Foxcroft, and Goose Creek the mailing address is still Middleburg and the parcel is often unincorporated county, on a larger lot, frequently on well and septic. We check the parcel before we describe the permit path.',
+      'Inside Town limits, work that needs a Loudoun County building permit starts with a Town Zoning Location Permit. The county issues building permits county-wide and still expects that town step first. Outside Town, county building and zoning apply. A kitchen that opens a load-bearing wall needs stamped drawings on the county set. A fixture swap that does not move piping is a different scope from a sink relocation, and the written estimate says which one the house is.',
+      'Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. An interior cabinet and counter job does not become that review unless a window or other exterior element changes. A county permit is not the certificate. Conservation easements show up on some western Loudoun lots; we read the parcel before the footprint of any opening is locked.',
+      'No Middleburg kitchen price is published here. Cabinets, counters, and any wall or trade move are separate lines. The gallery has no Real Elite photo tagged to Middleburg, so this page does not reuse a photo from another town and call it a Middleburg kitchen.',
+    ],
+  },
+
+  'basements-lansdowne-va': {
+    metaTitle: 'Basement Remodel Lansdowne VA | Real Elite',
+    h1: 'Basement Remodel Lansdowne VA',
+    metaDescription:
+      'Basement remodel Lansdowne VA. LandMARC, not Town of Leesburg. Typical finish fee is 1% excluding trades, $65 minimum.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'loudoun-county-permits-hoa-guide-2026',
+      'basement-remodeling-cost-ashburn-leesburg-2026',
+      'hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026',
+    ],
+    faqs: [
+      {
+        question: 'Is a Lansdowne basement inside the Town of Leesburg?',
+        answer:
+          'No. Lansdowne is unincorporated Loudoun County on the Potomac, east of Leesburg along Route 7. Many houses use a Leesburg mailing address. That address does not make the parcel Town of Leesburg zoning. Building and zoning run through LandMARC.',
+      },
+      {
+        question: 'What does Loudoun publish for a finished basement permit?',
+        answer:
+          'Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee.',
+      },
+      {
+        question: 'Does Lansdowne architectural review cover a basement finish?',
+        answer:
+          'A finish that stays inside the existing walls usually does not. Cutting an egress window or a walkout is exterior work, and Lansdowne reviews architectural details, materials, and colors against its design standards. A county permit is not that approval. The community sometimes asks for Architectural Subcommittee pre-review before the full submission.',
+      },
+    ],
+    paragraphs: [
+      'A basement remodel in Lansdowne, VA is a lower level in a 1990s or 2000s house on public water and sewer, not a village cellar and not a Leesburg townhouse. Lansdowne on the Potomac is unincorporated Loudoun County, east of Leesburg along Route 7. A Leesburg mailing address is common and it does not put the parcel inside Town of Leesburg. County building and zoning run through LandMARC. The houses were built with unfinished basements and builder-grade kitchens upstairs. The lower level is the room the floor plan left.',
+      'Every finished basement needs a Loudoun County building and zoning application, plus trade permits when electrical, plumbing, mechanical, or gas is in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. A bedroom needs an emergency egress window, and that opening is exterior work. This community is on public water and sewer. It is not a well-and-septic market, and it does not take the Health Department bedroom clearance that western Loudoun acreage lots do.',
+      'Lansdowne architectural review is strict on exterior aesthetics. Materials and colors are checked against the community design standards, and some packets go through Architectural Subcommittee pre-review before the full submission. An interior finish with no new window or door stays on the county path. An egress cut or a walkout is filed with the association in parallel. A county permit is not association approval. Moisture is checked before framing: the perimeter, the sump if one is there, and the slab. We do not publish a Lansdowne basement price.',
+      'The gallery has no Real Elite photo tagged to Lansdowne. This page shows none. A Frederick or Bethesda photo is a different job, and it does not stand in for a Lansdowne lower level.',
+    ],
+  },
+
+  'bathrooms-brambleton-va': {
+    metaTitle: 'Bathroom Remodel Brambleton VA | Real Elite',
+    h1: 'Bathroom Remodel Brambleton VA',
+    metaDescription:
+      'Bathroom remodel Brambleton VA. Unincorporated Loudoun through LandMARC. Design review covers exterior changes, not a typical interior bath.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'loudoun-county-permits-hoa-guide-2026',
+      'primary-bathroom-remodel-cost-loudoun-county-2026',
+      'hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026',
+    ],
+    faqs: [
+      {
+        question: 'Is Brambleton its own town for a bathroom permit?',
+        answer:
+          'No. Brambleton is a planned community in unincorporated Loudoun County, in the Ashburn orbit. Building and zoning run through LandMARC. The Ashburn bathroom page covers the wider Ashburn communities. This page is the Brambleton design-review path.',
+      },
+      {
+        question: 'Does Brambleton design review apply to an interior bathroom?',
+        answer:
+          'Official design review covers essentially all exterior changes, including color, material, and removals. A bath that stays inside the existing walls, with no new window or skylight, usually stays on the county permit. A new window, skylight, or other exterior opening is filed with the Covenants Committee as well. That committee typically meets the second Monday. Applications are due at 9:00 AM on the Friday ten days prior. Decision letters usually follow 5 to 7 business days after the meeting.',
+      },
+      {
+        question: 'What does a bathroom remodel in Brambleton, VA cost?',
+        answer:
+          'This page does not publish a Brambleton bathroom price. Waterproofing, the shower pan, tile, and any plumbing move are separate lines on the written estimate. The Loudoun bathroom cost guide linked below is not a quote for this house.',
+      },
+    ],
+    paragraphs: [
+      'A bathroom remodel in Brambleton, VA is a wet-area job in a dense planned community, not a village bath and not the whole of Ashburn. Brambleton was built close together: townhomes and single-family houses on short lots, with brick and siding that the design standards treat as a neighborhood, not a one-off. The builder bath is usually a tub-shower and a single vanity, or a primary bath whose tile is the original assembly. We open the wall and confirm the substrate before the finish schedule is locked.',
+      'Brambleton is unincorporated Loudoun County. Building and zoning run through LandMARC, not a town hall. Plumbing or electrical relocation needs the matching trade permits. County inspections run in published order: rough plumbing, rough electrical, then final. Waterproofing and slope-to-drain are in the written scope. A vanity move is a plumbing relocation, not a cabinet swap.',
+      'The association layer is the part that is specific to this community. Official design review covers essentially all exterior changes, permanent or temporary, including color, material, and removals. The Covenants Committee typically meets the second Monday. Applications are due at 9:00 AM on the Friday ten days prior, and decision letters usually follow 5 to 7 business days after the meeting. An interior bath with no window or skylight change usually does not enter that queue. A new window does. A county permit is not design-review approval when both apply.',
+      'No Brambleton bathroom price is published here. The written estimate is the number for the house. The gallery has no Real Elite photo tagged to Brambleton, so this page shows none rather than a Frederick or Bethesda bath presented as Brambleton work.',
     ],
   },
 };
