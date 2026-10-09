@@ -9,8 +9,11 @@ type Props = {
   areaScope?: { label: string; cities: { city: string; state: string; slug: string }[] };
 };
 
+const HAGERSTOWN = { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md' };
+
 const PRIORITY_CITIES = [
   { city: 'Frederick', state: 'MD', slug: 'frederick-md' },
+  HAGERSTOWN,
   { city: 'Winchester', state: 'VA', slug: 'winchester-va' },
   { city: 'Leesburg', state: 'VA', slug: 'leesburg-va' },
   { city: 'Ashburn', state: 'VA', slug: 'ashburn-va' },
@@ -24,9 +27,10 @@ const PRIORITY_CITIES = [
 export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope }: Props) {
   const regionLabel = areaScope ? areaScope.label : 'the WV–MD–VA region';
   const priorityCities = areaScope ? areaScope.cities.slice(0, 4) : PRIORITY_CITIES;
-  const others = areaScope
+  const catalogOthers = areaScope
     ? areaScope.cities.slice(4)
     : [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
+  const others = catalogOthers;
   // Priority rows stay first. Any other town with a published combo for this
   // service is also a visible link — the overflow used to point at the town
   // page only, so /services/decks never linked /services/decks/martinsburg-wv.
@@ -43,7 +47,7 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
         {serviceTitle} across {regionLabel}
       </h2>
       <p className="text-charcoal-600 text-sm mb-6">
-        Maryland, Virginia, and West Virginia towns we serve. A town with its own page for this service links there.
+        Maryland (Frederick and Hagerstown), Virginia, and West Virginia towns we serve. A town with its own page for this service links there.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

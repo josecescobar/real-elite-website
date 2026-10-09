@@ -520,6 +520,7 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
    * Bethesda, Clarksville, Glenwood, Fulton) stay omitted. Empty legacyTiers
    * so the pinned primary/secondary lists do not move. `market: 'home'`
    * keeps the estimate hero and does not grant the same-week radius promise.
+   * Do not print a Maryland license caveat.
    */
   { slug: 'monrovia-md', city: 'Monrovia', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'ijamsville-md', city: 'Ijamsville', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },

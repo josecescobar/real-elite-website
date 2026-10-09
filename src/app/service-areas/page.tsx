@@ -26,6 +26,7 @@ export const metadata: Metadata = {
       'Charles Town WV',
       'Hagerstown MD',
       'Frederick MD',
+      'Hagerstown MD',
       'Winchester VA',
       'Leesburg VA',
       'Ashburn VA',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Premium remodeling across the Eastern Panhandle, Frederick, Winchester, Loudoun County, Fairfax County, and Prince William County.',
+    'Premium remodeling across the Eastern Panhandle, Frederick, Hagerstown, Winchester, Loudoun County, Fairfax County, and Prince William County.',
 };
 
 /**
@@ -84,7 +85,7 @@ const REGIONS = [
     label: 'Maryland',
     state: 'MD',
     blurb:
-      'Frederick County, the I-70 corridor, and Washington County, including Hagerstown.',
+      'Frederick and Hagerstown are in the service area, with Frederick County, Washington County, and the I-70 corridor.',
     cities: areasIn('MD'),
   },
   {
@@ -113,7 +114,7 @@ export default function ServiceAreasPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Headquartered in Martinsburg. Trusted across the Eastern Panhandle, the
-              Cumberland Valley, the Shenandoah Valley, Frederick County, Loudoun County, Fairfax County, and Prince William County.
+              Cumberland Valley, the Shenandoah Valley, Frederick, Hagerstown, Loudoun County, Fairfax County, and Prince William County.
             </p>
           </div>
         </Container>
@@ -135,7 +136,7 @@ export default function ServiceAreasPage() {
                 return (
                   <Link
                     key={c.slug}
-                    href={`/service-areas/${c.slug}`}
+                    href={'href' in c && c.href ? c.href : `/service-areas/${c.slug}`}
                     className="group bg-white border border-charcoal-100 rounded-lg p-6 hover:border-brand-red hover:shadow-md transition-all"
                   >
                     <div className="flex items-start justify-between gap-3 mb-3">

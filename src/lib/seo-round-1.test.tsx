@@ -71,6 +71,9 @@ describe('SEO round 1 ranking pages', () => {
     const visible = container.querySelector('a[href="/services/decks/martinsburg-wv"]');
     expect(visible).toBeTruthy();
     expect(visible?.closest('details')).toBeNull();
+    expect(container.textContent).toContain('Frederick, MD');
+    expect(container.textContent).toContain('Hagerstown, MD');
+    expect(container.textContent).not.toMatch(/no Maryland contractor license/i);
   });
 
   it('links Ashburn kitchens and bathrooms from those hubs', () => {

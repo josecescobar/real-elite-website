@@ -13,7 +13,7 @@ import {
  * The plan eliminated the gray "Expansion" tier — VA + MD markets are
  * now first-class, indexed alongside the Eastern Panhandle WV cities.
  */
-type Area = { city: string; state: string; slug: string };
+type Area = { city: string; state: string; slug: string; href?: string };
 
 const REGIONS: { state: string; full: string; areas: Area[] }[] = [
   {
@@ -31,7 +31,10 @@ const REGIONS: { state: string; full: string; areas: Area[] }[] = [
   {
     state: 'MD',
     full: 'Maryland',
-    areas: EXPANSION_SERVICE_AREAS.filter((a) => a.state === 'MD'),
+    areas: [
+      ...EXPANSION_SERVICE_AREAS.filter((a) => a.state === 'MD'),
+      { city: 'Hagerstown', state: 'MD', slug: 'hagerstown-md', href: '/service-areas/hagerstown-md' },
+    ],
   },
 ];
 
@@ -63,7 +66,7 @@ export default function ServiceAreaMap() {
                 {region.areas.map((area) => (
                   <li key={area.slug}>
                     <Link
-                      href={`/service-areas/${area.slug}`}
+                      href={area.href ?? `/service-areas/${area.slug}`}
                       className="inline-flex min-h-11 items-center justify-between w-full text-sm font-medium text-charcoal-700 hover:text-brand-red transition-colors py-2 group"
                     >
                       <span>
