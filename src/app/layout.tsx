@@ -16,7 +16,8 @@ import {
   VERIFIED_PROFILE_URLS,
 } from '@/lib/constants';
 import { env } from '@/lib/env';
-import { aggregateRatingSchema } from '@/lib/social-proof';
+import { aggregateRatingSchema, reviewJsonLdNodes } from '@/lib/social-proof';
+import { REVIEWS } from '@/lib/reviews';
 
 // GA4 / Clarity load only in the Vercel production environment so local
 // dev and preview deploys don't pollute real analytics (gating in env.ts).
@@ -125,6 +126,7 @@ export default function RootLayout({
   // Only present once reviews are verified in SOCIAL_PROOF — no self-serving
   // review markup ships until it mirrors the real Google Business Profile.
   const aggregateRating = aggregateRatingSchema();
+  const reviewNodes = reviewJsonLdNodes(REVIEWS);
 
   return (
     <html lang="en" className={`${newsreader.variable} ${inter.variable}`}>
@@ -183,6 +185,7 @@ export default function RootLayout({
             // until a human verifies it — see VERIFIED_PROFILE_URLS.
             sameAs: [...VERIFIED_PROFILE_URLS],
             ...(aggregateRating ? { aggregateRating } : {}),
+            ...(reviewNodes.length ? { review: reviewNodes } : {}),
           }}
         />
       </head>

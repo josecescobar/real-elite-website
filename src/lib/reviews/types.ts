@@ -14,11 +14,14 @@
  *
  * INTEGRITY RULE (non-negotiable, inherited from the existing codebase):
  * Review or AggregateRating JSON-LD is emitted ONLY for reviews whose
- * `source` is a third-party platform ('google') AND whose numbers mirror the
- * live profile — the same gate `aggregateRatingSchema()` enforces today.
+ * `source` is 'google' AND whose numbers mirror the live Google profile —
+ * the same gate `aggregateRatingSchema()` enforces today. JSON-LD stays
+ * Google-only. `source: 'thumbtack'` is third-party and may render on-page
+ * with a "via Thumbtack" label, but it is never eligible for Review or
+ * AggregateRating JSON-LD, even if `verified` is flipped.
  * First-party and project reviews render as visible content, never as
  * self-serving structured data. Google's policy prohibits self-serving
- * review markup; this contract encodes that at the type level via `verified`.
+ * review markup; the Google-only gate lives in social-proof.ts.
  *
  * Public lens: `author` is first name + last initial at most; no contact
  * info, no address. Location is "City, ST" display text plus optional
@@ -30,7 +33,7 @@
  */
 
 /** Where a review originated. Determines display treatment and JSON-LD eligibility. */
-export type ReviewSource = 'google' | 'first-party' | 'project';
+export type ReviewSource = 'google' | 'thumbtack' | 'first-party' | 'project';
 
 export type Review = {
   /** Stable id (e.g. slug-style); never reused. */
@@ -51,9 +54,11 @@ export type Review = {
   // ── Provenance & relationships (what makes a review checkable) ──────────
   source: ReviewSource;
   /**
-   * True ONLY for third-party platform reviews verified against the live
-   * profile. Gates any Review/AggregateRating JSON-LD emission — first-party
-   * and project reviews must keep this false.
+   * True only after the text and rating were checked against the live Google
+   * Business Profile. Gates Review/AggregateRating JSON-LD together with
+   * `source: 'google'`. First-party, project, and Thumbtack reviews must keep
+   * this false. Thumbtack stays ineligible for JSON-LD even if this flag is
+   * flipped.
    */
   verified: boolean;
   /** Link to the project this review is about — the Review Center's core differentiator. */

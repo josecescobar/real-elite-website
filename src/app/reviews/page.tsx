@@ -80,8 +80,9 @@ export default async function ReviewsPage({
               The receipts.
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
-              Visit our Google profile to read customer feedback. On-site testimonials
-              will appear here once their source and publication permission are confirmed.
+              {reviews.length
+                ? 'Each on-site review is labeled by source. Thumbtack quotes are copied from the live profile and are not used in review markup.'
+                : 'Visit our Google profile to read customer feedback. On-site testimonials will appear here once their source and publication permission are confirmed.'}
             </p>
           </div>
         </Container>
