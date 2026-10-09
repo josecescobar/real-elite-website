@@ -70,6 +70,60 @@ export function buildLeadWebhookPayload(
   };
 }
 
+/** Stable Job Board idempotency id for one Thumbtack negotiation. */
+export function thumbtackLeadCallSid(negotiationId: string): string {
+  return `tt-${negotiationId}`;
+}
+
+/**
+ * Job Board intake shape for a Thumbtack negotiation. Same field set as the
+ * form webhook, without invented SMS consent. State is kept on `town` so a
+ * Maryland (or any other) lead is not stripped of location. `source` is
+ * `thumbtack`; the intake may still remap that field from the call_sid prefix.
+ */
+export function buildThumbtackLeadWebhookPayload(input: {
+  negotiationId: string;
+  name?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  category?: string;
+  message?: string;
+  receivedAt?: string;
+  urgency?: string;
+}): Record<string, unknown> {
+  const city = input.city?.trim() ?? '';
+  const state = input.state?.trim() ?? '';
+  return {
+    source: 'thumbtack',
+    company_name: 'Real Elite Contracting',
+    name: input.name?.trim() ?? '',
+    phone: input.phone?.trim() ?? '',
+    callback_number: input.phone?.trim() ?? '',
+    called_number: '',
+    email: input.email?.trim() ?? '',
+    address: input.address?.trim() ?? '',
+    town: [city, state].filter(Boolean).join(', '),
+    county: '',
+    zip: input.zip?.trim() ?? '',
+    state,
+    job_type: input.category?.trim() ?? '',
+    urgency: input.urgency?.trim() || 'normal',
+    how_heard: 'thumbtack',
+    summary: input.message ?? '',
+    spam: false,
+    urgent: false,
+    outcome: 'thumbtack_lead',
+    recording_link: null,
+    transcript_link: null,
+    call_sid: thumbtackLeadCallSid(input.negotiationId),
+    timestamp: input.receivedAt ?? new Date().toISOString(),
+  };
+}
+
 export async function postLeadWebhook(payload: Record<string, unknown>): Promise<void> {
   const url = env.leadWebhookUrl()?.trim();
   if (!url) return;

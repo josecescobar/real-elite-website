@@ -29,7 +29,10 @@ function eventIdFor(inbound: InboundLead, fallbackPayload: unknown): string {
   return crypto.randomUUID();
 }
 
-export async function ingestInboundLead(inbound: InboundLead): Promise<PipelineResult> {
+export async function ingestInboundLead(
+  inbound: InboundLead,
+  options?: { send?: boolean },
+): Promise<PipelineResult> {
   const store = getSalesStore();
   const eventId = eventIdFor(inbound, inbound.raw);
   const eventType = inbound.eventType ?? 'LeadCreated';
@@ -229,21 +232,26 @@ export async function ingestInboundLead(inbound: InboundLead): Promise<PipelineR
     lead = (await store.updateLead(lead.id, { opportunityId: opp.id })) ?? { ...lead, opportunityId: opp.id };
   }
 
-  const decision = decideSend({
-    mode,
-    escalationReasons: draft.escalationReasons,
-    aiPaused: lead.aiPaused,
-  });
+  // Callers that must not contact the customer (Thumbtack webhook) pass send:false.
+  // Omitted options keep the previous decideSend behavior for other ingest paths.
+  const allowSend = options?.send !== false;
+  const decision = allowSend
+    ? decideSend({
+        mode,
+        escalationReasons: draft.escalationReasons,
+        aiPaused: lead.aiPaused,
+      })
+    : { send: false, reason: 'auto_reply_disabled' };
 
   let send = { attempted: false, sent: false, reason: decision.reason };
-  if (decision.send && inbound.source === 'thumbtack' && lead.sourceLeadId) {
+  if (allowSend && decision.send && inbound.source === 'thumbtack' && lead.sourceLeadId) {
     send = { attempted: true, sent: false, reason: decision.reason };
     const result = await sendThumbtackMessage({ sourceLeadId: lead.sourceLeadId, body: draft.body });
     send = { attempted: true, sent: result.sent, reason: result.reason };
     if (result.sent) {
       await store.updateLead(lead.id, { draftStatus: 'sent', status: 'awaiting_customer', bucket: 'awaiting' });
     }
-  } else if (decision.send) {
+  } else if (allowSend && decision.send) {
     send = { attempted: true, sent: false, reason: 'send_channel_unavailable' };
   }
 

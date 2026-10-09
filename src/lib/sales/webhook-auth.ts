@@ -24,9 +24,12 @@ export function authorizeThumbtackWebhook(request: Request, rawBody: string): We
   const token = env.thumbtackWebhookToken();
   const secret = env.thumbtackWebhookSecret();
 
-  // First deploy / local simulate: no auth env means accept, so Jose can
-  // POST a test payload before Thumbtack Pro credentials exist.
-  if (!user && !pass && !token && !secret) return { ok: true };
+  // Fail closed. Missing or incomplete auth must not accept a lead.
+  // 503 = not configured; 401 = configured but the request did not match.
+  // The error names no secret values.
+  if (!thumbtackAuthConfigured()) {
+    return { ok: false, status: 503, error: 'Thumbtack webhook auth is not configured.' };
+  }
 
   if (user && pass) {
     const header = request.headers.get('authorization') ?? '';
