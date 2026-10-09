@@ -8,7 +8,7 @@
  */
 
 import { claimsFoundIn } from '@/lib/claims';
-import { servicePillarHref } from '@/lib/constants';
+import { SERVICES, servicePillarHref } from '@/lib/constants';
 
 // Re-exported so callers have one import site for combo facts. The declaration
 // lives in its own dependency-free module because next.config.ts loads it
@@ -133,6 +133,20 @@ type ComboContent = {
    * a typo would silently publish three unrelated articles rather than error.
    */
   relatedGuideSlugs?: readonly string[];
+  /** Exact on-page H1 when the service title plus city is not the query. */
+  h1?: string;
+  faqs?: readonly { question: string; answer: string }[];
+  /**
+   * Emit LocalBusiness JSON-LD that reuses the sitewide business @id.
+   * Off by default so other combo pages do not each invent a second business.
+   */
+  includeLocalBusiness?: boolean;
+  notes?: readonly {
+    heading: string;
+    body: string;
+    href: string;
+    linkLabel: string;
+  }[];
 };
 
 /**
@@ -237,14 +251,27 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
    * Eastern Panhandle, so the site does not contradict itself.
    */
   'decks-martinsburg-wv': {
-    metaTitle: 'Composite Deck Builder in Martinsburg, WV | Real Elite',
+    metaTitle: 'Deck Builders Martinsburg WV | Real Elite Contracting',
+    h1: 'Deck Builders Martinsburg WV',
     metaDescription:
-      'Composite and pressure-treated decks in Martinsburg. About $30 to $55 per square foot for Trex or TimberTech, and $15 to $25 for pressure-treated.',
+      'Deck builders Martinsburg WV. Composite about $30 to $55 per square foot; pressure-treated about $15 to $25. Berkeley County permit note below.',
+    relatedGuideSlugs: [
+      'deck-cost-per-square-foot-eastern-panhandle-2026',
+      'deck-permits-berkeley-jefferson-county-wv-2026',
+    ],
+    notes: [
+      {
+        heading: 'Berkeley County permits',
+        body: 'Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. Inside Martinsburg city limits the city may run its own review. A Martinsburg mailing address is not the same as city limits. This page does not quote a permit fee. Check the county portal, and the deck permit guide linked below, for the current process.',
+        href: 'https://onestop.berkeleywv.org',
+        linkLabel: 'Berkeley County OneStop permitting',
+      },
+    ],
     paragraphs: [
-      "Martinsburg decks take the full Eastern Panhandle year: humid summers with fast thunderstorms, then a winter of freeze and thaw that works water into every fastener and board end. That cycle is why pressure-treated pine here needs sanding and staining by about year three and why so many Berkeley County homeowners replacing a fifteen-year-old deck do not replace it in kind.",
-      "Installed cost in this market runs roughly $15 to $25 per square foot for pressure-treated pine and $30 to $55 per square foot for composite like Trex or TimberTech. On a typical 400 square foot deck that is a real spread, and it is worth being honest about where it goes: composite costs more up front and gives back the annual maintenance weekend, holds colour through the west-facing exposures common out toward Spring Mills, and does not splinter where children are barefoot.",
-      "We build across Berkeley County — the older homes near downtown and Queen Street, where grade and existing framing need a careful look before anything is designed, and the newer subdivisions toward Spring Mills, Hedgesville and the Route 11 corridor, where a straightforward replacement moves quickly. Footings go below the frost line, which in this part of West Virginia is not a detail to eyeball.",
-      "Berkeley County permits and inspections are ours to handle. You get a written, itemized estimate before anything is torn out, with framing, decking, railing, footings and any structural work broken out separately so the number is checkable. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed in West Virginia and Virginia.",
+      'People searching for deck builders Martinsburg WV are usually replacing a deck that has already lived through several winters. Martinsburg decks take the full Eastern Panhandle year: humid summers with fast thunderstorms, then a winter of freeze and thaw that works water into fasteners and board ends. Pressure-treated pine here often needs sanding and staining by about year three. Many Berkeley County homeowners replacing a fifteen-year-old deck do not replace it in kind.',
+      'Installed cost in this market is the Eastern Panhandle range the deck-cost guide already publishes: about $15 to $25 per square foot for pressure-treated pine and $30 to $55 per square foot for composite such as Trex or TimberTech. On a typical 400 square foot deck that is a real spread. Composite costs more up front and skips the annual maintenance weekend. It holds color on the west-facing exposures common out toward Spring Mills, and it does not splinter where children are barefoot.',
+      'We build across Berkeley County. Older homes near downtown and Queen Street need a careful look at grade and existing framing before anything is designed. Newer subdivisions toward Spring Mills, Hedgesville, and the Route 11 corridor are often a straightforward replacement. Footings go below the frost line. In this part of West Virginia that is not a detail to eyeball.',
+      'You get a written, itemized estimate before anything is torn out. Framing, decking, railing, footings, and any structural work are separate lines. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. WV Contractor License WV062432. Licensed in West Virginia and Virginia.',
     ],
   },
 
@@ -502,11 +529,33 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'bathrooms-ashburn-va': {
+    metaTitle: 'Bathroom Remodel Ashburn VA | Real Elite Contracting',
+    h1: 'Bathroom Remodel Ashburn VA',
+    metaDescription:
+      'Bathroom remodel Ashburn VA in Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. No Ashburn price on this page. Free written estimate.',
+    includeLocalBusiness: true,
+    faqs: [
+      {
+        question: 'Do you remodel bathrooms in Brambleton and Broadlands?',
+        answer:
+          'Yes. A bathroom remodel in Ashburn, VA also covers One Loudoun, Ashburn Farm, and Belmont Greene when the parcel is in those communities. Ashburn is unincorporated Loudoun County, so the building permit path is LandMARC.',
+      },
+      {
+        question: 'What does a bathroom remodel in Ashburn, VA cost?',
+        answer:
+          'This page does not publish an Ashburn bathroom price. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. A nearby-market cost guide is linked below. It is not an Ashburn quote.',
+      },
+      {
+        question: 'Who permits a bathroom remodel in Ashburn?',
+        answer:
+          'Loudoun County, through LandMARC, when the work needs a building permit. Plumbing or electrical relocation needs trade permits. Association review usually applies only if a window, skylight, or other exterior element changes.',
+      },
+    ],
     paragraphs: [
-      "Real Elite Contracting remodels Ashburn bathrooms — showers, tile, vanities, and full primary-suite rebuilds. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
-      "Plumbing or electrical relocation needs county permits and inspections (rough-in, then final). HOA review usually applies only if the bath changes a window, skylight, or other exterior element. A county permit is not HOA approval when both apply — we file them in parallel.",
-      "We do not claim we remodel Ashburn primary suites every week, and we do not publish invented bathroom price bands. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed.",
-      "County inspections run in published order — rough plumbing, rough electrical, then final. The project schedule depends on scope, approvals, selections, and availability.",
+      'A bathroom remodel in Ashburn, VA is a wet-area job, not a fixture swap with a new city name on it. We work Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.',
+      'Most of the risk is behind the tile. A shower conversion needs a sloped pan, a waterproofing layer, and a drain that is already in the right place or is moved on a permit. A vanity move is a plumbing relocation, not a cabinet decision. We open the wall, confirm the substrate, and put that finding in the scope before the finish schedule is locked.',
+      'This page does not publish an Ashburn bathroom price, and it does not treat a nearby-market range as if it were yours. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed. The schedule depends on scope, selections, permits, and how much of the existing tile has to come out.',
+      'County inspections run in published order: rough plumbing, rough electrical, then final. Association review usually applies only if the bath changes a window, skylight, or other exterior element. A county permit is not association approval when both apply.',
     ],
   },
 
@@ -573,11 +622,33 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   'kitchens-ashburn-va': {
+    metaTitle: 'Kitchen Remodel Ashburn VA | Real Elite Contracting',
+    h1: 'Kitchen Remodel Ashburn VA',
+    metaDescription:
+      'Kitchen remodel Ashburn VA for Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. National HomeAdvisor ranges, not an Ashburn quote.',
+    includeLocalBusiness: true,
+    faqs: [
+      {
+        question: 'Do you remodel kitchens in Brambleton and Broadlands?',
+        answer:
+          'Yes. A kitchen remodel in Ashburn, VA also covers One Loudoun, Ashburn Farm, and Belmont Greene when the parcel is in those communities. Ashburn is unincorporated Loudoun County, so the building permit path is LandMARC.',
+      },
+      {
+        question: 'What does a kitchen remodel in Ashburn, VA cost?',
+        answer:
+          'The kitchen cost guide on this site cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ashburn quote. Your written estimate is line-itemed.',
+      },
+      {
+        question: 'Who permits a kitchen remodel in Ashburn?',
+        answer:
+          'Loudoun County, through LandMARC. A load-bearing opening needs stamped drawings and a county building permit. Plumbing or electrical relocation needs trade permits. Association review usually applies only if a window or other exterior element changes.',
+      },
+    ],
     paragraphs: [
-      "Real Elite Contracting remodels Ashburn kitchens — layout, cabinetry, counters, and the trades behind the walls. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
-      "A load-bearing opening needs stamped drawings and a county building permit. Plumbing or electrical relocation needs trade permits. HOA review usually applies only if windows or another exterior element changes. We do not claim these remodels happen every week.",
-      "We do not publish invented kitchen price bands or brand packages as if they were standard. Cabinets, counters, appliances, electrical, plumbing, and finishes are separate line items on the estimate.",
-      "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
+      'A kitchen remodel in Ashburn, VA starts with the house in front of us, not a package. We work Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.',
+      'Opening a load-bearing wall needs stamped structural drawings and a county building permit. Moving a sink or a range circuit is a trade permit, not a finish selection. Association review usually applies only if a window or other exterior element changes. A county permit is not association approval when both apply.',
+      'The kitchen cost guide on this site cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ashburn quote. Cabinets, counters, appliances, and any wall or trade move are separate lines on the written estimate.',
+      'We do not claim an Ashburn kitchen starts on a set cadence. Cabinet lead time is named in the estimate before demo. The written estimate is the number for the house.',
     ],
   },
 

@@ -261,16 +261,22 @@ export default function CityPageTemplate({ city, data }: Props) {
             <MapPin className="w-3.5 h-3.5" aria-hidden="true" /> Service Area
           </p>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-            {/* The premium pages rank for "remodeling contractor <town>"; the
-                place name alone gave the h1 no topic. */}
-            {consultationHero && (
-              <span className="block text-xl sm:text-2xl md:text-3xl font-bold text-charcoal-200 mb-3">
-                Remodeling contractor in
-              </span>
+            {/* seoH1 is one text node so the target query is the heading, not
+                a split city/state line. Other pages keep the two-line hero. */}
+            {data.seoH1 ? (
+              data.seoH1
+            ) : (
+              <>
+                {consultationHero && (
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-bold text-charcoal-200 mb-3">
+                    Remodeling contractor in
+                  </span>
+                )}
+                {heroHead}
+                <br />
+                <span className="text-brand-red">{heroTail}</span>
+              </>
             )}
-            {heroHead}
-            <br />
-            <span className="text-brand-red">{heroTail}</span>
           </h1>
           <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
             {heroSub}

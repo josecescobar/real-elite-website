@@ -17,9 +17,9 @@ const PRIORITY_CITIES = [
 ];
 
 /**
- * Service-area cross-link grid. Lists priority VA/MD markets first
- * (with deep links to /services/[service]/[city]) then the rest of
- * the WV Eastern Panhandle markets.
+ * Service-area cross-link grid. Priority markets stay first. Any other town
+ * with a published page for this service is a visible combo link too, including
+ * West Virginia and Maryland towns. The overflow list uses the same href.
  */
 export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope }: Props) {
   const regionLabel = areaScope ? areaScope.label : 'the WV–MD–VA region';
@@ -27,6 +27,15 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
   const others = areaScope
     ? areaScope.cities.slice(4)
     : [...PRIMARY_SERVICE_AREAS, ...SECONDARY_SERVICE_AREAS];
+  // Priority rows stay first. Any other town with a published combo for this
+  // service is also a visible link — the overflow used to point at the town
+  // page only, so /services/decks never linked /services/decks/martinsburg-wv.
+  const comboCities = others.filter(
+    (area) =>
+      !priorityCities.some((priority) => priority.slug === area.slug) &&
+      serviceHrefForArea(serviceSlug, area.slug) === `/services/${serviceSlug}/${area.slug}`
+  );
+  const visibleCities = [...priorityCities, ...comboCities];
 
   return (
     <section>
@@ -34,11 +43,11 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
         {serviceTitle} across {regionLabel}
       </h2>
       <p className="text-charcoal-600 text-sm mb-6">
-        Premium markets we actively work in.
+        Maryland, Virginia, and West Virginia towns we serve. A town with its own page for this service links there.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {priorityCities.map((area) => {
+        {visibleCities.map((area) => {
           const href = serviceHrefForArea(serviceSlug, area.slug);
           return (
             <Link
@@ -65,7 +74,7 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
           {others.map((area) => (
             <Link
               key={area.slug}
-              href={`/service-areas/${area.slug}`}
+              href={serviceHrefForArea(serviceSlug, area.slug)}
               className="text-charcoal-700 hover:text-brand-red transition-colors"
             >
               {area.city}, {area.state}
