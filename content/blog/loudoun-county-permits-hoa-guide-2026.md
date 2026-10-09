@@ -165,3 +165,15 @@ Real Elite handles the entire permit and HOA submission process as part of every
 For our homeowners that means: you sign a contract, we tell you the realistic timeline, and we run both the county and HOA tracks in parallel so the math works in your favor — not the contractor's.
 
 If you're considering a Loudoun County remodel — bathroom, kitchen, basement, deck, addition, or whole home — we offer free written estimates with the permit/HOA timeline already built in. No surprises mid-project.
+
+## Town pages on this path
+
+The county steps above are the shared layer. These pages are the town layer:
+
+- [Kitchen Remodeling in Purcellville, VA](/services/kitchens/purcellville-va) — town zoning before the county building permit. Wright Farm and Mayfair are county JLMA.
+- [Bathroom Remodeling in Purcellville, VA](/services/bathrooms/purcellville-va) — same town-then-county order when the bath needs a building permit.
+- [Basement Finishing in Purcellville, VA](/services/basements/purcellville-va) — town zoning first inside limits; LandMARC in the Joint Land Management Area.
+- [Kitchen Remodeling in Lansdowne, VA](/services/kitchens/lansdowne-va) — unincorporated county through LandMARC, even with a Leesburg mailing address.
+- [Bathroom Remodeling in Lansdowne, VA](/services/bathrooms/lansdowne-va) — county permits, not Town of Leesburg zoning.
+- [Basement Finishing in Lansdowne, VA](/services/basements/lansdowne-va) — LandMARC for the building permit. Association review when an egress opening changes the exterior.
+- [Kitchen Remodel Middleburg VA](/services/kitchens/middleburg-va) — Zoning Location Permit inside Town before the county building permit. Historic District exteriors need a Certificate of Appropriateness. Atoka, Foxcroft, and Goose Creek are often unincorporated, and those lots are often on well and septic.

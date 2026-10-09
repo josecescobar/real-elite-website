@@ -4,6 +4,7 @@ import { isVerifiedWorkImage } from '@/lib/stock-images';
 import {
   proofPhotosForArea,
   proofPhotosForService,
+  proofPhotosForTown,
   proofReviewsFor,
 } from '@/lib/proof-package';
 
@@ -26,6 +27,10 @@ describe('proof package', () => {
 
     expect(kitchens.some((photo) => photo.caption.includes('Maryland'))).toBe(true);
     expect(baths.some((photo) => photo.caption.includes('Frederick, MD'))).toBe(true);
+  });
+
+  it('returns no photo for a town that has none tagged', () => {
+    expect(proofPhotosForTown('middleburg-va')).toEqual([]);
   });
 
   it('does not invent a Martinsburg tag for state-only gallery photos', () => {
