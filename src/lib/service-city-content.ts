@@ -1083,7 +1083,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Purcellville, VA follows the western Loudoun corridor, not an Ashburn subdivision. The town is a historic village on Route 7. Some older houses have low cellars and stone or block foundations. Later lots have a conventional unfinished lower level. A Purcellville mailing address can still sit outside town limits, in the Joint Land Management Area at Wright Farm or Mayfair. We check the parcel before we file.',
       'Inside town limits the order is fixed: town zoning, then the Loudoun County building permit. The county will not release that permit until town zoning is approved. Outside town, building and zoning run through LandMARC. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans.',
-      'This page does not invent a Purcellville price band. The cost section uses the ranges the Ashburn and Leesburg cost guide already publishes, with that guide’s caveat, plus the county’s published Typical fees.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Purcellville average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
     ],
     sections: [
       {
@@ -1233,7 +1233,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Lansdowne, VA is the unfinished lower level that came with a 1990s or 2000s house east of Leesburg, along Route 7 and the Potomac. The community is established and on public water and sewer. It is not a new-build subdivision and it is not a well-and-septic village. Many of these houses still have an open basement with builder mechanicals and a rough-in that may or may not be where the bath should go.',
       'Lansdowne is unincorporated Loudoun County. A Leesburg mailing address does not make it Town of Leesburg. Building and zoning run through LandMARC. There is no town zoning step. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and we document each inspection.',
-      'This page does not invent a Lansdowne price. The cost section uses the ranges the Ashburn and Leesburg cost guide already publishes, with that guide’s caveat, plus the county’s published Typical fees. An egress cut is exterior work, so the association packet runs in parallel when a bedroom is in the plan.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Lansdowne average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. An egress cut is exterior work, so the association packet runs in parallel when a bedroom is in the plan.',
     ],
     sections: [
       {
@@ -1363,13 +1363,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does basement finishing in McLean, VA cost?',
         answer:
-          'The ranges already published on this page are $90,000–$250,000+ for typical scope, and $150,000–$220,000 for a finished entertainment level with a media room, wet bar, full bath, guest suite, and gym. The written estimate itemizes framing, trades, and finishes for the house.',
+          'A typical McLean lower level runs $90,000–$250,000+. A finished entertainment level with a media room, wet bar, full bath, guest suite, and gym usually lands at $150,000–$220,000. The written estimate itemizes framing, trades, and finishes for the house.',
       },
     ],
     paragraphs: [
       "Basement finishing in McLean, VA splits by ZIP. ZIP 22101 is the estate streets along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road: large lots and one-off houses, often with a full-height walkout. ZIP 22102 sits closer to Tysons and Route 123, with more attached housing around the commercial core and a different lower-level footprint. We price the house, not a McLean average.",
       "McLean is unincorporated Fairfax County. Building permits go through Land Development Services. There is no town office in front of the county. Some neighborhoods require association review, and many estate streets do not. A county permit is not HOA approval.",
-      "The published McLean ranges on this page stay as they are: typical scope runs $90,000–$250,000+, and a finished entertainment level with a media room, wet bar, full bath, guest suite, and gym usually lands at $150,000–$220,000. Slab moisture is checked before finishes are ordered. A bedroom needs a code egress opening, drawn on the plans. The estimate breaks out framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone, and finishes.",
+      "Typical scope runs $90,000–$250,000+, and a finished entertainment level with a media room, wet bar, full bath, guest suite, and gym usually lands at $150,000–$220,000. Slab moisture is checked before finishes are ordered. A bedroom needs a code egress opening, drawn on the plans. The estimate breaks out framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone, and finishes.",
       "Fairfax County inspections cover framing, electrical, plumbing, mechanical, and final when those systems are in the job. The schedule depends on scope, approvals, selections, and availability. Review the proposed scope and warranty terms before signing.",
     ],
   },
@@ -1410,7 +1410,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does kitchen remodeling in Vienna, VA cost?',
         answer:
-          'The range already published on this page is $130,000–$300,000+, depending on cabinetry, appliances, and whether a wall opens. The written estimate itemizes this house. It is not a McLean estate figure pasted onto a Vienna colonial.',
+          'A Vienna kitchen usually runs $130,000–$300,000+, depending on cabinetry, appliances, and whether a wall opens. The written estimate itemizes this house.',
       },
       {
         question: 'Do Maple Avenue infill kitchens follow the same path as a mid-century ranch?',
@@ -1421,7 +1421,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Kitchen remodeling in Vienna, VA is a town project. Vienna is incorporated. ZIPs 22180, 22181, and 22182 cover mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. A Vienna mailing address can still be Oakton or Dunn Loring. We check the parcel before we file.",
       "Inside town, the town reviews zoning and site plans. Fairfax County Land Development Services is the building official. Opening a load-bearing wall needs stamped structural drawings and the county building permit. Plumbing relocation needs the matching trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work, and that scope stays on the estimate as its own line.",
-      "The published Vienna kitchen range on this page stays $130,000–$300,000+. That spread is the cabinetry, the stone, the appliances, and whether the dining wall comes out. It is not a copied McLean brief. A closed mid-century kitchen and an already-open Maple Avenue plan do not share a scope. Cabinet lead time goes in the written timeline before demo.",
+      "A Vienna kitchen usually runs $130,000–$300,000+. Cabinetry, stone, appliances, and whether the dining wall comes out move the number. A closed mid-century kitchen and an already-open Maple Avenue plan are different jobs. Cabinet lead time goes in the written timeline before demo.",
       "Bring the drawings if a designer is already on the job. We coordinate Fairfax County permitting and the town zoning submission. Review the proposed scope and warranty terms before signing. The schedule depends on scope, approvals, selections, and availability.",
     ],
   },
@@ -1440,18 +1440,18 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does basement finishing in Vienna, VA cost?',
         answer:
-          'The ranges already published on this page are $80,000–$200,000+ for typical scope, and $130,000–$180,000 for a finished entertainment level with a media room, wet bar, full bath, and guest suite. The written estimate is line-itemed for the house.',
+          'A typical Vienna lower level runs $80,000–$200,000+. A finished entertainment level with a media room, wet bar, full bath, and guest suite usually lands at $130,000–$180,000. The written estimate is line-itemed for the house.',
       },
       {
         question: 'Are Vienna lower levels the same as McLean estates?',
         answer:
-          'No. Vienna is an incorporated town. ZIPs 22180, 22181, and 22182 cover mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. Ceiling height and walkout access vary house to house. We do not copy an estate scope onto a mid-century ranch.',
+          'No. Vienna is an incorporated town. ZIPs 22180, 22181, and 22182 cover mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. Ceiling height and walkout access vary house to house. A mid-century ranch is a different room from an estate lower level.',
       },
     ],
     paragraphs: [
       "Basement finishing in Vienna, VA starts with whether the house is inside the town. Vienna is an incorporated town in Fairfax County. A Vienna mailing address can still be Oakton or Dunn Loring, and those places have their own pages. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses, later colonials, and newer infill along Maple Avenue and Hunter Mill Road.",
       "Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. That is a different front door from unincorporated McLean, which has no town zoning step. We check the parcel before we file.",
-      "The published Vienna ranges on this page stay as they are: typical scope runs $80,000–$200,000+, and a finished entertainment level with a media room, wet bar, full bath, and guest suite usually lands at $130,000–$180,000. A mid-century lower level is often tighter on ceiling height than a later colonial. Slab moisture is checked before cabinetry is ordered. A bedroom needs an egress opening drawn to the code dimensions.",
+      "Typical scope runs $80,000–$200,000+, and a finished entertainment level with a media room, wet bar, full bath, and guest suite usually lands at $130,000–$180,000. A mid-century lower level is often tighter on ceiling height than a later colonial. Slab moisture is checked before cabinetry is ordered. A bedroom needs an egress opening drawn to the code dimensions.",
       "County inspections cover framing, electrical, plumbing, mechanical, and final when those systems are in the job. The schedule depends on scope, town zoning, county review, selections, and availability. Review the proposed scope and warranty terms before signing.",
     ],
   },
@@ -1490,7 +1490,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does basement finishing in Great Falls, VA cost?',
         answer:
-          'The ranges already published on this page are $150,000–$400,000+ for typical estate scope, and $250,000–$350,000 for a fully finished entertainment level with a media room, wet bar, wine room, fitness room, guest suite, and gym. The written estimate itemizes the house.',
+          'A typical Great Falls lower level runs $150,000–$400,000+. A fully finished entertainment level with a media room, wet bar, wine room, fitness room, guest suite, and gym usually lands at $250,000–$350,000. The written estimate itemizes the house.',
       },
       {
         question: 'Is a Great Falls lower level a townhouse basement?',
@@ -1499,9 +1499,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      "Basement finishing in Great Falls, VA is acreage work, not a town template. Great Falls is unincorporated Fairfax County, ZIP 22066. The houses are large-lot custom builds along Georgetown Pike, Riverbend Road, and Seneca Road. It is not one association and not one floor plan. A lower level here is often a second entertaining floor: media room, wet bar, wine storage, fitness, and a guest suite, when the slab and the septic field allow it.",
+      "Basement finishing in Great Falls, VA is work on large lots. Great Falls is unincorporated Fairfax County, ZIP 22066. The houses are custom builds along Georgetown Pike, Riverbend Road, and Seneca Road. It is not one association and not one floor plan. A lower level here is often a second entertaining floor: media room, wet bar, wine storage, fitness, and a guest suite, when the slab and the septic field allow it.",
       "Building permits go through Fairfax County Land Development Services. There is no town zoning office. Where the lot is on a private well or septic system, a new bedroom needs Fairfax County Health Department approval before the building permit. That step does not apply to a sewered McLean or Vienna lot, and we do not skip it here.",
-      "The published Great Falls ranges on this page stay as they are: typical scope runs $150,000–$400,000+, and a fully finished entertainment level with a media room, wet bar, wine room, fitness room, guest suite, and gym usually lands at $250,000–$350,000. Slab moisture and the existing HVAC capacity are checked before millwork is ordered. A bedroom needs an egress opening on the plans.",
+      "Typical scope runs $150,000–$400,000+, and a fully finished entertainment level with a media room, wet bar, wine room, fitness room, guest suite, and gym usually lands at $250,000–$350,000. Slab moisture and the existing HVAC capacity are checked before millwork is ordered. A bedroom needs an egress opening on the plans.",
       "County inspections cover framing, electrical, plumbing, mechanical, and final when those systems are in the job. The schedule depends on scope, health-department review when a bedroom is added on well or septic, selections, and availability. Review the proposed scope and warranty terms before signing.",
     ],
   },
