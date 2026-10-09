@@ -15,6 +15,9 @@
  * first-party reviews so NO Review/AggregateRating JSON-LD is ever emitted for
  * them (only third-party 'google' reviews mirrored from the live profile may be
  * verified — see src/lib/reviews/types.ts and src/lib/social-proof.ts).
+ * Thumbtack reviews may publish on-page with a "via Thumbtack" label. They
+ * are not Google reviews and are never eligible for Review/AggregateRating
+ * JSON-LD. Do not change googleRating or googleReviewCount from these rows.
  *
  * Google reviews land here as they're collected via the /review-request tool,
  * with `source: 'google'`, a `sourceUrl`, and `verified: true` only once the
@@ -22,6 +25,10 @@
  */
 
 import type { Review } from './types';
+
+/** Live Thumbtack reviews page. Badge links and publication evidence use this URL only. */
+export const THUMBTACK_REVIEWS_URL =
+  'https://www.thumbtack.com/profile/services/560701006958788617/reviews';
 
 export const REVIEW_DRAFTS: readonly Review[] = [
   {
@@ -62,10 +69,39 @@ export const REVIEW_DRAFTS: readonly Review[] = [
     serviceSlug: 'siding',
     citySlug: 'shepherdstown-wv',
   },
+  {
+    id: 'thumbtack-l-p-2025-12-04',
+    author: 'L. P.',
+    location: '',
+    rating: 5,
+    quote:
+      'Realelite showed up on time, did a good job on repair of roof. I would highly recommend them for a the professional job they did.',
+    date: '2025-12-04',
+    source: 'thumbtack',
+    sourceUrl: THUMBTACK_REVIEWS_URL,
+    serviceSlug: 'roofing',
+    verified: false,
+  },
+  {
+    id: 'thumbtack-customer-2026-01-14',
+    author: 'Thumbtack customer',
+    location: '',
+    rating: 5,
+    quote: 'Super fast & easy to schedule with. Thank you :)',
+    date: '2026-01-14',
+    source: 'thumbtack',
+    sourceUrl: THUMBTACK_REVIEWS_URL,
+    verified: false,
+  },
 ];
 
 /** Source/consent evidence must be recorded before a quote is published. */
-export const REVIEW_PUBLICATION_EVIDENCE: Readonly<Record<string, string>> = {};
+export const REVIEW_PUBLICATION_EVIDENCE: Readonly<Record<string, string>> = {
+  'thumbtack-l-p-2025-12-04':
+    `Verified 2026-10-09 via the Thumbtack connector. Profile ${THUMBTACK_REVIEWS_URL} (business ID 560701006958788617). Quote copied verbatim.`,
+  'thumbtack-customer-2026-01-14':
+    `Verified 2026-10-09 via the Thumbtack connector. Profile ${THUMBTACK_REVIEWS_URL} (business ID 560701006958788617). No reviewer name was shown; displayed as Thumbtack customer. Quote copied verbatim.`,
+};
 export const REVIEWS: readonly Review[] = REVIEW_DRAFTS.filter(
   review => Boolean(REVIEW_PUBLICATION_EVIDENCE[review.id]?.trim())
 );

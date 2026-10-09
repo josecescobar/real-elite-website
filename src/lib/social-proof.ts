@@ -1,4 +1,5 @@
 import { SOCIAL_PROOF } from './constants';
+import type { Review } from './reviews/types';
 
 /**
  * Derived trust-signal display logic. The UI never hardcodes rating/badge
@@ -63,4 +64,34 @@ export function aggregateRatingSchema(
     bestRating: 5,
     worstRating: 1,
   };
+}
+
+type ReviewJsonLdInput = Pick<Review, 'source' | 'verified' | 'author' | 'quote' | 'rating' | 'date'>;
+
+/**
+ * Review JSON-LD is Google-only. Thumbtack and every other source are
+ * excluded even if `verified` is flipped. This helper never emits
+ * AggregateRating — that fragment comes only from Google profile fields in
+ * `aggregateRatingSchema()`, not from review rows.
+ */
+export function isEligibleForReviewJsonLd(
+  review: Pick<Review, 'source' | 'verified'>
+): boolean {
+  return review.source === 'google' && review.verified === true;
+}
+
+export function reviewJsonLdNodes(
+  reviews: readonly ReviewJsonLdInput[]
+): Record<string, unknown>[] {
+  return reviews.filter(isEligibleForReviewJsonLd).map(review => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: review.author },
+    reviewBody: review.quote,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: String(review.rating),
+      bestRating: '5',
+    },
+    ...(review.date ? { datePublished: review.date } : {}),
+  }));
 }
