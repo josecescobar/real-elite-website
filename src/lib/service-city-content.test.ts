@@ -688,8 +688,10 @@ describe('comboPublishesPricing', () => {
         'additions-middleburg-va',
         'basements-ashburn-va',
         'bathrooms-ashburn-va',
+        'bathrooms-lansdowne-va',
         'bathrooms-leesburg-va',
         'bathrooms-loudoun-county-va',
+        'bathrooms-purcellville-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -767,10 +769,9 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 27/18 after Loudoun additions, Loudoun basements, and Middleburg decks
-    // landed as clean pages (permit facts, no unconfirmed operational claims).
-    // Carrying stayed at 27 — new copy must not raise that number.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 45 });
+    // 0/51 after Purcellville and Lansdowne kitchens, baths, and basements
+    // landed as clean pages. Carrying stays at 0 — new copy must not raise it.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 51 });
   });
 
   /**
@@ -1038,4 +1039,102 @@ describe('Tier C retired combos', () => {
       expect(area!.status).toBe('active');
     }
   );
+});
+
+describe('REA-2342 Purcellville and Lansdowne pages', () => {
+  const PAGES = [
+    ['kitchens', 'purcellville-va', 'Kitchen Remodeling in Purcellville, VA'],
+    ['bathrooms', 'purcellville-va', 'Bathroom Remodeling in Purcellville, VA'],
+    ['basements', 'purcellville-va', 'Basement Finishing in Purcellville, VA'],
+    ['kitchens', 'lansdowne-va', 'Kitchen Remodeling in Lansdowne, VA'],
+    ['bathrooms', 'lansdowne-va', 'Bathroom Remodeling in Lansdowne, VA'],
+    ['basements', 'lansdowne-va', 'Basement Finishing in Lansdowne, VA'],
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1 and a FAQ', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.join('\n')).not.toMatch(/hiring page|maryland license|MHIC/i);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+  });
+
+  it('does not publish Brambleton kitchen, bath, or basement pages', () => {
+    expect(CONTENT).not.toHaveProperty('kitchens-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('bathrooms-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('basements-brambleton-va');
+  });
+
+  it('keeps Middleburg kitchen, bath, and basement combos retired', () => {
+    expect(CONTENT).not.toHaveProperty('kitchens-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
+    expect(RETIRED_COMBOS['kitchens-middleburg-va']).toBe('/service-areas/middleburg-va');
+    expect(RETIRED_COMBOS['basements-middleburg-va']).toBe(
+      '/services/basements/northern-virginia'
+    );
+  });
+
+  it('does not clone the six new openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 80)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('links both Loudoun basement guides to Purcellville and Lansdowne', () => {
+    for (const file of [
+      'content/blog/basement-remodeling-cost-ashburn-leesburg-2026.md',
+      'content/blog/luxury-basement-finishing-loudoun-northern-virginia-2026.md',
+    ]) {
+      const markdown = fs.readFileSync(nodePath.join(process.cwd(), file), 'utf8');
+      expect(markdown, file).toContain('/services/basements/purcellville-va');
+      expect(markdown, file).toContain('/services/basements/lansdowne-va');
+    }
+  });
+
+  it('gives the rewritten Fairfax basement pages their own FAQ', () => {
+    for (const city of ['mclean-va', 'vienna-va', 'great-falls-va']) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      expect(entry?.faqs?.length, city).toBeGreaterThanOrEqual(3);
+      expect(entry?.h1).toBe(
+        `Basement Finishing in ${
+          city === 'mclean-va' ? 'McLean' : city === 'vienna-va' ? 'Vienna' : 'Great Falls'
+        }, VA`
+      );
+    }
+    expect(CONTENT['kitchens-vienna-va']?.faqs?.length).toBeGreaterThanOrEqual(3);
+    expect(CONTENT['kitchens-mclean-va']?.faqs).toBeUndefined();
+    expect(CONTENT['bathrooms-great-falls-va']?.faqs).toBeUndefined();
+  });
+});
+
+describe('customer copy never reads like an editor note', () => {
+  function renderedCopy(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
+    if (!entry) return [];
+    return [
+      entry.h1,
+      entry.metaTitle,
+      entry.metaDescription,
+      ...entry.paragraphs,
+      ...(entry.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ...(entry.notes ?? []).flatMap((note) => [note.heading, note.body, note.linkLabel]),
+      ...(entry.sections ?? []).flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.links ?? []).map((link) => link.label),
+      ]),
+    ].filter((text): text is string => typeof text === 'string');
+  }
+
+  it('fails when rendered copy pairs "this page" with publish, quote, uses, or does not', () => {
+    const verb = /publish|quote|uses|does not/i;
+    const hits: string[] = [];
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      for (const text of renderedCopy(entry)) {
+        if (/this page/i.test(text) && verb.test(text)) hits.push(`${key}: ${text}`);
+      }
+    }
+    expect(hits).toEqual([]);
+  });
 });

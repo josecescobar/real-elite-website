@@ -96,6 +96,12 @@ export const COMBO_CITY_SLUGS = [
   // publish here.
   'middleburg-va',
 
+  // Established Loudoun places. Purcellville is an incorporated town on the
+  // western corridor. Lansdowne is an established community east of Leesburg.
+  // Kitchens, bathrooms, and basements only. Brambleton stays decks-only.
+  'purcellville-va',
+  'lansdowne-va',
+
   // Fairfax Station and Clifton stay gone. Tier C retired every combo they
   // had, so keeping their slugs here would leave entries this map can never
   // key. Burke stays: it keeps its kitchen and bathroom combos and lost only
@@ -273,7 +279,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     notes: [
       {
         heading: 'Berkeley County permits',
-        body: 'Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. Inside Martinsburg city limits the city may run its own review. A Martinsburg mailing address is not the same as city limits. This page does not quote a permit fee. Check the county portal, and the deck permit guide linked below, for the current process.',
+        body: 'Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. Inside Martinsburg city limits the city may run its own review. A Martinsburg mailing address is not the same as city limits. Permit fees vary by project, so we confirm yours when we check the parcel. Check the county portal, and the deck permit guide linked below, for the current process.',
         href: 'https://onestop.berkeleywv.org',
         linkLabel: 'Berkeley County OneStop permitting',
       },
@@ -303,7 +309,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Charles Town deck is decided at the house. An older lot can be tight, shaded, and graded toward a stone or block foundation, and that is something we measure before we design. A later house may still have the original pressure-treated builder deck. We look at the framing, the ledger, and the boards and say whether a replacement is the job.",
       "Installed cost is the Eastern Panhandle range the deck-cost guide already publishes: about $15 to $25 per square foot for pressure-treated pine and $30 to $55 per square foot for composite such as Trex or TimberTech. A Charles Town mailing address is not city limits. Inside the city, the Building Inspection office at City Hall, 101 E. Washington Street, lists decks and porches as work that needs a building permit. Apply in person or through MGO. The Department of Community Development answers at 304-724-3248.",
-      "Outside city limits, that mailing address is Jefferson County. The Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100 (304-725-2998, permits@jeffersoncountywv.org). County applications go through MGO Connect. The published deck-permit guide treats an attached deck, a walking surface more than 30 inches above grade, or permanent footings as a permit in both Berkeley and Jefferson counties. We check the parcel before we file. This page does not guess a city fee.",
+      "Outside city limits, that mailing address is Jefferson County. The Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100 (304-725-2998, permits@jeffersoncountywv.org). County applications go through MGO Connect. The published deck-permit guide treats an attached deck, a walking surface more than 30 inches above grade, or permanent footings as a permit in both Berkeley and Jefferson counties. We check the parcel before we file. City fees vary, so we confirm the fee for your address before filing.",
       "Footings go below the frost line. The written estimate itemizes framing, decking, railing, and footings. WV Contractor License WV062432.",
     ],
   },
@@ -504,7 +510,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Martinsburg bathroom is something we assess on the walkthrough. An older primary bath may be a small plaster room with one wet wall and a tub that was never built as a walk-in shower. A later builder bath may have a fiberglass surround, a vanity that does not hold what the room needs, and a fan that does not clear the space. Those are conditions to check at the individual home.",
       "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, issues the building permit. The city's published examples of permit work include remodeling bathrooms, plus plumbing and electrical systems. Applications go through MGO Connect. The Planning Department's published number is (304) 264-2131.",
-      "Outside the city, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace plumbing, electrical, gas, or mechanical systems. The county office publishes 304-264-1966. We check the parcel before we file. This page does not publish a Martinsburg bathroom price.",
+      "Outside the city, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace plumbing, electrical, gas, or mechanical systems. The county office publishes 304-264-1966. We check the parcel before we file. We price every Martinsburg bathroom on a free written estimate for your home, so no fixed price is listed here.",
       "The written estimate itemizes the wet-area work, the fixture moves, and the trades the permit covers. WV Contractor License WV062432.",
     ],
   },
@@ -516,7 +522,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Charles Town bathroom is checked at the house, not assigned by neighborhood. An older bath can be a tight plaster room that shares a plumbing stack with the kitchen. A later builder bath can be a tub-shower combo and a single vanity. We confirm the layout, the stack, and the ventilation on site.",
       "Inside Charles Town city limits, the Building Inspection office at City Hall, 101 E. Washington Street, requires a building permit for remodels, and its published list also names plumbing and electrical. Apply in person or through MGO. The Department of Community Development is at 304-724-3248. The city publishes the codes it enforces, including the International Residential Code 2018, on that Building Inspection page.",
-      "A Charles Town mailing address outside the city is Jefferson County. The Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work (304-725-2998, permits@jeffersoncountywv.org). County filings go through MGO Connect, which the county launched on August 25, 2025. We check the parcel before we file. This page does not publish a Charles Town bathroom price.",
+      "A Charles Town mailing address outside the city is Jefferson County. The Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work (304-725-2998, permits@jeffersoncountywv.org). County filings go through MGO Connect, which the county launched on August 25, 2025. We check the parcel before we file. We price every Charles Town bathroom on a free written estimate for your home, so no fixed price is listed here.",
       "The written estimate itemizes waterproofing, the fixture layout, and whichever trades the permit names. WV Contractor License WV062432.",
     ],
   },
@@ -543,7 +549,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     metaTitle: 'Bathroom Remodel Ashburn VA | Real Elite Contracting',
     h1: 'Bathroom Remodel Ashburn VA',
     metaDescription:
-      'Bathroom remodel Ashburn VA in Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. No Ashburn price on this page. Free written estimate.',
+      'Bathroom remodel Ashburn VA in Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. Free written estimate for your home.',
     includeLocalBusiness: true,
     faqs: [
       {
@@ -554,7 +560,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does a bathroom remodel in Ashburn, VA cost?',
         answer:
-          'This page does not publish an Ashburn bathroom price. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. A nearby-market cost guide is linked below. It is not an Ashburn quote.',
+          'We price every Ashburn bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. A nearby-market cost guide is linked below. It is not an Ashburn quote.',
       },
       {
         question: 'Who permits a bathroom remodel in Ashburn?',
@@ -565,7 +571,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'A bathroom remodel in Ashburn, VA is a wet-area job, not a fixture swap with a new city name on it. We work Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.',
       'Most of the risk is behind the tile. A shower conversion needs a sloped pan, a waterproofing layer, and a drain that is already in the right place or is moved on a permit. A vanity move is a plumbing relocation, not a cabinet decision. We open the wall, confirm the substrate, and put that finding in the scope before the finish schedule is locked.',
-      'This page does not publish an Ashburn bathroom price, and it does not treat a nearby-market range as if it were yours. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed. The schedule depends on scope, selections, permits, and how much of the existing tile has to come out.',
+      'Every Ashburn bathroom is priced on a free written estimate for your home. A nearby-market range is only a planning guide. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed. The schedule depends on scope, selections, permits, and how much of the existing tile has to come out.',
       'County inspections run in published order: rough plumbing, rough electrical, then final. Association review usually applies only if the bath changes a window, skylight, or other exterior element. A county permit is not association approval when both apply.',
     ],
   },
@@ -597,7 +603,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Martinsburg kitchen is read at the house. An older kitchen may still be a small original room, with plaster walls and plumbing that was never laid out for an island. A later plan may have builder cabinets, a peninsula, and a wall that may or may not be the one you can open into the dining room. We confirm the layout and the structure before we price the work.",
       "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, lists remodeling kitchens among the projects that need a building permit before work starts. The same permit covers plumbing and electrical when those systems change. Apply through MGO Connect. The Planning Department publishes (304) 264-2131.",
-      "Outside city limits, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace electrical, gas, mechanical, or plumbing systems. That office publishes 304-264-1966 and takes applications from 8 AM to 5 PM, Monday through Friday. We check the parcel before we file. This page does not publish a Martinsburg kitchen price.",
+      "Outside city limits, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace electrical, gas, mechanical, or plumbing systems. That office publishes 304-264-1966 and takes applications from 8 AM to 5 PM, Monday through Friday. We check the parcel before we file. We price every Martinsburg kitchen on a free written estimate for your home, so no fixed price is listed here.",
       "The written estimate itemizes cabinets, counters, and any wall, plumbing, or electrical move the permit has to cover. WV Contractor License WV062432.",
     ],
   },
@@ -609,7 +615,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Charles Town kitchen is a house-by-house question. An older kitchen can be a small room with plaster, a single window, and a stack shared with the bath. A later builder layout can be stock cabinets, a peninsula, and a dining wall that becomes a structural question if you want it open. We confirm the stack, the cabinets, and the wall on site.",
       "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, requires a building permit for remodels. Plumbing and electrical are on the same published list. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
-      "Outside the city, a Charles Town address is Jefferson County. The Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. County applications go through MGO Connect. We check the parcel before we file. This page does not publish a Charles Town kitchen price.",
+      "Outside the city, a Charles Town address is Jefferson County. The Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. County applications go through MGO Connect. We check the parcel before we file. We price every Charles Town kitchen on a free written estimate for your home, so no fixed price is listed here.",
       "The written estimate itemizes the cabinet run, the counters, and any plumbing or electrical relocation. WV Contractor License WV062432.",
     ],
   },
@@ -681,7 +687,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A kitchen remodel in Winchester, VA starts with which jurisdiction the house is actually in. Old Town along Loudoun Street and the Walking Mall is the City. A Winchester mailing address along Route 7, Senseny Road, or the Shawnee edge can sit in Frederick County, Virginia. We check the parcel before we file.",
       "Inside the City, building permits run through City of Winchester Zoning and Inspections on the City permit portal. The 2021 Virginia Uniform Statewide Building Code is what the City reviews against. Outside City limits, Frederick County, Virginia issues the building permit. Opening a load-bearing wall needs stamped structural drawings on whichever set applies. Plumbing relocation needs the matching trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work, and that scope stays on the estimate as its own line.",
-      "Historic-district review can apply in Old Town before materials are locked. An association review, when the lot has one, is a separate track from the City or county building permit. This page does not publish a Winchester-only kitchen price. The ranges further down are the regional kitchen tiers already published on the kitchen service, not a Winchester survey. The regional cost guide covers the Eastern Panhandle, Frederick, Maryland, and Loudoun County; it is linked here as that published tier source, not as a Winchester study.",
+      "Historic-district review can apply in Old Town before materials are locked. An association review, when the lot has one, is a separate track from the City or county building permit. We price each Winchester kitchen on a free written estimate for your home. For planning, the kitchen service lists regional tiers, and the regional cost guide covers the Eastern Panhandle, Frederick, Maryland, and Loudoun County. Those ranges are not a Winchester survey and not a quote for this house.",
       "The written estimate itemizes cabinets, counters, and any wall or plumbing move the permit has to cover. Cabinet lead time goes in the written timeline before demo. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
     ],
   },
@@ -699,14 +705,14 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting finishes Leesburg lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
       "What you get is the paperwork product: Town or unincorporated county, Typical versus full plans, and whether a Certificate of Appropriateness is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC building set. County inspections run in published order — trade rough-ins before building framing, insulation before cover, then finals.",
-      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. This page does not publish a Real Elite price band for basement finishing Leesburg VA. The cost section uses the ranges the Ashburn and Leesburg cost guide already publishes, with that guide's caveat.",
+      "We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection. Every Leesburg basement is priced on a free written estimate for your home. For planning, the Ashburn and Leesburg basement cost guide shows Mayflower Virginia ranges. Those ranges are one contractor's planning figures, not a Real Elite price.",
     ],
     sections: [
       {
         id: 'cost',
         title: 'Cost',
         paragraphs: [
-          "The price source for basement finishing Leesburg VA is the Ashburn and Leesburg basement cost guide, not a new estimate written for this page. Mayflower Virginia publishes Northern Virginia basement tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
+          "These planning ranges come from our Ashburn and Leesburg basement cost guide; your written estimate prices your home. Mayflower Virginia publishes Northern Virginia basement tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
           "The same guide gives a separate example of a 1,000-square-foot basement with one bathroom starting around $115,000–$165,000. That example does not describe every project in the tier table. Do not multiply a generic starting rate by floor area and assume the result includes a bathroom.",
         ],
         links: [
@@ -802,7 +808,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'cost',
         title: 'Cost',
         paragraphs: [
-          "Published planning ranges for basement finishing Loudoun County live in the Ashburn and Leesburg cost guide. Mayflower Virginia's Northern Virginia tiers are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
+          "For planning a Loudoun County basement, our Ashburn and Leesburg cost guide shows typical ranges. Mayflower Virginia's Northern Virginia tiers are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
           "Denny + Gardner describes an overall labor-and-materials range of about $50,000 to upward of $100,000 for an upscale renovation, with waste disposal, equipment, design, and permits as other budget considerations. The two sources use different scopes. Do not average them into a county number. A house in Purcellville or Round Hill is quoted from that house, not from the Ashburn tier table.",
         ],
         links: [
@@ -813,6 +819,14 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           {
             href: '/services/basements/leesburg-va',
             label: 'Basement finishing Leesburg VA',
+          },
+          {
+            href: '/services/basements/purcellville-va',
+            label: 'Basement finishing Purcellville VA',
+          },
+          {
+            href: '/services/basements/lansdowne-va',
+            label: 'Basement finishing Lansdowne VA',
           },
         ],
       },
@@ -927,7 +941,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     relatedGuideSlugs: ['basement-egress-window-cost-eastern-panhandle-2026'],
     paragraphs: [
       "A Martinsburg basement is one of two jobs, and which one you have is decided on site. An older cellar can sit on stone or block, with lower headroom and a moisture history that has to be read before anyone talks about drywall. A later house can have a full-height lower level that was left as mechanical space. We do not treat a street or a subdivision as one basement type.",
-      "A lower-level bedroom needs a compliant egress window. The Eastern Panhandle egress-window guide publishes that opening at $3,500 to $6,500 installed, and that is the figure this page uses. A family room and a bath do not automatically need that cut. We say which one the plan is before the estimate is a commitment.",
+      "A lower-level bedroom needs a compliant egress window. The Eastern Panhandle egress-window guide publishes that opening at $3,500 to $6,500 installed, and that is the range we use for planning. A family room and a bath do not automatically need that cut. We say which one the plan is before the estimate is a commitment.",
       "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at 232 N. Queen Street implements the West Virginia State Building Code the city has adopted, and it lists a change to the interior of a structure as permit work. Apply through MGO Connect. Outside the city, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace electrical, mechanical, or plumbing systems (304-264-1966).",
       "Moisture is checked before framing: perimeter, sump if one is there, and the slab. The written estimate itemizes framing, the trades, and the egress opening when the plan includes a bedroom. WV Contractor License WV062432.",
     ],
@@ -986,6 +1000,310 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     relatedGuideSlugs: ['luxury-basement-finishing-loudoun-northern-virginia-2026'],
   },
 
+  // ── PURCELLVILLE, VA ─────────────────────────────────────────────────────
+  'kitchens-purcellville-va': {
+    h1: 'Kitchen Remodeling in Purcellville, VA',
+    metaDescription:
+      'Kitchen remodeling in Purcellville, VA for the historic village on Route 7. Town zoning comes before the county building permit.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Purcellville?',
+        answer:
+          'Inside town limits, the Town of Purcellville approves zoning before Loudoun County issues the building permit. A load-bearing opening needs stamped drawings on that county permit. Plumbing relocation needs a trade permit. Electrical relocation is a separately licensed trade.',
+      },
+      {
+        question: 'Is a Purcellville address always inside town limits?',
+        answer:
+          'No. Wright Farm and Mayfair sit in the county Joint Land Management Area beside the town. We check the parcel before we file. Unincorporated parcels use LandMARC for building and zoning.',
+      },
+      {
+        question: 'What does kitchen remodeling in Purcellville, VA cost?',
+        answer:
+          'We price every Purcellville project on a free written estimate for your home, so no fixed price is listed here. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. The written estimate prices this house.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Purcellville, VA starts with an older house, not a new-build package. The town is the historic village on Business Route 7 in western Loudoun: late-19th and early-20th century houses along Main Street, plus later lots. A small original kitchen can still have plaster, a single window, and a stack shared with the bath. We confirm the stack and the walls on site.',
+      'A Purcellville mailing address is not always town limits. Wright Farm and Mayfair sit in the Joint Land Management Area. Inside town limits, town zoning is approved before Loudoun County issues the building permit. Outside town, building and zoning run through LandMARC. Opening a load-bearing wall needs stamped structural drawings. Moving a sink is a plumbing permit. Electrical relocation is a separately licensed trade, and Real Elite does not take electrical work. That scope stays on the estimate as its own line.',
+      'The Loudoun kitchen cost guide is the published figure source. It cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Purcellville quote. Cabinets, counters, and any wall or plumbing move are separate lines. Cabinet lead time goes in the written timeline before demo.',
+      'Lots outside the town sewer are often on well and septic. A kitchen that stays in the existing footprint is a different filing from a bedroom addition, which needs Loudoun Health Department approval before the building permit. We name which filing the parcel is before the estimate is a commitment.',
+    ],
+  },
+
+  'bathrooms-purcellville-va': {
+    h1: 'Bathroom Remodeling in Purcellville, VA',
+    metaDescription:
+      'Bathroom remodeling in Purcellville, VA for older village baths and later houses on Route 7. Town zoning when a county permit is required.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Purcellville?',
+        answer:
+          'Plumbing or electrical relocation needs a Loudoun County trade permit. Inside town limits, town zoning is approved before the county releases a building permit. A bath that does not change a window or an exterior wall usually stays off association review. Unincorporated parcels, including the Joint Land Management Area, use LandMARC.',
+      },
+      {
+        question: 'What does bathroom remodeling in Purcellville, VA cost?',
+        answer:
+          'We price every Purcellville bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing, the shower pan, tile, and any plumbing move are separate lines on the written estimate. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
+      },
+      {
+        question: 'Do older Purcellville baths need a different scope?',
+        answer:
+          'Often, yes. A village bath can be a small room with plaster and a stack that also serves the kitchen. We open the wall and confirm the substrate before the finish schedule is locked. A later house on Route 7 is a different layout, and we price that house, not the village next door.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Purcellville, VA is a wet-area job in an older town. The village along Main Street still has small original baths: plaster, a tight footprint, and plumbing that was never laid out for a curbless shower. Later houses on Route 7 are a separate plan. We read the room we are standing in.',
+      'Inside town limits, town zoning comes before the Loudoun County building permit when the work needs one. Wright Farm and Mayfair are not automatically in town. They sit in the Joint Land Management Area, and those parcels use LandMARC. A vanity move is a plumbing relocation. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work.',
+      'Every Purcellville bathroom is priced on a free written estimate for your home. A nearby-market range is only a planning guide. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed. County inspections, when a permit is required, run rough plumbing, then final.',
+      'A new window or skylight is exterior work and a different review from an interior tile job. Lots off the town sewer are often on well and septic. That matters for a bedroom addition, not for a bath that keeps the existing stack. We say which one the project is.',
+    ],
+  },
+
+  'basements-purcellville-va': {
+    h1: 'Basement Finishing in Purcellville, VA',
+    metaDescription:
+      'Basement finishing in Purcellville, VA. Town zoning first. Typical county path is 1% plus a $65 minimum.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Purcellville, VA?',
+        answer:
+          'Inside town limits, the Town approves zoning before Loudoun County releases the building permit. Unincorporated parcels, including Wright Farm and Mayfair in the Joint Land Management Area, use LandMARC. Typical Finished Basement Details cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column.',
+      },
+      {
+        question: 'What does a finished basement in Purcellville cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor’s planning ranges, not a Purcellville average and not a Real Elite price. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+      },
+      {
+        question: 'Can a Purcellville lower level include a bedroom?',
+        answer:
+          'Only with an emergency egress window that meets the code dimensions on the plans. That opening is exterior work. On a well-and-septic lot, adding a bedroom also needs Loudoun Health Department approval before the building permit. An existing window does not, by itself, make the room a legal bedroom.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Purcellville, VA follows the western Loudoun corridor, not an Ashburn subdivision. The town is a historic village on Route 7. Some older houses have low cellars and stone or block foundations. Later lots have a conventional unfinished lower level. A Purcellville mailing address can still sit outside town limits, in the Joint Land Management Area at Wright Farm or Mayfair. We check the parcel before we file.',
+      'Inside town limits the order is fixed: town zoning, then the Loudoun County building permit. The county will not release that permit until town zoning is approved. Outside town, building and zoning run through LandMARC. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Purcellville average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'The price source for basement finishing in Purcellville is the Ashburn and Leesburg basement cost guide. Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor’s planning ranges, not Real Elite prices and not a western Loudoun average.',
+          'A village cellar with limited headroom is not the same scope as a full-height walkout. Do not apply the Ashburn tier table to a Main Street house and call it a quote. The written estimate is the number for the foundation in front of us.',
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Ashburn and Leesburg basement cost guide',
+          },
+          {
+            href: '/services/basements/loudoun-county-va',
+            label: 'Basement finishing Loudoun County',
+          },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'The schedule starts with the parcel. Town limits add a zoning step that a Joint Land Management Area lot does not. Finish selections stay off the written timeline until that path is named. After approvals, the calendar depends on scope, selections, and crew availability. We put that schedule in writing before demo.',
+        ],
+        links: [
+          {
+            href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+            label: 'Luxury basement finishing guide',
+          },
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency egress window. Sill height, opening size, and the window well go on the plans. On an older Purcellville foundation that cut can be the hard part of the job, and it is exterior work. The cost guide says to check the escape arrangement before calling the room a bedroom. Moisture comes first: a perimeter check, a sump if one exists, and vapor control under the finish floor.',
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Cost guide: bedroom escape',
+          },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'County work has two paths: Typical Finished Basement Details, or a complete plan set. Typical cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. Trade permits are separate. Inside town, those county fees still wait on town zoning.',
+        ],
+        links: [
+          {
+            href: '/blog/loudoun-county-permits-hoa-guide-2026',
+            label: 'Loudoun County permits and HOA guide',
+          },
+          {
+            href: '/service-areas/purcellville-va',
+            label: 'Purcellville service area',
+          },
+        ],
+      },
+    ],
+  },
+
+  // ── LANSDOWNE, VA ────────────────────────────────────────────────────────
+  'kitchens-lansdowne-va': {
+    h1: 'Kitchen Remodeling in Lansdowne, VA',
+    metaDescription:
+      'Kitchen remodeling in Lansdowne, VA for established houses near Leesburg and the Potomac. A Leesburg address is not Town zoning.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Lansdowne?',
+        answer:
+          'Lansdowne is unincorporated Loudoun County. Building and zoning run through LandMARC, not the Town of Leesburg. A load-bearing opening needs stamped drawings and a county building permit. Plumbing relocation needs a trade permit. Association review usually applies only if a window or other exterior element changes.',
+      },
+      {
+        question: 'Does a Leesburg mailing address put the house in the Town of Leesburg?',
+        answer:
+          'No. Many Lansdowne houses use a Leesburg address and sit east of town along Route 7, near the Potomac. We check the parcel. Town of Leesburg zoning does not apply to an unincorporated Lansdowne lot.',
+      },
+      {
+        question: 'What does kitchen remodeling in Lansdowne, VA cost?',
+        answer:
+          'We price every Lansdowne project on a free written estimate for your home, so no fixed price is listed here. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Cabinets, counters, and any wall or plumbing move are lines on the written estimate.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Lansdowne, VA is work in an established community, not a price-shopped new subdivision. The houses are mostly 1990s and 2000s production and custom homes on public water and sewer, east of Leesburg along Route 7 and the Potomac. Many still have the builder kitchen: a peninsula, stock cabinets, and a dining wall that may or may not be the one you can open.',
+      'A Leesburg mailing address does not make the parcel Town of Leesburg. Lansdowne is unincorporated Loudoun County. Building and zoning run through LandMARC. Opening a load-bearing wall needs stamped structural drawings and a county building permit. Moving a sink or a gas range is a trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work, and that line stays separate on the estimate.',
+      'We price every kitchen on a free written estimate for your home, so we don\'t list a fixed Lansdowne price. For planning, the Loudoun kitchen cost guide cites HomeAdvisor’s national typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those figures are national, not a quote for this house. Cabinet lead time is named before demo.',
+      'A county permit is not association approval. Lansdowne has more than one association. We identify the one that governs the address and use its current packet when a window or other exterior element changes. An interior kitchen that leaves the outside alone is a different track. The community is on public water and sewer, so this is not a well-and-septic filing.',
+    ],
+  },
+
+  'bathrooms-lansdowne-va': {
+    h1: 'Bathroom Remodeling in Lansdowne, VA',
+    metaDescription:
+      'Bathroom remodeling in Lansdowne, VA for established houses near the Potomac. County permits through LandMARC, not the Town of Leesburg.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Lansdowne?',
+        answer:
+          'Loudoun County, through LandMARC, when the work needs a building permit. Lansdowne is unincorporated. A Leesburg mailing address does not move the parcel into the Town of Leesburg. Plumbing relocation needs a trade permit. Association review usually applies only if a window, skylight, or other exterior element changes.',
+      },
+      {
+        question: 'What does bathroom remodeling in Lansdowne, VA cost?',
+        answer:
+          'We price every Lansdowne bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
+      },
+      {
+        question: 'Are Lansdowne primary baths still the builder layout?',
+        answer:
+          'Many 1990s and 2000s houses still have the original primary bath: a tub-shower, a builder vanity, and a fan that does not clear the room. Replacing that is a different job from moving the stack. We open the wall and confirm the substrate before the finish schedule is locked.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Lansdowne, VA is a wet-area rebuild in an established house near Leesburg and the Potomac. The community is unincorporated Loudoun County. The housing is mostly 1990s and 2000s, on public water and sewer, and a lot of primary baths are still the builder tub, the builder vanity, and a fan that was never sized for a steam shower.',
+      'A Leesburg mailing address is not Town of Leesburg zoning. Building and zoning run through LandMARC. A shower conversion needs a sloped pan, a waterproofing layer, and a drain that is already in the right place or is moved on a permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work.',
+      'We price every Lansdowne bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed. The schedule depends on scope, selections, permits, and how much of the existing tile has to come out.',
+      'Association review usually applies only when the bath changes a window, skylight, or other exterior element. There is more than one association in Lansdowne. We confirm which one governs the address and use its current standards. A county permit is not that approval.',
+    ],
+  },
+
+  'basements-lansdowne-va': {
+    h1: 'Basement Finishing in Lansdowne, VA',
+    metaDescription:
+      'Basement finishing in Lansdowne, VA. Unincorporated Loudoun, through LandMARC. Typical path is 1% plus a $65 minimum.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Lansdowne, VA?',
+        answer:
+          'Loudoun County, through LandMARC. Lansdowne is unincorporated. A Leesburg mailing address does not send the permit to the Town of Leesburg. Typical Finished Basement Details cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column.',
+      },
+      {
+        question: 'Does the association review an indoor basement?',
+        answer:
+          'Usually only when the work cuts a new window, door, or window well. That opening is exterior. Lansdowne has more than one association, so we identify the one for the address and use its current packet. A county permit is not association approval.',
+      },
+      {
+        question: 'What does a finished basement in Lansdowne cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor’s planning ranges, not a Lansdowne average and not a Real Elite price. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Lansdowne, VA is the unfinished lower level that came with a 1990s or 2000s house east of Leesburg, along Route 7 and the Potomac. The community is established and on public water and sewer. It is not a new-build subdivision and it is not a well-and-septic village. Many of these houses still have an open basement with builder mechanicals and a rough-in that may or may not be where the bath should go.',
+      'Lansdowne is unincorporated Loudoun County. A Leesburg mailing address does not make it Town of Leesburg. Building and zoning run through LandMARC. There is no town zoning step. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and we document each inspection.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Lansdowne average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. An egress cut is exterior work, so the association packet runs in parallel when a bedroom is in the plan.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'For planning a Lansdowne lower level, our Ashburn and Leesburg basement cost guide shows typical regional ranges. Mayflower Virginia’s Northern Virginia tiers are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor’s planning ranges, not Real Elite prices.',
+          'Price the house: ceiling height under the first-floor framing, whether a bath rough-in exists, and whether a bedroom needs a new window well on the Potomac side of the lot. Do not average those conditions into the Ashburn tier and call it this project.',
+        ],
+        links: [
+          {
+            href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
+            label: 'Ashburn and Leesburg basement cost guide',
+          },
+          {
+            href: '/services/basements/leesburg-va',
+            label: 'Basement finishing Leesburg VA',
+          },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'There is no Town of Leesburg zoning wait on an unincorporated Lansdowne lot. The calendar still depends on county review, association review when an egress opening is cut, finish selections, and crew availability. We write that sequence down before demo. The luxury basement guide is the room-planning source, not a Lansdowne schedule.',
+        ],
+        links: [
+          {
+            href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+            label: 'Luxury basement finishing guide',
+          },
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency egress window anywhere in the county. In Lansdowne that cut is often the first exterior change the association sees. Sill height, opening size, and the window well go on the plans. An existing window’s presence does not establish compliance. Moisture comes first: perimeter check, sump if one exists, vapor control under the finish floor.',
+        ],
+        links: [
+          {
+            href: '/blog/luxury-basement-finishing-loudoun-northern-virginia-2026',
+            label: 'Luxury guide: egress',
+          },
+          {
+            href: '/blog/hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026',
+            label: 'Lansdowne association review',
+          },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Every finished basement needs a Loudoun County building and zoning application through LandMARC, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. Typical details cannot replace plans when the job alters a load-bearing wall, an exterior wall, a beam, or a column. The association application is a separate track when the egress opening changes the outside.',
+        ],
+        links: [
+          {
+            href: '/blog/loudoun-county-permits-hoa-guide-2026',
+            label: 'Loudoun County permits and HOA guide',
+          },
+          {
+            href: '/service-areas/lansdowne-va',
+            label: 'Lansdowne service area',
+          },
+        ],
+      },
+    ],
+  },
+
   // ── BATHROOMS · MCLEAN, VA ───────────────────────────────────────────────
   'bathrooms-mclean-va': {
     paragraphs: [
@@ -1028,13 +1346,31 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · MCLEAN, VA ───────────────────────────────────────────────
   'basements-mclean-va': {
+    h1: 'Basement Finishing in McLean, VA',
     metaDescription:
-      'Lower-level finishing in McLean — media room, wet bar, wine room, guest suite. Most builds run $150,000 to $220,000, with every line itemized up front.',
+      'Basement finishing in McLean, VA. Most entertainment lower levels run $150,000 to $220,000, itemized before work starts.',
+    faqs: [
+      {
+        question: 'Who permits a basement in McLean?',
+        answer:
+          'Fairfax County Land Development Services. McLean is unincorporated. There is no town zoning step. Framing, electrical, plumbing, mechanical, and final inspections apply when those trades are in the job.',
+      },
+      {
+        question: 'Does every McLean street have an HOA review?',
+        answer:
+          'No. ZIP 22102 near Tysons and Route 123 is more likely to have an association. Many estate streets in ZIP 22101, along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road, do not. A county permit is not association approval when an association does apply.',
+      },
+      {
+        question: 'What does basement finishing in McLean, VA cost?',
+        answer:
+          'A typical McLean lower level runs $90,000–$250,000+. A finished entertainment level with a media room, wet bar, full bath, guest suite, and gym usually lands at $150,000–$220,000. The written estimate itemizes framing, trades, and finishes for the house.',
+      },
+    ],
     paragraphs: [
-      "McLean homes generally have generous unfinished lower levels with full ceiling height and walkout access, which makes finished-basement entertainment suites one of the highest-impact projects an estate-class home can build. The McLean basement brief tends to be ambitious: a true media room with tiered seating, a separate wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space to an already substantial home.",
-      "Real Elite Contracting builds McLean lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the cheap shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
-      "Typical McLean basement-finishing scope in 2026 runs $90,000–$250,000+ depending on square footage, feature mix, and the level of millwork and stone in the build. A finished entertainment lower level with media room, wet bar, full bath, guest suite, and gym usually lands in the $150,000–$220,000 range. We provide detailed line-item estimates with framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone, and finishes all broken out so the budget is transparent.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. Review the proposed scope and warranty terms before signing. The project schedule depends on scope, approvals, selections, and availability.",
+      "Basement finishing in McLean, VA splits by ZIP. ZIP 22101 is the estate streets along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road: large lots and one-off houses, often with a full-height walkout. ZIP 22102 sits closer to Tysons and Route 123, with more attached housing around the commercial core and a different lower-level footprint. We price the house, not a McLean average.",
+      "McLean is unincorporated Fairfax County. Building permits go through Land Development Services. There is no town office in front of the county. Some neighborhoods require association review, and many estate streets do not. A county permit is not HOA approval.",
+      "Typical scope runs $90,000–$250,000+, and a finished entertainment level with a media room, wet bar, full bath, guest suite, and gym usually lands at $150,000–$220,000. Slab moisture is checked before finishes are ordered. A bedroom needs a code egress opening, drawn on the plans. The estimate breaks out framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone, and finishes.",
+      "Fairfax County inspections cover framing, electrical, plumbing, mechanical, and final when those systems are in the job. The schedule depends on scope, approvals, selections, and availability. Review the proposed scope and warranty terms before signing.",
     ],
   },
 
@@ -1062,23 +1398,61 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── KITCHENS · VIENNA, VA ────────────────────────────────────────────────
   'kitchens-vienna-va': {
+    h1: 'Kitchen Remodeling in Vienna, VA',
+    metaDescription:
+      'Kitchen remodeling in Vienna, VA. Town zoning, county building permit. Published scope runs $130,000 to $300,000+.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Vienna?',
+        answer:
+          'Inside town limits, the Town of Vienna reviews zoning and site plans. Fairfax County Land Development Services issues the building permit. A Vienna mailing address is not always inside town limits. Oakton and Dunn Loring are separate pages.',
+      },
+      {
+        question: 'What does kitchen remodeling in Vienna, VA cost?',
+        answer:
+          'A Vienna kitchen usually runs $130,000–$300,000+, depending on cabinetry, appliances, and whether a wall opens. The written estimate itemizes this house.',
+      },
+      {
+        question: 'Do Maple Avenue infill kitchens follow the same path as a mid-century ranch?',
+        answer:
+          'The permit offices are the same inside town. The houses are not. A mid-century kitchen on a tree-lined street is often a closed room with a bearing wall to the dining room. Newer infill along Maple Avenue and Hunter Mill Road may already be open. We confirm the structure before we price a removal.',
+      },
+    ],
     paragraphs: [
-      "Vienna primary kitchens are some of the most carefully specified residential projects in Northern Virginia. The combination of the design-aware homeowner population, the architectural variety of the housing stock, and the proximity to Tysons-area showrooms means a typical Vienna kitchen is a $130,000–$300,000+ undertaking executed in close collaboration with the designer, the cabinet shop, and the appliance specialist.",
-      "Real Elite Contracting builds Vienna kitchens with that collaboration in mind. Typical scope includes custom inset cabinetry (often paint-grade or rift-cut white oak), full-slab quartzite or natural-stone countertops with mitered apron edges, integrated panel-front appliance suites (Sub-Zero, Wolf, Miele), professional ventilation that disappears into millwork, scullery or butler's pantry build-outs where the plan supports them, and layered lighting from the cans to the in-cabinet to the decorative.",
-      "Where there's an opportunity to reshape the plan — removing the bearing wall to the dining room, expanding into a former breakfast area, relocating mechanical to clean up ceiling height — those structural moves often deliver the highest-impact result in a Vienna kitchen. We bring a structural engineer in early when needed, model the changes for the homeowner and designer, value-engineer the parts that won't be visible, and protect the spend for the cabinetry, stone, and fixtures that define the room.",
-      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical and electrical inspections, and coordination with the designer or architect are handled by us — you stay focused on the decisions that actually require you.",
+      "Kitchen remodeling in Vienna, VA is a town project. Vienna is incorporated. ZIPs 22180, 22181, and 22182 cover mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. A Vienna mailing address can still be Oakton or Dunn Loring. We check the parcel before we file.",
+      "Inside town, the town reviews zoning and site plans. Fairfax County Land Development Services is the building official. Opening a load-bearing wall needs stamped structural drawings and the county building permit. Plumbing relocation needs the matching trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work, and that scope stays on the estimate as its own line.",
+      "A Vienna kitchen usually runs $130,000–$300,000+. Cabinetry, stone, appliances, and whether the dining wall comes out move the number. A closed mid-century kitchen and an already-open Maple Avenue plan are different jobs. Cabinet lead time goes in the written timeline before demo.",
+      "Bring the drawings if a designer is already on the job. We coordinate Fairfax County permitting and the town zoning submission. Review the proposed scope and warranty terms before signing. The schedule depends on scope, approvals, selections, and availability.",
     ],
   },
 
   // ── BASEMENTS · VIENNA, VA ───────────────────────────────────────────────
   'basements-vienna-va': {
+    h1: 'Basement Finishing in Vienna, VA',
     metaDescription:
-      'Finished lower levels in Vienna — media room, wet bar, guest suite, full bath. Most projects run $130,000 to $180,000, itemized before work starts.',
+      'Basement finishing in Vienna, VA. Town zoning, county building permit. Most projects run $130,000 to $180,000.',
+    faqs: [
+      {
+        question: 'Who permits a basement in Vienna?',
+        answer:
+          'Inside town limits, the Town of Vienna reviews zoning and site plans, including grading. Fairfax County Land Development Services is the building official. A Vienna mailing address is not always inside town limits. Oakton and Dunn Loring have their own pages.',
+      },
+      {
+        question: 'What does basement finishing in Vienna, VA cost?',
+        answer:
+          'A typical Vienna lower level runs $80,000–$200,000+. A finished entertainment level with a media room, wet bar, full bath, and guest suite usually lands at $130,000–$180,000. The written estimate is line-itemed for the house.',
+      },
+      {
+        question: 'Are Vienna lower levels the same as McLean estates?',
+        answer:
+          'No. Vienna is an incorporated town. ZIPs 22180, 22181, and 22182 cover mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. Ceiling height and walkout access vary house to house. A mid-century ranch is a different room from an estate lower level.',
+      },
+    ],
     paragraphs: [
-      "Vienna homes typically have generous unfinished lower levels with full ceiling height and walkout access, which makes a finished entertainment lower level one of the highest-impact projects the home can build. The typical Vienna basement brief includes a true media room with tiered seating, a wet bar with refrigerated drawers and dishwasher, a guest suite with full bath, a fitness or yoga room, sometimes a wine room. Done right, the lower level adds a full additional tier of livable space.",
-      "Real Elite Contracting builds Vienna lower levels to the same standard as the upper floors. Moisture and vapor control come first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where the slab condition requires it — because the shortcut on moisture is the one that surfaces three years later as a mold problem in the cabinetry. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or dedicated mini-split systems, surround pre-wire, and the millwork and finishes that turn the space into a true room.",
-      "Typical Vienna basement-finishing scope in 2026 runs $80,000–$200,000+ depending on square footage, feature mix, and the level of millwork and stone. A finished entertainment lower level with media room, wet bar, full bath, guest suite, and gym usually lands in the $130,000–$180,000 range. We provide detailed line-item estimates with everything broken out so the budget is transparent.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. Review the proposed scope and warranty terms before signing. The project schedule depends on scope, approvals, selections, and availability.",
+      "Basement finishing in Vienna, VA starts with whether the house is inside the town. Vienna is an incorporated town in Fairfax County. A Vienna mailing address can still be Oakton or Dunn Loring, and those places have their own pages. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses, later colonials, and newer infill along Maple Avenue and Hunter Mill Road.",
+      "Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. That is a different front door from unincorporated McLean, which has no town zoning step. We check the parcel before we file.",
+      "Typical scope runs $80,000–$200,000+, and a finished entertainment level with a media room, wet bar, full bath, and guest suite usually lands at $130,000–$180,000. A mid-century lower level is often tighter on ceiling height than a later colonial. Slab moisture is checked before cabinetry is ordered. A bedroom needs an egress opening drawn to the code dimensions.",
+      "County inspections cover framing, electrical, plumbing, mechanical, and final when those systems are in the job. The schedule depends on scope, town zoning, county review, selections, and availability. Review the proposed scope and warranty terms before signing.",
     ],
   },
 
@@ -1104,13 +1478,31 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   // ── BASEMENTS · GREAT FALLS, VA ──────────────────────────────────────────
   'basements-great-falls-va': {
+    h1: 'Basement Finishing in Great Falls, VA',
     metaDescription:
-      'Estate-scale lower levels in Great Falls — media room, wet bar, wine room, fitness, guest suite. Most builds run $250,000 to $350,000, fully itemized.',
+      'Basement finishing in Great Falls, VA. Estate lower levels usually run $250,000 to $350,000, and can reach $400,000+.',
+    faqs: [
+      {
+        question: 'Who permits a basement in Great Falls?',
+        answer:
+          'Fairfax County Land Development Services. Great Falls is unincorporated, ZIP 22066. It is not one master-planned community, and there is no town zoning step. Where a lot is on a private well or septic system, a new bedroom also needs Fairfax County Health Department approval before the building permit.',
+      },
+      {
+        question: 'What does basement finishing in Great Falls, VA cost?',
+        answer:
+          'A typical Great Falls lower level runs $150,000–$400,000+. A fully finished entertainment level with a media room, wet bar, wine room, fitness room, guest suite, and gym usually lands at $250,000–$350,000. The written estimate itemizes the house.',
+      },
+      {
+        question: 'Is a Great Falls lower level a townhouse basement?',
+        answer:
+          'No. The housing is large-lot custom houses along Georgetown Pike, Riverbend Road, and Seneca Road. Walkout access, ceiling height, and the distance to a septic field are lot-specific. We measure those before we draw a bedroom.',
+      },
+    ],
     paragraphs: [
-      "Great Falls lower levels are some of the most ambitious finished-basement projects in our service area. The typical brief includes a media room with tiered seating and acoustic treatment, a true wet bar that functions as a second entertaining kitchen, a wine room with dedicated cooling, a fitness room with rubber flooring and mirrored wall, a guest suite with full bath, and sometimes a separate game room or family lounge. Lower levels at this scale function as an entire additional tier of the home.",
-      "Real Elite Contracting builds Great Falls lower levels to the same standard as the upper floors. Moisture and vapor control first — perimeter inspection, sump pump and battery backup verification, dimple-mat or insulated subfloor systems where required — because the shortcut on moisture is the one that surfaces years later. From there: code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, dedicated HVAC systems where the existing capacity doesn't carry the load, surround pre-wire, acoustic treatment, and the millwork and stone that turn the space into a true room.",
-      "Typical Great Falls basement-finishing scope in 2026 runs $150,000–$400,000+ depending on square footage, feature mix, and the level of millwork and stone in the build. A fully-finished entertainment lower level with media room, wet bar, wine room, fitness, guest suite, and gym usually lands in the $250,000–$350,000 range. We provide detailed line-item estimates with everything broken out.",
-      "Fairfax County permits and inspections are required for framing, electrical, plumbing, mechanical, and final. We coordinate the inspector sequence so trades don't lose days waiting on each other. Review the proposed scope and warranty terms before signing. The project schedule depends on scope, approvals, selections, and availability.",
+      "Basement finishing in Great Falls, VA is work on large lots. Great Falls is unincorporated Fairfax County, ZIP 22066. The houses are custom builds along Georgetown Pike, Riverbend Road, and Seneca Road. It is not one association and not one floor plan. A lower level here is often a second entertaining floor: media room, wet bar, wine storage, fitness, and a guest suite, when the slab and the septic field allow it.",
+      "Building permits go through Fairfax County Land Development Services. There is no town zoning office. Where the lot is on a private well or septic system, a new bedroom needs Fairfax County Health Department approval before the building permit. That step does not apply to a sewered McLean or Vienna lot, and we do not skip it here.",
+      "Typical scope runs $150,000–$400,000+, and a fully finished entertainment level with a media room, wet bar, wine room, fitness room, guest suite, and gym usually lands at $250,000–$350,000. Slab moisture and the existing HVAC capacity are checked before millwork is ordered. A bedroom needs an egress opening on the plans.",
+      "County inspections cover framing, electrical, plumbing, mechanical, and final when those systems are in the job. The schedule depends on scope, health-department review when a bedroom is added on well or septic, selections, and availability. Review the proposed scope and warranty terms before signing.",
     ],
   },
 
@@ -1211,7 +1603,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Martinsburg addition follows the lot we measure. On an older house the side yard can be small, the foundation older, and a bump-out has to respect the house that is already there. On a later lot, a single room or a second story is a different structural question. We confirm the yard, the foundation, and the structure before we lock a footprint.",
       "Inside city limits, the Planning Department at City Hall, 232 N. Queen Street, lists enlarging or adding to an existing structure as work that needs a building permit. The city's own FAQ says new buildings or additions must also include a survey or site plan. Apply through MGO Connect. The published Planning number is (304) 264-2131.",
-      "Outside the city, Berkeley County requires a permit to enlarge a structure. The application at 400 West Stephen Street, Suite 202, asks for construction plans and a plot plan showing existing structures. If the work is inside a mapped 100-year floodplain, the county requires a Floodplain Certificate. The county office publishes 304-264-1966. We check the parcel before we lock a footprint. This page does not publish a Martinsburg addition price.",
+      "Outside the city, Berkeley County requires a permit to enlarge a structure. The application at 400 West Stephen Street, Suite 202, asks for construction plans and a plot plan showing existing structures. If the work is inside a mapped 100-year floodplain, the county requires a Floodplain Certificate. The county office publishes 304-264-1966. We check the parcel before we lock a footprint. We price every Martinsburg addition on a free written estimate for your home, so no fixed price is listed here.",
       "The written estimate itemizes foundation, framing, and the trades the permit names. WV Contractor License WV062432.",
     ],
   },
@@ -1223,7 +1615,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Charles Town addition starts with the foundation in front of us. On an older house the work can be a room tied into stone or block, and the yard may be tight. On a newer house the question may be a bedroom, a larger kitchen, or a screened porch. We check the foundation and the lot rather than assuming a subdivision type.",
       "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, lists additions on the work that needs a building permit, along with plumbing, electrical, and HVAC when those systems are in the job. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
-      "Outside the city, Jefferson County's Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, lists building additions among the work that needs a permit, and it requires compliance with the International Residential Code version adopted by the State of West Virginia. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. Filings go through MGO Connect. We check the parcel before we file. This page does not publish a Charles Town addition price.",
+      "Outside the city, Jefferson County's Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, lists building additions among the work that needs a permit, and it requires compliance with the International Residential Code version adopted by the State of West Virginia. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. Filings go through MGO Connect. We check the parcel before we file. We price every Charles Town addition on a free written estimate for your home, so no fixed price is listed here.",
       "The written estimate itemizes the foundation, the framing, and the trades. WV Contractor License WV062432.",
     ],
   },
