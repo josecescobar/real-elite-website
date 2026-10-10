@@ -1264,4 +1264,15 @@ describe('customer copy never reads like an editor note', () => {
     }
     expect(hits).toEqual([]);
   });
+
+  it('fails on gallery-tagging or estimate-line notes in rendered copy', () => {
+    const leak = /tagged to|so none is shown|in the gallery|stays separate on the estimate/i;
+    const hits: string[] = [];
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      for (const text of renderedCopy(entry)) {
+        if (leak.test(text)) hits.push(`${key}: ${text}`);
+      }
+    }
+    expect(hits).toEqual([]);
+  });
 });
