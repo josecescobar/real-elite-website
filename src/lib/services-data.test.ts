@@ -72,3 +72,40 @@ describe('SERVICE_DATA', () => {
     }
   });
 });
+
+describe('outdoor-living and stairs pillar copy', () => {
+  const ALLOWED_IMAGES = new Set([
+    '/images/work/deck-composite-stairs-front.webp',
+    '/images/work/deck-composite-night-stairs.webp',
+    '/images/work/deck-night-full-house.jpg',
+    '/images/work/deck-night-rail-moon.jpg',
+    '/images/work/deck-composite-surface.webp',
+    '/images/deck-night-lights.jpg',
+    '/images/deck-finished-railings.jpg',
+  ]);
+  const pages = [SERVICE_DATA['outdoor-living'], SERVICE_DATA.stairs];
+
+  function copyOf(d: (typeof pages)[number]): string[] {
+    return [
+      d.title, d.metaTitle, d.metaDescription, d.answer ?? '',
+      d.hero.heading, d.hero.sub ?? '', ...d.overview.paragraphs,
+      ...d.scope.items, ...d.whyChooseUs,
+      ...(d.gallery ?? []).map((g) => g.alt),
+      ...(d.faqs ?? []).flatMap((f) => [f.question, f.answer]),
+    ];
+  }
+
+  it('uses only Real Elite photos', () => {
+    for (const d of pages) {
+      const srcs = [d.hero.image?.src, d.overview.image?.src, ...(d.gallery ?? []).map((g) => g.src)];
+      for (const src of srcs) expect(ALLOWED_IMAGES.has(src as string), `${d.slug}: ${src}`).toBe(true);
+    }
+  });
+
+  it('has no site-mechanics notes, inspiration labels, or electrical claims', () => {
+    const leak = /this page|tagged to|in the gallery|no photo|stays separate on the estimate|we do not publish|inspiration|lighting and electrical|we wire|brambleton/i;
+    for (const d of pages) {
+      for (const text of copyOf(d)) expect(text, d.slug).not.toMatch(leak);
+    }
+  });
+});

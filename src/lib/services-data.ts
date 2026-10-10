@@ -656,7 +656,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
 
   decks: {
     slug: 'decks',
-    title: 'Decks & Outdoor Living',
+    title: 'Decks',
     serviceType: 'Deck Construction',
     metaTitle: 'Decks & Outdoor Living | Real Elite Contracting',
     metaDescription:
@@ -675,7 +675,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Real Elite Contracting designs and builds custom decks across the WV–MD–VA region — pressure-treated and premium composite (Trex, TimberTech, Azek), railings, and full outdoor living spaces engineered for the four-season climate.',
     hero: {
       eyebrow: 'Outdoor',
-      heading: 'Decks & Outdoor Living',
+      heading: 'Custom Decks',
       sub: 'Composite decks, railings, lighting, and full backyard transformations. The outdoor living spaces premium homeowners actually use.',
       image: { src: '/images/deck-night-lights.jpg', alt: 'Finished composite deck with solar post lights at night' },
     },
@@ -691,9 +691,9 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         'Composite decking (Trex, TimberTech, Azek)',
         'Pressure-treated lumber decks',
         'Multi-level deck designs',
-        'Custom railings, stairs, and built-in benches',
+        'Custom railings and built-in benches',
         'Pergolas and shade structures',
-        'Outdoor lighting and electrical',
+        'Solar post-cap and step lights',
         'Deck repairs, refinishing, and expansions',
       ],
     },
@@ -745,6 +745,160 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'covered-patio-outdoor-living-cost-loudoun-county-2026',
       'composite-vs-pressure-treated-decks-loudoun-county-va',
     ],
+  },
+
+  'outdoor-living': {
+    slug: 'outdoor-living',
+    title: 'Outdoor Living',
+    serviceType: 'Outdoor Living Construction',
+    metaTitle: 'Outdoor Living Spaces | Real Elite Contracting',
+    metaDescription:
+      'Screened porches, covered patios, pergolas, and outdoor living spaces built across the WV–MD–VA region. Free written estimate after a site walk.',
+    keywords: [
+      'outdoor living',
+      'screened porch',
+      'covered patio',
+      'pergola',
+      'porch roof',
+      'outdoor kitchen',
+      'Loudoun County outdoor living',
+      'Eastern Panhandle',
+    ],
+    answer:
+      'Real Elite Contracting builds outdoor living spaces across the WV–MD–VA region: screened porches, covered patios and porch roofs, pergolas, and the decks and patios that tie them to the house.',
+    hero: {
+      eyebrow: 'Outdoor',
+      heading: 'Outdoor Living',
+      sub: 'Screened porches, covered patios, and pergolas built as part of the house, not an afterthought.',
+      image: { src: '/images/work/deck-night-full-house.jpg', alt: 'Finished deck lit at night across the back of the house' },
+    },
+    overview: {
+      paragraphs: [
+        'Outdoor living is the room you use from April to November. A screened porch for mornings without bugs, a covered patio that keeps dinner going through a summer storm, a pergola that gives a deck some shade. Real Elite Contracting plans these spaces around how your family actually uses the backyard.',
+        'A roof over a porch or patio is a structural addition to the house. It ties into the existing roof or wall, carries snow load, and needs footings sized for it. We draw it, file the permit, and build it so the new roofline looks like it was always there.',
+      ],
+      image: { src: '/images/work/deck-night-rail-moon.jpg', alt: 'Deck railing at night with the moon above' },
+    },
+    scope: {
+      items: [
+        'Screened porches and three-season rooms',
+        'Covered patios and porch roofs tied into the house',
+        'Pergolas and shade structures',
+        'Composite and pressure-treated decks',
+        'Concrete patios and walkways',
+        'Outdoor kitchen and fire-feature surrounds (gas and electrical by licensed trades)',
+        'Solar post-cap and step lights',
+      ],
+    },
+    gallery: [
+      { src: '/images/work/deck-night-full-house.jpg', alt: 'Finished deck lit at night across the back of the house' },
+      { src: '/images/work/deck-night-rail-moon.jpg', alt: 'Deck railing at night with the moon above' },
+      { src: '/images/work/deck-composite-stairs-front.webp', alt: 'Composite deck with white vinyl railings and a wide stair down to the patio' },
+      { src: '/images/work/deck-composite-surface.webp', alt: 'Brown composite decking with a curved run of white vinyl railing' },
+      { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white railings' },
+      { src: '/images/deck-night-lights.jpg', alt: 'Finished deck with solar post lights at night' },
+    ],
+    whyChooseUs: [
+      'Planned around how you use the yard, not a catalog layout.',
+      'Roofs and footings built for snow load and the four-season WV–MD–VA climate.',
+      'One crew from permit to final inspection.',
+    ],
+    faqs: [
+      {
+        question: 'Do I need a permit for a screened porch or covered patio?',
+        answer:
+          'Yes. A roof over a porch or patio is a structural addition. Loudoun County needs full plans for a deck with a roof or screen. We tell you which office files the job and put the published fee in the written estimate.',
+      },
+      {
+        question: 'Can you add a roof to my existing deck?',
+        answer:
+          'Often, yes, but the existing deck has to carry the new load. We check the footings, beams, and ledger first. If they are undersized, the estimate says what has to change before a roof goes on.',
+      },
+      {
+        question: 'What does an outdoor living space cost?',
+        answer:
+          'Full outdoor living builds with multiple levels, a pergola, lighting, and built-ins typically run $35k–$80k+. Smaller projects are priced on a free written estimate after a site walk.',
+      },
+    ],
+    relatedGuideSlugs: [
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'deck-cost-per-square-foot-eastern-panhandle-2026',
+    ],
+    icon: 'Fence',
+  },
+
+  stairs: {
+    slug: 'stairs',
+    title: 'Stairs & Railings',
+    serviceType: 'Stair Construction and Remodeling',
+    metaTitle: 'Stairs & Railings | Real Elite Contracting',
+    metaDescription:
+      'Staircase remodels, new treads and balusters, handrails, and exterior deck and porch stairs built to code across the WV–MD–VA region.',
+    keywords: [
+      'staircase remodel',
+      'stair treads',
+      'balusters',
+      'iron balusters',
+      'handrail replacement',
+      'deck stairs',
+      'porch stairs',
+      'stair railing',
+    ],
+    answer:
+      'Real Elite Contracting remodels interior staircases and builds exterior stairs across the WV–MD–VA region: carpet-to-hardwood treads, new risers, wood or iron balusters, handrails and newel posts, and deck and porch stairs built to code.',
+    hero: {
+      eyebrow: 'Interior & Exterior',
+      heading: 'Stairs & Railings',
+      sub: 'From carpet-to-hardwood staircase makeovers to new deck stairs, built to code and finished clean.',
+      image: { src: '/images/work/deck-composite-stairs-front.webp', alt: 'Composite deck with white vinyl railings and a wide stair down to the patio' },
+    },
+    overview: {
+      paragraphs: [
+        'The staircase is often the first thing people see when they walk in. Swapping carpet for hardwood treads, painting the risers, and replacing spindles with wood or iron balusters changes the whole entry without touching a wall.',
+        "Outside, stairs take the most wear of anything on a deck or porch. We build them with consistent rise and run, solid stringers, graspable handrails, and guards where the drop calls for them. Changing a stair's structure or layout needs a building permit; replacing treads and balusters on a sound stair usually does not, and we confirm which applies before work starts.",
+      ],
+      image: { src: '/images/work/deck-composite-night-stairs.webp', alt: 'Deck stair and railings lit by post-cap lights at night' },
+    },
+    scope: {
+      items: [
+        'Carpet-to-hardwood tread conversions',
+        'New risers, skirt boards, and trim',
+        'Wood and iron baluster replacement',
+        'Handrails, newel posts, and wall rails',
+        'Deck and porch stairs and landings',
+        'Exterior stair railings and guards',
+        'Stair repairs: loose treads, squeaks, and wobbly rails',
+      ],
+    },
+    gallery: [
+      { src: '/images/work/deck-composite-stairs-front.webp', alt: 'Composite deck with white vinyl railings and a wide stair down to the patio' },
+      { src: '/images/work/deck-composite-night-stairs.webp', alt: 'Deck stair and railings lit by post-cap lights at night' },
+      { src: '/images/deck-finished-railings.jpg', alt: 'Composite deck with white railings' },
+      { src: '/images/work/deck-night-rail-moon.jpg', alt: 'Deck railing at night with the moon above' },
+    ],
+    whyChooseUs: [
+      'Consistent rise and run, so nobody trips on an odd step.',
+      'Clean finish carpentry where the stair meets the floor and the wall.',
+      'Interior and exterior stairs from the same crew.',
+    ],
+    faqs: [
+      {
+        question: 'Can you replace carpet on my stairs with hardwood?',
+        answer:
+          'Yes. We remove the carpet, replace or cap the treads with hardwood, and paint or stain the risers. Most homes keep the existing stringers, so the stair layout does not change.',
+      },
+      {
+        question: 'Do I need a permit to redo my stairs?',
+        answer:
+          "Replacing treads, risers, or balusters on a sound stair usually does not need one. Changing the stair's structure or layout, or building new exterior stairs, does. We confirm with your county before work starts.",
+      },
+      {
+        question: 'What does a staircase remodel cost?',
+        answer:
+          'It depends on the number of steps, the tread material, and whether the balusters and handrail are replaced too. We price every staircase on a free written estimate after a site walk.',
+      },
+    ],
+    icon: 'Hammer',
   },
 
   remodeling: {

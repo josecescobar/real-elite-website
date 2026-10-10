@@ -207,11 +207,25 @@ export const SERVICES = [
     icon: 'Hammer' as const,
   },
   {
-    title: 'Decks & Outdoor Living',
+    title: 'Decks',
     slug: 'decks',
     description:
-      'Composite decks, railings, lighting, pergolas, and full backyard transformations using premium materials.',
+      'Composite and pressure-treated decks, railings, and built-ins using premium materials.',
     icon: 'Fence' as const,
+  },
+  {
+    title: 'Outdoor Living',
+    slug: 'outdoor-living',
+    description:
+      'Screened porches, covered patios, pergolas, and outdoor living spaces tied into the house.',
+    icon: 'Fence' as const,
+  },
+  {
+    title: 'Stairs & Railings',
+    slug: 'stairs',
+    description:
+      'Staircase remodels, new treads and balusters, handrails, and deck and porch stairs built to code.',
+    icon: 'Hammer' as const,
   },
   {
     title: 'Roofing',
@@ -2054,7 +2068,9 @@ export const SERVICES_MEGA_MENU = [
   {
     heading: 'Exteriors',
     items: [
-      { label: 'Decks & Outdoor Living', href: '/services/decks', description: 'Composite decks, railings, outdoor spaces' },
+      { label: 'Decks', href: '/services/decks', description: 'Composite and pressure-treated decks, railings' },
+      { label: 'Outdoor Living', href: '/services/outdoor-living', description: 'Screened porches, covered patios, pergolas' },
+      { label: 'Stairs & Railings', href: '/services/stairs', description: 'Staircase remodels, balusters, deck stairs' },
       { label: 'Roofing', href: '/services/roofing', description: 'Architectural shingle replacement & repair' },
       { label: 'Siding & Stone', href: '/services/siding', description: 'Vinyl, fiber cement, and stone veneer exteriors' },
       { label: 'Paving & Seal Coating', href: '/paving', description: 'Driveways, lots, repairs & seal coating' },

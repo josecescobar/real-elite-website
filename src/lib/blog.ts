@@ -139,6 +139,8 @@ const CATEGORY_SLUG_MAP: Record<string, GuideCategorySlug> = {
 
   remodeling: 'remodeling',
   remodel: 'remodeling',
+  stairs: 'remodeling',
+  staircase: 'remodeling',
   basements: 'remodeling',
   basement: 'remodeling',
   additions: 'remodeling',

@@ -23,7 +23,9 @@ when mirrored from the verified Google Business Profile.
 ## Services
 - Roofing (replacement, repair, storm/insurance): https://www.realelitecontracting.com/services/roofing
 - Siding & stone exterior: https://www.realelitecontracting.com/services/siding
-- Decks & outdoor living: https://www.realelitecontracting.com/services/decks
+- Decks: https://www.realelitecontracting.com/services/decks
+- Outdoor living (screened porches, covered patios, pergolas): https://www.realelitecontracting.com/services/outdoor-living
+- Stairs & railings: https://www.realelitecontracting.com/services/stairs
 - Kitchen remodeling: https://www.realelitecontracting.com/services/kitchens
 - Bathroom remodeling: https://www.realelitecontracting.com/services/bathrooms
 - Basement finishing: https://www.realelitecontracting.com/services/basements

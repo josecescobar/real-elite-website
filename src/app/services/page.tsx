@@ -24,6 +24,8 @@ export const metadata: Metadata = {
       'roofing',
       'siding',
       'decks',
+      'outdoor living',
+      'stairs and railings',
       'home additions',
       'remodeling',
       'WV MD VA contractor',
