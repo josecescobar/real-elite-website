@@ -538,7 +538,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Martinsburg bathroom is something we assess on the walkthrough. An older primary bath may be a small plaster room with one wet wall and a tub that was never built as a walk-in shower. A later builder bath may have a fiberglass surround, a vanity that does not hold what the room needs, and a fan that does not clear the space. Those are conditions to check at the individual home.",
       "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, issues the building permit. The city's published examples of permit work include remodeling bathrooms, plus plumbing and electrical systems. Applications go through MGO Connect. The Planning Department's published number is (304) 264-2131.",
-      "Outside the city, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace plumbing, electrical, gas, or mechanical systems. The county office publishes 304-264-1966. We check the parcel before we file. We price every Martinsburg bathroom on a free written estimate for your home, so no fixed price is listed here.",
+      'Outside the city, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace plumbing, electrical, gas, or mechanical systems. The county office publishes 304-264-1966. We check the parcel before we file. We price every Martinsburg bathroom on a free written estimate for your home.',
       "The written estimate itemizes the wet-area work, the fixture moves, and the trades the permit covers. WV Contractor License WV062432.",
     ],
   },
@@ -549,8 +549,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Bathroom remodels in Charles Town. City permits cover remodels and plumbing. Jefferson County reviews parcels outside the city limits.',
     paragraphs: [
       "A Charles Town bathroom is checked at the house, not assigned by neighborhood. An older bath can be a tight plaster room that shares a plumbing stack with the kitchen. A later builder bath can be a tub-shower combo and a single vanity. We confirm the layout, the stack, and the ventilation on site.",
-      "Inside Charles Town city limits, the Building Inspection office at City Hall, 101 E. Washington Street, requires a building permit for remodels, and its published list also names plumbing and electrical. Apply in person or through MGO. The Department of Community Development is at 304-724-3248. The city publishes the codes it enforces, including the International Residential Code 2018, on that Building Inspection page.",
-      "A Charles Town mailing address outside the city is Jefferson County. The Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work (304-725-2998, permits@jeffersoncountywv.org). County filings go through MGO Connect, which the county launched on August 25, 2025. We check the parcel before we file. We price every Charles Town bathroom on a free written estimate for your home, so no fixed price is listed here.",
+      "Inside Charles Town city limits, the Building Inspection office at City Hall, 101 E. Washington Street, requires a building permit for remodels, and its published list also names plumbing and electrical. Apply in person or through MGO. The Department of Community Development is at 304-724-3248. The city publishes the codes it enforces, including the International Residential Code 2018,.",
+      'A Charles Town mailing address outside the city is Jefferson County. The Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work (304-725-2998, permits@jeffersoncountywv.org). County filings go through MGO Connect, which the county launched on August 25, 2025. We check the parcel before we file. We price every Charles Town bathroom on a free written estimate for your home.',
       "The written estimate itemizes waterproofing, the fixture layout, and whichever trades the permit names. WV Contractor License WV062432.",
     ],
   },
@@ -588,7 +588,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does a bathroom remodel in Ashburn, VA cost?',
         answer:
-          'We price every Ashburn bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. A nearby-market cost guide is linked below. It is not an Ashburn quote.',
+          'We price every Ashburn bathroom on a free written estimate for your home. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. A nearby-market cost guide is linked below. It is not an Ashburn quote.',
       },
       {
         question: 'Who permits a bathroom remodel in Ashburn?',
@@ -631,7 +631,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Martinsburg kitchen is read at the house. An older kitchen may still be a small original room, with plaster walls and plumbing that was never laid out for an island. A later plan may have builder cabinets, a peninsula, and a wall that may or may not be the one you can open into the dining room. We confirm the layout and the structure before we price the work.",
       "A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, lists remodeling kitchens among the projects that need a building permit before work starts. The same permit covers plumbing and electrical when those systems change. Apply through MGO Connect. The Planning Department publishes (304) 264-2131.",
-      "Outside city limits, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace electrical, gas, mechanical, or plumbing systems. That office publishes 304-264-1966 and takes applications from 8 AM to 5 PM, Monday through Friday. We check the parcel before we file. We price every Martinsburg kitchen on a free written estimate for your home, so no fixed price is listed here.",
+      'Outside city limits, Berkeley County Building Permits and Inspections at 400 West Stephen Street, Suite 202, requires a permit to alter a building or to replace electrical, gas, mechanical, or plumbing systems. That office publishes 304-264-1966 and takes applications from 8 AM to 5 PM, Monday through Friday. We check the parcel before we file. We price every Martinsburg kitchen on a free written estimate for your home.',
       "The written estimate itemizes cabinets, counters, and any wall, plumbing, or electrical move the permit has to cover. WV Contractor License WV062432.",
     ],
   },
@@ -643,7 +643,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Charles Town kitchen is a house-by-house question. An older kitchen can be a small room with plaster, a single window, and a stack shared with the bath. A later builder layout can be stock cabinets, a peninsula, and a dining wall that becomes a structural question if you want it open. We confirm the stack, the cabinets, and the wall on site.",
       "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, requires a building permit for remodels. Plumbing and electrical are on the same published list. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
-      "Outside the city, a Charles Town address is Jefferson County. The Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. County applications go through MGO Connect. We check the parcel before we file. We price every Charles Town kitchen on a free written estimate for your home, so no fixed price is listed here.",
+      'Outside the city, a Charles Town address is Jefferson County. The Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, requires permits for remodeling and for plumbing, mechanical, and electrical work. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. County applications go through MGO Connect. We check the parcel before we file. We price every Charles Town kitchen on a free written estimate for your home.',
       "The written estimate itemizes the cabinet run, the counters, and any plumbing or electrical relocation. WV Contractor License WV062432.",
     ],
   },
@@ -1017,7 +1017,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Northern Virginia's basement demand is regional before it is local, and the housing stock is why. Fairfax County, Loudoun County and the city of Alexandria were built out largely between the 1960s and the 2000s on full-height unfinished lower levels with walkout or areaway access — square footage the house already has, already heats, and is not using. A homeowner in Vienna, Burke, Ashburn or Belle Haven is usually not shopping for a Vienna contractor or a Burke contractor; they are shopping for someone who finishes lower levels in Northern Virginia, and they narrow down afterwards.",
       "The technical order of work is the same across the region, and the sequence matters more than the finish schedule. Moisture and vapor control come first: perimeter inspection, sump pump and battery backup verification, and dimple-mat or insulated subfloor systems where the slab condition calls for them. The shortcut taken there is the one that resurfaces three years later as a mold problem behind finished cabinetry. From there it is code-compliant framing, egress where bedrooms are planned, full electrical with structured wiring and zoned lighting, HVAC extension or a dedicated mini-split where the existing system will not carry the added load, surround pre-wire, and the millwork and finishes that make the space read as a room rather than a finished basement.",
-      "Budget varies more by house than by town, which is the honest version of a regional price. Across the Northern Virginia pages this site publishes, finished lower-level scope runs from $55,000 at the smaller Burke and Reston end to $400,000+ for an estate-scale Great Falls build with a media room, wine room and second entertaining kitchen. Most Fairfax and Loudoun County projects land between those poles, and the variables that move a number are square footage, the feature mix, and how much millwork and stone the build carries. Estimates are issued line by line — framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone and finishes broken out separately — so the figure can be read rather than taken on trust.",
+      'Budget varies more by house than by town, which is the honest version of a regional price. Across Northern Virginia, finished lower-level scope runs from $55,000 at the smaller Burke and Reston end to $400,000+ for an estate-scale Great Falls build with a media room, wine room and second entertaining kitchen. Most Fairfax and Loudoun County projects land between those poles, and the variables that move a number are square footage, the feature mix, and how much millwork and stone the build carries. Estimates are issued line by line — framing, electrical, plumbing, HVAC, insulation, drywall, flooring, millwork, stone and finishes broken out separately — so the figure can be read rather than taken on trust.',
       "Permitting is the one part of a Northern Virginia basement that is genuinely not regional. Fairfax County, Loudoun County and the City of Alexandria each run their own permit and inspection process, and a lower level with bedrooms, a bath or a bar needs framing, electrical, plumbing, mechanical and final inspections in whichever jurisdiction the house sits in. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is headquartered in Martinsburg, West Virginia, and licensed and insured in West Virginia and Virginia.",
     ],
     // §2.3 of the architecture doc. The Loudoun luxury-basement guide covers
@@ -1047,7 +1047,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does kitchen remodeling in Purcellville, VA cost?',
         answer:
-          'We price every Purcellville project on a free written estimate for your home, so no fixed price is listed here. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. The written estimate prices this house.',
+          'We price every Purcellville project on a free written estimate for your home. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. The written estimate prices this house.',
       },
     ],
     paragraphs: [
@@ -1071,7 +1071,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does bathroom remodeling in Purcellville, VA cost?',
         answer:
-          'We price every Purcellville bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing, the shower pan, tile, and any plumbing move are separate lines on the written estimate. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
+          'We price every Purcellville bathroom on a free written estimate for your home. Waterproofing, the shower pan, tile, and any plumbing move are separate lines on the written estimate. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
       },
       {
         question: 'Do older Purcellville baths need a different scope?',
@@ -1197,7 +1197,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does kitchen remodeling in Lansdowne, VA cost?',
         answer:
-          'We price every Lansdowne project on a free written estimate for your home, so no fixed price is listed here. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Cabinets, counters, and any wall or plumbing move are lines on the written estimate.',
+          'We price every Lansdowne project on a free written estimate for your home. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Cabinets, counters, and any wall or plumbing move are lines on the written estimate.',
       },
     ],
     paragraphs: [
@@ -1221,7 +1221,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does bathroom remodeling in Lansdowne, VA cost?',
         answer:
-          'We price every Lansdowne bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
+          'We price every Lansdowne bathroom on a free written estimate for your home. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines on the written estimate. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
       },
       {
         question: 'Are Lansdowne primary baths still the builder layout?',
@@ -1232,7 +1232,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Bathroom remodeling in Lansdowne, VA is a wet-area rebuild in an established house near Leesburg and the Potomac. The community is unincorporated Loudoun County. The housing is mostly 1990s and 2000s, on public water and sewer, and a lot of primary baths are still the builder tub, the builder vanity, and a fan that was never sized for a steam shower.',
       'A Leesburg mailing address is not Town of Leesburg zoning. Building and zoning run through LandMARC. A shower conversion needs a sloped pan, a waterproofing layer, and a drain that is already in the right place or is moved on a permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work.',
-      'We price every Lansdowne bathroom on a free written estimate for your home, so no fixed price is listed here. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed. The schedule depends on scope, selections, permits, and how much of the existing tile has to come out.',
+      'We price every Lansdowne bathroom on a free written estimate for your home. Waterproofing and slope-to-drain are in the written scope. The estimate is line-itemed. The schedule depends on scope, selections, permits, and how much of the existing tile has to come out.',
       'Association review usually applies only when the bath changes a window, skylight, or other exterior element. There is more than one association in Lansdowne. We confirm which one governs the address and use its current standards. A county permit is not that approval.',
     ],
   },
@@ -2093,13 +2093,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Are Marshall baths in a historic district?',
         answer:
-          'County permit pages for this ZIP do not name a historic district or an association. The permit path is the county combined application.',
+          'The permit path is the county combined application.',
       },
     ],
     paragraphs: [
       'Bathroom remodeling in Marshall, VA is a wet-area rebuild in established detached houses. The ZIP\'s median year built is 1983. A 1970s bath and a 1990s primary bath are different layouts, and we open the wall before the finish schedule is locked.',
       'Fauquier County is the only permit counter. The office is 16 Courthouse Square, Warrenton. The zoning fee is $110, including the technology fee. A shower conversion needs a sloped pan and a waterproofing layer. A new window is a building-permit item, not a Warrenton historic certificate.',
-      'Every Marshall bathroom is priced on a free written estimate. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. The county permit pages do not name an association for this ZIP. We file an association packet only when the deed or the owner names one.',
+      'Every Marshall bathroom is priced on a free written estimate. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. We file an association packet only when the deed or the owner names one.',
     ],
   },
 
@@ -2173,7 +2173,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Warrenton?',
         answer:
-          'Inside the town, the Department of Community Development, phone (540) 347-1101. Outside the town, Fauquier County at 16 Courthouse Square, phone (540) 422-8230. ZIP 20186 and ZIP 20187 centroids both sit in the county, so a Warrenton mailing address is not town limits.',
+          'Inside the town, the Department of Community Development, phone (540) 347-1101. Outside the town, Fauquier County at 16 Courthouse Square, phone (540) 422-8230. ZIP 20186 and ZIP 20187 are both centered in the county, so a Warrenton mailing address is not town limits.',
       },
       {
         question: 'Does the historic district review an interior kitchen?',
@@ -2188,7 +2188,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Warrenton, VA has to start with the town line. The town charter dates to 1816. ZIP 20187 is mostly detached houses with a median year built of 1991. ZIP 20186 is a different mix, median year built 1987, and should not be averaged into one kitchen.',
-      'Inside town, applications go to the Department of Community Development, phone (540) 347-1101. The town building page lists alterations to plumbing, electrical, or HVAC among work that needs a permit. Exterior alterations in the Warrenton Historic District need a Certificate of Appropriateness first. Outside town, Fauquier County takes the combined building and zoning application at 16 Courthouse Square. The county zoning fee is $110, including the technology fee.',
+      'Inside town, applications go to the Department of Community Development, phone (540) 347-1101. The town requires a permit for alterations to plumbing, electrical, or HVAC. Exterior alterations in the Warrenton Historic District need a Certificate of Appropriateness first. Outside town, Fauquier County takes the combined building and zoning application at 16 Courthouse Square. The county zoning fee is $110, including the technology fee.',
       'A load-bearing opening needs stamped drawings. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. HomeAdvisor national figures cited in the Loudoun kitchen guide are $14,589 to $41,559 typical. Those are not a Warrenton quote. The written estimate prices this house.',
     ],
   },
@@ -2229,7 +2229,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Warrenton, VA?',
         answer:
-          'Inside the town, the Department of Community Development, phone (540) 347-1101. The town building page lists finishing a basement, and an areaway or egress window needs additional zoning review. Outside the town, Fauquier County at 16 Courthouse Square, phone (540) 422-8230. The county portal accepts finished-basement permits.',
+          'Inside the town, the Department of Community Development, phone (540) 347-1101. The town requires a permit to finish a basement, and an areaway or egress window needs additional zoning review. Outside the town, Fauquier County at 16 Courthouse Square, phone (540) 422-8230. The county portal accepts finished-basement permits.',
       },
       {
         question: 'What does a finished basement in Warrenton cost?',
@@ -2239,11 +2239,11 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does every Warrenton basement use the town rules?',
         answer:
-          'No. Both ZIP centroids that were checked landed in Fauquier County, outside an incorporated place. Town rules, including the historic-district certificate, apply inside the town. County land uses the county office.',
+          'No. Both ZIPs are centered in Fauquier County, outside an incorporated place. Town rules, including the historic-district certificate, apply inside the town. County land uses the county office.',
       },
     ],
     paragraphs: [
-      'Basement finishing in Warrenton, VA splits at the town line. Inside town, the building page requires a permit to finish a basement, and an areaway or egress window needs additional zoning review. Outside town, ZIP 20186 and ZIP 20187 are Fauquier County. The two ZIPs are different housing mixes, median years built 1987 and 1991, and they should not be averaged into one lower level.',
+      'Basement finishing in Warrenton, VA splits at the town line. Inside town, the town requires a permit to finish a basement, and an areaway or egress window needs additional zoning review. Outside town, ZIP 20186 and ZIP 20187 are Fauquier County. The two ZIPs are different housing mixes, median years built 1987 and 1991, and they should not be averaged into one lower level.',
       'The town counter is the Department of Community Development, phone (540) 347-1101. The county counter is 16 Courthouse Square, phone (540) 422-8230, hours 8:00 a.m. to 4:30 p.m. A Certificate of Appropriateness applies before exterior alterations in the Warrenton Historic District, not before an interior finish on county land.',
       'Mayflower Virginia tiers cited in the Ashburn and Leesburg guide are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Warrenton average. The county zoning fee of $110 is a permit fee. The written estimate prices this foundation.',
     ],
@@ -2310,7 +2310,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does a kitchen remodel in Middleburg, VA cost?',
         answer:
-          'We price every Middleburg kitchen on a free written estimate for your home, so no fixed price is listed here. Many edge lots are on well and septic. That changes a bedroom addition, not a kitchen that stays inside the existing footprint.',
+          'We price every Middleburg kitchen on a free written estimate for your home. Many edge lots are on well and septic. That changes a bedroom addition, not a kitchen that stays inside the existing footprint.',
       },
     ],
     paragraphs: [
@@ -2406,7 +2406,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── BATHROOMS · VIENNA, VA ───────────────────────────────────────────────
   'bathrooms-vienna-va': {
     paragraphs: [
-      "Vienna is one of the most thoughtful primary-bath markets in Fairfax County — a homeowner population that has done its research, often comes in with a designer already engaged, and expects an installer-grade contractor with the discipline to execute the design as drawn. The homes range from mid-century properties in Wolftrap and Country Club Manor to substantial newer builds along the Maple Avenue corridor and out toward Hunter Mill, and the primary-bath brief tends to be spa-grade and structurally ambitious.",
+      'Vienna is one of the most thoughtful primary-bath markets in Fairfax County — a homeowner population that has weighed its options, often comes in with a designer already engaged, and expects an installer-grade contractor with the discipline to execute the design as drawn. The homes range from mid-century properties in Wolftrap and Country Club Manor to substantial newer builds along the Maple Avenue corridor and out toward Hunter Mill, and the primary-bath brief tends to be spa-grade and structurally ambitious.',
       "Real Elite Contracting renovates Vienna primary baths and powder rooms with the level of craft Fairfax County's design community expects. Typical Vienna primary-bath scope in 2026 runs $55,000–$110,000+ depending on size, layout changes, and material grade. Featured projects routinely include curbless walk-in showers with linear drains, freestanding soaking tubs, double-vanity layouts with stone tops, slab-edge mitered details, premium fixture lines (Brizo, Hansgrohe, Kohler Artifacts), heated floors, and lighting designed scene by scene rather than a single ceiling fixture.",
       "Where there's room to rework the plan, we engage early — opening a primary into an adjoining closet for a true suite, repositioning plumbing for a cleaner shower geometry, repositioning the toilet to a private compartment for a more refined room. We model the proposed changes, value-engineer the parts of the budget that won't change the visible result, and protect the spend for the surfaces and fixtures the eye actually lands on.",
       "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. Review the proposed scope and warranty terms before signing.",
@@ -2422,7 +2422,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Vienna?',
         answer:
-          'Inside town limits, the Town of Vienna reviews zoning and site plans. Fairfax County Land Development Services issues the building permit. A Vienna mailing address is not always inside town limits. Oakton and Dunn Loring are separate pages.',
+          'Inside town limits, the Town of Vienna reviews zoning and site plans. Fairfax County Land Development Services issues the building permit. A Vienna mailing address is not always inside town limits. Oakton and Dunn Loring are separate communities.',
       },
       {
         question: 'What does kitchen remodeling in Vienna, VA cost?',
@@ -2452,7 +2452,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a basement in Vienna?',
         answer:
-          'Inside town limits, the Town of Vienna reviews zoning and site plans, including grading. Fairfax County Land Development Services is the building official. A Vienna mailing address is not always inside town limits. Oakton and Dunn Loring have their own pages.',
+          'Inside town limits, the Town of Vienna reviews zoning and site plans, including grading. Fairfax County Land Development Services is the building official. A Vienna mailing address is not always inside town limits. Oakton and Dunn Loring are separate communities.',
       },
       {
         question: 'What does basement finishing in Vienna, VA cost?',
@@ -2466,7 +2466,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      "Basement finishing in Vienna, VA starts with whether the house is inside the town. Vienna is an incorporated town in Fairfax County. A Vienna mailing address can still be Oakton or Dunn Loring, and those places have their own pages. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses, later colonials, and newer infill along Maple Avenue and Hunter Mill Road.",
+      'Basement finishing in Vienna, VA starts with whether the house is inside the town. Vienna is an incorporated town in Fairfax County. A Vienna mailing address can still be Oakton or Dunn Loring, and those places are outside the town. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses, later colonials, and newer infill along Maple Avenue and Hunter Mill Road.',
       "Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. That is a different front door from unincorporated McLean, which has no town zoning step. We check the parcel before we file.",
       "Typical scope runs $80,000–$200,000+, and a finished entertainment level with a media room, wet bar, full bath, and guest suite usually lands at $130,000–$180,000. A mid-century lower level is often tighter on ceiling height than a later colonial. Slab moisture is checked before cabinetry is ordered. A bedroom needs an egress opening drawn to the code dimensions.",
       "County inspections cover framing, electrical, plumbing, mechanical, and final when those systems are in the job. The schedule depends on scope, town zoning, county review, selections, and availability. Review the proposed scope and warranty terms before signing.",
@@ -2620,7 +2620,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Martinsburg addition follows the lot we measure. On an older house the side yard can be small, the foundation older, and a bump-out has to respect the house that is already there. On a later lot, a single room or a second story is a different structural question. We confirm the yard, the foundation, and the structure before we lock a footprint.",
       "Inside city limits, the Planning Department at City Hall, 232 N. Queen Street, lists enlarging or adding to an existing structure as work that needs a building permit. The city's own FAQ says new buildings or additions must also include a survey or site plan. Apply through MGO Connect. The published Planning number is (304) 264-2131.",
-      "Outside the city, Berkeley County requires a permit to enlarge a structure. The application at 400 West Stephen Street, Suite 202, asks for construction plans and a plot plan showing existing structures. If the work is inside a mapped 100-year floodplain, the county requires a Floodplain Certificate. The county office publishes 304-264-1966. We check the parcel before we lock a footprint. We price every Martinsburg addition on a free written estimate for your home, so no fixed price is listed here.",
+      'Outside the city, Berkeley County requires a permit to enlarge a structure. The application at 400 West Stephen Street, Suite 202, asks for construction plans and a plot plan showing existing structures. If the work is inside a mapped 100-year floodplain, the county requires a Floodplain Certificate. The county office publishes 304-264-1966. We check the parcel before we lock a footprint. We price every Martinsburg addition on a free written estimate for your home.',
       "The written estimate itemizes foundation, framing, and the trades the permit names. WV Contractor License WV062432.",
     ],
   },
@@ -2632,7 +2632,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "A Charles Town addition starts with the foundation in front of us. On an older house the work can be a room tied into stone or block, and the yard may be tight. On a newer house the question may be a bedroom, a larger kitchen, or a screened porch. We check the foundation and the lot rather than assuming a subdivision type.",
       "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, lists additions on the work that needs a building permit, along with plumbing, electrical, and HVAC when those systems are in the job. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
-      "Outside the city, Jefferson County's Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, lists building additions among the work that needs a permit, and it requires compliance with the International Residential Code version adopted by the State of West Virginia. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. Filings go through MGO Connect. We check the parcel before we file. We price every Charles Town addition on a free written estimate for your home, so no fixed price is listed here.",
+      "Outside the city, Jefferson County's Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, lists building additions among the work that needs a permit, and it requires compliance with the International Residential Code version adopted by the State of West Virginia. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. Filings go through MGO Connect. We check the parcel before we file. We price every Charles Town addition on a free written estimate for your home.",
       "The written estimate itemizes the foundation, the framing, and the trades. WV Contractor License WV062432.",
     ],
   },
@@ -2885,7 +2885,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Outdoor living in Martinsburg, WV follows the house, not a subdivision package. Older homes near downtown and Queen Street need a careful look at grade and the existing wall before a porch roof ties in. Newer lots toward Spring Mills, Hedgesville, and the Route 11 corridor are often a clearer replacement or a new cover over a patio. We measure the yard before we lock a footprint.',
-      'A Martinsburg mailing address is not city limits. Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. A screened porch or patio roof is attached and sits on permanent footings, so that is the county note we start from. Inside city limits the city may run its own review.',
+      'A Martinsburg mailing address is not city limits. Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. A screened porch or patio roof is attached and sits on permanent footings, so that is where we start. Inside city limits the city may run its own review.',
       'Inside the city, the Planning Department at City Hall, 232 N. Queen Street, lists enlarging or adding to an existing structure as work that needs a building permit. The city FAQ says new buildings or additions must also include a survey or site plan. Apply through MGO Connect. The published Planning number is (304) 264-2131. Outside the city, Berkeley County Building Permits and Inspections is at 400 West Stephen Street, Suite 202, and publishes 304-264-1966. County filings go through the Berkeley County OneStop portal. We check the parcel before we file.',
       'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. The price is a free written estimate after a site walk.',
     ],
@@ -3002,7 +3002,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Garrett Park?',
         answer:
-          'Both Montgomery County and the town. The county municipalities page lists Garrett Park under both county and city approval. Town contact published there is P.O. Box 84, phone 301-933-7488. County questions go to 240-777-0311.',
+          'Both Montgomery County and the town. Garrett Park needs both county and city approval. The town contact is P.O. Box 84, phone 301-933-7488. County questions go to 240-777-0311.',
       },
       {
         question: 'Does replacing cabinets in Garrett Park need a permit?',
@@ -3060,7 +3060,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Garrett Park, MD?',
         answer:
-          'Montgomery County and the town. The municipalities page lists Garrett Park under both county and city approval. An interior alteration will likely need a county permit. Town contact published on the county page is 301-933-7488.',
+          'Montgomery County and the town. Garrett Park needs both county and city approval. An interior alteration will likely need a county permit. The town contact is 301-933-7488.',
       },
       {
         question: 'Is a Garrett Park cellar the same scope as a full-height walkout?',
@@ -3093,7 +3093,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Garrett Park is on the county list for both county and city approval. The Department of Permitting Services is at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. The town contact on the same county page is P.O. Box 84, phone 301-933-7488.',
+          'Garrett Park needs both county and city approval. The Department of Permitting Services is at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. The town contact is P.O. Box 84, phone 301-933-7488.',
         ],
       },
     ],
@@ -3258,7 +3258,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Arlington, VA is a wet-area job in an established north-county house. ZIP 22207 colonials, ZIP 22205 houses around Westover and Bluemont, and the smaller 22213 pocket are not one layout.',
-      'The county permits page lists a residential building permit and a plumbing and gas permit among the types filed at 2100 Clarendon Boulevard. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. A fixture change and a relocated drain are named separately on the estimate.',
+      'Arlington County files a residential building permit and a plumbing and gas permit at 2100 Clarendon Boulevard. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. A fixture change and a relocated drain are named separately on the estimate.',
       'Every Arlington bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Falls Church and Alexandria use different permit offices.',
     ],
   },
@@ -3393,7 +3393,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Potomac, MD is a lower level under a large-lot house in ZIP 20854. Some of those houses have a walkout toward the rear yard. A River Road colonial from the 1960s may not.',
-      'The county home-improvements list treats an interior alteration as work that will likely need a permit. There is no Potomac town counter on the municipalities page. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'The county home-improvements list treats an interior alteration as work that will likely need a permit. There is no Potomac town permit counter. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'A Potomac lower level in ZIP 20854 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -3499,7 +3499,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Cabin John, MD is a lower level on a MacArthur Boulevard lot in ZIP 20818, close to the Potomac, where groundwater and the stair matter before any finish plan.',
-      'The county lists interior alteration as work that will likely need a permit. There is no Cabin John town permit on the municipalities page. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
+      'The county lists interior alteration as work that will likely need a permit. There is no Cabin John town permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'A Cabin John lower level along MacArthur Boulevard can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -3532,7 +3532,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in West Friendship?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission. The resources page lists separate electrical and plumbing applications.',
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission. Electrical and plumbing have separate applications.',
       },
       {
         question: 'Are Howard County filing fees the project price?',
@@ -3547,7 +3547,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in West Friendship, MD is a western Howard County house in ZIP 21794, along MD 32, not an Ellicott City townhouse and not a Frederick city lot.',
-      'The county department that issues permits is the Department of Inspections, Licenses and Permits in Ellicott City. Residential building permits require electronic submission. Electrical and plumbing are separate applications on the county resources page. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Filing fees are nonrefundable and due when the application is made. The dollar amounts stay on the county schedule.',
+      'The county department that issues permits is the Department of Inspections, Licenses and Permits in Ellicott City. Residential building permits require electronic submission. Electrical and plumbing are separate applications. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Filing fees are nonrefundable and due when the application is made. The dollar amounts stay on the county schedule.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a West Friendship quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -3561,7 +3561,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in West Friendship?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application on the county resources page. Electrical work is a separately licensed trade.',
+          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application. Electrical work is a separately licensed trade.',
       },
       {
         question: 'What does bathroom remodeling in West Friendship, MD cost?',
@@ -3576,7 +3576,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in West Friendship, MD is a rural Howard County bath in ZIP 21794. The house is more often a detached home on MD 32 than a planned-community unit.',
-      'Permits go through DILP at 3430 Courthouse Drive, Ellicott City. Residential building permits require electronic submission. The resources page lists a plumbing permit application separate from the building permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Permits go through DILP at 3430 Courthouse Drive, Ellicott City. Residential building permits require electronic submission. Plumbing has a permit application separate from the building permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'Every West Friendship bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Frederick County rules do not transfer across the county line.',
     ],
   },
@@ -3653,7 +3653,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Chevy Chase, MD has to name the municipality first, because ZIP 20815 is several towns and villages along Connecticut Avenue, not one permit counter.',
-      'The county page lists the Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions as county permit before city approval. North Chevy Chase requires both. Friendship Heights is county permit only. Chevy Chase Village is printed on both sequence lists, so the order is confirmed at 5906 Connecticut Avenue, phone 301-654-7300, rather than guessed. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      "For the Town of Chevy Chase, Section 3, Section 5, and Martin's Additions, the order is county permit before city approval. North Chevy Chase requires both. Friendship Heights is county permit only. Chevy Chase Village is printed on both sequence lists, so the order is confirmed at 5906 Connecticut Avenue, phone 301-654-7300, rather than guessed. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.",
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Chevy Chase quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -3667,7 +3667,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Chevy Chase?',
         answer:
-          'Montgomery County and, where the municipalities page says so, the town or village. County phone 240-777-0311. The Town of Chevy Chase office is 4301 Willow Lane, phone 301-654-7144.',
+          'Montgomery County and, where the county requires it, the town or village. County phone 240-777-0311. The Town of Chevy Chase office is 4301 Willow Lane, phone 301-654-7144.',
       },
       {
         question: 'What does bathroom remodeling in Chevy Chase, MD cost?',
@@ -3696,7 +3696,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Chevy Chase, MD?',
         answer:
-          'Montgomery County, and the municipality when the county page requires it. An interior alteration will likely need a county permit. The Town of Chevy Chase is listed as county permit before city approval.',
+          'Montgomery County, and the municipality when the county requires it. An interior alteration will likely need a county permit. The Town of Chevy Chase is listed as county permit before city approval.',
       },
       {
         question: 'Why can two Chevy Chase neighbors file in a different order?',
@@ -3729,7 +3729,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton. Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions are county-then-city on the municipalities page. North Chevy Chase is both. Friendship Heights is county only. Chevy Chase Village is listed in both sequences.',
+          "County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton. Town of Chevy Chase, Section 3, Section 5, and Martin's Additions are county-then-city. North Chevy Chase is both. Friendship Heights is county only. Chevy Chase Village is listed in both sequences.",
         ],
       },
     ],
