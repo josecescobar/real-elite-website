@@ -1203,13 +1203,15 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'fairfax-station-va': {
     description:
-      'Fairfax Station is unincorporated Fairfax County, ZIP 22039. The housing is larger-lot custom houses south of the county core, including Crosspointe and the South Run corridor, with more acreage toward Clifton. Building permits go through Fairfax County Land Development Services. Some subdivisions have an HOA architectural review. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66. Real Elite remodels kitchens, primary suites, additions, and outdoor living.',
+      'Fairfax Station is a mailing name in ZIP 22039, south of the county core, including Crosspointe, the South Run corridor, and the roads toward Clifton. The parcel decides the permit office. A Fairfax Station address is not, by itself, a county permit or a Town of Clifton permit. If the home is inside the Town of Clifton, town sign-off comes before the Fairfax County building permit. Town questions go to 12641 Chapel Road, Clifton, VA 20124, phone 571-781-2404, or clerk@cliftonva.gov. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Some subdivisions have an HOA architectural review. A county permit is not HOA approval. If the house is on a private well or septic system, the Health Department may review the package. Those questions go to 703-246-2201. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66. Real Elite remodels kitchens, primary suites, additions, and outdoor living. We confirm the permit steps for the parcel before work starts.',
+    nearbySlugs: ['clifton-va', 'burke-va', 'springfield-va', 'fairfax-county-va'],
     neighborhoods: ['Crosspointe', 'South Run', 'ZIP 22039', 'Burke Lake Road', 'Hampton Road', 'Clifton Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'clifton-va': {
     description:
-      "Clifton is an incorporated town in southern Fairfax County, and most of ZIP 20124 is unincorporated county around the village, not inside the town. A Clifton mailing address is not Town zoning. Inside the town, a project needs a use permit from the Planning Commission and Town Council, a certificate of appropriateness from the Clifton Architectural Review Board, and a building permit from Fairfax County Land Development Services. The county will not accept the building-permit application without those town approvals and the mayor's signature. Outside town limits, county building and zoning apply. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south toward Clifton Road. Real Elite remodels kitchens, primary suites, additions, and outdoor living.",
+      "Clifton is both a mailing name for ZIP 20124 and an incorporated town. The town charter was granted March 10, 1902, and the town is one-quarter of a square mile, so a Clifton address is not the same thing as a parcel inside the town. On the Fairfax County parcel profile, the District field says Springfield Town of Clifton when the address is inside the town. If the home is inside the Town of Clifton and the work is purely internal, such as plumbing or drywall, the town does not issue that permit or inspect it. Email drawings to clerk@cliftonva.gov for the sign-off Fairfax County needs before it will take the building-permit application. Construction or renovation of a building is a separate path: that work needs a use permit from the Planning Commission and Town Council, a certificate of appropriateness from the Architectural Review Board, and a Fairfax County building permit. The county will not accept that construction application without those town approvals and the mayor's signature. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Town questions go to 12641 Chapel Road, Clifton, VA 20124, phone 571-781-2404. If the house is on a private well or septic system, Health Department questions go to 703-246-2201. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south toward Clifton Road. Real Elite remodels kitchens, primary suites, additions, and outdoor living. We confirm the permit steps for the parcel before work starts.",
+    nearbySlugs: ['fairfax-station-va', 'burke-va', 'fairfax-county-va', 'springfield-va'],
     neighborhoods: ['Clifton village', 'Main Street', 'ZIP 20124', 'Clifton Road', 'Compton Road', 'Newman Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
@@ -1285,19 +1287,22 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'oakton-va': {
     description:
-      'Oakton is an unincorporated community in Fairfax County, ZIP 22124, between Vienna and Fairfax along Route 123. It is not part of the Town of Vienna. Building and zoning run through Fairfax County Land Development Services. The housing is mostly 1960s through 1990s colonials on wooded lots, with newer infill closer to I-66. Some clusters have an HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
+      'Oakton is a mailing name along Route 123 between Vienna and Fairfax, ZIP 22124. The parcel decides the permit office. The Oakton name does not place the house in the Town of Vienna. If the home is inside the Town of Vienna, Fairfax County is the building official, and town review follows the county application. Town questions go to Town Hall at 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Houses along Route 123 sit on wooded lots, with later infill closer to I-66. Some clusters have an HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. Real Elite remodels kitchens, primary suites, finished lower levels, and additions. We confirm the permit steps for the parcel before work starts.',
+    nearbySlugs: ['dunn-loring-va', 'vienna-va', 'fairfax-va', 'falls-church-va'],
     neighborhoods: ['Route 123', 'ZIP 22124', 'Hunter Mill', 'Jermantown Road', 'Oakton', 'I-66'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'dunn-loring-va': {
     description:
-      'Dunn Loring is an unincorporated community in Fairfax County, ZIP 22027, at I-66 and the Beltway beside the Dunn Loring-Merrifield Metro. The housing is a mix of mid-century ramblers, later colonials, and townhouses, on public water and sewer. Building permits go through Fairfax County Land Development Services. Some communities require HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
+      'Dunn Loring is a mailing name in ZIP 22027, at I-66 and the Beltway beside the Dunn Loring-Merrifield Metro. The parcel decides the permit office. An address near the Town of Vienna is not, by itself, inside the town. If the home is inside the Town of Vienna, Fairfax County is the building official, and materials go to the county before the town review. Town questions go to 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. The streets mix ramblers, later colonials, and townhouses. Some communities require HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66. Real Elite remodels kitchens, primary suites, finished lower levels, and additions. We confirm the permit steps for the parcel before work starts.',
+    nearbySlugs: ['oakton-va', 'vienna-va', 'falls-church-va', 'fairfax-va'],
     neighborhoods: ['ZIP 22027', 'Gallows Road', 'Idylwood', 'I-66', 'Prosperity Avenue', 'Merrifield'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'fort-hunt-va': {
     description:
-      'Fort Hunt is an unincorporated community in southeastern Fairfax County. ZIP 22308 uses an Alexandria mailing address, which does not make the parcel part of the City of Alexandria. Building permits go through Fairfax County Land Development Services, not Alexandria Code Administration. The housing is mostly mid-century houses on larger lots along Fort Hunt Road and the George Washington Memorial Parkway, including Hollin Hills. Hollin Hills is a historic overlay, so exterior changes there are a separate county review from a typical building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495 and the parkway. Real Elite remodels kitchens, primary suites, additions, and finished lower levels.',
+      'Fort Hunt is a mailing name along Fort Hunt Road and the George Washington Memorial Parkway. ZIP 22308 uses an Alexandria mailing name, which does not decide the jurisdiction. If the parcel is in the City of Alexandria, questions go to Code Administration, 301 King Street, Suite 4200, Alexandria, VA 22314, phone 703-746-4200. If the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Houses along the parkway sit on larger lots, including Hollin Hills. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495 and the parkway. Real Elite remodels kitchens, primary suites, additions, and finished lower levels. We confirm the permit steps for the parcel before work starts.',
+    nearbySlugs: ['alexandria-va', 'springfield-va', 'fairfax-county-va', 'burke-va'],
     neighborhoods: ['Fort Hunt Road', 'Hollin Hills', 'ZIP 22308', 'Wellington', 'Collingwood', 'George Washington Parkway'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
@@ -1414,24 +1419,25 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'falls-church-va': {
     description:
-      "The City of Falls Church is an independent city. ZIP 22046 is centered on the city (median year built 1969). ZIPs 22042 and 22043 use a Falls Church mailing name, but are centered in Fairfax County, in West Falls Church and Idylwood. Those county parcels use Fairfax County Land Development Services, not the city. Inside the city, the permit counter is at 300 Park Avenue, Falls Church, VA 22046. In the city, any wall change needs a permit, moving or adding a plumbing fixture needs a permit, and any gas work, including replacing a stove or fireplace insert, needs a permit. Paint, carpet, tile, cabinet replacement, and a roof replacement that does not replace rafters or a major portion of the decking do not. The city's Historic Architectural Review Board reviews permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. That board does not apply to the county ZIPs.",
+      'The City of Falls Church is an independent city. A Falls Church mailing address extends far outside the city limits, so the parcel decides the permit office. If the home is inside the city, questions go to the permit counter at 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov. The counter is open Monday through Friday, 8 a.m. to 5 p.m., and closed to the public on the last Wednesday of the month. If the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. If the home is inside the city, any work on a gas appliance needs a permit, including a direct replacement of a furnace or stove, and anything that involves framing needs a permit. Paint, patch, carpet, and drywall replacement do not. In a single-family house, replacing a plumbing fixture, a roof, or windows does not need a city permit. Real Elite does not take electrical work or gas work. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. We confirm the permit steps with the city or the county before work starts.',
     neighborhoods: ['ZIP 22046', 'Park Avenue', 'City of Falls Church'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    nearbySlugs: ['dunn-loring-va', 'fairfax-va', 'arlington-va', 'vienna-va'],
     faqs: [
       {
-        question: 'Does "Falls Church" on an envelope mean the city building department?',
+        question: 'Does a Falls Church mailing address mean the city permit counter?',
         answer:
-          'Not always. ZIP 22046 is centered on the city. ZIPs 22042 and 22043 are centered in Fairfax County. Check the parcel.',
+          'Not by itself. The mailing address extends far outside the city. If the home is inside the city, questions go to 300 Park Avenue, phone 703-248-5080. If the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801.',
       },
       {
         question: 'Does replacing a gas stove in the city need a permit?',
         answer:
-          'The city requires a permit for any gas work, including replacing a stove or fireplace insert.',
+          'If the home is inside the city, any work on a gas appliance needs a permit, including a direct replacement of a furnace or stove. Real Elite does not take gas work.',
       },
       {
-        question: 'Does every city house go through HARB for a kitchen?',
+        question: 'What can be replaced in a city house without a permit?',
         answer:
-          'HARB reviews permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. We confirm with the city whether a project needs HARB review.',
+          'Paint, patch, carpet, and drywall replacement do not need a permit. In a single-family house, replacing a plumbing fixture, a roof, or windows does not. Framing does. We confirm the steps for the parcel before work starts.',
       },
     ],
   },

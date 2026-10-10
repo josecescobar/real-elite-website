@@ -730,6 +730,12 @@ describe('comboPublishesPricing', () => {
         'bathrooms-marriottsville-md',
         'bathrooms-north-potomac-md',
         'bathrooms-olney-md',
+        'bathrooms-clifton-va',
+        'bathrooms-dunn-loring-va',
+        'bathrooms-fairfax-station-va',
+        'bathrooms-falls-church-va',
+        'bathrooms-fort-hunt-va',
+        'bathrooms-oakton-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -815,10 +821,11 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/152 after round 8: 128, plus kitchens, bathrooms, and basements
-    // for eight richest-county towns, all clean. Martinsburg and
-    // Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 152 });
+    // 0/170 after round 9: 152, plus kitchens, bathrooms, and basements
+    // for Dunn Loring, Fairfax Station, Oakton, Clifton, Fort Hunt, and
+    // Falls Church, all clean. Martinsburg and Charles Town are
+    // home-market and are not in this count.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 170 });
   });
 
   /**
@@ -870,14 +877,8 @@ describe('Tier C retired combos', () => {
       [
         ...HAGERSTOWN_COMBOS,
         'basements-burke-va',
-        'basements-clifton-va',
-        'basements-fairfax-station-va',
         'basements-middleburg-va',
-        'bathrooms-clifton-va',
-        'bathrooms-fairfax-station-va',
         'bathrooms-middleburg-va',
-        'kitchens-clifton-va',
-        'kitchens-fairfax-station-va',
       ].sort()
     );
   });
@@ -1077,8 +1078,8 @@ describe('Tier C retired combos', () => {
    * 301 or a 404, which (d) above cannot see because it only checks the
    * immediate destination.
    */
-  it.each(['clifton-va', 'fairfax-station-va', 'middleburg-va', 'burke-va'])(
-    'keeps the %s area page, which retirement redirects depend on',
+  it.each(['middleburg-va', 'burke-va'])(
+    'keeps the %s area page, which a remaining retirement redirect can depend on',
     (slug) => {
       const area = ALL_SERVICE_AREAS.find((a) => a.slug === slug);
       expect(area, `${slug} is a redirect destination but is no longer an active area`).toBeDefined();
@@ -1927,5 +1928,125 @@ describe('REA-2442 round 8 richest-county towns', () => {
     expect(delaplane).toMatch(/parcel/i);
     expect(delaplane).toMatch(/540-422-8230/);
     expect(delaplane).not.toMatch(/does not exist|not found/i);
+  });
+});
+
+describe('REA-2451 round 9 Fairfax-area service pages', () => {
+  const PAGES = [
+    ['kitchens', 'dunn-loring-va', 'Kitchen Remodeling in Dunn Loring, VA'],
+    ['bathrooms', 'dunn-loring-va', 'Bathroom Remodeling in Dunn Loring, VA'],
+    ['basements', 'dunn-loring-va', 'Basement Finishing in Dunn Loring, VA'],
+    ['kitchens', 'fairfax-station-va', 'Kitchen Remodeling in Fairfax Station, VA'],
+    ['bathrooms', 'fairfax-station-va', 'Bathroom Remodeling in Fairfax Station, VA'],
+    ['basements', 'fairfax-station-va', 'Basement Finishing in Fairfax Station, VA'],
+    ['kitchens', 'oakton-va', 'Kitchen Remodeling in Oakton, VA'],
+    ['bathrooms', 'oakton-va', 'Bathroom Remodeling in Oakton, VA'],
+    ['basements', 'oakton-va', 'Basement Finishing in Oakton, VA'],
+    ['kitchens', 'clifton-va', 'Kitchen Remodeling in Clifton, VA'],
+    ['bathrooms', 'clifton-va', 'Bathroom Remodeling in Clifton, VA'],
+    ['basements', 'clifton-va', 'Basement Finishing in Clifton, VA'],
+    ['kitchens', 'fort-hunt-va', 'Kitchen Remodeling in Fort Hunt, VA'],
+    ['bathrooms', 'fort-hunt-va', 'Bathroom Remodeling in Fort Hunt, VA'],
+    ['basements', 'fort-hunt-va', 'Basement Finishing in Fort Hunt, VA'],
+    ['kitchens', 'falls-church-va', 'Kitchen Remodeling in Falls Church, VA'],
+    ['bathrooms', 'falls-church-va', 'Bathroom Remodeling in Falls Church, VA'],
+    ['basements', 'falls-church-va', 'Basement Finishing in Falls Church, VA'],
+  ] as const;
+
+  const REVIVED = [
+    'kitchens-clifton-va',
+    'bathrooms-clifton-va',
+    'basements-clifton-va',
+    'kitchens-fairfax-station-va',
+    'bathrooms-fairfax-station-va',
+    'basements-fairfax-station-va',
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 18 openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('publishes Clifton and Fairfax Station again and leaves the other retirements', () => {
+    for (const key of REVIVED) {
+      expect(RETIRED_COMBOS).not.toHaveProperty(key);
+      expect(CONTENT).toHaveProperty(key);
+    }
+    expect(RETIRED_COMBOS).toHaveProperty('basements-burke-va');
+    expect(RETIRED_COMBOS).toHaveProperty('bathrooms-middleburg-va');
+    expect(RETIRED_COMBOS).toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+  });
+
+  it('names both contacts where the mailing name can be either office', () => {
+    const fortHunt = [
+      ...(CONTENT['basements-fort-hunt-va']?.paragraphs ?? []),
+      ...(CONTENT['basements-fort-hunt-va']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(fortHunt).toMatch(/703-746-4200/);
+    expect(fortHunt).toMatch(/703-222-0801/);
+    const fallsChurch = [
+      ...(CONTENT['basements-falls-church-va']?.paragraphs ?? []),
+      ...(CONTENT['basements-falls-church-va']?.faqs ?? []).map((faq) => faq.answer),
+      CITY_DATA['falls-church-va']?.description,
+    ].join('\n');
+    expect(fallsChurch).toMatch(/703-248-5080/);
+    expect(fallsChurch).toMatch(/703-222-0801/);
+    expect(fallsChurch).not.toMatch(/median year built|centered on the city|HARB/i);
+  });
+
+  it('keeps Oakton, Dunn Loring, and Clifton conditional', () => {
+    expect(CITY_DATA['oakton-va']?.description).toMatch(/If the home is inside the Town of Vienna/);
+    expect(CITY_DATA['oakton-va']?.description).not.toMatch(/It is not part of the Town of Vienna/);
+    expect(CITY_DATA['dunn-loring-va']?.description).toMatch(/If the home is inside the Town of Vienna/);
+    expect(CITY_DATA['dunn-loring-va']?.description).not.toMatch(/Building permits go through Fairfax County/);
+    expect(CITY_DATA['clifton-va']?.description).toMatch(/one-quarter of a square mile/);
+    expect(CITY_DATA['clifton-va']?.description).toMatch(/If the home is inside the Town of Clifton/);
+    expect(CITY_DATA['clifton-va']?.description).toMatch(/purely internal/i);
+    expect(CITY_DATA['clifton-va']?.description).toMatch(/Construction or renovation of a building is a separate path/);
+    expect(CITY_DATA['fairfax-station-va']?.description).toMatch(/parcel/i);
+    expect(CITY_DATA['fort-hunt-va']?.description).not.toMatch(/not Alexandria Code Administration/);
+  });
+
+  it('does not claim a trade license and does not treat every Clifton kitchen as a use permit', () => {
+    const body = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`];
+      return [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ].join('\n');
+    }).join('\n');
+    expect(body).not.toMatch(/separately licensed/);
+    const kitchen = CONTENT['kitchens-clifton-va'];
+    const kitchenBody = [...(kitchen?.paragraphs ?? []), ...(kitchen?.faqs ?? []).map((faq) => faq.answer)].join('\n');
+    expect(kitchenBody).toMatch(/not a permit the town issues/);
+    expect(kitchenBody).toMatch(/separate path/);
+    expect(kitchenBody).not.toMatch(/A renovation of a building in the town needs a use permit/);
   });
 });
