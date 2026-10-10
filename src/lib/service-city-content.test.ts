@@ -1901,6 +1901,25 @@ describe('REA-2442 round 8 richest-county towns', () => {
     expect(ellicott).toMatch(/21042/);
     expect(ellicott).toMatch(/21043/);
     expect(ellicott).toMatch(/3430 Courthouse Drive/);
+    expect(ellicott).toMatch(/parcel/i);
+    expect(ellicott).not.toMatch(/both use that office|both file at|Both ZIPs use/i);
+    const marriottsville = [
+      CITY_DATA['marriottsville-md']?.description,
+      ...(CITY_DATA['marriottsville-md']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(marriottsville).toMatch(/parcel/i);
+    expect(marriottsville).not.toMatch(/western Howard County/i);
+    const laytonsville = [
+      CITY_DATA['laytonsville-md']?.description,
+      ...(CITY_DATA['laytonsville-md']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(laytonsville).toMatch(/When the parcel is in the Town of Laytonsville/);
+    expect(laytonsville).toMatch(/does not, by itself/);
+    const barnesville = [
+      CITY_DATA['barnesville-md']?.description,
+      ...(CITY_DATA['barnesville-md']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(barnesville).toMatch(/neither town/);
     const delaplane = [
       CITY_DATA['delaplane-va']?.description,
       ...(CITY_DATA['delaplane-va']?.faqs ?? []).map((faq) => faq.answer),

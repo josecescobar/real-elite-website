@@ -4821,18 +4821,18 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-marriottsville-md': {
     h1: 'Kitchen Remodeling in Marriottsville, MD',
     metaDescription:
-      'Kitchen remodeling in Marriottsville, MD, ZIP 21104. Howard County permits at 3430 Courthouse Drive. Free written estimate after a site walk.',
+      'Kitchen remodeling in Marriottsville, MD, ZIP 21104. The parcel decides the county. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Marriottsville?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. We confirm the permit steps with the county before work starts.',
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'Does a Marriottsville cabinet swap need the Health Department?',
         answer:
-          'A cabinet replacement is not a well-and-septic question. A house on a private well and septic needs Health Department approval before a permit when the work requires one. That number is 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'A cabinet replacement is not a well-and-septic question. When the parcel is in Howard County and the house is on a private well and septic, Health Department approval comes before a permit that the work requires. That number is 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Marriottsville, MD cost?',
@@ -4841,8 +4841,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Marriottsville, MD is a Howard County kitchen in ZIP 21104, along Marriottsville Road near the Patapsco.',
-      'Permits go through the department at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. A private well and septic needs Health Department approval before the permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the county before work starts.',
+      'Kitchen remodeling in Marriottsville, MD is a kitchen in ZIP 21104, along Marriottsville Road near the Patapsco. The mailing town does not decide the county.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. A private well and septic in Howard County needs Health Department approval before the permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Marriottsville quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -4856,7 +4856,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Marriottsville?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455, option 4. The office is 3430 Courthouse Drive, Ellicott City. We confirm the permit steps with the county before work starts.',
+          'The parcel decides the county. When it is Howard County, questions go to 410-313-2455, option 4, at 3430 Courthouse Drive, Ellicott City. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'What does bathroom remodeling in Marriottsville, MD cost?',
@@ -4866,12 +4866,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Marriottsville water heater need its own permit?',
         answer:
-          'A plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'When the parcel is in Howard County, a plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Marriottsville, MD is a Howard County bath in ZIP 21104, and a water-heater replacement is its own plumbing permit.',
-      'The office is 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Arrive by 4:00 p.m. A house on a private well and septic needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the county before work starts.',
+      'Bathroom remodeling in Marriottsville, MD is a bath in ZIP 21104. The parcel decides the county before a water-heater permit is assigned.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Arrive by 4:00 p.m. A Howard County house on a private well and septic needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'Every Marriottsville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -4885,12 +4885,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Marriottsville, MD?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. We confirm the permit steps with the county before work starts.',
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'Does a Marriottsville lower level on a well start at the Health Department?',
         answer:
-          'Yes, when the house is on a private well and septic. Health Department approval comes before the permit. That number is 410-313-6300. Electrical work is a separately licensed trade.',
+          'When the parcel is in Howard County and the house is on a private well and septic, Health Department approval comes before the permit. That number is 410-313-6300. Electrical work is a separately licensed trade.',
       },
       {
         question: 'What does a finished basement in Marriottsville cost?',
@@ -4899,8 +4899,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Marriottsville, MD is a lower level in ZIP 21104, and the county permit office for that house is in Ellicott City.',
-      'Questions go to 3430 Courthouse Drive, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic needs Health Department approval first. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the county before work starts.',
+      'Basement finishing in Marriottsville, MD is a lower level in ZIP 21104. The parcel decides which county office is asked.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic in Howard County needs Health Department approval first. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Marriottsville lower level near the Patapsco can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -4918,7 +4918,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Arrive by 4:00 p.m. We confirm the permit steps with the county before work starts.',
+          'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Arrive by 4:00 p.m. We confirm the permit steps for the parcel before work starts.',
         ],
       },
     ],
@@ -4933,12 +4933,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Ellicott City?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 both use that office.',
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 are the mailing area.',
       },
       {
         question: 'Does a Main Street kitchen file somewhere else?',
         answer:
-          'No. A house in ZIP 21042 and a house in ZIP 21043 both use the Courthouse Drive office. Arrive by 4:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'The ZIP does not name the office. A house in ZIP 21042 and a house in ZIP 21043 are both Ellicott City mailing areas. When the parcel is in Howard County, questions go to the Courthouse Drive office. Arrive by 4:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Ellicott City, MD cost?',
@@ -4947,8 +4947,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Ellicott City, MD covers a kitchen in ZIP 21042 or ZIP 21043, and both file at the county office on Courthouse Drive.',
-      'The department is 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. It approves building, mechanical, plumbing, and electrical permits. The front counter closes at 5:00 p.m. A private well and septic needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the county before work starts.',
+      'Kitchen remodeling in Ellicott City, MD covers a kitchen in ZIP 21042 or ZIP 21043. The ZIP does not decide the county.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic in Howard County needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ellicott City quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -4962,7 +4962,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Ellicott City?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455, option 4, at 3430 Courthouse Drive. ZIP 21042 and ZIP 21043 use the same office.',
+          'The parcel decides the county. When it is Howard County, questions go to 410-313-2455, option 4, at 3430 Courthouse Drive. ZIP 21042 and ZIP 21043 are the mailing area.',
       },
       {
         question: 'What does bathroom remodeling in Ellicott City, MD cost?',
@@ -4972,12 +4972,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does an Ellicott City water heater need a plumber permit?',
         answer:
-          'A plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'When the parcel is in Howard County, a plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Ellicott City, MD is a bath in ZIP 21042 or ZIP 21043, and both use the department at 3430 Courthouse Drive.',
-      'Questions go to 410-313-2455, option 4. Arrive by 4:00 p.m. Plumbing and mechanical questions can also go to 410-313-1840. A water heater needs a plumbing permit pulled by a master plumber. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the county before work starts.',
+      'Bathroom remodeling in Ellicott City, MD is a bath in ZIP 21042 or ZIP 21043. The parcel decides the county before an office is named.',
+      'When the parcel is in Howard County, questions go to 410-313-2455, option 4. Arrive by 4:00 p.m. Plumbing and mechanical questions can also go to 410-313-1840. A Howard County water heater needs a plumbing permit pulled by a master plumber. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'Every Ellicott City bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -4991,12 +4991,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Ellicott City, MD?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. ZIP 21042 and ZIP 21043 both use that office.',
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. ZIP 21042 and ZIP 21043 are the mailing area.',
       },
       {
         question: 'Does a lower level near the Patapsco use a different office?',
         answer:
-          'No. Both Ellicott City ZIPs use the Courthouse Drive counter. A house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the permit steps with the county before work starts.',
+          'The ZIP does not name the office. When the parcel is in Howard County, questions go to the Courthouse Drive counter. A Howard County house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'What does a finished basement in Ellicott City cost?',
@@ -5005,8 +5005,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Ellicott City, MD is a lower level in ZIP 21042 or ZIP 21043, and the permit office for both is on Courthouse Drive.',
-      'The department phone is 410-313-2455, option 4. The front counter closes at 5:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A low cellar on Main Street and a full-height lower level in ZIP 21042 are different jobs. We confirm the permit steps with the county before work starts.',
+      'Basement finishing in Ellicott City, MD is a lower level in ZIP 21042 or ZIP 21043. The ZIP does not name the permit office.',
+      'When the parcel is in Howard County, questions go to 410-313-2455, option 4. The front counter closes at 5:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A low cellar on Main Street and a full-height lower level in ZIP 21042 are different jobs. We confirm the permit steps for the parcel before work starts.',
       'An Ellicott City lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5024,7 +5024,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 use this office. Arrive by 4:00 p.m.',
+          'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 are the mailing area. Arrive by 4:00 p.m.',
         ],
       },
     ],
@@ -5033,13 +5033,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-laytonsville-md': {
     h1: 'Kitchen Remodeling in Laytonsville, MD',
     metaDescription:
-      'Kitchen remodeling in Laytonsville, MD, ZIP 20882. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Laytonsville, MD, ZIP 20882. Town approval comes first only when the parcel is in the town. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Laytonsville?',
         answer:
-          'Laytonsville is a place where city approval is required before the county application. Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. County questions go to 240-777-0311.',
+          'The parcel decides. When it is in the Town of Laytonsville, city approval is required before the county application. Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. A county parcel uses 240-777-0311.',
       },
       {
         question: 'Does a cabinet replacement in Laytonsville skip the town?',
@@ -5053,8 +5053,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Laytonsville, MD starts with town approval before the county application, for a house in ZIP 20882 along MD 108.',
-      'Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. County questions go to 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Kitchen remodeling in Laytonsville, MD is a kitchen in ZIP 20882 along MD 108. The ZIP does not put the house inside the town.',
+      'When the parcel is in the Town of Laytonsville, city approval is required before the county application. Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. A county parcel uses 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Laytonsville quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -5062,13 +5062,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'bathrooms-laytonsville-md': {
     h1: 'Bathroom Remodeling in Laytonsville, MD',
     metaDescription:
-      'Bathroom remodeling in Laytonsville, MD. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Bathroom remodeling in Laytonsville, MD. Town approval comes first only when the parcel is in the town. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a bathroom remodel in Laytonsville?',
         answer:
-          'The town first, then the county. Town questions go to 301-869-0042. County questions go to 240-777-0311. Bathroom caulking most likely will not need a permit. An interior alteration likely will.',
+          'The parcel decides. When it is in the Town of Laytonsville, town questions go to 301-869-0042 before the county application. A county parcel uses 240-777-0311. Bathroom caulking most likely will not need a permit. An interior alteration likely will.',
       },
       {
         question: 'What does bathroom remodeling in Laytonsville, MD cost?',
@@ -5082,8 +5082,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Laytonsville, MD goes to the town at P.O. Box 5158 before the county application is made.',
-      'The town phone is 301-869-0042. The county office is in Wheaton, phone 240-777-0311, 7:30 a.m. to 4 p.m. Bathroom caulking most likely will not need a permit. A renovation other than a repair does. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Bathroom remodeling in Laytonsville, MD confirms the parcel before the town at P.O. Box 5158 is treated as the first stop.',
+      'When the parcel is in the Town of Laytonsville, the town phone is 301-869-0042 and city approval comes before the county application. A county parcel uses the Wheaton office, phone 240-777-0311, 7:30 a.m. to 4 p.m. Bathroom caulking most likely will not need a permit. A renovation other than a repair does. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'Every Laytonsville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -5097,12 +5097,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Laytonsville, MD?',
         answer:
-          'Town approval first, phone 301-869-0042, then the county at 240-777-0311. An interior alteration will likely need a permit. We confirm the permit steps for the parcel before work starts.',
+          'The parcel decides. When it is in the Town of Laytonsville, town approval comes first, phone 301-869-0042, then the county at 240-777-0311. An interior alteration will likely need a permit. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'What is checked before a Laytonsville lower level is finished?',
         answer:
-          'Headroom, the stair, and moisture, then the town-before-county order. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'Headroom, the stair, moisture, and whether the parcel is inside the town. Town-before-county applies to a Town of Laytonsville parcel. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
       {
         question: 'What does a finished basement in Laytonsville cost?',
@@ -5111,8 +5111,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Laytonsville, MD needs town approval before the county application, then a permit for a renovation other than a repair.',
-      'Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. County questions go to 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Permits are applied for electronically. A non-refundable filing fee is paid at application unless state law exempts it. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Basement finishing in Laytonsville, MD confirms whether the parcel is in the town before a filing order is assumed.',
+      'When the parcel is in the Town of Laytonsville, town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042, and city approval is required before the county application. A county parcel uses 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Permits are applied for electronically. A non-refundable filing fee is paid at application unless state law exempts it. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'A Laytonsville lower level off MD 108 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5130,7 +5130,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Town of Laytonsville, P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. City approval is required before the county application. County questions go to 240-777-0311.',
+          'When the parcel is in the Town of Laytonsville, questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042, and city approval is required before the county application. A county parcel uses 240-777-0311.',
         ],
       },
     ],
@@ -5139,13 +5139,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-barnesville-md': {
     h1: 'Kitchen Remodeling in Barnesville, MD',
     metaDescription:
-      'Kitchen remodeling in Barnesville, MD, ZIP 20837. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Barnesville, MD, ZIP 20837. The parcel decides the town or the county office. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Barnesville?',
         answer:
-          'The Town of Barnesville first, then the county. Town questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. A ZIP 20837 house in Poolesville uses 301-428-8927 instead. County questions go to 240-777-0311.',
+          'The parcel decides. A Town of Barnesville parcel needs city approval first. Town questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. A Poolesville parcel uses 301-428-8927. A county parcel in neither town uses 240-777-0311.',
       },
       {
         question: 'Does a Barnesville cabinet replacement skip the town?',
@@ -5159,8 +5159,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Barnesville, MD is a town-first filing in western Montgomery County, and ZIP 20837 can also be the Town of Poolesville.',
-      'Barnesville questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. Poolesville questions go to P.O. Box 158, Poolesville, MD 20837, phone 301-428-8927. Both require city approval before the county application. County questions go to Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Kitchen remodeling in Barnesville, MD is a kitchen in ZIP 20837. The ZIP can be Barnesville, Poolesville, or a county parcel in neither town.',
+      'When the parcel is in the Town of Barnesville, questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659, and city approval is required before the county application. A Poolesville parcel uses P.O. Box 158, Poolesville, MD 20837, phone 301-428-8927, and also needs city approval first. A county parcel in neither town uses Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Barnesville quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -5168,13 +5168,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'bathrooms-barnesville-md': {
     h1: 'Bathroom Remodeling in Barnesville, MD',
     metaDescription:
-      'Bathroom remodeling in Barnesville, MD. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Bathroom remodeling in Barnesville, MD. The parcel decides the town or the county office. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a bathroom remodel in Barnesville?',
         answer:
-          'Town approval first. Barnesville questions go to 240-415-1659. A Poolesville parcel in ZIP 20837 goes to 301-428-8927. County questions go to 240-777-0311.',
+          'The parcel decides. A Town of Barnesville parcel uses 240-415-1659 before the county application. A Poolesville parcel uses 301-428-8927. A county parcel in neither town uses 240-777-0311.',
       },
       {
         question: 'What does bathroom remodeling in Barnesville, MD cost?',
@@ -5188,8 +5188,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Barnesville, MD uses town approval first, and a ZIP 20837 address can belong to Poolesville rather than Barnesville.',
-      'Barnesville questions go to 240-415-1659. Poolesville questions go to 301-428-8927. The county office is 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Bathroom caulking most likely will not need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Bathroom remodeling in Barnesville, MD confirms the parcel first. ZIP 20837 can be Barnesville, Poolesville, or a county parcel in neither town.',
+      'A Town of Barnesville parcel uses 240-415-1659, and city approval comes before the county application. A Poolesville parcel uses 301-428-8927. A county parcel in neither town uses 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Bathroom caulking most likely will not need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'Every Barnesville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -5203,12 +5203,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Barnesville, MD?',
         answer:
-          'The town first. Barnesville questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. County questions go to 240-777-0311. We confirm which town is on the parcel before work starts.',
+          'The parcel decides. A Town of Barnesville parcel uses P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659, before the county application. A county parcel in neither Barnesville nor Poolesville uses 240-777-0311.',
       },
       {
         question: 'What is checked before a Barnesville lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and which town is on the parcel. Poolesville shares ZIP 20837 and also requires city approval first. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade.',
+          'Headroom, the stair, moisture, and whether the parcel is in a town. Poolesville shares ZIP 20837 and requires city approval first when the parcel is in that town. A county parcel in neither town does not use that town-first order. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade.',
       },
       {
         question: 'What does a finished basement in Barnesville cost?',
@@ -5217,8 +5217,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Barnesville, MD starts with the town, phone 240-415-1659, before the county application is filed.',
-      'A ZIP 20837 parcel in the Town of Poolesville uses 301-428-8927 instead. Both towns require city approval before the county application. County questions go to 240-777-0311. An interior alteration will likely need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Basement finishing in Barnesville, MD confirms the parcel before a town or the county office is assumed.',
+      'A parcel in the Town of Barnesville uses 240-415-1659, and city approval is required before the county application. A parcel in the Town of Poolesville uses 301-428-8927 and the same town-first order. A county parcel in neither town uses 240-777-0311. An interior alteration will likely need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Barnesville lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5236,7 +5236,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Town of Barnesville, P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. City approval is required before the county application. County questions go to 240-777-0311.',
+          'When the parcel is in the Town of Barnesville, questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659, and city approval is required before the county application. A county parcel in neither Barnesville nor Poolesville uses 240-777-0311.',
         ],
       },
     ],
