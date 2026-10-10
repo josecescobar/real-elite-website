@@ -46,7 +46,7 @@ export const DESIGN_BUILD_MENU: readonly NavColumn[] = [
       { label: 'Lower Levels & Basements', href: '/services/basements', description: 'Media rooms, bars, guest suites, home gyms' },
       { label: 'Kitchens', href: '/services/kitchens', description: 'Custom cabinetry, stone, open-plan layouts' },
       { label: 'Primary Suites & Baths', href: '/services/bathrooms', description: 'Curbless showers, stone, heated floors' },
-      { label: 'Outdoor Living', href: '/services/decks', description: 'Composite decks, screened porches, pergolas' },
+      { label: 'Outdoor Living', href: '/services/outdoor-living', description: 'Screened porches, covered patios, pergolas' },
       { label: 'Additions', href: '/services/additions', description: 'Bump-outs, family rooms, second stories' },
       { label: 'Whole-Home Renovation', href: '/services/remodeling', description: 'One design, one contract, one team' },
     ],
@@ -55,6 +55,7 @@ export const DESIGN_BUILD_MENU: readonly NavColumn[] = [
     heading: 'Exteriors & Repairs',
     tone: 'muted',
     items: [
+      { label: 'Decks', href: '/services/decks' },
       { label: 'Stairs & Railings', href: '/services/stairs' },
       { label: 'Roofing', href: '/services/roofing' },
       { label: 'Siding & Stone', href: '/services/siding' },

@@ -63,7 +63,7 @@ const FEATURED_FOOTER_SERVICES = [
   { label: 'Home Additions', href: '/services/additions' },
   { label: 'Roofing', href: '/services/roofing' },
   { label: 'Siding & Stone', href: '/services/siding' },
-  { label: 'Decks & Outdoor Living', href: '/services/decks' },
+  { label: 'Decks', href: '/services/decks' },
   { label: 'Outdoor Living', href: '/services/outdoor-living' },
   { label: 'Stairs & Railings', href: '/services/stairs' },
 ];

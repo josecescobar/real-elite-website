@@ -656,7 +656,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
 
   decks: {
     slug: 'decks',
-    title: 'Decks & Outdoor Living',
+    title: 'Decks',
     serviceType: 'Deck Construction',
     metaTitle: 'Decks & Outdoor Living | Real Elite Contracting',
     metaDescription:
@@ -675,7 +675,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'Real Elite Contracting designs and builds custom decks across the WV–MD–VA region — pressure-treated and premium composite (Trex, TimberTech, Azek), railings, and full outdoor living spaces engineered for the four-season climate.',
     hero: {
       eyebrow: 'Outdoor',
-      heading: 'Decks & Outdoor Living',
+      heading: 'Custom Decks',
       sub: 'Composite decks, railings, lighting, and full backyard transformations. The outdoor living spaces premium homeowners actually use.',
       image: { src: '/images/deck-night-lights.jpg', alt: 'Finished composite deck with solar post lights at night' },
     },
@@ -693,7 +693,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         'Multi-level deck designs',
         'Custom railings and built-in benches',
         'Pergolas and shade structures',
-        'Low-voltage post and step lighting',
+        'Solar post-cap and step lights',
         'Deck repairs, refinishing, and expansions',
       ],
     },
@@ -787,7 +787,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         'Composite and pressure-treated decks',
         'Concrete patios and walkways',
         'Outdoor kitchen and fire-feature surrounds (gas and electrical by licensed trades)',
-        'Low-voltage post and step lighting',
+        'Solar post-cap and step lights',
       ],
     },
     gallery: [
