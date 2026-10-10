@@ -1684,7 +1684,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Shepherdstown?',
         answer:
-          'Inside the corporation, the Town. A project permit is filed at Town Hall, 104 North King Street. Exterior work in the historic district needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. Outside the corporation, Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town.',
+          'Inside town limits, the Town of Shepherdstown issues project permits for construction and additions at Town Hall, 104 North King Street, and we confirm with the Town whether your kitchen needs one. Exterior work in the historic district needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. Outside the corporation, Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town.',
       },
       {
         question: 'Does a Shepherdstown address always mean the town?',
@@ -1699,7 +1699,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Shepherdstown, WV is work in the oldest town in the state, founded in 1762, with Shepherd University beside the German Street corridor. Older houses here still have small original kitchens, plaster, and stacks that were never laid out for an island.',
-      'Inside the corporation, the Town issues the project permit at 104 North King Street. Much of the town is in a historic district. Exterior changes there need a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. A kitchen that leaves the outside alone is not that certificate. A new window or a bump-out is.',
+      'Inside town limits, the Town of Shepherdstown handles project permits for construction and additions at 104 North King Street; we check with the Town what your remodel needs before work starts. Much of the town is in a historic district. Exterior changes there need a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. A kitchen that leaves the outside alone is not that certificate. A new window or a bump-out is.',
       'Outside the corporation, Jefferson County takes remodeling permits at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. Applications are not taken in after 4:30 p.m. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. WV Contractor License WV062432. The written estimate is the number for this house.',
     ],
   },
@@ -1712,7 +1712,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Shepherdstown?',
         answer:
-          'Inside town, a project permit from the Town at 104 North King Street. Exterior work in the historic district needs the Historic Landmarks Commission certificate first. Outside town, Jefferson County at 116 East Washington Street, Suite 100, Charles Town, phone (304) 725-2998.',
+          'Inside town, we confirm with the Town at 104 North King Street whether your bathroom needs a project permit; construction and additions do. Exterior work in the historic district needs the Historic Landmarks Commission certificate first. Outside town, Jefferson County at 116 East Washington Street, Suite 100, Charles Town, phone (304) 725-2998.',
       },
       {
         question: 'What does bathroom remodeling in Shepherdstown, WV cost?',
@@ -1727,7 +1727,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Shepherdstown, WV means a wet-area rebuild in an older house, often a tight bath off a German Street or King Street plan, or a later house toward Shepherd Grade. The university town and the county land around it are not the same permit counter.',
-      'Inside the corporation, file the project permit with the Town. The Historic Landmarks Commission issues the Certificate of Appropriateness for exterior work in the historic district, and that certificate comes before the building permit. A combined application covers a project that is both inside the corporation and inside the district.',
+      'Inside town limits, construction and additions need a Town project permit, and we confirm with the Town what an interior remodel needs. The Historic Landmarks Commission issues the Certificate of Appropriateness for exterior work in the historic district, and that certificate comes before the building permit. A combined application covers a project that is both inside the corporation and inside the district.',
       'A shower conversion needs a sloped pan and a waterproofing layer. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. WV Contractor License WV062432. County land uses the Jefferson County office in Charles Town, not Town Hall.',
     ],
   },
@@ -1740,7 +1740,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Shepherdstown, WV?',
         answer:
-          'Inside the corporation, the Town, at 104 North King Street. An areaway or egress opening in the historic district needs the Historic Landmarks Commission certificate before the building permit. Outside the corporation, Jefferson County lists finished basements among the work that needs a permit, at 116 East Washington Street, Suite 100, Charles Town.',
+          'Inside town limits, we confirm with the Town at 104 North King Street which permits your basement needs; construction and additions need a Town project permit. An areaway or egress opening in the historic district needs the Historic Landmarks Commission certificate before the building permit. Outside the corporation, Jefferson County lists finished basements among the work that needs a permit, at 116 East Washington Street, Suite 100, Charles Town.',
       },
       {
         question: 'What does an egress window cost here?',
@@ -1755,7 +1755,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Shepherdstown, WV is often a low older cellar near German Street, or a conventional lower level on a later lot outside the original town. A Shepherdstown mailing address does not decide which one, and it does not decide the permit counter.',
-      'Inside the corporation the Town issues the project permit. Jefferson County, for land outside town, lists finished basements, remodeling, and additions at the Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, Charles Town, phone (304) 725-2998. No applications after 4:30 p.m.',
+      'Inside town limits, the Town issues project permits for construction and additions, and we confirm with the Town what your basement needs. Jefferson County, for land outside town, lists finished basements, remodeling, and additions at the Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, Charles Town, phone (304) 725-2998. No applications after 4:30 p.m.',
       'Our Eastern Panhandle egress guide publishes $3,500 to $6,500 installed for the window and well. That figure is not the basement finish and not a Real Elite price. WV Contractor License WV062432. Moisture comes before drywall. The written estimate is the number for this house.',
     ],
     sections: [
