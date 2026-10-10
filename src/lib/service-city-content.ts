@@ -5742,7 +5742,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before a Fairfax Station lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Clifton. A house on a well or septic system may also get a Health Department review at 703-246-2201.',
+          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Clifton. A house on a well or septic system may also get a Health Department review. Health Department questions go to 703-246-2201.',
       },
       {
         question: 'What does a finished basement in Fairfax Station cost?',
@@ -5950,7 +5950,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before a Clifton lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and whether the parcel is inside the one-quarter-square-mile town. A house on a well or septic system may also get a Health Department review at 703-246-2201.',
+          'Headroom, the stair, moisture, and whether the parcel is inside the one-quarter-square-mile town. A house on a well or septic system may also get a Health Department review. Health Department questions go to 703-246-2201.',
       },
       {
         question: 'What does a finished basement in Clifton cost?',
