@@ -146,7 +146,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va',
     ];
     // Verified Virginia towns from the 2026-09-29 research notes.
-    // West Virginia gap towns are intentionally absent.
+    // The West Virginia towns Jose checked are in WV_BATCH below.
     // Herndon, Fairfax city, Stephens City, and Middletown VA are staged
     // (permit process unverified) and therefore absent from this active list.
     const VA_BATCH_2026_09_29 = [
@@ -161,6 +161,11 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     const PA_BATCH_2026_09_29 = [
       'greencastle-pa', 'chambersburg-pa', 'fort-loudon-pa',
       'mercersburg-pa', 'waynesboro-pa', 'fayetteville-pa',
+    ];
+    // Towns checked on REA-402. Gerrardstown, Shenandoah Junction, and
+    // Summit Point stay out of the catalog.
+    const WV_BATCH_2026_10_10 = [
+      'harpers-ferry-wv', 'kearneysville-wv', 'bunker-hill-wv',
     ];
     // Maryland towns published 2026-10-09 (REA-2283). Empty legacyTiers.
     // Frederick was already in the primary pin. Far-market towns stay omitted.
@@ -178,6 +183,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...FAIRFAX_PWC_2026_09_27,
       ...VA_BATCH_2026_09_29,
       ...PA_BATCH_2026_09_29,
+      ...WV_BATCH_2026_10_10,
       ...MD_TOWNS_2026_10_09,
     ]);
   });
