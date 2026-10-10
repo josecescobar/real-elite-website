@@ -6429,7 +6429,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'additions-clifton-va': {
     h1: 'Home Additions in Clifton, VA',
     metaDescription:
-      'Home Additions in Clifton, VA. A town use permit, then the county building permit. Free written estimate after a site walk.',
+      'Home Additions in Clifton, VA. For a parcel inside the Town of Clifton, a town use permit, then the county building permit.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6440,7 +6440,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What does the town require before a county addition permit?',
         answer:
-          'The town FAQ says an added room needs a use permit from the Planning Commission, a certificate of appropriateness from the Architectural Review Board, and a Fairfax County building permit. The mayor or a designated representative must sign the county application. The use-permit application goes to the Town Clerk at least 15 days before the Planning Commission meeting.',
+          'For a parcel inside the Town of Clifton, the town FAQ says an added room needs a use permit from the Planning Commission, a certificate of appropriateness from the Architectural Review Board, and a Fairfax County building permit. The mayor or a designated representative must sign the county application. The use-permit application goes to the Town Clerk at least 15 days before the Planning Commission meeting.',
       },
       {
         question: 'Where do questions go if the parcel is outside the town?',
@@ -6449,7 +6449,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'A Clifton addition needs a town use permit and a county building permit, and the district field is how the parcel is checked. The town FAQ says the Fairfax County parcel profile shows Springfield Town of Clifton when the address is inside the town. A 20124 mailing address is not that field. We read the parcel before we draw the room.',
+      'For a parcel inside the Town of Clifton, an addition needs a town use permit and a county building permit, and the district field is how the parcel is checked. The town FAQ says the Fairfax County parcel profile shows Springfield Town of Clifton when the address is inside the town. A 20124 mailing address is not that field. We read the parcel before we draw the room.',
       'If the parcel is inside the Town of Clifton, the town FAQ says an added room needs a use permit from the Planning Commission, design plans to the Architectural Review Board for a certificate of appropriateness, and a Fairfax County building permit. A use permit is required to build an addition to an existing structure. The application goes to the Town Clerk at least 15 days before the Planning Commission meeting. The applications page says the Planning Commission reviews use permits on the last Tuesday of each month at 7:30 p.m. at Acacia Lodge, 7135 Main Street. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that town approval is uploaded to the PLUS record.',
       'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page lists a bump-out and a second story under a new addition that needs a permit. Apply in PLUS under the Building tab. If the house is on a well or septic, the addition page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the house is a free written estimate after a site walk.',
     ],
@@ -6458,22 +6458,22 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'decks-clifton-va': {
     h1: 'Decks in Clifton, VA',
     metaDescription:
-      'Decks in Clifton, VA. The county lists a deck with a new addition. The town has its own approval. Free written estimate after a site walk.',
+      'Decks in Clifton, VA. For a parcel inside the Town of Clifton, the town has its own approval, then the county building permit.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'How does Fairfax County classify a Clifton deck?',
         answer:
-          'The when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage. Fairfax County also says a Clifton project needs a separate town approval uploaded to the PLUS record.',
+          'The when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage. Fairfax County also says a project on a parcel inside the Town of Clifton needs a separate town approval uploaded to the PLUS record.',
       },
       {
         question: 'Does the town treat a deck as internal work?',
         answer:
-          'Fairfax County lists decks among additions requiring a permit. Clifton describes separate paths for purely internal work and for additions or new structures, but its FAQ does not explicitly classify a deck. Confirm the town approvals for the parcel with the Town Clerk.',
+          'Fairfax County lists decks among additions requiring a permit. Clifton describes separate paths for purely internal work and for additions or new structures, but its FAQ does not explicitly classify a deck. For a parcel inside the Town of Clifton, confirm the town approvals with the Town Clerk.',
       },
     ],
     paragraphs: [
-      'A deck in Clifton is on Fairfax County\'s list of new additions that need a permit, and the county requires separate town approval documentation for a project inside Clifton. The town FAQ says the District field on the Fairfax County parcel profile reads Springfield Town of Clifton when the address is inside the town. We check that field before we draw the frame.',
+      'A deck in Clifton is on Fairfax County\'s list of new additions that need a permit. For a parcel inside the Town of Clifton, the county requires separate town approval documentation. The town FAQ says the District field on the Fairfax County parcel profile reads Springfield Town of Clifton when the address is inside the town. We check that field before we draw the frame.',
       'If the parcel is inside the Town of Clifton, the town FAQ requires a use permit to build an addition to an existing structure or to erect a new structure, and a certificate of appropriateness for an addition or a new structure. The county when-required page lists a deck with a new addition, so ask the Town Clerk which town approvals apply to this deck. We do not guess that on a mailing name. The town FAQ says the county building permit is not granted unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404. The county addition page says the town approval is uploaded to the PLUS record.',
       'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Deck is an Additional Square Footage type of work in PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the deck is a free written estimate after a site walk.',
     ],
@@ -6482,22 +6482,22 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'outdoor-living-clifton-va': {
     h1: 'Outdoor Living in Clifton, VA',
     metaDescription:
-      'Outdoor Living in Clifton, VA. A screened porch needs a town certificate and a county addition record. Free written estimate after a site walk.',
+      'Outdoor Living in Clifton, VA. For a parcel inside the Town of Clifton, a screened porch needs a town certificate and a county addition record.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Is a screened porch in Clifton filed as a deck?',
         answer:
-          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work. Fairfax County says a Clifton project needs the town approval uploaded to PLUS.',
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work. For a parcel inside the Town of Clifton, Fairfax County says the town approval is uploaded to PLUS.',
       },
       {
         question: 'What town approval does a Clifton porch need?',
         answer:
-          'The town FAQ says a certificate of appropriateness is required for an addition, and a use permit is required to build an addition to an existing structure. Fairfax County lists gazebos under detached buildings and structures. Clifton’s FAQ discusses use permits for sheds or ancillary buildings; ask the Town Clerk what applies to a proposed gazebo.',
+          'For a parcel inside the Town of Clifton, the town FAQ says a certificate of appropriateness is required for an addition, and a use permit is required to build an addition to an existing structure. Fairfax County lists gazebos under detached buildings and structures. Clifton’s FAQ discusses use permits for sheds or ancillary buildings; ask the Town Clerk what applies to a proposed gazebo.',
       },
     ],
     paragraphs: [
-      'A screened porch in Clifton is an addition on the county list, and the town requires a certificate of appropriateness for an addition. The town FAQ says to confirm the parcel on the Fairfax County profile, where the District field says Springfield Town of Clifton inside the town. A village lot on Main Street still needs the parcel District field before town rules apply. A 20124 address is not that field.',
+      'A screened porch in Clifton is an addition on the county list. For a parcel inside the Town of Clifton, the town requires a certificate of appropriateness for an addition. The town FAQ says to confirm the parcel on the Fairfax County profile, where the District field says Springfield Town of Clifton inside the town. A village lot on Main Street still needs the parcel District field before town rules apply. A 20124 address is not that field.',
       'If the parcel is inside the Town of Clifton, the town FAQ requires a certificate of appropriateness for an addition to an existing building, and a use permit to build an addition to an existing structure. The when-required page includes a screen porch and a sunroom in a new addition that needs a county permit. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that approval is uploaded to the PLUS record.',
       'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Screened Porch and Sunroom are Additional Square Footage types of work. A detached gazebo is on the detached-structures list, not the porch list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price is a free written estimate after a site walk.',
     ],
