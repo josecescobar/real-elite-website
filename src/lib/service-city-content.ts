@@ -5580,7 +5580,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Dunn Loring cabinet replacement need a permit?',
         answer:
-          'Kitchen cabinets and countertops do not need a permit. A kitchen renovation does. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+          'Kitchen cabinets and countertops do not need a permit. A kitchen renovation does. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Dunn Loring, VA cost?',
@@ -5590,7 +5590,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Dunn Loring, VA starts with the parcel, because a 22027 address beside the Dunn Loring-Merrifield Metro can sit near the Town of Vienna.',
-      'If the home is inside the Town of Vienna, submission materials go to Fairfax County before the town review. Town questions go to 127 Center Street South, phone 703-255-6300. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Vienna, submission materials go to Fairfax County before the town review. Town questions go to 127 Center Street South, phone 703-255-6300. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Dunn Loring quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -5614,12 +5614,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a new shower in Dunn Loring need a permit?',
         answer:
-          'A bathroom remodel needs a permit. A bathroom vanity does not. Replacing tile does not. A new or relocated shower does. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'A bathroom remodel needs a permit. A bathroom vanity does not. Replacing tile does not. A new or relocated shower does. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
       'Bathroom remodeling in Dunn Loring, VA is a wet-area job on a 22027 house at I-66 and the Beltway, and the mailing name does not pick the permit office.',
-      'If the home is inside the Town of Vienna, Fairfax County is the building official and the town reviews the application after the county submission. Land Development Services is open Monday through Thursday, 8 a.m. to 4 p.m., and Friday, 9:15 a.m. to 4 p.m. A bathroom remodel needs a permit. A vanity does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Vienna, Fairfax County is the building official and the town reviews the application after the county submission. Land Development Services is open Monday through Thursday, 8 a.m. to 4 p.m., and Friday, 9:15 a.m. to 4 p.m. A bathroom remodel needs a permit. A vanity does not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'The written estimate for a Dunn Loring bath comes after a site walk, with no estimate fee. It names the waterproofing and the slope to the drain before tile is ordered.',
     ],
   },
@@ -5638,7 +5638,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before a Dunn Loring lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Vienna. A project in that town needs a separate town approval. Electrical work is a separately licensed trade.',
+          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Vienna. A project in that town needs a separate town approval.',
       },
       {
         question: 'What does a finished basement in Dunn Loring cost?',
@@ -5648,7 +5648,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Dunn Loring, VA is a lower level beside the Dunn Loring-Merrifield Metro, and the parcel decides whether town review applies.',
-      'If the home is inside the Town of Vienna, questions go to 127 Center Street South, Vienna, VA 22180, phone 703-255-6300, and the town approval is uploaded to the county record. If the parcel is outside the town, questions go to Land Development Services, phone 703-222-0801. A finished basement is an interior alteration that needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Vienna, questions go to 127 Center Street South, Vienna, VA 22180, phone 703-255-6300, and the town approval is uploaded to the county record. If the parcel is outside the town, questions go to Land Development Services, phone 703-222-0801. A finished basement is an interior alteration that needs a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Dunn Loring lower level off Gallows Road can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5684,7 +5684,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Fairfax Station kitchen on a well need another call?',
         answer:
-          'If the house is on a private well or septic system, the Health Department may review the package. Those questions go to 703-246-2201. A kitchen renovation needs a permit. Cabinets and countertops do not. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'If the house is on a private well or septic system, the Health Department may review the package. Those questions go to 703-246-2201. A kitchen renovation needs a permit. Cabinets and countertops do not. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Fairfax Station, VA cost?',
@@ -5694,7 +5694,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Fairfax Station, VA is a larger-lot kitchen in ZIP 22039, toward Crosspointe, South Run, and the roads that run to Clifton.',
-      'The parcel decides the office. If the home is inside the Town of Clifton, email drawings to clerk@cliftonva.gov before the county will take the building permit. Town questions go to 571-781-2404. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. If the house is on a well or septic system, Health Department questions go to 703-246-2201. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The parcel decides the office. If the home is inside the Town of Clifton, email drawings to clerk@cliftonva.gov before the county will take the building permit. Town questions go to 571-781-2404. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. If the house is on a well or septic system, Health Department questions go to 703-246-2201. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'The price for this house is a free written estimate after a site walk. HomeAdvisor national figures, not a Fairfax Station quote, are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more.',
     ],
   },
@@ -5718,12 +5718,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does replacing a vanity in Fairfax Station need a permit?',
         answer:
-          'A bathroom vanity does not need a permit. Replacing tile does not. A bathroom remodel does, and a new or relocated tub or shower does. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'A bathroom vanity does not need a permit. Replacing tile does not. A bathroom remodel does, and a new or relocated tub or shower does. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
       'Bathroom remodeling in Fairfax Station, VA is a primary bath on acreage in ZIP 22039, and a well or septic system can add a Health Department review.',
-      'If the house is on a private well or septic system, questions go to 703-246-2201. If the home is inside the Town of Clifton, the town signs off before the county application. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A bathroom remodel needs a permit. A like-for-like plumbing replacement that does not change location does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the house is on a private well or septic system, questions go to 703-246-2201. If the home is inside the Town of Clifton, the town signs off before the county application. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A bathroom remodel needs a permit. A like-for-like plumbing replacement that does not change location does not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Fairfax Station primary bath is priced only after the site walk. The written estimate separates the pan, the tile, and any move of the plumbing.',
     ],
   },
@@ -5742,7 +5742,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before a Fairfax Station lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Clifton. A house on a well or septic system may also get a Health Department review at 703-246-2201. Electrical work is a separately licensed trade.',
+          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Clifton. A house on a well or septic system may also get a Health Department review at 703-246-2201.',
       },
       {
         question: 'What does a finished basement in Fairfax Station cost?',
@@ -5752,7 +5752,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Fairfax Station, VA is a lower level south of the county core, and a Fairfax Station address is not a Town of Clifton permit.',
-      'If the home is inside the Town of Clifton, town sign-off comes first and questions go to 12641 Chapel Road, phone 571-781-2404. If the parcel is outside the town, questions go to 703-222-0801 at 12055 Government Center Parkway, Suite 324. A finished basement needs a permit. Walk-in service after 3:45 p.m. may be limited. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Clifton, town sign-off comes first and questions go to 12641 Chapel Road, phone 571-781-2404. If the parcel is outside the town, questions go to 703-222-0801 at 12055 Government Center Parkway, Suite 324. A finished basement needs a permit. Walk-in service after 3:45 p.m. may be limited. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Fairfax Station lower level toward South Run can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5788,7 +5788,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does an Oakton countertop replacement need a permit?',
         answer:
-          'Kitchen cabinets and countertops do not need a permit. A kitchen renovation does. Projects located in the Town of Vienna need a separate town approval uploaded with the county record. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+          'Kitchen cabinets and countertops do not need a permit. A kitchen renovation does. Projects located in the Town of Vienna need a separate town approval uploaded with the county record. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Oakton, VA cost?',
@@ -5798,7 +5798,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Oakton, VA is a Route 123 kitchen in ZIP 22124, between the Vienna streets and the Fairfax line.',
-      'The Oakton name does not place the house in the Town of Vienna. If the home is inside the town, Fairfax County is the building official and materials go to the county before the town review at 703-255-6300. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The Oakton name does not place the house in the Town of Vienna. If the home is inside the town, Fairfax County is the building official and materials go to the county before the town review at 703-255-6300. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Route 123 kitchen is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those figures are national, not an Oakton quote.',
     ],
   },
@@ -5822,12 +5822,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does tile replacement in an Oakton bath need a permit?',
         answer:
-          'Replacing tile does not need a permit. A bathroom vanity does not. A bathroom remodel does. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'Replacing tile does not need a permit. A bathroom vanity does not. A bathroom remodel does. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
       'Bathroom remodeling in Oakton, VA is a bath on a wooded lot in ZIP 22124, and an Oakton address is not automatically inside the Town of Vienna.',
-      'If the home is inside the Town of Vienna, the town review follows the county application. Town questions go to 703-255-6300. If the parcel is outside the town, questions go to 703-222-0801, Monday through Thursday, 8 a.m. to 4 p.m., and Friday, 9:15 a.m. to 4 p.m. A bathroom remodel needs a permit. Replacing tile does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Vienna, the town review follows the county application. Town questions go to 703-255-6300. If the parcel is outside the town, questions go to 703-222-0801, Monday through Thursday, 8 a.m. to 4 p.m., and Friday, 9:15 a.m. to 4 p.m. A bathroom remodel needs a permit. Replacing tile does not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'An Oakton bath on a wooded lot is a free written estimate after a site walk. The scope calls out waterproofing before the finish is chosen.',
     ],
   },
@@ -5846,7 +5846,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before an Oakton lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Vienna. A project in that town needs the town approval uploaded with the county record. Electrical work is a separately licensed trade.',
+          'Headroom, the stair, moisture, and whether the parcel is inside the Town of Vienna. A project in that town needs the town approval uploaded with the county record.',
       },
       {
         question: 'What does a finished basement in Oakton cost?',
@@ -5856,7 +5856,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Oakton, VA is a lower level along Route 123, and the parcel decides whether Vienna town review follows the county application.',
-      'If the home is inside the Town of Vienna, questions go to 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A finished basement needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Vienna, questions go to 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A finished basement needs a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'An Oakton lower level closer to I-66 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5890,9 +5890,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           'The parcel decides. If the home is inside the Town of Clifton, email drawings to clerk@cliftonva.gov before the county application. Town questions go to 12641 Chapel Road, phone 571-781-2404. If the parcel is outside the town, questions go to 703-222-0801. We confirm the office before work starts.',
       },
       {
-        question: 'Does a kitchen inside the Town of Clifton need a use permit?',
+        question: 'Does an interior Clifton kitchen need a town use permit?',
         answer:
-          'The town does not issue permits for purely internal work such as plumbing or drywall modifications, and it still signs off before the county will take the building permit. A renovation of a building in the town needs a use permit, a certificate of appropriateness, and the signature of the mayor. Cabinets and countertops do not need a county permit. A kitchen renovation does.',
+          'Purely internal work, such as plumbing or drywall, is not a permit the town issues. Email drawings to clerk@cliftonva.gov for the sign-off before the county application. Construction or renovation of the building is a separate path and needs a use permit, a certificate of appropriateness, and the mayor\'s signature. Cabinets and countertops do not need a county permit. A kitchen renovation does.',
       },
       {
         question: 'What does kitchen remodeling in Clifton, VA cost?',
@@ -5902,7 +5902,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Clifton, VA has to separate the one-quarter-square-mile town, chartered March 10, 1902, from the rest of ZIP 20124.',
-      'If the home is inside the Town of Clifton, the county parcel profile lists Springfield Town of Clifton in the District field, and the town signs off before Fairfax County will take the building-permit application. Questions go to clerk@cliftonva.gov or 571-781-2404. A renovation of a building in the town needs a use permit, a certificate of appropriateness, and the signature of the mayor. If the parcel is outside the town, questions go to Land Development Services, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Clifton, the county parcel profile lists Springfield Town of Clifton in the District field. Purely internal work, such as plumbing or drywall, is not a permit the town issues. Email drawings to clerk@cliftonva.gov, or call 571-781-2404, for the sign-off before Fairfax County will take the building-permit application. Construction or renovation of the building is a separate path and needs a use permit, a certificate of appropriateness, and the mayor\'s signature. If the parcel is outside the town, questions go to Land Development Services, phone 703-222-0801. A kitchen renovation needs a permit. Cabinets and countertops do not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A kitchen inside the quarter-square-mile town and a kitchen on the rest of ZIP 20124 are both a free written estimate after a site walk. HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Clifton quote.',
     ],
   },
@@ -5926,12 +5926,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does an interior Clifton bath skip the town?',
         answer:
-          'If the home is inside the town, purely internal work is not a town-issued permit, and the town still signs off before the county application. A bathroom remodel needs a county permit. A vanity does not. Replacing tile does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'If the home is inside the town, purely internal work is not a town-issued permit, and the town still signs off before the county application. A bathroom remodel needs a county permit. A vanity does not. Replacing tile does not. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
       'Bathroom remodeling in Clifton, VA treats a village bath on Main Street and a bath on a county lot in ZIP 20124 as different permit paths.',
-      'If the home is inside the Town of Clifton, email the drawings to clerk@cliftonva.gov. The town does not issue the permit for plumbing or drywall modifications, and Fairfax County will not take the building-permit application until the town signs off. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A bathroom remodel needs a permit. A like-for-like plumbing replacement that stays in the same place does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Clifton, email the drawings to clerk@cliftonva.gov. The town does not issue the permit for plumbing or drywall modifications, and Fairfax County will not take the building-permit application until the town signs off. If the parcel is outside the town, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A bathroom remodel needs a permit. A like-for-like plumbing replacement that stays in the same place does not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Main Street bath and a ZIP 20124 bath outside the town are each a free written estimate after a site walk. The written scope names the pan and the drain.',
     ],
   },
@@ -5950,7 +5950,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before a Clifton lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and whether the parcel is inside the one-quarter-square-mile town. A house on a well or septic system may also get a Health Department review at 703-246-2201. Electrical work is a separately licensed trade.',
+          'Headroom, the stair, moisture, and whether the parcel is inside the one-quarter-square-mile town. A house on a well or septic system may also get a Health Department review at 703-246-2201.',
       },
       {
         question: 'What does a finished basement in Clifton cost?',
@@ -5960,7 +5960,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Clifton, VA starts by checking whether the parcel profile says Springfield Town of Clifton.',
-      'If the home is inside the town, a finished lower level still needs town sign-off before Land Development Services will take the building permit, and a renovation of the building needs a use permit, a certificate of appropriateness, and the signature of the mayor. Town questions go to 12641 Chapel Road, phone 571-781-2404. If the parcel is outside the town, questions go to 703-222-0801. A finished basement needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the town, a finished lower level that stays internal needs the town sign-off before Land Development Services will take the building permit. Purely internal work is not a permit the town issues. Email drawings to clerk@cliftonva.gov. Construction or renovation of the building, including adding a room, is a separate path and needs a use permit, a certificate of appropriateness, and the mayor\'s signature. Town questions go to 12641 Chapel Road, phone 571-781-2404. If the parcel is outside the town, questions go to 703-222-0801. A finished basement needs a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Clifton lower level outside the village can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5996,7 +5996,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Fort Hunt cabinet swap need a county permit?',
         answer:
-          'When the parcel is in Fairfax County, kitchen cabinets and countertops do not need a permit. A kitchen renovation does. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+          'When the parcel is in Fairfax County, kitchen cabinets and countertops do not need a permit. A kitchen renovation does. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Fort Hunt, VA cost?',
@@ -6006,7 +6006,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Fort Hunt, VA is a kitchen along Fort Hunt Road where ZIP 22308 still mails as Alexandria.',
-      'The mailing name does not decide the office. If the parcel is in the City of Alexandria, questions go to 301 King Street, Suite 4200, phone 703-746-4200, Monday through Friday, 8 a.m. to 5 p.m. If the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A kitchen renovation needs a permit on a county parcel. Cabinets and countertops do not. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The mailing name does not decide the office. If the parcel is in the City of Alexandria, questions go to 301 King Street, Suite 4200, phone 703-746-4200, Monday through Friday, 8 a.m. to 5 p.m. If the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A kitchen renovation needs a permit on a county parcel. Cabinets and countertops do not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Fort Hunt kitchen is a free written estimate after a site walk, whether the parcel is in the city or the county. HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Fort Hunt quote.',
     ],
   },
@@ -6030,12 +6030,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Fort Hunt shower replacement need a permit?',
         answer:
-          'On a Fairfax County parcel, a bathroom remodel needs a permit, and a new or relocated shower does. A vanity does not. Replacing tile does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'On a Fairfax County parcel, a bathroom remodel needs a permit, and a new or relocated shower does. A vanity does not. Replacing tile does not. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
       'Bathroom remodeling in Fort Hunt, VA is a bath on a parkway lot, and the Alexandria mailing name does not choose the permit counter.',
-      'If the parcel is in the City of Alexandria, questions go to Code Administration, 301 King Street, Suite 4200, phone 703-746-4200. If the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801, and a bathroom remodel needs a permit. A like-for-like plumbing replacement that does not change location does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the parcel is in the City of Alexandria, questions go to Code Administration, 301 King Street, Suite 4200, phone 703-746-4200. If the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801, and a bathroom remodel needs a permit. A like-for-like plumbing replacement that does not change location does not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A parkway bath in Fort Hunt is a free written estimate after a site walk. Waterproofing stays in the scope even when the fixture does not move.',
     ],
   },
@@ -6054,7 +6054,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before a Fort Hunt lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and which city or county the parcel sits in. ZIP 22308 does not settle that. Electrical work is a separately licensed trade.',
+          'Headroom, the stair, moisture, and which city or county the parcel sits in. ZIP 22308 does not settle that.',
       },
       {
         question: 'What does a finished basement in Fort Hunt cost?',
@@ -6064,7 +6064,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Fort Hunt, VA is a lower level in ZIP 22308, and the parcel decides between the city and the county.',
-      'If the parcel is in the City of Alexandria, questions go to 301 King Street, Suite 4200, Alexandria, VA 22314, phone 703-746-4200. If the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801, and a finished basement needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the parcel is in the City of Alexandria, questions go to 301 King Street, Suite 4200, Alexandria, VA 22314, phone 703-746-4200. If the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801, and a finished basement needs a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Fort Hunt lower level along the parkway can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -6110,7 +6110,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Falls Church, VA can be a city kitchen or a county kitchen, and the envelope does not settle which.',
-      'If the home is inside the city, questions go to 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov. The counter is open Monday through Friday, 8 a.m. to 5 p.m., and closed to the public on the last Wednesday of the month. Anything that involves framing needs a permit. Any work on a gas appliance needs a permit. Real Elite does not take gas work. Paint, patch, carpet, and drywall replacement do not need a city permit. If the parcel is in Fairfax County, questions go to 703-222-0801, a kitchen renovation needs a permit, and cabinets and countertops do not. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the city or the county before work starts.',
+      'If the home is inside the city, questions go to 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov. The counter is open Monday through Friday, 8 a.m. to 5 p.m., and closed to the public on the last Wednesday of the month. Anything that involves framing needs a permit. Any work on a gas appliance needs a permit. Real Elite does not take gas work. Paint, patch, carpet, and drywall replacement do not need a city permit. If the parcel is in Fairfax County, questions go to 703-222-0801, a kitchen renovation needs a permit, and cabinets and countertops do not. Real Elite does not take electrical work. We confirm the permit steps with the city or the county before work starts.',
       'The price for a Falls Church kitchen is a free written estimate after a site walk. HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a quote for this house.',
     ],
   },
@@ -6134,12 +6134,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a same-place plumbing fixture in the city need a permit?',
         answer:
-          'If the home is inside the city, a single-family house can replace a plumbing fixture without a permit. Framing needs a permit. On a Fairfax County parcel, a bathroom remodel needs a permit and a vanity does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'If the home is inside the city, a single-family house can replace a plumbing fixture without a permit. Framing needs a permit. On a Fairfax County parcel, a bathroom remodel needs a permit and a vanity does not. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
       'Bathroom remodeling in Falls Church, VA follows the parcel: a bath inside the city and a bath on a county parcel that mails as Falls Church do not share a permit counter.',
-      'If the home is inside the city, questions go to the permit counter at 300 Park Avenue, phone 703-248-5080. In a single-family house, replacing a plumbing fixture does not need a city permit, and framing does. The counter is closed to the public on the last Wednesday of the month. If the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801, a bathroom remodel needs a permit, and replacing tile does not. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the city or the county before work starts.',
+      'If the home is inside the city, questions go to the permit counter at 300 Park Avenue, phone 703-248-5080. In a single-family house, replacing a plumbing fixture does not need a city permit, and framing does. The counter is closed to the public on the last Wednesday of the month. If the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801, a bathroom remodel needs a permit, and replacing tile does not. Real Elite does not take electrical work. We confirm the permit steps with the city or the county before work starts.',
       'A city bath and a county bath that mails as Falls Church are each a free written estimate after a site walk. The scope names waterproofing and the slope to the drain.',
     ],
   },
@@ -6168,7 +6168,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Falls Church, VA is a lower level whose permit office depends on the parcel, not on ZIP 22046, 22042, or 22043.',
-      'If the home is inside the city, questions go to 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, and plans go by email to permits@fallschurchva.gov. Anything that involves framing needs a permit. Real Elite does not take gas work. If the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801, and a finished basement needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the city or the county before work starts.',
+      'If the home is inside the city, questions go to 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, and plans go by email to permits@fallschurchva.gov. Anything that involves framing needs a permit. Real Elite does not take gas work. If the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801, and a finished basement needs a permit. Real Elite does not take electrical work. We confirm the permit steps with the city or the county before work starts.',
       'A Falls Church lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [

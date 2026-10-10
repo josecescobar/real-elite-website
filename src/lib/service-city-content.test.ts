@@ -2028,7 +2028,25 @@ describe('REA-2451 round 9 Fairfax-area service pages', () => {
     expect(CITY_DATA['dunn-loring-va']?.description).not.toMatch(/Building permits go through Fairfax County/);
     expect(CITY_DATA['clifton-va']?.description).toMatch(/one-quarter of a square mile/);
     expect(CITY_DATA['clifton-va']?.description).toMatch(/If the home is inside the Town of Clifton/);
+    expect(CITY_DATA['clifton-va']?.description).toMatch(/purely internal/i);
+    expect(CITY_DATA['clifton-va']?.description).toMatch(/Construction or renovation of a building is a separate path/);
     expect(CITY_DATA['fairfax-station-va']?.description).toMatch(/parcel/i);
     expect(CITY_DATA['fort-hunt-va']?.description).not.toMatch(/not Alexandria Code Administration/);
+  });
+
+  it('does not claim a trade license and does not treat every Clifton kitchen as a use permit', () => {
+    const body = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`];
+      return [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ].join('\n');
+    }).join('\n');
+    expect(body).not.toMatch(/separately licensed/);
+    const kitchen = CONTENT['kitchens-clifton-va'];
+    const kitchenBody = [...(kitchen?.paragraphs ?? []), ...(kitchen?.faqs ?? []).map((faq) => faq.answer)].join('\n');
+    expect(kitchenBody).toMatch(/not a permit the town issues/);
+    expect(kitchenBody).toMatch(/separate path/);
+    expect(kitchenBody).not.toMatch(/A renovation of a building in the town needs a use permit/);
   });
 });
