@@ -20,7 +20,7 @@ export default function ProofGallery({
         {heading}
       </h2>
       <p className="text-charcoal-500 text-sm mb-6">
-        Published Real Elite photos. A town is named only when that photo is tagged to the town.
+        Photos from completed Real Elite projects.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {photos.map((img) => (
