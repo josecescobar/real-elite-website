@@ -688,10 +688,17 @@ describe('comboPublishesPricing', () => {
         'additions-middleburg-va',
         'basements-ashburn-va',
         'bathrooms-ashburn-va',
+        'bathrooms-berryville-va',
+        'bathrooms-hamilton-va',
         'bathrooms-lansdowne-va',
         'bathrooms-leesburg-va',
         'bathrooms-loudoun-county-va',
+        'bathrooms-marshall-va',
         'bathrooms-purcellville-va',
+        'bathrooms-the-plains-va',
+        'bathrooms-upperville-va',
+        'bathrooms-warrenton-va',
+        'bathrooms-waterford-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -769,9 +776,9 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/51 after Purcellville and Lansdowne kitchens, baths, and basements
-    // landed as clean pages. Carrying stays at 0 — new copy must not raise it.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 51 });
+    // 0/72 after the 2026-10-09 close-in towns (21 premium combos) landed clean.
+    // Shepherdstown is home-market and is not in this count. Carrying stays at 0.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 72 });
   });
 
   /**
@@ -1106,6 +1113,77 @@ describe('REA-2342 Purcellville and Lansdowne pages', () => {
     expect(CONTENT['kitchens-vienna-va']?.faqs?.length).toBeGreaterThanOrEqual(3);
     expect(CONTENT['kitchens-mclean-va']?.faqs).toBeUndefined();
     expect(CONTENT['bathrooms-great-falls-va']?.faqs).toBeUndefined();
+  });
+});
+
+describe('REA-2358 close-in established towns', () => {
+  const PAGES = [
+    ['kitchens', 'waterford-va', 'Kitchen Remodeling in Waterford, VA'],
+    ['bathrooms', 'waterford-va', 'Bathroom Remodeling in Waterford, VA'],
+    ['basements', 'waterford-va', 'Basement Finishing in Waterford, VA'],
+    ['kitchens', 'hamilton-va', 'Kitchen Remodeling in Hamilton, VA'],
+    ['bathrooms', 'hamilton-va', 'Bathroom Remodeling in Hamilton, VA'],
+    ['basements', 'hamilton-va', 'Basement Finishing in Hamilton, VA'],
+    ['kitchens', 'berryville-va', 'Kitchen Remodeling in Berryville, VA'],
+    ['bathrooms', 'berryville-va', 'Bathroom Remodeling in Berryville, VA'],
+    ['basements', 'berryville-va', 'Basement Finishing in Berryville, VA'],
+    ['kitchens', 'shepherdstown-wv', 'Kitchen Remodeling in Shepherdstown, WV'],
+    ['bathrooms', 'shepherdstown-wv', 'Bathroom Remodeling in Shepherdstown, WV'],
+    ['basements', 'shepherdstown-wv', 'Basement Finishing in Shepherdstown, WV'],
+    ['kitchens', 'the-plains-va', 'Kitchen Remodeling in The Plains, VA'],
+    ['bathrooms', 'the-plains-va', 'Bathroom Remodeling in The Plains, VA'],
+    ['basements', 'the-plains-va', 'Basement Finishing in The Plains, VA'],
+    ['kitchens', 'upperville-va', 'Kitchen Remodeling in Upperville, VA'],
+    ['bathrooms', 'upperville-va', 'Bathroom Remodeling in Upperville, VA'],
+    ['basements', 'upperville-va', 'Basement Finishing in Upperville, VA'],
+    ['kitchens', 'marshall-va', 'Kitchen Remodeling in Marshall, VA'],
+    ['bathrooms', 'marshall-va', 'Bathroom Remodeling in Marshall, VA'],
+    ['basements', 'marshall-va', 'Basement Finishing in Marshall, VA'],
+    ['kitchens', 'warrenton-va', 'Kitchen Remodeling in Warrenton, VA'],
+    ['bathrooms', 'warrenton-va', 'Bathroom Remodeling in Warrenton, VA'],
+    ['basements', 'warrenton-va', 'Basement Finishing in Warrenton, VA'],
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1 and a FAQ', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.join('\n')).not.toMatch(/this page|maryland license|MHIC|veteran-owned/i);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+  });
+
+  it('does not clone the 24 openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('keeps Brambleton kitchen, bath, and basement pages unpublished', () => {
+    expect(CONTENT).not.toHaveProperty('kitchens-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('bathrooms-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('basements-brambleton-va');
+  });
+
+  it('names the county or town permit office on every new basement page', () => {
+    const offices: Record<string, RegExp> = {
+      'waterford-va': /LandMARC/,
+      'hamilton-va': /Town of Hamilton|town zoning/i,
+      'berryville-va': /Clarke County Building Department/,
+      'shepherdstown-wv': /104 North King Street/,
+      'the-plains-va': /16 Courthouse Square/,
+      'upperville-va': /16 Courthouse Square/,
+      'marshall-va': /16 Courthouse Square/,
+      'warrenton-va': /347-1101/,
+    };
+    for (const [city, pattern] of Object.entries(offices)) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      const text = [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).map((faq) => faq.answer),
+      ].join('\n');
+      expect(text, city).toMatch(pattern);
+    }
   });
 });
 

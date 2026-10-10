@@ -154,6 +154,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'falls-church-va', 'manassas-va',
       'lake-ridge-va', 'woodbridge-va',
       'warrenton-va',
+      'berryville-va', 'the-plains-va', 'upperville-va', 'marshall-va',
     ];
     // Franklin County towns. Active because the PA registration is held.
     // The registration number is still unpublished.
@@ -223,6 +224,10 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'lake-ridge-va',
         'woodbridge-va',
         'warrenton-va',
+        'berryville-va',
+        'the-plains-va',
+        'upperville-va',
+        'marshall-va',
       ].sort()
     );
   });
@@ -581,6 +586,10 @@ describe('areaRegionLabel', () => {
 
   it('names Fauquier for Warrenton and the Shenandoah for Stephens City', () => {
     expect(areaRegionLabel(getServiceArea('warrenton-va')!)).toBe('Fauquier County area');
+    expect(areaRegionLabel(getServiceArea('the-plains-va')!)).toBe('Fauquier County area');
+    expect(areaRegionLabel(getServiceArea('upperville-va')!)).toBe('Fauquier County area');
+    expect(areaRegionLabel(getServiceArea('marshall-va')!)).toBe('Fauquier County area');
+    expect(areaRegionLabel(getServiceArea('berryville-va')!)).toBe('Clarke County area');
     expect(areaRegionLabel(getServiceArea('stephens-city-va')!)).toBe('Northern Shenandoah Valley');
     expect(areaRegionLabel(getServiceArea('middletown-va')!)).toBe('Northern Shenandoah Valley');
     expect(areaRegionLabel(getServiceArea('frederick-md')!)).toBe('Frederick County area');
