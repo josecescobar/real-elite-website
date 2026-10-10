@@ -2238,6 +2238,22 @@ describe('REA-2495 round 11 richest-county towns', () => {
     });
     expect(misses).toEqual([]);
   });
+
+  it('rejects a new-diff negation the cited quote does not itself state', () => {
+    // A by-itself, mailing-address, or does-not-name/set/tell/decide sentence passes only when the quote contains that same phrase; any other does-not/cannot/may-not sentence passes only when the quote contains not, no, or cannot.
+    const root = nodePath.resolve(__dirname, '../..');
+    const table = fs.readFileSync(nodePath.join(root, 'docs/seo-round-11-source-table.md'), 'utf8');
+    const constantsSrc = fs.readFileSync(nodePath.join(root, 'src/lib/constants.ts'), 'utf8');
+    const contentSrc = fs.readFileSync(nodePath.join(root, 'src/lib/service-city-content.ts'), 'utf8');
+    const rows = parseSourceTable(table);
+    const misses = round11PermitSentences(constantsSrc, contentSrc).flatMap((sentence) => {
+      if (!NEGATION_SENTENCE.test(sentence)) return [];
+      const quote = rows.find((row) => coversSentence(row.sentence, sentence))?.quote ?? '';
+      if (quoteLicensesNegation(sentence, quote)) return [];
+      return [sentence];
+    });
+    expect(misses).toEqual([]);
+  });
 });
 
 /** A markdown table cell, with escaped pipes and asterisks restored. */
@@ -2317,6 +2333,40 @@ function boundaryAnchors(sentence: string): string[] | null {
   for (const match of sentence.matchAll(/\bZIP\s+(\d{5})\b/gi)) anchors.push(match[1]);
   for (const match of sentence.matchAll(/\b(\d{5})\s+address\b/gi)) anchors.push(match[1]);
   return [...new Set(anchors)];
+}
+
+const NEGATION_SENTENCE =
+  /\b(?:does not|do not|doesn't|don't|by itself|alone|cannot|can't|not enough|not the same|may not|mailing address|ZIP|postal|city limits|which office)\b/i;
+
+/** Address and filing inferences. A different negation in the quote does not license these. */
+const INFERENCE_CUES = [
+  'by itself',
+  'alone',
+  'does not tell',
+  'does not decide',
+  'does not name',
+  'does not set',
+  'do not tell',
+  'do not decide',
+  'do not name',
+  'do not set',
+  'not enough',
+  'mailing address',
+  'postal',
+  'which office',
+] as const;
+
+function quoteLicensesNegation(sentence: string, quote: string): boolean {
+  if (!quote) return false;
+  const sentenceLower = sentence.toLowerCase();
+  const quoteLower = quote.toLowerCase();
+  const used = INFERENCE_CUES.filter((cue) => sentenceLower.includes(cue));
+  const usesZip = /\bZIP\b/.test(sentence);
+  if (used.length > 0 || usesZip) {
+    if (usesZip && !/\bZIP\b|\b\d{5}\b/.test(quote)) return false;
+    return used.every((cue) => quoteLower.includes(cue));
+  }
+  return /\b(?:not|no|cannot|can't|without)\b/i.test(quote);
 }
 
 const PERMIT_SENTENCE =
