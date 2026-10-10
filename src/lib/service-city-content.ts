@@ -125,6 +125,17 @@ export const COMBO_CITY_SLUGS = [
   'chevy-chase-md',
   'catharpin-va',
 
+  // Round 7 Tier A/B towns, 2026-10-10. Kitchens, bathrooms, and basements
+  // only. fairfax-va is the City of Fairfax (by city limits, not ZIP), approved 2026-10-10.
+  'glenwood-md',
+  'clarksville-md',
+  'brookeville-md',
+  'broad-run-va',
+  'kensington-md',
+  'woodbine-md',
+  'dickerson-md',
+  'fairfax-va',
+
   // Fairfax Station and Clifton stay gone. Tier C retired every combo they
   // had, so keeping their slugs here would leave entries this map can never
   // key. Burke stays: it keeps its kitchen and bathroom combos and lost only
@@ -3677,7 +3688,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does caulking a Chevy Chase bath need the town step?',
         answer:
-          'The county list says bathroom caulking most likely will not need a permit, and the same note says municipal rules are not included. An interior alteration likely needs a permit. The parcel\'s municipality is checked either way.',
+          'Bathroom caulking most likely will not need a permit. Municipal rules are separate from that guidance. An interior alteration likely needs a permit. The parcel\'s municipality is checked either way.',
       },
     ],
     paragraphs: [
@@ -3783,7 +3794,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a new shower pan in Catharpin change the filing?',
         answer:
-          'When the drain, waste, and vent change, the county list says a permit is required. A same-location fixture with those pipes left alone is the no-permit case the county publishes. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'When the drain, waste, and vent change, a permit is required. A same-location fixture with those pipes left alone does not need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
@@ -3840,6 +3851,855 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
   },
+
+  'kitchens-glenwood-md': {
+    h1: 'Kitchen Remodeling in Glenwood, MD',
+    metaDescription:
+      'Kitchen remodeling in Glenwood, MD, ZIP 21737. Howard County permits through DILP. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Glenwood?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Residential building permits require electronic submission. Electrical and plumbing have separate applications.',
+      },
+      {
+        question: 'Does a Glenwood kitchen on a well change the first step?',
+        answer:
+          'When the house is on a private well and septic, the county requires Health Department approval first. That number is 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Glenwood, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Howard County quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Glenwood, MD is a western Howard County kitchen in ZIP 21737, on a detached house near MD 97 and Ten Oaks Road.',
+      'The county department that issues permits is the Department of Inspections, Licenses and Permits in Ellicott City. Residential building permits require electronic submission. Filing fees are nonrefundable and due when the application is made. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A well-and-septic lot needs Health Department approval at 410-313-6300 before that filing.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Glenwood quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-glenwood-md': {
+    h1: 'Bathroom Remodeling in Glenwood, MD',
+    metaDescription:
+      'Bathroom remodeling in Glenwood, MD. Howard County DILP permits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Glenwood?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does bathroom remodeling in Glenwood, MD cost?',
+        answer:
+          'Every Glenwood bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. County filing fees are not that price.',
+      },
+      {
+        question: 'Is a Glenwood bath a Columbia village bath?',
+        answer:
+          'No. ZIP 21737 is western Howard County along MD 97. A detached house there is a different room from a planned-community bath farther east.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Glenwood, MD is a rural Howard County bath in ZIP 21737, where a well-and-septic lot has a health step before the building permit.',
+      'Permits go through DILP at 3430 Courthouse Drive, Ellicott City. Residential building permits require electronic submission. The front counter closes at 5:00 p.m., and the county asks visitors to arrive by 4:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Every Glenwood bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Health Department approval, when the house is on a private well and septic, is 410-313-6300.',
+    ],
+  },
+
+  'basements-glenwood-md': {
+    h1: 'Basement Finishing in Glenwood, MD',
+    metaDescription:
+      'Basement finishing in Glenwood, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Glenwood, MD?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission.',
+      },
+      {
+        question: 'Are Howard County filing fees the Glenwood project price?',
+        answer:
+          'No. Filing fees are nonrefundable and due when the application is made. The amounts stay on the county fee schedule. The project price is a free written estimate after a site walk.',
+      },
+      {
+        question: 'What does a finished basement in Glenwood cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Glenwood quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Glenwood, MD is a lower level on a western Howard County lot in ZIP 21737, where the foundation and any well-and-septic approval come before the finish plan.',
+      'Howard County requires electronic submission for residential building permits. The office is DILP in Ellicott City, phone 410-313-2455, option 4. A private well and septic needs Health Department approval at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'A Glenwood lower level along MD 97 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Glenwood lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/glenwood-md', label: 'Glenwood service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'DILP is at 3430 Courthouse Drive, Ellicott City, MD 21043. The county says residential building permits require electronic submission, and that filing fees are nonrefundable and payable when the application is made. General permit questions use 410-313-2455, option 4. Arrive by 4:00 p.m.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-clarksville-md': {
+    h1: 'Kitchen Remodeling in Clarksville, MD',
+    metaDescription:
+      'Kitchen remodeling in Clarksville, MD, ZIP 21029. Howard County permits through DILP. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Clarksville?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455, option 4. Residential building permits require electronic submission. Electrical, plumbing, and mechanical applications are separate.',
+      },
+      {
+        question: 'Are Howard County filing fees the Clarksville project price?',
+        answer:
+          'No. Filing fees are nonrefundable and payable when the application is made. Amounts stay on the fee schedule. The project price is a free written estimate after a site walk.',
+      },
+      {
+        question: 'What does kitchen remodeling in Clarksville, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Clarksville quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Clarksville, MD is a southern Howard County kitchen in ZIP 21029, near the MD 108 and MD 32 crossing.',
+      'Clarksville uses the county office in Ellicott City, not a town hall. Residential building permits require electronic submission. Electrical, plumbing, and mechanical applications are listed separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Filing fees are nonrefundable and due when the application is made.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Clarksville quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-clarksville-md': {
+    h1: 'Bathroom Remodeling in Clarksville, MD',
+    metaDescription:
+      'Bathroom remodeling in Clarksville, MD. Howard County DILP permits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Clarksville?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does bathroom remodeling in Clarksville, MD cost?',
+        answer:
+          'Every Clarksville bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does a Clarksville water heater need its own permit?',
+        answer:
+          'The county says a plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. That is a plumbing permit, not the project price.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Clarksville, MD is a ZIP 21029 bath near MD 108, and the plumbing application is separate from the residential building permit.',
+      'Permits go through DILP at 3430 Courthouse Drive, Ellicott City. Residential building permits require electronic submission. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A water-heater replacement needs a plumbing permit pulled by a master plumber.',
+      'Every Clarksville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Filing fees are nonrefundable and are not that price.',
+    ],
+  },
+
+  'basements-clarksville-md': {
+    h1: 'Basement Finishing in Clarksville, MD',
+    metaDescription:
+      'Basement finishing in Clarksville, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Clarksville, MD?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission.',
+      },
+      {
+        question: 'Does Clarksville use a town building department?',
+        answer:
+          'No. ZIP 21029 files with the county department in Ellicott City. Electrical, plumbing, and mechanical applications are separate from the building permit.',
+      },
+      {
+        question: 'What does a finished basement in Clarksville cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Clarksville quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Clarksville, MD is a lower level in southern Howard County, ZIP 21029, filed electronically with DILP in Ellicott City.',
+      'The office is 3430 Courthouse Drive, phone 410-313-2455, option 4. Filing fees are nonrefundable and payable when the application is made. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A low cellar and a full-height walkout are different jobs.',
+      'A Clarksville lower level near MD 32 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Clarksville lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/clarksville-md', label: 'Clarksville service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'DILP is at 3430 Courthouse Drive, Ellicott City, MD 21043. Residential building permits require electronic submission. The Licenses and Permits Division number is 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-brookeville-md': {
+    h1: 'Kitchen Remodeling in Brookeville, MD',
+    metaDescription:
+      'Kitchen remodeling in Brookeville, MD, ZIP 20833. Town approval comes before the county application. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Brookeville?',
+        answer:
+          'Brookeville is on the county list of places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Does a cabinet replacement in Brookeville skip the town?',
+        answer:
+          'The county says cabinet install, repair, or replacement most likely will not need a permit, and that the list does not include municipality rules. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Brookeville, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Brookeville quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Brookeville, MD starts with the town, because the county requires city approval before the county application.',
+      'Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County staff are at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Brookeville quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-brookeville-md': {
+    h1: 'Bathroom Remodeling in Brookeville, MD',
+    metaDescription:
+      'Bathroom remodeling in Brookeville, MD. Town approval comes before the county application. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Brookeville?',
+        answer:
+          'The town, then Montgomery County. Town questions go to 301-570-4465 at 5 High Street. County phone 240-777-0311. Brookeville is listed for city approval before the county application.',
+      },
+      {
+        question: 'What does bathroom remodeling in Brookeville, MD cost?',
+        answer:
+          'Every Brookeville bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does caulking a Brookeville bath skip the town?',
+        answer:
+          'Bathroom caulking most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely needs a permit. Town questions go to 301-570-4465.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Brookeville, MD follows the town-first order the county requires for Brookeville: city approval, then the county application.',
+      'County staff are at the Department of Permitting Services in Wheaton. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. The home-improvements list does not include municipality rules.',
+      'Every Brookeville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The town step is named in that estimate before any filing.',
+    ],
+  },
+
+  'basements-brookeville-md': {
+    h1: 'Basement Finishing in Brookeville, MD',
+    metaDescription:
+      'Basement finishing in Brookeville, MD, ZIP 20833. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Brookeville, MD?',
+        answer:
+          'The town first, then Montgomery County. An interior alteration will likely need a county permit. Brookeville is listed for city approval before the county application. Town phone 301-570-4465.',
+      },
+      {
+        question: 'Where do Brookeville town questions go?',
+        answer:
+          '5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton.',
+      },
+      {
+        question: 'What does a finished basement in Brookeville cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Brookeville quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Brookeville, MD is a lower level inside the town, and the county wants city approval before the county application.',
+      'The county says an interior alteration will likely need a permit. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Association rules, where a lot has them, sit outside the county list.',
+      'A Brookeville lower level in ZIP 20833 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Brookeville lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/brookeville-md', label: 'Brookeville service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'City approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-broad-run-va': {
+    h1: 'Kitchen Remodeling in Broad Run, VA',
+    metaDescription:
+      'Kitchen remodeling in Broad Run, VA, ZIP 20137. Loudoun County alteration permits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Broad Run?',
+        answer:
+          'Loudoun County Building and Development, 1 Harrison Street SE, Leesburg, phone 703-777-0220. Renovations and alterations are on the typical residential permit list. Apply in LandMARC or in person.',
+      },
+      {
+        question: 'What does a Broad Run alteration fee cover?',
+        answer:
+          'The county sets a residential alteration building permit fee at 1% of construction costs, plus a $130 plan review fee. That is a county fee, not the project price. Electrical, gas, mechanical, and plumbing are separate trade permits.',
+      },
+      {
+        question: 'What does kitchen remodeling in Broad Run, VA cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Broad Run quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Broad Run, VA is an alteration of existing space in ZIP 20137, south of Leesburg along Evergreen Mills Road.',
+      'Loudoun County says an alteration changes the use of existing square footage. The application is signed by the property owner and can go through LandMARC or the Leesburg counter, Monday through Friday, 8:30 a.m. to 5 p.m. If the parcel is inside an incorporated town, the county asks for an approved town zoning permit with the application. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. Plan review is required for gas permits on residential alterations as of October 1, 2025.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Broad Run quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-broad-run-va': {
+    h1: 'Bathroom Remodeling in Broad Run, VA',
+    metaDescription:
+      'Bathroom remodeling in Broad Run, VA. Loudoun County trade permits cover plumbing. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Broad Run?',
+        answer:
+          'Loudoun County Building and Development, phone 703-777-0220. Plumbing is a separate trade permit. A lot on a well and septic needs Health Department approval before the application, at (703) 777-0234.',
+      },
+      {
+        question: 'What does bathroom remodeling in Broad Run, VA cost?',
+        answer:
+          'Every Broad Run bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. The county alteration fee is not that price.',
+      },
+      {
+        question: 'Does a Broad Run bath inside a town file only with the county?',
+        answer:
+          'The county says a parcel inside an incorporated town needs an approved town zoning permit with the application. We confirm the permit steps with the county before work starts.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Broad Run, VA is a Loudoun County bath in ZIP 20137, and plumbing is its own trade permit beside the building permit.',
+      'Questions go to 1 Harrison Street SE, Leesburg, phone 703-777-0220. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A well-and-septic lot needs Health Department approval before applying, at (703) 777-0234. The counter is open 8:30 a.m. to 5 p.m. Monday through Friday.',
+      'Every Broad Run bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. County fees stay on the county schedule.',
+    ],
+  },
+
+  'basements-broad-run-va': {
+    h1: 'Basement Finishing in Broad Run, VA',
+    metaDescription:
+      'Basement finishing in Broad Run, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Broad Run, VA?',
+        answer:
+          'Loudoun County Building and Development, phone 703-777-0220. Finished basements are on the typical residential permit list. A building and zoning permit covers architectural and structural work. Electrical, gas, mechanical, and plumbing are separate.',
+      },
+      {
+        question: 'What county fee applies to a Broad Run finished basement?',
+        answer:
+          'For the county typical finished basement, fees are 1% of the construction cost, not including electrical, mechanical, plumbing, and gas, with a $65 minimum. A personal kitchen adds a $165 zoning permit fee. Plan review, when required, adds $130. Those are county fees, not the project price.',
+      },
+      {
+        question: 'What does a finished basement in Broad Run cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Broad Run quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Broad Run, VA is a finished lower level in Loudoun County, ZIP 20137, and the county lists finished basements among work that typically needs a permit.',
+      'A building and zoning application, signed by the property owner, covers architectural and structural work. If the parcel is inside an incorporated town, the county asks for an approved town zoning permit with the application. Trade permits are separate. Apply in LandMARC or at 1 Harrison Street SE, Leesburg. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      'A Broad Run lower level in ZIP 20137 can be planned from $55,000. That figure is a planning reference, not a quote for this house. County basement fees start from 1% of construction cost with a $65 minimum, excluding the trades. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Broad Run lower level can start at $55,000. County fees are a separate schedule and are not a project price. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/broad-run-va', label: 'Broad Run service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Building and Development is at 1 Harrison Street SE, Leesburg, VA 20175, phone 703-777-0220. Hours are Monday through Friday, 8:30 a.m. to 5 p.m. The county typical finished-basement fee is 1% of construction cost, excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. A personal kitchen adds a $165 zoning fee.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-kensington-md': {
+    h1: 'Kitchen Remodeling in Kensington, MD',
+    metaDescription:
+      'Kitchen remodeling in Kensington, MD, ZIP 20895. The county permit comes before town approval. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Kensington?',
+        answer:
+          'The Town of Kensington requires the county permit prior to city approval. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424. Chevy Chase View uses a Kensington mailing address and is listed for both county and city approval.',
+      },
+      {
+        question: 'Does a cabinet replacement skip the county list?',
+        answer:
+          'The county says cabinet install, repair, or replacement most likely will not need a permit, and that the list does not include municipality rules. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Kensington, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Kensington quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Kensington, MD has to name the municipality, because a 20895 mailing address is not one permit order.',
+      'The Town of Kensington requires the county permit prior to city approval. Town questions go to 3710 Mitchell Street, phone 301-949-2424. Chevy Chase View, P.O. Box 136, Kensington, MD 20895, is listed for both county and city approval. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Kensington quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-kensington-md': {
+    h1: 'Bathroom Remodeling in Kensington, MD',
+    metaDescription:
+      'Bathroom remodeling in Kensington, MD. The municipality in ZIP 20895 sets the approval order. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Kensington?',
+        answer:
+          'Montgomery County and, where the county requires it, the town. The Town of Kensington office is 3710 Mitchell Street, phone 301-949-2424. County phone 240-777-0311.',
+      },
+      {
+        question: 'What does bathroom remodeling in Kensington, MD cost?',
+        answer:
+          'Every Kensington bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does caulking a Kensington bath need the town step?',
+        answer:
+          'Bathroom caulking most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely needs a permit. The parcel is checked either way.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Kensington, MD depends on whether the parcel is the Town of Kensington or another municipality that uses a Kensington address.',
+      'County staff are at the Department of Permitting Services in Wheaton. Town of Kensington questions go to 3710 Mitchell Street, phone 301-949-2424. Chevy Chase View is listed for both approvals and uses a Kensington post office box. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
+      'Every Kensington bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The municipality is named in that estimate before any filing.',
+    ],
+  },
+
+  'basements-kensington-md': {
+    h1: 'Basement Finishing in Kensington, MD',
+    metaDescription:
+      'Basement finishing in Kensington, MD, ZIP 20895. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Kensington, MD?',
+        answer:
+          'The county permit first, then the Town of Kensington. An interior alteration will likely need a county permit. Kensington requires the county permit prior to city approval. Town phone 301-949-2424.',
+      },
+      {
+        question: 'Why can two Kensington neighbors file in a different order?',
+        answer:
+          'ZIP 20895 is not one municipality. The Town of Kensington requires the county permit prior to city approval. Chevy Chase View uses a Kensington mailing address and is listed for both county and city approval. The parcel picks the order.',
+      },
+      {
+        question: 'What does a finished basement in Kensington cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Kensington quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Kensington, MD is a lower level in ZIP 20895, and the county permit comes before Town of Kensington approval.',
+      'The county says an interior alteration will likely need a permit, and that several municipalities require a permit in addition to the county permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424.',
+      'A Kensington lower level in ZIP 20895 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Kensington lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/kensington-md', label: 'Kensington service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Town of Kensington questions go to 3710 Mitchell Street, phone 301-949-2424. Kensington requires the county permit prior to city approval. Chevy Chase View, which uses a Kensington post office box, is listed for both. County questions go to 240-777-0311.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-woodbine-md': {
+    h1: 'Kitchen Remodeling in Woodbine, MD',
+    metaDescription:
+      'Kitchen remodeling in Woodbine, MD, ZIP 21797. The parcel decides the county permit office. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Woodbine?',
+        answer:
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Carroll County zoning cases also list Woodbine addresses in ZIP 21797.',
+      },
+      {
+        question: 'Is every Woodbine kitchen the same county filing?',
+        answer:
+          'No. ZIP 21797 includes Woodbine addresses in Carroll County zoning cases, including 5407 Woodbine Road. Filing fees on a Howard County application are nonrefundable and payable when the application is made. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the office for the parcel before work starts.',
+      },
+      {
+        question: 'What does kitchen remodeling in Woodbine, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Woodbine quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Woodbine, MD is a ZIP 21797 kitchen along MD 94, and the parcel decides whether the filing is Howard County or Carroll County.',
+      'A Howard County parcel uses DILP in Ellicott City. Residential building permits require electronic submission. A house on a private well and septic needs Health Department approval at 410-313-6300 first. Carroll County zoning cases include Woodbine addresses in this ZIP. We confirm the county and the permit office for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Woodbine quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-woodbine-md': {
+    h1: 'Bathroom Remodeling in Woodbine, MD',
+    metaDescription:
+      'Bathroom remodeling in Woodbine, MD. The parcel decides the county permit office. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Woodbine?',
+        answer:
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application. A water heater, gas or electric, needs a plumbing permit pulled by a master plumber.',
+      },
+      {
+        question: 'What does bathroom remodeling in Woodbine, MD cost?',
+        answer:
+          'Every Woodbine bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. County filing fees are not that price.',
+      },
+      {
+        question: 'Is every Woodbine bath the same county filing?',
+        answer:
+          'No. ZIP 21797 includes Woodbine addresses in Carroll County zoning cases. A Howard County parcel uses DILP in Ellicott City. We confirm the office for the parcel before work starts.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Woodbine, MD is a ZIP 21797 bath, and a water-heater change on a Howard County parcel is a plumbing permit pulled by a master plumber.',
+      'A Howard County parcel uses DILP at 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission. Carroll County zoning cases include Woodbine addresses in this ZIP. We confirm the county and the permit office for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A water-heater inspection is required on that Howard County plumbing permit.',
+      'Every Woodbine bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-woodbine-md': {
+    h1: 'Basement Finishing in Woodbine, MD',
+    metaDescription:
+      'Basement finishing in Woodbine, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Woodbine, MD?',
+        answer:
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission. We confirm the office before work starts.',
+      },
+      {
+        question: 'Are Howard County filing fees the Woodbine project price?',
+        answer:
+          'No. Filing fees are nonrefundable and due when the application is made. The amounts stay on the county fee schedule. The project price is a free written estimate after a site walk.',
+      },
+      {
+        question: 'What does a finished basement in Woodbine cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Woodbine quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Woodbine, MD is a lower level in ZIP 21797 along MD 94, and the parcel decides the county permit office.',
+      'A Howard County parcel requires electronic submission for a residential building permit. That office is in Ellicott City, phone 410-313-2455, option 4. A private well and septic needs Health Department approval at 410-313-6300. Carroll County zoning cases include Woodbine addresses in this ZIP. We confirm the county and the permit office for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'A Woodbine lower level along MD 94 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Woodbine lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/woodbine-md', label: 'Woodbine service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in Howard County, DILP is at 3430 Courthouse Drive, Ellicott City, MD 21043. Residential building permits require electronic submission, and filing fees are nonrefundable and payable when the application is made. The Licenses and Permits Division number is 410-313-2455, option 4. We confirm the county for the parcel before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-dickerson-md': {
+    h1: 'Kitchen Remodeling in Dickerson, MD',
+    metaDescription:
+      'Kitchen remodeling in Dickerson, MD, ZIP 20842. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Dickerson?',
+        answer:
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does an interior kitchen change in Dickerson need a permit?',
+        answer:
+          'The county says an interior alteration will likely need a permit, and that cabinet install, repair, or replacement most likely will not. Electrical work is on the likely-permit list. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Dickerson, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Dickerson quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Dickerson, MD is a western Montgomery County kitchen in ZIP 20842, along MD 28. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to the Department of Permitting Services in Wheaton. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Dickerson quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-dickerson-md': {
+    h1: 'Bathroom Remodeling in Dickerson, MD',
+    metaDescription:
+      'Bathroom remodeling in Dickerson, MD. Montgomery County permits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Dickerson?',
+        answer:
+          'County questions go to the Department of Permitting Services, phone 240-777-0311. We confirm the permit steps for the parcel before work starts. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'What does bathroom remodeling in Dickerson, MD cost?',
+        answer:
+          'Every Dickerson bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does caulking a Dickerson bath need a county permit?',
+        answer:
+          'Bathroom caulking most likely will not need a permit. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Dickerson, MD is a Montgomery County bath in ZIP 20842. We confirm the permit steps for the parcel before work starts.',
+      'The county office is the Department of Permitting Services in Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. A well or a septic system is on the likely-permit list.',
+      'Every Dickerson bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-dickerson-md': {
+    h1: 'Basement Finishing in Dickerson, MD',
+    metaDescription:
+      'Basement finishing in Dickerson, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Dickerson, MD?',
+        answer:
+          'County questions go to the Department of Permitting Services, phone 240-777-0311. We confirm the permit steps for the parcel before work starts. An interior alteration will likely need a permit.',
+      },
+      {
+        question: 'What is checked before a Dickerson lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. Houses along MD 28 sit near the Potomac and the Monocacy. A dry reading on one day is not a finish plan. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does a finished basement in Dickerson cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Dickerson quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Dickerson, MD is a lower level in western Montgomery County, ZIP 20842, and the county treats an interior alteration as work that will likely need a permit.',
+      'County questions go to 240-777-0311. We confirm the permit steps for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. A well or a septic system likely needs a permit.',
+      'A Dickerson lower level along MD 28 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Dickerson cellar can start at $55,000. A low cellar is not a walkout on every MD 28 lot. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/dickerson-md', label: 'Dickerson service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-fairfax-va': {
+    h1: 'Kitchen Remodeling in Fairfax, VA',
+    metaDescription:
+      'Kitchen remodeling in Fairfax, VA, inside the City of Fairfax. City Code Administration permits inside city limits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in the City of Fairfax?',
+        answer:
+          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. A residential building permit covers alterations. A Fairfax address outside city limits is a Fairfax County parcel.',
+      },
+      {
+        question: 'Does a wall change in a City of Fairfax kitchen need a permit?',
+        answer:
+          'Yes. The city requires a building permit to add, remove, or modify a wall, whether it is load-bearing or not. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Fairfax, VA cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a City of Fairfax quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in the independent City of Fairfax. ZIPs 22030, 22031 and 22032 each include city and county addresses; a county parcel uses Fairfax County Land Development Services.',
+      'Inside the city, questions go to the Office of Code Administration, 10455 Armstrong Street, Suite 208, phone (703) 385-7830. A wall change needs a building permit. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a City of Fairfax quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-fairfax-va': {
+    h1: 'Bathroom Remodeling in Fairfax, VA',
+    metaDescription:
+      'Bathroom remodeling in Fairfax, VA, in the City of Fairfax. A shower pan needs a plumbing permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in the City of Fairfax?',
+        answer:
+          'The Office of Code Administration, phone (703) 385-7830, at 10455 Armstrong Street, Suite 208. A shower pan needs a plumbing permit even when it is replaced in the same place.',
+      },
+      {
+        question: 'What does bathroom remodeling in Fairfax, VA cost?',
+        answer:
+          'Every City of Fairfax bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. City filing fees are not that price.',
+      },
+      {
+        question: 'Does a same-place shower pan in the city skip the permit?',
+        answer:
+          'No. The city requires a plumbing permit for a shower pan, including a replacement in the same location. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in the City of Fairfax: inside city limits, a shower pan needs a plumbing permit even when it stays in the same place.',
+      'Questions go to Code Administration at 10455 Armstrong Street, Suite 208, phone (703) 385-7830. Office hours are 8:30 a.m. to 5:00 p.m. Monday through Friday. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts.',
+      'Every City of Fairfax bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-fairfax-va': {
+    h1: 'Basement Finishing in Fairfax, VA',
+    metaDescription:
+      'Basement finishing in Fairfax, VA, inside the City of Fairfax. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in the City of Fairfax?',
+        answer:
+          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, phone (703) 385-7830. A residential building permit covers alterations. The city inspects renovations and major repairs.',
+      },
+      {
+        question: 'Does a Fairfax lower level use the city or the county permit office?',
+        answer:
+          'It depends on the parcel, not the ZIP. ZIPs 22030, 22031 and 22032 each include city and county addresses. Inside city limits, the city issues the permit; a Fairfax County parcel uses Land Development Services. We confirm which one applies before work starts.',
+      },
+      {
+        question: 'What does a finished basement in the City of Fairfax cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a City of Fairfax quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in the independent City of Fairfax: inside city limits, an alteration needs a residential building permit from the city.',
+      'Code Administration reviews plans and inspects renovations and major repairs. The office is 10455 Armstrong Street, Suite 208, phone (703) 385-7830. Phone hours are 7:00 a.m. to 5:00 p.m. Monday through Friday. A Fairfax address that sits in Fairfax County uses Land Development Services. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      'A City of Fairfax lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The city fee for repairs and alterations is $93.60 plus 1% of the project cost over $1,000. That is a city fee, not the project price. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a City of Fairfax lower level can start at $55,000. The city fee for repairs and alterations is separate from that figure. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/fairfax-va', label: 'Fairfax service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Office of Code Administration and Fire Marshal, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. Office hours are Monday through Friday, 8:30 a.m. to 5:00 p.m. We confirm the permit steps with the city before work starts.',
+        ],
+      },
+    ],
+  },
+
 };
 
 /**

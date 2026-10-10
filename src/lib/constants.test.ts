@@ -147,11 +147,11 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     ];
     // Verified Virginia towns from the 2026-09-29 research notes.
     // The West Virginia towns Jose checked are in WV_BATCH below.
-    // Herndon, Fairfax city, Stephens City, and Middletown VA are staged
-    // (permit process unverified) and therefore absent from this active list.
+    // Herndon, Stephens City, and Middletown VA stay staged.
+    // The City of Fairfax publishes as fairfax-va.
     const VA_BATCH_2026_09_29 = [
       'springfield-va', 'chantilly-va', 'centreville-va',
-      'falls-church-va', 'manassas-va',
+      'falls-church-va', 'fairfax-va', 'manassas-va',
       'lake-ridge-va', 'woodbridge-va',
       'warrenton-va',
       'berryville-va', 'the-plains-va', 'upperville-va', 'marshall-va',
@@ -180,6 +180,11 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'garrett-park-md', 'bethesda-md', 'arlington-va', 'potomac-md',
       'cabin-john-md', 'west-friendship-md', 'chevy-chase-md', 'catharpin-va',
     ];
+    // Round 7. fairfax-va publishes in the Virginia batch as the City of Fairfax.
+    const ROUND_7_2026_10_10 = [
+      'glenwood-md', 'clarksville-md', 'brookeville-md', 'broad-run-va',
+      'kensington-md', 'woodbine-md', 'dickerson-md',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
@@ -191,6 +196,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...WV_BATCH_2026_10_10,
       ...MD_TOWNS_2026_10_09,
       ...ROUND_6_2026_10_10,
+      ...ROUND_7_2026_10_10,
     ]);
   });
 
@@ -232,6 +238,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'chantilly-va',
         'centreville-va',
         'falls-church-va',
+        'fairfax-va',
         'manassas-va',
         'lake-ridge-va',
         'woodbridge-va',
@@ -248,6 +255,13 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'west-friendship-md',
         'chevy-chase-md',
         'catharpin-va',
+        'glenwood-md',
+        'clarksville-md',
+        'brookeville-md',
+        'broad-run-va',
+        'kensington-md',
+        'woodbine-md',
+        'dickerson-md',
       ].sort()
     );
   });
@@ -577,6 +591,7 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('loudoun-county-va')!)).toBe('Loudoun County area');
     expect(areaRegionLabel(getServiceArea('brambleton-va')!)).toBe('Loudoun County area');
     expect(areaRegionLabel(getServiceArea('leesburg-va')!)).toBe('Loudoun County area');
+    expect(areaRegionLabel(getServiceArea('broad-run-va')!)).toBe('Loudoun County area');
   });
 
   /**
@@ -615,10 +630,13 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('frederick-md')!)).toBe('Frederick County area');
     expect(areaRegionLabel(getServiceArea('hagerstown-md')!)).toBe('Washington County area');
     expect(areaRegionLabel(getServiceArea('mount-airy-md')!)).toBe('Frederick and Carroll county area');
-    for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md']) {
+    expect(areaRegionLabel(getServiceArea('woodbine-md')!)).toBe('Howard and Carroll county area');
+    for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md', 'brookeville-md', 'kensington-md', 'dickerson-md']) {
       expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Montgomery County area');
     }
-    expect(areaRegionLabel(getServiceArea('west-friendship-md')!)).toBe('Howard County area');
+    for (const slug of ['west-friendship-md', 'glenwood-md', 'clarksville-md']) {
+      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Howard County area');
+    }
     expect(areaRegionLabel(getServiceArea('arlington-va')!)).toBe('Northern Virginia');
     expect(areaRegionLabel(getServiceArea('catharpin-va')!)).toBe('Prince William County area');
   });
@@ -754,6 +772,7 @@ describe('the Northern Virginia region row', () => {
       'fairfax-county-va',
       'prince-william-county-va',
       'falls-church-va',
+      'fairfax-va',
       'manassas-va',
       'arlington-va',
     ]);
@@ -814,6 +833,7 @@ describe('the Northern Virginia region row', () => {
       'lansdowne-va',
       'south-riding-va',
       'sterling-va',
+      'broad-run-va',
     ]) {
       expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([
         'loudoun-county-va',
@@ -837,6 +857,7 @@ describe('the Northern Virginia region row', () => {
       'lansdowne-va',
       'south-riding-va',
       'sterling-va',
+      'broad-run-va',
     ]);
   });
 

@@ -489,7 +489,8 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- Virginia batch, 2026-09-29 ----------
    * Facts are from AI-SHARED/Website/local-pages/. Empty legacyTiers.
-   * Deferred on purpose: Broad Run and Occoquan. The West Virginia towns
+   * Occoquan stays deferred. Broad Run publishes in the round-7 block.
+   * The West Virginia towns
    * Jose checked are in the block after Pennsylvania.
    * Berryville, The Plains, Upperville, and Marshall publish as of 2026-10-09.
    * Stephens City and Middletown stay staged until their permit process is verified.
@@ -502,8 +503,9 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'chantilly-va', city: 'Chantilly', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
   { slug: 'centreville-va', city: 'Centreville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
   { slug: 'falls-church-va', city: 'Falls Church', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
-  // Staged: fairfaxva.gov returned 403, so the city permit process is unverified.
-  { slug: 'fairfax-va', city: 'Fairfax', state: 'VA', kind: 'city', market: 'premium', status: 'staged', parent: 'northern-virginia', legacyTiers: [] },
+  // Active 2026-10-10. Jose approved the City of Fairfax. City limits, not ZIPs, decide jurisdiction.
+  // ZIPs 22030, 22031 and 22032 each mix city and Fairfax County parcels.
+  { slug: 'fairfax-va', city: 'Fairfax', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
   { slug: 'manassas-va', city: 'Manassas', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
   { slug: 'lake-ridge-va', city: 'Lake Ridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'woodbridge-va', city: 'Woodbridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
@@ -545,8 +547,8 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- Maryland towns — active 2026-10-09 (Jose, REA-2283) ----------
    * Maryland is in the service area. These rows publish. Frederick, MD was
-   * already active and is not repeated here. Clarksville, Glenwood, and Fulton
-   * stay omitted. Potomac, Bethesda, Garrett Park, Cabin John, Chevy Chase,
+   * already active and is not repeated here. Fulton stays omitted.
+   * Clarksville and Glenwood publish in the round-7 block. Potomac, Bethesda, Garrett Park, Cabin John, Chevy Chase,
    * and West Friendship publish in the round-6 block. Empty legacyTiers
    * so the pinned primary/secondary lists do not move. `market: 'home'`
    * keeps the estimate hero and does not grant the same-week radius promise.
@@ -582,6 +584,23 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'west-friendship-md', city: 'West Friendship', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'chevy-chase-md', city: 'Chevy Chase', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'catharpin-va', city: 'Catharpin', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
+
+  /* ---------- Round 7 Tier A/B towns, 2026-10-10 ----------
+   * Maryland is in the service area. Empty legacyTiers, so the pinned
+   * primary and secondary lists do not move. Premium, same as round 6.
+   * Howard and Montgomery towns stay unparented. Broad Run parents to
+   * Loudoun County. fairfax-va publishes as the City of Fairfax.
+   * ZIPs 22030, 22031 and 22032 each include city and county parcels.
+   * Do not print a Maryland
+   * license caveat. Fulton stays omitted. No Brambleton.
+   */
+  { slug: 'glenwood-md', city: 'Glenwood', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'clarksville-md', city: 'Clarksville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'brookeville-md', city: 'Brookeville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'broad-run-va', city: 'Broad Run', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'kensington-md', city: 'Kensington', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'woodbine-md', city: 'Woodbine', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'dickerson-md', city: 'Dickerson', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -1400,15 +1419,30 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     ],
   },
   'fairfax-va': {
+    seoTitle: 'Remodeling Contractor in Fairfax, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Fairfax, VA',
+    seoDescription:
+      'Remodeling contractor in the City of Fairfax, VA. City Code Administration permits inside city limits. Free written estimate after a site walk.',
     description:
-      "The City of Fairfax is an independent city. ZIP 22030 is centered on the city (median year built 1992). ZIP 22031 is centered on Mantua in Fairfax County. ZIP 22032 is centered on Kings Park West in Fairfax County. County parcels use Fairfax County Land Development Services. Inside the city, we confirm the permit steps with the city before work starts. Fairfax County's historic-overlay list does not include Kings Park West or Mantua.",
-    neighborhoods: ['ZIP 22030', 'City of Fairfax'],
-    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+      "The City of Fairfax is an independent city. Fairfax addresses in ZIPs 22030, 22031 and 22032 can be inside the city or in Fairfax County, so the parcel decides the permit office. A county parcel uses Fairfax County Land Development Services, not the city office. The drive from Martinsburg is I-81 south to I-66 east.\n\nInside the city, questions go to the Office of Code Administration and Fire Marshal, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. The phone is answered Monday through Friday, 7:00 a.m. to 5:00 p.m. The office is open Monday through Friday, 8:30 a.m. to 5:00 p.m. A residential building permit covers demolition, new construction, additions, alterations, and relocatable buildings. Repairs and alterations are $93.60 plus 1% of the project cost over $1,000. Those are city fees, not the project price.\n\nThe city requires a building permit for a wall change, whether the wall is load-bearing or not, and for a deck. A shower pan needs a plumbing permit even when it is replaced in the same place. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Old Town Fairfax', 'Main Street', 'Armstrong Street'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['falls-church-va', 'fairfax-county-va', 'springfield-va', 'vienna-va'],
     faqs: [
       {
-        question: 'Is ZIP 22032 the City of Fairfax?',
+        question: 'Who permits a remodel in the City of Fairfax?',
         answer:
-          'No. ZIP 22032 is centered on Kings Park West in Fairfax County. ZIP 22030 is the one centered on the city.',
+          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. A residential building permit covers additions and alterations.',
+      },
+      {
+        question: 'Does a Fairfax ZIP code tell you whether a home is in the city?',
+        answer:
+          'No. ZIPs 22030, 22031 and 22032 each include city and county addresses. A parcel inside city limits uses the City of Fairfax Office of Code Administration. A Fairfax County parcel uses Fairfax County Land Development Services. We confirm which one applies before work starts.',
+      },
+      {
+        question: 'What does remodeling in the City of Fairfax cost?',
+        answer:
+          'Every City of Fairfax kitchen, bathroom, and lower level is a free written estimate after a site walk. The city fee for repairs and alterations is $93.60 plus 1% of the project cost over $1,000. That fee is not the project price.',
       },
     ],
   },
@@ -1795,7 +1829,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does a cabinet replacement in Garrett Park need a county permit?',
         answer:
-          'The county home-improvements list says installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. That county list does not cover municipal rules. A town approval applies only when the scope and Garrett Park\'s rules require it. A homeowners association has its own rules.',
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. Municipal rules are separate from that guidance. A town approval applies only when the scope and Garrett Park\'s rules require it. A homeowners association has its own rules.',
       },
       {
         question: 'What does remodeling in Garrett Park cost?',
@@ -1879,7 +1913,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does an interior kitchen change in Potomac need a permit?',
         answer:
-          'The county says an interior alteration will likely need a permit, and that cabinet install, repair, or replacement most likely will not. Electrical work is on the likely-permit list. Plumbing questions go to WSSC, which is what the county list says.',
+          'An interior alteration will likely need a permit. Cabinet install, repair, or replacement most likely will not. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.',
       },
       {
         question: 'What does remodeling in Potomac, MD cost?',
@@ -1894,7 +1928,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Cabin John, MD, ZIP 20818, along MacArthur Boulevard. Montgomery County permits. Free written estimate after a site walk.',
     description:
-      "Cabin John is a narrow Montgomery County community along MacArthur Boulevard, ZIP 20818, between the Potomac and the Cabin John Parkway. Houses sit close to the road and to the canal. It is not Potomac's large-lot interior and it is not Glen Echo's town hall. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south to the Beltway and the Cabin John Parkway.\n\nCabin John is not on Montgomery County's list of municipalities that add a town permit. The county office is the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Interior alteration and electrical work are on the county's likely-permit list. Cabinets and bathroom caulking are on the likely-no-permit list. Plumbing questions go to WSSC.\n\nAssociation rules, where a lot has them, are outside that county list. The county says to check them separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "Cabin John is a narrow Montgomery County community along MacArthur Boulevard, ZIP 20818, between the Potomac and the Cabin John Parkway. Houses sit close to the road and to the canal. It is not Potomac's large-lot interior and it is not Glen Echo's town hall. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south to the Beltway and the Cabin John Parkway.\n\nCabin John is not on Montgomery County's list of municipalities that add a town permit. The county office is the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Interior alteration and electrical work are on the county's likely-permit list. Cabinets and bathroom caulking are on the likely-no-permit list. Plumbing questions go to WSSC.\n\nHomeowners-association rules, where a lot has them, are separate from the county guidance. The county says to check them separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MacArthur Boulevard', 'ZIP 20818', 'Cabin John Parkway', 'Canal edge', '79th Street', 'Tomlinson Avenue'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['bethesda-md', 'potomac-md', 'garrett-park-md', 'great-falls-va'],
@@ -2000,6 +2034,202 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  'glenwood-md': {
+    seoTitle: 'Remodeling Contractor in Glenwood, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Glenwood, MD',
+    seoDescription:
+      'Remodeling contractor in Glenwood, MD, ZIP 21737. Howard County permits through DILP in Ellicott City. Free written estimate after a site walk.',
+    description:
+      "Glenwood is western Howard County, ZIP 21737, where MD 97 meets Ten Oaks Road and Burntwoods Road. The houses are detached homes on larger lots, not a Columbia village and not Ellicott City's historic downtown. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 97.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes, including building, mechanical, plumbing, and electrical. The office is at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. General permit questions use option 4. The front counter closes at 5:00 p.m., and the county asks visitors to arrive by 4:00 p.m. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made.\n\nA house on a private well and septic needs Health Department approval before the permit. That number is 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MD 97', 'Ten Oaks Road', 'Burntwoods Road', 'ZIP 21737'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['west-friendship-md', 'woodbine-md', 'clarksville-md', 'frederick-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Glenwood, MD?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Residential building permits require electronic submission.',
+      },
+      {
+        question: 'Does a Glenwood house on a well use a different first step?',
+        answer:
+          'Yes, when the house is on a private well and septic. The county requires Health Department approval first. The Health Department number is 410-313-6300.',
+      },
+      {
+        question: 'What does remodeling in Glenwood cost?',
+        answer:
+          'Every Glenwood kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are on the published fee schedule and are not a project price.',
+      },
+    ],
+  },
+  'clarksville-md': {
+    seoTitle: 'Remodeling Contractor in Clarksville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Clarksville, MD',
+    seoDescription:
+      'Remodeling contractor in Clarksville, MD, ZIP 21029. Howard County permits through DILP. Free written estimate after a site walk.',
+    description:
+      "Clarksville is southern Howard County, ZIP 21029, around the crossing of MD 108 and MD 32. River Hill lots and the older Clarksville streets share that ZIP and still use the county office in Ellicott City. The drive from Martinsburg is I-81 south to I-70 east, then MD 32 south.\n\nThe Department of Inspections, Licenses and Permits is at 3430 Courthouse Drive, Ellicott City, MD 21043. Residential building permits require electronic submission. The resources list keeps electrical, plumbing, and mechanical applications separate from the residential building permit. Filing fees are nonrefundable and payable when the application is made. Questions go to 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MD 108', 'MD 32', 'ZIP 21029', 'Clarksville Pike', 'Ten Oaks Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['glenwood-md', 'west-friendship-md', 'woodbine-md', 'frederick-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Clarksville, MD?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455, option 4. The office is 3430 Courthouse Drive, Ellicott City. Residential building permits require electronic submission.',
+      },
+      {
+        question: 'Does Clarksville file at a town hall?',
+        answer:
+          'No. Clarksville uses the county department in Ellicott City. Electrical, plumbing, and mechanical applications are listed separately from the residential building permit.',
+      },
+      {
+        question: 'What does remodeling in Clarksville cost?',
+        answer:
+          'Every Clarksville kitchen, bathroom, and lower level is a free written estimate after a site walk. Filing fees are nonrefundable and due when the application is made. They are not the project price.',
+      },
+    ],
+  },
+  'brookeville-md': {
+    seoTitle: 'Remodeling Contractor in Brookeville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Brookeville, MD',
+    seoDescription:
+      'Remodeling contractor in Brookeville, MD, ZIP 20833. Town approval comes before the county application. Free written estimate after a site walk.',
+    description:
+      "Brookeville is a small town in northern Montgomery County, ZIP 20833, at MD 97 and High Street. The county lists Brookeville among the places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. The drive from Martinsburg is I-81 south to I-70 east, then MD 97 south.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['High Street', 'MD 97', 'ZIP 20833', 'Market Street', 'Brookeville Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['dickerson-md', 'kensington-md', 'bethesda-md', 'potomac-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Brookeville, MD?',
+        answer:
+          'The town first, then the county. Brookeville is on the list of places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Does a cabinet replacement in Brookeville skip the town?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Town questions go to 301-570-4465 before a sequence is assumed.',
+      },
+      {
+        question: 'What does remodeling in Brookeville cost?',
+        answer:
+          'Every Brookeville kitchen, bathroom, and lower level is a free written estimate after a site walk. The written estimate names the scope for that house.',
+      },
+    ],
+  },
+  'broad-run-va': {
+    seoTitle: 'Remodeling Contractor in Broad Run, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Broad Run, VA',
+    seoDescription:
+      'Remodeling contractor in Broad Run, VA, ZIP 20137. Loudoun County permits through Building and Development in Leesburg. Free written estimate after a site walk.',
+    description:
+      "Broad Run is western Loudoun County, ZIP 20137, along Evergreen Mills Road south of Leesburg. The houses are established homes on county lots. The drive from Martinsburg is Route 9 to Leesburg, then south on Evergreen Mills Road.\n\nLoudoun County says permits come from the appropriate county agencies and towns before construction starts. Renovations, alterations, and finished basements are on the county's typical residential permit list. If the parcel is inside an incorporated town, the county asks for an approved town zoning permit with the application. Questions go to Building and Development at the Loudoun County Government Center, 1 Harrison Street SE, Leesburg, VA 20175, phone 703-777-0220. The counter is open Monday through Friday, 8:30 a.m. to 5 p.m. Applications go online in LandMARC or in person.\n\nA residential alteration uses a building permit fee based on 1% of construction costs, plus a $130 plan review fee. Those are county fees, not a project price. Electrical, gas, mechanical, and plumbing are separate trade permits. A lot on a well and septic needs Health Department approval before the application. That number is (703) 777-0234. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Evergreen Mills Road', 'ZIP 20137', 'Route 621', 'south of Leesburg'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['leesburg-va', 'hamilton-va', 'purcellville-va', 'middleburg-va'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Broad Run, VA?',
+        answer:
+          'Loudoun County Building and Development, 1 Harrison Street SE, Leesburg, phone 703-777-0220. Renovations and alterations are on the typical residential permit list. Applications go through LandMARC or the Leesburg counter.',
+      },
+      {
+        question: 'What if a Broad Run mailing address sits inside a town?',
+        answer:
+          'The county says a parcel inside an incorporated town needs an approved town zoning permit with the application. We confirm the permit steps with the county before work starts.',
+      },
+      {
+        question: 'What does remodeling in Broad Run cost?',
+        answer:
+          'Every Broad Run kitchen, bathroom, and lower level is a free written estimate after a site walk. The alteration fee of 1% of construction costs plus $130 for plan review is a county fee, not the project price.',
+      },
+    ],
+  },
+  'kensington-md': {
+    seoTitle: 'Remodeling Contractor in Kensington, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Kensington, MD',
+    seoDescription:
+      'Remodeling contractor in Kensington, MD, ZIP 20895. The county permit comes before town approval. Free written estimate after a site walk.',
+    description:
+      "Kensington in ZIP 20895 includes the Town of Kensington along Connecticut Avenue and Mitchell Street. For the Town of Kensington, the county permit is required prior to city approval. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Connecticut Avenue.\n\nChevy Chase View uses a Kensington mailing address, P.O. Box 136, Kensington, MD 20895, and the county lists Chevy Chase View under both county and city approval. A Kensington 20895 address is not automatically the Town of Kensington. The parcel decides. County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m.\n\nAn interior alteration will likely need a permit. Municipality rules and homeowners-association rules are separate from that guidance. Cabinets most likely will not need a permit. Electrical work likely will. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Connecticut Avenue', 'Mitchell Street', 'ZIP 20895', 'Plyers Mill Road', 'Howard Avenue'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['bethesda-md', 'chevy-chase-md', 'brookeville-md', 'garrett-park-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Kensington, MD?',
+        answer:
+          'The county permit first, then the Town of Kensington. Kensington requires the county permit prior to city approval. Town questions go to 3710 Mitchell Street, phone 301-949-2424. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Is every Kensington 20895 address the Town of Kensington?',
+        answer:
+          'No. Chevy Chase View uses P.O. Box 136, Kensington, MD 20895, and the county lists it under both county and city approval. The parcel decides which order applies.',
+      },
+      {
+        question: 'What does remodeling in Kensington cost?',
+        answer:
+          'Every Kensington kitchen, bathroom, and lower level is a free written estimate after a site walk. The municipality on the parcel is named in that estimate before any filing.',
+      },
+    ],
+  },
+  'woodbine-md': {
+    seoTitle: 'Remodeling Contractor in Woodbine, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Woodbine, MD',
+    seoDescription:
+      'Remodeling contractor in Woodbine, MD, ZIP 21797. The parcel decides the county permit office. Free written estimate after a site walk.',
+    description:
+      "Woodbine, ZIP 21797, sits along MD 94 between Lisbon and the Carroll County line. Carroll County zoning cases include Woodbine addresses in that ZIP, including 5407 Woodbine Road. A Howard County parcel and a Carroll County parcel are not the same filing. The drive from Martinsburg is I-81 south to I-70 east, then north on MD 94.\n\nWhen the parcel is in Howard County, permits go through the Department of Inspections, Licenses and Permits at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. A plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. A house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the county and the permit office for the parcel before work starts.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MD 94', 'ZIP 21797', 'Lisbon edge', 'Woodbine Road', 'Carroll County line'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['glenwood-md', 'west-friendship-md', 'mount-airy-md', 'frederick-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Woodbine, MD?',
+        answer:
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Carroll County zoning cases also list Woodbine addresses in ZIP 21797. We confirm the office before work starts.',
+      },
+      {
+        question: 'Is every Woodbine address the same county office?',
+        answer:
+          'No. ZIP 21797 includes Woodbine addresses in Carroll County zoning cases, including 5407 Woodbine Road. A Howard County parcel uses the Ellicott City counter, and visitors should arrive by 4:00 p.m. We confirm the office for the parcel before work starts.',
+      },
+      {
+        question: 'What does remodeling in Woodbine cost?',
+        answer:
+          'Every Woodbine kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are on the published fee schedule and are not a project price.',
+      },
+    ],
+  },
+  'dickerson-md': {
+    seoTitle: 'Remodeling Contractor in Dickerson, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Dickerson, MD',
+    seoDescription:
+      'Remodeling contractor in Dickerson, MD, ZIP 20842. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    description:
+      "Dickerson is western Montgomery County, ZIP 20842, along MD 28 toward the Potomac and the Monocacy. It is farm and village lots, not a Bethesda street and not the Town of Poolesville. The drive from Martinsburg is I-81 south to I-70 east, then south toward MD 28.\n\nCounty questions go to the Department of Permitting Services at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. We confirm the permit steps for the parcel before work starts. An interior alteration will likely need a permit. Cabinet install, repair, or replacement most likely will not. Bathroom caulking most likely will not. Electrical work likely will. Plumbing questions go to WSSC. A well or a septic system likely needs a permit.\n\nHomeowners-association rules, where a lot has them, are separate from the county guidance. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MD 28', 'ZIP 20842', 'Monocacy edge', 'Dickerson Road', 'Potomac edge'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['brookeville-md', 'potomac-md', 'kensington-md', 'bethesda-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Dickerson, MD?',
+        answer:
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does an interior kitchen change in Dickerson need a permit?',
+        answer:
+          'The county says an interior alteration will likely need a permit, and that cabinet install, repair, or replacement most likely will not. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'What does remodeling in Dickerson cost?',
+        answer:
+          'Every Dickerson kitchen, bathroom, and lower level is a free written estimate after a site walk. An MD 28 farmhouse and a smaller village house are not the same scope.',
+      },
+    ],
+  },
 };
 
 /**
@@ -2070,16 +2300,26 @@ export function areaRegionLabel(area: ServiceArea): string {
       return 'Washington County area';
     }
     if (area.slug === 'mount-airy-md') return 'Frederick and Carroll county area';
+    if (area.slug === 'woodbine-md') return 'Howard and Carroll county area';
     if (
       area.slug === 'garrett-park-md' ||
       area.slug === 'bethesda-md' ||
       area.slug === 'potomac-md' ||
       area.slug === 'cabin-john-md' ||
-      area.slug === 'chevy-chase-md'
+      area.slug === 'chevy-chase-md' ||
+      area.slug === 'brookeville-md' ||
+      area.slug === 'kensington-md' ||
+      area.slug === 'dickerson-md'
     ) {
       return 'Montgomery County area';
     }
-    if (area.slug === 'west-friendship-md') return 'Howard County area';
+    if (
+      area.slug === 'west-friendship-md' ||
+      area.slug === 'glenwood-md' ||
+      area.slug === 'clarksville-md'
+    ) {
+      return 'Howard County area';
+    }
     return 'Frederick County area';
   }
   // Every current Pennsylvania row is Franklin County. A later county needs
