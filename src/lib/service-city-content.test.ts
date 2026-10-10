@@ -2265,7 +2265,7 @@ function parseSourceTable(markdown: string): SourceRow[] {
 }
 
 const PERMIT_SENTENCE =
-  /permit|permits|\bcounter\b|jurisdiction|\bDPS\b|Department of Permitting|Land Development Services|city limits|\bmailing\b|\bZIP\b|Tree Impact|\bCertificate\b|inspection|\blicense\b|filing|count(?:y|ies)|cities|\bcity\b|department|\boffice\b|parcel|\bletter\b|approval/i;
+  /permit|permits|\bcounter\b|jurisdiction|\bDPS\b|Department of Permitting|Land Development Services|city limits|\bmailing\b|\bZIP\b|Tree Impact|\bCertificate\b|inspection|\blicense\b|filing|count(?:y|ies)|cities|\bcity\b|department|\boffice\b|parcel|\bletter\b|approval|\bHours are\b|\bOffice hours\b|\d{1,2}(?::\d{2})?\s*a\.m\.\s*(?:to|–|-)\s*\d{1,2}(?::\d{2})?\s*p\.m\./i;
 
 /** A source-table cell covers a copy sentence when either string contains the other. */
 function coversSentence(cell: string, sentence: string): boolean {
