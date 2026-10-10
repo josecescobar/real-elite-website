@@ -35,9 +35,8 @@ Left off the Annandale page: the county addition page says "Projects located in 
 | Plumbing questions go to WSSC. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | "Plumbing - Contact WSSC" |
 | A well or a septic system will likely need a permit. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | Likely-permit list includes "Septic System" and "Well". |
 | Electrical work will likely need a permit. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | Likely-permit list includes "Electrical Work". |
-| If a property is in a common-ownership community, the association is asked separately. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/municipalities-page | "If a property is in a Common Ownership Community, contact the Association to assure that you are in compliance with their requirements and process." |
 
-The last row is the county municipalities page. It is not combined with the phone in the same sentence. The pages say "contact the Association"; the copy uses that as a separate check, not as "the county does not enforce deed restrictions" (that older sentence was not on the pages opened this round).
+The common-ownership sentence is not in the round 11 area copy or the round 11 service copy. It was removed from this table. Older pages outside this round still use their own wording.
 
 ## City of Rockville
 
@@ -47,7 +46,7 @@ The last row is the county municipalities page. It is not combined with the phon
 | Hours are Monday through Friday, 8:30 a.m. to 5 p.m. | https://www.rockvillemd.gov/services/apply-for-a-building-or-trade-permit/ | "Hours Monday – Friday 8:30 a.m. – 5 p.m." |
 | Building and trade permit applications are submitted through MGO Connect. | https://www.rockvillemd.gov/services/apply-for-a-building-or-trade-permit/ | "Building and development permit applications are now submitted and processed through MGO Connect." |
 
-Left out: a claim that every Derwood or ZIP 20850/20852 address is outside the cities. The copy stays conditional.
+Left out: a claim that every Derwood or ZIP 20850/20852 address is outside the cities. Cut from the Rockville area page: "A Rockville mailing address does not, by itself, put the house inside the city." No page opened on 2026-10-10 states that. The copy now says a Rockville mailing address does not, by itself, name the permit office. That is filing practice on the page, not a boundary claim. The Rockville bathroom page no longer says a 20850 address and a 20852 address do not share one office.
 
 ## City of Takoma Park
 
@@ -81,16 +80,59 @@ Left out: a claim that every ZIP 20912 parcel is in Montgomery County. The city 
 
 Left out: a claim that an interior kitchen, bath, or basement does not need village approval. The county sheet asks whether the project changes the exterior, and the copy stays on that condition. A water-heater plumbing-permit sentence used on older Howard pages was not re-opened for this round and was not repeated.
 
-## Town of Middleburg
-
-| Sentence in the copy | URL opened | Quoted line |
-|---|---|---|
-| Inside town, any interior or exterior work that requires a Loudoun County building permit starts with a Zoning Location Permit. | https://middleburgva.gov/179/Planning-Zoning | "Doing any kind of work - interior or exterior - that requires a Building Permit from Loudoun County?" linked to the Zoning Location Permit. |
-| Town questions go to 10 West Marshall Street, Middleburg, VA 20118, phone 540-687-5152. | https://www.middleburgva.gov/DocumentCenter/View/436/Zoning-Location-Permit-application-PDF | "TOWN OF MIDDLEBURG 10 West Marshall Street, PO Box 187 Middleburg, Virginia 20118-0187 540-687-5152" |
-| Planning and zoning issues Certificates of Appropriateness along with Zoning Location Permits. | https://middleburgva.gov/179/Planning-Zoning | "Permitting - review and process Zoning Location Permits, Zoning Occupancy Permits, Sign Permits, and Certificates of Appropriateness" |
-
-Left out on the new bath and basement pages: the 14-day Historic District application deadline, and the claim that Atoka, Foxcroft, and Goose Creek parcels are often outside town. Those sentences stay on the kitchen page from the earlier round. This round did not re-open a page that states the 14-day rule.
+Middleburg bathrooms, Middleburg basements, and Burke basements are not in this round. Their permit rows were removed with the pages. The Middleburg kitchen page is from an earlier round and is not retabulated here.
 
 ## Colesville mailing name
 
 "Mail to that ZIP often reads Silver Spring" is a place sentence, not a permit sentence. The assignment names ZIP 20905 as a Silver Spring mailing ZIP and asks for one page. No permit office is taken from that name. No USPS page was opened for the preferred city line.
+
+Mailing-name sentences ("does not, by itself, name the permit office" or "name that office") are filing practice. No page opened on 2026-10-10 says a mailing city is outside the jurisdiction, so those sentences are not given a permit-office quote.
+
+## Service-page sentences
+
+Opened 2026-10-10. These are the permit and jurisdiction sentences on the service pages that are not already the area-page row above. One sentence, one source. A shorter sentence uses the same opened page only when that page's quoted line supports it and the copy does not add a fact.
+
+| Sentence in the copy | URL opened | Quoted line |
+|---|---|---|
+| A kitchen renovation does. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | "Interior alterations/renovations Includes kitchen renovations, finished basements, bathroom remodels, removing an existing wall…" |
+| Fairfax County permits a kitchen renovation. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes kitchen renovations. |
+| A kitchen renovation needs a Fairfax County permit. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes kitchen renovations. |
+| A kitchen renovation needs a permit when the parcel is in the county. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes kitchen renovations. |
+| Interior alterations include kitchen renovations. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line. |
+| A bathroom remodel does. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes bathroom remodels. |
+| A bathroom remodel is an interior alteration. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes bathroom remodels. |
+| Interior alterations include bathroom remodels. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line. |
+| Interior alterations include finished basements. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes finished basements. |
+| A finished basement is an interior alteration. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes finished basements. |
+| A finished basement needs a permit when the parcel is in Fairfax County. | https://www.fairfaxcounty.gov/landdevelopment/when-permit-required | Same interior-alterations line, which includes finished basements. |
+| An interior alteration likely will. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | "you will likely need a permit: … Interior Alteration" |
+| An interior alteration will likely need a permit from the county. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | "you will likely need a permit: … Interior Alteration" |
+| Cabinets most likely will not. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | "you most likely will not need a permit: … Cabinets - Install, Repair, Replace" |
+| Cabinets most likely will not need a permit. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | Same cabinets line. |
+| Bathroom caulking most likely will not. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | "you most likely will not need a permit: … Bathroom Caulking" |
+| Municipality rules and homeowners-association rules are separate from the county guidance. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | "This information does not include municipality and homeowner association rules and regulations." |
+| Municipality rules are separate from the county guidance. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/home-improvements | Same municipality-and-association line. |
+| The City of Rockville is city permit only. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/municipalities-page | "City Permit Only City of Rockville City of Gaithersburg" |
+| City permit only applies to the City of Rockville and the City of Gaithersburg. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/municipalities-page | Same city-permit-only line. |
+| City permits apply only inside the city. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/municipalities-page | Same city-permit-only line. The copy does not say a ZIP is outside the city. |
+| City permit rules apply only when the parcel is inside the city. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/municipalities-page | Same city-permit-only line. |
+| Rockville or Gaithersburg rules apply only when the parcel is inside that city. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/municipalities-page | Same city-permit-only line. |
+| The county office is used only when the parcel is in the county permit area. | https://www.montgomerycountymd.gov/department-permitting-services/homeowners/municipalities-page | Same city-permit-only line. County questions stay on the county permit-area sentence above. |
+| A project that requires a Montgomery County permit first requires a Municipality Letter from Takoma Park. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | "Any renovation, building, or outdoor project (such as a fence, deck, or driveway) that requires a permit from the Montgomery County Department of Permitting Services first requires a Municipality Letter from Takoma Park." |
+| A Montgomery County permit first requires a Municipality Letter from Takoma Park, phone 301-891-7119. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | The municipality-letter sentence above, and "Phone: 301-891-7119" on the same page. |
+| A county permit starts with a municipality letter. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | Same "first requires a Municipality Letter" sentence. |
+| A county permit starts with a city municipality letter. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | Same "first requires a Municipality Letter" sentence. |
+| The municipality letter is not the building permit. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | "The municipality letter is not a permit." |
+| The municipality letter comes before the county permit, and it is not itself a permit. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | "The municipality letter is not a permit." The order is the "first requires" sentence on the same page. |
+| The municipality letter comes first when the project needs a Montgomery County permit. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | Same "first requires a Municipality Letter" sentence. |
+| Construction within 50 feet of an urban forest tree may require a Tree Impact Assessment. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | "Construction activities that occur within 50 feet of any urban forest tree … may require a Tree Impact Assessment and Tree Protection Plan." The copy names the assessment. It does not drop the plan where the area page states both. |
+| The Urban Forest Manager can be reached at 301-891-7612. | https://www.takomaparkmd.gov/398/Municipality-Letters-for-Construction-Re | "The City's Urban Forest Manager can be reached at 301-891-7612 or UrbanForestManager@takomaparkmd.gov." |
+| Howard County permits at 410-313-2455. | https://www.howardcountymd.gov/inspections-licenses-permits | "410-313-2455" |
+| Howard County permits in Ellicott City. | https://www.howardcountymd.gov/inspections-licenses-permits | "3430 Courthouse Drive Ellicott City, MD 21043" |
+| The front counter closes at 5:00 p.m. | https://www.howardcountymd.gov/inspections-licenses-permits | "The office closes at 5:00 p.m., but please arrive by 4:00 p.m." |
+| A private well and septic needs Health Department approval first, at 410-313-6300. | https://www.howardcountymd.gov/inspections-licenses-permits | "All properties served by private well and septic require prior Health Department approval. … 410-313-6300" |
+| If the work changes the exterior of a Columbia Association assessed property, village approval is a completely separate process from the county permit. | https://www.howardcountymd.gov/planning-zoning/resource/columbia-village-architectural-review-committee-contacts | "The Columbia Village Architectural Committee review and approval is a completely separate process from the issuance of Howard County permits and licenses." |
+| If the work changes the exterior on Columbia Association assessed property, the village review is separate from that permit. | same PDF | Same "completely separate process" line. |
+| An exterior change on assessed property is a separate village review from the county permit. | same PDF | Same "completely separate process" line. |
+| Village architectural review, when the exterior of Columbia Association assessed property changes, is a completely separate process. | same PDF | Same "completely separate process" line. |
+| Wilde Lake questions about an exterior change go to 410-730-3987, and that review is separate from the county permit. | same PDF | "Wilde Lake: 410-730-3987 covenants@wildelake.org" and the separate-process line above. |

@@ -92,8 +92,8 @@ export const COMBO_CITY_SLUGS = [
   'reston-va',
   'burke-va',
 
-  // Middleburg publishes decks, additions, kitchens, bathrooms, and
-  // basements. Bathrooms and basements returned on 2026-10-10 (REA-2493).
+  // Middleburg publishes decks, additions, and kitchens. Bathrooms and
+  // basements stay retired (see RETIRED_COMBOS).
   'middleburg-va',
 
   // Established Loudoun places. Purcellville is an incorporated town on the
@@ -2325,7 +2325,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   },
 
   // ── KITCHENS · MIDDLEBURG, VA ────────────────────────────────────────────
-  // Restored from 29675c4. Bathrooms and basements returned 2026-10-10 (REA-2493).
+  // Restored from 29675c4. Bathrooms and basements stay retired.
   'kitchens-middleburg-va': {
     h1: 'Kitchen Remodel Middleburg VA',
     metaTitle: 'Kitchen Remodel Middleburg VA | Real Elite',
@@ -6205,6 +6205,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── ROUND 11 · ANNANDALE, VA ─────────────────────────────────────────────
   'kitchens-annandale-va': {
     h1: 'Kitchen Remodeling in Annandale, VA',
+    metaTitle: 'Kitchen Remodel Annandale VA | Real Elite',
     metaDescription:
       'Kitchen remodeling in Annandale, VA, ZIP 22003. Fairfax County permits a kitchen renovation. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6234,6 +6235,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'bathrooms-annandale-va': {
     h1: 'Bathroom Remodeling in Annandale, VA',
+    metaTitle: 'Bathroom Remodel Annandale VA | Real Elite',
     metaDescription:
       'Bathroom remodeling in Annandale, VA, ZIP 22003. A bathroom remodel is an interior alteration. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6263,6 +6265,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'basements-annandale-va': {
     h1: 'Basement Finishing in Annandale, VA',
+    metaTitle: 'Basement Finishing Annandale VA | Real Elite',
     metaDescription:
       'Basement finishing in Annandale, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6310,6 +6313,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── ROUND 11 · ROCKVILLE, MD ─────────────────────────────────────────────
   'kitchens-rockville-md': {
     h1: 'Kitchen Remodeling in Rockville, MD',
+    metaTitle: 'Kitchen Remodel Rockville MD | Real Elite',
     metaDescription:
       'Kitchen remodeling in Rockville, MD, ZIP 20850 and ZIP 20852. The parcel decides the permit office. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6339,6 +6343,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'bathrooms-rockville-md': {
     h1: 'Bathroom Remodeling in Rockville, MD',
+    metaTitle: 'Bathroom Remodel Rockville MD | Real Elite',
     metaDescription:
       'Bathroom remodeling in Rockville, MD. City permits apply only inside the city. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6360,7 +6365,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Rockville, MD checks city limits before a county filing, because a 20850 address and a 20852 address do not share one office.',
+      'Bathroom remodeling in Rockville, MD checks city limits before a county filing, because a 20850 address and a 20852 address do not, by themselves, name the office.',
       'When the parcel is inside the City of Rockville, questions go to Rockville City Hall, 111 Maryland Ave., phone 240-314-8240. When the parcel is in the county permit area, hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'Every Rockville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
@@ -6368,6 +6373,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'basements-rockville-md': {
     h1: 'Basement Finishing in Rockville, MD',
+    metaTitle: 'Basement Finishing Rockville MD | Real Elite',
     metaDescription:
       'Basement finishing in Rockville, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6415,6 +6421,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── ROUND 11 · DERWOOD, MD ───────────────────────────────────────────────
   'kitchens-derwood-md': {
     h1: 'Kitchen Remodeling in Derwood, MD',
+    metaTitle: 'Kitchen Remodel Derwood MD | Real Elite',
     metaDescription:
       'Kitchen remodeling in Derwood, MD, ZIP 20855. The parcel decides the permit office. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6444,6 +6451,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'bathrooms-derwood-md': {
     h1: 'Bathroom Remodeling in Derwood, MD',
+    metaTitle: 'Bathroom Remodel Derwood MD | Real Elite',
     metaDescription:
       'Bathroom remodeling in Derwood, MD, ZIP 20855. County permits when the parcel is in the county. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6473,6 +6481,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'basements-derwood-md': {
     h1: 'Basement Finishing in Derwood, MD',
+    metaTitle: 'Basement Finishing Derwood MD | Real Elite',
     metaDescription:
       'Basement finishing in Derwood, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6520,6 +6529,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── ROUND 11 · COLESVILLE, MD ────────────────────────────────────────────
   'kitchens-colesville-md': {
     h1: 'Kitchen Remodeling in Colesville, MD',
+    metaTitle: 'Kitchen Remodel Colesville MD | Real Elite',
     metaDescription:
       'Kitchen remodeling in Colesville, MD, ZIP 20905. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6549,6 +6559,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'bathrooms-colesville-md': {
     h1: 'Bathroom Remodeling in Colesville, MD',
+    metaTitle: 'Bathroom Remodel Colesville MD | Real Elite',
     metaDescription:
       'Bathroom remodeling in Colesville, MD, ZIP 20905. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6578,6 +6589,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'basements-colesville-md': {
     h1: 'Basement Finishing in Colesville, MD',
+    metaTitle: 'Basement Finishing Colesville MD | Real Elite',
     metaDescription:
       'Basement finishing in Colesville, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6625,6 +6637,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── ROUND 11 · TAKOMA PARK, MD ───────────────────────────────────────────
   'kitchens-takoma-park-md': {
     h1: 'Kitchen Remodeling in Takoma Park, MD',
+    metaTitle: 'Kitchen Remodel Takoma Park MD | Real Elite',
     metaDescription:
       'Kitchen remodeling in Takoma Park, MD, ZIP 20912. A county permit starts with a municipality letter. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6654,6 +6667,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'bathrooms-takoma-park-md': {
     h1: 'Bathroom Remodeling in Takoma Park, MD',
+    metaTitle: 'Bathroom Remodel Takoma Park MD | Real Elite',
     metaDescription:
       'Bathroom remodeling in Takoma Park, MD, ZIP 20912. The municipality letter is not the building permit. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6683,6 +6697,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'basements-takoma-park-md': {
     h1: 'Basement Finishing in Takoma Park, MD',
+    metaTitle: 'Basement Finishing Takoma Park MD | Real Elite',
     metaDescription:
       'Basement finishing in Takoma Park, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6704,7 +6719,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Takoma Park, MD is a lower level in ZIP 20912, and work near an urban forest tree may need a city tree review before the finish is planned.',
+      'Basement finishing in Takoma Park, MD is a lower level in ZIP 20912, and construction within 50 feet of an urban forest tree may require a Tree Impact Assessment.',
       'The municipality letter comes before the county permit, and it is not itself a permit. County questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Takoma Park lower level along Maple Avenue can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
@@ -6730,6 +6745,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   // ── ROUND 11 · COLUMBIA, MD ──────────────────────────────────────────────
   'kitchens-columbia-md': {
     h1: 'Kitchen Remodeling in Columbia, MD',
+    metaTitle: 'Kitchen Remodel Columbia MD | Real Elite',
     metaDescription:
       "Kitchen remodeling in Columbia, MD, ZIP 21044. Howard County permits at 410-313-2455. Free written estimate after a site walk.",
     townTaggedPhotosOnly: true,
@@ -6759,6 +6775,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'bathrooms-columbia-md': {
     h1: 'Bathroom Remodeling in Columbia, MD',
+    metaTitle: 'Bathroom Remodel Columbia MD | Real Elite',
     metaDescription:
       'Bathroom remodeling in Columbia, MD, ZIP 21044. Howard County permits in Ellicott City. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6788,6 +6805,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'basements-columbia-md': {
     h1: 'Basement Finishing in Columbia, MD',
+    metaTitle: 'Basement Finishing Columbia MD | Real Elite',
     metaDescription:
       'Basement finishing in Columbia, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6832,132 +6850,10 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
-  // ── ROUND 11 · MIDDLEBURG BATH AND BASEMENT ──────────────────────────────
-  'bathrooms-middleburg-va': {
-    h1: 'Bathroom Remodeling in Middleburg, VA',
-    metaDescription:
-      'Bathroom remodeling in Middleburg, VA. Inside town, a Zoning Location Permit comes first. Free written estimate after a site walk.',
-    townTaggedPhotosOnly: true,
-    faqs: [
-      {
-        question: 'Does a Middleburg mailing address decide the bathroom permit path?',
-        answer:
-          'No. Inside town, any interior or exterior work that requires a Loudoun County building permit starts with a Zoning Location Permit. Town questions go to 10 West Marshall Street, Middleburg, VA 20118, phone 540-687-5152.',
-      },
-      {
-        question: 'What does bathroom remodeling in Middleburg, VA cost?',
-        answer:
-          'Every Middleburg bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
-      },
-      {
-        question: 'Does the town issue a Certificate of Appropriateness for a bath?',
-        answer:
-          'Planning and zoning issues Certificates of Appropriateness along with Zoning Location Permits. We confirm whether a street-visible exterior change is in the scope before that review is assumed. Real Elite does not take electrical work.',
-      },
-    ],
-    paragraphs: [
-      'Bathroom remodeling in Middleburg, VA starts with the parcel, because work inside town that needs a Loudoun County building permit starts with a Zoning Location Permit.',
-      'Town questions go to 10 West Marshall Street, Middleburg, VA 20118, phone 540-687-5152. The town also issues Certificates of Appropriateness. A county building permit is not that certificate. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
-      'Every Middleburg bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
-    ],
-  },
-
-  'basements-middleburg-va': {
-    h1: 'Basement Finishing in Middleburg, VA',
-    metaDescription:
-      'Basement finishing in Middleburg, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
-    townTaggedPhotosOnly: true,
-    faqs: [
-      {
-        question: 'Who permits basement finishing in Middleburg, VA?',
-        answer:
-          'Inside town, work that requires a Loudoun County building permit starts with a Zoning Location Permit. Town questions go to 540-687-5152. We confirm whether the parcel is inside town before work starts.',
-      },
-      {
-        question: 'What is checked before a Middleburg lower level is finished?',
-        answer:
-          'Headroom, the stair, moisture, and whether the parcel is inside town. A street-visible exterior change can need a Certificate of Appropriateness. Real Elite does not take electrical work.',
-      },
-      {
-        question: 'What does a finished basement in Middleburg cost?',
-        answer:
-          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Middleburg quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
-      },
-    ],
-    paragraphs: [
-      'Basement finishing in Middleburg, VA confirms town limits before the lower level is planned, and inside town a Zoning Location Permit comes before the county building permit.',
-      'The town office is 10 West Marshall Street, Middleburg, VA 20118, phone 540-687-5152. Planning and zoning issues Zoning Location Permits and Certificates of Appropriateness. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
-      'A Middleburg lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
-    ],
-    sections: [
-      {
-        id: 'cost',
-        title: 'Cost',
-        paragraphs: [
-          'Planning for a Middleburg lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
-        ],
-        links: [{ href: '/service-areas/middleburg-va', label: 'Middleburg service area' }],
-      },
-      {
-        id: 'permit',
-        title: 'Permits',
-        paragraphs: [
-          'Inside town, a Zoning Location Permit comes first for work that needs a Loudoun County building permit. Town questions go to 10 West Marshall Street, phone 540-687-5152. We confirm the parcel before work starts.',
-        ],
-      },
-    ],
-  },
-
-  // ── ROUND 11 · BURKE BASEMENT ────────────────────────────────────────────
-  'basements-burke-va': {
-    h1: 'Basement Finishing in Burke, VA',
-    metaDescription:
-      'Basement finishing in Burke, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
-    townTaggedPhotosOnly: true,
-    faqs: [
-      {
-        question: 'Who permits basement finishing in Burke, VA?',
-        answer:
-          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Interior alterations include finished basements.',
-      },
-      {
-        question: 'What is checked before a Burke lower level is finished?',
-        answer:
-          'Headroom, the stair, and moisture. If the house is on a well or septic system, the Health Department may review the package. Real Elite does not take electrical work.',
-      },
-      {
-        question: 'What does a finished basement in Burke cost?',
-        answer:
-          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Burke quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
-      },
-    ],
-    paragraphs: [
-      'Basement finishing in Burke, VA is a lower level in ZIP 22015, around Burke Centre and Burke Lake, and a finished basement needs a Fairfax County permit when the parcel is in the county.',
-      'Questions go to 703-222-0801. Interior alterations include finished basements. New, repair, or relocated electrical fixtures need a permit. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
-      'A Burke lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
-    ],
-    sections: [
-      {
-        id: 'cost',
-        title: 'Cost',
-        paragraphs: [
-          'Planning for a Burke lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
-        ],
-        links: [{ href: '/service-areas/burke-va', label: 'Burke service area' }],
-      },
-      {
-        id: 'permit',
-        title: 'Permits',
-        paragraphs: [
-          'Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801, when the parcel is in Fairfax County. Interior alterations include finished basements.',
-        ],
-      },
-    ],
-  },
-
   // ── ROUND 11 · SPRINGFIELD, VA ───────────────────────────────────────────
   'kitchens-springfield-va': {
     h1: 'Kitchen Remodeling in Springfield, VA',
+    metaTitle: 'Kitchen Remodel Springfield VA | Real Elite',
     metaDescription:
       'Kitchen remodeling in Springfield, VA. A kitchen renovation needs a Fairfax County permit. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -6987,6 +6883,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'bathrooms-springfield-va': {
     h1: 'Bathroom Remodeling in Springfield, VA',
+    metaTitle: 'Bathroom Remodel Springfield VA | Real Elite',
     metaDescription:
       'Bathroom remodeling in Springfield, VA. A bathroom remodel is an interior alteration. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
@@ -7016,6 +6913,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'basements-springfield-va': {
     h1: 'Basement Finishing in Springfield, VA',
+    metaTitle: 'Basement Finishing Springfield VA | Real Elite',
     metaDescription:
       'Basement finishing in Springfield, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,

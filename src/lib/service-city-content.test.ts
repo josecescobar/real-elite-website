@@ -742,7 +742,6 @@ describe('comboPublishesPricing', () => {
         'bathrooms-colesville-md',
         'bathrooms-takoma-park-md',
         'bathrooms-columbia-md',
-        'bathrooms-middleburg-va',
         'bathrooms-springfield-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
@@ -829,11 +828,11 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/194 after round 11: 170, plus kitchens, bathrooms, and basements
+    // 0/191 after round 11: 170, plus kitchens, bathrooms, and basements
     // for Annandale, Rockville, Derwood, Colesville, Takoma Park, and
-    // Columbia, plus Middleburg bathrooms and basements, Burke basements,
-    // and Springfield kitchens, bathrooms, and basements. All clean.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 194 });
+    // Columbia, plus Springfield kitchens, bathrooms, and basements. All clean.
+    // Middleburg bathrooms and basements, and Burke basements, stay retired.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 191 });
   });
 
   /**
@@ -881,7 +880,14 @@ describe('Tier C retired combos', () => {
   const isHagerstown = (key: string) => key.endsWith('-hagerstown-md');
 
   it('retires the remaining Tier C combos plus the five Hagerstown ones', () => {
-    expect(Object.keys(RETIRED_COMBOS).sort()).toEqual([...HAGERSTOWN_COMBOS].sort());
+    expect(Object.keys(RETIRED_COMBOS).sort()).toEqual(
+      [
+        ...HAGERSTOWN_COMBOS,
+        'basements-burke-va',
+        'basements-middleburg-va',
+        'bathrooms-middleburg-va',
+      ].sort()
+    );
   });
 
   /**
@@ -913,11 +919,10 @@ describe('Tier C retired combos', () => {
    * Burke keeps its kitchen and bathroom combos (10/mo apiece — tiny, but
    * reported) and lost only its basement page.
    */
-  it('publishes Burke kitchens, bathrooms, and basements', () => {
-    expect(RETIRED_COMBOS).not.toHaveProperty('basements-burke-va');
+  it('retires only the basement page in Burke', () => {
+    expect(RETIRED_COMBOS).toHaveProperty('basements-burke-va');
     expect(Object.keys(CONTENT)).toContain('kitchens-burke-va');
     expect(Object.keys(CONTENT)).toContain('bathrooms-burke-va');
-    expect(Object.keys(CONTENT)).toContain('basements-burke-va');
   });
 
   /**
@@ -1114,13 +1119,15 @@ describe('REA-2342 Purcellville and Lansdowne pages', () => {
     expect(CONTENT).not.toHaveProperty('basements-brambleton-va');
   });
 
-  it('publishes Middleburg kitchens, bathrooms, and basements', () => {
+  it('keeps Middleburg bath and basement combos retired', () => {
     expect(CONTENT).toHaveProperty('kitchens-middleburg-va');
-    expect(CONTENT).toHaveProperty('bathrooms-middleburg-va');
-    expect(CONTENT).toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
     expect(RETIRED_COMBOS).not.toHaveProperty('kitchens-middleburg-va');
-    expect(RETIRED_COMBOS).not.toHaveProperty('bathrooms-middleburg-va');
-    expect(RETIRED_COMBOS).not.toHaveProperty('basements-middleburg-va');
+    expect(RETIRED_COMBOS['bathrooms-middleburg-va']).toBe('/service-areas/middleburg-va');
+    expect(RETIRED_COMBOS['basements-middleburg-va']).toBe(
+      '/services/basements/northern-virginia'
+    );
   });
 
   it('publishes the Middleburg kitchen with the exact keyword', () => {
@@ -1992,17 +1999,16 @@ describe('REA-2451 round 9 Fairfax-area service pages', () => {
     expect(new Set(openings).size).toBe(PAGES.length);
   });
 
-  it('publishes Clifton and Fairfax Station again and leaves Hagerstown retired', () => {
+  it('publishes Clifton and Fairfax Station again and leaves the other retirements', () => {
     for (const key of REVIVED) {
       expect(RETIRED_COMBOS).not.toHaveProperty(key);
       expect(CONTENT).toHaveProperty(key);
     }
-    expect(RETIRED_COMBOS).toHaveProperty('bathrooms-hagerstown-md');
-    expect(RETIRED_COMBOS).not.toHaveProperty('basements-burke-va');
-    expect(RETIRED_COMBOS).not.toHaveProperty('bathrooms-middleburg-va');
-    expect(RETIRED_COMBOS).not.toHaveProperty('basements-middleburg-va');
-    expect(CONTENT).toHaveProperty('bathrooms-middleburg-va');
-    expect(CONTENT).toHaveProperty('basements-burke-va');
+    expect(RETIRED_COMBOS).toHaveProperty('basements-burke-va');
+    expect(RETIRED_COMBOS).toHaveProperty('bathrooms-middleburg-va');
+    expect(RETIRED_COMBOS).toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
   });
 
   it('names both contacts where the mailing name can be either office', () => {
@@ -2072,9 +2078,6 @@ describe('REA-2495 round 11 richest-county towns', () => {
     ['kitchens', 'columbia-md', 'Kitchen Remodeling in Columbia, MD'],
     ['bathrooms', 'columbia-md', 'Bathroom Remodeling in Columbia, MD'],
     ['basements', 'columbia-md', 'Basement Finishing in Columbia, MD'],
-    ['bathrooms', 'middleburg-va', 'Bathroom Remodeling in Middleburg, VA'],
-    ['basements', 'middleburg-va', 'Basement Finishing in Middleburg, VA'],
-    ['basements', 'burke-va', 'Basement Finishing in Burke, VA'],
     ['kitchens', 'springfield-va', 'Kitchen Remodeling in Springfield, VA'],
     ['bathrooms', 'springfield-va', 'Bathroom Remodeling in Springfield, VA'],
     ['basements', 'springfield-va', 'Basement Finishing in Springfield, VA'],
@@ -2112,11 +2115,24 @@ describe('REA-2495 round 11 richest-county towns', () => {
     expect(body).toMatch(/parcel/i);
   });
 
-  it('does not clone the 24 openings', () => {
+  it('does not clone the 21 openings', () => {
     const openings = PAGES.map(([service, city]) =>
       CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
     );
     expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('gives every new service page a metaTitle that is not the fallback', () => {
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle, `${service}-${city}`).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
   });
 
   it('publishes only kitchens, bathrooms, and basements for the six new towns and Springfield', () => {
@@ -2142,8 +2158,6 @@ describe('REA-2495 round 11 richest-county towns', () => {
       'colesville-md': /240-777-0311/,
       'takoma-park-md': /301-891-7119/,
       'columbia-md': /410-313-2455/,
-      'middleburg-va': /540-687-5152/,
-      'burke-va': /703-222-0801/,
       'springfield-va': /703-222-0801/,
     };
     for (const [city, pattern] of Object.entries(offices)) {

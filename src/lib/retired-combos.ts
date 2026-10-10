@@ -9,9 +9,8 @@
  *
  * Clifton and Fairfax Station kitchens, bathrooms, and basements left this
  * map on 2026-10-10. Jose directed those six pages published again (REA-2451).
- * Middleburg bathrooms and basements, and Burke basements, left this map on
- * 2026-10-10. Jose directed those three pages published again (REA-2493).
- * Hagerstown's five combos stay retired.
+ * Middleburg bathrooms and basements, Burke basements, and Hagerstown's five
+ * combos stay retired.
  *
  * McLean was in an earlier draft of this list and was WITHDRAWN: it has an Ads
  * row for all three trades — basements 30/mo, kitchens 260, bathrooms 140.
@@ -65,8 +64,13 @@
  * it rather than a comment asking nicely.
  */
 export const RETIRED_COMBOS: Readonly<Record<string, string>> = {
-  // Middleburg bathrooms and basements, and Burke basements, are published
-  // again (REA-2493, 2026-10-10). The Middleburg kitchen was already live.
+  // Middleburg, VA — bathrooms and basements stay retired. The kitchen
+  // page is published again (REA-2344).
+  'basements-middleburg-va': '/services/basements/northern-virginia',
+  'bathrooms-middleburg-va': '/service-areas/middleburg-va',
+
+  // Burke, VA — basements only. Its kitchen and bathroom pages survive.
+  'basements-burke-va': '/services/basements/northern-virginia',
 
   // Hagerstown's five service+city combos stay retired (REA-733). The area
   // page is published again (REA-2283, 2026-10-09), so these land on that
