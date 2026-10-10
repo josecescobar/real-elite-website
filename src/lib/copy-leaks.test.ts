@@ -8,7 +8,7 @@ import { CONTENT } from '@/lib/service-city-content';
  * (CDP, centroid, ACS) or notes about what was or was not retrieved.
  */
 const LEAK_PATTERN =
-  /this page|own pages?|county page|permits page|census-designated|\bCDP\b|centroid|\bACS\b|HTTP \d{3}|retrieved|unverified|listed here|research/i;
+  /this page|own pages?|county page|permits page|census-designated|\bCDP\b|centroid|\bACS\b|HTTP \d{3}|retrieved|unverified|listed here|research|same note|county list says|that county list|the list says/i;
 
 function collectStrings(value: unknown, path: string, out: Array<[string, string]>): void {
   if (typeof value === 'string') {

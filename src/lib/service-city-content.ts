@@ -3687,7 +3687,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does caulking a Chevy Chase bath need the town step?',
         answer:
-          'The county list says bathroom caulking most likely will not need a permit, and the same note says municipal rules are not included. An interior alteration likely needs a permit. The parcel\'s municipality is checked either way.',
+          'Bathroom caulking most likely will not need a permit. Municipal rules are separate from that guidance. An interior alteration likely needs a permit. The parcel\'s municipality is checked either way.',
       },
     ],
     paragraphs: [
@@ -3793,7 +3793,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a new shower pan in Catharpin change the filing?',
         answer:
-          'When the drain, waste, and vent change, the county list says a permit is required. A same-location fixture with those pipes left alone is the no-permit case the county publishes. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'When the drain, waste, and vent change, a permit is required. A same-location fixture with those pipes left alone does not need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
@@ -4278,13 +4278,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-kensington-md': {
     h1: 'Kitchen Remodeling in Kensington, MD',
     metaDescription:
-      'Kitchen remodeling in Kensington, MD, ZIP 20895. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Kensington, MD, ZIP 20895. The county permit comes before town approval. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Kensington?',
         answer:
-          'The Town of Kensington is listed for city approval before the county application. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424. Chevy Chase View uses a Kensington mailing address and is listed for both county and city approval.',
+          'The Town of Kensington requires the county permit prior to city approval. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424. Chevy Chase View uses a Kensington mailing address and is listed for both county and city approval.',
       },
       {
         question: 'Does a cabinet replacement skip the county list?',
@@ -4299,7 +4299,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Kensington, MD has to name the municipality, because a 20895 mailing address is not one permit order.',
-      'The Town of Kensington is listed for city approval before the county application. Town questions go to 3710 Mitchell Street, phone 301-949-2424. Chevy Chase View, P.O. Box 136, Kensington, MD 20895, is listed for both county and city approval. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'The Town of Kensington requires the county permit prior to city approval. Town questions go to 3710 Mitchell Street, phone 301-949-2424. Chevy Chase View, P.O. Box 136, Kensington, MD 20895, is listed for both county and city approval. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Kensington quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -4342,12 +4342,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Kensington, MD?',
         answer:
-          'The Town of Kensington, then Montgomery County. An interior alteration will likely need a county permit. Kensington is listed for city approval before the county application. Town phone 301-949-2424.',
+          'The county permit first, then the Town of Kensington. An interior alteration will likely need a county permit. Kensington requires the county permit prior to city approval. Town phone 301-949-2424.',
       },
       {
         question: 'Why can two Kensington neighbors file in a different order?',
         answer:
-          'ZIP 20895 is not one municipality. The Town of Kensington is city approval before the county application. Chevy Chase View uses a Kensington mailing address and is listed for both county and city approval. The parcel picks the order.',
+          'ZIP 20895 is not one municipality. The Town of Kensington requires the county permit prior to city approval. Chevy Chase View uses a Kensington mailing address and is listed for both county and city approval. The parcel picks the order.',
       },
       {
         question: 'What does a finished basement in Kensington cost?',
@@ -4356,7 +4356,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Kensington, MD is a lower level in ZIP 20895, and the Town of Kensington approval comes before the county application.',
+      'Basement finishing in Kensington, MD is a lower level in ZIP 20895, and the county permit comes before Town of Kensington approval.',
       'The county says an interior alteration will likely need a permit, and that several municipalities require a permit in addition to the county permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424.',
       'A Kensington lower level in ZIP 20895 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
@@ -4375,7 +4375,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Town of Kensington questions go to 3710 Mitchell Street, phone 301-949-2424. The county lists Kensington for city approval before the county application. Chevy Chase View, which uses a Kensington post office box, is listed for both. County questions go to 240-777-0311.',
+          'Town of Kensington questions go to 3710 Mitchell Street, phone 301-949-2424. Kensington requires the county permit prior to city approval. Chevy Chase View, which uses a Kensington post office box, is listed for both. County questions go to 240-777-0311.',
         ],
       },
     ],

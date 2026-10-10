@@ -1812,7 +1812,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does a cabinet replacement in Garrett Park need a county permit?',
         answer:
-          'The county home-improvements list says installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. That county list does not cover municipal rules. A town approval applies only when the scope and Garrett Park\'s rules require it. A homeowners association has its own rules.',
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. Municipal rules are separate from that guidance. A town approval applies only when the scope and Garrett Park\'s rules require it. A homeowners association has its own rules.',
       },
       {
         question: 'What does remodeling in Garrett Park cost?',
@@ -1896,7 +1896,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does an interior kitchen change in Potomac need a permit?',
         answer:
-          'The county says an interior alteration will likely need a permit, and that cabinet install, repair, or replacement most likely will not. Electrical work is on the likely-permit list. Plumbing questions go to WSSC, which is what the county list says.',
+          'An interior alteration will likely need a permit. Cabinet install, repair, or replacement most likely will not. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.',
       },
       {
         question: 'What does remodeling in Potomac, MD cost?',
@@ -1911,7 +1911,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Cabin John, MD, ZIP 20818, along MacArthur Boulevard. Montgomery County permits. Free written estimate after a site walk.',
     description:
-      "Cabin John is a narrow Montgomery County community along MacArthur Boulevard, ZIP 20818, between the Potomac and the Cabin John Parkway. Houses sit close to the road and to the canal. It is not Potomac's large-lot interior and it is not Glen Echo's town hall. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south to the Beltway and the Cabin John Parkway.\n\nCabin John is not on Montgomery County's list of municipalities that add a town permit. The county office is the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Interior alteration and electrical work are on the county's likely-permit list. Cabinets and bathroom caulking are on the likely-no-permit list. Plumbing questions go to WSSC.\n\nAssociation rules, where a lot has them, are outside that county list. The county says to check them separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "Cabin John is a narrow Montgomery County community along MacArthur Boulevard, ZIP 20818, between the Potomac and the Cabin John Parkway. Houses sit close to the road and to the canal. It is not Potomac's large-lot interior and it is not Glen Echo's town hall. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south to the Beltway and the Cabin John Parkway.\n\nCabin John is not on Montgomery County's list of municipalities that add a town permit. The county office is the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Interior alteration and electrical work are on the county's likely-permit list. Cabinets and bathroom caulking are on the likely-no-permit list. Plumbing questions go to WSSC.\n\nHomeowners-association rules, where a lot has them, are separate from the county guidance. The county says to check them separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MacArthur Boulevard', 'ZIP 20818', 'Cabin John Parkway', 'Canal edge', '79th Street', 'Tomlinson Avenue'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['bethesda-md', 'potomac-md', 'garrett-park-md', 'great-falls-va'],
@@ -2133,9 +2133,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoTitle: 'Remodeling Contractor in Kensington, MD | Real Elite',
     seoH1: 'Remodeling Contractor in Kensington, MD',
     seoDescription:
-      'Remodeling contractor in Kensington, MD, ZIP 20895. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Remodeling contractor in Kensington, MD, ZIP 20895. The county permit comes before town approval. Free written estimate after a site walk.',
     description:
-      "Kensington in ZIP 20895 includes the Town of Kensington along Connecticut Avenue and Mitchell Street. The county lists Kensington among the places where city approval is required before the county application. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Connecticut Avenue.\n\nChevy Chase View uses a Kensington mailing address, P.O. Box 136, Kensington, MD 20895, and the county lists Chevy Chase View under both county and city approval. A Kensington 20895 address is not automatically the Town of Kensington. The parcel decides. County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m.\n\nThe home-improvements list says an interior alteration will likely need a permit, and that the list does not include municipality or homeowners-association rules. Cabinets most likely will not need a permit. Electrical work likely will. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+      "Kensington in ZIP 20895 includes the Town of Kensington along Connecticut Avenue and Mitchell Street. For the Town of Kensington, the county permit is required prior to city approval. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Connecticut Avenue.\n\nChevy Chase View uses a Kensington mailing address, P.O. Box 136, Kensington, MD 20895, and the county lists Chevy Chase View under both county and city approval. A Kensington 20895 address is not automatically the Town of Kensington. The parcel decides. County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m.\n\nAn interior alteration will likely need a permit. Municipality rules and homeowners-association rules are separate from that guidance. Cabinets most likely will not need a permit. Electrical work likely will. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
     neighborhoods: ['Connecticut Avenue', 'Mitchell Street', 'ZIP 20895', 'Plyers Mill Road', 'Howard Avenue'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['bethesda-md', 'chevy-chase-md', 'brookeville-md', 'garrett-park-md'],
@@ -2143,7 +2143,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Kensington, MD?',
         answer:
-          'The Town of Kensington first, then the county. Kensington is on the list of places where city approval is required before the county application. Town questions go to 3710 Mitchell Street, phone 301-949-2424. County questions go to 240-777-0311.',
+          'The county permit first, then the Town of Kensington. Kensington requires the county permit prior to city approval. Town questions go to 3710 Mitchell Street, phone 301-949-2424. County questions go to 240-777-0311.',
       },
       {
         question: 'Is every Kensington 20895 address the Town of Kensington?',
