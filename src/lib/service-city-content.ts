@@ -6190,6 +6190,319 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
+  // Round 10 (REA-2476), wording repair REA-2484 after the REA-2481 source review.
+  // Additions, decks, and outdoor living for four Fairfax-area towns.
+  // Permit sentences cite pages opened for that review:
+  // https://www.fairfaxcounty.gov/landdevelopment/when-permit-required
+  // https://www.fairfaxcounty.gov/landdevelopment/permit-library/addition-alteration-residential
+  // https://www.cliftonva.gov/town_administration/faqs.php
+  // https://www.fairfaxcounty.gov/landdevelopment/permit-library
+  // https://www.cliftonva.gov/town_administration/town_council/applications.php
+  // Vienna is named only where the county addition page names it. No Vienna phone is quoted.
+
+  'additions-dunn-loring-va': {
+    h1: 'Home Additions in Dunn Loring, VA',
+    metaDescription:
+      'Home Additions in Dunn Loring, VA. The parcel picks the office, not the 22027 ZIP. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Dunn Loring?',
+        answer:
+          'The parcel decides. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+      {
+        question: 'Does a Dunn Loring ZIP pick the addition permit office?',
+        answer:
+          'No. A Dunn Loring mailing address is not a permit counter. We confirm the parcel before work starts.',
+      },
+      {
+        question: 'Does a second story in Dunn Loring use the same county record as a bump-out?',
+        answer:
+          'The county when-required page lists a bump-out and a second story under a new addition to an existing home. Both need a permit. Whether the house can take a second story is a structure question, not a ZIP question.',
+      },
+    ],
+    paragraphs: [
+      'The Dunn Loring station is at Gallows Road and I-66, just outside the Capital Beltway. Check the specific parcel and setbacks before designing the addition/deck/porch. The 22027 ZIP does not pick the office. We check the parcel before we lock a footprint.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035. The county when-required page lists a new addition to an existing home, including a bump-out and a second story, as work that needs a permit. The addition and alteration page says to apply in PLUS under the Building tab, and it treats the house as residential when it is a detached one- or two-family dwelling or a townhouse no more than 3 stories above ground. If the house is on a well or septic, that page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the county addition and alteration page says the town approval has to be uploaded to the PLUS record. A Dunn Loring mailing address does not decide which file applies. The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'decks-dunn-loring-va': {
+    h1: 'Decks in Dunn Loring, VA',
+    metaDescription:
+      'Decks in Dunn Loring, VA. A deck is a county addition record. The parcel picks the office. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Dunn Loring deck need its own permit type?',
+        answer:
+          'Fairfax County lists a deck with a new addition to an existing home on the when-required page, and lists Deck as a type of work under Additional Square Footage on the addition and alteration page. The county’s residential Addition/Alteration guide lists Deck under Additional Square Footage.',
+      },
+      {
+        question: 'Who answers deck questions for a Dunn Loring address?',
+        answer:
+          'The parcel decides. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+    ],
+    paragraphs: [
+      'A Dunn Loring deck is a county addition record. The Dunn Loring station is at Gallows Road and I-66, just outside the Capital Beltway. Check the specific parcel and setbacks before designing the addition/deck/porch. We measure the parcel before we draw the frame.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition to an existing home, and that list includes decks. The addition and alteration page lists Deck under Additional Square Footage and says the application goes in PLUS under the Building tab. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, Fairfax County says the town approval is uploaded to the PLUS record. The mailing name does not make that choice. The price for the deck is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-dunn-loring-va': {
+    h1: 'Outdoor Living in Dunn Loring, VA',
+    metaDescription:
+      'Outdoor Living in Dunn Loring, VA. A screened porch is on the county addition list. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Is a screened porch in Dunn Loring a deck permit?',
+        answer:
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work.',
+      },
+      {
+        question: 'Does a Dunn Loring mailing address pick the porch permit office?',
+        answer:
+          'No. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Dunn Loring is a screened porch or a sunroom on the county addition list, not a spare bedroom. The Dunn Loring station is at Gallows Road and I-66, just outside the Capital Beltway. Check the specific parcel and setbacks before designing the addition/deck/porch. We confirm the parcel before we size the roof.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition, and that list includes sunrooms and screen porches. The addition and alteration page lists Screened Porch and Sunroom as Additional Square Footage types of work in PLUS. A detached gazebo is on the detached-structures list, not the porch list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the county addition page says the town approval is uploaded to the PLUS record. We do not treat the 22027 mailing name as that approval. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'additions-fairfax-station-va': {
+    h1: 'Home Additions in Fairfax Station, VA',
+    metaDescription:
+      'Home Additions in Fairfax Station, VA. A mailing address alone does not establish town jurisdiction. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Fairfax Station address pick the addition permit office?',
+        answer:
+          'No. A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules.',
+      },
+      {
+        question: 'What if the Fairfax Station parcel is inside the Town of Clifton?',
+        answer:
+          'The town FAQ says an added room needs a use permit from the Planning Commission, a certificate of appropriateness from the Architectural Review Board, and a Fairfax County building permit. The county addition page says the town approval is uploaded to the PLUS record.',
+      },
+      {
+        question: 'Where do Fairfax County building-permit questions go?',
+        answer:
+          'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324.',
+      },
+    ],
+    paragraphs: [
+      'A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We read the parcel before we draw the room.',
+      'If the parcel is inside the Town of Clifton, the town FAQ says a room addition needs a use permit from the Planning Commission, design plans to the Architectural Review Board for a certificate of appropriateness, and a Fairfax County building permit. The town FAQ also says the county will not grant that building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that town approval is uploaded to the PLUS record.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page lists a bump-out and a second story under a new addition that needs a permit. Apply in PLUS under the Building tab. If the house is on a well or septic, the addition page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'decks-fairfax-station-va': {
+    h1: 'Decks in Fairfax Station, VA',
+    metaDescription:
+      'Decks in Fairfax Station, VA. Check the parcel District field before applying town rules. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Is a Fairfax Station deck its own permit type?',
+        answer:
+          'No. The county when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage.',
+      },
+      {
+        question: 'Can a Fairfax Station deck parcel be inside Clifton?',
+        answer:
+          'A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. The county requires separate town approval documentation for a project inside Clifton. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+    ],
+    paragraphs: [
+      'A Fairfax Station deck is on the county list of new additions that need a permit. A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We confirm the parcel before we set the posts.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition, and that list includes decks. The addition page lists Deck as an Additional Square Footage type of work in PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Clifton, the county requires separate town approval documentation for a project inside Clifton. Ask the Town Clerk which town approvals apply to this deck. The county addition and alteration record says that town approval is uploaded to the PLUS record. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-fairfax-station-va': {
+    h1: 'Outdoor Living in Fairfax Station, VA',
+    metaDescription:
+      'Outdoor Living in Fairfax Station, VA. A screened porch is a county addition. Clifton is a parcel question. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a screened porch in Fairfax Station use the deck record?',
+        answer:
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work.',
+      },
+      {
+        question: 'Who permits outdoor living on a Fairfax Station parcel?',
+        answer:
+          'A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. For a project in the Town of Clifton, obtain the town’s required approval and upload its documentation to the Fairfax County PLUS record. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+    ],
+    paragraphs: [
+      'A screened porch in Fairfax Station is on the county addition list. A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. Clifton Road is a local landmark; check the parcel District field before applying town rules. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We read the parcel before we frame the roof.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page includes sunrooms and screen porches in a new addition that needs a permit. The addition page lists Screened Porch and Sunroom as Additional Square Footage types of work. A detached gazebo is on the detached-structures list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Clifton, the town FAQ says an addition needs a certificate of appropriateness, and a use permit is required to build an addition to an existing structure. The county addition page says that town approval is uploaded to the PLUS record. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'additions-oakton-va': {
+    h1: 'Home Additions in Oakton, VA',
+    metaDescription:
+      'Home Additions in Oakton, VA. Route 123 does not pick the office. The parcel does. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does an Oakton address mean the Town of Vienna?',
+        answer:
+          'No. Oakton is a mailing name along Route 123. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+      {
+        question: 'Where is an Oakton addition filed?',
+        answer:
+          'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The application is in PLUS under the Building tab.',
+      },
+    ],
+    paragraphs: [
+      'An Oakton addition sits along Route 123 between Vienna and Fairfax, and the 22124 mailing address does not establish town jurisdiction. Route 123, Hunter Mill Road, and Jermantown Road are Oakton landmarks; verify the parcel and any town approval before filing. We check the parcel before we lock the footprint.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035. The when-required page lists a bump-out and a second story under a new addition that needs a permit. The addition page says to apply in PLUS under the Building tab, and it limits the residential path to a detached one- or two-family dwelling or a townhouse no more than 3 stories above ground. If the house is on a well or septic, that page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the county addition and alteration page says the town approval has to be uploaded to the PLUS record. The Oakton name does not place the house in that town. The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'decks-oakton-va': {
+    h1: 'Decks in Oakton, VA',
+    metaDescription:
+      'Decks in Oakton, VA. A deck is a county addition type of work. Vienna is a parcel question. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'How does Fairfax County classify an Oakton deck?',
+        answer:
+          'The when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage. The county’s residential Addition/Alteration guide lists Deck under Additional Square Footage.',
+      },
+      {
+        question: 'Does Route 123 put an Oakton deck in the Town of Vienna?',
+        answer:
+          'No. The parcel decides. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+    ],
+    paragraphs: [
+      'An Oakton deck is a county addition type of work. Route 123, Hunter Mill Road, and Jermantown Road are Oakton landmarks; verify the parcel and any town approval before filing. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We measure the parcel before we order the frame.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition, and that list includes decks. The addition page lists Deck under Additional Square Footage and sends the application through PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, Fairfax County says the town approval is uploaded to the PLUS record. We do not treat the Route 123 name as the town line. The price for the deck is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-oakton-va': {
+    h1: 'Outdoor Living in Oakton, VA',
+    metaDescription:
+      'Outdoor Living in Oakton, VA. Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Is an Oakton screened porch filed as a deck?',
+        answer:
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work.',
+      },
+      {
+        question: 'Who permits a porch on an Oakton parcel?',
+        answer:
+          'The parcel decides. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Oakton means a screened porch or a sunroom, and the Vienna line is a parcel question, not a Route 123 question. Route 123, Hunter Mill Road, and Jermantown Road are Oakton landmarks; verify the parcel and any town approval before filing. We confirm the parcel before we size the roof.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page includes sunrooms and screen porches in a new addition that needs a permit. The addition page lists Screened Porch and Sunroom as Additional Square Footage types of work in PLUS. A detached gazebo is on the detached-structures list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the county addition page says the town approval is uploaded to the PLUS record. The Oakton mailing name does not make that filing. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'additions-clifton-va': {
+    h1: 'Home Additions in Clifton, VA',
+    metaDescription:
+      'Home Additions in Clifton, VA. For a parcel inside the Town of Clifton, a town use permit, then the county building permit.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Clifton ZIP mean the house is inside the town?',
+        answer:
+          'No. The town FAQ says to read the Fairfax County parcel profile. The District field says Springfield Town of Clifton when the address is inside the town.',
+      },
+      {
+        question: 'What does the town require before a county addition permit?',
+        answer:
+          'For a parcel inside the Town of Clifton, the town FAQ says an added room needs a use permit from the Planning Commission, a certificate of appropriateness from the Architectural Review Board, and a Fairfax County building permit. The mayor or a designated representative must sign the county application. The use-permit application goes to the Town Clerk at least 15 days before the Planning Commission meeting.',
+      },
+      {
+        question: 'Where do questions go if the parcel is outside the town?',
+        answer:
+          'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record.',
+      },
+    ],
+    paragraphs: [
+      'For a parcel inside the Town of Clifton, an addition needs a town use permit and a county building permit, and the district field is how the parcel is checked. The town FAQ says the Fairfax County parcel profile shows Springfield Town of Clifton when the address is inside the town. A 20124 mailing address is not that field. We read the parcel before we draw the room.',
+      'If the parcel is inside the Town of Clifton, the town FAQ says an added room needs a use permit from the Planning Commission, design plans to the Architectural Review Board for a certificate of appropriateness, and a Fairfax County building permit. A use permit is required to build an addition to an existing structure. The application goes to the Town Clerk at least 15 days before the Planning Commission meeting. The applications page says the Planning Commission reviews use permits on the last Tuesday of each month at 7:30 p.m. at Acacia Lodge, 7135 Main Street. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that town approval is uploaded to the PLUS record.',
+      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page lists a bump-out and a second story under a new addition that needs a permit. Apply in PLUS under the Building tab. If the house is on a well or septic, the addition page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'decks-clifton-va': {
+    h1: 'Decks in Clifton, VA',
+    metaDescription:
+      'Decks in Clifton, VA. For a parcel inside the Town of Clifton, the town has its own approval, then the county building permit.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'How does Fairfax County classify a Clifton deck?',
+        answer:
+          'The when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage. Fairfax County also says a project on a parcel inside the Town of Clifton needs a separate town approval uploaded to the PLUS record.',
+      },
+      {
+        question: 'Does the town treat a deck as internal work?',
+        answer:
+          'Fairfax County lists decks among additions requiring a permit. Clifton describes separate paths for purely internal work and for additions or new structures, but its FAQ does not explicitly classify a deck. For a parcel inside the Town of Clifton, confirm the town approvals with the Town Clerk.',
+      },
+    ],
+    paragraphs: [
+      'A deck in Clifton is on Fairfax County\'s list of new additions that need a permit. For a parcel inside the Town of Clifton, the county requires separate town approval documentation. The town FAQ says the District field on the Fairfax County parcel profile reads Springfield Town of Clifton when the address is inside the town. We check that field before we draw the frame.',
+      'If the parcel is inside the Town of Clifton, the town FAQ requires a use permit to build an addition to an existing structure or to erect a new structure, and a certificate of appropriateness for an addition or a new structure. The county when-required page lists a deck with a new addition, so ask the Town Clerk which town approvals apply to this deck. We do not guess that on a mailing name. The town FAQ says the county building permit is not granted unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404. The county addition page says the town approval is uploaded to the PLUS record.',
+      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Deck is an Additional Square Footage type of work in PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the deck is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-clifton-va': {
+    h1: 'Outdoor Living in Clifton, VA',
+    metaDescription:
+      'Outdoor Living in Clifton, VA. For a parcel inside the Town of Clifton, a screened porch needs a town certificate and a county addition record.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Is a screened porch in Clifton filed as a deck?',
+        answer:
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work. For a parcel inside the Town of Clifton, Fairfax County says the town approval is uploaded to PLUS.',
+      },
+      {
+        question: 'What town approval does a Clifton porch need?',
+        answer:
+          'For a parcel inside the Town of Clifton, the town FAQ says a certificate of appropriateness is required for an addition, and a use permit is required to build an addition to an existing structure. Fairfax County lists gazebos under detached buildings and structures. Clifton’s FAQ discusses use permits for sheds or ancillary buildings; ask the Town Clerk what applies to a proposed gazebo.',
+      },
+    ],
+    paragraphs: [
+      'A screened porch in Clifton is an addition on the county list. For a parcel inside the Town of Clifton, the town requires a certificate of appropriateness for an addition. The town FAQ says to confirm the parcel on the Fairfax County profile, where the District field says Springfield Town of Clifton inside the town. A village lot on Main Street still needs the parcel District field before town rules apply. A 20124 address is not that field.',
+      'If the parcel is inside the Town of Clifton, the town FAQ requires a certificate of appropriateness for an addition to an existing building, and a use permit to build an addition to an existing structure. The when-required page includes a screen porch and a sunroom in a new addition that needs a county permit. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that approval is uploaded to the PLUS record.',
+      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Screened Porch and Sunroom are Additional Square Footage types of work. A detached gazebo is on the detached-structures list, not the porch list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price is a free written estimate after a site walk.',
+    ],
+  },
+
 };
 
 /**
@@ -6256,15 +6569,15 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
  *
  * So the gate now acts where it reduces exposure and nowhere else:
  *
- *   - home market                    → bullets render, unchanged.
- *   - premium, own copy makes claims → bullets render. Unchanged from what
- *     ships today, and `claims.ts` stays the accurate retraction worklist
- *     rather than being partially pre-applied by template logic.
- *   - premium, own copy makes none   → bullets withheld. Here the template IS
- *     the only source of the town-and-service-scoped promise, which is the
- *     case the specificity argument was always about. Eleven existing pages,
- *     and every new premium page — including
- *     /services/basements/northern-virginia, whose copy was written clean.
+ * - home market → bullets render, unchanged.
+ * - premium, own copy makes claims → bullets render. Unchanged from what
+ * ships today, and `claims.ts` stays the accurate retraction worklist
+ * rather than being partially pre-applied by template logic.
+ * - premium, own copy makes none → bullets withheld. Here the template IS
+ * the only source of the town-and-service-scoped promise, which is the
+ * case the specificity argument was always about. Eleven existing pages,
+ * and every new premium page — including
+ * /services/basements/northern-virginia, whose copy was written clean.
  *
  * That last line is the one that matters: the original finding on #146 was a
  * NEW url publishing unconfirmed claims, and this keeps them off one.
