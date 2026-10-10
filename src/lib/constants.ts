@@ -489,7 +489,8 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- Virginia batch, 2026-09-29 ----------
    * Facts are from AI-SHARED/Website/local-pages/. Empty legacyTiers.
-   * Deferred on purpose: Broad Run, Occoquan, and the West Virginia gap towns.
+   * Deferred on purpose: Broad Run and Occoquan. The West Virginia towns
+   * Jose checked are in the block after Pennsylvania.
    * Berryville, The Plains, Upperville, and Marshall publish as of 2026-10-09.
    * Stephens City and Middletown stay staged until their permit process is verified.
    * Fauquier and Clarke towns stay unparented: there is no county row yet.
@@ -531,6 +532,16 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'mercersburg-pa', city: 'Mercersburg', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'waynesboro-pa', city: 'Waynesboro', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'fayetteville-pa', city: 'Fayetteville', state: 'PA', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+
+  /* ---------- West Virginia, checked 2026-10-10 (REA-402) ----------
+   * Harpers Ferry, Kearneysville, and Bunker Hill only. Gerrardstown,
+   * Shenandoah Junction, and Summit Point stay out. Facts are from
+   * AI-SHARED/Website/local-pages/. Empty legacyTiers. `market: 'home'`
+   * keeps the estimate hero and does not grant the same-week visit sentence.
+   */
+  { slug: 'harpers-ferry-wv', city: 'Harpers Ferry', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'kearneysville-wv', city: 'Kearneysville', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+  { slug: 'bunker-hill-wv', city: 'Bunker Hill', state: 'WV', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
 
   /* ---------- Maryland towns — active 2026-10-09 (Jose, REA-2283) ----------
    * Maryland is in the service area. These rows publish. Frederick, MD was
@@ -690,7 +701,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       "Shepherdstown is the oldest town in West Virginia, founded in 1762, and home to Shepherd University. German Street is the historic commercial corridor. Inside the corporation, a project permit comes from the Town at Town Hall, 104 North King Street. Much of the town is in a historic district, and exterior work there needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. A Shepherdstown mailing address is not automatically inside the corporation. Outside town limits, Jefferson County Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. That office lists remodeling, additions, and finished basements among the work that needs a county permit. The drive from Martinsburg is Route 45 east. The remodeling this page is for is kitchens, bathrooms, basements, and roofing on older houses.",
     neighborhoods: ['Historic Downtown', 'German Street', 'University Area', 'Potomac Riverfront', 'Shepherd Grade Road Area'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'roofing', 'decks'],
-    nearbySlugs: ['charles-town-wv', 'martinsburg-wv', 'sharpsburg-md', 'berryville-va'],
+    nearbySlugs: ['charles-town-wv', 'martinsburg-wv', 'sharpsburg-md', 'berryville-va', 'harpers-ferry-wv', 'kearneysville-wv'],
     faqs: [
       {
         question: 'Who permits a remodel inside the Town of Shepherdstown?',
@@ -706,6 +717,78 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
         question: 'Does the historic certificate apply to every Shepherdstown ZIP?',
         answer:
           'No. The town says much of the town is in the historic district, and the certificate comes before the town building permit for exterior work there. County land outside the corporation is a Jefferson County permit, not the town Historic Landmarks Commission.',
+      },
+    ],
+  },
+  'harpers-ferry-wv': {
+    description:
+      "Harpers Ferry is the Corporation of Harpers Ferry, a small historic town, and it is also the name on ZIP 25425. The ZIP is the larger place. Its Census centroid falls in Jefferson County and not inside an incorporated place. Census ACS 2024 5-year figures for that ZIP, not the town boundary, count 13,332 people, a median household income of $94,048, and a median year structure built of 1986. Most of those units are detached houses from the 1970s through the 2000s. That mix describes the ZIP, not the stone commercial core beside Harpers Ferry National Historical Park. A 25425 address is not automatically inside the town. On unincorporated county land, permits go to the Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. The county page lists remodeling, additions, finished basements, and decks, and it stops taking building permits after 4:30 p.m. Inside the town, Article 1701 says the town land-use code applies only within the municipal boundary. Which desk stamps a residential permit for a house inside that boundary was not established, so this page does not name one. Article 131 creates the Harpers Ferry Historic Landmarks Commission for designated historic buildings and the historic district. The ordinance text that was read does not publish a street list, so the parcel has to be checked. The National Park Service site is not the private-permit office documented here. No HOA or subdivision name was verified for this ZIP.",
+    neighborhoods: ['Corporation of Harpers Ferry', 'ZIP 25425', 'Jefferson County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    nearbySlugs: ['charles-town-wv', 'shepherdstown-wv', 'kearneysville-wv', 'ranson-wv'],
+    faqs: [
+      {
+        question: 'Does every 25425 address use the town historic rules?',
+        answer:
+          'No. The ZIP centroid is unincorporated Jefferson County. Town land-use rules, including the Historic Landmarks Commission, apply inside the municipal boundary. Check the parcel.',
+      },
+      {
+        question: 'Who permits a finished basement or a deck on county land in this ZIP?',
+        answer:
+          'Jefferson County Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, Charles Town. Phone (304) 725-2998. The county scope list includes finished basements, additions, and remodeling, and the forms page has a separate deck application.',
+      },
+      {
+        question: 'Does Harpers Ferry National Historical Park issue the building permit?',
+        answer:
+          'Not on the sources used for this page. The Park is a National Park Service site. The documented private-permit path is the county office, and, inside town limits, the town code. Whether a private inholding needs a Park review was not established.',
+      },
+    ],
+  },
+  'kearneysville-wv': {
+    description:
+      "Kearneysville is an unincorporated community and a postal name in Jefferson County. It is not a town, and no Kearneysville permit office was found. ZIP 25430's Census centroid is Jefferson County, with no incorporated place and no census-designated place. Census ACS 2024 5-year figures for the ZIP show a population of 8,954, a median household income of $86,806, and a median year structure built of 1987. The largest year-built groups are the 1970s, the 2000s, and the 1980s. Detached houses are 2,597 of 3,365 units in that table. Permits go to the Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. Hours are 9:00 a.m. to 5:00 p.m. Monday through Friday, and building permits are not taken in after 4:30 p.m. The county page lists finished basements, remodeling, additions, and decks. The forms page posts a basement and interior renovations application and a separate deck application. No Kearneysville historic district or HOA was verified, and this page does not name subdivisions.",
+    neighborhoods: ['ZIP 25430', 'Jefferson County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    nearbySlugs: ['charles-town-wv', 'shepherdstown-wv', 'harpers-ferry-wv', 'martinsburg-wv'],
+    faqs: [
+      {
+        question: 'Is there a Town of Kearneysville permit counter?',
+        answer:
+          'Not found. The ZIP centroid is unincorporated Jefferson County. Use the county Office of Building Permits and Inspections in Charles Town, phone (304) 725-2998.',
+      },
+      {
+        question: 'Is a finished basement on the county permit list?',
+        answer:
+          'Yes. The county permits page lists finished basements, and the forms page posts a basement and interior renovations application.',
+      },
+      {
+        question: 'Does an HOA replace the county permit?',
+        answer:
+          'No named association was verified here. Nothing on the county pages says an HOA approval is a building permit.',
+      },
+    ],
+  },
+  'bunker-hill-wv': {
+    description:
+      "Bunker Hill is an unincorporated postal community in Berkeley County, ZIP 25413. It is not the Town of Hedgesville and not the City of Martinsburg. The ZIP centroid is Berkeley County, with no incorporated place and no census-designated place. Census ACS 2024 5-year figures for the ZIP show a population of 9,618, a median household income of $100,556, and a median year structure built of 2001. The largest year-built groups are the 2000s, the 1990s, and the 2010s. Detached houses are 2,418 of 3,592 units in that table. Permits go to the Berkeley County Department of Building Permits and Inspections at 400 West Stephen Street, Suite 202, Martinsburg, WV 25401, phone (304) 264-1966. Applications are accepted 8 a.m. to 5 p.m. Monday through Friday. The county process page says a permit is required to construct, enlarge, alter, or repair a building, and that the requirement includes decks. Codes published as of 1 August 2022 include the 2018 International Residential Code. The county One Stop portal is onestop.berkeleywv.org. No Bunker Hill historic district or named HOA was verified, and this page does not name subdivisions. A parcel inside the City of Martinsburg uses that city's rules, which are not this page.",
+    neighborhoods: ['ZIP 25413', 'Berkeley County'],
+    marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
+    nearbySlugs: ['martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'charles-town-wv'],
+    faqs: [
+      {
+        question: 'Where is the Bunker Hill permit counter?',
+        answer:
+          'Berkeley County Department of Building Permits and Inspections, 400 West Stephen Street, Suite 202, Martinsburg. Phone (304) 264-1966. The county One Stop portal is onestop.berkeleywv.org.',
+      },
+      {
+        question: 'Does a deck need a Berkeley County permit?',
+        answer:
+          'The county process page says the permit requirement includes decks. Residential submittals on that page include plans, a plot plan, and the contractor license number.',
+      },
+      {
+        question: 'Is Bunker Hill inside the City of Martinsburg?',
+        answer:
+          'Not at the ZIP centroid. Martinsburg and Hedgesville are separate municipalities. Confirm the parcel. This page does not apply the City of Martinsburg permit rules.',
       },
     ],
   },
@@ -1940,8 +2023,8 @@ export const formatAreaLabel = (a: { city: string; state: string }): string =>
  * The two lists are INTENTIONALLY distinct and are NOT merged:
  *  - GENERAL_CONTRACTOR_AREA_SERVED advertises the full home-market footprint
  *    on the site-wide Organization/GeneralContractor schema, including small
- *    Eastern Panhandle communities (Kearneysville, Harpers Ferry) that don't
- *    have their own pages.
+ *    Eastern Panhandle communities, including Kearneysville, Harpers Ferry,
+ *    and Bunker Hill.
  *  - SERVICE_PAGE_AREA_SERVED is the curated tri-state highlight used as the
  *    default `areaServed` on per-service Service schema when a service has no
  *    narrower `areaScope`.
@@ -1958,6 +2041,7 @@ export const GENERAL_CONTRACTOR_AREA_SERVED: string[] = [
   'Kearneysville, WV',
   'Shepherdstown, WV',
   'Harpers Ferry, WV',
+  'Bunker Hill, WV',
   'Berkeley Springs, WV',
   'Spring Mills, WV',
   'Falling Waters, WV',

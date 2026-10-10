@@ -55,6 +55,7 @@ import { mdServingLine } from '@/lib/trust-bullets';
 const BERKELEY_JEFFERSON_WV = new Set([
   'martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'falling-waters-wv', 'spring-mills-wv',
   'charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'kearneysville-wv', 'harpers-ferry-wv',
+  'bunker-hill-wv',
 ]);
 
 function permitGuideSlugForCity(citySlug: string): string | null {
