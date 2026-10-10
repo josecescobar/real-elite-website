@@ -5,7 +5,7 @@ import type { NextConfig } from 'next';
 // that uses aliased imports fails the build with "Cannot find module
 // './src/lib/claims'". Vitest resolves `@/` fine, so the whole test suite
 // passed while the build was broken. Keep this import chain alias-free.
-import { RETIRED_COMBOS } from './src/lib/retired-combos';
+import { RETIRED_COMBOS, splitComboKey } from './src/lib/retired-combos';
 
 /**
  * Content-Security-Policy.
@@ -129,9 +129,9 @@ const nextConfig: NextConfig = {
       // happens. The retired-combo redirect test asserts these rules are
       // literal, unconditional, permanent, and land on a page that exists.
       ...Object.entries(RETIRED_COMBOS).map(([key, destination]) => {
-        const dash = key.indexOf('-');
+        const { service, city } = splitComboKey(key);
         return {
-          source: `/services/${key.slice(0, dash)}/${key.slice(dash + 1)}`,
+          source: `/services/${service}/${city}`,
           destination,
           permanent: true,
         };

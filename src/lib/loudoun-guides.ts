@@ -39,6 +39,12 @@ export const LOUDOUN_GUIDES_BY_SERVICE: Readonly<Record<string, readonly string[
     'composite-vs-pressure-treated-decks-loudoun-county-va',
     LOUDOUN_HOA_GUIDE,
   ],
+  'outdoor-living': [
+    'covered-patio-outdoor-living-cost-loudoun-county-2026',
+    'luxury-outdoor-living-decks-loudoun-northern-virginia-2026',
+    LOUDOUN_PERMIT_GUIDE,
+  ],
+  stairs: [LOUDOUN_PERMIT_GUIDE],
   remodeling: [
     'whole-home-luxury-renovation-loudoun-northern-virginia-2026',
     LOUDOUN_HOA_GUIDE,
@@ -55,6 +61,7 @@ export const LOUDOUN_COST_GUIDE_BY_SERVICE: Readonly<Record<string, string>> = {
   basements: 'basement-remodeling-cost-ashburn-leesburg-2026',
   additions: 'home-addition-cost-loudoun-county-2026',
   decks: 'covered-patio-outdoor-living-cost-loudoun-county-2026',
+  'outdoor-living': 'covered-patio-outdoor-living-cost-loudoun-county-2026',
 };
 
 /** True for Loudoun County itself and every catalog area inside it. */

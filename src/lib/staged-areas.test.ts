@@ -12,7 +12,7 @@ import {
   childAreasOf,
   getServiceArea,
 } from '@/lib/constants';
-import { CONTENT } from '@/lib/service-city-content';
+import { CONTENT, splitComboKey } from '@/lib/service-city-content';
 import CityServicePage, {
   dynamicParams,
   generateMetadata,
@@ -117,7 +117,7 @@ describe('staged service areas stay unpublished', () => {
     const comboCities = new Set(comboStaticParams().map((params) => params.city));
     const townSlugs = new Set<string>(townServiceStaticParams().map((params) => params.slug));
     const contentCities = new Set(
-      Object.keys(CONTENT).map((key) => key.slice(key.indexOf('-') + 1)),
+      Object.keys(CONTENT).map((key) => splitComboKey(key).city),
     );
 
     for (const slug of stagedSlugs) {

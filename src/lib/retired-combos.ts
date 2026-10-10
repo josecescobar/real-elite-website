@@ -87,3 +87,37 @@ export const RETIRED_COMBOS: Readonly<Record<string, string>> = {
   'siding-hagerstown-md': '/service-areas/hagerstown-md',
   'bathrooms-hagerstown-md': '/service-areas/hagerstown-md',
 };
+
+/**
+ * Combo keys are `${service}-${city}`. `outdoor-living` contains a hyphen, so
+ * the first dash is not the boundary. Longest known service prefix wins.
+ *
+ * Lives here, with no imports, because `next.config.ts` loads this module
+ * outside the app graph. The route, the sitemap redirects, and the tests all
+ * split keys through this function so a hyphenated service cannot publish as
+ * `/services/outdoor/living-leesburg-va`.
+ */
+const COMBO_SERVICE_SLUGS = [
+  'outdoor-living',
+  'remodeling',
+  'bathrooms',
+  'basements',
+  'additions',
+  'kitchens',
+  'roofing',
+  'stairs',
+  'siding',
+  'decks',
+] as const;
+
+export function splitComboKey(key: string): { service: string; city: string } {
+  const services = [...COMBO_SERVICE_SLUGS].sort((a, b) => b.length - a.length);
+  for (const service of services) {
+    const prefix = `${service}-`;
+    if (key.startsWith(prefix)) {
+      return { service, city: key.slice(prefix.length) };
+    }
+  }
+  const dash = key.indexOf('-');
+  return { service: key.slice(0, dash), city: key.slice(dash + 1) };
+}

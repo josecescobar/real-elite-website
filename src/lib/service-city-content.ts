@@ -13,11 +13,13 @@ import { SERVICES, servicePillarHref } from '@/lib/constants';
 // Re-exported so callers have one import site for combo facts. The declaration
 // lives in its own dependency-free module because next.config.ts loads it
 // outside the app's module graph, where `@/` does not resolve — see that file.
-export { RETIRED_COMBOS } from '@/lib/retired-combos';
+export { RETIRED_COMBOS, splitComboKey } from '@/lib/retired-combos';
 
 export const FEATURED_SERVICE_SLUGS = [
   'roofing',
   'decks',
+  'outdoor-living',
+  'stairs',
   'remodeling',
   'siding',
   'bathrooms',
@@ -2620,6 +2622,362 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, lists additions on the work that needs a building permit, along with plumbing, electrical, and HVAC when those systems are in the job. Apply in person or through MGO. The Department of Community Development is at 304-724-3248.",
       "Outside the city, Jefferson County's Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, lists building additions among the work that needs a permit, and it requires compliance with the International Residential Code version adopted by the State of West Virginia. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. Filings go through MGO Connect. We check the parcel before we file. We price every Charles Town addition on a free written estimate for your home, so no fixed price is listed here.",
       "The written estimate itemizes the foundation, the framing, and the trades. WV Contractor License WV062432.",
+    ],
+  },
+
+  // ── OUTDOOR LIVING · round 5 (REA-2371) ──────────────────────────────────
+  'outdoor-living-loudoun-county-va': {
+    h1: 'Outdoor Living Loudoun County VA',
+    metaTitle: 'Outdoor Living Loudoun County VA | Real Elite',
+    metaDescription:
+      'Outdoor Living Loudoun County VA. A roof or screen needs full plans, not the Typical Deck Detail. Free written estimate after a site walk.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+      'luxury-outdoor-living-decks-loudoun-northern-virginia-2026',
+    ],
+    faqs: [
+      {
+        question: 'Does a screened porch in Loudoun County use the Typical Deck Detail?',
+        answer:
+          'No. Loudoun requires full plans, not the Typical Deck Detail, for a deck with a roof or screen. The county publishes a screened porch as a residential addition, not a Typical Deck.',
+      },
+      {
+        question: 'Who permits outdoor living in an incorporated Loudoun town?',
+        answer:
+          'Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Unincorporated Loudoun, including Ashburn, uses LandMARC for building and zoning. We check the parcel before we file.',
+      },
+      {
+        question: 'What does outdoor living in Loudoun County cost?',
+        answer:
+          'Full outdoor living builds with multiple levels, a pergola, and built-ins typically run $35k–$80k+. A smaller screened porch or patio roof is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Loudoun County, VA is the screened porch, covered patio, or pergola that turns the back of the house into a room you use from spring through fall. Real Elite Contracting builds those spaces on the western corridor first: Purcellville, Round Hill, Lovettsville, western Leesburg, and selected Middleburg. That is the practical truck path from Martinsburg.',
+      'A roof or a screen takes the job off the Typical Deck Detail. Loudoun requires full plans for a deck with a roof or screen, and the county publishes a screened porch as a residential addition, not a Typical Deck. Leesburg, Purcellville, and Middleburg issue town zoning before the county releases the building permit. Unincorporated parcels file building and zoning through LandMARC. Published minimum footing depth on a Loudoun deck is 24 inches on solid soil, and a porch roof sits on footings the same way.',
+      'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting on these builds is solar post-cap and step lights. A county permit is not HOA approval. When the lot has an association, that packet goes in parallel with the county set.',
+      'Full outdoor living builds with multiple levels, a pergola, and built-ins typically run $35k–$80k+. A smaller porch or patio roof is a free written estimate after a site walk. The estimate names the permit path for the parcel and the design.',
+    ],
+  },
+
+  'outdoor-living-leesburg-va': {
+    h1: 'Outdoor Living Leesburg VA',
+    metaTitle: 'Outdoor Living Leesburg VA | Real Elite',
+    metaDescription:
+      'Outdoor Living Leesburg VA. Town zoning before the county permit. H-1 exteriors need a Certificate of Appropriateness. Free written estimate after a site walk.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
+    faqs: [
+      {
+        question: 'Is a Leesburg address always inside Town limits?',
+        answer:
+          'No. Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. Those parcels use LandMARC. Inside Town limits, zoning comes before the county building permit.',
+      },
+      {
+        question: 'Does a screened porch in Leesburg need full plans?',
+        answer:
+          'Yes. Loudoun requires full plans, not the Typical Deck Detail, for a deck with a roof or screen. Inside Town limits that county set waits on Town zoning. The Town zoning permit covers decks, balconies, and exterior stairs.',
+      },
+      {
+        question: 'Does the Leesburg H-1 district review a porch?',
+        answer:
+          'In the H-1 Old and Historic District, every exterior construction project needs a Certificate of Appropriateness. Some certificates are staff-approved. Others go to the Board of Architectural Review. A National Register listing is not the same as the Town H-1 overlay.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Leesburg, VA starts with the parcel, not the mailing address. Lansdowne and River Creek often use a Leesburg address and sit in unincorporated Loudoun. Inside Town limits the house is a different filing. We check the parcel before we describe a screened porch, a patio roof, or a pergola.',
+      'Inside Town limits the order is fixed. The Town of Leesburg issues the zoning permit first. Decks, balconies, and exterior stairs need that Town zoning, and the county will not release the building permit until it is approved. A roof or a screen needs full plans, not the Typical Deck Detail. Outside Town, building and zoning run through LandMARC.',
+      'If the parcel is in the H-1 Old and Historic District, every exterior construction project needs a Certificate of Appropriateness. Some are staff-approved. Others go to the Board of Architectural Review. A National Register listing is honorary and is not the Town H-1 overlay. Any HOA review is a separate track from Town zoning and the county building permit.',
+      'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. Every Leesburg outdoor living project is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-ashburn-va': {
+    h1: 'Outdoor Living Ashburn VA',
+    metaTitle: 'Outdoor Living Ashburn VA | Real Elite',
+    metaDescription:
+      'Outdoor Living Ashburn VA. LandMARC for Broadlands, Ashburn Farm, and One Loudoun. A roof or screen needs full plans. Free written estimate after a site walk.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+      'hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026',
+    ],
+    faqs: [
+      {
+        question: 'Who permits a screened porch in Ashburn?',
+        answer:
+          'Ashburn is unincorporated Loudoun County. There is no town zoning office. Building and zoning run through LandMARC. A covered patio, screened porch, or three-season room needs full plans, not the Typical Deck Detail.',
+      },
+      {
+        question: 'Is a county permit the same as HOA approval in Ashburn?',
+        answer:
+          'No. The county does not enforce covenants. Brambleton reviews essentially all exterior changes. Broadlands requires prior written consent for an exterior addition. We submit the association packet in parallel with the LandMARC set.',
+      },
+      {
+        question: 'What does outdoor living in Ashburn cost?',
+        answer:
+          'Every Ashburn screened porch, patio roof, or pergola is a free written estimate after a site walk. Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Lighting is solar post-cap and step lights.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Ashburn, VA is a county job, not a town job. Ashburn is unincorporated Loudoun. There is no separate municipal zoning office. Building and zoning run through LandMARC. We work Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations, and Brambleton when the lot is in that community.',
+      'A covered patio, screened porch, or three-season room drops out of the Typical Deck Detail. Loudoun requires full plans for a deck with a roof or screen. The county publishes a screened porch as a residential addition. County inspections still follow the deck sequence when the structure is a deck with a roof: footing before concrete, framing before decking, then final.',
+      'A county permit is not HOA approval. Brambleton reviews essentially all exterior changes. Broadlands requires prior written consent for an exterior addition. One Loudoun and Ashburn Farm use the current association packet for that address.',
+      'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. The price for this lot is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-purcellville-va': {
+    h1: 'Outdoor Living Purcellville VA',
+    metaTitle: 'Outdoor Living Purcellville VA | Real Elite',
+    metaDescription:
+      'Outdoor Living Purcellville VA. Town zoning before the county permit. Wright Farm and Mayfair use LandMARC. Free written estimate after a site walk.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
+    faqs: [
+      {
+        question: 'Who permits a screened porch in Purcellville?',
+        answer:
+          'Inside town limits, the Town of Purcellville approves zoning before Loudoun County issues the building permit. A roof or screen needs full plans, not the Typical Deck Detail. Wright Farm and Mayfair sit in the Joint Land Management Area and use LandMARC.',
+      },
+      {
+        question: 'Is a Purcellville address always inside town limits?',
+        answer:
+          'No. Wright Farm and Mayfair sit in the county Joint Land Management Area beside the town. We check the parcel before we file. Unincorporated parcels use LandMARC for building and zoning.',
+      },
+      {
+        question: 'What does outdoor living in Purcellville cost?',
+        answer:
+          'Every Purcellville porch, patio roof, or pergola is a free written estimate after a site walk. Lots outside the town sewer are often on well and septic. A porch that does not add a bedroom is a different filing from a bedroom addition, which needs Loudoun Health Department approval first.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Purcellville, VA is a western Loudoun village job on Business Route 7, not an Ashburn subdivision. Late-19th and early-20th century houses along Main Street sit on tighter lots. Later houses toward the edge are a different yard. A screened porch or patio roof has to respect the house that is already there.',
+      'A Purcellville mailing address is not always town limits. Wright Farm and Mayfair sit in the Joint Land Management Area. Inside town limits, town zoning is approved before Loudoun County issues the building permit. Outside town, building and zoning run through LandMARC. A roof or a screen needs full plans, not the Typical Deck Detail. The county publishes a screened porch as a residential addition.',
+      'Lots outside the town sewer are often on well and septic. A porch that does not add a bedroom is a different filing from a bedroom addition, which needs Loudoun Health Department approval before the county application. We name which filing the parcel is before the estimate is a commitment.',
+      'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. The number for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-middleburg-va': {
+    h1: 'Screened Porch & Outdoor Living Middleburg VA',
+    metaTitle: 'Screened Porch & Outdoor Living Middleburg VA | Real Elite',
+    metaDescription:
+      'Screened Porch & Outdoor Living Middleburg VA. Zoning Location Permit first. Street-visible Historic District changes need a certificate.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
+    faqs: [
+      {
+        question: 'Does a Middleburg mailing address decide the porch permit?',
+        answer:
+          'No. Parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun, and those use county building and zoning. Inside Town, a Zoning Location Permit comes before the Loudoun County building permit.',
+      },
+      {
+        question: 'Does the Middleburg Historic District review a screened porch?',
+        answer:
+          'Yes, when the porch is an exterior change visible from a public street. That needs a Certificate of Appropriateness from the Historic District Review Committee. Exact in-kind repair or replacement is exempt. Any change in form, material, or color is not. Complete applications are due 14 days before the meeting. A county permit is not that certificate.',
+      },
+      {
+        question: 'What does a screened porch in Middleburg cost?',
+        answer:
+          'Every Middleburg screened porch, patio roof, or pergola is a free written estimate after a site walk. A roof or screen needs full plans, not the Typical Deck Detail. Many edge lots are on well and septic.',
+      },
+    ],
+    paragraphs: [
+      'A screened porch in Middleburg, VA is a Route 50 town job with two different lots behind the same ZIP. Inside the Historic District the yard is often tight along the street. Along Atoka, Foxcroft, and Goose Creek the mailing address is still Middleburg and the parcel is often unincorporated county, frequently on well and septic. We check the parcel before we describe the permit path.',
+      'Inside Town limits, a deck or porch that needs a Loudoun County building permit starts with a Town Zoning Location Permit. The county issues building permits county-wide and still expects that town step first. Outside Town, county building and zoning apply through LandMARC. A roof or a screen needs full plans, not the Typical Deck Detail. The county publishes a screened porch as a residential addition.',
+      'In the Historic District, exterior changes visible from a public street need a Certificate of Appropriateness from the Historic District Review Committee. Exact in-kind repair or replacement is exempt. Any change in form, material, or color is not. A new screened porch is a change in form, not an in-kind repair. Complete applications are due 14 days before the meeting. A county permit is not the certificate. Conservation easements show up on some western Loudoun lots. We read the parcel before the footprint is locked.',
+      'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-waterford-va': {
+    h1: 'Outdoor Living Waterford VA',
+    metaTitle: 'Outdoor Living Waterford VA | Real Elite',
+    metaDescription:
+      'Outdoor Living Waterford VA. LandMARC permits. Exterior changes in the county historic district need a certificate. Free written estimate after a site walk.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'covered-patio-outdoor-living-cost-loudoun-county-2026',
+      'loudoun-county-permits-hoa-guide-2026',
+    ],
+    faqs: [
+      {
+        question: 'Who permits a screened porch in Waterford?',
+        answer:
+          'Waterford is unincorporated Loudoun County. There is no town zoning step. Building and zoning run through LandMARC. A roof or screen needs full plans, not the Typical Deck Detail.',
+      },
+      {
+        question: 'Does the Waterford historic district review a porch?',
+        answer:
+          'Loudoun County Historic and Cultural Conservation District covers the central village. Most exterior changes there need a Certificate of Appropriateness from the Historic District Review Committee. A screened porch or porch roof in that district is exterior work. An interior job that leaves the outside alone is not.',
+      },
+      {
+        question: 'What does outdoor living in Waterford cost?',
+        answer:
+          'Every Waterford porch, patio roof, or pergola is a free written estimate after a site walk. Many village and edge lots are on well and septic. A porch that does not add a bedroom is not the bedroom-addition filing.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Waterford, VA starts in an unincorporated village northwest of Leesburg, not in a town zoning office. The county historic district covers the central village. A screened porch on Main Street or Second Street is a different review from a patio roof on a house at the village edge. We read the lot we are standing on.',
+      'There is no town zoning step. Building and zoning run through LandMARC. A roof or a screen needs full plans, not the Typical Deck Detail. The county publishes a screened porch as a residential addition, not a Typical Deck. We file the LandMARC set for the design the parcel will actually take.',
+      'Most exterior changes in the county Waterford Historic and Cultural Conservation District need a Certificate of Appropriateness from the Historic District Review Committee before work starts. A new porch roof or screened porch in the central village is that exterior work. Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights.',
+      'Many village and edge lots are on well and septic. A porch that keeps the existing house and does not add a bedroom is not the filing that needs Loudoun Health Department approval first. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-martinsburg-wv': {
+    h1: 'Outdoor Living Martinsburg WV',
+    metaTitle: 'Outdoor Living Martinsburg WV | Real Elite',
+    metaDescription:
+      'Outdoor Living Martinsburg WV. A Martinsburg address is not always city limits. Free written estimate after a site walk.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'deck-permits-berkeley-jefferson-county-wv-2026',
+      'deck-cost-per-square-foot-eastern-panhandle-2026',
+    ],
+    faqs: [
+      {
+        question: 'Who permits a screened porch in Martinsburg?',
+        answer:
+          'A Martinsburg mailing address is not city limits. Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. Inside city limits the city may run its own review. A porch that enlarges the house is on the city list of work that needs a permit.',
+      },
+      {
+        question: 'Where do Martinsburg porch permits get filed?',
+        answer:
+          'Inside city limits, the Planning Department at City Hall, 232 N. Queen Street, lists enlarging or adding to an existing structure as work that needs a building permit. Apply through MGO Connect. The published Planning number is (304) 264-2131. Outside the city, Berkeley County reviews the parcel. County applications are on the Berkeley County OneStop portal.',
+      },
+      {
+        question: 'What does outdoor living in Martinsburg cost?',
+        answer:
+          'Every Martinsburg screened porch, patio roof, or pergola is a free written estimate after a site walk. Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Lighting is solar post-cap and step lights.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Martinsburg, WV follows the house, not a subdivision package. Older homes near downtown and Queen Street need a careful look at grade and the existing wall before a porch roof ties in. Newer lots toward Spring Mills, Hedgesville, and the Route 11 corridor are often a clearer replacement or a new cover over a patio. We measure the yard before we lock a footprint.',
+      'A Martinsburg mailing address is not city limits. Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. A screened porch or patio roof is attached and sits on permanent footings, so that is the county note we start from. Inside city limits the city may run its own review.',
+      'Inside the city, the Planning Department at City Hall, 232 N. Queen Street, lists enlarging or adding to an existing structure as work that needs a building permit. The city FAQ says new buildings or additions must also include a survey or site plan. Apply through MGO Connect. The published Planning number is (304) 264-2131. Outside the city, Berkeley County Building Permits and Inspections is at 400 West Stephen Street, Suite 202, and publishes 304-264-1966. County filings go through the Berkeley County OneStop portal. We check the parcel before we file.',
+      'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'outdoor-living-charles-town-wv': {
+    h1: 'Outdoor Living Charles Town WV',
+    metaTitle: 'Outdoor Living Charles Town WV | Real Elite',
+    metaDescription:
+      'Outdoor Living Charles Town WV. City permits for porches inside limits. Jefferson County reviews parcels outside. Free written estimate after a site walk.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'deck-permits-berkeley-jefferson-county-wv-2026',
+      'deck-cost-per-square-foot-eastern-panhandle-2026',
+    ],
+    faqs: [
+      {
+        question: 'Who permits a porch in Charles Town?',
+        answer:
+          'Inside city limits, the Building Inspection office at City Hall, 101 E. Washington Street, lists decks and porches as work that needs a building permit. Apply in person or through MGO. The Department of Community Development is at 304-724-3248. Outside the city, Jefferson County reviews the parcel.',
+      },
+      {
+        question: 'Is a Charles Town address always inside the city?',
+        answer:
+          'No. Outside city limits the mailing address is Jefferson County. The Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. County applications go through MGO Connect.',
+      },
+      {
+        question: 'When does a Charles Town porch need a permit?',
+        answer:
+          'The published deck-permit guide treats an attached deck, a walking surface more than 30 inches above grade, or permanent footings as a permit in both Berkeley and Jefferson counties. A screened porch or patio roof on permanent footings is that kind of structure. We check the parcel before we file. The price is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Charles Town, WV is decided at the house. An older lot can be tight, shaded, and graded toward a stone or block foundation, and a porch roof has to meet that wall. A later house may still have an open builder deck that the owner wants covered or screened. We look at the framing, the ledger, and the yard before we design.',
+      'A Charles Town mailing address is not city limits. Inside the city, the Building Inspection office at City Hall, 101 E. Washington Street, lists decks and porches as work that needs a building permit. Apply in person or through MGO. The Department of Community Development answers at 304-724-3248.',
+      'Outside city limits, that mailing address is Jefferson County. The Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100. The published contact is 304-725-2998 and permits@jeffersoncountywv.org. County applications go through MGO Connect. The published deck-permit guide treats an attached deck, a walking surface more than 30 inches above grade, or permanent footings as a permit in both Berkeley and Jefferson counties. We check the parcel before we file.',
+      'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. Footings go below the frost line. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  // ── STAIRS · round 5 (REA-2371) ──────────────────────────────────────────
+  'stairs-loudoun-county-va': {
+    h1: 'Stair Remodeling Loudoun County VA',
+    metaTitle: 'Stair Remodeling Loudoun County VA | Real Elite',
+    metaDescription:
+      'Stair Remodeling Loudoun County VA. Treads on a sound stair usually need no permit. New exterior stairs do. We confirm with the county before work starts.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['loudoun-county-permits-hoa-guide-2026'],
+    faqs: [
+      {
+        question: 'Do I need a permit to redo stairs in Loudoun County?',
+        answer:
+          'Replacing treads, risers, or balusters on a sound stair usually needs no permit. Structural or layout changes, and new exterior stairs, do. We confirm with the county before work starts.',
+      },
+      {
+        question: 'Do exterior stairs in Leesburg use town zoning?',
+        answer:
+          'Inside the Town of Leesburg, exterior stairs need Town zoning before Loudoun County releases the building permit. Purcellville and Middleburg also issue town zoning first when the work needs a county permit. Unincorporated Loudoun uses LandMARC.',
+      },
+      {
+        question: 'What does stair remodeling in Loudoun County cost?',
+        answer:
+          'Every Loudoun staircase is a free written estimate after a site walk. The number depends on the step count, the tread material, and whether the balusters and handrail are part of the job.',
+      },
+    ],
+    paragraphs: [
+      'Stair remodeling in Loudoun County, VA covers two different jobs. Inside, it is carpet to hardwood treads, painted or stained risers, and wood or iron balusters on a stair that already stands. Outside, it is deck and porch stairs with a consistent rise and run, solid stringers, and a graspable handrail. We look at the stair that is there before we say which job it is.',
+      'Replacing treads, risers, or balusters on a sound stair usually needs no permit. Structural or layout changes, and new exterior stairs, do. We confirm with the county before work starts. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit when the work needs one. Inside Leesburg, exterior stairs are on the Town zoning list. Unincorporated Loudoun, including Ashburn, uses LandMARC.',
+      'A county permit is not HOA approval when the stair changes the exterior. We submit the association packet in parallel on those lots. Interior tread and baluster work that leaves the outside alone is a different track. Real Elite does not take electrical work. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  'stairs-martinsburg-wv': {
+    h1: 'Stair Remodeling Martinsburg WV',
+    metaTitle: 'Stair Remodeling Martinsburg WV | Real Elite',
+    metaDescription:
+      'Stair Remodeling Martinsburg WV. Treads on a sound stair usually need no permit. New exterior stairs do. We confirm with the county before work starts.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['deck-permits-berkeley-jefferson-county-wv-2026'],
+    faqs: [
+      {
+        question: 'Do I need a permit to redo stairs in Martinsburg?',
+        answer:
+          'Replacing treads, risers, or balusters on a sound stair usually needs no permit. Structural or layout changes, and new exterior stairs, do. We confirm with the county before work starts. A Martinsburg mailing address is not always city limits, so the confirming office depends on the parcel.',
+      },
+      {
+        question: 'Who reviews new exterior stairs in Martinsburg?',
+        answer:
+          'Inside city limits the city may run its own review. The Planning Department is at City Hall, 232 N. Queen Street. Outside the city, Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. New exterior stairs on that kind of structure follow the parcel we measure.',
+      },
+      {
+        question: 'What does stair remodeling in Martinsburg cost?',
+        answer:
+          'Every Martinsburg staircase is a free written estimate after a site walk. Interior tread and baluster work is a different scope from new deck or porch stairs, and the estimate says which one the house is.',
+      },
+    ],
+    paragraphs: [
+      'Stair remodeling in Martinsburg, WV is usually one of two stairs. In an older house near Queen Street the interior stair may still wear carpet, with loose treads and a rail that moves when you lean on it. On a later house toward Spring Mills, Hedgesville, or the Route 11 corridor the worn piece is often the deck or porch stair, which takes more weather than the rest of the deck.',
+      'Replacing treads, risers, or balusters on a sound stair usually needs no permit. Structural or layout changes, and new exterior stairs, do. We confirm with the county before work starts. A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, may run its own review. The published Planning number is (304) 264-2131.',
+      'Outside the city, Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. New exterior stairs on that structure are part of the same parcel check. The county office is at 400 West Stephen Street, Suite 202, and publishes 304-264-1966. Filings outside the city go through the Berkeley County OneStop portal. The price is a free written estimate after a site walk.',
     ],
   },
 };

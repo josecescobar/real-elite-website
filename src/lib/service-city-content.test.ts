@@ -10,6 +10,7 @@ import {
   serviceHrefForArea,
   comboPublishesPricing,
   unconfirmedClaimIdsInCombo,
+  splitComboKey,
   RETIRED_COMBOS,
 } from '@/lib/service-city-content';
 import {
@@ -28,10 +29,9 @@ const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const AREA_SLUGS = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
 const BLOG_SLUGS = new Set<string>(getAllPosts().map((p) => p.slug));
 
-/** Split a CONTENT key on its first dash, the same way the route does. */
+/** Split a CONTENT key the same way the route and the sitemap redirects do. */
 function splitKey(key: string) {
-  const dashIdx = key.indexOf('-');
-  return { service: key.slice(0, dashIdx), city: key.slice(dashIdx + 1) };
+  return splitComboKey(key);
 }
 
 describe('service+city combo coverage', () => {
@@ -706,6 +706,12 @@ describe('comboPublishesPricing', () => {
         'kitchens-leesburg-va',
         'kitchens-loudoun-county-va',
         'kitchens-middleburg-va',
+        'outdoor-living-ashburn-va',
+        'outdoor-living-leesburg-va',
+        'outdoor-living-loudoun-county-va',
+        'outdoor-living-middleburg-va',
+        'outdoor-living-purcellville-va',
+        'outdoor-living-waterford-va',
         'remodeling-ashburn-va',
         'remodeling-leesburg-va',
         'remodeling-loudoun-county-va',
@@ -715,6 +721,7 @@ describe('comboPublishesPricing', () => {
         'siding-ashburn-va',
         'siding-leesburg-va',
         'siding-loudoun-county-va',
+        'stairs-loudoun-county-va',
       ].sort()
     );
   });
@@ -777,10 +784,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/73 after the 2026-10-09 close-in towns (21 premium combos) and the
-    // Middleburg kitchen page landed clean. Shepherdstown is home-market and is
-    // not in this count. Carrying stays at 0.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 73 });
+    // 0/80 after round 5: six premium outdoor-living combos and the Loudoun
+    // stairs combo landed clean. Martinsburg and Charles Town are home-market
+    // and are not in this count. Shepherdstown stays home-market. Carrying stays at 0.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 80 });
   });
 
   /**
@@ -946,8 +953,8 @@ describe('Tier C retired combos', () => {
     const publishedCombos = new Set(Object.keys(CONTENT));
 
     for (const [key, declared] of retired) {
-      const dash = key.indexOf('-');
-      const source = `/services/${key.slice(0, dash)}/${key.slice(dash + 1)}`;
+      const { service, city } = splitComboKey(key);
+      const source = `/services/${service}/${city}`;
 
       // (b) Exactly one literal rule, declared destination, 301.
       const matching = redirects.filter((r) => r.source === source);
@@ -1274,5 +1281,92 @@ describe('customer copy never reads like an editor note', () => {
       }
     }
     expect(hits).toEqual([]);
+  });
+});
+
+describe('REA-2371 outdoor living and stairs combos', () => {
+  const PAGES = [
+    ['outdoor-living', 'loudoun-county-va', 'Outdoor Living Loudoun County VA'],
+    ['outdoor-living', 'leesburg-va', 'Outdoor Living Leesburg VA'],
+    ['outdoor-living', 'ashburn-va', 'Outdoor Living Ashburn VA'],
+    ['outdoor-living', 'purcellville-va', 'Outdoor Living Purcellville VA'],
+    ['outdoor-living', 'middleburg-va', 'Screened Porch & Outdoor Living Middleburg VA'],
+    ['outdoor-living', 'waterford-va', 'Outdoor Living Waterford VA'],
+    ['outdoor-living', 'martinsburg-wv', 'Outdoor Living Martinsburg WV'],
+    ['outdoor-living', 'charles-town-wv', 'Outdoor Living Charles Town WV'],
+    ['stairs', 'loudoun-county-va', 'Stair Remodeling Loudoun County VA'],
+    ['stairs', 'martinsburg-wv', 'Stair Remodeling Martinsburg WV'],
+  ] as const;
+
+  it.each(PAGES)('%s-%s publishes the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaTitle).toContain(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(entry?.includeLocalBusiness).toBe(true);
+    expect(entry?.relatedGuideSlugs?.length).toBeGreaterThan(0);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const { service: parsedService, city: parsedCity } = splitComboKey(`${service}-${city}`);
+    expect(parsedService).toBe(service);
+    expect(parsedCity).toBe(city);
+  });
+
+  it('does not publish outdoor living or stairs for any other town, including Brambleton', () => {
+    const allowed = new Set(PAGES.map(([service, city]) => `${service}-${city}`));
+    for (const key of Object.keys(CONTENT)) {
+      if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
+        expect(allowed.has(key), key).toBe(true);
+      }
+    }
+    expect(CONTENT).not.toHaveProperty('outdoor-living-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('stairs-brambleton-va');
+  });
+
+  it('keeps the ten openings unique and the copy customer-facing', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const banned =
+      /this page|tagged to|in the gallery|no photo is shown|so none is shown|stays separate on the estimate|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration/i;
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const body = [
+        entry.h1,
+        entry.metaTitle,
+        entry.metaDescription,
+        ...entry.paragraphs,
+        ...(entry.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ].join('\n');
+      expect(body, `${service}-${city}`).not.toMatch(banned);
+    }
+  });
+
+  it('limits the outdoor-living price to the published full-build range', () => {
+    const loudoun = CONTENT['outdoor-living-loudoun-county-va']!;
+    const loudounBody = [...loudoun.paragraphs, ...loudoun.faqs!.map((faq) => faq.answer)].join('\n');
+    expect(loudounBody).toContain('$35k–$80k+');
+    for (const [service, city] of PAGES) {
+      if (service === 'outdoor-living' && city === 'loudoun-county-va') continue;
+      const entry = CONTENT[`${service}-${city}`]!;
+      const body = [...entry.paragraphs, ...(entry.faqs ?? []).map((faq) => faq.answer)].join('\n');
+      expect(body, `${service}-${city}`).not.toMatch(/\$[\d,]+/);
+      expect(body).toMatch(/free written estimate after a site walk/i);
+    }
+  });
+
+  it('states the stair permit rule on both stair pages', () => {
+    for (const city of ['loudoun-county-va', 'martinsburg-wv'] as const) {
+      const entry = CONTENT[`stairs-${city}`]!;
+      const body = [...entry.paragraphs, ...entry.faqs!.map((faq) => faq.answer)].join('\n');
+      expect(body).toMatch(/treads, risers, or balusters on a sound stair usually needs no permit/i);
+      expect(body).toMatch(/structural or layout changes, and new exterior stairs, do/i);
+      expect(body).toMatch(/we confirm with the county before work starts/i);
+    }
   });
 });
