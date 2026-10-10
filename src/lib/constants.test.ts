@@ -189,6 +189,10 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'delaplane-va', 'marriottsville-md', 'ellicott-city-md', 'laytonsville-md',
       'barnesville-md', 'olney-md', 'ashton-md', 'north-potomac-md',
     ];
+    const ROUND_11_2026_10_10 = [
+      'annandale-va', 'rockville-md', 'derwood-md', 'colesville-md',
+      'takoma-park-md', 'columbia-md',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
@@ -202,6 +206,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...ROUND_6_2026_10_10,
       ...ROUND_7_2026_10_10,
       ...ROUND_8_2026_10_10,
+      ...ROUND_11_2026_10_10,
     ]);
   });
 
@@ -275,6 +280,12 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'olney-md',
         'ashton-md',
         'north-potomac-md',
+        'annandale-va',
+        'rockville-md',
+        'derwood-md',
+        'colesville-md',
+        'takoma-park-md',
+        'columbia-md',
       ].sort()
     );
   });
@@ -645,10 +656,10 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('hagerstown-md')!)).toBe('Washington County area');
     expect(areaRegionLabel(getServiceArea('mount-airy-md')!)).toBe('Frederick and Carroll county area');
     expect(areaRegionLabel(getServiceArea('woodbine-md')!)).toBe('Howard and Carroll county area');
-    for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md', 'brookeville-md', 'kensington-md', 'dickerson-md', 'laytonsville-md', 'barnesville-md', 'olney-md', 'ashton-md', 'north-potomac-md']) {
+    for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md', 'brookeville-md', 'kensington-md', 'dickerson-md', 'laytonsville-md', 'barnesville-md', 'olney-md', 'ashton-md', 'north-potomac-md', 'rockville-md', 'derwood-md', 'colesville-md', 'takoma-park-md']) {
       expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Montgomery County area');
     }
-    for (const slug of ['west-friendship-md', 'glenwood-md', 'clarksville-md', 'marriottsville-md', 'ellicott-city-md']) {
+    for (const slug of ['west-friendship-md', 'glenwood-md', 'clarksville-md', 'marriottsville-md', 'ellicott-city-md', 'columbia-md']) {
       expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Howard County area');
     }
     expect(areaRegionLabel(getServiceArea('arlington-va')!)).toBe('Northern Virginia');
@@ -807,6 +818,7 @@ describe('the Northern Virginia region row', () => {
       'springfield-va',
       'chantilly-va',
       'centreville-va',
+      'annandale-va',
     ]);
     for (const slug of ['mclean-va', 'oakton-va', 'dunn-loring-va', 'fort-hunt-va', 'clifton-va']) {
       expect(areaAncestors(getServiceArea(slug)!).map((a) => a.slug), slug).toEqual([

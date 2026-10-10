@@ -736,6 +736,14 @@ describe('comboPublishesPricing', () => {
         'bathrooms-falls-church-va',
         'bathrooms-fort-hunt-va',
         'bathrooms-oakton-va',
+        'bathrooms-annandale-va',
+        'bathrooms-rockville-md',
+        'bathrooms-derwood-md',
+        'bathrooms-colesville-md',
+        'bathrooms-takoma-park-md',
+        'bathrooms-columbia-md',
+        'bathrooms-middleburg-va',
+        'bathrooms-springfield-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -821,11 +829,11 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/170 after round 9: 152, plus kitchens, bathrooms, and basements
-    // for Dunn Loring, Fairfax Station, Oakton, Clifton, Fort Hunt, and
-    // Falls Church, all clean. Martinsburg and Charles Town are
-    // home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 170 });
+    // 0/194 after round 11: 170, plus kitchens, bathrooms, and basements
+    // for Annandale, Rockville, Derwood, Colesville, Takoma Park, and
+    // Columbia, plus Middleburg bathrooms and basements, Burke basements,
+    // and Springfield kitchens, bathrooms, and basements. All clean.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 194 });
   });
 
   /**
@@ -873,14 +881,7 @@ describe('Tier C retired combos', () => {
   const isHagerstown = (key: string) => key.endsWith('-hagerstown-md');
 
   it('retires the remaining Tier C combos plus the five Hagerstown ones', () => {
-    expect(Object.keys(RETIRED_COMBOS).sort()).toEqual(
-      [
-        ...HAGERSTOWN_COMBOS,
-        'basements-burke-va',
-        'basements-middleburg-va',
-        'bathrooms-middleburg-va',
-      ].sort()
-    );
+    expect(Object.keys(RETIRED_COMBOS).sort()).toEqual([...HAGERSTOWN_COMBOS].sort());
   });
 
   /**
@@ -912,10 +913,11 @@ describe('Tier C retired combos', () => {
    * Burke keeps its kitchen and bathroom combos (10/mo apiece — tiny, but
    * reported) and lost only its basement page.
    */
-  it('retires only the basement page in Burke', () => {
-    expect(RETIRED_COMBOS).toHaveProperty('basements-burke-va');
+  it('publishes Burke kitchens, bathrooms, and basements', () => {
+    expect(RETIRED_COMBOS).not.toHaveProperty('basements-burke-va');
     expect(Object.keys(CONTENT)).toContain('kitchens-burke-va');
     expect(Object.keys(CONTENT)).toContain('bathrooms-burke-va');
+    expect(Object.keys(CONTENT)).toContain('basements-burke-va');
   });
 
   /**
@@ -1112,15 +1114,13 @@ describe('REA-2342 Purcellville and Lansdowne pages', () => {
     expect(CONTENT).not.toHaveProperty('basements-brambleton-va');
   });
 
-  it('keeps Middleburg bath and basement combos retired', () => {
+  it('publishes Middleburg kitchens, bathrooms, and basements', () => {
     expect(CONTENT).toHaveProperty('kitchens-middleburg-va');
-    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
-    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).toHaveProperty('basements-middleburg-va');
     expect(RETIRED_COMBOS).not.toHaveProperty('kitchens-middleburg-va');
-    expect(RETIRED_COMBOS['bathrooms-middleburg-va']).toBe('/service-areas/middleburg-va');
-    expect(RETIRED_COMBOS['basements-middleburg-va']).toBe(
-      '/services/basements/northern-virginia'
-    );
+    expect(RETIRED_COMBOS).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(RETIRED_COMBOS).not.toHaveProperty('basements-middleburg-va');
   });
 
   it('publishes the Middleburg kitchen with the exact keyword', () => {
@@ -1992,16 +1992,17 @@ describe('REA-2451 round 9 Fairfax-area service pages', () => {
     expect(new Set(openings).size).toBe(PAGES.length);
   });
 
-  it('publishes Clifton and Fairfax Station again and leaves the other retirements', () => {
+  it('publishes Clifton and Fairfax Station again and leaves Hagerstown retired', () => {
     for (const key of REVIVED) {
       expect(RETIRED_COMBOS).not.toHaveProperty(key);
       expect(CONTENT).toHaveProperty(key);
     }
-    expect(RETIRED_COMBOS).toHaveProperty('basements-burke-va');
-    expect(RETIRED_COMBOS).toHaveProperty('bathrooms-middleburg-va');
-    expect(RETIRED_COMBOS).toHaveProperty('basements-middleburg-va');
-    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
-    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+    expect(RETIRED_COMBOS).toHaveProperty('bathrooms-hagerstown-md');
+    expect(RETIRED_COMBOS).not.toHaveProperty('basements-burke-va');
+    expect(RETIRED_COMBOS).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(RETIRED_COMBOS).not.toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).toHaveProperty('basements-burke-va');
   });
 
   it('names both contacts where the mailing name can be either office', () => {
@@ -2048,5 +2049,127 @@ describe('REA-2451 round 9 Fairfax-area service pages', () => {
     expect(kitchenBody).toMatch(/not a permit the town issues/);
     expect(kitchenBody).toMatch(/separate path/);
     expect(kitchenBody).not.toMatch(/A renovation of a building in the town needs a use permit/);
+  });
+});
+
+describe('REA-2495 round 11 richest-county towns', () => {
+  const PAGES = [
+    ['kitchens', 'annandale-va', 'Kitchen Remodeling in Annandale, VA'],
+    ['bathrooms', 'annandale-va', 'Bathroom Remodeling in Annandale, VA'],
+    ['basements', 'annandale-va', 'Basement Finishing in Annandale, VA'],
+    ['kitchens', 'rockville-md', 'Kitchen Remodeling in Rockville, MD'],
+    ['bathrooms', 'rockville-md', 'Bathroom Remodeling in Rockville, MD'],
+    ['basements', 'rockville-md', 'Basement Finishing in Rockville, MD'],
+    ['kitchens', 'derwood-md', 'Kitchen Remodeling in Derwood, MD'],
+    ['bathrooms', 'derwood-md', 'Bathroom Remodeling in Derwood, MD'],
+    ['basements', 'derwood-md', 'Basement Finishing in Derwood, MD'],
+    ['kitchens', 'colesville-md', 'Kitchen Remodeling in Colesville, MD'],
+    ['bathrooms', 'colesville-md', 'Bathroom Remodeling in Colesville, MD'],
+    ['basements', 'colesville-md', 'Basement Finishing in Colesville, MD'],
+    ['kitchens', 'takoma-park-md', 'Kitchen Remodeling in Takoma Park, MD'],
+    ['bathrooms', 'takoma-park-md', 'Bathroom Remodeling in Takoma Park, MD'],
+    ['basements', 'takoma-park-md', 'Basement Finishing in Takoma Park, MD'],
+    ['kitchens', 'columbia-md', 'Kitchen Remodeling in Columbia, MD'],
+    ['bathrooms', 'columbia-md', 'Bathroom Remodeling in Columbia, MD'],
+    ['basements', 'columbia-md', 'Basement Finishing in Columbia, MD'],
+    ['bathrooms', 'middleburg-va', 'Bathroom Remodeling in Middleburg, VA'],
+    ['basements', 'middleburg-va', 'Basement Finishing in Middleburg, VA'],
+    ['basements', 'burke-va', 'Basement Finishing in Burke, VA'],
+    ['kitchens', 'springfield-va', 'Kitchen Remodeling in Springfield, VA'],
+    ['bathrooms', 'springfield-va', 'Bathroom Remodeling in Springfield, VA'],
+    ['basements', 'springfield-va', 'Basement Finishing in Springfield, VA'],
+  ] as const;
+
+  const NEW_AREAS = [
+    'annandale-va',
+    'rockville-md',
+    'derwood-md',
+    'colesville-md',
+    'takoma-park-md',
+    'columbia-md',
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton|separately licensed/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 24 openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('publishes only kitchens, bathrooms, and basements for the six new towns and Springfield', () => {
+    const allowed = new Set(
+      [...NEW_AREAS, 'springfield-va'].flatMap((city) => [
+        `kitchens-${city}`,
+        `bathrooms-${city}`,
+        `basements-${city}`,
+      ])
+    );
+    for (const city of [...NEW_AREAS, 'springfield-va']) {
+      for (const key of Object.keys(CONTENT)) {
+        if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
+      }
+    }
+  });
+
+  it('names a sourced permit phone on every new basement page', () => {
+    const offices: Record<string, RegExp> = {
+      'annandale-va': /703-222-0801/,
+      'rockville-md': /240-314-8240/,
+      'derwood-md': /240-777-0311/,
+      'colesville-md': /240-777-0311/,
+      'takoma-park-md': /301-891-7119/,
+      'columbia-md': /410-313-2455/,
+      'middleburg-va': /540-687-5152/,
+      'burke-va': /703-222-0801/,
+      'springfield-va': /703-222-0801/,
+    };
+    for (const [city, pattern] of Object.entries(offices)) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      const text = [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).map((faq) => faq.answer),
+        ...(entry?.sections ?? []).flatMap((section) => section.paragraphs),
+      ].join('\n');
+      expect(text, city).toMatch(pattern);
+      expect(text, city).toMatch(/\$55,000/);
+    }
+  });
+
+  it('keeps Rockville, Derwood, Colesville, and Takoma Park conditional', () => {
+    expect(CITY_DATA['rockville-md']?.description).toMatch(/city permit only/i);
+    expect(CITY_DATA['rockville-md']?.description).toMatch(/20850/);
+    expect(CITY_DATA['rockville-md']?.description).toMatch(/20852/);
+    expect(CITY_DATA['derwood-md']?.description).toMatch(/does not, by itself/);
+    expect(CITY_DATA['colesville-md']?.description).toMatch(/Silver Spring/);
+    expect(CITY_DATA['colesville-md']?.description).toMatch(/20905/);
+    expect(CITY_DATA['takoma-park-md']?.description).toMatch(/Municipality Letter/);
+    expect(CITY_DATA['takoma-park-md']?.description).toMatch(/urban forest tree/i);
+    expect(CITY_DATA['columbia-md']?.description).toMatch(/completely separate process/);
+    expect(CITY_DATA['annandale-va']?.description).toMatch(/703-222-0801/);
+    const body = NEW_AREAS.map((slug) => CITY_DATA[slug]?.description ?? '').join('\n');
+    expect(body).not.toMatch(/MHIC|maryland license|census|CDP/i);
   });
 });

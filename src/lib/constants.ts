@@ -618,6 +618,20 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'olney-md', city: 'Olney', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'ashton-md', city: 'Ashton', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'north-potomac-md', city: 'North Potomac', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+
+  /* ---------- Round 11 richest-county towns, 2026-10-10 ----------
+   * Annandale parents to Fairfax County. Montgomery and Howard towns stay
+   * unparented. Empty legacyTiers, so the pinned primary and secondary
+   * lists do not move. Premium, same as round 8. Rockville is one row for
+   * ZIP 20850 and ZIP 20852. Colesville is one row for ZIP 20905.
+   * Do not print a Maryland license caveat. No Brambleton.
+   */
+  { slug: 'annandale-va', city: 'Annandale', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
+  { slug: 'rockville-md', city: 'Rockville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'derwood-md', city: 'Derwood', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'colesville-md', city: 'Colesville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'takoma-park-md', city: 'Takoma Park', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'columbia-md', city: 'Columbia', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -2477,6 +2491,174 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  'annandale-va': {
+    seoTitle: 'Remodeling Contractor in Annandale, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Annandale, VA',
+    seoDescription:
+      'Remodeling contractor in Annandale, VA, ZIP 22003. The parcel decides the Fairfax County permit office. Free written estimate after a site walk.',
+    description:
+      "Annandale remodeling is ZIP 22003, along Little River Turnpike and Columbia Pike. Many of the houses date from the late 1960s. An Annandale mailing address does not, by itself, name the permit office. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 and Route 236.\n\nWhen the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Interior alterations include kitchen renovations, finished basements, and bathroom remodels. Kitchen cabinets and countertops do not need a permit. If the house is on a well or septic system, the Health Department may review the package. We confirm the permit steps for the parcel before work starts.\n\nNew, repair, or relocated electrical fixtures need a permit. Real Elite does not take electrical work. New, repair, or relocated mechanical or gas fixtures need a permit. Real Elite does not take gas work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Little River Turnpike', 'Columbia Pike', 'Annandale Road', 'Ravensworth', 'ZIP 22003', 'Braddock Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['springfield-va', 'burke-va', 'falls-church-va', 'alexandria-va'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Annandale, VA?',
+        answer:
+          'The parcel decides. When it is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. An Annandale mailing address does not, by itself, name that office.',
+      },
+      {
+        question: 'Does an Annandale kitchen renovation need a permit?',
+        answer:
+          'Interior alterations include kitchen renovations, finished basements, and bathroom remodels. Kitchen cabinets and countertops do not need a permit. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What does remodeling in Annandale cost?',
+        answer:
+          'Every Annandale kitchen, bathroom, and lower level is a free written estimate after a site walk. A late-1960s house on Columbia Pike and a house on Little River Turnpike are not the same scope.',
+      },
+    ],
+  },
+  'rockville-md': {
+    seoTitle: 'Remodeling Contractor in Rockville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Rockville, MD',
+    seoDescription:
+      'Remodeling contractor in Rockville, MD, ZIP 20850 and ZIP 20852. The parcel decides city or county permits. Free written estimate after a site walk.',
+    description:
+      "Rockville remodeling covers ZIP 20850 and ZIP 20852. Many houses in 20850 date from the 1990s, including Fallsgrove and King Farm. Many houses in 20852 date from the 1980s, along Montrose Road and in Hungerford. A Rockville mailing address does not, by itself, put the house inside the city. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south.\n\nThe City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to the Inspection Services Division at Rockville City Hall, 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240, or permits@rockvillemd.gov. Hours are Monday through Friday, 8:30 a.m. to 5 p.m. Building and trade permit applications are submitted through MGO Connect.\n\nWhen the parcel is in the county permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Plumbing questions go to WSSC. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Fallsgrove', 'King Farm', 'Hungerford', 'Montrose Road', 'ZIP 20850', 'ZIP 20852'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['derwood-md', 'north-potomac-md', 'potomac-md', 'kensington-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Rockville, MD?',
+        answer:
+          'The parcel decides. The City of Rockville is city permit only. City questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. ZIP 20850 and ZIP 20852 do not, by themselves, name the office.',
+      },
+      {
+        question: 'Do ZIP 20850 and ZIP 20852 file at the same counter?',
+        answer:
+          'No single counter is assumed from the ZIP. When the parcel is inside the City of Rockville, applications go through MGO Connect. When the parcel is in the county permit area, hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary.',
+      },
+      {
+        question: 'What does remodeling in Rockville cost?',
+        answer:
+          'Every Rockville kitchen, bathroom, and lower level is a free written estimate after a site walk. A 1990s house in ZIP 20850 and a 1980s house in ZIP 20852 are not the same scope.',
+      },
+    ],
+  },
+  'derwood-md': {
+    seoTitle: 'Remodeling Contractor in Derwood, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Derwood, MD',
+    seoDescription:
+      'Remodeling contractor in Derwood, MD, ZIP 20855. The parcel decides city or county permits. Free written estimate after a site walk.',
+    description:
+      "Derwood remodeling is ZIP 20855, along Muncaster Mill Road and Redland Road. Many of the houses date from the early 1980s. A Derwood mailing address does not, by itself, name the permit office. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Shady Grove Road.\n\nThe City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. When the parcel is in the county permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary.\n\nAn interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Plumbing questions go to WSSC. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Muncaster Mill Road', 'Redland Road', 'Needwood Road', 'Shady Grove Road', 'ZIP 20855'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['rockville-md', 'olney-md', 'laytonsville-md', 'north-potomac-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Derwood, MD?',
+        answer:
+          'The parcel decides. The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. A Derwood mailing address does not, by itself, name the office.',
+      },
+      {
+        question: 'Does a Derwood cabinet replacement need a permit?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. Plumbing questions go to WSSC. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What does remodeling in Derwood cost?',
+        answer:
+          'Every Derwood kitchen, bathroom, and lower level is a free written estimate after a site walk. An early-1980s house on Muncaster Mill Road is priced on that walk.',
+      },
+    ],
+  },
+  'colesville-md': {
+    seoTitle: 'Remodeling Contractor in Colesville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Colesville, MD',
+    seoDescription:
+      'Remodeling contractor in Colesville, MD, ZIP 20905. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    description:
+      "Colesville remodeling is ZIP 20905, along New Hampshire Avenue, Randolph Road, and Colesville Road. Mail to that ZIP often reads Silver Spring. Many of the houses date from the early 1980s. The name on the envelope does not, by itself, name the permit office. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south and east toward New Hampshire Avenue.\n\nWhen the parcel is in the county permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Bathroom caulking most likely will not. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A well or a septic system will likely need a permit. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['New Hampshire Avenue', 'Randolph Road', 'Colesville Road', 'ZIP 20905', 'Notley Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['olney-md', 'ashton-md', 'kensington-md', 'takoma-park-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Colesville, MD?',
+        answer:
+          'The parcel decides. When it is in the county permit area, questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. A Silver Spring mailing name on ZIP 20905 does not, by itself, name that office.',
+      },
+      {
+        question: 'Does an interior kitchen change in Colesville need a permit?',
+        answer:
+          'An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Plumbing questions go to WSSC. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What does remodeling in Colesville cost?',
+        answer:
+          'Every Colesville kitchen, bathroom, and lower level is a free written estimate after a site walk. A house on New Hampshire Avenue and a house off Randolph Road are not the same scope.',
+      },
+    ],
+  },
+  'takoma-park-md': {
+    seoTitle: 'Remodeling Contractor in Takoma Park, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Takoma Park, MD',
+    seoDescription:
+      'Remodeling contractor in Takoma Park, MD, ZIP 20912. A county permit starts with a city municipality letter. Free written estimate after a site walk.',
+    description:
+      "Takoma Park remodeling is ZIP 20912, along Maple Avenue, Flower Avenue, and Carroll Avenue. Many of the houses date from the 1950s. A Takoma Park address does not, by itself, set the filing order. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Piney Branch Road.\n\nAny renovation, building, or outdoor project that requires a permit from the Montgomery County Department of Permitting Services first requires a Municipality Letter from Takoma Park. The municipality letter is not a permit. There is no fee for the municipality letter. Housing and Community Development questions go to 7500 Maple Avenue, 3rd Floor, Takoma Park, MD 20912, phone 301-891-7119. Montgomery County lists Takoma Park among municipalities where city approval is required prior to the county application.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. Construction within 50 feet of an urban forest tree may require a Tree Impact Assessment and a Tree Protection Plan. The Urban Forest Manager can be reached at 301-891-7612 or UrbanForestManager@takomaparkmd.gov.\n\nAn interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Plumbing questions go to WSSC. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Maple Avenue', 'Flower Avenue', 'Carroll Avenue', 'Piney Branch Road', 'ZIP 20912'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['kensington-md', 'chevy-chase-md', 'colesville-md', 'bethesda-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Takoma Park, MD?',
+        answer:
+          'A project that requires a Montgomery County permit first requires a Municipality Letter from Takoma Park. The municipality letter is not a permit. City questions go to 7500 Maple Avenue, 3rd Floor, Takoma Park, MD 20912, phone 301-891-7119. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Does work near a tree in Takoma Park need a city step?',
+        answer:
+          'Construction within 50 feet of an urban forest tree may require a Tree Impact Assessment and a Tree Protection Plan. The Urban Forest Manager can be reached at 301-891-7612. We confirm that step for the parcel before work starts.',
+      },
+      {
+        question: 'What does remodeling in Takoma Park cost?',
+        answer:
+          'Every Takoma Park kitchen, bathroom, and lower level is a free written estimate after a site walk. A 1950s house on Maple Avenue is priced on that walk.',
+      },
+    ],
+  },
+  'columbia-md': {
+    seoTitle: 'Remodeling Contractor in Columbia, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Columbia, MD',
+    seoDescription:
+      'Remodeling contractor in Columbia, MD, ZIP 21044. Howard County permits in Ellicott City. Free written estimate after a site walk.',
+    description:
+      "Columbia remodeling is ZIP 21044, in the older villages, including Harper's Choice and Wilde Lake. Many of those houses date from the 1970s and 1980s. The drive from Martinsburg is I-81 south to I-70 east, then south on US 29.\n\nHoward County questions go to the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. General permit questions use option 4. The front counter at 3430 Courthouse Drive closes at 5:00 p.m. Arrive by 4:00 p.m. The department approves and issues permits and enforces the county building codes, including building, mechanical, plumbing, and electrical.\n\nAll properties served by a private well and septic require prior Health Department approval. That number is 410-313-6300. If the work changes the exterior of a Columbia Association assessed property, it may also need approval from the Architectural Committee of the village where the work will occur. That review is a completely separate process from Howard County permits. Harper's Choice questions go to 410-730-3888. Wilde Lake questions go to 410-730-3987.\n\nReal Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ["Harper's Choice", 'Wilde Lake', 'Faulkner Ridge', 'ZIP 21044', 'US 29'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['ellicott-city-md', 'clarksville-md', 'west-friendship-md', 'marriottsville-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Columbia, MD?',
+        answer:
+          'Howard County questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Is a village review the same as the county permit?',
+        answer:
+          "No. If the work changes the exterior of a Columbia Association assessed property, village architectural approval is a completely separate process from Howard County permits. Harper's Choice questions go to 410-730-3888. Wilde Lake questions go to 410-730-3987.",
+      },
+      {
+        question: 'What does remodeling in Columbia cost?',
+        answer:
+          "Every Columbia kitchen, bathroom, and lower level is a free written estimate after a site walk. A 1970s house in Harper's Choice and a 1980s house in Wilde Lake are not the same scope.",
+      },
+    ],
+  },
 };
 
 /**
@@ -2561,7 +2743,11 @@ export function areaRegionLabel(area: ServiceArea): string {
       area.slug === 'barnesville-md' ||
       area.slug === 'olney-md' ||
       area.slug === 'ashton-md' ||
-      area.slug === 'north-potomac-md'
+      area.slug === 'north-potomac-md' ||
+      area.slug === 'rockville-md' ||
+      area.slug === 'derwood-md' ||
+      area.slug === 'colesville-md' ||
+      area.slug === 'takoma-park-md'
     ) {
       return 'Montgomery County area';
     }
@@ -2570,7 +2756,8 @@ export function areaRegionLabel(area: ServiceArea): string {
       area.slug === 'glenwood-md' ||
       area.slug === 'clarksville-md' ||
       area.slug === 'marriottsville-md' ||
-      area.slug === 'ellicott-city-md'
+      area.slug === 'ellicott-city-md' ||
+      area.slug === 'columbia-md'
     ) {
       return 'Howard County area';
     }
