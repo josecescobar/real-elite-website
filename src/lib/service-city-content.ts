@@ -5648,7 +5648,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Dunn Loring, VA is a lower level beside the Dunn Loring-Merrifield Metro, and the parcel decides whether town review applies.',
-      'If the home is inside the Town of Vienna, questions go to 127 Center Street South, Vienna, VA 22180, phone 703-255-6300, and the town approval is uploaded to the county record. If the parcel is outside the town, questions go to Land Development Services, phone 703-222-0801. A finished basement is an interior alteration that needs a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'If the home is inside the Town of Vienna, questions go to 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. If the home is inside the Town of Vienna, the town approval is uploaded to the county record. If the parcel is outside the town, questions go to Land Development Services, phone 703-222-0801. A finished basement is an interior alteration that needs a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Dunn Loring lower level off Gallows Road can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -5722,7 +5722,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Fairfax Station, VA is a primary bath on acreage in ZIP 22039, and a well or septic system can add a Health Department review.',
+      'Bathroom remodeling in Fairfax Station, VA is a primary bath on acreage in ZIP 22039. A well or septic system can add a Health Department review.',
       'If the house is on a private well or septic system, questions go to 703-246-2201. If the home is inside the Town of Clifton, the town signs off before the county application. If the parcel is outside the town, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801. A bathroom remodel needs a permit. A like-for-like plumbing replacement that does not change location does not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'A Fairfax Station primary bath is priced only after the site walk. The written estimate separates the pan, the tile, and any move of the plumbing.',
     ],
@@ -6095,7 +6095,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Falls Church?',
         answer:
-          'The parcel decides. If the home is inside the city, questions go to 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080. If the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801. ZIP 22046, 22042, and 22043 do not decide the office.',
+          'The parcel decides. If the home is inside the city, questions go to 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080. If the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801. A Falls Church mailing address extends far outside the city limits.',
       },
       {
         question: 'Does a gas range swap in the city need a permit?',
@@ -6158,7 +6158,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Falls Church ZIP pick the basement permit office?',
         answer:
-          'No. ZIP 22046, ZIP 22042, ZIP 22043, and some 22041 and 22044 addresses all mail as Falls Church. The parcel decides. We confirm the city or the county before work starts.',
+          'No. A Falls Church mailing address extends far outside the city limits. The parcel decides. We confirm the city or the county before work starts.',
       },
       {
         question: 'What does a finished basement in Falls Church cost?',
@@ -6167,7 +6167,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Falls Church, VA is a lower level whose permit office depends on the parcel, not on ZIP 22046, 22042, or 22043.',
+      'Basement finishing in Falls Church, VA is a lower level whose permit office depends on the parcel, not on the mailing address.',
       'If the home is inside the city, questions go to 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, and plans go by email to permits@fallschurchva.gov. Anything that involves framing needs a permit. Real Elite does not take gas work. If the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, phone 703-222-0801, and a finished basement needs a permit. Real Elite does not take electrical work. We confirm the permit steps with the city or the county before work starts.',
       'A Falls Church lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
