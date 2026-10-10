@@ -2079,7 +2079,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Brookeville, MD, ZIP 20833. Town approval comes before the county application. Free written estimate after a site walk.',
     description:
-      "Brookeville is a small town in northern Montgomery County, ZIP 20833, at MD 97 and High Street. The county lists Brookeville among the places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. The drive from Martinsburg is I-81 south to I-70 east, then MD 97 south.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. The home-improvements list says an interior alteration will likely need a permit, and that installing, repairing, or replacing cabinets most likely will not. The same note says that list does not include municipality or homeowners-association rules. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "Brookeville is a small town in northern Montgomery County, ZIP 20833, at MD 97 and High Street. The county lists Brookeville among the places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. The drive from Martinsburg is I-81 south to I-70 east, then MD 97 south.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['High Street', 'MD 97', 'ZIP 20833', 'Market Street', 'Brookeville Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['dickerson-md', 'kensington-md', 'bethesda-md', 'potomac-md'],
@@ -2092,7 +2092,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does a cabinet replacement in Brookeville skip the town?',
         answer:
-          'The county list says installing, repairing, or replacing cabinets most likely will not need a permit, and that the list does not include municipality rules. An interior alteration likely will. Town questions go to 301-570-4465 before a sequence is assumed.',
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Town questions go to 301-570-4465 before a sequence is assumed.',
       },
       {
         question: 'What does remodeling in Brookeville cost?',
@@ -2161,9 +2161,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoTitle: 'Remodeling Contractor in Woodbine, MD | Real Elite',
     seoH1: 'Remodeling Contractor in Woodbine, MD',
     seoDescription:
-      'Remodeling contractor in Woodbine, MD, ZIP 21797. Howard County permits through DILP in Ellicott City. Free written estimate after a site walk.',
+      'Remodeling contractor in Woodbine, MD, ZIP 21797. The parcel decides the county permit office. Free written estimate after a site walk.',
     description:
-      "Woodbine is northwest Howard County, ZIP 21797, along MD 94 between Lisbon and the Carroll County line. The houses are detached homes on rural lots, closer to the Frederick County side than Clarksville is. The drive from Martinsburg is I-81 south to I-70 east, then north on MD 94.\n\nPermits go through the Department of Inspections, Licenses and Permits at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. A plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. A house on a private well and septic needs Health Department approval first, at 410-313-6300.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "Woodbine, ZIP 21797, sits along MD 94 between Lisbon and the Carroll County line. Carroll County zoning cases include Woodbine addresses in that ZIP, including 5407 Woodbine Road. A Howard County parcel and a Carroll County parcel are not the same filing. The drive from Martinsburg is I-81 south to I-70 east, then north on MD 94.\n\nWhen the parcel is in Howard County, permits go through the Department of Inspections, Licenses and Permits at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. A plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. A house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the county and the permit office for the parcel before work starts.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MD 94', 'ZIP 21797', 'Lisbon edge', 'Woodbine Road', 'Carroll County line'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['glenwood-md', 'west-friendship-md', 'mount-airy-md', 'frederick-md'],
@@ -2171,12 +2171,12 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Woodbine, MD?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Residential building permits require electronic submission.',
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Carroll County zoning cases also list Woodbine addresses in ZIP 21797. We confirm the office before work starts.',
       },
       {
-        question: 'Does Woodbine use the Carroll County permit office?',
+        question: 'Is every Woodbine address the same county office?',
         answer:
-          'No. Woodbine is Howard County. A Carroll County address uses a different office. The Howard County counter is in Ellicott City, and visitors should arrive by 4:00 p.m.',
+          'No. ZIP 21797 includes Woodbine addresses in Carroll County zoning cases, including 5407 Woodbine Road. A Howard County parcel uses the Ellicott City counter, and visitors should arrive by 4:00 p.m. We confirm the office for the parcel before work starts.',
       },
       {
         question: 'What does remodeling in Woodbine cost?',
@@ -2191,7 +2191,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Dickerson, MD, ZIP 20842. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
     description:
-      "Dickerson is western Montgomery County, ZIP 20842, along MD 28 toward the Potomac and the Monocacy. It is farm and village lots, not a Bethesda street and not the Town of Poolesville. The drive from Martinsburg is I-81 south to I-70 east, then south toward MD 28.\n\nDickerson is not on Montgomery County's list of municipalities that add a town permit. Building permits go through the Department of Permitting Services at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. The county says an interior alteration will likely need a permit. Cabinets, floor coverings, and bathroom caulking are on the likely-no-permit list. Electrical work is on the likely-permit list. Plumbing questions go to WSSC. A well or a septic system is on the likely-permit list.\n\nAssociation rules, where a lot has them, sit outside that county list. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "Dickerson is western Montgomery County, ZIP 20842, along MD 28 toward the Potomac and the Monocacy. It is farm and village lots, not a Bethesda street and not the Town of Poolesville. The drive from Martinsburg is I-81 south to I-70 east, then south toward MD 28.\n\nCounty questions go to the Department of Permitting Services at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. We confirm the permit steps for the parcel before work starts. An interior alteration will likely need a permit. Cabinet install, repair, or replacement most likely will not. Bathroom caulking most likely will not. Electrical work likely will. Plumbing questions go to WSSC. A well or a septic system likely needs a permit.\n\nHomeowners-association rules, where a lot has them, are separate from the county guidance. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MD 28', 'ZIP 20842', 'Monocacy edge', 'Dickerson Road', 'Potomac edge'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['brookeville-md', 'potomac-md', 'kensington-md', 'bethesda-md'],
@@ -2199,7 +2199,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Dickerson, MD?',
         answer:
-          'Montgomery County Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Dickerson is not on the county list of municipalities that require a town permit in addition to the county permit.',
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'Does an interior kitchen change in Dickerson need a permit?',
@@ -2283,6 +2283,7 @@ export function areaRegionLabel(area: ServiceArea): string {
       return 'Washington County area';
     }
     if (area.slug === 'mount-airy-md') return 'Frederick and Carroll county area';
+    if (area.slug === 'woodbine-md') return 'Howard and Carroll county area';
     if (
       area.slug === 'garrett-park-md' ||
       area.slug === 'bethesda-md' ||
@@ -2298,8 +2299,7 @@ export function areaRegionLabel(area: ServiceArea): string {
     if (
       area.slug === 'west-friendship-md' ||
       area.slug === 'glenwood-md' ||
-      area.slug === 'clarksville-md' ||
-      area.slug === 'woodbine-md'
+      area.slug === 'clarksville-md'
     ) {
       return 'Howard County area';
     }

@@ -629,10 +629,11 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('frederick-md')!)).toBe('Frederick County area');
     expect(areaRegionLabel(getServiceArea('hagerstown-md')!)).toBe('Washington County area');
     expect(areaRegionLabel(getServiceArea('mount-airy-md')!)).toBe('Frederick and Carroll county area');
+    expect(areaRegionLabel(getServiceArea('woodbine-md')!)).toBe('Howard and Carroll county area');
     for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md', 'brookeville-md', 'kensington-md', 'dickerson-md']) {
       expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Montgomery County area');
     }
-    for (const slug of ['west-friendship-md', 'glenwood-md', 'clarksville-md', 'woodbine-md']) {
+    for (const slug of ['west-friendship-md', 'glenwood-md', 'clarksville-md']) {
       expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Howard County area');
     }
     expect(areaRegionLabel(getServiceArea('arlington-va')!)).toBe('Northern Virginia');

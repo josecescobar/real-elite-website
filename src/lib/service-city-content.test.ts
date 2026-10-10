@@ -1684,6 +1684,46 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       expect(text, slug).not.toMatch(siteTalk);
       expect(text, slug).not.toMatch(/town approval is still|town step is still required/i);
       expect(text, slug).not.toMatch(/MHIC|maryland license/i);
+      expect(text, slug).not.toMatch(/the same note says|the county list says/i);
     }
+  });
+
+  it('keeps Woodbine, Dickerson, and the research-note phrases inside the review fix', () => {
+    const researchVoice = /the same note says|the county list says/i;
+    const dickersonOverclaim =
+      /county permits only|not on the|extra-permit list|not listed among the municipalities/i;
+    const woodbineOverclaim =
+      /Woodbine is Howard County|Carroll County rules do not transfer|northwest Howard County/i;
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const text = [
+        entry.metaDescription,
+        ...entry.paragraphs,
+        ...(entry.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+        ...(entry.sections ?? []).flatMap((section) => section.paragraphs),
+      ].join('\n');
+      expect(text, `${service}-${city}`).not.toMatch(researchVoice);
+      if (city === 'dickerson-md') expect(text, service).not.toMatch(dickersonOverclaim);
+      if (city === 'woodbine-md') {
+        expect(text, service).not.toMatch(woodbineOverclaim);
+        expect(text, service).toMatch(/parcel/i);
+        expect(text, service).toMatch(/Carroll County/);
+      }
+    }
+    const woodbine = [
+      CITY_DATA['woodbine-md']?.description,
+      CITY_DATA['woodbine-md']?.seoDescription,
+      ...(CITY_DATA['woodbine-md']?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(woodbine).toMatch(/parcel/i);
+    expect(woodbine).toMatch(/5407 Woodbine Road/);
+    expect(woodbine).not.toMatch(woodbineOverclaim);
+    const dickerson = [
+      CITY_DATA['dickerson-md']?.description,
+      ...(CITY_DATA['dickerson-md']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(dickerson).toMatch(/confirm the permit steps for the parcel/i);
+    expect(dickerson).not.toMatch(dickersonOverclaim);
+    expect(dickerson).not.toMatch(researchVoice);
   });
 });

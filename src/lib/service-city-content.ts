@@ -4111,7 +4111,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does caulking a Brookeville bath skip the town?',
         answer:
-          'The county list says bathroom caulking most likely will not need a permit, and the same note says municipality rules are not included. An interior alteration likely needs a permit. Town questions go to 301-570-4465.',
+          'Bathroom caulking most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely needs a permit. Town questions go to 301-570-4465.',
       },
     ],
     paragraphs: [
@@ -4323,7 +4323,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does caulking a Kensington bath need the town step?',
         answer:
-          'The county list says bathroom caulking most likely will not need a permit, and the same note says municipality rules are not included. An interior alteration likely needs a permit. The parcel is checked either way.',
+          'Bathroom caulking most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely needs a permit. The parcel is checked either way.',
       },
     ],
     paragraphs: [
@@ -4384,18 +4384,18 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-woodbine-md': {
     h1: 'Kitchen Remodeling in Woodbine, MD',
     metaDescription:
-      'Kitchen remodeling in Woodbine, MD, ZIP 21797. Howard County permits through DILP. Free written estimate after a site walk.',
+      'Kitchen remodeling in Woodbine, MD, ZIP 21797. The parcel decides the county permit office. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Woodbine?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Residential building permits require electronic submission.',
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Carroll County zoning cases also list Woodbine addresses in ZIP 21797.',
       },
       {
-        question: 'Does Woodbine file in Carroll County?',
+        question: 'Is every Woodbine kitchen the same county filing?',
         answer:
-          'No. Woodbine is Howard County. Filing fees are nonrefundable and payable when the application is made. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'No. ZIP 21797 includes Woodbine addresses in Carroll County zoning cases, including 5407 Woodbine Road. Filing fees on a Howard County application are nonrefundable and payable when the application is made. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the office for the parcel before work starts.',
       },
       {
         question: 'What does kitchen remodeling in Woodbine, MD cost?',
@@ -4404,8 +4404,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Woodbine, MD is a northwest Howard County kitchen in ZIP 21797, along MD 94 toward the Carroll County line.',
-      'The county department that issues permits is DILP in Ellicott City. Residential building permits require electronic submission. A house on a private well and septic needs Health Department approval at 410-313-6300 first. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Kitchen remodeling in Woodbine, MD is a ZIP 21797 kitchen along MD 94, and the parcel decides whether the filing is Howard County or Carroll County.',
+      'A Howard County parcel uses DILP in Ellicott City. Residential building permits require electronic submission. A house on a private well and septic needs Health Department approval at 410-313-6300 first. Carroll County zoning cases include Woodbine addresses in this ZIP. We confirm the county and the permit office for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Woodbine quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -4413,13 +4413,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'bathrooms-woodbine-md': {
     h1: 'Bathroom Remodeling in Woodbine, MD',
     metaDescription:
-      'Bathroom remodeling in Woodbine, MD. Howard County DILP permits. Free written estimate after a site walk.',
+      'Bathroom remodeling in Woodbine, MD. The parcel decides the county permit office. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a bathroom remodel in Woodbine?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application. A water heater, gas or electric, needs a plumbing permit pulled by a master plumber.',
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application. A water heater, gas or electric, needs a plumbing permit pulled by a master plumber.',
       },
       {
         question: 'What does bathroom remodeling in Woodbine, MD cost?',
@@ -4427,15 +4427,15 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           'Every Woodbine bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. County filing fees are not that price.',
       },
       {
-        question: 'Is Woodbine a planned-community bath?',
+        question: 'Is every Woodbine bath the same county filing?',
         answer:
-          'No. ZIP 21797 is northwest Howard County along MD 94. A detached house there is a different room from a village unit farther south.',
+          'No. ZIP 21797 includes Woodbine addresses in Carroll County zoning cases. A Howard County parcel uses DILP in Ellicott City. We confirm the office for the parcel before work starts.',
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Woodbine, MD is a Howard County bath in ZIP 21797, and a water-heater change is a plumbing permit pulled by a master plumber.',
-      'Permits go through DILP at 3430 Courthouse Drive, Ellicott City. Residential building permits require electronic submission. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The county says the water-heater inspection is required.',
-      'Every Woodbine bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Carroll County rules do not transfer across the county line.',
+      'Bathroom remodeling in Woodbine, MD is a ZIP 21797 bath, and a water-heater change on a Howard County parcel is a plumbing permit pulled by a master plumber.',
+      'A Howard County parcel uses DILP at 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission. Carroll County zoning cases include Woodbine addresses in this ZIP. We confirm the county and the permit office for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A water-heater inspection is required on that Howard County plumbing permit.',
+      'Every Woodbine bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
 
@@ -4448,7 +4448,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Woodbine, MD?',
         answer:
-          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission.',
+          'The parcel decides. A Howard County parcel uses the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission. We confirm the office before work starts.',
       },
       {
         question: 'Are Howard County filing fees the Woodbine project price?',
@@ -4462,8 +4462,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Woodbine, MD is a lower level in northwest Howard County, ZIP 21797, along MD 94, filed with DILP rather than a town hall.',
-      'Howard County requires electronic submission for residential building permits. The office is in Ellicott City, phone 410-313-2455, option 4. A private well and septic needs Health Department approval at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Basement finishing in Woodbine, MD is a lower level in ZIP 21797 along MD 94, and the parcel decides the county permit office.',
+      'A Howard County parcel requires electronic submission for a residential building permit. That office is in Ellicott City, phone 410-313-2455, option 4. A private well and septic needs Health Department approval at 410-313-6300. Carroll County zoning cases include Woodbine addresses in this ZIP. We confirm the county and the permit office for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'A Woodbine lower level along MD 94 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -4481,7 +4481,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'DILP is at 3430 Courthouse Drive, Ellicott City, MD 21043. Residential building permits require electronic submission, and filing fees are nonrefundable and payable when the application is made. The Licenses and Permits Division number is 410-313-2455, option 4.',
+          'When the parcel is in Howard County, DILP is at 3430 Courthouse Drive, Ellicott City, MD 21043. Residential building permits require electronic submission, and filing fees are nonrefundable and payable when the application is made. The Licenses and Permits Division number is 410-313-2455, option 4. We confirm the county for the parcel before work starts.',
         ],
       },
     ],
@@ -4496,7 +4496,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Dickerson?',
         answer:
-          'Montgomery County Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Dickerson is not on the municipal extra-permit list.',
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'Does an interior kitchen change in Dickerson need a permit?',
@@ -4510,8 +4510,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Dickerson, MD is a western Montgomery County kitchen in ZIP 20842, along MD 28, with county permits only.',
-      'Dickerson is not on the county list of municipalities that add a town permit. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. A well or a septic system is on the likely-permit list. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Kitchen remodeling in Dickerson, MD is a western Montgomery County kitchen in ZIP 20842, along MD 28. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to the Department of Permitting Services in Wheaton. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Dickerson quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -4525,7 +4525,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Dickerson?',
         answer:
-          'Montgomery County Department of Permitting Services, phone 240-777-0311. Dickerson is not on the municipal extra-permit list. Plumbing questions go to WSSC.',
+          'County questions go to the Department of Permitting Services, phone 240-777-0311. We confirm the permit steps for the parcel before work starts. Plumbing questions go to WSSC.',
       },
       {
         question: 'What does bathroom remodeling in Dickerson, MD cost?',
@@ -4535,13 +4535,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does caulking a Dickerson bath need a county permit?',
         answer:
-          'The county list says bathroom caulking most likely will not need a permit. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'Bathroom caulking most likely will not need a permit. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Dickerson, MD is a Montgomery County bath in ZIP 20842. Dickerson is not on the municipal extra-permit list.',
+      'Bathroom remodeling in Dickerson, MD is a Montgomery County bath in ZIP 20842. We confirm the permit steps for the parcel before work starts.',
       'The county office is the Department of Permitting Services in Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. A well or a septic system is on the likely-permit list.',
-      'Every Dickerson bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Poolesville town rules do not transfer to a Dickerson parcel.',
+      'Every Dickerson bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
 
@@ -4554,7 +4554,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Dickerson, MD?',
         answer:
-          'Montgomery County Department of Permitting Services, phone 240-777-0311. Dickerson is not on the municipal extra-permit list. An interior alteration will likely need a permit.',
+          'County questions go to the Department of Permitting Services, phone 240-777-0311. We confirm the permit steps for the parcel before work starts. An interior alteration will likely need a permit.',
       },
       {
         question: 'What is checked before a Dickerson lower level is finished?',
@@ -4569,7 +4569,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Dickerson, MD is a lower level in western Montgomery County, ZIP 20842, and the county treats an interior alteration as work that will likely need a permit.',
-      'Dickerson is not listed among the municipalities that require a town approval in addition to the county permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. A well or a septic system is on the likely-permit list.',
+      'County questions go to 240-777-0311. We confirm the permit steps for the parcel before work starts. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. A well or a septic system likely needs a permit.',
       'A Dickerson lower level along MD 28 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -4587,7 +4587,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Dickerson is not listed among the municipalities that require a town approval in addition to the county permit.',
+          'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
         ],
       },
     ],
