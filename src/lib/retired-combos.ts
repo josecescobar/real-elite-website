@@ -1,11 +1,16 @@
 /**
  * Tier C: service+area pages retired on 2026-09-18, and where each one goes.
  *
- * §3.3 of docs/site-altitude-architecture-2026-09-18.md. These ten combos had
- * ZERO mobile Search Console impressions in six months AND no Ads row in any
- * trade — three towns that show no reported demand for anything, plus Burke's
+ * §3.3 of docs/site-altitude-architecture-2026-09-18.md. The original ten
+ * combos had ZERO mobile Search Console impressions in six months AND no Ads
+ * row in any trade — three towns that showed no reported demand, plus Burke's
  * basement page (Burke keeps its kitchen and bathroom combos at 10/mo apiece,
  * tiny but reported).
+ *
+ * Clifton and Fairfax Station kitchens, bathrooms, and basements left this
+ * map on 2026-10-10. Jose directed those six pages published again (REA-2451).
+ * Middleburg bathrooms and basements, Burke basements, and Hagerstown's five
+ * combos stay retired.
  *
  * McLean was in an earlier draft of this list and was WITHDRAWN: it has an Ads
  * row for all three trades — basements 30/mo, kitchens 260, bathrooms 140.
@@ -59,16 +64,6 @@
  * it rather than a comment asking nicely.
  */
 export const RETIRED_COMBOS: Readonly<Record<string, string>> = {
-  // Clifton, VA — zero impressions across all three trades.
-  'basements-clifton-va': '/services/basements/northern-virginia',
-  'bathrooms-clifton-va': '/service-areas/clifton-va',
-  'kitchens-clifton-va': '/service-areas/clifton-va',
-
-  // Fairfax Station, VA — zero impressions across all three trades.
-  'basements-fairfax-station-va': '/services/basements/northern-virginia',
-  'bathrooms-fairfax-station-va': '/service-areas/fairfax-station-va',
-  'kitchens-fairfax-station-va': '/service-areas/fairfax-station-va',
-
   // Middleburg, VA — bathrooms and basements stay retired. The kitchen
   // page is published again (REA-2344).
   'basements-middleburg-va': '/services/basements/northern-virginia',
