@@ -1488,4 +1488,55 @@ describe('REA-2385 round 6 Tier A towns', () => {
       expect(text, city).toMatch(pattern);
     }
   });
+
+  it('keeps the new copy off the site and off the copied basement tiers', () => {
+    const siteTalk =
+      /own pages|has its own page|county hub|no fee is copied|copied here|left out|not repeated here|nokesville's page|cost guide/i;
+    const tiers = /\$65,000|\$85,000|\$110,000|\$150,000|\$300,000|mayflower/i;
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const text = [
+        entry.metaDescription,
+        ...entry.paragraphs,
+        ...(entry.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+        ...(entry.sections ?? []).flatMap((section) => [
+          section.title,
+          ...section.paragraphs,
+          ...(section.links ?? []).map((link) => link.label),
+        ]),
+      ].join('\n');
+      expect(text, `${service}-${city}`).not.toMatch(siteTalk);
+      if (service === 'basements') {
+        expect(text, city).toMatch(/\$55,000/);
+        expect(text, city).toMatch(/free written estimate after a site walk/i);
+        expect(text, city).not.toMatch(tiers);
+      }
+    }
+    for (const slug of [
+      'garrett-park-md',
+      'bethesda-md',
+      'arlington-va',
+      'potomac-md',
+      'cabin-john-md',
+      'west-friendship-md',
+      'chevy-chase-md',
+      'catharpin-va',
+    ]) {
+      const area = CITY_DATA[slug];
+      const text = [
+        area?.description,
+        ...(area?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ].join('\n');
+      expect(text, slug).not.toMatch(siteTalk);
+      expect(text, slug).not.toMatch(/town approval is still|town step is still required/i);
+    }
+    const garrettKitchen = CONTENT['kitchens-garrett-park-md']!;
+    const garrettCabinet = [
+      ...garrettKitchen.paragraphs,
+      ...garrettKitchen.faqs!.flatMap((faq) => [faq.question, faq.answer]),
+      CITY_DATA['garrett-park-md']?.faqs?.map((faq) => faq.answer).join('\n'),
+    ].join('\n');
+    expect(garrettCabinet).toMatch(/only when the scope/i);
+    expect(garrettCabinet).not.toMatch(/town step is still required|town approval is still a separate step/i);
+  });
 });

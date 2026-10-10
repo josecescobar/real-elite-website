@@ -1747,7 +1747,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does a cabinet replacement in Garrett Park need a county permit?',
         answer:
-          'The county home-improvements list says installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. The town approval is still a separate step, and a homeowners association has its own rules.',
+          'The county home-improvements list says installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. That county list does not cover municipal rules. A town approval applies only when the scope and Garrett Park\'s rules require it. A homeowners association has its own rules.',
       },
       {
         question: 'What does remodeling in Garrett Park cost?',
@@ -1803,7 +1803,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Do ZIPs 22207, 22205, and 22213 use a different county?',
         answer:
-          'No. They are Arlington County ZIPs. A Falls Church or Alexandria mailing address is a different jurisdiction and has its own page.',
+          'No. They are Arlington County ZIPs. A Falls Church or Alexandria mailing address is a different jurisdiction and a different permit office.',
       },
       {
         question: 'What does remodeling in Arlington cost?',
@@ -1874,7 +1874,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in West Friendship, MD, ZIP 21794. Howard County permits through DILP in Ellicott City. Free written estimate after a site walk.',
     description:
-      "West Friendship is western Howard County, ZIP 21794, along MD 32 between the Frederick County line and the more suburban county to the east. Houses are detached homes on rural and semi-rural lots, not a Columbia village and not a Frederick city street. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 32.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes. The office on the county page is 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. The Licenses and Permits Division publishes the same number, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. The resources page lists separate electrical, plumbing, and mechanical permit applications. Fee amounts stay on the county fee schedule. They are not repeated here.\n\nElectrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "West Friendship is western Howard County, ZIP 21794, along MD 32 between the Frederick County line and the more suburban county to the east. Houses are detached homes on rural and semi-rural lots, not a Columbia village and not a Frederick city street. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 32.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes. The office on the county page is 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. The Licenses and Permits Division publishes the same number, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. The resources page lists separate electrical, plumbing, and mechanical permit applications. Fee amounts stay on the county fee schedule.\n\nElectrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MD 32', 'ZIP 21794', 'Triadelphia Road', 'West of MD 32', 'Frederick County line'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['frederick-md', 'mount-airy-md', 'ijamsville-md', 'monrovia-md'],
@@ -1887,7 +1887,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does West Friendship use the Frederick County permit office?',
         answer:
-          'No. West Friendship is Howard County. Frederick County towns have their own pages. The Howard County counter is in Ellicott City.',
+          'No. West Friendship is Howard County. A Frederick County town uses a different permit office. The Howard County counter is in Ellicott City.',
       },
       {
         question: 'What does remodeling in West Friendship cost?',
@@ -1930,7 +1930,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Catharpin, VA, ZIP 20143. Prince William County building permits. Free written estimate after a site walk.',
     description:
-      "Catharpin is western Prince William County, ZIP 20143, on the rural side of the county toward Route 15 and Catharpin Road. It is not Haymarket's incorporated village and it is not a Gainesville subdivision. The county hub already named this ZIP as its own place. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south.\n\nBuilding permits are issued by the Prince William County Building Development Division. The division phone on the county pages is (703) 792-4311. Residential projects on those pages are one-family and two-family dwellings and townhouses. The county says a permit is always required for finishing a basement, for an addition, and for removing or altering structural members or altering plumbing, electrical, or heating and air conditioning. Installation or replacement of cabinetry or trim does not require a permit. Replacing existing plumbing fixtures does not, when the supply and the drain, waste, and vent stay as they are.\n\nZoning approval is a separate counter for exterior work and for a secondary food-preparation area in a basement. An association covenant is not a county permit. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+      "Catharpin is western Prince William County, ZIP 20143, on the rural side of the county toward Route 15 and Catharpin Road. It is not Haymarket's incorporated village and it is not a Gainesville subdivision. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south.\n\nBuilding permits are issued by the Prince William County Building Development Division. The division phone is (703) 792-4311. Residential projects are one-family and two-family dwellings and townhouses. The county says a permit is always required for finishing a basement, for an addition, and for removing or altering structural members or altering plumbing, electrical, or heating and air conditioning. Installation or replacement of cabinetry or trim does not require a permit. Replacing existing plumbing fixtures does not, when the supply and the drain, waste, and vent stay as they are.\n\nZoning approval is a separate counter for exterior work and for a secondary food-preparation area in a basement. An association covenant is not a county permit. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
     neighborhoods: ['Catharpin Road', 'Route 15', 'ZIP 20143', 'Waterfall Road', 'John Marshall Highway', 'Aden Road edge'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['haymarket-va', 'gainesville-va', 'nokesville-va', 'bristow-va'],
@@ -1938,7 +1938,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Catharpin, VA?',
         answer:
-          'Prince William County Building Development Division, phone (703) 792-4311. Catharpin is not an incorporated town with its own building department on the county pages.',
+          'Prince William County Building Development Division, phone (703) 792-4311. Catharpin is not an incorporated town with its own building department.',
       },
       {
         question: 'Does finishing a basement in Catharpin need a permit?',
