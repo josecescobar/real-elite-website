@@ -654,17 +654,12 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Are you a general contractor in Martinsburg, WV?',
         answer:
-          'Yes. This page is for general contractor Martinsburg WV. Real Elite Contracting is based in Martinsburg. WV Contractor License WV062432. Virginia Class A Contractor 2705198604 covers residential work in Virginia. The written estimate names the scope before any work starts.',
+          'Yes. Real Elite Contracting is based in Martinsburg. WV Contractor License WV062432. Virginia Class A Contractor 2705198604 covers residential work in Virginia. The written estimate names the scope before any work starts.',
       },
       {
-        question: 'Which Martinsburg services have their own pages?',
+        question: 'Which services do you offer in Martinsburg?',
         answer:
-          'Kitchens, bathrooms, decks, roofing, basements, additions, siding, and remodeling each link from this page when that Martinsburg page is published. Deck builders Martinsburg WV is the decks page, not this overview.',
-      },
-      {
-        question: 'Do you list Martinsburg project photos on this page?',
-        answer:
-          'Only jobs that are already published on the projects page. A draft photo is not treated as a finished Martinsburg project here.',
+          'Kitchens, bathrooms, decks, roofing, basements, additions, siding, and remodeling.',
       },
     ],
     description:
@@ -716,7 +711,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'shepherdstown-wv': {
     description:
-      "Shepherdstown is the oldest town in West Virginia, founded in 1762, and home to Shepherd University. German Street is the historic commercial corridor. Inside the corporation, a project permit comes from the Town at Town Hall, 104 North King Street. Much of the town is in a historic district, and exterior work there needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. A Shepherdstown mailing address is not automatically inside the corporation. Outside town limits, Jefferson County Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. That office lists remodeling, additions, and finished basements among the work that needs a county permit. The drive from Martinsburg is Route 45 east. The remodeling this page is for is kitchens, bathrooms, basements, and roofing on older houses.",
+      'Shepherdstown is the oldest town in West Virginia, founded in 1762, and home to Shepherd University. German Street is the historic commercial corridor. Inside the corporation, a project permit comes from the Town at Town Hall, 104 North King Street. Much of the town is in a historic district, and exterior work there needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. A Shepherdstown mailing address is not automatically inside the corporation. Outside town limits, Jefferson County Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. That office requires a county permit for remodeling, additions, and finished basements. The drive from Martinsburg is Route 45 east. Real Elite remodels kitchens, bathrooms, basements, and roofing on older houses.',
     neighborhoods: ['Historic Downtown', 'German Street', 'University Area', 'Potomac Riverfront', 'Shepherd Grade Road Area'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'roofing', 'decks'],
     nearbySlugs: ['charles-town-wv', 'martinsburg-wv', 'sharpsburg-md', 'berryville-va', 'harpers-ferry-wv', 'kearneysville-wv'],
@@ -729,7 +724,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does a Shepherdstown mailing address mean the town permit office?',
         answer:
-          'No. Outside the corporation, Jefferson County Office of Building Permits and Inspections takes the permit at 116 East Washington Street, Suite 100, in Charles Town. Phone (304) 725-2998. That office lists remodeling, additions, and finished basements among the work that needs a county permit. Applications are not taken in after 4:30 p.m.',
+          'No. Outside the corporation, Jefferson County Office of Building Permits and Inspections takes the permit at 116 East Washington Street, Suite 100, in Charles Town. Phone (304) 725-2998. That office requires a county permit for remodeling, additions, and finished basements. Applications are not taken in after 4:30 p.m.',
       },
       {
         question: 'Does the historic certificate apply to every Shepherdstown ZIP?',
@@ -815,7 +810,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'monrovia-md': {
     description:
-      'Monrovia is an unincorporated place in eastern Frederick County, on MD 75 between the I-70 interchange and New Market. It is not a town, and it does not have a municipal permit office. Building permits go through Frederick County Department of Permits and Inspections at 30 North Market Street in Frederick. The houses are a mix of newer subdivisions off MD 75 and older lots closer to the pike. The drive from Martinsburg is I-81 south to I-70 east, then MD 75. Downtown Frederick is a short hop west on I-70. The remodeling this page is for is kitchens, bathrooms, basements, and roofing.',
+      'Monrovia is an unincorporated place in eastern Frederick County, on MD 75 between the I-70 interchange and New Market. It is not a town, and it does not have a municipal permit office. Building permits go through Frederick County Department of Permits and Inspections at 30 North Market Street in Frederick. The houses are a mix of newer subdivisions off MD 75 and older lots closer to the pike. The drive from Martinsburg is I-81 south to I-70 east, then MD 75. Downtown Frederick is a short hop west on I-70. Real Elite remodels kitchens, bathrooms, basements, and roofing.',
     neighborhoods: ['MD 75 corridor', 'I-70 interchange', 'Green Valley Road', 'East of New Market'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'roofing'],
     nearbySlugs: ['frederick-md', 'new-market-md', 'ijamsville-md', 'charles-town-wv'],
@@ -834,7 +829,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'ijamsville-md': {
     description:
-      'Ijamsville is an unincorporated community in Frederick County along MD 80, between Frederick and the Urbana and New Market growth corridor. It is not a municipality. Building permits go through Frederick County Department of Permits and Inspections, not a town hall. Houses sit on older rural lots and on newer subdivisions off MD 80 and MD 75. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 75 or MD 80. Frederick is west. Urbana is south, toward I-270. The remodeling this page is for is bathrooms, kitchens, basements, and additions.',
+      'Ijamsville is an unincorporated community in Frederick County along MD 80, between Frederick and the Urbana and New Market growth corridor. It is not a municipality. Building permits go through Frederick County Department of Permits and Inspections, not a town hall. Houses sit on older rural lots and on newer subdivisions off MD 80 and MD 75. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 75 or MD 80. Frederick is west. Urbana is south, toward I-270. Real Elite remodels bathrooms, kitchens, basements, and additions.',
     neighborhoods: ['MD 80 corridor', 'MD 75 south of I-70', 'West of Urbana', 'East of Ballenger Creek'],
     marketEmphasis: ['bathrooms', 'kitchens', 'basements', 'additions'],
     nearbySlugs: ['frederick-md', 'urbana-md', 'monrovia-md', 'martinsburg-wv'],
@@ -845,7 +840,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
           'No. Ijamsville is unincorporated Frederick County. A Frederick mailing address does not put the parcel in the city permit office.',
       },
       {
-        question: 'Which road is the Ijamsville page about?',
+        question: 'Which road is Ijamsville on?',
         answer:
           'MD 80, between Frederick and the Urbana and New Market corridor, with MD 75 as the north-south connector to I-70.',
       },
@@ -853,7 +848,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'new-market-md': {
     description:
-      'New Market is an incorporated town in eastern Frederick County, on the Old National Pike just south of I-70. Main Street is the historic pike, not a county subdivision road. Zoning for work inside town limits is a municipal step before the Frederick County building permit. The county says a zoning certificate for a property in a municipality is applied for before the building-permit application at the Department of Permits and Inspections. The City of Frederick and Mount Airy are the municipalities that issue their own building permits. New Market is not on that list. The drive from Martinsburg is I-81 south to I-70 east. Frederick is a short drive west on I-70. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older pike houses and the newer lots around town.',
+      'New Market is an incorporated town in eastern Frederick County, on the Old National Pike just south of I-70. Main Street is the historic pike, not a county subdivision road. Zoning for work inside town limits is a municipal step before the Frederick County building permit. The county says a zoning certificate for a property in a municipality is applied for before the building-permit application at the Department of Permits and Inspections. The City of Frederick and Mount Airy are the municipalities that issue their own building permits. New Market is not on that list. The drive from Martinsburg is I-81 south to I-70 east. Frederick is a short drive west on I-70. Real Elite remodels kitchens, bathrooms, roofing, and additions on the older pike houses and the newer lots around town.',
     neighborhoods: ['Old National Pike', 'Main Street', 'I-70 east of Frederick', 'Town limits'],
     marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
     nearbySlugs: ['frederick-md', 'monrovia-md', 'mount-airy-md', 'martinsburg-wv'],
@@ -872,7 +867,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'urbana-md': {
     description:
-      'Urbana is an unincorporated planned community in southern Frederick County, along I-270 and MD 355 south of the city. It is not a town. A Frederick mailing address does not make a parcel part of the City of Frederick, and it does not send the permit to the city office. Building permits go through Frederick County Department of Permits and Inspections. Villages of Urbana and the subdivisions along MD 355 commonly have an HOA architectural review in addition to the county permit. A county permit is not HOA approval. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south. Downtown Frederick is north on I-270. The remodeling this page is for is bathrooms, kitchens, basements, and decks in the villages along MD 355.',
+      'Urbana is an unincorporated planned community in southern Frederick County, along I-270 and MD 355 south of the city. It is not a town. A Frederick mailing address does not make a parcel part of the City of Frederick, and it does not send the permit to the city office. Building permits go through Frederick County Department of Permits and Inspections. Villages of Urbana and the subdivisions along MD 355 commonly have an HOA architectural review in addition to the county permit. A county permit is not HOA approval. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south. Downtown Frederick is north on I-270. Real Elite remodels bathrooms, kitchens, basements, and decks in the villages along MD 355.',
     neighborhoods: ['Villages of Urbana', 'MD 355', 'I-270 south of Frederick', 'Worthington Boulevard'],
     marketEmphasis: ['bathrooms', 'kitchens', 'basements', 'decks'],
     nearbySlugs: ['frederick-md', 'ijamsville-md', 'adamstown-md', 'charles-town-wv'],
@@ -891,7 +886,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'mount-airy-md': {
     description:
-      'Mount Airy is an incorporated town on the Frederick and Carroll county line, at I-70 and MD 27. Town limits include parcels in both counties. The town’s permit page says that, except for signs, fences, driveways, banners, and zoning certificates, building-permit review for work inside town limits — including the Frederick County side — goes through the Carroll County Bureau of Permits and Inspections in Westminster, after a town zoning review. That is not the Frederick County counter at 30 North Market Street, and it is not the City of Frederick’s office. The drive from Martinsburg is I-81 south to I-70 east. Frederick is west on I-70. New Market is the last Frederick County town before the line. The remodeling this page is for is kitchens, bathrooms, additions, and roofing.',
+      'Mount Airy is an incorporated town on the Frederick and Carroll county line, at I-70 and MD 27. Town limits include parcels in both counties. Except for signs, fences, driveways, banners, and zoning certificates, building-permit review for work inside town limits — including the Frederick County side — goes through the Carroll County Bureau of Permits and Inspections in Westminster, after a town zoning review. That is not the Frederick County counter at 30 North Market Street, and it is not the City of Frederick’s office. The drive from Martinsburg is I-81 south to I-70 east. Frederick is west on I-70. New Market is the last Frederick County town before the line. Real Elite remodels kitchens, bathrooms, additions, and roofing.',
     neighborhoods: ['I-70 and MD 27', 'Main Street', 'Frederick County side of town', 'Carroll County side of town'],
     marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'roofing'],
     nearbySlugs: ['frederick-md', 'new-market-md', 'martinsburg-wv'],
@@ -910,7 +905,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'middletown-md': {
     description:
-      'Middletown, Maryland is an incorporated town in western Frederick County, on US 40 Alternate in the valley between Catoctin Mountain and South Mountain. This is not Middletown, Virginia. The municipal center is on West Main Street. Zoning inside town limits is a town step before the Frederick County building permit. The county’s municipality list names Middletown separately from the City of Frederick, which issues its own building permits. The drive from Martinsburg is I-81 south to I-70 east, then US 40 Alternate west from Frederick. Boonsboro is the next town west, over South Mountain on the same pike, in Washington County. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older Main Street houses and the lots along the valley.',
+      'Middletown, Maryland is an incorporated town in western Frederick County, on US 40 Alternate in the valley between Catoctin Mountain and South Mountain. This is not Middletown, Virginia. The municipal center is on West Main Street. Zoning inside town limits is a town step before the Frederick County building permit. The county’s municipality list names Middletown separately from the City of Frederick, which issues its own building permits. The drive from Martinsburg is I-81 south to I-70 east, then US 40 Alternate west from Frederick. Boonsboro is the next town west, over South Mountain on the same pike, in Washington County. Real Elite remodels kitchens, bathrooms, roofing, and additions on the older Main Street houses and the lots along the valley.',
     neighborhoods: ['West Main Street', 'US 40 Alternate', 'Valley between the mountains', 'East of South Mountain'],
     marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
     nearbySlugs: ['frederick-md', 'boonsboro-md', 'shepherdstown-wv'],
@@ -918,7 +913,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Is this Middletown, Virginia?',
         answer:
-          'No. This page is Middletown, Maryland, on US 40 Alternate in Frederick County. Middletown, Virginia is a different town and a different page.',
+          'No. Middletown, Maryland is on US 40 Alternate in Frederick County. Middletown, Virginia is a different town.',
       },
       {
         question: 'Who permits work inside Middletown, Maryland?',
@@ -929,7 +924,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'adamstown-md': {
     description:
-      'Adamstown is an unincorporated community in southern Frederick County, along MD 85 south of Ballenger Creek and Buckeystown. It is not a town. Building permits go through Frederick County Department of Permits and Inspections. The MARC Brunswick Line stops here, and the houses are older village lots plus newer subdivisions off MD 85. Point of Rocks and Brunswick are farther south along the Potomac. The drive from Martinsburg is I-81 south to I-70 east into Frederick, then MD 85 south. The remodeling this page is for is bathrooms, kitchens, basements, and roofing.',
+      'Adamstown is an unincorporated community in southern Frederick County, along MD 85 south of Ballenger Creek and Buckeystown. It is not a town. Building permits go through Frederick County Department of Permits and Inspections. The MARC Brunswick Line stops here, and the houses are older village lots plus newer subdivisions off MD 85. Point of Rocks and Brunswick are farther south along the Potomac. The drive from Martinsburg is I-81 south to I-70 east into Frederick, then MD 85 south. Real Elite remodels bathrooms, kitchens, basements, and roofing.',
     neighborhoods: ['MD 85', 'MARC Brunswick Line stop', 'South of Buckeystown', 'Ballenger Creek to the Potomac'],
     marketEmphasis: ['bathrooms', 'kitchens', 'basements', 'roofing'],
     nearbySlugs: ['frederick-md', 'point-of-rocks-md', 'brunswick-md', 'charles-town-wv'],
@@ -948,18 +943,18 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'point-of-rocks-md': {
     description:
-      'Point of Rocks is an unincorporated community in southern Frederick County where US 15 meets the Potomac. The railroad bridge and the MARC station sit at the river. It is not a municipality. Building permits go through Frederick County Department of Permits and Inspections. The US 15 bridge crosses into Loudoun County, Virginia. The Maryland side of the village is still Frederick County. Brunswick is the next incorporated city east along the river. Charles Town, West Virginia is the nearby page across the Potomac via US 340. The drive from Martinsburg is Route 9 to Charles Town, then US 340 east, or I-81 south to I-70 east and down US 15. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older river-village houses.',
+      'Point of Rocks is an unincorporated community in southern Frederick County where US 15 meets the Potomac. The railroad bridge and the MARC station sit at the river. It is not a municipality. Building permits go through Frederick County Department of Permits and Inspections. The US 15 bridge crosses into Loudoun County, Virginia. The Maryland side of the village is still Frederick County. Brunswick is the next incorporated city east along the river. Charles Town, West Virginia is nearby across the Potomac via US 340. The drive from Martinsburg is Route 9 to Charles Town, then US 340 east, or I-81 south to I-70 east and down US 15. Real Elite remodels kitchens, bathrooms, roofing, and additions on the older river-village houses.',
     neighborhoods: ['US 15 at the Potomac', 'MARC station', 'Point of Rocks bridge', 'River village'],
     marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
     nearbySlugs: ['frederick-md', 'brunswick-md', 'charles-town-wv'],
     faqs: [
       {
-        question: 'Does the Virginia side of the Point of Rocks bridge use this page?',
+        question: 'Is the Virginia side of the Point of Rocks bridge in Frederick County?',
         answer:
-          'No. The bridge crosses into Loudoun County, Virginia. This page is the Maryland village, and the permit office is Frederick County.',
+          'No. The bridge crosses into Loudoun County, Virginia. The Maryland village is in Frederick County, and Frederick County is the permit office.',
       },
       {
-        question: 'Which West Virginia page is closest?',
+        question: 'Which West Virginia town is closest?',
         answer:
           'Charles Town, via US 340. Brunswick is the next Maryland city along the river.',
       },
@@ -967,7 +962,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'brunswick-md': {
     description:
-      'Brunswick is an incorporated city in southern Frederick County, on the Potomac along US 340, with a MARC station on the Brunswick Line. It is not unincorporated county. The city’s planning office takes the municipal application. The county’s municipality sheet lists Brunswick separately from the City of Frederick, which issues its own building permits. Zoning inside the city is a municipal step before the Frederick County building permit. Charles Town, West Virginia is the next city west on US 340. Point of Rocks is east along the river. The drive from Martinsburg is Route 9 to Charles Town, then US 340 east. The remodeling this page is for is kitchens, bathrooms, roofing, and additions.',
+      'Brunswick is an incorporated city in southern Frederick County, on the Potomac along US 340, with a MARC station on the Brunswick Line. It is not unincorporated county. The city’s planning office takes the municipal application. The county’s municipality sheet lists Brunswick separately from the City of Frederick, which issues its own building permits. Zoning inside the city is a municipal step before the Frederick County building permit. Charles Town, West Virginia is the next city west on US 340. Point of Rocks is east along the river. The drive from Martinsburg is Route 9 to Charles Town, then US 340 east. Real Elite remodels kitchens, bathrooms, roofing, and additions.',
     neighborhoods: ['US 340', 'MARC Brunswick station', 'Potomac riverfront', 'Downtown Brunswick'],
     marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
     nearbySlugs: ['frederick-md', 'point-of-rocks-md', 'charles-town-wv', 'shepherdstown-wv'],
@@ -986,7 +981,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'hagerstown-md': {
     description:
-      'Hagerstown is the county seat of Washington County and the largest city in Maryland’s Cumberland Valley, at the crossing of I-81 and I-70. The city issues its own building permits. That is a different office from Washington County’s Division of Permits and Inspections, which covers the county outside the city, and a different sequence from Boonsboro, Funkstown, and Williamsport, where the town zones and the county reviews the building code. A Hagerstown mailing address is not always inside the city. Williamsport is south on US 11. Boonsboro is east on US 40 Alternate. Falling Waters and Martinsburg, West Virginia are south and southwest on I-81. The drive from Martinsburg is I-81 south, about half an hour. The remodeling this page is for is kitchens, bathrooms, basements, roofing, and additions.',
+      'Hagerstown is the county seat of Washington County and the largest city in Maryland’s Cumberland Valley, at the crossing of I-81 and I-70. The city issues its own building permits. That is a different office from Washington County’s Division of Permits and Inspections, which covers the county outside the city, and a different sequence from Boonsboro, Funkstown, and Williamsport, where the town zones and the county reviews the building code. A Hagerstown mailing address is not always inside the city. Williamsport is south on US 11. Boonsboro is east on US 40 Alternate. Falling Waters and Martinsburg, West Virginia are south and southwest on I-81. The drive from Martinsburg is I-81 south, about half an hour. Real Elite remodels kitchens, bathrooms, basements, roofing, and additions.',
     neighborhoods: ['Downtown Hagerstown', 'I-81 and I-70', 'US 11 south toward Williamsport', 'East end toward US 40 Alternate'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'roofing', 'additions'],
     nearbySlugs: ['frederick-md', 'williamsport-md', 'boonsboro-md', 'falling-waters-wv', 'martinsburg-wv'],
@@ -1005,7 +1000,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'boonsboro-md': {
     description:
-      'Boonsboro is an incorporated town in Washington County, at the west foot of South Mountain on US 40 Alternate, the old National Pike. It is not in Frederick County. Washington County’s permit arrangement for Boonsboro, Funkstown, and Williamsport is town zoning first, then building-code review by the county Division of Permits and Inspections at 80 West Baltimore Street in Hagerstown, then issuance by the town. The City of Hagerstown runs its own permit office and is a different process. Middletown is the next town east, over the mountain, in Frederick County. Shepherdstown, West Virginia is south toward the Potomac. The drive from Martinsburg is I-81 south to I-70 east, then south toward US 40 Alternate. The remodeling this page is for is kitchens, bathrooms, roofing, and decks.',
+      'Boonsboro is an incorporated town in Washington County, at the west foot of South Mountain on US 40 Alternate, the old National Pike. It is not in Frederick County. Washington County’s permit arrangement for Boonsboro, Funkstown, and Williamsport is town zoning first, then building-code review by the county Division of Permits and Inspections at 80 West Baltimore Street in Hagerstown, then issuance by the town. The City of Hagerstown runs its own permit office and is a different process. Middletown is the next town east, over the mountain, in Frederick County. Shepherdstown, West Virginia is south toward the Potomac. The drive from Martinsburg is I-81 south to I-70 east, then south toward US 40 Alternate. Real Elite remodels kitchens, bathrooms, roofing, and decks.',
     neighborhoods: ['US 40 Alternate', 'Main Street', 'West foot of South Mountain', 'South toward MD 67'],
     marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'decks'],
     nearbySlugs: ['frederick-md', 'middletown-md', 'hagerstown-md', 'shepherdstown-wv'],
@@ -1018,13 +1013,13 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'What is on the other side of South Mountain?',
         answer:
-          'Middletown, Maryland, on the same US 40 Alternate pike, in Frederick County. This page does not cover that town.',
+          'Middletown, Maryland, on the same US 40 Alternate pike, in Frederick County.',
       },
     ],
   },
   'sharpsburg-md': {
     description:
-      'Sharpsburg is an incorporated town in southern Washington County, on the high ground above the Potomac, beside Antietam National Battlefield. MD 34 is Main Street. MD 65 is the road north toward the battlefield and Hagerstown. Sharpsburg is not one of the three towns — Boonsboro, Funkstown, and Williamsport — whose permit sequence the county describes as town zoning, county code review, and town issuance. Confirm town zoning with Sharpsburg before assuming a county-only permit. The county permit office is in Hagerstown. Shepherdstown, West Virginia is a short drive west on MD 34 across the river. Boonsboro is north. The drive from Martinsburg is I-81 south toward MD 65, or Route 9 to Shepherdstown and east on MD 34. The remodeling this page is for is kitchens, bathrooms, roofing, and additions on the older village houses.',
+      'Sharpsburg is an incorporated town in southern Washington County, on the high ground above the Potomac, beside Antietam National Battlefield. MD 34 is Main Street. MD 65 is the road north toward the battlefield and Hagerstown. Sharpsburg is not one of the three towns — Boonsboro, Funkstown, and Williamsport — whose permit sequence the county describes as town zoning, county code review, and town issuance. Confirm town zoning with Sharpsburg before assuming a county-only permit. The county permit office is in Hagerstown. Shepherdstown, West Virginia is a short drive west on MD 34 across the river. Boonsboro is north. The drive from Martinsburg is I-81 south toward MD 65, or Route 9 to Shepherdstown and east on MD 34. Real Elite remodels kitchens, bathrooms, roofing, and additions on the older village houses.',
     neighborhoods: ['MD 34 Main Street', 'MD 65', 'Antietam battlefield edge', 'Potomac side of town'],
     marketEmphasis: ['kitchens', 'bathrooms', 'roofing', 'additions'],
     nearbySlugs: ['frederick-md', 'boonsboro-md', 'shepherdstown-wv'],
@@ -1043,7 +1038,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'williamsport-md': {
     description:
-      'Williamsport is an incorporated town in Washington County, where the Conococheague Creek meets the Potomac and the C&O Canal, just south of Hagerstown on US 11 and I-81. Like Boonsboro and Funkstown, the county’s published sequence is town zoning approval, then building-code review at the county annex in Hagerstown, then issuance by the town. The City of Hagerstown issues its own permits and is not this process. Falling Waters, West Virginia is the next community south on I-81, across the state line. The drive from Martinsburg is I-81 south, past Falling Waters. The remodeling this page is for is kitchens, bathrooms, basements, and roofing.',
+      'Williamsport is an incorporated town in Washington County, where the Conococheague Creek meets the Potomac and the C&O Canal, just south of Hagerstown on US 11 and I-81. Like Boonsboro and Funkstown, the county’s published sequence is town zoning approval, then building-code review at the county annex in Hagerstown, then issuance by the town. The City of Hagerstown issues its own permits and is not this process. Falling Waters, West Virginia is the next community south on I-81, across the state line. The drive from Martinsburg is I-81 south, past Falling Waters. Real Elite remodels kitchens, bathrooms, basements, and roofing.',
     neighborhoods: ['US 11', 'I-81 south of Hagerstown', 'Conococheague Creek', 'C&O Canal'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'roofing'],
     nearbySlugs: ['frederick-md', 'hagerstown-md', 'falling-waters-wv'],
@@ -1070,13 +1065,13 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'leesburg-va': {
     description:
-      "Leesburg is Loudoun County's seat and an incorporated town. Town limits cover Old Town and the streets around it. A Leesburg mailing address is not Town zoning: Lansdowne and River Creek sit in unincorporated county and have their own pages. Exterior work in the Old and Historic District goes through the Town Board of Architectural Review. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The drive from Martinsburg is Route 9, which meets Route 7 in Leesburg. The remodeling this page is for is kitchens, primary suites, finished lower levels, additions, and outdoor living.",
+      "Leesburg is Loudoun County's seat and an incorporated town. Town limits cover Old Town and the streets around it. A Leesburg mailing address is not Town zoning: Lansdowne and River Creek sit in unincorporated county. Exterior work in the Old and Historic District goes through the Town Board of Architectural Review. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The drive from Martinsburg is Route 9, which meets Route 7 in Leesburg. Real Elite remodels kitchens, primary suites, finished lower levels, additions, and outdoor living.",
     neighborhoods: ['Historic Old Town Leesburg', 'West of Route 15', 'Lansdowne on the Potomac', 'River Creek'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'ashburn-va': {
     description:
-      "Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC, and nearly every master-planned community also requires HOA architectural review. A county permit is not HOA approval. Most of the housing is 1990s through 2010s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. Brambleton, Broadlands, Ashburn Farm, One Loudoun, Loudoun Valley Estates, and Belmont Greene are the communities this page covers. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      'Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC, and nearly every master-planned community also requires HOA architectural review. A county permit is not HOA approval. Most of the housing is 1990s through 2010s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. Brambleton, Broadlands, Ashburn Farm, One Loudoun, Loudoun Valley Estates, and Belmont Greene are the communities we serve in Ashburn. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.',
     neighborhoods: ['Brambleton', 'Broadlands', 'Ashburn Farm', 'One Loudoun', 'Loudoun Valley Estates', 'Belmont Greene'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
@@ -1111,7 +1106,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'loudoun-county-va': {
     description:
-      "Loudoun County is two remodeling markets. Eastern communities such as Ashburn, Lansdowne, South Riding, and Sterling are mostly 1990s–2010s houses on public water and sewer. Exterior work there also needs HOA architectural review, and many basements were left unfinished. Western and southern places — Purcellville, Round Hill, Hamilton, Lovettsville, Waterford, and Aldie — are older village houses or custom homes on acreage, often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Waterford and Aldie sit in county historic districts, so exterior changes need a Certificate of Appropriateness from the Historic District Review Committee. Incorporated towns, including Leesburg, Purcellville, Hamilton, Round Hill, Lovettsville, and Middleburg, approve their own zoning before the county issues the building permit. County deck review still has a published fast path (Typical Deck Detail, $265) and a full-plan path at $395 when a roof or screen is added; the county treats a screened porch as an addition. The drive from Martinsburg is Route 9 to Leesburg, then Route 7. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      'Loudoun County is two remodeling markets. Eastern communities such as Ashburn, Lansdowne, South Riding, and Sterling are mostly 1990s–2010s houses on public water and sewer. Exterior work there also needs HOA architectural review, and many basements were left unfinished. Western and southern places — Purcellville, Round Hill, Hamilton, Lovettsville, Waterford, and Aldie — are older village houses or custom homes on acreage, often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Waterford and Aldie sit in county historic districts, so exterior changes need a Certificate of Appropriateness from the Historic District Review Committee. Incorporated towns, including Leesburg, Purcellville, Hamilton, Round Hill, Lovettsville, and Middleburg, approve their own zoning before the county issues the building permit. County deck review still has a published fast path (Typical Deck Detail, $265) and a full-plan path at $395 when a roof or screen is added; the county treats a screened porch as an addition. The drive from Martinsburg is Route 9 to Leesburg, then Route 7. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.',
     neighborhoods: ['Purcellville', 'Round Hill', 'Waterford', 'Aldie', 'Lansdowne', 'South Riding', 'Sterling', 'Hamilton', 'Lovettsville', 'Leesburg', 'Ashburn'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
@@ -1119,7 +1114,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   /* ---------- Fairfax County, VA ---------- */
   'fairfax-county-va': {
     description:
-      "Fairfax County building permits go through Land Development Services, including inside the towns of Vienna and Clifton. Vienna reviews its own zoning and site plans; the county is the building official. Inside Clifton, a project needs a town use permit, a certificate of appropriateness from the Clifton Architectural Review Board, and the mayor's signature before Land Development Services will accept the building permit. Outside those towns, county zoning and the building permit are both Fairfax County's. Planned communities such as Reston and Burke Centre also require their own architectural review. A county permit is not HOA approval. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The housing this page covers runs from McLean and Great Falls estates to Vienna and Oakton colonials, Dunn Loring near the Metro, Fort Hunt along the parkway, and larger-lot houses in Fairfax Station and Clifton. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, or Route 7 to Route 28 and I-66. ZIP codes served: 22101 and 22102 McLean, 22066 Great Falls, 22180, 22181, and 22182 Vienna, 22124 Oakton, 22027 Dunn Loring, 22039 Fairfax Station, 20124 Clifton, 22308 Fort Hunt, 20190, 20191, and 20194 Reston, and 22015 Burke.",
+      "Fairfax County building permits go through Land Development Services, including inside the towns of Vienna and Clifton. Vienna reviews its own zoning and site plans; the county is the building official. Inside Clifton, a project needs a town use permit, a certificate of appropriateness from the Clifton Architectural Review Board, and the mayor's signature before Land Development Services will accept the building permit. Outside those towns, county zoning and the building permit are both Fairfax County's. Planned communities such as Reston and Burke Centre also require their own architectural review. A county permit is not HOA approval. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The housing runs from McLean and Great Falls estates to Vienna and Oakton colonials, Dunn Loring near the Metro, Fort Hunt along the parkway, and larger-lot houses in Fairfax Station and Clifton. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, or Route 7 to Route 28 and I-66. ZIP codes served: 22101 and 22102 McLean, 22066 Great Falls, 22180, 22181, and 22182 Vienna, 22124 Oakton, 22027 Dunn Loring, 22039 Fairfax Station, 20124 Clifton, 22308 Fort Hunt, 20190, 20191, and 20194 Reston, and 22015 Burke.",
     neighborhoods: [
       '22101 McLean',
       '22066 Great Falls',
@@ -1136,111 +1131,111 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'mclean-va': {
     description:
-      "McLean is unincorporated Fairfax County. ZIP 22101 covers the estate streets along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road: large lots and one-off custom houses. ZIP 22102 is closer to Tysons and Route 123, with more attached housing around the commercial core. Building permits go through Fairfax County Land Development Services. Some neighborhoods require HOA architectural review, and many estate streets do not. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east, or Route 7 to Route 28 and I-66 to the Beltway. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+      'McLean is unincorporated Fairfax County. ZIP 22101 covers the estate streets along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road: large lots and one-off custom houses. ZIP 22102 is closer to Tysons and Route 123, with more attached housing around the commercial core. Building permits go through Fairfax County Land Development Services. Some neighborhoods require HOA architectural review, and many estate streets do not. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east, or Route 7 to Route 28 and I-66 to the Beltway. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
     neighborhoods: ['Georgetown Pike', 'Old Dominion Drive', 'Chain Bridge Road', 'Langley', 'Chesterbrook', 'ZIP 22102'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'alexandria-va': {
     description:
-      "Alexandria is an independent city, not Fairfax County. Building permits are issued by the city's Code Administration. Exterior work in the Old and Historic Alexandria District or the Parker-Gray District, and on buildings the council has designated as 100-year-old, needs a Certificate of Appropriateness from the Board of Architectural Review when the change is visible from a public way. Interior kitchens and baths do not need that review unless the work changes the outside. Demolition of more than 25 square feet of material needs a Permit to Demolish regardless of visibility. Belle Haven, Rosemont, and North Ridge are later neighborhoods inside the city. Fort Hunt, ZIP 22308, uses an Alexandria mailing address and is mostly Fairfax County; it has its own page. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495. The remodeling this page is for is kitchens, primary suites, careful additions, and finished lower levels.",
+      "Alexandria is an independent city, not Fairfax County. Building permits are issued by the city's Code Administration. Exterior work in the Old and Historic Alexandria District or the Parker-Gray District, and on buildings the council has designated as 100-year-old, needs a Certificate of Appropriateness from the Board of Architectural Review when the change is visible from a public way. Interior kitchens and baths do not need that review unless the work changes the outside. Demolition of more than 25 square feet of material needs a Permit to Demolish regardless of visibility. Belle Haven, Rosemont, and North Ridge are later neighborhoods inside the city. Fort Hunt, ZIP 22308, uses an Alexandria mailing address and is mostly Fairfax County. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495. Real Elite remodels kitchens, primary suites, careful additions, and finished lower levels.",
     neighborhoods: ['Old Town', 'Parker-Gray', 'Belle Haven', 'Rosemont', 'North Ridge', 'Del Ray'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'vienna-va': {
     description:
-      "Vienna is an incorporated town in Fairfax County. A Vienna mailing address is not always inside town limits: Oakton and Dunn Loring have their own pages. Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+      'Vienna is an incorporated town in Fairfax County. A Vienna mailing address is not always inside town limits: Oakton and Dunn Loring are separate communities. Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
     neighborhoods: ['Maple Avenue', 'Hunter Mill Road', 'ZIP 22180', 'ZIP 22181', 'ZIP 22182', 'Town limits'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'great-falls-va': {
     description:
-      "Great Falls is an unincorporated community in northern Fairfax County, ZIP 22066. The housing is large-lot custom houses along Georgetown Pike, Riverbend Road, and Seneca Road. It is not one master-planned community. Building permits go through Fairfax County Land Development Services. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east toward Georgetown Pike. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+      'Great Falls is an unincorporated community in northern Fairfax County, ZIP 22066. The housing is large-lot custom houses along Georgetown Pike, Riverbend Road, and Seneca Road. It is not one master-planned community. Building permits go through Fairfax County Land Development Services. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east toward Georgetown Pike. Real Elite remodels kitchens, primary suites, additions, and outdoor living.',
     neighborhoods: ['Georgetown Pike', 'Riverbend Road', 'Seneca Road', 'ZIP 22066', 'Walker Road', 'Springvale Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'reston-va': {
     description:
-      "Reston is an unincorporated planned community in Fairfax County. Building permits go through Land Development Services. Exterior changes also go through Reston Association design review. A county permit is not that approval. The original villages and the houses around Lake Anne and Lake Audubon are mostly 1960s through 1980s, on public water and sewer, with later housing toward Reston Town Center and the Silver Line. ZIPs 20190, 20191, and 20194 cover the community. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and the Dulles Toll Road, or I-66 to Route 28. The remodeling this page is for is kitchens, primary suites, finished lower levels, and outdoor living.",
+      'Reston is an unincorporated planned community in Fairfax County. Building permits go through Land Development Services. Exterior changes also go through Reston Association design review. A county permit is not that approval. The original villages and the houses around Lake Anne and Lake Audubon are mostly 1960s through 1980s, on public water and sewer, with later housing toward Reston Town Center and the Silver Line. ZIPs 20190, 20191, and 20194 cover the community. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and the Dulles Toll Road, or I-66 to Route 28. Real Elite remodels kitchens, primary suites, finished lower levels, and outdoor living.',
     neighborhoods: ['Lake Anne', 'Lake Audubon', 'Hunters Woods', 'South Lakes', 'Reston Town Center', 'North Point'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'burke-va': {
     description:
-      "Burke is unincorporated Fairfax County, ZIP 22015. Burke Centre, Lake Braddock, and the streets around Burke Lake are mostly 1970s through 1990s single-family houses on public water and sewer. Burke Centre has its own architectural review, separate from the Fairfax County building permit through Land Development Services. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south on the Fairfax County Parkway. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+      'Burke is unincorporated Fairfax County, ZIP 22015. Burke Centre, Lake Braddock, and the streets around Burke Lake are mostly 1970s through 1990s single-family houses on public water and sewer. Burke Centre has its own architectural review, separate from the Fairfax County building permit through Land Development Services. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south on the Fairfax County Parkway. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
     neighborhoods: ['Burke Centre', 'Lake Braddock', 'Burke Lake', 'ZIP 22015', 'Burke Station', 'Longwood Knolls'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'fairfax-station-va': {
     description:
-      "Fairfax Station is unincorporated Fairfax County, ZIP 22039. The housing is larger-lot custom houses south of the county core, including Crosspointe and the South Run corridor, with more acreage toward Clifton. Building permits go through Fairfax County Land Development Services. Some subdivisions have an HOA architectural review. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+      'Fairfax Station is unincorporated Fairfax County, ZIP 22039. The housing is larger-lot custom houses south of the county core, including Crosspointe and the South Run corridor, with more acreage toward Clifton. Building permits go through Fairfax County Land Development Services. Some subdivisions have an HOA architectural review. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66. Real Elite remodels kitchens, primary suites, additions, and outdoor living.',
     neighborhoods: ['Crosspointe', 'South Run', 'ZIP 22039', 'Burke Lake Road', 'Hampton Road', 'Clifton Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'clifton-va': {
     description:
-      "Clifton is an incorporated town in southern Fairfax County, and most of ZIP 20124 is unincorporated county around the village, not inside the town. A Clifton mailing address is not Town zoning. Inside the town, a project needs a use permit from the Planning Commission and Town Council, a certificate of appropriateness from the Clifton Architectural Review Board, and a building permit from Fairfax County Land Development Services. The county will not accept the building-permit application without those town approvals and the mayor's signature. Outside town limits, county building and zoning apply. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south toward Clifton Road. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+      "Clifton is an incorporated town in southern Fairfax County, and most of ZIP 20124 is unincorporated county around the village, not inside the town. A Clifton mailing address is not Town zoning. Inside the town, a project needs a use permit from the Planning Commission and Town Council, a certificate of appropriateness from the Clifton Architectural Review Board, and a building permit from Fairfax County Land Development Services. The county will not accept the building-permit application without those town approvals and the mayor's signature. Outside town limits, county building and zoning apply. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to Route 28 and I-66, then south toward Clifton Road. Real Elite remodels kitchens, primary suites, additions, and outdoor living.",
     neighborhoods: ['Clifton village', 'Main Street', 'ZIP 20124', 'Clifton Road', 'Compton Road', 'Newman Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'middleburg-va': {
     description:
-      "Middleburg is an incorporated Loudoun town on Route 50. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county, and many of those lots are on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+      "Middleburg is an incorporated Loudoun town on Route 50. A Middleburg mailing address is not automatically Town limits — parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated county, and many of those lots are on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside Town, a Zoning Location Permit is required for a deck, shed, fence, detached garage, or any work that also needs a Loudoun County building permit; the county issues building permits county-wide and still expects Town zoning first. Exterior work in the Historic District also needs a Certificate of Appropriateness from the Historic District Review Committee — complete applications are due 14 days before the meeting, and decks are on the Town's published COA list. Outside Town, county building and zoning apply (Typical Deck $265 / full plans $395 under 1,000 sq ft). The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. Real Elite remodels kitchens, primary suites, additions, and outdoor living.",
     neighborhoods: ['Historic District', 'Main Street', 'Atoka Road', 'Foxcroft Road', 'Goose Creek'],
     marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
   },
   'purcellville-va': {
     description:
-      "Purcellville is an incorporated town on Route 7 in western Loudoun. A Purcellville mailing address is not always inside town limits: Wright Farm and Mayfair sit in the county's Joint Land Management Area beside the town. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The housing is a late-19th and early-20th century village along Main Street (Business Route 7), plus later subdivisions. Lots outside the town sewer are often on well and septic, and a bedroom addition on those lots needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, basements, additions, and outdoor living.",
+      "Purcellville is an incorporated town on Route 7 in western Loudoun. A Purcellville mailing address is not always inside town limits: Wright Farm and Mayfair sit in the county's Joint Land Management Area beside the town. Inside town limits, town zoning is approved before Loudoun County issues the building permit. The housing is a late-19th and early-20th century village along Main Street (Business Route 7), plus later subdivisions. Lots outside the town sewer are often on well and septic, and a bedroom addition on those lots needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. Real Elite remodels kitchens, primary suites, basements, additions, and outdoor living.",
     neighborhoods: ['Historic downtown', 'Main Street', 'Route 7', 'Wright Farm', 'Mayfair'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
   },
   'round-hill-va': {
     description:
-      "Round Hill is an incorporated town on Route 7, west of Purcellville. The village core is small. Newer houses sit on larger lots toward the county line, and many of those lots are on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Round Hill is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, additions, basements, and outdoor living.",
+      "Round Hill is an incorporated town on Route 7, west of Purcellville. The village core is small. Newer houses sit on larger lots toward the county line, and many of those lots are on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Round Hill is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. Real Elite remodels kitchens, primary suites, additions, basements, and outdoor living.",
     neighborhoods: ['Historic village', 'Loudoun Street', 'Route 7', 'West of town'],
     marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'basements', 'decks', 'remodeling'],
   },
   'lovettsville-va': {
     description:
-      "Lovettsville is an incorporated town in northern Loudoun, near the Potomac and the Maryland line. The approach from the south is Route 287, the Berlin Turnpike, off Route 9. The town is a 19th-century village with later houses on lots that are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Lovettsville is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9, then north on Route 287. The remodeling this page is for is kitchens, primary suites, additions, basements, and outdoor living.",
+      "Lovettsville is an incorporated town in northern Loudoun, near the Potomac and the Maryland line. The approach from the south is Route 287, the Berlin Turnpike, off Route 9. The town is a 19th-century village with later houses on lots that are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Lovettsville is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9, then north on Route 287. Real Elite remodels kitchens, primary suites, additions, basements, and outdoor living.",
     neighborhoods: ['Historic downtown', 'Berlin Turnpike', 'Route 287', 'North of Route 9'],
     marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'basements', 'decks', 'remodeling'],
   },
   'waterford-va': {
     description:
-      "Waterford is an unincorporated village northwest of Leesburg. Loudoun County's Waterford Historic and Cultural Conservation District covers the central village, and most exterior changes there — additions, porches, new accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Ordinary repairs that do not change design, material, or appearance are the exception the county publishes. The National Historic Landmark boundary is larger than the county district, which is limited to the central village. Interior kitchens, primary baths, and lower levels do not need that exterior review unless the work changes the outside. Many village and edge lots are on well and septic, so a bedroom addition also needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 through Hillsboro, then the local roads north of Leesburg. The remodeling this page is for is kitchens, primary suites, careful additions, and outdoor living that can pass historic review.",
+      "Waterford is an unincorporated village northwest of Leesburg. Loudoun County's Waterford Historic and Cultural Conservation District covers the central village, and most exterior changes there — additions, porches, new accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Ordinary repairs that do not change design, material, or appearance are the exception the county publishes. The National Historic Landmark boundary is larger than the county district, which is limited to the central village. Interior kitchens, primary baths, and lower levels do not need that exterior review unless the work changes the outside. Many village and edge lots are on well and septic, so a bedroom addition also needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 through Hillsboro, then the local roads north of Leesburg. Real Elite remodels kitchens, primary suites, careful additions, and outdoor living that can pass historic review.",
     neighborhoods: ['Main Street', 'Second Street', 'The mill', 'Village edge'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
     nearbySlugs: ['hamilton-va', 'purcellville-va', 'leesburg-va', 'lovettsville-va'],
   },
   'hamilton-va': {
     description:
-      "Hamilton is an incorporated town on Route 7 between Purcellville and Leesburg. The core is a small 19th-century village. Houses toward the edges often sit on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Hamilton is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, basements, additions, and outdoor living.",
+      "Hamilton is an incorporated town on Route 7 between Purcellville and Leesburg. The core is a small 19th-century village. Houses toward the edges often sit on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Hamilton is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. Real Elite remodels kitchens, primary suites, basements, additions, and outdoor living.",
     neighborhoods: ['Historic downtown', 'Route 7', 'East toward Leesburg', 'West toward Purcellville'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
     nearbySlugs: ['purcellville-va', 'waterford-va', 'leesburg-va', 'round-hill-va'],
   },
   'aldie-va': {
     description:
-      "Aldie is an unincorporated village on Route 50 in southern Loudoun. The village and its mill sit in the Aldie Historic and Cultural Conservation District. Exterior changes there — additions, porches, accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Newer communities nearby, including Willowsford, are a separate review from the village overlay: county permits, and the community's own architectural standards where those apply. Acreage lots are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+      "Aldie is an unincorporated village on Route 50 in southern Loudoun. The village and its mill sit in the Aldie Historic and Cultural Conservation District. Exterior changes there — additions, porches, accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Newer communities nearby, including Willowsford, are a separate review from the village overlay: county permits, and the community's own architectural standards where those apply. Acreage lots are often on well and septic. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. Real Elite remodels kitchens, primary suites, additions, and outdoor living.",
     neighborhoods: ['Aldie village', 'The mill', 'Route 50', 'Willowsford'],
     marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
   },
   'lansdowne-va': {
     description:
-      "Lansdowne is a planned community on the Potomac, east of Leesburg along Route 7. It is unincorporated Loudoun County. Many houses use a Leesburg mailing address, which does not make the parcel Town of Leesburg zoning. County building and zoning run through LandMARC, and exterior changes also go through the community's architectural review. The housing is mostly 1990s and 2000s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. This is not a well-and-septic market. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      "Lansdowne is a planned community on the Potomac, east of Leesburg along Route 7. It is unincorporated Loudoun County. Many houses use a Leesburg mailing address, which does not make the parcel Town of Leesburg zoning. County building and zoning run through LandMARC, and exterior changes also go through the community's architectural review. The housing is mostly 1990s and 2000s production and custom homes on public water and sewer, with unfinished basements and builder-grade kitchens and primary baths. This is not a well-and-septic market. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.",
     neighborhoods: ['Lansdowne on the Potomac', 'Resort corridor', 'Route 7', 'Residential villages'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'south-riding-va': {
     description:
-      "South Riding is a census-designated planned community in southeastern Loudoun, along Route 50. The Board of Supervisors approved it in 1993, and houses have been built since the mid-1990s. It is unincorporated county: schools and building permits are Loudoun's, and the South Riding Proprietary — incorporated in 1995 — governs common areas and architectural standards. Exterior changes need that review as well as the county permit. Homes are on public water and sewer, and many still have unfinished basements and builder-grade kitchens and primary baths. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      "South Riding is a planned community in southeastern Loudoun, along Route 50. The Board of Supervisors approved it in 1993, and houses have been built since the mid-1990s. It is unincorporated county: schools and building permits are Loudoun's, and the South Riding Proprietary — incorporated in 1995 — governs common areas and architectural standards. Exterior changes need that review as well as the county permit. Homes are on public water and sewer, and many still have unfinished basements and builder-grade kitchens and primary baths. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.",
     neighborhoods: ['Town Center', 'Center Street', 'Route 50', 'Residential sections'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'sterling-va': {
     description:
-      "Sterling is an unincorporated community in eastern Loudoun, between Route 7 and Route 28. Sterling Park dates from the early 1960s. Later planned communities — Cascades, Potomac Falls, Sugarland Run, Countryside, and Lowes Island — are mostly 1980s through 2000s houses on public water and sewer. Several of those communities require HOA architectural review for exterior work, separate from the county permit through LandMARC. Older Sterling Park houses are the ones most often opened up for a new kitchen, a primary suite, or a finished lower level. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      'Sterling is an unincorporated community in eastern Loudoun, between Route 7 and Route 28. Sterling Park dates from the early 1960s. Later planned communities — Cascades, Potomac Falls, Sugarland Run, Countryside, and Lowes Island — are mostly 1980s through 2000s houses on public water and sewer. Several of those communities require HOA architectural review for exterior work, separate from the county permit through LandMARC. Older Sterling Park houses are the ones most often opened up for a new kitchen, a primary suite, or a finished lower level. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.',
     neighborhoods: ['Sterling Park', 'Cascades', 'Potomac Falls', 'Sugarland Run', 'Countryside', 'Lowes Island'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
@@ -1254,61 +1249,61 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'oakton-va': {
     description:
-      "Oakton is an unincorporated community in Fairfax County, ZIP 22124, between Vienna and Fairfax along Route 123. It is not part of the Town of Vienna. Building and zoning run through Fairfax County Land Development Services. The housing is mostly 1960s through 1990s colonials on wooded lots, with newer infill closer to I-66. Some clusters have an HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+      'Oakton is an unincorporated community in Fairfax County, ZIP 22124, between Vienna and Fairfax along Route 123. It is not part of the Town of Vienna. Building and zoning run through Fairfax County Land Development Services. The housing is mostly 1960s through 1990s colonials on wooded lots, with newer infill closer to I-66. Some clusters have an HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
     neighborhoods: ['Route 123', 'ZIP 22124', 'Hunter Mill', 'Jermantown Road', 'Oakton', 'I-66'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'dunn-loring-va': {
     description:
-      "Dunn Loring is an unincorporated community in Fairfax County, ZIP 22027, at I-66 and the Beltway beside the Dunn Loring-Merrifield Metro. The housing is a mix of mid-century ramblers, later colonials, and townhouses, on public water and sewer. Building permits go through Fairfax County Land Development Services. Some communities require HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66. The remodeling this page is for is kitchens, primary suites, finished lower levels, and additions.",
+      'Dunn Loring is an unincorporated community in Fairfax County, ZIP 22027, at I-66 and the Beltway beside the Dunn Loring-Merrifield Metro. The housing is a mix of mid-century ramblers, later colonials, and townhouses, on public water and sewer. Building permits go through Fairfax County Land Development Services. Some communities require HOA architectural review. A county permit is not that approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
     neighborhoods: ['ZIP 22027', 'Gallows Road', 'Idylwood', 'I-66', 'Prosperity Avenue', 'Merrifield'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'fort-hunt-va': {
     description:
-      "Fort Hunt is an unincorporated community in southeastern Fairfax County. ZIP 22308 uses an Alexandria mailing address, which does not make the parcel part of the City of Alexandria. Building permits go through Fairfax County Land Development Services, not Alexandria Code Administration. The housing is mostly mid-century houses on larger lots along Fort Hunt Road and the George Washington Memorial Parkway, including Hollin Hills. Hollin Hills is a historic overlay, so exterior changes there are a separate county review from a typical building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495 and the parkway. The remodeling this page is for is kitchens, primary suites, additions, and finished lower levels.",
+      'Fort Hunt is an unincorporated community in southeastern Fairfax County. ZIP 22308 uses an Alexandria mailing address, which does not make the parcel part of the City of Alexandria. Building permits go through Fairfax County Land Development Services, not Alexandria Code Administration. The housing is mostly mid-century houses on larger lots along Fort Hunt Road and the George Washington Memorial Parkway, including Hollin Hills. Hollin Hills is a historic overlay, so exterior changes there are a separate county review from a typical building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495 and the parkway. Real Elite remodels kitchens, primary suites, additions, and finished lower levels.',
     neighborhoods: ['Fort Hunt Road', 'Hollin Hills', 'ZIP 22308', 'Wellington', 'Collingwood', 'George Washington Parkway'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
   },
   'haymarket-va': {
     description:
-      "Haymarket is an incorporated town in western Prince William County, ZIP 20169, at I-66 and Route 15. The incorporated town is the village along Washington Street. Piedmont and Dominion Valley sit in the county around it and use the same ZIP. Since January 15, 2018, the Prince William County Department of Development Services issues building permits inside the town, and the town still requires zoning approval before that application. Outside town, county building and zoning apply, and the planned communities require HOA architectural review. A county permit is not HOA approval. The houses are mostly 1990s through 2010s production and custom homes on public water and sewer. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      'Haymarket is an incorporated town in western Prince William County, ZIP 20169, at I-66 and Route 15. The incorporated town is the village along Washington Street. Piedmont and Dominion Valley sit in the county around it and use the same ZIP. Since January 15, 2018, the Prince William County Department of Development Services issues building permits inside the town, and the town still requires zoning approval before that application. Outside town, county building and zoning apply, and the planned communities require HOA architectural review. A county permit is not HOA approval. The houses are mostly 1990s through 2010s production and custom homes on public water and sewer. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.',
     neighborhoods: ['Washington Street', 'Piedmont', 'Dominion Valley', 'Route 15', 'I-66', 'ZIP 20169'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'gainesville-va': {
     description:
-      "Gainesville is unincorporated Prince William County, ZIP 20155, along I-66 and Route 29. Heritage Hunt and the subdivisions off Route 29 and Virginia Gateway are mostly 1990s through 2010s houses on public water and sewer. Building permits go through the Prince William County Department of Development Services, and most of those communities also require HOA architectural review. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to I-66, or Route 7 to Route 28 and I-66 west. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      'Gainesville is unincorporated Prince William County, ZIP 20155, along I-66 and Route 29. Heritage Hunt and the subdivisions off Route 29 and Virginia Gateway are mostly 1990s through 2010s houses on public water and sewer. Building permits go through the Prince William County Department of Development Services, and most of those communities also require HOA architectural review. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to I-66, or Route 7 to Route 28 and I-66 west. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.',
     neighborhoods: ['Heritage Hunt', 'Route 29', 'Virginia Gateway', 'I-66', 'ZIP 20155', 'Heathcote'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'bristow-va': {
     description:
-      "Bristow is unincorporated Prince William County, ZIP 20136, along Linton Hall Road between Gainesville and Nokesville. Braemar, Victory Lakes, and the Linton Hall subdivisions are mostly 1990s and 2000s houses on public water and sewer, many with unfinished basements. Building permits go through the Prince William County Department of Development Services. Those communities also require HOA architectural review. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to I-66 and Linton Hall, or Route 7 to Route 28. The remodeling this page is for is basements, kitchens, primary suites, outdoor living, and additions.",
+      'Bristow is unincorporated Prince William County, ZIP 20136, along Linton Hall Road between Gainesville and Nokesville. Braemar, Victory Lakes, and the Linton Hall subdivisions are mostly 1990s and 2000s houses on public water and sewer, many with unfinished basements. Building permits go through the Prince William County Department of Development Services. Those communities also require HOA architectural review. A county permit is not HOA approval. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to I-66 and Linton Hall, or Route 7 to Route 28. Real Elite remodels basements, kitchens, primary suites, outdoor living, and additions.',
     neighborhoods: ['Linton Hall Road', 'Braemar', 'Victory Lakes', 'ZIP 20136', 'Route 28', 'I-66'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
   'nokesville-va': {
     description:
-      "Nokesville is an unincorporated rural community in southwestern Prince William County, ZIP 20181. Houses sit on larger lots along Route 28 and Aden Road, and many of those lots are on well and septic rather than public sewer. A bedroom addition on a well-and-septic lot needs Prince William Health District approval before the building permit. Building permits otherwise go through the Prince William County Department of Development Services. This is not a master-planned HOA market. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to Route 28. The remodeling this page is for is kitchens, primary suites, additions, and outdoor living.",
+      'Nokesville is an unincorporated rural community in southwestern Prince William County, ZIP 20181. Houses sit on larger lots along Route 28 and Aden Road, and many of those lots are on well and septic rather than public sewer. A bedroom addition on a well-and-septic lot needs Prince William Health District approval before the building permit. Building permits otherwise go through the Prince William County Department of Development Services. This is not a master-planned HOA market. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south to Route 28. Real Elite remodels kitchens, primary suites, additions, and outdoor living.',
     neighborhoods: ['Route 28', 'Aden Road', 'ZIP 20181', 'Bristow Road', 'Nokesville village', 'Marsteller Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
   },
   'springfield-va': {
     description:
-      "Springfield is unincorporated Fairfax County, not its own city. The four ZIP centroids checked on 2026-09-29 all landed in the county: Newington Forest (22153, median year built 1981), West Springfield (22152, 1975), North Springfield (22151, 1962), and Springfield CDP (22150, 1978). Building permits go through Fairfax County Land Development Services and the PLUS system. The county's permit page lists finished basements, kitchen renovations, bathroom remodels, and decks among work that needs a permit. A detached shed of 256 square feet or less and one story does not. The county's named historic-overlay list does not make the whole Springfield area a historic district. Subdivision and HOA names for these ZIPs were not verified.",
+      "Springfield is unincorporated Fairfax County, not its own city. The Springfield ZIPs we serve are Newington Forest (22153, median year built 1981), West Springfield (22152, 1975), North Springfield (22151, 1962), and Springfield (22150, 1978). Building permits go through Fairfax County Land Development Services and the PLUS system. Fairfax County requires a permit for finished basements, kitchen renovations, bathroom remodels, and decks. A detached shed of 256 square feet or less and one story does not. The county's named historic-overlay list does not make the whole Springfield area a historic district.",
     neighborhoods: ['Newington Forest', 'West Springfield', 'North Springfield', 'ZIP 22150', 'ZIP 22151', 'ZIP 22153'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
         question: 'Does Springfield have its own building department?',
         answer:
-          'No. The ZIP centroids that were checked are unincorporated Fairfax County. Building permits go through Fairfax County Land Development Services.',
+          'No. Springfield is unincorporated Fairfax County. Building permits go through Fairfax County Land Development Services.',
       },
       {
         question: 'Does a finished basement in Springfield need a county permit?',
         answer:
-          'The county page lists finished basements under interior alterations that need a permit. Confirm the parcel is in the county before applying.',
+          'Yes. Fairfax County requires a permit for finished basements as an interior alteration. We confirm the parcel is in the county before applying.',
       },
       {
         question: 'Is all of Springfield in a historic district?',
@@ -1319,60 +1314,55 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'herndon-va': {
     description:
-      "A Herndon mailing address is not automatically inside the Town of Herndon. The 20170 centroid is Dranesville CDP in Fairfax County, and the 20171 centroid is Franklin Farm CDP in Fairfax County. County parcels use Fairfax County Land Development Services. The county page lists finished basements and decks as work that needs a permit. Town permit steps were not retrieved: herndon-va.gov returned HTTP 403, so this page does not describe the town's rules. Do not treat the census name Franklin Farm as an HOA. Fairfax County's named historic overlays do not include a Herndon or Franklin Farm district. Dranesville Tavern is a named overlay site, and that is not a finding that ZIP 20170 sits inside it.",
-    neighborhoods: ['ZIP 20170', 'ZIP 20171', 'Dranesville CDP', 'Franklin Farm CDP'],
+      "A Herndon mailing address is not automatically inside the Town of Herndon. ZIP 20170 is centered on Dranesville in Fairfax County, and ZIP 20171 is centered on Franklin Farm in Fairfax County. County parcels use Fairfax County Land Development Services. Fairfax County requires a permit for finished basements and decks. Inside the Town of Herndon, we confirm the permit steps with the town before work starts. Fairfax County's named historic overlays do not include a Herndon or Franklin Farm district. Dranesville Tavern is a named overlay site, which does not mean ZIP 20170 sits inside it.",
+    neighborhoods: ['ZIP 20170', 'ZIP 20171', 'Dranesville', 'Franklin Farm'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
         question: 'Which office permits a Herndon address?',
         answer:
-          'If the parcel is in Fairfax County, it is Land Development Services. The ZIP centroids that were checked are in the county. Town-limit steps were not available from the town site.',
+          'If the parcel is in Fairfax County, it is Land Development Services. Inside the Town of Herndon, we confirm the permit steps with the town before work starts.',
       },
       {
         question: 'Does a county finished basement need a permit?',
         answer:
-          'Yes, on Fairfax County\'s "when a permit is required" page. That rule is for county land, not a substitute for the town code.',
-      },
-      {
-        question: 'Is Franklin Farm an HOA this page can explain?',
-        answer:
-          'Franklin Farm is the census place name at the 20171 centroid. Any association rules are unverified, so this page does not describe them.',
+          'Yes. Fairfax County requires a permit for finished basements. That rule is for county land, not a substitute for the town code.',
       },
     ],
   },
   'chantilly-va': {
     description:
-      "This page is Fairfax County Chantilly, ZIP 20151. That centroid is Chantilly CDP in Fairfax County, median year built 1988. ZIP 20152 is South Riding in Loudoun County and already has its own page; its income is not Chantilly's. County permits go through Fairfax County Land Development Services. The county page lists decks among additions that need a permit, and finished basements among interior work that needs a permit. The Sully Historic Overlay page is about the Sully house, which Richard Bland Lee began in 1793 and which the county park authority now runs as a museum. It does not say the overlay covers Chantilly houses. Check the map before claiming a house is inside it.",
-    neighborhoods: ['ZIP 20151', 'Chantilly CDP'],
+      'Chantilly here is Fairfax County ZIP 20151, with a median year built of 1988. ZIP 20152 is South Riding in Loudoun County. County permits go through Fairfax County Land Development Services. Fairfax County requires a permit for decks, which it counts among additions, and for finished basements, which it counts as interior work. The Sully Historic Overlay is about the Sully house, which Richard Bland Lee began in 1793 and which the county park authority now runs as a museum. Nothing about the overlay says it covers Chantilly houses. We check the map before treating a house as inside it.',
+    neighborhoods: ['ZIP 20151', 'Chantilly'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
-        question: 'Which Chantilly is this page?',
+        question: 'Which part of Chantilly do you serve?',
         answer:
-          'Fairfax County ZIP 20151. ZIP 20152 is South Riding in Loudoun County and has its own service-area page.',
+          'Fairfax County ZIP 20151. ZIP 20152 is South Riding in Loudoun County.',
       },
       {
         question: 'Who permits a deck in ZIP 20151?',
         answer:
-          'Fairfax County Land Development Services. The county page lists decks among additions and structures that need a permit.',
+          'Fairfax County Land Development Services. The county requires a permit for decks, which it counts among additions and structures.',
       },
       {
         question: 'Is Chantilly inside the Sully Historic Overlay?',
         answer:
-          'The Sully page describes the historic house and its district, now a county museum. It does not say the overlay covers Chantilly houses. Check the map.',
+          'The Sully overlay is about the historic house and its district, now a county museum. Nothing about it says it covers Chantilly houses generally. Check the map.',
       },
     ],
   },
   'centreville-va': {
     description:
-      "Centreville here is Fairfax County, not a town government. ZIP 20120's centroid is Bull Run CDP (median year built 1992) and ZIP 20121's centroid is Centreville CDP (median year built 1991). Most of that housing is 1980s and 1990s. Building permits for county land go through Fairfax County Land Development Services, and the county page lists finished basements as work that needs a permit. There is a real Centreville Historic Overlay District. The county page traces it to the old village on Braddock's Road, platted after a 1792 petition, not to the modern CDP as a whole. Work inside a county historic overlay goes to the Architectural Review Board. Which modern houses sit inside that overlay was not read off the map. HOA names were not verified.",
-    neighborhoods: ['ZIP 20120', 'ZIP 20121', 'Bull Run CDP', 'Centreville CDP'],
+      "Centreville here is Fairfax County, not a town government. ZIP 20120 is centered on Bull Run (median year built 1992) and ZIP 20121 is centered on Centreville (median year built 1991). Most of that housing is 1980s and 1990s. Building permits for county land go through Fairfax County Land Development Services, and Fairfax County requires a permit for finished basements. There is a real Centreville Historic Overlay District. The county traces it to the old village on Braddock's Road, platted after a 1792 petition, not to the modern community as a whole. Work inside a county historic overlay goes to the Architectural Review Board. We check the map to see whether a house sits inside that overlay.",
+    neighborhoods: ['ZIP 20120', 'ZIP 20121', 'Bull Run', 'Centreville'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
         question: 'Who permits a basement in Centreville?',
         answer:
-          'For county land, Fairfax County Land Development Services. The county page lists finished basements as work that needs a permit. These ZIP centroids are county land.',
+          'For county land, Fairfax County Land Development Services. Fairfax County requires a permit for finished basements. Both Centreville ZIPs are county land.',
       },
       {
         question: 'Is all of Centreville in the historic district?',
@@ -1382,112 +1372,97 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does the historic overlay change a kitchen that never touches the outside?',
         answer:
-          'That interior-only rule was not verified from the pages that were read. The Architectural Review Board exists for overlay districts. Read the ARB procedure before assuming an interior project is covered.',
+          'The Architectural Review Board exists for overlay districts. Read the ARB procedure before assuming an interior project is covered.',
       },
     ],
   },
   'falls-church-va': {
     description:
-      "This page is the City of Falls Church, an independent city. ZIP 22046's centroid is the city (median year built 1969). ZIPs 22042 and 22043 use a Falls Church mailing name, but their centroids are Fairfax County: West Falls Church CDP and Idylwood CDP. Those county parcels use Fairfax County Land Development Services, not the city. Inside the city, the permit counter listed on the city's requirements page is 300 Park Avenue, Falls Church, VA 22046. The city's \"when a permit is required\" page says any wall change needs a permit, moving or adding a plumbing fixture needs a permit, and any gas work, including replacing a stove or fireplace insert, needs a permit. Paint, carpet, tile, cabinet replacement, and a roof replacement that does not replace rafters or a major portion of the decking do not. The city's Historic Architectural Review Board reviews permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. That board does not apply to the county ZIPs. HOA names were not verified.",
+      "The City of Falls Church is an independent city. ZIP 22046 is centered on the city (median year built 1969). ZIPs 22042 and 22043 use a Falls Church mailing name, but are centered in Fairfax County, in West Falls Church and Idylwood. Those county parcels use Fairfax County Land Development Services, not the city. Inside the city, the permit counter is at 300 Park Avenue, Falls Church, VA 22046. In the city, any wall change needs a permit, moving or adding a plumbing fixture needs a permit, and any gas work, including replacing a stove or fireplace insert, needs a permit. Paint, carpet, tile, cabinet replacement, and a roof replacement that does not replace rafters or a major portion of the decking do not. The city's Historic Architectural Review Board reviews permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. That board does not apply to the county ZIPs.",
     neighborhoods: ['ZIP 22046', 'Park Avenue', 'City of Falls Church'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
         question: 'Does "Falls Church" on an envelope mean the city building department?',
         answer:
-          'Not always. ZIP 22046\'s centroid is the city. ZIP 22042 and 22043 centroids are Fairfax County. Check the parcel.',
+          'Not always. ZIP 22046 is centered on the city. ZIPs 22042 and 22043 are centered in Fairfax County. Check the parcel.',
       },
       {
         question: 'Does replacing a gas stove in the city need a permit?',
         answer:
-          'The city page says any gas work, including replacing a stove or fireplace insert, requires a permit.',
+          'The city requires a permit for any gas work, including replacing a stove or fireplace insert.',
       },
       {
         question: 'Does every city house go through HARB for a kitchen?',
         answer:
-          'The HARB page that was read covers permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. It does not say ordinary interior work goes to HARB.',
+          'HARB reviews permits to demolish or move protected structures. Protected residences are those built during or before 1910, plus others the ordinance names. We confirm with the city whether a project needs HARB review.',
       },
     ],
   },
   'fairfax-va': {
     description:
-      "This page is the City of Fairfax, an independent city. ZIP 22030's centroid is the city (median year built 1992). ZIP 22031's centroid is Mantua CDP in Fairfax County. ZIP 22032's centroid is Kings Park West CDP in Fairfax County, and that higher-income ZIP is not the city's income. County parcels use Fairfax County Land Development Services. City permit steps were not published here: the city site returned HTTP 403, so this page does not name a city department, address, or city permit checklist. Kings Park West and Mantua are census place names at those centroids, not verified HOA documents. The county historic-overlay list that was read does not include those two names.",
+      "The City of Fairfax is an independent city. ZIP 22030 is centered on the city (median year built 1992). ZIP 22031 is centered on Mantua in Fairfax County. ZIP 22032 is centered on Kings Park West in Fairfax County. County parcels use Fairfax County Land Development Services. Inside the city, we confirm the permit steps with the city before work starts. Fairfax County's historic-overlay list does not include Kings Park West or Mantua.",
     neighborhoods: ['ZIP 22030', 'City of Fairfax'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
-        question: 'Is the higher-income Fairfax ZIP the city?',
+        question: 'Is ZIP 22032 the City of Fairfax?',
         answer:
-          'No. ZIP 22032\'s centroid is Kings Park West in Fairfax County. The city centroid that was checked is ZIP 22030.',
-      },
-      {
-        question: 'Can this page explain city basement permits?',
-        answer:
-          'Not yet. The city site did not serve its permit pages in the 2026-09-29 research. County basement rules apply to county parcels only.',
-      },
-      {
-        question: 'Is Kings Park West an HOA?',
-        answer:
-          'The census place name is verified. Any association rules are unverified, so this page does not describe them.',
+          'No. ZIP 22032 is centered on Kings Park West in Fairfax County. ZIP 22030 is the one centered on the city.',
       },
     ],
   },
   'manassas-va': {
     description:
-      "This page is the City of Manassas, an independent city. ZIP 20110's centroid is the city (median year built 1986). Development Services is at 9027 Center Street, 2nd Floor, Manassas, VA 20110, phone 703-257-8278. The city lists building, trade, occupancy, site, utility, zoning, and demolition permits, and it names Walk Through Wednesdays for limited-scope projects such as decks or fences. ZIP 20109's centroid is Bull Run CDP in Prince William County. ZIP 20112's centroid is Prince William County and is not the city. ZIP 20111's centroid is the City of Manassas Park, a different city. County parcels use Prince William County Development Services. The county page says a deck needs a permit when the floor is 16.5 inches or more above finished grade. Do not apply that county number inside the city; the city threshold was not extracted. The county says Buckland is currently its only historic overlay district. No HOA name was verified for these ZIPs.",
+      'The City of Manassas is an independent city. ZIP 20110 is centered on the city (median year built 1986). Development Services is at 9027 Center Street, 2nd Floor, Manassas, VA 20110, phone 703-257-8278. The city lists building, trade, occupancy, site, utility, zoning, and demolition permits, and it names Walk Through Wednesdays for limited-scope projects such as decks or fences. ZIP 20109 is centered on Bull Run in Prince William County. ZIP 20112 is centered in Prince William County and is not the city. ZIP 20111 is centered on the City of Manassas Park, a different city. County parcels use Prince William County Development Services. Prince William County requires a permit for a deck when the floor is 16.5 inches or more above finished grade. That county number does not apply inside the city; we confirm the city threshold before work starts. The county says Buckland is currently its only historic overlay district.',
     neighborhoods: ['ZIP 20110', 'Center Street', 'City of Manassas'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
         question: 'Does a Manassas mailing address use the city permit office?',
         answer:
-          'Only if the parcel is in the City of Manassas. ZIP 20109 and 20112 centroids are Prince William County. ZIP 20111\'s centroid is the City of Manassas Park. Check the parcel.',
+          'Only if the parcel is in the City of Manassas. ZIPs 20109 and 20112 are centered in Prince William County. ZIP 20111 is centered on the City of Manassas Park. Check the parcel.',
       },
       {
         question: 'What deck height needs a Prince William County permit?',
         answer:
-          'The county page says a permit is required when the floor is 16.5 inches or more above finished grade. That figure was not verified for parcels inside the City of Manassas.',
-      },
-      {
-        question: 'Should this page name a Manassas HOA?',
-        answer:
-          'No association name was verified for these ZIPs. This page does not name one.',
+          'Prince William County requires a permit when the floor is 16.5 inches or more above finished grade. We confirm the figure with the city for parcels inside the City of Manassas.',
       },
     ],
   },
   'lake-ridge-va': {
     description:
-      "Lake Ridge is a census-designated place in Prince William County. ZIP 22192's centroid is Lake Ridge CDP (median year built 1987), even though the postal name on that ZIP is Woodbridge. It is not the Woodbridge CDP, which is ZIP 22191, and it is not Dale City. Building permits for these county parcels go through Prince William County Development Services. The county page says a deck needs a permit when the floor is 16.5 inches or more above finished grade, and that zoning approval is required for accessory structures such as decks, additions, and garages even when a separate question is whether a building permit is required. The county tells owners to check whether their HOA has covenants. It does not name an association, and the name Lake Ridge is not, in the research, an HOA charter. Buckland is the only county historic overlay the ARB page named. Lake Ridge is not on that list.",
-    neighborhoods: ['ZIP 22192', 'Lake Ridge CDP'],
+      'Lake Ridge is a community in Prince William County. ZIP 22192 is centered on Lake Ridge (median year built 1987), even though the postal name on that ZIP is Woodbridge. It is not the Woodbridge area of ZIP 22191, and it is not Dale City. Building permits for these county parcels go through Prince William County Development Services. Prince William County requires a permit for a deck when the floor is 16.5 inches or more above finished grade, and requires zoning approval for accessory structures such as decks, additions, and garages even when a separate question is whether a building permit is required. The county tells owners to check whether their HOA has covenants. Buckland is the only historic overlay the county names. Lake Ridge is not on that list.',
+    neighborhoods: ['ZIP 22192', 'Lake Ridge'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
         question: 'Are Lake Ridge and Woodbridge the same place?',
         answer:
-          'No. ZIP 22192\'s centroid is Lake Ridge CDP. ZIP 22191\'s centroid is Woodbridge CDP. Both are Prince William County, and each has its own page.',
+          'No. ZIP 22192 is centered on Lake Ridge. ZIP 22191 is centered on Woodbridge. Both are in Prince William County.',
       },
       {
         question: 'When does a deck need a Prince William County permit?',
         answer:
-          'The county page says when the floor is 16.5 inches or more above finished grade. Zoning approval can still be required for exterior work.',
+          'Prince William County requires a permit when the floor is 16.5 inches or more above finished grade. Zoning approval can still be required for exterior work.',
       },
       {
         question: 'Does the county require HOA approval?',
         answer:
-          'The county page tells owners to check whether their HOA has covenants. It does not name an association, and it does not say the county enforces the covenants.',
+          'Prince William County tells owners to check whether their HOA has covenants. A county permit is not HOA approval.',
       },
     ],
   },
   'woodbridge-va': {
     description:
-      "Woodbridge on this page is the Woodbridge census-designated place in Prince William County. ZIP 22191's centroid is that CDP (median year built 1999). ZIP 22192 is Lake Ridge CDP and has its own page. ZIP 22193's centroid is Dale City and is not this page. County permits go through Prince William County Development Services. The county page says a deck needs a permit when the floor is 16.5 inches or more above finished grade, and that exterior projects may need zoning approval even when no building permit is required. The county tells owners to check HOA covenants and does not name an association. Buckland is the only county historic overlay named on the ARB page. Woodbridge is not on that list. The Town of Occoquan is a different permit path and is not included here.",
-    neighborhoods: ['ZIP 22191', 'Woodbridge CDP'],
+      'Woodbridge here is the Woodbridge area of Prince William County, ZIP 22191 (median year built 1999). ZIP 22192 is Lake Ridge. ZIP 22193 is Dale City. County permits go through Prince William County Development Services. Prince William County requires a permit for a deck when the floor is 16.5 inches or more above finished grade, and says exterior projects may need zoning approval even when no building permit is required. The county tells owners to check HOA covenants. Buckland is the only historic overlay the county names. Woodbridge is not on that list. The Town of Occoquan is a different permit path.',
+    neighborhoods: ['ZIP 22191', 'Woodbridge'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     faqs: [
       {
-        question: 'Which Woodbridge ZIP is this page?',
+        question: 'Which ZIP is Woodbridge, Virginia?',
         answer:
-          'ZIP 22191, whose centroid is Woodbridge CDP in Prince William County. ZIP 22192 is Lake Ridge. ZIP 22193 is Dale City and is not this page.',
+          'ZIP 22191, the Woodbridge area of Prince William County. ZIP 22192 is Lake Ridge. ZIP 22193 is Dale City.',
       },
       {
         question: 'When does a deck need a county permit?',
@@ -1495,15 +1470,15 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
           'Prince William County says a permit is required when the floor is 16.5 inches or more above finished grade.',
       },
       {
-        question: 'Is Occoquan part of this page?',
+        question: 'Is Occoquan part of Woodbridge?',
         answer:
-          'No. Occoquan is a town with its own zoning step. This page is the Woodbridge CDP in the county.',
+          'No. Occoquan is a town with its own zoning step. Woodbridge here is the area in the county.',
       },
     ],
   },
   'berryville-va': {
     description:
-      "Berryville is the county seat of Clarke County, ZIP 22611. Clarke County Building Department reviews permits throughout the county, including the incorporated towns of Berryville and Boyce. The office is on the first floor of the Berryville-Clarke County Government Center at 101 Chalmers Court, phone (540) 955-5112, and applications go to permits@clarkecounty.gov. The county asks for 20 to 30 business days for plan review. A zoning permit from the Planning Department, on the second floor of the same building, is a prerequisite for a building permit, and the two reviews can run at the same time. Inside the Town of Berryville, owners may also need the Town Planner at 101 Chalmers Court, Suite A, phone (540) 955-4081. Exterior work inside the Berryville Historic District needs a Certificate of Appropriateness from the town Architectural Review Board before the town issues its zoning permit. The county still issues the building permit. The historic district is not the whole ZIP. The Census ZCTA median year built for 22611 is 1981, so the housing is established rather than a new-build subdivision. The drive from Martinsburg is Route 9 west to Route 7, then south into Clarke County. The remodeling this page is for is kitchens, primary baths, and lower levels in older houses.",
+      'Berryville is the county seat of Clarke County, ZIP 22611. Clarke County Building Department reviews permits throughout the county, including the incorporated towns of Berryville and Boyce. The office is on the first floor of the Berryville-Clarke County Government Center at 101 Chalmers Court, phone (540) 955-5112, and applications go to permits@clarkecounty.gov. The county asks for 20 to 30 business days for plan review. A zoning permit from the Planning Department, on the second floor of the same building, is a prerequisite for a building permit, and the two reviews can run at the same time. Inside the Town of Berryville, owners may also need the Town Planner at 101 Chalmers Court, Suite A, phone (540) 955-4081. Exterior work inside the Berryville Historic District needs a Certificate of Appropriateness from the town Architectural Review Board before the town issues its zoning permit. The county still issues the building permit. The historic district is not the whole ZIP. The median year built for ZIP 22611 is 1981, so the housing is established rather than a new-build subdivision. The drive from Martinsburg is Route 9 west to Route 7, then south into Clarke County. Real Elite remodels kitchens, primary baths, and lower levels in older houses.',
     neighborhoods: ['Town of Berryville', 'Berryville Historic District', 'ZIP 22611', 'Clarke County'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
     nearbySlugs: ['winchester-va', 'hamilton-va', 'shepherdstown-wv', 'purcellville-va'],
@@ -1527,7 +1502,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'the-plains-va': {
     description:
-      "The Plains is an incorporated town in Fauquier County. The Virginia charter is the Town of The Plains, County of Fauquier, with the current charter dated 1972. A Plains mailing address is not automatically inside the town: the ZIP 20198 centroid sits in Fauquier County, outside an incorporated place. Inside town, the zoning and sign permit is required before a building permit and the published fee is $50. Fauquier County provides the building inspections. The town Historic District includes all properties within the town, and improvements there need Architectural Review Board approval. The ARB application has no fee. Town Hall is at 6451 Main Street, phone (540) 364-4945. Outside town limits, the building permit goes to Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. The county zoning fee is $110, including the technology fee. Census figures for the ZIP, not the town boundary, show a median year built of 1982, and the largest single year-built group is 1939 or earlier. That is a mix of older and later houses, not one style. The drive from Martinsburg is Route 9 to Leesburg, then south toward Route 50. The remodeling this page is for is kitchens, primary baths, and lower levels.",
+      'The Plains is an incorporated town in Fauquier County. The Virginia charter is the Town of The Plains, County of Fauquier, with the current charter dated 1972. A Plains mailing address is not automatically inside the town: ZIP 20198 is centered in Fauquier County, outside an incorporated place. Inside town, the zoning and sign permit is required before a building permit and the published fee is $50. Fauquier County provides the building inspections. The town Historic District includes all properties within the town, and improvements there need Architectural Review Board approval. The ARB application has no fee. Town Hall is at 6451 Main Street, phone (540) 364-4945. Outside town limits, the building permit goes to Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. The county zoning fee is $110, including the technology fee. For ZIP 20198 as a whole, the median year built is 1982, and the largest single year-built group is 1939 or earlier. That is a mix of older and later houses, not one style. The drive from Martinsburg is Route 9 to Leesburg, then south toward Route 50. Real Elite remodels kitchens, primary baths, and lower levels.',
     neighborhoods: ['Town of The Plains', 'Historic District', 'ZIP 20198', 'Fauquier County'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
     nearbySlugs: ['middleburg-va', 'upperville-va', 'marshall-va', 'warrenton-va'],
@@ -1551,7 +1526,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'upperville-va': {
     description:
-      "Upperville is an unincorporated village in northern Fauquier County, on Route 50 at the Loudoun County line, ZIP 20184. It is not a town and it does not have a municipal permit office. Building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee, and the county uses a combined building and zoning application. The Virginia Department of Historic Resources lists the Upperville Historic District on the National Register. Fauquier County's historic-preservation page says National Register listing does not restrict private property, and that the Board of Supervisors has not adopted a local historic overlay district in the county. The towns of Warrenton and The Plains, which are separate jurisdictions, have their own historic overlay districts. Upperville is not one of those towns. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary baths, and lower levels in the village and on the surrounding acreage.",
+      "Upperville is an unincorporated village in northern Fauquier County, on Route 50 at the Loudoun County line, ZIP 20184. It is not a town and it does not have a municipal permit office. Building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee, and the county uses a combined building and zoning application. The Virginia Department of Historic Resources lists the Upperville Historic District on the National Register. Fauquier County says National Register listing does not restrict private property, and that the Board of Supervisors has not adopted a local historic overlay district in the county. The towns of Warrenton and The Plains, which are separate jurisdictions, have their own historic overlay districts. Upperville is not one of those towns. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. Real Elite remodels kitchens, primary baths, and lower levels in the village and on the surrounding acreage.",
     neighborhoods: ['Upperville Historic District', 'Route 50', 'ZIP 20184', 'Fauquier County'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
     nearbySlugs: ['middleburg-va', 'the-plains-va', 'marshall-va', 'warrenton-va'],
@@ -1575,7 +1550,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'marshall-va': {
     description:
-      "Marshall is an unincorporated community in Fauquier County, ZIP 20115. No town charter was found, and the ZIP centroid is unincorporated county, so there is no municipal permit office. Building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. A building permit is required for additions and for renovations or alterations to an existing house, and a zoning permit is required for most work, including some interior renovations. The county's online portal accepts finished-basement permits and residential trade permits. Census figures for the ZIP, not a town boundary, show a median year built of 1983 and mostly one-unit detached houses. That is established housing, not a new-build subdivision, and it is not one architectural style. Do not apply the Town of Warrenton's 30-inch deck rule or its historic-district certificate here. The drive from Martinsburg is Route 9 to Leesburg, then south through The Plains toward Route 17. The remodeling this page is for is kitchens, primary baths, and lower levels.",
+      "Marshall is an unincorporated community in Fauquier County, ZIP 20115. Building permits for Marshall come from the county, not a town office. Building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. A building permit is required for additions and for renovations or alterations to an existing house, and a zoning permit is required for most work, including some interior renovations. The county's online portal accepts finished-basement permits and residential trade permits. For ZIP 20115 as a whole, the median year built is 1983 and the houses are mostly one-unit detached. That is established housing, not a new-build subdivision, and it is not one architectural style. The Town of Warrenton's 30-inch deck rule and historic-district certificate do not apply here. The drive from Martinsburg is Route 9 to Leesburg, then south through The Plains toward Route 17. Real Elite remodels kitchens, primary baths, and lower levels.",
     neighborhoods: ['ZIP 20115', 'Unincorporated Fauquier', 'Fauquier County'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
     nearbySlugs: ['the-plains-va', 'warrenton-va', 'upperville-va', 'middleburg-va'],
@@ -1583,7 +1558,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Is Marshall a town with its own permits?',
         answer:
-          'No town charter was found, and the ZIP centroid is unincorporated Fauquier County. The permit counter is the county office at 16 Courthouse Square in Warrenton.',
+          'Marshall is an unincorporated community in Fauquier County. The permit counter is the county office at 16 Courthouse Square in Warrenton.',
       },
       {
         question: 'What does a Fauquier County zoning permit cost?',
@@ -1599,7 +1574,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'warrenton-va': {
     description:
-      "Warrenton is an incorporated town in Fauquier County. The charter dates to 1816. A Warrenton mailing address is not automatically inside the town: the centroids of ZIP 20186 and ZIP 20187 both landed in Fauquier County, outside an incorporated place. Inside the town, the Department of Community Development handles applications at the town site, phone (540) 347-1101. The town building page says a building permit is required for decks whose floor is 30 inches or more above finished grade, for finishing a basement, and for additions, garages, or carports. An areaway or egress window on a basement needs additional zoning review. A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. Which streets are inside that district was not read off the map. Outside town limits, building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square, Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. The county uses a combined building and zoning application. HOA names outside the historic district were not verified. ZIP 20187's housing is mostly detached (median year built 1991). ZIP 20186 is a different mix (median year built 1987) and should not be averaged into one house type.",
+      "Warrenton is an incorporated town in Fauquier County. The charter dates to 1816. A Warrenton mailing address is not automatically inside the town: ZIP 20186 and ZIP 20187 are both centered in Fauquier County, outside an incorporated place. Inside the town, the Department of Community Development handles applications at the town site, phone (540) 347-1101. The town requires a building permit for decks whose floor is 30 inches or more above finished grade, for finishing a basement, and for additions, garages, or carports. An areaway or egress window on a basement needs additional zoning review. A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. Outside town limits, building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square, Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. The county uses a combined building and zoning application. ZIP 20187's housing is mostly detached (median year built 1991). ZIP 20186 is a different mix (median year built 1987) and should not be averaged into one house type.",
     neighborhoods: ['Town of Warrenton', 'ZIP 20186', 'ZIP 20187', 'Fauquier County'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     nearbySlugs: ['the-plains-va', 'marshall-va', 'upperville-va', 'middleburg-va'],
@@ -1607,58 +1582,58 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does every Warrenton address use the town\'s 30-inch deck rule?',
         answer:
-          'Only inside the town. Both ZIP centroids that were checked landed in Fauquier County, outside an incorporated place. Outside town, Fauquier County Department of Community Development at 16 Courthouse Square takes the building permit. Phone (540) 422-8230. The county zoning fee is $110, including the technology fee.',
+          'Only inside the town. Both ZIPs are centered in Fauquier County, outside an incorporated place. Outside town, Fauquier County Department of Community Development at 16 Courthouse Square takes the building permit. Phone (540) 422-8230. The county zoning fee is $110, including the technology fee.',
       },
       {
         question: 'Does a basement finish need a permit in town?',
         answer:
-          'Yes. The town building page lists finishing a basement, and it says an areaway or egress window needs additional zoning review.',
+          'Yes. The town requires a permit to finish a basement, and an areaway or egress window needs additional zoning review.',
       },
       {
         question: 'When is the historic certificate required?',
         answer:
-          'Before exterior alterations of property in the Warrenton Historic District. The page does not say the certificate applies to the whole ZIP.',
+          'Before exterior alterations of property in the Warrenton Historic District. It applies inside the district, not across the whole ZIP.',
       },
     ],
   },
   'stephens-city-va': {
     description:
-      "Stephens City is a chartered town in Frederick County, Virginia. It is not Winchester, which already has its own page. ZIP 22655's centroid is unincorporated Frederick County, so the ZIP is larger than the town. A Stephens City mailing address is not automatically inside the town. Town and county permit pages were not retrieved in the 2026-09-29 research, so this page does not list permit steps. Confirm the parcel before choosing a counter. No historic district or HOA name was verified. Census figures for the ZIP, not the town boundary, show a median year built of 1996.",
+      'Stephens City is a chartered town in Frederick County, Virginia. It is not Winchester. ZIP 22655 is centered in unincorporated Frederick County, so the ZIP is larger than the town. A Stephens City mailing address is not automatically inside the town. We confirm the permit steps with the town or Frederick County before work starts. Confirm the parcel before choosing a counter. For ZIP 22655 as a whole, the median year built is 1996.',
     neighborhoods: ['Town of Stephens City', 'ZIP 22655', 'Frederick County, VA'],
     marketEmphasis: ['decks', 'roofing', 'remodeling', 'bathrooms', 'kitchens', 'additions'],
     faqs: [
       {
         question: 'Does ZIP 22655 equal the town?',
         answer:
-          'No. The centroid is unincorporated Frederick County. The town exists under its charter. Check the parcel.',
+          'No. ZIP 22655 is centered in unincorporated Frederick County. The town exists under its charter. Check the parcel.',
       },
       {
-        question: 'Which permit steps does this page publish?',
+        question: 'Which office permits work in Stephens City?',
         answer:
-          'None. Both the town site and the Frederick County, Virginia site were unread in the research pass. Do not use Middletown\'s zoning form or Winchester\'s process for this town.',
+          'It depends on whether the parcel is inside the town or in Frederick County. We confirm the permit steps with the right office before work starts.',
       },
       {
-        question: 'Is this the Winchester page?',
+        question: 'Is Stephens City part of Winchester?',
         answer:
-          'No. Winchester is a separate city and already has a live service-area page.',
+          'No. Winchester is a separate city.',
       },
     ],
   },
   'middletown-va': {
     description:
-      "Middletown is a town in Frederick County, Virginia, not Middletown, Maryland, and not Frederick, Maryland. The town forms page lists the office at 7875 Church Street, Middletown, VA 22645, and links a zoning application titled for zoning review of building permits. That is a zoning review. It does not name the building official. Who issues the building permit, the town or Frederick County, was not verified. ZIP 22645's census figures, which are the ZIP and not the town boundary, show a population of 4,639 and a median year built of 1985. No historic-district page or HOA name was extracted. Do not use the Frederick, Maryland permit article as this town's process.",
+      'Middletown is a town in Frederick County, Virginia, not Middletown, Maryland, and not Frederick, Maryland. The town office is at 7875 Church Street, Middletown, VA 22645, and the town has a zoning application for zoning review of building permits. That is a zoning review. We confirm with the town and Frederick County who issues the building permit before work starts. ZIP 22645 as a whole has a population of 4,639 and a median year built of 1985. The Frederick, Maryland permit process does not apply to this town.',
     neighborhoods: ['Church Street', 'ZIP 22645', 'Town of Middletown, VA'],
     marketEmphasis: ['decks', 'roofing', 'remodeling', 'bathrooms', 'kitchens', 'additions'],
     faqs: [
       {
         question: 'Does the town review a building project?',
         answer:
-          'The town forms page has a zoning application for zoning review of building permits, filed through the office at 7875 Church Street. That is a zoning review, not proof of who issues the building permit.',
+          'The town has a zoning application for zoning review of building permits, filed through the office at 7875 Church Street. That is a zoning review, separate from the building permit itself.',
       },
       {
         question: 'Who issues the building permit?',
         answer:
-          'That was not verified. This page does not guess Frederick County or the town.',
+          'We confirm that with the town and Frederick County before work starts.',
       },
       {
         question: 'Is this Middletown, Maryland?',
@@ -1670,7 +1645,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   /* ---------- Franklin County, Pennsylvania. Sources read 2026-09-29. ---------- */
   'greencastle-pa': {
     description:
-      "Greencastle is a borough in Franklin County, Pennsylvania, ZIP 17225. It is not a township. The borough permits page says work inside borough limits needs a land-use/zoning permit from the borough zoning officer before a building permit. The borough office is 60 North Washington Street, Greencastle, PA 17225, phone 717-597-7143. After that permit, the building permit goes to PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. The zoning page points at Historic District Maps. This page does not name which parcels those maps cover, and it does not name an HOA.",
+      'Greencastle is a borough in Franklin County, Pennsylvania, ZIP 17225. It is not a township. Work inside borough limits needs a land-use/zoning permit from the borough zoning officer before a building permit. The borough office is 60 North Washington Street, Greencastle, PA 17225, phone 717-597-7143. After that permit, the building permit goes to PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. The borough refers to Historic District Maps. We check the parcel against them.',
     neighborhoods: ['Borough of Greencastle', 'ZIP 17225', 'Franklin County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
@@ -1687,13 +1662,13 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does the historic-district map cover the whole ZIP?',
         answer:
-          'The zoning page references Historic District Maps. Check the parcel.',
+          'The borough refers to Historic District Maps. Check the parcel.',
       },
     ],
   },
   'chambersburg-pa': {
     description:
-      "Chambersburg is a borough and the county seat of Franklin County. It is not the rest of the county. The borough permits page says a land-use permit from Land Use and Community Development comes first. That office is on the second floor of Borough Hall, 100 South Second Street, Chambersburg, PA 17201, phone 717-251-2417. After the borough approves, the applicant contacts PA Municipal Code Alliance at 717-496-4996 for the construction permit. Chapter 113 of the borough code adopts the Pennsylvania Uniform Construction Code. This page does not name neighborhoods or HOAs.",
+      'Chambersburg is a borough and the county seat of Franklin County. It is not the rest of the county. A land-use permit from Land Use and Community Development comes first. That office is on the second floor of Borough Hall, 100 South Second Street, Chambersburg, PA 17201, phone 717-251-2417. After the borough approves, the applicant contacts PA Municipal Code Alliance at 717-496-4996 for the construction permit. Chapter 113 of the borough code adopts the Pennsylvania Uniform Construction Code.',
     neighborhoods: ['Borough of Chambersburg', 'Borough Hall', 'Franklin County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
@@ -1716,30 +1691,30 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'fort-loudon-pa': {
     description:
-      "Fort Loudon is a community in Peters Township, Franklin County. It is not a borough. The township site lists Fort Loudon with Upton, Lemasters, Markes, and Cove Gap as places under the township supervisors, and it says Mercersburg is a separate borough. The municipal office is 5000 Steel Avenue, Lemasters, PA 17231, open Monday, Tuesday, and Thursday, 8:00 AM to 4:00 PM. Permit steps were not on the township homepage retrieved on 2026-09-29, so this page does not name a building-code agency for Fort Loudon. It is not Loudoun County, Virginia.",
+      'Fort Loudon is a community in Peters Township, Franklin County. It is not a borough. Peters Township lists Fort Loudon with Upton, Lemasters, Markes, and Cove Gap as places under the township supervisors, and Mercersburg is a separate borough. The municipal office is 5000 Steel Avenue, Lemasters, PA 17231, open Monday, Tuesday, and Thursday, 8:00 AM to 4:00 PM. We confirm the building-code agency with the township before work starts. Fort Loudon is not in Loudoun County, Virginia.',
     neighborhoods: ['Fort Loudon', 'Peters Township', 'Lemasters'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
       {
         question: 'Is Fort Loudon its own borough?',
         answer:
-          'No. Peters Township lists it as a community under the township supervisors. Mercersburg, which the same page names, is the borough with its own government.',
+          'No. Peters Township lists it as a community under the township supervisors. Mercersburg is the borough with its own government.',
       },
       {
-        question: 'Which permit office does this page name?',
+        question: 'Which office handles permits for Fort Loudon?',
         answer:
-          'The township office at 5000 Steel Avenue, Lemasters. The homepage did not publish the building-permit steps, so this page does not guess an inspection agency.',
+          'The township office at 5000 Steel Avenue, Lemasters. We confirm the inspection agency with the township before work starts.',
       },
       {
         question: 'Is this Loudoun County, Virginia?',
         answer:
-          'No. Fort Loudon is in Franklin County, Pennsylvania. Loudoun County, Virginia already has its own pages.',
+          'No. Fort Loudon is in Franklin County, Pennsylvania, not Loudoun County, Virginia.',
       },
     ],
   },
   'mercersburg-pa': {
     description:
-      "Mercersburg is a borough in Franklin County, and it has its own government. The borough permits page says land use is handled by borough staff under the subdivision and land-use ordinance, and that PA Municipal Code Alliance is the building-code agency for the borough. A project needs the borough land-use permit first, then the building permit from that agency. The page also says other borough permits, such as sidewalk or curb work, can apply. This page does not name an HOA or a historic district.",
+      'Mercersburg is a borough in Franklin County, and it has its own government. Land use is handled by borough staff under the subdivision and land-use ordinance, and PA Municipal Code Alliance is the building-code agency for the borough. A project needs the borough land-use permit first, then the building permit from that agency. Other borough permits, such as sidewalk or curb work, can also apply.',
     neighborhoods: ['Borough of Mercersburg', 'Franklin County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
@@ -1756,13 +1731,13 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Is sidewalk work included in the land-use permit?',
         answer:
-          'Not necessarily. The borough page says sidewalk or curb work can require an additional borough permit.',
+          'Not necessarily. Sidewalk or curb work can require an additional borough permit.',
       },
     ],
   },
   'waynesboro-pa': {
     description:
-      "Waynesboro is a borough in Franklin County. The borough zoning page says most projects need a zoning/land-use permit from the borough before a building permit, and that the borough permit or an exemption is required first. Building permits are issued by PA Municipal Code Alliance at 380 Wayne Avenue, Chambersburg, phone 717-496-4996, or by Commonwealth Code Inspection Services at 1102 Sheller Avenue, Chambersburg, phone 717-264-9191. The page says to check the deed for restrictions. This page does not name an HOA.",
+      'Waynesboro is a borough in Franklin County. Most projects need a zoning/land-use permit from the borough before a building permit, and the borough permit or an exemption is required first. Building permits are issued by PA Municipal Code Alliance at 380 Wayne Avenue, Chambersburg, phone 717-496-4996, or by Commonwealth Code Inspection Services at 1102 Sheller Avenue, Chambersburg, phone 717-264-9191. Check the deed for restrictions.',
     neighborhoods: ['Borough of Waynesboro', 'Franklin County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
@@ -1776,23 +1751,18 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
         answer:
           'The borough names two agencies: PA Municipal Code Alliance at 380 Wayne Avenue, and Commonwealth Code Inspection Services at 1102 Sheller Avenue, both in Chambersburg.',
       },
-      {
-        question: 'Does the borough page name an HOA?',
-        answer:
-          'No. It says to check the deed for restrictions. This page does not add an association name.',
-      },
     ],
   },
   'fayetteville-pa': {
     description:
-      "Fayetteville is an unincorporated community and census-designated place in Franklin County. It is not a borough. The place sits in Greene Township and Guilford Township, so one mailing address is not one permit counter. Greene Township's land-use page lists the office at 1145 Garver Lane, Chambersburg. After a land-use permit, the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. Guilford Township's zoning page, 115 Spring Valley Road, Chambersburg, says land-use and driveway permit requests go through that office, phone 717-264-0077. This page does not name an HOA. Check the parcel before choosing an office.",
+      "Fayetteville is an unincorporated community in Franklin County. It is not a borough. The place sits in Greene Township and Guilford Township, so one mailing address is not one permit counter. Greene Township's land-use office is at 1145 Garver Lane, Chambersburg. After a land-use permit, the applicant contacts PA Municipal Code Alliance at 1013 Wayne Avenue, Chambersburg, phone 717-496-4996. Guilford Township's zoning office, 115 Spring Valley Road, Chambersburg, handles land-use and driveway permit requests, phone 717-264-0077. Check the parcel before choosing an office.",
     neighborhoods: ['Fayetteville', 'Greene Township', 'Guilford Township'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     faqs: [
       {
         question: 'Is Fayetteville one township?',
         answer:
-          'No. It is a census-designated place in Greene Township and Guilford Township. The parcel decides which office applies.',
+          'No. It sits in Greene Township and Guilford Township. The parcel decides which office applies.',
       },
       {
         question: 'What does Greene Township publish?',
@@ -1802,7 +1772,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'What does Guilford Township publish?',
         answer:
-          'Land-use and driveway permit requests go through the zoning office at 115 Spring Valley Road, phone 717-264-0077. This page does not copy Greene Township\'s building-code step onto Guilford.',
+          'Land-use and driveway permit requests go through the zoning office at 115 Spring Valley Road, phone 717-264-0077.',
       },
     ],
   },
@@ -1820,7 +1790,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Garrett Park, MD?',
         answer:
-          'Both. Montgomery County lists Garrett Park under both county and city approval. The town contact published on the county municipalities page is P.O. Box 84, Garrett Park, MD 20896, phone 301-933-7488. County questions go to 240-777-0311.',
+          'Both. Garrett Park needs both county and city approval. The town contact is P.O. Box 84, Garrett Park, MD 20896, phone 301-933-7488. County questions go to 240-777-0311.',
       },
       {
         question: 'Does a cabinet replacement in Garrett Park need a county permit?',
@@ -1932,7 +1902,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits work in Cabin John?',
         answer:
-          'Montgomery County Department of Permitting Services. Cabin John is not on the county list of municipalities that require a town permit in addition to the county permit. The phone on the county page is 240-777-0311.',
+          'Montgomery County Department of Permitting Services. Cabin John is not on the county list of municipalities that require a town permit in addition to the county permit. The county phone is 240-777-0311.',
       },
       {
         question: 'Is Cabin John the same permit path as Glen Echo?',
@@ -1952,7 +1922,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in West Friendship, MD, ZIP 21794. Howard County permits through DILP in Ellicott City. Free written estimate after a site walk.',
     description:
-      "West Friendship is western Howard County, ZIP 21794, along MD 32 between the Frederick County line and the more suburban county to the east. Houses are detached homes on rural and semi-rural lots, not a Columbia village and not a Frederick city street. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 32.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes. The office is at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. The Licenses and Permits Division publishes the same number, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. The resources page lists separate electrical, plumbing, and mechanical permit applications. Fee amounts stay on the county fee schedule.\n\nElectrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "West Friendship is western Howard County, ZIP 21794, along MD 32 between the Frederick County line and the more suburban county to the east. Houses are detached homes on rural and semi-rural lots, not a Columbia village and not a Frederick city street. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 32.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes. The office is at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. The Licenses and Permits Division publishes the same number, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. The county has separate electrical, plumbing, and mechanical permit applications. Fee amounts stay on the county fee schedule.\n\nElectrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MD 32', 'ZIP 21794', 'Triadelphia Road', 'West of MD 32', 'Frederick County line'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['frederick-md', 'mount-airy-md', 'ijamsville-md', 'monrovia-md'],
@@ -1988,7 +1958,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does every Chevy Chase address use the same approval order?',
         answer:
-          'No. The county page lists the Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions as county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. Chevy Chase Village is listed on both sequence lists, so the village is asked before a sequence is assumed.',
+          "No. For the Town of Chevy Chase, Section 3, Section 5, and Martin's Additions, the order is county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. Chevy Chase Village is listed on both sequence lists, so the village is asked before a sequence is assumed.",
       },
       {
         question: 'Where is the county permit office for a Chevy Chase house?',
