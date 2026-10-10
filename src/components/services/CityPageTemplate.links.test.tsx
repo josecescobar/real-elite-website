@@ -104,9 +104,12 @@ function renderedComboLinks(slug: string): string[] {
 
 /** Combos CONTENT publishes for an area, as `/services/<service>/<area>`. */
 function publishedComboLinks(slug: string): string[] {
+  const serviceSlugs = new Set<string>(SERVICES.map((s) => s.slug));
   return Object.keys(CONTENT)
     .filter((key) => key.endsWith(`-${slug}`))
-    .map((key) => `/services/${key.slice(0, key.length - slug.length - 1)}/${slug}`)
+    .map((key) => key.slice(0, key.length - slug.length - 1))
+    .filter((service) => serviceSlugs.has(service))
+    .map((service) => `/services/${service}/${slug}`)
     .sort();
 }
 

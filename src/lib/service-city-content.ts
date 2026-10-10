@@ -136,6 +136,18 @@ export const COMBO_CITY_SLUGS = [
   'dickerson-md',
   'fairfax-va',
 
+  // Round 8 richest-county towns, 2026-10-10. Kitchens, bathrooms, and
+  // basements only. Ellicott City is one slug for ZIP 21042 and ZIP 21043.
+  // No outdoor living, no stairs, no Brambleton.
+  'delaplane-va',
+  'marriottsville-md',
+  'ellicott-city-md',
+  'laytonsville-md',
+  'barnesville-md',
+  'olney-md',
+  'ashton-md',
+  'north-potomac-md',
+
   // Fairfax Station and Clifton stay gone. Tier C retired every combo they
   // had, so keeping their slugs here would leave entries this map can never
   // key. Burke stays: it keeps its kitchen and bathroom combos and lost only
@@ -4067,13 +4079,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-brookeville-md': {
     h1: 'Kitchen Remodeling in Brookeville, MD',
     metaDescription:
-      'Kitchen remodeling in Brookeville, MD, ZIP 20833. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Brookeville, MD, ZIP 20833. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Brookeville?',
         answer:
-          'Brookeville is on the county list of places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
+          'Inside the Town of Brookeville, town approval comes before the county application; a ZIP 20833 home outside town limits goes straight to Montgomery County. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
       },
       {
         question: 'Does a cabinet replacement in Brookeville skip the town?',
@@ -4087,7 +4099,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Brookeville, MD starts with the town, because the county requires city approval before the county application.',
+      'Kitchen remodeling in Brookeville, MD starts with the parcel: inside the Town of Brookeville, the county requires town approval before the county application; outside town limits, the county permit is the path.',
       'Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County staff are at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Brookeville quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -4096,13 +4108,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'bathrooms-brookeville-md': {
     h1: 'Bathroom Remodeling in Brookeville, MD',
     metaDescription:
-      'Bathroom remodeling in Brookeville, MD. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Bathroom remodeling in Brookeville, MD. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a bathroom remodel in Brookeville?',
         answer:
-          'The town, then Montgomery County. Town questions go to 301-570-4465 at 5 High Street. County phone 240-777-0311. Brookeville is listed for city approval before the county application.',
+          'Inside the Town of Brookeville, the town, then Montgomery County; outside town limits, the county. Town questions go to 301-570-4465 at 5 High Street. County phone 240-777-0311.',
       },
       {
         question: 'What does bathroom remodeling in Brookeville, MD cost?',
@@ -4116,9 +4128,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Brookeville, MD follows the town-first order the county requires for Brookeville: city approval, then the county application.',
+      'Bathroom remodeling in Brookeville, MD: for a home inside the Town of Brookeville, the county requires town approval first, then the county application. A ZIP 20833 home outside town limits uses the county alone.',
       'County staff are at the Department of Permitting Services in Wheaton. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. The home-improvements list does not include municipality rules.',
-      'Every Brookeville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The town step is named in that estimate before any filing.',
+      'Every Brookeville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. When the home is inside town limits, the town step is named in that estimate before any filing.',
     ],
   },
 
@@ -4131,7 +4143,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Brookeville, MD?',
         answer:
-          'The town first, then Montgomery County. An interior alteration will likely need a county permit. Brookeville is listed for city approval before the county application. Town phone 301-570-4465.',
+          'Inside the Town of Brookeville, the town first, then Montgomery County; outside town limits, the county. An interior alteration will likely need a county permit. Town phone 301-570-4465.',
       },
       {
         question: 'Where do Brookeville town questions go?',
@@ -4145,7 +4157,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Brookeville, MD is a lower level inside the town, and the county wants city approval before the county application.',
+      'Basement finishing in Brookeville, MD: if the home is inside the Town of Brookeville, the county wants town approval before the county application; outside town limits, the county permit is the path.',
       'The county says an interior alteration will likely need a permit. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Association rules, where a lot has them, sit outside the county list.',
       'A Brookeville lower level in ZIP 20833 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
@@ -4164,7 +4176,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'City approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton.',
+          'Inside town limits, town approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton.',
         ],
       },
     ],
@@ -4695,6 +4707,854 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         title: 'Permits',
         paragraphs: [
           'Office of Code Administration and Fire Marshal, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. Office hours are Monday through Friday, 8:30 a.m. to 5:00 p.m. We confirm the permit steps with the city before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-delaplane-va': {
+    h1: 'Kitchen Remodeling in Delaplane, VA',
+    metaDescription:
+      'Kitchen remodeling in Delaplane, VA, ZIP 20144. Fauquier County building and trade permits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Delaplane?',
+        answer:
+          'Fauquier County, 16 Courthouse Square, Warrenton, phone 540-422-8230. Building and trade permits are required for a kitchen remodel, including a wall or partition change. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does a Delaplane kitchen need a zoning permit too?',
+        answer:
+          'A zoning permit is typically not required for an interior renovation, and it may be required for a basement or when the scope leaves the kitchen. The walk-through program is suspended indefinitely. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Delaplane, VA cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Delaplane quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Delaplane, VA is a Fauquier County kitchen along Route 17 in ZIP 20144, between Upperville and Marshall.',
+      'Questions go to 16 Courthouse Square, Warrenton, VA 20186, phone 540-422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications stop at 4 p.m. Building and trade permits cover a kitchen remodel. The walk-through program is suspended indefinitely. A zoning permit may still apply when the scope is a basement or leaves the interior. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Delaplane quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-delaplane-va': {
+    h1: 'Bathroom Remodeling in Delaplane, VA',
+    metaDescription:
+      'Bathroom remodeling in Delaplane, VA. A new bath on public water needs the utility approval. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Delaplane?',
+        answer:
+          'Fauquier County Community Development, phone 540-422-8230, at 16 Courthouse Square, Warrenton. Building and trade permits are required for a bath remodel. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What does bathroom remodeling in Delaplane, VA cost?',
+        answer:
+          'Every Delaplane bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does a new Delaplane bath on a well need the Health Department?',
+        answer:
+          'Adding bedrooms on a private well and septic needs a Health Department construction permit or the SAP form. A new bathroom on public water and sewer needs the public utility approval. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Delaplane, VA is a Fauquier County bath in ZIP 20144, and building and trade permits are required for the remodel.',
+      'The office is 16 Courthouse Square, Warrenton, phone 540-422-8230, Monday through Friday, 8:00 a.m. to 4:30 p.m. Building and trade permits are required for a bath remodel. A zoning permit is typically not required for an interior renovation. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every Delaplane bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-delaplane-va': {
+    h1: 'Basement Finishing in Delaplane, VA',
+    metaDescription:
+      'Basement finishing in Delaplane, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Delaplane, VA?',
+        answer:
+          'Fauquier County, 16 Courthouse Square, Warrenton, phone 540-422-8230. A zoning permit may be required when the work is a basement. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What is different about a Delaplane lower level?',
+        answer:
+          'The county says a zoning permit is typically not required for an interior renovation, and that it may be required for a basement. A conservation easement on the parcel needs the county attorney compliance form. The passed final inspection is the certificate of occupancy for a residential alteration.',
+      },
+      {
+        question: 'What does a finished basement in Delaplane cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Delaplane quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Delaplane, VA is a lower level in Fauquier County, ZIP 20144, and a zoning permit may be required because the work is a basement.',
+      'Questions go to 16 Courthouse Square, Warrenton, phone 540-422-8230. The walk-through program is suspended indefinitely. In-person applications are not accepted after 4 p.m. If the parcel is in a conservation easement, the county attorney compliance form goes with the application. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'A Delaplane lower level along Route 17 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Delaplane lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/delaplane-va', label: 'Delaplane service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Community Development, 16 Courthouse Square, Warrenton, VA 20186, phone 540-422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m. A zoning permit may be required for a basement. We confirm the permit steps for the parcel before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-marriottsville-md': {
+    h1: 'Kitchen Remodeling in Marriottsville, MD',
+    metaDescription:
+      'Kitchen remodeling in Marriottsville, MD, ZIP 21104. The parcel decides the county. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Marriottsville?',
+        answer:
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does a Marriottsville cabinet swap need the Health Department?',
+        answer:
+          'A cabinet replacement is not a well-and-septic question. When the parcel is in Howard County and the house is on a private well and septic, Health Department approval comes before a permit that the work requires. That number is 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Marriottsville, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Marriottsville quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Marriottsville, MD is a kitchen in ZIP 21104, along Marriottsville Road near the Patapsco. The mailing town does not decide the county.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. A private well and septic in Howard County needs Health Department approval before the permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Marriottsville quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-marriottsville-md': {
+    h1: 'Bathroom Remodeling in Marriottsville, MD',
+    metaDescription:
+      'Bathroom remodeling in Marriottsville, MD. A water heater needs a master plumber permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Marriottsville?',
+        answer:
+          'The parcel decides the county. When it is Howard County, questions go to 410-313-2455, option 4, at 3430 Courthouse Drive, Ellicott City. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What does bathroom remodeling in Marriottsville, MD cost?',
+        answer:
+          'Every Marriottsville bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does a Marriottsville water heater need its own permit?',
+        answer:
+          'When the parcel is in Howard County, a plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Marriottsville, MD is a bath in ZIP 21104. The parcel decides the county before a water-heater permit is assigned.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. Arrive by 4:00 p.m. A Howard County house on a private well and septic needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every Marriottsville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-marriottsville-md': {
+    h1: 'Basement Finishing in Marriottsville, MD',
+    metaDescription:
+      'Basement finishing in Marriottsville, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Marriottsville, MD?',
+        answer:
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does a Marriottsville lower level on a well start at the Health Department?',
+        answer:
+          'When the parcel is in Howard County and the house is on a private well and septic, Health Department approval comes before the permit. That number is 410-313-6300. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does a finished basement in Marriottsville cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Marriottsville quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Marriottsville, MD is a lower level in ZIP 21104. The parcel decides which county office is asked.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic in Howard County needs Health Department approval first. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'A Marriottsville lower level near the Patapsco can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Marriottsville lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/marriottsville-md', label: 'Marriottsville service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Arrive by 4:00 p.m. We confirm the permit steps for the parcel before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-ellicott-city-md': {
+    h1: 'Kitchen Remodeling in Ellicott City, MD',
+    metaDescription:
+      'Kitchen remodeling in Ellicott City, MD, for ZIP 21042 and ZIP 21043. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Ellicott City?',
+        answer:
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 are the mailing area.',
+      },
+      {
+        question: 'Does a Main Street kitchen file somewhere else?',
+        answer:
+          'The ZIP does not name the office. A house in ZIP 21042 and a house in ZIP 21043 are both Ellicott City mailing areas. When the parcel is in Howard County, questions go to the Courthouse Drive office. Arrive by 4:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Ellicott City, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ellicott City quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Ellicott City, MD covers a kitchen in ZIP 21042 or ZIP 21043. The ZIP does not decide the county.',
+      'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic in Howard County needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ellicott City quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-ellicott-city-md': {
+    h1: 'Bathroom Remodeling in Ellicott City, MD',
+    metaDescription:
+      'Bathroom remodeling in Ellicott City, MD, in ZIP 21042 or ZIP 21043. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Ellicott City?',
+        answer:
+          'The parcel decides the county. When it is Howard County, questions go to 410-313-2455, option 4, at 3430 Courthouse Drive. ZIP 21042 and ZIP 21043 are the mailing area.',
+      },
+      {
+        question: 'What does bathroom remodeling in Ellicott City, MD cost?',
+        answer:
+          'Every Ellicott City bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does an Ellicott City water heater need a plumber permit?',
+        answer:
+          'When the parcel is in Howard County, a plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Ellicott City, MD is a bath in ZIP 21042 or ZIP 21043. The parcel decides the county before an office is named.',
+      'When the parcel is in Howard County, questions go to 410-313-2455, option 4. Arrive by 4:00 p.m. Plumbing and mechanical questions can also go to 410-313-1840. A Howard County water heater needs a plumbing permit pulled by a master plumber. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every Ellicott City bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-ellicott-city-md': {
+    h1: 'Basement Finishing in Ellicott City, MD',
+    metaDescription:
+      'Basement finishing in Ellicott City, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Ellicott City, MD?',
+        answer:
+          'The parcel decides the county. When it is Howard County, questions go to 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. ZIP 21042 and ZIP 21043 are the mailing area.',
+      },
+      {
+        question: 'Does a lower level near the Patapsco use a different office?',
+        answer:
+          'The ZIP does not name the office. When the parcel is in Howard County, questions go to the Courthouse Drive counter. A Howard County house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What does a finished basement in Ellicott City cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not an Ellicott City quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Ellicott City, MD is a lower level in ZIP 21042 or ZIP 21043. The ZIP does not name the permit office.',
+      'When the parcel is in Howard County, questions go to 410-313-2455, option 4. The front counter closes at 5:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A low cellar on Main Street and a full-height lower level in ZIP 21042 are different jobs. We confirm the permit steps for the parcel before work starts.',
+      'An Ellicott City lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for an Ellicott City lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/ellicott-city-md', label: 'Ellicott City service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 are the mailing area. Arrive by 4:00 p.m.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-laytonsville-md': {
+    h1: 'Kitchen Remodeling in Laytonsville, MD',
+    metaDescription:
+      'Kitchen remodeling in Laytonsville, MD, ZIP 20882. Town approval comes first only when the parcel is in the town. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Laytonsville?',
+        answer:
+          'The parcel decides. When it is in the Town of Laytonsville, city approval is required before the county application. Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. A county parcel uses 240-777-0311.',
+      },
+      {
+        question: 'Does a cabinet replacement in Laytonsville skip the town?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Laytonsville, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Laytonsville quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Laytonsville, MD is a kitchen in ZIP 20882 along MD 108. The ZIP does not put the house inside the town.',
+      'When the parcel is in the Town of Laytonsville, city approval is required before the county application. Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. A county parcel uses 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Laytonsville quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-laytonsville-md': {
+    h1: 'Bathroom Remodeling in Laytonsville, MD',
+    metaDescription:
+      'Bathroom remodeling in Laytonsville, MD. Town approval comes first only when the parcel is in the town. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Laytonsville?',
+        answer:
+          'The parcel decides. When it is in the Town of Laytonsville, town questions go to 301-869-0042 before the county application. A county parcel uses 240-777-0311. Bathroom caulking most likely will not need a permit. An interior alteration likely will.',
+      },
+      {
+        question: 'What does bathroom remodeling in Laytonsville, MD cost?',
+        answer:
+          'Every Laytonsville bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does a Laytonsville bath on a septic system change the filing?',
+        answer:
+          'A well or a septic system likely needs a permit. A house on its own well and septic has additional requirements. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Laytonsville, MD confirms the parcel before the town at P.O. Box 5158 is treated as the first stop.',
+      'When the parcel is in the Town of Laytonsville, the town phone is 301-869-0042 and city approval comes before the county application. A county parcel uses the Wheaton office, phone 240-777-0311, 7:30 a.m. to 4 p.m. Bathroom caulking most likely will not need a permit. A renovation other than a repair does. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every Laytonsville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-laytonsville-md': {
+    h1: 'Basement Finishing in Laytonsville, MD',
+    metaDescription:
+      'Basement finishing in Laytonsville, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Laytonsville, MD?',
+        answer:
+          'The parcel decides. When it is in the Town of Laytonsville, town approval comes first, phone 301-869-0042, then the county at 240-777-0311. An interior alteration will likely need a permit. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What is checked before a Laytonsville lower level is finished?',
+        answer:
+          'Headroom, the stair, moisture, and whether the parcel is inside the town. Town-before-county applies to a Town of Laytonsville parcel. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does a finished basement in Laytonsville cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Laytonsville quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Laytonsville, MD confirms whether the parcel is in the town before a filing order is assumed.',
+      'When the parcel is in the Town of Laytonsville, town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042, and city approval is required before the county application. A county parcel uses 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Permits are applied for electronically. A non-refundable filing fee is paid at application unless state law exempts it. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'A Laytonsville lower level off MD 108 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Laytonsville lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/laytonsville-md', label: 'Laytonsville service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in the Town of Laytonsville, questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042, and city approval is required before the county application. A county parcel uses 240-777-0311.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-barnesville-md': {
+    h1: 'Kitchen Remodeling in Barnesville, MD',
+    metaDescription:
+      'Kitchen remodeling in Barnesville, MD, ZIP 20837. The parcel decides the town or the county office. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Barnesville?',
+        answer:
+          'The parcel decides. A Town of Barnesville parcel needs city approval first. Town questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. A Poolesville parcel uses 301-428-8927. A county parcel in neither town uses 240-777-0311.',
+      },
+      {
+        question: 'Does a Barnesville cabinet replacement skip the town?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Barnesville, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Barnesville quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Barnesville, MD is a kitchen in ZIP 20837. The ZIP can be Barnesville, Poolesville, or a county parcel in neither town.',
+      'When the parcel is in the Town of Barnesville, questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659, and city approval is required before the county application. A Poolesville parcel uses P.O. Box 158, Poolesville, MD 20837, phone 301-428-8927, and also needs city approval first. A county parcel in neither town uses Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Barnesville quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-barnesville-md': {
+    h1: 'Bathroom Remodeling in Barnesville, MD',
+    metaDescription:
+      'Bathroom remodeling in Barnesville, MD. The parcel decides the town or the county office. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Barnesville?',
+        answer:
+          'The parcel decides. A Town of Barnesville parcel uses 240-415-1659 before the county application. A Poolesville parcel uses 301-428-8927. A county parcel in neither town uses 240-777-0311.',
+      },
+      {
+        question: 'What does bathroom remodeling in Barnesville, MD cost?',
+        answer:
+          'Every Barnesville bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does caulking a Barnesville bath need a county permit?',
+        answer:
+          'Bathroom caulking most likely will not need a permit. An interior alteration likely will. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Barnesville, MD confirms the parcel first. ZIP 20837 can be Barnesville, Poolesville, or a county parcel in neither town.',
+      'A Town of Barnesville parcel uses 240-415-1659, and city approval comes before the county application. A Poolesville parcel uses 301-428-8927. A county parcel in neither town uses 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Bathroom caulking most likely will not need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every Barnesville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-barnesville-md': {
+    h1: 'Basement Finishing in Barnesville, MD',
+    metaDescription:
+      'Basement finishing in Barnesville, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Barnesville, MD?',
+        answer:
+          'The parcel decides. A Town of Barnesville parcel uses P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659, before the county application. A county parcel in neither Barnesville nor Poolesville uses 240-777-0311.',
+      },
+      {
+        question: 'What is checked before a Barnesville lower level is finished?',
+        answer:
+          'Headroom, the stair, moisture, and whether the parcel is in a town. Poolesville shares ZIP 20837 and requires city approval first when the parcel is in that town. A county parcel in neither town does not use that town-first order. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does a finished basement in Barnesville cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Barnesville quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Barnesville, MD confirms the parcel before a town or the county office is assumed.',
+      'A parcel in the Town of Barnesville uses 240-415-1659, and city approval is required before the county application. A parcel in the Town of Poolesville uses 301-428-8927 and the same town-first order. A county parcel in neither town uses 240-777-0311. An interior alteration will likely need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'A Barnesville lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Barnesville lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/barnesville-md', label: 'Barnesville service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in the Town of Barnesville, questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659, and city approval is required before the county application. A county parcel in neither Barnesville nor Poolesville uses 240-777-0311.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-olney-md': {
+    h1: 'Kitchen Remodeling in Olney, MD',
+    metaDescription:
+      'Kitchen remodeling in Olney, MD, ZIP 20832. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Olney?',
+        answer:
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'Does an interior kitchen change in Olney need a permit?',
+        answer:
+          'An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Countertops do not need a permit when no structural change is made. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Olney, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Olney quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Olney, MD is a Montgomery County kitchen in ZIP 20832, where Georgia Avenue meets MD 108.',
+      'County questions go to Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. A renovation other than a repair needs a permit before work starts. Cabinets most likely will not. Permits are applied for electronically. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Olney quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-olney-md': {
+    h1: 'Bathroom Remodeling in Olney, MD',
+    metaDescription:
+      'Bathroom remodeling in Olney, MD, ZIP 20832. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Olney?',
+        answer:
+          'County questions go to 240-777-0311. We confirm the permit steps for the parcel before work starts. Bathroom caulking most likely will not need a permit. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'What does bathroom remodeling in Olney, MD cost?',
+        answer:
+          'Every Olney bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does replacing a faucet in Olney need a permit?',
+        answer:
+          'Replacing a faucet does not need a permit when no structural change is made. A renovation other than a repair does. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Olney, MD is a ZIP 20832 bath near Georgia Avenue, and a renovation other than a repair needs a permit before work starts.',
+      'The county office is 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. No appointment is necessary. Hours are 7:30 a.m. to 4 p.m. Bathroom caulking most likely will not need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every Olney bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-olney-md': {
+    h1: 'Basement Finishing in Olney, MD',
+    metaDescription:
+      'Basement finishing in Olney, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Olney, MD?',
+        answer:
+          'County questions go to the Department of Permitting Services, phone 240-777-0311. A renovation other than a repair needs a permit before work starts. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What is checked before an Olney lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. A house on its own well and septic has additional requirements. The county does not enforce deed restrictions. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does a finished basement in Olney cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not an Olney quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Olney, MD is a lower level in ZIP 20832, and a renovation other than a repair needs a permit before the work starts.',
+      'County questions go to 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Plans are submitted electronically, and hard copies of the approved drawings stay on the job for the inspector. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'An Olney lower level off Georgia Avenue can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for an Olney lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/olney-md', label: 'Olney service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are Monday through Friday, 7:30 a.m. to 4 p.m. We confirm the permit steps for the parcel before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-ashton-md': {
+    h1: 'Kitchen Remodeling in Ashton, MD',
+    metaDescription:
+      'Kitchen remodeling in Ashton, MD, ZIP 20861. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Ashton?',
+        answer:
+          'County questions go to the Department of Permitting Services, phone 240-777-0311. Sandy Spring shares ZIP 20861. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does an Ashton kitchen on a well need an extra step?',
+        answer:
+          'A house on its own well and septic has additional requirements. A well or a septic system likely needs a permit. Cabinets most likely will not. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Ashton, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ashton quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Ashton, MD is a Montgomery County kitchen in ZIP 20861, along MD 108 toward New Hampshire Avenue.',
+      'County questions go to 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Sandy Spring shares the ZIP. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ashton quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-ashton-md': {
+    h1: 'Bathroom Remodeling in Ashton, MD',
+    metaDescription:
+      'Bathroom remodeling in Ashton, MD, ZIP 20861. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Ashton?',
+        answer:
+          'County questions go to 240-777-0311. We confirm the permit steps for the parcel before work starts. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'What does bathroom remodeling in Ashton, MD cost?',
+        answer:
+          'Every Ashton bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does caulking an Ashton bath need a permit?',
+        answer:
+          'Bathroom caulking most likely will not need a permit. A renovation other than a repair will. A house on its own well and septic has additional requirements. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Ashton, MD is a ZIP 20861 bath along MD 108, and a house on a well and septic has additional requirements.',
+      'The county office is in Wheaton, phone 240-777-0311, 7:30 a.m. to 4 p.m. Monday through Friday. Bathroom caulking most likely will not need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every Ashton bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-ashton-md': {
+    h1: 'Basement Finishing in Ashton, MD',
+    metaDescription:
+      'Basement finishing in Ashton, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Ashton, MD?',
+        answer:
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What is checked before an Ashton lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. Sandy Spring shares ZIP 20861. A house on its own well and septic has additional requirements. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does a finished basement in Ashton cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not an Ashton quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Ashton, MD is a lower level in ZIP 20861, and a house on a well and septic has additional requirements before the finish is planned.',
+      'County questions go to 240-777-0311. An interior alteration will likely need a permit. Inspections are requested at least 24 hours ahead. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Municipality rules and homeowners-association rules are separate from the county guidance. We confirm the permit steps for the parcel before work starts.',
+      'An Ashton lower level along MD 108 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for an Ashton lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/ashton-md', label: 'Ashton service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-north-potomac-md': {
+    h1: 'Kitchen Remodeling in North Potomac, MD',
+    metaDescription:
+      'Kitchen remodeling in North Potomac, MD, ZIP 20878. The parcel decides the permit office. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in North Potomac?',
+        answer:
+          'The parcel decides. The City of Gaithersburg is city permit only. A county parcel uses the Department of Permitting Services, phone 240-777-0311. We confirm the office before work starts.',
+      },
+      {
+        question: 'Does a North Potomac cabinet replacement need a permit?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not. An interior alteration likely will. Countertops do not, when no structural change is made. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in North Potomac, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a North Potomac quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in North Potomac, MD is a Montgomery County kitchen in ZIP 20878, along Darnestown Road, and the parcel decides the permit office.',
+      'The City of Gaithersburg is city permit only. A county parcel uses 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a North Potomac quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-north-potomac-md': {
+    h1: 'Bathroom Remodeling in North Potomac, MD',
+    metaDescription:
+      'Bathroom remodeling in North Potomac, MD, ZIP 20878. Montgomery County permits when the parcel is in the county. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in North Potomac?',
+        answer:
+          'The parcel decides. County questions go to 240-777-0311 when the house is in the county permit area. The City of Gaithersburg is city permit only. We confirm the office before work starts.',
+      },
+      {
+        question: 'What does bathroom remodeling in North Potomac, MD cost?',
+        answer:
+          'Every North Potomac bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does a faucet replacement in North Potomac need a permit?',
+        answer:
+          'Replacing a faucet does not need a permit when no structural change is made. A renovation other than a repair does. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in North Potomac, MD is a ZIP 20878 bath along Darnestown Road, and Gaithersburg city permit rules are checked before a county filing is assumed.',
+      'County questions go to Wheaton, phone 240-777-0311, when the parcel is in the county permit area. Bathroom caulking most likely will not need a permit. A renovation other than a repair will. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Every North Potomac bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-north-potomac-md': {
+    h1: 'Basement Finishing in North Potomac, MD',
+    metaDescription:
+      'Basement finishing in North Potomac, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in North Potomac, MD?',
+        answer:
+          'The parcel decides. The City of Gaithersburg is city permit only. A county parcel uses the Department of Permitting Services, phone 240-777-0311. We confirm the office before work starts.',
+      },
+      {
+        question: 'What is checked before a North Potomac lower level is finished?',
+        answer:
+          'Headroom, the stair, moisture, and which office issues the permit. The county does not enforce deed restrictions. A common-ownership community is asked separately. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does a finished basement in North Potomac cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a North Potomac quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in North Potomac, MD is a lower level in ZIP 20878, and the parcel decides whether the county or the City of Gaithersburg is the permit office.',
+      'When the parcel is in the county permit area, questions go to 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. A renovation other than a repair needs a permit before work starts. Eligible applications can use Fast Track review. Other applications are reviewed by the county, and by WSSC when plumbing is in the scope. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'A North Potomac lower level along Darnestown Road can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a North Potomac lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/north-potomac-md', label: 'North Potomac service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, when the parcel is in the county permit area. The City of Gaithersburg is city permit only. We confirm the office before work starts.',
         ],
       },
     ],
