@@ -601,6 +601,23 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'kensington-md', city: 'Kensington', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'woodbine-md', city: 'Woodbine', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'dickerson-md', city: 'Dickerson', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+
+  /* ---------- Round 8 richest-county towns, 2026-10-10 ----------
+   * Howard, Montgomery, and Fauquier. Empty legacyTiers, so the pinned
+   * primary and secondary lists do not move. Premium, same as round 7.
+   * Howard and Montgomery towns stay unparented. Delaplane stays
+   * unparented because there is no Fauquier county row; areaRegionLabel
+   * names Fauquier. Ellicott City is one row for ZIP 21042 and ZIP 21043.
+   * Do not print a Maryland license caveat. No Brambleton.
+   */
+  { slug: 'delaplane-va', city: 'Delaplane', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'marriottsville-md', city: 'Marriottsville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'ellicott-city-md', city: 'Ellicott City', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'laytonsville-md', city: 'Laytonsville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'barnesville-md', city: 'Barnesville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'olney-md', city: 'Olney', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'ashton-md', city: 'Ashton', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'north-potomac-md', city: 'North Potomac', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -2230,6 +2247,230 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  'delaplane-va': {
+    seoTitle: 'Remodeling Contractor in Delaplane, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Delaplane, VA',
+    seoDescription:
+      'Remodeling contractor in Delaplane, VA, ZIP 20144. Fauquier County permits in Warrenton. Free written estimate after a site walk.',
+    description:
+      "Delaplane is Fauquier County, ZIP 20144, along Route 17 between Upperville and Marshall. The houses are established homes on county lots. The drive from Martinsburg is Route 9 to Leesburg, then Route 17 south.\n\nA building permit is required for renovations and alterations to an existing house. Building and trade permits are required for a kitchen or bath remodel and for a wall or partition change. A zoning permit is required for most work, including some interior renovations. On an interior renovation the zoning permit is typically not required, and it may be required when the work is a basement, so the parcel and the scope decide. The walk-through program is suspended indefinitely. Questions go to 16 Courthouse Square, Warrenton, VA 20186, phone 540-422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m. In-person applications are not accepted after 4 p.m. We confirm the permit steps for the parcel before work starts.\n\nAdding bedrooms on a private well and septic needs a Health Department construction permit or the SAP form. A new bathroom on public water and sewer needs the public utility's approval. If the parcel is in a conservation easement, the county attorney's compliance form is required with the application. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Route 17', 'ZIP 20144', 'John S. Mosby Highway', 'between Upperville and Marshall'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['upperville-va', 'marshall-va', 'the-plains-va', 'warrenton-va'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Delaplane, VA?',
+        answer:
+          'Fauquier County Community Development, 16 Courthouse Square, Warrenton, VA 20186, phone 540-422-8230. A building permit is required for renovations and alterations. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does a Delaplane basement use the same permit as a kitchen?',
+        answer:
+          'A kitchen or bath remodel needs building and trade permits. A zoning permit may be required when the work is a basement. The walk-through program is suspended indefinitely. The parcel and the scope decide.',
+      },
+      {
+        question: 'What does remodeling in Delaplane cost?',
+        answer:
+          'Every Delaplane kitchen, bathroom, and lower level is a free written estimate after a site walk. County fees are not that price.',
+      },
+    ],
+  },
+  'marriottsville-md': {
+    seoTitle: 'Remodeling Contractor in Marriottsville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Marriottsville, MD',
+    seoDescription:
+      'Remodeling contractor in Marriottsville, MD, ZIP 21104. Howard County permits in Ellicott City. Free written estimate after a site walk.',
+    description:
+      "Marriottsville is western Howard County, ZIP 21104, along Marriottsville Road near the Patapsco. The houses are detached homes on county lots, not Ellicott City's Main Street. The drive from Martinsburg is I-81 south to I-70 east, then south on Marriottsville Road.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the building, mechanical, plumbing, and electrical codes. The office is 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. A house on a private well and septic needs Health Department approval before the permit. That number is 410-313-6300. We confirm the permit steps with the county before work starts.\n\nA plumbing permit for a water heater, gas or electric, must be pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Marriottsville Road', 'ZIP 21104', 'Patapsco edge', 'Old Frederick Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['west-friendship-md', 'glenwood-md', 'woodbine-md', 'ellicott-city-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Marriottsville, MD?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455, option 4. We confirm the permit steps with the county before work starts.',
+      },
+      {
+        question: 'Does a Marriottsville house on a well use a different first step?',
+        answer:
+          'Yes, when the house is on a private well and septic. The county requires Health Department approval first. The Health Department number is 410-313-6300.',
+      },
+      {
+        question: 'What does remodeling in Marriottsville cost?',
+        answer:
+          'Every Marriottsville kitchen, bathroom, and lower level is a free written estimate after a site walk. A water-heater permit is a plumbing permit, not the project price.',
+      },
+    ],
+  },
+  'ellicott-city-md': {
+    seoTitle: 'Remodeling Contractor in Ellicott City, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Ellicott City, MD',
+    seoDescription:
+      'Remodeling contractor in Ellicott City, MD, ZIP 21042 and ZIP 21043. Howard County permits on Courthouse Drive. Free written estimate after a site walk.',
+    description:
+      "Ellicott City remodeling covers ZIP 21042 and ZIP 21043. Main Street and the Patapsco are one part of that mailing area. The county permit office is the other, at 3430 Courthouse Drive in ZIP 21043. Both ZIPs use that department. The drive from Martinsburg is I-81 south to I-70 east, then into Ellicott City.\n\nThe Department of Inspections, Licenses and Permits approves and issues permits and enforces the building, mechanical, plumbing, and electrical codes. Questions go to 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. A house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the permit steps with the county before work starts.\n\nA water-heater replacement needs a plumbing permit pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Main Street', 'ZIP 21042', 'ZIP 21043', 'Courthouse Drive', 'Patapsco', 'Frederick Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['clarksville-md', 'west-friendship-md', 'marriottsville-md', 'glenwood-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Ellicott City, MD?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 both use that office.',
+      },
+      {
+        question: 'Do ZIP 21042 and ZIP 21043 file at different counters?',
+        answer:
+          'No. Both Ellicott City ZIPs use the department at 3430 Courthouse Drive. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. A well and septic house needs Health Department approval first.',
+      },
+      {
+        question: 'What does remodeling in Ellicott City cost?',
+        answer:
+          'Every Ellicott City kitchen, bathroom, and lower level is a free written estimate after a site walk. A Main Street house and a house in ZIP 21042 are not the same scope.',
+      },
+    ],
+  },
+  'laytonsville-md': {
+    seoTitle: 'Remodeling Contractor in Laytonsville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Laytonsville, MD',
+    seoDescription:
+      'Remodeling contractor in Laytonsville, MD, ZIP 20882. Town approval comes before the county application. Free written estimate after a site walk.',
+    description:
+      "Laytonsville is northern Montgomery County, ZIP 20882, along MD 108. Laytonsville is one of the places where city approval is required before the county application. Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. The drive from Martinsburg is I-81 south to I-70 east, then south toward MD 108.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. A renovation other than a repair needs a permit before work starts. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A well or a septic system likely needs a permit. Permits are applied for electronically, and a non-refundable filing fee is paid at application unless state law exempts it. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MD 108', 'ZIP 20882', 'Laytonsville Road', 'Sundown Road', 'Brink Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['brookeville-md', 'olney-md', 'barnesville-md', 'dickerson-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Laytonsville, MD?',
+        answer:
+          'The town first, then the county. Laytonsville is on the list of places where city approval is required before the county application. Town questions go to P.O. Box 5158, Laytonsville, MD 20882, phone 301-869-0042. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Does a cabinet replacement in Laytonsville skip the town?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Town questions go to 301-869-0042 before a sequence is assumed.',
+      },
+      {
+        question: 'What does remodeling in Laytonsville cost?',
+        answer:
+          'Every Laytonsville kitchen, bathroom, and lower level is a free written estimate after a site walk. The county filing fee is not that price.',
+      },
+    ],
+  },
+  'barnesville-md': {
+    seoTitle: 'Remodeling Contractor in Barnesville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Barnesville, MD',
+    seoDescription:
+      'Remodeling contractor in Barnesville, MD, ZIP 20837. Town approval comes before the county application. Free written estimate after a site walk.',
+    description:
+      "Barnesville is western Montgomery County, ZIP 20837, along Barnesville Road. The Town of Barnesville is one of the places where city approval is required before the county application. Town questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. The Town of Poolesville also uses ZIP 20837, and Poolesville is on that same approval list, so the parcel decides which town is asked first. Poolesville questions go to P.O. Box 158, Poolesville, MD 20837, phone 301-428-8927. The drive from Martinsburg is I-81 south to I-70 east, then south toward Barnesville Road.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. An interior alteration will likely need a permit. Cabinets most likely will not. A renovation other than a repair needs a permit before work starts. Municipality rules and homeowners-association rules are separate from that guidance. We confirm the permit steps for the parcel before work starts.\n\nPlumbing questions go to WSSC. A well or a septic system likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Barnesville Road', 'ZIP 20837', 'Beallsville edge', 'MD 109', 'Poolesville edge'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['dickerson-md', 'brookeville-md', 'laytonsville-md', 'potomac-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Barnesville, MD?',
+        answer:
+          'The town first, then the county. Barnesville requires city approval before the county application. Town questions go to P.O. Box 95, Barnesville, MD 20838, phone 240-415-1659. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Is every ZIP 20837 address the Town of Barnesville?',
+        answer:
+          'No. The Town of Poolesville also uses ZIP 20837, and Poolesville is also a place where city approval comes before the county application. Poolesville questions go to 301-428-8927. The parcel decides which town is asked first.',
+      },
+      {
+        question: 'What does remodeling in Barnesville cost?',
+        answer:
+          'Every Barnesville kitchen, bathroom, and lower level is a free written estimate after a site walk. The town on the parcel is named in that estimate before any filing.',
+      },
+    ],
+  },
+  'olney-md': {
+    seoTitle: 'Remodeling Contractor in Olney, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Olney, MD',
+    seoDescription:
+      'Remodeling contractor in Olney, MD, ZIP 20832. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    description:
+      "Olney is Montgomery County, ZIP 20832, where Georgia Avenue (MD 97) meets MD 108. The houses are established neighborhoods off that crossing. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward MD 97. We confirm the permit steps for the parcel before work starts.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. A renovation other than a repair needs a permit before work starts. Painting, wallpapering, a faucet replacement, countertops, and floor coverings do not, when no structural change is made. An interior alteration will likely need a permit. Cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A house on its own well and septic has additional requirements. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Georgia Avenue', 'MD 108', 'ZIP 20832', 'Cashell Road', 'Olney-Laytonsville Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['laytonsville-md', 'brookeville-md', 'ashton-md', 'kensington-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Olney, MD?',
+        answer:
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'Does an interior kitchen change in Olney need a permit?',
+        answer:
+          'An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. A renovation other than a repair needs a permit before work starts. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'What does remodeling in Olney cost?',
+        answer:
+          'Every Olney kitchen, bathroom, and lower level is a free written estimate after a site walk. A Georgia Avenue house and a house off MD 108 are not the same scope.',
+      },
+    ],
+  },
+  'ashton-md': {
+    seoTitle: 'Remodeling Contractor in Ashton, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Ashton, MD',
+    seoDescription:
+      'Remodeling contractor in Ashton, MD, ZIP 20861. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    description:
+      "Ashton is eastern Montgomery County, ZIP 20861, along MD 108 toward New Hampshire Avenue. Sandy Spring shares that ZIP. The drive from Martinsburg is I-81 south to I-70 east, then east on MD 108. We confirm the permit steps for the parcel before work starts.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. A renovation other than a repair needs a permit before work starts. An interior alteration will likely need a permit. Bathroom caulking most likely will not. Cabinets most likely will not. A house on its own well and septic has additional requirements. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A well or a septic system likely needs a permit. Permits are applied for electronically. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MD 108', 'ZIP 20861', 'New Hampshire Avenue', 'Sandy Spring', 'Norwood Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['olney-md', 'brookeville-md', 'laytonsville-md', 'kensington-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Ashton, MD?',
+        answer:
+          'County questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts. Sandy Spring shares ZIP 20861.',
+      },
+      {
+        question: 'Does an Ashton house on a well change the permit?',
+        answer:
+          'A house on its own well and septic has additional requirements. A well or a septic system likely needs a permit. Plumbing questions go to WSSC. We confirm the permit steps for the parcel before work starts.',
+      },
+      {
+        question: 'What does remodeling in Ashton cost?',
+        answer:
+          'Every Ashton kitchen, bathroom, and lower level is a free written estimate after a site walk. The written estimate names the scope for that house.',
+      },
+    ],
+  },
+  'north-potomac-md': {
+    seoTitle: 'Remodeling Contractor in North Potomac, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in North Potomac, MD',
+    seoDescription:
+      'Remodeling contractor in North Potomac, MD, ZIP 20878. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+    description:
+      "North Potomac is Montgomery County, ZIP 20878, along Darnestown Road. The City of Gaithersburg is city permit only, so a Darnestown Road address is confirmed before a filing office is assumed. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Darnestown Road. We confirm the permit steps for the parcel before work starts.\n\nWhen the parcel is in the county's permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. A renovation other than a repair needs a permit before work starts. An interior alteration will likely need a permit. Cabinets most likely will not. The county does not enforce deed restrictions. A common-ownership community is asked separately. Municipality rules are separate from that guidance.\n\nPlumbing questions go to WSSC. Eligible applications can use Fast Track review. Other applications are reviewed by the county, and by WSSC when plumbing is in the scope. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Darnestown Road', 'ZIP 20878', 'Quince Orchard Road', 'Travilah edge', 'MD 28'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['potomac-md', 'bethesda-md', 'cabin-john-md', 'kensington-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in North Potomac, MD?',
+        answer:
+          'The parcel decides. The City of Gaithersburg is city permit only. A county parcel uses the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the office before work starts.',
+      },
+      {
+        question: 'Does a North Potomac kitchen need a permit for new cabinets only?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. A renovation other than a repair needs a permit before work starts. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'What does remodeling in North Potomac cost?',
+        answer:
+          'Every North Potomac kitchen, bathroom, and lower level is a free written estimate after a site walk. The county filing fee is not that price.',
+      },
+    ],
+  },
 };
 
 /**
@@ -2309,14 +2550,21 @@ export function areaRegionLabel(area: ServiceArea): string {
       area.slug === 'chevy-chase-md' ||
       area.slug === 'brookeville-md' ||
       area.slug === 'kensington-md' ||
-      area.slug === 'dickerson-md'
+      area.slug === 'dickerson-md' ||
+      area.slug === 'laytonsville-md' ||
+      area.slug === 'barnesville-md' ||
+      area.slug === 'olney-md' ||
+      area.slug === 'ashton-md' ||
+      area.slug === 'north-potomac-md'
     ) {
       return 'Montgomery County area';
     }
     if (
       area.slug === 'west-friendship-md' ||
       area.slug === 'glenwood-md' ||
-      area.slug === 'clarksville-md'
+      area.slug === 'clarksville-md' ||
+      area.slug === 'marriottsville-md' ||
+      area.slug === 'ellicott-city-md'
     ) {
       return 'Howard County area';
     }
@@ -2341,7 +2589,8 @@ export function areaRegionLabel(area: ServiceArea): string {
     area.slug === 'warrenton-va' ||
     area.slug === 'the-plains-va' ||
     area.slug === 'upperville-va' ||
-    area.slug === 'marshall-va'
+    area.slug === 'marshall-va' ||
+    area.slug === 'delaplane-va'
   ) {
     return 'Fauquier County area';
   }

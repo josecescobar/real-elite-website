@@ -34,6 +34,13 @@ function splitKey(key: string) {
   return splitComboKey(key);
 }
 
+/** A longer town slug must not match a shorter one that shares its ending. */
+function keyMatchesCity(key: string, city: string): boolean {
+  if (!key.endsWith(`-${city}`)) return false;
+  const service = key.slice(0, key.length - city.length - 1);
+  return (FEATURED_SERVICE_SLUGS as readonly string[]).includes(service);
+}
+
 describe('service+city combo coverage', () => {
   /**
    * The route resolves a combo's city against ALL_SERVICE_AREAS and calls
@@ -477,7 +484,7 @@ describe('serviceHrefForArea', () => {
   it('returns a deep link for exactly the combos published for an area', () => {
     for (const area of ALL_SERVICE_AREAS) {
       const published = Object.keys(CONTENT)
-        .filter((k) => k.endsWith(`-${area.slug}`))
+        .filter((k) => keyMatchesCity(k, area.slug))
         .map((k) => k.slice(0, k.length - area.slug.length - 1))
         .sort();
 
@@ -715,6 +722,14 @@ describe('comboPublishesPricing', () => {
         'bathrooms-glenwood-md',
         'bathrooms-kensington-md',
         'bathrooms-woodbine-md',
+        'bathrooms-ashton-md',
+        'bathrooms-barnesville-md',
+        'bathrooms-delaplane-va',
+        'bathrooms-ellicott-city-md',
+        'bathrooms-laytonsville-md',
+        'bathrooms-marriottsville-md',
+        'bathrooms-north-potomac-md',
+        'bathrooms-olney-md',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -800,10 +815,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/128 after the City of Fairfax joined round 7: 125, plus kitchens,
-    // bathrooms, and basements for fairfax-va, all clean. Martinsburg and
+    // 0/152 after round 8: 128, plus kitchens, bathrooms, and basements
+    // for eight richest-county towns, all clean. Martinsburg and
     // Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 128 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 152 });
   });
 
   /**
@@ -1467,7 +1482,7 @@ describe('REA-2385 round 6 Tier A towns', () => {
       'catharpin-va',
     ]) {
       for (const key of Object.keys(CONTENT)) {
-        if (key.endsWith(`-${city}`)) expect(allowed.has(key), key).toBe(true);
+        if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
       }
     }
     expect(CONTENT).not.toHaveProperty('kitchens-brambleton-va');
@@ -1619,7 +1634,7 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       'fairfax-va',
     ]) {
       for (const key of Object.keys(CONTENT)) {
-        if (key.endsWith(`-${city}`)) expect(allowed.has(key), key).toBe(true);
+        if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
       }
     }
     expect(CONTENT).not.toHaveProperty('outdoor-living-glenwood-md');
@@ -1730,5 +1745,168 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
     expect(dickerson).toMatch(/confirm the permit steps for the parcel/i);
     expect(dickerson).not.toMatch(dickersonOverclaim);
     expect(dickerson).not.toMatch(researchVoice);
+  });
+});
+
+describe('REA-2442 round 8 richest-county towns', () => {
+  const PAGES = [
+    ['kitchens', 'delaplane-va', 'Kitchen Remodeling in Delaplane, VA'],
+    ['bathrooms', 'delaplane-va', 'Bathroom Remodeling in Delaplane, VA'],
+    ['basements', 'delaplane-va', 'Basement Finishing in Delaplane, VA'],
+    ['kitchens', 'marriottsville-md', 'Kitchen Remodeling in Marriottsville, MD'],
+    ['bathrooms', 'marriottsville-md', 'Bathroom Remodeling in Marriottsville, MD'],
+    ['basements', 'marriottsville-md', 'Basement Finishing in Marriottsville, MD'],
+    ['kitchens', 'ellicott-city-md', 'Kitchen Remodeling in Ellicott City, MD'],
+    ['bathrooms', 'ellicott-city-md', 'Bathroom Remodeling in Ellicott City, MD'],
+    ['basements', 'ellicott-city-md', 'Basement Finishing in Ellicott City, MD'],
+    ['kitchens', 'laytonsville-md', 'Kitchen Remodeling in Laytonsville, MD'],
+    ['bathrooms', 'laytonsville-md', 'Bathroom Remodeling in Laytonsville, MD'],
+    ['basements', 'laytonsville-md', 'Basement Finishing in Laytonsville, MD'],
+    ['kitchens', 'barnesville-md', 'Kitchen Remodeling in Barnesville, MD'],
+    ['bathrooms', 'barnesville-md', 'Bathroom Remodeling in Barnesville, MD'],
+    ['basements', 'barnesville-md', 'Basement Finishing in Barnesville, MD'],
+    ['kitchens', 'olney-md', 'Kitchen Remodeling in Olney, MD'],
+    ['bathrooms', 'olney-md', 'Bathroom Remodeling in Olney, MD'],
+    ['basements', 'olney-md', 'Basement Finishing in Olney, MD'],
+    ['kitchens', 'ashton-md', 'Kitchen Remodeling in Ashton, MD'],
+    ['bathrooms', 'ashton-md', 'Bathroom Remodeling in Ashton, MD'],
+    ['basements', 'ashton-md', 'Basement Finishing in Ashton, MD'],
+    ['kitchens', 'north-potomac-md', 'Kitchen Remodeling in North Potomac, MD'],
+    ['bathrooms', 'north-potomac-md', 'Bathroom Remodeling in North Potomac, MD'],
+    ['basements', 'north-potomac-md', 'Basement Finishing in North Potomac, MD'],
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+  });
+
+  it('does not clone the 24 openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('publishes no other combo for these towns', () => {
+    const allowed = new Set(PAGES.map(([service, city]) => `${service}-${city}`));
+    for (const city of [
+      'delaplane-va',
+      'marriottsville-md',
+      'ellicott-city-md',
+      'laytonsville-md',
+      'barnesville-md',
+      'olney-md',
+      'ashton-md',
+      'north-potomac-md',
+    ]) {
+      for (const key of Object.keys(CONTENT)) {
+        if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
+      }
+    }
+    expect(CONTENT).not.toHaveProperty('outdoor-living-ellicott-city-md');
+    expect(CONTENT).not.toHaveProperty('stairs-delaplane-va');
+    expect(CONTENT).not.toHaveProperty('kitchens-brambleton-va');
+  });
+
+  it('names the sourced permit office on every new basement page', () => {
+    const offices: Record<string, RegExp> = {
+      'delaplane-va': /540-422-8230/,
+      'marriottsville-md': /410-313-2455/,
+      'ellicott-city-md': /410-313-2455/,
+      'laytonsville-md': /301-869-0042/,
+      'barnesville-md': /240-415-1659/,
+      'olney-md': /240-777-0311/,
+      'ashton-md': /240-777-0311/,
+      'north-potomac-md': /240-777-0311/,
+    };
+    for (const [city, pattern] of Object.entries(offices)) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      const text = [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).map((faq) => faq.answer),
+        ...(entry?.sections ?? []).flatMap((section) => section.paragraphs),
+      ].join('\n');
+      expect(text, city).toMatch(pattern);
+    }
+  });
+
+  it('keeps the new copy off the site and off the copied basement tiers', () => {
+    const siteTalk =
+      /own pages|has its own page|county hub|no fee is copied|copied here|left out|not repeated here|nokesville's page|cost guide/i;
+    const tiers = /\$65,000|\$85,000|\$110,000|\$150,000|\$300,000|mayflower/i;
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const text = [
+        entry.metaDescription,
+        ...entry.paragraphs,
+        ...(entry.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+        ...(entry.sections ?? []).flatMap((section) => [
+          section.title,
+          ...section.paragraphs,
+          ...(section.links ?? []).map((link) => link.label),
+        ]),
+      ].join('\n');
+      expect(text, `${service}-${city}`).not.toMatch(siteTalk);
+      if (service === 'basements') {
+        expect(text, city).toMatch(/\$55,000/);
+        expect(text, city).toMatch(/free written estimate after a site walk/i);
+        expect(text, city).not.toMatch(tiers);
+      }
+    }
+    for (const slug of [
+      'delaplane-va',
+      'marriottsville-md',
+      'ellicott-city-md',
+      'laytonsville-md',
+      'barnesville-md',
+      'olney-md',
+      'ashton-md',
+      'north-potomac-md',
+    ]) {
+      const area = CITY_DATA[slug];
+      const text = [
+        area?.description,
+        area?.seoDescription,
+        ...(area?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ].join('\n');
+      expect(text, slug).not.toMatch(siteTalk);
+      expect(text, slug).not.toMatch(/MHIC|maryland license/i);
+      expect(text, slug).not.toMatch(/the same note says|the county list says|the list says/i);
+    }
+  });
+
+  it('states Ellicott City as both ZIPs and keeps Delaplane parcel-dependent', () => {
+    const ellicott = [
+      CITY_DATA['ellicott-city-md']?.description,
+      ...(CITY_DATA['ellicott-city-md']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(ellicott).toMatch(/21042/);
+    expect(ellicott).toMatch(/21043/);
+    expect(ellicott).toMatch(/3430 Courthouse Drive/);
+    const delaplane = [
+      CITY_DATA['delaplane-va']?.description,
+      ...(CITY_DATA['delaplane-va']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(delaplane).toMatch(/parcel/i);
+    expect(delaplane).toMatch(/540-422-8230/);
+    expect(delaplane).not.toMatch(/does not exist|not found/i);
   });
 });

@@ -185,6 +185,10 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'glenwood-md', 'clarksville-md', 'brookeville-md', 'broad-run-va',
       'kensington-md', 'woodbine-md', 'dickerson-md',
     ];
+    const ROUND_8_2026_10_10 = [
+      'delaplane-va', 'marriottsville-md', 'ellicott-city-md', 'laytonsville-md',
+      'barnesville-md', 'olney-md', 'ashton-md', 'north-potomac-md',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
@@ -197,6 +201,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...MD_TOWNS_2026_10_09,
       ...ROUND_6_2026_10_10,
       ...ROUND_7_2026_10_10,
+      ...ROUND_8_2026_10_10,
     ]);
   });
 
@@ -262,6 +267,14 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'kensington-md',
         'woodbine-md',
         'dickerson-md',
+        'delaplane-va',
+        'marriottsville-md',
+        'ellicott-city-md',
+        'laytonsville-md',
+        'barnesville-md',
+        'olney-md',
+        'ashton-md',
+        'north-potomac-md',
       ].sort()
     );
   });
@@ -624,6 +637,7 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('the-plains-va')!)).toBe('Fauquier County area');
     expect(areaRegionLabel(getServiceArea('upperville-va')!)).toBe('Fauquier County area');
     expect(areaRegionLabel(getServiceArea('marshall-va')!)).toBe('Fauquier County area');
+    expect(areaRegionLabel(getServiceArea('delaplane-va')!)).toBe('Fauquier County area');
     expect(areaRegionLabel(getServiceArea('berryville-va')!)).toBe('Clarke County area');
     expect(areaRegionLabel(getServiceArea('stephens-city-va')!)).toBe('Northern Shenandoah Valley');
     expect(areaRegionLabel(getServiceArea('middletown-va')!)).toBe('Northern Shenandoah Valley');
@@ -631,10 +645,10 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('hagerstown-md')!)).toBe('Washington County area');
     expect(areaRegionLabel(getServiceArea('mount-airy-md')!)).toBe('Frederick and Carroll county area');
     expect(areaRegionLabel(getServiceArea('woodbine-md')!)).toBe('Howard and Carroll county area');
-    for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md', 'brookeville-md', 'kensington-md', 'dickerson-md']) {
+    for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md', 'brookeville-md', 'kensington-md', 'dickerson-md', 'laytonsville-md', 'barnesville-md', 'olney-md', 'ashton-md', 'north-potomac-md']) {
       expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Montgomery County area');
     }
-    for (const slug of ['west-friendship-md', 'glenwood-md', 'clarksville-md']) {
+    for (const slug of ['west-friendship-md', 'glenwood-md', 'clarksville-md', 'marriottsville-md', 'ellicott-city-md']) {
       expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Howard County area');
     }
     expect(areaRegionLabel(getServiceArea('arlington-va')!)).toBe('Northern Virginia');

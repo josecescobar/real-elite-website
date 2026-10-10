@@ -104,9 +104,11 @@ function citiesForService(serviceSlug: string): readonly string[] {
 }
 
 function servicesForCity(citySlug: string): readonly string[] {
+  const serviceSlugs = new Set<string>(SERVICES.map((service) => service.slug));
   return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[])
     .filter((k) => k.endsWith(`-${citySlug}`))
-    .map((k) => k.slice(0, k.length - citySlug.length - 1));
+    .map((k) => k.slice(0, k.length - citySlug.length - 1))
+    .filter((service) => serviceSlugs.has(service));
 }
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
