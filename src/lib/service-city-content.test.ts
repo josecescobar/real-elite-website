@@ -1243,6 +1243,16 @@ describe('REA-2358 close-in established towns', () => {
   });
 });
 
+describe('outdoor living and stairs combos stay off Brambleton', () => {
+  it('never names Brambleton or links a Brambleton guide', () => {
+    const hits = Object.entries(CONTENT)
+      .filter(([key]) => key.startsWith('outdoor-living-') || key.startsWith('stairs-'))
+      .filter(([, entry]) => /brambleton/i.test(JSON.stringify(entry)))
+      .map(([key]) => key);
+    expect(hits).toEqual([]);
+  });
+});
+
 describe('customer copy never reads like an editor note', () => {
   function renderedCopy(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
     if (!entry) return [];

@@ -2709,7 +2709,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     relatedGuideSlugs: [
       'covered-patio-outdoor-living-cost-loudoun-county-2026',
       'loudoun-county-permits-hoa-guide-2026',
-      'hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026',
     ],
     faqs: [
       {
@@ -2720,7 +2719,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Is a county permit the same as HOA approval in Ashburn?',
         answer:
-          'No. The county does not enforce covenants. Brambleton reviews essentially all exterior changes. Broadlands requires prior written consent for an exterior addition. We submit the association packet in parallel with the LandMARC set.',
+          'No. The county does not enforce covenants. Broadlands requires prior written consent for an exterior addition. We submit the association packet in parallel with the LandMARC set.',
       },
       {
         question: 'What does outdoor living in Ashburn cost?',
@@ -2729,9 +2728,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Outdoor living in Ashburn, VA is a county job, not a town job. Ashburn is unincorporated Loudoun. There is no separate municipal zoning office. Building and zoning run through LandMARC. We work Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations, and Brambleton when the lot is in that community.',
+      'Outdoor living in Ashburn, VA is a county job, not a town job. Ashburn is unincorporated Loudoun. There is no separate municipal zoning office. Building and zoning run through LandMARC. We work Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.',
       'A covered patio, screened porch, or three-season room drops out of the Typical Deck Detail. Loudoun requires full plans for a deck with a roof or screen. The county publishes a screened porch as a residential addition. County inspections still follow the deck sequence when the structure is a deck with a roof: footing before concrete, framing before decking, then final.',
-      'A county permit is not HOA approval. Brambleton reviews essentially all exterior changes. Broadlands requires prior written consent for an exterior addition. One Loudoun and Ashburn Farm use the current association packet for that address.',
+      'A county permit is not HOA approval. Broadlands requires prior written consent for an exterior addition. One Loudoun and Ashburn Farm use the current association packet for that address.',
       'Gas and electrical for an outdoor kitchen or a fire feature are licensed trades. Real Elite does not take electrical work. Lighting is solar post-cap and step lights. The price for this lot is a free written estimate after a site walk.',
     ],
   },
