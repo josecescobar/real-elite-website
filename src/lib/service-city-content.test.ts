@@ -711,6 +711,7 @@ describe('comboPublishesPricing', () => {
         'bathrooms-broad-run-va',
         'bathrooms-clarksville-md',
         'bathrooms-dickerson-md',
+        'bathrooms-fairfax-va',
         'bathrooms-glenwood-md',
         'bathrooms-kensington-md',
         'bathrooms-woodbine-md',
@@ -799,11 +800,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/125 after round 7: round 6's 104, plus seven towns and three combos
-    // each (kitchens, bathrooms, basements), all clean. fairfax-va stays
-    // staged. Martinsburg and Charles Town are home-market and are not in
-    // this count. Shepherdstown stays home-market.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 125 });
+    // 0/128 after the City of Fairfax joined round 7: 125, plus kitchens,
+    // bathrooms, and basements for fairfax-va, all clean. Martinsburg and
+    // Charles Town are home-market and are not in this count.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 128 });
   });
 
   /**
@@ -1572,6 +1572,9 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
     ['kitchens', 'dickerson-md', 'Kitchen Remodeling in Dickerson, MD'],
     ['bathrooms', 'dickerson-md', 'Bathroom Remodeling in Dickerson, MD'],
     ['basements', 'dickerson-md', 'Basement Finishing in Dickerson, MD'],
+    ['kitchens', 'fairfax-va', 'Kitchen Remodeling in Fairfax, VA'],
+    ['bathrooms', 'fairfax-va', 'Bathroom Remodeling in Fairfax, VA'],
+    ['basements', 'fairfax-va', 'Basement Finishing in Fairfax, VA'],
   ] as const;
 
   it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
@@ -1613,12 +1616,12 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       'kensington-md',
       'woodbine-md',
       'dickerson-md',
+      'fairfax-va',
     ]) {
       for (const key of Object.keys(CONTENT)) {
         if (key.endsWith(`-${city}`)) expect(allowed.has(key), key).toBe(true);
       }
     }
-    expect(CONTENT).not.toHaveProperty('kitchens-fairfax-va');
     expect(CONTENT).not.toHaveProperty('outdoor-living-glenwood-md');
     expect(CONTENT).not.toHaveProperty('stairs-broad-run-va');
   });
@@ -1632,6 +1635,7 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       'kensington-md': /301-949-2424/,
       'woodbine-md': /410-313-2455/,
       'dickerson-md': /240-777-0311/,
+      'fairfax-va': /\(703\) 385-7830/,
     };
     for (const [city, pattern] of Object.entries(offices)) {
       const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
@@ -1675,6 +1679,7 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       'kensington-md',
       'woodbine-md',
       'dickerson-md',
+      'fairfax-va',
     ]) {
       const area = CITY_DATA[slug];
       const text = [

@@ -147,11 +147,11 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     ];
     // Verified Virginia towns from the 2026-09-29 research notes.
     // The West Virginia towns Jose checked are in WV_BATCH below.
-    // Herndon, Fairfax city, Stephens City, and Middletown VA are staged
-    // (permit process unverified) and therefore absent from this active list.
+    // Herndon, Stephens City, and Middletown VA stay staged.
+    // The City of Fairfax publishes as fairfax-va.
     const VA_BATCH_2026_09_29 = [
       'springfield-va', 'chantilly-va', 'centreville-va',
-      'falls-church-va', 'manassas-va',
+      'falls-church-va', 'fairfax-va', 'manassas-va',
       'lake-ridge-va', 'woodbridge-va',
       'warrenton-va',
       'berryville-va', 'the-plains-va', 'upperville-va', 'marshall-va',
@@ -180,7 +180,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'garrett-park-md', 'bethesda-md', 'arlington-va', 'potomac-md',
       'cabin-john-md', 'west-friendship-md', 'chevy-chase-md', 'catharpin-va',
     ];
-    // Round 7. fairfax-va stays staged as the City of Fairfax, not ZIP 22032.
+    // Round 7. fairfax-va publishes in the Virginia batch as the City of Fairfax.
     const ROUND_7_2026_10_10 = [
       'glenwood-md', 'clarksville-md', 'brookeville-md', 'broad-run-va',
       'kensington-md', 'woodbine-md', 'dickerson-md',
@@ -238,6 +238,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'chantilly-va',
         'centreville-va',
         'falls-church-va',
+        'fairfax-va',
         'manassas-va',
         'lake-ridge-va',
         'woodbridge-va',
@@ -771,6 +772,7 @@ describe('the Northern Virginia region row', () => {
       'fairfax-county-va',
       'prince-william-county-va',
       'falls-church-va',
+      'fairfax-va',
       'manassas-va',
       'arlington-va',
     ]);

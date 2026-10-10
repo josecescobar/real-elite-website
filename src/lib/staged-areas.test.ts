@@ -41,7 +41,6 @@ const NOT_FOUND_DIGEST = 'NEXT_HTTP_ERROR_FALLBACK;404';
  */
 const STAGED_VA_PERMIT_GAPS = [
   'herndon-va',
-  'fairfax-va',
   'stephens-city-va',
   'middletown-va',
 ] as const;

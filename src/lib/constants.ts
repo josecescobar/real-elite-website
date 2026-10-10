@@ -503,8 +503,9 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'chantilly-va', city: 'Chantilly', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
   { slug: 'centreville-va', city: 'Centreville', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
   { slug: 'falls-church-va', city: 'Falls Church', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
-  // Staged: fairfaxva.gov returned 403, so the city permit process is unverified.
-  { slug: 'fairfax-va', city: 'Fairfax', state: 'VA', kind: 'city', market: 'premium', status: 'staged', parent: 'northern-virginia', legacyTiers: [] },
+  // Active 2026-10-10. Jose approved the City of Fairfax. ZIP 22030 is the city.
+  // ZIPs 22031 and 22032 stay Fairfax County and are not this page.
+  { slug: 'fairfax-va', city: 'Fairfax', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
   { slug: 'manassas-va', city: 'Manassas', state: 'VA', kind: 'city', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
   { slug: 'lake-ridge-va', city: 'Lake Ridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'woodbridge-va', city: 'Woodbridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
@@ -588,8 +589,9 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
    * Maryland is in the service area. Empty legacyTiers, so the pinned
    * primary and secondary lists do not move. Premium, same as round 6.
    * Howard and Montgomery towns stay unparented. Broad Run parents to
-   * Loudoun County. fairfax-va stays staged: that slug is the City of
-   * Fairfax, and ZIP 22032 is not that city. Do not print a Maryland
+   * Loudoun County. fairfax-va publishes as the City of Fairfax (ZIP 22030).
+   * ZIPs 22031 and 22032 are mostly Fairfax County and are not this city.
+   * Do not print a Maryland
    * license caveat. Fulton stays omitted. No Brambleton.
    */
   { slug: 'glenwood-md', city: 'Glenwood', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
@@ -1417,15 +1419,30 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     ],
   },
   'fairfax-va': {
+    seoTitle: 'Remodeling Contractor in Fairfax, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Fairfax, VA',
+    seoDescription:
+      'Remodeling contractor in the City of Fairfax, VA, ZIP 22030. City Code Administration permits. Free written estimate after a site walk.',
     description:
-      "The City of Fairfax is an independent city. ZIP 22030 is centered on the city (median year built 1992). ZIP 22031 is centered on Mantua in Fairfax County. ZIP 22032 is centered on Kings Park West in Fairfax County. County parcels use Fairfax County Land Development Services. Inside the city, we confirm the permit steps with the city before work starts. Fairfax County's historic-overlay list does not include Kings Park West or Mantua.",
-    neighborhoods: ['ZIP 22030', 'City of Fairfax'],
-    marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+      "The City of Fairfax is an independent city, ZIP 22030. ZIPs 22031 and 22032 are mostly Fairfax County. A county parcel uses Fairfax County Land Development Services, not the city office. The drive from Martinsburg is I-81 south to I-66 east.\n\nInside the city, questions go to the Office of Code Administration and Fire Marshal, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. The phone is answered Monday through Friday, 7:00 a.m. to 5:00 p.m. The office is open Monday through Friday, 8:30 a.m. to 5:00 p.m. A residential building permit covers demolition, new construction, additions, alterations, and relocatable buildings. Repairs and alterations are $93.60 plus 1% of the project cost over $1,000. Those are city fees, not the project price.\n\nThe city requires a building permit for a wall change, whether the wall is load-bearing or not, and for a deck. A shower pan needs a plumbing permit even when it is replaced in the same place. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['ZIP 22030', 'Old Town Fairfax', 'Main Street', 'Armstrong Street'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['falls-church-va', 'fairfax-county-va', 'springfield-va', 'vienna-va'],
     faqs: [
+      {
+        question: 'Who permits a remodel in the City of Fairfax?',
+        answer:
+          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. A residential building permit covers additions and alterations.',
+      },
       {
         question: 'Is ZIP 22032 the City of Fairfax?',
         answer:
-          'No. ZIP 22032 is centered on Kings Park West in Fairfax County. ZIP 22030 is the one centered on the city.',
+          'No. ZIP 22030 is the city. ZIPs 22031 and 22032 are mostly Fairfax County. Those parcels use Fairfax County Land Development Services.',
+      },
+      {
+        question: 'What does remodeling in the City of Fairfax cost?',
+        answer:
+          'Every City of Fairfax kitchen, bathroom, and lower level is a free written estimate after a site walk. The city fee for repairs and alterations is $93.60 plus 1% of the project cost over $1,000. That fee is not the project price.',
       },
     ],
   },

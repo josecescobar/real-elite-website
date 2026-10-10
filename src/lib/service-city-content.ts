@@ -126,7 +126,7 @@ export const COMBO_CITY_SLUGS = [
   'catharpin-va',
 
   // Round 7 Tier A/B towns, 2026-10-10. Kitchens, bathrooms, and basements
-  // only. fairfax-va stays staged as the City of Fairfax and is not a combo.
+  // only. fairfax-va is the City of Fairfax, ZIP 22030, approved 2026-10-10.
   'glenwood-md',
   'clarksville-md',
   'brookeville-md',
@@ -134,6 +134,7 @@ export const COMBO_CITY_SLUGS = [
   'kensington-md',
   'woodbine-md',
   'dickerson-md',
+  'fairfax-va',
 
   // Fairfax Station and Clifton stay gone. Tier C retired every combo they
   // had, so keeping their slugs here would leave entries this map can never
@@ -4588,6 +4589,112 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         title: 'Permits',
         paragraphs: [
           'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. We confirm the permit steps for the parcel before work starts.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-fairfax-va': {
+    h1: 'Kitchen Remodeling in Fairfax, VA',
+    metaDescription:
+      'Kitchen remodeling in Fairfax, VA, in the City of Fairfax, ZIP 22030. City Code Administration permits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in the City of Fairfax?',
+        answer:
+          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. A residential building permit covers alterations. ZIPs 22031 and 22032 are mostly Fairfax County.',
+      },
+      {
+        question: 'Does a wall change in a City of Fairfax kitchen need a permit?',
+        answer:
+          'Yes. The city requires a building permit to add, remove, or modify a wall, whether it is load-bearing or not. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Fairfax, VA cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a City of Fairfax quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Fairfax, VA means the independent City of Fairfax, ZIP 22030. ZIPs 22031 and 22032 are mostly Fairfax County and use Land Development Services.',
+      'Inside the city, questions go to the Office of Code Administration, 10455 Armstrong Street, Suite 208, phone (703) 385-7830. A wall change needs a building permit. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a City of Fairfax quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-fairfax-va': {
+    h1: 'Bathroom Remodeling in Fairfax, VA',
+    metaDescription:
+      'Bathroom remodeling in Fairfax, VA, in the City of Fairfax. A shower pan needs a plumbing permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in the City of Fairfax?',
+        answer:
+          'The Office of Code Administration, phone (703) 385-7830, at 10455 Armstrong Street, Suite 208. A shower pan needs a plumbing permit even when it is replaced in the same place.',
+      },
+      {
+        question: 'What does bathroom remodeling in Fairfax, VA cost?',
+        answer:
+          'Every City of Fairfax bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. City filing fees are not that price.',
+      },
+      {
+        question: 'Does a same-place shower pan in the city skip the permit?',
+        answer:
+          'No. The city requires a plumbing permit for a shower pan, including a replacement in the same location. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Fairfax, VA is a City of Fairfax bath in ZIP 22030, and a shower pan needs a plumbing permit even when it stays in the same place.',
+      'Questions go to Code Administration at 10455 Armstrong Street, Suite 208, phone (703) 385-7830. Office hours are 8:30 a.m. to 5:00 p.m. Monday through Friday. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts.',
+      'Every City of Fairfax bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+
+  'basements-fairfax-va': {
+    h1: 'Basement Finishing in Fairfax, VA',
+    metaDescription:
+      'Basement finishing in Fairfax, VA, in the City of Fairfax, ZIP 22030. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in the City of Fairfax?',
+        answer:
+          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, phone (703) 385-7830. A residential building permit covers alterations. The city inspects renovations and major repairs.',
+      },
+      {
+        question: 'Is a 22032 lower level a City of Fairfax permit?',
+        answer:
+          'Not when the parcel is in Fairfax County. ZIPs 22031 and 22032 are mostly Fairfax County and use Land Development Services. ZIP 22030 is the city. We confirm the permit steps with the city before work starts when the parcel is inside the city.',
+      },
+      {
+        question: 'What does a finished basement in the City of Fairfax cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a City of Fairfax quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Fairfax, VA is a lower level in the independent City of Fairfax, ZIP 22030, and an alteration needs a residential building permit from the city.',
+      'Code Administration reviews plans and inspects renovations and major repairs. The office is 10455 Armstrong Street, Suite 208, phone (703) 385-7830. Phone hours are 7:00 a.m. to 5:00 p.m. Monday through Friday. A parcel in ZIP 22032 that sits in Fairfax County uses Land Development Services. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      'A City of Fairfax lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The city fee for repairs and alterations is $93.60 plus 1% of the project cost over $1,000. That is a city fee, not the project price. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a City of Fairfax lower level can start at $55,000. The city fee for repairs and alterations is separate from that figure. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [
+          { href: '/service-areas/fairfax-va', label: 'Fairfax service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Office of Code Administration and Fire Marshal, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. Office hours are Monday through Friday, 8:30 a.m. to 5:00 p.m. We confirm the permit steps with the city before work starts.',
         ],
       },
     ],
