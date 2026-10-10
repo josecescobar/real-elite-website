@@ -475,10 +475,10 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- Virginia batch, 2026-09-29 ----------
    * Facts are from AI-SHARED/Website/local-pages/. Empty legacyTiers.
-   * Deferred or dropped on purpose: Broad Run, Marshall, The Plains, Occoquan,
-   * and every West Virginia gap town (Jose reviews that list before a build).
+   * Deferred on purpose: Broad Run, Occoquan, and the West Virginia gap towns.
+   * Berryville, The Plains, Upperville, and Marshall publish as of 2026-10-09.
    * Stephens City and Middletown stay staged until their permit process is verified.
-   * Warrenton is unparented: there is no Fauquier County row yet.
+   * Fauquier and Clarke towns stay unparented: there is no county row yet.
    */
   { slug: 'springfield-va', city: 'Springfield', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
   // Staged: herndon-va.gov returned 403, so the town permit process is unverified.
@@ -493,6 +493,10 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'lake-ridge-va', city: 'Lake Ridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'woodbridge-va', city: 'Woodbridge', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
   { slug: 'warrenton-va', city: 'Warrenton', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'berryville-va', city: 'Berryville', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'the-plains-va', city: 'The Plains', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'upperville-va', city: 'Upperville', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'marshall-va', city: 'Marshall', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   // Staged: town site and Frederick County VA building pages were unread.
   { slug: 'stephens-city-va', city: 'Stephens City', state: 'VA', kind: 'town', market: 'home', status: 'staged', legacyTiers: [] },
   // Staged: the town zoning form is not a verified building-permit process.
@@ -669,9 +673,27 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'shepherdstown-wv': {
     description:
-      "Shepherdstown is the oldest town in West Virginia, founded in 1762, and home to Shepherd University — giving it a unique blend of historic charm and youthful vitality. The picturesque German Street corridor attracts professionals, academics, and families who value quality living. Many properties require contractors experienced with older construction methods and historic preservation. Real Elite Contracting brings the expertise and attention to detail that Shepherdstown homeowners expect.",
-    neighborhoods: ['Historic Downtown', 'University Area', 'Potomac Riverfront', 'Moler Crossroads', 'Shepherd Grade Road Area'],
-    marketEmphasis: ['remodeling', 'roofing', 'bathrooms', 'kitchens', 'decks', 'exterior-repairs'],
+      "Shepherdstown is the oldest town in West Virginia, founded in 1762, and home to Shepherd University. German Street is the historic commercial corridor. Inside the corporation, a project permit comes from the Town at Town Hall, 104 North King Street. Much of the town is in a historic district, and exterior work there needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. A Shepherdstown mailing address is not automatically inside the corporation. Outside town limits, Jefferson County Office of Building Permits and Inspections is at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. That office lists remodeling, additions, and finished basements among the work that needs a county permit. The drive from Martinsburg is Route 45 east. The remodeling this page is for is kitchens, bathrooms, basements, and roofing on older houses.",
+    neighborhoods: ['Historic Downtown', 'German Street', 'University Area', 'Potomac Riverfront', 'Shepherd Grade Road Area'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'roofing', 'decks'],
+    nearbySlugs: ['charles-town-wv', 'martinsburg-wv', 'sharpsburg-md', 'berryville-va'],
+    faqs: [
+      {
+        question: 'Who permits a remodel inside the Town of Shepherdstown?',
+        answer:
+          'The Town. A project permit is filed at Town Hall, 104 North King Street. Much of the town is in a historic district. Exterior work there needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. The combined application covers a project that is both inside the corporation and inside the historic district.',
+      },
+      {
+        question: 'Does a Shepherdstown mailing address mean the town permit office?',
+        answer:
+          'No. Outside the corporation, Jefferson County Office of Building Permits and Inspections takes the permit at 116 East Washington Street, Suite 100, in Charles Town. Phone (304) 725-2998. That office lists remodeling, additions, and finished basements among the work that needs a county permit. Applications are not taken in after 4:30 p.m.',
+      },
+      {
+        question: 'Does the historic certificate apply to every Shepherdstown ZIP?',
+        answer:
+          'No. The town says much of the town is in the historic district, and the certificate comes before the town building permit for exterior work there. County land outside the corporation is a Jefferson County permit, not the town Historic Landmarks Commission.',
+      },
+    ],
   },
 
   /* ---------- Frederick County MD ---------- */
@@ -1078,13 +1100,15 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Waterford is an unincorporated village northwest of Leesburg. Loudoun County's Waterford Historic and Cultural Conservation District covers the central village, and most exterior changes there — additions, porches, new accessory buildings, and material changes — need a Certificate of Appropriateness from the Historic District Review Committee before work starts. Ordinary repairs that do not change design, material, or appearance are the exception the county publishes. The National Historic Landmark boundary is larger than the county district, which is limited to the central village. Interior kitchens, primary baths, and lower levels do not need that exterior review unless the work changes the outside. Many village and edge lots are on well and septic, so a bedroom addition also needs Loudoun Health Department approval before the building permit. The drive from Martinsburg is Route 9 through Hillsboro, then the local roads north of Leesburg. The remodeling this page is for is kitchens, primary suites, careful additions, and outdoor living that can pass historic review.",
     neighborhoods: ['Main Street', 'Second Street', 'The mill', 'Village edge'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'additions', 'decks', 'remodeling'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
+    nearbySlugs: ['hamilton-va', 'purcellville-va', 'leesburg-va', 'lovettsville-va'],
   },
   'hamilton-va': {
     description:
       "Hamilton is an incorporated town on Route 7 between Purcellville and Leesburg. The core is a small 19th-century village. Houses toward the edges often sit on well and septic rather than town utilities. A bedroom addition on a well-and-septic lot needs Loudoun Health Department approval before the building permit. Inside town limits, town zoning is approved before the county issues the building permit. Hamilton is not one of the county's six historic overlay districts. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 west. The remodeling this page is for is kitchens, primary suites, basements, additions, and outdoor living.",
     neighborhoods: ['Historic downtown', 'Route 7', 'East toward Leesburg', 'West toward Purcellville'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'decks', 'remodeling'],
+    nearbySlugs: ['purcellville-va', 'waterford-va', 'leesburg-va', 'round-hill-va'],
   },
   'aldie-va': {
     description:
@@ -1367,16 +1391,113 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  'berryville-va': {
+    description:
+      "Berryville is the county seat of Clarke County, ZIP 22611. Clarke County Building Department reviews permits throughout the county, including the incorporated towns of Berryville and Boyce. The office is on the first floor of the Berryville-Clarke County Government Center at 101 Chalmers Court, phone (540) 955-5112, and applications go to permits@clarkecounty.gov. The county asks for 20 to 30 business days for plan review. A zoning permit from the Planning Department, on the second floor of the same building, is a prerequisite for a building permit, and the two reviews can run at the same time. Inside the Town of Berryville, owners may also need the Town Planner at 101 Chalmers Court, Suite A, phone (540) 955-4081. Exterior work inside the Berryville Historic District needs a Certificate of Appropriateness from the town Architectural Review Board before the town issues its zoning permit. The county still issues the building permit. The historic district is not the whole ZIP. The Census ZCTA median year built for 22611 is 1981, so the housing is established rather than a new-build subdivision. The drive from Martinsburg is Route 9 west to Route 7, then south into Clarke County. The remodeling this page is for is kitchens, primary baths, and lower levels in older houses.",
+    neighborhoods: ['Town of Berryville', 'Berryville Historic District', 'ZIP 22611', 'Clarke County'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
+    nearbySlugs: ['winchester-va', 'hamilton-va', 'shepherdstown-wv', 'purcellville-va'],
+    faqs: [
+      {
+        question: 'Who issues the building permit in Berryville?',
+        answer:
+          'Clarke County Building Department, including for houses inside the Town of Berryville and the Town of Boyce. The counter is 101 Chalmers Court, first floor, phone (540) 955-5112.',
+      },
+      {
+        question: 'When does the Berryville Architectural Review Board apply?',
+        answer:
+          'For a Certificate of Appropriateness inside the Berryville Historic District. After that approval, town staff issue the zoning permit. The county issues the building permit. The district is not the whole 22611 ZIP.',
+      },
+      {
+        question: 'Is a Berryville address always inside the town?',
+        answer:
+          'No. ZIP 22611 is larger than the town. County land uses the county Planning Department for zoning and the same Building Department for the building permit, without the town planner step.',
+      },
+    ],
+  },
+  'the-plains-va': {
+    description:
+      "The Plains is an incorporated town in Fauquier County. The Virginia charter is the Town of The Plains, County of Fauquier, with the current charter dated 1972. A Plains mailing address is not automatically inside the town: the ZIP 20198 centroid sits in Fauquier County, outside an incorporated place. Inside town, the zoning and sign permit is required before a building permit and the published fee is $50. Fauquier County provides the building inspections. The town Historic District includes all properties within the town, and improvements there need Architectural Review Board approval. The ARB application has no fee. Town Hall is at 6451 Main Street, phone (540) 364-4945. Outside town limits, the building permit goes to Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. The county zoning fee is $110, including the technology fee. Census figures for the ZIP, not the town boundary, show a median year built of 1982, and the largest single year-built group is 1939 or earlier. That is a mix of older and later houses, not one style. The drive from Martinsburg is Route 9 to Leesburg, then south toward Route 50. The remodeling this page is for is kitchens, primary baths, and lower levels.",
+    neighborhoods: ['Town of The Plains', 'Historic District', 'ZIP 20198', 'Fauquier County'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
+    nearbySlugs: ['middleburg-va', 'upperville-va', 'marshall-va', 'warrenton-va'],
+    faqs: [
+      {
+        question: 'Who issues the building permit in The Plains?',
+        answer:
+          'Fauquier County. The town requires an approved zoning permit first. The published town zoning and sign permit fee is $50. County building permits are filed with Community Development at 16 Courthouse Square in Warrenton.',
+      },
+      {
+        question: 'Does every Plains address need Architectural Review Board approval?',
+        answer:
+          'The town says the Historic District includes all properties within the town, and improvements there need ARB approval. There is no ARB fee. Land outside the town is county zoning, not the town historic district.',
+      },
+      {
+        question: 'Is The Plains the same permit path as Warrenton?',
+        answer:
+          'No. Warrenton has its own town building counter. The Plains sends the building inspection to Fauquier County after the town zoning permit.',
+      },
+    ],
+  },
+  'upperville-va': {
+    description:
+      "Upperville is an unincorporated village in northern Fauquier County, on Route 50 at the Loudoun County line, ZIP 20184. It is not a town and it does not have a municipal permit office. Building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee, and the county uses a combined building and zoning application. The Virginia Department of Historic Resources lists the Upperville Historic District on the National Register. Fauquier County's historic-preservation page says National Register listing does not restrict private property, and that the Board of Supervisors has not adopted a local historic overlay district in the county. The towns of Warrenton and The Plains, which are separate jurisdictions, have their own historic overlay districts. Upperville is not one of those towns. The drive from Martinsburg is Route 9 to Leesburg, then south to Route 50. The remodeling this page is for is kitchens, primary baths, and lower levels in the village and on the surrounding acreage.",
+    neighborhoods: ['Upperville Historic District', 'Route 50', 'ZIP 20184', 'Fauquier County'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
+    nearbySlugs: ['middleburg-va', 'the-plains-va', 'marshall-va', 'warrenton-va'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Upperville?',
+        answer:
+          'Fauquier County Department of Community Development, 16 Courthouse Square, Warrenton, phone (540) 422-8230. Upperville is unincorporated. There is no town zoning step.',
+      },
+      {
+        question: 'Does the National Register district control exterior work?',
+        answer:
+          'No. The county says National Register listing does not impose restrictions on private property, and the Board has not adopted a local historic overlay in the county. Warrenton and The Plains are the towns with their own historic overlay districts.',
+      },
+      {
+        question: 'Is Upperville in Loudoun County?',
+        answer:
+          'The village sits on the Loudoun line along Route 50, in Fauquier County. Loudoun LandMARC is the wrong counter. Confirm the parcel before filing.',
+      },
+    ],
+  },
+  'marshall-va': {
+    description:
+      "Marshall is an unincorporated community in Fauquier County, ZIP 20115. No town charter was found, and the ZIP centroid is unincorporated county, so there is no municipal permit office. Building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square in Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. A building permit is required for additions and for renovations or alterations to an existing house, and a zoning permit is required for most work, including some interior renovations. The county's online portal accepts finished-basement permits and residential trade permits. Census figures for the ZIP, not a town boundary, show a median year built of 1983 and mostly one-unit detached houses. That is established housing, not a new-build subdivision, and it is not one architectural style. Do not apply the Town of Warrenton's 30-inch deck rule or its historic-district certificate here. The drive from Martinsburg is Route 9 to Leesburg, then south through The Plains toward Route 17. The remodeling this page is for is kitchens, primary baths, and lower levels.",
+    neighborhoods: ['ZIP 20115', 'Unincorporated Fauquier', 'Fauquier County'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
+    nearbySlugs: ['the-plains-va', 'warrenton-va', 'upperville-va', 'middleburg-va'],
+    faqs: [
+      {
+        question: 'Is Marshall a town with its own permits?',
+        answer:
+          'No town charter was found, and the ZIP centroid is unincorporated Fauquier County. The permit counter is the county office at 16 Courthouse Square in Warrenton.',
+      },
+      {
+        question: 'What does a Fauquier County zoning permit cost?',
+        answer:
+          'The county publishes a zoning permit fee of $110, including the technology fee. Building and zoning are filed on one combined application.',
+      },
+      {
+        question: 'Does Warrenton historic review apply in Marshall?',
+        answer:
+          'No. The Certificate of Appropriateness is for property in the Warrenton Historic District. Marshall is a different place in the same county.',
+      },
+    ],
+  },
   'warrenton-va': {
     description:
-      "Warrenton is an incorporated town in Fauquier County. The charter dates to 1816. A Warrenton mailing address is not automatically inside the town: the centroids of ZIP 20186 and ZIP 20187 both landed in Fauquier County, outside an incorporated place. Inside the town, the Department of Community Development handles applications at the town site, phone (540) 347-1101. The town building page says a building permit is required for decks whose floor is 30 inches or more above finished grade, for finishing a basement, and for additions, garages, or carports. An areaway or egress window on a basement needs additional zoning review. A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. Which streets are inside that district was not read off the map. County permit steps outside town limits were not retrieved. HOA names outside the historic district were not verified. ZIP 20187's housing is mostly detached (median year built 1991). ZIP 20186 is a different mix (median year built 1987) and should not be averaged into one house type.",
+      "Warrenton is an incorporated town in Fauquier County. The charter dates to 1816. A Warrenton mailing address is not automatically inside the town: the centroids of ZIP 20186 and ZIP 20187 both landed in Fauquier County, outside an incorporated place. Inside the town, the Department of Community Development handles applications at the town site, phone (540) 347-1101. The town building page says a building permit is required for decks whose floor is 30 inches or more above finished grade, for finishing a basement, and for additions, garages, or carports. An areaway or egress window on a basement needs additional zoning review. A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. Which streets are inside that district was not read off the map. Outside town limits, building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square, Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. The county uses a combined building and zoning application. HOA names outside the historic district were not verified. ZIP 20187's housing is mostly detached (median year built 1991). ZIP 20186 is a different mix (median year built 1987) and should not be averaged into one house type.",
     neighborhoods: ['Town of Warrenton', 'ZIP 20186', 'ZIP 20187', 'Fauquier County'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    nearbySlugs: ['the-plains-va', 'marshall-va', 'upperville-va', 'middleburg-va'],
     faqs: [
       {
         question: 'Does every Warrenton address use the town\'s 30-inch deck rule?',
         answer:
-          'Only inside the town. Both ZIP centroids that were checked landed in Fauquier County, outside an incorporated place. County rules were not readable in the research pass.',
+          'Only inside the town. Both ZIP centroids that were checked landed in Fauquier County, outside an incorporated place. Outside town, Fauquier County Department of Community Development at 16 Courthouse Square takes the building permit. Phone (540) 422-8230. The county zoning fee is $110, including the technology fee.',
       },
       {
         question: 'Does a basement finish need a permit in town?',
@@ -1660,9 +1781,17 @@ export function areaRegionLabel(area: ServiceArea): string {
   if (area.slug === 'prince-william-county-va' || area.parent === 'prince-william-county-va') {
     return 'Prince William County area';
   }
-  // No Fauquier County row yet. Warrenton must not inherit "Northern Virginia"
-  // or the Shenandoah label.
-  if (area.slug === 'warrenton-va') return 'Fauquier County area';
+  // No Fauquier or Clarke county row yet. These towns must not inherit
+  // "Northern Virginia" or the Shenandoah label.
+  if (
+    area.slug === 'warrenton-va' ||
+    area.slug === 'the-plains-va' ||
+    area.slug === 'upperville-va' ||
+    area.slug === 'marshall-va'
+  ) {
+    return 'Fauquier County area';
+  }
+  if (area.slug === 'berryville-va') return 'Clarke County area';
   // Winchester is the one VA row on the home-market side of the split.
   return area.market === 'home' ? 'Northern Shenandoah Valley' : 'Northern Virginia';
 }

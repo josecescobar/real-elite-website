@@ -102,6 +102,17 @@ export const COMBO_CITY_SLUGS = [
   'purcellville-va',
   'lansdowne-va',
 
+  // Close-in established towns, 2026-10-09. Kitchens, bathrooms, and
+  // basements only. Brambleton stays decks-only. No new-build pages.
+  'waterford-va',
+  'hamilton-va',
+  'berryville-va',
+  'shepherdstown-wv',
+  'the-plains-va',
+  'upperville-va',
+  'marshall-va',
+  'warrenton-va',
+
   // Fairfax Station and Clifton stay gone. Tier C retired every combo they
   // had, so keeping their slugs here would leave entries this map can never
   // key. Burke stays: it keeps its kitchen and bathroom combos and lost only
@@ -1299,6 +1310,957 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
             href: '/service-areas/lansdowne-va',
             label: 'Lansdowne service area',
           },
+        ],
+      },
+    ],
+  },
+
+  // ── ROUND 4: CLOSE-IN ESTABLISHED TOWNS ─────────────────────────────────
+  'kitchens-waterford-va': {
+    h1: 'Kitchen Remodeling in Waterford, VA',
+    metaDescription:
+      'Kitchen remodeling in Waterford, VA for the historic village. Exterior changes in the county district need a certificate.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Waterford?',
+        answer:
+          'Waterford is unincorporated Loudoun County. Building and zoning run through LandMARC. A load-bearing opening needs stamped drawings. Plumbing relocation needs a trade permit. Electrical relocation is a separately licensed trade, and Real Elite does not take electrical work.',
+      },
+      {
+        question: 'Does the historic district review an interior kitchen?',
+        answer:
+          'Loudoun County\'s Waterford Historic and Cultural Conservation District covers the central village. Most exterior changes there need a Certificate of Appropriateness from the Historic District Review Committee. An interior kitchen that leaves the outside alone is not that exterior review. A new window or an addition is.',
+      },
+      {
+        question: 'What does kitchen remodeling in Waterford, VA cost?',
+        answer:
+          'We price every Waterford kitchen on a free written estimate for that house. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Waterford quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Waterford, VA starts in an unincorporated village northwest of Leesburg, not in a town zoning office. The county historic district covers the central village. A kitchen that stays inside the existing walls is a different filing from a new window or a bump-out on Main Street or Second Street.',
+      'Building and zoning run through LandMARC. Opening a bearing wall needs stamped structural drawings. Moving a sink is a plumbing permit. Electrical relocation stays a separately licensed trade. Real Elite does not take electrical work, and that line stays separate on the estimate.',
+      'Many village and edge lots are on well and septic. A kitchen that keeps the existing footprint is not the bedroom-addition filing that needs Loudoun Health Department approval first. We name which filing the parcel is before the estimate is a commitment. The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Waterford quote.',
+    ],
+  },
+
+  'bathrooms-waterford-va': {
+    h1: 'Bathroom Remodeling in Waterford, VA',
+    metaDescription:
+      'Bathroom remodeling in Waterford, VA for older village baths. Exterior changes in the central historic district need a certificate.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Waterford?',
+        answer:
+          'Loudoun County, through LandMARC, when the work needs a building or trade permit. Waterford is unincorporated. A vanity move is a plumbing relocation. Electrical relocation is a separately licensed trade.',
+      },
+      {
+        question: 'Does a Waterford bath need historic review?',
+        answer:
+          'Only when the work changes the outside of a house in the county\'s Waterford Historic and Cultural Conservation District. That district covers the central village. An interior tile job that leaves the windows and walls as they are stays off that certificate.',
+      },
+      {
+        question: 'What does bathroom remodeling in Waterford, VA cost?',
+        answer:
+          'We price every Waterford bathroom on a free written estimate for that house. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Waterford, VA is a wet-area job in a small historic village. Original baths along the central streets are tight rooms with plaster and a stack that may also serve the kitchen. Houses on the village edge are a separate plan. We read the room we are standing in.',
+      'The county historic district covers the central village, and most exterior changes there need a Certificate of Appropriateness before work starts. A shower conversion that stays inside, with a sloped pan and a waterproofing layer, is not that exterior filing. A new window is. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work.',
+      'Every Waterford bathroom is priced on a free written estimate. Waterproofing and slope-to-drain are in the written scope. Lots on well and septic matter when a bedroom is added, not when the bath keeps the existing stack. We say which one the project is.',
+    ],
+  },
+
+  'basements-waterford-va': {
+    h1: 'Basement Finishing in Waterford, VA',
+    metaDescription:
+      'Basement finishing in Waterford, VA. Loudoun County permit. Typical fee is 1% plus a $65 minimum.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Waterford, VA?',
+        answer:
+          'Loudoun County, through LandMARC. Waterford is unincorporated, so there is no town zoning step. Typical Finished Basement Details cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column.',
+      },
+      {
+        question: 'Does the historic district review a lower level?',
+        answer:
+          'An interior finish that leaves the outside alone does not need the Certificate of Appropriateness. An egress window or areaway in the central village is exterior work in the Waterford Historic and Cultural Conservation District, and that certificate comes first.',
+      },
+      {
+        question: 'What does a finished basement in Waterford cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Waterford average and not a Real Elite price. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Waterford, VA is often a low cellar or a stone foundation, not an Ashburn walkout. The village is unincorporated Loudoun County. Some houses at the edge have a conventional unfinished lower level. We check the foundation before we talk about a bedroom.',
+      'There is no town zoning step. Building and zoning run through LandMARC. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans. An egress cut in the central historic district is exterior work and needs a Certificate of Appropriateness.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Waterford average. Loudoun\'s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices and not a Waterford average. A village cellar with limited headroom is not the same scope as a full-height walkout.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/waterford-va', label: 'Waterford service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'Historic-district review applies when the lower level changes the outside of a house in the central village. An interior finish does not add that step. After the county path is named, the calendar depends on scope, selections, and crew availability. We put that schedule in writing before demo.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency egress window. On an older Waterford foundation that cut can be the hard part of the job, and in the central district it is historic-review work. An existing window does not, by itself, make the room a legal bedroom. On a well-and-septic lot, adding a bedroom also needs Loudoun Health Department approval before the building permit.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'County work has two paths: Typical Finished Basement Details, or a complete plan set. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee.',
+        ],
+        links: [
+          { href: '/blog/loudoun-county-permits-hoa-guide-2026', label: 'Loudoun County permits guide' },
+        ],
+      },
+    ],
+  },
+
+  'kitchens-hamilton-va': {
+    h1: 'Kitchen Remodeling in Hamilton, VA',
+    metaDescription:
+      'Kitchen remodeling in Hamilton, VA for the village on Route 7. Town zoning comes before the county building permit.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Hamilton?',
+        answer:
+          'Inside town limits, the Town of Hamilton approves zoning before Loudoun County issues the building permit. A load-bearing opening needs stamped drawings. Plumbing relocation needs a trade permit. Electrical relocation is a separately licensed trade.',
+      },
+      {
+        question: 'Is Hamilton in a county historic district?',
+        answer:
+          'No. Hamilton is not one of Loudoun County\'s six historic overlay districts. A Hamilton mailing address can still sit outside town limits. We check the parcel. Unincorporated lots use LandMARC.',
+      },
+      {
+        question: 'What does kitchen remodeling in Hamilton, VA cost?',
+        answer:
+          'We price every Hamilton kitchen on a free written estimate for that house. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Hamilton quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Hamilton, VA is work in a small incorporated town on Route 7, between Purcellville and Leesburg. The core is a 19th-century village. Later houses toward the edges are a different plan, and many of those lots are on well and septic rather than town utilities.',
+      'Inside town limits, town zoning is approved before Loudoun County issues the building permit. A Hamilton address is not automatically town limits. Outside town, building and zoning run through LandMARC. Opening a bearing wall needs stamped drawings. Real Elite does not take electrical work.',
+      'A kitchen that stays in the existing footprint is a different filing from a bedroom addition, which needs Loudoun Health Department approval on a well-and-septic lot before the building permit. The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Cabinet lead time goes in the written timeline before demo.',
+    ],
+  },
+
+  'bathrooms-hamilton-va': {
+    h1: 'Bathroom Remodeling in Hamilton, VA',
+    metaDescription:
+      'Bathroom remodeling in Hamilton, VA for village baths and later houses on Route 7. Town zoning when a county permit is required.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Hamilton?',
+        answer:
+          'Plumbing relocation needs a Loudoun County trade permit. Inside town limits, town zoning is approved before the county releases a building permit. Hamilton is not in a county historic overlay. Unincorporated parcels use LandMARC.',
+      },
+      {
+        question: 'What does bathroom remodeling in Hamilton, VA cost?',
+        answer:
+          'We price every Hamilton bathroom on a free written estimate for that house. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. The Loudoun primary-bathroom cost guide is a nearby-market reference, not a quote for this house.',
+      },
+      {
+        question: 'Do older Hamilton baths need a different scope?',
+        answer:
+          'Often. A village bath can be a small room with plaster and a shared stack. A later house on the edge of town is a different layout. We open the wall and confirm the substrate before the finish schedule is locked.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Hamilton, VA is a wet-area rebuild in an older Loudoun town. The village core still has small original baths. Houses toward Purcellville and Leesburg on Route 7 are a later layout. We price the room in front of us, not the next street over.',
+      'Inside town limits, town zoning comes before the Loudoun County building permit when the work needs one. Hamilton is not one of the county\'s six historic overlay districts, so there is no county Certificate of Appropriateness for an ordinary interior bath. A new window is still exterior work and a different review.',
+      'Every Hamilton bathroom is priced on a free written estimate. Waterproofing and slope-to-drain are in the written scope. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Lots off the town sewer are often on well and septic, which matters for a bedroom addition and not for a bath that keeps the existing stack.',
+    ],
+  },
+
+  'basements-hamilton-va': {
+    h1: 'Basement Finishing in Hamilton, VA',
+    metaDescription:
+      'Basement finishing in Hamilton, VA. Town zoning, then the county permit. Typical fee is 1% plus a $65 minimum.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Hamilton, VA?',
+        answer:
+          'Inside town limits, the Town approves zoning before Loudoun County releases the building permit. Unincorporated parcels use LandMARC. Typical Finished Basement Details cannot be used if the job alters a load-bearing wall, an exterior wall, a beam, or a column.',
+      },
+      {
+        question: 'Can a Hamilton lower level include a bedroom?',
+        answer:
+          'Only with an emergency egress window that meets the code dimensions on the plans. That opening is exterior work. On a well-and-septic lot, adding a bedroom also needs Loudoun Health Department approval before the building permit.',
+      },
+      {
+        question: 'What does a finished basement in Hamilton cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Hamilton average and not a Real Elite price. Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Hamilton, VA follows the western Loudoun corridor on Route 7. The town is a small 19th-century village between Purcellville and Leesburg. Some older houses have low cellars. Later lots have a conventional unfinished lower level. A Hamilton mailing address can still sit outside town limits.',
+      'Inside town limits the order is fixed: town zoning, then the Loudoun County building permit. Hamilton is not a county historic overlay, so an interior finish does not pick up a Certificate of Appropriateness. An egress window is still exterior work. Outside town, building and zoning run through LandMARC.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Hamilton average. Loudoun\'s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. A village cellar is not the Ashburn tier table.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/hamilton-va', label: 'Hamilton service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'Town limits add a zoning step that an unincorporated Hamilton-address lot does not. Finish selections stay off the written timeline until that path is named. After approvals, the calendar depends on scope, selections, and crew availability.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency egress window anywhere in the county. On an older Hamilton foundation that opening is exterior work. An existing window does not establish compliance. Moisture comes first: a perimeter check, a sump if one exists, and vapor control under the finish floor.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Published Typical fees are 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 county zoning fee. Inside town, those county fees still wait on town zoning.',
+        ],
+        links: [
+          { href: '/blog/loudoun-county-permits-hoa-guide-2026', label: 'Loudoun County permits guide' },
+        ],
+      },
+    ],
+  },
+
+  'kitchens-berryville-va': {
+    h1: 'Kitchen Remodeling in Berryville, VA',
+    metaDescription:
+      'Kitchen remodeling in Berryville, VA. Clarke County issues the building permit, including inside the town.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Berryville?',
+        answer:
+          'Clarke County Building Department, at 101 Chalmers Court in Berryville, phone (540) 955-5112. The county reviews permits throughout Clarke County, including the towns of Berryville and Boyce. A zoning permit is a prerequisite, and the two reviews can run together. Inside the town, owners may also need the Town Planner.',
+      },
+      {
+        question: 'Does the historic district review an interior kitchen?',
+        answer:
+          'Exterior work inside the Berryville Historic District needs a Certificate of Appropriateness from the town Architectural Review Board before the town zoning permit. The county still issues the building permit. The district is not the whole 22611 ZIP. An interior kitchen that leaves the outside alone is not that certificate.',
+      },
+      {
+        question: 'What does kitchen remodeling in Berryville, VA cost?',
+        answer:
+          'We price every Berryville kitchen on a free written estimate for that house. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Clarke County quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Berryville, VA is work in Clarke County\'s county seat, where the housing in ZIP 22611 has a Census median year built of 1981. That is established houses, not a new subdivision. A small older kitchen and a later house on the edge of town are different jobs.',
+      'Clarke County Building Department issues the building permit for the county and for the towns of Berryville and Boyce. The counter is the first floor of 101 Chalmers Court. Planning staff on the second floor issue the zoning permit, which is required before the building permit, and the reviews can run at the same time. The county asks for 20 to 30 business days for plan review. Inside the town, call the Town Planner at (540) 955-4081 when the parcel is in town limits.',
+      'A load-bearing opening needs stamped drawings. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Berryville quote. The written estimate prices this house.',
+    ],
+  },
+
+  'bathrooms-berryville-va': {
+    h1: 'Bathroom Remodeling in Berryville, VA',
+    metaDescription:
+      'Bathroom remodeling in Berryville, VA. Clarke County permits the work. Historic review applies inside the town district.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Berryville?',
+        answer:
+          'Clarke County Building Department when the work needs a building or trade permit, including inside the Town of Berryville. Phone (540) 955-5112. Plumbing relocation is a trade permit. Inside the Berryville Historic District, exterior changes need the town Architectural Review Board first.',
+      },
+      {
+        question: 'What does bathroom remodeling in Berryville, VA cost?',
+        answer:
+          'We price every Berryville bathroom on a free written estimate for that house. Waterproofing, the shower assembly, tile, and any plumbing move are separate lines. A nearby-market bathroom guide is a planning reference, not a quote for this house.',
+      },
+      {
+        question: 'Is every Berryville bath in the historic district?',
+        answer:
+          'No. The Architectural Review Board reviews certificates inside the Berryville Historic District. ZIP 22611 is larger than that district and larger than the town. We check the parcel.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Berryville, VA is a wet-area job in Clarke County\'s older housing stock. ZIP 22611\'s median year built is 1981. Village baths near the historic district and later baths outside town are not the same room.',
+      'The county Building Department at 101 Chalmers Court issues the building permit, including for houses inside the town. A shower that stays inside needs a sloped pan and a waterproofing layer. A new window inside the Berryville Historic District is exterior work: the Architectural Review Board certificate, then the town zoning permit, then the county building permit.',
+      'Every Berryville bathroom is priced on a free written estimate. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. The schedule depends on scope, selections, the 20-to-30-business-day county review window, and whether the historic district is in the path.',
+    ],
+  },
+
+  'basements-berryville-va': {
+    h1: 'Basement Finishing in Berryville, VA',
+    metaDescription:
+      'Basement finishing in Berryville, VA. Clarke County issues the permit. A published tier starts at $55,000.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Berryville, VA?',
+        answer:
+          'Clarke County Building Department, 101 Chalmers Court, phone (540) 955-5112. That office covers the county and the towns of Berryville and Boyce. A zoning permit from county Planning is required and can be reviewed with the building permit. Inside the town, the Town Planner may also need to see the project.',
+      },
+      {
+        question: 'Does an egress window need historic review?',
+        answer:
+          'When the opening is on a house inside the Berryville Historic District, yes. The town Architectural Review Board certificate comes before the town zoning permit. The county still issues the building permit. Houses outside that district do not use the town board.',
+      },
+      {
+        question: 'What does a finished basement in Berryville cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s Northern Virginia planning ranges, not a Berryville average and not a Real Elite price. The written estimate prices this foundation.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Berryville, VA is a lower level in Clarke County, about 40 minutes from Martinsburg. The Census median year built for ZIP 22611 is 1981. Some houses have a full unfinished basement. Older village houses may have a low cellar. We look at the foundation before we name a bedroom.',
+      'Clarke County issues the building permit at 101 Chalmers Court, including inside the Town of Berryville. Plan review is published at 20 to 30 business days. An interior finish on county land is county zoning plus the building permit. An egress opening inside the Berryville Historic District adds the town Architectural Review Board.',
+      'Planning ranges cited on our Ashburn and Leesburg basement cost guide are Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Clarke County average. Headroom, moisture, and whether a bedroom needs a new well decide the Berryville number.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices and not a Berryville quote. Price the ceiling height and the moisture history in this house.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/berryville-va', label: 'Berryville service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'Clarke County asks for 20 to 30 business days for plan review after the application is in. A historic-district certificate, when the egress opening sits in the town district, comes before that county permit. We write the sequence down before demo.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency escape opening that meets the code dimensions on the plans. In the Berryville Historic District that cut is exterior review. An existing window does not establish compliance. Moisture control comes before finishes.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'File with Clarke County Building Department at 101 Chalmers Court, phone (540) 955-5112, email permits@clarkecounty.gov. Zoning and building can be reviewed together. Inside the Town of Berryville, the Town Planner is at Suite A, (540) 955-4081. Boyce uses the same county building office and is a different town.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-shepherdstown-wv': {
+    h1: 'Kitchen Remodeling in Shepherdstown, WV',
+    metaDescription:
+      'Kitchen remodeling in Shepherdstown, WV for older houses on German Street and outside the corporation.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Shepherdstown?',
+        answer:
+          'Inside the corporation, the Town. A project permit is filed at Town Hall, 104 North King Street. Exterior work in the historic district needs a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. Outside the corporation, Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town.',
+      },
+      {
+        question: 'Does a Shepherdstown address always mean the town?',
+        answer:
+          'No. A Shepherdstown mailing address can sit in Jefferson County outside the corporation. We check the parcel before we file. County permits go to (304) 725-2998. The town office is a different counter.',
+      },
+      {
+        question: 'What does kitchen remodeling in Shepherdstown, WV cost?',
+        answer:
+          'We price every Shepherdstown kitchen on a free written estimate for that house. Cabinets, counters, and any wall or plumbing move are separate lines. WV Contractor License WV062432.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Shepherdstown, WV is work in the oldest town in the state, founded in 1762, with Shepherd University beside the German Street corridor. Older houses here still have small original kitchens, plaster, and stacks that were never laid out for an island.',
+      'Inside the corporation, the Town issues the project permit at 104 North King Street. Much of the town is in a historic district. Exterior changes there need a Certificate of Appropriateness from the Historic Landmarks Commission before the building permit. A kitchen that leaves the outside alone is not that certificate. A new window or a bump-out is.',
+      'Outside the corporation, Jefferson County takes remodeling permits at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. Applications are not taken in after 4:30 p.m. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. WV Contractor License WV062432. The written estimate is the number for this house.',
+    ],
+  },
+
+  'bathrooms-shepherdstown-wv': {
+    h1: 'Bathroom Remodeling in Shepherdstown, WV',
+    metaDescription:
+      'Bathroom remodeling in Shepherdstown, WV. Town permit inside the corporation. County permit outside it.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Shepherdstown?',
+        answer:
+          'Inside town, a project permit from the Town at 104 North King Street. Exterior work in the historic district needs the Historic Landmarks Commission certificate first. Outside town, Jefferson County at 116 East Washington Street, Suite 100, Charles Town, phone (304) 725-2998.',
+      },
+      {
+        question: 'What does bathroom remodeling in Shepherdstown, WV cost?',
+        answer:
+          'We price every Shepherdstown bathroom on a free written estimate for that house. Waterproofing, tile, and any plumbing move are separate lines. WV Contractor License WV062432.',
+      },
+      {
+        question: 'Do German Street baths need historic review?',
+        answer:
+          'When the work changes the exterior of a house in the town historic district, yes. The certificate comes before the town building permit. An interior bath that leaves the windows and walls as they are is not that filing. Confirm the parcel is inside the corporation first.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Shepherdstown, WV means a wet-area rebuild in an older house, often a tight bath off a German Street or King Street plan, or a later house toward Shepherd Grade. The university town and the county land around it are not the same permit counter.',
+      'Inside the corporation, file the project permit with the Town. The Historic Landmarks Commission issues the Certificate of Appropriateness for exterior work in the historic district, and that certificate comes before the building permit. A combined application covers a project that is both inside the corporation and inside the district.',
+      'A shower conversion needs a sloped pan and a waterproofing layer. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. WV Contractor License WV062432. County land uses the Jefferson County office in Charles Town, not Town Hall.',
+    ],
+  },
+
+  'basements-shepherdstown-wv': {
+    h1: 'Basement Finishing in Shepherdstown, WV',
+    metaDescription:
+      'Basement finishing in Shepherdstown, WV. Town permit in the corporation. Published egress range is $3,500 to $6,500.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Shepherdstown, WV?',
+        answer:
+          'Inside the corporation, the Town, at 104 North King Street. An areaway or egress opening in the historic district needs the Historic Landmarks Commission certificate before the building permit. Outside the corporation, Jefferson County lists finished basements among the work that needs a permit, at 116 East Washington Street, Suite 100, Charles Town.',
+      },
+      {
+        question: 'What does an egress window cost here?',
+        answer:
+          'The Eastern Panhandle egress guide publishes an installed range of $3,500 to $6,500. That is the window and well, not the whole basement, and it is not a Real Elite price for the finish. The written estimate prices this foundation.',
+      },
+      {
+        question: 'Can a Shepherdstown cellar be a bedroom?',
+        answer:
+          'Only with an emergency escape opening that meets the code dimensions on the plans. An existing window does not establish that. In the town historic district the new opening is exterior review. On county land it is a Jefferson County permit.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Shepherdstown, WV is often a low older cellar near German Street, or a conventional lower level on a later lot outside the original town. A Shepherdstown mailing address does not decide which one, and it does not decide the permit counter.',
+      'Inside the corporation the Town issues the project permit. Jefferson County, for land outside town, lists finished basements, remodeling, and additions at the Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, Charles Town, phone (304) 725-2998. No applications after 4:30 p.m.',
+      'Our Eastern Panhandle egress guide publishes $3,500 to $6,500 installed for the window and well. That figure is not the basement finish and not a Real Elite price. WV Contractor License WV062432. Moisture comes before drywall. The written estimate is the number for this house.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'The egress window, when a bedroom is in the plan, is published in the Eastern Panhandle guide at $3,500 to $6,500 installed. That is one line. The finish itself is priced on the written estimate for this foundation, not copied from a Loudoun tier table.',
+        ],
+        links: [
+          { href: '/blog/basement-egress-window-cost-eastern-panhandle-2026', label: 'Eastern Panhandle egress window guide' },
+          { href: '/service-areas/shepherdstown-wv', label: 'Shepherdstown service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'Town historic review, when the opening changes the outside, comes before the town building permit. County land skips the Historic Landmarks Commission and uses the Charles Town counter. We write that sequence down before demo.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A legal bedroom needs an emergency escape opening. The Eastern Panhandle guide puts the installed window and well at $3,500 to $6,500, depending on how deep the cut is. An existing window does not establish compliance.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Town Hall is 104 North King Street. The combined application covers projects inside both the corporation and the historic district. Jefferson County\'s office is 116 East Washington Street, Suite 100, Charles Town, (304) 725-2998, permits@jeffersoncountywv.org. WV Contractor License WV062432.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-the-plains-va': {
+    h1: 'Kitchen Remodeling in The Plains, VA',
+    metaDescription:
+      'Kitchen remodeling in The Plains, VA. Town zoning is $50, then Fauquier County inspects the building permit.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in The Plains?',
+        answer:
+          'Inside town, an approved Town zoning permit comes first. The published zoning and sign permit fee is $50. Fauquier County then provides the building inspections. Outside town, the county office at 16 Courthouse Square in Warrenton takes the building and zoning application. Phone (540) 422-8230.',
+      },
+      {
+        question: 'Does every Plains kitchen need the Architectural Review Board?',
+        answer:
+          'The town says the Historic District includes all properties within the town, and improvements there need ARB approval. There is no ARB fee. An interior kitchen that does not change the exterior may still need the town zoning permit. Land outside the town is not the town historic district.',
+      },
+      {
+        question: 'What does kitchen remodeling in The Plains, VA cost?',
+        answer:
+          'We price every Plains kitchen on a free written estimate for that house. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Fauquier quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in The Plains, VA is work in a small incorporated Fauquier town, charter dated 1972, where ZIP 20198 is larger than the town. Census figures for the ZIP, not the town line, show a median year built of 1982, with the largest single group built in 1939 or earlier. That mix is older houses and later houses, not one kitchen.',
+      'Inside town, the zoning and sign permit is required before the building permit and the published fee is $50. Fauquier County provides the building inspections from 16 Courthouse Square in Warrenton. The Historic District includes every property in the town. Exterior improvements need the Architectural Review Board, and that application has no fee. Town Hall is 6451 Main Street, phone (540) 364-4945.',
+      'A Plains mailing address can sit outside the town. Those parcels skip the town ARB and use the county combined building and zoning application. The county zoning fee is $110, including the technology fee. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. HomeAdvisor national figures cited in the Loudoun kitchen guide run $14,589 to $41,559 typical. Those are not a Plains quote.',
+    ],
+  },
+
+  'bathrooms-the-plains-va': {
+    h1: 'Bathroom Remodeling in The Plains, VA',
+    metaDescription:
+      'Bathroom remodeling in The Plains, VA. Town historic review covers every property inside the town limits.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in The Plains?',
+        answer:
+          'Fauquier County issues the building permit. Inside town, an approved zoning permit is required first, published fee $50. Exterior improvements need the Architectural Review Board. Outside town, file at 16 Courthouse Square, Warrenton, (540) 422-8230.',
+      },
+      {
+        question: 'What does bathroom remodeling in The Plains, VA cost?',
+        answer:
+          'We price every Plains bathroom on a free written estimate for that house. Waterproofing, tile, and any plumbing move are separate lines. A nearby-market bathroom guide is a planning reference, not a quote for this house.',
+      },
+      {
+        question: 'Does the historic district cover the whole ZIP?',
+        answer:
+          'No. The town says the Historic District includes all properties within the town. ZIP 20198 extends into the county. County land does not use the town Architectural Review Board.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in The Plains, VA is a wet-area job in a town whose historic district covers every property inside the limits. Older baths in the village and later baths on county land in ZIP 20198 are different rooms and different filings.',
+      'The town zoning permit, published at $50, comes before Fauquier County will inspect the building permit. Exterior changes need Architectural Review Board approval, and the ARB charges no fee. An interior shower that leaves the windows and siding alone is still checked against whether the parcel is inside the town.',
+      'Every Plains bathroom is priced on a free written estimate. Waterproofing and slope-to-drain are in the written scope. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Warrenton\'s town building counter is not this path.',
+    ],
+  },
+
+  'basements-the-plains-va': {
+    h1: 'Basement Finishing in The Plains, VA',
+    metaDescription:
+      'Basement finishing in The Plains, VA. Town zoning is $50, then the Fauquier County building permit.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in The Plains, VA?',
+        answer:
+          'Fauquier County provides the building inspections. Inside town, an approved zoning permit is required first. The published town fee is $50. The county online portal accepts finished-basement permits. An egress opening inside town is an exterior improvement and needs the Architectural Review Board.',
+      },
+      {
+        question: 'What does a finished basement in The Plains cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Plains average and not a Real Elite price. The town zoning fee is $50. The county zoning fee outside town is $110, including the technology fee.',
+      },
+      {
+        question: 'Can a lower level in The Plains include a bedroom?',
+        answer:
+          'Only with an emergency egress opening on the plans. Inside the town that opening is historic-district review because the district includes all properties in town. An existing window does not establish compliance.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in The Plains, VA starts with which side of the town line the house is on. Inside town, every property is in the historic district. Outside town, ZIP 20198 is ordinary Fauquier County. Cellars in the older village houses and full-height lower levels on later lots are not the same scope.',
+      'The town zoning and sign permit is $50 and is required before the county building permit. Fauquier County Department of Community Development is at 16 Courthouse Square, Warrenton, phone (540) 422-8230. In-person applications stop at 4:00 p.m. The county adopted the 2021 Virginia Uniform Statewide Building Code effective January 18, 2024.',
+      'Mayflower Virginia tiers cited in the Ashburn and Leesburg guide are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Plains average. The written estimate prices this foundation.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. The town zoning fee of $50 and the county zoning fee of $110 are permit fees, not the construction price.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/the-plains-va', label: 'The Plains service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'Architectural Review Board meetings are monthly. Exterior work inside town has to make that agenda before the county building permit. An interior finish that does not change the outside still needs the town zoning permit. We write the order down before demo.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency escape opening. Inside The Plains that cut is an exterior improvement in a historic district that covers the whole town. County land outside town uses the county permit and does not use the town ARB.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Town Hall is 6451 Main Street, phone (540) 364-4945. County building permits are filed at 16 Courthouse Square, Warrenton, (540) 422-8230. The county portal accepts finished-basement permits. Delinquent real-estate taxes have to be paid before the county issues the permit.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-upperville-va': {
+    h1: 'Kitchen Remodeling in Upperville, VA',
+    metaDescription:
+      'Kitchen remodeling in Upperville, VA. Unincorporated Fauquier. County permits at 16 Courthouse Square.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Upperville?',
+        answer:
+          'Fauquier County Department of Community Development, 16 Courthouse Square, Warrenton, phone (540) 422-8230. Upperville is unincorporated. There is no town zoning step. A load-bearing opening needs stamped drawings. The county zoning fee is $110, including the technology fee.',
+      },
+      {
+        question: 'Does the National Register district restrict a kitchen?',
+        answer:
+          'No. Fauquier County says National Register listing does not restrict private property, and the Board of Supervisors has not adopted a local historic overlay in the county. Warrenton and The Plains are the towns with their own overlay districts. Upperville is not those towns.',
+      },
+      {
+        question: 'What does kitchen remodeling in Upperville, VA cost?',
+        answer:
+          'We price every Upperville kitchen on a free written estimate for that house. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Upperville quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Upperville, VA is work in an unincorporated village on Route 50 at the Loudoun line. The Virginia Department of Historic Resources lists the Upperville Historic District on the National Register. That listing is not a local permit overlay. The kitchen in a village house and the kitchen in a later house on acreage are different plans.',
+      'Building permits go to Fauquier County at 16 Courthouse Square in Warrenton, not to Loudoun LandMARC and not to a town hall. Office hours are 8:00 a.m. to 4:30 p.m., and in-person applications stop at 4:00 p.m. The county uses a combined building and zoning application. Zoning is required for most work, including some interior renovations. The zoning fee is $110, including the technology fee.',
+      'Opening a bearing wall needs stamped drawings. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. HomeAdvisor national figures cited in the Loudoun kitchen guide are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are not an Upperville quote.',
+    ],
+  },
+
+  'bathrooms-upperville-va': {
+    h1: 'Bathroom Remodeling in Upperville, VA',
+    metaDescription:
+      'Bathroom remodeling in Upperville, VA. Fauquier County permits. National Register listing does not add a local board.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Upperville?',
+        answer:
+          'Fauquier County, at 16 Courthouse Square in Warrenton, phone (540) 422-8230. Plumbing relocation is a residential trade permit, and the county portal accepts those. There is no Upperville town counter.',
+      },
+      {
+        question: 'What does bathroom remodeling in Upperville, VA cost?',
+        answer:
+          'We price every Upperville bathroom on a free written estimate for that house. Waterproofing, tile, and any plumbing move are separate lines. A nearby-market bathroom guide is a planning reference, not a quote for this house.',
+      },
+      {
+        question: 'Is Upperville in Loudoun County for permits?',
+        answer:
+          'No. The village is in Fauquier County on the Loudoun line. Confirm the parcel. Loudoun LandMARC is the wrong office for a Fauquier parcel.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Upperville, VA is a wet-area rebuild in a Route 50 village that sits in Fauquier, not in a Loudoun town. Older baths in the National Register village and later baths on the surrounding lots are different layouts. The register listing does not create a design-review board.',
+      'Fauquier County says National Register status places no obligations on private owners, and the Board has not adopted a county historic overlay. The permit is the county combined building and zoning application. A new window is still a building-permit question. It is not a Warrenton or Plains certificate.',
+      'Every Upperville bathroom is priced on a free written estimate. Waterproofing and slope-to-drain are in the written scope. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. The county zoning fee is $110, including the technology fee.',
+    ],
+  },
+
+  'basements-upperville-va': {
+    h1: 'Basement Finishing in Upperville, VA',
+    metaDescription:
+      'Basement finishing in Upperville, VA. Fauquier County permit. The county zoning fee is $110.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Upperville, VA?',
+        answer:
+          'Fauquier County Department of Community Development, 16 Courthouse Square, Warrenton, phone (540) 422-8230. The county online portal accepts finished-basement permits. Upperville has no town zoning step. A building permit is required for renovations and alterations to an existing house.',
+      },
+      {
+        question: 'Does the historic district review an egress window?',
+        answer:
+          'Not through a county overlay. The county says it has not adopted a local historic overlay, and National Register listing does not restrict private property. An egress opening is still a building-permit item. It is not the Warrenton Certificate of Appropriateness.',
+      },
+      {
+        question: 'What does a finished basement in Upperville cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not an Upperville average and not a Real Elite price. The county zoning fee is $110, including the technology fee.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Upperville, VA is a lower level in an unincorporated Fauquier village on Route 50. Some village houses have older cellars. Later houses on acreage may have a full unfinished basement. We look at the foundation before we talk about rooms.',
+      'The permit counter is Fauquier County in Warrenton, phone (540) 422-8230. There is no municipal step. The 2021 Virginia Uniform Statewide Building Code took effect in the county on January 18, 2024. Delinquent real-estate taxes have to be paid before the county issues the permit.',
+      'Mayflower Virginia tiers cited in the Ashburn and Leesburg guide are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not an Upperville average. The county zoning fee of $110 is a permit fee, not the construction price.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. Ceiling height under the first floor decides more than the ZIP.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/upperville-va', label: 'Upperville service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'There is no town board waiting on an Upperville lot. The calendar is county review, selections, and crew availability. In-person applications are not accepted after 4:00 p.m. We put the schedule in writing before demo.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency escape opening sized on the plans. National Register status does not replace that code item and does not add a local architectural board. An existing window does not establish compliance.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'File at 16 Courthouse Square, Warrenton, VA 20186, phone (540) 422-8230. The county portal accepts finished-basement permits and residential trade permits. The zoning fee is $110, including the technology fee. Confirm the parcel is Fauquier, not Loudoun, before filing.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-marshall-va': {
+    h1: 'Kitchen Remodeling in Marshall, VA',
+    metaDescription:
+      'Kitchen remodeling in Marshall, VA. Unincorporated Fauquier. County permits at 16 Courthouse Square.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Marshall?',
+        answer:
+          'Fauquier County Department of Community Development, 16 Courthouse Square, Warrenton, phone (540) 422-8230. Marshall is unincorporated. There is no town permit office. The county zoning fee is $110, including the technology fee.',
+      },
+      {
+        question: 'Does Warrenton historic review apply in Marshall?',
+        answer:
+          'No. The Certificate of Appropriateness is for the Warrenton Historic District. Marshall is a different place in the same county. Do not use the town\'s 30-inch deck rule here either.',
+      },
+      {
+        question: 'What does kitchen remodeling in Marshall, VA cost?',
+        answer:
+          'We price every Marshall kitchen on a free written estimate for that house. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Marshall quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Marshall, VA is work in unincorporated Fauquier County, ZIP 20115. Census figures for the ZIP show a median year built of 1983 and mostly one-unit detached houses. That is established housing from the 1970s through the 2000s, not a new-build subdivision and not one architectural style.',
+      'There is no Marshall town hall for permits. Building and zoning go to Fauquier County at 16 Courthouse Square in Warrenton. A building permit is required for additions and for renovations or alterations. A zoning permit is required for most work, including some interior renovations. The fee is $110, including the technology fee. In-person applications stop at 4:00 p.m.',
+      'Opening a bearing wall needs stamped drawings. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. HomeAdvisor national figures cited in the Loudoun kitchen guide are $14,589 to $41,559 typical. Those are not a Marshall quote. The written estimate prices this house.',
+    ],
+  },
+
+  'bathrooms-marshall-va': {
+    h1: 'Bathroom Remodeling in Marshall, VA',
+    metaDescription:
+      'Bathroom remodeling in Marshall, VA for established Fauquier houses. County permits, no town historic board.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Marshall?',
+        answer:
+          'Fauquier County, phone (540) 422-8230. Plumbing relocation can go through the county portal as a residential trade permit. There is no municipal zoning step.',
+      },
+      {
+        question: 'What does bathroom remodeling in Marshall, VA cost?',
+        answer:
+          'We price every Marshall bathroom on a free written estimate for that house. Waterproofing, tile, and any plumbing move are separate lines. A nearby-market bathroom guide is a planning reference, not a quote for this house.',
+      },
+      {
+        question: 'Are Marshall baths in a historic district?',
+        answer:
+          'County permit pages for this ZIP do not name a historic district or an association. The permit path is the county combined application.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Marshall, VA is a wet-area rebuild in established detached houses. The ZIP\'s median year built is 1983. A 1970s bath and a 1990s primary bath are different layouts, and we open the wall before the finish schedule is locked.',
+      'Fauquier County is the only permit counter. The office is 16 Courthouse Square, Warrenton. The zoning fee is $110, including the technology fee. A shower conversion needs a sloped pan and a waterproofing layer. A new window is a building-permit item, not a Warrenton historic certificate.',
+      'Every Marshall bathroom is priced on a free written estimate. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. The county permit pages do not name an association for this ZIP. We file an association packet only when the deed or the owner names one.',
+    ],
+  },
+
+  'basements-marshall-va': {
+    h1: 'Basement Finishing in Marshall, VA',
+    metaDescription:
+      'Basement finishing in Marshall, VA. Unincorporated Fauquier. The county zoning fee is $110.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Marshall, VA?',
+        answer:
+          'Fauquier County Department of Community Development, 16 Courthouse Square, Warrenton, phone (540) 422-8230. The county portal accepts finished-basement permits. Marshall has no town zoning step.',
+      },
+      {
+        question: 'What does a finished basement in Marshall cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Marshall average and not a Real Elite price. The county zoning fee is $110, including the technology fee.',
+      },
+      {
+        question: 'Can a Marshall lower level include a bedroom?',
+        answer:
+          'Only with an emergency egress opening that meets the code dimensions on the plans. That opening is exterior work and a county permit item. An existing window does not establish compliance.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Marshall, VA is the unfinished lower level in established Fauquier houses, ZIP 20115, median year built 1983. These are not new-construction basements and they are not Warrenton town basements. We check ceiling height and moisture before we draw rooms.',
+      'The county requires a building permit for renovations and alterations, and a zoning permit for most work, including some interior renovations. File at 16 Courthouse Square. Hours are Monday through Friday, 8:00 a.m. to 4:30 p.m. In-person applications are not accepted after 4:00 p.m. The 2021 Virginia Uniform Statewide Building Code took effect January 18, 2024.',
+      'Mayflower Virginia tiers cited in the Ashburn and Leesburg guide are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Marshall average. The $110 county zoning fee is not the construction price.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. A 1980s ranch cellar and a two-story house are not the same number.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/marshall-va', label: 'Marshall service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'There is no town zoning wait in Marshall. County review, selections, and crew availability set the calendar. Delinquent real-estate taxes have to be paid before the county issues the permit. We put the schedule in writing before demo.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'A bedroom needs an emergency escape opening on the plans. That cut is a county building-permit item. It is not the Town of Warrenton historic certificate. Moisture control comes before finishes.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Fauquier County, 16 Courthouse Square, Warrenton, VA 20186, (540) 422-8230. The portal accepts finished-basement permits and residential trade permits. The zoning fee is $110, including the technology fee. Warrenton town rules stop at the town line.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-warrenton-va': {
+    h1: 'Kitchen Remodeling in Warrenton, VA',
+    metaDescription:
+      'Kitchen remodeling in Warrenton, VA. Town permits inside the limits. County permits on the rest of the ZIP.',
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Warrenton?',
+        answer:
+          'Inside the town, the Department of Community Development, phone (540) 347-1101. Outside the town, Fauquier County at 16 Courthouse Square, phone (540) 422-8230. ZIP 20186 and ZIP 20187 centroids both sit in the county, so a Warrenton mailing address is not town limits.',
+      },
+      {
+        question: 'Does the historic district review an interior kitchen?',
+        answer:
+          'A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. An interior kitchen that leaves the outside alone is not that certificate. Which streets are inside the district has to be read off the map for the parcel.',
+      },
+      {
+        question: 'What does kitchen remodeling in Warrenton, VA cost?',
+        answer:
+          'We price every Warrenton kitchen on a free written estimate for that house. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Warrenton quote. ZIP 20186 and ZIP 20187 are different housing mixes.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Warrenton, VA has to start with the town line. The town charter dates to 1816. ZIP 20187 is mostly detached houses with a median year built of 1991. ZIP 20186 is a different mix, median year built 1987, and should not be averaged into one kitchen.',
+      'Inside town, applications go to the Department of Community Development, phone (540) 347-1101. The town building page lists alterations to plumbing, electrical, or HVAC among work that needs a permit. Exterior alterations in the Warrenton Historic District need a Certificate of Appropriateness first. Outside town, Fauquier County takes the combined building and zoning application at 16 Courthouse Square. The county zoning fee is $110, including the technology fee.',
+      'A load-bearing opening needs stamped drawings. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. HomeAdvisor national figures cited in the Loudoun kitchen guide are $14,589 to $41,559 typical. Those are not a Warrenton quote. The written estimate prices this house.',
+    ],
+  },
+
+  'bathrooms-warrenton-va': {
+    h1: 'Bathroom Remodeling in Warrenton, VA',
+    metaDescription:
+      'Bathroom remodeling in Warrenton, VA. Town counter inside the limits. County counter on county land.',
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Warrenton?',
+        answer:
+          'Inside the town, phone (540) 347-1101. The town lists alterations to plumbing among work that needs a permit. Outside the town, Fauquier County at 16 Courthouse Square, (540) 422-8230. A mailing address does not choose the counter.',
+      },
+      {
+        question: 'What does bathroom remodeling in Warrenton, VA cost?',
+        answer:
+          'We price every Warrenton bathroom on a free written estimate for that house. Waterproofing, tile, and any plumbing move are separate lines. A nearby-market bathroom guide is a planning reference, not a quote for this house.',
+      },
+      {
+        question: 'Does historic review apply to every Warrenton bath?',
+        answer:
+          'No. The certificate is for exterior alterations inside the Warrenton Historic District. An interior bath that leaves the outside alone is not that filing. County land outside town does not use the town certificate.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Warrenton, VA is a wet-area job that changes with the ZIP. Town houses, ZIP 20187\'s detached stock, and ZIP 20186\'s different mix are not one bath. We open the wall and confirm the substrate before the finish schedule is locked.',
+      'Inside town, the Department of Community Development handles the permit, phone (540) 347-1101. A new window in the historic district needs a Certificate of Appropriateness before the exterior alteration. Outside town, the county office at 16 Courthouse Square takes plumbing trade permits on its portal. In-person county applications stop at 4:00 p.m.',
+      'Every Warrenton bathroom is priced on a free written estimate. Waterproofing and slope-to-drain are in the written scope. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. The town\'s 30-inch deck rule is a deck rule, and it applies inside the town only.',
+    ],
+  },
+
+  'basements-warrenton-va': {
+    h1: 'Basement Finishing in Warrenton, VA',
+    metaDescription:
+      'Basement finishing in Warrenton, VA. Outside town, the Fauquier County zoning fee is $110.',
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Warrenton, VA?',
+        answer:
+          'Inside the town, the Department of Community Development, phone (540) 347-1101. The town building page lists finishing a basement, and an areaway or egress window needs additional zoning review. Outside the town, Fauquier County at 16 Courthouse Square, phone (540) 422-8230. The county portal accepts finished-basement permits.',
+      },
+      {
+        question: 'What does a finished basement in Warrenton cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Warrenton average and not a Real Elite price. Outside town, the county zoning fee is $110, including the technology fee.',
+      },
+      {
+        question: 'Does every Warrenton basement use the town rules?',
+        answer:
+          'No. Both ZIP centroids that were checked landed in Fauquier County, outside an incorporated place. Town rules, including the historic-district certificate, apply inside the town. County land uses the county office.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Warrenton, VA splits at the town line. Inside town, the building page requires a permit to finish a basement, and an areaway or egress window needs additional zoning review. Outside town, ZIP 20186 and ZIP 20187 are Fauquier County. The two ZIPs are different housing mixes, median years built 1987 and 1991, and they should not be averaged into one lower level.',
+      'The town counter is the Department of Community Development, phone (540) 347-1101. The county counter is 16 Courthouse Square, phone (540) 422-8230, hours 8:00 a.m. to 4:30 p.m. A Certificate of Appropriateness applies before exterior alterations in the Warrenton Historic District, not before an interior finish on county land.',
+      'Mayflower Virginia tiers cited in the Ashburn and Leesburg guide are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Warrenton average. The county zoning fee of $110 is a permit fee. The written estimate prices this foundation.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. ZIP 20186 and ZIP 20187 are not one house type.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/warrenton-va', label: 'Warrenton service area' },
+        ],
+      },
+      {
+        id: 'timeline',
+        title: 'Timeline',
+        paragraphs: [
+          'Town zoning review for an areaway adds a step the county parcel does not have. Historic-district review applies only when the exterior change is inside the district. We name the parcel\'s counter before the schedule is a commitment.',
+        ],
+      },
+      {
+        id: 'egress',
+        title: 'Egress',
+        paragraphs: [
+          'Inside town, an areaway or egress window needs additional zoning review on top of the basement permit. A bedroom still needs an opening that meets the code dimensions. An existing window does not establish compliance. In the historic district that opening is also a certificate question.',
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Town phone (540) 347-1101. County office 16 Courthouse Square, Warrenton, (540) 422-8230. The county zoning fee outside town is $110, including the technology fee. In-person county applications are not accepted after 4:00 p.m. The town links a Typical Basement Details packet for work inside town.',
         ],
       },
     ],
