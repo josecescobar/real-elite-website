@@ -65,6 +65,8 @@ describe('West Virginia towns checked on REA-402', () => {
       const body = `${CITY_DATA[slug].description} ${CITY_DATA[slug].faqs?.map((faq) => faq.answer).join(' ')}`;
       expect(body, slug).not.toMatch(/veteran-owned|24\/7|years of experience|\bawards?\b/i);
       expect(body, slug).not.toMatch(/Sunridge|Powhatan|Dominion Valley/i);
+      // Customer copy, not research notes.
+      expect(body, slug).not.toMatch(/this page|centroid|was not (established|verified)|in that table|not found|ACS|census-designated/i);
     }
   });
 
@@ -77,7 +79,7 @@ describe('West Virginia towns checked on REA-402', () => {
     expect(text).toContain('(304) 725-2998');
     expect(text).toContain('Article 1701');
     expect(text).toContain('Historic Landmarks Commission');
-    expect(text).toContain('National Park Service site is not the private-permit office');
+    expect(text).toContain('National Park Service site is not the private-permit office for a home project');
     expect(text).toContain('WV Contractor License WV062432');
     expect(text).not.toContain('on-site visits are typically scheduled within the same week');
     expect(html).toContain('/blog/deck-permits-berkeley-jefferson-county-wv-2026');
@@ -91,6 +93,7 @@ describe('West Virginia towns checked on REA-402', () => {
     expect(text).toContain('1987');
     expect(text).toContain('(304) 725-2998');
     expect(text).toContain('finished basements');
+    expect(text).toContain('not a town');
     expect(text).not.toContain('on-site visits are typically scheduled within the same week');
   });
 
@@ -102,7 +105,7 @@ describe('West Virginia towns checked on REA-402', () => {
     expect(text).toContain('400 West Stephen Street, Suite 202');
     expect(text).toContain('(304) 264-1966');
     expect(text).toContain('onestop.berkeleywv.org');
-    expect(text).toContain('Not at the ZIP centroid');
+    expect(text).toContain('Bunker Hill is unincorporated Berkeley County');
     expect(text).not.toContain('on-site visits are typically scheduled within the same week');
     expect(html).toContain('/blog/deck-permits-berkeley-jefferson-county-wv-2026');
   });
