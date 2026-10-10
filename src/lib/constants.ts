@@ -730,7 +730,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: "Does every 25425 address follow the town's historic rules?",
         answer:
-          "No. Much of the ZIP is unincorporated Jefferson County. The town's land-use rules and the Historic Landmarks Commission apply inside the town limits, so we check the parcel first.",
+          "No. A 25425 address may be inside town limits or on unincorporated county land. The town's land-use rules and the Historic Landmarks Commission apply inside the town limits, so we check the parcel first.",
       },
       {
         question: "Who permits a finished basement or a deck on county land in this ZIP?",
