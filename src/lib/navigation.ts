@@ -55,6 +55,7 @@ export const DESIGN_BUILD_MENU: readonly NavColumn[] = [
     heading: 'Exteriors & Repairs',
     tone: 'muted',
     items: [
+      { label: 'Stairs & Railings', href: '/services/stairs' },
       { label: 'Roofing', href: '/services/roofing' },
       { label: 'Siding & Stone', href: '/services/siding' },
       { label: 'Paving & Seal Coating', href: '/paving' },

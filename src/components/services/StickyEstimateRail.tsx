@@ -10,6 +10,8 @@ const SLUG_TO_FORM_VALUE: Record<string, string> = {
   basements: 'basement-finish',
   remodeling: 'whole-home-remodel',
   decks: 'decks-outdoor',
+  'outdoor-living': 'decks-outdoor',
+  stairs: 'repairs',
   roofing: 'roofing',
   siding: 'siding',
   additions: 'addition',
