@@ -2106,7 +2106,19 @@ describe('REA-2476 round 10 Fairfax additions and decks', () => {
     );
     expect(body).toMatch(/free written estimate after a site walk/i);
     expect(body).toMatch(/parcel/i);
-    expect(body).toMatch(/If the parcel is in Fairfax County/);
+    expect(body).toMatch(
+      /For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801/
+    );
+    expect(body).toMatch(
+      /If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required/
+    );
+    expect(body).toMatch(/Real Elite does not take electrical work/);
+    expect(body).not.toMatch(/If the parcel is in Fairfax County, questions go to/);
+    expect(body).not.toMatch(/If the parcel is in Fairfax County, outside the town/);
+    expect(body).not.toMatch(/Trade permits are separate/);
+    expect(body).not.toMatch(/Dunn Loring-Merrifield station/);
+    expect(body).not.toMatch(/not a deck record|not a separate permit library|separate deck page in the permit library/i);
+    expect(body).not.toMatch(/do not share a permit counter|do not share an office|do not share a permit counter by default/);
     expect(body).not.toMatch(/homes use/i);
   });
 
