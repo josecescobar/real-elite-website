@@ -340,9 +340,16 @@ export default function CityPageTemplate({ city, data }: Props) {
                   eyebrow={`About ${city.city}`}
                   title={`Premium contracting in ${city.city}.`}
                 />
-                <p className="text-charcoal-700 text-base md:text-lg leading-relaxed mt-6">
-                  {data.description}
-                </p>
+                <div className="mt-6 space-y-4">
+                  {data.description.split(/\n\n+/).map((paragraph, index) => (
+                    <p
+                      key={index}
+                      className="text-charcoal-700 text-base md:text-lg leading-relaxed"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
 
               {/* Featured services (hero card + standard cards) */}

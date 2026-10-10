@@ -113,6 +113,18 @@ export const COMBO_CITY_SLUGS = [
   'marshall-va',
   'warrenton-va',
 
+  // Round 6 Tier A towns, 2026-10-10. Kitchens, bathrooms, and basements
+  // only — three combos, same as round 4. No outdoor living, no stairs,
+  // no Brambleton.
+  'garrett-park-md',
+  'bethesda-md',
+  'arlington-va',
+  'potomac-md',
+  'cabin-john-md',
+  'west-friendship-md',
+  'chevy-chase-md',
+  'catharpin-va',
+
   // Fairfax Station and Clifton stay gone. Tier C retired every combo they
   // had, so keeping their slugs here would leave entries this map can never
   // key. Burke stays: it keeps its kitchen and bathroom combos and lost only
@@ -2977,6 +2989,863 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Stair remodeling in Martinsburg, WV is usually one of two stairs. In an older house near Queen Street the interior stair may still wear carpet, with loose treads and a rail that moves when you lean on it. On a later house toward Spring Mills, Hedgesville, or the Route 11 corridor the worn piece is often the deck or porch stair, which takes more weather than the rest of the deck.',
       'Replacing treads, risers, or balusters on a sound stair usually needs no permit. Structural or layout changes, and new exterior stairs, do. We confirm with the county before work starts. A Martinsburg mailing address is not city limits. Inside the city, the Planning Department at City Hall, 232 N. Queen Street, may run its own review. The published Planning number is (304) 264-2131.',
       'Outside the city, Berkeley County generally requires a building permit for an attached deck, a deck more than 30 inches above grade, or a deck on permanent footings. New exterior stairs on that structure are part of the same parcel check. The county office is at 400 West Stephen Street, Suite 202, and publishes 304-264-1966. Filings outside the city go through the Berkeley County OneStop portal. The price is a free written estimate after a site walk.',
+    ],
+  },
+
+  // ── ROUND 6: TIER A TOWNS ────────────────────────────────────────────────
+  'kitchens-garrett-park-md': {
+    h1: 'Kitchen Remodeling in Garrett Park, MD',
+    metaDescription:
+      'Kitchen remodeling in Garrett Park, MD. County and town approval both apply. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Garrett Park?',
+        answer:
+          'Both Montgomery County and the town. The county municipalities page lists Garrett Park under both county and city approval. Town contact published there is P.O. Box 84, phone 301-933-7488. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Does replacing cabinets in Garrett Park need a permit?',
+        answer:
+          'The county home-improvements list says installing, repairing, or replacing cabinets most likely will not. An interior alteration, including a layout change, likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact on the county list.',
+      },
+      {
+        question: 'What does kitchen remodeling in Garrett Park, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Garrett Park quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Garrett Park, MD starts in a small incorporated town of late-19th-century houses, ZIP 20896, not in a Bethesda subdivision. Kenilworth Avenue and Waverly Avenue still read as a village grid beside the MARC station.',
+      'Montgomery County lists Garrett Park under both county and city approval. A cabinet swap that leaves the walls alone is the county\'s likely-no-permit case. Opening the room, moving the sink, or changing the layout is an interior alteration, which the county says will likely need a permit. The town step is still required. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Garrett Park quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-garrett-park-md': {
+    h1: 'Bathroom Remodeling in Garrett Park, MD',
+    metaDescription:
+      'Bathroom remodeling in Garrett Park, MD for older town baths. County and town approval both apply. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Garrett Park?',
+        answer:
+          'Montgomery County and the town both, because the county lists Garrett Park under both approvals. Bathroom caulking is on the county\'s likely-no-permit list. An interior alteration likely needs a permit. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'Does a Garrett Park shower conversion need a county permit?',
+        answer:
+          'A layout change is an interior alteration, which the county says will likely need a permit. Caulking alone is on the other list. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does bathroom remodeling in Garrett Park, MD cost?',
+        answer:
+          'Every Garrett Park bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines on that estimate.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Garrett Park, MD is a wet-area rebuild in a small town house. Original baths along the village streets are often tight rooms with plaster and a stack that may also serve the kitchen.',
+      'The county lists Garrett Park for both county and town approval. Bathroom caulking is on the likely-no-permit list. Rebuilding the shower, moving the vanity, or opening a wall is an interior alteration, which likely needs a permit. Plumbing is a WSSC contact on the county list. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Every Garrett Park bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The town approval is named before demo, because the county says both approvals are required.',
+    ],
+  },
+
+  'basements-garrett-park-md': {
+    h1: 'Basement Finishing in Garrett Park, MD',
+    metaDescription:
+      'Basement finishing in Garrett Park, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Garrett Park, MD?',
+        answer:
+          'Montgomery County and the town. The municipalities page lists Garrett Park under both county and city approval. An interior alteration will likely need a county permit. Town contact published on the county page is 301-933-7488.',
+      },
+      {
+        question: 'Is a Garrett Park cellar the same scope as a full-height walkout?',
+        answer:
+          'Often no. Many houses in the town are late-19th-century, and the lower level can be a low cellar. Headroom and the stair are checked before a bedroom is discussed.',
+      },
+      {
+        question: 'What does a finished basement in Garrett Park cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Garrett Park average and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Garrett Park, MD is often a low older cellar under a late-19th-century house, not a full-height suburban walkout. The town sits in ZIP 20896 beside the MARC station.',
+      'The county requires both county and town approval for Garrett Park. Finishing the lower level is an interior alteration, which the home-improvements list says will likely need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Garrett Park average. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. A village cellar with limited headroom is not that tier table.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/garrett-park-md', label: 'Garrett Park service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Garrett Park is on the county list for both county and city approval. The Department of Permitting Services is at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. The town contact on the same county page is P.O. Box 84, phone 301-933-7488.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-bethesda-md': {
+    h1: 'Kitchen Remodeling in Bethesda, MD',
+    metaDescription:
+      'Kitchen remodeling in Bethesda, MD for ZIPs 20816, 20817, and 20814. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Bethesda?',
+        answer:
+          'Montgomery County Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Bethesda is not on the list of towns that add a municipal permit. The Town of Oakmont, which uses a Bethesda 20817 mailing address, is listed as county permit only.',
+      },
+      {
+        question: 'Does a Bethesda kitchen need a permit for new cabinets only?',
+        answer:
+          'The county says cabinet install, repair, or replacement most likely will not. An interior alteration likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact.',
+      },
+      {
+        question: 'What does kitchen remodeling in Bethesda, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Bethesda quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Bethesda, MD covers three ZIPs that are not one street. ZIP 20816 is the Westmoreland and Kenwood side. ZIP 20817 runs toward Bradley Boulevard. ZIP 20814 sits closer to downtown and NIH.',
+      'The county office is the Department of Permitting Services in Wheaton. Bethesda is not on the municipal extra-permit list. A 20817 address can still be the Town of Oakmont, which the county lists as county permit only, so the parcel is checked before the filing is named. A cabinet replacement is the county\'s likely-no-permit case. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Bethesda quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-bethesda-md': {
+    h1: 'Bathroom Remodeling in Bethesda, MD',
+    metaDescription:
+      'Bathroom remodeling in Bethesda, MD across ZIPs 20816, 20817, and 20814. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Bethesda?',
+        answer:
+          'Montgomery County Department of Permitting Services, phone 240-777-0311. An interior alteration will likely need a permit. Bathroom caulking is on the likely-no-permit list. Plumbing questions go to WSSC.',
+      },
+      {
+        question: 'Are 20816 and 20814 the same bathroom scope?',
+        answer:
+          'Not usually. A mid-century bath in 20816 and a later primary suite nearer downtown are different rooms. The estimate is for the room we open, not for the ZIP average.',
+      },
+      {
+        question: 'What does bathroom remodeling in Bethesda, MD cost?',
+        answer:
+          'Every Bethesda bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Bethesda, MD is a different room in 20816 than in 20814. A mid-century bath off a center-hall colonial in Westmoreland is not a later primary suite nearer downtown or NIH.',
+      'County permits run through the Department of Permitting Services in Wheaton. Bathroom caulking is on the likely-no-permit list. A shower rebuild or a moved vanity is an interior alteration, which likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact.',
+      'Every Bethesda bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Oakmont, where a 20817 address is actually that town, is still a county permit on the municipalities list.',
+    ],
+  },
+
+  'basements-bethesda-md': {
+    h1: 'Basement Finishing in Bethesda, MD',
+    metaDescription:
+      'Basement finishing in Bethesda, MD for ZIPs 20816, 20817, and 20814. Planning ranges start at $55,000.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Bethesda, MD?',
+        answer:
+          'Montgomery County Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Finishing a lower level is an interior alteration, which the county says will likely need a permit.',
+      },
+      {
+        question: 'Does the ZIP pick the Bethesda permit office?',
+        answer:
+          'No. ZIPs 20816, 20817, and 20814 use the county office. The Town of Oakmont is the exception the county names, and it is still a county permit.',
+      },
+      {
+        question: 'What does a finished basement in Bethesda cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Bethesda average and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Bethesda, MD is a lower level under a house in 20816, 20817, or 20814. Headroom and the stair come first. A Kenwood colonial and a house nearer NIH are not the same foundation.',
+      'The county treats an interior alteration as work that will likely need a permit. The office is in Wheaton, phone 240-777-0311, 7:30 a.m. to 4 p.m. Monday through Friday. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Bethesda average. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices and not a Bethesda quote.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/bethesda-md', label: 'Bethesda service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Bethesda is not on the county list of towns that add a municipal building permit. The Department of Permitting Services lobby is at 2425 Reedie Drive, 7th floor, Wheaton. The county says no appointment is necessary during 7:30 a.m. to 4 p.m. office hours.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-arlington-va': {
+    h1: 'Kitchen Remodeling in Arlington, VA',
+    metaDescription:
+      'Kitchen remodeling in Arlington, VA for ZIPs 22207, 22205, and 22213. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Arlington?',
+        answer:
+          'Arlington County, through the Permit Arlington Center at 2100 Clarendon Boulevard. The county permits list includes a residential building permit, a plumbing and gas permit, and an electrical permit.',
+      },
+      {
+        question: 'Does Arlington publish a cabinet exemption on the permits overview?',
+        answer:
+          'The overview names the permit types. It does not publish a cabinet-only exemption, so that line is left out. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Gas work is a licensed trade.',
+      },
+      {
+        question: 'What does kitchen remodeling in Arlington, VA cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Arlington quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Arlington, VA starts with the north-county ZIPs 22207, 22205, and 22213. The houses are established. ZIP 22205 includes the Westover and Bluemont side. ZIP 22213 is the smaller pocket, not a second county.',
+      'Arlington County says a permit gives permission for construction and for installing plumbing. The Permit Arlington Center is at the Ellen M. Bozman Government Center, 2100 Clarendon Boulevard. Listed types include a residential building permit, plumbing and gas, electrical, and mechanical. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Arlington quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-arlington-va': {
+    h1: 'Bathroom Remodeling in Arlington, VA',
+    metaDescription:
+      'Bathroom remodeling in Arlington, VA for established houses in ZIPs 22207, 22205, and 22213. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Arlington?',
+        answer:
+          'Arlington County. The permits list includes a residential building permit and a plumbing and gas permit. The center is at 2100 Clarendon Boulevard. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does bathroom remodeling in Arlington, VA cost?',
+        answer:
+          'Every Arlington bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Are 22207 and 22205 the same bath?',
+        answer:
+          'No. A north Arlington colonial and a Westover or Bluemont house are different rooms. The scope follows the bath we open.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Arlington, VA is a wet-area job in an established north-county house. ZIP 22207 colonials, ZIP 22205 houses around Westover and Bluemont, and the smaller 22213 pocket are not one layout.',
+      'The county permits page lists a residential building permit and a plumbing and gas permit among the types filed at 2100 Clarendon Boulevard. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. A fixture change and a relocated drain are named separately on the estimate.',
+      'Every Arlington bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Falls Church and Alexandria are different permit offices and have their own pages.',
+    ],
+  },
+
+  'basements-arlington-va': {
+    h1: 'Basement Finishing in Arlington, VA',
+    metaDescription:
+      'Basement finishing in Arlington, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Arlington, VA?',
+        answer:
+          'Arlington County, through the Permit Arlington Center at 2100 Clarendon Boulevard. The county list includes a residential building permit and waterproofing a basement. Electrical, plumbing and gas, and mechanical are separate listed types.',
+      },
+      {
+        question: 'Does the county overview state a finished-basement fee?',
+        answer:
+          'No fee is copied from that overview. The price for the house is a free written estimate after a site walk. Permit fees stay on the county schedule.',
+      },
+      {
+        question: 'What does a finished basement in Arlington cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not an Arlington average and not a Real Elite price.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Arlington, VA is a lower level in north-county housing, ZIPs 22207, 22205, and 22213. Some of those houses have a conventional unfinished level. Others are tighter. The stair and the headroom decide the scope.',
+      'The county permits list includes a residential building permit and waterproofing a basement, filed through the Permit Arlington Center at 2100 Clarendon Boulevard. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not an Arlington average. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices and not an Arlington quote.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/arlington-va', label: 'Arlington service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Arlington County describes a permit as permission for construction and for installing plumbing, among other work. Waterproofing a basement is a named type on the same permits list. The center address is 2100 Clarendon Boulevard.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-potomac-md': {
+    h1: 'Kitchen Remodeling in Potomac, MD',
+    metaDescription:
+      'Kitchen remodeling in Potomac, MD, ZIP 20854, along River Road and Falls Road. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Potomac?',
+        answer:
+          'Montgomery County Department of Permitting Services in Wheaton, phone 240-777-0311. Potomac is not on the list of municipalities that add a town permit.',
+      },
+      {
+        question: 'Does a Potomac cabinet replacement need a permit?',
+        answer:
+          'The county says cabinet install, repair, or replacement most likely will not. An interior alteration likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact.',
+      },
+      {
+        question: 'What does kitchen remodeling in Potomac, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Potomac quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Potomac, MD is a large-lot job along River Road and Falls Road in ZIP 20854, not a downtown Bethesda kitchen and not a Garrett Park village kitchen.',
+      'Potomac is not on the county list of towns that add a municipal permit. The office is 2425 Reedie Drive, 7th floor, Wheaton. A cabinet replacement is the likely-no-permit case on the home-improvements list. Opening a bearing wall or moving the sink is an interior alteration. Association rules are outside that list. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Potomac quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-potomac-md': {
+    h1: 'Bathroom Remodeling in Potomac, MD',
+    metaDescription:
+      'Bathroom remodeling in Potomac, MD for large-lot houses in ZIP 20854. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Potomac?',
+        answer:
+          'Montgomery County, phone 240-777-0311. Potomac does not add a town permit on the municipalities list. An interior alteration will likely need a permit. Bathroom caulking most likely will not.',
+      },
+      {
+        question: 'What does bathroom remodeling in Potomac, MD cost?',
+        answer:
+          'Every Potomac bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Is a Potomac primary bath a different scope from a hall bath?',
+        answer:
+          'Usually. A 1980s or 1990s primary suite on Falls Road and a smaller hall bath are written as different lines. Plumbing stays a WSSC contact. Electrical work is a separately licensed trade.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Potomac, MD is usually a primary suite in a large-lot house on River Road or Falls Road, ZIP 20854, often a shower built to a 1980s or 1990s plan.',
+      'The county office in Wheaton takes the building permit. Potomac is not a municipality on the extra-approval list. Caulking is on the likely-no-permit list. A new shower pan and a moved vanity are an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Every Potomac bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. An association review, where the lot has one, is separate from the county permit.',
+    ],
+  },
+
+  'basements-potomac-md': {
+    h1: 'Basement Finishing in Potomac, MD',
+    metaDescription:
+      'Basement finishing in Potomac, MD, ZIP 20854. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Potomac, MD?',
+        answer:
+          'Montgomery County Department of Permitting Services, phone 240-777-0311. Potomac is not on the municipal extra-permit list. An interior alteration will likely need a permit.',
+      },
+      {
+        question: 'Are Potomac lower levels all walkouts?',
+        answer:
+          'No. Some houses open to the rear yard. A 1960s colonial on River Road may not. The foundation is checked before a bedroom is discussed.',
+      },
+      {
+        question: 'What does a finished basement in Potomac cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Potomac average and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Potomac, MD is a lower level under a large-lot house in ZIP 20854. Some of those houses have a walkout toward the rear yard. A River Road colonial from the 1960s may not.',
+      'The county home-improvements list treats an interior alteration as work that will likely need a permit. There is no Potomac town counter on the municipalities page. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Potomac average. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. A low Potomac cellar is not the walkout tier.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/potomac-md', label: 'Potomac service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'The Department of Permitting Services is at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Potomac is absent from the list of municipalities that require a town permit in addition to the county permit.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-cabin-john-md': {
+    h1: 'Kitchen Remodeling in Cabin John, MD',
+    metaDescription:
+      'Kitchen remodeling in Cabin John, MD, ZIP 20818, along MacArthur Boulevard. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Cabin John?',
+        answer:
+          'Montgomery County Department of Permitting Services, phone 240-777-0311. Cabin John is not on the list of municipalities that add a town permit. Glen Echo, next door, is on a different list.',
+      },
+      {
+        question: 'Does a Cabin John cabinet swap need a permit?',
+        answer:
+          'The county says cabinet install, repair, or replacement most likely will not. An interior alteration likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Cabin John, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Cabin John quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Cabin John, MD is a MacArthur Boulevard house in ZIP 20818, a narrow community between the canal and the Cabin John Parkway. The kitchens are often the original footprint, close to the road.',
+      'Cabin John is not on the county municipalities list. Glen Echo is, under county permit before city approval, and that is a different address. Cabinet replacement is the county\'s likely-no-permit case. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Cabin John quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-cabin-john-md': {
+    h1: 'Bathroom Remodeling in Cabin John, MD',
+    metaDescription:
+      'Bathroom remodeling in Cabin John, MD, ZIP 20818. Montgomery County permit when the work is an interior alteration. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Cabin John?',
+        answer:
+          'Montgomery County, phone 240-777-0311. Cabin John does not add a town permit on the county list. Bathroom caulking most likely does not need a permit. An interior alteration likely does.',
+      },
+      {
+        question: 'What does bathroom remodeling in Cabin John, MD cost?',
+        answer:
+          'Every Cabin John bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Why is a Cabin John bath often a full rebuild?',
+        answer:
+          'Many houses along MacArthur Boulevard still have one original full bath. A shower conversion in that room is a different scope from a later primary suite in Potomac. Plumbing is a WSSC contact. Electrical work is a separately licensed trade.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Cabin John, MD is a small-community bath on MacArthur Boulevard, ZIP 20818, where the house may sit close to the road and the original bath is still the only full bath.',
+      'The county counter is in Wheaton. Caulking is on the likely-no-permit list. Rebuilding the shower is an interior alteration. Glen Echo\'s town step does not transfer to a Cabin John parcel. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Every Cabin John bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The estimate says whether the stack stays or moves.',
+    ],
+  },
+
+  'basements-cabin-john-md': {
+    h1: 'Basement Finishing in Cabin John, MD',
+    metaDescription:
+      'Basement finishing in Cabin John, MD, ZIP 20818. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Cabin John, MD?',
+        answer:
+          'Montgomery County Department of Permitting Services, phone 240-777-0311. Cabin John is not on the municipal extra-permit list. An interior alteration will likely need a permit.',
+      },
+      {
+        question: 'What is checked before a Cabin John lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. Houses along MacArthur Boulevard sit near the Potomac. A dry reading on one day is not a finish plan. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does a finished basement in Cabin John cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Cabin John average and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Cabin John, MD is a lower level on a MacArthur Boulevard lot in ZIP 20818, close to the Potomac, where groundwater and the stair matter before any finish plan.',
+      'The county lists interior alteration as work that will likely need a permit. There is no Cabin John town permit on the municipalities page. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Cabin John average. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. A low Cabin John cellar is not a Potomac walkout.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/cabin-john-md', label: 'Cabin John service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Cabin John is not listed among the municipalities that require a town approval in addition to the county permit.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-west-friendship-md': {
+    h1: 'Kitchen Remodeling in West Friendship, MD',
+    metaDescription:
+      'Kitchen remodeling in West Friendship, MD, ZIP 21794. Howard County permits through DILP. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in West Friendship?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission. The resources page lists separate electrical and plumbing applications.',
+      },
+      {
+        question: 'Are Howard County filing fees the project price?',
+        answer:
+          'No. The county says filing fees are nonrefundable and payable when the application is made. Amounts stay on the fee schedule. The project price is a free written estimate after a site walk.',
+      },
+      {
+        question: 'What does kitchen remodeling in West Friendship, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Howard County quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in West Friendship, MD is a western Howard County house in ZIP 21794, along MD 32, not an Ellicott City townhouse and not a Frederick city lot.',
+      'The county department that issues permits is the Department of Inspections, Licenses and Permits in Ellicott City. Residential building permits require electronic submission. Electrical and plumbing are separate applications on the county resources page. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Filing fees are nonrefundable and due when the application is made. The dollar amounts stay on the county schedule.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a West Friendship quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-west-friendship-md': {
+    h1: 'Bathroom Remodeling in West Friendship, MD',
+    metaDescription:
+      'Bathroom remodeling in West Friendship, MD. Howard County DILP permits. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in West Friendship?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, phone 410-313-2455. Plumbing has its own application on the county resources page. Electrical work is a separately licensed trade.',
+      },
+      {
+        question: 'What does bathroom remodeling in West Friendship, MD cost?',
+        answer:
+          'Every West Friendship bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines. County filing fees are not that price.',
+      },
+      {
+        question: 'Is West Friendship a Columbia village bath?',
+        answer:
+          'No. ZIP 21794 is western Howard County along MD 32. A detached house there is a different room from a planned-community bath farther east.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in West Friendship, MD is a rural Howard County bath in ZIP 21794. The house is more often a detached home on MD 32 than a planned-community unit.',
+      'Permits go through DILP at 3430 Courthouse Drive, Ellicott City. Residential building permits require electronic submission. The resources page lists a plumbing permit application separate from the building permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Every West Friendship bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Frederick County rules do not transfer across the county line.',
+    ],
+  },
+
+  'basements-west-friendship-md': {
+    h1: 'Basement Finishing in West Friendship, MD',
+    metaDescription:
+      'Basement finishing in West Friendship, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in West Friendship, MD?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission.',
+      },
+      {
+        question: 'Does the county page name a basement fee for West Friendship?',
+        answer:
+          'The resources page points to the building-permit fee schedule and says filing fees are nonrefundable and due with the application. No fee number is copied here. The project price is a free written estimate after a site walk.',
+      },
+      {
+        question: 'What does a finished basement in West Friendship cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a West Friendship average and not a Real Elite price.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in West Friendship, MD is a lower level in western Howard County, ZIP 21794. The houses along MD 32 are detached. A low cellar and a full-height walkout are different jobs, and the foundation decides which one it is.',
+      'Howard County requires electronic submission for residential building permits. The office is DILP in Ellicott City, phone 410-313-2455. Electrical, plumbing, and mechanical applications are listed separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a West Friendship average. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices and not a Howard County quote.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/west-friendship-md', label: 'West Friendship service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'DILP is at 3430 Courthouse Drive, Ellicott City, MD 21043. The county says residential building permits require electronic submission, and that filing fees are nonrefundable and payable when the application is made. The Licenses and Permits Division number is 410-313-2455, option 4.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-chevy-chase-md': {
+    h1: 'Kitchen Remodeling in Chevy Chase, MD',
+    metaDescription:
+      'Kitchen remodeling in Chevy Chase, MD, ZIP 20815. Approval order follows the municipality. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Chevy Chase?',
+        answer:
+          'Montgomery County, plus the municipality on the parcel. The Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions are listed as county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. Chevy Chase Village is on both sequence lists, so the village at 5906 Connecticut Avenue is asked before a sequence is assumed.',
+      },
+      {
+        question: 'Does a cabinet replacement skip the county list?',
+        answer:
+          'The county says cabinet install, repair, or replacement most likely will not need a permit, and that the list does not include municipal rules. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Chevy Chase, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Chevy Chase quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Chevy Chase, MD has to name the municipality first, because ZIP 20815 is several towns and villages along Connecticut Avenue, not one permit counter.',
+      'The county page lists the Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions as county permit before city approval. North Chevy Chase requires both. Friendship Heights is county permit only. Chevy Chase Village is printed on both sequence lists, so the order is confirmed at 5906 Connecticut Avenue, phone 301-654-7300, rather than guessed. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Chevy Chase quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-chevy-chase-md': {
+    h1: 'Bathroom Remodeling in Chevy Chase, MD',
+    metaDescription:
+      'Bathroom remodeling in Chevy Chase, MD. The municipality in ZIP 20815 sets the approval order. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Chevy Chase?',
+        answer:
+          'Montgomery County and, where the municipalities page says so, the town or village. County phone 240-777-0311. The Town of Chevy Chase contact on that page is 4301 Willow Lane, phone 301-654-7144.',
+      },
+      {
+        question: 'What does bathroom remodeling in Chevy Chase, MD cost?',
+        answer:
+          'Every Chevy Chase bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does caulking a Chevy Chase bath need the town step?',
+        answer:
+          'The county list says bathroom caulking most likely will not need a permit, and the same note says municipal rules are not included. An interior alteration likely needs a permit. The parcel\'s municipality is checked either way.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Chevy Chase, MD depends on which municipality owns the parcel inside ZIP 20815. The Town of Chevy Chase, the Village, and the numbered sections do not share one approval order.',
+      'County staff are at the Department of Permitting Services in Wheaton. The town or village step follows the list: county permit first for the Town, Section 3, Section 5, and Martin\'s Additions; both approvals for North Chevy Chase; county only for Friendship Heights. Chevy Chase Village is on both lists, so the sequence is confirmed with the village. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing is a WSSC contact.',
+      'Every Chevy Chase bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The municipality is named in that estimate before any filing.',
+    ],
+  },
+
+  'basements-chevy-chase-md': {
+    h1: 'Basement Finishing in Chevy Chase, MD',
+    metaDescription:
+      'Basement finishing in Chevy Chase, MD, ZIP 20815. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Chevy Chase, MD?',
+        answer:
+          'Montgomery County, and the municipality when the county page requires it. An interior alteration will likely need a county permit. The Town of Chevy Chase is listed as county permit before city approval.',
+      },
+      {
+        question: 'Why can two Chevy Chase neighbors file in a different order?',
+        answer:
+          'ZIP 20815 contains more than one municipality. Friendship Heights is county permit only. North Chevy Chase is both. Chevy Chase Village appears on both sequence lists. The parcel, not the ZIP, picks the order.',
+      },
+      {
+        question: 'What does a finished basement in Chevy Chase cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Chevy Chase average and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Chevy Chase, MD is a lower level inside ZIP 20815, and the municipality on the deed changes the order of county and town approval.',
+      'The county says an interior alteration will likely need a permit, and that several municipalities require a permit in addition to the county permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The town contact for the Town of Chevy Chase, published on the county page, is 4301 Willow Lane, phone 301-654-7144.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Chevy Chase average. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices and not a Chevy Chase quote.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/chevy-chase-md', label: 'Chevy Chase service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton. Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions are county-then-city on the municipalities page. North Chevy Chase is both. Friendship Heights is county only. Chevy Chase Village is listed in both sequences.',
+        ],
+      },
+    ],
+  },
+
+  'kitchens-catharpin-va': {
+    h1: 'Kitchen Remodeling in Catharpin, VA',
+    metaDescription:
+      'Kitchen remodeling in Catharpin, VA, ZIP 20143. Structural and plumbing changes need a county permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Catharpin?',
+        answer:
+          'Prince William County Building Development Division, phone (703) 792-4311. The residential list says altering structural members, plumbing, electrical, or mechanical systems always requires a permit. Cabinetry or trim replacement does not.',
+      },
+      {
+        question: 'Does a Catharpin cabinet replacement need a building permit?',
+        answer:
+          'The county says installation or replacement of cabinetry or trim does not require a permit. Removing a structural member, or altering plumbing or electrical, does. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Catharpin, VA cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Catharpin quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Catharpin, VA is a western Prince William house in ZIP 20143, on the rural side of the county toward Route 15, not a Haymarket subdivision kitchen.',
+      'The county residential list says installation or replacement of cabinetry or trim does not require a permit, and that removing or altering structural members, or altering plumbing, electrical, or heating and air conditioning, always does. Zoning is a separate counter for exterior work. An association covenant is not the county permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Gas work is a licensed trade.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Catharpin quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+
+  'bathrooms-catharpin-va': {
+    h1: 'Bathroom Remodeling in Catharpin, VA',
+    metaDescription:
+      'Bathroom remodeling in Catharpin, VA. A fixture swap and a moved drain are different Prince William filings. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Catharpin?',
+        answer:
+          'Prince William County Building Development Division, phone (703) 792-4311. Replacing existing plumbing fixtures does not require a permit when the supply and the drain, waste, and vent stay as they are. Altering the plumbing does.',
+      },
+      {
+        question: 'What does bathroom remodeling in Catharpin, VA cost?',
+        answer:
+          'Every Catharpin bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does a new shower pan in Catharpin change the filing?',
+        answer:
+          'When the drain, waste, and vent change, the county list says a permit is required. A same-location fixture with those pipes left alone is the no-permit case the county publishes. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Catharpin, VA is a wet-area rebuild in a western Prince William house, ZIP 20143, where a fixture swap and a relocated drain are different filings.',
+      'The county says replacing existing plumbing fixtures does not require a permit when the supply and the drain, waste, and vent are not altered. Altering the plumbing always does. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The division phone is (703) 792-4311.',
+      'Every Catharpin bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The estimate says whether the waste lines stay or move, because that is the county\'s split.',
+    ],
+  },
+
+  'basements-catharpin-va': {
+    h1: 'Basement Finishing in Catharpin, VA',
+    metaDescription:
+      'Basement finishing in Catharpin, VA. A finished basement always needs a permit. Planning ranges start at $55,000.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Catharpin, VA?',
+        answer:
+          'Prince William County Building Development Division. The residential list says a permit is always required for finishing a basement. Applications and floor plans go through ePortal. Zoning approval comes first.',
+      },
+      {
+        question: 'Can a Catharpin basement include a second kitchen?',
+        answer:
+          'Only with the zoning step the county names for a secondary food-preparation area. The zoning counter is open 8 a.m. to 4 p.m. Monday through Friday, and no approvals are issued after 4 p.m.',
+      },
+      {
+        question: 'What does a finished basement in Catharpin cost?',
+        answer:
+          'The Ashburn and Leesburg cost guide cites Mayflower Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are one contractor\'s planning ranges, not a Catharpin average and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Catharpin, VA is a lower level in western Prince William County, ZIP 20143. The county says finishing a basement always requires a permit. This is not a Haymarket production-house basement and it is not Nokesville\'s page.',
+      'Applications go through the county ePortal. Zoning approval is step one, at a counter open 8 a.m. to 4 p.m., with no approvals after 4 p.m. The floor plan has to show room dimensions, square footage, intended uses, and whether each room is already finished. A second kitchen has its own zoning step. If a contractor applies, the county asks for a Virginia contractor license and a Prince William County business license. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Catharpin average. Permit fees come from the county fee schedule. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor\'s planning ranges, not Real Elite prices. County permit fees are a separate schedule and are not a project price.',
+        ],
+        links: [
+          { href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026', label: 'Ashburn and Leesburg basement cost guide' },
+          { href: '/service-areas/catharpin-va', label: 'Catharpin service area' },
+        ],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'Prince William County says finishing a basement always requires a permit. Zoning is first. Plan intake wants the floor plan and the building, mechanical, plumbing, and electrical applications that apply. Inspections run 8 a.m. to 3 p.m. Monday through Friday. The division phone is (703) 792-4311.',
+        ],
+      },
     ],
   },
 };

@@ -699,6 +699,14 @@ describe('comboPublishesPricing', () => {
         'bathrooms-upperville-va',
         'bathrooms-warrenton-va',
         'bathrooms-waterford-va',
+        'bathrooms-arlington-va',
+        'bathrooms-bethesda-md',
+        'bathrooms-cabin-john-md',
+        'bathrooms-catharpin-va',
+        'bathrooms-chevy-chase-md',
+        'bathrooms-garrett-park-md',
+        'bathrooms-potomac-md',
+        'bathrooms-west-friendship-md',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -784,10 +792,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/80 after round 5: six premium outdoor-living combos and the Loudoun
-    // stairs combo landed clean. Martinsburg and Charles Town are home-market
-    // and are not in this count. Shepherdstown stays home-market. Carrying stays at 0.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 80 });
+    // 0/104 after round 6: eight premium towns, three combos each (kitchens,
+    // bathrooms, basements), all clean. Martinsburg and Charles Town are
+    // home-market and are not in this count. Shepherdstown stays home-market.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 104 });
   });
 
   /**
@@ -1377,6 +1385,107 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       expect(body).toMatch(/treads, risers, or balusters on a sound stair usually needs no permit/i);
       expect(body).toMatch(/structural or layout changes, and new exterior stairs, do/i);
       expect(body).toMatch(/we confirm with the county before work starts/i);
+    }
+  });
+});
+
+describe('REA-2385 round 6 Tier A towns', () => {
+  const PAGES = [
+    ['kitchens', 'garrett-park-md', 'Kitchen Remodeling in Garrett Park, MD'],
+    ['bathrooms', 'garrett-park-md', 'Bathroom Remodeling in Garrett Park, MD'],
+    ['basements', 'garrett-park-md', 'Basement Finishing in Garrett Park, MD'],
+    ['kitchens', 'bethesda-md', 'Kitchen Remodeling in Bethesda, MD'],
+    ['bathrooms', 'bethesda-md', 'Bathroom Remodeling in Bethesda, MD'],
+    ['basements', 'bethesda-md', 'Basement Finishing in Bethesda, MD'],
+    ['kitchens', 'arlington-va', 'Kitchen Remodeling in Arlington, VA'],
+    ['bathrooms', 'arlington-va', 'Bathroom Remodeling in Arlington, VA'],
+    ['basements', 'arlington-va', 'Basement Finishing in Arlington, VA'],
+    ['kitchens', 'potomac-md', 'Kitchen Remodeling in Potomac, MD'],
+    ['bathrooms', 'potomac-md', 'Bathroom Remodeling in Potomac, MD'],
+    ['basements', 'potomac-md', 'Basement Finishing in Potomac, MD'],
+    ['kitchens', 'cabin-john-md', 'Kitchen Remodeling in Cabin John, MD'],
+    ['bathrooms', 'cabin-john-md', 'Bathroom Remodeling in Cabin John, MD'],
+    ['basements', 'cabin-john-md', 'Basement Finishing in Cabin John, MD'],
+    ['kitchens', 'west-friendship-md', 'Kitchen Remodeling in West Friendship, MD'],
+    ['bathrooms', 'west-friendship-md', 'Bathroom Remodeling in West Friendship, MD'],
+    ['basements', 'west-friendship-md', 'Basement Finishing in West Friendship, MD'],
+    ['kitchens', 'chevy-chase-md', 'Kitchen Remodeling in Chevy Chase, MD'],
+    ['bathrooms', 'chevy-chase-md', 'Bathroom Remodeling in Chevy Chase, MD'],
+    ['basements', 'chevy-chase-md', 'Basement Finishing in Chevy Chase, MD'],
+    ['kitchens', 'catharpin-va', 'Kitchen Remodeling in Catharpin, VA'],
+    ['bathrooms', 'catharpin-va', 'Bathroom Remodeling in Catharpin, VA'],
+    ['basements', 'catharpin-va', 'Basement Finishing in Catharpin, VA'],
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+  });
+
+  it('does not clone the 24 openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('publishes no other combo for these towns', () => {
+    const allowed = new Set(PAGES.map(([service, city]) => `${service}-${city}`));
+    for (const city of [
+      'garrett-park-md',
+      'bethesda-md',
+      'arlington-va',
+      'potomac-md',
+      'cabin-john-md',
+      'west-friendship-md',
+      'chevy-chase-md',
+      'catharpin-va',
+    ]) {
+      for (const key of Object.keys(CONTENT)) {
+        if (key.endsWith(`-${city}`)) expect(allowed.has(key), key).toBe(true);
+      }
+    }
+    expect(CONTENT).not.toHaveProperty('kitchens-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('outdoor-living-bethesda-md');
+    expect(CONTENT).not.toHaveProperty('stairs-arlington-va');
+  });
+
+  it('names the sourced permit office on every new basement page', () => {
+    const offices: Record<string, RegExp> = {
+      'garrett-park-md': /301-933-7488/,
+      'bethesda-md': /240-777-0311/,
+      'arlington-va': /2100 Clarendon Boulevard/,
+      'potomac-md': /240-777-0311/,
+      'cabin-john-md': /240-777-0311/,
+      'west-friendship-md': /410-313-2455/,
+      'chevy-chase-md': /301-654-7144/,
+      'catharpin-va': /792-4311/,
+    };
+    for (const [city, pattern] of Object.entries(offices)) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      const text = [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).map((faq) => faq.answer),
+        ...(entry?.sections ?? []).flatMap((section) => section.paragraphs),
+      ].join('\n');
+      expect(text, city).toMatch(pattern);
     }
   });
 });

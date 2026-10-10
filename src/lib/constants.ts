@@ -534,8 +534,9 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
 
   /* ---------- Maryland towns — active 2026-10-09 (Jose, REA-2283) ----------
    * Maryland is in the service area. These rows publish. Frederick, MD was
-   * already active and is not repeated here. Far-market places (Potomac,
-   * Bethesda, Clarksville, Glenwood, Fulton) stay omitted. Empty legacyTiers
+   * already active and is not repeated here. Clarksville, Glenwood, and Fulton
+   * stay omitted. Potomac, Bethesda, Garrett Park, Cabin John, Chevy Chase,
+   * and West Friendship publish in the round-6 block. Empty legacyTiers
    * so the pinned primary/secondary lists do not move. `market: 'home'`
    * keeps the estimate hero and does not grant the same-week radius promise.
    * Do not print a Maryland license caveat.
@@ -553,6 +554,23 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'boonsboro-md', city: 'Boonsboro', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'sharpsburg-md', city: 'Sharpsburg', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
   { slug: 'williamsport-md', city: 'Williamsport', state: 'MD', kind: 'town', market: 'home', status: 'active', legacyTiers: [] },
+
+  /* ---------- Round 6 Tier A towns, 2026-10-10 ----------
+   * Maryland is in the service area. Empty legacyTiers, so the pinned
+   * primary and secondary lists do not move. Premium, same as the round-4
+   * close-in towns. No Montgomery or Howard county hub is added: those
+   * towns stay unparented and areaRegionLabel names the county. Arlington
+   * parents to Northern Virginia. Catharpin parents to Prince William
+   * County. Do not print a Maryland license caveat.
+   */
+  { slug: 'garrett-park-md', city: 'Garrett Park', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'bethesda-md', city: 'Bethesda', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'arlington-va', city: 'Arlington', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
+  { slug: 'potomac-md', city: 'Potomac', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'cabin-john-md', city: 'Cabin John', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'west-friendship-md', city: 'West Friendship', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'chevy-chase-md', city: 'Chevy Chase', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'catharpin-va', city: 'Catharpin', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
 ];
 
 /**
@@ -1152,7 +1170,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   /* ---------- Prince William County + Fairfax towns added 2026-09-27 ---------- */
   'prince-william-county-va': {
     description:
-      "Prince William County on this page is the western end of the county, along I-66, Route 15, and Route 28. Haymarket, Gainesville, and Bristow are mostly 1990s through 2010s houses in planned communities on public water and sewer. Those communities also require HOA architectural review. A county permit is not HOA approval. Nokesville is more acreage, and many of those lots are on well and septic. Building permits are issued by the Prince William County Department of Development Services. Haymarket is an incorporated town: since January 15, 2018 the county issues the building permit, and the town still requires zoning approval first. A bedroom addition on a well-and-septic lot needs Prince William Health District approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south, or Route 7 to Route 28 and I-66 west. ZIP codes with their own pages: 20169 Haymarket, 20155 Gainesville, 20136 Bristow, and 20181 Nokesville. ZIP 20112 uses a Manassas mailing address on the county side of the independent city, and ZIP 20143 is Catharpin. Both sit in this western band and do not have their own pages. Woodbridge and Dumfries are a different market and are not listed here.",
+      "Prince William County on this page is the western end of the county, along I-66, Route 15, and Route 28. Haymarket, Gainesville, and Bristow are mostly 1990s through 2010s houses in planned communities on public water and sewer. Those communities also require HOA architectural review. A county permit is not HOA approval. Nokesville is more acreage, and many of those lots are on well and septic. Building permits are issued by the Prince William County Department of Development Services. Haymarket is an incorporated town: since January 15, 2018 the county issues the building permit, and the town still requires zoning approval first. A bedroom addition on a well-and-septic lot needs Prince William Health District approval before the building permit. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south, or Route 7 to Route 28 and I-66 west. ZIP codes with their own pages: 20169 Haymarket, 20155 Gainesville, 20136 Bristow, 20181 Nokesville, and 20143 Catharpin. ZIP 20112 uses a Manassas mailing address on the county side of the independent city and does not have its own page. Woodbridge and Dumfries are a different market and are not listed here.",
     neighborhoods: ['20169 Haymarket', '20155 Gainesville', '20136 Bristow', '20181 Nokesville', '20112 Manassas', '20143 Catharpin'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
   },
@@ -1710,6 +1728,230 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  'garrett-park-md': {
+    seoTitle: 'Remodeling Contractor in Garrett Park, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Garrett Park, MD',
+    seoDescription:
+      'Remodeling contractor in Garrett Park, MD. County and town approval both apply. Kitchens, bathrooms, and basements. Free written estimate after a site walk.',
+    description:
+      "Garrett Park is an incorporated town in Montgomery County, ZIP 20896, a small grid of late-19th-century houses beside the MARC station. Kenilworth Avenue and Waverly Avenue are the streets most people mean. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south.\n\nMontgomery County's municipalities page lists Garrett Park under both county and city approval. The county building permit and the town approval are both required. Town contact on that page is P.O. Box 84, Garrett Park, MD 20896, phone 301-933-7488. County permit questions go to the Department of Permitting Services at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m.\n\nThe county home-improvements list says an interior alteration will likely need a permit, and that installing, repairing, or replacing cabinets most likely will not. Electrical work is on the likely-permit list. Plumbing is a WSSC contact on that same list. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Kenilworth Avenue', 'Waverly Avenue', 'MARC station', 'ZIP 20896', 'Strathmore edge'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['bethesda-md', 'chevy-chase-md', 'potomac-md', 'cabin-john-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Garrett Park, MD?',
+        answer:
+          'Both. Montgomery County lists Garrett Park under both county and city approval. The town contact published on the county municipalities page is P.O. Box 84, Garrett Park, MD 20896, phone 301-933-7488. County questions go to 240-777-0311.',
+      },
+      {
+        question: 'Does a cabinet replacement in Garrett Park need a county permit?',
+        answer:
+          'The county home-improvements list says installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration likely will. The town approval is still a separate step, and a homeowners association has its own rules.',
+      },
+      {
+        question: 'What does remodeling in Garrett Park cost?',
+        answer:
+          'Every Garrett Park kitchen, bathroom, and lower level is a free written estimate after a site walk. The written estimate names the scope for that house.',
+      },
+    ],
+  },
+  'bethesda-md': {
+    seoTitle: 'Remodeling Contractor in Bethesda, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Bethesda, MD',
+    seoDescription:
+      'Remodeling contractor in Bethesda, MD for ZIPs 20816, 20817, and 20814. Montgomery County permits. Free written estimate after a site walk.',
+    description:
+      "Bethesda here means three Montgomery County ZIPs, not one downtown block. ZIP 20816 is the Westmoreland and Kenwood side. ZIP 20817 runs toward Bradley Boulevard. ZIP 20814 is closer to downtown and NIH. A Bethesda mailing address is not one municipality. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward the Beltway.\n\nBuilding permits go through the Montgomery County Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. The lobby is open 7:30 a.m. to 4 p.m. Monday through Friday, and the county says no appointment is necessary. The municipalities page does not list Bethesda among the towns that add a municipal permit. It does list the Town of Oakmont, with a Bethesda 20817 mailing address, as county permit only. An Oakmont lot is not the rest of 20817.\n\nThe county home-improvements list puts interior alteration and electrical work on the likely-permit side, and cabinets, floor coverings, and bathroom caulking on the likely-no-permit side. Plumbing is a WSSC contact. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['ZIP 20816', 'Westmoreland', 'Kenwood', 'ZIP 20817', 'Bradley Boulevard', 'ZIP 20814'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['potomac-md', 'chevy-chase-md', 'garrett-park-md', 'cabin-john-md'],
+    faqs: [
+      {
+        question: 'Which office permits a Bethesda kitchen or bath?',
+        answer:
+          'Montgomery County Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Bethesda itself is not on the county list of towns that add a municipal permit.',
+      },
+      {
+        question: 'Is every Bethesda 20817 address the same permit path?',
+        answer:
+          'No. The county lists the Town of Oakmont, which uses a Bethesda 20817 mailing address, as county permit only. A Bethesda mailing address is not automatically Oakmont. The parcel decides.',
+      },
+      {
+        question: 'What does remodeling in Bethesda, MD cost?',
+        answer:
+          'Every Bethesda kitchen, bathroom, and lower level is a free written estimate after a site walk. ZIPs 20816, 20817, and 20814 are not one layout, and the estimate is for the house in front of us.',
+      },
+    ],
+  },
+  'arlington-va': {
+    seoTitle: 'Remodeling Contractor in Arlington, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Arlington, VA',
+    seoDescription:
+      'Remodeling contractor in Arlington, VA for ZIPs 22207, 22205, and 22213. Permit Arlington Center. Free written estimate after a site walk.',
+    description:
+      "Arlington here means the north-county ZIPs 22207, 22205, and 22213. ZIP 22207 is the northern residential band. ZIP 22205 includes the Westover and Bluemont side. ZIP 22213 is the smaller pocket. These are established houses, not a new subdivision. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-66 and the Roosevelt Bridge approaches, or I-81 to I-66 east.\n\nArlington County says a permit is the official document that gives permission for construction or demolition of a building or structure, and for installing plumbing, among other work. The published permit types include a residential building permit, a deck permit, an electrical permit, a plumbing and gas permit, a mechanical permit, and waterproofing a basement. The contact address on the county permits page is the Ellen M. Bozman Government Center, 2100 Clarendon Boulevard, Arlington, VA 22201, through the Permit Arlington Center.\n\nElectrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['ZIP 22207', 'ZIP 22205', 'Westover', 'Bluemont', 'ZIP 22213', 'Clarendon edge'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['falls-church-va', 'alexandria-va', 'mclean-va', 'chevy-chase-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Arlington, VA?',
+        answer:
+          'Arlington County, through the Permit Arlington Center. The address on the county permits page is 2100 Clarendon Boulevard. Listed types include a residential building permit, plumbing and gas, electrical, mechanical, and waterproofing a basement.',
+      },
+      {
+        question: 'Do ZIPs 22207, 22205, and 22213 use a different county?',
+        answer:
+          'No. They are Arlington County ZIPs. A Falls Church or Alexandria mailing address is a different jurisdiction and has its own page.',
+      },
+      {
+        question: 'What does remodeling in Arlington cost?',
+        answer:
+          'Every Arlington kitchen, bathroom, and lower level is a free written estimate after a site walk. The estimate names the scope for that house.',
+      },
+    ],
+  },
+  'potomac-md': {
+    seoTitle: 'Remodeling Contractor in Potomac, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Potomac, MD',
+    seoDescription:
+      'Remodeling contractor in Potomac, MD, ZIP 20854. Montgomery County permits along River Road and Falls Road. Free written estimate after a site walk.',
+    description:
+      "Potomac is a large-lot Montgomery County community, ZIP 20854, along River Road, Falls Road, and Glen Road. The houses are mostly later colonials and custom homes on wooded lots, not a town grid. It is not the Town of Garrett Park and it is not downtown Bethesda. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south and River Road.\n\nPotomac is not on Montgomery County's list of municipalities that add a town permit. Building permits go through the Department of Permitting Services at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. The county says an interior alteration will likely need a permit. Cabinets, floor coverings, and bathroom caulking are on the likely-no-permit list. Electrical work is on the likely-permit list. Plumbing is a WSSC contact.\n\nThe county note says those lists do not include homeowners-association rules. A county permit is not association approval. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['River Road', 'Falls Road', 'Glen Road', 'ZIP 20854', 'Piney Meetinghouse', 'Travillah'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['bethesda-md', 'cabin-john-md', 'great-falls-va', 'mclean-va'],
+    faqs: [
+      {
+        question: 'Does Potomac have its own building department?',
+        answer:
+          'Not on the county municipalities list. Potomac is not among the towns that add a municipal permit. The county office is the Department of Permitting Services in Wheaton, phone 240-777-0311.',
+      },
+      {
+        question: 'Does an interior kitchen change in Potomac need a permit?',
+        answer:
+          'The county says an interior alteration will likely need a permit, and that cabinet install, repair, or replacement most likely will not. Electrical work is on the likely-permit list. Plumbing questions go to WSSC, which is what the county list says.',
+      },
+      {
+        question: 'What does remodeling in Potomac, MD cost?',
+        answer:
+          'Every Potomac kitchen, bathroom, and lower level is a free written estimate after a site walk. A River Road house and a Falls Road house are not the same scope.',
+      },
+    ],
+  },
+  'cabin-john-md': {
+    seoTitle: 'Remodeling Contractor in Cabin John, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Cabin John, MD',
+    seoDescription:
+      'Remodeling contractor in Cabin John, MD, ZIP 20818, along MacArthur Boulevard. Montgomery County permits. Free written estimate after a site walk.',
+    description:
+      "Cabin John is a narrow Montgomery County community along MacArthur Boulevard, ZIP 20818, between the Potomac and the Cabin John Parkway. Houses sit close to the road and to the canal. It is not Potomac's large-lot interior and it is not Glen Echo's town hall. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south to the Beltway and the Cabin John Parkway.\n\nCabin John is not on Montgomery County's list of municipalities that add a town permit. The county office is the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Interior alteration and electrical work are on the county's likely-permit list. Cabinets and bathroom caulking are on the likely-no-permit list. Plumbing is a WSSC contact.\n\nAssociation rules, where a lot has them, are outside that county list. The county says to check them separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MacArthur Boulevard', 'ZIP 20818', 'Cabin John Parkway', 'Canal edge', '79th Street', 'Tomlinson Avenue'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['bethesda-md', 'potomac-md', 'garrett-park-md', 'great-falls-va'],
+    faqs: [
+      {
+        question: 'Who permits work in Cabin John?',
+        answer:
+          'Montgomery County Department of Permitting Services. Cabin John is not on the county list of municipalities that require a town permit in addition to the county permit. The phone on the county page is 240-777-0311.',
+      },
+      {
+        question: 'Is Cabin John the same permit path as Glen Echo?',
+        answer:
+          'No. The county lists Glen Echo under county permit before city approval. Cabin John is not on that list. A Glen Echo address is a different filing from a Cabin John address.',
+      },
+      {
+        question: 'What does remodeling in Cabin John cost?',
+        answer:
+          'Every Cabin John kitchen, bathroom, and lower level is a free written estimate after a site walk. A house tight to MacArthur Boulevard is not a Potomac acreage plan.',
+      },
+    ],
+  },
+  'west-friendship-md': {
+    seoTitle: 'Remodeling Contractor in West Friendship, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in West Friendship, MD',
+    seoDescription:
+      'Remodeling contractor in West Friendship, MD, ZIP 21794. Howard County permits through DILP in Ellicott City. Free written estimate after a site walk.',
+    description:
+      "West Friendship is western Howard County, ZIP 21794, along MD 32 between the Frederick County line and the more suburban county to the east. Houses are detached homes on rural and semi-rural lots, not a Columbia village and not a Frederick city street. The drive from Martinsburg is I-81 south to I-70 east, then south on MD 32.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes. The office on the county page is 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. The Licenses and Permits Division publishes the same number, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. The resources page lists separate electrical, plumbing, and mechanical permit applications. Fee amounts stay on the county fee schedule. They are not repeated here.\n\nElectrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+    neighborhoods: ['MD 32', 'ZIP 21794', 'Triadelphia Road', 'West of MD 32', 'Frederick County line'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['frederick-md', 'mount-airy-md', 'ijamsville-md', 'monrovia-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in West Friendship?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, phone 410-313-2455. Residential building permits require electronic submission.',
+      },
+      {
+        question: 'Does West Friendship use the Frederick County permit office?',
+        answer:
+          'No. West Friendship is Howard County. Frederick County towns have their own pages. The Howard County counter is in Ellicott City.',
+      },
+      {
+        question: 'What does remodeling in West Friendship cost?',
+        answer:
+          'Every West Friendship kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are on the published fee schedule and are not a project price.',
+      },
+    ],
+  },
+  'chevy-chase-md': {
+    seoTitle: 'Remodeling Contractor in Chevy Chase, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Chevy Chase, MD',
+    seoDescription:
+      'Remodeling contractor in Chevy Chase, MD, ZIP 20815. Town and county approval order depends on the municipality. Free written estimate after a site walk.',
+    description:
+      "Chevy Chase in ZIP 20815 is several municipalities along Connecticut Avenue, not one town hall. The Town of Chevy Chase, Chevy Chase Village, Section 3, Section 5, the Village of North Chevy Chase, Martin's Additions, and Friendship Heights can share a mailing area and still file in a different order. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south to Connecticut Avenue.\n\nMontgomery County's municipalities page says several municipalities require a building permit in addition to the required county building permit. It lists the Town of Chevy Chase, Chevy Chase Section 3, Chevy Chase Section 5, and the Village of Martin's Additions as county permit before city approval. It lists the Village of North Chevy Chase as both county and city approval. Friendship Heights is county permit only. Chevy Chase Village appears on both the city-first list and the county-first list, so the parcel is confirmed with the village at 5906 Connecticut Avenue, phone 301-654-7300, before a sequence is assumed. The Town of Chevy Chase contact on the county page is 4301 Willow Lane, phone 301-654-7144.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. The home-improvements list still says an interior alteration will likely need a permit, and that the list does not include municipal rules. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Connecticut Avenue', 'ZIP 20815', 'Town of Chevy Chase', 'Chevy Chase Village', 'Section 3', 'Section 5'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['bethesda-md', 'garrett-park-md', 'arlington-va', 'potomac-md'],
+    faqs: [
+      {
+        question: 'Does every Chevy Chase address use the same approval order?',
+        answer:
+          'No. The county page lists the Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions as county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. Chevy Chase Village is listed on both sequence lists, so the village is asked before a sequence is assumed.',
+      },
+      {
+        question: 'Where is the county permit office for a Chevy Chase house?',
+        answer:
+          'Montgomery County Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. The town or village step is additional. It does not replace the county permit where the county says both are required.',
+      },
+      {
+        question: 'What does remodeling in Chevy Chase cost?',
+        answer:
+          'Every Chevy Chase kitchen, bathroom, and lower level is a free written estimate after a site walk. The municipality on the parcel is named in that estimate before any filing.',
+      },
+    ],
+  },
+  'catharpin-va': {
+    seoTitle: 'Remodeling Contractor in Catharpin, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Catharpin, VA',
+    seoDescription:
+      'Remodeling contractor in Catharpin, VA, ZIP 20143. Prince William County building permits. Free written estimate after a site walk.',
+    description:
+      "Catharpin is western Prince William County, ZIP 20143, on the rural side of the county toward Route 15 and Catharpin Road. It is not Haymarket's incorporated village and it is not a Gainesville subdivision. The county hub already named this ZIP as its own place. The drive from Martinsburg is Route 9 to Leesburg, then Route 15 south.\n\nBuilding permits are issued by the Prince William County Building Development Division. The division phone on the county pages is (703) 792-4311. Residential projects on those pages are one-family and two-family dwellings and townhouses. The county says a permit is always required for finishing a basement, for an addition, and for removing or altering structural members or altering plumbing, electrical, or heating and air conditioning. Installation or replacement of cabinetry or trim does not require a permit. Replacing existing plumbing fixtures does not, when the supply and the drain, waste, and vent stay as they are.\n\nZoning approval is a separate counter for exterior work and for a secondary food-preparation area in a basement. An association covenant is not a county permit. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Catharpin Road', 'Route 15', 'ZIP 20143', 'Waterfall Road', 'John Marshall Highway', 'Aden Road edge'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['haymarket-va', 'gainesville-va', 'nokesville-va', 'bristow-va'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Catharpin, VA?',
+        answer:
+          'Prince William County Building Development Division, phone (703) 792-4311. Catharpin is not an incorporated town with its own building department on the county pages.',
+      },
+      {
+        question: 'Does finishing a basement in Catharpin need a permit?',
+        answer:
+          'Yes. The county residential list says a permit is always required for finishing a basement. Applications go through the county ePortal. Zoning comes first, and the zoning counter does not issue approvals after 4 p.m.',
+      },
+      {
+        question: 'What does remodeling in Catharpin cost?',
+        answer:
+          'Every Catharpin kitchen, bathroom, and lower level is a free written estimate after a site walk. Permit fees come from the county fee schedule and are not a project price.',
+      },
+    ],
+  },
 };
 
 /**
@@ -1780,6 +2022,16 @@ export function areaRegionLabel(area: ServiceArea): string {
       return 'Washington County area';
     }
     if (area.slug === 'mount-airy-md') return 'Frederick and Carroll county area';
+    if (
+      area.slug === 'garrett-park-md' ||
+      area.slug === 'bethesda-md' ||
+      area.slug === 'potomac-md' ||
+      area.slug === 'cabin-john-md' ||
+      area.slug === 'chevy-chase-md'
+    ) {
+      return 'Montgomery County area';
+    }
+    if (area.slug === 'west-friendship-md') return 'Howard County area';
     return 'Frederick County area';
   }
   // Every current Pennsylvania row is Franklin County. A later county needs

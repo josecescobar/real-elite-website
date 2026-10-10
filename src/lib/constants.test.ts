@@ -170,6 +170,11 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       'brunswick-md', 'hagerstown-md', 'boonsboro-md', 'sharpsburg-md',
       'williamsport-md',
     ];
+    // Round 6 Tier A towns. Empty legacyTiers. Maryland stays in the service area.
+    const ROUND_6_2026_10_10 = [
+      'garrett-park-md', 'bethesda-md', 'arlington-va', 'potomac-md',
+      'cabin-john-md', 'west-friendship-md', 'chevy-chase-md', 'catharpin-va',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
@@ -179,6 +184,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...VA_BATCH_2026_09_29,
       ...PA_BATCH_2026_09_29,
       ...MD_TOWNS_2026_10_09,
+      ...ROUND_6_2026_10_10,
     ]);
   });
 
@@ -228,6 +234,14 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'the-plains-va',
         'upperville-va',
         'marshall-va',
+        'garrett-park-md',
+        'bethesda-md',
+        'arlington-va',
+        'potomac-md',
+        'cabin-john-md',
+        'west-friendship-md',
+        'chevy-chase-md',
+        'catharpin-va',
       ].sort()
     );
   });
@@ -595,6 +609,12 @@ describe('areaRegionLabel', () => {
     expect(areaRegionLabel(getServiceArea('frederick-md')!)).toBe('Frederick County area');
     expect(areaRegionLabel(getServiceArea('hagerstown-md')!)).toBe('Washington County area');
     expect(areaRegionLabel(getServiceArea('mount-airy-md')!)).toBe('Frederick and Carroll county area');
+    for (const slug of ['garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md']) {
+      expect(areaRegionLabel(getServiceArea(slug)!), slug).toBe('Montgomery County area');
+    }
+    expect(areaRegionLabel(getServiceArea('west-friendship-md')!)).toBe('Howard County area');
+    expect(areaRegionLabel(getServiceArea('arlington-va')!)).toBe('Northern Virginia');
+    expect(areaRegionLabel(getServiceArea('catharpin-va')!)).toBe('Prince William County area');
   });
 
   it('names Franklin County for the Pennsylvania towns and withholds the same-week promise', () => {
@@ -729,6 +749,7 @@ describe('the Northern Virginia region row', () => {
       'prince-william-county-va',
       'falls-church-va',
       'manassas-va',
+      'arlington-va',
     ]);
   });
 
@@ -764,6 +785,7 @@ describe('the Northern Virginia region row', () => {
       'nokesville-va',
       'lake-ridge-va',
       'woodbridge-va',
+      'catharpin-va',
     ]);
     expect(areaAncestors(getServiceArea('haymarket-va')!).map((a) => a.slug)).toEqual([
       'prince-william-county-va',
