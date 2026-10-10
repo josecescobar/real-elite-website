@@ -2267,6 +2267,10 @@ function parseSourceTable(markdown: string): SourceRow[] {
 const PERMIT_SENTENCE =
   /permit|permits|\bcounter\b|jurisdiction|\bDPS\b|Department of Permitting|Land Development Services|city limits|\bmailing\b|\bZIP\b|Tree Impact|\bCertificate\b|inspection|\blicense\b|filing|count(?:y|ies)|cities|\bcity\b|department|\boffice\b|parcel|\bletter\b|approval|\bHours are\b|\bOffice hours\b|\d{1,2}(?::\d{2})?\s*a\.m\.\s*(?:to|–|-)\s*\d{1,2}(?::\d{2})?\s*p\.m\./i;
 
+/** Street address, phone, email, or a "questions go to" contact line. */
+const CONTACT_SENTENCE =
+  /\bphone\b|questions go to|Housing questions|\d{3}-\d{3}-\d{4}|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|\b\d{2,6}\s+[A-Z][A-Za-z0-9.'-]*(?:\s+[A-Z][A-Za-z0-9.'-]*){0,5}\s+(?:Avenue|Ave\.|Street|St\.|Drive|Dr\.|Road|Rd\.|Parkway|Pkwy\.?|Boulevard|Blvd\.|Lane|Ln\.|Court|Ct\.|Way|Circle|Cir\.|Place|Pl\.)\b/;
+
 /** A source-table cell covers a copy sentence when either string contains the other. */
 function coversSentence(cell: string, sentence: string): boolean {
   return cell === sentence || sentence.includes(cell) || cell.includes(sentence);
@@ -2351,7 +2355,7 @@ function round11PermitSentences(constantsSrc: string, contentSrc: string): strin
     if (literal.startsWith('http') || literal.startsWith('/')) continue;
     for (const sentence of splitCopySentences(literal)) {
       if (sentence.endsWith('?')) continue;
-      if (!PERMIT_SENTENCE.test(sentence) || seen.has(sentence)) continue;
+      if ((!PERMIT_SENTENCE.test(sentence) && !CONTACT_SENTENCE.test(sentence)) || seen.has(sentence)) continue;
       seen.add(sentence);
       sentences.push(sentence);
     }
