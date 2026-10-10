@@ -766,6 +766,18 @@ describe('comboPublishesPricing', () => {
         'siding-leesburg-va',
         'siding-loudoun-county-va',
         'stairs-loudoun-county-va',
+        'additions-clifton-va',
+        'additions-dunn-loring-va',
+        'additions-fairfax-station-va',
+        'additions-oakton-va',
+        'decks-clifton-va',
+        'decks-dunn-loring-va',
+        'decks-fairfax-station-va',
+        'decks-oakton-va',
+        'outdoor-living-clifton-va',
+        'outdoor-living-dunn-loring-va',
+        'outdoor-living-fairfax-station-va',
+        'outdoor-living-oakton-va',
       ].sort()
     );
   });
@@ -828,12 +840,13 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/191 service combos after round 11. The 21 new service entries are
-    // 18 (kitchens, bathrooms, and basements for the six new towns) plus 3
-    // Springfield. The 6 new area pages are separate, so the round is 27
-    // pages, not 27 service URLs plus area pages. All clean.
+    // 0/203 premium service combos: 170 after round 9, plus 12 round 10
+    // additions, decks, and outdoor-living pages for Dunn Loring, Fairfax
+    // Station, Oakton, and Clifton, plus 21 round 11 service pages. The 6
+    // new area pages are separate, so round 11 is still 27 pages. All clean.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 191 });
+    // Martinsburg and Charles Town are home-market and are not in this count.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 203 });
   });
 
   /**
@@ -1367,7 +1380,13 @@ describe('REA-2371 outdoor living and stairs combos', () => {
   });
 
   it('does not publish outdoor living or stairs for any other town, including Brambleton', () => {
-    const allowed = new Set(PAGES.map(([service, city]) => `${service}-${city}`));
+    const allowed = new Set([
+      ...PAGES.map(([service, city]) => `${service}-${city}`),
+      'outdoor-living-dunn-loring-va',
+      'outdoor-living-fairfax-station-va',
+      'outdoor-living-oakton-va',
+      'outdoor-living-clifton-va',
+    ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
         expect(allowed.has(key), key).toBe(true);
@@ -2467,3 +2486,101 @@ function round11PermitSentences(constantsSrc: string, contentSrc: string): strin
   }
   return sentences;
 }
+
+describe('REA-2476 round 10 Fairfax additions and decks', () => {
+  const PAGES = [
+    ['additions', 'dunn-loring-va', 'Home Additions in Dunn Loring, VA'],
+    ['decks', 'dunn-loring-va', 'Decks in Dunn Loring, VA'],
+    ['outdoor-living', 'dunn-loring-va', 'Outdoor Living in Dunn Loring, VA'],
+    ['additions', 'fairfax-station-va', 'Home Additions in Fairfax Station, VA'],
+    ['decks', 'fairfax-station-va', 'Decks in Fairfax Station, VA'],
+    ['outdoor-living', 'fairfax-station-va', 'Outdoor Living in Fairfax Station, VA'],
+    ['additions', 'oakton-va', 'Home Additions in Oakton, VA'],
+    ['decks', 'oakton-va', 'Decks in Oakton, VA'],
+    ['outdoor-living', 'oakton-va', 'Outdoor Living in Oakton, VA'],
+    ['additions', 'clifton-va', 'Home Additions in Clifton, VA'],
+    ['decks', 'clifton-va', 'Decks in Clifton, VA'],
+    ['outdoor-living', 'clifton-va', 'Outdoor Living in Clifton, VA'],
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton|VOSB|SDVOSB/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+    expect(body).toMatch(
+      /For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801/
+    );
+    expect(body).toMatch(
+      /If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required/
+    );
+    expect(body).toMatch(/Real Elite does not take electrical work/);
+    expect(body).not.toMatch(/If the parcel is in Fairfax County, questions go to/);
+    expect(body).not.toMatch(/If the parcel is in Fairfax County, outside the town/);
+    expect(body).not.toMatch(/Trade permits are separate/);
+    expect(body).not.toMatch(/Dunn Loring-Merrifield station/);
+    expect(body).not.toMatch(/not a deck record|not a separate permit library|separate deck page in the permit library/i);
+    expect(body).not.toMatch(/do not share a permit counter|do not share an office|do not share a permit counter by default/);
+    expect(body).not.toMatch(/homes use/i);
+  });
+
+  it('does not clone the 12 openings, titles, or descriptions', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const h1s = PAGES.map(([service, city]) => CONTENT[`${service}-${city}`]!.h1);
+    const metas = PAGES.map(([service, city]) => CONTENT[`${service}-${city}`]!.metaDescription);
+    expect(new Set(h1s).size).toBe(PAGES.length);
+    expect(new Set(metas).size).toBe(PAGES.length);
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const others = Object.entries(CONTENT).filter(([key]) => key !== `${service}-${city}`);
+      expect(others.some(([, other]) => other?.h1 === entry.h1)).toBe(false);
+      expect(others.some(([, other]) => other?.metaDescription === entry.metaDescription)).toBe(false);
+    }
+  });
+
+  it('does not reintroduce the retired combos', () => {
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+    expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
+    expect(CONTENT).not.toHaveProperty('additions-hagerstown-md');
+    expect(RETIRED_COMBOS).toHaveProperty('basements-burke-va');
+  });
+
+  it('keeps Clifton on the town path and the other three towns conditional', () => {
+    const clifton = [
+      ...(CONTENT['additions-clifton-va']?.paragraphs ?? []),
+      ...(CONTENT['additions-clifton-va']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(clifton).toMatch(/\(571\) 781-2404/);
+    expect(clifton).toMatch(/Springfield Town of Clifton/);
+    expect(clifton).toMatch(/12641 Chapel Rd/);
+    expect(clifton).toMatch(/703-222-0801/);
+    const dunn = [
+      ...(CONTENT['additions-dunn-loring-va']?.paragraphs ?? []),
+      ...(CONTENT['additions-dunn-loring-va']?.faqs ?? []).map((faq) => faq.answer),
+    ].join('\n');
+    expect(dunn).toMatch(/If the parcel is inside the Town of Vienna/);
+    expect(dunn).not.toMatch(/703-255-6300/);
+    expect(dunn).toMatch(/703-222-0801/);
+  });
+});
