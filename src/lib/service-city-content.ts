@@ -5826,7 +5826,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Oakton, VA is a bath on a wooded lot in ZIP 22124, and an Oakton address is not automatically inside the Town of Vienna.',
+      'Bathroom remodeling in Oakton, VA is a bath on a wooded lot in ZIP 22124.',
       'If the home is inside the Town of Vienna, the town review follows the county application. Town questions go to 703-255-6300. If the parcel is outside the town, questions go to 703-222-0801, Monday through Thursday, 8 a.m. to 4 p.m., and Friday, 9:15 a.m. to 4 p.m. A bathroom remodel needs a permit. Replacing tile does not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'An Oakton bath on a wooded lot is a free written estimate after a site walk. The scope calls out waterproofing before the finish is chosen.',
     ],
