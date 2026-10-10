@@ -707,6 +707,13 @@ describe('comboPublishesPricing', () => {
         'bathrooms-garrett-park-md',
         'bathrooms-potomac-md',
         'bathrooms-west-friendship-md',
+        'bathrooms-brookeville-md',
+        'bathrooms-broad-run-va',
+        'bathrooms-clarksville-md',
+        'bathrooms-dickerson-md',
+        'bathrooms-glenwood-md',
+        'bathrooms-kensington-md',
+        'bathrooms-woodbine-md',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -792,10 +799,11 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/104 after round 6: eight premium towns, three combos each (kitchens,
-    // bathrooms, basements), all clean. Martinsburg and Charles Town are
-    // home-market and are not in this count. Shepherdstown stays home-market.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 104 });
+    // 0/125 after round 7: round 6's 104, plus seven towns and three combos
+    // each (kitchens, bathrooms, basements), all clean. fairfax-va stays
+    // staged. Martinsburg and Charles Town are home-market and are not in
+    // this count. Shepherdstown stays home-market.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 125 });
   });
 
   /**
@@ -1538,5 +1546,144 @@ describe('REA-2385 round 6 Tier A towns', () => {
     ].join('\n');
     expect(garrettCabinet).toMatch(/only when the scope/i);
     expect(garrettCabinet).not.toMatch(/town step is still required|town approval is still a separate step/i);
+  });
+});
+
+describe('REA-2435 round 7 Tier A/B towns', () => {
+  const PAGES = [
+    ['kitchens', 'glenwood-md', 'Kitchen Remodeling in Glenwood, MD'],
+    ['bathrooms', 'glenwood-md', 'Bathroom Remodeling in Glenwood, MD'],
+    ['basements', 'glenwood-md', 'Basement Finishing in Glenwood, MD'],
+    ['kitchens', 'clarksville-md', 'Kitchen Remodeling in Clarksville, MD'],
+    ['bathrooms', 'clarksville-md', 'Bathroom Remodeling in Clarksville, MD'],
+    ['basements', 'clarksville-md', 'Basement Finishing in Clarksville, MD'],
+    ['kitchens', 'brookeville-md', 'Kitchen Remodeling in Brookeville, MD'],
+    ['bathrooms', 'brookeville-md', 'Bathroom Remodeling in Brookeville, MD'],
+    ['basements', 'brookeville-md', 'Basement Finishing in Brookeville, MD'],
+    ['kitchens', 'broad-run-va', 'Kitchen Remodeling in Broad Run, VA'],
+    ['bathrooms', 'broad-run-va', 'Bathroom Remodeling in Broad Run, VA'],
+    ['basements', 'broad-run-va', 'Basement Finishing in Broad Run, VA'],
+    ['kitchens', 'kensington-md', 'Kitchen Remodeling in Kensington, MD'],
+    ['bathrooms', 'kensington-md', 'Bathroom Remodeling in Kensington, MD'],
+    ['basements', 'kensington-md', 'Basement Finishing in Kensington, MD'],
+    ['kitchens', 'woodbine-md', 'Kitchen Remodeling in Woodbine, MD'],
+    ['bathrooms', 'woodbine-md', 'Bathroom Remodeling in Woodbine, MD'],
+    ['basements', 'woodbine-md', 'Basement Finishing in Woodbine, MD'],
+    ['kitchens', 'dickerson-md', 'Kitchen Remodeling in Dickerson, MD'],
+    ['bathrooms', 'dickerson-md', 'Bathroom Remodeling in Dickerson, MD'],
+    ['basements', 'dickerson-md', 'Basement Finishing in Dickerson, MD'],
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+  });
+
+  it('does not clone the 21 openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('publishes no other combo for these towns', () => {
+    const allowed = new Set(PAGES.map(([service, city]) => `${service}-${city}`));
+    for (const city of [
+      'glenwood-md',
+      'clarksville-md',
+      'brookeville-md',
+      'broad-run-va',
+      'kensington-md',
+      'woodbine-md',
+      'dickerson-md',
+    ]) {
+      for (const key of Object.keys(CONTENT)) {
+        if (key.endsWith(`-${city}`)) expect(allowed.has(key), key).toBe(true);
+      }
+    }
+    expect(CONTENT).not.toHaveProperty('kitchens-fairfax-va');
+    expect(CONTENT).not.toHaveProperty('outdoor-living-glenwood-md');
+    expect(CONTENT).not.toHaveProperty('stairs-broad-run-va');
+  });
+
+  it('names the sourced permit office on every new basement page', () => {
+    const offices: Record<string, RegExp> = {
+      'glenwood-md': /410-313-2455/,
+      'clarksville-md': /410-313-2455/,
+      'brookeville-md': /301-570-4465/,
+      'broad-run-va': /703-777-0220/,
+      'kensington-md': /301-949-2424/,
+      'woodbine-md': /410-313-2455/,
+      'dickerson-md': /240-777-0311/,
+    };
+    for (const [city, pattern] of Object.entries(offices)) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      const text = [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).map((faq) => faq.answer),
+        ...(entry?.sections ?? []).flatMap((section) => section.paragraphs),
+      ].join('\n');
+      expect(text, city).toMatch(pattern);
+    }
+  });
+
+  it('keeps the new copy off the site and off the copied basement tiers', () => {
+    const siteTalk =
+      /own pages|has its own page|county hub|no fee is copied|copied here|left out|not repeated here|nokesville's page|cost guide/i;
+    const tiers = /\$65,000|\$85,000|\$110,000|\$150,000|\$300,000|mayflower/i;
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const text = [
+        entry.metaDescription,
+        ...entry.paragraphs,
+        ...(entry.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+        ...(entry.sections ?? []).flatMap((section) => [
+          section.title,
+          ...section.paragraphs,
+          ...(section.links ?? []).map((link) => link.label),
+        ]),
+      ].join('\n');
+      expect(text, `${service}-${city}`).not.toMatch(siteTalk);
+      if (service === 'basements') {
+        expect(text, city).toMatch(/\$55,000/);
+        expect(text, city).toMatch(/free written estimate after a site walk/i);
+        expect(text, city).not.toMatch(tiers);
+      }
+    }
+    for (const slug of [
+      'glenwood-md',
+      'clarksville-md',
+      'brookeville-md',
+      'broad-run-va',
+      'kensington-md',
+      'woodbine-md',
+      'dickerson-md',
+    ]) {
+      const area = CITY_DATA[slug];
+      const text = [
+        area?.description,
+        ...(area?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ].join('\n');
+      expect(text, slug).not.toMatch(siteTalk);
+      expect(text, slug).not.toMatch(/town approval is still|town step is still required/i);
+      expect(text, slug).not.toMatch(/MHIC|maryland license/i);
+    }
   });
 });
