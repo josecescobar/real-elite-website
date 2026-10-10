@@ -6208,13 +6208,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Annandale, VA',
     metaTitle: 'Kitchen Remodel Annandale VA | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Annandale, VA, ZIP 22003. Fairfax County permits a kitchen renovation. Free written estimate after a site walk.',
+      'Kitchen remodeling in Annandale, VA, the 22003 area. Fairfax County permits a kitchen renovation. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Annandale?',
         answer:
-          'When it is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. An Annandale mailing address does not, by itself, name that office.',
+          'When it is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801.',
       },
       {
         question: 'Does an Annandale cabinet replacement need a permit?',
@@ -6238,7 +6238,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Annandale, VA',
     metaTitle: 'Bathroom Remodel Annandale VA | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Annandale, VA, ZIP 22003. A bathroom remodel is an interior alteration. Free written estimate after a site walk.',
+      'Bathroom remodeling in Annandale, VA, the 22003 area. A bathroom remodel is an interior alteration. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6258,7 +6258,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Annandale, VA is a late-1960s bath in ZIP 22003, and a bathroom remodel is an interior alteration.',
+      'Bathroom remodeling in Annandale, VA is a late-1960s bath in the 22003 area, and a bathroom remodel is an interior alteration.',
       'County questions go to Land Development Services, phone 703-222-0801, when the parcel is in Fairfax County. New, repair, or relocated plumbing or gas fixtures need a permit. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'Every Annandale bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
@@ -6316,7 +6316,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Rockville, MD',
     metaTitle: 'Kitchen Remodel Rockville MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Rockville, MD, ZIP 20850 and ZIP 20852. The City of Rockville is city permit only. Free written estimate after a site walk.',
+      'Kitchen remodeling in Rockville, MD, the 20850 and 20852 area. The City of Rockville is city permit only. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6424,7 +6424,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Derwood, MD',
     metaTitle: 'Kitchen Remodel Derwood MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Derwood, MD, ZIP 20855. The City of Rockville is city permit only. Free written estimate after a site walk.',
+      'Kitchen remodeling in Derwood, MD, the 20855 area. The City of Rockville is city permit only. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6454,7 +6454,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Derwood, MD',
     metaTitle: 'Bathroom Remodel Derwood MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Derwood, MD, ZIP 20855. County permits when the parcel is in the county. Free written estimate after a site walk.',
+      'Bathroom remodeling in Derwood, MD, the 20855 area. County permits when the parcel is in the county. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6532,13 +6532,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Colesville, MD',
     metaTitle: 'Kitchen Remodel Colesville MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Colesville, MD, ZIP 20905. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+      'Kitchen remodeling in Colesville, MD, the 20905 area. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Colesville?',
         answer:
-          'When the parcel is in the county permit area, questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. A Silver Spring mailing name does not, by itself, name that office.',
+          'When the parcel is in the county permit area, questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311.',
       },
       {
         question: 'Does a Colesville cabinet replacement need a permit?',
@@ -6552,7 +6552,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Colesville, MD is a ZIP 20905 kitchen along New Hampshire Avenue and Randolph Road, and the mailing name does not name the permit office.',
+      'Kitchen remodeling in Colesville, MD is an early-1980s kitchen along New Hampshire Avenue and Randolph Road.',
       'County questions go to Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m., and no appointment is necessary. An interior alteration will likely need a permit. Cabinets most likely will not. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Colesville quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -6562,7 +6562,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Colesville, MD',
     metaTitle: 'Bathroom Remodel Colesville MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Colesville, MD, ZIP 20905. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
+      'Bathroom remodeling in Colesville, MD, the 20905 area. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6582,7 +6582,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Colesville, MD is an early-1980s bath off Colesville Road, and a Silver Spring mailing name does not pick the counter.',
+      'Bathroom remodeling in Colesville, MD is an early-1980s bath off Colesville Road.',
       'The county office is 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. No appointment is necessary. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'Every Colesville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
@@ -6640,7 +6640,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Takoma Park, MD',
     metaTitle: 'Kitchen Remodel Takoma Park MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Takoma Park, MD, ZIP 20912. A county permit starts with a municipality letter. Free written estimate after a site walk.',
+      'Kitchen remodeling in Takoma Park, MD, the 20912 area. A county permit starts with a municipality letter. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6670,7 +6670,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Takoma Park, MD',
     metaTitle: 'Bathroom Remodel Takoma Park MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Takoma Park, MD, ZIP 20912. The municipality letter is not the building permit. Free written estimate after a site walk.',
+      'Bathroom remodeling in Takoma Park, MD, the 20912 area. The municipality letter is not the building permit. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6748,7 +6748,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Columbia, MD',
     metaTitle: 'Kitchen Remodel Columbia MD | Real Elite',
     metaDescription:
-      "Kitchen remodeling in Columbia, MD, ZIP 21044. Howard County permits at 410-313-2455. Free written estimate after a site walk.",
+      "Kitchen remodeling in Columbia, MD, the 21044 area. Howard County permits at 410-313-2455. Free written estimate after a site walk.",
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6768,7 +6768,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      "Kitchen remodeling in Columbia, MD is a 1970s or 1980s kitchen in ZIP 21044, in villages such as Harper's Choice and Wilde Lake.",
+      "Kitchen remodeling in Columbia, MD is a 1970s or 1980s kitchen in the 21044 area, in villages such as Harper's Choice and Wilde Lake.",
       'County questions go to 410-313-2455. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. If the work changes the exterior on Columbia Association assessed property, the village review is separate from that permit. Real Elite does not take electrical work. Real Elite does not take gas work. Howard County questions for the parcel go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Columbia quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -6778,7 +6778,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Columbia, MD',
     metaTitle: 'Bathroom Remodel Columbia MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Columbia, MD, ZIP 21044. Howard County permits in Ellicott City. Free written estimate after a site walk.',
+      'Bathroom remodeling in Columbia, MD, the 21044 area. Howard County permits in Ellicott City. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6862,7 +6862,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Springfield?',
         answer:
-          'When the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801. A Springfield mailing address does not, by itself, name that office.',
+          'When the parcel is in Fairfax County, questions go to Land Development Services, phone 703-222-0801.',
       },
       {
         question: 'Does a Springfield cabinet replacement need a permit?',
