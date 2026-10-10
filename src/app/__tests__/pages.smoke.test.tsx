@@ -235,7 +235,7 @@ describe('static page smoke tests', () => {
     expect(screen.getByRole('heading', { name: 'What happens after you opt in' })).toBeInTheDocument();
     expect(
       screen.getByText(
-        'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. Message frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out. Support: (681) 534-5515.',
+        'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. You can text photos of your project to this number. Msg frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out.',
       ),
     ).toBeInTheDocument();
     expect(
