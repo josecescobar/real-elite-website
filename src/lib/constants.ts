@@ -2111,9 +2111,9 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoTitle: 'Remodeling Contractor in Brookeville, MD | Real Elite',
     seoH1: 'Remodeling Contractor in Brookeville, MD',
     seoDescription:
-      'Remodeling contractor in Brookeville, MD, ZIP 20833. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Remodeling contractor in Brookeville, MD, ZIP 20833. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
     description:
-      "Brookeville is a small town in northern Montgomery County, ZIP 20833, at MD 97 and High Street. The county lists Brookeville among the places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. The drive from Martinsburg is I-81 south to I-70 east, then MD 97 south.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
+      "Brookeville is a small town in northern Montgomery County at MD 97 and High Street. Many ZIP 20833 addresses are outside the town, so the parcel decides. Inside the Town of Brookeville, town approval comes before the county application; a ZIP 20833 home outside town limits goes straight to Montgomery County. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. The drive from Martinsburg is I-81 south to I-70 east, then MD 97 south.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Electrical work is on the likely-permit list. Plumbing questions go to WSSC.\n\nElectrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['High Street', 'MD 97', 'ZIP 20833', 'Market Street', 'Brookeville Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['dickerson-md', 'kensington-md', 'bethesda-md', 'potomac-md'],
@@ -2121,7 +2121,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Brookeville, MD?',
         answer:
-          'The town first, then the county. Brookeville is on the list of places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
+          'If the home is inside the Town of Brookeville, the town first, then the county. Outside town limits, the county alone. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
       },
       {
         question: 'Does a cabinet replacement in Brookeville skip the town?',

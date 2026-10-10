@@ -4079,13 +4079,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-brookeville-md': {
     h1: 'Kitchen Remodeling in Brookeville, MD',
     metaDescription:
-      'Kitchen remodeling in Brookeville, MD, ZIP 20833. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Brookeville, MD, ZIP 20833. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Brookeville?',
         answer:
-          'Brookeville is on the county list of places where city approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
+          'Inside the Town of Brookeville, town approval comes before the county application; a ZIP 20833 home outside town limits goes straight to Montgomery County. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311.',
       },
       {
         question: 'Does a cabinet replacement in Brookeville skip the town?',
@@ -4099,7 +4099,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Brookeville, MD starts with the town, because the county requires city approval before the county application.',
+      'Kitchen remodeling in Brookeville, MD starts with the parcel: inside the Town of Brookeville, the county requires town approval before the county application; outside town limits, the county permit is the path.',
       'Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County staff are at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Brookeville quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -4108,13 +4108,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'bathrooms-brookeville-md': {
     h1: 'Bathroom Remodeling in Brookeville, MD',
     metaDescription:
-      'Bathroom remodeling in Brookeville, MD. Town approval comes before the county application. Free written estimate after a site walk.',
+      'Bathroom remodeling in Brookeville, MD. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a bathroom remodel in Brookeville?',
         answer:
-          'The town, then Montgomery County. Town questions go to 301-570-4465 at 5 High Street. County phone 240-777-0311. Brookeville is listed for city approval before the county application.',
+          'Inside the Town of Brookeville, the town, then Montgomery County; outside town limits, the county. Town questions go to 301-570-4465 at 5 High Street. County phone 240-777-0311.',
       },
       {
         question: 'What does bathroom remodeling in Brookeville, MD cost?',
@@ -4128,9 +4128,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Brookeville, MD follows the town-first order the county requires for Brookeville: city approval, then the county application.',
+      'Bathroom remodeling in Brookeville, MD: for a home inside the Town of Brookeville, the county requires town approval first, then the county application. A ZIP 20833 home outside town limits uses the county alone.',
       'County staff are at the Department of Permitting Services in Wheaton. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. The home-improvements list does not include municipality rules.',
-      'Every Brookeville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The town step is named in that estimate before any filing.',
+      'Every Brookeville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. When the home is inside town limits, the town step is named in that estimate before any filing.',
     ],
   },
 
@@ -4143,7 +4143,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Brookeville, MD?',
         answer:
-          'The town first, then Montgomery County. An interior alteration will likely need a county permit. Brookeville is listed for city approval before the county application. Town phone 301-570-4465.',
+          'Inside the Town of Brookeville, the town first, then Montgomery County; outside town limits, the county. An interior alteration will likely need a county permit. Town phone 301-570-4465.',
       },
       {
         question: 'Where do Brookeville town questions go?',
@@ -4157,7 +4157,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Brookeville, MD is a lower level inside the town, and the county wants city approval before the county application.',
+      'Basement finishing in Brookeville, MD: if the home is inside the Town of Brookeville, the county wants town approval before the county application; outside town limits, the county permit is the path.',
       'The county says an interior alteration will likely need a permit. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Association rules, where a lot has them, sit outside the county list.',
       'A Brookeville lower level in ZIP 20833 can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
@@ -4176,7 +4176,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'City approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton.',
+          'Inside town limits, town approval is required before the county application. Town questions go to 5 High Street, Brookeville, MD 20833, phone 301-570-4465. County questions go to 240-777-0311 at 2425 Reedie Drive, 7th floor, Wheaton.',
         ],
       },
     ],
