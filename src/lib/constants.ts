@@ -722,7 +722,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'harpers-ferry-wv': {
     description:
-      "Harpers Ferry homeowners usually mean ZIP 25425, which reaches well beyond the small historic town itself. Across the ZIP, about 13,332 people live mostly in detached houses built from the 1970s through the 2000s (median year built 1986), so the typical project here is a kitchen, bath, basement, or deck on a house that is now 25 to 50 years old. The first thing we check is the parcel. Most 25425 addresses are unincorporated Jefferson County, and their permits go to the Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. That office covers remodeling, additions, finished basements, and decks. Inside the town limits, the town's own land-use code applies (Article 1701), and designated historic buildings and the historic district fall under the Harpers Ferry Historic Landmarks Commission. The National Park Service site is not the private-permit office for a home project. We confirm which rules apply to your parcel before the estimate.",
+      "Harpers Ferry homeowners usually mean ZIP 25425, which reaches well beyond the small historic town itself. Across the ZIP, about 13,332 people live mostly in detached houses built from the 1970s through the 2000s (median year built 1986), so the typical project here is a kitchen, bath, basement, or deck on a house that is now 25 to 50 years old. The first thing we check is the parcel, because a 25425 address can be inside the town or on county land. On unincorporated county land, permits go to the Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998. That office covers remodeling, additions, finished basements, and decks. Inside the town limits, the town's own land-use code applies (Article 1701), and designated historic buildings and the historic district fall under the Harpers Ferry Historic Landmarks Commission. The National Park Service site is not the private-permit office for a home project on county land. We confirm which rules apply to your parcel before the estimate.",
     neighborhoods: ['Corporation of Harpers Ferry', 'ZIP 25425', 'Jefferson County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     nearbySlugs: ['charles-town-wv', 'shepherdstown-wv', 'kearneysville-wv', 'ranson-wv'],
@@ -730,7 +730,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: "Does every 25425 address follow the town's historic rules?",
         answer:
-          "No. Most of the ZIP is unincorporated Jefferson County. The town's land-use rules and the Historic Landmarks Commission apply inside the town limits, so we check the parcel first.",
+          "No. Much of the ZIP is unincorporated Jefferson County. The town's land-use rules and the Historic Landmarks Commission apply inside the town limits, so we check the parcel first.",
       },
       {
         question: "Who permits a finished basement or a deck on county land in this ZIP?",
@@ -738,15 +738,15 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
           "The Jefferson County Office of Building Permits and Inspections, 116 East Washington Street, Suite 100, Charles Town, (304) 725-2998. The county lists finished basements, additions, and remodeling, and has a separate deck application.",
       },
       {
-        question: "Does Harpers Ferry National Historical Park issue building permits for homes?",
+        question: "Who issues the permit for a home in Harpers Ferry?",
         answer:
-          "No. For a private home, the permit comes from Jefferson County on county land, or follows the town code inside town limits. We confirm the right office for your address before work starts.",
+          "On unincorporated county land, the Jefferson County Office of Building Permits and Inspections. Inside town limits, the town's land-use code applies, so we confirm the right office for your address with the town before work starts.",
       },
     ],
   },
   'kearneysville-wv': {
     description:
-      "Kearneysville is not a town. It is an unincorporated community in Jefferson County, ZIP 25430, so there is no Kearneysville permit counter. Permits go to the Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998, open 9:00 a.m. to 5:00 p.m. on weekdays (building permits are taken in until 4:30 p.m.). About 8,954 people live in the ZIP, mostly in detached houses built in the 1970s, 1980s, and 2000s (median year built 1987). That makes Kearneysville a steady market for finished basements, bathroom and kitchen updates, decks, and additions. The county lists finished basements, remodeling, additions, and decks as permitted work, with separate applications for basement and interior renovations and for decks. We pull the right one for your project.",
+      "Kearneysville is not a town. It is an unincorporated community in Jefferson County, ZIP 25430, so there is no Kearneysville permit counter. Permits go to the Jefferson County Office of Building Permits and Inspections at 116 East Washington Street, Suite 100, in Charles Town, phone (304) 725-2998, open 9:00 a.m. to 5:00 p.m. on weekdays (building permits are taken in until 4:30 p.m.). About 8,954 people live in the ZIP, mostly in detached houses built in the 1970s, 1980s, and 2000s (median year built 1987). That makes Kearneysville a steady market for finished basements, bathroom and kitchen updates, decks, and additions. The county lists finished basements, remodeling, additions, and decks as permitted work, with separate applications for basement and interior renovations and for decks.",
     neighborhoods: ['ZIP 25430', 'Jefferson County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     nearbySlugs: ['charles-town-wv', 'shepherdstown-wv', 'harpers-ferry-wv', 'martinsburg-wv'],
@@ -759,18 +759,13 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: "Does a finished basement need a county permit?",
         answer:
-          "Yes. Jefferson County lists finished basements as permitted work and has a basement and interior renovations application. We handle the filing.",
+          "Yes. Jefferson County lists finished basements as permitted work and has a basement and interior renovations application.",
       },
-      {
-        question: "If my neighborhood has an HOA, do I still need a county permit?",
-        answer:
-          "Yes. HOA approval and the county building permit are separate. When an association applies, we work on both at the same time.",
-      },
-    ],
+      ],
   },
   'bunker-hill-wv': {
     description:
-      "Bunker Hill is an unincorporated community in Berkeley County, ZIP 25413. It is not part of the City of Martinsburg or the Town of Hedgesville. About 9,618 people live here, and the homes are newer than most of the Eastern Panhandle (median year built 2001, mostly detached houses from the 1990s through the 2010s). Many of those houses are now ready for their first basement finish, bathroom update, or deck. Permits go to the Berkeley County Department of Building Permits and Inspections at 400 West Stephen Street, Suite 202, Martinsburg, WV 25401, phone (304) 264-1966, open 8 a.m. to 5 p.m. on weekdays. The county requires a permit to build, enlarge, alter, or repair a building, and that includes decks. Applications run through the county One Stop portal at onestop.berkeleywv.org. We prepare the plans and plot plan and handle the filing.",
+      "Bunker Hill is an unincorporated community in Berkeley County, ZIP 25413. The City of Martinsburg and the Town of Hedgesville are separate municipalities, so we confirm which side of the line a parcel is on. About 9,618 people live here, and the homes are newer than most of the Eastern Panhandle (median year built 2001, mostly detached houses from the 1990s through the 2010s). Many of those houses are now ready for their first basement finish, bathroom update, or deck. Permits go to the Berkeley County Department of Building Permits and Inspections at 400 West Stephen Street, Suite 202, Martinsburg, WV 25401, phone (304) 264-1966, open 8 a.m. to 5 p.m. on weekdays. The county requires a permit to build, enlarge, alter, or repair a building, and that includes decks. Applications run through the county One Stop portal at onestop.berkeleywv.org.",
     neighborhoods: ['ZIP 25413', 'Berkeley County'],
     marketEmphasis: ['remodeling', 'bathrooms', 'kitchens', 'decks', 'roofing', 'additions'],
     nearbySlugs: ['martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'charles-town-wv'],
@@ -783,12 +778,12 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: "Does a deck need a Berkeley County permit?",
         answer:
-          "Yes. The county's permit requirement includes decks. A residential application includes plans, a plot plan, and the contractor's license number, and we prepare all of it.",
+          "Yes. The county's permit requirement includes decks. A residential application includes plans, a plot plan, and the contractor's license number.",
       },
       {
         question: "Is Bunker Hill inside the City of Martinsburg?",
         answer:
-          "No. Bunker Hill is unincorporated Berkeley County. The City of Martinsburg and the Town of Hedgesville are separate, so we confirm your parcel before filing.",
+          "Bunker Hill is unincorporated Berkeley County. The City of Martinsburg and the Town of Hedgesville are separate municipalities, so we confirm your parcel before any permit is filed.",
       },
     ],
   },
