@@ -705,6 +705,7 @@ describe('comboPublishesPricing', () => {
         'decks-middleburg-va',
         'kitchens-leesburg-va',
         'kitchens-loudoun-county-va',
+        'kitchens-middleburg-va',
         'remodeling-ashburn-va',
         'remodeling-leesburg-va',
         'remodeling-loudoun-county-va',
@@ -776,9 +777,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/72 after the 2026-10-09 close-in towns (21 premium combos) landed clean.
-    // Shepherdstown is home-market and is not in this count. Carrying stays at 0.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 72 });
+    // 0/73 after the 2026-10-09 close-in towns (21 premium combos) and the
+    // Middleburg kitchen page landed clean. Shepherdstown is home-market and is
+    // not in this count. Carrying stays at 0.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 73 });
   });
 
   /**
@@ -825,7 +827,7 @@ describe('Tier C retired combos', () => {
   ];
   const isHagerstown = (key: string) => key.endsWith('-hagerstown-md');
 
-  it('retires exactly the ten Tier C combos plus the five Hagerstown ones', () => {
+  it('retires the remaining Tier C combos plus the five Hagerstown ones', () => {
     expect(Object.keys(RETIRED_COMBOS).sort()).toEqual(
       [
         ...HAGERSTOWN_COMBOS,
@@ -838,7 +840,6 @@ describe('Tier C retired combos', () => {
         'bathrooms-middleburg-va',
         'kitchens-clifton-va',
         'kitchens-fairfax-station-va',
-        'kitchens-middleburg-va',
       ].sort()
     );
   });
@@ -1072,14 +1073,62 @@ describe('REA-2342 Purcellville and Lansdowne pages', () => {
     expect(CONTENT).not.toHaveProperty('basements-brambleton-va');
   });
 
-  it('keeps Middleburg kitchen, bath, and basement combos retired', () => {
-    expect(CONTENT).not.toHaveProperty('kitchens-middleburg-va');
+  it('keeps Middleburg bath and basement combos retired', () => {
+    expect(CONTENT).toHaveProperty('kitchens-middleburg-va');
     expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
     expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
-    expect(RETIRED_COMBOS['kitchens-middleburg-va']).toBe('/service-areas/middleburg-va');
+    expect(RETIRED_COMBOS).not.toHaveProperty('kitchens-middleburg-va');
+    expect(RETIRED_COMBOS['bathrooms-middleburg-va']).toBe('/service-areas/middleburg-va');
     expect(RETIRED_COMBOS['basements-middleburg-va']).toBe(
       '/services/basements/northern-virginia'
     );
+  });
+
+  it('publishes the Middleburg kitchen with the exact keyword', () => {
+    const entry = CONTENT['kitchens-middleburg-va'];
+    expect(entry?.h1).toBe('Kitchen Remodel Middleburg VA');
+    expect(entry?.metaTitle).toBe('Kitchen Remodel Middleburg VA | Real Elite');
+    expect(entry?.metaDescription?.toLowerCase()).toContain('kitchen remodel middleburg va');
+    expect(entry?.includeLocalBusiness).toBe(true);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.relatedGuideSlugs).toContain('loudoun-county-permits-hoa-guide-2026');
+    expect(serviceHrefForArea('kitchens', 'middleburg-va')).toBe(
+      '/services/kitchens/middleburg-va'
+    );
+    const body = [...(entry?.paragraphs ?? []), ...(entry?.faqs ?? []).map((faq) => faq.answer)].join(
+      '\n'
+    );
+    expect(body).toMatch(/Route 50/);
+    expect(body).toMatch(/Zoning Location Permit/);
+    expect(body).toMatch(/Certificate of Appropriateness/);
+    expect(body).toMatch(/Atoka/);
+    expect(body).toMatch(/Foxcroft/);
+    expect(body).toMatch(/Goose Creek/);
+    expect(body).toMatch(/well and septic/i);
+    expect(body).not.toMatch(/\$[\d,]+/);
+    expect(body).not.toMatch(/WV062432|2705198604|MHIC|maryland license/i);
+  });
+
+  it('links the permits guide back to published combo pages only', () => {
+    const markdown = fs.readFileSync(
+      nodePath.join(process.cwd(), 'content/blog/loudoun-county-permits-hoa-guide-2026.md'),
+      'utf8'
+    );
+    for (const href of [
+      '/services/kitchens/purcellville-va',
+      '/services/bathrooms/purcellville-va',
+      '/services/basements/purcellville-va',
+      '/services/kitchens/lansdowne-va',
+      '/services/bathrooms/lansdowne-va',
+      '/services/basements/lansdowne-va',
+      '/services/kitchens/middleburg-va',
+    ]) {
+      expect(markdown, href).toContain(href);
+    }
+    expect(markdown).not.toContain('/services/kitchens/brambleton-va');
+    expect(markdown).not.toContain('/services/bathrooms/brambleton-va');
+    expect(markdown).not.toContain('/services/basements/brambleton-va');
   });
 
   it('does not clone the six new openings', () => {
@@ -1211,6 +1260,17 @@ describe('customer copy never reads like an editor note', () => {
     for (const [key, entry] of Object.entries(CONTENT)) {
       for (const text of renderedCopy(entry)) {
         if (/this page/i.test(text) && verb.test(text)) hits.push(`${key}: ${text}`);
+      }
+    }
+    expect(hits).toEqual([]);
+  });
+
+  it('fails on gallery-tagging or estimate-line notes in rendered copy', () => {
+    const leak = /tagged to|so none is shown|in the gallery|stays separate on the estimate/i;
+    const hits: string[] = [];
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      for (const text of renderedCopy(entry)) {
+        if (leak.test(text)) hits.push(`${key}: ${text}`);
       }
     }
     expect(hits).toEqual([]);

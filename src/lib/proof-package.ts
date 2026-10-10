@@ -80,6 +80,22 @@ export function proofPhotosForService(serviceSlug: string, limit = 8): ProofPhot
   return photos;
 }
 
+/**
+ * Verified gallery photos tagged to this town only.
+ * No state fallback. An empty list means the page should show no photo.
+ */
+export function proofPhotosForTown(citySlug: string, limit = 6): ProofPhoto[] {
+  return GALLERY_IMAGES.filter(
+    (img) => img.citySlug === citySlug && isVerifiedWorkImage(img.src),
+  )
+    .slice(0, limit)
+    .map((img) => ({
+      src: img.src,
+      alt: img.alt,
+      caption: captionFor(img.alt, img.state, img.citySlug),
+    }));
+}
+
 /** Verified gallery photos tagged to this town, else to its state. Never a guessed town. */
 export function proofPhotosForArea(citySlug: string, state: AreaState, limit = 6): ProofPhoto[] {
   const verified = GALLERY_IMAGES.filter((img) => isVerifiedWorkImage(img.src));

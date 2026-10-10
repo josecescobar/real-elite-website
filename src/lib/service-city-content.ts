@@ -90,10 +90,8 @@ export const COMBO_CITY_SLUGS = [
   'reston-va',
   'burke-va',
 
-  // Middleburg is back for decks and additions only. Tier C still retires
-  // kitchens, bathrooms, and basements there (see RETIRED_COMBOS). Those
-  // three 301s stay; they are a different trade than the two pages that
-  // publish here.
+  // Middleburg publishes decks, additions, and kitchens. Bathrooms and
+  // basements stay retired (see RETIRED_COMBOS).
   'middleburg-va',
 
   // Established Loudoun places. Purcellville is an incorporated town on the
@@ -158,6 +156,11 @@ type ComboContent = {
    * Off by default so other combo pages do not each invent a second business.
    */
   includeLocalBusiness?: boolean;
+  /**
+   * Show only gallery photos tagged to this town. When none exist, the page
+   * renders no photo rather than a job from another place.
+   */
+  townTaggedPhotosOnly?: boolean;
   notes?: readonly {
     heading: string;
     body: string;
@@ -1185,7 +1188,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Lansdowne, VA is work in an established community, not a price-shopped new subdivision. The houses are mostly 1990s and 2000s production and custom homes on public water and sewer, east of Leesburg along Route 7 and the Potomac. Many still have the builder kitchen: a peninsula, stock cabinets, and a dining wall that may or may not be the one you can open.',
-      'A Leesburg mailing address does not make the parcel Town of Leesburg. Lansdowne is unincorporated Loudoun County. Building and zoning run through LandMARC. Opening a load-bearing wall needs stamped structural drawings and a county building permit. Moving a sink or a gas range is a trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work, and that line stays separate on the estimate.',
+      'A Leesburg mailing address does not make the parcel Town of Leesburg. Lansdowne is unincorporated Loudoun County. Building and zoning run through LandMARC. Opening a load-bearing wall needs stamped structural drawings and a county building permit. Moving a sink or a gas range is a trade permit. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work; a licensed electrician handles that part.',
       'We price every kitchen on a free written estimate for your home, so we don\'t list a fixed Lansdowne price. For planning, the Loudoun kitchen cost guide cites HomeAdvisor’s national typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those figures are national, not a quote for this house. Cabinet lead time is named before demo.',
       'A county permit is not association approval. Lansdowne has more than one association. We identify the one that governs the address and use its current packet when a window or other exterior element changes. An interior kitchen that leaves the outside alone is a different track. The community is on public water and sewer, so this is not a well-and-septic filing.',
     ],
@@ -1339,7 +1342,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Waterford, VA starts in an unincorporated village northwest of Leesburg, not in a town zoning office. The county historic district covers the central village. A kitchen that stays inside the existing walls is a different filing from a new window or a bump-out on Main Street or Second Street.',
-      'Building and zoning run through LandMARC. Opening a bearing wall needs stamped structural drawings. Moving a sink is a plumbing permit. Electrical relocation stays a separately licensed trade. Real Elite does not take electrical work, and that line stays separate on the estimate.',
+      'Building and zoning run through LandMARC. Opening a bearing wall needs stamped structural drawings. Moving a sink is a plumbing permit. Electrical relocation stays a separately licensed trade. Real Elite does not take electrical work; a licensed electrician handles that part.',
       'Many village and edge lots are on well and septic. A kitchen that keeps the existing footprint is not the bedroom-addition filing that needs Loudoun Health Department approval first. We name which filing the parcel is before the estimate is a commitment. The Loudoun kitchen cost guide cites HomeAdvisor national figures of $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Waterford quote.',
     ],
   },
@@ -2263,6 +2266,44 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           'Town phone (540) 347-1101. County office 16 Courthouse Square, Warrenton, (540) 422-8230. The county zoning fee outside town is $110, including the technology fee. In-person county applications are not accepted after 4:00 p.m. The town links a Typical Basement Details packet for work inside town.',
         ],
       },
+    ],
+  },
+
+  // ── KITCHENS · MIDDLEBURG, VA ────────────────────────────────────────────
+  // Restored from 29675c4. Bathrooms and basements stay retired.
+  'kitchens-middleburg-va': {
+    h1: 'Kitchen Remodel Middleburg VA',
+    metaTitle: 'Kitchen Remodel Middleburg VA | Real Elite',
+    metaDescription:
+      'Kitchen remodel Middleburg VA. Zoning Location Permit before the county building permit. Historic District exteriors need a Certificate of Appropriateness.',
+    includeLocalBusiness: true,
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: [
+      'loudoun-county-permits-hoa-guide-2026',
+      'luxury-kitchen-renovation-loudoun-northern-virginia-2026',
+    ],
+    faqs: [
+      {
+        question: 'Does a Middleburg mailing address decide the kitchen permit path?',
+        answer:
+          'No. Parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun, and those use county building and zoning. Inside Town, a Zoning Location Permit comes before the Loudoun County building permit.',
+      },
+      {
+        question: 'Does the Middleburg Historic District review an interior kitchen?',
+        answer:
+          'A purely interior kitchen does not change the exterior. In the Historic District, exterior changes visible from a public street need a Certificate of Appropriateness from the Historic District Review Committee. Routine maintenance and exact in-kind repair or replacement are exempt, but any change in form, material, or color is not. Complete applications are due 14 days before the meeting. A county permit is not that certificate.',
+      },
+      {
+        question: 'What does a kitchen remodel in Middleburg, VA cost?',
+        answer:
+          'We price every Middleburg kitchen on a free written estimate for your home, so no fixed price is listed here. Many edge lots are on well and septic. That changes a bedroom addition, not a kitchen that stays inside the existing footprint.',
+      },
+    ],
+    paragraphs: [
+      'A kitchen remodel in Middleburg, VA is a Route 50 town job with two different houses behind the same ZIP. Inside the Historic District the kitchen often sits in an older house on a tight lot along Main Street. Along Atoka, Foxcroft, and Goose Creek the mailing address is still Middleburg and the parcel is often unincorporated county, on a larger lot, frequently on well and septic. We check the parcel before we describe the permit path.',
+      'Inside Town limits, work that needs a Loudoun County building permit starts with a Town Zoning Location Permit. The county issues building permits county-wide and still expects that town step first. Outside Town, county building and zoning apply. A kitchen that opens a load-bearing wall needs stamped drawings on the county set. A fixture swap that does not move piping is a different scope from a sink relocation, and the written estimate says which one the house is. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work; a licensed electrician handles that part.',
+      'In the Historic District, exterior changes visible from a public street also need a Certificate of Appropriateness from the Historic District Review Committee. Exact in-kind repair or replacement is exempt; any change in form, material, or color is not. Complete applications are due 14 days before the meeting. An interior cabinet and counter job does not become that review unless a street-visible window or other exterior element changes. A county permit is not the certificate. Conservation easements show up on some western Loudoun lots. We read the parcel before the footprint of any opening is locked.',
+      'We price every Middleburg kitchen on a free written estimate for your home. Cabinets, counters, and any wall or plumbing move are separate lines. Well and septic on the unincorporated edge lots changes a bedroom addition, not a kitchen that stays inside the existing house.',
     ],
   },
 
