@@ -3075,7 +3075,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Garrett Park, MD is often a low older cellar under a late-19th-century house, not a full-height suburban walkout. The town sits in ZIP 20896 beside the MARC station.',
-      'The county requires both county and town approval for Garrett Park. Finishing the lower level is an interior alteration, which the home-improvements list says will likely need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing goes through WSSC.',
+      'The county requires both county and town approval for Garrett Park. Finishing the lower level is an interior alteration, which the home-improvements list says will likely need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'A Garrett Park cellar can be planned from $55,000. That figure is a planning reference for a finished lower level, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -3113,7 +3113,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Bethesda kitchen need a permit for new cabinets only?',
         answer:
-          'The county says cabinet install, repair, or replacement most likely will not. An interior alteration likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Plumbing goes through WSSC.',
+          'The county says cabinet install, repair, or replacement most likely will not. An interior alteration likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       },
       {
         question: 'What does kitchen remodeling in Bethesda, MD cost?',
@@ -3152,7 +3152,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Bethesda, MD is a different room in 20816 than in 20814. A mid-century bath off a center-hall colonial in Westmoreland is not a later primary suite nearer downtown or NIH.',
-      'County permits run through the Department of Permitting Services in Wheaton. Bathroom caulking is on the likely-no-permit list. A shower rebuild or a moved vanity is an interior alteration, which likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing goes through WSSC.',
+      'County permits run through the Department of Permitting Services in Wheaton. Bathroom caulking is on the likely-no-permit list. A shower rebuild or a moved vanity is an interior alteration, which likely needs a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'Every Bethesda bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. Oakmont, where a 20817 address is actually that town, is still a county permit on the municipalities list.',
     ],
   },
@@ -3325,7 +3325,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Potomac cabinet replacement need a permit?',
         answer:
-          'The county says cabinet install, repair, or replacement most likely will not. An interior alteration likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Plumbing goes through WSSC.',
+          'The county says cabinet install, repair, or replacement most likely will not. An interior alteration likely will. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       },
       {
         question: 'What does kitchen remodeling in Potomac, MD cost?',
@@ -3441,7 +3441,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Cabin John, MD is a MacArthur Boulevard house in ZIP 20818, a narrow community between the canal and the Cabin John Parkway. The kitchens are often the original footprint, close to the road.',
-      'Cabin John is not on the county municipalities list. Glen Echo is, under county permit before city approval, and that is a different address. Cabinet replacement is the county\'s likely-no-permit case. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing goes through WSSC.',
+      'Cabin John is not on the county municipalities list. Glen Echo is, under county permit before city approval, and that is a different address. Cabinet replacement is the county\'s likely-no-permit case. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Cabin John quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -3465,7 +3465,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Why is a Cabin John bath often a full rebuild?',
         answer:
-          'Many houses along MacArthur Boulevard still have one original full bath. A shower conversion in that room is a different scope from a later primary suite in Potomac. Plumbing goes through WSSC. Electrical work is a separately licensed trade.',
+          'Many houses along MacArthur Boulevard still have one original full bath. A shower conversion in that room is a different scope from a later primary suite in Potomac. Plumbing questions go to WSSC. Electrical work is a separately licensed trade.',
       },
     ],
     paragraphs: [
@@ -3499,7 +3499,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Cabin John, MD is a lower level on a MacArthur Boulevard lot in ZIP 20818, close to the Potomac, where groundwater and the stair matter before any finish plan.',
-      'The county lists interior alteration as work that will likely need a permit. There is no Cabin John town permit on the municipalities page. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing goes through WSSC.',
+      'The county lists interior alteration as work that will likely need a permit. There is no Cabin John town permit on the municipalities page. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'A Cabin John lower level along MacArthur Boulevard can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -3682,7 +3682,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Chevy Chase, MD depends on which municipality owns the parcel inside ZIP 20815. The Town of Chevy Chase, the Village, and the numbered sections do not share one approval order.',
-      'County staff are at the Department of Permitting Services in Wheaton. The town or village step follows the list: county permit first for the Town, Section 3, Section 5, and Martin\'s Additions; both approvals for North Chevy Chase; county only for Friendship Heights. Chevy Chase Village is on both lists, so the sequence is confirmed with the village. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing goes through WSSC.',
+      'County staff are at the Department of Permitting Services in Wheaton. The town or village step follows the list: county permit first for the Town, Section 3, Section 5, and Martin\'s Additions; both approvals for North Chevy Chase; county only for Friendship Heights. Chevy Chase Village is on both lists, so the sequence is confirmed with the village. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'Every Chevy Chase bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The municipality is named in that estimate before any filing.',
     ],
   },
