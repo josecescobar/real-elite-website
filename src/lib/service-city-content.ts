@@ -126,7 +126,7 @@ export const COMBO_CITY_SLUGS = [
   'catharpin-va',
 
   // Round 7 Tier A/B towns, 2026-10-10. Kitchens, bathrooms, and basements
-  // only. fairfax-va is the City of Fairfax, ZIP 22030, approved 2026-10-10.
+  // only. fairfax-va is the City of Fairfax (by city limits, not ZIP), approved 2026-10-10.
   'glenwood-md',
   'clarksville-md',
   'brookeville-md',
@@ -4597,13 +4597,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-fairfax-va': {
     h1: 'Kitchen Remodeling in Fairfax, VA',
     metaDescription:
-      'Kitchen remodeling in Fairfax, VA, in the City of Fairfax, ZIP 22030. City Code Administration permits. Free written estimate after a site walk.',
+      'Kitchen remodeling in Fairfax, VA, inside the City of Fairfax. City Code Administration permits inside city limits. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in the City of Fairfax?',
         answer:
-          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. A residential building permit covers alterations. ZIPs 22031 and 22032 are mostly Fairfax County.',
+          'The Office of Code Administration, 10455 Armstrong Street, Suite 208, Fairfax, VA 22030, phone (703) 385-7830. A residential building permit covers alterations. A Fairfax address outside city limits is a Fairfax County parcel.',
       },
       {
         question: 'Does a wall change in a City of Fairfax kitchen need a permit?',
@@ -4617,7 +4617,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Fairfax, VA means the independent City of Fairfax, ZIP 22030. ZIPs 22031 and 22032 are mostly Fairfax County and use Land Development Services.',
+      'Kitchen remodeling in the independent City of Fairfax. ZIPs 22030, 22031 and 22032 each include city and county addresses; a county parcel uses Fairfax County Land Development Services.',
       'Inside the city, questions go to the Office of Code Administration, 10455 Armstrong Street, Suite 208, phone (703) 385-7830. A wall change needs a building permit. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a City of Fairfax quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -4646,7 +4646,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Fairfax, VA is a City of Fairfax bath in ZIP 22030, and a shower pan needs a plumbing permit even when it stays in the same place.',
+      'Bathroom remodeling in the City of Fairfax: inside city limits, a shower pan needs a plumbing permit even when it stays in the same place.',
       'Questions go to Code Administration at 10455 Armstrong Street, Suite 208, phone (703) 385-7830. Office hours are 8:30 a.m. to 5:00 p.m. Monday through Friday. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps with the city before work starts.',
       'Every City of Fairfax bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
@@ -4655,7 +4655,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'basements-fairfax-va': {
     h1: 'Basement Finishing in Fairfax, VA',
     metaDescription:
-      'Basement finishing in Fairfax, VA, in the City of Fairfax, ZIP 22030. Planning ranges start at $55,000. Free written estimate after a site walk.',
+      'Basement finishing in Fairfax, VA, inside the City of Fairfax. Planning ranges start at $55,000. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -4664,9 +4664,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           'The Office of Code Administration, 10455 Armstrong Street, Suite 208, phone (703) 385-7830. A residential building permit covers alterations. The city inspects renovations and major repairs.',
       },
       {
-        question: 'Is a 22032 lower level a City of Fairfax permit?',
+        question: 'Does a Fairfax lower level use the city or the county permit office?',
         answer:
-          'Not when the parcel is in Fairfax County. ZIPs 22031 and 22032 are mostly Fairfax County and use Land Development Services. ZIP 22030 is the city. We confirm the permit steps with the city before work starts when the parcel is inside the city.',
+          'It depends on the parcel, not the ZIP. ZIPs 22030, 22031 and 22032 each include city and county addresses. Inside city limits, the city issues the permit; a Fairfax County parcel uses Land Development Services. We confirm which one applies before work starts.',
       },
       {
         question: 'What does a finished basement in the City of Fairfax cost?',
@@ -4675,8 +4675,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Fairfax, VA is a lower level in the independent City of Fairfax, ZIP 22030, and an alteration needs a residential building permit from the city.',
-      'Code Administration reviews plans and inspects renovations and major repairs. The office is 10455 Armstrong Street, Suite 208, phone (703) 385-7830. Phone hours are 7:00 a.m. to 5:00 p.m. Monday through Friday. A parcel in ZIP 22032 that sits in Fairfax County uses Land Development Services. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
+      'Basement finishing in the independent City of Fairfax: inside city limits, an alteration needs a residential building permit from the city.',
+      'Code Administration reviews plans and inspects renovations and major repairs. The office is 10455 Armstrong Street, Suite 208, phone (703) 385-7830. Phone hours are 7:00 a.m. to 5:00 p.m. Monday through Friday. A Fairfax address that sits in Fairfax County uses Land Development Services. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work.',
       'A City of Fairfax lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The city fee for repairs and alterations is $93.60 plus 1% of the project cost over $1,000. That is a city fee, not the project price. The price is a free written estimate after a site walk.',
     ],
     sections: [
