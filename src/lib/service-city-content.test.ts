@@ -2178,9 +2178,11 @@ describe('REA-2495 round 11 richest-county towns', () => {
     expect(CITY_DATA['rockville-md']?.description).toMatch(/city permit only/i);
     expect(CITY_DATA['rockville-md']?.description).toMatch(/20850/);
     expect(CITY_DATA['rockville-md']?.description).toMatch(/20852/);
-    expect(CITY_DATA['derwood-md']?.description).toMatch(/does not, by itself/);
-    expect(CITY_DATA['colesville-md']?.description).toMatch(/Silver Spring/);
+    expect(CITY_DATA['derwood-md']?.description).toMatch(/When the parcel is inside the City of Rockville/);
+    expect(CITY_DATA['derwood-md']?.description).not.toMatch(/mailing address/i);
     expect(CITY_DATA['colesville-md']?.description).toMatch(/20905/);
+    expect(CITY_DATA['colesville-md']?.description).toMatch(/county permit area/);
+    expect(CITY_DATA['colesville-md']?.description).not.toMatch(/Silver Spring/);
     expect(CITY_DATA['takoma-park-md']?.description).toMatch(/Municipality Letter/);
     expect(CITY_DATA['takoma-park-md']?.description).toMatch(/urban forest tree/i);
     expect(CITY_DATA['columbia-md']?.description).toMatch(/completely separate process/);
@@ -2218,6 +2220,23 @@ describe('REA-2495 round 11 richest-county towns', () => {
       const exact = firstCells.filter((cell) => cell === sentence);
       if (exact.length > 0) expect(exact).toHaveLength(1);
     }
+  });
+
+  it('requires the quote to name the town, ZIP, or office a boundary sentence is about', () => {
+    const root = nodePath.resolve(__dirname, '../..');
+    const table = fs.readFileSync(nodePath.join(root, 'docs/seo-round-11-source-table.md'), 'utf8');
+    const misses = parseSourceTable(table).flatMap((row) => {
+      const anchors = boundaryAnchors(row.sentence);
+      if (!anchors) return [];
+      if (anchors.length === 0) {
+        return [`L${row.line} names no town, ZIP, or office: ${row.sentence}`];
+      }
+      const quote = row.quote.toLowerCase();
+      const missing = anchors.filter((anchor) => !quote.includes(anchor.toLowerCase()));
+      if (missing.length === 0) return [];
+      return [`L${row.line} missing ${missing.join(', ')}: ${row.sentence}`];
+    });
+    expect(misses).toEqual([]);
   });
 });
 
@@ -2262,6 +2281,42 @@ function parseSourceTable(markdown: string): SourceRow[] {
     });
   }
   return rows;
+}
+
+const BOUNDARY_SENTENCE = /mailing address|\bZIPs?\b|postal|city limits|permit office/i;
+
+/** Longer names first so "Takoma Park" wins over a shorter token. */
+const BOUNDARY_TOWNS = [
+  "Harper's Choice",
+  'Takoma Park',
+  'Silver Spring',
+  'Ellicott City',
+  'West Springfield',
+  'North Springfield',
+  'Gaithersburg',
+  'Colesville',
+  'Annandale',
+  'Springfield',
+  'Rockville',
+  'Derwood',
+  'Columbia',
+  'Wheaton',
+  'Fairfax',
+];
+
+/**
+ * Towns and ZIPs a mailing, ZIP, postal, city-limits, or permit-office
+ * sentence is about. Null when the sentence is not in that class.
+ */
+function boundaryAnchors(sentence: string): string[] | null {
+  if (!BOUNDARY_SENTENCE.test(sentence)) return null;
+  const anchors: string[] = [];
+  for (const town of BOUNDARY_TOWNS) {
+    if (sentence.includes(town)) anchors.push(town);
+  }
+  for (const match of sentence.matchAll(/\bZIP\s+(\d{5})\b/gi)) anchors.push(match[1]);
+  for (const match of sentence.matchAll(/\b(\d{5})\s+address\b/gi)) anchors.push(match[1]);
+  return [...new Set(anchors)];
 }
 
 const PERMIT_SENTENCE =

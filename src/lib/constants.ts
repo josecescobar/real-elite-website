@@ -2535,10 +2535,10 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Rockville, MD?',
         answer:
-          'The City of Rockville is city permit only. City questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. ZIP 20850 and ZIP 20852 do not, by themselves, name the office.',
+          'The City of Rockville is city permit only. City questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311.',
       },
       {
-        question: 'Do ZIP 20850 and ZIP 20852 file at the same counter?',
+        question: 'Does DPS have jurisdiction inside the city limits of Rockville?',
         answer:
           'DPS does not have jurisdictions for properties located within the city limits of Rockville. When the parcel is inside the City of Rockville, applications go through MGO Connect. When the parcel is in the county permit area, hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary.',
       },
@@ -2555,7 +2555,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Derwood, MD, the 20855 area. The City of Rockville is city permit only. Free written estimate after a site walk.',
     description:
-      "Derwood remodeling is the 20855 area, along Muncaster Mill Road and Redland Road. Many of the houses date from the early 1980s. A Derwood mailing address does not, by itself, name the permit office. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Shady Grove Road.\n\nThe City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. When the parcel is in the county permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary.\n\nAn interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Plumbing questions go to WSSC. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+      "Derwood remodeling is the 20855 area, along Muncaster Mill Road and Redland Road. Many of the houses date from the early 1980s. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south toward Shady Grove Road.\n\nThe City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. When the parcel is in the county permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary.\n\nAn interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance. Plumbing questions go to WSSC. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
     neighborhoods: ['Muncaster Mill Road', 'Redland Road', 'Needwood Road', 'Shady Grove Road', 'ZIP 20855'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['rockville-md', 'olney-md', 'laytonsville-md', 'north-potomac-md'],
@@ -2563,7 +2563,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Derwood, MD?',
         answer:
-          'The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. A Derwood mailing address does not, by itself, name the office.',
+          'The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311.',
       },
       {
         question: 'Does a Derwood cabinet replacement need a permit?',
@@ -2583,7 +2583,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Colesville, MD, the 20905 area. Montgomery County permits in Wheaton. Free written estimate after a site walk.',
     description:
-      "Colesville remodeling is the 20905 area, along New Hampshire Avenue, Randolph Road, and Colesville Road. Mail to 20905 often reads Silver Spring. Many of the houses date from the early 1980s. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south and east toward New Hampshire Avenue.\n\nWhen the parcel is in the county permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Bathroom caulking most likely will not. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A well or a septic system will likely need a permit. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+      "Colesville remodeling is the 20905 area, along New Hampshire Avenue, Randolph Road, and Colesville Road. Many of the houses date from the early 1980s. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south and east toward New Hampshire Avenue.\n\nWhen the parcel is in the county permit area, questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Office hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not. Bathroom caulking most likely will not. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A well or a septic system will likely need a permit. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
     neighborhoods: ['New Hampshire Avenue', 'Randolph Road', 'Colesville Road', 'ZIP 20905', 'Notley Road'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['olney-md', 'ashton-md', 'kensington-md', 'takoma-park-md'],
