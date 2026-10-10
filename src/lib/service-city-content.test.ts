@@ -828,9 +828,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/191 after round 11: 170, plus kitchens, bathrooms, and basements
-    // for Annandale, Rockville, Derwood, Colesville, Takoma Park, and
-    // Columbia, plus Springfield kitchens, bathrooms, and basements. All clean.
+    // 0/191 service combos after round 11. The 21 new service entries are
+    // 18 (kitchens, bathrooms, and basements for the six new towns) plus 3
+    // Springfield. The 6 new area pages are separate, so the round is 27
+    // pages, not 27 service URLs plus area pages. All clean.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     expect({ carrying, clean }).toEqual({ carrying: 0, clean: 191 });
   });
@@ -2115,7 +2116,8 @@ describe('REA-2495 round 11 richest-county towns', () => {
     expect(body).toMatch(/parcel/i);
   });
 
-  it('does not clone the 21 openings', () => {
+  // 21 service openings. The round's 27 pages also include the 6 area pages.
+  it('does not clone the 21 service openings', () => {
     const openings = PAGES.map(([service, city]) =>
       CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
     );
@@ -2186,4 +2188,165 @@ describe('REA-2495 round 11 richest-county towns', () => {
     const body = NEW_AREAS.map((slug) => CITY_DATA[slug]?.description ?? '').join('\n');
     expect(body).not.toMatch(/MHIC|maryland license|census|CDP/i);
   });
+
+  it('matches every source-table row to the copy and every permit sentence to a row', () => {
+    const root = nodePath.resolve(__dirname, '../..');
+    const tablePath = nodePath.join(root, 'docs/seo-round-11-source-table.md');
+    const table = fs.readFileSync(tablePath, 'utf8');
+    const constantsSrc = fs.readFileSync(nodePath.join(root, 'src/lib/constants.ts'), 'utf8');
+    const contentSrc = fs.readFileSync(nodePath.join(root, 'src/lib/service-city-content.ts'), 'utf8');
+    const copy = `${constantsSrc}\n${contentSrc}`;
+    const rows = parseSourceTable(table);
+    expect(rows.length).toBeGreaterThan(0);
+
+    const missing = rows.filter((row) => !copy.includes(row.sentence));
+    expect(missing.map((row) => `L${row.line}: ${row.sentence}`)).toEqual([]);
+
+    for (const row of rows) {
+      expect(row.resolvedUrl, `L${row.line} url`).toMatch(/^https:\/\//);
+      expect(row.quote.length, `L${row.line} quote`).toBeGreaterThan(0);
+      expect(row.opened, `L${row.line} opened`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+
+    const sentences = round11PermitSentences(constantsSrc, contentSrc);
+    const firstCells = rows.map((row) => row.sentence);
+    const uncovered = sentences.filter((sentence) => !firstCells.includes(sentence));
+    expect(uncovered).toEqual([]);
+    for (const sentence of sentences) {
+      expect(firstCells.filter((cell) => cell === sentence)).toHaveLength(1);
+    }
+  });
 });
+
+/** A markdown table cell, with escaped pipes and asterisks restored. */
+function unescapeMarkdownCell(cell: string): string {
+  return cell.replace(/\\([\\|*_])/g, '$1').trim();
+}
+
+type SourceRow = {
+  line: number;
+  sentence: string;
+  resolvedUrl: string;
+  quote: string;
+  opened: string;
+};
+
+function parseSourceTable(markdown: string): SourceRow[] {
+  const lines = markdown.split('\n');
+  const rows: SourceRow[] = [];
+  let opened = '';
+  let previousUrl = '';
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const dated = line.match(/\b(20\d{2}-\d{2}-\d{2})\b/);
+    if (dated) opened = dated[1];
+    if (!line.startsWith('|') || line.startsWith('|---') || line.startsWith('| Sentence')) continue;
+    const cells = line
+      .replace(/^\|/, '')
+      .replace(/\|$/, '')
+      .split('|')
+      .map((cell) => unescapeMarkdownCell(cell));
+    if (cells.length < 3 || !cells[0]) continue;
+    const rawUrl = cells[1];
+    const resolvedUrl = /^https:\/\//.test(rawUrl) ? rawUrl : rawUrl === 'same PDF' ? previousUrl : rawUrl;
+    if (/^https:\/\//.test(rawUrl)) previousUrl = rawUrl;
+    rows.push({
+      line: index + 1,
+      sentence: cells[0],
+      resolvedUrl,
+      quote: cells[2],
+      opened,
+    });
+  }
+  return rows;
+}
+
+const PERMIT_SENTENCE =
+  /permit|inspection|filing|count(?:y|ies)|cities|\bcity\b|\bDPS\b|department|\boffice\b|parcel|jurisdiction|\bletter\b|approval|mailing address/i;
+
+/** Declarative copy sentences. FAQ questions are not jurisdiction claims. */
+function splitCopySentences(text: string): string[] {
+  const abbrev = /(?:a\.m\.|p\.m\.|ave\.|st\.|dr\.|u\.s\.|inc\.|mr\.|mrs\.|md\.|va\.)$/i;
+  const weekdays = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/;
+  const sentences: string[] = [];
+  for (const para of text.split(/\n+/)) {
+    const trimmed = para.trim();
+    if (!trimmed) continue;
+    let start = 0;
+    for (let i = 0; i < trimmed.length; i += 1) {
+      const mark = trimmed[i];
+      if (!'.!?'.includes(mark) || trimmed[i + 1] !== ' ') continue;
+      const rest = trimmed.slice(i + 2);
+      if (!rest || !/[A-Z]/.test(rest[0])) continue;
+      const window = trimmed.slice(Math.max(0, i - 10), i + 1);
+      const nextWord = rest.split(/\s/)[0]?.replace(/[,;:]$/, '') ?? '';
+      if (abbrev.test(window) && weekdays.test(nextWord)) continue;
+      const sentence = trimmed.slice(start, i + 1).trim();
+      if (sentence) sentences.push(sentence);
+      let j = i + 1;
+      while (trimmed[j] === ' ') j += 1;
+      start = j;
+      i = j - 1;
+    }
+    const tail = trimmed.slice(start).trim();
+    if (tail) sentences.push(tail);
+  }
+  return sentences;
+}
+
+function stringLiterals(source: string): string[] {
+  const literals: string[] = [];
+  for (let i = 0; i < source.length; i += 1) {
+    const quote = source[i];
+    if (quote !== "'" && quote !== '"') continue;
+    i += 1;
+    let value = '';
+    while (i < source.length) {
+      if (source[i] === '\\' && i + 1 < source.length) {
+        const esc = source[i + 1];
+        value += esc === 'n' ? '\n' : esc === 't' ? '\t' : esc;
+        i += 2;
+        continue;
+      }
+      if (source[i] === quote) break;
+      value += source[i];
+      i += 1;
+    }
+    literals.push(value);
+  }
+  return literals;
+}
+
+function sliceBetween(source: string, startMarker: string, endMarker: string): string {
+  const start = source.indexOf(startMarker);
+  const end = source.indexOf(endMarker, start + startMarker.length);
+  if (start < 0 || end < 0) throw new Error(`missing slice marker ${startMarker}`);
+  return source.slice(start, end);
+}
+
+/** Permit and jurisdiction sentences in the six new area entries and 21 new service entries. */
+function round11PermitSentences(constantsSrc: string, contentSrc: string): string[] {
+  const area = sliceBetween(
+    constantsSrc,
+    "  'annandale-va': {",
+    '\n};\n\n/**\n * Every area that currently publishes'
+  );
+  const services = sliceBetween(
+    contentSrc,
+    '  // ── ROUND 11 · ANNANDALE, VA',
+    '\n};\n\n/**\n * The most specific published URL'
+  );
+  const seen = new Set<string>();
+  const sentences: string[] = [];
+  for (const literal of [...stringLiterals(area), ...stringLiterals(services)]) {
+    if (!literal.includes(' ') || literal.length < 12) continue;
+    if (literal.startsWith('http') || literal.startsWith('/')) continue;
+    for (const sentence of splitCopySentences(literal)) {
+      if (sentence.endsWith('?')) continue;
+      if (!PERMIT_SENTENCE.test(sentence) || seen.has(sentence)) continue;
+      seen.add(sentence);
+      sentences.push(sentence);
+    }
+  }
+  return sentences;
+}

@@ -159,10 +159,11 @@ export const COMBO_CITY_SLUGS = [
   'fort-hunt-va',
   'falls-church-va',
 
-  // Round 11, 2026-10-10. Kitchens, bathrooms, and basements for six new
-  // area pages, plus Springfield (area page already live). Burke basements
-  // and Middleburg bathrooms and basements are published again on the
-  // existing slugs. No outdoor living, no stairs, no Brambleton.
+  // Round 11, 2026-10-10. 27 new pages: 6 area pages, 18 service pages
+  // (kitchens, bathrooms, and basements for the six new towns), and 3
+  // Springfield service pages. Springfield's area page was already live.
+  // Burke basements and Middleburg bathrooms and basements stay retired.
+  // No outdoor living, no stairs, no Brambleton.
   'annandale-va',
   'rockville-md',
   'derwood-md',
@@ -6213,7 +6214,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Annandale?',
         answer:
-          'The parcel decides. When it is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. An Annandale mailing address does not, by itself, name that office.',
+          'When it is in Fairfax County, questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. An Annandale mailing address does not, by itself, name that office.',
       },
       {
         question: 'Does an Annandale cabinet replacement need a permit?',
@@ -6228,7 +6229,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Annandale, VA starts along Little River Turnpike and Columbia Pike, where many houses date from the late 1960s.',
-      'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include kitchen renovations. Kitchen cabinets and countertops do not need a permit. New, repair, or relocated electrical fixtures need a permit. Real Elite does not take electrical work. New, repair, or relocated mechanical or gas fixtures need a permit. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include kitchen renovations. Kitchen cabinets and countertops do not need a permit. New, repair, or relocated electrical fixtures need a permit. Real Elite does not take electrical work. New, repair, or relocated mechanical or gas fixtures need a permit. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Annandale quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -6243,7 +6244,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Annandale?',
         answer:
-          'When the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. We confirm the office before work starts.',
+          'When the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. We confirm the steps before work starts.',
       },
       {
         question: 'What does bathroom remodeling in Annandale, VA cost?',
@@ -6258,7 +6259,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Annandale, VA is a late-1960s bath in ZIP 22003, and a bathroom remodel is an interior alteration.',
-      'County questions go to Land Development Services, phone 703-222-0801, when the parcel is in Fairfax County. New, repair, or relocated plumbing or gas fixtures need a permit. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to Land Development Services, phone 703-222-0801, when the parcel is in Fairfax County. New, repair, or relocated plumbing or gas fixtures need a permit. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'Every Annandale bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -6273,7 +6274,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Annandale, VA?',
         answer:
-          'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include finished basements. We confirm the permit steps for the parcel before work starts.',
+          'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include finished basements. We confirm the steps for this house before work starts.',
       },
       {
         question: 'What is checked before an Annandale lower level is finished?',
@@ -6288,7 +6289,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Annandale, VA is a lower level in a late-1960s house along Columbia Pike, and a finished basement is an interior alteration.',
-      'When the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'When the parcel is in Fairfax County, questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'An Annandale lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -6304,7 +6305,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801, when the parcel is in Fairfax County. Interior alterations include finished basements. We confirm the permit steps for the parcel before work starts.',
+          'Land Development Services, 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801, when the parcel is in Fairfax County. Interior alterations include finished basements. We confirm the steps for this house before work starts.',
         ],
       },
     ],
@@ -6315,13 +6316,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Rockville, MD',
     metaTitle: 'Kitchen Remodel Rockville MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Rockville, MD, ZIP 20850 and ZIP 20852. The parcel decides the permit office. Free written estimate after a site walk.',
+      'Kitchen remodeling in Rockville, MD, ZIP 20850 and ZIP 20852. The City of Rockville is city permit only. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Rockville?',
         answer:
-          'The parcel decides. The City of Rockville is city permit only. City questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. A county parcel uses 240-777-0311. We confirm the office before work starts.',
+          'The City of Rockville is city permit only. City questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. A county parcel uses 240-777-0311. We confirm the steps before work starts.',
       },
       {
         question: 'Does a Rockville cabinet replacement need a permit?',
@@ -6336,7 +6337,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Rockville, MD covers ZIP 20850 and ZIP 20852, and the parcel decides whether the city or the county takes the permit.',
-      'The City of Rockville and the City of Gaithersburg are city permit only. Inside the city, questions go to 240-314-8240, and applications go through MGO Connect. Hours are Monday through Friday, 8:30 a.m. to 5 p.m. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The City of Rockville and the City of Gaithersburg are city permit only. Inside the city, questions go to 240-314-8240. Building and trade permit applications are submitted through MGO Connect. Hours are Monday through Friday, 8:30 a.m. to 5 p.m. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Cabinets most likely will not. Plumbing questions go to WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Rockville quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -6351,7 +6352,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Rockville?',
         answer:
-          'The parcel decides. City questions go to permits@rockvillemd.gov or 240-314-8240. A county parcel uses 240-777-0311. We confirm the office before work starts.',
+          'City questions go to permits@rockvillemd.gov or 240-314-8240. A county parcel uses 240-777-0311. We confirm the steps before work starts.',
       },
       {
         question: 'What does bathroom remodeling in Rockville, MD cost?',
@@ -6366,7 +6367,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Rockville, MD checks city limits before a county filing, because a 20850 address and a 20852 address do not, by themselves, name the office.',
-      'When the parcel is inside the City of Rockville, questions go to Rockville City Hall, 111 Maryland Ave., phone 240-314-8240. When the parcel is in the county permit area, hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'When the parcel is inside the City of Rockville, questions go to Rockville City Hall, 111 Maryland Ave., phone 240-314-8240. When the parcel is in the county permit area, hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'Every Rockville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -6381,12 +6382,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Rockville, MD?',
         answer:
-          'The parcel decides. The City of Rockville is city permit only, phone 240-314-8240. A county parcel uses the Department of Permitting Services, phone 240-777-0311. We confirm the office before work starts.',
+          'The City of Rockville is city permit only, phone 240-314-8240. A county parcel uses the Department of Permitting Services, phone 240-777-0311. We confirm the steps before work starts.',
       },
       {
         question: 'What is checked before a Rockville lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and which office issues the permit. Municipality rules and homeowners-association rules are separate from the county guidance. Real Elite does not take electrical work.',
+          'Headroom, the stair, and moisture. Municipality rules and homeowners-association rules are separate from the county guidance. Real Elite does not take electrical work.',
       },
       {
         question: 'What does a finished basement in Rockville cost?',
@@ -6396,7 +6397,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Rockville, MD is a lower level in ZIP 20850 or ZIP 20852, and city permit rules apply only when the parcel is inside the city.',
-      'Inside the city, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'Inside the city, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240-314-8240. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'A Rockville lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -6423,13 +6424,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Derwood, MD',
     metaTitle: 'Kitchen Remodel Derwood MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Derwood, MD, ZIP 20855. The parcel decides the permit office. Free written estimate after a site walk.',
+      'Kitchen remodeling in Derwood, MD, ZIP 20855. The City of Rockville is city permit only. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Derwood?',
         answer:
-          'The parcel decides. The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 240-777-0311. A Derwood mailing address does not, by itself, name the office.',
+          'The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 240-777-0311. A Derwood mailing address does not, by itself, name the office.',
       },
       {
         question: 'Does a Derwood cabinet replacement need a permit?',
@@ -6444,7 +6445,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Derwood, MD is a ZIP 20855 kitchen along Muncaster Mill Road, and a Derwood address does not pick the permit office.',
-      'The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311, 7:30 a.m. to 4 p.m. Monday through Friday. An interior alteration will likely need a permit. Cabinets most likely will not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311, 7:30 a.m. to 4 p.m. Monday through Friday. An interior alteration will likely need a permit. Cabinets most likely will not. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Derwood quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -6459,7 +6460,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Derwood?',
         answer:
-          'The parcel decides. Rockville city questions go to 240-314-8240 when the parcel is inside that city. A county parcel uses 240-777-0311. We confirm the office before work starts.',
+          'Rockville city questions go to 240-314-8240 when the parcel is inside that city. A county parcel uses 240-777-0311. We confirm the steps before work starts.',
       },
       {
         question: 'What does bathroom remodeling in Derwood, MD cost?',
@@ -6474,7 +6475,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Derwood, MD is an early-1980s bath near Redland, and Rockville or Gaithersburg rules apply only when the parcel is inside that city.',
-      'A county parcel uses Wheaton, phone 240-777-0311, and no appointment is necessary. Plumbing questions go to WSSC. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'A county parcel uses Wheaton, phone 240-777-0311, and no appointment is necessary. Plumbing questions go to WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'Every Derwood bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -6489,12 +6490,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Derwood, MD?',
         answer:
-          'The parcel decides. The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311.',
+          'The City of Rockville and the City of Gaithersburg are city permit only. A county parcel uses 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311.',
       },
       {
         question: 'What is checked before a Derwood lower level is finished?',
         answer:
-          'Headroom, the stair, moisture, and which office issues the permit. A well or a septic system will likely need a permit. Real Elite does not take electrical work.',
+          'Headroom, the stair, and moisture. A well or a septic system will likely need a permit. Real Elite does not take electrical work.',
       },
       {
         question: 'What does a finished basement in Derwood cost?',
@@ -6504,7 +6505,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Derwood, MD is a lower level in ZIP 20855, and the county office is used only when the parcel is in the county permit area.',
-      'City permit only applies to the City of Rockville and the City of Gaithersburg. A county parcel uses 240-777-0311. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'City permit only applies to the City of Rockville and the City of Gaithersburg. A county parcel uses 240-777-0311. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'A Derwood lower level along Muncaster Mill Road can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -6520,7 +6521,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311, when the parcel is in the county permit area. The City of Rockville is city permit only. We confirm the office before work starts.',
+          'Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311, when the parcel is in the county permit area. The City of Rockville is city permit only. We confirm the steps before work starts.',
         ],
       },
     ],
@@ -6552,7 +6553,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Colesville, MD is a ZIP 20905 kitchen along New Hampshire Avenue and Randolph Road, and the mailing name does not name the permit office.',
-      'County questions go to Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m., and no appointment is necessary. An interior alteration will likely need a permit. Cabinets most likely will not. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m., and no appointment is necessary. An interior alteration will likely need a permit. Cabinets most likely will not. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Colesville quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -6567,7 +6568,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Colesville?',
         answer:
-          'County questions go to 240-777-0311 when the parcel is in the county permit area. We confirm the permit steps for the parcel before work starts. Plumbing questions go to WSSC.',
+          'County questions go to 240-777-0311 when the parcel is in the county permit area. We confirm the steps for this house before work starts. Plumbing questions go to WSSC.',
       },
       {
         question: 'What does bathroom remodeling in Colesville, MD cost?',
@@ -6582,7 +6583,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Colesville, MD is an early-1980s bath off Colesville Road, and a Silver Spring mailing name does not pick the counter.',
-      'The county office is 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. No appointment is necessary. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The county office is 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. No appointment is necessary. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'Every Colesville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -6597,7 +6598,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Colesville, MD?',
         answer:
-          'When the parcel is in the county permit area, questions go to the Department of Permitting Services, phone 240-777-0311. An interior alteration will likely need a permit. We confirm the parcel before work starts.',
+          'When the parcel is in the county permit area, questions go to the Department of Permitting Services, phone 240-777-0311. An interior alteration will likely need a permit. We confirm the steps before work starts.',
       },
       {
         question: 'What is checked before a Colesville lower level is finished?',
@@ -6612,7 +6613,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Colesville, MD is a lower level in ZIP 20905, and an interior alteration will likely need a permit when the parcel is in the county.',
-      'County questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'A Colesville lower level along New Hampshire Avenue can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -6628,7 +6629,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311, when the parcel is in the county permit area. We confirm the permit steps for the parcel before work starts.',
+          'Department of Permitting Services, 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311, when the parcel is in the county permit area. We confirm the steps for this house before work starts.',
         ],
       },
     ],
@@ -6660,7 +6661,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Takoma Park, MD is a mid-century kitchen along Maple Avenue, and a county permit starts with a city municipality letter.',
-      'The municipality letter is not a permit. Housing questions go to 7500 Maple Avenue, 3rd Floor, Takoma Park, MD 20912, phone 301-891-7119. County questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Cabinets most likely will not need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The municipality letter is not a permit. Housing questions go to 7500 Maple Avenue, 3rd Floor, Takoma Park, MD 20912, phone 301-891-7119. County questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. Cabinets most likely will not need a permit. Real Elite does not take electrical work. County questions go to 240-777-0311 when the parcel is in the county permit area.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Takoma Park quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -6675,7 +6676,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Takoma Park?',
         answer:
-          'City approval is required prior to the county application. The municipality letter comes first when the project needs a Montgomery County permit. County questions go to 240-777-0311. We confirm the parcel before work starts.',
+          'City approval is required prior to the county application. The municipality letter comes first when the project needs a Montgomery County permit. County questions go to 240-777-0311. We confirm the steps before work starts.',
       },
       {
         question: 'What does bathroom remodeling in Takoma Park, MD cost?',
@@ -6690,7 +6691,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Takoma Park, MD is a 1950s bath near Flower Avenue, and the municipality letter is not the building permit.',
-      'There is no fee for the municipality letter. County hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'There is no fee for the municipality letter. County hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. Real Elite does not take electrical work. County questions go to 240-777-0311 when the parcel is in the county permit area.',
       'Every Takoma Park bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -6705,7 +6706,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Takoma Park, MD?',
         answer:
-          'A Montgomery County permit first requires a Municipality Letter from Takoma Park, phone 301-891-7119. County questions go to 240-777-0311. We confirm the parcel before work starts.',
+          'A Montgomery County permit first requires a Municipality Letter from Takoma Park, phone 301-891-7119. County questions go to 240-777-0311. We confirm the steps before work starts.',
       },
       {
         question: 'What is checked before a Takoma Park lower level is finished?',
@@ -6720,7 +6721,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Takoma Park, MD is a lower level in ZIP 20912, and construction within 50 feet of an urban forest tree may require a Tree Impact Assessment.',
-      'The municipality letter comes before the county permit, and it is not itself a permit. County questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The municipality letter comes before the county permit, and it is not itself a permit. County questions go to 2425 Reedie Drive, 7th Floor, Wheaton, phone 240-777-0311. An interior alteration will likely need a permit. Real Elite does not take electrical work. County questions go to 240-777-0311 when the parcel is in the county permit area.',
       'A Takoma Park lower level along Maple Avenue can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -6753,7 +6754,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Columbia?',
         answer:
-          'Howard County questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. We confirm the permit steps for the parcel before work starts.',
+          'Howard County questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Howard County questions for the parcel go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455.',
       },
       {
         question: 'Does a Columbia kitchen need village approval?',
@@ -6768,7 +6769,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       "Kitchen remodeling in Columbia, MD is a 1970s or 1980s kitchen in ZIP 21044, in villages such as Harper's Choice and Wilde Lake.",
-      'County questions go to 410-313-2455. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. If the work changes the exterior on Columbia Association assessed property, the village review is separate from that permit. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to 410-313-2455. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. If the work changes the exterior on Columbia Association assessed property, the village review is separate from that permit. Real Elite does not take electrical work. Real Elite does not take gas work. Howard County questions for the parcel go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Columbia quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -6798,7 +6799,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Columbia, MD is a village bath in ZIP 21044, and Howard County questions go to Courthouse Drive in Ellicott City.',
-      'The office is 3430 Courthouse Drive, phone 410-313-2455. Wilde Lake questions about an exterior change go to 410-730-3987, and that review is separate from the county permit. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
+      'The office is 3430 Courthouse Drive, phone 410-313-2455. Wilde Lake questions about an exterior change go to 410-730-3987, and that review is separate from the county permit. Real Elite does not take electrical work. Howard County questions for the parcel go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455.',
       'Every Columbia bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -6813,7 +6814,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Columbia, MD?',
         answer:
-          'Howard County questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. We confirm the permit steps for the parcel before work starts.',
+          'Howard County questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. Howard County questions for the parcel go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455.',
       },
       {
         question: 'What is checked before a Columbia lower level is finished?',
@@ -6828,7 +6829,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Columbia, MD is a lower level in an older village house, and an exterior change on assessed property is a separate village review from the county permit.',
-      'County questions go to 410-313-2455, option 4. Arrive by 4:00 p.m. The front counter closes at 5:00 p.m. A private well and septic needs Health Department approval first, at 410-313-6300. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to 410-313-2455, option 4. Arrive by 4:00 p.m. The front counter closes at 5:00 p.m. A private well and septic needs Health Department approval first, at 410-313-6300. Real Elite does not take electrical work. Real Elite does not take gas work. Howard County questions for the parcel go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455.',
       "A Columbia lower level in Harper's Choice or Wilde Lake can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.",
     ],
     sections: [
@@ -6876,7 +6877,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Springfield, VA is a Fairfax County kitchen in the Springfield ZIPs, and a kitchen renovation needs a permit when the parcel is in the county.',
-      'Questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Interior alterations include kitchen renovations. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'Questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Interior alterations include kitchen renovations. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Springfield quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -6891,7 +6892,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Springfield?',
         answer:
-          'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include bathroom remodels. We confirm the parcel before work starts.',
+          'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include bathroom remodels. We confirm the steps before work starts.',
       },
       {
         question: 'What does bathroom remodeling in Springfield, VA cost?',
@@ -6906,7 +6907,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Springfield, VA is a bath in West Springfield or North Springfield, and a bathroom remodel is an interior alteration.',
-      'County questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801, when the parcel is in Fairfax County. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'County questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801, when the parcel is in Fairfax County. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'Every Springfield bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -6921,7 +6922,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Springfield, VA?',
         answer:
-          'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include finished basements. We confirm the permit steps for the parcel before work starts.',
+          'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include finished basements. We confirm the steps for this house before work starts.',
       },
       {
         question: 'What is checked before a Springfield lower level is finished?',
@@ -6936,7 +6937,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Springfield, VA is a lower level in Newington Forest or the older Springfield streets, and a finished basement needs a permit when the parcel is in Fairfax County.',
-      'Questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the permit steps for the parcel before work starts.',
+      'Questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'A Springfield lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
