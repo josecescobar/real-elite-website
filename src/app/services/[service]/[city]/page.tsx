@@ -29,6 +29,7 @@ import {
   defaultComboDescription,
   comboPublishesPricing,
   unconfirmedClaimIdsInCombo,
+  splitComboKey,
   type FeaturedServiceSlug,
   type ComboCitySlug,
 } from '@/lib/service-city-content';
@@ -66,6 +67,7 @@ const CONSULTATION_TYPE_FOR_SERVICE: Partial<
   // through to "Free Estimate" — a $60k Brambleton deck enquiry treated like
   // a handyman call.
   decks: 'outdoor-living',
+  'outdoor-living': 'outdoor-living',
 };
 
 // ─── Static Params ────────────────────────────────────────────────────────────
@@ -88,11 +90,8 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return (Object.keys(CONTENT) as `${FeaturedServiceSlug}-${ComboCitySlug}`[]).map(
     (key) => {
-      const dashIdx = key.indexOf('-');
-      return {
-        service: key.slice(0, dashIdx),
-        city: key.slice(dashIdx + 1),
-      };
+      const { service, city } = splitComboKey(key);
+      return { service, city };
     }
   );
 }
