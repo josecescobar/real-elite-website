@@ -7989,7 +7989,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a home addition in Vienna?',
         answer:
-          'When the parcel is inside the Town of Vienna, town questions go to Town Hall. Fairfax County is the town building official, and it reviews structural work along with fire, health, plumbing, electrical, and mechanical work before the permit is issued.',
+          'When the parcel is inside the Town of Vienna, town questions go to Town Hall. Fairfax County is the building official for the Town of Vienna and completes its review before the permit is issued. Real Elite handles the paperwork for this Vienna addition.',
       },
       {
         question: 'How do the town and county reviews fit together for a Vienna addition?',
@@ -8018,7 +8018,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'How is a Vienna deck categorized on the county record?',
         answer:
-          'On the county addition or alteration record, a deck is one of the added-square-footage types, grouped with sunrooms and screened porches. Electrical, plumbing, or mechanical work on the deck can need its own trade permit.',
+          'On the county addition or alteration record, a deck is one of the added-square-footage types, grouped with sunrooms and screened porches. Separate trade permits may be required for this Vienna deck. Real Elite handles that deck paperwork.',
       },
     ],
     paragraphs: [
@@ -8138,7 +8138,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'How long is the published Arlington addition review?',
         answer:
-          'The published review for a residential addition route, called RADD, is about 10 business days. An addition over 500 square feet on an existing single-family house needs mechanical plans, and so does a new house, a new house on an existing foundation, or a newly installed HVAC system.',
+          'The published review for a residential addition route, called RADD, is about 10 business days. An addition over 500 square feet on an existing single-family house needs mechanical plans. Real Elite handles the plans paperwork for this Arlington addition.',
       },
     ],
     paragraphs: [
@@ -8210,7 +8210,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a wall change in the city need a permit?',
         answer:
-          'Framing or other structural work on a wall needs a permit, and the same rule covers floors, ceilings, and rafters. Any wall change needs a permit, whether or not the wall is load bearing. Gas work needs a permit too, including a stove or fireplace insert replacement.',
+          'Structural framing on this Falls Church addition needs a city permit. Any wall change needs a permit, whether or not the wall is load bearing. Gas work needs a permit too, including a stove or fireplace insert replacement.',
       },
     ],
     paragraphs: [
@@ -8253,7 +8253,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Falls Church screened porch need a city permit?',
         answer:
-          'A screened porch that frames a wall, a floor, a ceiling, or rafters needs a city permit. A porch on a parcel inside the City of Falls Church is handled at the city permit counter.',
+          'A screened porch that includes structural framing needs a city permit in Falls Church. A porch on a parcel inside the City of Falls Church is handled at the city permit counter.',
       },
       {
         question: 'Does a patio on a county parcel use the city counter?',
