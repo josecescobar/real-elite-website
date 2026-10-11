@@ -7355,7 +7355,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before a Silver Spring lower level is finished?',
         answer:
-          'Headroom, the stair, and moisture. This information does not include municipality and homeowner association rules and regulations. Real Elite does not take electrical work.',
+          'Headroom, the stair, and moisture. Montgomery County home-improvement permit information does not include municipality and homeowner association rules and regulations. Real Elite does not take electrical work.',
       },
       {
         question: 'What does a finished basement in Silver Spring cost?',
@@ -7459,7 +7459,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What is checked before an Aspen Hill lower level is finished?',
         answer:
-          'Headroom, the stair, and moisture. This information does not include municipality and homeowner association rules and regulations. Real Elite does not take electrical work.',
+          'Headroom, the stair, and moisture. Montgomery County home-improvement permit information does not include municipality and homeowner association rules and regulations. Real Elite does not take electrical work.',
       },
       {
         question: 'What does a finished basement in Aspen Hill cost?',
@@ -7692,13 +7692,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in McLean, VA',
     metaTitle: 'Home Addition McLean VA | Real Elite',
     metaDescription:
-      'Home additions in McLean, VA. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Free written estimate after a site walk.',
+      'Home additions in McLean, VA. Apply for your residential addition/alteration building record online in PLUS under the Building tab. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a home addition in McLean?',
         answer:
-          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Land Development Services is open Monday through Thursday, 8 a.m. - 4 p.m., and Friday, 9:15 a.m. - 4 p.m.',
+          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Monday through Thursday from 8 a.m. to 4 p.m. and Friday from 9:15 a.m. to 4 p.m.',
       },
       {
         question: 'Does a McLean bump-out need a permit?',
@@ -7732,7 +7732,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Decks in McLean, VA are framed on the estate lots along Georgetown Pike and Chain Bridge Road, where the yard can take a full run of posts.',
-      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Land Development Services is open Monday through Thursday, 8 a.m. - 4 p.m., and Friday, 9:15 a.m. - 4 p.m. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Monday through Thursday from 8 a.m. to 4 p.m. and Friday from 9:15 a.m. to 4 p.m. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'The price for a McLean deck on an estate lot along Georgetown Pike or Chain Bridge Road is a free written estimate after a site walk.',
     ],
   },
@@ -7780,7 +7780,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Home additions in Great Falls, VA start on the large lots along Georgetown Pike, Riverbend Road, and Seneca Road.',
-      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Land Development Services is open Monday through Thursday, 8 a.m. - 4 p.m., and Friday, 9:15 a.m. - 4 p.m. Staff from the Permit Application Center, Health Department (if on well or septic), Building Plan Review, Site Technician Review team, Fire Marshal’s Office, Wastewater and Zoning may review your package for completeness and compliance with the building code and county ordinances. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Monday through Thursday from 8 a.m. to 4 p.m. and Friday from 9:15 a.m. to 4 p.m. Staff from the Permit Application Center, Health Department (if on well or septic), Building Plan Review, Site Technician Review team, Fire Marshal’s Office, Wastewater and Zoning may review your package for completeness and compliance with the building code and county ordinances. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'The price for a Great Falls addition on a large lot along Georgetown Pike, Riverbend Road, or Seneca Road is a free written estimate after a site walk.',
     ],
   },
@@ -7836,7 +7836,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Potomac, MD',
     metaTitle: 'Home Addition Potomac MD | Real Elite',
     metaDescription:
-      'Home additions in Potomac, MD. A building permit is required for all decks regardless of the height above grade. Free written estimate after a site walk.',
+      'Home additions in Potomac, MD. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7871,7 +7871,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Can Potomac deck details include a screened porch?',
         answer:
-          'Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads.',
+          'Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads.',
       },
     ],
     paragraphs: [
@@ -7895,7 +7895,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a Potomac screened porch?',
         answer:
-          'A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+          'A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
       },
     ],
     paragraphs: [
@@ -7943,7 +7943,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Which deck plans can skip a custom drawing in Bethesda?',
         answer:
-          'Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads.',
+          'Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads.',
       },
     ],
     paragraphs: [
@@ -7972,7 +7972,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Outdoor living in Bethesda, MD is a screened porch or a patio behind a Kenwood or Bradley Boulevard house, on a lot tighter than Potomac.',
-      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'The price for a screened porch or patio behind a Kenwood or Bradley Boulevard house in Bethesda is a free written estimate after a site walk.',
     ],
   },
