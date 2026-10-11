@@ -171,6 +171,15 @@ export const COMBO_CITY_SLUGS = [
   'takoma-park-md',
   'columbia-md',
   'springfield-va',
+
+  // Round 12, 2026-10-11. 28 new URLs: 4 area pages, 12 kitchens/bathrooms/
+  // basements pages, and 12 additions/decks/outdoor-living pages for McLean,
+  // Great Falls, Potomac, and Bethesda. Vienna, Chevy Chase, Arlington, and
+  // Falls Church stay deferred. No Brambleton. No Hagerstown combos.
+  'silver-spring-md',
+  'aspen-hill-md',
+  'bluemont-va',
+  'myersville-md',
 ] as const;
 export type ComboCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
@@ -7272,6 +7281,701 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
+  // ROUND12_SERVICES_START
+  'kitchens-silver-spring-md': {
+    h1: 'Kitchen Remodeling in Silver Spring, MD',
+    metaTitle: 'Kitchen Remodel Silver Spring MD | Real Elite',
+    metaDescription:
+      'Kitchen remodeling in Silver Spring, MD. An interior alteration will likely need a permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Silver Spring?',
+        answer:
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+      },
+      {
+        question: 'Does a Silver Spring cabinet replacement need a permit?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration will likely need a permit. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Silver Spring, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Silver Spring quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Silver Spring, MD starts along Georgia Avenue and Colesville Road, where many houses date from the late 1950s.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not need a permit. Plumbing questions go to WSSC. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Silver Spring quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+  'bathrooms-silver-spring-md': {
+    h1: 'Bathroom Remodeling in Silver Spring, MD',
+    metaTitle: 'Bath Remodel Silver Spring MD | Real Elite',
+    metaDescription:
+      'Bathroom remodeling in Silver Spring, MD. Bathroom caulking most likely will not need a permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Silver Spring?',
+        answer:
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. We confirm the steps before work starts.',
+      },
+      {
+        question: 'Does caulking a Silver Spring bath need a permit?',
+        answer:
+          'Bathroom caulking most likely will not need a permit. An interior alteration will likely need a permit. Plumbing questions go to WSSC. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does bathroom remodeling in Silver Spring, MD cost?',
+        answer:
+          'Every Silver Spring bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Silver Spring, MD is a late-1950s bath along Wayne Avenue and Georgia Avenue in the 20901 area.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Bathroom caulking most likely will not need a permit. An interior alteration will likely need a permit. Plumbing questions go to WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Every Silver Spring bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+  'basements-silver-spring-md': {
+    h1: 'Basement Finishing in Silver Spring, MD',
+    metaTitle: 'Basement Finish Silver Spring MD | Real Elite',
+    metaDescription:
+      'Basement finishing in Silver Spring, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Silver Spring, MD?',
+        answer:
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. An interior alteration will likely need a permit. We confirm the steps for this house before work starts.',
+      },
+      {
+        question: 'What is checked before a Silver Spring lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. This information does not include municipality and homeowner association rules and regulations. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does a finished basement in Silver Spring cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Silver Spring quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Silver Spring, MD is a lower level in a late-1950s house along Colesville Road in the 20901 area.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'A Silver Spring lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Silver Spring lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [{ href: '/service-areas/silver-spring-md', label: 'Silver Spring service area' }],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. An interior alteration will likely need a permit.',
+        ],
+      },
+    ],
+  },
+  'kitchens-aspen-hill-md': {
+    h1: 'Kitchen Remodeling in Aspen Hill, MD',
+    metaTitle: 'Kitchen Remodel Aspen Hill MD | Real Elite',
+    metaDescription:
+      'Kitchen remodeling in Aspen Hill, MD. The City of Rockville and the City of Gaithersburg are city permit only. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Aspen Hill?',
+        answer:
+          'The City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+      },
+      {
+        question: 'Does an Aspen Hill cabinet replacement need a permit?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration will likely need a permit. Plumbing questions go to WSSC. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Aspen Hill, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Aspen Hill quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Aspen Hill, MD starts on Aspen Hill Road and Connecticut Avenue, where many houses date from the mid-1960s.',
+      'The City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Aspen Hill quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+  'bathrooms-aspen-hill-md': {
+    h1: 'Bathroom Remodeling in Aspen Hill, MD',
+    metaTitle: 'Bath Remodel Aspen Hill MD | Real Elite',
+    metaDescription:
+      'Bathroom remodeling in Aspen Hill, MD, the 20853 area. An interior alteration will likely need a permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Aspen Hill?',
+        answer:
+          'When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+      },
+      {
+        question: 'What does bathroom remodeling in Aspen Hill, MD cost?',
+        answer:
+          'Every Aspen Hill bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+      {
+        question: 'Does caulking an Aspen Hill bath need a permit?',
+        answer:
+          'Bathroom caulking most likely will not need a permit. An interior alteration will likely need a permit. Plumbing questions go to WSSC. Real Elite does not take electrical work.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Aspen Hill, MD is a mid-1960s bath on Aspen Hill Road in the 20853 area, kept separate from Fallsgrove and King Farm.',
+      'The City of Rockville and the City of Gaithersburg are city permit only. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Bathroom caulking most likely will not need a permit. Plumbing questions go to WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Every Aspen Hill bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+  'basements-aspen-hill-md': {
+    h1: 'Basement Finishing in Aspen Hill, MD',
+    metaTitle: 'Basement Finish Aspen Hill MD | Real Elite',
+    metaDescription:
+      'Basement finishing in Aspen Hill, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Aspen Hill, MD?',
+        answer:
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240.',
+      },
+      {
+        question: 'What is checked before an Aspen Hill lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. This information does not include municipality and homeowner association rules and regulations. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does a finished basement in Aspen Hill cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not an Aspen Hill quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Aspen Hill, MD is a lower level in a mid-1960s house on Aspen Hill Road in the 20853 area.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. The City of Rockville and the City of Gaithersburg are city permit only. An interior alteration will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'An Aspen Hill lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for an Aspen Hill lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [{ href: '/service-areas/aspen-hill-md', label: 'Aspen Hill service area' }],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. An interior alteration will likely need a permit.',
+        ],
+      },
+    ],
+  },
+  'kitchens-bluemont-va': {
+    h1: 'Kitchen Remodeling in Bluemont, VA',
+    metaTitle: 'Kitchen Remodel Bluemont VA | Real Elite',
+    metaDescription:
+      'Kitchen remodeling in Bluemont, VA. The drive from Martinsburg is 61 minutes on Route 7. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Bluemont?',
+        answer:
+          'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Hours: Monday through Friday, 8:30 a.m. to 5 p.m.',
+      },
+      {
+        question: 'Does a Bluemont kitchen on well and septic need a health step?',
+        answer:
+          'If your lot is served by well and septic, contact the Health Department to obtain approval before applying for permits. Real Elite does not take electrical work. Real Elite does not take gas work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Bluemont, VA cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Bluemont quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Bluemont, VA starts on the ridge along Route 7, where many houses date from the early 1980s. The drive from Martinsburg is 61 minutes on Route 7.',
+      'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175. Residential alterations change the use of existing square footage, not including condominiums. If your property is located in an incorporated town within Loudoun County, submit an approved zoning permit from the town with your application. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
+      'Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Bluemont quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+  'bathrooms-bluemont-va': {
+    h1: 'Bathroom Remodeling in Bluemont, VA',
+    metaTitle: 'Bath Remodel Bluemont VA | Real Elite',
+    metaDescription:
+      'Bathroom remodeling in Bluemont, VA, on the 20135 ridge. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Bluemont?',
+        answer:
+          'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Inspections must be scheduled one work day in advance.',
+      },
+      {
+        question: 'What does bathroom remodeling in Bluemont, VA cost?',
+        answer:
+          'Every Bluemont bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Bluemont, VA is an early-1980s bath on a ridge lot west of Round Hill, in the 20135 area.',
+      'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Hours: Monday through Friday, 8:30 a.m. to 5 p.m. If your lot is served by well and septic, contact the Health Department to obtain approval before applying for permits. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
+      'Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. Every Bluemont bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+  'basements-bluemont-va': {
+    h1: 'Basement Finishing in Bluemont, VA',
+    metaTitle: 'Basement Finish Bluemont VA | Real Elite',
+    metaDescription:
+      'Basement finishing in Bluemont, VA. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Bluemont, VA?',
+        answer:
+          'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Residential alterations change the use of existing square footage, not including condominiums. We confirm the steps for this house before work starts.',
+      },
+      {
+        question: 'What is checked before a Bluemont lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. Some parcels have conservation easements that may limit what is permitted on a property. Health department approval will also be required if a bedroom is being added for a dwelling served by well and septic. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does a finished basement in Bluemont cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Bluemont quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Bluemont, VA is a lower level in an early-1980s house on the ridge along Route 7. The drive from Martinsburg is 61 minutes on Route 7.',
+      'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175. Residential alterations change the use of existing square footage, not including condominiums. Inspections must be scheduled one work day in advance. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
+      'A Bluemont lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Bluemont lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [{ href: '/service-areas/bluemont-va', label: 'Bluemont service area' }],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Residential alterations change the use of existing square footage, not including condominiums.',
+        ],
+      },
+    ],
+  },
+  'kitchens-myersville-md': {
+    h1: 'Kitchen Remodeling in Myersville, MD',
+    metaTitle: 'Kitchen Remodel Myersville MD | Real Elite',
+    metaDescription:
+      'Kitchen remodeling in Myersville, MD. The drive from Martinsburg is 55 minutes on I-70. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a kitchen remodel in Myersville?',
+        answer:
+          'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall.',
+      },
+      {
+        question: 'Does a Myersville interior change need approval?',
+        answer:
+          'Approval is required for modifications, alterations or changing the usage of any building or structure. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does kitchen remodeling in Myersville, MD cost?',
+        answer:
+          'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Myersville quote.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Myersville, MD starts on Main Street, where many houses date from the early 1980s. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets.',
+      'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Hours are Monday through Friday, 8 a.m. to 4 p.m. Zoning certificates for properties within municipalities must be applied for prior to Building Permit application at the Department of Permits and Inspections. Approval is required for modifications, alterations or changing the usage of any building or structure. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Myersville quote. The price for this house is a free written estimate after a site walk.',
+    ],
+  },
+  'bathrooms-myersville-md': {
+    h1: 'Bathroom Remodeling in Myersville, MD',
+    metaTitle: 'Bath Remodel Myersville MD | Real Elite',
+    metaDescription:
+      'Bathroom remodeling in Myersville, MD, the 21773 area on Main Street. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a bathroom remodel in Myersville?',
+        answer:
+          'Town questions go to 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone 301-293-4281. When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313.',
+      },
+      {
+        question: 'What does bathroom remodeling in Myersville, MD cost?',
+        answer:
+          'Every Myersville bathroom is a free written estimate after a site walk. Waterproofing, the shower pan, tile, and any plumbing move are separate lines.',
+      },
+    ],
+    paragraphs: [
+      'Bathroom remodeling in Myersville, MD is an early-1980s bath on Main Street in the 21773 area.',
+      'Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. The City of Frederick and Mt. Airy are responsible for their own building permits. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. Every Myersville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+  },
+  'basements-myersville-md': {
+    h1: 'Basement Finishing in Myersville, MD',
+    metaTitle: 'Basement Finish Myersville MD | Real Elite',
+    metaDescription:
+      'Basement finishing in Myersville, MD. Planning ranges start at $55,000. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits basement finishing in Myersville, MD?',
+        answer:
+          'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Zoning certificates for properties within municipalities must be applied for prior to Building Permit application at the Department of Permits and Inspections.',
+      },
+      {
+        question: 'What is checked before a Myersville lower level is finished?',
+        answer:
+          'Headroom, the stair, and moisture. Approval is required for modifications, alterations or changing the usage of any building or structure. Real Elite does not take electrical work.',
+      },
+      {
+        question: 'What does a finished basement in Myersville cost?',
+        answer:
+          'A finished basement can be planned from $55,000. That figure is a planning reference, not a Myersville quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
+      },
+    ],
+    paragraphs: [
+      'Basement finishing in Myersville, MD is a lower level in an early-1980s house on Main Street. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets.',
+      'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Hours are Monday through Friday, 8 a.m. to 4 p.m. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone 301-293-4281. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'A Myersville lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'cost',
+        title: 'Cost',
+        paragraphs: [
+          'Planning for a Myersville lower level can start at $55,000. The price for the house is a free written estimate after a site walk.',
+        ],
+        links: [{ href: '/service-areas/myersville-md', label: 'Myersville service area' }],
+      },
+      {
+        id: 'permit',
+        title: 'Permits',
+        paragraphs: [
+          'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Approval is required for modifications, alterations or changing the usage of any building or structure.',
+        ],
+      },
+    ],
+  },
+  'additions-mclean-va': {
+    h1: 'Home Additions in McLean, VA',
+    metaTitle: 'Home Addition McLean VA | Real Elite',
+    metaDescription:
+      'Home additions in McLean, VA. A new addition to an existing home includes decks, sunrooms, and screen porches. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in McLean?',
+        answer:
+          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Land Development Services is open Monday through Thursday, 8 a.m. - 4 p.m., and Friday, 9:15 a.m. - 4 p.m.',
+      },
+      {
+        question: 'Does a McLean bump-out need a permit?',
+        answer:
+          'A new addition to an existing home includes decks, sunrooms, and screen porches. Apply for your residential addition/alteration building record online in PLUS under the Building tab.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in McLean, VA start on the estate lots along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. A new addition to an existing home includes decks, sunrooms, and screen porches. Apply for your residential addition/alteration building record online in PLUS under the Building tab. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+  'decks-mclean-va': {
+    h1: 'Decks in McLean, VA',
+    metaTitle: 'Deck Builder McLean VA | Real Elite',
+    metaDescription:
+      'Decks in McLean, VA. A new addition to an existing home includes decks, sunrooms, and screen porches. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a McLean deck need a permit?',
+        answer:
+          'A new addition to an existing home includes decks, sunrooms, and screen porches. When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801.',
+      },
+      {
+        question: 'Where is a McLean deck filed?',
+        answer:
+          'Apply for your residential addition/alteration building record online in PLUS under the Building tab. The residential addition page lists Deck, Screened Porch, and Sunroom under Additional Square Footage.',
+      },
+    ],
+    paragraphs: [
+      'Decks in McLean, VA are framed on the estate lots along Georgetown Pike and Chain Bridge Road, where the yard can take a full run of posts.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Land Development Services is open Monday through Thursday, 8 a.m. - 4 p.m., and Friday, 9:15 a.m. - 4 p.m. A new addition to an existing home includes decks, sunrooms, and screen porches. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the deck is a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-mclean-va': {
+    h1: 'Outdoor Living in McLean, VA',
+    metaTitle: 'Outdoor Living McLean VA | Real Elite',
+    metaDescription:
+      'Outdoor living in McLean, VA. On-grade paver and concrete patios do not need a permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a McLean patio need a permit?',
+        answer:
+          'On-grade paver and concrete patios do not need a permit. A new addition to an existing home includes decks, sunrooms, and screen porches.',
+      },
+      {
+        question: 'Who permits a McLean screened porch?',
+        answer:
+          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. The residential addition page lists Deck, Screened Porch, and Sunroom under Additional Square Footage.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in McLean, VA is a screened porch or a sunroom on an estate lot along Old Dominion Drive, not a spare bedroom.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. On-grade paver and concrete patios do not need a permit. A new addition to an existing home includes decks, sunrooms, and screen porches. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price is a free written estimate after a site walk.',
+    ],
+  },
+  'additions-great-falls-va': {
+    h1: 'Home Additions in Great Falls, VA',
+    metaTitle: 'Home Addition Great Falls VA | Real Elite',
+    metaDescription:
+      'Home additions in Great Falls, VA. If the house is on a well or septic system, the Health Department may review the package. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Great Falls?',
+        answer:
+          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. If the house is on a well or septic system, the Health Department may review the package.',
+      },
+      {
+        question: 'Does a Great Falls second story need a permit?',
+        answer:
+          'A new addition to an existing home includes decks, sunrooms, and screen porches. Apply for your residential addition/alteration building record online in PLUS under the Building tab.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in Great Falls, VA start on the large lots along Georgetown Pike, Riverbend Road, and Seneca Road.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Land Development Services is open Monday through Thursday, 8 a.m. - 4 p.m., and Friday, 9:15 a.m. - 4 p.m. If the house is on a well or septic system, the Health Department may review the package. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+  'decks-great-falls-va': {
+    h1: 'Decks in Great Falls, VA',
+    metaTitle: 'Deck Builder Great Falls VA | Real Elite',
+    metaDescription:
+      'Decks in Great Falls, VA. A new addition to an existing home includes decks, sunrooms, and screen porches. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Great Falls deck need a permit?',
+        answer:
+          'A new addition to an existing home includes decks, sunrooms, and screen porches. Apply for your residential addition/alteration building record online in PLUS under the Building tab.',
+      },
+      {
+        question: 'Who answers deck questions for a Great Falls lot?',
+        answer:
+          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. If the house is on a well or septic system, the Health Department may review the package.',
+      },
+    ],
+    paragraphs: [
+      'Decks in Great Falls, VA sit on the large lots along Riverbend Road and Seneca Road, where the frame has room to clear the setback.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. A new addition to an existing home includes decks, sunrooms, and screen porches. The residential addition page lists Deck, Screened Porch, and Sunroom under Additional Square Footage. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the deck is a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-great-falls-va': {
+    h1: 'Outdoor Living in Great Falls, VA',
+    metaTitle: 'Outdoor Living Great Falls VA | Real Elite',
+    metaDescription:
+      'Outdoor living in Great Falls, VA. On-grade paver and concrete patios do not need a permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Is a Great Falls screened porch the same record as a patio?',
+        answer:
+          'On-grade paver and concrete patios do not need a permit. A new addition to an existing home includes decks, sunrooms, and screen porches. The residential addition page lists Deck, Screened Porch, and Sunroom under Additional Square Footage.',
+      },
+      {
+        question: 'Who permits outdoor living on a Great Falls parcel?',
+        answer:
+          'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. If the house is on a well or septic system, the Health Department may review the package.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Great Falls, VA is a screened porch or a sunroom on a large lot along Georgetown Pike, west of the McLean estates.',
+      'When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. On-grade paver and concrete patios do not need a permit. A new addition to an existing home includes decks, sunrooms, and screen porches. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price is a free written estimate after a site walk.',
+    ],
+  },
+  'additions-potomac-md': {
+    h1: 'Home Additions in Potomac, MD',
+    metaTitle: 'Home Addition Potomac MD | Real Elite',
+    metaDescription:
+      'Home additions in Potomac, MD. A building permit is required for all decks regardless of the height above grade. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Potomac?',
+        answer:
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures.',
+      },
+      {
+        question: 'Do Potomac covenants replace the county permit?',
+        answer:
+          'The County does not enforce covenants and deed restrictions. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in Potomac, MD start on the wooded lots along River Road and Falls Road, where a wing has room beside the existing house.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. Properties with an individual well and septic system will have additional requirements. An addition will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+  'decks-potomac-md': {
+    h1: 'Decks in Potomac, MD',
+    metaTitle: 'Deck Builder Potomac MD | Real Elite',
+    metaDescription:
+      'Decks in Potomac, MD. A building permit is required for all decks regardless of the height above grade. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Potomac deck need a permit at any height?',
+        answer:
+          'A building permit is required for all decks regardless of the height above grade. Inspections shall be requested at least 24 hours prior to the inspection date.',
+      },
+      {
+        question: 'Can Potomac deck details include a screened porch?',
+        answer:
+          'Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads.',
+      },
+    ],
+    paragraphs: [
+      'Decks in Potomac, MD are built on the wooded lots along Falls Road and Glen Road, where the grade often drops away from the first floor.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. A building permit is required for all decks regardless of the height above grade. A deck will likely need a permit. Properties with an individual well and septic system will have additional requirements. The County does not enforce covenants and deed restrictions. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the deck is a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-potomac-md': {
+    h1: 'Outdoor Living in Potomac, MD',
+    metaTitle: 'Outdoor Living Potomac MD | Real Elite',
+    metaDescription:
+      'Outdoor living in Potomac, MD. Patios most likely will not need a permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Potomac patio need a permit?',
+        answer:
+          'Patios most likely will not need a permit. A building permit is required for all decks regardless of the height above grade.',
+      },
+      {
+        question: 'Who permits a Potomac screened porch?',
+        answer:
+          'A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Potomac, MD is a screened porch or a patio on a wooded lot along River Road, not a finished bedroom.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Patios most likely will not need a permit. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price is a free written estimate after a site walk.',
+    ],
+  },
+  'additions-bethesda-md': {
+    h1: 'Home Additions in Bethesda, MD',
+    metaTitle: 'Home Addition Bethesda MD | Real Elite',
+    metaDescription:
+      'Home additions in Bethesda, MD. Inspections shall be requested at least 24 hours prior to the inspection date. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Bethesda?',
+        answer:
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary.',
+      },
+      {
+        question: 'What inspection timing does a Bethesda addition follow?',
+        answer:
+          'Inspections shall be requested at least 24 hours prior to the inspection date. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in Bethesda, MD start on the lots in 20816 along Bradley Boulevard and in Kenwood, and on the 20817 side toward the boulevard.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. An addition will likely need a permit. The County does not enforce covenants and deed restrictions. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the house is a free written estimate after a site walk.',
+    ],
+  },
+  'decks-bethesda-md': {
+    h1: 'Decks in Bethesda, MD',
+    metaTitle: 'Deck Builder Bethesda MD | Real Elite',
+    metaDescription:
+      'Decks in Bethesda, MD. A building permit is required for all decks regardless of the height above grade. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Bethesda deck need a permit at any height?',
+        answer:
+          'A building permit is required for all decks regardless of the height above grade. A deck will likely need a permit.',
+      },
+      {
+        question: 'Which deck plans can skip a custom drawing in Bethesda?',
+        answer:
+          'Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads.',
+      },
+    ],
+    paragraphs: [
+      'Decks in Bethesda, MD are framed behind the houses in Kenwood and along Bradley Boulevard, where the yard is tighter than a Potomac lot.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. A building permit is required for all decks regardless of the height above grade. The County does not enforce covenants and deed restrictions. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price for the deck is a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-bethesda-md': {
+    h1: 'Outdoor Living in Bethesda, MD',
+    metaTitle: 'Outdoor Living Bethesda MD | Real Elite',
+    metaDescription:
+      'Outdoor living in Bethesda, MD. Patios most likely will not need a permit. Free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Bethesda patio need a permit?',
+        answer:
+          'Patios most likely will not need a permit. A building permit is required for all decks regardless of the height above grade.',
+      },
+      {
+        question: 'Who permits a Bethesda screened porch?',
+        answer:
+          'A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Bethesda, MD is a screened porch or a patio behind a Kenwood or Bradley Boulevard house, on a lot tighter than Potomac.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Patios most likely will not need a permit. These decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'The price is a free written estimate after a site walk.',
+    ],
+  },
 };
 
 /**

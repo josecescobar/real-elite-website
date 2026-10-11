@@ -634,6 +634,19 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   { slug: 'colesville-md', city: 'Colesville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'takoma-park-md', city: 'Takoma Park', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
   { slug: 'columbia-md', city: 'Columbia', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+
+  /* ---------- Round 12 towns, 2026-10-11 ----------
+   * Four new area pages. Silver Spring 20901 and Aspen Hill 20853 stay
+   * unparented Montgomery rows, distinct from Rockville and from each other.
+   * Bluemont parents to Loudoun County. Myersville stays unparented so the
+   * region label stays Frederick County. Empty legacyTiers. Premium, so the
+   * same-week radius sentence stays off. Maryland is in the service area.
+   * Do not print a Maryland license caveat. No Brambleton.
+   */
+  { slug: 'silver-spring-md', city: 'Silver Spring', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'aspen-hill-md', city: 'Aspen Hill', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'bluemont-va', city: 'Bluemont', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
+  { slug: 'myersville-md', city: 'Myersville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -2661,6 +2674,119 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  // ROUND12_AREAS_START
+  'silver-spring-md': {
+    seoTitle: 'Remodeling Contractor in Silver Spring, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Silver Spring, MD',
+    seoDescription:
+      'Remodeling contractor in Silver Spring, MD, the 20901 area along Georgia Avenue. Many houses date from the late 1950s. Free written estimate after a site walk.',
+    description:
+      "Silver Spring remodeling is the 20901 area, along Georgia Avenue, Colesville Road, and Wayne Avenue. Many of the houses date from the late 1950s. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south.\n\nWhen the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary. An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not need a permit. Bathroom caulking most likely will not need a permit.\n\nThis information does not include municipality and homeowner association rules and regulations. Plumbing questions go to WSSC. Electrical work will likely need a permit. A well or a septic system will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Georgia Avenue', 'Colesville Road', 'Wayne Avenue', '20901', 'Sligo'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['colesville-md', 'takoma-park-md', 'kensington-md', 'olney-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Silver Spring, MD?',
+        answer:
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary.',
+      },
+      {
+        question: 'Does a Silver Spring cabinet replacement need a permit?',
+        answer:
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. An interior alteration will likely need a permit. Plumbing questions go to WSSC. We confirm the steps for this house before work starts.',
+      },
+      {
+        question: 'What does remodeling in Silver Spring cost?',
+        answer:
+          'Every Silver Spring kitchen, bathroom, and lower level is a free written estimate after a site walk. A late-1950s house on Georgia Avenue and a house on Wayne Avenue are not the same scope.',
+      },
+    ],
+  },
+  'aspen-hill-md': {
+    seoTitle: 'Remodeling Contractor in Aspen Hill, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Aspen Hill, MD',
+    seoDescription:
+      'Remodeling contractor in Aspen Hill, MD, the 20853 area along Aspen Hill Road. Many houses date from the mid-1960s. Free written estimate after a site walk.',
+    description:
+      "Aspen Hill remodeling is the 20853 area, along Aspen Hill Road, Georgia Avenue, and Connecticut Avenue. Many of the houses date from the mid-1960s. The drive from Martinsburg is I-81 south to I-70 east, then I-270 south. The streets here stay separate from Fallsgrove and King Farm.\n\nThe City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary.\n\nAn interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not need a permit. This information does not include municipality and homeowner association rules and regulations. Plumbing questions go to WSSC. Electrical work will likely need a permit. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Aspen Hill Road', 'Georgia Avenue', 'Connecticut Avenue', '20853', 'Bel Pre Road'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['rockville-md', 'derwood-md', 'olney-md', 'kensington-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Aspen Hill, MD?',
+        answer:
+          'The City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+      },
+      {
+        question: 'Does an Aspen Hill kitchen change need a permit?',
+        answer:
+          'An interior alteration will likely need a permit. Installing, repairing, or replacing cabinets most likely will not need a permit. Plumbing questions go to WSSC. We confirm the steps for this house before work starts.',
+      },
+      {
+        question: 'What does remodeling in Aspen Hill cost?',
+        answer:
+          'Every Aspen Hill kitchen, bathroom, and lower level is a free written estimate after a site walk. A mid-1960s house on Aspen Hill Road is priced on that walk.',
+      },
+    ],
+  },
+  'bluemont-va': {
+    seoTitle: 'Remodeling Contractor in Bluemont, VA | Real Elite',
+    seoH1: 'Remodeling Contractor in Bluemont, VA',
+    seoDescription:
+      'Remodeling contractor in Bluemont, VA, the 20135 ridge along Route 7. The drive is 61 minutes. Free written estimate after a site walk.',
+    description:
+      "Bluemont remodeling is the 20135 area on the ridge along Route 7, west of Round Hill. Many of the houses date from the early 1980s, on rural estate lots. The drive from Martinsburg is 61 minutes on Route 7. Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius.\n\nWhen the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Hours: Monday through Friday, 8:30 a.m. to 5 p.m. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175. If your property is located in an incorporated town within Loudoun County, submit an approved zoning permit from the town with your application.\n\nResidential alterations change the use of existing square footage, not including condominiums. If your lot is served by well and septic, contact the Health Department to obtain approval before applying for permits. Some parcels have conservation easements that may limit what is permitted on a property. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Route 7', 'Snickers Gap', '20135', 'Round Hill side', 'ridge lots'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['round-hill-va', 'purcellville-va', 'hamilton-va', 'berryville-va'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Bluemont, VA?',
+        answer:
+          'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Hours: Monday through Friday, 8:30 a.m. to 5 p.m. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175.',
+      },
+      {
+        question: 'Is Bluemont inside the same-week visit radius?',
+        answer:
+          'The drive from Martinsburg is 61 minutes on Route 7. Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is still a free written estimate after a site walk.',
+      },
+      {
+        question: 'What does remodeling in Bluemont cost?',
+        answer:
+          'Every Bluemont kitchen, bathroom, and lower level is a free written estimate after a site walk. An early-1980s house on a ridge lot is priced on that walk.',
+      },
+    ],
+  },
+  'myersville-md': {
+    seoTitle: 'Remodeling Contractor in Myersville, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Myersville, MD',
+    seoDescription:
+      'Remodeling contractor in Myersville, MD, the 21773 area on Main Street. The drive is 55 minutes. Free written estimate after a site walk.',
+    description:
+      "Myersville remodeling is the 21773 area on Main Street. Many of the houses date from the early 1980s. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets. Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius.\n\nWhen the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Hours are Monday through Friday, 8 a.m. to 4 p.m. The City of Frederick and Mt. Airy are responsible for their own building permits. Zoning certificates for properties within municipalities must be applied for prior to Building Permit application at the Department of Permits and Inspections.\n\nApplicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone 301-293-4281. Approval is required for modifications, alterations or changing the usage of any building or structure. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+    neighborhoods: ['Main Street', '21773', 'US 40', 'I-70', 'Town Hall'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    nearbySlugs: ['frederick-md', 'middletown-md', 'boonsboro-md', 'brunswick-md'],
+    faqs: [
+      {
+        question: 'Who permits a remodel in Myersville, MD?',
+        answer:
+          'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone 301-293-4281.',
+      },
+      {
+        question: 'Is Myersville inside the same-week visit radius?',
+        answer:
+          'The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets. Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is still a free written estimate after a site walk.',
+      },
+      {
+        question: 'What does remodeling in Myersville cost?',
+        answer:
+          'Every Myersville kitchen, bathroom, and lower level is a free written estimate after a site walk. An early-1980s house on Main Street is priced on that walk.',
+      },
+    ],
+  },
 };
 
 /**
@@ -2749,7 +2875,9 @@ export function areaRegionLabel(area: ServiceArea): string {
       area.slug === 'rockville-md' ||
       area.slug === 'derwood-md' ||
       area.slug === 'colesville-md' ||
-      area.slug === 'takoma-park-md'
+      area.slug === 'takoma-park-md' ||
+      area.slug === 'silver-spring-md' ||
+      area.slug === 'aspen-hill-md'
     ) {
       return 'Montgomery County area';
     }

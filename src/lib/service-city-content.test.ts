@@ -778,6 +778,22 @@ describe('comboPublishesPricing', () => {
         'outdoor-living-dunn-loring-va',
         'outdoor-living-fairfax-station-va',
         'outdoor-living-oakton-va',
+        'bathrooms-silver-spring-md',
+        'bathrooms-aspen-hill-md',
+        'bathrooms-bluemont-va',
+        'bathrooms-myersville-md',
+        'additions-mclean-va',
+        'additions-great-falls-va',
+        'additions-potomac-md',
+        'additions-bethesda-md',
+        'decks-mclean-va',
+        'decks-great-falls-va',
+        'decks-potomac-md',
+        'decks-bethesda-md',
+        'outdoor-living-mclean-va',
+        'outdoor-living-great-falls-va',
+        'outdoor-living-potomac-md',
+        'outdoor-living-bethesda-md',
       ].sort()
     );
   });
@@ -840,13 +856,12 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/203 premium service combos: 170 after round 9, plus 12 round 10
-    // additions, decks, and outdoor-living pages for Dunn Loring, Fairfax
-    // Station, Oakton, and Clifton, plus 21 round 11 service pages. The 6
-    // new area pages are separate, so round 11 is still 27 pages. All clean.
+    // 0/227 premium service combos: 203 after round 11, plus 24 round 12
+    // service pages (12 kitchens/bathrooms/basements and 12 additions, decks,
+    // and outdoor-living pages). The 4 new area pages are separate. All clean.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 203 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 227 });
   });
 
   /**
@@ -1386,6 +1401,10 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-fairfax-station-va',
       'outdoor-living-oakton-va',
       'outdoor-living-clifton-va',
+      'outdoor-living-mclean-va',
+      'outdoor-living-great-falls-va',
+      'outdoor-living-potomac-md',
+      'outdoor-living-bethesda-md',
     ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
@@ -1498,7 +1517,16 @@ describe('REA-2385 round 6 Tier A towns', () => {
   });
 
   it('publishes no other combo for these towns', () => {
-    const allowed = new Set(PAGES.map(([service, city]) => `${service}-${city}`));
+    const allowed = new Set([
+      ...PAGES.map(([service, city]) => `${service}-${city}`),
+      // Round 12 adds additions, decks, and outdoor living for Bethesda and Potomac.
+      'additions-bethesda-md',
+      'decks-bethesda-md',
+      'outdoor-living-bethesda-md',
+      'additions-potomac-md',
+      'decks-potomac-md',
+      'outdoor-living-potomac-md',
+    ]);
     for (const city of [
       'garrett-park-md',
       'bethesda-md',
@@ -1514,7 +1542,6 @@ describe('REA-2385 round 6 Tier A towns', () => {
       }
     }
     expect(CONTENT).not.toHaveProperty('kitchens-brambleton-va');
-    expect(CONTENT).not.toHaveProperty('outdoor-living-bethesda-md');
     expect(CONTENT).not.toHaveProperty('stairs-arlington-va');
   });
 
@@ -2210,9 +2237,12 @@ describe('REA-2495 round 11 richest-county towns', () => {
     expect(body).not.toMatch(/MHIC|maryland license|census|CDP/i);
   });
 
-  it('matches every source-table row to the copy and every permit sentence to a row', () => {
+  it.each([
+    ['docs/seo-round-11-source-table.md', round11PermitSentences],
+    ['docs/seo-round-12-source-table.md', round12PermitSentences],
+  ] as const)('%s matches every source-table row to the copy and every permit sentence to a row', (file, sentences) => {
     const root = nodePath.resolve(__dirname, '../..');
-    const tablePath = nodePath.join(root, 'docs/seo-round-11-source-table.md');
+    const tablePath = nodePath.join(root, file);
     const table = fs.readFileSync(tablePath, 'utf8');
     const constantsSrc = fs.readFileSync(nodePath.join(root, 'src/lib/constants.ts'), 'utf8');
     const contentSrc = fs.readFileSync(nodePath.join(root, 'src/lib/service-city-content.ts'), 'utf8');
@@ -2229,21 +2259,24 @@ describe('REA-2495 round 11 richest-county towns', () => {
       expect(row.opened, `L${row.line} opened`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
 
-    const sentences = round11PermitSentences(constantsSrc, contentSrc);
+    const found = sentences(constantsSrc, contentSrc);
     const firstCells = rows.map((row) => row.sentence);
-    const uncovered = sentences.filter(
+    const uncovered = found.filter(
       (sentence) => !firstCells.some((cell) => cell.length >= 12 && coversSentence(cell, sentence)),
     );
     expect(uncovered).toEqual([]);
-    for (const sentence of sentences) {
+    for (const sentence of found) {
       const exact = firstCells.filter((cell) => cell === sentence);
       if (exact.length > 0) expect(exact).toHaveLength(1);
     }
   });
 
-  it('requires the quote to name the town, ZIP, or office a boundary sentence is about', () => {
+  it.each([
+    'docs/seo-round-11-source-table.md',
+    'docs/seo-round-12-source-table.md',
+  ])('%s requires the quote to name the town, ZIP, or office a boundary sentence is about', (file) => {
     const root = nodePath.resolve(__dirname, '../..');
-    const table = fs.readFileSync(nodePath.join(root, 'docs/seo-round-11-source-table.md'), 'utf8');
+    const table = fs.readFileSync(nodePath.join(root, file), 'utf8');
     const misses = parseSourceTable(table).flatMap((row) => {
       const anchors = boundaryAnchors(row.sentence);
       if (!anchors) return [];
@@ -2258,14 +2291,17 @@ describe('REA-2495 round 11 richest-county towns', () => {
     expect(misses).toEqual([]);
   });
 
-  it('rejects a new-diff negation the cited quote does not itself state', () => {
+  it.each([
+    ['docs/seo-round-11-source-table.md', round11PermitSentences],
+    ['docs/seo-round-12-source-table.md', round12PermitSentences],
+  ] as const)('%s rejects a negation the cited quote does not itself state', (file, sentences) => {
     // A by-itself, mailing-address, or does-not-name/set/tell/decide sentence passes only when the quote contains that same phrase; any other does-not/cannot/may-not sentence passes only when the quote contains not, no, or cannot.
     const root = nodePath.resolve(__dirname, '../..');
-    const table = fs.readFileSync(nodePath.join(root, 'docs/seo-round-11-source-table.md'), 'utf8');
+    const table = fs.readFileSync(nodePath.join(root, file), 'utf8');
     const constantsSrc = fs.readFileSync(nodePath.join(root, 'src/lib/constants.ts'), 'utf8');
     const contentSrc = fs.readFileSync(nodePath.join(root, 'src/lib/service-city-content.ts'), 'utf8');
     const rows = parseSourceTable(table);
-    const misses = round11PermitSentences(constantsSrc, contentSrc).flatMap((sentence) => {
+    const misses = sentences(constantsSrc, contentSrc).flatMap((sentence) => {
       if (!NEGATION_SENTENCE.test(sentence)) return [];
       const quote = rows.find((row) => coversSentence(row.sentence, sentence))?.quote ?? '';
       if (quoteLicensesNegation(sentence, quote)) return [];
@@ -2307,6 +2343,8 @@ function parseSourceTable(markdown: string): SourceRow[] {
     const rawUrl = cells[1];
     const resolvedUrl = /^https:\/\//.test(rawUrl) ? rawUrl : rawUrl === 'same PDF' ? previousUrl : rawUrl;
     if (/^https:\/\//.test(rawUrl)) previousUrl = rawUrl;
+    // Gap-table rows sit above the source rows and do not cite a URL.
+    if (!/^https:\/\//.test(resolvedUrl)) continue;
     rows.push({
       line: index + 1,
       sentence: cells[0],
@@ -2337,6 +2375,16 @@ const BOUNDARY_TOWNS = [
   'Columbia',
   'Wheaton',
   'Fairfax',
+  'Silver Spring',
+  'Aspen Hill',
+  'Bluemont',
+  'Myersville',
+  'McLean',
+  'Great Falls',
+  'Bethesda',
+  'Potomac',
+  'Leesburg',
+  'Frederick',
 ];
 
 /**
@@ -2460,18 +2508,7 @@ function sliceBetween(source: string, startMarker: string, endMarker: string): s
   return source.slice(start, end);
 }
 
-/** Permit and jurisdiction sentences in the six new area entries and 21 new service entries. */
-function round11PermitSentences(constantsSrc: string, contentSrc: string): string[] {
-  const area = sliceBetween(
-    constantsSrc,
-    "  'annandale-va': {",
-    '\n};\n\n/**\n * Every area that currently publishes'
-  );
-  const services = sliceBetween(
-    contentSrc,
-    '  // ── ROUND 11 · ANNANDALE, VA',
-    '\n};\n\n/**\n * The most specific published URL'
-  );
+function collectPermitSentences(area: string, services: string): string[] {
   const seen = new Set<string>();
   const sentences: string[] = [];
   for (const literal of [...stringLiterals(area), ...stringLiterals(services)]) {
@@ -2485,6 +2522,32 @@ function round11PermitSentences(constantsSrc: string, contentSrc: string): strin
     }
   }
   return sentences;
+}
+
+/** Permit and jurisdiction sentences in the six round 11 area entries and 21 service entries. */
+function round11PermitSentences(constantsSrc: string, contentSrc: string): string[] {
+  const area = sliceBetween(constantsSrc, "  'annandale-va': {", '  // ROUND12_AREAS_START');
+  const services = sliceBetween(
+    contentSrc,
+    '  // ── ROUND 11 · ANNANDALE, VA',
+    '  // ROUND12_SERVICES_START'
+  );
+  return collectPermitSentences(area, services);
+}
+
+/** Permit and jurisdiction sentences in the four round 12 area entries and 24 service entries. */
+function round12PermitSentences(constantsSrc: string, contentSrc: string): string[] {
+  const area = sliceBetween(
+    constantsSrc,
+    '  // ROUND12_AREAS_START',
+    '\n};\n\n/**\n * Every area that currently publishes'
+  );
+  const services = sliceBetween(
+    contentSrc,
+    '  // ROUND12_SERVICES_START',
+    '\n};\n\n/**\n * The most specific published URL'
+  );
+  return collectPermitSentences(area, services);
 }
 
 describe('REA-2476 round 10 Fairfax additions and decks', () => {
@@ -2582,5 +2645,124 @@ describe('REA-2476 round 10 Fairfax additions and decks', () => {
     expect(dunn).toMatch(/If the parcel is inside the Town of Vienna/);
     expect(dunn).not.toMatch(/703-255-6300/);
     expect(dunn).toMatch(/703-222-0801/);
+  });
+});
+
+describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () => {
+  const PAGES = [
+    ['kitchens', 'silver-spring-md', 'Kitchen Remodeling in Silver Spring, MD'],
+    ['bathrooms', 'silver-spring-md', 'Bathroom Remodeling in Silver Spring, MD'],
+    ['basements', 'silver-spring-md', 'Basement Finishing in Silver Spring, MD'],
+    ['kitchens', 'aspen-hill-md', 'Kitchen Remodeling in Aspen Hill, MD'],
+    ['bathrooms', 'aspen-hill-md', 'Bathroom Remodeling in Aspen Hill, MD'],
+    ['basements', 'aspen-hill-md', 'Basement Finishing in Aspen Hill, MD'],
+    ['kitchens', 'bluemont-va', 'Kitchen Remodeling in Bluemont, VA'],
+    ['bathrooms', 'bluemont-va', 'Bathroom Remodeling in Bluemont, VA'],
+    ['basements', 'bluemont-va', 'Basement Finishing in Bluemont, VA'],
+    ['kitchens', 'myersville-md', 'Kitchen Remodeling in Myersville, MD'],
+    ['bathrooms', 'myersville-md', 'Bathroom Remodeling in Myersville, MD'],
+    ['basements', 'myersville-md', 'Basement Finishing in Myersville, MD'],
+    ['additions', 'mclean-va', 'Home Additions in McLean, VA'],
+    ['decks', 'mclean-va', 'Decks in McLean, VA'],
+    ['outdoor-living', 'mclean-va', 'Outdoor Living in McLean, VA'],
+    ['additions', 'great-falls-va', 'Home Additions in Great Falls, VA'],
+    ['decks', 'great-falls-va', 'Decks in Great Falls, VA'],
+    ['outdoor-living', 'great-falls-va', 'Outdoor Living in Great Falls, VA'],
+    ['additions', 'potomac-md', 'Home Additions in Potomac, MD'],
+    ['decks', 'potomac-md', 'Decks in Potomac, MD'],
+    ['outdoor-living', 'potomac-md', 'Outdoor Living in Potomac, MD'],
+    ['additions', 'bethesda-md', 'Home Additions in Bethesda, MD'],
+    ['decks', 'bethesda-md', 'Decks in Bethesda, MD'],
+    ['outdoor-living', 'bethesda-md', 'Outdoor Living in Bethesda, MD'],
+  ] as const;
+
+  const NEW_AREAS = ['silver-spring-md', 'aspen-hill-md', 'bluemont-va', 'myersville-md'] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton|separately licensed|—/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 24 openings and gives each a unique metaTitle', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('publishes 28 new urls: 4 areas and 24 service pages', () => {
+    for (const slug of NEW_AREAS) {
+      expect(ALL_SERVICE_AREAS.some((area) => area.slug === slug), slug).toBe(true);
+      expect(CITY_DATA[slug]?.nearbySlugs?.length, slug).toBeGreaterThan(0);
+    }
+    expect(PAGES).toHaveLength(24);
+    const allowed = new Set(
+      NEW_AREAS.flatMap((city) => [`kitchens-${city}`, `bathrooms-${city}`, `basements-${city}`])
+    );
+    for (const city of NEW_AREAS) {
+      for (const key of Object.keys(CONTENT)) {
+        if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
+      }
+    }
+    expect(CONTENT).not.toHaveProperty('additions-vienna-va');
+    expect(CONTENT).not.toHaveProperty('decks-chevy-chase-md');
+    expect(CONTENT).not.toHaveProperty('outdoor-living-arlington-va');
+    expect(CONTENT).not.toHaveProperty('additions-falls-church-va');
+  });
+
+  it('names a sourced permit phone on every new basement page and states the stretch', () => {
+    const offices: Record<string, RegExp> = {
+      'silver-spring-md': /240-777-0311/,
+      'aspen-hill-md': /240-777-0311/,
+      'bluemont-va': /703-777-0220/,
+      'myersville-md': /301-600-2313/,
+    };
+    for (const [city, pattern] of Object.entries(offices)) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      const text = [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).map((faq) => faq.answer),
+        ...(entry?.sections ?? []).flatMap((section) => section.paragraphs),
+      ].join('\n');
+      expect(text, city).toMatch(pattern);
+      expect(text, city).toMatch(/\$55,000/);
+    }
+    expect(CITY_DATA['bluemont-va']?.description).toMatch(/61 minutes/);
+    expect(CITY_DATA['bluemont-va']?.description).toMatch(/stretch of that job radius/);
+    expect(CITY_DATA['myersville-md']?.description).toMatch(/55 minutes/);
+    expect(CITY_DATA['myersville-md']?.description).toMatch(/stretch of that job radius/);
+    expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/20853/);
+    expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/city permit only/i);
+    expect(CITY_DATA['silver-spring-md']?.description).toMatch(/20901/);
+    const body = NEW_AREAS.map((slug) => CITY_DATA[slug]?.description ?? '').join('\n');
+    expect(body).not.toMatch(/MHIC|maryland license|census|median home|owner-occupied/i);
   });
 });
