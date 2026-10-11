@@ -736,6 +736,13 @@ describe('comboPublishesPricing', () => {
         'bathrooms-falls-church-va',
         'bathrooms-fort-hunt-va',
         'bathrooms-oakton-va',
+        'bathrooms-annandale-va',
+        'bathrooms-rockville-md',
+        'bathrooms-derwood-md',
+        'bathrooms-colesville-md',
+        'bathrooms-takoma-park-md',
+        'bathrooms-columbia-md',
+        'bathrooms-springfield-va',
         'decks-ashburn-va',
         'decks-brambleton-va',
         'decks-leesburg-va',
@@ -833,11 +840,13 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/182 after round 10: 170 after round 9, plus additions, decks, and
-    // outdoor living for Dunn Loring, Fairfax Station, Oakton, and Clifton,
-    // all clean. Martinsburg and Charles Town are home-market and are not
-    // in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 182 });
+    // 0/203 premium service combos: 170 after round 9, plus 12 round 10
+    // additions, decks, and outdoor-living pages for Dunn Loring, Fairfax
+    // Station, Oakton, and Clifton, plus 21 round 11 service pages. The 6
+    // new area pages are separate, so round 11 is still 27 pages. All clean.
+    // Middleburg bathrooms and basements, and Burke basements, stay retired.
+    // Martinsburg and Charles Town are home-market and are not in this count.
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 203 });
   });
 
   /**
@@ -2068,6 +2077,415 @@ describe('REA-2451 round 9 Fairfax-area service pages', () => {
     expect(kitchenBody).not.toMatch(/A renovation of a building in the town needs a use permit/);
   });
 });
+
+describe('REA-2495 round 11 richest-county towns', () => {
+  const PAGES = [
+    ['kitchens', 'annandale-va', 'Kitchen Remodeling in Annandale, VA'],
+    ['bathrooms', 'annandale-va', 'Bathroom Remodeling in Annandale, VA'],
+    ['basements', 'annandale-va', 'Basement Finishing in Annandale, VA'],
+    ['kitchens', 'rockville-md', 'Kitchen Remodeling in Rockville, MD'],
+    ['bathrooms', 'rockville-md', 'Bathroom Remodeling in Rockville, MD'],
+    ['basements', 'rockville-md', 'Basement Finishing in Rockville, MD'],
+    ['kitchens', 'derwood-md', 'Kitchen Remodeling in Derwood, MD'],
+    ['bathrooms', 'derwood-md', 'Bathroom Remodeling in Derwood, MD'],
+    ['basements', 'derwood-md', 'Basement Finishing in Derwood, MD'],
+    ['kitchens', 'colesville-md', 'Kitchen Remodeling in Colesville, MD'],
+    ['bathrooms', 'colesville-md', 'Bathroom Remodeling in Colesville, MD'],
+    ['basements', 'colesville-md', 'Basement Finishing in Colesville, MD'],
+    ['kitchens', 'takoma-park-md', 'Kitchen Remodeling in Takoma Park, MD'],
+    ['bathrooms', 'takoma-park-md', 'Bathroom Remodeling in Takoma Park, MD'],
+    ['basements', 'takoma-park-md', 'Basement Finishing in Takoma Park, MD'],
+    ['kitchens', 'columbia-md', 'Kitchen Remodeling in Columbia, MD'],
+    ['bathrooms', 'columbia-md', 'Bathroom Remodeling in Columbia, MD'],
+    ['basements', 'columbia-md', 'Basement Finishing in Columbia, MD'],
+    ['kitchens', 'springfield-va', 'Kitchen Remodeling in Springfield, VA'],
+    ['bathrooms', 'springfield-va', 'Bathroom Remodeling in Springfield, VA'],
+    ['basements', 'springfield-va', 'Basement Finishing in Springfield, VA'],
+  ] as const;
+
+  const NEW_AREAS = [
+    'annandale-va',
+    'rockville-md',
+    'derwood-md',
+    'colesville-md',
+    'takoma-park-md',
+    'columbia-md',
+  ] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton|separately licensed/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  // 21 service openings. The round's 27 pages also include the 6 area pages.
+  it('does not clone the 21 service openings', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+  });
+
+  it('gives every new service page a metaTitle that is not the fallback', () => {
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle, `${service}-${city}`).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('publishes only kitchens, bathrooms, and basements for the six new towns and Springfield', () => {
+    const allowed = new Set(
+      [...NEW_AREAS, 'springfield-va'].flatMap((city) => [
+        `kitchens-${city}`,
+        `bathrooms-${city}`,
+        `basements-${city}`,
+      ])
+    );
+    for (const city of [...NEW_AREAS, 'springfield-va']) {
+      for (const key of Object.keys(CONTENT)) {
+        if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
+      }
+    }
+  });
+
+  it('names a sourced permit phone on every new basement page', () => {
+    const offices: Record<string, RegExp> = {
+      'annandale-va': /703-222-0801/,
+      'rockville-md': /240-314-8240/,
+      'derwood-md': /240-777-0311/,
+      'colesville-md': /240-777-0311/,
+      'takoma-park-md': /301-891-7119/,
+      'columbia-md': /410-313-2455/,
+      'springfield-va': /703-222-0801/,
+    };
+    for (const [city, pattern] of Object.entries(offices)) {
+      const entry = CONTENT[`basements-${city}` as keyof typeof CONTENT];
+      const text = [
+        ...(entry?.paragraphs ?? []),
+        ...(entry?.faqs ?? []).map((faq) => faq.answer),
+        ...(entry?.sections ?? []).flatMap((section) => section.paragraphs),
+      ].join('\n');
+      expect(text, city).toMatch(pattern);
+      expect(text, city).toMatch(/\$55,000/);
+    }
+  });
+
+  it('keeps Rockville, Derwood, Colesville, and Takoma Park conditional', () => {
+    expect(CITY_DATA['rockville-md']?.description).toMatch(/city permit only/i);
+    expect(CITY_DATA['rockville-md']?.description).toMatch(/20850/);
+    expect(CITY_DATA['rockville-md']?.description).toMatch(/20852/);
+    expect(CITY_DATA['derwood-md']?.description).toMatch(/When the parcel is inside the City of Rockville/);
+    expect(CITY_DATA['derwood-md']?.description).not.toMatch(/mailing address/i);
+    expect(CITY_DATA['colesville-md']?.description).toMatch(/20905/);
+    expect(CITY_DATA['colesville-md']?.description).toMatch(/county permit area/);
+    expect(CITY_DATA['colesville-md']?.description).not.toMatch(/Silver Spring/);
+    expect(CITY_DATA['takoma-park-md']?.description).toMatch(/Municipality Letter/);
+    expect(CITY_DATA['takoma-park-md']?.description).toMatch(/urban forest tree/i);
+    expect(CITY_DATA['columbia-md']?.description).toMatch(/completely separate process/);
+    expect(CITY_DATA['annandale-va']?.description).toMatch(/703-222-0801/);
+    const body = NEW_AREAS.map((slug) => CITY_DATA[slug]?.description ?? '').join('\n');
+    expect(body).not.toMatch(/MHIC|maryland license|census|CDP/i);
+  });
+
+  it('matches every source-table row to the copy and every permit sentence to a row', () => {
+    const root = nodePath.resolve(__dirname, '../..');
+    const tablePath = nodePath.join(root, 'docs/seo-round-11-source-table.md');
+    const table = fs.readFileSync(tablePath, 'utf8');
+    const constantsSrc = fs.readFileSync(nodePath.join(root, 'src/lib/constants.ts'), 'utf8');
+    const contentSrc = fs.readFileSync(nodePath.join(root, 'src/lib/service-city-content.ts'), 'utf8');
+    const copy = `${constantsSrc}\n${contentSrc}`;
+    const rows = parseSourceTable(table);
+    expect(rows.length).toBeGreaterThan(0);
+
+    const missing = rows.filter((row) => !copy.includes(row.sentence));
+    expect(missing.map((row) => `L${row.line}: ${row.sentence}`)).toEqual([]);
+
+    for (const row of rows) {
+      expect(row.resolvedUrl, `L${row.line} url`).toMatch(/^https:\/\//);
+      expect(row.quote.length, `L${row.line} quote`).toBeGreaterThan(0);
+      expect(row.opened, `L${row.line} opened`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+
+    const sentences = round11PermitSentences(constantsSrc, contentSrc);
+    const firstCells = rows.map((row) => row.sentence);
+    const uncovered = sentences.filter(
+      (sentence) => !firstCells.some((cell) => cell.length >= 12 && coversSentence(cell, sentence)),
+    );
+    expect(uncovered).toEqual([]);
+    for (const sentence of sentences) {
+      const exact = firstCells.filter((cell) => cell === sentence);
+      if (exact.length > 0) expect(exact).toHaveLength(1);
+    }
+  });
+
+  it('requires the quote to name the town, ZIP, or office a boundary sentence is about', () => {
+    const root = nodePath.resolve(__dirname, '../..');
+    const table = fs.readFileSync(nodePath.join(root, 'docs/seo-round-11-source-table.md'), 'utf8');
+    const misses = parseSourceTable(table).flatMap((row) => {
+      const anchors = boundaryAnchors(row.sentence);
+      if (!anchors) return [];
+      if (anchors.length === 0) {
+        return [`L${row.line} names no town, ZIP, or office: ${row.sentence}`];
+      }
+      const quote = row.quote.toLowerCase();
+      const missing = anchors.filter((anchor) => !quote.includes(anchor.toLowerCase()));
+      if (missing.length === 0) return [];
+      return [`L${row.line} missing ${missing.join(', ')}: ${row.sentence}`];
+    });
+    expect(misses).toEqual([]);
+  });
+
+  it('rejects a new-diff negation the cited quote does not itself state', () => {
+    // A by-itself, mailing-address, or does-not-name/set/tell/decide sentence passes only when the quote contains that same phrase; any other does-not/cannot/may-not sentence passes only when the quote contains not, no, or cannot.
+    const root = nodePath.resolve(__dirname, '../..');
+    const table = fs.readFileSync(nodePath.join(root, 'docs/seo-round-11-source-table.md'), 'utf8');
+    const constantsSrc = fs.readFileSync(nodePath.join(root, 'src/lib/constants.ts'), 'utf8');
+    const contentSrc = fs.readFileSync(nodePath.join(root, 'src/lib/service-city-content.ts'), 'utf8');
+    const rows = parseSourceTable(table);
+    const misses = round11PermitSentences(constantsSrc, contentSrc).flatMap((sentence) => {
+      if (!NEGATION_SENTENCE.test(sentence)) return [];
+      const quote = rows.find((row) => coversSentence(row.sentence, sentence))?.quote ?? '';
+      if (quoteLicensesNegation(sentence, quote)) return [];
+      return [sentence];
+    });
+    expect(misses).toEqual([]);
+  });
+});
+
+/** A markdown table cell, with escaped pipes and asterisks restored. */
+function unescapeMarkdownCell(cell: string): string {
+  return cell.replace(/\\([\\|*_])/g, '$1').trim();
+}
+
+type SourceRow = {
+  line: number;
+  sentence: string;
+  resolvedUrl: string;
+  quote: string;
+  opened: string;
+};
+
+function parseSourceTable(markdown: string): SourceRow[] {
+  const lines = markdown.split('\n');
+  const rows: SourceRow[] = [];
+  let opened = '';
+  let previousUrl = '';
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const dated = line.match(/\b(20\d{2}-\d{2}-\d{2})\b/);
+    if (dated) opened = dated[1];
+    if (!line.startsWith('|') || line.startsWith('|---') || line.startsWith('| Sentence')) continue;
+    const cells = line
+      .replace(/^\|/, '')
+      .replace(/\|$/, '')
+      .split('|')
+      .map((cell) => unescapeMarkdownCell(cell));
+    if (cells.length < 3 || !cells[0]) continue;
+    const rawUrl = cells[1];
+    const resolvedUrl = /^https:\/\//.test(rawUrl) ? rawUrl : rawUrl === 'same PDF' ? previousUrl : rawUrl;
+    if (/^https:\/\//.test(rawUrl)) previousUrl = rawUrl;
+    rows.push({
+      line: index + 1,
+      sentence: cells[0],
+      resolvedUrl,
+      quote: cells[2],
+      opened,
+    });
+  }
+  return rows;
+}
+
+const BOUNDARY_SENTENCE = /mailing address|\bZIPs?\b|postal|city limits|permit office/i;
+
+/** Longer names first so "Takoma Park" wins over a shorter token. */
+const BOUNDARY_TOWNS = [
+  "Harper's Choice",
+  'Takoma Park',
+  'Silver Spring',
+  'Ellicott City',
+  'West Springfield',
+  'North Springfield',
+  'Gaithersburg',
+  'Colesville',
+  'Annandale',
+  'Springfield',
+  'Rockville',
+  'Derwood',
+  'Columbia',
+  'Wheaton',
+  'Fairfax',
+];
+
+/**
+ * Towns and ZIPs a mailing, ZIP, postal, city-limits, or permit-office
+ * sentence is about. Null when the sentence is not in that class.
+ */
+function boundaryAnchors(sentence: string): string[] | null {
+  if (!BOUNDARY_SENTENCE.test(sentence)) return null;
+  const anchors: string[] = [];
+  for (const town of BOUNDARY_TOWNS) {
+    if (sentence.includes(town)) anchors.push(town);
+  }
+  for (const match of sentence.matchAll(/\bZIP\s+(\d{5})\b/gi)) anchors.push(match[1]);
+  for (const match of sentence.matchAll(/\b(\d{5})\s+address\b/gi)) anchors.push(match[1]);
+  return [...new Set(anchors)];
+}
+
+const NEGATION_SENTENCE =
+  /\b(?:does not|do not|doesn't|don't|by itself|alone|cannot|can't|not enough|not the same|may not|mailing address|ZIP|postal|city limits|which office)\b/i;
+
+/** Address and filing inferences. A different negation in the quote does not license these. */
+const INFERENCE_CUES = [
+  'by itself',
+  'alone',
+  'does not tell',
+  'does not decide',
+  'does not name',
+  'does not set',
+  'do not tell',
+  'do not decide',
+  'do not name',
+  'do not set',
+  'not enough',
+  'mailing address',
+  'postal',
+  'which office',
+] as const;
+
+function quoteLicensesNegation(sentence: string, quote: string): boolean {
+  if (!quote) return false;
+  const sentenceLower = sentence.toLowerCase();
+  const quoteLower = quote.toLowerCase();
+  const used = INFERENCE_CUES.filter((cue) => sentenceLower.includes(cue));
+  const usesZip = /\bZIP\b/.test(sentence);
+  if (used.length > 0 || usesZip) {
+    if (usesZip && !/\bZIP\b|\b\d{5}\b/.test(quote)) return false;
+    return used.every((cue) => quoteLower.includes(cue));
+  }
+  return /\b(?:not|no|cannot|can't|without)\b/i.test(quote);
+}
+
+const PERMIT_SENTENCE =
+  /permit|permits|\bcounter\b|jurisdiction|\bDPS\b|Department of Permitting|Land Development Services|city limits|\bmailing\b|\bZIP\b|Tree Impact|\bCertificate\b|inspection|\blicense\b|filing|count(?:y|ies)|cities|\bcity\b|department|\boffice\b|parcel|\bletter\b|approval|\bHours are\b|\bOffice hours\b|\d{1,2}(?::\d{2})?\s*a\.m\.\s*(?:to|–|-)\s*\d{1,2}(?::\d{2})?\s*p\.m\./i;
+
+/** Street address, phone, email, or a "questions go to" contact line. */
+const CONTACT_SENTENCE =
+  /\bphone\b|questions go to|Housing questions|\d{3}-\d{3}-\d{4}|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|\b\d{2,6}\s+[A-Z][A-Za-z0-9.'-]*(?:\s+[A-Z][A-Za-z0-9.'-]*){0,5}\s+(?:Avenue|Ave\.|Street|St\.|Drive|Dr\.|Road|Rd\.|Parkway|Pkwy\.?|Boulevard|Blvd\.|Lane|Ln\.|Court|Ct\.|Way|Circle|Cir\.|Place|Pl\.)\b/;
+
+/** A source-table cell covers a copy sentence when either string contains the other. */
+function coversSentence(cell: string, sentence: string): boolean {
+  return cell === sentence || sentence.includes(cell) || cell.includes(sentence);
+}
+
+/** Declarative copy sentences. FAQ questions are not jurisdiction claims. */
+function splitCopySentences(text: string): string[] {
+  const abbrev = /(?:a\.m\.|p\.m\.|ave\.|st\.|dr\.|u\.s\.|inc\.|mr\.|mrs\.|md\.|va\.)$/i;
+  const weekdays = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/;
+  const sentences: string[] = [];
+  for (const para of text.split(/\n+/)) {
+    const trimmed = para.trim();
+    if (!trimmed) continue;
+    let start = 0;
+    for (let i = 0; i < trimmed.length; i += 1) {
+      const mark = trimmed[i];
+      if (!'.!?'.includes(mark) || trimmed[i + 1] !== ' ') continue;
+      const rest = trimmed.slice(i + 2);
+      if (!rest || !/[A-Z]/.test(rest[0])) continue;
+      const window = trimmed.slice(Math.max(0, i - 10), i + 1);
+      const nextWord = rest.split(/\s/)[0]?.replace(/[,;:]$/, '') ?? '';
+      if (abbrev.test(window) && weekdays.test(nextWord)) continue;
+      const sentence = trimmed.slice(start, i + 1).trim();
+      if (sentence) sentences.push(sentence);
+      let j = i + 1;
+      while (trimmed[j] === ' ') j += 1;
+      start = j;
+      i = j - 1;
+    }
+    const tail = trimmed.slice(start).trim();
+    if (tail) sentences.push(tail);
+  }
+  return sentences;
+}
+
+function stringLiterals(source: string): string[] {
+  const literals: string[] = [];
+  for (let i = 0; i < source.length; i += 1) {
+    const quote = source[i];
+    if (quote !== "'" && quote !== '"') continue;
+    i += 1;
+    let value = '';
+    while (i < source.length) {
+      if (source[i] === '\\' && i + 1 < source.length) {
+        const esc = source[i + 1];
+        value += esc === 'n' ? '\n' : esc === 't' ? '\t' : esc;
+        i += 2;
+        continue;
+      }
+      if (source[i] === quote) break;
+      value += source[i];
+      i += 1;
+    }
+    literals.push(value);
+  }
+  return literals;
+}
+
+function sliceBetween(source: string, startMarker: string, endMarker: string): string {
+  const start = source.indexOf(startMarker);
+  const end = source.indexOf(endMarker, start + startMarker.length);
+  if (start < 0 || end < 0) throw new Error(`missing slice marker ${startMarker}`);
+  return source.slice(start, end);
+}
+
+/** Permit and jurisdiction sentences in the six new area entries and 21 new service entries. */
+function round11PermitSentences(constantsSrc: string, contentSrc: string): string[] {
+  const area = sliceBetween(
+    constantsSrc,
+    "  'annandale-va': {",
+    '\n};\n\n/**\n * Every area that currently publishes'
+  );
+  const services = sliceBetween(
+    contentSrc,
+    '  // ── ROUND 11 · ANNANDALE, VA',
+    '\n};\n\n/**\n * The most specific published URL'
+  );
+  const seen = new Set<string>();
+  const sentences: string[] = [];
+  for (const literal of [...stringLiterals(area), ...stringLiterals(services)]) {
+    if (!literal.includes(' ') || literal.length < 12) continue;
+    if (literal.startsWith('http') || literal.startsWith('/')) continue;
+    for (const sentence of splitCopySentences(literal)) {
+      if (sentence.endsWith('?')) continue;
+      if ((!PERMIT_SENTENCE.test(sentence) && !CONTACT_SENTENCE.test(sentence)) || seen.has(sentence)) continue;
+      seen.add(sentence);
+      sentences.push(sentence);
+    }
+  }
+  return sentences;
+}
 
 describe('REA-2476 round 10 Fairfax additions and decks', () => {
   const PAGES = [
