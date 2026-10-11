@@ -2765,4 +2765,29 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
     const body = NEW_AREAS.map((slug) => CITY_DATA[slug]?.description ?? '').join('\n');
     expect(body).not.toMatch(/MHIC|maryland license|census|median home|owner-occupied/i);
   });
+
+  it('does not repeat a full paragraph across the 28 new pages', () => {
+    const paragraphs: string[] = [];
+    for (const slug of NEW_AREAS) {
+      const description = CITY_DATA[slug]?.description ?? '';
+      for (const para of description.split(/\n\n+/)) {
+        const trimmed = para.trim();
+        if (trimmed) paragraphs.push(trimmed);
+      }
+    }
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const blocks = [
+        ...entry.paragraphs,
+        ...(entry.sections ?? []).flatMap((section) => section.paragraphs),
+      ];
+      for (const para of blocks) paragraphs.push(para.trim());
+    }
+    const counts = new Map<string, number>();
+    for (const para of paragraphs) counts.set(para, (counts.get(para) ?? 0) + 1);
+    const dupes = [...counts.entries()]
+      .filter(([, count]) => count > 1)
+      .map(([para, count]) => `${count}x ${para}`);
+    expect(dupes).toEqual([]);
+  });
 });
