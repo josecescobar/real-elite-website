@@ -7983,288 +7983,288 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Vienna, VA',
     metaTitle: 'Home Addition Vienna VA | Real Elite',
     metaDescription:
-      'Home additions in Vienna, VA. Projects located in the towns of Clifton or Vienna require separate approvals from the respective towns. Free written estimate after a site walk.',
+      'Home additions in Vienna, VA. We measure the house and the yard, then price the job with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a home addition in Vienna?',
         answer:
-          'When the parcel is inside the Town of Vienna, questions go to Town Hall at 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. Fairfax County serves as the building official for the Town of Vienna and reviews structural, mechanical, electrical, plumbing, fire, and health-related requirements before issuing permits.',
+          'When the parcel is inside the Town of Vienna, town questions go to Town Hall. Fairfax County is the town building official, and it reviews structural work along with fire, health, plumbing, electrical, and mechanical work before the permit is issued.',
       },
       {
-        question: 'Does a Vienna addition need a town approval in the county file?',
+        question: 'How do the town and county reviews fit together for a Vienna addition?',
         answer:
-          'Projects located in the towns of Clifton or Vienna require separate approvals from the respective towns. Approval documentation from the appropriate township must be uploaded to your PLUS record, via the Digital Plan Room, and named accordingly (e.g., Town of Vienna Approval).',
+          'Vienna and Clifton projects need a separate approval from the town itself. When the county permit is required, the county packet is submitted before the town packet. That town approval is added to the county PLUS record through the Digital Plan Room under a Town of Vienna Approval name.',
       },
     ],
     paragraphs: [
-      'Home additions in Vienna, VA are scoped to the house and the yard we measure. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123.',
-      'When the parcel is inside the Town of Vienna, questions go to Town Hall at 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. Projects located in the towns of Clifton or Vienna require separate approvals from the respective towns. Approval documentation from the appropriate township must be uploaded to your PLUS record, via the Digital Plan Room, and named accordingly (e.g., Town of Vienna Approval). Fairfax County serves as the building official for the Town of Vienna and reviews structural, mechanical, electrical, plumbing, fire, and health-related requirements before issuing permits. When a Fairfax County permit is required, all submission materials are to be submitted to Fairfax County prior to submitting them to the Town of Vienna. The Department of Planning and Zoning accepts permit applications for the Town review process and, in coordination with the departments of Public Works and Parks and Recreation, reviews site plans and Fairfax County building permit applications for compliance with the Town of Vienna Zoning Code (Chapter 18) and other applicable Town regulations. Town Council adopted an update to the zoning and subdivision code effective January 1, 2024. When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Monday through Thursday from 8 a.m. to 4 p.m. and Friday from 9:15 a.m. to 4 p.m. Apply for your residential addition/alteration building record online in PLUS under the Building tab. Real Elite does not take electrical work. We walk the steps for this house before the addition starts.',
-      'A Vienna addition is quoted as a free written estimate after a site walk.',
+      'A Vienna addition starts with the footprint of the house we measure and the yard that can hold it.',
+      'Town planning and zoning accepts the town review, and with public works and parks and recreation it checks site plans and the county building application against Vienna zoning chapter 18 and the other town rules that apply. The town zoning and subdivision code in that review was updated effective January 1, 2024. The residential addition or alteration record is started online in PLUS, under the Building tab. County permit questions for this addition go to Land Development Services. Real Elite leaves electrical work to an electrician. We walk this house before the addition drawings are finished.',
+      'The price for this Vienna addition is a free written estimate after a site walk.',
     ],
   },
   'decks-vienna-va': {
     h1: 'Decks in Vienna, VA',
     metaTitle: 'Deck Builder Vienna VA | Real Elite',
     metaDescription:
-      'Decks in Vienna, VA. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Free written estimate after a site walk.',
+      'Decks in Vienna, VA. The yard, the stair, and the ledger are measured before we price the build with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
-        question: 'Does a Vienna deck need a permit?',
+        question: 'Does a Vienna deck need a town approval as well as the county record?',
         answer:
-          'Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Projects located in the towns of Clifton or Vienna require separate approvals from the respective towns.',
+          'For a deck on a parcel inside the Town of Vienna, Town Hall answers the town questions. If the deck needs a Fairfax County permit, send that county set in before the Town of Vienna set.',
       },
       {
-        question: 'Where is a Vienna deck filed?',
+        question: 'How is a Vienna deck categorized on the county record?',
         answer:
-          'Apply for your residential addition/alteration building record online in PLUS under the Building tab. Additional Square Footage: Breezeway, Attached Carport, Deck, Dormer, Attached Garage, Attached Shed, One-story with Basement Below, One-story on Slab, One-story with Crawl Space, Screened Porch, Second-story Over Existing Structure, Sunroom, Three-story and Above, Two-story with Basement Below, Two-story on Slab.',
+          'On the county addition or alteration record, a deck is one of the added-square-footage types, grouped with sunrooms and screened porches. Electrical, plumbing, or mechanical work on the deck can need its own trade permit.',
       },
     ],
     paragraphs: [
-      'Decks in Vienna, VA are framed on the yard behind the house we measure, with the stair and the ledger set to that house.',
-      'When the parcel is inside the Town of Vienna, questions go to Town Hall at 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Additional Square Footage: Breezeway, Attached Carport, Deck, Dormer, Attached Garage, Attached Shed, One-story with Basement Below, One-story on Slab, One-story with Crawl Space, Screened Porch, Second-story Over Existing Structure, Sunroom, Three-story and Above, Two-story with Basement Below, Two-story on Slab. When a Fairfax County permit is required, all submission materials are to be submitted to Fairfax County prior to submitting them to the Town of Vienna. If your project includes electrical, plumbing or mechanical (often referred to as "trades") work, separate trades permits may be required. When the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Real Elite does not take electrical work. The steps for this deck are confirmed on the house before framing starts.',
-      'A Vienna deck is quoted as a free written estimate after a site walk, once the yard is measured.',
+      'A Vienna deck is framed to the ledger, the stair, and the yard behind the house we measure.',
+      'County questions for this deck go to Land Development Services. Wiring on this deck is outside our scope. The framing for this deck is confirmed on the house before lumber is ordered.',
+      'Pricing for this Vienna deck waits on a free written estimate after a site walk.',
     ],
   },
   'outdoor-living-vienna-va': {
     h1: 'Outdoor Living in Vienna, VA',
     metaTitle: 'Outdoor Living Vienna VA | Real Elite',
     metaDescription:
-      'Outdoor living in Vienna, VA. An on-grade patio does not need a Fairfax County building permit, though its size and place can still require a separate approval. Free written estimate after a site walk.',
+      'Outdoor living in Vienna, VA. A screened porch or a patio is priced from the yard we measure, on a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
-        question: 'Does a Vienna patio need a county permit?',
+        question: 'Does a Vienna patio need a county building permit?',
         answer:
-          'An on-grade patio does not need a Fairfax County building permit, though its size and place can still require a separate approval.',
+          'An on-grade patio in Fairfax County does not need a county building permit, but the size and the location can still need another approval.',
       },
       {
-        question: 'Who permits a Vienna screened porch?',
+        question: 'Who reviews a Vienna screened porch?',
         answer:
-          'Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Approval documentation from the appropriate township must be uploaded to your PLUS record, via the Digital Plan Room, and named accordingly (e.g., Town of Vienna Approval).',
+          'A porch on a parcel inside the Town of Vienna starts with town questions at Town Hall. A screened porch is in the same county addition-and-alteration group as a deck or a sunroom. When a screened porch needs a Fairfax County permit, the county materials go in before the Town of Vienna review.',
       },
     ],
     paragraphs: [
-      'Outdoor living in Vienna, VA is a screened porch or a patio on the yard we measure, not a spare bedroom.',
-      'When the parcel is inside the Town of Vienna, questions go to Town Hall at 127 Center Street South, Vienna, VA 22180, phone 703-255-6300. An on-grade patio does not need a Fairfax County building permit, though its size and place can still require a separate approval. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. The Department of Planning and Zoning accepts permit applications for the Town review process and, in coordination with the departments of Public Works and Parks and Recreation, reviews site plans and Fairfax County building permit applications for compliance with the Town of Vienna Zoning Code (Chapter 18) and other applicable Town regulations. Real Elite does not take electrical work. We sort the porch and patio steps for this house before any work starts.',
-      'A screened porch or patio in Vienna is a free written estimate after a site walk.',
+      'Vienna outdoor living here means a screened porch or a patio on the yard we measure.',
+      'Town planning and zoning, with public works and parks and recreation, reviews the county building application for a porch against Vienna zoning chapter 18 and the other town rules that apply. We do not run electrical circuits on these Vienna projects. The porch and patio scope for this house is settled before any work starts.',
+      'A Vienna porch or patio is priced with a free written estimate after a site walk.',
     ],
   },
   'additions-chevy-chase-md': {
     h1: 'Home Additions in Chevy Chase, MD',
     metaTitle: 'Home Addition Chevy Chase MD | Real Elite',
     metaDescription:
-      'Home additions in Chevy Chase, MD. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. Free written estimate after a site walk.',
+      'Home additions in Chevy Chase, MD. The house is measured first, and the price is a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a home addition in Chevy Chase?',
         answer:
-          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Several municipalities require building permits in addition to the required County building permit.',
+          'On a Montgomery County parcel in Chevy Chase, permit questions go to the county permitting office in Wheaton. Extending the area, height, or footprint of a one-family or two-family house, or of an accessory structure, needs a permit.',
       },
       {
-        question: 'Which Chevy Chase filing order applies to the Town of Chevy Chase?',
+        question: 'Which Chevy Chase filing order applies when the town and the county both have a say?',
         answer:
-          "County Permit Required Prior to City Approval lists the Town of Chevy Chase, Chevy Chase Section 3, Chevy Chase Section 5, Chevy Chase Village, and the Village of Martin's Additions. City Approval is Required Prior to County Application lists Chevy Chase Village.",
+          "Several municipalities require their own building permit in addition to the county permit. Montgomery County puts a county permit before city approval for the Town of Chevy Chase, Chevy Chase Section 3, Chevy Chase Section 5, the Village of Martin's Additions, and Chevy Chase Village. City approval before the county application is a second listing that names Chevy Chase Village. The Town of Chevy Chase keeps its own municipal permit contact.",
       },
     ],
     paragraphs: [
-      'Home additions in Chevy Chase, MD are scoped to the house we measure. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south.',
-      "When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. Several municipalities require building permits in addition to the required County building permit. County Permit Required Prior to City Approval lists the Town of Chevy Chase, Chevy Chase Section 3, Chevy Chase Section 5, Chevy Chase Village, and the Village of Martin's Additions. City Approval is Required Prior to County Application lists Chevy Chase Village. Town of Chevy Chase questions go to 4301 Willow Lane, Chevy Chase, MD 20815, phone 301-654-7144. General Information and questions about Montgomery County permit requirements should be directed to 240-777-0311. Real Elite does not take electrical work. The steps for this addition are confirmed on the house before we start.",
-      'A Chevy Chase addition is quoted as a free written estimate after a site walk.',
+      'A Chevy Chase addition is priced from the house we measure, room by room.',
+      'Electrical work is not part of what this crew does. The steps for this addition are confirmed on the house before we start.',
+      'This Chevy Chase addition is priced with a free written estimate after a site walk.',
     ],
   },
   'decks-chevy-chase-md': {
     h1: 'Decks in Chevy Chase, MD',
     metaTitle: 'Deck Builder Chevy Chase MD | Real Elite',
     metaDescription:
-      'Decks in Chevy Chase, MD. A building permit is required for all decks regardless of the height above grade. Free written estimate after a site walk.',
+      'Decks in Chevy Chase, MD. Height and span are set on the yard we measure, then priced with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Does a Chevy Chase deck need a permit at any height?',
         answer:
-          'A building permit is required for all decks regardless of the height above grade. Inspections shall be requested at least 24 hours prior to the inspection date.',
+          'Every deck needs a building permit, at any height above grade. A lot on its own well and septic has extra requirements for that deck. Ask for the inspection at least 24 hours before the inspection date.',
       },
       {
-        question: 'Can a Chevy Chase deck detail include a screened porch?',
+        question: 'Can the county deck details include a screened porch?',
         answer:
-          'Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads.',
+          'A single-span, single-level deck may rely on the published county deck details instead of a custom plan set. A deck built from those details cannot add a roof, a screened porch, a hot tub, or another extra load.',
       },
     ],
     paragraphs: [
-      'Decks in Chevy Chase, MD are built on the yard behind the house we measure, with the height and the span set on site.',
-      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. A building permit is required for all decks regardless of the height above grade. Properties with an individual well and septic system will have additional requirements. Montgomery County Residential Deck Details may be used in lieu of construction plans for single-span, single-level decks. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. The County does not enforce covenants and deed restrictions. Both County and City Approval is Required lists the Village of North Chevy Chase. County Permit Only lists Friendship Heights. Inspections shall be requested at least 24 hours prior to the inspection date. Real Elite does not take electrical work. We check the steps for this deck on the house before lumber is ordered.',
-      'A Chevy Chase deck is quoted as a free written estimate after a site walk, with the yard measured first.',
+      'A Chevy Chase deck takes its height and span from the yard behind the house we measure.',
+      'For a deck on a Montgomery County parcel, start with the county permitting office in Wheaton. Deed restrictions and covenants are outside county enforcement. The Village of North Chevy Chase is listed for both county and city approval. Friendship Heights is listed for a county permit only. An electrician handles any wiring on this deck. We check this deck on the house before lumber is ordered.',
+      'The Chevy Chase deck price is a free written estimate after a site walk.',
     ],
   },
   'outdoor-living-chevy-chase-md': {
     h1: 'Outdoor Living in Chevy Chase, MD',
     metaTitle: 'Outdoor Living Chevy Chase MD | Real Elite',
     metaDescription:
-      'Outdoor living in Chevy Chase, MD. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Free written estimate after a site walk.',
+      'Outdoor living in Chevy Chase, MD. A patio or a screened porch is priced from the measured yard, with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Does a Chevy Chase patio need a permit?',
         answer:
-          'If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. A building permit is required for all decks regardless of the height above grade.',
+          'A patio that is only being installed, repainted, repaired, or replaced most likely will not need a county permit. A screened porch that extends the house footprint needs a permit.',
       },
       {
-        question: 'Who permits a Chevy Chase screened porch?',
+        question: 'Do town rules sit outside the county patio list?',
         answer:
-          'A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it.',
+          'A municipality in the county can still require its own permission. Municipality rules and homeowner-association rules sit outside the county permit guidance. Questions about a municipality or special taxing district go to that place directly. Chevy Chase Village keeps its own municipal permit contact.',
       },
     ],
     paragraphs: [
-      'Outdoor living in Chevy Chase, MD is a patio or a screened porch on the yard we measure.',
-      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. This information does not include municipality and homeowner association rules and regulations. If you have specific questions about permit requirements in any of the municipalities and special taxing districts (listed below), contact them directly. Chevy Chase Village questions go to 5906 Connecticut Avenue, Chevy Chase, MD 20815, phone 301-654-7300. Real Elite does not take electrical work. The porch and patio steps for this house are settled before work starts.',
-      'A patio or screened porch in Chevy Chase is a free written estimate after a site walk.',
+      'Chevy Chase outdoor living on these pages is a patio or a screened porch on the measured yard.',
+      'Patio and porch questions for a Montgomery County parcel start at the county permitting office in Wheaton. Lighting and outlets on this porch stay with an electrician. The porch and patio scope for this Chevy Chase house is settled before work starts.',
+      'A Chevy Chase patio or porch is priced on a free written estimate after a site walk.',
     ],
   },
   'additions-arlington-va': {
     h1: 'Home Additions in Arlington, VA',
     metaTitle: 'Home Addition Arlington VA | Real Elite',
     metaDescription:
-      'Home additions in Arlington, VA. Residential building permit applications must be submitted online via Permit Arlington. Free written estimate after a site walk.',
+      'Home additions in Arlington, VA. We draw the work from the house we measure and price it with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a home addition in Arlington?',
         answer:
-          'Residential building permit applications must be submitted online via Permit Arlington. Building Permit Process questions go to 703-228-3800 at the Ellen M Bozman Government Center, 2100 Clarendon Boulevard, Arlington, VA 22201.',
+          'On an Arlington County parcel, the residential building permit goes in online through Permit Arlington. Building permit questions for this addition are handled through that same Permit Arlington process.',
       },
       {
         question: 'How long is the published Arlington addition review?',
         answer:
-          'The published approximate review time for Residential Addition Route Through (RADD) is 10 business days. Mechanical plans are required for any addition that exceeds 500 square feet to an existing single-family dwelling, or a new home on an existing foundation, new homes, and newly installed HVAC system.',
+          'The published review for a residential addition route, called RADD, is about 10 business days. An addition over 500 square feet on an existing single-family house needs mechanical plans, and so does a new house, a new house on an existing foundation, or a newly installed HVAC system.',
       },
     ],
     paragraphs: [
-      'Home additions in Arlington, VA are scoped to the house we measure. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-66.',
-      'When the parcel is in Arlington County, residential building permit applications must be submitted online via Permit Arlington. The Permit Arlington Center is open Monday through Thursday from 8:30 a.m. to 4 p.m. (Modified hours every third Wednesday of the month: 8:30 a.m. to 12 p.m.). Building Permit Process questions go to 703-228-3800 at the Ellen M Bozman Government Center, 2100 Clarendon Boulevard, Arlington, VA 22201. The published approximate review time for Residential Addition Route Through (RADD) is 10 business days. Mechanical plans are required for any addition that exceeds 500 square feet to an existing single-family dwelling, or a new home on an existing foundation, new homes, and newly installed HVAC system. Electrical compliance with the Building Code is by field inspection only. Electrical plans are not required or reviewed through plan review. Real Elite does not take electrical work. We lock the steps for this house before the addition drawings are final.',
-      'An Arlington addition is quoted as a free written estimate after a site walk.',
+      'An Arlington addition is drawn from the house we measure, not from a stock plan.',
+      'The public counter for Permit Arlington is staffed Monday through Thursday, with a short day each third Wednesday. Electrical code compliance on that permit is checked in the field. Electrical plans are not part of the plan review for that application. We do not install electrical systems on this addition. We lock the steps for this house before the addition drawings are final.',
+      'This Arlington addition is priced through a free written estimate after a site walk.',
     ],
   },
   'decks-arlington-va': {
     h1: 'Decks in Arlington, VA',
     metaTitle: 'Deck Builder Arlington VA | Real Elite',
     metaDescription:
-      'Decks in Arlington, VA. Note: Some home center stores offer deck design services. These plans are generally not acceptable for submission to the County during permit application. Free written estimate after a site walk.',
+      'Decks in Arlington, VA. The layout is set to the house we measure, and the price is a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
-        question: 'Does an Arlington deck need a scaled plat?',
+        question: 'What plat does an Arlington deck application need?',
         answer:
-          'A scaled plat depicting all structures and public easements, with the deck shown to scale on the plat, including setbacks. If the deck is greater than four (4) ft. in height, the elevation drawings (all sides of proposed decks) and lot coverage must be provided by listing the information on the plans or by completing the Lot Coverage worksheet applicable to your Zoning District.',
+          'The plat has to be scaled, show the structures and the public easements, and show the deck to scale with the setbacks. A deck taller than four feet needs elevation drawings of each side and a lot-coverage figure, either on the plans or on the worksheet for that zoning district.',
       },
       {
         question: 'Will a store deck plan pass Arlington review?',
         answer:
-          'Note: Some home center stores offer deck design services. These plans are generally not acceptable for submission to the County during permit application. Zoning questions about fences and decks go to 703-228-3883.',
+          'Home-center deck drawings are generally not accepted for the county permit application. Setbacks are the zoning rules for where a structure can sit on the lot. Zoning questions on fences and decks are a county zoning contact, separate from the building permit counter.',
       },
     ],
     paragraphs: [
-      'Decks in Arlington, VA are framed on the yard we measure, with the layout set to that house.',
-      'When the parcel is in Arlington County, residential building permit applications must be submitted online via Permit Arlington. Note: Some home center stores offer deck design services. These plans are generally not acceptable for submission to the County during permit application. A scaled plat depicting all structures and public easements, with the deck shown to scale on the plat, including setbacks. The Zoning Ordinance provides requirements for where different types of structures can be placed on a lot, called setbacks. If the deck is greater than four (4) ft. in height, the elevation drawings (all sides of proposed decks) and lot coverage must be provided by listing the information on the plans or by completing the Lot Coverage worksheet applicable to your Zoning District. Zoning questions about fences and decks go to 703-228-3883. The Permit Arlington Center is open Monday through Thursday from 8:30 a.m. to 4 p.m. (Modified hours every third Wednesday of the month: 8:30 a.m. to 12 p.m.). Real Elite does not take electrical work. The steps for this deck are walked on the house before layout starts.',
-      'An Arlington deck is quoted as a free written estimate after a site walk, after the yard is measured.',
+      'An Arlington deck layout is set on the yard we measure, including the stair and the ledger.',
+      'A deck on an Arlington County parcel is applied for online through Permit Arlington. Deck lighting that needs wiring belongs to an electrician. The steps for this deck are walked on the house before layout starts.',
+      'The Arlington deck number is a free written estimate after a site walk.',
     ],
   },
   'outdoor-living-arlington-va': {
     h1: 'Outdoor Living in Arlington, VA',
     metaTitle: 'Outdoor Living Arlington VA | Real Elite',
     metaDescription:
-      'Outdoor living in Arlington, VA. Alterations that involve exterior work, such as modifications to a deck or adding a window well for egress are considered additions. Free written estimate after a site walk.',
+      'Outdoor living in Arlington, VA. A screened porch on the house we measure is priced with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Is an Arlington screened porch filed as an addition?',
         answer:
-          'Alterations that involve exterior work, such as modifications to a deck or adding a window well for egress are considered additions. Residential building permit applications must be submitted online via Permit Arlington.',
+          'Exterior work, including a deck change or a window well for egress, is treated as an addition. A screened porch changes the exterior, so it follows that addition path.',
       },
       {
         question: 'Who answers setback questions for an Arlington porch?',
         answer:
-          'The Zoning Ordinance provides requirements for where different types of structures can be placed on a lot, called setbacks. Building Permit Process questions go to 703-228-3800 at the Ellen M Bozman Government Center, 2100 Clarendon Boulevard, Arlington, VA 22201.',
+          'Where a porch can sit on the lot is a setback under the zoning ordinance. Porch permit questions use the county building permit process.',
       },
     ],
     paragraphs: [
-      'Outdoor living in Arlington, VA is a screened porch on the house we measure, not an interior room.',
-      'When the parcel is in Arlington County, residential building permit applications must be submitted online via Permit Arlington. Alterations that involve exterior work, such as modifications to a deck or adding a window well for egress are considered additions. The Zoning Ordinance provides requirements for where different types of structures can be placed on a lot, called setbacks. Note: Some home center stores offer deck design services. These plans are generally not acceptable for submission to the County during permit application. Building Permit Process questions go to 703-228-3800 at the Ellen M Bozman Government Center, 2100 Clarendon Boulevard, Arlington, VA 22201. Real Elite does not take electrical work. We settle the porch steps for this house before work starts.',
-      'A screened porch in Arlington is a free written estimate after a site walk.',
+      'Arlington outdoor living here is a screened porch on the house we measure.',
+      'A screened porch on an Arlington County parcel is submitted online through Permit Arlington. Store-bought deck plans are generally not accepted with the county application. Power for this porch stays with an electrician. We settle the porch steps for this house before work starts.',
+      'An Arlington screened porch is priced on a free written estimate after a site walk.',
     ],
   },
   'additions-falls-church-va': {
     h1: 'Home Additions in Falls Church, VA',
     metaTitle: 'Home Addition Falls Church VA | Real Elite',
     metaDescription:
-      'Home additions in Falls Church, VA. Anything involving the framing or other structure of a wall requires a permit. Free written estimate after a site walk.',
+      'Home additions in Falls Church, VA. We size the work to the house we measure and price it with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a home addition in the City of Falls Church?',
         answer:
-          'If the home is inside the city, questions go to the permit counter at 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov. The permits counter is open Monday through Friday, 8 a.m. to 5 p.m., and closed to the public on the last Wednesday of the month.',
+          'When the parcel is inside the City of Falls Church, the city permit counter takes the application. The city permit counter stays shut to the public for the final Wednesday each month.',
       },
       {
         question: 'Does a wall change in the city need a permit?',
         answer:
-          'Any time you change a wall, you need a permit. It does not matter if the wall is load bearing or not. Anything involving the framing or other structure of a wall requires a permit.',
+          'Framing or other structural work on a wall needs a permit, and the same rule covers floors, ceilings, and rafters. Any wall change needs a permit, whether or not the wall is load bearing. Gas work needs a permit too, including a stove or fireplace insert replacement.',
       },
     ],
     paragraphs: [
-      'Home additions in Falls Church, VA are scoped to the house we measure. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east.',
-      'If the home is inside the city, questions go to the permit counter at 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov. The permits counter is open Monday through Friday, 8 a.m. to 5 p.m., and closed to the public on the last Wednesday of the month. Anything involving the framing or other structure of a wall requires a permit. This also goes for floors, ceilings, and rafters. Any time you change a wall, you need a permit. It does not matter if the wall is load bearing or not. Any work involving gas, even just replacing a stove or fireplace insert, requires a permit. For additions and renovations, make clear the distinction between existing construction, alterations to existing construction, and new work. Estimated plan review for Major Residential is 3-4 weeks (new house, major addition). Please keep in mind these are estimates, not a guaranteed response time. If the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Real Elite does not take electrical work or gas work. The steps for this addition are walked on the house before we start.',
-      'A Falls Church addition is quoted as a free written estimate after a site walk.',
+      'A Falls Church addition is sized to the house we measure and the way that house is built.',
+      'Addition drawings should separate what is already there, what is being changed, and what is new. The city estimates major residential review, including a new house or a major addition, at three to four weeks, and it says that timing is an estimate rather than a guaranteed response. A parcel in Fairfax County, rather than inside the city, uses Land Development Services for the building permit. Electrical and gas fittings stay off our scope for this addition. The steps for this addition are walked on the house before we start.',
+      'This Falls Church addition is priced with a free written estimate after a site walk.',
     ],
   },
   'decks-falls-church-va': {
     h1: 'Decks in Falls Church, VA',
     metaTitle: 'Deck Builder Falls Church VA | Real Elite',
     metaDescription:
-      'Decks in Falls Church, VA. For certain townhouses, a site plan amendment must be processed through the Planning Department prior to approval of a building permit for a deck. Free written estimate after a site walk.',
+      'Decks in Falls Church, VA. Ledger and footing locations are set on site, and the price is a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'What drawings does a Falls Church deck need?',
         answer:
-          'Deck plans must include a framing plan showing spans and sizes of all joists and beams, post and footing sizes and spacing, all ledgers with their attachment detailed, and guardrail post attachment detail. A survey plat showing the deck location, drawn to scale.',
+          'Deck drawings need joist and beam sizes, footing and post layout, ledger connections, and how the guard posts attach. The deck location goes on a survey plat drawn to scale.',
       },
       {
-        question: 'Does the city accept the wood council deck guide in place of plans?',
+        question: 'Does the city accept a deck design guide in place of plans?',
         answer:
-          'The City does not accept this in lieu of plans, but it is a good design guide. For certain townhouses, a site plan amendment must be processed through the Planning Department prior to approval of a building permit for a deck.',
+          'The city does not accept the design guide in place of plans, though it calls the guide useful. Some townhouses need a site-plan amendment through the planning department before the building permit for a deck can be approved.',
       },
     ],
     paragraphs: [
-      'Decks in Falls Church, VA are framed on the yard behind the house we measure, with the ledger and the footing set on site.',
-      'If the home is inside the city, questions go to the permit counter at 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov. Deck plans must include a framing plan showing spans and sizes of all joists and beams, post and footing sizes and spacing, all ledgers with their attachment detailed, and guardrail post attachment detail. A survey plat showing the deck location, drawn to scale. For certain townhouses, a site plan amendment must be processed through the Planning Department prior to approval of a building permit for a deck. The City does not accept this in lieu of plans, but it is a good design guide. Estimated plan review for Simple Residential is 2 weeks (deck, kitchen/basement remodel). The permits counter is open Monday through Friday, 8 a.m. to 5 p.m., and closed to the public on the last Wednesday of the month. If the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Real Elite does not take electrical work. We confirm this deck on the house itself before framing starts.',
-      'A Falls Church deck is quoted as a free written estimate after a site walk, with the yard measured on site.',
+      'A Falls Church deck is framed from the ledger and the footing locations we find on site.',
+      'For a deck on a parcel inside the City of Falls Church, use the city permit counter. Simple residential review, including a deck or a kitchen or basement remodel, is estimated at two weeks. If this deck sits on a Fairfax County parcel, take the county building questions to Land Development Services. We leave the deck wiring to an electrician. We confirm this deck on the house itself before framing starts.',
+      'The Falls Church deck price comes from a free written estimate after a site walk.',
     ],
   },
   'outdoor-living-falls-church-va': {
     h1: 'Outdoor Living in Falls Church, VA',
     metaTitle: 'Outdoor Living Falls Church VA | Real Elite',
     metaDescription:
-      'Outdoor living in Falls Church, VA. Anything involving the framing or other structure of a wall requires a permit. This also goes for floors, ceilings, and rafters. Free written estimate after a site walk.',
+      'Outdoor living in Falls Church, VA. A screened porch or a patio on the measured yard is priced with a free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Does a Falls Church screened porch need a city permit?',
         answer:
-          'Anything involving the framing or other structure of a wall requires a permit. This also goes for floors, ceilings, and rafters. If the home is inside the city, questions go to the permit counter at 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov.',
+          'A screened porch that frames a wall, a floor, a ceiling, or rafters needs a city permit. A porch on a parcel inside the City of Falls Church is handled at the city permit counter.',
       },
       {
         question: 'Does a patio on a county parcel use the city counter?',
         answer:
-          'If the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. An on-grade patio does not need a Fairfax County building permit, though its size and place can still require a separate approval.',
+          'For a parcel in Fairfax County, an on-grade patio skips the county building permit, though size and place can still call for a separate approval. County questions for that patio parcel go to Land Development Services.',
       },
     ],
     paragraphs: [
-      'Outdoor living in Falls Church, VA is a screened porch or a patio on the yard we measure.',
-      'If the home is inside the city, questions go to the permit counter at 300 Park Avenue, Falls Church, VA 22046, phone 703-248-5080, email permits@fallschurchva.gov. Anything involving the framing or other structure of a wall requires a permit. This also goes for floors, ceilings, and rafters. The City does not accept this in lieu of plans, but it is a good design guide. If the parcel is in Fairfax County, questions go to Land Development Services, 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035, phone 703-222-0801. An on-grade patio does not need a Fairfax County building permit, though its size and place can still require a separate approval. Real Elite does not take electrical work or gas work. The porch and patio steps are walked on this house before work starts.',
-      'A screened porch or patio in Falls Church is a free written estimate after a site walk.',
+      'Falls Church outdoor living here is a screened porch or a patio on the yard we measure.',
+      'Electrical and gas fittings are not our trade on this porch. The porch and patio steps are walked on this house before work starts.',
+      'A Falls Church porch or patio is priced on a free written estimate after a site walk.',
     ],
   },
 };
