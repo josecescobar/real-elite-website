@@ -8604,7 +8604,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'A Purcellville deck is set to the ledger, the stair, and the yard behind the house we measure.',
-      'Wiring on this deck is outside our scope. Framing is confirmed on the house before lumber is ordered.',
+      'Wiring for this Purcellville deck stays with an electrician. Framing is confirmed on the house before lumber is ordered.',
       'This Purcellville deck is priced with a free written estimate after a site walk.',
     ],
   },
