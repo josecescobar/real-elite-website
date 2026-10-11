@@ -178,6 +178,9 @@ export const COMBO_CITY_SLUGS = [
   // Round 13, 2026-10-11. Additions, decks, and outdoor living for Vienna,
   // Chevy Chase, Arlington, and Falls Church. Those four already had area
   // pages, so this round does not add a town. No Brambleton. No Hagerstown.
+  // Round 14, 2026-10-11. Additions, decks, and outdoor living for
+  // Clarksville, Ellicott City, North Potomac, and Warrenton, plus
+  // Purcellville additions and decks. No new town. No Brambleton.
   'silver-spring-md',
   'aspen-hill-md',
   'bluemont-va',
@@ -8265,6 +8268,344 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Falls Church outdoor living here is a screened porch or a patio on the yard we measure.',
       'Electrical and gas fittings are not our trade on this porch. The porch and patio steps are walked on this house before work starts.',
       'A Falls Church porch or patio is priced on a free written estimate after a site walk.',
+    ],
+  },
+
+  // ROUND14_SERVICES_START
+  'additions-clarksville-md': {
+    h1: 'Home Additions in Clarksville, MD',
+    metaTitle: 'Home Addition Clarksville MD | Real Elite',
+    metaDescription:
+      'Home additions in Clarksville, MD. The side yard and the existing foundation are measured first, then priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Clarksville?',
+        answer:
+          'A Clarksville addition on a Howard County parcel is filed with the Department of Inspections, Licenses and Permits. Homeowners of a one-family or two-family house may act as their own general contractor for a Clarksville alteration or addition when they own the house and it is their primary residence.',
+      },
+      {
+        question: 'How is a Clarksville addition priced?',
+        answer:
+          'We price this Clarksville addition with a free written estimate after a site walk. Wiring stays with an electrician.',
+      },
+    ],
+    paragraphs: [
+      'A Clarksville addition starts from the side yard and the foundation already under the house.',
+      'Drawings for this addition are walked on the house before they are treated as final. Circuit work on this Clarksville addition stays with an electrician.',
+      'The Clarksville addition price is a free written estimate after a site walk.',
+    ],
+  },
+  'decks-clarksville-md': {
+    h1: 'Decks in Clarksville, MD',
+    metaTitle: 'Deck Builder Clarksville MD | Real Elite',
+    metaDescription:
+      'Decks in Clarksville, MD. Footing size and the ledger are set on the yard we measure, then priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Clarksville deck need a permit?',
+        answer:
+          'On a Howard County parcel in Clarksville, only a deck smaller than 25 square feet skips footings and a permit, so a deck of any larger size needs a permit. Footings for that Clarksville deck have to be at least 18 inches across, or 16 by 16 inches, and at least 30 inches deep.',
+      },
+      {
+        question: 'How is a Clarksville deck priced?',
+        answer:
+          'This Clarksville deck is priced with a free written estimate after a site walk. An electrician handles any lighting that needs wiring.',
+      },
+    ],
+    paragraphs: [
+      'A Clarksville deck is framed from the ledger and the footing spots we mark on the yard.',
+      'We check the house wall before lumber for this deck is ordered.',
+      'Pricing for this Clarksville deck waits on a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-clarksville-md': {
+    h1: 'Outdoor Living in Clarksville, MD',
+    metaTitle: 'Outdoor Living Clarksville MD | Real Elite',
+    metaDescription:
+      'Outdoor living in Clarksville, MD. A porch or a patio on the measured yard is priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which code covers a Clarksville porch?',
+        answer:
+          'Howard County adopted a September 7, 2025 code bill that covers the 2024 International Residential Code, and a porch on a Clarksville parcel is reviewed under that adoption. That department reviews construction documents before it issues the permit.',
+      },
+      {
+        question: 'Does replacing Clarksville deck boards need a permit?',
+        answer:
+          'Replacing only the deck boards on a Clarksville porch or deck, and leaving the structure underneath, is ordinary repair and does not need a Howard County permit.',
+      },
+    ],
+    paragraphs: [
+      'Clarksville outdoor living here is a porch or a patio on the yard we measure.',
+      'Outlet and light circuits on this Clarksville porch stay with an electrician. We settle those porch steps on the house before any material is ordered.',
+      'A Clarksville porch or patio is priced with a free written estimate after a site walk.',
+    ],
+  },
+  'additions-ellicott-city-md': {
+    h1: 'Home Additions in Ellicott City, MD',
+    metaTitle: 'Home Addition Ellicott City MD | Real Elite',
+    metaDescription:
+      'Home additions in Ellicott City, MD. We size the room to the house we measure and price it with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Ellicott City?',
+        answer:
+          'An Ellicott City addition on a Howard County parcel is taken in by the Department of Inspections, Licenses and Permits at the Courthouse Drive counter in Ellicott City. Private well and septic on an Ellicott City addition need Health Department approval before that county permit moves ahead.',
+      },
+      {
+        question: 'How is an Ellicott City addition priced?',
+        answer:
+          'We price this Ellicott City addition with a free written estimate after a site walk. Electrical work on the addition stays with an electrician.',
+      },
+    ],
+    paragraphs: [
+      'An Ellicott City addition is sized to the house we measure, including the way the floors already land.',
+      'The room sequence for this Ellicott City house is settled before the addition drawings are final.',
+      'This Ellicott City addition is priced through a free written estimate after a site walk.',
+    ],
+  },
+  'decks-ellicott-city-md': {
+    h1: 'Decks in Ellicott City, MD',
+    metaTitle: 'Deck Builder Ellicott City MD | Real Elite',
+    metaDescription:
+      'Decks in Ellicott City, MD. Frost depth and the ledger are confirmed on site, then priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'How deep is frost protection for an Ellicott City deck?',
+        answer:
+          'An Ellicott City deck on a Howard County parcel, when it is attached to the house, needs frost protection thirty inches into the ground, and Howard County allows more than one footing method for that depth.',
+      },
+      {
+        question: 'Can Ellicott City deck boards be replaced without a permit?',
+        answer:
+          'Swapping Ellicott City deck boards for the same boards or for plastic wood, without touching the frame, is ordinary repair. Howard County does not require a permit for that board-only swap on an Ellicott City deck.',
+      },
+    ],
+    paragraphs: [
+      'An Ellicott City deck layout follows the stair, the ledger, and the yard we measure.',
+      'Deck lighting that needs a circuit belongs to an electrician. The Ellicott City ledger and stair are checked on the house before framing starts.',
+      'The Ellicott City deck number comes from a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-ellicott-city-md': {
+    h1: 'Outdoor Living in Ellicott City, MD',
+    metaTitle: 'Outdoor Living Ellicott City MD | Real Elite',
+    metaDescription:
+      'Outdoor living in Ellicott City, MD. A porch or patio on the yard we measure is priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Do new Ellicott City guardrails need a permit?',
+        answer:
+          'Replacing handrails or guardrails on an Ellicott City deck or porch needs a permit, because the county treats them as a structural element.',
+      },
+      {
+        question: 'Where does an Ellicott City porch application go?',
+        answer:
+          'Ellicott City porch questions on a Howard County parcel go to the Department of Inspections, Licenses and Permits. That department reviews construction documents and inspects the work for code compliance.',
+      },
+    ],
+    paragraphs: [
+      'Ellicott City outdoor living here is a screened porch or a patio on the yard we measure.',
+      'We settle the porch scope for this house before any work starts. Circuits on the porch are an electrician job.',
+      'An Ellicott City porch or patio is priced on a free written estimate after a site walk.',
+    ],
+  },
+  'additions-north-potomac-md': {
+    h1: 'Home Additions in North Potomac, MD',
+    metaTitle: 'Home Addition North Potomac MD | Real Elite',
+    metaDescription:
+      'Home additions in North Potomac, MD. The house is measured room by room, and the price is a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in North Potomac?',
+        answer:
+          'On a Montgomery County parcel in North Potomac, the permitting lobby is in Wheaton. Extending the footprint of a one-family or two-family house in North Potomac needs a Montgomery County addition permit.',
+      },
+      {
+        question: 'How long can North Potomac addition review take?',
+        answer:
+          'For a North Potomac addition that is not on the faster track, the county says regular review may take up to 17 calendar days. Real Elite handles the plans paperwork for this addition.',
+      },
+    ],
+    paragraphs: [
+      'A North Potomac addition is drawn from the rooms we measure, not from a stock footprint.',
+      'Electrical work is outside what this crew does. The sequence for this addition is confirmed on the house before we start.',
+      'The North Potomac addition figure is a free written estimate after a site walk.',
+    ],
+  },
+  'decks-north-potomac-md': {
+    h1: 'Decks in North Potomac, MD',
+    metaTitle: 'Deck Builder North Potomac MD | Real Elite',
+    metaDescription:
+      'Decks in North Potomac, MD. Height and span come from the yard we measure, then the price is a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a North Potomac deck on footings need a permit?',
+        answer:
+          'A North Potomac deck on a Montgomery County parcel that sits on footings needs a building permit no matter the height above the ground.',
+      },
+      {
+        question: 'Can a North Potomac deck use the fast track?',
+        answer:
+          'An eligible North Potomac deck application can move on the residential fast track, which the county says can finish in as little as a few hours.',
+      },
+    ],
+    paragraphs: [
+      'A North Potomac deck takes its height and span from the yard behind the house we measure.',
+      'An electrician handles wiring on this deck. We look at the ledger on the house before lumber is ordered.',
+      'A North Potomac deck is priced by a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-north-potomac-md': {
+    h1: 'Outdoor Living in North Potomac, MD',
+    metaTitle: 'Outdoor Living North Potomac MD | Real Elite',
+    metaDescription:
+      'Outdoor living in North Potomac, MD. A screened porch on the measured yard is priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Can a North Potomac screened porch use the deck details?',
+        answer:
+          'A North Potomac screened porch on a county parcel cannot use the county single-span deck details in place of its own plans.',
+      },
+      {
+        question: 'Where does the North Potomac porch sign go?',
+        answer:
+          'The yellow permit sign for that North Potomac porch has to go up within three business days and stay posted for 30 days, within 5 feet of the front property line.',
+      },
+    ],
+    paragraphs: [
+      'North Potomac outdoor living on these builds is a screened porch or a patio on the measured yard.',
+      'Porch lighting on this North Potomac job stays with an electrician. We settle that porch scope on the house before work starts.',
+      'North Potomac outdoor work is priced with a free written estimate after a site walk.',
+    ],
+  },
+  'additions-warrenton-va': {
+    h1: 'Home Additions in Warrenton, VA',
+    metaTitle: 'Home Addition Warrenton VA | Real Elite',
+    metaDescription:
+      'Home additions in Warrenton, VA. We measure the house and the lot, then price the work with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition inside the Town of Warrenton?',
+        answer:
+          'When the parcel is inside the Town of Warrenton, the town Community Development department takes the building permit, and online filing is open for that town permit.',
+      },
+      {
+        question: 'Who permits a Warrenton addition on county land?',
+        answer:
+          'A Warrenton addition on county land, outside the town, is handled by Fauquier County Building, Permitting, and Inspections, which states that the Town of Warrenton has its own jurisdiction.',
+      },
+    ],
+    paragraphs: [
+      'A Warrenton addition follows the lot we measure and the foundation already under the house.',
+      'Gas fittings and electrical stay off our scope for this addition. We walk the addition steps on the house before drawings are treated as final.',
+      'This Warrenton addition is priced on a free written estimate after a site walk.',
+    ],
+  },
+  'decks-warrenton-va': {
+    h1: 'Decks in Warrenton, VA',
+    metaTitle: 'Deck Builder Warrenton VA | Real Elite',
+    metaDescription:
+      'Decks in Warrenton, VA. The ledger and the stair are set on site, and the price is a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Where is a county-land Warrenton deck filed?',
+        answer:
+          'A deck on a Fauquier County parcel outside the Town of Warrenton can be applied for on the county land development portal, which lists deck permits among its online applications.',
+      },
+      {
+        question: 'Where is a deck inside the Town of Warrenton filed?',
+        answer:
+          'Inside the Town of Warrenton, the deck uses the town jurisdiction, which the county names separately from the county building work.',
+      },
+    ],
+    paragraphs: [
+      'A Warrenton deck is framed from the ledger and the footing locations we find on site.',
+      'Any wired lighting on this Warrenton deck stays with an electrician. Layout is checked on the house before framing starts.',
+      'The Warrenton deck price is a free written estimate after a site walk.',
+    ],
+  },
+  'outdoor-living-warrenton-va': {
+    h1: 'Outdoor Living in Warrenton, VA',
+    metaTitle: 'Outdoor Living Warrenton VA | Real Elite',
+    metaDescription:
+      'Outdoor living in Warrenton, VA. A porch or a patio measured on the lot is priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who takes a porch inside the Town of Warrenton?',
+        answer:
+          'A screened porch inside the Town of Warrenton is submitted to the town Community Development department, which issues the town permits.',
+      },
+      {
+        question: 'Who takes a porch on Fauquier County land near Warrenton?',
+        answer:
+          'County questions for a porch on a Fauquier parcel outside the town go to Building, Permitting, and Inspections. That division reviews building plans for projects in the county.',
+      },
+    ],
+    paragraphs: [
+      'Warrenton outdoor living here is a screened porch or a patio on the yard we measure.',
+      'Gas fittings and porch circuits on this Warrenton job stay with the licensed trades. We walk the porch and patio steps on the house before work starts.',
+      'A Warrenton porch or patio is priced through a free written estimate after a site walk.',
+    ],
+  },
+  'additions-purcellville-va': {
+    h1: 'Home Additions in Purcellville, VA',
+    metaTitle: 'Home Addition Purcellville VA | Real Elite',
+    metaDescription:
+      'Home additions in Purcellville, VA. The house and the lot are measured first, and the price is a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who issues the building permit for a Purcellville addition?',
+        answer:
+          'Loudoun County issues every building permit for a parcel inside the Town of Purcellville, and the town zoning permit has to come first. The town lists a home addition as work that needs both the Purcellville zoning permit and the Loudoun County building permit.',
+      },
+      {
+        question: 'What plat does the Purcellville addition zoning set need?',
+        answer:
+          'The town zoning set for a Purcellville addition should show the work on a plat and the distance to the property lines.',
+      },
+    ],
+    paragraphs: [
+      'A Purcellville addition is tied to the house we measure, on a lot that may be tight along the older streets.',
+      'We do not run electrical on this addition. The addition steps are walked on the house before the drawings are final.',
+      'The Purcellville addition price is a free written estimate after a site walk.',
+    ],
+  },
+  'decks-purcellville-va': {
+    h1: 'Decks in Purcellville, VA',
+    metaTitle: 'Deck Builder Purcellville VA | Real Elite',
+    metaDescription:
+      'Decks in Purcellville, VA. The yard and the ledger are measured before we price the build with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Purcellville deck need both a town permit and a county permit?',
+        answer:
+          'The town lists a deck on a parcel inside the town as work that needs both a Purcellville zoning permit and a Loudoun County building permit. The published town zoning fee for a Purcellville deck is $75.',
+      },
+      {
+        question: 'What should the Purcellville deck plat show?',
+        answer:
+          'A plat for this Purcellville deck should show the proposed change and the distance to the property lines when it goes to the town.',
+      },
+    ],
+    paragraphs: [
+      'A Purcellville deck is set to the ledger, the stair, and the yard behind the house we measure.',
+      'Wiring on this deck is outside our scope. Framing is confirmed on the house before lumber is ordered.',
+      'This Purcellville deck is priced with a free written estimate after a site walk.',
     ],
   },
 };
