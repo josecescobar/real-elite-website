@@ -7390,13 +7390,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Aspen Hill, MD',
     metaTitle: 'Kitchen Remodel Aspen Hill MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Aspen Hill, MD. The City of Rockville and the City of Gaithersburg are city permit only. Free written estimate after a site walk.',
+      'Kitchen remodeling in Aspen Hill, MD. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a kitchen remodel in Aspen Hill?',
         answer:
-          'The City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is not city permit only, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. DPS does not have jurisdictions for properties located within the city limits of Rockville (240-314-5000) and Gaithersburg (301-258-6330). Please contact the municipalities directly.',
+          'Aspen Hill is a census designated place in Montgomery County. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
       },
       {
         question: 'Does an Aspen Hill cabinet replacement need a permit?',
@@ -7410,8 +7410,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Aspen Hill, MD starts on Aspen Hill Road and Connecticut Avenue, where many houses date from the mid-1960s.',
-      'The City of Rockville and the City of Gaithersburg are city permit only. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is not city permit only, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. DPS does not have jurisdictions for properties located within the city limits of Rockville (240-314-5000) and Gaithersburg (301-258-6330). Please contact the municipalities directly. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Cabinets - Install, Repair, Replace. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Kitchen remodeling in Aspen Hill, MD starts on Aspen Hill Road and Connecticut Avenue, where many houses date from the mid-1960s. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
+      'Aspen Hill is a census designated place in Montgomery County. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Cabinets - Install, Repair, Replace. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Aspen Hill quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -7419,13 +7419,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Aspen Hill, MD',
     metaTitle: 'Bath Remodel Aspen Hill MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Aspen Hill, MD, the 20853 area. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. Free written estimate after a site walk.',
+      'Bathroom remodeling in Aspen Hill, MD. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Who permits a bathroom remodel in Aspen Hill?',
         answer:
-          'When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240. When the parcel is not city permit only, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. DPS does not have jurisdictions for properties located within the city limits of Rockville (240-314-5000) and Gaithersburg (301-258-6330). Please contact the municipalities directly.',
+          'Aspen Hill is a census designated place in Montgomery County. Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
       },
       {
         question: 'What does bathroom remodeling in Aspen Hill, MD cost?',
@@ -7439,8 +7439,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Bathroom remodeling in Aspen Hill, MD is a mid-1960s bath on Aspen Hill Road in the 20853 area, kept separate from Fallsgrove and King Farm.',
-      'The City of Rockville and the City of Gaithersburg are city permit only. When the parcel is not city permit only, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. DPS does not have jurisdictions for properties located within the city limits of Rockville (240-314-5000) and Gaithersburg (301-258-6330). Please contact the municipalities directly. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Bathroom Caulking. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Plumbing - Contact WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Bathroom remodeling in Aspen Hill, MD is a mid-1960s bath on Aspen Hill Road, kept separate from Fallsgrove and King Farm. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
+      'Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Bathroom Caulking. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Plumbing - Contact WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'Every Aspen Hill bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -7454,7 +7454,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Aspen Hill, MD?',
         answer:
-          'When the parcel is not city permit only, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. DPS does not have jurisdictions for properties located within the city limits of Rockville (240-314-5000) and Gaithersburg (301-258-6330). Please contact the municipalities directly. When the parcel is inside the City of Rockville, questions go to 111 Maryland Ave., Rockville, MD 20850, phone 240.314.8240.',
+          'Aspen Hill is a census designated place in Montgomery County. A census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
       },
       {
         question: 'What is checked before an Aspen Hill lower level is finished?',
@@ -7468,8 +7468,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Aspen Hill, MD is a lower level in a mid-1960s house on Aspen Hill Road in the 20853 area.',
-      'When the parcel is not city permit only, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. DPS does not have jurisdictions for properties located within the city limits of Rockville (240-314-5000) and Gaithersburg (301-258-6330). Please contact the municipalities directly. The City of Rockville and the City of Gaithersburg are city permit only. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Basement finishing in Aspen Hill, MD is a lower level in a mid-1960s house on Aspen Hill Road. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
+      'Aspen Hill is a census designated place in Montgomery County. Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'An Aspen Hill lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -7485,7 +7485,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Permits',
         paragraphs: [
-          'When the parcel is not city permit only, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. DPS does not have jurisdictions for properties located within the city limits of Rockville (240-314-5000) and Gaithersburg (301-258-6330). Please contact the municipalities directly. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration.',
+          'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Aspen Hill is a census designated place in Montgomery County. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration.',
         ],
       },
     ],
@@ -7599,7 +7599,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Myersville?',
         answer:
-          'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall.',
+          'Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. The Town of Myersville zoning certificate application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall.',
       },
       {
         question: 'Does a Myersville interior change need approval?',
@@ -7628,7 +7628,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Myersville?',
         answer:
-          'Town questions go to 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone 301-293-4281. When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313.',
+          'Town questions go to Myersville Town Hall, 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone (301) 293-4281. Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701.',
       },
       {
         question: 'What does bathroom remodeling in Myersville, MD cost?',
@@ -7638,7 +7638,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Myersville, MD is an early-1980s bath on Main Street in the 21773 area.',
-      'Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. The City of Frederick and Mt. Airy are responsible for their own building permits. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. The Town of Myersville zoning certificate application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. The City of Frederick and Mt. Airy are responsible for their own building permits. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. Every Myersville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -7667,7 +7667,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Myersville, MD is a lower level in an early-1980s house on Main Street. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets.',
-      'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Monday - Friday 8 a.m. - 4 p.m. This application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone 301-293-4281. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Monday - Friday 8 a.m. - 4 p.m. Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. The Town of Myersville zoning certificate application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to Myersville Town Hall, 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone (301) 293-4281. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'A Myersville lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is a free written estimate after a site walk.',
     ],
     sections: [

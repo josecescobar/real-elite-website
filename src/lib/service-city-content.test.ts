@@ -2760,10 +2760,15 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
     expect(CITY_DATA['myersville-md']?.description).toMatch(/55 minutes/);
     expect(CITY_DATA['myersville-md']?.description).toMatch(/stretch of that job radius/);
     expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/20853/);
-    expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/city permit only/i);
+    expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/20906/);
+    expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/240-777-0311/);
+    expect(CITY_DATA['aspen-hill-md']?.description).not.toMatch(/city permit only|111 Maryland|240\.314\.8240/i);
     expect(CITY_DATA['silver-spring-md']?.description).toMatch(/20901/);
     const body = NEW_AREAS.map((slug) => CITY_DATA[slug]?.description ?? '').join('\n');
-    expect(body).not.toMatch(/MHIC|maryland license|census|median home|owner-occupied/i);
+    expect(body).not.toMatch(/MHIC|maryland license|median home|owner-occupied/i);
+    expect(CITY_DATA['silver-spring-md']?.description).not.toMatch(/census/i);
+    expect(CITY_DATA['bluemont-va']?.description).not.toMatch(/census/i);
+    expect(CITY_DATA['myersville-md']?.description).not.toMatch(/census/i);
   });
 
   it('does not repeat a full paragraph across the 28 new pages', () => {
