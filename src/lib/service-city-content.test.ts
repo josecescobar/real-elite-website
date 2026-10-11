@@ -794,6 +794,18 @@ describe('comboPublishesPricing', () => {
         'outdoor-living-great-falls-va',
         'outdoor-living-potomac-md',
         'outdoor-living-bethesda-md',
+        'additions-vienna-va',
+        'decks-vienna-va',
+        'outdoor-living-vienna-va',
+        'additions-chevy-chase-md',
+        'decks-chevy-chase-md',
+        'outdoor-living-chevy-chase-md',
+        'additions-arlington-va',
+        'decks-arlington-va',
+        'outdoor-living-arlington-va',
+        'additions-falls-church-va',
+        'decks-falls-church-va',
+        'outdoor-living-falls-church-va',
       ].sort()
     );
   });
@@ -844,7 +856,9 @@ describe('unconfirmedClaimIdsInCombo', () => {
    * Correctness does not rest on this number: `trust-bullets.test.ts` asserts
    * per claim that no page is handed one its copy does not make. This is the
    * visible measure, so a copy edit or a retirement that changes the footprint
-   * surfaces as a decision rather than a side effect.
+   * surfaces as a decision rather than a side effect. Round 13 added 12
+   * additions, decks, and outdoor-living pages with no registered claim,
+   * moving the clean count from 227 to 239.
    */
   it('publishes no registered unconfirmed claims on premium combos', () => {
     let carrying = 0;
@@ -856,12 +870,11 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/227 premium service combos: 203 after round 11, plus 24 round 12
-    // service pages (12 kitchens/bathrooms/basements and 12 additions, decks,
-    // and outdoor-living pages). The 4 new area pages are separate. All clean.
+    // 0/239 premium service combos: 227 after round 12, plus 12 round 13
+    // additions, decks, and outdoor-living pages. All clean.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 227 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 239 });
   });
 
   /**
@@ -1405,6 +1418,10 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-great-falls-va',
       'outdoor-living-potomac-md',
       'outdoor-living-bethesda-md',
+      'outdoor-living-vienna-va',
+      'outdoor-living-chevy-chase-md',
+      'outdoor-living-arlington-va',
+      'outdoor-living-falls-church-va',
     ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
@@ -1526,6 +1543,13 @@ describe('REA-2385 round 6 Tier A towns', () => {
       'additions-potomac-md',
       'decks-potomac-md',
       'outdoor-living-potomac-md',
+      // Round 13 adds additions, decks, and outdoor living for Arlington and Chevy Chase.
+      'additions-arlington-va',
+      'decks-arlington-va',
+      'outdoor-living-arlington-va',
+      'additions-chevy-chase-md',
+      'decks-chevy-chase-md',
+      'outdoor-living-chevy-chase-md',
     ]);
     for (const city of [
       'garrett-park-md',
@@ -2240,6 +2264,7 @@ describe('REA-2495 round 11 richest-county towns', () => {
   it.each([
     ['docs/seo-round-11-source-table.md', round11PermitSentences],
     ['docs/seo-round-12-source-table.md', round12PermitSentences],
+    ['docs/seo-round-13-source-table.md', round13PermitSentences],
   ] as const)('%s matches every source-table row to the copy and every permit sentence to a row', (file, sentences) => {
     const root = nodePath.resolve(__dirname, '../..');
     const tablePath = nodePath.join(root, file);
@@ -2274,6 +2299,7 @@ describe('REA-2495 round 11 richest-county towns', () => {
   it.each([
     'docs/seo-round-11-source-table.md',
     'docs/seo-round-12-source-table.md',
+    'docs/seo-round-13-source-table.md',
   ])('%s requires the quote to name the town, ZIP, or office a boundary sentence is about', (file) => {
     const root = nodePath.resolve(__dirname, '../..');
     const table = fs.readFileSync(nodePath.join(root, file), 'utf8');
@@ -2294,6 +2320,7 @@ describe('REA-2495 round 11 richest-county towns', () => {
   it.each([
     ['docs/seo-round-11-source-table.md', round11PermitSentences],
     ['docs/seo-round-12-source-table.md', round12PermitSentences],
+    ['docs/seo-round-13-source-table.md', round13PermitSentences],
   ] as const)('%s rejects a negation the cited quote does not itself state', (file, sentences) => {
     // A by-itself, mailing-address, or does-not-name/set/tell/decide sentence passes only when the quote contains that same phrase; any other does-not/cannot/may-not sentence passes only when the quote contains not, no, or cannot.
     const root = nodePath.resolve(__dirname, '../..');
@@ -2381,8 +2408,12 @@ const BOUNDARY_TOWNS = [
   'Myersville',
   'McLean',
   'Great Falls',
+  'Falls Church',
+  'Chevy Chase',
   'Bethesda',
+  'Arlington',
   'Potomac',
+  'Vienna',
   'Leesburg',
   'Frederick',
 ];
@@ -2545,9 +2576,19 @@ function round12PermitSentences(constantsSrc: string, contentSrc: string): strin
   const services = sliceBetween(
     contentSrc,
     '  // ROUND12_SERVICES_START',
-    '\n};\n\n/**\n * The most specific published URL'
+    '  // ROUND13_SERVICES_START'
   );
   return collectPermitSentences(area, services);
+}
+
+/** Permit and jurisdiction sentences in the 12 round 13 service entries. */
+function round13PermitSentences(_constantsSrc: string, contentSrc: string): string[] {
+  const services = sliceBetween(
+    contentSrc,
+    '  // ROUND13_SERVICES_START',
+    '\n};\n\n/**\n * The most specific published URL'
+  );
+  return collectPermitSentences('', services);
 }
 
 describe('REA-2476 round 10 Fairfax additions and decks', () => {
@@ -2732,10 +2773,6 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
         if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
       }
     }
-    expect(CONTENT).not.toHaveProperty('additions-vienna-va');
-    expect(CONTENT).not.toHaveProperty('decks-chevy-chase-md');
-    expect(CONTENT).not.toHaveProperty('outdoor-living-arlington-va');
-    expect(CONTENT).not.toHaveProperty('additions-falls-church-va');
   });
 
   it('names a sourced permit phone on every new basement page and states the stretch', () => {
@@ -2793,6 +2830,95 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
     const dupes = [...counts.entries()]
       .filter(([, count]) => count > 1)
       .map(([para, count]) => `${count}x ${para}`);
+    expect(dupes).toEqual([]);
+  });
+});
+
+describe('REA-2597 round 13 Vienna, Chevy Chase, Arlington, and Falls Church gaps', () => {
+  const PAGES = [
+    ['additions', 'vienna-va', 'Home Additions in Vienna, VA'],
+    ['decks', 'vienna-va', 'Decks in Vienna, VA'],
+    ['outdoor-living', 'vienna-va', 'Outdoor Living in Vienna, VA'],
+    ['additions', 'chevy-chase-md', 'Home Additions in Chevy Chase, MD'],
+    ['decks', 'chevy-chase-md', 'Decks in Chevy Chase, MD'],
+    ['outdoor-living', 'chevy-chase-md', 'Outdoor Living in Chevy Chase, MD'],
+    ['additions', 'arlington-va', 'Home Additions in Arlington, VA'],
+    ['decks', 'arlington-va', 'Decks in Arlington, VA'],
+    ['outdoor-living', 'arlington-va', 'Outdoor Living in Arlington, VA'],
+    ['additions', 'falls-church-va', 'Home Additions in Falls Church, VA'],
+    ['decks', 'falls-church-va', 'Decks in Falls Church, VA'],
+    ['outdoor-living', 'falls-church-va', 'Outdoor Living in Falls Church, VA'],
+  ] as const;
+
+  const TOWNS = ['vienna-va', 'chevy-chase-md', 'arlington-va', 'falls-church-va'] as const;
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = [
+      entry?.h1,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+    ].join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton|separately licensed|—/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 12 openings and gives each a unique metaTitle', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('publishes the 12 deferred gap urls and no fifth town', () => {
+    expect(PAGES).toHaveLength(12);
+    for (const city of TOWNS) {
+      expect(ALL_SERVICE_AREAS.some((area) => area.slug === city), city).toBe(true);
+      expect(CITY_DATA[city]?.nearbySlugs?.length, city).toBeGreaterThan(0);
+      for (const service of ['additions', 'decks', 'outdoor-living'] as const) {
+        expect(CONTENT).toHaveProperty(`${service}-${city}`);
+      }
+    }
+    expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
+    expect(CONTENT).not.toHaveProperty('additions-hagerstown-md');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+  });
+
+  it('does not repeat a full paragraph across the 12 new pages', () => {
+    const paragraphs: string[] = [];
+    for (const [service, city] of PAGES) {
+      const entry = CONTENT[`${service}-${city}`]!;
+      for (const para of entry.paragraphs) paragraphs.push(para.trim());
+    }
+    const counts = new Map<string, number>();
+    for (const para of paragraphs) counts.set(para, (counts.get(para) ?? 0) + 1);
+    const dupes = [...counts.entries()]
+      .filter(([, count]) => count > 1)
+      .map(([para, count]) => `${count}x ${para.slice(0, 80)}`);
     expect(dupes).toEqual([]);
   });
 });
