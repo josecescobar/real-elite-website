@@ -3376,7 +3376,7 @@ export const HOME_FAQ = [
  *
  * HONESTY RULE: every entry must be a photograph of Real Elite's own work.
  * No stock, no AI imagery, no manufacturer catalogue shots — those belong in
- * /images/inspiration with an "inspiration" label, never here.
+ * /images/inspiration (shown unlabeled as design ideas off /projects), never here.
  *
  * `state` / `citySlug` are set only where the job location is verified
  * (photo EXIF GPS matched against the job file in AI-SHARED/Jobs). Leave them

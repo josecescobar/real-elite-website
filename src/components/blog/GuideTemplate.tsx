@@ -17,7 +17,7 @@ import RelatedGuides from './RelatedGuides';
 import AnswerText from './AnswerText';
 import { primaryCtaForPath } from '@/lib/cta-intent';
 import ArticleSchema from '@/components/seo/ArticleSchema';
-import { isStockImage, isUnverifiedImage } from '@/lib/stock-images';
+import { isUnverifiedImage } from '@/lib/stock-images';
 import JsonLd from '@/components/seo/JsonLd';
 import {
   formatDate,
@@ -67,13 +67,12 @@ const mdxComponents = {
   // variants from high-quality sources while `sizes` keeps the delivered bytes
   // small. Lower-res 3:2 sources are simply capped at their own resolution.
   //
-  // Stock photos get a visible "Design inspiration" caption (see
-  // src/lib/stock-images.ts) so an article image never reads as a Real Elite
-  // job. Markdown wraps images in <p>, so the caption is a <span>, not a
-  // <figure>, to keep the HTML valid.
+  // Stock photos render unlabeled (Jose, 2026-10-12: no "Design inspiration"
+  // captions); article copy never presents them as Real Elite work.
+  // Unverified photos still carry a caption. Markdown wraps images in <p>, so
+  // the caption is a <span>, not a <figure>, to keep the HTML valid.
   img: ({ src, alt }: { src?: string; alt?: string }) => {
     const source = typeof src === 'string' ? src : '';
-    const stock = isStockImage(source);
     const unverified = isUnverifiedImage(source);
     const image = (
       <Image
@@ -83,15 +82,15 @@ const mdxComponents = {
         height={1707}
         quality={82}
         sizes="(max-width: 768px) 100vw, 768px"
-        className={`rounded-lg w-full h-auto ${stock || unverified ? '!my-0' : 'my-8'}`}
+        className={`rounded-lg w-full h-auto ${unverified ? '!my-0' : 'my-8'}`}
       />
     );
-    if (!stock && !unverified) return image;
+    if (!unverified) return image;
     return (
       <span className="block my-8">
         {image}
         <span className="block mt-2 text-xs uppercase tracking-[0.14em] text-charcoal-500">
-          {unverified ? 'Unverified photo · not confirmed as a Real Elite project' : 'Design inspiration · not a Real Elite project'}
+          Unverified photo · not confirmed as a Real Elite project
         </span>
       </span>
     );
@@ -200,11 +199,6 @@ export default function GuideTemplate({ post }: Props) {
               sizes="(max-width: 1024px) 100vw, 800px"
               className="object-cover"
             />
-            {isStockImage(post.featuredImage) && (
-              <span className="absolute bottom-3 left-3 rounded bg-navy-950/75 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
-                Design inspiration
-              </span>
-            )}
             {isUnverifiedImage(post.featuredImage) && (
               <span className="absolute bottom-3 left-3 rounded bg-navy-950/75 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
                 Unverified photo

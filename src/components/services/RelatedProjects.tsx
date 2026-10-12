@@ -30,15 +30,15 @@ function Grid({ images }: { images: readonly ServiceImage[] }) {
 
 /**
  * The service-page photo gallery. Only photos that pass `isVerifiedWorkImage`
- * appear under "Recent … projects". Proven stock is split out under a labelled
- * "Design inspiration" heading. Unverified assets are omitted from both, so
- * they are neither claimed as Real Elite work nor labelled as stock.
+ * appear under "Recent … projects". Proven stock is shown separately under a
+ * neutral "Design ideas" heading with no caption (Jose, 2026-10-12) and is never
+ * called Real Elite work. Unverified assets are omitted from both.
  */
 export default function RelatedProjects({ images, serviceTitle }: Props) {
   if (!images || images.length === 0) return null;
   const work = images.filter((img) => isVerifiedWorkImage(img.src));
-  const inspiration = images.filter((img) => isStockImage(img.src));
-  if (work.length === 0 && inspiration.length === 0) return null;
+  const ideas = images.filter((img) => isStockImage(img.src));
+  if (work.length === 0 && ideas.length === 0) return null;
 
   return (
     <section className="space-y-12">
@@ -50,18 +50,15 @@ export default function RelatedProjects({ images, serviceTitle }: Props) {
           <Grid images={work} />
         </div>
       )}
-      {inspiration.length > 0 && (
+      {ideas.length > 0 && (
         <div>
           <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-semibold mb-2">
-            Design inspiration
+            Design ideas
           </p>
-          <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-3">
+          <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-navy-800 mb-6">
             {serviceTitle} ideas
           </h2>
-          <p className="text-charcoal-600 text-sm mb-6 max-w-2xl">
-            Stock photography for style reference. These are not Real Elite projects.
-          </p>
-          <Grid images={inspiration} />
+          <Grid images={ideas} />
         </div>
       )}
     </section>

@@ -2,8 +2,10 @@
  * Images that are NOT photographs of Real Elite's own work.
  *
  * Source of truth for the honesty rule: stock (or otherwise third-party)
- * photography may appear only where the page labels it as design inspiration,
- * never where a visitor would read it as a Real Elite project.
+ * photography may appear as unlabeled design ideas (Jose, 2026-10-12: no
+ * "Design inspiration" captions), but never where a visitor would read it as a
+ * Real Elite project: never on the /projects photo wall or in a case study, and
+ * never next to "our work" or "completed project" wording.
  *
  * `STOCK_IMAGE_MATCHES` lists every file in `public/images` that a perceptual
  * hash matched to a stock original in the git-ignored source library
@@ -18,10 +20,10 @@
  *
  * Consumers:
  * - `RelatedProjects` shows only `isVerifiedWorkImage` photos under
- *   "Recent … projects", and only `isStockImage` photos under
- *   "Design inspiration".
- * - `GuideTemplate` captions stock article images "Design inspiration" and
- *   unverified ones "Unverified photo".
+ *   "Recent … projects", and only `isStockImage` photos under a neutral
+ *   "Design ideas" heading.
+ * - `GuideTemplate` renders stock article images without a caption and
+ *   captions unverified ones "Unverified photo".
  * - `CityPageTemplate` and `LuxuryGallery` use the same guard.
  * - Tests fail if a case study or the /projects photo wall references stock
  *   or an unverified asset.
