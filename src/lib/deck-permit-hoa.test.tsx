@@ -22,8 +22,8 @@ describe('deck permit + HOA block', () => {
   });
 
   it('is absent for a town with no permit guide', () => {
-    expect(deckPermitHoaForCity('winchester-va')).toBeNull();
-    const { container } = render(<DeckPermitHoaBlock citySlug="winchester-va" />);
+    expect(deckPermitHoaForCity('mount-airy-md')).toBeNull();
+    const { container } = render(<DeckPermitHoaBlock citySlug="mount-airy-md" />);
     expect(container).toBeEmptyDOMElement();
   });
 
