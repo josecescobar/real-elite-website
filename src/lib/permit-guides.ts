@@ -275,6 +275,11 @@ export const PERMIT_SOURCES: readonly PermitSource[] = [
     url: 'https://www.howardcountymd.gov/inspections-licenses-permits/inspection-requirements',
   },
   {
+    id: 'hc-homeowner-plumbing',
+    label: 'Howard County DILP: Homeowner plumbing application (PDF)',
+    url: 'https://www.howardcountymd.gov/sites/default/files/2026-03/Homeowners%20Plumbing%20Application%20%2003.2026_0.pdf',
+  },
+  {
     id: 'hc-hpc',
     label: 'Howard County Historic Preservation Commission: Certificate of Approval',
     url: 'https://www.howardcountymd.gov/historic-preservation-commission/resource/view-certificate-approval-and-tax-credit-pre-approval',
@@ -835,7 +840,7 @@ const MONTGOMERY: CountyPermitGuide = {
   description:
     'Which Montgomery County, MD remodels need a permit: decks, basements, baths, kitchens, fences, sheds. DPS vs. Rockville and Gaithersburg, WSSC, HOA, and HAWP.',
   cardBlurb:
-    'Decks, fences, sheds, and basement alterations need a DPS permit. Roof covering, siding, and same-size windows usually don’t. Plumbing goes through WSSC Water.',
+    'Decks, fences, sheds, and basement alterations need a DPS permit. Roof covering, siding, and window swaps that keep the same opening usually don’t. Plumbing goes through WSSC Water.',
   keywords: [
     'Montgomery County deck permit',
     'Montgomery County MD basement permit',
@@ -845,7 +850,7 @@ const MONTGOMERY: CountyPermitGuide = {
   published: PUBLISHED,
   updated: PUBLISHED,
   answer:
-    'In Montgomery County, Maryland, the Department of Permitting Services (DPS) issues building permits for decks, fences, sheds and other accessory structures, additions, and renovations beyond repairs such as a basement finish. Replacing roof covering, siding, cabinets, and windows or doors in the same size opening is listed as most likely not needing a permit, and neither do patios. Plumbing and gas permits come from WSSC Water. The Cities of Rockville and Gaithersburg issue their own building permits.',
+    'In Montgomery County, Maryland, the Department of Permitting Services (DPS) issues building permits for decks, fences, sheds and other accessory structures, additions, and renovations beyond repairs such as a basement finish. Replacing roof covering, siding, cabinets, and windows or doors with the same opening size and net clear opening is listed as most likely not needing a permit, and neither do patios. Plumbing and gas permits come from WSSC Water. The Cities of Rockville and Gaithersburg issue their own building permits.',
   jurisdictionIntro:
     'DPS covers most of the county, but not the Cities of Rockville or Gaithersburg, which run their own permit offices. Some municipalities that use DPS, such as Takoma Park and the Town of Chevy Chase, add their own letter or permit on top of the county permit. If you aren’t sure whether your address is inside a municipality, check before you apply.',
   issuers: [
@@ -1036,7 +1041,7 @@ const HOWARD: CountyPermitGuide = {
   published: PUBLISHED,
   updated: PUBLISHED,
   answer:
-    'In Howard County, Maryland, the Department of Inspections, Licenses and Permits (DILP) issues building, electrical, plumbing, and HVAC permits. Every deck except a very small one needs a permit, and so do finished basements, additions, screened porches, and sheds over the county’s size limit. Replacing deck boards is ordinary repair, but replacing railings needs a permit. Plumbing permits are pulled by a master plumber. Howard County has no incorporated towns, so the county handles Ellicott City, Columbia, and Clarksville addresses.',
+    'In Howard County, Maryland, the Department of Inspections, Licenses and Permits (DILP) issues building, electrical, plumbing, and HVAC permits. Every deck except a very small one needs a permit, and so do finished basements, additions, screened porches, and sheds over the county’s size limit. Replacing deck boards is ordinary repair, but replacing railings needs a permit. Plumbing work needs a plumbing permit. Howard County has no incorporated towns, so the county handles Ellicott City, Columbia, and Clarksville addresses.',
   jurisdictionIntro:
     'Howard County has no incorporated municipalities; county government provides local services everywhere, including Ellicott City, Columbia, and Clarksville. Building permits come from DILP, and zoning questions go to the Department of Planning and Zoning.',
   issuers: [
@@ -1068,8 +1073,8 @@ const HOWARD: CountyPermitGuide = {
       job: 'Kitchen or bathroom remodel',
       verdict: 'depends',
       summary:
-        'Removing a load-bearing wall makes it an interior alteration that needs a permit and engineer calculations. Plumbing work needs a plumbing permit pulled by a master plumber. The county’s pages don’t settle cosmetic-only remodels, so check with DILP.',
-      sources: ['hc-handout', 'hc-dilp'],
+        'Removing a load-bearing wall makes it an interior alteration that needs a permit and engineer calculations. Plumbing work needs a plumbing permit, generally pulled by a master plumber; the county also has a homeowner plumbing application for qualifying owners. The county’s pages don’t settle cosmetic-only remodels, so check with DILP.',
+      sources: ['hc-handout', 'hc-dilp', 'hc-homeowner-plumbing'],
       service: 'kitchens',
     },
     {
@@ -1152,6 +1157,7 @@ const HOWARD: CountyPermitGuide = {
     'hc-memo',
     'hc-inspections',
     'hc-hpc',
+    'hc-homeowner-plumbing',
     'md-manual-howard',
   ],
   areaSlugs: ['ellicott-city-md', 'clarksville-md', 'columbia-md'],
