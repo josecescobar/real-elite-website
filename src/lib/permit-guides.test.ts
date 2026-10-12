@@ -129,6 +129,29 @@ describe('permit guides', () => {
     }
   });
 
+  it('cites each factual span in the Martinsburg and Fauquier lead and FAQ copy', () => {
+    const berkeley = BATCH2_PERMIT_GUIDES.find((guide) => guide.slug === 'berkeley-county-wv');
+    const fauquier = BATCH2_PERMIT_GUIDES.find((guide) => guide.slug === 'fauquier-county-va');
+    expect(berkeley).toBeDefined();
+    expect(fauquier).toBeDefined();
+    for (const [guide, blocks] of [
+      [berkeley!, [berkeley!.answer, berkeley!.jurisdictionIntro, ...berkeley!.faqs.map((faq) => faq.answer)]],
+      [fauquier!, [fauquier!.answer, fauquier!.jurisdictionIntro, ...fauquier!.faqs.map((faq) => faq.answer)]],
+    ] as const) {
+      for (const block of blocks) {
+        expect(typeof block).not.toBe('string');
+        if (typeof block === 'string') continue;
+        for (const part of block) {
+          expect(part.sources.length, `${guide.slug}: ${part.text}`).toBeGreaterThan(0);
+          for (const id of part.sources) {
+            expect(guide.sourceIds, `${guide.slug}: ${part.text} (${id})`).toContain(id);
+            expect(sourceById(id)?.url).toMatch(/^https:\/\//);
+          }
+        }
+      }
+    }
+  });
+
   it('links only to live service, area, and blog pages', () => {
     const serviceSlugs = new Set<string>(SERVICES.map((s) => s.slug));
     const areaSlugs = new Set(ALL_SERVICE_AREAS.map((a) => a.slug));
