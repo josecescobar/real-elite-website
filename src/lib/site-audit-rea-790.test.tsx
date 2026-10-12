@@ -52,10 +52,12 @@ describe('REA-790 site-audit copy', () => {
     expect(hero).toContain('Schedule a design consultation');
   });
 
-  it('captions each signature card on the photo', () => {
+  it('shows the signature cards without inspiration captions and keeps the completed-work link', () => {
     const cards = read('src/components/home/SignatureServices.tsx');
-    expect(cards).toContain('Design inspiration · not a Real Elite project');
-    expect(cards.indexOf('Design inspiration · not a Real Elite project')).toBeLessThan(cards.indexOf('{cat.title}'));
+    expect(cards).not.toMatch(/inspiration/i);
+    expect(cards).not.toContain('not a Real Elite project');
+    expect(cards).toContain('href="/projects"');
+    expect(cards).toContain('See completed work');
   });
 
   it('keeps the app-wide loading boundary off static routes and on /sales', () => {

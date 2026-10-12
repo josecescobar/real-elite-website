@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   STOCK_IMAGE_MATCHES,
@@ -71,8 +71,8 @@ describe('stock never presented as Real Elite work', () => {
   });
 
   it('never uses stock as a service-page hero or overview image', () => {
-    // Galleries may hold stock: RelatedProjects moves it under a labelled
-    // "Design inspiration" heading. Heroes and overview images carry no label.
+    // Galleries may hold stock: RelatedProjects moves it under a separate
+    // "Design ideas" heading. Heroes and overview images must be real work.
     for (const [slug, data] of Object.entries(SERVICE_DATA)) {
       for (const img of [data.hero.image, data.overview.image]) {
         if (img) expect(isVerifiedWorkImage(img.src), `${slug} → ${img.src}`).toBe(true);
@@ -149,5 +149,64 @@ describe('no inspiration labels', () => {
     expect(codeRendered('<h2>{"Inspiration"}</h2>')).toMatch(INSPIRATION_WORD);
     expect(codeRendered('title="Inspiration"')).toMatch(INSPIRATION_WORD);
     expect(codeRendered('<img title="Inspiration" alt="Tile shower" />')).toMatch(INSPIRATION_WORD);
+  });
+});
+
+const readSrc = (rel: string) => readFileSync(join(process.cwd(), rel), 'utf8');
+
+describe('stock photos stay, unlabeled, outside /projects (Jose, 2026-10-12)', () => {
+  const blogDir = join(process.cwd(), 'content/blog');
+  const posts = readdirSync(blogDir).filter((f) => f.endsWith('.md'));
+
+  it('has no "for design inspiration" captions in blog markdown', () => {
+    expect(posts.length).toBeGreaterThan(0);
+    for (const file of posts) {
+      const text = readFileSync(join(blogDir, file), 'utf8');
+      expect(text, file).not.toMatch(/for design inspiration/i);
+      expect(text, file).not.toMatch(/^\*[^*\n]*photography in this article[^*\n]*\*$/im);
+    }
+  });
+
+  it('keeps the true header-photo note on the basement guide', () => {
+    const text = readFileSync(join(blogDir, 'luxury-basement-finishing-loudoun-northern-virginia-2026.md'), 'utf8');
+    expect(text).toContain('*The header photo is a Real Elite basement during the framing stage.*');
+  });
+
+  it('renders no inspiration label on the homepage, service, consultation, investment and blog components', () => {
+    for (const rel of [
+      'src/components/blog/GuideTemplate.tsx',
+      'src/components/home/SignatureServices.tsx',
+      'src/components/consultation/LuxuryGallery.tsx',
+      'src/components/services/RelatedProjects.tsx',
+      'src/app/investment/page.tsx',
+      'src/app/design-consultation/page.tsx',
+    ]) {
+      const visible = codeRendered(readSrc(rel));
+      expect(visible, rel).not.toMatch(INSPIRATION_WORD);
+      expect(visible, rel).not.toMatch(/not a Real Elite project/i);
+    }
+  });
+
+  it('never words stock photos as Real Elite work where they appear unlabeled', () => {
+    for (const rel of [
+      'src/components/consultation/LuxuryGallery.tsx',
+      'src/components/services/RelatedProjects.tsx',
+    ]) {
+      const visible = codeRendered(readSrc(rel));
+      expect(visible, rel).not.toMatch(/\bour work\b|completed project|our projects/i);
+    }
+  });
+
+  it('still keeps stock off the /projects photo wall and labels its separate stock section', () => {
+    for (const img of GALLERY_IMAGES) {
+      expect(isStockImage(img.src), img.src).toBe(false);
+      expect(isVerifiedWorkImage(img.src), img.src).toBe(true);
+    }
+    const page = readSrc('src/app/projects/page.tsx');
+    // The stock section sits below the photo wall, under its own label.
+    expect(page.indexOf('<GalleryGrid />')).toBeGreaterThan(-1);
+    expect(page.indexOf('<LuxuryGallery')).toBeGreaterThan(page.indexOf('<GalleryGrid />'));
+    expect(page).toContain('title="Design inspiration"');
+    expect(page).toContain('not Real Elite project photographs');
   });
 });

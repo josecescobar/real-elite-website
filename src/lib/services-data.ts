@@ -6,7 +6,7 @@
  * Elite's own photograph. Kitchens and Basements have none yet, so their
  * `hero.image` is undefined and the template renders the gradient hero.
  * Stock images left in a `gallery` are moved by RelatedProjects under a
- * "Design inspiration" heading (see src/lib/stock-images.ts); a test fails if
+ * separate "Design ideas" heading (see src/lib/stock-images.ts); a test fails if
  * a hero or overview image is stock. Swap in real photos once jobs are shot.
  */
 

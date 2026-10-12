@@ -245,7 +245,7 @@ export default function DesignConsultationPage() {
         </Container>
       </section>
 
-      {/* Portfolio: recent work + design inspiration */}
+      {/* Design ideas gallery (stock, unlabeled) */}
       <LuxuryGallery />
 
       {/* Fit */}

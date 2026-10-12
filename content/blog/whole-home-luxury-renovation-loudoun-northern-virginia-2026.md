@@ -37,7 +37,7 @@ Every project is scoped to the home and the homeowner, but full renovations comm
 - **Lighting and electrical** brought up to modern standards, with a real lighting plan across the home.
 - **Finishing the lower level** where it adds living space — see our [luxury basement guide](/blog/luxury-basement-finishing-loudoun-northern-virginia-2026).
 
-![Kitchen inspiration with white cabinetry, a gray island, and an adjoining living area](/images/inspiration/wholehome-kitchen-refresh.webp)
+![Kitchen with white cabinetry, a gray island, and an adjoining living area](/images/inspiration/wholehome-kitchen-refresh.webp)
 
 ## The real advantage: one project lead
 
@@ -84,5 +84,3 @@ If you're considering a full renovation in **Loudoun County, Ashburn, Leesburg, 
 Beyond Loudoun, we take on whole-home renovations across Fairfax County and Alexandria — including [McLean](/service-areas/mclean-va), [Great Falls](/service-areas/great-falls-va), [Vienna](/service-areas/vienna-va), [Reston](/service-areas/reston-va), [Old Town Alexandria](/service-areas/alexandria-va), and [Middleburg](/service-areas/middleburg-va). For a focused conversation on any of those markets, request a [phone consultation](/design-consultation?type=whole-home) and we'll call inside the window you choose.
 
 Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured in WV, VA and PA.
-
-*Photography in this article is for design inspiration.*
