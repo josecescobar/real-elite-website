@@ -6009,6 +6009,83 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
   },
 
+  // Round 15: Fort Hunt's Alexandria mailing address is on Fairfax County parcels.
+  // Parcel jurisdiction and project-specific scope are checked before filing.
+  'additions-fort-hunt-va': {
+    h1: 'Home Additions in Fort Hunt, VA',
+    metaTitle: 'Fort Hunt VA Home Additions | Real Elite',
+    metaDescription:
+      'Plan a Fort Hunt home addition around the existing house and its Fairfax County parcel. Free site visit and written estimate from Real Elite.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Where is a Fort Hunt addition permit filed?',
+        answer:
+          'For a Fort Hunt house on a Fairfax County parcel, Land Development Services handles the residential building application through PLUS. We verify the parcel before choosing the filing office because an Alexandria mailing address alone does not identify the jurisdiction.',
+      },
+      {
+        question: 'What should be settled before drawing an addition?',
+        answer:
+          'We look at the existing house, the intended use of the new space, and the lot constraints during a free site visit before preparing a written scope.',
+      },
+    ],
+    paragraphs: [
+      'An addition in Fort Hunt can connect new living space to an established 22308 home without losing the way the existing rooms work. We start with the connection between old and new construction, then shape the footprint to the particular lot.',
+      'Fort Hunt homes have Alexandria mailing addresses, but their Fairfax County parcels use Land Development Services for residential building permits. The county places additions in its residential addition and alteration process and accepts applications through PLUS. We confirm the parcel and proposed footprint before the permit package is prepared.',
+      'A free site visit lets us study how the planned room meets the house and yard. Real Elite then provides a written estimate for that Fort Hunt addition.',
+    ],
+  },
+
+  'decks-fort-hunt-va': {
+    h1: 'Deck Building in Fort Hunt, VA',
+    metaTitle: 'Fort Hunt VA Deck Building | Real Elite',
+    metaDescription:
+      'Build a Fort Hunt deck that suits the house and backyard. Fairfax County parcel review, free site visit, and written estimate.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a new Fort Hunt deck need county review?',
+        answer:
+          'Fairfax County identifies a new deck as residential addition work that requires a building permit. We check the parcel and design before filing through the county process.',
+      },
+      {
+        question: 'How is the deck layout chosen?',
+        answer:
+          'The free site visit covers the door location, the yard, and how the deck should connect with the home so the written estimate reflects the actual site.',
+      },
+    ],
+    paragraphs: [
+      'A Fort Hunt deck should make the transition from the house to the yard feel deliberate. We measure the door and ground relationship before choosing the platform size and stair position for a 22308 property.',
+      'For a Fort Hunt parcel in Fairfax County, Land Development Services reviews the new deck as residential addition work. An Alexandria postal address does not turn that parcel into a City of Alexandria permit application; the property record controls the route.',
+      'Real Elite offers a free site visit and a written estimate for the deck once its layout and construction scope are clear.',
+    ],
+  },
+
+  'outdoor-living-fort-hunt-va': {
+    h1: 'Outdoor Living in Fort Hunt, VA',
+    metaTitle: 'Fort Hunt VA Outdoor Living | Real Elite',
+    metaDescription:
+      'Create a Fort Hunt screened porch or outdoor gathering space around the existing home. Free site visit and written estimate.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who reviews a Fort Hunt screened porch?',
+        answer:
+          'A screened porch on a Fairfax County parcel goes through Land Development Services as residential addition work. We verify the property before deciding how to file the design.',
+      },
+      {
+        question: 'Can the outdoor space fit an existing house?',
+        answer:
+          'We study the roof connection, access from the home, and how the new space will be used before setting the project scope at the free site visit.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Fort Hunt may mean a sheltered place to gather just beyond the main floor. A screened porch design begins with the existing roof and openings so the new space belongs to the house.',
+      'Fairfax County includes screened porches and sunrooms in its residential addition permit guidance. Fort Hunt houses with Alexandria mailing addresses remain Fairfax County parcels, so Land Development Services is the building office for those properties. We confirm the specific parcel and design before an application is submitted.',
+      'During a free site visit, Real Elite reviews the house and yard, then prepares a written estimate for the proposed Fort Hunt outdoor space.',
+    ],
+  },
+
   'kitchens-fort-hunt-va': {
     h1: 'Kitchen Remodeling in Fort Hunt, VA',
     metaDescription:
