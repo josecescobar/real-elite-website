@@ -92,9 +92,9 @@ Real Elite does not take electrical work, so a separately licensed electrician c
 
 **Ashburn.** Ashburn is unincorporated, so the county permit is the building approval. Your HOA matters when the outside changes. A new egress well or areaway is an exterior change. See our [HOA approval guide for Brambleton, Lansdowne, and Ashburn Farm](/blog/hoa-approval-remodels-brambleton-lansdowne-ashburn-farm-2026).
 
-## What this guide won't give you
+## Why there's no per-square-foot price
 
-A single per-square-foot price for a finished basement with a bathroom. The bathroom and the egress window don't scale with floor area, and a rate that ignores them will be wrong in one direction or the other.
+The bathroom and the egress window don't scale with floor area, and a rate that ignores them will be wrong in one direction or the other.
 
 ## Frequently asked questions
 

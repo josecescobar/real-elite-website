@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 "In-law suite" describes a use, not a project. A parent moving in, an adult child coming home, or a long-term guest can be housed in a finished lower level, a converted garage, or a new wing off the main floor. In Loudoun County those three paths differ in price, in which county offices review them, and in which contractor license belongs on the permit.
 
-This guide compares the basement suite with the addition. It is planning context, not a description of a completed Real Elite project or a fixed-price offer.
+This guide compares the basement suite with the addition, so you can plan before you price either one.
 
 ## Start with who will live there
 
