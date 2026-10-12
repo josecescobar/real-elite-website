@@ -108,7 +108,7 @@ export const PAVING_SERVICES: PavingService[] = [
     signals: [
       "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
       'Proper base prep and drainage — not just a thin top coat',
-      'WV Contractor License WV062432; Virginia Class A 2705198604 (residential HIC). Confirm the paving contractor and scope before work begins.',
+      'WV Contractor License WV062432; Virginia Class A 2705198604 (residential HIC); Pennsylvania Home Improvement Contractor PA225060 (existing-house home improvement). Confirm the paving contractor and scope before work begins.',
       'Written workmanship standards on every project',
     ],
     investment: {
