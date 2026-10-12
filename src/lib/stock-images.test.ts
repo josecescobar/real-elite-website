@@ -202,7 +202,7 @@ describe('stock photos stay, unlabeled, outside /projects (Jose, 2026-10-12)', (
       expect(isStockImage(img.src), img.src).toBe(false);
       expect(isVerifiedWorkImage(img.src), img.src).toBe(true);
     }
-    const page = readSrc('src/app/projects/page.tsx');
+    const page = readSrc('src/components/projects/ProjectsIndex.tsx');
     // The stock section sits below the photo wall, under its own label.
     expect(page.indexOf('<GalleryGrid />')).toBeGreaterThan(-1);
     expect(page.indexOf('<LuxuryGallery')).toBeGreaterThan(page.indexOf('<GalleryGrid />'));
