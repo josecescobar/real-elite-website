@@ -181,11 +181,21 @@ describe('town templates render one permit-guide link', () => {
     covered.unmount();
 
     const uncovered = render(
-      <CityPageTemplate city={ALL_SERVICE_AREAS.find((area) => area.slug === 'winchester-va')!} data={CITY_DATA['winchester-va']} />,
+      <CityPageTemplate city={ALL_SERVICE_AREAS.find((area) => area.slug === 'manassas-va')!} data={CITY_DATA['manassas-va']} />,
     );
     expect(uncovered.container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(0);
     expect(guideLinks(uncovered.container)).toHaveLength(0);
     uncovered.unmount();
+
+    const winchester = render(
+      <CityPageTemplate city={ALL_SERVICE_AREAS.find((area) => area.slug === 'winchester-va')!} data={CITY_DATA['winchester-va']} />,
+    );
+    const winchesterLinks = guideLinks(winchester.container);
+    expect(winchester.container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(1);
+    expect(winchesterLinks).toHaveLength(1);
+    expect(winchesterLinks[0].getAttribute('href')).toBe('/permit-guides/frederick-county-va');
+    expect(winchesterLinks[0].textContent).toBe('Permits in Frederick County and Winchester: what to expect');
+    winchester.unmount();
   });
 
   it('renders one link on a covered service+city page and none on an uncovered one', async () => {
@@ -199,7 +209,7 @@ describe('town templates render one permit-guide link', () => {
     covered.unmount();
 
     const uncovered = render(
-      await ServiceCityPage({ params: Promise.resolve({ service: 'kitchens', city: 'winchester-va' }) }),
+      await ServiceCityPage({ params: Promise.resolve({ service: 'kitchens', city: 'woodbine-md' }) }),
     );
     expect(uncovered.container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(0);
     expect(guideLinks(uncovered.container)).toHaveLength(0);
@@ -225,7 +235,7 @@ describe('town templates render one permit-guide link', () => {
     uncovered.unmount();
     spy.mockRestore();
 
-    const { container, unmount } = render(<PermitGuideLink areaSlug="winchester-va" />);
+    const { container, unmount } = render(<PermitGuideLink areaSlug="manassas-va" />);
     expect(container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(0);
     unmount();
   });
