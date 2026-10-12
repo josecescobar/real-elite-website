@@ -315,6 +315,11 @@ export const PERMIT_SOURCES: readonly PermitSource[] = [
     label: 'City of Frederick: Residential applications',
     url: 'https://www.cityoffrederickmd.gov/215/Residential-Applications',
   },
+  {
+    id: 'city-frederick-historic',
+    label: 'City of Frederick: Historic district guide for contractors (PDF)',
+    url: 'https://cityoffrederickmd.gov/DocumentCenter/View/25365/Historic-District-Guides-Contractors--Final',
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -535,12 +540,12 @@ const ARLINGTON: CountyPermitGuide = {
   published: PUBLISHED,
   updated: PUBLISHED,
   answer:
-    'In Arlington County, additions and alterations to a house need a building permit, applied for online through Permit Arlington. Decks need one, and exterior changes are treated as additions. Replacing cabinets, fixtures, or non-gas appliances in the same spot without moving pipes or drywall does not. Replacing roof covering usually does not either, unless you replace more than a limited amount of roof decking or the roof originally required fire-retardant-treated lumber.',
+    'In Arlington County, additions and alterations to a house need a building permit, applied for online through Permit Arlington. Decks need one, and exterior changes are treated as additions. Replacing cabinets, fixtures, or appliances that don’t burn gas or oil, in the same spot and without moving pipes or drywall, does not. Replacing roof covering usually does not either, unless you replace more than a limited amount of roof decking or the roof originally required fire-retardant-treated lumber.',
   jurisdictionIntro:
     'Arlington County runs residential permitting through the Permit Arlington online portal, and residential applications have to be submitted online.',
   issuers: [
     {
-      name: 'Arlington County Department of Environmental Services',
+      name: 'Arlington County building permits (Permit Arlington)',
       covers:
         'Residential building permits, plus the mechanical, electrical, and plumbing permits most projects also need, all applied for in Permit Arlington.',
       sources: ['arl-residential', 'arl-review'],
@@ -575,7 +580,7 @@ const ARLINGTON: CountyPermitGuide = {
       job: 'Kitchen remodel',
       verdict: 'depends',
       summary:
-        'Same rule as bathrooms: same-spot cabinet, fixture, and non-gas appliance swaps are exempt. Gas appliances, relocated pipes, or new drywall take it out of the exemption.',
+        'Same rule as bathrooms: same-spot cabinet, fixture, and appliance swaps are exempt, as long as the appliance isn’t gas- or oil-fueled. Gas or oil appliances, relocated pipes, or new drywall take it out of the exemption.',
       sources: ['arl-residential'],
       service: 'kitchens',
     },
@@ -591,7 +596,7 @@ const ARLINGTON: CountyPermitGuide = {
       job: 'Siding, windows, and doors',
       verdict: 'often-exempt',
       summary:
-        'Arlington points to the Virginia USBC exemption list. Under it, siding replacement on a house is exempt where the design wind speed is 100 mph or less, and window and door replacements with the same operation and opening size are exempt. Arlington’s pages don’t spell these jobs out, so confirm with the county.',
+        'Arlington points to the Virginia USBC exemption list. Under it, siding replacement on a house is exempt where the design wind speed is 100 mph or less, and window and door replacements are exempt when they have similar operation and opening size, need no change to the framed opening, and don’t have to be fire rated. Arlington’s pages don’t spell these jobs out, so confirm with the county.',
       sources: ['arl-residential', 'va-usbc-108'],
       service: 'siding',
     },
@@ -643,7 +648,7 @@ const ARLINGTON: CountyPermitGuide = {
     {
       question: 'Do I need a permit to replace my kitchen cabinets in Arlington?',
       answer:
-        'No, if the cabinets, fixtures, and non-gas appliances go back in the same spot and no pipes or drywall move. Beyond that, it is an alteration that needs a permit.',
+        'No, if the cabinets, fixtures, and appliances (not gas- or oil-fueled) go back in the same spot and no pipes or drywall move. Beyond that, it is an alteration that needs a permit.',
     },
     {
       question: 'Who should hold the permit, me or my contractor?',
@@ -698,7 +703,7 @@ const LOUDOUN: CountyPermitGuide = {
       job: 'Deck',
       verdict: 'required',
       summary:
-        'Every deck needs a building permit and a zoning permit. Simple single-level decks can use the county’s Typical Deck Detail; decks with a roof, screen, hot tub, or gazebo need their own plans. Expect footing, framing, and final inspections.',
+        'Every deck needs a building permit and a zoning permit. Simple single-level attached decks can use the county’s Typical Deck Detail; detached decks and decks with a roof, screen, hot tub, or gazebo need their own plans. Expect footing, framing, and final inspections.',
       sources: ['ldn-decks'],
       service: 'decks',
     },
@@ -706,7 +711,7 @@ const LOUDOUN: CountyPermitGuide = {
       job: 'Finished basement',
       verdict: 'required',
       summary:
-        'Needs a building permit and a zoning permit, plus trade permits. The county’s Typical Finished Basement details can stand in for custom drawings unless the work changes a load-bearing wall, beam, or column. A kitchen in the basement needs zoning approval.',
+        'Needs a building permit and a zoning permit, plus trade permits. The county’s Typical Finished Basement details can stand in for custom drawings unless the work changes a load-bearing wall, an exterior wall, a beam, or a column. A kitchen in the basement needs zoning approval.',
       sources: ['ldn-basements'],
       service: 'basements',
     },
@@ -730,7 +735,7 @@ const LOUDOUN: CountyPermitGuide = {
       job: 'Roof, siding, windows, and doors',
       verdict: 'check',
       summary:
-        'Loudoun’s pages don’t list these jobs. The Virginia USBC exempts roof covering and siding replacement on a house where the design wind speed is 100 mph or less, and window and door replacement in the same size opening, but a building official can still require a permit in a historic district. Call the county to confirm for your address.',
+        'Loudoun’s pages don’t list these jobs. The Virginia USBC exempts roof covering and siding replacement on a house where the design wind speed is 100 mph or less, and window and door replacement with similar operation and opening size, no change to the framed opening, and no fire rating required, but a building official can still require a permit in a historic district. Call the county to confirm for your address.',
       sources: ['va-usbc-108', 'ldn-construction'],
       service: 'roofing',
     },
@@ -1278,7 +1283,7 @@ const FREDERICK: CountyPermitGuide = {
   },
   historic: {
     text: 'The City of Frederick runs its own historic district review for exterior work inside the city. Elsewhere, ask the county permit office whether your property is on the county historic register before you plan exterior changes.',
-    sources: ['city-frederick-residential', 'fred-permits'],
+    sources: ['city-frederick-historic', 'fred-permits'],
   },
   faqs: [
     {
@@ -1303,6 +1308,7 @@ const FREDERICK: CountyPermitGuide = {
     'fred-expedited',
     'fred-plumbing',
     'city-frederick-residential',
+    'city-frederick-historic',
   ],
   areaSlugs: [
     'frederick-md',
