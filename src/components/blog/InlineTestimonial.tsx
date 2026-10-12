@@ -19,9 +19,9 @@ export default function InlineTestimonial({ text, client, city, projectType }: P
         className="absolute top-5 right-5 w-10 h-10 text-navy-100"
         aria-hidden="true"
       />
-      <div className="flex gap-1 mb-3" aria-label="5 out of 5 stars">
+      <div className="flex gap-1 mb-3" role="img" aria-label="5 out of 5 stars">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className="w-4 h-4 text-gold-500 fill-gold-500" strokeWidth={0} />
+          <Star key={i} className="w-4 h-4 text-gold-500 fill-gold-500" strokeWidth={0} aria-hidden="true" />
         ))}
       </div>
       <blockquote className="font-heading text-navy-800 text-lg sm:text-xl leading-snug font-bold">

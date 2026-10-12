@@ -38,9 +38,9 @@ const SERVICE_LABEL = new Map<string, string>(SERVICES.map((s) => [s.slug, s.tit
 
 function renderStars(count: number) {
   return (
-    <div className="flex justify-center gap-1" aria-label={`${count} out of 5 stars`}>
+    <div className="flex justify-center gap-1" role="img" aria-label={`${count} out of 5 stars`}>
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="w-5 h-5 text-gold-500 fill-gold-500" strokeWidth={0} />
+        <Star key={i} className="w-5 h-5 text-gold-500 fill-gold-500" strokeWidth={0} aria-hidden="true" />
       ))}
     </div>
   );
