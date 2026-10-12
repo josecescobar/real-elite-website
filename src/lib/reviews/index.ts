@@ -9,6 +9,10 @@
 
 import type { Review } from './types';
 import { REVIEWS } from './data';
+import { selectReviewsForPage, type ReviewPageQuery } from './match';
+
+export type { ReviewPageQuery } from './match';
+export { selectReviewsForPage, isRoofQuote } from './match';
 
 export type { Review, ReviewSource } from './types';
 export { REVIEWS } from './data';
@@ -16,6 +20,15 @@ export { REVIEWS } from './data';
 /** All reviews, in authored order (strongest first). */
 export function getAllReviews(): Review[] {
   return [...REVIEWS];
+}
+
+/**
+ * Published reviews for a page. Roof quotes stay on roofing pages. Other
+ * pages use a matching service (or its interior/outdoor family) and otherwise
+ * a general review. See selectReviewsForPage.
+ */
+export function reviewsForPage(opts: ReviewPageQuery = {}): Review[] {
+  return selectReviewsForPage(REVIEWS, opts);
 }
 
 /** Reviews for a given service slug, newest/ordered as authored. */

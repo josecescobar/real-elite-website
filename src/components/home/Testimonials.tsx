@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Star, Quote } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
-import { getFeaturedReviews } from '@/lib/reviews';
+import { reviewsForPage } from '@/lib/reviews';
 import { ReviewSourceBadge } from '@/components/reviews/ReviewCard';
 
 const renderStars = (count: number) => (
@@ -14,9 +14,8 @@ const renderStars = (count: number) => (
 );
 
 export default function Testimonials() {
-  // Lead with the two strongest reviews editorially, from the single review
-  // source (src/lib/reviews). Same voices, now one source of truth.
-  const reviews = getFeaturedReviews(2);
+  // The homepage is not a roofing page, so it does not lead with a roof quote.
+  const reviews = reviewsForPage({}).slice(0, 2);
   if (!reviews.length) return null;
 
   return (

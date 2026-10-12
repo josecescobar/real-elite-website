@@ -9,7 +9,7 @@
 import { GALLERY_IMAGES, getServiceArea, type AreaState } from '@/lib/constants';
 import { SERVICE_DATA, type ServiceImage } from '@/lib/services-data';
 import { isVerifiedWorkImage } from '@/lib/stock-images';
-import { REVIEWS, type Review } from '@/lib/reviews';
+import { reviewsForPage, type Review } from '@/lib/reviews';
 
 export type ProofPhoto = {
   src: string;
@@ -109,17 +109,13 @@ export function proofPhotosForArea(citySlug: string, state: AreaState, limit = 6
 }
 
 /**
- * Published reviews whose service and city, when set, match this page.
- * A roofing review does not appear on a kitchen page. A review with no city
- * is not described as that city's homeowners.
+ * Published reviews for this page. Matching service first, then a general
+ * review that is not a roof quote. A town page with no service does not
+ * show a roof quote. A review with no city is not described as that city's
+ * homeowners (see reviewsMatchCity).
  */
-export function proofReviewsFor(opts: { serviceSlug?: string; citySlug?: string }): Review[] {
-  return REVIEWS.filter((review) => {
-    if (opts.serviceSlug && review.serviceSlug && review.serviceSlug !== opts.serviceSlug) return false;
-    if (opts.citySlug && review.citySlug && review.citySlug !== opts.citySlug) return false;
-    if (opts.serviceSlug && !review.serviceSlug) return false;
-    return true;
-  });
+export function proofReviewsFor(opts: { serviceSlug?: string; citySlug?: string } = {}): Review[] {
+  return reviewsForPage(opts);
 }
 
 export function reviewsMatchCity(reviews: readonly Review[], citySlug: string): boolean {
