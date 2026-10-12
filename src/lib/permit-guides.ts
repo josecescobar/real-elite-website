@@ -1,4 +1,5 @@
 import { SERVICES, servicePillarHref } from '@/lib/constants';
+import { BATCH2_PERMIT_GUIDES, BATCH2_PERMIT_SOURCES } from '@/lib/permit-guides-batch2';
 
 /**
  * County permit guides: "Do I need a permit for a deck / basement / bathroom
@@ -40,8 +41,8 @@ export type CitedText = { text: string; sources: readonly string[] };
 export type CountyPermitGuide = {
   slug: string;
   county: string;
-  state: 'VA' | 'MD';
-  stateName: 'Virginia' | 'Maryland';
+  state: 'VA' | 'MD' | 'WV' | 'PA';
+  stateName: 'Virginia' | 'Maryland' | 'West Virginia' | 'Pennsylvania';
   h1: string;
   seoTitle: string;
   description: string;
@@ -75,6 +76,7 @@ const MC_RES = `${MC_DPS}/all-permits/residential-permits`;
 /* -------------------------------------------------------------------------- */
 
 export const PERMIT_SOURCES: readonly PermitSource[] = [
+  ...BATCH2_PERMIT_SOURCES,
   // Virginia statewide
   {
     id: 'va-usbc-108',
@@ -1338,6 +1340,7 @@ export const PERMIT_GUIDES: readonly CountyPermitGuide[] = [
   MONTGOMERY,
   HOWARD,
   FREDERICK,
+  ...BATCH2_PERMIT_GUIDES,
 ];
 
 /* -------------------------------------------------------------------------- */

@@ -12,7 +12,7 @@ import {
 
 /** Official government hosts only. A new host needs a deliberate edit here. */
 const OFFICIAL_HOST = (host: string): boolean =>
-  /\.(gov|us)$/i.test(host) || ['www.wsscwater.com', 'www.townofchevychase.org'].includes(host);
+  /\.(gov|us)$/i.test(host) || ['www.wsscwater.com', 'www.townofchevychase.org', 'www.berkeleywv.org', 'www.cityofmartinsburg.org', 'www.jeffersoncountywv.org', 'www.charlestownwv.us', 'ransonwv.gov', 'www.shepherdstown.gov', 'www.harpersferrywv.us', 'www.washco-md.net', 'hagerstownmd.org', 'www.hagerstownmd.org', 'www.chambersburgpa.gov', 'www.fauquiercounty.gov', 'warrentonva.gov', 'www.warrentonva.gov', 'www.pwcva.gov', 'pwcaws.pwcva.gov', 'www.townofhaymarket.org'].includes(host);
 
 function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
   return [
@@ -32,10 +32,16 @@ function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
 }
 
 describe('permit guides', () => {
-  it('covers the six richest service counties, once each', () => {
+  it('covers all twelve service counties, once each', () => {
     expect(PERMIT_GUIDES.map((g) => g.slug).sort()).toEqual(
       [
         'arlington-county-va',
+        'berkeley-county-wv',
+        'fauquier-county-va',
+        'franklin-county-pa',
+        'jefferson-county-wv',
+        'prince-william-county-va',
+        'washington-county-md',
         'fairfax-county-va',
         'frederick-county-md',
         'howard-county-md',
@@ -133,7 +139,9 @@ describe('permit guides', () => {
       // No new Brambleton links.
       expect(g.areaSlugs).not.toContain('brambleton-va');
       // No Maryland license caveats and no invented credentials.
-      expect(text, g.slug).not.toMatch(/MHIC|not licensed|unlicensed in|license pending|certified|award-winning/i);
+      expect(text, g.slug).not.toMatch(/MHIC|not licensed|unlicensed in|license pending|award-winning/i);
+      if (g.state !== 'PA') expect(text, g.slug).not.toMatch(/certified/i);
+      expect(text, g.slug).not.toMatch(/(?:we|our team|Real Elite) (?:are|is) certified/i);
       expect(text, g.slug).not.toMatch(/veteran[-\s]owned|VOSB/i);
     }
   });
