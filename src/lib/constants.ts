@@ -121,8 +121,8 @@ export const SOCIAL_PROOF = {
    *  live profile URL — keep `null` for any platform not yet verified. */
   badges: [
     { name: 'Google', label: 'Google Reviews', href: BUSINESS.social.google as string | null },
-    { name: 'BBB', label: 'BBB Accredited', href: null as string | null },
-    { name: 'Angi', label: 'Angi Certified', href: null as string | null },
+    { name: 'BBB', label: 'BBB profile', href: null as string | null },
+    { name: 'Angi', label: 'Angi profile', href: null as string | null },
   ],
 } as const;
 

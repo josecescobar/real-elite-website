@@ -15,7 +15,7 @@ const base: SocialProofConfig = {
   projectsCompleted: null,
   badges: [
     { name: 'Google', label: 'Google Reviews', href: 'https://example.com/google' },
-    { name: 'BBB', label: 'BBB Accredited', href: null },
+    { name: 'BBB', label: 'BBB profile', href: null },
   ],
 };
 
