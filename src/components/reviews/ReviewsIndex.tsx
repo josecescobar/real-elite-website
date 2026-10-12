@@ -9,7 +9,7 @@ import ReviewCard from '@/components/reviews/ReviewCard';
 import { hasVerifiedReviews } from '@/lib/social-proof';
 import {
   getAllReviews,
-  getReviewsByService,
+  reviewsForPage,
   getReviewedServiceSlugs,
 } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
@@ -40,7 +40,9 @@ export default function ReviewsIndex({ service }: { service: string | null }) {
     service && reviewedServices.includes(service) ? service : null;
 
   const allReviews = getAllReviews();
-  const reviews = activeService ? getReviewsByService(activeService) : allReviews;
+  // The Review Center lists the whole corpus. A service filter uses the same
+  // matcher as service pages, so a non-roofing filter cannot show a roof quote.
+  const reviews = activeService ? reviewsForPage({ serviceSlug: activeService }) : allReviews;
 
   const verified = hasVerifiedReviews();
   const displayRating = verified ? SOCIAL_PROOF.googleRating! : null;

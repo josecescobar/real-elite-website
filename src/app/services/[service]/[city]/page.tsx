@@ -211,6 +211,8 @@ export default async function ServiceCityPage({
     ? proofPhotosForTown(city)
     : proofPhotosForService(service, service === 'decks' ? 8 : 6);
   const proofReviews = proofReviewsFor({ serviceSlug: service, citySlug: city });
+  const DeckPermitHoaBlock =
+    service === 'decks' ? (await import('@/components/services/DeckPermitHoaBlock')).default : null;
 
   // AssurancesBand and PrecisionProcess publish four unconfirmed claims
   // sitewide. Trust bullets are already gated per page; these two bands were
@@ -591,6 +593,8 @@ export default async function ServiceCityPage({
 
       {showSitewideClaimBands && <PrecisionProcess />}
       {showSitewideClaimBands && <AssurancesBand />}
+
+      {DeckPermitHoaBlock ? <DeckPermitHoaBlock citySlug={city} /> : null}
 
       <ReviewsSection
         reviews={proofReviews}

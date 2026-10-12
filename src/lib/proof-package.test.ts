@@ -42,20 +42,28 @@ describe('proof package', () => {
     }
   });
 
-  it('shows a review only when its published service matches, and never invents a quote', () => {
+  it('matches a published review to the page and never invents a quote', () => {
     const kitchen = proofReviewsFor({ serviceSlug: 'kitchens', citySlug: 'ashburn-va' });
     const decks = proofReviewsFor({ serviceSlug: 'decks', citySlug: 'martinsburg-wv' });
     const martinsburg = proofReviewsFor({ citySlug: 'martinsburg-wv' });
+    const roofing = proofReviewsFor({ serviceSlug: 'roofing', citySlug: 'martinsburg-wv' });
     const ids = new Set(REVIEWS.map((review) => review.id));
+    const generalId = 'thumbtack-customer-2026-01-14';
 
-    expect(kitchen).toEqual([]);
-    expect(decks).toEqual([]);
-    expect(martinsburg.length).toBeGreaterThan(0);
-    for (const review of martinsburg) {
+    // No published kitchen or deck review, so the general (non-roof) quote is the fallback.
+    expect(kitchen.map((review) => review.id)).toEqual([generalId]);
+    expect(decks.map((review) => review.id)).toEqual([generalId]);
+    expect(martinsburg.map((review) => review.id)).toEqual([generalId]);
+    expect(roofing.map((review) => review.id)).toEqual(['thumbtack-l-p-2025-12-04']);
+    for (const review of [...kitchen, ...decks, ...martinsburg, ...roofing]) {
       expect(ids.has(review.id)).toBe(true);
       expect(review.quote).toBe(REVIEWS.find((row) => row.id === review.id)?.quote);
+    }
+    for (const review of martinsburg) {
       expect(review.citySlug ?? 'martinsburg-wv').toBe('martinsburg-wv');
     }
     expect(martinsburg.some((review) => review.source === 'thumbtack')).toBe(true);
+    expect(kitchen.some((review) => /\broof\b/i.test(review.quote))).toBe(false);
+    expect(decks.some((review) => /\broof\b/i.test(review.quote))).toBe(false);
   });
 });

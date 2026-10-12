@@ -20,7 +20,7 @@ import type { ServiceData } from '@/lib/services-data';
 import { BUSINESS, SERVICE_PAGE_AREA_SERVED } from '@/lib/constants';
 import { buildBreadcrumbSchema } from '@/lib/seo';
 import { getProjectsByService } from '@/lib/projects';
-import { getReviewsByService } from '@/lib/reviews';
+import { reviewsForPage } from '@/lib/reviews';
 import { primaryCtaForService } from '@/lib/cta-intent';
 import PhoneLink from '@/components/analytics/PhoneLink';
 
@@ -28,7 +28,9 @@ type Props = {
   data: ServiceData;
 };
 
-export default function ServicePageTemplate({ data }: Props) {
+export default async function ServicePageTemplate({ data }: Props) {
+  const DeckPermitHoaBlock =
+    data.slug === 'decks' ? (await import('./DeckPermitHoaBlock')).default : null;
   const primaryCta = primaryCtaForService(data.slug);
   const ctaDescription =
     primaryCta.intent === 'roof-quote'
@@ -220,8 +222,10 @@ export default function ServicePageTemplate({ data }: Props) {
       {/* Process module */}
       <PrecisionProcess />
 
+      {DeckPermitHoaBlock ? <DeckPermitHoaBlock /> : null}
+
       {/* Reviews for this service — renders only when a matching review exists */}
-      <ReviewsSection reviews={getReviewsByService(data.slug)} eyebrow="Reviews" title="What clients say." />
+      <ReviewsSection reviews={reviewsForPage({ serviceSlug: data.slug })} eyebrow="Reviews" title="What clients say." />
 
       {/* Related guides */}
       <section className="bg-white py-16 md:py-24">
