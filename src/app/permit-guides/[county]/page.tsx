@@ -7,7 +7,8 @@ import ArticleSchema from '@/components/seo/ArticleSchema';
 import FAQSchema from '@/components/seo/FAQSchema';
 import JsonLd from '@/components/seo/JsonLd';
 import EstimateCTACard from '@/components/blog/EstimateCTACard';
-import { BUSINESS, getServiceArea } from '@/lib/constants';
+import { BUSINESS } from '@/lib/constants';
+import { townPagesForGuide } from '@/lib/permit-guide-links';
 import { buildBreadcrumbSchema, buildMetadata } from '@/lib/seo';
 import { formatDate, getPostBySlug } from '@/lib/blog';
 import {
@@ -96,9 +97,7 @@ export default async function PermitGuidePage({ params }: Props) {
 
   const path = permitGuidePath(guide.slug);
   const url = `${BUSINESS.url}${path}`;
-  const areas = guide.areaSlugs
-    .map((slug) => getServiceArea(slug))
-    .filter((a): a is NonNullable<typeof a> => Boolean(a));
+  const areas = townPagesForGuide(guide.slug);
   const posts = guide.relatedPosts
     .map((slug) => getPostBySlug(slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -326,7 +325,7 @@ export default async function PermitGuidePage({ params }: Props) {
                 {areas.map((a) => (
                   <li key={a.slug}>
                     <Link
-                      href={`/service-areas/${a.slug}`}
+                      href={a.href}
                       className="inline-block border border-charcoal-200 rounded-full px-4 py-1.5 text-sm text-navy-800 hover:border-brand-red hover:text-brand-red"
                     >
                       {a.city}, {a.state}

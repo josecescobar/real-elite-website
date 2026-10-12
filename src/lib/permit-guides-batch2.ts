@@ -70,7 +70,7 @@ const BERKELEY: CountyPermitGuide = {
     { question: 'Who checks trade work?', answer: cite({ text: 'Check with the county or city office for the electrical, plumbing, gas, or mechanical work in your scope.', sources: ['berk-process'] }) },
   ],
   sourceIds: ['berk-process', 'berk-office'],
-  areaSlugs: ['martinsburg-wv'], relatedPosts: [],
+  areaSlugs: ['martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'spring-mills-wv', 'falling-waters-wv', 'bunker-hill-wv'], relatedPosts: [],
 };
 
 const JEFFERSON: CountyPermitGuide = {
@@ -114,7 +114,7 @@ const JEFFERSON: CountyPermitGuide = {
     { question: 'What if my home is in Shepherdstown?', answer: cite({ text: 'Contact Shepherdstown for its town permit and any historic review.', sources: ['shepherdstown-building'] }) },
   ],
   sourceIds: ['jeff-office', 'jeff-boundaries', 'charles-town-guide', 'ranson-building', 'shepherdstown-building', 'harpers-forms'],
-  areaSlugs: ['charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'harpers-ferry-wv'], relatedPosts: [],
+  areaSlugs: ['charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'harpers-ferry-wv', 'kearneysville-wv'], relatedPosts: [],
 };
 
 const WASHINGTON: CountyPermitGuide = {
@@ -159,7 +159,7 @@ const WASHINGTON: CountyPermitGuide = {
     { question: 'Do I need a permit for a bathroom remodel?', answer: cite({ text: 'Check with the office serving your parcel; the answer depends on the building and trade changes.', sources: ['wash-inspections'] }) },
   ],
   sourceIds: ['wash-booklet', 'wash-office', 'wash-inspections', 'hagerstown-permits', 'hagerstown-exempt'],
-  areaSlugs: ['hagerstown-md', 'boonsboro-md', 'williamsport-md'], relatedPosts: [],
+  areaSlugs: ['hagerstown-md', 'boonsboro-md', 'williamsport-md', 'sharpsburg-md'], relatedPosts: [],
 };
 
 const FRANKLIN: CountyPermitGuide = {
@@ -204,7 +204,7 @@ const FRANKLIN: CountyPermitGuide = {
     { question: 'When is a third-party inspector involved?', answer: cite({ text: 'A certified agency may provide UCC services under municipal contract or for residential work in an opt-out municipality.', sources: ['pa-election', 'pa-agencies'] }) },
   ],
   sourceIds: ['pa-election', 'pa-agencies', 'chambersburg-permits', 'chambersburg-landuse'],
-  areaSlugs: ['chambersburg-pa'], relatedPosts: [],
+  areaSlugs: ['chambersburg-pa', 'greencastle-pa', 'fort-loudon-pa', 'mercersburg-pa', 'waynesboro-pa', 'fayetteville-pa'], relatedPosts: [],
 };
 
 const FAUQUIER: CountyPermitGuide = {
@@ -247,7 +247,7 @@ const FAUQUIER: CountyPermitGuide = {
     { question: 'Does a bathroom remodel need a permit?', answer: cite({ text: 'Check with the county for a county parcel.', sources: [] }, { text: 'For a Town of Warrenton parcel, consult the town permit guidance.', sources: ['warrenton-permits'] }) },
   ],
   sourceIds: ['warrenton-permits', 'warrenton-development'],
-  areaSlugs: ['warrenton-va'], relatedPosts: [],
+  areaSlugs: ['warrenton-va', 'the-plains-va', 'upperville-va', 'marshall-va', 'delaplane-va'], relatedPosts: [],
 };
 
 const PRINCE_WILLIAM: CountyPermitGuide = {
@@ -292,7 +292,7 @@ const PRINCE_WILLIAM: CountyPermitGuide = {
     { question: 'Do I need a permit to finish a basement?', answer: cite({ text: 'Yes. The county has a finished-basement building permit process.', sources: ['pwc-basement'] }) },
   ],
   sourceIds: ['pwc-areas', 'pwc-need', 'pwc-decks', 'pwc-basement', 'haymarket-permits'],
-  areaSlugs: ['prince-william-county-va', 'haymarket-va', 'manassas-va'], relatedPosts: [],
+  areaSlugs: ['prince-william-county-va', 'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va', 'lake-ridge-va', 'woodbridge-va', 'catharpin-va'], relatedPosts: [],
 };
 
 export const BATCH2_PERMIT_GUIDES: readonly CountyPermitGuide[] = [

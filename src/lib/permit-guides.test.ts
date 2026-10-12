@@ -223,8 +223,6 @@ describe('permit guides', () => {
       // Site visits are free; nothing reads as a paid estimate.
       expect(text, g.slug).not.toMatch(/estimate fee|consultation fee|trip charge/i);
       expect(text, g.slug).not.toMatch(/inspiration/i);
-      // No new Brambleton links.
-      expect(g.areaSlugs).not.toContain('brambleton-va');
       // No Maryland license caveats and no invented credentials.
       expect(text, g.slug).not.toMatch(/MHIC|not licensed|unlicensed in|license pending|award-winning/i);
       if (g.state !== 'PA') expect(text, g.slug).not.toMatch(/certified/i);

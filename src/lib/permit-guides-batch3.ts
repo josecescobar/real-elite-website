@@ -62,7 +62,7 @@ const FREDERICK_VA: CountyPermitGuide = {
     { question: 'Does a deck need a permit?', answer: cite({ text: 'Virginia requires permits for construction of structures. Check with the building official for the project address about the deck design.', sources: [VA] }) },
     { question: 'What about Stephens City, Middletown, or Strasburg?', answer: cite({ text: 'Check with the town and county for the project address before filing.', sources: [] }) },
   ],
-  sourceIds: [VA], areaSlugs: [], relatedPosts: [],
+  sourceIds: [VA], areaSlugs: ['winchester-va'], relatedPosts: [],
 };
 
 const CLARKE: CountyPermitGuide = {
@@ -97,7 +97,7 @@ const CLARKE: CountyPermitGuide = {
     { question: 'What if the house is in Boyce?', answer: cite({ text: 'Check with the county and the Town of Boyce before filing.', sources: [] }) },
     { question: 'Does a kitchen remodel need a permit?', answer: cite({ text: 'Virginia requires permits for alterations to regulated plumbing, wiring, and mechanical systems. Check with the building official about the project scope.', sources: [VA] }) },
   ],
-  sourceIds: [VA], areaSlugs: [], relatedPosts: [],
+  sourceIds: [VA], areaSlugs: ['berryville-va'], relatedPosts: [],
 };
 
 const ALEXANDRIA: CountyPermitGuide = {
@@ -131,7 +131,7 @@ const ALEXANDRIA: CountyPermitGuide = {
     { question: 'Does finishing a basement need city review?', answer: cite({ text: 'The city lists basement finishing among its residential plan-review examples.', sources: ['alex-review'] }) },
     { question: 'Where do I start an application?', answer: cite({ text: 'Alexandria directs applicants to its permit system for applications and supporting documents.', sources: ['alex-requirements'] }) },
   ],
-  sourceIds: [VA, 'alex-requirements', 'alex-review', 'alex-inspections'], areaSlugs: [], relatedPosts: [],
+  sourceIds: [VA, 'alex-requirements', 'alex-review', 'alex-inspections'], areaSlugs: ['alexandria-va'], relatedPosts: [],
 };
 
 const FALLS_FAIRFAX: CountyPermitGuide = {
@@ -167,7 +167,7 @@ const FALLS_FAIRFAX: CountyPermitGuide = {
     { question: 'Can I replace cabinets in Falls Church without a building permit?', answer: cite({ text: 'Falls Church lists cabinet replacement among routine work that generally does not require a building permit in a single-family house.', sources: ['falls-required'] }) },
     { question: 'What about a structural wall change?', answer: cite({ text: 'Falls Church says framing or other structural wall work requires a permit.', sources: ['falls-required'] }) },
   ],
-  sourceIds: [VA, 'falls-required'], areaSlugs: [], relatedPosts: [],
+  sourceIds: [VA, 'falls-required'], areaSlugs: ['falls-church-va', 'fairfax-va'], relatedPosts: [],
 };
 
 const ANNE_ARUNDEL: CountyPermitGuide = {
