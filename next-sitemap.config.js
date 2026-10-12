@@ -7,8 +7,11 @@
  * reads the App Router dynamic route table, so these never land in the
  * sitemap unless added here. Listing them does not change rendering: the
  * query-string filters stay request-time.
+ *
+ * /projects and /reviews are prerendered. A service or city query is rewritten
+ * to /projects/filtered or /reviews/filtered, which are excluded below.
  */
-const dynamicIndexablePaths = ['/projects', '/reviews'];
+const dynamicIndexablePaths = [];
 
 module.exports = {
   siteUrl: 'https://www.realelitecontracting.com',
@@ -32,6 +35,9 @@ module.exports = {
     // Internal tools — noindexed, key-protected, never for crawlers.
     '/review-request',
     '/sales',
+    // Filter implementations. Public URLs stay /reviews and /projects.
+    '/reviews/filtered',
+    '/projects/filtered',
     // Legacy index; now a permanent redirect to /resources.
     '/blog',
     // Syndication feed, not an HTML landing page.

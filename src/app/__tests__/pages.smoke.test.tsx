@@ -171,13 +171,13 @@ describe('static page smoke tests', () => {
 
   it('Reviews page renders', async () => {
     const { default: ReviewsPage } = await import('@/app/reviews/page');
-    const el = await ReviewsPage({ searchParams: Promise.resolve({}) });
+    const el = ReviewsPage();
     expect(() => render(el)).not.toThrow();
   });
 
   it('Reviews page renders filtered by service', async () => {
-    const { default: ReviewsPage } = await import('@/app/reviews/page');
-    const el = await ReviewsPage({ searchParams: Promise.resolve({ service: 'roofing' }) });
+    const { default: ReviewsFilteredPage } = await import('@/app/reviews/filtered/page');
+    const el = await ReviewsFilteredPage({ searchParams: Promise.resolve({ service: 'roofing' }) });
     expect(() => render(el)).not.toThrow();
   });
 
@@ -405,13 +405,13 @@ describe('project system smoke tests', () => {
 
   it('/projects index renders', async () => {
     const { default: ProjectsPage } = await import('@/app/projects/page');
-    const el = await ProjectsPage({ searchParams: Promise.resolve({}) });
+    const el = ProjectsPage();
     expect(() => render(el)).not.toThrow();
   });
 
   it('/projects index renders filtered by service', async () => {
-    const { default: ProjectsPage } = await import('@/app/projects/page');
-    const el = await ProjectsPage({ searchParams: Promise.resolve({ service: 'roofing' }) });
+    const { default: ProjectsFilteredPage } = await import('@/app/projects/filtered/page');
+    const el = await ProjectsFilteredPage({ searchParams: Promise.resolve({ service: 'roofing' }) });
     expect(() => render(el)).not.toThrow();
   });
 

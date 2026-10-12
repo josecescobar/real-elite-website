@@ -83,6 +83,30 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    // beforeFiles runs before the static /reviews and /projects pages match.
+    // afterFiles would never see these URLs. The query string is forwarded, so
+    // the dynamic route returns only the matching cards in the document HTML.
+    return {
+      beforeFiles: [
+        {
+          source: '/reviews',
+          has: [{ type: 'query', key: 'service' }],
+          destination: '/reviews/filtered',
+        },
+        {
+          source: '/projects',
+          has: [{ type: 'query', key: 'service' }],
+          destination: '/projects/filtered',
+        },
+        {
+          source: '/projects',
+          has: [{ type: 'query', key: 'city' }],
+          destination: '/projects/filtered',
+        },
+      ],
+    };
+  },
   async redirects() {
     return [
       { source: '/index.html', destination: '/', permanent: true },

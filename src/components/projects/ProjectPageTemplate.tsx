@@ -205,7 +205,7 @@ export default function ProjectPageTemplate({ project }: { project: Project }) {
               {/* Customer's words */}
               {project.review && (
                 <figure className="bg-steel-50 rounded-lg p-8 border-l-4 border-brand-red">
-                  <div className="flex gap-1 mb-4" aria-label={`${project.review.rating} out of 5 stars`}>
+                  <div className="flex gap-1 mb-4" role="img" aria-label={`${project.review.rating} out of 5 stars`}>
                     {Array.from({ length: project.review.rating }).map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-gold-400 text-gold-400" aria-hidden="true" />
                     ))}

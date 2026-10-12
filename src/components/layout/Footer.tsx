@@ -230,7 +230,7 @@ export default function Footer() {
               Terms & Conditions
             </Link>
           </div>
-          <p className="text-charcoal-500 uppercase tracking-[0.15em] font-semibold">
+          <p className="text-charcoal-300 uppercase tracking-[0.15em] font-semibold">
             Family-Run · Built With Military Precision
           </p>
         </div>

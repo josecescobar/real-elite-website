@@ -27,7 +27,7 @@ export default function EstimateCTACard({
 }: Props) {
   return (
     <aside className="not-prose my-12 bg-navy-800 text-white rounded-lg shadow-card-elevated p-7 sm:p-9">
-      <p className="text-[0.65rem] uppercase tracking-[0.18em] font-semibold text-brand-red mb-2">
+      <p className="text-[0.65rem] uppercase tracking-[0.18em] font-semibold text-brand-red-light mb-2">
         {eyebrow}
       </p>
       <h3 className="font-heading text-2xl sm:text-3xl font-extrabold leading-tight mb-3">
