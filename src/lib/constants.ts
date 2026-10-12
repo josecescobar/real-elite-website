@@ -3324,6 +3324,13 @@ export const HOMEPAGE_PROJECT_SPOTLIGHT = {
  * to "Before / After" in BeforeAfter.tsx + the home section header.
  */
 export const BEFORE_AFTER_PAIRS = [
+  // Falling Waters WV backsplash (Jose confirmed the job 2026-10-12). Same-angle pre-tile vs. finished; before photo perspective-straightened to match the after framing.
+  {
+    label: 'Kitchen backsplash, Falling Waters',
+    category: 'Kitchens',
+    before: { src: '/images/work/backsplash-falling-waters-before.jpg', alt: 'Kitchen sink wall with bare drywall before the backsplash tile went up' },
+    after: { src: '/images/work/backsplash-falling-waters-after.jpg', alt: 'Same sink wall finished in gray glazed subway tile around the window and farmhouse sink' },
+  },
   {
     label: 'Composite deck transformation',
     category: 'Decks',
@@ -3407,6 +3414,9 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: '/images/work/roofing-finished-overhead.webp', alt: 'Completed architectural shingle roof seen from the ridge', category: 'Roofing', state: 'WV' },
   { src: '/images/deck-lounge.jpg', alt: 'Composite deck set up with outdoor lounge furniture', category: 'Decks', state: 'VA' },
   { src: '/images/work/roof-charcoal-gable.jpg', alt: 'Completed dark architectural shingle roof with clean ridge cap', category: 'Roofing', state: 'WV' },
+  // Kitchen backsplash, Falling Waters WV (job confirmed by Jose 2026-10-12; tile set by 2026-10-06).
+  { src: '/images/work/backsplash-falling-waters-range.jpg', alt: 'Gray glazed subway tile backsplash behind a gas cooktop under a white range hood', category: 'Kitchens', state: 'WV', citySlug: 'falling-waters-wv' },
+  { src: '/images/work/backsplash-falling-waters-after.jpg', alt: 'Gray glazed subway tile backsplash around a window above a white farmhouse sink', category: 'Kitchens', state: 'WV', citySlug: 'falling-waters-wv' },
   { src: '/images/stone-facade-finished.jpg', alt: 'Finished stone veneer porch facade with railings', category: 'Exterior', state: 'WV' },
   { src: '/images/work/living-bethesda-lvp-fireplace.jpg', alt: 'Open living room with wide-plank luxury vinyl plank flooring, a linear fireplace, and sliding doors to the balcony', category: 'Remodeling', state: 'MD' },
 ];

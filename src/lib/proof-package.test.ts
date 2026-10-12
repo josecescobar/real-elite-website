@@ -37,7 +37,8 @@ describe('proof package', () => {
     const local = proofPhotosForArea('martinsburg-wv', 'WV', 6);
     expect(local.length).toBeGreaterThan(0);
     for (const photo of local) {
-      expect(photo.caption).toContain('West Virginia');
+      // State-only photos say West Virginia; photos tagged to another real town keep that town.
+      expect(photo.caption).toMatch(/West Virginia|Falling Waters, WV/);
       expect(photo.caption.toLowerCase()).not.toContain('martinsburg');
     }
   });
