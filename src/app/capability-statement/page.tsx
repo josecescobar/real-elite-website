@@ -116,17 +116,17 @@ const PAST_PERFORMANCE = [
   {
     market: 'Eastern Panhandle WV',
     scope: 'Full exterior renovations (roof + siding + deck) for residential homeowners across Martinsburg, Inwood, Charles Town, Hedgesville, and Shepherdstown',
-    detail: 'Home-market work across Martinsburg, Inwood, Charles Town, Hedgesville, and Shepherdstown. We do not publish an invented completed-project count.',
+    detail: 'Home-market work across Martinsburg, Inwood, Charles Town, Hedgesville, and Shepherdstown.',
   },
   {
     market: 'Frederick County MD',
     scope: 'Bathroom, kitchen, and basement remodels along the I-70 growth corridor (Frederick, Urbana, Jefferson, New Market)',
-    detail: 'Bathroom, kitchen, and basement work along the I-70 corridor. Line items go in the written estimate — we do not publish invented price bands here.',
+    detail: 'Bathroom, kitchen, and basement work along the I-70 corridor. Line items go in the written estimate.',
   },
   {
     market: 'Loudoun County VA',
     scope: 'Decks, outdoor living, and additions in Loudoun — western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg)',
-    detail: 'County Typical Deck and Typical Finished Basement paths, town zoning first in Leesburg / Purcellville / Middleburg, HOA packets in parallel. We do not invent a completed Loudoun project count.',
+    detail: 'County Typical Deck and Typical Finished Basement paths, town zoning first in Leesburg / Purcellville / Middleburg, HOA packets in parallel.',
   },
 ];
 

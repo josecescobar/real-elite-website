@@ -16,7 +16,7 @@ A remodel can satisfy a county permit requirement and still need an association 
 
 For homeowners in [Brambleton](/service-areas/brambleton-va), [Lansdowne](/service-areas/lansdowne-va), and Ashburn Farm in the [Ashburn area](/service-areas/ashburn-va), the first step is identifying the association that governs the specific property. A community name or postal address is not enough to establish the applicable rules.
 
-The official sources below were checked September 27, 2026. Review calendars and documents can change, so confirm the current requirements before submitting.
+Review calendars and documents can change, so confirm the current requirements before submitting.
 
 ## Brambleton: use the published review calendar
 
@@ -40,7 +40,7 @@ A photo of a similar improvement elsewhere in the community may help communicate
 
 There is more than one association in the Lansdowne area. [Lansdowne on the Potomac HOA](https://lansdownehoa.com/) provides resident resources, while [Lansdowne Village Greens](https://lvghoa.frontsteps.com/public/folders/Yet5rrWbtnDGDcqE5o7zaeAssMtfj3Dqswrr) has its own document portal and design-review application.
 
-Confirm which organization governs your address and whether any additional association or condominium rules apply. This guide does not assign a shared Lansdowne fee, approved color palette, or turnaround time. Obtain those answers from the association responsible for your property.
+Confirm which organization governs your address and whether any additional association or condominium rules apply. Ask the association responsible for your property for its fee, approved color palette, and turnaround time.
 
 ## Build a packet that describes the proposed work
 

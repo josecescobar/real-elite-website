@@ -30,7 +30,7 @@ These are that publisher's regional figures. We have not reproduced its underlyi
 
 For another reference, [EA Home Design's Loudoun guide](https://eahomedesign.com/home-additions-loudoun-county/) lists $60,000–$150,000 for a four-season sunroom of 200–350 square feet. That is an enclosed-room benchmark with a different scope.
 
-Neither source establishes a specific Loudoun covered-patio range. A roofed patio does not automatically cost somewhere between their deck and sunroom figures. Obtain a design and estimate for the structure you intend to build.
+These figures cover different scopes. A roofed patio does not automatically cost somewhere between their deck and sunroom figures. Obtain a design and estimate for the structure you intend to build.
 
 ## Describe the whole outdoor room
 
@@ -73,7 +73,7 @@ Only after aligning the scope. A roof, stairs, screening, and restoration can be
 
 ### What about an outdoor kitchen?
 
-The checked sources do not establish a reliable Loudoun-specific range for that scope. List the equipment, counters, utilities, and installation separately so it does not disappear inside a generic deck allowance.
+List the equipment, counters, utilities, and installation separately so it does not disappear inside a generic deck allowance.
 
 ## Draw the room before selecting the boards
 

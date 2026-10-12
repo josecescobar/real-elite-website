@@ -58,7 +58,7 @@ export default function LocalAreasServed({ serviceSlug, serviceTitle, areaScope 
         {serviceTitle} across {regionLabel}
       </h2>
       <p className="text-charcoal-600 text-sm mb-6">
-        Maryland (Frederick and Hagerstown), Virginia, and West Virginia towns we serve. A town with its own page for this service links there.
+        Maryland (Frederick and Hagerstown), Virginia, and West Virginia towns we serve.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

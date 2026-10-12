@@ -95,7 +95,7 @@ const FAQ_ITEMS = [
   {
     question: 'When will we hear from you?',
     answer:
-      'Inside the call window you choose on the form, during business hours. If you would rather talk now, the direct line is on this page.',
+      `Inside the call window you choose on the form, during business hours. If you would rather talk now, call ${BUSINESS.phone}.`,
   },
 ];
 

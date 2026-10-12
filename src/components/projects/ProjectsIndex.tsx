@@ -95,7 +95,7 @@ export default function ProjectsIndex({
               ))}
             </div>
           ) : (
-            <p className="text-charcoal-600 text-lg">Detailed case studies will appear after project facts and publication permissions are confirmed.</p>
+            <p className="text-charcoal-600 text-lg">Recent job-site photos are in the photo wall below.</p>
           )}
         </Container>
       </section>

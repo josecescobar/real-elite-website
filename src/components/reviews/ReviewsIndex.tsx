@@ -65,7 +65,7 @@ export default function ReviewsIndex({ service }: { service: string | null }) {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               {reviews.length
-                ? 'Each on-site review is labeled by source. Thumbtack quotes are copied from the live profile and are not used in review markup.'
+                ? 'Each on-site review is labeled by source. Thumbtack quotes are copied from the live profile.'
                 : 'Visit our Google profile to read customer feedback. On-site testimonials will appear here once their source and publication permission are confirmed.'}
             </p>
           </div>

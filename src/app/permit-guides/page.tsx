@@ -69,8 +69,7 @@ export default function PermitGuidesIndexPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Decks, basements, bathrooms, kitchens, roofs, and additions, answered county by
-              county. Each guide is our plain-language summary of the county&rsquo;s own pages, with
-              links so you can check the source yourself.
+              county. Each guide links to the official county pages.
             </p>
           </div>
         </Container>

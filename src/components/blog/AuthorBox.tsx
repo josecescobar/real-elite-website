@@ -39,7 +39,7 @@ export default function AuthorBox({ authorName }: Props) {
         </h3>
         <p className="text-charcoal-600 text-sm leading-relaxed">
 
-                Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting builds premium remodels and high-end exteriors across the Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County markets. These guides introduce planning topics to discuss for your own project.
+                Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting builds premium remodels and high-end exteriors across the Eastern Panhandle WV, Frederick MD, Winchester VA, and Loudoun County markets.
               </p>
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-charcoal-500">
           <span className="inline-flex items-center gap-1">

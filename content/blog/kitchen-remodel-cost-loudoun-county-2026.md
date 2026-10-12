@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 A kitchen budget starts with a decision about the room: are you replacing finishes, changing the layout, or extending the house? Each can be described as a kitchen remodel, but comparing their totals tells you little about what you will receive.
 
-For homeowners in [Ashburn](/service-areas/ashburn-va), [Leesburg](/service-areas/leesburg-va), and [Brambleton](/service-areas/brambleton-va), the useful starting point is a measured layout and a list of what stays. This guide uses published outside benchmarks checked September 27, 2026. They are planning references, not a Real Elite price list.
+For homeowners in [Ashburn](/service-areas/ashburn-va), [Leesburg](/service-areas/leesburg-va), and [Brambleton](/service-areas/brambleton-va), the useful starting point is a measured layout and a list of what stays. The published figures below are planning references, not a Real Elite price list.
 
 ## What the published figures actually cover
 
@@ -28,7 +28,7 @@ The page still uses a 2025 heading despite its later update date. These figures 
 
 A separate [2025 DMV report from Four Seasons Home Improvement](https://www.4seasonshome.com/resources/the-dmv-home-renovation-roi-report-2025-data-driven-insights-on-the-upgrades-that-maximize-property-value) lists $28,500 for a minor midrange kitchen and $72,000 for a major upscale kitchen. Treat those as that publisher's regional benchmarks. We have not independently reproduced its underlying dataset, and neither amount is a ceiling for a custom kitchen.
 
-Do not average these sources together or apply an arbitrary Loudoun markup. Instead, ask bidders to price the same room and the same product schedule.
+Ask bidders to price the same room and the same product schedule.
 
 ## The choices to settle before comparing quotes
 

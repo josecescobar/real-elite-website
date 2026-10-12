@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 Finishing a lower level starts with the house you already have. Ceiling obstructions, access, existing plumbing, and the condition of the space all belong in the first conversation, before a bar or theater is drawn into the plan.
 
-This guide uses published contractor ranges checked September 27, 2026, plus Loudoun County's permit guidance. It applies as planning context for [Ashburn](/service-areas/ashburn-va) and [Leesburg](/service-areas/leesburg-va); it does not describe a completed Real Elite project or offer a fixed-price package.
+The ranges below, plus Loudoun County's permit guidance, apply as planning context for [Ashburn](/service-areas/ashburn-va) and [Leesburg](/service-areas/leesburg-va); they do not describe a completed Real Elite project or offer a fixed-price package.
 
 ## Published Northern Virginia ranges
 
@@ -28,7 +28,7 @@ The same source gives a separate example of a 1,000-square-foot basement with on
 
 For comparison, [Denny + Gardner](https://www.dennyandgardner.com/blog/basement-remodel-cost-northern-va) describes an overall labor-and-materials range of about $50,000 to upward of $100,000 for an upscale renovation, with waste disposal, equipment, design, and permits as other budget considerations.
 
-The sources use different scopes and exclusions. A low figure from one and a high figure from another do not form a new, verified local range. Ask for a project-specific estimate and use the [investment guide](/investment) to frame your priorities.
+The sources use different scopes and exclusions, so use them only to frame the conversation. Ask for a project-specific estimate and use the [investment guide](/investment) to frame your priorities.
 
 ## Decide what each room needs to do
 

@@ -1661,7 +1661,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'warrenton-va': {
     description:
-      "Warrenton is an incorporated town in Fauquier County. The charter dates to 1816. A Warrenton mailing address is not automatically inside the town: ZIP 20186 and ZIP 20187 are both centered in Fauquier County, outside an incorporated place. Inside the town, the Department of Community Development handles applications at the town site, phone (540) 347-1101. The town requires a building permit for decks whose floor is 30 inches or more above finished grade, for finishing a basement, and for additions, garages, or carports. An areaway or egress window on a basement needs additional zoning review. A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. Outside town limits, building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square, Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. The county uses a combined building and zoning application. ZIP 20187's housing is mostly detached (median year built 1991). ZIP 20186 is a different mix (median year built 1987) and should not be averaged into one house type.",
+      "Warrenton is an incorporated town in Fauquier County. The charter dates to 1816. A Warrenton mailing address is not automatically inside the town: ZIP 20186 and ZIP 20187 are both centered in Fauquier County, outside an incorporated place. Inside the town, the Department of Community Development handles applications at the town site, phone (540) 347-1101. The town requires a building permit for decks whose floor is 30 inches or more above finished grade, for finishing a basement, and for additions, garages, or carports. An areaway or egress window on a basement needs additional zoning review. A Certificate of Appropriateness is required before exterior alterations inside the Warrenton Historic District. Outside town limits, building permits go to the Fauquier County Department of Community Development at 16 Courthouse Square, Warrenton, phone (540) 422-8230. Office hours are Monday through Friday, 8:00 a.m. to 4:30 p.m., and in-person applications are not accepted after 4:00 p.m. The county zoning permit fee is $110, including the technology fee. The county uses a combined building and zoning application. ZIP 20187's housing is mostly detached (median year built 1991). ZIP 20186 is a different mix (median year built 1987).",
     neighborhoods: ['Town of Warrenton', 'ZIP 20186', 'ZIP 20187', 'Fauquier County'],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
     nearbySlugs: ['the-plains-va', 'marshall-va', 'upperville-va', 'middleburg-va'],
@@ -2027,7 +2027,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'What does remodeling in West Friendship cost?',
         answer:
-          'Every West Friendship kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are on the published fee schedule and are not a project price.',
+          'Every West Friendship kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are separate from the project price.',
       },
     ],
   },
@@ -2037,7 +2037,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Chevy Chase, MD, ZIP 20815. Town and county approval order depends on the municipality. Free written estimate after a site walk.',
     description:
-      "Chevy Chase in ZIP 20815 is several municipalities along Connecticut Avenue, not one town hall. The Town of Chevy Chase, Chevy Chase Village, Section 3, Section 5, the Village of North Chevy Chase, Martin's Additions, and Friendship Heights can share a mailing area and still file in a different order. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south to Connecticut Avenue.\n\nMontgomery County says several municipalities require a building permit in addition to the required county building permit. It lists the Town of Chevy Chase, Chevy Chase Section 3, Chevy Chase Section 5, and the Village of Martin's Additions as county permit before city approval. It lists the Village of North Chevy Chase as both county and city approval. Friendship Heights is county permit only. Chevy Chase Village appears on both the city-first list and the county-first list, so the parcel is confirmed with the village at 5906 Connecticut Avenue, phone 301-654-7300, before a sequence is assumed. The Town of Chevy Chase office is 4301 Willow Lane, phone 301-654-7144.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. The home-improvements list still says an interior alteration will likely need a permit, and that the list does not include municipal rules. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+      "Chevy Chase in ZIP 20815 is several municipalities along Connecticut Avenue, not one town hall. The Town of Chevy Chase, Chevy Chase Village, Section 3, Section 5, the Village of North Chevy Chase, Martin's Additions, and Friendship Heights can share a mailing area and still file in a different order. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south to Connecticut Avenue.\n\nMontgomery County says several municipalities require a building permit in addition to the required county building permit. It lists the Town of Chevy Chase, Chevy Chase Section 3, Chevy Chase Section 5, and the Village of Martin's Additions as county permit before city approval. It lists the Village of North Chevy Chase as both county and city approval. Friendship Heights is county permit only. For Chevy Chase Village, we confirm the permit order with the village at 5906 Connecticut Avenue, phone 301-654-7300. The Town of Chevy Chase office is 4301 Willow Lane, phone 301-654-7144.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. An interior alteration will likely still need a permit. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
     neighborhoods: ['Connecticut Avenue', 'ZIP 20815', 'Town of Chevy Chase', 'Chevy Chase Village', 'Section 3', 'Section 5'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['bethesda-md', 'garrett-park-md', 'arlington-va', 'potomac-md'],
@@ -2045,7 +2045,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does every Chevy Chase address use the same approval order?',
         answer:
-          "No. For the Town of Chevy Chase, Section 3, Section 5, and Martin's Additions, the order is county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. Chevy Chase Village is listed on both sequence lists, so the village is asked before a sequence is assumed.",
+          "No. For the Town of Chevy Chase, Section 3, Section 5, and Martin's Additions, the order is county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. For Chevy Chase Village, we confirm the order with the village.",
       },
       {
         question: 'Where is the county permit office for a Chevy Chase house?',
@@ -2083,7 +2083,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'What does remodeling in Catharpin cost?',
         answer:
-          'Every Catharpin kitchen, bathroom, and lower level is a free written estimate after a site walk. Permit fees come from the county fee schedule and are not a project price.',
+          'Every Catharpin kitchen, bathroom, and lower level is a free written estimate after a site walk. Permit fees come from the county fee schedule and are separate from the project price.',
       },
     ],
   },
@@ -2111,7 +2111,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'What does remodeling in Glenwood cost?',
         answer:
-          'Every Glenwood kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are on the published fee schedule and are not a project price.',
+          'Every Glenwood kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are separate from the project price.',
       },
     ],
   },
@@ -2162,7 +2162,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does a cabinet replacement in Brookeville skip the town?',
         answer:
-          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Town questions go to 301-570-4465 before a sequence is assumed.',
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Town questions go to 301-570-4465.',
       },
       {
         question: 'What does remodeling in Brookeville cost?',
@@ -2177,7 +2177,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Broad Run, VA, ZIP 20137. Loudoun County permits through Building and Development in Leesburg. Free written estimate after a site walk.',
     description:
-      "Broad Run is western Loudoun County, ZIP 20137, along Evergreen Mills Road south of Leesburg. The houses are established homes on county lots. The drive from Martinsburg is Route 9 to Leesburg, then south on Evergreen Mills Road.\n\nLoudoun County says permits come from the appropriate county agencies and towns before construction starts. Renovations, alterations, and finished basements are on the county's typical residential permit list. If the parcel is inside an incorporated town, the county asks for an approved town zoning permit with the application. Questions go to Building and Development at the Loudoun County Government Center, 1 Harrison Street SE, Leesburg, VA 20175, phone 703-777-0220. The counter is open Monday through Friday, 8:30 a.m. to 5 p.m. Applications go online in LandMARC or in person.\n\nA residential alteration uses a building permit fee based on 1% of construction costs, plus a $130 plan review fee. Those are county fees, not a project price. Electrical, gas, mechanical, and plumbing are separate trade permits. A lot on a well and septic needs Health Department approval before the application. That number is (703) 777-0234. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
+      "Broad Run is western Loudoun County, ZIP 20137, along Evergreen Mills Road south of Leesburg. The houses are established homes on county lots. The drive from Martinsburg is Route 9 to Leesburg, then south on Evergreen Mills Road.\n\nLoudoun County says permits come from the appropriate county agencies and towns before construction starts. Renovations, alterations, and finished basements are on the county's typical residential permit list. If the parcel is inside an incorporated town, the county asks for an approved town zoning permit with the application. Questions go to Building and Development at the Loudoun County Government Center, 1 Harrison Street SE, Leesburg, VA 20175, phone 703-777-0220. The counter is open Monday through Friday, 8:30 a.m. to 5 p.m. Applications go online in LandMARC or in person.\n\nA residential alteration uses a building permit fee based on 1% of construction costs, plus a $130 plan review fee. Those county fees are separate from the project price. Electrical, gas, mechanical, and plumbing are separate trade permits. A lot on a well and septic needs Health Department approval before the application. That number is (703) 777-0234. Electrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The price is a free written estimate after a site walk.",
     neighborhoods: ['Evergreen Mills Road', 'ZIP 20137', 'Route 621', 'south of Leesburg'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['leesburg-va', 'hamilton-va', 'purcellville-va', 'middleburg-va'],
@@ -2251,7 +2251,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'What does remodeling in Woodbine cost?',
         answer:
-          'Every Woodbine kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are on the published fee schedule and are not a project price.',
+          'Every Woodbine kitchen, bathroom, and lower level is a free written estimate after a site walk. County filing fees are separate from the project price.',
       },
     ],
   },
@@ -2386,7 +2386,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Does a cabinet replacement in Laytonsville skip the town?',
         answer:
-          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Town questions go to 301-869-0042 before a sequence is assumed.',
+          'Installing, repairing, or replacing cabinets most likely will not need a permit. Municipality rules are separate from that guidance. An interior alteration likely will. Town questions go to 301-869-0042.',
       },
       {
         question: 'What does remodeling in Laytonsville cost?',
@@ -2710,7 +2710,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Aspen Hill, MD. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906. Free written estimate after a site walk.',
     description:
-      "Aspen Hill remodeling is along Aspen Hill Road, Georgia Avenue, and Connecticut Avenue. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906. Many of the houses date from the mid-1960s. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south. The streets here stay separate from Fallsgrove and King Farm.\n\nAspen Hill is a census designated place in Montgomery County. Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary.\n\nIf you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Cabinets - Install, Repair, Replace. Montgomery County home-improvement permit information does not include municipality and homeowner association rules and regulations. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Plumbing - Contact WSSC. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Electrical Work. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+      "Aspen Hill remodeling is along Aspen Hill Road, Georgia Avenue, and Connecticut Avenue. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906. Many of the houses date from the mid-1960s. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south. The streets here stay separate from Fallsgrove and King Farm.\n\nAspen Hill is a census designated place in Montgomery County. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary.\n\nIf you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Cabinets - Install, Repair, Replace. Montgomery County home-improvement permit information does not include municipality and homeowner association rules and regulations. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Plumbing - Contact WSSC. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Electrical Work. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
     neighborhoods: ['Aspen Hill Road', 'Georgia Avenue', 'Connecticut Avenue', '20853', '20906'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['rockville-md', 'derwood-md', 'olney-md', 'kensington-md'],
@@ -2718,7 +2718,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Who permits a remodel in Aspen Hill, MD?',
         answer:
-          'Aspen Hill is a census designated place in Montgomery County. Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
+          'Aspen Hill is a census designated place in Montgomery County. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
       },
       {
         question: 'Does an Aspen Hill kitchen change need a permit?',
@@ -2738,7 +2738,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Bluemont, VA, the 20135 ridge along Route 7. The drive is 61 minutes. Free written estimate after a site walk.',
     description:
-      "Bluemont remodeling is the 20135 area on the ridge along Route 7, west of Round Hill. Many of the houses date from the early 1980s, on rural estate lots. The drive from Martinsburg is 61 minutes on Route 7. Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius.\n\nWhen the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Hours: Monday through Friday, 8:30 a.m. to 5 p.m. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175. If your property is located in an incorporated town within Loudoun County, submit an approved zoning permit from the town with your application.\n\nResidential alterations change the use of existing square footage, not including condominiums. If your lot is served by well and septic, contact the Health Department to obtain approval before applying for permits. Some parcels have conservation easements that may limit what is permitted on a property. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+      "Bluemont remodeling is the 20135 area on the ridge along Route 7, west of Round Hill. Many of the houses date from the early 1980s, on rural estate lots. The drive from Martinsburg is 61 minutes on Route 7.\n\nWhen the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Hours: Monday through Friday, 8:30 a.m. to 5 p.m. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175. If your property is located in an incorporated town within Loudoun County, submit an approved zoning permit from the town with your application.\n\nResidential alterations change the use of existing square footage, not including condominiums. If your lot is served by well and septic, contact the Health Department to obtain approval before applying for permits. Some parcels have conservation easements that may limit what is permitted on a property. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
     neighborhoods: ['Route 7', 'Snickers Gap', '20135', 'Round Hill side', 'ridge lots'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['round-hill-va', 'purcellville-va', 'hamilton-va', 'berryville-va'],
@@ -2751,7 +2751,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Is Bluemont inside the same-week visit radius?',
         answer:
-          'The drive from Martinsburg is 61 minutes on Route 7. Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is still a free written estimate after a site walk.',
+          'The drive from Martinsburg is 61 minutes on Route 7. Bluemont is outside our primary service radius. The price is still a free written estimate after a site walk.',
       },
       {
         question: 'What does remodeling in Bluemont cost?',
@@ -2766,7 +2766,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Remodeling contractor in Myersville, MD, the 21773 area on Main Street. The drive is 55 minutes. Free written estimate after a site walk.',
     description:
-      "Myersville remodeling is the 21773 area on Main Street. Many of the houses date from the early 1980s. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets. Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius.\n\nWhen the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Monday - Friday 8 a.m. - 4 p.m. The City of Frederick and Mt. Airy are responsible for their own building permits. Zoning certificates for properties within municipalities must be applied for prior to Building Permit application at the Department of Permits and Inspections.\n\nApplicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. The Town of Myersville zoning certificate application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to Myersville Town Hall, 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone (301) 293-4281. Approval is required for modifications, alterations or changing the usage of any building or structure. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
+      "Myersville remodeling is the 21773 area on Main Street. Many of the houses date from the early 1980s. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets.\n\nWhen the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Monday - Friday 8 a.m. - 4 p.m. The City of Frederick and Mt. Airy are responsible for their own building permits. Zoning certificates for properties within municipalities must be applied for prior to Building Permit application at the Department of Permits and Inspections.\n\nApplicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. The Town of Myersville zoning certificate application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to Myersville Town Hall, 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone (301) 293-4281. Approval is required for modifications, alterations or changing the usage of any building or structure. Real Elite does not take electrical work. We confirm the steps for this house before work starts. The price is a free written estimate after a site walk.",
     neighborhoods: ['Main Street', '21773', 'US 40', 'I-70', 'Town Hall'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['frederick-md', 'middletown-md', 'boonsboro-md', 'brunswick-md'],
@@ -2779,7 +2779,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Is Myersville inside the same-week visit radius?',
         answer:
-          'The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets. Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is still a free written estimate after a site walk.',
+          'The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets. Myersville is outside our primary service radius. The price is still a free written estimate after a site walk.',
       },
       {
         question: 'What does remodeling in Myersville cost?',

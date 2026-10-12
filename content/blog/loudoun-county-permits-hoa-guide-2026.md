@@ -56,7 +56,7 @@ This is the schedule wedge most Loudoun deck pages skip. [Loudoun's deck page](h
 | Typical Deck Detail | Single-level, residential, attached; **no** roof, screen, hot tub, gazebo, or detached structure | **$265** | **2 days** | **2 days** |
 | Custom / full structural plans | Roofed patio, screened porch, three-season room, multi-level, or anything Typical excludes | **$395** | **15 days** | **10 days** |
 
-Intake completeness is 2–5 business days on Typical and up to 10 on custom. Those review days are county targets, not a contractor promise — but they are the official published targets, and no serious Loudoun competitor puts them on the page. A contractor quoting "$800–$1,500" for a Loudoun deck permit is not quoting the county schedule.
+Intake completeness is 2–5 business days on Typical and up to 10 on custom. Those review days are county targets, not a contractor promise. A contractor quoting "$800–$1,500" for a Loudoun deck permit is not quoting the county schedule.
 
 Applies outside the incorporated towns. **Leesburg, Purcellville, and Middleburg permit separately.**
 
@@ -103,7 +103,7 @@ These are the ARCs we work with most often. Each has its own submission process,
 
 - **Lansdowne on the Potomac** — Strict on exterior aesthetics given the premium positioning of the community. Architectural details, materials, and colors all reviewed against a published design standards manual. Sometimes requires Architectural Subcommittee pre-review before full ARC submission.
 
-- **One Loudoun** — Mixed-use community with a residential ARC. We submit a packet when we have the current association guidelines in hand. We do not publish One Loudoun approved colors or material lists from contractor blog summaries.
+- **One Loudoun** — Mixed-use community with a residential ARC. We submit a packet when we have the current association guidelines in hand.
 
 - **Cascades** — Long-established community with one of the more familiar review processes. Submission turnaround is typically 2–3 weeks. Standards are documented but the committee is reasonable.
 

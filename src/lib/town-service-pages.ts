@@ -63,13 +63,13 @@ const KITCHEN_SERVICE_FAQS = [
 ] as const;
 
 const BASEMENT_RANGES =
-  "Mayflower Virginia publishes Northern Virginia basement tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average. Denny + Gardner describes an overall labor-and-materials range of about $50,000 to upward of $100,000 for an upscale renovation, with waste disposal, equipment, design, and permits as other budget considerations. The sources use different scopes and exclusions. A low figure from one and a high figure from another do not form a new, verified local range.";
+  "Mayflower Virginia publishes Northern Virginia basement tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average. Denny + Gardner describes an overall labor-and-materials range of about $50,000 to upward of $100,000 for an upscale renovation, with waste disposal, equipment, design, and permits as other budget considerations. The sources use different scopes and exclusions, so use them only to frame the conversation.";
 
 const BASEMENT_ELECTRICAL =
   "Real Elite does not take electrical work. Include the separately licensed electrical provider's scope in the overall plan so a remodeling estimate does not leave that part unaccounted for.";
 
 const KITCHEN_RANGES =
-  "HomeAdvisor reports a national kitchen remodel average of $26,945 and a typical range of $14,589–$41,559, while its total-makeover category runs $65,000–$130,000 or more. These are national reference figures, not measured Loudoun averages or Real Elite quotes. A 2025 DMV report from Four Seasons Home Improvement lists $28,500 for a minor midrange kitchen and $72,000 for a major upscale kitchen. Those are that publisher's regional benchmarks, not a ceiling for a custom kitchen. Do not average these sources together or apply an arbitrary Loudoun markup.";
+  "HomeAdvisor reports a national kitchen remodel average of $26,945 and a typical range of $14,589–$41,559, while its total-makeover category runs $65,000–$130,000 or more. These are national reference figures, not measured Loudoun averages or Real Elite quotes. A 2025 DMV report from Four Seasons Home Improvement lists $28,500 for a minor midrange kitchen and $72,000 for a major upscale kitchen. Those are that publisher's regional benchmarks, not a ceiling for a custom kitchen.";
 
 const KITCHEN_ELECTRICAL =
   'Real Elite does not take electrical work. Identify the separately licensed electrical provider and its scope before agreeing to the project.';

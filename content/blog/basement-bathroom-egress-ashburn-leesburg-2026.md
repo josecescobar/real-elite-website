@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 Most of a finished basement is framing, drywall, flooring, and trim. Two parts behave differently. The bathroom depends on where the drains are and how deep the sewer line runs. A bedroom depends on a window that meets code, which usually means cutting the foundation. Get those two right first and the rest of the lower level is easier to plan and price.
 
-This guide covers homes in [Ashburn](/service-areas/ashburn-va), [Leesburg](/service-areas/leesburg-va), and nearby Loudoun communities. It uses published figures and county documents checked September 27, 2026. It is planning context, not a description of a completed Real Elite project or a fixed price. For the whole-basement budget, start with our [Ashburn and Leesburg basement cost guide](/blog/basement-remodeling-cost-ashburn-leesburg-2026).
+This guide covers homes in [Ashburn](/service-areas/ashburn-va), [Leesburg](/service-areas/leesburg-va), and nearby Loudoun communities. It is planning context, not a description of a completed Real Elite project or a fixed price. For the whole-basement budget, start with our [Ashburn and Leesburg basement cost guide](/blog/basement-remodeling-cost-ashburn-leesburg-2026).
 
 ## Powder room, full bath, or a bedroom suite
 
@@ -42,7 +42,7 @@ National figures cover some of the same scope:
 - [HomeAdvisor's ejector pump guide](https://www.homeadvisor.com/cost/plumbing/install-ejector-pump/), updated June 20, 2026, reports $850–$3,500, with an average of $2,300.
 - [HomeAdvisor's egress window guide](https://www.homeadvisor.com/cost/doors-and-windows/install-egress-windows/), updated June 17, 2026, reports $2,723–$5,877, with most homeowners spending around $4,229. It lists $500–$1,000 for the window well and $1,500–$3,000 per window for excavation.
 
-These are separate publishers with different scopes, and none is a Loudoun average. Don't add Mayflower's bathroom figure to a national egress figure and call it a budget. Use them to see which parts of the job carry the money, then get one estimate that prices your basement.
+These are separate publishers with different scopes. Don't add Mayflower's bathroom figure to a national egress figure and call it a budget. Use them to see which parts of the job carry the money, then get one estimate that prices your basement.
 
 ## What sets the bathroom price
 

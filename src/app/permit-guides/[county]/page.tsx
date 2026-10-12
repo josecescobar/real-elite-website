@@ -186,9 +186,8 @@ export default async function PermitGuidePage({ params }: Props) {
               Do I need a permit? Job by job
             </h2>
             <p className="text-charcoal-700 leading-relaxed mb-6">
-              Short answers for the remodel jobs homeowners ask us about most. Each one links to the
-              official page we checked. Your exact scope decides the answer, so treat this as a
-              starting point and confirm with the permit office for your parcel.
+              Short answers for the remodel jobs homeowners ask us about most. Your exact scope decides
+              the answer, so confirm with the permit office for your parcel.
             </p>
             <div className="space-y-4">
               {guide.jobs.map((job) => {
@@ -295,8 +294,8 @@ export default async function PermitGuidePage({ params }: Props) {
               Official sources
             </h2>
             <p className="text-charcoal-600 text-sm leading-relaxed mb-4">
-              Everything above is our plain-language summary of these pages, checked{' '}
-              {formatDate(guide.updated)}. Rules and pages change; the official page wins.
+              Last checked {formatDate(guide.updated)}. Rules change, so confirm with the county before
+              you file.
             </p>
             <ul className="space-y-2 text-sm">
               {guideSources.map((src) => (
