@@ -448,7 +448,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     ],
     whyChooseUs: [
       'Premium materials from industry-leading manufacturers (GAF, Owens Corning).',
-      'WV and VA contractor licenses; request insurance documentation.',
+      'WV, VA and PA contractor licenses; request insurance documentation.',
       'Review warranty terms before signing.',
     ],
     faqs: [

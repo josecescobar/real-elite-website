@@ -81,6 +81,12 @@ const CERT_TRACKS = [
     status: 'Active',
     body: 'Virginia Class A, specialty HIC, residential. No Virginia veteran-program designation is claimed.',
   },
+  {
+    name: 'Pennsylvania',
+    full: 'Home Improvement Contractor PA225060',
+    status: 'Active',
+    body: 'Pennsylvania home improvement contractor registration for existing-house home improvement. This is a trade registration, not a veteran certification.',
+  },
 ];
 
 const FEDERAL_TARGETS = [
@@ -133,7 +139,7 @@ const FAQ_ITEMS = [
   {
     question: 'Which licenses does Real Elite hold?',
     answer:
-      `WV Contractor License WV062432 and Virginia Class A Contractor 2705198604 (HIC). ${FEDERAL_REGISTRATION.summary}.`,
+      `WV Contractor License WV062432, Virginia Class A Contractor 2705198604 (HIC) and Pennsylvania Home Improvement Contractor PA225060. ${FEDERAL_REGISTRATION.summary}.`,
   },
   {
     question: 'How does "Military Precision" actually show up in our project?',
@@ -327,7 +333,7 @@ export default function VeteransPage() {
                   'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
                   'Discuss the project scope, communication, and site arrangements before work begins.',
                   'Review license, insurance, and warranty documentation for the proposed work.',
-                  'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
+                  'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC) · Pennsylvania Home Improvement Contractor PA225060.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />

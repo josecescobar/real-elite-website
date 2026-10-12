@@ -36,7 +36,7 @@ const FAQ_SECTIONS = [
       {
         question: 'Are you licensed and insured?',
         answer:
-          "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
+          "Yes — Real Elite Contracting is licensed and insured in West Virginia, Virginia and Pennsylvania. Request current insurance documentation for your project.",
       },
       {
         question: 'Who runs Real Elite Contracting?',

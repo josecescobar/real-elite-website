@@ -719,7 +719,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Are you a general contractor in Martinsburg, WV?',
         answer:
-          'Yes. Real Elite Contracting is based in Martinsburg. WV Contractor License WV062432. Virginia Class A Contractor 2705198604 covers residential work in Virginia. The written estimate names the scope before any work starts.',
+          'Yes. Real Elite Contracting is based in Martinsburg. WV Contractor License WV062432. Virginia Class A Contractor 2705198604 covers residential work in Virginia. Pennsylvania Home Improvement Contractor PA225060 covers existing-house home improvement in Pennsylvania. The written estimate names the scope before any work starts.',
       },
       {
         question: 'Which services do you offer in Martinsburg?',
@@ -1158,7 +1158,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
    */
   'northern-virginia': {
     description:
-      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements. Prince William's western communities — Haymarket, Gainesville, and Bristow — are newer planned neighborhoods along I-66 and Route 15. Homeowners search for a Northern Virginia or county contractor first and narrow down afterwards. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed in West Virginia and Virginia, and works this market from its Eastern Panhandle base. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, Route 15, or Route 28 onto I-66.",
+      "Northern Virginia is the largest remodeling market Real Elite Contracting serves, and the one where the work is most often a lower level. Fairfax and Loudoun counties and the city of Alexandria hold a housing stock built largely between the 1960s and the 2000s, much of it on full-height unfinished basements. Prince William's western communities — Haymarket, Gainesville, and Bristow — are newer planned neighborhoods along I-66 and Route 15. Homeowners search for a Northern Virginia or county contractor first and narrow down afterwards. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed in West Virginia, Virginia and Pennsylvania, and works this market from its Eastern Panhandle base. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, Route 15, or Route 28 onto I-66.",
     neighborhoods: [
       'Fairfax County',
       'Loudoun County',
@@ -3346,7 +3346,7 @@ export const HOME_FAQ = [
   {
     question: 'Are you licensed and insured?',
     answer:
-      "Yes — Real Elite Contracting is fully licensed and insured across West Virginia and Virginia. General liability coverage is on file. Request current insurance documentation for your project.",
+      "Yes — Real Elite Contracting is licensed and insured in West Virginia, Virginia and Pennsylvania. Request current insurance documentation for your project.",
   },
   {
     question: 'How long does a typical remodel take?',

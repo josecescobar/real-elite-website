@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 West Virginia weather is beautiful and brutal, often in the same afternoon. In the Eastern Panhandle we get all four seasons at full volume: soupy summer humidity, spring rains that arrive sideways, hard freezes, and the occasional ice storm just to keep things interesting. All of which means your deck material choice matters a lot more here than it would somewhere boring and mild.
 
-We've built decks across Martinsburg, Charles Town, Shepherdstown, and the surrounding area for years, and we've seen exactly what holds up and what turns into firewood. Here's the straight talk.
+We build decks across Martinsburg, Charles Town, Shepherdstown, and the surrounding area, and we see what holds up and what turns into firewood. Here's the straight talk.
 
 ## First, Know What Your Deck Is Up Against
 

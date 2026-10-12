@@ -385,7 +385,7 @@ export const PAVING_SERVICES: PavingService[] = [
       'Specs engineered for real commercial traffic loads',
       'Phased scheduling that keeps your site operating',
       'ADA-compliant layout and striping',
-      'WV and VA contractor licenses; discuss paving scope and contractor credentials before work begins.',
+      'WV, VA and PA contractor licenses; discuss paving scope and contractor credentials before work begins.',
     ],
     investment: {
       range: 'Detailed written proposal after a site assessment',
@@ -695,10 +695,10 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'sealcoating Frederick MD',
     ],
     heroSub:
-      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — family-run and licensed in West Virginia and Virginia.',
+      'Asphalt driveways, paving, parking lots, sealcoating, and repair for Frederick and the I-70 corridor — family-run and licensed in West Virginia, Virginia and Pennsylvania.',
     intro: [
       "Frederick is one of the Mid-Atlantic's most desirable and fastest-growing markets — a historic market town transformed by the revitalized Carroll Creek and Market Street downtown and a steady wave of development along the I-70 corridor through Urbana, Jefferson, and New Market. That growth fuels constant demand for both residential driveways in the new communities and commercial lots for the retail, office, and medical development following them.",
-      "We pave and repair driveways and parking lots throughout Frederick and Frederick County, licensed in West Virginia and Virginia. From the historic downtown's older homes to the new subdivisions out toward Urbana and the commercial sites along the growth corridor, we bring proper base work, drainage-first grading, ADA-compliant lot striping, and the accountable, single-point-of-contact approach that has built our name across the region.",
+      "We pave and repair driveways and parking lots throughout Frederick and Frederick County, licensed in West Virginia, Virginia and Pennsylvania. From the historic downtown's older homes to the new subdivisions out toward Urbana and the commercial sites along the growth corridor, we bring proper base work, drainage-first grading, ADA-compliant lot striping, and the accountable, single-point-of-contact approach that has built our name across the region.",
     ],
     localFactors: [
       { title: 'Roads & neighborhoods', body: 'Historic downtown Frederick and the Carroll Creek corridor, plus the fast-growing Ballenger Creek, Urbana, Jefferson, and New Market areas along I-70.' },

@@ -29,7 +29,7 @@ West Virginia requires contractors to be licensed through the **WV Division of L
 
 Requirements vary by trade — roofing, general contracting, electrical, and plumbing each have their own rules. Before you hire anyone, you can verify their license at the **WV Division of Labor's online portal**. It's free, it's fast, and it's a lot cheaper than the alternative.
 
-When you hire Real Elite Contracting, you're hiring a licensed, insured general contractor operating in full compliance with WV law. Boring on paper. Wonderful at 2 a.m. during a storm.
+When you hire Real Elite Contracting, you're hiring an insured contractor that holds West Virginia Contractor License WV062432, plus Virginia and Pennsylvania licenses. Boring on paper. Wonderful at 2 a.m. during a storm.
 
 ## Reason 1: Unlicensed Work Can Void Your Homeowner's Insurance
 
@@ -109,7 +109,7 @@ If a contractor treats "what's your license number?" like a personal insult, tha
 
 ## Real Elite Contracting: Licensed, Insured, and Local
 
-Real Elite Contracting is a fully licensed and insured general contractor based in Martinsburg, WV, serving the Eastern Panhandle and surrounding communities. We pull permits on every applicable job, build to WV code, and carry full general liability and workers' comp.
+Real Elite Contracting is an insured contractor based in Martinsburg, WV, licensed in West Virginia (WV062432), Virginia and Pennsylvania, serving the Eastern Panhandle and surrounding communities. We pull permits on every applicable job and build to WV code.
 
 We're family-run by brothers Jose and Miguel — Miguel is a U.S. military veteran and Purple Heart recipient — and local, which means our reputation here isn't a marketing line — it's the people we run into at the grocery store. We're not about to torch it to win a bid.
 
