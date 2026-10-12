@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import { ALL_SERVICE_AREAS, CITY_DATA, STAGED_SERVICE_AREAS, areaRegionLabel } from '@/lib/constants';
+import { ALL_SERVICE_AREAS, CITY_DATA, STAGED_SERVICE_AREAS, areaRegionLabel, isLocalityArea } from '@/lib/constants';
 import { PERMIT_GUIDES, getPermitGuide } from '@/lib/permit-guides';
 import { permitGuideForArea, townPagesForGuide } from '@/lib/permit-guide-links';
 import * as permitGuideLinks from '@/lib/permit-guide-links';
@@ -43,6 +43,40 @@ const COMBO_HREFS = new Set(
 
 function guideLinks(container: HTMLElement): HTMLAnchorElement[] {
   return [...container.querySelectorAll<HTMLAnchorElement>('a[href^="/permit-guides/"]')];
+}
+
+/**
+ * County named on the published WV town page. The catalog gives these rows
+ * no parent, and areaRegionLabel says "Eastern Panhandle" for every one of
+ * them, so the county is not on the parent or the region label.
+ * null means the town's county has no guide (Morgan County).
+ */
+const WV_CATALOG_COUNTY: Record<string, string | null> = {
+  'martinsburg-wv': 'Berkeley County',
+  'inwood-wv': 'Berkeley County',
+  'hedgesville-wv': 'Berkeley County',
+  'spring-mills-wv': 'Berkeley County',
+  'falling-waters-wv': 'Berkeley County',
+  'bunker-hill-wv': 'Berkeley County',
+  'berkeley-springs-wv': null,
+  'charles-town-wv': 'Jefferson County',
+  'ranson-wv': 'Jefferson County',
+  'shepherdstown-wv': 'Jefferson County',
+  'harpers-ferry-wv': 'Jefferson County',
+  'kearneysville-wv': 'Jefferson County',
+};
+
+function expectedGuideSlug(area: (typeof ALL_SERVICE_AREAS)[number], guideSlugs: Set<string>): string | undefined {
+  if (guideSlugs.has(area.slug)) return area.slug;
+  if (area.parent && guideSlugs.has(area.parent)) return area.parent;
+  const labelMatches = PERMIT_GUIDES.filter((guide) => areaRegionLabel(area) === `${guide.county} area`);
+  if (labelMatches.length === 1) return labelMatches[0].slug;
+  if (area.state === 'WV' && isLocalityArea(area)) {
+    const county = WV_CATALOG_COUNTY[area.slug];
+    if (!county) return undefined;
+    return PERMIT_GUIDES.find((guide) => guide.county === county && guide.state === area.state)?.slug;
+  }
+  return undefined;
 }
 
 describe('permit guide links', () => {
@@ -90,20 +124,30 @@ describe('permit guide links', () => {
     }
   });
 
-  it('links active children and county rows, and leaves Brambleton unlinked', () => {
+  it('reads raw areaSlugs and rejects a slug that is not a published area page', () => {
+    const published = new Set(areaStaticParams().map((params) => params.slug));
+    for (const guide of PERMIT_GUIDES) {
+      for (const areaSlug of guide.areaSlugs) {
+        expect(published.has(areaSlug), `${guide.slug} lists ${areaSlug}, which is not a published area page`).toBe(true);
+      }
+    }
+  });
+
+  it('links every active published town whose catalog county has one guide', () => {
     const guideSlugs = new Set(PERMIT_GUIDES.map((guide) => guide.slug));
-    expect(permitGuideForArea('brambleton-va')).toBeUndefined();
     for (const area of ALL_SERVICE_AREAS) {
-      if (area.slug === 'brambleton-va') continue;
-      if (guideSlugs.has(area.slug)) {
-        expect(permitGuideForArea(area.slug)?.slug, area.slug).toBe(area.slug);
+      if (area.state === 'WV' && isLocalityArea(area)) {
+        expect(Object.prototype.hasOwnProperty.call(WV_CATALOG_COUNTY, area.slug), area.slug).toBe(true);
       }
-      if (area.parent && guideSlugs.has(area.parent)) {
-        expect(permitGuideForArea(area.slug)?.slug, area.slug).toBe(area.parent);
-      }
-      const labelMatches = PERMIT_GUIDES.filter((guide) => areaRegionLabel(area) === `${guide.county} area`);
-      if (labelMatches.length === 1) {
-        expect(permitGuideForArea(area.slug)?.slug, area.slug).toBe(labelMatches[0].slug);
+      const expected = expectedGuideSlug(area, guideSlugs);
+      if (!expected) continue;
+      expect(permitGuideForArea(area.slug)?.slug, area.slug).toBe(expected);
+      expect(getPermitGuide(expected)?.areaSlugs, area.slug).toContain(area.slug);
+    }
+    for (const slug of ['manassas-va', 'berkeley-springs-wv', 'mount-airy-md', 'woodbine-md']) {
+      expect(permitGuideForArea(slug), slug).toBeUndefined();
+      for (const guide of PERMIT_GUIDES) {
+        expect(guide.areaSlugs, `${guide.slug} ${slug}`).not.toContain(slug);
       }
     }
   });

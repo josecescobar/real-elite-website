@@ -832,6 +832,7 @@ const LOUDOUN: CountyPermitGuide = {
     'loudoun-county-va',
     'leesburg-va',
     'ashburn-va',
+    'brambleton-va',
     'middleburg-va',
     'purcellville-va',
     'south-riding-va',

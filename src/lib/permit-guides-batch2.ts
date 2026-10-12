@@ -70,7 +70,7 @@ const BERKELEY: CountyPermitGuide = {
     { question: 'Who checks trade work?', answer: cite({ text: 'Check with the county or city office for the electrical, plumbing, gas, or mechanical work in your scope.', sources: ['berk-process'] }) },
   ],
   sourceIds: ['berk-process', 'berk-office'],
-  areaSlugs: ['martinsburg-wv'], relatedPosts: [],
+  areaSlugs: ['martinsburg-wv', 'inwood-wv', 'hedgesville-wv', 'spring-mills-wv', 'falling-waters-wv', 'bunker-hill-wv'], relatedPosts: [],
 };
 
 const JEFFERSON: CountyPermitGuide = {
@@ -114,7 +114,7 @@ const JEFFERSON: CountyPermitGuide = {
     { question: 'What if my home is in Shepherdstown?', answer: cite({ text: 'Contact Shepherdstown for its town permit and any historic review.', sources: ['shepherdstown-building'] }) },
   ],
   sourceIds: ['jeff-office', 'jeff-boundaries', 'charles-town-guide', 'ranson-building', 'shepherdstown-building', 'harpers-forms'],
-  areaSlugs: ['charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'harpers-ferry-wv'], relatedPosts: [],
+  areaSlugs: ['charles-town-wv', 'ranson-wv', 'shepherdstown-wv', 'harpers-ferry-wv', 'kearneysville-wv'], relatedPosts: [],
 };
 
 const WASHINGTON: CountyPermitGuide = {
@@ -292,7 +292,7 @@ const PRINCE_WILLIAM: CountyPermitGuide = {
     { question: 'Do I need a permit to finish a basement?', answer: cite({ text: 'Yes. The county has a finished-basement building permit process.', sources: ['pwc-basement'] }) },
   ],
   sourceIds: ['pwc-areas', 'pwc-need', 'pwc-decks', 'pwc-basement', 'haymarket-permits'],
-  areaSlugs: ['prince-william-county-va', 'haymarket-va', 'manassas-va', 'gainesville-va', 'bristow-va', 'nokesville-va', 'lake-ridge-va', 'woodbridge-va', 'catharpin-va'], relatedPosts: [],
+  areaSlugs: ['prince-william-county-va', 'haymarket-va', 'gainesville-va', 'bristow-va', 'nokesville-va', 'lake-ridge-va', 'woodbridge-va', 'catharpin-va'], relatedPosts: [],
 };
 
 export const BATCH2_PERMIT_GUIDES: readonly CountyPermitGuide[] = [
