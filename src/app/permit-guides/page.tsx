@@ -11,7 +11,7 @@ export const metadata = buildMetadata({
   path: '/permit-guides',
   title: `Remodel Permit Guides by County | ${BUSINESS.name}`,
   description:
-    'Do you need a permit for a deck, basement, bathroom, or kitchen remodel? County-by-county answers for Fairfax, Loudoun, Arlington, Montgomery, Howard, and Frederick, with links to the official sources.',
+    'Do you need a permit for a deck, basement, bathroom, or kitchen remodel? County-by-county permit answers across Virginia, Maryland, West Virginia, and Pennsylvania, with links to the official sources.',
   keywords: [
     'do I need a permit for a deck',
     'basement finishing permit',
@@ -25,6 +25,8 @@ export const metadata = buildMetadata({
 export default function PermitGuidesIndexPage() {
   const va = PERMIT_GUIDES.filter((g) => g.state === 'VA');
   const md = PERMIT_GUIDES.filter((g) => g.state === 'MD');
+  const wv = PERMIT_GUIDES.filter((g) => g.state === 'WV');
+  const pa = PERMIT_GUIDES.filter((g) => g.state === 'PA');
 
   return (
     <>
@@ -77,6 +79,8 @@ export default function PermitGuidesIndexPage() {
       {[
         { label: 'Virginia', guides: va },
         { label: 'Maryland', guides: md },
+        { label: 'West Virginia', guides: wv },
+        { label: 'Pennsylvania', guides: pa },
       ].map((group) => (
         <section key={group.label} className="bg-white py-14 md:py-20 even:bg-steel-50">
           <Container size="wide">

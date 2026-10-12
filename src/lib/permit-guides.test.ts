@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { ALL_SERVICE_AREAS, SERVICES } from '@/lib/constants';
 import { getAllPosts } from '@/lib/blog';
+import { BATCH2_PERMIT_GUIDES } from '@/lib/permit-guides-batch2';
 import {
   PERMIT_GUIDES,
   PERMIT_SOURCES,
   getPermitGuide,
+  plainPermitText,
   permitGuidePath,
   serviceLinkFor,
   sourceById,
@@ -12,7 +14,7 @@ import {
 
 /** Official government hosts only. A new host needs a deliberate edit here. */
 const OFFICIAL_HOST = (host: string): boolean =>
-  /\.(gov|us)$/i.test(host) || ['www.wsscwater.com', 'www.townofchevychase.org'].includes(host);
+  /\.(gov|us)$/i.test(host) || ['www.wsscwater.com', 'www.townofchevychase.org', 'www.berkeleywv.org', 'www.cityofmartinsburg.org', 'www.jeffersoncountywv.org', 'www.charlestownwv.us', 'ransonwv.gov', 'www.shepherdstown.gov', 'www.harpersferrywv.us', 'www.washco-md.net', 'hagerstownmd.org', 'www.hagerstownmd.org', 'www.chambersburgpa.gov', 'www.fauquiercounty.gov', 'warrentonva.gov', 'www.warrentonva.gov', 'www.pwcva.gov', 'pwcaws.pwcva.gov', 'www.townofhaymarket.org'].includes(host);
 
 function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
   return [
@@ -20,22 +22,28 @@ function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
     guide.seoTitle,
     guide.description,
     guide.cardBlurb,
-    guide.answer,
-    guide.jurisdictionIntro,
+    plainPermitText(guide.answer),
+    plainPermitText(guide.jurisdictionIntro),
     ...guide.issuers.flatMap((i) => [i.name, i.covers]),
     ...guide.jobs.flatMap((j) => [j.job, j.summary]),
     ...guide.steps.map((s) => s.text),
     guide.hoa.text,
     guide.historic.text,
-    ...guide.faqs.flatMap((f) => [f.question, f.answer]),
+    ...guide.faqs.flatMap((f) => [f.question, plainPermitText(f.answer)]),
   ].join('\n');
 }
 
 describe('permit guides', () => {
-  it('covers the six richest service counties, once each', () => {
+  it('covers all twelve service counties, once each', () => {
     expect(PERMIT_GUIDES.map((g) => g.slug).sort()).toEqual(
       [
         'arlington-county-va',
+        'berkeley-county-wv',
+        'fauquier-county-va',
+        'franklin-county-pa',
+        'jefferson-county-wv',
+        'prince-william-county-va',
+        'washington-county-md',
         'fairfax-county-va',
         'frederick-county-md',
         'howard-county-md',
@@ -104,6 +112,68 @@ describe('permit guides', () => {
     }
   });
 
+  it('gives every batch-2 lead, intro, and FAQ an inline official https source listed on its page', () => {
+    for (const guide of BATCH2_PERMIT_GUIDES) {
+      for (const block of [guide.answer, guide.jurisdictionIntro, ...guide.faqs.map((f) => f.answer)]) {
+        expect(typeof block, guide.slug).not.toBe('string');
+        if (typeof block === 'string') continue;
+        expect(block.length, guide.slug).toBeGreaterThan(0);
+        expect(block.flatMap((part) => part.sources).length, guide.slug).toBeGreaterThan(0);
+        for (const part of block) {
+          for (const id of part.sources) {
+            expect(guide.sourceIds, `${guide.slug}: ${id}`).toContain(id);
+            expect(sourceById(id)?.url, `${guide.slug}: ${id}`).toMatch(/^https:\/\//);
+          }
+        }
+      }
+    }
+  });
+
+  it('cites Martinsburg facts and keeps Fauquier county advice separate from Warrenton sources', () => {
+    const berkeley = BATCH2_PERMIT_GUIDES.find((guide) => guide.slug === 'berkeley-county-wv');
+    const fauquier = BATCH2_PERMIT_GUIDES.find((guide) => guide.slug === 'fauquier-county-va');
+    expect(berkeley).toBeDefined();
+    expect(fauquier).toBeDefined();
+    for (const [guide, blocks] of [
+      [berkeley!, [berkeley!.answer, berkeley!.jurisdictionIntro, ...berkeley!.faqs.map((faq) => faq.answer)]],
+    ] as const) {
+      for (const block of blocks) {
+        expect(typeof block).not.toBe('string');
+        if (typeof block === 'string') continue;
+        for (const part of block) {
+          expect(part.sources.length, `${guide.slug}: ${part.text}`).toBeGreaterThan(0);
+          for (const id of part.sources) {
+            expect(guide.sourceIds, `${guide.slug}: ${part.text} (${id})`).toContain(id);
+            expect(sourceById(id)?.url).toMatch(/^https:\/\//);
+          }
+        }
+      }
+    }
+    for (const block of [fauquier!.answer, fauquier!.jurisdictionIntro, ...fauquier!.faqs.map((faq) => faq.answer)]) {
+      expect(typeof block).not.toBe('string');
+      if (typeof block === 'string') continue;
+      for (const part of block) {
+        if (part.text.includes('Check with the county') || part.text.includes('check with the county')) {
+          expect(part.sources, part.text).toEqual([]);
+        } else {
+          expect(part.sources.length, part.text).toBeGreaterThan(0);
+        }
+      }
+    }
+    const townCited = [
+      ...(typeof fauquier!.answer === 'string' ? [] : fauquier!.answer),
+      ...(typeof fauquier!.jurisdictionIntro === 'string' ? [] : fauquier!.jurisdictionIntro),
+      ...fauquier!.jobs.map((job) => ({ text: job.summary, sources: job.sources })),
+      ...fauquier!.steps,
+      ...fauquier!.faqs.flatMap((faq) => typeof faq.answer === 'string' ? [] : faq.answer),
+    ];
+    for (const part of townCited) {
+      if (part.sources.some((id) => id.startsWith('warrenton-'))) {
+        expect(part.text, part.text).not.toMatch(/Fauquier County|county parcel|check with the county/i);
+      }
+    }
+  });
+
   it('links only to live service, area, and blog pages', () => {
     const serviceSlugs = new Set<string>(SERVICES.map((s) => s.slug));
     const areaSlugs = new Set(ALL_SERVICE_AREAS.map((a) => a.slug));
@@ -133,7 +203,9 @@ describe('permit guides', () => {
       // No new Brambleton links.
       expect(g.areaSlugs).not.toContain('brambleton-va');
       // No Maryland license caveats and no invented credentials.
-      expect(text, g.slug).not.toMatch(/MHIC|not licensed|unlicensed in|license pending|certified|award-winning/i);
+      expect(text, g.slug).not.toMatch(/MHIC|not licensed|unlicensed in|license pending|award-winning/i);
+      if (g.state !== 'PA') expect(text, g.slug).not.toMatch(/certified/i);
+      expect(text, g.slug).not.toMatch(/(?:we|our team|Real Elite) (?:are|is) certified/i);
       expect(text, g.slug).not.toMatch(/veteran[-\s]owned|VOSB/i);
     }
   });

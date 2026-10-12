@@ -1,4 +1,5 @@
 import { SERVICES, servicePillarHref } from '@/lib/constants';
+import { BATCH2_PERMIT_GUIDES, BATCH2_PERMIT_SOURCES } from '@/lib/permit-guides-batch2';
 
 /**
  * County permit guides: "Do I need a permit for a deck / basement / bathroom
@@ -36,12 +37,17 @@ export type PermitJob = {
 };
 
 export type CitedText = { text: string; sources: readonly string[] };
+export type InlineCitedText = string | readonly CitedText[];
+
+export function plainPermitText(value: InlineCitedText): string {
+  return typeof value === 'string' ? value : value.map((part) => part.text).join(' ');
+}
 
 export type CountyPermitGuide = {
   slug: string;
   county: string;
-  state: 'VA' | 'MD';
-  stateName: 'Virginia' | 'Maryland';
+  state: 'VA' | 'MD' | 'WV' | 'PA';
+  stateName: 'Virginia' | 'Maryland' | 'West Virginia' | 'Pennsylvania';
   h1: string;
   seoTitle: string;
   description: string;
@@ -49,14 +55,14 @@ export type CountyPermitGuide = {
   keywords: string[];
   published: string;
   updated: string;
-  answer: string;
-  jurisdictionIntro: string;
+  answer: InlineCitedText;
+  jurisdictionIntro: InlineCitedText;
   issuers: readonly { name: string; covers: string; sources: readonly string[] }[];
   jobs: readonly PermitJob[];
   steps: readonly CitedText[];
   hoa: CitedText;
   historic: CitedText;
-  faqs: readonly { question: string; answer: string }[];
+  faqs: readonly { question: string; answer: InlineCitedText }[];
   /** Ids into PERMIT_SOURCES, listed in the page's "Official sources" block. */
   sourceIds: readonly string[];
   /** Service-area slugs linked at the foot of the page. */
@@ -75,6 +81,7 @@ const MC_RES = `${MC_DPS}/all-permits/residential-permits`;
 /* -------------------------------------------------------------------------- */
 
 export const PERMIT_SOURCES: readonly PermitSource[] = [
+  ...BATCH2_PERMIT_SOURCES,
   // Virginia statewide
   {
     id: 'va-usbc-108',
@@ -1338,6 +1345,7 @@ export const PERMIT_GUIDES: readonly CountyPermitGuide[] = [
   MONTGOMERY,
   HOWARD,
   FREDERICK,
+  ...BATCH2_PERMIT_GUIDES,
 ];
 
 /* -------------------------------------------------------------------------- */

@@ -15,9 +15,11 @@ import {
   VERDICT_LABELS,
   getPermitGuide,
   permitGuidePath,
+  plainPermitText,
   serviceLinkFor,
   sourceById,
   type CountyPermitGuide,
+  type InlineCitedText,
 } from '@/lib/permit-guides';
 
 interface Props {
@@ -76,6 +78,17 @@ function SourceLinks({ ids }: { ids: readonly string[] }) {
   );
 }
 
+function InlineCitations({ value }: { value: InlineCitedText }) {
+  if (typeof value === 'string') return value;
+  return value.map((part, index) => (
+    <span key={index}>
+      {index > 0 && ' '}
+      {part.text}
+      <SourceLinks ids={part.sources} />
+    </span>
+  ));
+}
+
 export default async function PermitGuidePage({ params }: Props) {
   const { county } = await params;
   const guide = getPermitGuide(county);
@@ -104,7 +117,7 @@ export default async function PermitGuidePage({ params }: Props) {
         dateModified={guide.updated}
         url={url}
       />
-      <FAQSchema items={guide.faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
+      <FAQSchema items={guide.faqs.map((f) => ({ question: f.question, answer: plainPermitText(f.answer) }))} />
       <JsonLd
         schema={buildBreadcrumbSchema([
           { name: 'Home', item: BUSINESS.url },
@@ -136,7 +149,7 @@ export default async function PermitGuidePage({ params }: Props) {
             {guide.h1}
           </h1>
           <p className="text-charcoal-300 text-sm mt-6">
-            Checked against official {guide.county} sources · Updated{' '}
+            Checked against official {guide.slug === 'fauquier-county-va' ? 'Town of Warrenton' : guide.county} sources · Updated{' '}
             <time dateTime={guide.updated}>{formatDate(guide.updated)}</time>
           </p>
         </Container>
@@ -146,7 +159,7 @@ export default async function PermitGuidePage({ params }: Props) {
         <Container size="narrow">
           {/* Answer block */}
           <p className="text-charcoal-800 text-lg md:text-xl leading-relaxed border-l-4 border-brand-red pl-5 mb-12">
-            {guide.answer}
+            <InlineCitations value={guide.answer} />
           </p>
 
           {/* Who issues */}
@@ -154,7 +167,7 @@ export default async function PermitGuidePage({ params }: Props) {
             <h2 id="who-issues" className="font-heading text-2xl sm:text-3xl font-extrabold text-navy-800 mb-3">
               Who issues the permit depends on your address
             </h2>
-            <p className="text-charcoal-700 leading-relaxed mb-6">{guide.jurisdictionIntro}</p>
+            <p className="text-charcoal-700 leading-relaxed mb-6"><InlineCitations value={guide.jurisdictionIntro} /></p>
             <ul className="space-y-4">
               {guide.issuers.map((issuer) => (
                 <li key={issuer.name} className="border border-charcoal-100 rounded-lg p-5">
@@ -213,7 +226,7 @@ export default async function PermitGuidePage({ params }: Props) {
           {/* Steps */}
           <section aria-labelledby="steps" className="mb-14">
             <h2 id="steps" className="font-heading text-2xl sm:text-3xl font-extrabold text-navy-800 mb-5">
-              The typical permit steps in {guide.county}
+              {guide.slug === 'fauquier-county-va' ? 'The Town of Warrenton permit path' : `The typical permit steps in ${guide.county}`}
             </h2>
             <ol className="space-y-4 list-decimal pl-6 marker:font-bold marker:text-brand-red">
               {guide.steps.map((step) => (
@@ -271,7 +284,7 @@ export default async function PermitGuidePage({ params }: Props) {
               {guide.faqs.map((f) => (
                 <div key={f.question}>
                   <dt className="font-heading font-bold text-navy-800">{f.question}</dt>
-                  <dd className="text-charcoal-700 leading-relaxed mt-1">{f.answer}</dd>
+                  <dd className="text-charcoal-700 leading-relaxed mt-1"><InlineCitations value={f.answer} /></dd>
                 </div>
               ))}
             </dl>
