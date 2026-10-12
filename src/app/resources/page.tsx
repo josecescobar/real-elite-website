@@ -6,6 +6,7 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import { BUSINESS } from '@/lib/constants';
 import { buildMetadata } from '@/lib/seo';
 import { GUIDE_CATEGORIES, getAllPosts, getPostsByCategorySlug, formatDate } from '@/lib/blog';
+import { PERMIT_GUIDES, permitGuidePath } from '@/lib/permit-guides';
 
 export const metadata = buildMetadata({
   path: '/resources',
@@ -118,6 +119,36 @@ export default function ResourcesIndexPage() {
               );
             })}
           </div>
+        </Container>
+      </section>
+
+      {/* County permit guides */}
+      <section className="bg-white py-16 md:py-24">
+        <Container size="wide">
+          <SectionHeader
+            eyebrow="Permit guides"
+            title="Do I need a permit?"
+            subtitle="County-by-county answers for decks, basements, bathrooms, kitchens, and additions, with links to the official sources."
+          />
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {PERMIT_GUIDES.map((g) => (
+              <Link
+                key={g.slug}
+                href={permitGuidePath(g.slug)}
+                className="group flex items-center justify-between border border-charcoal-100 rounded-lg px-5 py-4 hover:border-brand-red hover:shadow-md transition-all"
+              >
+                <span className="font-heading font-bold text-navy-800 group-hover:text-brand-red transition-colors">
+                  {g.county}, {g.state}
+                </span>
+                <ArrowUpRight className="w-4 h-4 text-charcoal-300 group-hover:text-brand-red transition-colors" />
+              </Link>
+            ))}
+          </div>
+          <p className="mt-6 text-sm">
+            <Link href="/permit-guides" className="font-semibold text-brand-red hover:text-brand-red-dark">
+              All permit guides
+            </Link>
+          </p>
         </Container>
       </section>
 

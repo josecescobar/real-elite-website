@@ -291,6 +291,21 @@ describe('static page smoke tests', () => {
     expect(() => render(el)).not.toThrow();
   });
 
+  it('Permit guides index renders', async () => {
+    const { default: PermitGuidesPage } = await import('@/app/permit-guides/page');
+    expect(() => render(<PermitGuidesPage />)).not.toThrow();
+  });
+
+  it('every county permit guide renders', async () => {
+    const { default: PermitGuidePage } = await import('@/app/permit-guides/[county]/page');
+    const { PERMIT_GUIDES } = await import('@/lib/permit-guides');
+    for (const g of PERMIT_GUIDES) {
+      const el = await PermitGuidePage({ params: Promise.resolve({ county: g.slug }) });
+      const { unmount } = render(el);
+      unmount();
+    }
+  });
+
   it('Instant Roof Quote page renders', async () => {
     const { default: RoofQuotePage } = await import('@/app/instant-roof-quote/page');
     expect(() => render(<RoofQuotePage />)).not.toThrow();
