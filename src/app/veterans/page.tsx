@@ -44,7 +44,7 @@ const PILLARS = [
     eyebrow: 'Who runs it',
     title: 'Two brothers',
     body:
-      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The ownership split is not published, and the company does not hold a federal veteran certification.',
+      'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. The company does not hold a federal veteran certification.',
   },
   {
     icon: Award,

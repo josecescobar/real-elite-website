@@ -2840,9 +2840,9 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
       expect(text, city).toMatch(/\$55,000/);
     }
     expect(CITY_DATA['bluemont-va']?.description).toMatch(/61 minutes/);
-    expect(CITY_DATA['bluemont-va']?.description).toMatch(/stretch of that job radius/);
+    expect(CITY_DATA['bluemont-va']?.faqs?.map((faq) => faq.answer).join(' ')).toMatch(/outside our primary service radius/);
     expect(CITY_DATA['myersville-md']?.description).toMatch(/55 minutes/);
-    expect(CITY_DATA['myersville-md']?.description).toMatch(/stretch of that job radius/);
+    expect(CITY_DATA['myersville-md']?.faqs?.map((faq) => faq.answer).join(' ')).toMatch(/outside our primary service radius/);
     expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/20853/);
     expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/20906/);
     expect(CITY_DATA['aspen-hill-md']?.description).toMatch(/240-777-0311/);

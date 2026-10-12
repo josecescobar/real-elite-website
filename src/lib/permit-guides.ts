@@ -654,7 +654,7 @@ const ARLINGTON: CountyPermitGuide = {
     },
   ],
   hoa: {
-    text: 'Arlington’s residential permit page doesn’t address HOA or condo association approval. If your home is in an association, treat its approval as a separate step and check your governing documents before you apply.',
+    text: 'If your home is in an HOA or condo association, treat its approval as a separate step from the county permit and check your governing documents before you apply.',
     sources: ['arl-residential'],
   },
   historic: {
@@ -1328,7 +1328,7 @@ const FREDERICK: CountyPermitGuide = {
     },
   ],
   hoa: {
-    text: 'Frederick County’s permit pages don’t address HOAs. If your home is in an association, get its approval as a separate step and check your covenants before you apply.',
+    text: 'If your home is in an HOA, get its approval as a separate step from the county permit and check your covenants before you apply.',
     sources: ['fred-permits'],
   },
   historic: {

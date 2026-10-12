@@ -75,7 +75,7 @@ const PROCESS = [
     step: '1',
     title: 'Call or book online',
     body:
-      `One call to ${BUSINESS.phone} or one form on this page. We schedule a free inspection — usually same-week in the Eastern Panhandle.`,
+      `One call to ${BUSINESS.phone} or the form below. We schedule a free inspection — usually same-week in the Eastern Panhandle.`,
   },
   {
     icon: Camera,

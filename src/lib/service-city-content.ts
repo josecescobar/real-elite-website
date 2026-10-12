@@ -319,7 +319,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting replaces and repairs roofs for Leesburg homeowners. A Leesburg mailing address is not Town limits — Lansdowne and River Creek often sit in unincorporated Loudoun. We check the parcel before we file. We install architectural shingles and standing-seam metal when the job calls for them.",
       "Inside Town, exterior work that also needs a Loudoun County building permit starts with Town zoning through eTRAKiT. The county issues the building permit after that. If the parcel is in the H-1 Old and Historic District, a roof replacement or material change needs a Certificate of Appropriateness. Outside Town, county building and zoning run through LandMARC. We put the current Town and county fees in the written estimate instead of guessing them here.",
-      "A county permit is not HOA approval. We submit both tracks in parallel when the lot has an association. We do not publish One Loudoun or Lansdowne approved-color lists from contractor blogs — we use the current packet.",
+      "A county permit is not HOA approval. We submit both tracks in parallel when the lot has an association. For One Loudoun and Lansdowne we use the current packet.",
       "What you get is the paperwork product: Town or county path, whether a COA is in play, and an honest read on repair versus replacement from on-roof photos. Manufacturer warranties are registered when the product qualifies.",
     ],
   },
@@ -327,7 +327,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'roofing-ashburn-va': {
     paragraphs: [
       "Real Elite Contracting replaces and repairs roofs for Ashburn homeowners. Ashburn is unincorporated Loudoun County — building and zoning run through LandMARC, not a town office. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
-      "A county permit is not HOA approval. In Brambleton, official design review covers essentially all exterior changes, including color and material, and removals. In South Riding, staff can rubber-stamp a short list that includes roof replacement; a county permit still does not substitute for Architectural Standards approval. For One Loudoun and Ashburn Farm we submit the current packet — we do not publish approved-color lists from blogs.",
+      "A county permit is not HOA approval. In Brambleton, official design review covers essentially all exterior changes, including color and material, and removals. In South Riding, staff can rubber-stamp a short list that includes roof replacement; a county permit still does not substitute for Architectural Standards approval. For One Loudoun and Ashburn Farm we submit the current packet.",
       "We photograph the roof, tell you whether repair or replacement is the honest call, and put published county fees and the association's current review window in the written estimate. We do not promise a one-day replacement as a rule — weather, material lead time, and HOA approval set the calendar.",
       "Debris comes off the site and we magnet-sweep the yard. Manufacturer warranties are registered when the product qualifies.",
     ],
@@ -337,7 +337,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting replaces and repairs roofs across Loudoun County. We work the western corridor first — Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg — then the master-planned communities when the parcel is there. We install architectural shingles and standing-seam metal when the job calls for them. Project scope is discussed at the estimate.",
       "Leesburg, Purcellville, and Middleburg issue town zoning first; the county still issues the building permit. Everywhere else, building and zoning run through LandMARC. Historic-district exteriors in Old Town Leesburg or Middleburg need a Certificate of Appropriateness on top of that.",
-      "A county permit is not HOA approval. Brambleton reviews essentially all exterior changes, including color. South Riding can rubber-stamp roof replacement on a short staff list — a new deck is not on that list, and a county permit still is not HOA approval. We do not publish One Loudoun color lists from contractor blogs.",
+      "A county permit is not HOA approval. Brambleton reviews essentially all exterior changes, including color. South Riding can rubber-stamp roof replacement on a short staff list — a new deck is not on that list, and a county permit still is not HOA approval.",
       "Review the proposed scope and warranty terms before signing.",
     ],
   },
@@ -401,7 +401,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'decks-winchester-va': {
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Winchester homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. A Winchester mailing address is not automatically City limits: parcels along Route 7, Senseny Road, and the county line often sit in Frederick County, Virginia. We check the parcel before we file. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
-      "Inside the City, building permits run through City of Winchester Zoning and Inspections on the City permit portal. The 2021 Virginia Uniform Statewide Building Code is what the City reviews against. Outside City limits, Frederick County, Virginia issues the building permit. We do not publish a made-up Winchester deck-permit fee — the City points applicants to the municipal fee schedule, and we put the current amount in the written estimate.",
+      "Inside the City, building permits run through City of Winchester Zoning and Inspections on the City permit portal. The 2021 Virginia Uniform Statewide Building Code is what the City reviews against. Outside City limits, Frederick County, Virginia issues the building permit. The City points applicants to the municipal fee schedule, and we put the current amount in the written estimate.",
       "What you file with the application is the paperwork product: a site plan with setbacks, framing and footing details, and ledger, railing, and stair notes. If the parcel is in Old Town, we check whether historic-district design review applies before we lock materials. HOA review, when the lot has one, is a separate track from the City or county building permit.",
       "We install to the approved plans and the Virginia Residential Code, and document each inspection.",
     ],
@@ -462,7 +462,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Ashburn homeowners — composite builds, railing and lighting, and the next step when you want a roof or screen. Ashburn is unincorporated Loudoun County, not a town: there is no separate municipal zoning office. County building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Every Ashburn deck needs a Loudoun County building permit and a county zoning permit. Typical Deck Detail is the fast path: single-level, attached, residential, joist overhangs of 2 feet or less, and no roof, screen, hot tub, gazebo, or detached structure. Published county fee on that path is $265 (building plus zoning) under 1,000 sq ft. A roofed patio, screened porch, or three-season room drops out of Typical and needs full structural plans: $395 under 1,000 sq ft. Those numbers are from Loudoun Building and Development — not a contractor guess. County inspections: footing before concrete, framing before decking, final. Framing and final may combine when framing is at least 42 inches above grade. Published minimum footing depth is 24 inches on solid soil.",
-      "A county permit is not HOA approval. The county does not enforce covenants. We submit both tracks in parallel so they do not stack. In Brambleton, official design review covers essentially all exterior changes, permanent or temporary; the Covenants Committee typically meets the second Monday, applications are due 9:00 AM Friday ten days prior (holiday weeks shift — we use the published calendar), and decision letters usually follow 5–7 business days after the meeting. In Broadlands, Declaration 7.5 requires prior written consent for any exterior addition; decks are a listed Modifications Subcommittee project. Applications are due at noon Wednesday, one week before the meeting; March–October the subcommittee meets the first and third Wednesdays at 7:00 PM, November–February the third Wednesday; result letters are normally emailed within a week of the meeting. For One Loudoun and Ashburn Farm we submit the current association packet — we do not publish approved-color lists or worksheet rules from contractor blogs or third-party form sites.",
+      "A county permit is not HOA approval. The county does not enforce covenants. We submit both tracks in parallel so they do not stack. In Brambleton, official design review covers essentially all exterior changes, permanent or temporary; the Covenants Committee typically meets the second Monday, applications are due 9:00 AM Friday ten days prior (holiday weeks shift — we use the published calendar), and decision letters usually follow 5–7 business days after the meeting. In Broadlands, Declaration 7.5 requires prior written consent for any exterior addition; decks are a listed Modifications Subcommittee project. Applications are due at noon Wednesday, one week before the meeting; March–October the subcommittee meets the first and third Wednesdays at 7:00 PM, November–February the third Wednesday; result letters are normally emailed within a week of the meeting. For One Loudoun and Ashburn Farm we submit the current association packet.",
       "What you get is the paperwork product: we tell you which county path the design is on (Typical vs full plans), which association reviews the lot, and we prepare the LandMARC set plus the ARC packet. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
     ],
   },
@@ -477,7 +477,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting builds decks and outdoor living for Loudoun County homeowners — composite builds, railing and lighting, and the next step up when you want a roof or screen. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg. We install Trex, TimberTech, and AZEK when the job calls for them; we do not advertise a manufacturer Pro or Platinum badge we do not hold.",
       "Every Loudoun County deck needs a building permit and a zoning permit. The county's Typical Deck Detail is the fast path: it applies only to a single-level, residential, attached deck with no roof, no screen, no hot tub, no gazebo, and no detached structure. On that path the published county fee is $265, building review is 2 days, and zoning review is 2 days (intake completeness is 2–5 business days). A roofed patio, screened porch, or three-season room drops out of Typical and needs full structural plans: $395, 15-day building review, and 10-day zoning review. Those numbers are from Loudoun Building and Development — not a contractor guess. Leesburg, Purcellville, and Middleburg permit separately from the county. Published minimum footing depth is 24 inches on solid soil.",
-      "A county permit is not HOA approval. The county does not enforce covenants. We submit both tracks in parallel so they do not stack. For Brambleton, official design review covers essentially all exterior changes; the Covenants Committee typically meets the second Monday of the month, with applications due 9:00 AM Friday ten days prior. For South Riding, written Architectural Standards approval is required before exterior work; a county permit does not substitute, and staff can rubber-stamp only a short list (roof and window replacement are on that list — a new deck is not). We do not publish One Loudoun approved colors or material lists until we have that association's current packet in hand.",
+      "A county permit is not HOA approval. The county does not enforce covenants. We submit both tracks in parallel so they do not stack. For Brambleton, official design review covers essentially all exterior changes; the Covenants Committee typically meets the second Monday of the month, with applications due 9:00 AM Friday ten days prior. For South Riding, written Architectural Standards approval is required before exterior work; a county permit does not substitute, and staff can rubber-stamp only a short list (roof and window replacement are on that list — a new deck is not).",
       "What you get from us is the paperwork product, not a slogan: we tell you which path your design is on (Typical vs full plans), prepare the county set and the ARC packet, and put the real review days into the written estimate. Pier inspections happen before concrete; framing inspections happen before decking. Review the proposed scope and warranty terms before signing.",
     ],
   },
@@ -515,7 +515,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Leesburg homes — kitchens, baths, additions, and whole-home work. A Leesburg mailing address is not Town limits. We check the parcel before we file.",
       "Pure interior cosmetic work (paint, cabinet fronts in place, tile-on-tile in an unchanged footprint) usually skips both Town zoning and HOA review. Anything that relocates plumbing or electrical, opens a wall, or changes the exterior needs Loudoun County permits. Inside Town, that county building permit waits on Town zoning. H-1 Old and Historic District exteriors also need a Certificate of Appropriateness.",
-      "A county permit is not HOA approval. We submit what applies in parallel so the layers do not stack. We do not publish invented kitchen or bath price bands, and we do not claim completed Loudoun project counts we cannot show.",
+      "A county permit is not HOA approval. We submit what applies in parallel so the layers do not stack.",
       "Written scope, line-item estimate, inspections documented.",
     ],
   },
@@ -523,8 +523,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'remodeling-ashburn-va': {
     paragraphs: [
       "Real Elite Contracting remodels Ashburn homes — kitchens, baths, finished lower levels, and whole-home work. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.",
-      "Interior work that relocates plumbing or electrical, or that opens a load-bearing wall, needs county permits and, when the wall is structural, stamped drawings. Purely cosmetic interior work usually skips HOA review. Exterior changes (windows, siding, additions, decks) need the association packet in parallel with the county set. Brambleton reviews essentially all exterior changes. We do not publish One Loudoun color lists from blogs.",
-      "We do not claim a pipeline of completed Ashburn projects we cannot show, and we do not publish invented remodel price bands. The written estimate is the number.",
+      "Interior work that relocates plumbing or electrical, or that opens a load-bearing wall, needs county permits and, when the wall is structural, stamped drawings. Purely cosmetic interior work usually skips HOA review. Exterior changes (windows, siding, additions, decks) need the association packet in parallel with the county set. Brambleton reviews essentially all exterior changes.",
+      "The written estimate is the number.",
       "Inspections documented. The written estimate is the number.",
     ],
   },
@@ -533,7 +533,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Loudoun County homes — kitchens, baths, additions, and whole-home work — and we lead the western corridor first. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit. Everywhere else, LandMARC handles building and zoning.",
       "A county permit is not HOA approval. Exterior scopes run both tracks in parallel. Historic-district exteriors in Old Town Leesburg or Middleburg add a Certificate of Appropriateness. Load-bearing changes need stamped structural drawings before the county will issue.",
-      "We do not publish invented kitchen or bath price bands, named fixture packages as if they were standard, or completed-project counts we cannot show. Line items go in the written estimate.",
+      "Line items go in the written estimate.",
       "Discuss communication and the inspection sequence.",
     ],
   },
@@ -562,7 +562,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting installs and replaces siding for Leesburg homeowners — vinyl, fiber cement, and engineered wood when the job calls for them. A Leesburg mailing address is not Town limits. We check the parcel before we file. We do not advertise a James Hardie or manufacturer Pro badge we do not hold.",
       "Siding is exterior work. Inside Town, Town zoning comes first and the county building permit follows. H-1 Old and Historic District parcels need a Certificate of Appropriateness before material or color changes. Outside Town, LandMARC handles building and zoning. HOA review is a separate track.",
-      "We do not publish HOA color lists from blogs, and we do not invent ROI rankings or siding price bands. House wrap, window and door flashing, and a moisture check of the sheathing are part of the scope we write down.",
+      "House wrap, window and door flashing, and a moisture check of the sheathing are part of the scope we write down.",
       "Current Town and county fees go in the written estimate. Manufacturer warranties are registered when the product qualifies.",
     ],
   },
@@ -578,7 +578,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
 
   'siding-loudoun-county-va': {
     paragraphs: [
-      "Real Elite Contracting installs and replaces siding across Loudoun County — vinyl, fiber cement, and stone veneer when the job calls for them. We work the western corridor first. We do not advertise a James Hardie certification or manufacturer Pro badge we do not hold, and we do not publish invented siding price bands.",
+      "Real Elite Contracting installs and replaces siding across Loudoun County — vinyl, fiber cement, and stone veneer when the job calls for them. We work the western corridor first.",
       "Leesburg, Purcellville, and Middleburg issue town zoning first. Historic-district exteriors need a Certificate of Appropriateness. Unincorporated parcels use LandMARC for building and zoning. A county permit is not HOA approval. Brambleton reviews essentially all exterior changes. South Riding requires written Architectural Standards approval before exterior work.",
       "Substrate, weather barrier, weep screed, and flashing are in the written scope when the wall needs them. Color and profile come from the current association packet, not a blog list.",
       "Fees and review days go in the estimate. Manufacturer warranties are registered when the product qualifies. Review the proposed scope and warranty terms before signing.",
@@ -624,7 +624,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Leesburg bathrooms — showers, tile, vanities, and full primary-suite rebuilds. A Leesburg mailing address is not Town limits. We check the parcel before we file.",
       "Plumbing or electrical relocation needs a Loudoun County building permit (and the matching trade permits). Inside Town, that county permit waits on Town zoning. A purely interior bath with no window or exterior change usually skips HOA review; a new window, skylight, or exterior wall opening does not. H-1 exteriors need a Certificate of Appropriateness.",
-      "We do not publish invented bathroom price bands or named fixture packages as if they were standard. Waterproofing, slope-to-drain, and the inspection sequence (rough plumbing, rough electrical, final) are in the written scope. Line items go in the estimate.",
+      "Waterproofing, slope-to-drain, and the inspection sequence (rough plumbing, rough electrical, final) are in the written scope. Line items go in the estimate.",
       "Discuss site supervision and communication.",
     ],
   },
@@ -664,7 +664,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Loudoun County bathrooms and we lead the western corridor first. Leesburg, Purcellville, and Middleburg issue town zoning before the county building permit when the work needs one. Unincorporated parcels use LandMARC.",
       "Plumbing or electrical relocation needs county trade permits and inspections. Exterior openings need the association packet in parallel. Historic-district exteriors need a Certificate of Appropriateness. Load-bearing changes need stamped drawings.",
-      "We do not publish invented bathroom price bands or named fixture catalogs as if they were the standard package. Waterproofing, slope-to-drain, and the inspection order are in the written scope.",
+      "Waterproofing, slope-to-drain, and the inspection order are in the written scope.",
       "Discuss site supervision.",
     ],
   },
@@ -717,7 +717,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Leesburg kitchens — layout, cabinetry, counters, and the trades behind the walls. A Leesburg mailing address is not Town limits.",
       "Opening a load-bearing wall needs stamped structural drawings and a Loudoun County building permit. Plumbing or electrical relocation needs the matching trade permits. Inside Town, the county building permit waits on Town zoning. HOA review usually applies only if the kitchen changes windows or another exterior element. H-1 exteriors need a Certificate of Appropriateness.",
-      "We do not publish invented kitchen price bands or named appliance packages as if they were standard. Cabinet lead time is what it is — we put the real weeks in the written timeline before demo.",
+      "Cabinet lead time is what it is — we put the real weeks in the written timeline before demo.",
       "Discuss site supervision, communication, and cleanup arrangements during the estimate.",
     ],
   },
@@ -749,7 +749,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'A kitchen remodel in Ashburn, VA starts with the house in front of us, not a package. We work Brambleton, Broadlands, One Loudoun, Ashburn Farm, and Belmont Greene. Ashburn is unincorporated Loudoun County. Building and zoning run through LandMARC.',
       'Opening a load-bearing wall needs stamped structural drawings and a county building permit. Moving a sink or a range circuit is a trade permit, not a finish selection. Association review usually applies only if a window or other exterior element changes. A county permit is not association approval when both apply.',
       'The kitchen cost guide on this site cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ashburn quote. Cabinets, counters, appliances, and any wall or trade move are separate lines on the written estimate.',
-      'We do not claim an Ashburn kitchen starts on a set cadence. Cabinet lead time is named in the estimate before demo. The written estimate is the number for the house.',
+      'Cabinet lead time is named in the estimate before demo. The written estimate is the number for the house.',
     ],
   },
 
@@ -757,7 +757,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting remodels Loudoun County kitchens and we lead the western corridor first. Towns (Leesburg, Purcellville, Middleburg) issue zoning before the county building permit when the work needs one. Unincorporated parcels use LandMARC.",
       "Load-bearing changes need stamped drawings. Plumbing and electrical relocation need trade permits. Exterior openings need the association packet in parallel. Historic-district exteriors need a Certificate of Appropriateness.",
-      "We do not publish invented kitchen price bands or named appliance catalogs as if they were the standard package. Cabinet and stone lead times go in the written timeline before demo. Adjacent rooms stay on one contract when they are part of the same job.",
+      "Cabinet and stone lead times go in the written timeline before demo. Adjacent rooms stay on one contract when they are part of the same job.",
       "Discuss site supervision and communication.",
     ],
   },
@@ -796,7 +796,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'cost',
         title: 'Cost',
         paragraphs: [
-          "These planning ranges come from our Ashburn and Leesburg basement cost guide; your written estimate prices your home. Mayflower Virginia publishes Northern Virginia basement tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
+          "Your written estimate prices your home. Mayflower Virginia publishes Northern Virginia basement tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
           "The same guide gives a separate example of a 1,000-square-foot basement with one bathroom starting around $115,000–$165,000. That example does not describe every project in the tier table. Do not multiply a generic starting rate by floor area and assume the result includes a bathroom.",
         ],
         links: [
@@ -814,7 +814,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'timeline',
         title: 'Timeline',
         paragraphs: [
-          "The luxury basement guide is the schedule source for Leesburg. The project schedule depends on scope, approvals, selections, and availability. In Town, that sequence starts with the parcel check: Town limits versus a Leesburg mailing address in Lansdowne or River Creek. Town zoning, when the house is inside Town, has to be approved before Loudoun County releases the building permit. Finish selections do not go on the written timeline until that order is clear.",
+          "The project schedule depends on scope, approvals, selections, and availability. In Town, that sequence starts with the parcel check: Town limits versus a Leesburg mailing address in Lansdowne or River Creek. Town zoning, when the house is inside Town, has to be approved before Loudoun County releases the building permit. Finish selections do not go on the written timeline until that order is clear.",
         ],
         links: [
           {
@@ -867,7 +867,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting finishes Ashburn lower levels — family rooms, a bath, or an in-law suite when the floor plan and egress allow it. Ashburn is unincorporated Loudoun County, not a town. Building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
       "Every finished basement needs a Loudoun County building and zoning application, plus trade permits for electrical, plumbing, mechanical, and gas when those systems are in the job. Typical Finished Basement Details can stand in for custom drawings unless the job alters a load-bearing wall, an exterior wall, a beam, or a column. Published Typical fees are 1% of construction cost excluding those trades, with a $65 minimum. Full plans add a published $130 plan review fee. A kitchen in the basement adds a published $165 zoning fee. A bedroom needs an emergency egress window; that opening is exterior work.",
-      "A county permit is not HOA approval. We file the association packet in parallel when we cut a new window or door. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands needs Modifications Subcommittee written consent before visible exterior work; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet — we do not invent approved-color lists. Moisture comes first. We do not publish invented basement price bands or claim a pipeline of finished Ashburn lower levels we cannot show.",
+      "A county permit is not HOA approval. We file the association packet in parallel when we cut a new window or door. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands needs Modifications Subcommittee written consent before visible exterior work; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet. Moisture comes first.",
       "What you get is the paperwork product: Typical vs full plans, which association reviews the lot, and the LandMARC set plus the ARC packet when egress is in play. County inspections: trade rough-ins before building framing, insulation before cover, then finals. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and document each inspection.",
     ],
   },
@@ -892,8 +892,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'cost',
         title: 'Cost',
         paragraphs: [
-          "For planning a Loudoun County basement, our Ashburn and Leesburg cost guide shows typical ranges. Mayflower Virginia's Northern Virginia tiers are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
-          "Denny + Gardner describes an overall labor-and-materials range of about $50,000 to upward of $100,000 for an upscale renovation, with waste disposal, equipment, design, and permits as other budget considerations. The two sources use different scopes. Do not average them into a county number. A house in Purcellville or Round Hill is quoted from that house, not from the Ashburn tier table.",
+          "Mayflower Virginia's Northern Virginia tiers are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor's planning ranges, not Real Elite prices or a Loudoun County average.",
+          "Denny + Gardner describes an overall labor-and-materials range of about $50,000 to upward of $100,000 for an upscale renovation, with waste disposal, equipment, design, and permits as other budget considerations. The two sources use different scopes, so use them only to frame the conversation. A house in Purcellville or Round Hill is quoted from that house, not from the Ashburn tier table.",
         ],
         links: [
           {
@@ -1109,7 +1109,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Kitchen remodeling in Purcellville, VA starts with an older house, not a new-build package. The town is the historic village on Business Route 7 in western Loudoun: late-19th and early-20th century houses along Main Street, plus later lots. A small original kitchen can still have plaster, a single window, and a stack shared with the bath. We confirm the stack and the walls on site.',
       'A Purcellville mailing address is not always town limits. Wright Farm and Mayfair sit in the Joint Land Management Area. Inside town limits, town zoning is approved before Loudoun County issues the building permit. Outside town, building and zoning run through LandMARC. Opening a load-bearing wall needs stamped structural drawings. Moving a sink is a plumbing permit. Electrical relocation is a separately licensed trade, and Real Elite does not take electrical work. That scope stays on the estimate as its own line.',
-      'The Loudoun kitchen cost guide is the published figure source. It cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Purcellville quote. Cabinets, counters, and any wall or plumbing move are separate lines. Cabinet lead time goes in the written timeline before demo.',
+      'The Loudoun kitchen cost guide cites HomeAdvisor national figures: a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Purcellville quote. Cabinets, counters, and any wall or plumbing move are separate lines. Cabinet lead time goes in the written timeline before demo.',
       'Lots outside the town sewer are often on well and septic. A kitchen that stays in the existing footprint is a different filing from a bedroom addition, which needs Loudoun Health Department approval before the building permit. We name which filing the parcel is before the estimate is a commitment.',
     ],
   },
@@ -1167,14 +1167,14 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Purcellville, VA follows the western Loudoun corridor, not an Ashburn subdivision. The town is a historic village on Route 7. Some older houses have low cellars and stone or block foundations. Later lots have a conventional unfinished lower level. A Purcellville mailing address can still sit outside town limits, in the Joint Land Management Area at Wright Farm or Mayfair. We check the parcel before we file.',
       'Inside town limits the order is fixed: town zoning, then the Loudoun County building permit. The county will not release that permit until town zoning is approved. Outside town, building and zoning run through LandMARC. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans.',
-      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Purcellville average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+      'Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Purcellville average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
     ],
     sections: [
       {
         id: 'cost',
         title: 'Cost',
         paragraphs: [
-          'The price source for basement finishing in Purcellville is the Ashburn and Leesburg basement cost guide. Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor’s planning ranges, not Real Elite prices and not a western Loudoun average.',
+          'Mayflower Virginia publishes Northern Virginia tiers of $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor’s planning ranges, not Real Elite prices and not a western Loudoun average.',
           'A village cellar with limited headroom is not the same scope as a full-height walkout. Do not apply the Ashburn tier table to a Main Street house and call it a quote. The written estimate is the number for the foundation in front of us.',
         ],
         links: [
@@ -1317,7 +1317,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Lansdowne, VA is the unfinished lower level that came with a 1990s or 2000s house east of Leesburg, along Route 7 and the Potomac. The community is established and on public water and sewer. It is not a new-build subdivision and it is not a well-and-septic village. Many of these houses still have an open basement with builder mechanicals and a rough-in that may or may not be where the bath should go.',
       'Lansdowne is unincorporated Loudoun County. A Leesburg mailing address does not make it Town of Leesburg. Building and zoning run through LandMARC. There is no town zoning step. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans, and we document each inspection.',
-      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Lansdowne average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. An egress cut is exterior work, so the association packet runs in parallel when a bedroom is in the plan.',
+      'Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor’s ranges, not a Real Elite price and not a Lansdowne average. Loudoun’s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum. An egress cut is exterior work, so the association packet runs in parallel when a bedroom is in the plan.',
     ],
     sections: [
       {
@@ -1325,7 +1325,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         title: 'Cost',
         paragraphs: [
           'For planning a Lansdowne lower level, our Ashburn and Leesburg basement cost guide shows typical regional ranges. Mayflower Virginia’s Northern Virginia tiers are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. These are one contractor’s planning ranges, not Real Elite prices.',
-          'Price the house: ceiling height under the first-floor framing, whether a bath rough-in exists, and whether a bedroom needs a new window well on the Potomac side of the lot. Do not average those conditions into the Ashburn tier and call it this project.',
+          'Price the house: ceiling height under the first-floor framing, whether a bath rough-in exists, and whether a bedroom needs a new window well on the Potomac side of the lot.',
         ],
         links: [
           {
@@ -1342,7 +1342,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'timeline',
         title: 'Timeline',
         paragraphs: [
-          'There is no Town of Leesburg zoning wait on an unincorporated Lansdowne lot. The calendar still depends on county review, association review when an egress opening is cut, finish selections, and crew availability. We write that sequence down before demo. The luxury basement guide is the room-planning source, not a Lansdowne schedule.',
+          'There is no Town of Leesburg zoning wait on an unincorporated Lansdowne lot. The calendar still depends on county review, association review when an egress opening is cut, finish selections, and crew availability. We write that sequence down before demo.',
         ],
         links: [
           {
@@ -1469,7 +1469,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Waterford, VA is often a low cellar or a stone foundation, not an Ashburn walkout. The village is unincorporated Loudoun County. Some houses at the edge have a conventional unfinished lower level. We check the foundation before we talk about a bedroom.',
       'There is no town zoning step. Building and zoning run through LandMARC. We install to the Virginia Uniform Statewide Building Code and the approved Typical Detail or stamped plans. An egress cut in the central historic district is exterior work and needs a Certificate of Appropriateness.',
-      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Waterford average. Loudoun\'s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+      'Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Waterford average. Loudoun\'s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
     ],
     sections: [
       {
@@ -1590,7 +1590,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Hamilton, VA follows the western Loudoun corridor on Route 7. The town is a small 19th-century village between Purcellville and Leesburg. Some older houses have low cellars. Later lots have a conventional unfinished lower level. A Hamilton mailing address can still sit outside town limits.',
       'Inside town limits the order is fixed: town zoning, then the Loudoun County building permit. Hamilton is not a county historic overlay, so an interior finish does not pick up a Certificate of Appropriateness. An egress window is still exterior work. Outside town, building and zoning run through LandMARC.',
-      'Planning ranges come from the Ashburn and Leesburg basement cost guide. Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Hamilton average. Loudoun\'s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
+      'Mayflower Virginia lists $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Hamilton average. Loudoun\'s Typical basement fee is 1% of construction cost excluding electrical, mechanical, plumbing, and gas, with a $65 minimum.',
     ],
     sections: [
       {
@@ -2243,7 +2243,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Warrenton, VA has to start with the town line. The town charter dates to 1816. ZIP 20187 is mostly detached houses with a median year built of 1991. ZIP 20186 is a different mix, median year built 1987, and should not be averaged into one kitchen.',
+      'Kitchen remodeling in Warrenton, VA has to start with the town line. The town charter dates to 1816. ZIP 20187 is mostly detached houses with a median year built of 1991. ZIP 20186 is a different mix, median year built 1987.',
       'Inside town, applications go to the Department of Community Development, phone (540) 347-1101. The town requires a permit for alterations to plumbing, electrical, or HVAC. Exterior alterations in the Warrenton Historic District need a Certificate of Appropriateness first. Outside town, Fauquier County takes the combined building and zoning application at 16 Courthouse Square. The county zoning fee is $110, including the technology fee.',
       'A load-bearing opening needs stamped drawings. Electrical relocation is a separately licensed trade. Real Elite does not take electrical work. HomeAdvisor national figures cited in the Loudoun kitchen guide are $14,589 to $41,559 typical. Those are not a Warrenton quote. The written estimate prices this house.',
     ],
@@ -2299,7 +2299,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Warrenton, VA splits at the town line. Inside town, the town requires a permit to finish a basement, and an areaway or egress window needs additional zoning review. Outside town, ZIP 20186 and ZIP 20187 are Fauquier County. The two ZIPs are different housing mixes, median years built 1987 and 1991, and they should not be averaged into one lower level.',
+      'Basement finishing in Warrenton, VA splits at the town line. Inside town, the town requires a permit to finish a basement, and an areaway or egress window needs additional zoning review. Outside town, ZIP 20186 and ZIP 20187 are Fauquier County. The two ZIPs are different housing mixes, median years built 1987 and 1991.',
       'The town counter is the Department of Community Development, phone (540) 347-1101. The county counter is 16 Courthouse Square, phone (540) 422-8230, hours 8:00 a.m. to 4:30 p.m. A Certificate of Appropriateness applies before exterior alterations in the Warrenton Historic District, not before an interior finish on county land.',
       'Mayflower Virginia tiers cited in the Ashburn and Leesburg guide are $55,000–$65,000 essential, $85,000–$110,000 premium, and $150,000–$300,000 or more luxury. Those are that contractor\'s ranges, not a Real Elite price and not a Warrenton average. The county zoning fee of $110 is a permit fee. The written estimate prices this foundation.',
     ],
@@ -2403,7 +2403,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "McLean kitchens are some of the most carefully specified residential projects in the country. The combination of the address, the size of the homes, and the architectural and design talent available locally means a McLean primary kitchen is often a $150,000–$400,000+ undertaking — and worth every dollar when the result lands. From estate homes off Old Dominion Drive to refined mid-century properties in Langley Forest and the newer custom builds along Chesterbrook Road, the McLean kitchen brief is consistent: serve the entertaining the family actually does, in a space that reads as bespoke from cabinet to ceiling.",
       "For a kitchen project in McLean, bring any designer or architect drawings to the consultation. Typical scope in 2026 includes custom inset cabinetry from a tier-one shop (often paint-grade or rift-cut white oak), full-slab quartzite or natural-stone countertops with mitered apron edges, integrated panel-front appliance suites (Sub-Zero, Wolf, Miele, La Cornue), professional ventilation that disappears into millwork, scullery or butler's pantry build-outs, and lighting designed as a layered system rather than a single ceiling fixture.",
       "Where there's room to reshape the plan, the highest-impact McLean kitchen work is structural — removing the bearing wall between the original kitchen and dining room, expanding into a former breakfast area, or relocating mechanical to clean up sight lines and ceiling height. We bring a structural engineer in early when those moves are on the table, value-engineer the parts of the budget the eye won't see, and protect the spend for the cabinetry, stone, and fixtures that define the room.",
-      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical and electrical inspections, and coordination with the designer or architect are handled by us — you stay focused on the decisions that actually require you, which are mostly the fun ones.",
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical inspections, and coordination with the designer or architect are handled by us — you stay focused on the decisions that actually require you, which are mostly the fun ones.",
     ],
   },
 
@@ -2465,7 +2465,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Vienna is one of the most thoughtful primary-bath markets in Fairfax County — a homeowner population that has weighed its options, often comes in with a designer already engaged, and expects an installer-grade contractor with the discipline to execute the design as drawn. The homes range from mid-century properties in Wolftrap and Country Club Manor to substantial newer builds along the Maple Avenue corridor and out toward Hunter Mill, and the primary-bath brief tends to be spa-grade and structurally ambitious.',
       "Real Elite Contracting renovates Vienna primary baths and powder rooms with the level of craft Fairfax County's design community expects. Typical Vienna primary-bath scope in 2026 runs $55,000–$110,000+ depending on size, layout changes, and material grade. Featured projects routinely include curbless walk-in showers with linear drains, freestanding soaking tubs, double-vanity layouts with stone tops, slab-edge mitered details, premium fixture lines (Brizo, Hansgrohe, Kohler Artifacts), heated floors, and lighting designed scene by scene rather than a single ceiling fixture.",
       "Where there's room to rework the plan, we engage early — opening a primary into an adjoining closet for a true suite, repositioning plumbing for a cleaner shower geometry, repositioning the toilet to a private compartment for a more refined room. We model the proposed changes, value-engineer the parts of the budget that won't change the visible result, and protect the spend for the surfaces and fixtures the eye actually lands on.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. Review the proposed scope and warranty terms before signing.",
+      "Fairfax County permits, plumbing, and final inspections are handled by us. Review the proposed scope and warranty terms before signing.",
     ],
   },
 
@@ -2535,7 +2535,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Great Falls primary baths are some of the most ambitious residential bathroom projects in the country. The combination of the estate-class housing stock, the architectural and design talent the address attracts, and the homeowner expectation of a primary suite that reads as a private wing means a typical Great Falls primary bath is a $100,000–$200,000+ undertaking executed in close collaboration with the designer and a tier-one cabinet shop.",
       "Real Elite Contracting renovates Great Falls primary baths with the craft this market expects. Featured projects routinely include a separate wet room with curbless walk-in shower and freestanding soaking tub under one envelope, his-and-her vanity towers, a private water closet, heated floors zoned by area, full integrated lighting design, and stone selected slab-by-slab. We work with custom cabinet shops, stone fabricators, and fixture specialists across the metro area, and we execute to whatever specification the design calls for.",
       "On larger Great Falls projects, the primary-bath renovation is often part of a primary-suite expansion that opens into the closet, the adjoining bedroom, or a former secondary room. We bring a structural engineer in early when those changes are on the table, model the geometry for the homeowner and designer, and value-engineer the parts of the budget that won't change the visible result.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. Review the proposed scope and warranty terms before signing. We work discreetly and respect the rest of the home as the asset it is.",
+      "Fairfax County permits, plumbing, and final inspections are handled by us. Review the proposed scope and warranty terms before signing. We work discreetly and respect the rest of the home as the asset it is.",
     ],
   },
 
@@ -2544,7 +2544,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Great Falls kitchens are designed around catering and entertaining at a scale most residential kitchens aren't built for. The typical brief includes a separate scullery or butler's pantry, professional-spec ventilation, full-height integrated refrigeration and freezer columns, a 60-inch range or a French range from a top-tier maker (La Cornue, Lacanche), a second prep sink, custom inset cabinetry from a tier-one shop, and stone selected slab-by-slab. Project scope routinely lands $200,000–$500,000+ depending on the cabinetry brief, the appliance specification, and the structural changes the plan requires.",
       "For a kitchen project in Great Falls, bring any designer or architect drawings to the consultation. Changes to bearing walls and ceiling heights require a review of the proposed design, professional responsibilities, and contractor qualifications before a scope is agreed.",
-      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical and electrical inspections, and design-team coordination are handled by us.",
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical inspections, and design-team coordination are handled by us.",
       "The project schedule depends on scope, approvals, selections, and availability. We protect the home and the family during the build, schedule deliveries to minimize disruption, and treat the project as a long-term partnership rather than a transaction.",
     ],
   },
@@ -2585,7 +2585,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Reston primary baths are some of the most design-aware renovations in Fairfax County. The original villages — Lake Anne, Hunters Woods, North Point, South Lakes — drew design-conscious owners from the start, and the renovation pipeline still reflects that. A typical Reston primary bath is a $50,000–$100,000+ project executed in close collaboration with a designer, with finish quality and execution discipline weighted as heavily as the line items themselves.",
       "Real Elite Contracting renovates Reston primary baths and powder rooms with the level of craft this market expects. Featured projects routinely include curbless walk-in showers with linear drains, freestanding soaking tubs, double-vanity layouts with stone tops, slab-edge mitered details, premium fixture lines, heated floors, and lighting designed scene by scene. For the lakefront homes around Lake Anne and Lake Audubon, we design with the view in mind and the privacy constraints the architecture requires.",
       "Where there's room to reshape the plan, we engage early. Many Reston primaries sit in original footprints that have aged into awkward layouts; opening into a closet, repositioning plumbing for a cleaner shower geometry, or relocating the toilet to a private compartment can transform a functional bathroom into a refined room.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. Review the proposed scope and warranty terms before signing.",
+      "Fairfax County permits, plumbing, and final inspections are handled by us. Review the proposed scope and warranty terms before signing.",
     ],
   },
 
@@ -2595,7 +2595,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Reston kitchens are a strong primary-renovation market — a community of design-conscious owners whose homes were architecturally distinctive on day one and now deserve current-spec interiors. Typical Reston primary-kitchen scope in 2026 runs $100,000–$250,000+ depending on the cabinetry brief, the appliance specification, and the structural changes the plan requires.",
       "For a kitchen project in Reston, bring any designer or architect drawings to the consultation. Featured scope includes custom inset or full-overlay cabinetry from a tier-one shop, full-slab quartzite or natural-stone countertops, integrated panel-front appliance suites (Sub-Zero, Wolf, Miele), professional ventilation, scullery or butler's pantry build-outs where the plan supports them, and layered lighting designed as a system rather than a single ceiling fixture.",
       "Many Reston kitchens benefit from removing the original wall between the kitchen and dining or family room. Where structural changes are on the table, we bring a structural engineer in early, model the geometry for the homeowner and designer, value-engineer the parts that won't be visible, and protect the spend for the cabinetry, stone, and fixtures that define the room.",
-      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical and electrical inspections, and design-team coordination are handled by us.",
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical inspections, and design-team coordination are handled by us.",
     ],
   },
 
@@ -2617,7 +2617,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Burke is one of the strongest mid-to-upper-tier bathroom-renovation markets in Fairfax County. The substantial homes of Burke Centre, Lake Braddock, Longwood Knolls, and Kings Park West are typically owner-occupied long-term, which means primary baths get renovated to last — not to flip. Typical Burke primary-bath scope in 2026 runs $40,000–$80,000+ depending on size, layout changes, and material grade.",
       "Real Elite Contracting renovates Burke primary baths and powder rooms with the level of craft this market expects. Featured projects routinely include walk-in showers with glass enclosures, soaking tubs, double-vanity layouts with stone tops, slab-edge details, quality fixture lines, and the layout changes that transform a 1990s primary bath into a refined room.",
       "Where there's room to reshape the plan — opening into a closet, repositioning plumbing for a cleaner shower geometry, relocating the toilet to a private compartment — those changes often deliver the highest-impact result on a Burke primary bath. We model the changes, value-engineer the parts that won't change the visible result, and protect the spend for the surfaces and fixtures the eye actually lands on.",
-      "Fairfax County permits, plumbing, electrical, and final inspections are handled by us. Review the proposed scope and warranty terms before signing.",
+      "Fairfax County permits, plumbing, and final inspections are handled by us. Review the proposed scope and warranty terms before signing.",
     ],
   },
 
@@ -2627,7 +2627,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       "Burke kitchens are a strong bread-and-butter premium-remodel market — substantial homes whose original kitchens have aged into layouts and finishes that don't match how the family actually lives and entertains. Typical Burke primary-kitchen scope in 2026 runs $70,000–$160,000+ depending on the cabinetry brief, the appliance specification, and the structural changes the plan requires.",
       "Real Elite Contracting builds Burke kitchens with the same craft we bring to the McLean / Great Falls market, calibrated to the Burke project brief. Featured scope includes custom or semi-custom cabinetry from a quality shop, quartz or natural-stone countertops, integrated or premium freestanding appliance suites (Sub-Zero, Wolf, Bosch, Thermador), proper ventilation, and layered lighting.",
       "Many Burke kitchens benefit from removing the original wall between the kitchen and family room. Where structural changes are on the table, we bring a structural engineer in early, model the geometry, value-engineer the parts that won't be visible, and protect the spend for the cabinetry, stone, and fixtures that define the room.",
-      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical and electrical inspections, and design coordination are handled by us.",
+      "Discuss site supervision, communication, and cleanup arrangements during the estimate. Review the proposed scope and warranty terms before signing. Fairfax County permitting, mechanical inspections, and design coordination are handled by us.",
     ],
   },
 
@@ -2637,7 +2637,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting builds Leesburg additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. We work the Town and western Leesburg first. A Leesburg mailing address is not Town of Leesburg limits: Lansdowne and River Creek often carry a Leesburg address and sit in unincorporated Loudoun. We check the parcel before we file.",
       "Inside Town limits the order is fixed. The Town's published home-improvement table treats home additions and expansions as Town zoning plus engineering review, then a Loudoun County building permit. The county will not release the building permit until Town zoning is approved. The county set needs a plat (house, addition location, distances to the sides and rear) and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Trade permits are separate. If the addition adds a bedroom on well and septic, Health Department approval comes before the county application.",
-      "If the parcel is in the H-1 Old and Historic District, the addition needs a Certificate of Appropriateness. Outside Town limits, county building and zoning run through LandMARC. A county permit is not HOA approval — we file the association packet in parallel. Environmentally sensitive lots and conservation easements can add review; we check those before we lock the design. We do not publish invented addition price bands or a completed Leesburg project count we cannot show.",
+      "If the parcel is in the H-1 Old and Historic District, the addition needs a Certificate of Appropriateness. Outside Town limits, county building and zoning run through LandMARC. A county permit is not HOA approval — we file the association packet in parallel. Environmentally sensitive lots and conservation easements can add review; we check those before we lock the design.",
       "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether a COA is in play. We prepare the Town eTRAKiT zoning set and the county LandMARC addition set. County inspections for additions: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
@@ -2646,7 +2646,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting builds Ashburn additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. Ashburn is unincorporated Loudoun County, not a town. Building and zoning run through LandMARC. We work Brambleton, Broadlands, Ashburn Farm, and One Loudoun when the parcel sits in those associations.",
       "Every addition needs a Loudoun County building and zoning application, a plat showing the house, the addition, and setbacks, and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Trade permits (electrical, plumbing, mechanical, gas) are separate. Gas permits for residential additions have required plan review since October 1, 2025.",
-      "A county permit is not HOA approval. We file the association packet in parallel. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands Declaration 7.5 requires Modifications Subcommittee written consent before an exterior addition; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet — we do not invent approved-color lists. We do not publish invented addition price bands or claim a pipeline of finished Ashburn additions we cannot show.",
+      "A county permit is not HOA approval. We file the association packet in parallel. Brambleton reviews essentially all exterior changes; the Covenants Committee typically meets the second Monday, applications due 9:00 AM Friday ten days prior, decision letters usually 5–7 business days after. Broadlands Declaration 7.5 requires Modifications Subcommittee written consent before an exterior addition; applications due noon Wednesday one week prior. For One Loudoun and Ashburn Farm we use the current packet.",
       "What you get is the paperwork product: the published fee path, which association reviews the lot, and the LandMARC set plus the ARC packet. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. Approved plans stay on the job. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
@@ -2655,7 +2655,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting builds Loudoun County additions — a bump-out, a single room, a second story when the structure allows it, or a screened porch. The county publishes a screened porch as a residential addition, not a Typical Deck. We work the western corridor first (Purcellville, Round Hill, Lovettsville, western Leesburg, selected Middleburg) because that is the practical truck path from Martinsburg.",
       "Every addition needs a Loudoun County building and zoning application, a plat with setbacks, and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Leesburg, Purcellville, and Middleburg issue town zoning first — the county will not release the building permit without it. If the addition adds a bedroom on well and septic, Health Department approval comes before the county application. Conservation easements are more common in western Loudoun; we check the parcel before we lock the design.",
-      "A county permit is not HOA approval. An addition is exterior work: HOA review in master-planned communities, and a Certificate of Appropriateness in Old Town Leesburg or the Middleburg Historic District. We do not publish invented addition price bands or treat wine cellars and media wings as the typical Loudoun brief.",
+      "A county permit is not HOA approval. An addition is exterior work: HOA review in master-planned communities, and a Certificate of Appropriateness in Old Town Leesburg or the Middleburg Historic District.",
       "What you get is the paperwork product: the published fee path, town vs unincorporated county, and whether HOA or COA review is in play. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
@@ -2664,7 +2664,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       "Real Elite Contracting builds selected Middleburg additions — a bump-out, a single room, or a screened porch when the lot and the architecture allow it. Loudoun publishes a screened porch as a residential addition, not a Typical Deck. A Middleburg mailing address is not Town limits: parcels along Atoka, Foxcroft, and Goose Creek are often unincorporated Loudoun. We check the parcel before we file.",
       "Inside Town limits the order is fixed. An addition needs a Town Zoning Location Permit first, then the Loudoun County building permit. The county set needs a plat (house, addition, setbacks) and a comprehensive structural plan. Published county fees: $395 at or under 1,000 square feet (building, plan review, and county zoning bundled); over 1,000 square feet, 1% of construction cost plus a $335 plan review fee plus county zoning. Town zoning has its own fee — we put the current Town amount in the written estimate. If the addition adds a bedroom on well and septic, Health Department approval comes first. Conservation easements can limit what the lot will take.",
-      "If the parcel is in the Historic District, the addition needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA. We do not publish invented addition price bands or treat tasting rooms, wine cellars, and gun rooms as the typical Middleburg brief.",
+      "If the parcel is in the Historic District, the addition needs a Certificate of Appropriateness from the Historic District Review Committee. Complete applications are due 14 days before the meeting. A county permit is not a COA.",
       "What you get is the paperwork product: Town or unincorporated county, the published fee path, and whether HDRC review is in play. We prepare the Town zoning set and the county LandMARC addition set. County inspections: footing, foundation, framing, insulation, and final, plus trade rough-ins and finals. We install to the Virginia Uniform Statewide Building Code and the stamped plans, and document each inspection.",
     ],
   },
@@ -3073,7 +3073,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Garrett Park, MD starts in a small incorporated town of late-19th-century houses, ZIP 20896, not in a Bethesda subdivision. Kenilworth Avenue and Waverly Avenue still read as a village grid beside the MARC station.',
-      'Montgomery County lists Garrett Park under both county and city approval. A cabinet swap that leaves the walls alone is the county\'s likely-no-permit case. Opening the room, moving the sink, or changing the layout is an interior alteration, which the county says will likely need a permit. The county list does not cover town rules, so a town approval is required only when the scope and Garrett Park\'s rules call for it. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+      'Montgomery County lists Garrett Park under both county and city approval. A cabinet swap that leaves the walls alone is the county\'s likely-no-permit case. Opening the room, moving the sink, or changing the layout is an interior alteration, which the county says will likely need a permit. A town approval is required only when the scope and Garrett Park\'s rules call for it. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Garrett Park quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -3694,12 +3694,12 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a kitchen remodel in Chevy Chase?',
         answer:
-          'Montgomery County, plus the municipality on the parcel. The Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions are listed as county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. Chevy Chase Village is on both sequence lists, so the village at 5906 Connecticut Avenue is asked before a sequence is assumed.',
+          'Montgomery County, plus the municipality on the parcel. The Town of Chevy Chase, Section 3, Section 5, and Martin\'s Additions are listed as county permit before city approval. North Chevy Chase is listed as both. Friendship Heights is county permit only. For Chevy Chase Village, we confirm the order with the village at 5906 Connecticut Avenue.',
       },
       {
-        question: 'Does a cabinet replacement skip the county list?',
+        question: 'Does a cabinet replacement need a permit?',
         answer:
-          'The county says cabinet install, repair, or replacement most likely will not need a permit, and that the list does not include municipal rules. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'Cabinet install, repair, or replacement most likely will not need a permit. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Chevy Chase, MD cost?',
@@ -3709,7 +3709,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Kitchen remodeling in Chevy Chase, MD has to name the municipality first, because ZIP 20815 is several towns and villages along Connecticut Avenue, not one permit counter.',
-      "For the Town of Chevy Chase, Section 3, Section 5, and Martin's Additions, the order is county permit before city approval. North Chevy Chase requires both. Friendship Heights is county permit only. Chevy Chase Village is printed on both sequence lists, so the order is confirmed at 5906 Connecticut Avenue, phone 301-654-7300, rather than guessed. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.",
+      "For the Town of Chevy Chase, Section 3, Section 5, and Martin's Additions, the order is county permit before city approval. North Chevy Chase requires both. Friendship Heights is county permit only. For Chevy Chase Village, we confirm the order at 5906 Connecticut Avenue, phone 301-654-7300. A layout change is an interior alteration. Electrical work is a separately licensed trade. Real Elite does not take electrical work.",
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Chevy Chase quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
@@ -3738,7 +3738,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Chevy Chase, MD depends on which municipality owns the parcel inside ZIP 20815. The Town of Chevy Chase, the Village, and the numbered sections do not share one approval order.',
-      'County staff are at the Department of Permitting Services in Wheaton. The town or village step follows the list: county permit first for the Town, Section 3, Section 5, and Martin\'s Additions; both approvals for North Chevy Chase; county only for Friendship Heights. Chevy Chase Village is on both lists, so the sequence is confirmed with the village. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
+      'County staff are at the Department of Permitting Services in Wheaton. The town or village step follows the list: county permit first for the Town, Section 3, Section 5, and Martin\'s Additions; both approvals for North Chevy Chase; county only for Friendship Heights. For Chevy Chase Village, we confirm the order with the village. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'Every Chevy Chase bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. The municipality is named in that estimate before any filing.',
     ],
   },
@@ -3757,7 +3757,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Why can two Chevy Chase neighbors file in a different order?',
         answer:
-          'ZIP 20815 contains more than one municipality. Friendship Heights is county permit only. North Chevy Chase is both. Chevy Chase Village appears on both sequence lists. The parcel, not the ZIP, picks the order.',
+          'ZIP 20815 contains more than one municipality. Friendship Heights is county permit only. North Chevy Chase is both. For Chevy Chase Village, we confirm the order with the village. The parcel, not the ZIP, picks the order.',
       },
       {
         question: 'What does a finished basement in Chevy Chase cost?',
@@ -3881,7 +3881,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'cost',
         title: 'Cost',
         paragraphs: [
-          'Planning for a Catharpin lower level can start at $55,000. County permit fees are a separate schedule and are not a project price. The price for the house is a free written estimate after a site walk.',
+          'Planning for a Catharpin lower level can start at $55,000. County permit fees are separate from the project price. The price for the house is a free written estimate after a site walk.',
         ],
         links: [
           { href: '/service-areas/catharpin-va', label: 'Catharpin service area' },
@@ -4123,7 +4123,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a cabinet replacement in Brookeville skip the town?',
         answer:
-          'The county says cabinet install, repair, or replacement most likely will not need a permit, and that the list does not include municipality rules. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'Cabinet install, repair, or replacement most likely will not need a permit. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Brookeville, MD cost?',
@@ -4162,7 +4162,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Brookeville, MD: for a home inside the Town of Brookeville, the county requires town approval first, then the county application. A ZIP 20833 home outside town limits uses the county alone.',
-      'County staff are at the Department of Permitting Services in Wheaton. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC. The home-improvements list does not include municipality rules.',
+      'County staff are at the Department of Permitting Services in Wheaton. Town questions go to 5 High Street, phone 301-570-4465. Electrical work is a separately licensed trade. Real Elite does not take electrical work. Plumbing questions go to WSSC.',
       'Every Brookeville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope. When the home is inside town limits, the town step is named in that estimate before any filing.',
     ],
   },
@@ -4305,7 +4305,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'cost',
         title: 'Cost',
         paragraphs: [
-          'Planning for a Broad Run lower level can start at $55,000. County fees are a separate schedule and are not a project price. The price for the house is a free written estimate after a site walk.',
+          'Planning for a Broad Run lower level can start at $55,000. County fees are separate from the project price. The price for the house is a free written estimate after a site walk.',
         ],
         links: [
           { href: '/service-areas/broad-run-va', label: 'Broad Run service area' },
@@ -4333,9 +4333,9 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           'The Town of Kensington requires the county permit prior to city approval. Town questions go to 3710 Mitchell Street, Kensington, MD 20895, phone 301-949-2424. Chevy Chase View uses a Kensington mailing address and is listed for both county and city approval.',
       },
       {
-        question: 'Does a cabinet replacement skip the county list?',
+        question: 'Does a cabinet replacement need a permit?',
         answer:
-          'The county says cabinet install, repair, or replacement most likely will not need a permit, and that the list does not include municipality rules. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'Cabinet install, repair, or replacement most likely will not need a permit. An interior alteration likely will. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Kensington, MD cost?',
@@ -4971,7 +4971,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Main Street kitchen file somewhere else?',
         answer:
-          'The ZIP does not name the office. A house in ZIP 21042 and a house in ZIP 21043 are both Ellicott City mailing areas. When the parcel is in Howard County, questions go to the Courthouse Drive office. Arrive by 4:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
+          'We confirm the permit office from the parcel, not the ZIP. A house in ZIP 21042 and a house in ZIP 21043 are both Ellicott City mailing areas. When the parcel is in Howard County, questions go to the Courthouse Drive office. Arrive by 4:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work.',
       },
       {
         question: 'What does kitchen remodeling in Ellicott City, MD cost?',
@@ -5029,7 +5029,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a lower level near the Patapsco use a different office?',
         answer:
-          'The ZIP does not name the office. When the parcel is in Howard County, questions go to the Courthouse Drive counter. A Howard County house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the permit steps for the parcel before work starts.',
+          'We confirm the permit office from the parcel, not the ZIP. When the parcel is in Howard County, questions go to the Courthouse Drive counter. A Howard County house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the permit steps for the parcel before work starts.',
       },
       {
         question: 'What does a finished basement in Ellicott City cost?',
@@ -5038,7 +5038,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Basement finishing in Ellicott City, MD is a lower level in ZIP 21042 or ZIP 21043. The ZIP does not name the permit office.',
+      'Basement finishing in Ellicott City, MD is a lower level in ZIP 21042 or ZIP 21043. We confirm the permit office from the parcel, not the ZIP.',
       'When the parcel is in Howard County, questions go to 410-313-2455, option 4. The front counter closes at 5:00 p.m. Electrical work is a separately licensed trade. Real Elite does not take electrical work. A low cellar on Main Street and a full-height lower level in ZIP 21042 are different jobs. We confirm the permit steps for the parcel before work starts.',
       'An Ellicott City lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
@@ -6323,13 +6323,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a second story in Dunn Loring use the same county record as a bump-out?',
         answer:
-          'The county when-required page lists a bump-out and a second story under a new addition to an existing home. Both need a permit. Whether the house can take a second story is a structure question, not a ZIP question.',
+          'Fairfax County treats a bump-out and a second story as a new addition to an existing home. Both need a permit. Whether the house can take a second story is a structure question, not a ZIP question.',
       },
     ],
     paragraphs: [
       'The Dunn Loring station is at Gallows Road and I-66, just outside the Capital Beltway. Check the specific parcel and setbacks before designing the addition/deck/porch. The 22027 ZIP does not pick the office. We check the parcel before we lock a footprint.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035. The county when-required page lists a new addition to an existing home, including a bump-out and a second story, as work that needs a permit. The addition and alteration page says to apply in PLUS under the Building tab, and it treats the house as residential when it is a detached one- or two-family dwelling or a townhouse no more than 3 stories above ground. If the house is on a well or septic, that page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
-      'If the parcel is inside the Town of Vienna, the county addition and alteration page says the town approval has to be uploaded to the PLUS record. A Dunn Loring mailing address does not decide which file applies. The price for the house is a free written estimate after a site walk.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035. Fairfax County requires a permit for a new addition to an existing home, including a bump-out and a second story. Apply in PLUS under the Building tab. The house is residential when it is a detached one- or two-family dwelling or a townhouse no more than 3 stories above ground. If the house is on a well or septic, the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the town approval has to be uploaded to the county PLUS record. A Dunn Loring mailing address does not decide which file applies. The price for the house is a free written estimate after a site walk.',
     ],
   },
 
@@ -6342,7 +6342,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a Dunn Loring deck need its own permit type?',
         answer:
-          'Fairfax County lists a deck with a new addition to an existing home on the when-required page, and lists Deck as a type of work under Additional Square Footage on the addition and alteration page. The county’s residential Addition/Alteration guide lists Deck under Additional Square Footage.',
+          'Fairfax County counts a deck as a new addition to an existing home, filed as Additional Square Footage.',
       },
       {
         question: 'Who answers deck questions for a Dunn Loring address?',
@@ -6352,7 +6352,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'A Dunn Loring deck is a county addition record. The Dunn Loring station is at Gallows Road and I-66, just outside the Capital Beltway. Check the specific parcel and setbacks before designing the addition/deck/porch. We measure the parcel before we draw the frame.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition to an existing home, and that list includes decks. The addition and alteration page lists Deck under Additional Square Footage and says the application goes in PLUS under the Building tab. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County requires a permit for a new addition to an existing home, and that includes decks. A deck is filed as Additional Square Footage, and the application goes in PLUS under the Building tab. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
       'If the parcel is inside the Town of Vienna, Fairfax County says the town approval is uploaded to the PLUS record. The mailing name does not make that choice. The price for the deck is a free written estimate after a site walk.',
     ],
   },
@@ -6366,7 +6366,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Is a screened porch in Dunn Loring a deck permit?',
         answer:
-          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work.',
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and files Screened Porch, Sunroom, and Deck as separate Additional Square Footage categories.',
       },
       {
         question: 'Does a Dunn Loring mailing address pick the porch permit office?',
@@ -6376,8 +6376,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Outdoor living in Dunn Loring is a screened porch or a sunroom on the county addition list, not a spare bedroom. The Dunn Loring station is at Gallows Road and I-66, just outside the Capital Beltway. Check the specific parcel and setbacks before designing the addition/deck/porch. We confirm the parcel before we size the roof.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition, and that list includes sunrooms and screen porches. The addition and alteration page lists Screened Porch and Sunroom as Additional Square Footage types of work in PLUS. A detached gazebo is on the detached-structures list, not the porch list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
-      'If the parcel is inside the Town of Vienna, the county addition page says the town approval is uploaded to the PLUS record. We do not treat the 22027 mailing name as that approval. The price is a free written estimate after a site walk.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County requires a permit for a new addition, and that includes sunrooms and screen porches. In PLUS, screened porches and sunrooms are filed as Additional Square Footage. A detached gazebo is on the detached-structures list, not the porch list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the town approval is uploaded to the county PLUS record. We do not treat the 22027 mailing name as that approval. The price is a free written estimate after a site walk.',
     ],
   },
 
@@ -6395,7 +6395,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'What if the Fairfax Station parcel is inside the Town of Clifton?',
         answer:
-          'The town FAQ says an added room needs a use permit from the Planning Commission, a certificate of appropriateness from the Architectural Review Board, and a Fairfax County building permit. The county addition page says the town approval is uploaded to the PLUS record.',
+          'The town FAQ says an added room needs a use permit from the Planning Commission, a certificate of appropriateness from the Architectural Review Board, and a Fairfax County building permit. The town approval is uploaded to the county PLUS record.',
       },
       {
         question: 'Where do Fairfax County building-permit questions go?',
@@ -6405,8 +6405,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We read the parcel before we draw the room.',
-      'If the parcel is inside the Town of Clifton, the town FAQ says a room addition needs a use permit from the Planning Commission, design plans to the Architectural Review Board for a certificate of appropriateness, and a Fairfax County building permit. The town FAQ also says the county will not grant that building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that town approval is uploaded to the PLUS record.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page lists a bump-out and a second story under a new addition that needs a permit. Apply in PLUS under the Building tab. If the house is on a well or septic, the addition page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the house is a free written estimate after a site walk.',
+      'If the parcel is inside the Town of Clifton, the town FAQ says a room addition needs a use permit from the Planning Commission, design plans to the Architectural Review Board for a certificate of appropriateness, and a Fairfax County building permit. The town FAQ also says the county will not grant that building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. That town approval is uploaded to the county PLUS record.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County treats a bump-out and a second story as a new addition that needs a permit. Apply in PLUS under the Building tab. If the house is on a well or septic, the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the house is a free written estimate after a site walk.',
     ],
   },
 
@@ -6419,7 +6419,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Is a Fairfax Station deck its own permit type?',
         answer:
-          'No. The county when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage.',
+          'No. Fairfax County counts a deck as a new addition to an existing home, filed as Additional Square Footage.',
       },
       {
         question: 'Can a Fairfax Station deck parcel be inside Clifton?',
@@ -6429,7 +6429,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'A Fairfax Station deck is on the county list of new additions that need a permit. A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We confirm the parcel before we set the posts.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition, and that list includes decks. The addition page lists Deck as an Additional Square Footage type of work in PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County requires a permit for a new addition, and that includes decks. In PLUS, a deck is filed as Additional Square Footage. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
       'If the parcel is inside the Town of Clifton, the county requires separate town approval documentation for a project inside Clifton. Ask the Town Clerk which town approvals apply to this deck. The county addition and alteration record says that town approval is uploaded to the PLUS record. The price is a free written estimate after a site walk.',
     ],
   },
@@ -6443,7 +6443,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does a screened porch in Fairfax Station use the deck record?',
         answer:
-          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work.',
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and files Screened Porch, Sunroom, and Deck as separate Additional Square Footage categories.',
       },
       {
         question: 'Who permits outdoor living on a Fairfax Station parcel?',
@@ -6453,8 +6453,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'A screened porch in Fairfax Station is on the county addition list. A Fairfax Station mailing address alone does not establish town jurisdiction. Check the parcel’s District field before applying town rules. Clifton Road is a local landmark; check the parcel District field before applying town rules. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We read the parcel before we frame the roof.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page includes sunrooms and screen porches in a new addition that needs a permit. The addition page lists Screened Porch and Sunroom as Additional Square Footage types of work. A detached gazebo is on the detached-structures list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
-      'If the parcel is inside the Town of Clifton, the town FAQ says an addition needs a certificate of appropriateness, and a use permit is required to build an addition to an existing structure. The county addition page says that town approval is uploaded to the PLUS record. The price is a free written estimate after a site walk.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County counts sunrooms and screen porches as a new addition that needs a permit. Screened porches and sunrooms are filed as Additional Square Footage. A detached gazebo is on the detached-structures list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Clifton, the town FAQ says an addition needs a certificate of appropriateness, and a use permit is required to build an addition to an existing structure. That town approval is uploaded to the county PLUS record. The price is a free written estimate after a site walk.',
     ],
   },
 
@@ -6477,21 +6477,21 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'An Oakton addition sits along Route 123 between Vienna and Fairfax, and the 22124 mailing address does not establish town jurisdiction. Route 123, Hunter Mill Road, and Jermantown Road are Oakton landmarks; verify the parcel and any town approval before filing. We check the parcel before we lock the footprint.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035. The when-required page lists a bump-out and a second story under a new addition that needs a permit. The addition page says to apply in PLUS under the Building tab, and it limits the residential path to a detached one- or two-family dwelling or a townhouse no more than 3 stories above ground. If the house is on a well or septic, that page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
-      'If the parcel is inside the Town of Vienna, the county addition and alteration page says the town approval has to be uploaded to the PLUS record. The Oakton name does not place the house in that town. The price for the house is a free written estimate after a site walk.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324, Fairfax, VA 22035. Fairfax County treats a bump-out and a second story as a new addition that needs a permit. Apply in PLUS under the Building tab. The residential path is limited to a detached one- or two-family dwelling or a townhouse no more than 3 stories above ground. If the house is on a well or septic, the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the town approval has to be uploaded to the county PLUS record. The Oakton name does not place the house in that town. The price for the house is a free written estimate after a site walk.',
     ],
   },
 
   'decks-oakton-va': {
     h1: 'Decks in Oakton, VA',
     metaDescription:
-      'Decks in Oakton, VA. A deck is a county addition type of work. Vienna is a parcel question. Free written estimate after a site walk.',
+      'Decks in Oakton, VA. A deck counts as a county addition. Vienna is a parcel question. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'How does Fairfax County classify an Oakton deck?',
         answer:
-          'The when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage. The county’s residential Addition/Alteration guide lists Deck under Additional Square Footage.',
+          'Fairfax County counts a deck as a new addition to an existing home, filed as Additional Square Footage.',
       },
       {
         question: 'Does Route 123 put an Oakton deck in the Town of Vienna?',
@@ -6500,8 +6500,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'An Oakton deck is a county addition type of work. Route 123, Hunter Mill Road, and Jermantown Road are Oakton landmarks; verify the parcel and any town approval before filing. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We measure the parcel before we order the frame.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page says a permit is required for a new addition, and that list includes decks. The addition page lists Deck under Additional Square Footage and sends the application through PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'An Oakton deck counts as a county addition. Route 123, Hunter Mill Road, and Jermantown Road are Oakton landmarks; verify the parcel and any town approval before filing. The mailing address does not establish whether separate town approval applies; verify the parcel before filing the Fairfax County building record. We measure the parcel before we order the frame.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County requires a permit for a new addition, and that includes decks. A deck is filed as Additional Square Footage, and the application goes through PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
       'If the parcel is inside the Town of Vienna, Fairfax County says the town approval is uploaded to the PLUS record. We do not treat the Route 123 name as the town line. The price for the deck is a free written estimate after a site walk.',
     ],
   },
@@ -6509,13 +6509,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'outdoor-living-oakton-va': {
     h1: 'Outdoor Living in Oakton, VA',
     metaDescription:
-      'Outdoor Living in Oakton, VA. Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work. Free written estimate after a site walk.',
+      'Outdoor Living in Oakton, VA. Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and files Screened Porch, Sunroom, and Deck as separate Additional Square Footage categories. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
         question: 'Is an Oakton screened porch filed as a deck?',
         answer:
-          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work.',
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and files Screened Porch, Sunroom, and Deck as separate Additional Square Footage categories.',
       },
       {
         question: 'Who permits a porch on an Oakton parcel?',
@@ -6525,8 +6525,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Outdoor living in Oakton means a screened porch or a sunroom, and the Vienna line is a parcel question, not a Route 123 question. Route 123, Hunter Mill Road, and Jermantown Road are Oakton landmarks; verify the parcel and any town approval before filing. We confirm the parcel before we size the roof.',
-      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page includes sunrooms and screen porches in a new addition that needs a permit. The addition page lists Screened Porch and Sunroom as Additional Square Footage types of work in PLUS. A detached gazebo is on the detached-structures list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
-      'If the parcel is inside the Town of Vienna, the county addition page says the town approval is uploaded to the PLUS record. The Oakton mailing name does not make that filing. The price is a free written estimate after a site walk.',
+      'For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County counts sunrooms and screen porches as a new addition that needs a permit. In PLUS, screened porches and sunrooms are filed as Additional Square Footage. A detached gazebo is on the detached-structures list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work.',
+      'If the parcel is inside the Town of Vienna, the town approval is uploaded to the county PLUS record. The Oakton mailing name does not make that filing. The price is a free written estimate after a site walk.',
     ],
   },
 
@@ -6554,8 +6554,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'For a parcel inside the Town of Clifton, an addition needs a town use permit and a county building permit, and the district field is how the parcel is checked. The town FAQ says the Fairfax County parcel profile shows Springfield Town of Clifton when the address is inside the town. A 20124 mailing address is not that field. We read the parcel before we draw the room.',
-      'If the parcel is inside the Town of Clifton, the town FAQ says an added room needs a use permit from the Planning Commission, design plans to the Architectural Review Board for a certificate of appropriateness, and a Fairfax County building permit. A use permit is required to build an addition to an existing structure. The application goes to the Town Clerk at least 15 days before the Planning Commission meeting. The applications page says the Planning Commission reviews use permits on the last Tuesday of each month at 7:30 p.m. at Acacia Lodge, 7135 Main Street. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that town approval is uploaded to the PLUS record.',
-      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. The when-required page lists a bump-out and a second story under a new addition that needs a permit. Apply in PLUS under the Building tab. If the house is on a well or septic, the addition page says the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the house is a free written estimate after a site walk.',
+      'If the parcel is inside the Town of Clifton, the town FAQ says an added room needs a use permit from the Planning Commission, design plans to the Architectural Review Board for a certificate of appropriateness, and a Fairfax County building permit. A use permit is required to build an addition to an existing structure. The application goes to the Town Clerk at least 15 days before the Planning Commission meeting. The Planning Commission reviews use permits on the last Tuesday of each month at 7:30 p.m. at Acacia Lodge, 7135 Main Street. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. That town approval is uploaded to the county PLUS record.',
+      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Fairfax County treats a bump-out and a second story as a new addition that needs a permit. Apply in PLUS under the Building tab. If the house is on a well or septic, the Health Department may review the package. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the house is a free written estimate after a site walk.',
     ],
   },
 
@@ -6568,7 +6568,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'How does Fairfax County classify a Clifton deck?',
         answer:
-          'The when-required page includes decks in a new addition to an existing home. The addition page lists Deck under Additional Square Footage. Fairfax County also says a project on a parcel inside the Town of Clifton needs a separate town approval uploaded to the PLUS record.',
+          'Fairfax County counts a deck as a new addition to an existing home, filed as Additional Square Footage. Fairfax County also says a project on a parcel inside the Town of Clifton needs a separate town approval uploaded to the PLUS record.',
       },
       {
         question: 'Does the town treat a deck as internal work?',
@@ -6578,8 +6578,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'A deck in Clifton is on Fairfax County\'s list of new additions that need a permit. For a parcel inside the Town of Clifton, the county requires separate town approval documentation. The town FAQ says the District field on the Fairfax County parcel profile reads Springfield Town of Clifton when the address is inside the town. We check that field before we draw the frame.',
-      'If the parcel is inside the Town of Clifton, the town FAQ requires a use permit to build an addition to an existing structure or to erect a new structure, and a certificate of appropriateness for an addition or a new structure. The county when-required page lists a deck with a new addition, so ask the Town Clerk which town approvals apply to this deck. We do not guess that on a mailing name. The town FAQ says the county building permit is not granted unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404. The county addition page says the town approval is uploaded to the PLUS record.',
-      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Deck is an Additional Square Footage type of work in PLUS. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the deck is a free written estimate after a site walk.',
+      'If the parcel is inside the Town of Clifton, the town FAQ requires a use permit to build an addition to an existing structure or to erect a new structure, and a certificate of appropriateness for an addition or a new structure. Fairfax County counts a deck as a new addition, so we ask the Town Clerk which town approvals apply to this deck. The town FAQ says the county building permit is not granted unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the county application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404. The town approval is uploaded to the county PLUS record.',
+      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. In PLUS, a deck is filed as Additional Square Footage. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price for the deck is a free written estimate after a site walk.',
     ],
   },
 
@@ -6592,7 +6592,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Is a screened porch in Clifton filed as a deck?',
         answer:
-          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and lists Screened Porch, Sunroom, and Deck as distinct Additional Square Footage types of work. For a parcel inside the Town of Clifton, Fairfax County says the town approval is uploaded to PLUS.',
+          'Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and files Screened Porch, Sunroom, and Deck as separate Additional Square Footage categories. For a parcel inside the Town of Clifton, Fairfax County says the town approval is uploaded to PLUS.',
       },
       {
         question: 'What town approval does a Clifton porch need?',
@@ -6602,8 +6602,8 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'A screened porch in Clifton is an addition on the county list. For a parcel inside the Town of Clifton, the town requires a certificate of appropriateness for an addition. The town FAQ says to confirm the parcel on the Fairfax County profile, where the District field says Springfield Town of Clifton inside the town. A village lot on Main Street still needs the parcel District field before town rules apply. A 20124 address is not that field.',
-      'If the parcel is inside the Town of Clifton, the town FAQ requires a certificate of appropriateness for an addition to an existing building, and a use permit to build an addition to an existing structure. The when-required page includes a screen porch and a sunroom in a new addition that needs a county permit. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. The county addition page says that approval is uploaded to the PLUS record.',
-      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Screened Porch and Sunroom are Additional Square Footage types of work. A detached gazebo is on the detached-structures list, not the porch list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price is a free written estimate after a site walk.',
+      'If the parcel is inside the Town of Clifton, the town FAQ requires a certificate of appropriateness for an addition to an existing building, and a use permit to build an addition to an existing structure. Fairfax County counts a screen porch and a sunroom as a new addition that needs a county permit. The town FAQ says the county will not grant the building permit unless the applicant shows the certificate and the use permit, and the mayor or a designated representative signs the application. Town questions go to 12641 Chapel Rd, Clifton, VA 20124, phone (571) 781-2404, or clerk@cliftonva.gov. That approval is uploaded to the county PLUS record.',
+      'For a parcel outside the Town of Clifton, Fairfax County Land Development Services handles the building permit. For Fairfax County building-permit questions, contact Land Development Services at 703-222-0801. If the parcel is within Clifton or Vienna, the county also requires the applicable town approval to be uploaded to the PLUS record. The office is at 12055 Government Center Pkwy, Suite 324. Screened porches and sunrooms are filed as Additional Square Footage. A detached gazebo is on the detached-structures list, not the porch list. If the project includes electrical, plumbing, or mechanical work, separate trade permits may be required. Real Elite does not take electrical work. The price is a free written estimate after a site walk.',
     ],
   },
 
@@ -7507,7 +7507,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a bathroom remodel in Aspen Hill?',
         answer:
-          'Aspen Hill is a census designated place in Montgomery County. Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+          'Aspen Hill is a census designated place in Montgomery County. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
       },
       {
         question: 'What does bathroom remodeling in Aspen Hill, MD cost?',
@@ -7522,7 +7522,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Bathroom remodeling in Aspen Hill, MD is a mid-1960s bath on Aspen Hill Road, kept separate from Fallsgrove and King Farm. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
-      'Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Bathroom Caulking. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Plumbing - Contact WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. Office hours are 7:30 a.m.- 4 p.m. Monday-Friday, and no appointment is necessary. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Bathroom Caulking. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Plumbing - Contact WSSC. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'Every Aspen Hill bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
@@ -7536,7 +7536,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits basement finishing in Aspen Hill, MD?',
         answer:
-          'Aspen Hill is a census designated place in Montgomery County. A census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
+          'Aspen Hill is a census designated place in Montgomery County. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton.',
       },
       {
         question: 'What is checked before an Aspen Hill lower level is finished?',
@@ -7551,7 +7551,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     ],
     paragraphs: [
       'Basement finishing in Aspen Hill, MD is a lower level in a mid-1960s house on Aspen Hill Road. The two primary ZIP codes comprising Aspen Hill are 20853 and 20906.',
-      'Aspen Hill is a census designated place in Montgomery County. Census designated places are closely settled, unincorporated communities, and a census designated place cannot be partially or entirely within an incorporated place. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
+      'Aspen Hill is a census designated place in Montgomery County. When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'An Aspen Hill lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
@@ -7598,7 +7598,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Kitchen remodeling in Bluemont, VA starts on the ridge along Route 7, where many houses date from the early 1980s. The drive from Martinsburg is 61 minutes on Route 7.',
       'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175. Residential alterations change the use of existing square footage, not including condominiums. If your property is located in an incorporated town within Loudoun County, submit an approved zoning permit from the town with your application. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
-      'Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Bluemont quote. The price for this house is a free written estimate after a site walk.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Bluemont quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
   'bathrooms-bluemont-va': {
@@ -7622,7 +7622,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Bathroom remodeling in Bluemont, VA is an early-1980s bath on a ridge lot west of Round Hill, in the 20135 area.',
       'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. Hours: Monday through Friday, 8:30 a.m. to 5 p.m. If your lot is served by well and septic, contact the Health Department to obtain approval before applying for permits. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
-      'Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. Every Bluemont bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+      'Every Bluemont bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
   'basements-bluemont-va': {
@@ -7651,7 +7651,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Bluemont, VA is a lower level in an early-1980s house on the ridge along Route 7. The drive from Martinsburg is 61 minutes on Route 7.',
       'When the parcel is in Loudoun County, call Building and Development at 703-777-0220, option 1. In person paper submission goes to Building and Development, Loudoun County Government Center, 1 Harrison Street, SE, Leesburg, Virginia 20175. Residential alterations change the use of existing square footage, not including condominiums. Inspections must be scheduled one work day in advance. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
-      'A Bluemont lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. Bluemont is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is a free written estimate after a site walk.',
+      'A Bluemont lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
       {
@@ -7697,7 +7697,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Kitchen remodeling in Myersville, MD starts on Main Street, where many houses date from the early 1980s. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets.',
       'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Monday - Friday 8 a.m. - 4 p.m. Zoning certificates for properties within municipalities must be applied for prior to Building Permit application at the Department of Permits and Inspections. Approval is required for modifications, alterations or changing the usage of any building or structure. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
-      'Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Myersville quote. The price for this house is a free written estimate after a site walk.',
+      'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Myersville quote. The price for this house is a free written estimate after a site walk.',
     ],
   },
   'bathrooms-myersville-md': {
@@ -7721,7 +7721,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Bathroom remodeling in Myersville, MD is an early-1980s bath on Main Street in the 21773 area.',
       'Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. The Town of Myersville zoning certificate application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. The City of Frederick and Mt. Airy are responsible for their own building permits. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
-      'Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. Every Myersville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+      'Every Myersville bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
     ],
   },
   'basements-myersville-md': {
@@ -7750,7 +7750,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Basement finishing in Myersville, MD is a lower level in an early-1980s house on Main Street. The drive from Martinsburg is 55 minutes on I-70, the closest of these new markets.',
       'When the parcel is in Frederick County, questions go to the Department of Permits and Inspections, 30 N. Market St., Frederick, MD 21701, phone 301-600-2313. Monday - Friday 8 a.m. - 4 p.m. Applicants must apply for a Building Permit through the Frederick County Department of Planning & Permitting located at 30 North Market Street, Frederick, MD 21701. The Town of Myersville zoning certificate application must be submitted to the Town of Myersville between the hours of 8:00 AM and 4:00 PM, Monday through Friday at Myersville Town Hall. Town questions go to Myersville Town Hall, 301 Main Street, P.O. Box 295, Myersville, MD 21773, phone (301) 293-4281. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
-      'A Myersville lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. Myersville is outside the primary service radius, so a site walk here is a stretch of that job radius. The price is a free written estimate after a site walk.',
+      'A Myersville lower level can be planned from $55,000. That figure is a planning reference, not a quote for this house. The price is a free written estimate after a site walk.',
     ],
     sections: [
       {
@@ -8314,7 +8314,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Does the city accept a deck design guide in place of plans?',
         answer:
-          'The city does not accept the design guide in place of plans, though it calls the guide useful. Some townhouses need a site-plan amendment through the planning department before the building permit for a deck can be approved.',
+          'The city does not accept the design guide in place of plans. Some townhouses need a site-plan amendment through the planning department before the building permit for a deck can be approved.',
       },
     ],
     paragraphs: [

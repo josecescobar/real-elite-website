@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 "In-law suite" describes a use, not a project. A parent moving in, an adult child coming home, or a long-term guest can be housed in a finished lower level, a converted garage, or a new wing off the main floor. In Loudoun County those three paths differ in price, in which county offices review them, and in which contractor license belongs on the permit.
 
-This guide compares the basement suite with the addition. It uses published figures and county sources checked September 27, 2026. It is planning context, not a description of a completed Real Elite project or a fixed-price offer.
+This guide compares the basement suite with the addition, so you can plan before you price either one.
 
 ## Start with who will live there
 
@@ -39,7 +39,7 @@ EA says its table prices include design, engineering, permits, and inspections. 
 
 [Denny + Gardner's in-law suite article](https://www.dennyandgardner.com/blog/in-law-suite-cost-northern-va) gives about $225–$275 per square foot to convert a basement, attic, or garage, and about $300 per square foot for a new addition. That article is dated July 2021, and it discusses Fairfax County and D.C. rules, not Loudoun's. Treat it as older regional context.
 
-Neither source is a Loudoun average, and the figures should not be averaged together. For the rest of a lower-level budget, see our [Ashburn and Leesburg basement cost guide](/blog/basement-remodeling-cost-ashburn-leesburg-2026). For every addition type, see the [Loudoun addition cost guide](/blog/home-addition-cost-loudoun-county-2026).
+These figures cover different scopes, so use them only to frame the conversation. For the rest of a lower-level budget, see our [Ashburn and Leesburg basement cost guide](/blog/basement-remodeling-cost-ashburn-leesburg-2026). For every addition type, see the [Loudoun addition cost guide](/blog/home-addition-cost-loudoun-county-2026).
 
 ## The basement suite: inside the house you have
 

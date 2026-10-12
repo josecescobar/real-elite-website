@@ -14,7 +14,7 @@ author: "Real Elite Contracting Team"
 
 The question "how long will my kitchen take?" has two answers. One is how long the room is torn up. The other is how long it takes from the first conversation to cooking again. The second number is the one that runs your life, and most of it is decided before anyone picks up a pry bar.
 
-This guide covers kitchens in [Ashburn](/service-areas/ashburn-va), [Leesburg](/service-areas/leesburg-va), and [Brambleton](/service-areas/brambleton-va). It uses published estimates and county and town sources checked September 27, 2026. We have not published our own durations, so every number below names who said it. For the budget side, see the [Loudoun kitchen remodel cost guide](/blog/kitchen-remodel-cost-loudoun-county-2026).
+This guide covers kitchens in [Ashburn](/service-areas/ashburn-va), [Leesburg](/service-areas/leesburg-va), and [Brambleton](/service-areas/brambleton-va). We have not published our own durations, so every number below names who said it. For the budget side, see the [Loudoun kitchen remodel cost guide](/blog/kitchen-remodel-cost-loudoun-county-2026).
 
 ## Three kitchens, three schedules
 
@@ -72,7 +72,7 @@ For a layout change, Loudoun's [Residential Additions and Alterations page](http
 - **Plans:** all structural elements detailed on a complete set of plans
 - **Trade permits:** electrical, gas, mechanical, and plumbing, each separate. Gas permits for residential alterations need plans review as of October 1, 2025.
 
-The county's [residential permits dashboard](https://www.loudoun.gov/6084/Residential-Permits-Processing-Dashboard) lists a 15-day building review target and a 10-day zoning target for alterations, and 2 days for trade permits. It doesn't say whether those are business or calendar days. Intake before review can take up to ten business days. A review target is not a start date. It doesn't include design, ordering, or any revisions the reviewer asks for.
+The county's [residential permits dashboard](https://www.loudoun.gov/6084/Residential-Permits-Processing-Dashboard) lists a 15-day building review target and a 10-day zoning target for alterations, and 2 days for trade permits. Intake before review can take up to ten business days. A review target is not a start date. It doesn't include design, ordering, or any revisions the reviewer asks for.
 
 Real Elite does not take electrical work. A separately licensed electrician carries that permit, and their schedule belongs in the plan. For the full county path, see our [Loudoun permits and HOA guide](/blog/loudoun-county-permits-hoa-guide-2026).
 

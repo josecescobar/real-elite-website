@@ -664,7 +664,7 @@ export const PAVING_LOCATIONS: PavingLocation[] = [
       'Asphalt driveways, paving, parking lots, sealcoating, and repair for Winchester and the Northern Shenandoah Valley — family-run. Contact us to discuss the paving contractor and project scope.',
     intro: [
       "Winchester is the gateway to Virginia's Shenandoah Valley and the commercial anchor of the region — a city that pairs a vibrant, walkable Old Town with fast-growing residential corridors along Route 7, Route 522, and Senseny Road. That growth drives steady demand for both new residential driveways in the expanding neighborhoods and durable commercial lots for the retail and office development following the rooftops.",
-      "We pave and repair driveways and parking lots throughout the Winchester area, with contractor credentials and project responsibilities to be confirmed before work begins. From Old Town's established homes to the newer subdivisions out the Route 7 and Senseny Road corridors, and the commercial sites serving them, we bring proper base work, drainage-first grading, and the same accountable, single-point-of-contact approach our Eastern Panhandle customers already know.",
+      "We pave and repair driveways and parking lots throughout the Winchester area. From Old Town's established homes to the newer subdivisions out the Route 7 and Senseny Road corridors, and the commercial sites serving them, we bring proper base work, drainage-first grading, and the same accountable, single-point-of-contact approach our Eastern Panhandle customers already know.",
     ],
     localFactors: [
       { title: 'Roads & neighborhoods', body: 'Old Town Winchester, the Senseny Road and Route 7 corridors, the Route 522 growth areas, and the Millwood Avenue commercial stretch.' },
