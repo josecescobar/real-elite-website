@@ -3324,7 +3324,7 @@ export const HOMEPAGE_PROJECT_SPOTLIGHT = {
  * to "Before / After" in BeforeAfter.tsx + the home section header.
  */
 export const BEFORE_AFTER_PAIRS = [
-  // Falling Waters WV backsplash (Jose confirmed the job 2026-10-12). Same-angle pre-tile vs. finished.
+  // Falling Waters WV backsplash (Jose confirmed the job 2026-10-12). Same-angle pre-tile vs. finished; before photo perspective-straightened to match the after framing.
   {
     label: 'Kitchen backsplash, Falling Waters',
     category: 'Kitchens',
