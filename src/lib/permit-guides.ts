@@ -930,7 +930,7 @@ const MONTGOMERY: CountyPermitGuide = {
       job: 'Fence',
       verdict: 'required',
       summary:
-        'New or altered fences need a permit. Replacing a fence in the same location and height is exempt only if the original fence had a permit.',
+        'New or altered fences need a permit. Swapping in the same kind of fence, in the same spot and at the same height, is exempt only if the original fence had a permit.',
       sources: ['mc-fence', 'mc-home'],
     },
     {
