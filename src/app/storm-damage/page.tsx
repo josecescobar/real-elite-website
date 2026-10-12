@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     path: '/storm-damage',
     title: `Storm Damage Roof Inspection — Free | ${BUSINESS.name}`,
     description:
-      'Hail and wind damage documented for your insurance carrier. Family-run, licensed in WV and VA.',
+      'Hail and wind damage documented for your insurance carrier. Family-run, licensed in WV, VA and PA.',
     keywords: [
       'storm damage roof inspection',
       'hail damage roofer WV',
@@ -138,9 +138,9 @@ const FAQ_ITEMS = [
       'Most homeowner policies require notice within one year of the storm event, but many specify shorter windows — sometimes 60 or 90 days. Check your policy or call your carrier. The longer you wait, the harder it is to prove damage came from a specific storm rather than wear-and-tear, which is why same-week inspection matters.',
   },
   {
-    question: 'Are you licensed and insured in WV and VA?',
+    question: 'Are you licensed and insured?',
     answer:
-      "Yes. Real Elite Contracting is licensed and insured in West Virginia and Virginia. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Review the proposed scope and warranty terms before signing.",
+      "Yes. Real Elite Contracting is licensed and insured in West Virginia, Virginia and Pennsylvania. Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Review the proposed scope and warranty terms before signing.",
   },
   {
     question: 'What about emergency tarping or temporary repairs?',
@@ -188,7 +188,7 @@ export default function StormDamagePage() {
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Hail and wind damage often isn&apos;t visible from the ground. Get a free, written
               roof inspection from a family-run local roofer — documented slope-by-slope for
-              your insurance carrier. Licensed in WV and VA.
+              your insurance carrier. Licensed in WV, VA and PA.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
@@ -209,7 +209,7 @@ export default function StormDamagePage() {
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-200">
               <li>Family-Run</li>
               <li aria-hidden="true" className="text-white/30">·</li>
-              <li>Licensed WV · VA</li>
+              <li>Licensed WV · VA · PA</li>
               <li aria-hidden="true" className="text-white/30">·</li>
               <li>Insurance-Friendly</li>
               <li aria-hidden="true" className="text-white/30">·</li>

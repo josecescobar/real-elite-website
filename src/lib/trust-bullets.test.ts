@@ -17,6 +17,10 @@ describe('shared trust bullets', () => {
     expect(trustBullets('Martinsburg', 'Kitchens', 'WV').map(b => b.text).join(' ')).toContain('WV062432');
   });
 
+  it('uses the Pennsylvania HIC registration on Pennsylvania pages', () => {
+    expect(trustBullets('Chambersburg', 'Kitchens', 'PA').map(b => b.text).join(' ')).toContain('PA HIC #PA225060');
+  });
+
   it('does not derive Maryland licensing from a Maryland service area', () => {
     const copy = trustBullets('Frederick', 'Kitchens', 'MD').map((bullet) => bullet.text).join(' ');
     expect(copy).toContain('Serving Frederick and Frederick County, Maryland.');

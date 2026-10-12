@@ -89,7 +89,7 @@ export const Hero = () => {
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-12 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-charcoal-200">
             <li>Virginia Class A</li>
             <li aria-hidden="true" className="text-white/30">·</li>
-            <li>Licensed WV · VA</li>
+            <li>Licensed WV · VA · PA</li>
             <li aria-hidden="true" className="text-white/30">·</li>
             <li>
               <Link href="/veterans" className="hover:text-brand-red-light transition-colors">

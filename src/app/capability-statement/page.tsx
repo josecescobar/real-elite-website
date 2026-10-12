@@ -51,7 +51,7 @@ const SNAPSHOT = [
   { label: 'Business Type', value: 'Family-run LLC' },
   { label: 'Who runs it', value: 'Brothers Jose and Miguel' },
   { label: 'SAM.gov Registration', value: FEDERAL_REGISTRATION.summary },
-  { label: 'VA HIC Bond', value: '$50,000 · Residential HIC' },
+  { label: 'Contractor Licenses', value: 'WV062432 · VA Class A 2705198604 (HIC) · PA HIC PA225060' },
 ];
 
 const NAICS_CODES = FEDERAL_REGISTRATION.naics;
@@ -103,12 +103,12 @@ const DIFFERENTIATORS = [
   {
     title: 'AI-Native Estimating',
     body:
-      'First contractor in the tri-state region to deploy AI-powered address-based roof quoting (sub-60-second ballpark estimates via Google Solar API). Internal multi-AI estimating pipeline produces line-item written estimates with documented labor and material breakdowns.',
+      'AI-powered address-based roof quoting (sub-60-second ballpark estimates via Google Solar API). Internal multi-AI estimating pipeline produces line-item written estimates with documented labor and material breakdowns.',
   },
   {
-    title: 'Licensed Tri-State Coverage',
+    title: 'Licensed in WV, VA and PA',
     body:
-      "Licensed and insured in West Virginia and Virginia. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
+      "Licensed and insured in West Virginia (WV062432), Virginia (Class A Contractor 2705198604, HIC) and Pennsylvania (Home Improvement Contractor PA225060). Discuss site supervision, communication, and cleanup arrangements during the estimate.",
   },
 ];
 
@@ -428,7 +428,7 @@ export default function CapabilityStatementPage() {
                 <Shield className="w-3 h-3 text-brand-red-light" /> Family-Run
               </span>
               <span>·</span>
-              <span>Licensed WV · VA</span>
+              <span>Licensed WV · VA · PA</span>
               <span>·</span>
               <span>Registered in SAM.gov</span>
             </div>

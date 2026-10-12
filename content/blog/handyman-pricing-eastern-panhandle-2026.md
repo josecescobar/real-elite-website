@@ -151,9 +151,9 @@ If they can't answer the first one clearly, stop there.
 
 ## Our Pricing Philosophy
 
-Full disclosure: Real Elite Contracting operates as a licensed West Virginia general contractor with full liability and workers compensation insurance. Our rates sit in the upper end of the Tier 2 / lower Tier 3 range depending on the scope of work. We're not the cheapest quote you'll get. We're not the most expensive either.
+Full disclosure: Real Elite Contracting is an insured contractor, licensed in West Virginia (WV062432), Virginia and Pennsylvania. Our rates sit in the upper end of the Tier 2 / lower Tier 3 range depending on the scope of work. We're not the cheapest quote you'll get. We're not the most expensive either.
 
-What we are is accountable. Every job is written up in advance, every dollar is itemized, and every bit of work is inspected, warrantied, and backed by insurance the state of West Virginia verifies annually. If a repair fails six months from now, we're still here, still at the same number, and we make it right.
+What we are is accountable. Every job is written up in advance, every dollar is itemized, and we're insured. If a repair fails six months from now, we're still here, still at the same number.
 
 That's what the price tag on a licensed contractor actually buys. Whether it's worth it to you depends entirely on the job.
 

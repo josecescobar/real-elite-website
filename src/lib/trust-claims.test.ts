@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_REGISTRATION } from './claims';
+import { RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_REGISTRATION, LICENSED_STATES } from './claims';
 import { FORBIDDEN_VETERAN_CLAIMS } from './__tests__/forbidden-claim-terms';
 import { runtimeTextOfFile } from './runtime-text';
 import nextConfig from '../../next.config';
@@ -32,6 +32,31 @@ describe('credential and ranking claims', () => {
     }
   });
 
+  it('names Pennsylvania wherever copy says the company is licensed in West Virginia and Virginia', () => {
+    // A license sentence that lists WV and VA but stops there understates the
+    // PA HIC registration (PA225060). Jose confirmed all three on 2026-09-29.
+    const wvVaOnly =
+      /licen[sc]\w*[^.\n"'`]{0,60}?\b(?:West Virginia|WV)\b[^.\n"'`]{0,10}?(?:and|&|&amp;|·|\/)\s*(?:Virginia|VA)\b(?![^.\n]{0,12}(?:Pennsylvania|PA\b))|licen[sc]\w*[^.\n"'`]{0,40}?\b(?:Virginia|VA) (?:and|&) (?:West Virginia|WV)\b(?![^.\n]{0,12}(?:Pennsylvania|PA\b))/i;
+    expect(wvVaOnly.test('Real Elite Contracting is licensed and insured across WV and VA.')).toBe(true);
+    expect(wvVaOnly.test(`Real Elite Contracting is licensed in ${LICENSED_STATES.long}.`)).toBe(false);
+    expect(wvVaOnly.test(`Licensed in ${LICENSED_STATES.short}.`)).toBe(false);
+    const files = filesIn('src').filter(file => /\.(ts|tsx)$/.test(file) && !file.includes('.test.') && !detectorSources.has(file));
+    const surfaces = files.map(file => [file, fs.readFileSync(file, 'utf8')]);
+    surfaces.push(...filesIn('content/blog').filter(f => f.endsWith('.md')).map(file => [file, fs.readFileSync(file, 'utf8')]));
+    surfaces.push(['public/llms.txt', fs.readFileSync('public/llms.txt', 'utf8')]);
+    for (const [file, text] of surfaces) {
+      expect(text.match(wvVaOnly)?.[0], file).toBeUndefined();
+    }
+  });
+
+  it('keeps Miguel described as a U.S. military veteran and Purple Heart recipient', () => {
+    const sentence = 'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.';
+    for (const file of ['src/components/blog/AuthorBox.tsx', 'src/components/services/CityPageTemplate.tsx', 'src/app/veterans/page.tsx', 'src/app/capability-statement/page.tsx']) {
+      expect(fs.readFileSync(file, 'utf8'), file).toContain(sentence);
+    }
+    expect(fs.readFileSync('public/llms.txt', 'utf8').replace(/\s+/g, ' ')).toContain(sentence);
+  });
+
   it('allows a Maryland service-area mention that is not a license claim', () => {
     const text = 'Serving Frederick, Maryland. Licensed in West Virginia and Virginia.';
     expect(retractedTrustClaims.filter(c => c.patterns.some(p => p.test(text)))).toEqual([]);
@@ -53,7 +78,7 @@ describe('credential and ranking claims', () => {
   });
 
   it('provides the exact license disclosure on both requested surfaces', () => {
-    expect(CONTRACTOR_LICENSES.summary).toBe('WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC)');
+    expect(CONTRACTOR_LICENSES.summary).toBe('WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC) · Pennsylvania Home Improvement Contractor PA225060');
     for (const file of ['src/app/about/page.tsx', 'src/components/layout/Footer.tsx']) {
       expect(fs.readFileSync(file, 'utf8')).toContain('{CONTRACTOR_LICENSES.summary}');
     }

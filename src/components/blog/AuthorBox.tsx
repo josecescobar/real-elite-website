@@ -44,7 +44,7 @@ export default function AuthorBox({ authorName }: Props) {
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.65rem] uppercase tracking-[0.15em] font-semibold text-charcoal-500">
           <span className="inline-flex items-center gap-1">
             <ShieldCheck className="w-3.5 h-3.5 text-brand-red" />
-            Licensed WV &amp; VA
+            Licensed WV, VA &amp; PA
           </span>
           <span>Family-Run</span>
           <span>WV · MD · VA</span>

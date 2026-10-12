@@ -9,13 +9,28 @@
  * evidence and an explicit owner decision, never an allowlist-only edit.
  */
 
-/** Credentials supplied in REA-55 and AI-SHARED/VENTURES.md (2026-09-27).
- * VA HIC is residential; this is not a commercial or Maryland license claim.
+/** Credentials supplied in REA-55 and AI-SHARED/VENTURES.md (2026-09-27);
+ * Pennsylvania confirmed by Jose 2026-09-29.
+ * VA Class A carries the Home Improvement Contractor (HIC) specialty, which is
+ * residential. None of these is a commercial or Maryland license.
  */
 export const CONTRACTOR_LICENSES = {
   wv: 'WV062432',
   va: '2705198604',
-  summary: 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC)',
+  pa: 'PA225060',
+  summary:
+    'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC) · Pennsylvania Home Improvement Contractor PA225060',
+} as const;
+
+/**
+ * The states where Real Elite holds a contractor license or registration.
+ * Use these wherever copy says where the company is licensed, so West
+ * Virginia, Virginia and Pennsylvania always appear together. Maryland is a
+ * service area, not a licensed state, and is never named here.
+ */
+export const LICENSED_STATES = {
+  short: 'WV, VA and PA',
+  long: 'West Virginia, Virginia and Pennsylvania',
 } as const;
 
 /**

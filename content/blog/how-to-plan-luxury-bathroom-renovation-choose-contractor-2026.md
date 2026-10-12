@@ -110,6 +110,6 @@ If you're planning a high-end bathroom in **Loudoun County, Ashburn, Leesburg, F
 
 **Call us at (681) 534-5515** or [request a free estimate](/contact#estimate). Learn more about our [bathroom remodeling services](/services/bathrooms) and [our process](/process).
 
-Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured across WV and VA.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. Real Elite Contracting is licensed and insured in WV, VA and PA.
 
 *Photography in this article is for design inspiration.*

@@ -1,4 +1,5 @@
 import type { ServiceArea } from '@/lib/constants';
+import { paHicRegistrationLine } from '@/lib/claims';
 
 const WASHINGTON_COUNTY_MD = new Set(['Hagerstown', 'Boonsboro', 'Sharpsburg', 'Williamsport']);
 
@@ -31,7 +32,9 @@ export function trustBullets(city: string, serviceTitle: string, state: string):
         ? mdServingLine(city)
         : state === 'VA'
           ? 'Virginia Class A Contractor 2705198604 (HIC) — residential home improvement.'
-          : 'WV Contractor License WV062432.',
+          : state === 'PA'
+            ? paHicRegistrationLine()
+            : 'WV Contractor License WV062432.',
       claims: [],
     },
   ];

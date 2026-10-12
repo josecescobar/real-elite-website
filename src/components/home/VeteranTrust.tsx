@@ -17,7 +17,7 @@ const FACTS = [
   },
   {
     title: 'Licensed for the size of the work',
-    body: 'Virginia Class A (2705198604) for projects over $150,000, West Virginia licence WV062432, and registration in SAM.gov. The paperwork a Loudoun HOA, a lender or a property manager will ask for is ready before they ask.',
+    body: 'Virginia Class A (2705198604) for projects over $150,000, West Virginia licence WV062432, Pennsylvania home improvement registration PA225060, and registration in SAM.gov. The paperwork a Loudoun HOA, a lender or a property manager will ask for is ready before they ask.',
   },
 ] as const;
 

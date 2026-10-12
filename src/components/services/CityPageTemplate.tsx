@@ -43,7 +43,7 @@ import { LOUDOUN_PERMIT_GUIDE, isLoudounArea, loudounTownGuides } from '@/lib/lo
 import { isVerifiedWorkImage } from '@/lib/stock-images';
 import ProofGallery from '@/components/services/ProofGallery';
 import { proofPhotosForArea, proofReviewsFor, reviewsMatchCity } from '@/lib/proof-package';
-import { paHicRegistrationLine } from '@/lib/claims';
+import { CONTRACTOR_LICENSES, paHicRegistrationLine } from '@/lib/claims';
 import { mdServingLine } from '@/lib/trust-bullets';
 
 /**
@@ -110,7 +110,7 @@ export default function CityPageTemplate({ city, data }: Props) {
       ? mdServingLine(city.city)
       : city.state === 'PA'
         ? paHicRegistrationLine()
-        : 'WV Contractor License WV062432 · Virginia Class A Contractor 2705198604 (HIC).',
+        : `${CONTRACTOR_LICENSES.summary}.`,
   ];
 
   // Consultation on the premium counties; the free estimate on the Panhandle
@@ -181,8 +181,8 @@ export default function CityPageTemplate({ city, data }: Props) {
           ? `Yes. Real Elite Contracting works across ${city.city}, including ${children
               .slice(0, 5)
               .map((a) => a.city)
-              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia and Virginia.`
-          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia and Virginia.${city.state === 'PA' ? ` ${paHicRegistrationLine()}` : ''}`,
+              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Virginia and Pennsylvania.`
+          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Virginia and Pennsylvania.${city.state === 'PA' ? ` ${paHicRegistrationLine()}` : ''}`,
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,

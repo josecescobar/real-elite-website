@@ -137,7 +137,7 @@ const FAQ_ITEMS = [
   {
     question: 'How much money does the bundle actually save me?',
     answer:
-      'Bundling saves 5–8% versus the sum of separately quoted projects. The savings come from shared mobilization, fewer separate estimate cycles, and one consolidated permit pull rather than three. You get the discount with no quality compromise — both companies are family-operated, and licensed/insured across the tri-state.',
+      'Bundling saves 5–8% versus the sum of separately quoted projects. The savings come from shared mobilization, fewer separate estimate cycles, and one consolidated permit pull rather than three. You get the discount with no quality compromise — both companies are family-operated, and Real Elite Contracting is licensed and insured in West Virginia, Virginia and Pennsylvania.',
   },
   {
     question: 'Who is A+ Paving & Landscaping?',
