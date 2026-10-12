@@ -884,7 +884,7 @@ const MONTGOMERY: CountyPermitGuide = {
       job: 'Deck',
       verdict: 'required',
       summary:
-        'Required. Simple single-level decks with no roof, screen, or hot tub can use the county’s Deck Details instead of custom plans. An electrical permit may be needed for lighting or a hot tub.',
+        'Required. A single-level, single-span deck with no roof, screened porch, hot tub, or other added loads can use the county’s Deck Details instead of custom plans. An electrical permit may be needed for lighting or a hot tub.',
       sources: ['mc-decks'],
       service: 'decks',
     },
@@ -976,7 +976,7 @@ const MONTGOMERY: CountyPermitGuide = {
     {
       question: 'Do I need a permit to build a deck in Montgomery County, MD?',
       answer:
-        'Yes. DPS requires a building permit for a deck. Simple single-level decks can use the county’s Deck Details instead of custom plans.',
+        'Yes. DPS requires a building permit for a deck. A single-level, single-span deck with no roof, screen, hot tub, or other added loads can use the county’s Deck Details instead of custom plans.',
     },
     {
       question: 'Do I need a permit to replace my roof in Montgomery County?',
