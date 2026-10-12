@@ -385,7 +385,7 @@ export const PAVING_SERVICES: PavingService[] = [
       'Specs engineered for real commercial traffic loads',
       'Phased scheduling that keeps your site operating',
       'ADA-compliant layout and striping',
-      'WV, VA and PA contractor licenses; discuss paving scope and contractor credentials before work begins.',
+      'WV Contractor License WV062432. Virginia Class A 2705198604 (HIC) and PA HIC PA225060 cover residential home improvement only; confirm the license for a commercial site before work begins.',
     ],
     investment: {
       range: 'Detailed written proposal after a site assessment',
