@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { ALL_SERVICE_AREAS, SERVICES } from '@/lib/constants';
 import { getAllPosts } from '@/lib/blog';
+import { BATCH2_PERMIT_GUIDES } from '@/lib/permit-guides-batch2';
 import {
   PERMIT_GUIDES,
   PERMIT_SOURCES,
   getPermitGuide,
+  plainPermitText,
   permitGuidePath,
   serviceLinkFor,
   sourceById,
@@ -20,14 +22,14 @@ function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
     guide.seoTitle,
     guide.description,
     guide.cardBlurb,
-    guide.answer,
-    guide.jurisdictionIntro,
+    plainPermitText(guide.answer),
+    plainPermitText(guide.jurisdictionIntro),
     ...guide.issuers.flatMap((i) => [i.name, i.covers]),
     ...guide.jobs.flatMap((j) => [j.job, j.summary]),
     ...guide.steps.map((s) => s.text),
     guide.hoa.text,
     guide.historic.text,
-    ...guide.faqs.flatMap((f) => [f.question, f.answer]),
+    ...guide.faqs.flatMap((f) => [f.question, plainPermitText(f.answer)]),
   ].join('\n');
 }
 
@@ -107,6 +109,23 @@ describe('permit guides', () => {
       for (const s of g.steps) expect(s.sources.length, `${g.slug}: ${s.text}`).toBeGreaterThan(0);
       expect(g.jobs.length).toBeGreaterThanOrEqual(6);
       expect(g.faqs.length).toBeGreaterThanOrEqual(3);
+    }
+  });
+
+  it('gives every batch-2 lead, intro, and FAQ an inline official https source listed on its page', () => {
+    for (const guide of BATCH2_PERMIT_GUIDES) {
+      for (const block of [guide.answer, guide.jurisdictionIntro, ...guide.faqs.map((f) => f.answer)]) {
+        expect(typeof block, guide.slug).not.toBe('string');
+        if (typeof block === 'string') continue;
+        expect(block.length, guide.slug).toBeGreaterThan(0);
+        expect(block.flatMap((part) => part.sources).length, guide.slug).toBeGreaterThan(0);
+        for (const part of block) {
+          for (const id of part.sources) {
+            expect(guide.sourceIds, `${guide.slug}: ${id}`).toContain(id);
+            expect(sourceById(id)?.url, `${guide.slug}: ${id}`).toMatch(/^https:\/\//);
+          }
+        }
+      }
     }
   });
 
