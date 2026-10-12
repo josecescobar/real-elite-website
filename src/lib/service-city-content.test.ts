@@ -769,14 +769,17 @@ describe('comboPublishesPricing', () => {
         'additions-clifton-va',
         'additions-dunn-loring-va',
         'additions-fairfax-station-va',
+        'additions-fort-hunt-va',
         'additions-oakton-va',
         'decks-clifton-va',
         'decks-dunn-loring-va',
         'decks-fairfax-station-va',
+        'decks-fort-hunt-va',
         'decks-oakton-va',
         'outdoor-living-clifton-va',
         'outdoor-living-dunn-loring-va',
         'outdoor-living-fairfax-station-va',
+        'outdoor-living-fort-hunt-va',
         'outdoor-living-oakton-va',
         'bathrooms-silver-spring-md',
         'bathrooms-aspen-hill-md',
@@ -884,11 +887,11 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/253 premium service combos: 239 after round 13, plus 14 round 14
-    // additions, decks, and outdoor-living pages. All clean.
+    // 0/256 premium service combos: 239 after round 13, plus 14 round 14
+    // and three Fort Hunt pages in round 15. All clean.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 253 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 256 });
   });
 
   /**
@@ -1436,6 +1439,7 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-chevy-chase-md',
       'outdoor-living-arlington-va',
       'outdoor-living-falls-church-va',
+      'outdoor-living-fort-hunt-va',
       'outdoor-living-clarksville-md',
       'outdoor-living-ellicott-city-md',
       'outdoor-living-north-potomac-md',
