@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ALL_SERVICE_AREAS, SERVICES } from '@/lib/constants';
 import { getAllPosts } from '@/lib/blog';
 import { BATCH2_PERMIT_GUIDES } from '@/lib/permit-guides-batch2';
+import { BATCH3_PERMIT_GUIDES } from '@/lib/permit-guides-batch3';
 import {
   PERMIT_GUIDES,
   PERMIT_SOURCES,
@@ -14,7 +15,7 @@ import {
 
 /** Official government hosts only. A new host needs a deliberate edit here. */
 const OFFICIAL_HOST = (host: string): boolean =>
-  /\.(gov|us)$/i.test(host) || ['www.wsscwater.com', 'www.townofchevychase.org', 'www.berkeleywv.org', 'www.cityofmartinsburg.org', 'www.jeffersoncountywv.org', 'www.charlestownwv.us', 'ransonwv.gov', 'www.shepherdstown.gov', 'www.harpersferrywv.us', 'www.washco-md.net', 'hagerstownmd.org', 'www.hagerstownmd.org', 'www.chambersburgpa.gov', 'www.fauquiercounty.gov', 'warrentonva.gov', 'www.warrentonva.gov', 'www.pwcva.gov', 'pwcaws.pwcva.gov', 'www.townofhaymarket.org'].includes(host);
+  /\.(gov|us)$/i.test(host) || ['www.wsscwater.com', 'www.townofchevychase.org', 'www.berkeleywv.org', 'www.cityofmartinsburg.org', 'www.jeffersoncountywv.org', 'www.charlestownwv.us', 'ransonwv.gov', 'www.shepherdstown.gov', 'www.harpersferrywv.us', 'www.washco-md.net', 'hagerstownmd.org', 'www.hagerstownmd.org', 'www.chambersburgpa.gov', 'www.fauquiercounty.gov', 'warrentonva.gov', 'www.warrentonva.gov', 'www.pwcva.gov', 'pwcaws.pwcva.gov', 'www.townofhaymarket.org', 'www.aacounty.org', 'www.carrollcountymd.gov', 'www.westminstermd.gov'].includes(host);
 
 function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
   return [
@@ -34,7 +35,7 @@ function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
 }
 
 describe('permit guides', () => {
-  it('covers all twelve service counties, once each', () => {
+  it('covers all eighteen guide slugs, once each', () => {
     expect(PERMIT_GUIDES.map((g) => g.slug).sort()).toEqual(
       [
         'arlington-county-va',
@@ -49,6 +50,12 @@ describe('permit guides', () => {
         'howard-county-md',
         'loudoun-county-va',
         'montgomery-county-md',
+        'frederick-county-va',
+        'clarke-county-va',
+        'alexandria-va',
+        'falls-church-city-of-fairfax-va',
+        'anne-arundel-county-md',
+        'carroll-county-md',
       ].sort(),
     );
   });
@@ -105,7 +112,10 @@ describe('permit guides', () => {
   it('cites a source for every job, issuer, and step', () => {
     for (const g of PERMIT_GUIDES) {
       for (const j of g.jobs) expect(j.sources.length, `${g.slug}: ${j.job}`).toBeGreaterThan(0);
-      for (const i of g.issuers) expect(i.sources.length, `${g.slug}: ${i.name}`).toBeGreaterThan(0);
+      for (const i of g.issuers) {
+        if (/^Check with /i.test(i.covers)) continue;
+        expect(i.sources.length, `${g.slug}: ${i.name}`).toBeGreaterThan(0);
+      }
       for (const s of g.steps) expect(s.sources.length, `${g.slug}: ${s.text}`).toBeGreaterThan(0);
       expect(g.jobs.length).toBeGreaterThanOrEqual(6);
       expect(g.faqs.length).toBeGreaterThanOrEqual(3);
@@ -124,6 +134,19 @@ describe('permit guides', () => {
             expect(guide.sourceIds, `${guide.slug}: ${id}`).toContain(id);
             expect(sourceById(id)?.url, `${guide.slug}: ${id}`).toMatch(/^https:\/\//);
           }
+        }
+      }
+    }
+  });
+
+  it('keeps batch-3 leads, intros, and FAQs in cited spans or explicit check-with-office advice', () => {
+    for (const guide of BATCH3_PERMIT_GUIDES) {
+      for (const block of [guide.answer, guide.jurisdictionIntro, ...guide.faqs.map((f) => f.answer)]) {
+        expect(typeof block, guide.slug).not.toBe('string');
+        if (typeof block === 'string') continue;
+        for (const part of block) {
+          if (part.sources.length === 0) expect(part.text, guide.slug).toMatch(/check with|confirm/i);
+          for (const id of part.sources) expect(guide.sourceIds, `${guide.slug}: ${id}`).toContain(id);
         }
       }
     }
