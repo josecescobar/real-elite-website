@@ -29,6 +29,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
 import TrackedLink from '@/components/analytics/TrackedLink';
+import PermitGuideLink from '@/components/PermitGuideLink';
 
 export const dynamicParams = false;
 
@@ -203,6 +204,7 @@ export default async function TownServiceRoute({
                   </p>
                 ))}
               </div>
+              <PermitGuideLink areaSlug={page.townSlug} />
             </div>
 
             <div>

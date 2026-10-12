@@ -37,6 +37,7 @@ import { primaryCtaForService, type ConsultationProjectType } from '@/lib/cta-in
 import PhoneLink from '@/components/analytics/PhoneLink';
 import { selectTrustBullets } from '@/lib/trust-bullets';
 import ProofGallery from '@/components/services/ProofGallery';
+import PermitGuideLink from '@/components/PermitGuideLink';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import {
   proofPhotosForService,
@@ -382,6 +383,7 @@ export default async function ServiceCityPage({
                     </p>
                   ))}
                 </div>
+                <PermitGuideLink areaSlug={cityData.slug} />
                 {content.notes && content.notes.length > 0 && (
                   <div className="mt-8 space-y-4">
                     {content.notes.map((note) => (
