@@ -4,22 +4,13 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import GalleryGrid from '@/components/shared/GalleryGrid';
 import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import ProjectCard from '@/components/projects/ProjectCard';
-import { buildMetadata } from '@/lib/seo';
-import { BUSINESS, SERVICES } from '@/lib/constants';
+import { SERVICES } from '@/lib/constants';
 import {
   getAllProjects,
   getProjectsByService,
   getProjectsByCity,
   resolveCity,
 } from '@/lib/projects';
-
-export const projectsMetadata = buildMetadata({
-  path: '/projects',
-  title: `Our Projects | ${BUSINESS.name}`,
-  description:
-    'Explore remodeling and exterior photography. Detailed case studies are published after project facts and permissions are confirmed.',
-  keywords: ['contractor projects', 'before and after', 'remodeling portfolio', 'Eastern Panhandle'],
-});
 
 const SERVICE_LABEL = new Map<string, string>(SERVICES.map((s) => [s.slug, s.title]));
 

@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Star, ArrowRight } from 'lucide-react';
 import { BUSINESS, SOCIAL_PROOF, SERVICES } from '@/lib/constants';
@@ -14,25 +13,6 @@ import {
   getReviewedServiceSlugs,
 } from '@/lib/reviews';
 import PhoneLink from '@/components/analytics/PhoneLink';
-import { buildMetadata } from '@/lib/seo';
-
-export const reviewsMetadata: Metadata = {
-  ...buildMetadata({
-    path: '/reviews',
-    title: `Review Center | ${BUSINESS.name}`,
-    description:
-      'Reviews from homeowners we have actually worked for — linked to the work behind them.',
-    keywords: [
-      'customer reviews',
-      'testimonials',
-      'contractor reviews',
-      'Real Elite Contracting reviews',
-      'Eastern Panhandle reviews',
-    ],
-  }),
-  description:
-    'Reviews from homeowners across the WV–MD–VA region — many linked to the actual project behind them. Family-run, licensed, and insured.',
-};
 
 const SERVICE_LABEL = new Map<string, string>(SERVICES.map((s) => [s.slug, s.title]));
 
