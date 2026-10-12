@@ -370,7 +370,7 @@ const FAIRFAX: CountyPermitGuide = {
     {
       name: 'Town of Clifton',
       covers:
-        'Exterior projects need Town approval and an Architectural Review Board certificate before the county will issue the building permit. Interior-only work needs a letter from the town clerk.',
+        'The Town lists a town use permit, an Architectural Review Board certificate, and a signature from the mayor or a designated representative before the county will issue the building permit. Confirm with the town what your project needs.',
       sources: ['clifton-faq', 'ffx-addition'],
     },
   ],
@@ -662,7 +662,7 @@ const ARLINGTON: CountyPermitGuide = {
     },
   ],
   sourceIds: ['arl-residential', 'arl-review', 'arl-coa', 'arl-affidavit', 'va-usbc-108'],
-  areaSlugs: ['arlington-va', 'falls-church-va', 'mclean-va'],
+  areaSlugs: ['arlington-va'],
   relatedPosts: [],
 };
 
