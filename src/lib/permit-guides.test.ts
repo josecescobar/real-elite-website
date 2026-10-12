@@ -129,14 +129,13 @@ describe('permit guides', () => {
     }
   });
 
-  it('cites each factual span in the Martinsburg and Fauquier lead and FAQ copy', () => {
+  it('cites Martinsburg facts and keeps Fauquier county advice separate from Warrenton sources', () => {
     const berkeley = BATCH2_PERMIT_GUIDES.find((guide) => guide.slug === 'berkeley-county-wv');
     const fauquier = BATCH2_PERMIT_GUIDES.find((guide) => guide.slug === 'fauquier-county-va');
     expect(berkeley).toBeDefined();
     expect(fauquier).toBeDefined();
     for (const [guide, blocks] of [
       [berkeley!, [berkeley!.answer, berkeley!.jurisdictionIntro, ...berkeley!.faqs.map((faq) => faq.answer)]],
-      [fauquier!, [fauquier!.answer, fauquier!.jurisdictionIntro, ...fauquier!.faqs.map((faq) => faq.answer)]],
     ] as const) {
       for (const block of blocks) {
         expect(typeof block).not.toBe('string');
@@ -148,6 +147,29 @@ describe('permit guides', () => {
             expect(sourceById(id)?.url).toMatch(/^https:\/\//);
           }
         }
+      }
+    }
+    for (const block of [fauquier!.answer, fauquier!.jurisdictionIntro, ...fauquier!.faqs.map((faq) => faq.answer)]) {
+      expect(typeof block).not.toBe('string');
+      if (typeof block === 'string') continue;
+      for (const part of block) {
+        if (part.text.includes('Check with the county') || part.text.includes('check with the county')) {
+          expect(part.sources, part.text).toEqual([]);
+        } else {
+          expect(part.sources.length, part.text).toBeGreaterThan(0);
+        }
+      }
+    }
+    const townCited = [
+      ...(typeof fauquier!.answer === 'string' ? [] : fauquier!.answer),
+      ...(typeof fauquier!.jurisdictionIntro === 'string' ? [] : fauquier!.jurisdictionIntro),
+      ...fauquier!.jobs.map((job) => ({ text: job.summary, sources: job.sources })),
+      ...fauquier!.steps,
+      ...fauquier!.faqs.flatMap((faq) => typeof faq.answer === 'string' ? [] : faq.answer),
+    ];
+    for (const part of townCited) {
+      if (part.sources.some((id) => id.startsWith('warrenton-'))) {
+        expect(part.text, part.text).not.toMatch(/Fauquier County|county parcel|check with the county/i);
       }
     }
   });

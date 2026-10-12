@@ -149,7 +149,7 @@ export default async function PermitGuidePage({ params }: Props) {
             {guide.h1}
           </h1>
           <p className="text-charcoal-300 text-sm mt-6">
-            Checked against official {guide.county} sources · Updated{' '}
+            Checked against official {guide.slug === 'fauquier-county-va' ? 'Town of Warrenton' : guide.county} sources · Updated{' '}
             <time dateTime={guide.updated}>{formatDate(guide.updated)}</time>
           </p>
         </Container>
@@ -226,7 +226,7 @@ export default async function PermitGuidePage({ params }: Props) {
           {/* Steps */}
           <section aria-labelledby="steps" className="mb-14">
             <h2 id="steps" className="font-heading text-2xl sm:text-3xl font-extrabold text-navy-800 mb-5">
-              The typical permit steps in {guide.county}
+              {guide.slug === 'fauquier-county-va' ? 'The Town of Warrenton permit path' : `The typical permit steps in ${guide.county}`}
             </h2>
             <ol className="space-y-4 list-decimal pl-6 marker:font-bold marker:text-brand-red">
               {guide.steps.map((step) => (
