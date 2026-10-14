@@ -1208,8 +1208,8 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   },
   'vienna-va': {
     description:
-      'Vienna is an incorporated town in Fairfax County. A Vienna mailing address is not always inside town limits: Oakton and Dunn Loring are separate communities. Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. ZIPs 22180, 22181, and 22182 cover the town and its edges: mid-century houses on tree-lined streets, later colonials, and newer infill along Maple Avenue and Hunter Mill Road. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
-    neighborhoods: ['Maple Avenue', 'Hunter Mill Road', 'ZIP 22180', 'ZIP 22181', 'ZIP 22182', 'Town limits'],
+      'Vienna is an incorporated town in Fairfax County. A Vienna mailing address is not always inside town limits: Oakton and Dunn Loring are separate communities. Inside town, Fairfax County Land Development Services is the building official. The town reviews zoning and site plans, including grading, against the town code. ZIP 22180 and ZIP 22181 cover the town center and Maple Avenue. ZIP 22182 is the Wolf Trap side, west of that center, with mid-century houses, later colonials, and newer infill along Hunter Mill Road. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 to I-66 or Route 123. Real Elite remodels kitchens, primary suites, finished lower levels, and additions.',
+    neighborhoods: ['Maple Avenue', 'Hunter Mill Road', 'ZIP 22180', 'ZIP 22181', 'ZIP 22182', 'Wolf Trap', 'Town limits'],
     marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
     nearbySlugs: ['oakton-va', 'dunn-loring-va', 'mclean-va', 'falls-church-va'],
   },
