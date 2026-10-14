@@ -1,22 +1,22 @@
 ---
 title: "Fairfax County Fast Track Review for a Basement, Deck, or Small Addition"
 seoTitle: "Fairfax Fast Track Basement Review"
-seoDescription: "Fairfax County moved eligible Fast Track plan review from five business days to one. Basements, decks, and small additions. Read October 14, 2026."
+seoDescription: "Fairfax County reports working to cut eligible Fast Track plan review from five business days to one. Basements, decks, and small additions."
 date: "2026-10-14"
 excerpt: "What Fairfax County says about Fast Track plan review for an eligible finished basement, deck, or one-story addition of 500 square feet or less, and what that one-day figure is not."
 slug: "fairfax-county-fast-track-basement-review"
 featuredImage: "/images/deck-permit-blueprint.jpg"
 category: "Remodeling"
 type: "permit-guide"
-answer: "Fairfax County says residential Fast Track plan review for a qualifying project dropped from five business days to one business day. That covers eligible finished basements, decks, and one-story additions of 500 square feet or less. It is a county review target, not a promise that every basement permit is reviewed in one business day. Confirm the project with county staff before you file."
+answer: "Fairfax County reports that it is working to cut residential Fast Track plan review for a qualifying project from five business days to one business day. That covers eligible finished basements, decks, and one-story additions of 500 square feet or less. It is a county review target, not a promise that every basement permit is reviewed in one business day. Confirm the project with county staff before you file."
 author: "Real Elite Contracting Team"
 ---
 
 Fairfax County describes a shorter plan-review target for certain residential jobs. The note is [Fast Tracked Residential Permit Processing](https://www.fairfaxcounty.gov/landdevelopment/fast-tracked-residential-permit-processing), dated April 30, 2026. Real Elite read it on October 14, 2026.
 
-## What the county changed
+## What the county is changing
 
-The county says it shortened residential Fast Track plan review from a five-business-day timeline to a one-business-day timeline. That statement is about projects the county has already treated as eligible. It is not a promise that every basement permit in Fairfax County is reviewed in one business day.
+The county says its latest efforts focus on cutting residential Fast Track plan review from a five-business-day timeline to a one-business-day timeline. That is a stated goal for projects the county treats as eligible, not a finished result. It is not a promise that every basement permit in Fairfax County is reviewed in one business day.
 
 ## Which projects the county names
 
