@@ -23,7 +23,7 @@ import {
   servicePillarHref,
 } from '@/lib/constants';
 import { TITLE_MAX } from '@/lib/seo';
-import { getAllPosts } from '@/lib/blog';
+import { getAllPosts, getPostBySlug } from '@/lib/blog';
 
 const SERVICE_SLUGS = new Set<string>(SERVICES.map((s) => s.slug));
 const AREA_SLUGS = new Set<string>(ALL_SERVICE_AREAS.map((a) => a.slug));
@@ -823,6 +823,12 @@ describe('comboPublishesPricing', () => {
         'outdoor-living-warrenton-va',
         'additions-purcellville-va',
         'decks-purcellville-va',
+        // Round 17 pages with no job-range dollar. Census medians over $25,000
+        // stay off this list because they suppress the generic tiers.
+        'additions-alexandria-va',
+        'decks-cabin-john-md',
+        'decks-garrett-park-md',
+        'decks-west-friendship-md',
       ].sort()
     );
   });
@@ -887,11 +893,12 @@ describe('unconfirmedClaimIdsInCombo', () => {
       if (unconfirmedClaimIdsInCombo(service, area.slug).length > 0) carrying += 1;
       else clean += 1;
     }
-    // 0/256 premium service combos: 239 after round 13, plus 14 round 14
+    // 0/267 premium service combos: 239 after round 13, plus 14 round 14
     // and three Fort Hunt pages in round 15. All clean.
+    // Round 17 adds 11 clean pages for Cabin John, Garrett Park, West Friendship, and Alexandria.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 256 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 267 });
   });
 
   /**
@@ -1444,6 +1451,9 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-ellicott-city-md',
       'outdoor-living-north-potomac-md',
       'outdoor-living-warrenton-va',
+      'outdoor-living-cabin-john-md',
+      'outdoor-living-garrett-park-md',
+      'outdoor-living-west-friendship-md',
     ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
@@ -1572,6 +1582,17 @@ describe('REA-2385 round 6 Tier A towns', () => {
       'additions-chevy-chase-md',
       'decks-chevy-chase-md',
       'outdoor-living-chevy-chase-md',
+      // Round 17 adds additions, decks, and outdoor living for Cabin John,
+      // Garrett Park, and West Friendship.
+      'additions-cabin-john-md',
+      'decks-cabin-john-md',
+      'outdoor-living-cabin-john-md',
+      'additions-garrett-park-md',
+      'decks-garrett-park-md',
+      'outdoor-living-garrett-park-md',
+      'additions-west-friendship-md',
+      'decks-west-friendship-md',
+      'outdoor-living-west-friendship-md',
     ]);
     for (const city of [
       'garrett-park-md',
@@ -2633,7 +2654,7 @@ function round14PermitSentences(_constantsSrc: string, contentSrc: string): stri
   const services = sliceBetween(
     contentSrc,
     '  // ROUND14_SERVICES_START',
-    '\n};\n\n/**\n * The most specific published URL'
+    '  // ROUND17_SERVICES_START'
   );
   return collectPermitSentences('', services);
 }
@@ -3052,5 +3073,117 @@ describe('REA-2620 round 14 Howard, Loudoun, Fauquier, and North Potomac gaps', 
       .filter(([, count]) => count > 1)
       .map(([para, count]) => `${count}x ${para.slice(0, 80)}`);
     expect(dupes).toEqual([]);
+  });
+});
+
+describe('REA-2989 round 17 Cabin John, Garrett Park, West Friendship, and Alexandria', () => {
+  const PAGES = [
+    ['additions', 'cabin-john-md', 'Home Additions in Cabin John, MD'],
+    ['decks', 'cabin-john-md', 'Decks in Cabin John, MD'],
+    ['outdoor-living', 'cabin-john-md', 'Outdoor Living in Cabin John, MD'],
+    ['additions', 'garrett-park-md', 'Home Additions in Garrett Park, MD'],
+    ['decks', 'garrett-park-md', 'Decks in Garrett Park, MD'],
+    ['outdoor-living', 'garrett-park-md', 'Outdoor Living in Garrett Park, MD'],
+    ['additions', 'west-friendship-md', 'Home Additions in West Friendship, MD'],
+    ['decks', 'west-friendship-md', 'Decks in West Friendship, MD'],
+    ['outdoor-living', 'west-friendship-md', 'Outdoor Living in West Friendship, MD'],
+    ['additions', 'alexandria-va', 'Home Additions in Alexandria, VA'],
+    ['decks', 'alexandria-va', 'Decks in Alexandria, VA'],
+  ] as const;
+
+  function entryStrings(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
+    return [
+      entry?.h1,
+      entry?.metaTitle,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ...(entry?.sections ?? []).flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.links ?? []).map((link) => link.label),
+      ]),
+    ].filter((part): part is string => Boolean(part));
+  }
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.metaDescription!.length).toBeLessThanOrEqual(160);
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = entryStrings(entry).join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|veteran-owned|brambleton|separately licensed|—|\bACS\b|\bCDP\b/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 11 openings and gives each a unique metaTitle', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('publishes the 11 urls and does not add Alexandria outdoor living or a retired combo', () => {
+    expect(PAGES).toHaveLength(11);
+    expect(CONTENT).not.toHaveProperty('outdoor-living-alexandria-va');
+    expect(CONTENT).not.toHaveProperty('additions-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+    expect(CONTENT).not.toHaveProperty('additions-frederick-va');
+    expect(getPostBySlug('fairfax-county-fast-track-basement-review')?.date).toBe('2026-10-14');
+  });
+
+  it('does not repeat a sentence from these pages or from any earlier combo', () => {
+    const splitSentences = (text: string) =>
+      text
+        .split(/(?<=[.!?])\s+/)
+        .map((sentence) => sentence.trim())
+        .filter((sentence) => sentence.length >= 40);
+
+    const fresh = new Map<string, string>();
+    for (const [service, city] of PAGES) {
+      const key = `${service}-${city}` as keyof typeof CONTENT;
+      for (const sentence of splitSentences(entryStrings(CONTENT[key]).join(' '))) {
+        const prior = fresh.get(sentence);
+        expect(prior, sentence).toBeUndefined();
+        fresh.set(sentence, key);
+      }
+    }
+
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      if (PAGES.some(([service, city]) => key === `${service}-${city}`)) continue;
+      for (const sentence of splitSentences(entryStrings(entry).join(' '))) {
+        expect(fresh.has(sentence), `${sentence} also in ${key}`).toBe(false);
+      }
+    }
+  });
+
+  it('keeps West Friendship census figures labeled as ZIP Code Tabulation Area 21794', () => {
+    for (const service of ['additions', 'decks', 'outdoor-living'] as const) {
+      const text = entryStrings(CONTENT[`${service}-west-friendship-md`]).join('\n');
+      expect(text).toMatch(/ZIP Code Tabulation Area 21794/);
+      expect(text).toMatch(/not a town|ZIP-tabulation figure/i);
+    }
   });
 });

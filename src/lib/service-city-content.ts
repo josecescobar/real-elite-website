@@ -8685,6 +8685,430 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'This Purcellville deck is priced with a free written estimate after a site walk.',
     ],
   },
+
+  // ROUND17_SERVICES_START
+  // Cabin John, Garrett Park, West Friendship, and Alexandria exterior pages.
+  // Alexandria outdoor living is not in this round.
+  'additions-cabin-john-md': {
+    h1: 'Home Additions in Cabin John, MD',
+    metaTitle: 'Cabin John MD Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in Cabin John, MD. County DPS reviews the MacArthur Boulevard footprint, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Cabin John?',
+        answer:
+          'A Cabin John addition on a Montgomery County parcel is filed with the Department of Permitting Services. Cabin John is absent from the municipalities that keep a separate building counter, so there is no town permit step in front of the county.',
+      },
+      {
+        question: 'Who handles wiring and plumbing on a Cabin John addition?',
+        answer:
+          'Licensed electricians, plumbers, and HVAC contractors do that work. Real Elite coordinates them and does not install electrical, plumbing, or mechanical systems on the addition.',
+      },
+    ],
+    paragraphs: [
+      'A Cabin John addition is planned against the narrow lots along MacArthur Boulevard, where the house already sits close to the road and the C&O Canal.',
+      'The Census Bureau American Community Survey 2024 five-year estimates for the Cabin John census place show a median owner-occupied value of $1,312,900 and a median year built of 1977. Confirm the parcel is in Montgomery County before drawings are treated as final. Department of Permitting Services is the building office for that parcel.',
+      'Wiring, supply piping, and mechanical equipment on this Cabin John addition stay with licensed trades Real Elite schedules. Real Elite does not install those systems. The Cabin John addition price is a free written estimate after a site walk of the MacArthur Boulevard house.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'County permit',
+        paragraphs: [
+          'Because Cabin John is not an incorporated city, the addition application does not start at a town hall. Montgomery County Department of Permitting Services takes the building permit for the parcel.',
+        ],
+        links: [
+          { href: '/service-areas/cabin-john-md', label: 'Cabin John service area' },
+          { href: '/services/decks/cabin-john-md', label: 'Cabin John decks' },
+          { href: '/services/outdoor-living/cabin-john-md', label: 'Cabin John outdoor living' },
+        ],
+      },
+    ],
+  },
+  'decks-cabin-john-md': {
+    h1: 'Decks in Cabin John, MD',
+    metaTitle: 'Cabin John MD Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in Cabin John, MD. The county building office covers this unincorporated community, priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Where is a Cabin John deck permit filed?',
+        answer:
+          'On a Montgomery County parcel in Cabin John, the building permit goes to the Department of Permitting Services. The community is not one of the municipalities with its own building permit.',
+      },
+      {
+        question: 'Does Real Elite wire a Cabin John deck?',
+        answer:
+          'No. If the deck design includes a light or an outlet, an electrician pulls that trade permit. Real Elite coordinates the electrician and does not do the electrical work.',
+      },
+    ],
+    paragraphs: [
+      'A Cabin John deck has to fit a yard squeezed between MacArthur Boulevard and the canal, often with a short run from the back door to the grade.',
+      'Owner-occupied housing in the Cabin John census place is 831 units, 95.1 percent of occupied homes, in the American Community Survey 2024 five-year estimates. The parcel is checked before a filing office is chosen. Montgomery County Department of Permitting Services is the office when the land is in the county and outside any municipality that runs its own counter.',
+      'Ledger height and stair location are marked on the house before lumber is ordered. Pricing for this Cabin John deck waits on a free written estimate after a site walk along the canal-side lot.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Deck filing',
+        paragraphs: [
+          'Cabin John deck paperwork is a county building permit, not a municipal building permit. Confirm the parcel sits in Montgomery County before the set is prepared.',
+        ],
+        links: [
+          { href: '/service-areas/cabin-john-md', label: 'Cabin John service area' },
+          { href: '/services/additions/cabin-john-md', label: 'Cabin John additions' },
+        ],
+      },
+    ],
+  },
+  'outdoor-living-cabin-john-md': {
+    h1: 'Outdoor Living in Cabin John, MD',
+    metaTitle: 'Cabin John MD Outdoor Living | Real Elite',
+    metaDescription:
+      'Outdoor living in Cabin John, MD. A MacArthur Boulevard porch is filed with county DPS, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who reviews a Cabin John screened porch?',
+        answer:
+          'Montgomery County Department of Permitting Services reviews a porch that changes the house on a Cabin John parcel. Cabin John does not keep a separate municipal building office.',
+      },
+      {
+        question: 'Who installs porch utilities in Cabin John?',
+        answer:
+          'A circuit, a moved hose bib, or a heater is coordinated with the licensed trade that holds that permit. Real Elite does not perform electrical, plumbing, or HVAC work on the porch.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Cabin John means a porch or a patio on a tight MacArthur Boulevard lot, not a wide Potomac acreage plan.',
+      'The margin of error on the Cabin John census-place median owner-occupied value is $171,340 in the American Community Survey 2024 five-year estimates, beside a median of $1,312,900. That figure describes the census place, not one house. The building office for the parcel is Montgomery County Department of Permitting Services.',
+      'Porch scope is settled on the house before materials are ordered. A Cabin John porch or patio is priced with a free written estimate after a site walk of the yard beside MacArthur Boulevard.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Porch filing',
+        paragraphs: [
+          'A Cabin John porch application follows the county parcel. No town building department sits between the house and Montgomery County Department of Permitting Services.',
+        ],
+        links: [
+          { href: '/service-areas/cabin-john-md', label: 'Cabin John service area' },
+          { href: '/services/decks/cabin-john-md', label: 'Cabin John decks' },
+        ],
+      },
+    ],
+  },
+  'additions-garrett-park-md': {
+    h1: 'Home Additions in Garrett Park, MD',
+    metaTitle: 'Garrett Park MD Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in Garrett Park, MD. The town building permit comes before the county permit, priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'What order do Garrett Park addition permits follow?',
+        answer:
+          'File the Town of Garrett Park building permit before the Montgomery County building permit. When the house is in the Garrett Park historic district, the county Historic Area Work Permit comes first. A county permit is still required for an alteration to a structure and for demolition.',
+      },
+      {
+        question: 'How long does the town say a Garrett Park addition filing takes?',
+        answer:
+          'The town says to plan on several weeks, and it says incomplete or incorrect submittals extend that processing time. That is the town note, not a Real Elite promise. Electrical, plumbing, and heating work is arranged with licensed trades. Real Elite does not perform that work.',
+      },
+    ],
+    paragraphs: [
+      'A Garrett Park addition has to fit a late-19th-century house on the town grid near the MARC station, where Kenilworth Avenue and Waverly Avenue still read as a village.',
+      'Garrett Park town, in the American Community Survey 2024 five-year estimates, has a median owner-occupied value of $1,005,700 and a median year built of 1952. The parcel decides the historic-district step. Town building permit first, then the Montgomery County building permit, and the county Historic Area Work Permit ahead of both when the house is in the historic district.',
+      'Room layout is walked on the house before the addition drawings are treated as final. This Garrett Park addition is priced through a free written estimate after a site walk of the village house.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Town then county',
+        paragraphs: [
+          'Garrett Park is an incorporated town. An addition is one of the project types the town names with decks and porches. The town application is not a substitute for the Montgomery County building permit.',
+        ],
+        links: [
+          { href: '/service-areas/garrett-park-md', label: 'Garrett Park service area' },
+          { href: '/services/decks/garrett-park-md', label: 'Garrett Park decks' },
+          { href: '/services/outdoor-living/garrett-park-md', label: 'Garrett Park outdoor living' },
+        ],
+      },
+    ],
+  },
+  'decks-garrett-park-md': {
+    h1: 'Decks in Garrett Park, MD',
+    metaTitle: 'Garrett Park MD Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in Garrett Park, MD. Town permit first, then the county, with a historic-district step when it applies, and a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Garrett Park deck need both a town permit and a county permit?',
+        answer:
+          'Yes. The town building permit is applied for before the Montgomery County building permit, and a deck is named in that town guidance. A house in the Garrett Park historic district also needs the county Historic Area Work Permit first.',
+      },
+      {
+        question: 'Is the town processing note a build schedule?',
+        answer:
+          'No. The town says applicants should allow several weeks, and that inadequate or incorrect information can stretch the timeline. Deck outlets, when the design includes them, are an electrician permit. Real Elite coordinates that trade and does not wire the deck.',
+      },
+    ],
+    paragraphs: [
+      'A Garrett Park deck is framed behind a small-lot town house, and the town permit guidance names decks along with additions and porches.',
+      'The Garrett Park town estimate in the 2024 five-year American Community Survey counts 313 owner-occupied units and an owner share of 96.6 percent. Confirm whether the parcel is inside the historic district before the packet order is set. Historic-district houses start with the county Historic Area Work Permit, then the town building permit, then Montgomery County.',
+      'The ledger and the stair are checked on the house before lumber is ordered. The Garrett Park deck figure comes from a free written estimate after a site walk on the town lot.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Deck permits',
+        paragraphs: [
+          'A Garrett Park deck does not skip the town filing just because Montgomery County also reviews it. The two permits are sequential, with the town application ahead of the county building permit.',
+        ],
+        links: [
+          { href: '/service-areas/garrett-park-md', label: 'Garrett Park service area' },
+          { href: '/services/additions/garrett-park-md', label: 'Garrett Park additions' },
+        ],
+      },
+    ],
+  },
+  'outdoor-living-garrett-park-md': {
+    h1: 'Outdoor Living in Garrett Park, MD',
+    metaTitle: 'Garrett Park MD Outdoor Living | Real Elite',
+    metaDescription:
+      'Outdoor living in Garrett Park, MD. Porches follow the town permit, then the county permit, priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a porch in Garrett Park?',
+        answer:
+          'The town names porches with additions and decks. Apply for the Town of Garrett Park building permit before the Montgomery County building permit. A historic-district house needs the county Historic Area Work Permit before those building permits.',
+      },
+      {
+        question: 'What does the town say about processing time?',
+        answer:
+          'Plan on several weeks, in the town guidance, and expect a longer wait if the submitted information is inadequate or incorrect. Porch lighting, plumbing, or a heater is handed to the licensed trade for that permit. Real Elite does not do electrical, plumbing, or HVAC work.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Garrett Park is usually a porch on an older town house, and the town groups porches with additions and decks when it describes work that needs permits.',
+      'The margin of error on Garrett Park town median owner-occupied value is $59,270 in the American Community Survey 2024 five-year estimates. The parcel is read for the historic district before any porch filing. County Historic Area Work Permit first when that district applies, town building permit next, Montgomery County building permit after the town application.',
+      'We settle the porch opening on the house before any material is ordered. A Garrett Park porch is priced on a free written estimate after a site walk beside the older town houses.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Porch permits',
+        paragraphs: [
+          'A Garrett Park porch still needs the Montgomery County permit when the work alters the structure. The town filing comes before that county building permit.',
+        ],
+        links: [
+          { href: '/service-areas/garrett-park-md', label: 'Garrett Park service area' },
+          { href: '/services/decks/garrett-park-md', label: 'Garrett Park decks' },
+        ],
+      },
+    ],
+  },
+  'additions-west-friendship-md': {
+    h1: 'Home Additions in West Friendship, MD',
+    metaTitle: 'West Friendship MD Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in West Friendship, MD. Howard County DILP reviews an unincorporated parcel, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in West Friendship?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits takes the building application. West Friendship is not an incorporated city, so there is no city building counter for this parcel.',
+      },
+      {
+        question: 'Are trade permits part of a West Friendship addition?',
+        answer:
+          'Electrical, plumbing, and mechanical work can need their own permits. Real Elite coordinates those licensed trades and does not perform the electrical, plumbing, or HVAC work.',
+      },
+    ],
+    paragraphs: [
+      'A West Friendship addition starts on a rural Howard County lot in the 21794 mailing area, west of the more suburban county and outside any incorporated city.',
+      'West Friendship is not a census place. The American Community Survey 2024 five-year estimates for ZIP Code Tabulation Area 21794 show a median owner-occupied value of $999,400 and a median year built of 1994. That is a ZIP-tabulation figure, not a town median. The parcel is confirmed in Howard County, and Department of Inspections, Licenses and Permits is the building office.',
+      'Foundation and side-yard room are measured before the addition footprint is locked. The West Friendship addition number is a free written estimate after a site walk of the rural Howard County lot.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Howard County filing',
+        paragraphs: [
+          'A West Friendship addition is a Howard County Department of Inspections, Licenses and Permits application. Do not treat the 21794 median as a town statistic.',
+        ],
+        links: [
+          { href: '/service-areas/west-friendship-md', label: 'West Friendship service area' },
+          { href: '/services/decks/west-friendship-md', label: 'West Friendship decks' },
+          { href: '/services/outdoor-living/west-friendship-md', label: 'West Friendship outdoor living' },
+        ],
+      },
+    ],
+  },
+  'decks-west-friendship-md': {
+    h1: 'Decks in West Friendship, MD',
+    metaTitle: 'West Friendship MD Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in West Friendship, MD. Howard County DILP is the building office for this unincorporated area, priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Where is a West Friendship deck permit filed?',
+        answer:
+          'With Howard County Department of Inspections, Licenses and Permits, after the parcel is confirmed in Howard County. West Friendship has no incorporated-city building department.',
+      },
+      {
+        question: 'Who wires a West Friendship deck?',
+        answer:
+          'An electrician Real Elite schedules, when the deck adds lighting or a circuit. Real Elite builds the deck and does not do the electrical work.',
+      },
+    ],
+    paragraphs: [
+      'A West Friendship deck is set on a detached-house lot along MD 32, in a community that is not an incorporated city.',
+      'ZIP Code Tabulation Area 21794, the geography used for West Friendship, has 657 owner-occupied units and a 99.5 percent owner share in the American Community Survey 2024 five-year estimates. Those counts are not a town census. Deck footing spots are marked on the lot, and the building permit goes to Howard County Department of Inspections, Licenses and Permits.',
+      'The ledger is checked on the house wall before lumber for this deck is ordered. A West Friendship deck is priced by a free written estimate after a site walk along the MD 32 corridor.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Deck office',
+        paragraphs: [
+          'Use the Howard County inspections department for a West Friendship deck. The mailing name does not create a separate city permit.',
+        ],
+        links: [
+          { href: '/service-areas/west-friendship-md', label: 'West Friendship service area' },
+          { href: '/services/additions/west-friendship-md', label: 'West Friendship additions' },
+        ],
+      },
+    ],
+  },
+  'outdoor-living-west-friendship-md': {
+    h1: 'Outdoor Living in West Friendship, MD',
+    metaTitle: 'West Friendship MD Outdoor Living | Real Elite',
+    metaDescription:
+      'Outdoor living in West Friendship, MD. A porch on a Howard County parcel is filed with DILP, priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who reviews a West Friendship porch?',
+        answer:
+          'Howard County Department of Inspections, Licenses and Permits, once the parcel is confirmed in Howard County. West Friendship is unincorporated, so the county department is the building office.',
+      },
+      {
+        question: 'Who handles porch utilities in West Friendship?',
+        answer:
+          'Mechanical, plumbing, and electrical scopes are licensed-trade work. Real Elite lines up those contractors and does not self-perform electrical, plumbing, or HVAC.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in West Friendship is a porch or a patio on a semi-rural Howard County lot, and the mailing name is not an incorporated city.',
+      'The margin of error on the ZIP Code Tabulation Area 21794 median owner-occupied value is $72,411 in the American Community Survey 2024 five-year estimates. Do not read that ZIP figure as a West Friendship town median. Porch drawings wait until the parcel is confirmed with Howard County Department of Inspections, Licenses and Permits.',
+      'The porch connection to the existing roof is settled before materials are ordered. The West Friendship porch or patio price is a free written estimate after a site walk of that Howard County parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Porch office',
+        paragraphs: [
+          'A West Friendship porch permit is a Howard County Department of Inspections, Licenses and Permits filing. Keep every West Friendship census number labeled as ZIP Code Tabulation Area 21794, not a town median.',
+        ],
+        links: [
+          { href: '/service-areas/west-friendship-md', label: 'West Friendship service area' },
+          { href: '/services/decks/west-friendship-md', label: 'West Friendship decks' },
+        ],
+      },
+    ],
+  },
+  'additions-alexandria-va': {
+    h1: 'Home Additions in Alexandria, VA',
+    metaTitle: 'Alexandria VA Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in Alexandria, VA. City Permit Center or Fairfax County, depending on the parcel, priced with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['fairfax-county-fast-track-basement-review'],
+    faqs: [
+      {
+        question: 'Who permits a home addition in Alexandria?',
+        answer:
+          'Inside the City of Alexandria, the Department of Code Administration Permit Center takes the application in APEX. A Fairfax County parcel with an Alexandria postal address goes to Fairfax County Land Development Services instead. Confirm the parcel.',
+      },
+      {
+        question: 'Which Alexandria ZIPs are entirely in the city?',
+        answer:
+          'The city tax guide for new residents puts 22301, 22305, 22313, and 22314 entirely in the city. ZIPs 22302, 22304, 22311, and 22312 are shared with Fairfax County. The ZIP does not replace a parcel check. Electrical, plumbing, and mechanical work can need separate trade permits, which Real Elite coordinates and does not perform.',
+      },
+    ],
+    paragraphs: [
+      'An Alexandria addition starts only after the parcel is confirmed, because an Alexandria street address can sit inside the independent city or in Fairfax County.',
+      'The City of Alexandria, in the American Community Survey 2024 five-year estimates, has 32,065 owner-occupied units and a median year built of 1974. Code Administration includes the Permit Center, property-maintenance inspections, new-construction inspections, plan review, and administrative services. City applications are filed in APEX. A county parcel uses Fairfax County Land Development Services.',
+      'The connection between the new room and the existing house is measured before drawings are finished. This Alexandria addition is priced with a free written estimate after a site walk once the parcel city or county is confirmed.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Confirm the parcel',
+        paragraphs: [
+          'Do not choose the Alexandria Permit Center from the mailing address alone. Fairfax County Land Development Services is the building office when the parcel is in the county.',
+        ],
+        links: [
+          { href: '/service-areas/alexandria-va', label: 'Alexandria service area' },
+          { href: '/services/decks/alexandria-va', label: 'Alexandria decks' },
+          {
+            href: '/blog/fairfax-county-fast-track-basement-review',
+            label: 'Fairfax County Fast Track review',
+          },
+        ],
+      },
+    ],
+  },
+  'decks-alexandria-va': {
+    h1: 'Decks in Alexandria, VA',
+    metaTitle: 'Alexandria VA Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in Alexandria, VA. The parcel picks the city Permit Center or Fairfax County Land Development Services, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['fairfax-county-fast-track-basement-review'],
+    faqs: [
+      {
+        question: 'Does an Alexandria mailing address mean the city permits the deck?',
+        answer:
+          'Not always. Some Alexandria postal addresses are in Fairfax County. The city Permit Center, inside Department of Code Administration and filed in APEX, applies only when the parcel is inside the city. Fairfax County Land Development Services applies when the parcel is in the county.',
+      },
+      {
+        question: 'How do the shared Alexandria ZIPs affect a deck filing?',
+        answer:
+          'ZIPs 22302, 22304, 22311, and 22312 are shared with Fairfax County, while 22301, 22305, 22313, and 22314 are entirely in the city. Confirm the parcel either way. A deck light or a new circuit is an electrician job. Real Elite coordinates that licensed trade and does not self-perform electrical, plumbing, or mechanical work.',
+      },
+    ],
+    paragraphs: [
+      'An Alexandria deck follows the parcel, not the mailing name: the independent city and Fairfax County do not share one building counter.',
+      'Alexandria citywide owner-occupied median value is $735,100 in the American Community Survey 2024 five-year estimates, and the owner share is 42.1 percent. Those city figures do not tell you which office holds the parcel. City decks go through the Permit Center in APEX. County decks go through Fairfax County Land Development Services.',
+      'Door height and grade are measured before the platform and stair are drawn. An Alexandria deck is priced with a free written estimate after a site walk of the house and its parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'City or county',
+        paragraphs: [
+          'Read the parcel before a deck set is sent. An Alexandria street address in Fairfax County is a Land Development Services application, not an APEX city filing.',
+        ],
+        links: [
+          { href: '/service-areas/alexandria-va', label: 'Alexandria service area' },
+          { href: '/services/additions/alexandria-va', label: 'Alexandria additions' },
+          {
+            href: '/blog/fairfax-county-fast-track-basement-review',
+            label: 'Fairfax County Fast Track review',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 /**
