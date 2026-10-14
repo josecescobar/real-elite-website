@@ -74,7 +74,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
         name: 'Entertaining level',
         range: '$150K – $250K',
         includes:
-          'Wet bar with stone and cabinetry, media area, full bath, a guest room with egress, dedicated HVAC zone, built-ins.',
+          'Wet bar with stone and cabinetry, media area, full bath, a guest room with egress, dedicated HVAC zone, built-ins. Real Elite coordinates the licensed electrician, plumber and HVAC contractor and schedules their inspections.',
       },
       {
         name: 'Suite and theater level',
@@ -116,7 +116,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
         name: 'Full design-build kitchen',
         range: '$100K – $200K',
         includes:
-          'New layout, custom cabinetry, stone with waterfall or mitred edges, panel-ready appliances, plumbing and electrical relocation, permits.',
+          'New layout, custom cabinetry, stone with waterfall or mitred edges, panel-ready appliances, plumbing and electrical relocation, permits. Real Elite coordinates the licensed electrician, plumber and HVAC contractor and schedules their inspections.',
       },
       {
         name: 'Open-plan kitchen',
@@ -158,7 +158,7 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
         name: 'Primary bath with a new layout',
         range: '$75K – $125K',
         includes:
-          'Walls and plumbing relocated, a larger shower room, water closet, custom vanity, stone or porcelain slab surfaces.',
+          'Walls and plumbing relocated, a larger shower room, water closet, custom vanity, stone or porcelain slab surfaces. Real Elite coordinates the licensed electrician, plumber and HVAC contractor and schedules their inspections.',
       },
       {
         name: 'Full primary suite',
@@ -242,13 +242,13 @@ export const INVESTMENT_GUIDE: readonly InvestmentCategory[] = [
         name: 'Family room or kitchen extension',
         range: '$150K – $300K',
         includes:
-          'A full room on a new foundation, roof tied into the existing structure, new openings into the house, HVAC extension.',
+          'A full room on a new foundation, roof tied into the existing structure, new openings into the house, HVAC extension. Real Elite coordinates the licensed electrician, plumber and HVAC contractor and schedules their inspections.',
       },
       {
         name: 'Bedroom suite addition',
         range: '$180K – $350K',
         includes:
-          'Bedroom, bath and closet as a private wing, with the plumbing, electrical and structure to support it.',
+          'Bedroom, bath and closet as a private wing, with the plumbing, electrical and structure to support it. Real Elite coordinates the licensed electrician, plumber and HVAC contractor and schedules their inspections.',
       },
       {
         name: 'Second story',
@@ -340,7 +340,7 @@ export const DESIGN_BUILD_PRICE_INCLUDES: readonly string[] = [
   'Design, drawings and selections, so the price is built from a documented scope',
   'Permit applications, town zoning where it applies, and the HOA architectural package',
   'Protection of the rest of the house, demolition and disposal',
-  'Structural, electrical, plumbing and HVAC work to current code, with inspections',
+  'Structural, electrical, plumbing and HVAC work to current code, with inspections. Real Elite coordinates the licensed electrician, plumber and HVAC contractor and schedules their inspections',
   'Cabinetry, stone, tile, fixtures and finishes as named allowances or specified products',
   'Project management, scheduling and coordination of trades',
   'A contingency line where the scope opens existing walls or floors',

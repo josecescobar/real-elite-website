@@ -134,8 +134,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         'Schluter-Kerdi waterproofing systems',
         'Custom tile work — floor, walls, niches, accents',
         'Vanity, countertop, and fixture replacement',
-        'Plumbing relocation and fixture upgrades',
-        'Lighting, ventilation, and electrical upgrades to code',
+        'We coordinate the licensed plumber for fixture moves and upgrades, and we schedule the plumbing inspection',
+        'We coordinate the licensed electrician for ventilation and lighting upgrades, and we schedule that inspection',
         'Tub-to-shower conversions',
         'Permitting and final inspection coordination',
       ],
@@ -228,8 +228,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         'Custom cabinetry (semi-custom and full custom options)',
         'Quartz, granite, and butcher block countertops',
         'Island additions and layout changes',
-        'Plumbing relocation (sink, dishwasher, gas)',
-        'Electrical and lighting upgrades, can lights, under-cabinet LED',
+        'We coordinate the licensed plumber for a sink, dishwasher, or gas move, and we schedule the plumbing inspection',
+        'We coordinate the licensed electrician for can lights and under-cabinet lighting, and we schedule that inspection',
         'Backsplash tile and accent work',
         'Flooring and trim coordination',
         'Appliance package coordination and install',
@@ -309,7 +309,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'basement Eastern Panhandle',
     ],
     answer:
-      'Real Elite Contracting finishes basements across the WV–MD–VA region — family rooms, in-law suites, and bars built on proper moisture control, code-compliant egress, and HVAC/electrical work, typically running 6–12 weeks.',
+      'Real Elite Contracting finishes basements across the WV–MD–VA region — family rooms, in-law suites, and bars built on proper moisture control and code-compliant egress. We coordinate the licensed HVAC contractor and electrician and schedule their inspections. A full basement typically runs 6–12 weeks.',
     hero: {
       eyebrow: 'New Living Space',
       heading: 'Basement Finishing',
@@ -317,8 +317,8 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     overview: {
       paragraphs: [
-        "Real Elite Contracting finishes basements for homeowners across the WV–MD–VA region — and we treat the moisture-management and egress work as seriously as the finished space. A great basement isn't just framing and drywall; it's proper waterproofing, vapor barriers, egress windows where required, and the HVAC and electrical work that makes the space genuinely comfortable year-round.",
-        "We handle everything: dig-out and egress windows, framing, electrical and lighting, HVAC extension, plumbing rough-ins for basement bathrooms and wet bars, drywall, flooring, trim, doors, and finish work. Most full basement build-outs run 6–12 weeks depending on scope. Permitting and inspection coordination is included.",
+        "Real Elite Contracting finishes basements for homeowners across the WV–MD–VA region — and we treat the moisture-management and egress work as seriously as the finished space. A great basement isn't just framing and drywall; it's proper waterproofing, vapor barriers, and egress windows where required. We coordinate the licensed HVAC contractor and electrician so the room stays comfortable year-round, and we schedule their inspections.",
+        "We handle the dig-out, egress windows, framing, drywall, flooring, trim, doors, and finish work. We coordinate the licensed electrician for lighting, the licensed HVAC contractor when the system has to be extended, and the licensed plumber for a basement bathroom or wet bar, and we schedule their inspections. Most full basement build-outs run 6–12 weeks depending on scope.",
       ],
     },
     scope: {
@@ -327,9 +327,9 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
         'Moisture assessment + vapor barrier + perimeter waterproofing as needed',
         'Egress window installation where code requires',
         'Framing, insulation (rim joist + walls), and drywall',
-        'Electrical, lighting, and panel upgrades',
-        'HVAC extension or independent zone',
-        'Basement bathrooms and wet bar rough-ins',
+        'We coordinate the licensed electrician for lighting and any panel work, and we schedule that inspection',
+        'We coordinate the licensed HVAC contractor for an extension or a separate zone, and we schedule that inspection',
+        'We coordinate the licensed plumber for a basement bathroom or wet bar, and we schedule that inspection',
         'Flooring (LVP, tile, or carpet) and trim work',
         'Permitting + code inspection coordination',
       ],
@@ -345,7 +345,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     },
     whyChooseUs: [
       'Moisture and vapor control done right — not papered over with drywall.',
-      'Egress, electrical, HVAC, and plumbing coordinated with code from day one.',
+      'We coordinate the licensed electrician, plumber, and HVAC contractor, and we schedule their inspections.',
       "We pull and pass permits — your county's inspector signs off, not just us.",
     ],
     faqs: [
@@ -372,7 +372,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       {
         question: 'Will the basement be warm enough?',
         answer:
-          "Yes — proper rim joist insulation, perimeter wall insulation, and an HVAC extension (or independent zone, depending on your system) keep finished basements comfortable year-round. We don't cut corners on insulation.",
+          "Yes. Proper rim joist insulation and perimeter wall insulation keep a finished basement comfortable. When the system needs an extension or a separate zone, we coordinate the licensed HVAC contractor and schedule that inspection. We don't cut corners on insulation.",
       },
       {
         question: 'Do I need a permit to finish a basement in Loudoun County?',

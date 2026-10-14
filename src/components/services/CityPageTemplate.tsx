@@ -44,6 +44,8 @@ import { LOUDOUN_PERMIT_GUIDE, isLoudounArea, loudounTownGuides } from '@/lib/lo
 import { isVerifiedWorkImage } from '@/lib/stock-images';
 import ProofGallery from '@/components/services/ProofGallery';
 import { proofPhotosForArea, proofReviewsFor, reviewsMatchCity } from '@/lib/proof-package';
+import { remodelReviewsForTown } from '@/lib/luxury-town-round16';
+import { FairfaxBasementDetailsNote, TownDeckHoaBlock } from '@/components/services/LuxuryTownRound16';
 import { CONTRACTOR_LICENSES, paHicRegistrationLine } from '@/lib/claims';
 import { mdServingLine } from '@/lib/trust-bullets';
 
@@ -151,7 +153,7 @@ export default function CityPageTemplate({ city, data }: Props) {
     .slice(0, 3);
 
   const areaPhotos = proofPhotosForArea(city.slug, city.state, 6);
-  const areaReviews = proofReviewsFor({ citySlug: city.slug });
+  const areaReviews = remodelReviewsForTown(city.slug, proofReviewsFor({ citySlug: city.slug }));
 
   // Localized FAQ — answers the common pre-quote questions in a way
   // that AI Overviews / SGE can quote directly. Adds FAQPage structured
@@ -353,6 +355,8 @@ export default function CityPageTemplate({ city, data }: Props) {
                   ))}
                 </div>
                 <PermitGuideLink areaSlug={city.slug} />
+                <TownDeckHoaBlock citySlug={city.slug} />
+                <FairfaxBasementDetailsNote citySlug={city.slug} surface="town" />
               </div>
 
               {/* Featured services (hero card + standard cards) */}

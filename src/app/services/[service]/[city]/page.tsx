@@ -39,6 +39,7 @@ import { selectTrustBullets } from '@/lib/trust-bullets';
 import ProofGallery from '@/components/services/ProofGallery';
 import PermitGuideLink from '@/components/PermitGuideLink';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
+import { FairfaxBasementDetailsNote } from '@/components/services/LuxuryTownRound16';
 import {
   proofPhotosForService,
   proofPhotosForTown,
@@ -595,6 +596,9 @@ export default async function ServiceCityPage({
       {showSitewideClaimBands && <AssurancesBand />}
 
       {DeckPermitHoaBlock ? <DeckPermitHoaBlock citySlug={city} /> : null}
+      {service === 'basements' ? (
+        <FairfaxBasementDetailsNote citySlug={city} surface="service" framed />
+      ) : null}
 
       <ReviewsSection
         reviews={proofReviews}
