@@ -1204,7 +1204,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Alexandria is an independent city, not Fairfax County. Building permits are issued by the city's Code Administration. Exterior work in the Old and Historic Alexandria District or the Parker-Gray District, and on buildings the council has designated as 100-year-old, needs a Certificate of Appropriateness from the Board of Architectural Review when the change is visible from a public way. Interior kitchens and baths do not need that review unless the work changes the outside. Demolition of more than 25 square feet of material needs a Permit to Demolish regardless of visibility. Belle Haven, Rosemont, and North Ridge are later neighborhoods inside the city. Fort Hunt, ZIP 22308, uses an Alexandria mailing address and is mostly Fairfax County. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495. Real Elite remodels kitchens, primary suites, careful additions, and finished lower levels.",
     neighborhoods: ['Old Town', 'Parker-Gray', 'Belle Haven', 'Rosemont', 'North Ridge', 'Del Ray'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks'],
   },
   'vienna-va': {
     description:
@@ -1871,7 +1871,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Garrett Park is an incorporated town in Montgomery County, ZIP 20896, a small grid of late-19th-century houses beside the MARC station. Kenilworth Avenue and Waverly Avenue are the streets most people mean. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south.\n\nMontgomery County lists Garrett Park as needing both county and town approval. The county building permit and the town approval are both required. The town office is P.O. Box 84, Garrett Park, MD 20896, phone 301-933-7488. County permit questions go to the Department of Permitting Services at 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m.\n\nThe county home-improvements list says an interior alteration will likely need a permit, and that installing, repairing, or replacing cabinets most likely will not. Electrical work is on the likely-permit list. Plumbing questions go to WSSC. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['Kenilworth Avenue', 'Waverly Avenue', 'MARC station', 'ZIP 20896', 'Strathmore edge'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks', 'outdoor-living'],
     nearbySlugs: ['bethesda-md', 'chevy-chase-md', 'potomac-md', 'cabin-john-md'],
     faqs: [
       {
@@ -1983,7 +1983,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Cabin John is a narrow Montgomery County community along MacArthur Boulevard, ZIP 20818, between the Potomac and the Cabin John Parkway. Houses sit close to the road and to the canal. It is not Potomac's large-lot interior and it is not Glen Echo's town hall. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south to the Beltway and the Cabin John Parkway.\n\nCabin John is not on Montgomery County's list of municipalities that add a town permit. The county office is the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday. Interior alteration and electrical work are on the county's likely-permit list. Cabinets and bathroom caulking are on the likely-no-permit list. Plumbing questions go to WSSC.\n\nHomeowners-association rules, where a lot has them, are separate from the county guidance. The county says to check them separately. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MacArthur Boulevard', 'ZIP 20818', 'Cabin John Parkway', 'Canal edge', '79th Street', 'Tomlinson Avenue'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks', 'outdoor-living'],
     nearbySlugs: ['bethesda-md', 'potomac-md', 'garrett-park-md', 'great-falls-va'],
     faqs: [
       {
@@ -2011,7 +2011,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "West Friendship is western Howard County, ZIP 21794, along MD 32 between the Frederick County line and the more suburban county to the east. Houses are detached homes on rural and semi-rural lots, not a Columbia village and not a Frederick city street. The drive from Martinsburg is I-81 north to I-70 east, then south on MD 32.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes. The office is at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. The Licenses and Permits Division publishes the same number, option 4. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made. The county has separate electrical, plumbing, and mechanical permit applications. Fee amounts stay on the county fee schedule.\n\nElectrical work and gas work are separately licensed trades. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MD 32', 'ZIP 21794', 'Triadelphia Road', 'West of MD 32', 'Frederick County line'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks', 'outdoor-living'],
     nearbySlugs: ['frederick-md', 'mount-airy-md', 'ijamsville-md', 'monrovia-md'],
     faqs: [
       {
