@@ -11,7 +11,7 @@ import {
   remodelReviewsForTown,
 } from '@/lib/luxury-town-round16';
 
-const FORBIDDEN = /trex|timbertech|azek|warranty|certified|mhic|maryland license/i;
+const FORBIDDEN = /trex|timbertech|azek|warranty|certified|guarantee|license number/i;
 
 function sentences(text: string): string[] {
   return text
@@ -67,23 +67,36 @@ describe('luxury town round 16', () => {
       'fort-hunt-va',
       'annandale-va',
       'springfield-va',
+      'falls-church-va',
     ];
     expect(FAIRFAX_BASEMENT_DETAILS_URL).toBe(
       'https://www.fairfaxcounty.gov/landdevelopment/sites/landdevelopment/files/Assets/Documents/PDF/publications/basement-details.pdf',
     );
-    expect(
-      FAIRFAX_BASEMENT_SHEET_NOTES.find(
-        (note) => note.citySlug === 'fairfax-station-va' && note.surface === 'town',
-      )?.href,
-    ).toBe(FAIRFAX_BASEMENT_DETAILS_URL);
+    const stationTown = FAIRFAX_BASEMENT_SHEET_NOTES.find(
+      (note) => note.citySlug === 'fairfax-station-va' && note.surface === 'town',
+    );
+    expect(stationTown?.href).toBe(FAIRFAX_BASEMENT_DETAILS_URL);
+    expect(stationTown?.body).toMatch(/kitchen, wet bar, or bedroom/i);
+    expect(stationTown?.body).toMatch(/on the job site/i);
+    expect(stationTown?.body).toMatch(/Real Elite submits the plan/);
+    expect(stationTown?.body).toMatch(/Real Elite reads the sheet/);
     for (const city of serviceTowns) {
       const note = FAIRFAX_BASEMENT_SHEET_NOTES.find(
         (row) => row.citySlug === city && row.surface === 'service',
       );
       expect(note?.href, city).toBe(FAIRFAX_BASEMENT_DETAILS_URL);
-      expect(note?.body, city).toMatch(/county reviewer/i);
-      expect(note?.body, city).toMatch(/Real Elite/);
+      expect(note?.body, city).toMatch(/kitchen, wet bar, or bedroom/i);
+      expect(note?.body, city).toMatch(/on the job site/i);
+      expect(note?.body, city).toMatch(/Real Elite submits the plan/);
+      expect(note?.body, city).toMatch(/Real Elite reads the sheet/);
+      expect(note?.body, city).toMatch(/county staff approval/i);
     }
+    const fallsChurch = FAIRFAX_BASEMENT_SHEET_NOTES.find(
+      (note) => note.citySlug === 'falls-church-va' && note.surface === 'service',
+    );
+    expect(fallsChurch?.body).toMatch(/parcel is in Fairfax County/);
+    expect(fallsChurch?.body).toMatch(/City of Falls Church stays on the city permit path/);
+    expect(fallsChurch?.body).toMatch(/not this county sheet/);
     const bodies = FAIRFAX_BASEMENT_SHEET_NOTES.map((note) => note.body);
     expect(new Set(bodies).size).toBe(bodies.length);
   });
