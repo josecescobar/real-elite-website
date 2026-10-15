@@ -35,7 +35,7 @@ function allText(guide: (typeof PERMIT_GUIDES)[number]): string {
 }
 
 describe('permit guides', () => {
-  it('covers all eighteen guide slugs, once each', () => {
+  it('covers all nineteen guide slugs, once each', () => {
     expect(PERMIT_GUIDES.map((g) => g.slug).sort()).toEqual(
       [
         'arlington-county-va',
@@ -56,6 +56,7 @@ describe('permit guides', () => {
         'falls-church-city-of-fairfax-va',
         'anne-arundel-county-md',
         'carroll-county-md',
+        'manassas-manassas-park-va',
       ].sort(),
     );
   });

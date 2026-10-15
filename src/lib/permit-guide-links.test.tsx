@@ -144,12 +144,15 @@ describe('permit guide links', () => {
       expect(permitGuideForArea(area.slug)?.slug, area.slug).toBe(expected);
       expect(getPermitGuide(expected)?.areaSlugs, area.slug).toContain(area.slug);
     }
-    for (const slug of ['manassas-va', 'berkeley-springs-wv', 'mount-airy-md', 'woodbine-md']) {
+    for (const slug of ['berkeley-springs-wv', 'mount-airy-md', 'woodbine-md']) {
       expect(permitGuideForArea(slug), slug).toBeUndefined();
       for (const guide of PERMIT_GUIDES) {
         expect(guide.areaSlugs, `${guide.slug} ${slug}`).not.toContain(slug);
       }
     }
+    expect(permitGuideForArea('manassas-va')?.slug).toBe('manassas-manassas-park-va');
+    expect(permitGuideForArea('manassas-va')?.href).toBe('/permit-guides/manassas-manassas-park-va');
+    expect(townPagesForGuide('manassas-manassas-park-va').map((town) => town.slug)).toEqual(['manassas-va']);
   });
 
   it('only emits town-service and service-city hrefs that those routes publish', () => {
@@ -180,8 +183,18 @@ describe('town templates render one permit-guide link', () => {
     expect(coveredLinks[0].textContent).toBe('Permits in Loudoun County: what to expect');
     covered.unmount();
 
-    const uncovered = render(
+    const manassas = render(
       <CityPageTemplate city={ALL_SERVICE_AREAS.find((area) => area.slug === 'manassas-va')!} data={CITY_DATA['manassas-va']} />,
+    );
+    const manassasLinks = guideLinks(manassas.container);
+    expect(manassas.container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(1);
+    expect(manassasLinks).toHaveLength(1);
+    expect(manassasLinks[0].getAttribute('href')).toBe('/permit-guides/manassas-manassas-park-va');
+    expect(manassasLinks[0].textContent).toBe('Permits in Manassas and Manassas Park: what to expect');
+    manassas.unmount();
+
+    const uncovered = render(
+      <CityPageTemplate city={ALL_SERVICE_AREAS.find((area) => area.slug === 'woodbine-md')!} data={CITY_DATA['woodbine-md']} />,
     );
     expect(uncovered.container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(0);
     expect(guideLinks(uncovered.container)).toHaveLength(0);
@@ -236,7 +249,12 @@ describe('town templates render one permit-guide link', () => {
     spy.mockRestore();
 
     const { container, unmount } = render(<PermitGuideLink areaSlug="manassas-va" />);
-    expect(container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(0);
+    expect(container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(1);
+    expect(container.querySelector('a')?.getAttribute('href')).toBe('/permit-guides/manassas-manassas-park-va');
     unmount();
+
+    const woodbine = render(<PermitGuideLink areaSlug="woodbine-md" />);
+    expect(woodbine.container.querySelectorAll('[data-permit-guide-link]')).toHaveLength(0);
+    woodbine.unmount();
   });
 });

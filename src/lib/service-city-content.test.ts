@@ -840,6 +840,17 @@ describe('comboPublishesPricing', () => {
         'decks-reston-va',
         'outdoor-living-reston-va',
         'outdoor-living-woodbine-md',
+        // Round 20 premium pages with no job-range dollar above $25,000.
+        // Laytonsville's $1,500 figure is a permit threshold, under the floor.
+        'additions-kensington-md',
+        'additions-laytonsville-md',
+        'additions-round-hill-va',
+        'decks-brookeville-md',
+        'decks-haymarket-va',
+        'decks-lovettsville-va',
+        'decks-myersville-md',
+        'decks-rockville-md',
+        'outdoor-living-aldie-va',
       ].sort()
     );
   });
@@ -909,9 +920,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
     // Round 17 adds 11 clean pages for Cabin John, Garrett Park, West Friendship, and Alexandria.
     // Round 18 adds 11 clean pages for Glenwood, Ashton, Olney, Reston, and Alexandria outdoor living.
     // Round 19 adds 12 clean pages for Reston decks and outdoor living, eight ranked gaps, and Woodbine.
+    // Round 20 adds 9 clean premium pages. Mount Airy, Frederick, and Brunswick are home-market.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 290 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 299 });
   });
 
   /**
@@ -1473,6 +1485,8 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-olney-md',
       'outdoor-living-reston-va',
       'outdoor-living-woodbine-md',
+      'outdoor-living-brunswick-md',
+      'outdoor-living-aldie-va',
     ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
@@ -1777,6 +1791,9 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       'decks-woodbine-md',
       'outdoor-living-woodbine-md',
       'additions-woodbine-md',
+      // Round 20 adds Brookeville decks and Kensington additions.
+      'decks-brookeville-md',
+      'additions-kensington-md',
     ]);
     for (const city of [
       'glenwood-md',
@@ -1974,6 +1991,8 @@ describe('REA-2442 round 8 richest-county towns', () => {
       'additions-ashton-md',
       'decks-ashton-md',
       'outdoor-living-ashton-md',
+      // Round 20 adds Laytonsville additions.
+      'additions-laytonsville-md',
     ]);
     for (const city of [
       'delaplane-va',
@@ -2308,6 +2327,8 @@ describe('REA-2495 round 11 richest-county towns', () => {
       'additions-colesville-md',
       'additions-takoma-park-md',
       'additions-columbia-md',
+      // Round 20 adds Rockville decks.
+      'decks-rockville-md',
     ]);
     for (const city of [...NEW_AREAS, 'springfield-va']) {
       for (const key of Object.keys(CONTENT)) {
@@ -2875,6 +2896,8 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
     const allowed = new Set(
       NEW_AREAS.flatMap((city) => [`kitchens-${city}`, `bathrooms-${city}`, `basements-${city}`])
     );
+    // Round 20 adds Myersville decks. The other three new areas stay on the original three services.
+    allowed.add('decks-myersville-md');
     for (const city of NEW_AREAS) {
       for (const key of Object.keys(CONTENT)) {
         if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
@@ -3452,9 +3475,10 @@ describe('REA-3011 round 19 Reston, Woodbine, and eight ranked gaps', () => {
     expect(new Set(titles).size).toBe(titles.length);
   });
 
-  it('publishes the 12 keys, keeps the content count at 323, and adds no retired combo', () => {
+  it('publishes the 12 keys and adds no retired combo', () => {
     expect(PAGES).toHaveLength(12);
-    expect(Object.keys(CONTENT)).toHaveLength(323);
+    // Round 20 raises the published total from 323 to 335.
+    expect(Object.keys(CONTENT)).toHaveLength(335);
     for (const [service, city] of PAGES) {
       expect(CONTENT).toHaveProperty(`${service}-${city}`);
     }
@@ -3521,6 +3545,213 @@ describe('REA-3011 round 19 Reston, Woodbine, and eight ranked gaps', () => {
     expect(addition).toMatch(/roadside-tree/);
     expect(addition).not.toMatch(/\$735,600|8:00 a\.m\. to 4:30 p\.m\./);
     expect(addition).not.toMatch(/above grade only/);
+  });
+
+  it('does not repeat a sentence from these round 19 pages or from any earlier combo', () => {
+    const splitSentences = (text: string) =>
+      text
+        .split(/(?<=[.!?])\s+/)
+        .map((sentence) => sentence.replace(/\s+/g, ' ').trim())
+        .filter((sentence) => sentence.length >= 40);
+
+    const fresh = new Map<string, string>();
+    const dupes: string[] = [];
+    for (const [service, city] of PAGES) {
+      const key = `${service}-${city}`;
+      for (const sentence of splitSentences(entryStrings(CONTENT[key as keyof typeof CONTENT]).join(' '))) {
+        const prior = fresh.get(sentence);
+        if (prior) dupes.push(`${key} repeats ${prior}: ${sentence}`);
+        else fresh.set(sentence, key);
+      }
+    }
+
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      if (PAGES.some(([service, city]) => key === `${service}-${city}`)) continue;
+      for (const sentence of splitSentences(entryStrings(entry).join(' '))) {
+        if (fresh.has(sentence)) dupes.push(`${fresh.get(sentence)} also in ${key}: ${sentence}`);
+      }
+    }
+    expect(dupes).toEqual([]);
+  });
+});
+
+describe('REA-3023 round 20 additions, decks, and outdoor-living gaps', () => {
+  const PAGES = [
+    ['additions', 'mount-airy-md', 'Home Additions in Mount Airy, MD'],
+    ['decks', 'haymarket-va', 'Decks in Haymarket, VA'],
+    ['decks', 'rockville-md', 'Decks in Rockville, MD'],
+    ['additions', 'frederick-md', 'Home Additions in Frederick, MD'],
+    ['additions', 'laytonsville-md', 'Home Additions in Laytonsville, MD'],
+    ['decks', 'brookeville-md', 'Decks in Brookeville, MD'],
+    ['additions', 'round-hill-va', 'Home Additions in Round Hill, VA'],
+    ['decks', 'lovettsville-va', 'Decks in Lovettsville, VA'],
+    ['decks', 'myersville-md', 'Decks in Myersville, MD'],
+    ['outdoor-living', 'brunswick-md', 'Outdoor Living in Brunswick, MD'],
+    ['additions', 'kensington-md', 'Home Additions in Kensington, MD'],
+    ['outdoor-living', 'aldie-va', 'Outdoor Living in Aldie, VA'],
+  ] as const;
+
+  function entryStrings(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
+    return [
+      entry?.h1,
+      entry?.metaTitle,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ...(entry?.sections ?? []).flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.links ?? []).map((link) => link.label),
+      ]),
+    ].filter((part): part is string => Boolean(part));
+  }
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.metaDescription!.length).toBeLessThanOrEqual(160);
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = entryStrings(entry).join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|\blicense\b|inspiration|\bstock\b|estimate fee|\bminutes?\b|\bmiles?\b|veteran-owned|brambleton|separately licensed|—|\bACS\b|\bCDP\b|\bZCTA\b|Summit|Amazon/i
+    );
+    expect(body).not.toMatch(/\d{10}/);
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 12 openings and gives each a unique metaTitle', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('publishes the 12 keys, keeps the content count at 335, and adds no retired combo', () => {
+    expect(PAGES).toHaveLength(12);
+    expect(Object.keys(CONTENT)).toHaveLength(335);
+    for (const [service, city] of PAGES) {
+      expect(CONTENT).toHaveProperty(`${service}-${city}`);
+    }
+    expect(CONTENT).not.toHaveProperty('additions-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+    expect(CONTENT).not.toHaveProperty('decks-round-hill-va');
+  });
+
+  it('leaves the Mount Airy permit conflict open', () => {
+    const text = entryStrings(CONTENT['additions-mount-airy-md']).join('\n');
+    expect(text).toMatch(/Carroll County Bureau of Permits and Inspections/);
+    expect(text).toMatch(/Frederick County side of the town/);
+    expect(text).toMatch(/outside the building permits that county processes/);
+    expect(text).toMatch(/not the last word/);
+    expect(text).not.toMatch(/town issues the building permit/i);
+    expect(text).not.toMatch(/Frederick County issues/i);
+    expect(text).not.toMatch(/Carroll County covers Mount Airy/i);
+    expect(text).not.toMatch(/handle their own building permits/);
+  });
+
+  it('keeps Haymarket and Lovettsville on a confirmed town parcel and leaves Lovettsville fees off', () => {
+    const haymarket = entryStrings(CONTENT['decks-haymarket-va']).join('\n');
+    const lovettsville = entryStrings(CONTENT['decks-lovettsville-va']).join('\n');
+    expect(haymarket).toMatch(/confirms the parcel is inside the town/);
+    expect(haymarket).toMatch(/16\.5 inches/);
+    expect(haymarket).toMatch(/10:30 in the morning/);
+    expect(haymarket).toMatch(/January 15, 2018/);
+    expect(haymarket).toMatch(/ePortal/);
+    expect(haymarket).not.toMatch(/custom deck.{0,40}same day/i);
+    expect(lovettsville).toMatch(/confirms the parcel is inside the town/);
+    expect(lovettsville).toMatch(/No Lovettsville form name, counter hour, or staff name is stated/);
+    expect(lovettsville).not.toMatch(/\$/);
+    expect(lovettsville).not.toMatch(/hot tub|gazebo|screened porch/i);
+  });
+
+  it('sends a Rockville deck to the city and keeps the two code dates apart', () => {
+    const text = entryStrings(CONTENT['decks-rockville-md']).join('\n');
+    expect(text).toMatch(/address finder/);
+    expect(text).toMatch(/MGO Connect/);
+    expect(text).toMatch(/May 29, 2024/);
+    expect(text).toMatch(/December 1, 2024/);
+    expect(text).toMatch(/not sent to the county permitting department/);
+    expect(text).toMatch(/not named on the eligible list/);
+    expect(text).not.toMatch(/NGBS|Department of Permitting Services/);
+  });
+
+  it('keeps a Frederick addition off the county counter and off one-stop', () => {
+    const text = entryStrings(CONTENT['additions-frederick-md']).join('\n');
+    expect(text).toMatch(/Residential Addition/);
+    expect(text).toMatch(/140 West Patrick Street/);
+    expect(text).toMatch(/December 31, 2025/);
+    expect(text).toMatch(/January 1, 2026/);
+    expect(text).toMatch(/does not use that counter/);
+    expect(text).not.toMatch(/Frederick County Permits|Mount Airy|development impact/i);
+  });
+
+  it('routes Laytonsville, Brookeville, and Kensington by the parcel, not the mailing name', () => {
+    const laytonsville = entryStrings(CONTENT['additions-laytonsville-md']).join('\n');
+    const brookeville = entryStrings(CONTENT['decks-brookeville-md']).join('\n');
+    const kensington = entryStrings(CONTENT['additions-kensington-md']).join('\n');
+    expect(laytonsville).toMatch(/\$1,500/);
+    expect(laytonsville).toMatch(/before the county application/);
+    expect(laytonsville).not.toMatch(/Brookeville|Kensington|unincorporated|fast-track/i);
+    expect(brookeville).toMatch(/High Street/);
+    expect(brookeville).toMatch(/South Street/);
+    expect(brookeville).toMatch(/60 acres/);
+    expect(brookeville).toMatch(/135 residents/);
+    expect(brookeville).toMatch(/footings/);
+    expect(brookeville).not.toMatch(/census|one to two business days|few hours|17 days/i);
+    expect(kensington).toMatch(/20895/);
+    expect(kensington).toMatch(/before the county application/);
+    expect(kensington).not.toMatch(/\$1,500|High Street|Brookeville|Barnesville|Takoma Park|\d{3}-\d{3}-\d{4}/);
+  });
+
+  it('splits the Loudoun facts across Round Hill, Lovettsville, and Aldie', () => {
+    const roundHill = entryStrings(CONTENT['additions-round-hill-va']).join('\n');
+    const lovettsville = entryStrings(CONTENT['decks-lovettsville-va']).join('\n');
+    const aldie = entryStrings(CONTENT['outdoor-living-aldie-va']).join('\n');
+    expect(roundHill).toMatch(/square footage added to the house/);
+    expect(roundHill).toMatch(/October 1, 2025/);
+    expect(roundHill).toMatch(/outside the incorporated towns/);
+    expect(roundHill).not.toMatch(/screened porch|Middleburg|typical deck/i);
+    expect(lovettsville).not.toMatch(/outside the incorporated towns/);
+    expect(aldie).toMatch(/unincorporated/);
+    expect(aldie).toMatch(/screened porch as a residential addition/);
+    expect(aldie).toMatch(/gazebo/);
+    expect(aldie).toMatch(/does not pull the electrical permit/);
+    expect(aldie).not.toMatch(/Town of Aldie|Middleburg|Hamilton|town zoning permit that has already been approved/i);
+  });
+
+  it('gives Myersville the county exception and Brunswick the porch checklist', () => {
+    const myersville = entryStrings(CONTENT['decks-myersville-md']).join('\n');
+    const brunswick = entryStrings(CONTENT['outdoor-living-brunswick-md']).join('\n');
+    expect(myersville).toMatch(/excepts the City of Frederick and Mount Airy/);
+    expect(myersville).toMatch(/forest conservation/);
+    expect(myersville).toMatch(/deck checklist/);
+    expect(myersville).toMatch(/one business day/);
+    expect(myersville).not.toMatch(/Carroll/);
+    expect(brunswick).toMatch(/811 West Potomac Street/);
+    expect(brunswick).toMatch(/covered or screened porch/);
+    expect(brunswick).toMatch(/8 until 4:30/);
+    expect(brunswick).toMatch(/modification, an alteration, or a change in the use/);
+    expect(brunswick).not.toMatch(/forest conservation|excepts the City of Frederick|census designated place/i);
   });
 
   it('does not repeat a sentence from these pages or from any earlier combo', () => {
