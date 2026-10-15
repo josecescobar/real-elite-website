@@ -82,6 +82,16 @@ describe('built meta descriptions', () => {
     expect(withDescription.length).toBeGreaterThanOrEqual(500);
   });
 
+  it('gives every built page a meta description', () => {
+    // Next's own error shell is the only page that renders without one.
+    const NO_DESCRIPTION_ALLOWLIST = new Set<string>(['/_global-error']);
+    const missing = pages
+      .filter((page) => !page.description && !NO_DESCRIPTION_ALLOWLIST.has(page.route))
+      .map((page) => page.route)
+      .sort();
+    expect(missing).toEqual([]);
+  });
+
   it('keeps every meta description at or under 160 characters', () => {
     const over = pages
       .filter((page) => page.description && page.description.length > MAX)

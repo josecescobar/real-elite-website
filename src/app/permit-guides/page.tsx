@@ -11,7 +11,7 @@ export const metadata = buildMetadata({
   path: '/permit-guides',
   title: `Remodel Permit Guides by County | ${BUSINESS.name}`,
   description:
-    'County-by-county permit guides for decks, basements, bathrooms, kitchens, roofs, and additions in Virginia, Maryland, West Virginia, and Pennsylvania.',
+    'Our county permit guides cover decks, basements, bathrooms, kitchens, roofs, and additions in Virginia, Maryland, West Virginia, and Pennsylvania.',
   keywords: [
     'do I need a permit for a deck',
     'basement finishing permit',

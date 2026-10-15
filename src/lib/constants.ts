@@ -2343,7 +2343,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoTitle: 'Remodeling Contractor in Ellicott City, MD | Real Elite',
     seoH1: 'Remodeling Contractor in Ellicott City, MD',
     seoDescription:
-      'Remodeling contractor in Ellicott City, MD covers ZIP 21042 and ZIP 21043. Those ZIPs do not, by themselves, name the county. The parcel decides the county.',
+      'We remodel homes in Ellicott City, MD, across ZIP 21042 and ZIP 21043. Those ZIP codes do not name the county by themselves; the parcel decides it.',
     description:
       "Ellicott City remodeling covers ZIP 21042 and ZIP 21043. Main Street and the Patapsco are one part of that mailing area. Those ZIPs do not, by themselves, name the county. We confirm the parcel's county before a permit office is assigned. The drive from Martinsburg is I-81 north to I-70 east, then into Ellicott City.\n\nWhen the parcel is in Howard County, questions go to the Department of Inspections, Licenses and Permits, 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. Arrive by 4:00 p.m. A Howard County house on a private well and septic needs Health Department approval first, at 410-313-6300. We confirm the permit steps for the parcel before work starts.\n\nA water-heater replacement in Howard County needs a plumbing permit pulled by a master plumber, and an inspection is required. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['Main Street', 'ZIP 21042', 'ZIP 21043', 'Courthouse Drive', 'Patapsco', 'Frederick Road'],

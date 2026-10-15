@@ -4989,7 +4989,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Ellicott City, MD covers a kitchen in ZIP 21042 or ZIP 21043. The ZIP does not decide the county.',
+      'We remodel kitchens in Ellicott City, MD, in ZIP 21042 or ZIP 21043. The ZIP code alone does not decide which county issues the permit.',
       'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic in Howard County needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ellicott City quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -6518,7 +6518,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'outdoor-living-oakton-va': {
     h1: 'Outdoor Living in Oakton, VA',
     metaDescription:
-      'Outdoor Living in Oakton, VA. Fairfax County files screened porch and sunroom as Additional Square Footage categories. Free written estimate after a site walk.',
+      'Outdoor living in Oakton, VA means screened porches and sunrooms, which Fairfax County files as Additional Square Footage. Every estimate is free.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7377,7 +7377,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Silver Spring, MD',
     metaTitle: 'Kitchen Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Silver Spring, MD starts along Georgia Avenue, where many houses date from the late 1950s. Free written estimate after a site walk.',
+      'Kitchen remodeling in Silver Spring, MD often means a late-1950s house along Georgia Avenue. Every estimate is free and written after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7406,7 +7406,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Silver Spring, MD',
     metaTitle: 'Bath Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Silver Spring, MD is a late-1950s bath along Wayne Avenue and Georgia Avenue in the 20901 area. Free written estimate after a site walk.',
+      'Bathroom remodeling in Silver Spring, MD often means a late-1950s bath along Wayne Avenue or Georgia Avenue in 20901. Every estimate is free.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7783,7 +7783,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in McLean, VA',
     metaTitle: 'Home Addition McLean VA | Real Elite',
     metaDescription:
-      'Home additions in McLean, VA start on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
+      'We build home additions in McLean, VA on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7807,7 +7807,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in McLean, VA',
     metaTitle: 'Deck Builder McLean VA | Real Elite',
     metaDescription:
-      'Decks in McLean, VA are framed on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
+      'We frame decks in McLean, VA on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7831,7 +7831,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in McLean, VA',
     metaTitle: 'Outdoor Living McLean VA | Real Elite',
     metaDescription:
-      'Outdoor living in McLean, VA is a screened porch or a sunroom on an estate lot. When the parcel is in Fairfax County, questions go to Land Development Services.',
+      'Outdoor living in McLean, VA means a porch or sunroom on an estate lot. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7855,7 +7855,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Great Falls, VA',
     metaTitle: 'Home Addition Great Falls VA | Real Elite',
     metaDescription:
-      'Home additions in Great Falls, VA start on the large lots along Georgetown Pike. Questions go to Fairfax County Land Development Services at 703-222-0801.',
+      'We build home additions in Great Falls, VA on large lots along Georgetown Pike. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7879,7 +7879,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in Great Falls, VA',
     metaTitle: 'Deck Builder Great Falls VA | Real Elite',
     metaDescription:
-      'Decks in Great Falls, VA sit on the large lots along Riverbend Road and Seneca Road. Questions go to Fairfax County Land Development Services at 703-222-0801.',
+      'We build decks in Great Falls, VA on lots along Riverbend Road and Seneca Road. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7903,7 +7903,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Great Falls, VA',
     metaTitle: 'Outdoor Living Great Falls VA | Real Elite',
     metaDescription:
-      'Outdoor living in Great Falls, VA is a screened porch or a sunroom on a large lot. Questions go to Fairfax County Land Development Services at 703-222-0801.',
+      'Outdoor living in Great Falls, VA means a screened porch or sunroom on a large lot. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7927,7 +7927,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Potomac, MD',
     metaTitle: 'Home Addition Potomac MD | Real Elite',
     metaDescription:
-      'Home additions in Potomac, MD start on the wooded lots along River Road and along Falls Road. The County does not enforce covenants and deed restrictions.',
+      'We build home additions in Potomac, MD on wooded lots along River Road and Falls Road. The County does not enforce covenants and deed restrictions.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7975,7 +7975,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Potomac, MD',
     metaTitle: 'Outdoor Living Potomac MD | Real Elite',
     metaDescription:
-      'Outdoor living in Potomac, MD is a screened porch or patio on a wooded lot. A building permit is required for all decks regardless of the height above grade.',
+      'Outdoor living in Potomac, MD means a porch or patio on a wooded lot. A building permit is required for all decks regardless of the height above grade.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7999,7 +7999,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Bethesda, MD',
     metaTitle: 'Home Addition Bethesda MD | Real Elite',
     metaDescription:
-      'Home additions in Bethesda, MD start on the lots in 20816 along Bradley Boulevard and in Kenwood. The County does not enforce covenants and deed restrictions.',
+      'We build home additions in Bethesda, MD on 20816 lots along Bradley Boulevard and in Kenwood. The County does not enforce covenants and deed restrictions.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -8047,7 +8047,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Bethesda, MD',
     metaTitle: 'Outdoor Living Bethesda MD | Real Elite',
     metaDescription:
-      'Outdoor living in Bethesda, MD is a screened porch or patio in Kenwood. A building permit is required for all decks regardless of the height above grade.',
+      'Outdoor living in Bethesda, MD means a porch or patio in Kenwood. A building permit is required for all decks regardless of the height above grade.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
