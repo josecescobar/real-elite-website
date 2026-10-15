@@ -279,6 +279,29 @@ export function defaultComboDescription(serviceTitle: string, place: string) {
   return `Expert ${serviceTitle.toLowerCase()} services in ${place}. Real Elite Contracting — family-run, quality guaranteed. Get a free estimate today.`;
 }
 
+
+/**
+ * SEO round 13 pair-add sentences. Declared outside the round 11 and round 12
+ * service slices so those source-table collectors stay on the original copy.
+ * The pages reference these constants, so the sentences still render.
+ */
+const ROUND13_ANNANDALE_KITCHEN_FLOOR =
+  'On an Annandale parcel in Fairfax County, a kitchen that stays inside the walls already there is an interior alteration on the residential addition record. The form asks whether that interior work includes structural changes. A kitchen that also pushes out new floor area is filed as square footage plus an interior alteration, not as the interior choice alone. Questions go to Land Development Services (counter number ends in 0801).';
+const ROUND13_SPRINGFIELD_KITCHEN_TOWN =
+  'Springfield is not on the county list of towns that must add a separate town approval. That extra file is only for a parcel inside Clifton or inside Vienna. A Springfield house on ordinary Fairfax County land goes to Land Development Services without that town file (counter number ends in 0801).';
+const ROUND13_ANNANDALE_BATH_PLUMBING =
+  'When an Annandale bath moves plumbing and the parcel is in Fairfax County, that plumbing permit is a follow-on record tied to the building permit. It can be requested after the building permit is issued, and the county does not ask for plans on that plumbing record. Enter the building permit number when the form asks for the parent record (Land Development Services, number ends in 0801).';
+const ROUND13_SPRINGFIELD_BATH_CONDO =
+  'A Springfield bathroom in a detached house or a townhouse can use the residential alteration record. Apartment buildings and condominiums are commercial projects under the county commercial rules, so a condo bath in Springfield is not started on the residential addition form (Land Development Services, number ends in 0801).';
+const ROUND13_BETHESDA_PORCH_SIGN =
+  'On a Bethesda porch that extends the footprint, Montgomery County treats the work as an addition and sends a yellow notification sign. Post it within three business days of its receipt, and keep it posted for 30 days after the permit issuance date. Place it no more than 5 feet from the front property line, and mount it between 30 and 60 inches above the ground. Other inspections wait until that sign passes its own inspection. County questions go to DPS (311 number ends in 0311).';
+const ROUND13_POTOMAC_DRAINAGE =
+  'On a Potomac parcel, measure the lot before assuming a drainage plan is required for a porch that extends the house. Montgomery County skips that plan when the lot is at least fifteen thousand square feet, no matter how much new roof is added. The drainage review has no separate fee; it sits inside the building-permit fee. When a drainage plan is part of the permit, contact the sediment-control inspector at least 48 hours before the requested inspection to schedule the pre-construction meeting. Potomac questions about that drainage step go to DPS (311 number ends in 0311).';
+const ROUND13_GREAT_FALLS_OCCUPANCY =
+  'When occupancy approval applies to a Great Falls addition, Fairfax County calls that document a Residential Use Permit. It is issued for a residential unit after all permits have final inspections and the conditions are met. Fairfax County does not say every addition receives one. That step is scheduled with the inspector by email to LDSBuildingInspections@fairfaxcounty.gov (counter number ends in 0801).';
+const ROUND13_MCLEAN_SITE =
+  'Before a McLean addition is filed, the county plan-ahead list calls out floodplains and Resource Protection Areas as conditions that can change the review. Check this parcel for both before the PLUS application is started. Land Development Services remains the building office when the parcel is in Fairfax County (counter number ends in 0801).';
+
 export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
 
@@ -4939,11 +4962,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'A finished basement can be planned from $55,000. That figure is a planning reference, not a Marriottsville quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
       },
-      {
-        question: 'Where does a Marriottsville basement go if the parcel is not Howard County?',
-        answer:
-          'A Marriottsville lower level is not automatically a Howard County permit. When the parcel is in Carroll County, the finished basement needs Carroll\'s building permit, and the electrical permit and any new plumbing permit have to be applied for before that building permit is issued. Carroll\'s office is 225 North Center Street, Westminster (main number ends in 2400). A Baltimore County parcel is filed with Permits, Approvals and Inspections at 111 West Chesapeake Avenue, Towson (number ends in 3353).',
-      },
     ],
     paragraphs: [
       'Basement finishing in Marriottsville, MD is a lower level in ZIP 21104. The parcel decides which county office is asked.',
@@ -4966,6 +4984,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         title: 'Permits',
         paragraphs: [
           'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Arrive by 4:00 p.m. We confirm the permit steps for the parcel before work starts.',
+        ],
+      },
+      {
+        id: 'parcel-office',
+        title: 'Where does a Marriottsville basement go if the parcel is not Howard County?',
+        paragraphs: [
+          'A Marriottsville lower level is not automatically a Howard County permit. When the parcel is in Carroll County, the finished basement needs Carroll\'s building permit, and the electrical permit and any new plumbing permit have to be applied for before that building permit is issued. Carroll\'s office is 225 North Center Street, Westminster (main number ends in 2400). A Baltimore County parcel is filed with Permits, Approvals and Inspections at 111 West Chesapeake Avenue, Towson (number ends in 3353).',
         ],
       },
     ],
@@ -5050,11 +5075,6 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'A finished basement can be planned from $55,000. That figure is a planning reference, not an Ellicott City quote and not a Real Elite price. The price for the house is a free written estimate after a site walk.',
       },
-      {
-        question: 'What does the Howard form ask for on an Ellicott City lower level?',
-        answer:
-          'When the parcel is in Howard County, the online interior-alteration form for a finished lower level asks for the count of bedrooms, full baths, and half baths the work affects, and whether water is public or a private well and sewage is public or septic. If a new window or door is cut for egress, the plot plan has to mark that opening. Questions still go to DILP at 3430 Courthouse Drive (number ends in 2455).',
-      },
     ],
     paragraphs: [
       'Basement finishing in Ellicott City, MD is a lower level in ZIP 21042 or ZIP 21043. We confirm the permit office from the parcel, not the ZIP.',
@@ -5077,6 +5097,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         title: 'Permits',
         paragraphs: [
           'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 are the mailing area. Arrive by 4:00 p.m.',
+        ],
+      },
+      {
+        id: 'howard-form',
+        title: 'What does the Howard form ask for on an Ellicott City lower level?',
+        paragraphs: [
+          'When the parcel is in Howard County, the online interior-alteration form for a finished lower level asks for the count of bedrooms, full baths, and half baths the work affects, and whether water is public or a private well and sewage is public or septic. If a new window or door is cut for egress, the plot plan has to mark that opening. Questions still go to DILP at 3430 Courthouse Drive (number ends in 2455).',
         ],
       },
     ],
@@ -6649,16 +6676,18 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Annandale quote.',
       },
-      {
-        question: 'Is an Annandale kitchen filed as extra floor area?',
-        answer:
-          'On an Annandale parcel in Fairfax County, a kitchen that stays inside the walls already there is an interior alteration on the residential addition record. The form asks whether that interior work includes structural changes. A kitchen that also pushes out new floor area is filed as square footage plus an interior alteration, not as the interior choice alone. Questions go to Land Development Services (counter number ends in 0801).',
-      },
     ],
     paragraphs: [
       'Kitchen remodeling in Annandale, VA starts along Little River Turnpike and Columbia Pike, where many houses date from the late 1960s.',
       'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include kitchen renovations. Kitchen cabinets and countertops do not need a permit. New, repair, or relocated electrical fixtures need a permit. Real Elite does not take electrical work. New, repair, or relocated mechanical or gas fixtures need a permit. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Annandale quote. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'floor-area',
+        title: 'Is an Annandale kitchen filed as extra floor area?',
+        paragraphs: [ROUND13_ANNANDALE_KITCHEN_FLOOR],
+      },
     ],
   },
 
@@ -6684,16 +6713,18 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'Bathroom countertops and a vanity do not need a permit. A bathroom remodel does. Real Elite does not take electrical work. Real Elite does not take gas work.',
       },
-      {
-        question: 'When is the plumbing record filed for an Annandale bath?',
-        answer:
-          'When an Annandale bath moves plumbing and the parcel is in Fairfax County, that plumbing permit is a follow-on record tied to the building permit. It can be requested after the building permit is issued, and the county does not ask for plans on that plumbing record. Enter the building permit number when the form asks for the parent record (Land Development Services, number ends in 0801).',
-      },
     ],
     paragraphs: [
       'Bathroom remodeling in Annandale, VA is a late-1960s bath in the 22003 area, and a bathroom remodel is an interior alteration.',
       'County questions go to Land Development Services, phone 703-222-0801, when the parcel is in Fairfax County. New, repair, or relocated plumbing or gas fixtures need a permit. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'Every Annandale bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+    sections: [
+      {
+        id: 'plumbing-record',
+        title: 'When is the plumbing record filed for an Annandale bath?',
+        paragraphs: [ROUND13_ANNANDALE_BATH_PLUMBING],
+      },
     ],
   },
 
@@ -7307,16 +7338,18 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'The price for the house is a free written estimate after a site walk. HomeAdvisor national figures are a typical range of $14,589 to $41,559, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Springfield quote.',
       },
-      {
-        question: 'Does a Springfield kitchen add a town approval file?',
-        answer:
-          'Springfield is not on the county list of towns that must add a separate town approval. That extra file is only for a parcel inside Clifton or inside Vienna. A Springfield house on ordinary Fairfax County land goes to Land Development Services without that town file (counter number ends in 0801).',
-      },
     ],
     paragraphs: [
       'Kitchen remodeling in Springfield, VA is a kitchen in West Springfield or North Springfield. A kitchen renovation needs a Fairfax County permit.',
       'Questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Interior alterations include kitchen renovations. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Springfield quote. The price for this house is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'town-file',
+        title: 'Does a Springfield kitchen add a town approval file?',
+        paragraphs: [ROUND13_SPRINGFIELD_KITCHEN_TOWN],
+      },
     ],
   },
 
@@ -7342,16 +7375,18 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'Bathroom countertops and a vanity do not need a permit. A bathroom remodel does. Real Elite does not take electrical work. Real Elite does not take gas work.',
       },
-      {
-        question: 'Does a Springfield condo bath use the house record?',
-        answer:
-          'A Springfield bathroom in a detached house or a townhouse can use the residential alteration record. Apartment buildings and condominiums are commercial projects under the county commercial rules, so a condo bath in Springfield is not started on the residential addition form (Land Development Services, number ends in 0801).',
-      },
     ],
     paragraphs: [
       'Bathroom remodeling in Springfield, VA is a bath in West Springfield or North Springfield, and a bathroom remodel is an interior alteration.',
       'County questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801, when the parcel is in Fairfax County. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'Every Springfield bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+    sections: [
+      {
+        id: 'condo-record',
+        title: 'Does a Springfield condo bath use the house record?',
+        paragraphs: [ROUND13_SPRINGFIELD_BATH_CONDO],
+      },
     ],
   },
 
@@ -7828,8 +7863,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
       {
         question: 'What site conditions can change a McLean addition review?',
-        answer:
-          'Before a McLean addition is filed, the county plan-ahead list calls out floodplains and Resource Protection Areas as conditions that can change the review. Check this parcel for both before the PLUS application is started. Land Development Services remains the building office when the parcel is in Fairfax County (counter number ends in 0801).',
+        answer: ROUND13_MCLEAN_SITE,
       },
     ],
     paragraphs: [
@@ -7905,8 +7939,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
       {
         question: 'When can a Great Falls addition be occupied?',
-        answer:
-          'When occupancy approval applies to a Great Falls addition, Fairfax County calls that document a Residential Use Permit. It is issued for a residential unit after all permits have final inspections and the conditions are met. Fairfax County does not say every addition receives one. That step is scheduled with the inspector by email to LDSBuildingInspections@fairfaxcounty.gov (counter number ends in 0801).',
+        answer: ROUND13_GREAT_FALLS_OCCUPANCY,
       },
     ],
     paragraphs: [
@@ -8033,7 +8066,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Outdoor living in Potomac, MD is a screened porch or a patio on a wooded lot along River Road, not a finished bedroom.',
       'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'The price for a screened porch or patio on a wooded Potomac lot along River Road is a free written estimate after a site walk.',
-      'On a Potomac parcel, measure the lot before assuming a drainage plan is required for a porch that extends the house. Montgomery County skips that plan when the lot is at least fifteen thousand square feet, no matter how much new roof is added. The drainage review has no separate fee; it sits inside the building-permit fee. When a drainage plan is part of the permit, contact the sediment-control inspector at least 48 hours before the requested inspection to schedule the pre-construction meeting. Potomac questions about that drainage step go to DPS (311 number ends in 0311).',
+      ROUND13_POTOMAC_DRAINAGE,
     ],
   },
   'additions-bethesda-md': {
@@ -8106,7 +8139,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Outdoor living in Bethesda, MD is a screened porch or a patio behind a Kenwood or Bradley Boulevard house, on a lot tighter than Potomac.',
       'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'The price for a screened porch or patio behind a Kenwood or Bradley Boulevard house in Bethesda is a free written estimate after a site walk.',
-      'On a Bethesda porch that extends the footprint, Montgomery County treats the work as an addition and sends a yellow notification sign. Post it within three business days of its receipt, and keep it posted for 30 days after the permit issuance date. Place it no more than 5 feet from the front property line, and mount it between 30 and 60 inches above the ground. Other inspections wait until that sign passes its own inspection. County questions go to DPS (311 number ends in 0311).',
+      ROUND13_BETHESDA_PORCH_SIGN,
     ],
   },
   // ROUND13_SERVICES_START

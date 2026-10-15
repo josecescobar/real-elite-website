@@ -1971,9 +1971,7 @@ describe('REA-2442 round 8 richest-county towns', () => {
     expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
     expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
     expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
-    const pairFaq =
-      service === 'basements' && (city === 'ellicott-city-md' || city === 'marriottsville-md');
-    expect(entry?.faqs?.length).toBeLessThanOrEqual(pairFaq ? 4 : 3);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
     expect(entry?.townTaggedPhotosOnly).toBe(true);
     expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
     const body = [
@@ -2296,10 +2294,7 @@ describe('REA-2495 round 11 richest-county towns', () => {
     expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
     expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
     expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
-    const pairFaq =
-      (service === 'kitchens' || service === 'bathrooms') &&
-      (city === 'annandale-va' || city === 'springfield-va');
-    expect(entry?.faqs?.length).toBeLessThanOrEqual(pairFaq ? 4 : 3);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
     expect(entry?.townTaggedPhotosOnly).toBe(true);
     expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
     const body = [
@@ -2701,31 +2696,6 @@ function collectPermitSentences(area: string, services: string): string[] {
   return sentences;
 }
 
-/**
- * SEO round 13 pair-add copy sits inside the round 11 and round 12 slices.
- * Those source tables stay the lock on the original sentences. The added
- * blocks are excluded here so the two-file diff does not have to rewrite the
- * older tables.
- */
-const SEO_ROUND_13_PAIR_ADDS = [
-  'On an Annandale parcel in Fairfax County, a kitchen that stays inside the walls already there is an interior alteration on the residential addition record. The form asks whether that interior work includes structural changes. A kitchen that also pushes out new floor area is filed as square footage plus an interior alteration, not as the interior choice alone. Questions go to Land Development Services (counter number ends in 0801).',
-  'Springfield is not on the county list of towns that must add a separate town approval. That extra file is only for a parcel inside Clifton or inside Vienna. A Springfield house on ordinary Fairfax County land goes to Land Development Services without that town file (counter number ends in 0801).',
-  'When an Annandale bath moves plumbing and the parcel is in Fairfax County, that plumbing permit is a follow-on record tied to the building permit. It can be requested after the building permit is issued, and the county does not ask for plans on that plumbing record. Enter the building permit number when the form asks for the parent record (Land Development Services, number ends in 0801).',
-  'A Springfield bathroom in a detached house or a townhouse can use the residential alteration record. Apartment buildings and condominiums are commercial projects under the county commercial rules, so a condo bath in Springfield is not started on the residential addition form (Land Development Services, number ends in 0801).',
-  'On a Bethesda porch that extends the footprint, Montgomery County treats the work as an addition and sends a yellow notification sign. Post it within three business days of its receipt, and keep it posted for 30 days after the permit issuance date. Place it no more than 5 feet from the front property line, and mount it between 30 and 60 inches above the ground. Other inspections wait until that sign passes its own inspection. County questions go to DPS (311 number ends in 0311).',
-  'On a Potomac parcel, measure the lot before assuming a drainage plan is required for a porch that extends the house. Montgomery County skips that plan when the lot is at least fifteen thousand square feet, no matter how much new roof is added. The drainage review has no separate fee; it sits inside the building-permit fee. When a drainage plan is part of the permit, contact the sediment-control inspector at least 48 hours before the requested inspection to schedule the pre-construction meeting. Potomac questions about that drainage step go to DPS (311 number ends in 0311).',
-  'When occupancy approval applies to a Great Falls addition, Fairfax County calls that document a Residential Use Permit. It is issued for a residential unit after all permits have final inspections and the conditions are met. Fairfax County does not say every addition receives one. That step is scheduled with the inspector by email to LDSBuildingInspections@fairfaxcounty.gov (counter number ends in 0801).',
-  'Before a McLean addition is filed, the county plan-ahead list calls out floodplains and Resource Protection Areas as conditions that can change the review. Check this parcel for both before the PLUS application is started. Land Development Services remains the building office when the parcel is in Fairfax County (counter number ends in 0801).',
-];
-
-function seoRound13PairAddSentences(): Set<string> {
-  const seen = new Set<string>();
-  for (const block of SEO_ROUND_13_PAIR_ADDS) {
-    for (const sentence of splitCopySentences(block)) seen.add(sentence);
-  }
-  return seen;
-}
-
 /** Permit and jurisdiction sentences in the six round 11 area entries and 21 service entries. */
 function round11PermitSentences(constantsSrc: string, contentSrc: string): string[] {
   const area = sliceBetween(constantsSrc, "  'annandale-va': {", '  // ROUND12_AREAS_START');
@@ -2734,8 +2704,7 @@ function round11PermitSentences(constantsSrc: string, contentSrc: string): strin
     '  // ── ROUND 11 · ANNANDALE, VA',
     '  // ROUND12_SERVICES_START'
   );
-  const added = seoRound13PairAddSentences();
-  return collectPermitSentences(area, services).filter((sentence) => !added.has(sentence));
+  return collectPermitSentences(area, services);
 }
 
 /** Permit and jurisdiction sentences in the four round 12 area entries and 24 service entries. */
@@ -2750,8 +2719,7 @@ function round12PermitSentences(constantsSrc: string, contentSrc: string): strin
     '  // ROUND12_SERVICES_START',
     '  // ROUND13_SERVICES_START'
   );
-  const added = seoRound13PairAddSentences();
-  return collectPermitSentences(area, services).filter((sentence) => !added.has(sentence));
+  return collectPermitSentences(area, services);
 }
 
 /** Permit and jurisdiction sentences in the 12 round 13 service entries. */
@@ -2909,9 +2877,7 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
     expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
     expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
     expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
-    const pairFaq =
-      service === 'additions' && (city === 'great-falls-va' || city === 'mclean-va');
-    expect(entry?.faqs?.length).toBeLessThanOrEqual(pairFaq ? 4 : 3);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
     expect(entry?.townTaggedPhotosOnly).toBe(true);
     expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
     const body = [
@@ -3955,6 +3921,31 @@ describe('SEO round 13 pair adds and ten service pages', () => {
       }
     }
     expect(dupes).toEqual([]);
+  });
+
+  it('keeps pair-add sentences on the page and does not raise older FAQ caps', () => {
+    const pages = [
+      ['basements', 'marriottsville-md', 'not automatically a Howard County permit'],
+      ['basements', 'ellicott-city-md', 'the online interior-alteration form for a finished lower level'],
+      ['kitchens', 'annandale-va', 'a kitchen that stays inside the walls already there'],
+      ['bathrooms', 'annandale-va', 'that plumbing permit is a follow-on record'],
+      ['kitchens', 'springfield-va', 'not on the county list of towns that must add a separate town approval'],
+      ['bathrooms', 'springfield-va', 'a condo bath in Springfield is not started on the residential addition form'],
+      ['additions', 'mclean-va', 'floodplains and Resource Protection Areas'],
+      ['additions', 'great-falls-va', 'Residential Use Permit'],
+      ['outdoor-living', 'potomac-md', 'skips that plan when the lot is at least fifteen thousand square feet'],
+      ['outdoor-living', 'bethesda-md', 'sends a yellow notification sign'],
+    ] as const;
+    const forbidden =
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|separately licensed/i;
+    for (const [service, city, needle] of pages) {
+      const entry = CONTENT[`${service}-${city}`];
+      expect(entry?.faqs?.length, `${service}-${city}`).toBeLessThanOrEqual(3);
+      const body = entryStrings(entry).join('\n');
+      expect(body, `${service}-${city}`).toContain(needle);
+      const sentence = body.split('\n').find((line) => line.includes(needle)) ?? '';
+      expect(sentence, `${service}-${city}`).not.toMatch(forbidden);
+    }
   });
 });
 
