@@ -2870,6 +2870,27 @@ describe('REA-2572 round 12 Montgomery, Loudoun, Frederick, and deck gaps', () =
     expect(body).toMatch(/parcel/i);
   });
 
+  it('finishes the six Fairfax descriptions as complete 150-160 character sentences', () => {
+    const keys = [
+      'additions-mclean-va',
+      'decks-mclean-va',
+      'outdoor-living-mclean-va',
+      'additions-great-falls-va',
+      'decks-great-falls-va',
+      'outdoor-living-great-falls-va',
+    ] as const;
+    const descriptions = keys.map((key) => {
+      const description = CONTENT[key]!.metaDescription!;
+      expect(description.length, description).toBeGreaterThanOrEqual(150);
+      expect(description.length, description).toBeLessThanOrEqual(160);
+      expect(description, description).toMatch(/[.!?]$/);
+      expect(description).toContain('Fairfax County');
+      expect(description).not.toMatch(/maryland license|estimate fee|MHIC|WV062432|2705198604/i);
+      return description;
+    });
+    expect(new Set(descriptions).size).toBe(keys.length);
+  });
+
   it('does not clone the 24 openings and gives each a unique metaTitle', () => {
     const openings = PAGES.map(([service, city]) =>
       CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)

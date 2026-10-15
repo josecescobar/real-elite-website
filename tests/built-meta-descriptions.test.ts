@@ -90,6 +90,14 @@ describe('built meta descriptions', () => {
     expect(over).toEqual([]);
   });
 
+  it('ends every meta description with terminal punctuation', () => {
+    const open = pages
+      .filter((page) => page.description && !/[.!?]$/.test(page.description))
+      .map((page) => `${page.route} (${page.description!.length}): ${page.description}`)
+      .sort();
+    expect(open).toEqual([]);
+  });
+
   it('does not let two built pages share a meta description', () => {
     // Routes dropped from the uniqueness check. Add one only when a shared
     // description is genuinely unavoidable (a noindex shell that cannot carry

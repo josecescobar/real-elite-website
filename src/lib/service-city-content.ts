@@ -7783,7 +7783,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in McLean, VA',
     metaTitle: 'Home Addition McLean VA | Real Elite',
     metaDescription:
-      'Home additions in McLean, VA start on the estate lots along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road. When the parcel is in Fairfax County',
+      'Home additions in McLean, VA start on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7807,7 +7807,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in McLean, VA',
     metaTitle: 'Deck Builder McLean VA | Real Elite',
     metaDescription:
-      'Decks in McLean, VA are framed on the estate lots along Georgetown Pike, where the yard can take a full run of posts. When the parcel is in Fairfax County',
+      'Decks in McLean, VA are framed on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7831,7 +7831,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in McLean, VA',
     metaTitle: 'Outdoor Living McLean VA | Real Elite',
     metaDescription:
-      'Outdoor living in McLean, VA is a screened porch on an estate lot along Old Dominion Drive, not a spare bedroom. When the parcel is in Fairfax County, questions',
+      'Outdoor living in McLean, VA is a screened porch or a sunroom on an estate lot. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7855,7 +7855,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Great Falls, VA',
     metaTitle: 'Home Addition Great Falls VA | Real Elite',
     metaDescription:
-      'Home additions in Great Falls, VA start on the large lots along Georgetown Pike, Riverbend Road, and Seneca Road. When the parcel is in Fairfax County',
+      'Home additions in Great Falls, VA start on the large lots along Georgetown Pike. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7879,7 +7879,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in Great Falls, VA',
     metaTitle: 'Deck Builder Great Falls VA | Real Elite',
     metaDescription:
-      'Decks in Great Falls, VA sit on lots along Riverbend Road and Seneca Road, where the frame has room to clear the setback. When the parcel is in Fairfax County',
+      'Decks in Great Falls, VA sit on the large lots along Riverbend Road and Seneca Road. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7903,7 +7903,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Great Falls, VA',
     metaTitle: 'Outdoor Living Great Falls VA | Real Elite',
     metaDescription:
-      'Outdoor living in Great Falls, VA is a screened porch on a large lot along Georgetown Pike, west of the McLean estates. When the parcel is in Fairfax County',
+      'Outdoor living in Great Falls, VA is a screened porch or a sunroom on a large lot. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
