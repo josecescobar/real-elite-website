@@ -829,6 +829,12 @@ describe('comboPublishesPricing', () => {
         'decks-cabin-john-md',
         'decks-garrett-park-md',
         'decks-west-friendship-md',
+        // Round 18 pages with no job-range dollar above $25,000.
+        'decks-ashton-md',
+        'decks-glenwood-md',
+        'decks-olney-md',
+        'outdoor-living-alexandria-va',
+        'outdoor-living-olney-md',
       ].sort()
     );
   });
@@ -896,9 +902,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
     // 0/267 premium service combos: 239 after round 13, plus 14 round 14
     // and three Fort Hunt pages in round 15. All clean.
     // Round 17 adds 11 clean pages for Cabin John, Garrett Park, West Friendship, and Alexandria.
+    // Round 18 adds 11 clean pages for Glenwood, Ashton, Olney, Reston, and Alexandria outdoor living.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 267 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 278 });
   });
 
   /**
@@ -1454,6 +1461,10 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-cabin-john-md',
       'outdoor-living-garrett-park-md',
       'outdoor-living-west-friendship-md',
+      'outdoor-living-alexandria-va',
+      'outdoor-living-glenwood-md',
+      'outdoor-living-ashton-md',
+      'outdoor-living-olney-md',
     ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
@@ -1749,6 +1760,9 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       'additions-clarksville-md',
       'decks-clarksville-md',
       'outdoor-living-clarksville-md',
+      'additions-glenwood-md',
+      'decks-glenwood-md',
+      'outdoor-living-glenwood-md',
     ]);
     for (const city of [
       'glenwood-md',
@@ -1764,7 +1778,6 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
         if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
       }
     }
-    expect(CONTENT).not.toHaveProperty('outdoor-living-glenwood-md');
     expect(CONTENT).not.toHaveProperty('stairs-broad-run-va');
   });
 
@@ -1941,6 +1954,12 @@ describe('REA-2442 round 8 richest-county towns', () => {
       'additions-north-potomac-md',
       'decks-north-potomac-md',
       'outdoor-living-north-potomac-md',
+      'additions-olney-md',
+      'decks-olney-md',
+      'outdoor-living-olney-md',
+      'additions-ashton-md',
+      'decks-ashton-md',
+      'outdoor-living-ashton-md',
     ]);
     for (const city of [
       'delaplane-va',
@@ -3142,9 +3161,8 @@ describe('REA-2989 round 17 Cabin John, Garrett Park, West Friendship, and Alexa
     expect(new Set(titles).size).toBe(titles.length);
   });
 
-  it('publishes the 11 urls and does not add Alexandria outdoor living or a retired combo', () => {
+  it('publishes the 11 round-17 urls and does not add a retired combo', () => {
     expect(PAGES).toHaveLength(11);
-    expect(CONTENT).not.toHaveProperty('outdoor-living-alexandria-va');
     expect(CONTENT).not.toHaveProperty('additions-brambleton-va');
     expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
     expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
@@ -3185,5 +3203,168 @@ describe('REA-2989 round 17 Cabin John, Garrett Park, West Friendship, and Alexa
       expect(text).toMatch(/ZIP Code Tabulation Area 21794/);
       expect(text).toMatch(/not a town|ZIP-tabulation figure/i);
     }
+  });
+});
+
+describe('REA-2997 round 18 Glenwood, Ashton, Olney, Reston, and Alexandria outdoor living', () => {
+  const PAGES = [
+    ['outdoor-living', 'alexandria-va', 'Outdoor Living in Alexandria, VA'],
+    ['additions', 'glenwood-md', 'Home Additions in Glenwood, MD'],
+    ['decks', 'glenwood-md', 'Decks in Glenwood, MD'],
+    ['outdoor-living', 'glenwood-md', 'Outdoor Living in Glenwood, MD'],
+    ['additions', 'ashton-md', 'Home Additions in Ashton, MD'],
+    ['decks', 'ashton-md', 'Decks in Ashton, MD'],
+    ['outdoor-living', 'ashton-md', 'Outdoor Living in Ashton, MD'],
+    ['additions', 'olney-md', 'Home Additions in Olney, MD'],
+    ['decks', 'olney-md', 'Decks in Olney, MD'],
+    ['outdoor-living', 'olney-md', 'Outdoor Living in Olney, MD'],
+    ['additions', 'reston-va', 'Home Additions in Reston, VA'],
+  ] as const;
+
+  function entryStrings(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
+    return [
+      entry?.h1,
+      entry?.metaTitle,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ...(entry?.sections ?? []).flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.links ?? []).map((link) => link.label),
+      ]),
+    ].filter((part): part is string => Boolean(part));
+  }
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.metaDescription!.length).toBeLessThanOrEqual(160);
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = entryStrings(entry).join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|inspiration|\bstock\b|estimate fee|\bminutes?\b|\bmiles?\b|veteran-owned|brambleton|separately licensed|—|\bACS\b|\bCDP\b/i
+    );
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 11 openings and gives each a unique metaTitle', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('publishes the 11 service urls and the Montgomery guide, and holds Woodbine and Reston decks', () => {
+    expect(PAGES).toHaveLength(11);
+    expect(getPostBySlug('montgomery-county-residential-fast-track-review')?.date).toBe('2026-10-14');
+    expect(CONTENT).not.toHaveProperty('decks-reston-va');
+    expect(CONTENT).not.toHaveProperty('outdoor-living-reston-va');
+    expect(CONTENT).not.toHaveProperty('additions-woodbine-md');
+    expect(CONTENT).not.toHaveProperty('decks-woodbine-md');
+    expect(CONTENT).not.toHaveProperty('outdoor-living-woodbine-md');
+    expect(CONTENT).not.toHaveProperty('additions-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+  });
+
+  it('keeps Glenwood on ZIP Code Tabulation Area 21738 and Ashton and Olney as census designated places', () => {
+    for (const service of ['additions', 'decks', 'outdoor-living'] as const) {
+      const glenwood = entryStrings(CONTENT[`${service}-glenwood-md`]).join('\n');
+      expect(glenwood).toMatch(/ZIP Code Tabulation Area 21738/);
+      expect(glenwood).toMatch(/not a (Glenwood )?town median|not a census place/i);
+      expect(glenwood).not.toMatch(/\bZCTA\b/);
+    }
+    for (const city of ['ashton-md', 'olney-md'] as const) {
+      for (const service of ['additions', 'decks', 'outdoor-living'] as const) {
+        const text = entryStrings(CONTENT[`${service}-${city}`]).join('\n');
+        expect(text).toMatch(/census designated place/i);
+        expect(text).toMatch(/not an incorporated town/i);
+        expect(text).not.toMatch(/town median/i);
+      }
+    }
+    const reston = entryStrings(CONTENT['additions-reston-va']).join('\n');
+    expect(reston).toMatch(/\$642,000/);
+    expect(reston).toMatch(/17,395/);
+    expect(reston).not.toMatch(/ZIP median|town median|census place|ZIP Code Tabulation Area/i);
+  });
+
+  it('keeps the fast-track clock on the guide and the deck-office clock on the Olney deck page', () => {
+    const guide = getPostBySlug('montgomery-county-residential-fast-track-review');
+    const guideText = `${guide?.answer ?? ''}\n${guide?.content ?? ''}`;
+    expect(guideText).toMatch(/one to two business days/i);
+    expect(guideText).toMatch(/four weeks/i);
+    expect(guideText).not.toMatch(/few hours|17 days|three to five days/i);
+    const ashtonAddition = entryStrings(CONTENT['additions-ashton-md']).join('\n');
+    expect(ashtonAddition).toMatch(/outside the residential fast-track list/i);
+    expect(ashtonAddition).not.toMatch(/one to two business days|few hours|17 days/i);
+    const olneyDeck = entryStrings(CONTENT['decks-olney-md']).join('\n');
+    expect(olneyDeck).toMatch(/few hours/i);
+    expect(olneyDeck).toMatch(/17 days/i);
+    expect(olneyDeck).toMatch(/not a promise of a few hours/i);
+  });
+
+  it('does not repeat a sentence from these pages, earlier combos, or blog posts', () => {
+    const splitSentences = (text: string) =>
+      text
+        .split(/(?<=[.!?])\s+/)
+        .map((sentence) => sentence.replace(/\s+/g, ' ').trim())
+        .filter((sentence) => sentence.length >= 40);
+
+    const fresh = new Map<string, string>();
+    const dupes: string[] = [];
+    const take = (sentence: string, key: string) => {
+      const prior = fresh.get(sentence);
+      if (prior) dupes.push(`${key} repeats ${prior}: ${sentence}`);
+      else fresh.set(sentence, key);
+    };
+    for (const [service, city] of PAGES) {
+      const key = `${service}-${city}`;
+      for (const sentence of splitSentences(entryStrings(CONTENT[key as keyof typeof CONTENT]).join(' '))) {
+        take(sentence, key);
+      }
+    }
+    const guide = getPostBySlug('montgomery-county-residential-fast-track-review');
+    for (const sentence of splitSentences(
+      [guide?.title, guide?.excerpt, guide?.answer, guide?.content].filter(Boolean).join(' ')
+    )) {
+      take(sentence, 'montgomery-county-residential-fast-track-review');
+    }
+
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      if (PAGES.some(([service, city]) => key === `${service}-${city}`)) continue;
+      for (const sentence of splitSentences(entryStrings(entry).join(' '))) {
+        if (fresh.has(sentence)) dupes.push(`${fresh.get(sentence)} also in ${key}: ${sentence}`);
+      }
+    }
+    for (const post of getAllPosts()) {
+      if (post.slug === 'montgomery-county-residential-fast-track-review') continue;
+      const full = getPostBySlug(post.slug);
+      const text = [full?.title, full?.excerpt, full?.answer, full?.content].filter(Boolean).join(' ');
+      for (const sentence of splitSentences(text)) {
+        if (fresh.has(sentence)) {
+          dupes.push(`${fresh.get(sentence)} also in blog ${post.slug}: ${sentence}`);
+        }
+      }
+    }
+    expect(dupes).toEqual([]);
   });
 });
