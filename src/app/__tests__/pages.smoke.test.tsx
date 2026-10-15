@@ -388,14 +388,17 @@ describe('service page smoke tests', () => {
 /* ------------------------------------------------------------------ */
 
 describe('blog index', () => {
-  it('/blog quotes its own description, and the config still redirects it', async () => {
-    const { default: BlogIndex } = await import('@/app/blog/page');
-    render(<BlogIndex />);
-    expect(
-      screen.getByText(
-        'Resources from Real Elite Contracting. Premium remodeling and exterior contracting across the WV–MD–VA region. Family-run. Built with military precision.'
-      )
-    ).toBeTruthy();
+  it('/blog adds no page body, and the config still redirects it', async () => {
+    const { redirect } = await import('next/navigation');
+    vi.mocked(redirect).mockClear();
+
+    const { default: BlogIndex, metadata } = await import('@/app/blog/page');
+    const { container } = render(<BlogIndex />);
+    expect(container.innerHTML).toBe('');
+    expect(redirect).not.toHaveBeenCalled();
+    expect(metadata.description).toBe(
+      'Premium remodeling and exterior contracting across the WV–MD–VA region. Family-run. Built with military precision. (681) 534-5515 info@realelitecontracting.com'
+    );
 
     const nextConfig = (await import('../../../next.config')).default;
     const listRedirects = nextConfig.redirects;

@@ -122,6 +122,9 @@ describe('built meta descriptions', () => {
   it('supports the /blog description with that page’s own visible body', () => {
     const file = path.join(APP, 'blog.html');
     const html = fs.readFileSync(file, 'utf8');
+    // redirect() replaces this document with an empty shell. The description
+    // has to be in the layout footer this file actually renders.
+    expect(html).not.toContain('id="__next_error__"');
     const description = metaDescription(html);
     expect(description, '/blog is missing a meta description').toBeTruthy();
 
