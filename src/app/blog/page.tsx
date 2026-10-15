@@ -1,20 +1,37 @@
-import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import Link from 'next/link';
+import Container from '@/components/shared/Container';
+import { buildMetadata } from '@/lib/seo';
 
 /**
- * /blog redirects to /resources (the Resource Center knowledge hub).
- * Individual /blog/[slug] post URLs remain canonical and unchanged
- * for SEO equity — only the index page is redirected.
+ * Live requests for /blog are a permanent HTTP redirect to /resources
+ * (next.config.ts). That redirect runs before this file is served.
  *
- * The built document has no guide copy of its own: it is a redirect to
- * /resources, and the footer in that file is the visible company line.
- * This description uses those words only, so it does not repeat the homepage.
+ * This module still has to prerender. `redirect()` produces a shell whose
+ * visible body is empty, so a meta description on that shell cannot quote
+ * the page. The paragraph below is the body the description uses. Every
+ * claim in it is already on the site footer and the Resources nav label.
  */
-export const metadata: Metadata = {
-  description:
-    'Resources from Real Elite Contracting. Premium remodeling and exterior contracting across the WV–MD–VA region. Family-run. Built with military precision.',
-};
+const description =
+  'Resources from Real Elite Contracting. Premium remodeling and exterior contracting across the WV–MD–VA region. Family-run. Built with military precision.';
 
-export default function BlogIndexRedirect() {
-  redirect('/resources');
+export const metadata = buildMetadata({
+  path: '/blog',
+  title: 'Blog | Real Elite Contracting',
+  description,
+});
+
+export default function BlogIndexPage() {
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <Container size="default">
+        <h1 className="font-heading text-4xl font-extrabold text-navy-800">Blog</h1>
+        <p className="mt-6 text-charcoal-600 text-lg leading-relaxed max-w-2xl">{description}</p>
+        <p className="mt-6">
+          <Link href="/resources" className="text-brand-red font-semibold">
+            Resource Center
+          </Link>
+        </p>
+      </Container>
+    </section>
+  );
 }
