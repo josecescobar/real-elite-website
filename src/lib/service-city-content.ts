@@ -4121,7 +4121,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-brookeville-md': {
     h1: 'Kitchen Remodeling in Brookeville, MD',
     metaDescription:
-      'Kitchen remodeling in Brookeville, MD. Inside the Town of Brookeville, town approval comes before the county application. Town questions go to 5 High Street.',
+      'Kitchen remodeling in Brookeville, MD starts with the town. Inside the Town of Brookeville, town approval comes before the county application.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7377,7 +7377,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Silver Spring, MD',
     metaTitle: 'Kitchen Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Silver Spring, MD often means a late-1950s house along Georgia Avenue. Every estimate is free and written after a site walk.',
+      'Kitchen remodeling in Silver Spring, MD updates late-1950s houses along Georgia Avenue. Every estimate is free and written after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7406,7 +7406,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Silver Spring, MD',
     metaTitle: 'Bath Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Silver Spring, MD often means a late-1950s bath along Wayne Avenue or Georgia Avenue in 20901. Every estimate is free.',
+      'Bathroom remodeling in Silver Spring, MD updates late-1950s baths along Wayne Avenue and Georgia Avenue in 20901. Every estimate is free.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
