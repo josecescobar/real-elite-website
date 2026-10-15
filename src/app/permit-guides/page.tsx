@@ -11,7 +11,7 @@ export const metadata = buildMetadata({
   path: '/permit-guides',
   title: `Remodel Permit Guides by County | ${BUSINESS.name}`,
   description:
-    'Do you need a permit for a deck, basement, bathroom, or kitchen remodel? County-by-county permit answers across Virginia, Maryland, West Virginia, and Pennsylvania, with links to the official sources.',
+    'Permit guidance for decks, basements, bathrooms, and kitchens across the counties Real Elite serves. Check local requirements before planning work.',
   keywords: [
     'do I need a permit for a deck',
     'basement finishing permit',

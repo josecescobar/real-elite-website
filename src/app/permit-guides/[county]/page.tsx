@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildMetadata({
     path: permitGuidePath(guide.slug),
     title: guide.seoTitle,
-    description: guide.description,
+    description: guide.metaDescription ?? guide.description,
     ogType: 'article',
     keywords: guide.keywords,
   });

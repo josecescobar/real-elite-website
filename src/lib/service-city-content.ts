@@ -4121,7 +4121,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-brookeville-md': {
     h1: 'Kitchen Remodeling in Brookeville, MD',
     metaDescription:
-      'Kitchen remodeling in Brookeville, MD, ZIP 20833. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Brookeville, MD. Inside town limits, town approval precedes the county permit. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6518,7 +6518,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'outdoor-living-oakton-va': {
     h1: 'Outdoor Living in Oakton, VA',
     metaDescription:
-      'Outdoor Living in Oakton, VA. Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and files Screened Porch, Sunroom, and Deck as separate Additional Square Footage categories. Free written estimate after a site walk.',
+      "Outdoor living in Oakton, VA. Learn Fairfax County's permit path for decks, patios, and screened porches. Free written estimate after a site walk.",
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7377,7 +7377,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Silver Spring, MD',
     metaTitle: 'Kitchen Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Silver Spring, MD. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. Free written estimate after a site walk.',
+      'Kitchen remodeling in Silver Spring, MD. Montgomery County likely requires a permit for interior alterations. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7406,7 +7406,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Silver Spring, MD',
     metaTitle: 'Bath Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Silver Spring, MD. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Bathroom Caulking. Free written estimate after a site walk.',
+      'Bathroom remodeling in Silver Spring, MD. Montgomery County usually exempts bathroom caulking from permits. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7783,7 +7783,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in McLean, VA',
     metaTitle: 'Home Addition McLean VA | Real Elite',
     metaDescription:
-      'Home additions in McLean, VA. Apply for your residential addition/alteration building record online in PLUS under the Building tab. Free written estimate after a site walk.',
+      'Home additions in McLean, VA. Apply for the Fairfax County addition permit online in PLUS. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7807,7 +7807,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in McLean, VA',
     metaTitle: 'Deck Builder McLean VA | Real Elite',
     metaDescription:
-      'Decks in McLean, VA. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Free written estimate after a site walk.',
+      'Decks in McLean, VA. Fairfax County’s addition permit path covers decks and screened porches. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7831,7 +7831,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in McLean, VA',
     metaTitle: 'Outdoor Living McLean VA | Real Elite',
     metaDescription:
-      'Outdoor living in McLean, VA. A permit is NOT required for on-grade paver and concrete patios (including wood patios)*. *NOTE: Depending on the size and location of your project, additional approvals may be necessary. For more information, please contact one of the following: Site-related approval may be required. Please visit the Land Disturbance 101 web page, email, or call 703-222-0801, TTY 711 to find out more before you dig. Setbacks and other zoning requirements may apply. Contact Zoning at 703-222-1082, TTY 711 or by email at DPDZoningPermits@fairfaxcounty.gov, for more information. For work in the VDOT right-of-way, call 703-259-1773, TTY 711 or email novafairfaxpermits@vdot.virginia.gov. Free written estimate after a site walk.',
+      'Outdoor living in McLean, VA. On-grade patios do not need a permit, and other approvals may apply. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7855,7 +7855,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Great Falls, VA',
     metaTitle: 'Home Addition Great Falls VA | Real Elite',
     metaDescription:
-      'Home additions in Great Falls, VA. Staff from the Permit Application Center, Health Department (if on well or septic), Building Plan Review, Site Technician Review team, Fire Marshal’s Office, Wastewater and Zoning may review your package for completeness and compliance with the building code and county ordinances. Free written estimate after a site walk.',
+      'Home additions in Great Falls, VA. Staff may review your package for compliance with county ordinances. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7879,7 +7879,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in Great Falls, VA',
     metaTitle: 'Deck Builder Great Falls VA | Real Elite',
     metaDescription:
-      'Decks in Great Falls, VA. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Free written estimate after a site walk.',
+      'Decks in Great Falls, VA. Fairfax County’s addition permit path covers decks and screened porches. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7903,7 +7903,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Great Falls, VA',
     metaTitle: 'Outdoor Living Great Falls VA | Real Elite',
     metaDescription:
-      'Outdoor living in Great Falls, VA. A permit is NOT required for on-grade paver and concrete patios (including wood patios)*. *NOTE: Depending on the size and location of your project, additional approvals may be necessary. For more information, please contact one of the following: Site-related approval may be required. Please visit the Land Disturbance 101 web page, email, or call 703-222-0801, TTY 711 to find out more before you dig. Setbacks and other zoning requirements may apply. Contact Zoning at 703-222-1082, TTY 711 or by email at DPDZoningPermits@fairfaxcounty.gov, for more information. For work in the VDOT right-of-way, call 703-259-1773, TTY 711 or email novafairfaxpermits@vdot.virginia.gov. Free written estimate after a site walk.',
+      'Outdoor living in Great Falls, VA. On-grade patios do not need a permit, and other approvals may apply. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7927,7 +7927,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Potomac, MD',
     metaTitle: 'Home Addition Potomac MD | Real Elite',
     metaDescription:
-      'Home additions in Potomac, MD. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. Free written estimate after a site walk.',
+      'Home additions in Potomac, MD. Montgomery County requires a permit when an addition expands a home’s area, height, or footprint. Free written estimate.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7975,7 +7975,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Potomac, MD',
     metaTitle: 'Outdoor Living Potomac MD | Real Elite',
     metaDescription:
-      'Outdoor living in Potomac, MD. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Free written estimate after a site walk.',
+      'Outdoor living in Potomac, MD. Montgomery County usually exempts patio repairs from permits. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7999,7 +7999,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Bethesda, MD',
     metaTitle: 'Home Addition Bethesda MD | Real Elite',
     metaDescription:
-      'Home additions in Bethesda, MD. Inspections shall be requested at least 24 hours prior to the date the inspection is needed. Free written estimate after a site walk.',
+      'Home additions in Bethesda, MD. Request inspections at least 24 hours ahead. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -8047,7 +8047,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Bethesda, MD',
     metaTitle: 'Outdoor Living Bethesda MD | Real Elite',
     metaDescription:
-      'Outdoor living in Bethesda, MD. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Free written estimate after a site walk.',
+      'Outdoor living in Bethesda, MD. Montgomery County usually exempts patio repairs from permits. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
