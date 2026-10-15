@@ -4121,7 +4121,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-brookeville-md': {
     h1: 'Kitchen Remodeling in Brookeville, MD',
     metaDescription:
-      'Kitchen remodeling in Brookeville, MD, ZIP 20833. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Brookeville, MD starts with the town. Inside the Town of Brookeville, town approval comes before the county application.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -4989,7 +4989,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Ellicott City, MD covers a kitchen in ZIP 21042 or ZIP 21043. The ZIP does not decide the county.',
+      'We remodel kitchens in Ellicott City, MD, in ZIP 21042 or ZIP 21043. The ZIP code alone does not decide which county issues the permit.',
       'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic in Howard County needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ellicott City quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -6518,7 +6518,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'outdoor-living-oakton-va': {
     h1: 'Outdoor Living in Oakton, VA',
     metaDescription:
-      'Outdoor Living in Oakton, VA. Fairfax County uses the residential Addition/Alteration (ALTR) record for these projects and files Screened Porch, Sunroom, and Deck as separate Additional Square Footage categories. Free written estimate after a site walk.',
+      'Outdoor living in Oakton, VA means screened porches and sunrooms, which Fairfax County files as Additional Square Footage. Every estimate is free.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7377,7 +7377,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Silver Spring, MD',
     metaTitle: 'Kitchen Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Silver Spring, MD. If you are constructing, demolishing, adding, installing, altering any of the following you will likely need a permit: Interior Alteration. Free written estimate after a site walk.',
+      'Kitchen remodeling in Silver Spring, MD updates late-1950s houses along Georgia Avenue. Every estimate is free and written after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7406,7 +7406,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Silver Spring, MD',
     metaTitle: 'Bath Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Silver Spring, MD. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Bathroom Caulking. Free written estimate after a site walk.',
+      'Bathroom remodeling in Silver Spring, MD updates late-1950s baths along Wayne Avenue and Georgia Avenue in 20901. Every estimate is free.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7783,7 +7783,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in McLean, VA',
     metaTitle: 'Home Addition McLean VA | Real Elite',
     metaDescription:
-      'Home additions in McLean, VA. Apply for your residential addition/alteration building record online in PLUS under the Building tab. Free written estimate after a site walk.',
+      'We build home additions in McLean, VA on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7807,7 +7807,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in McLean, VA',
     metaTitle: 'Deck Builder McLean VA | Real Elite',
     metaDescription:
-      'Decks in McLean, VA. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Free written estimate after a site walk.',
+      'We frame decks in McLean, VA on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7831,7 +7831,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in McLean, VA',
     metaTitle: 'Outdoor Living McLean VA | Real Elite',
     metaDescription:
-      'Outdoor living in McLean, VA. A permit is NOT required for on-grade paver and concrete patios (including wood patios)*. *NOTE: Depending on the size and location of your project, additional approvals may be necessary. For more information, please contact one of the following: Site-related approval may be required. Please visit the Land Disturbance 101 web page, email, or call 703-222-0801, TTY 711 to find out more before you dig. Setbacks and other zoning requirements may apply. Contact Zoning at 703-222-1082, TTY 711 or by email at DPDZoningPermits@fairfaxcounty.gov, for more information. For work in the VDOT right-of-way, call 703-259-1773, TTY 711 or email novafairfaxpermits@vdot.virginia.gov. Free written estimate after a site walk.',
+      'Outdoor living in McLean, VA means a porch or sunroom on an estate lot. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7855,7 +7855,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Great Falls, VA',
     metaTitle: 'Home Addition Great Falls VA | Real Elite',
     metaDescription:
-      'Home additions in Great Falls, VA. Staff from the Permit Application Center, Health Department (if on well or septic), Building Plan Review, Site Technician Review team, Fire Marshal’s Office, Wastewater and Zoning may review your package for completeness and compliance with the building code and county ordinances. Free written estimate after a site walk.',
+      'We build home additions in Great Falls, VA on large lots along Georgetown Pike. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7879,7 +7879,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in Great Falls, VA',
     metaTitle: 'Deck Builder Great Falls VA | Real Elite',
     metaDescription:
-      'Decks in Great Falls, VA. Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Free written estimate after a site walk.',
+      'We build decks in Great Falls, VA on lots along Riverbend Road and Seneca Road. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7903,7 +7903,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Great Falls, VA',
     metaTitle: 'Outdoor Living Great Falls VA | Real Elite',
     metaDescription:
-      'Outdoor living in Great Falls, VA. A permit is NOT required for on-grade paver and concrete patios (including wood patios)*. *NOTE: Depending on the size and location of your project, additional approvals may be necessary. For more information, please contact one of the following: Site-related approval may be required. Please visit the Land Disturbance 101 web page, email, or call 703-222-0801, TTY 711 to find out more before you dig. Setbacks and other zoning requirements may apply. Contact Zoning at 703-222-1082, TTY 711 or by email at DPDZoningPermits@fairfaxcounty.gov, for more information. For work in the VDOT right-of-way, call 703-259-1773, TTY 711 or email novafairfaxpermits@vdot.virginia.gov. Free written estimate after a site walk.',
+      'Outdoor living in Great Falls, VA means a screened porch or sunroom on a large lot. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7927,7 +7927,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Potomac, MD',
     metaTitle: 'Home Addition Potomac MD | Real Elite',
     metaDescription:
-      'Home additions in Potomac, MD. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. Free written estimate after a site walk.',
+      'We build home additions in Potomac, MD on wooded lots along River Road and Falls Road. The County does not enforce covenants and deed restrictions.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7975,7 +7975,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Potomac, MD',
     metaTitle: 'Outdoor Living Potomac MD | Real Elite',
     metaDescription:
-      'Outdoor living in Potomac, MD. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Free written estimate after a site walk.',
+      'Outdoor living in Potomac, MD means a porch or patio on a wooded lot. A building permit is required for all decks regardless of the height above grade.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7999,7 +7999,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Bethesda, MD',
     metaTitle: 'Home Addition Bethesda MD | Real Elite',
     metaDescription:
-      'Home additions in Bethesda, MD. Inspections shall be requested at least 24 hours prior to the date the inspection is needed. Free written estimate after a site walk.',
+      'We build home additions in Bethesda, MD on 20816 lots along Bradley Boulevard and in Kenwood. The County does not enforce covenants and deed restrictions.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -8047,7 +8047,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Bethesda, MD',
     metaTitle: 'Outdoor Living Bethesda MD | Real Elite',
     metaDescription:
-      'Outdoor living in Bethesda, MD. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Free written estimate after a site walk.',
+      'Outdoor living in Bethesda, MD means a porch or patio in Kenwood. A building permit is required for all decks regardless of the height above grade.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
