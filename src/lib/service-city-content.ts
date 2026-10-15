@@ -9568,6 +9568,491 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
   },
+
+  // Round 19: Reston decks and outdoor living, eight ranked gaps, three Woodbine pages.
+  'decks-reston-va': {
+    h1: 'Decks in Reston, VA',
+    metaTitle: 'Reston VA Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in Reston, VA. Fairfax County files the unincorporated deck in PLUS, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which Reston deck disturbance can stay off a land-disturbance plan?',
+        answer:
+          'Disturbance under 2,500 square feet is on the Fairfax County exemption list, along with minor work such as home gardens, individual home landscaping, and repairs and maintenance. Those exemptions are specific, and county staff usually have to interpret whether one of them applies to the Reston deck.',
+      },
+      {
+        question: 'Does Reston add a town permit for a deck?',
+        answer:
+          'Reston has no town building counter for a deck. Confirm the parcel is in Fairfax County and file the deck with Land Development Services in PLUS.',
+      },
+    ],
+    paragraphs: [
+      'A Reston deck goes to Fairfax County Land Development Services in PLUS because Reston is unincorporated and has no town building counter.',
+      'Decks are on the county eligible residential Fast Track list. Fairfax County describes a push to cut that residential plan review from five business days to one business day. Eligibility still depends on scope, complexity, and the code, and staff should be asked before the application is filed. That timing is not a promise that every Reston deck is reviewed in one business day.',
+      'The county building official requires a building permit before a new Reston deck is built and before an existing Reston deck is replaced. When the house is in a condo or a homeowners association, association management is checked first because the bylaws may restrict the deck. That association check is the owner\'s own step and does not replace the county building permit. Real Elite coordinates electrical, plumbing, and HVAC on a Reston deck and does not perform that work. The Reston deck price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Reston deck filing',
+        paragraphs: [
+          'Ask Fairfax County staff whether the Reston deck scope qualifies before treating the shorter Fast Track review as the clock for that parcel.',
+        ],
+        links: [
+          { href: '/service-areas/reston-va', label: 'Reston service area' },
+          { href: '/services/additions/reston-va', label: 'Reston additions' },
+          { href: '/services/outdoor-living/reston-va', label: 'Reston pergolas' },
+        ],
+      },
+    ],
+  },
+
+  'outdoor-living-reston-va': {
+    h1: 'Outdoor Living in Reston, VA',
+    metaTitle: 'Reston VA Pergola Rules | Real Elite',
+    metaDescription:
+      'Outdoor living in Reston, VA. A pergola follows Fairfax County setbacks, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Can a Reston pergola share the deck permit?',
+        answer:
+          'A pergola set on a Reston deck may need its own permit, and the manufacturing details plus the size decide. Fairfax County suggests building that deck and that pergola together under one building permit.',
+      },
+      {
+        question: 'Where can a freestanding Reston pergola sit?',
+        answer:
+          'A pergola standing in the Reston yard on its own follows the zoning rules for where that kind of structure may sit. The building code requires a permit for a freestanding accessory structure larger than 256 square feet.',
+      },
+    ],
+    paragraphs: [
+      'A Reston pergola is an outdoor-living filing with Fairfax County Land Development Services on an unincorporated parcel, separate from the open-deck facts.',
+      'A Reston deck that carries a pergola often has to sit inside the same setbacks as the house. A partial extension of that deck into a setback is allowed only when the height and depth limits for the extension are met.',
+      'A screened porch or a sunroom in Reston is not filed from these pergola rules. The Reston pergola price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Pergola setbacks',
+        paragraphs: [
+          'Read the Reston parcel\'s setbacks before the pergola is drawn, whether it rides on the deck or stands alone in the yard.',
+        ],
+        links: [
+          { href: '/service-areas/reston-va', label: 'Reston outdoor service area' },
+          { href: '/services/decks/reston-va', label: 'Reston open decks' },
+        ],
+      },
+    ],
+  },
+
+  'additions-rockville-md': {
+    h1: 'Home Additions in Rockville, MD',
+    metaTitle: 'Rockville MD Addition Rules | Real Elite',
+    metaDescription:
+      'Home additions in Rockville, MD. City rules apply only on an in-city parcel, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Rockville?',
+        answer:
+          'Use the City of Rockville only when the parcel is inside the city. A Rockville postal address on a county parcel is filed with Montgomery County Department of Permitting Services. A 20850 or 20852 mailing address does not prove the parcel is inside the city.',
+      },
+      {
+        question: 'What does the city require before Rockville addition work starts?',
+        answer:
+          'The city requires a permit before electrical, plumbing, mechanical, or structural work starts. Real Elite coordinates those trades for a Rockville addition and does not perform the electrical, plumbing, or HVAC work. Work in or next to the public right-of-way, and work that affects trees or stormwater facilities, also needs permits.',
+      },
+      {
+        question: 'When does a Rockville addition need NGBS Green certification?',
+        answer:
+          'Starting August 1, 2026, a residential project that falls under the city\'s green-building regulations has to obtain NGBS Green certification from an accredited verifier. The project is registered in the NGBS online portal, and the registration confirmation goes in with the construction documents before the permit is issued.',
+      },
+    ],
+    paragraphs: [
+      'A Rockville addition uses the City of Rockville only when the parcel sits inside the city limits.',
+      'Rockville city, census place 2467675, shows a median owner-occupied value of $682,300 with a margin of error of $18,120, 14,199 owner-occupied units, a 52.6 percent owner share, and a median year built of 1979 in the American Community Survey 2024 five-year estimates. That Rockville figure is a city figure, not a ZIP median.',
+      'Most Rockville permits need one or more inspections before the city treats the work as finished. Construction in the city is regulated by the Rockville City Code and the Maryland Fire Prevention Code, among other codes. The Rockville addition price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'City parcel first',
+        paragraphs: [
+          'Confirm the Rockville parcel is inside the city before the addition set is prepared for the city counter.',
+        ],
+        links: [
+          { href: '/service-areas/rockville-md', label: 'Rockville service area' },
+          { href: '/services/kitchens/rockville-md', label: 'Rockville kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'decks-annandale-va': {
+    h1: 'Decks in Annandale, VA',
+    metaTitle: 'Annandale VA Deck Details | Real Elite',
+    metaDescription:
+      'Decks in Annandale, VA. Fairfax County typical deck details cover one level, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which Annandale decks can use the county typical details?',
+        answer:
+          'Those details cover a residential deck with a single level. Using them for a multi-level deck that shares posts and footings is prohibited. Any departure needs county staff approval before construction, and a copy with Section 10 filled in has to be on the Annandale job site at each required inspection.',
+      },
+      {
+        question: 'What loads and lumber do the Annandale deck details assume?',
+        answer:
+          'The framing in the details is designed for a 40 psf live load, a 10 psf dead load, normal duration, and wet service, with deflection of L/360 on main spans and L/180 on overhangs, and a 220-pound point load. Lumber in the details is preservative-treated southern pine, grade #2 or better. Lumber that is not native to North America, including Ipe, may be used as Annandale decking only, and using it in a guard is prohibited. Footing concrete in the details has a minimum compressive strength of 3,000 psi.',
+      },
+      {
+        question: 'How deep are Annandale deck footings?',
+        answer:
+          'Annandale deck footings bear on solid ground 24 inches below grade, and deeper when solid ground is not found at that depth. County inspectors check that bearing before concrete is placed. When the edge of an Annandale deck footing is closer than 5 feet to an existing exterior house wall, the footing bears at the same elevation as the house footings.',
+      },
+    ],
+    paragraphs: [
+      'An Annandale deck is drawn from Fairfax County typical deck details, and Annandale is not a town, not Clifton, and not Vienna.',
+      'Annandale owner-occupied housing shows a median value of $681,300, 9,087 owner-occupied units, a 65.4 percent owner share, and a median year built of 1968.',
+      'The county typical deck details used for an Annandale deck are based on the 2021 Virginia Residential Code, and the sheets print version 2021.0 with the date January 5, 2024. A deck built from these Annandale details is not approved for a privacy screen, a planter, built-in seating, a guard post mounted on the surface, or a hot tub. The Annandale deck price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Single-level details',
+        paragraphs: [
+          'Keep the Annandale deck on the single-level county details unless staff have approved a departure before construction.',
+        ],
+        links: [
+          { href: '/service-areas/annandale-va', label: 'Annandale service area' },
+          { href: '/services/kitchens/annandale-va', label: 'Annandale kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'additions-takoma-park-md': {
+    h1: 'Home Additions in Takoma Park, MD',
+    metaTitle: 'Takoma Park MD Addition | Real Elite',
+    metaDescription:
+      'Home additions in Takoma Park, MD. The city letter precedes the county filing, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which county rows name Takoma Park?',
+        answer:
+          'One heading, for city approval before the county application, includes the name Takoma Park. A different heading, for both county and city approval, includes the name City of Takoma Park. Those two rows stay separate, and the city letter page is what describes the letter.',
+      },
+      {
+        question: 'What does the Takoma Park letter flag?',
+        answer:
+          'A renovation, a building project, or an outdoor project that needs a Department of Permitting Services permit needs the city letter first. The city\'s own examples of that outdoor work are a fence, a deck, and a driveway. The letter is how the city flags its own permits on top of the county permit: tree protection, stormwater, and work in the city right-of-way. The city\'s examples of right-of-way work are a driveway apron, a dumpster, and a fence.',
+      },
+      {
+        question: 'Is every Takoma Park house in the historic district?',
+        answer:
+          'A county Historic Area Work Permit applies when the Takoma Park property is in the historic district. That is not a claim that every Takoma Park house is in the district. Skipping the city\'s permit rules can bring a stop-work order and other actions the city describes as administrative.',
+      },
+    ],
+    paragraphs: [
+      'A Takoma Park addition keeps the two county municipality rows apart and starts from the city letter, then Montgomery County Department of Permitting Services.',
+      'Takoma Park city, census place 2476650, has a median owner-occupied value of $749,200, a margin of error of $37,123, 3,753 owner-occupied units, a 54.2 percent owner share, and a median year built of 1954. Those Takoma Park figures are city figures.',
+      'The Takoma Park addition price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Letter, then county',
+        paragraphs: [
+          'Read the Takoma Park parcel against both county municipality headings before the addition application is assembled.',
+        ],
+        links: [
+          { href: '/service-areas/takoma-park-md', label: 'Takoma Park service area' },
+          { href: '/services/kitchens/takoma-park-md', label: 'Takoma Park kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'additions-colesville-md': {
+    h1: 'Home Additions in Colesville, MD',
+    metaTitle: 'Colesville MD Addition Code | Real Elite',
+    metaDescription:
+      'Home additions in Colesville, MD. Montgomery County energy rules govern the addition, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which energy rules apply to a Colesville addition?',
+        answer:
+          'The addition packet follows the 2021 International Energy Conservation Code as amended by Montgomery County Executive Regulation 13-24. An addition that does not increase conditioned floor area by more than 70 square feet is exempt from the building thermal-envelope rules of Section R402, except the glazing rules, when the building with the addition does not use more energy than the existing building.',
+      },
+      {
+        question: 'What energy notes go on the Colesville plans?',
+        answer:
+          'With the energy selection form, the Colesville plans mark the thermal envelope, show insulation R-values or U-factors and where the insulation goes, and show each window and door U-factor from Table R402.1.2. The mechanical system design criteria form is prepared by a mechanical contractor. Real Elite coordinates that trade for the Colesville addition and does not do the HVAC work.',
+      },
+      {
+        question: 'Which other Colesville addition sheets are in the packet?',
+        answer:
+          'The submittal includes a Maryland Department of Assessments and Taxation Real Property Data Search printout that shows the land area. When the Colesville house is in a historic location, the packet includes stamped plans and a letter of conditions from the Historic Preservation Commission. Work that disturbs 5,000 square feet, or that moves 100 cubic yards of earth, needs a sediment-control permit. A Colesville revision can be filed only before final inspection. Changes are dated and clouded, and the revision uses the same permit number in the Department of Permitting Services online service.',
+      },
+    ],
+    paragraphs: [
+      'A Colesville addition is a Montgomery County Department of Permitting Services energy-code filing for the parcel.',
+      'Colesville is a census designated place, census place 2418475, and not an incorporated city. The American Community Survey 2024 five-year estimates for that place show a median owner-occupied value of $616,800, a margin of error of $18,161, 3,940 owner-occupied units, an 83.0 percent owner share, and a median year built of 1968. That Colesville median is not a town median.',
+      'The Colesville addition price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Energy envelope',
+        paragraphs: [
+          'Mark the Colesville thermal envelope on the plans that go with the energy selection form.',
+        ],
+        links: [
+          { href: '/service-areas/colesville-md', label: 'Colesville service area' },
+          { href: '/services/kitchens/colesville-md', label: 'Colesville kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'additions-columbia-md': {
+    h1: 'Home Additions in Columbia, MD',
+    metaTitle: 'Columbia MD Addition Counts | Real Elite',
+    metaDescription:
+      'Home additions in Columbia, MD. Howard County counts the addition only, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'How are Columbia addition rooms counted?',
+        answer:
+          'Stories on the Columbia addition form are counted above grade only, and only for the addition. Bedroom count is the proposed bedrooms, and room count leaves out bathrooms and closets. A full bath on that form is a three-piece bathroom or larger, and a half bath is a two-piece bathroom. Both counts cover only the bathrooms the addition affects.',
+      },
+      {
+        question: 'What square footage and drawings does the Columbia addition upload?',
+        answer:
+          'Gross square footage is the total of every floor of the Columbia addition. The uploads are a plot plan drawn to scale, dimensioned, and located to the property lines, with the well or septic shown when the lot has one, and construction drawings sent to ProjectDox by invite, signed and sealed when that applies.',
+      },
+    ],
+    paragraphs: [
+      'A Columbia addition is counted on the Howard County single-family addition block once the parcel is confirmed in Howard County.',
+      'Columbia here is the Howard County census designated place, census place 2419125. The American Community Survey 2024 five-year estimates for that place show a median owner-occupied value of $497,400, a margin of error of $10,302, 26,665 owner-occupied units, a 64.8 percent owner share, and a median year built of 1983. That Columbia median is not a town median.',
+      'Howard County DILP is the building office for a Columbia addition on a Howard County parcel. The Columbia addition price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Addition counts only',
+        paragraphs: [
+          'Limit the Columbia story, bedroom, bath, and floor-area counts to the addition itself.',
+        ],
+        links: [
+          { href: '/service-areas/columbia-md', label: 'Columbia service area' },
+          { href: '/services/kitchens/columbia-md', label: 'Columbia kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'decks-kensington-md': {
+    h1: 'Decks in Kensington, MD',
+    metaTitle: 'Kensington MD Town Deck | Real Elite',
+    metaDescription:
+      'Decks in Kensington, MD. Town approval comes before the county application, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'What order does a Kensington deck follow?',
+        answer:
+          'A Kensington parcel inside the town takes town approval before the Montgomery County application. That order on the county municipalities list groups Kensington with Barnesville, Brookeville, Chevy Chase Village, Laytonsville, Poolesville, Takoma Park, the Village of Drummond, and Washington Grove.',
+      },
+      {
+        question: 'How does Town Hall describe a Kensington building permit?',
+        answer:
+          'The town resident FAQ says a building permit is needed in most cases, and Town Hall staff are who to ask which type applies. The resident FAQ lists Town Hall hours as Monday through Friday, 8:00 a.m. to 4:00 p.m. Whether a Kensington house is inside the town limits is checked on the town boundary map, and Town Hall is the contact when the map is unclear.',
+      },
+    ],
+    paragraphs: [
+      'A Kensington deck inside the town takes town approval before the county application is filed.',
+      'Kensington is a town, census place 2443500, so the town median applies: $943,500, margin of error $48,966, 451 owner-occupied units, a 50.5 percent owner share, and a median year built of 1959.',
+      'A Kensington property in a common-ownership community should contact that community about its own process, and that contact is not the Montgomery County permit. The Kensington deck price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Town approval first',
+        paragraphs: [
+          'Check the Kensington boundary map for the parcel before the town approval and the later county application are sequenced.',
+        ],
+        links: [
+          { href: '/service-areas/kensington-md', label: 'Kensington service area' },
+          { href: '/services/kitchens/kensington-md', label: 'Kensington kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'decks-dickerson-md': {
+    h1: 'Decks in Dickerson, MD',
+    metaTitle: 'Dickerson MD Footing Deck | Real Elite',
+    metaDescription:
+      'Decks in Dickerson, MD. A footing-supported deck needs a county permit, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who may apply for a Dickerson deck permit?',
+        answer:
+          'A homeowner may apply for the Dickerson building permit in the homeowner\'s own name. When a contractor will build the Dickerson deck, the Department of Permitting Services suggests listing that contractor as the party responsible for the work.',
+      },
+      {
+        question: 'How are Dickerson deck plans and fees handled?',
+        answer:
+          'Dickerson deck plans are submitted electronically in Department of Permitting Services eServices, and the applicant follows the ePlans submittal requirements. Unless state law exempts it, the filing fee paid with the Dickerson deck application is not refundable, and the county names credit card and check as the payment methods. After the fees and the other Dickerson deck requirements are met, the permit and the approved drawings are issued electronically. Hard copies of those approved drawings have to be on the Dickerson job site for the inspector.',
+      },
+    ],
+    paragraphs: [
+      'A Dickerson deck that bears on footings is a Montgomery County Department of Permitting Services filing.',
+      'Dickerson owner-occupied figures in the American Community Survey 2024 five-year estimates belong to ZIP Code Tabulation Area 20842, which is not a census place and not a town median: median value $745,800, margin of error $105,925, 661 owner-occupied units, an 82.4 percent owner share, and a median year built of 1979.',
+      'A building permit is required when the Dickerson deck is supported by footings, at any height above grade. The Dickerson deck price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Footing-supported decks',
+        paragraphs: [
+          'Treat a Dickerson deck on footings as permit work even when the platform sits low to the grade.',
+        ],
+        links: [
+          { href: '/service-areas/dickerson-md', label: 'Dickerson service area' },
+          { href: '/services/kitchens/dickerson-md', label: 'Dickerson kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'decks-woodbine-md': {
+    h1: 'Decks in Woodbine, MD',
+    metaTitle: 'Woodbine MD Deck Split | Real Elite',
+    metaDescription:
+      'Decks in Woodbine, MD. The parcel county picks the office, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which office permits a Woodbine deck?',
+        answer:
+          'ZIP Code Tabulation Area 21797 sits in both Carroll County and Howard County on the Census relationship file. The ZIP does not choose the permit office. A parcel in Howard County uses Howard County DILP. A parcel in Carroll County uses Carroll County Permits and Inspections. Carroll County\'s zoning-case list includes Woodbine mailing addresses in ZIP 21797, so a Woodbine mailing address can be a Carroll parcel.',
+      },
+      {
+        question: 'What does Carroll County ask for on a deck?',
+        answer:
+          'On a Carroll parcel, deck construction is treated as an addition to a home, so it needs permits and inspections. Carroll\'s fillable deck drawings can be used for a Woodbine deck when they match the design, and an original plan is required when they do not. The Woodbine deck filing keeps the standard open-deck plan. The Carroll packet asks for two copies of the construction plans, a plot plan, a building-permit and zoning application, the fee, and an owner-contractor affidavit. Carroll building permits are filed in person, with residential solar as the online exception, and the counter takes walk-ins from 8:00 a.m. to 4:30 p.m.',
+      },
+    ],
+    paragraphs: [
+      'A Woodbine deck waits on the parcel\'s county, because ZIP 21797 does not select the permit office.',
+      'Woodbine housing counts in the American Community Survey 2024 five-year estimates are for ZIP Code Tabulation Area 21797, not a census place and not a town median: median value $735,600, margin of error $59,507, 2,612 owner-occupied units, a 91.7 percent owner share, and a median year built of 1985.',
+      'The Woodbine deck price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Confirm the county',
+        paragraphs: [
+          'Name the Woodbine deck office only after the parcel is placed in Howard County or in Carroll County.',
+        ],
+        links: [
+          { href: '/service-areas/woodbine-md', label: 'Woodbine service area' },
+          { href: '/services/kitchens/woodbine-md', label: 'Woodbine kitchens' },
+          { href: '/services/outdoor-living/woodbine-md', label: 'Woodbine roofed decks' },
+        ],
+      },
+    ],
+  },
+
+  'outdoor-living-woodbine-md': {
+    h1: 'Outdoor Living in Woodbine, MD',
+    metaTitle: 'Woodbine MD Roofed Deck | Real Elite',
+    metaDescription:
+      'Outdoor living in Woodbine, MD. Roofed deck drawings follow the parcel county, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which Carroll drawings cover a roofed Woodbine deck?',
+        answer:
+          'Carroll publishes separate fillable drawings for a deck with a shed roof and a deck with a gable roof, and those drawings are not the standard open-deck plan. Howard County DILP is the office only when that outdoor-living parcel is in Howard County. Carroll County Permits and Inspections is the office only when that outdoor-living parcel is in Carroll County.',
+      },
+      {
+        question: 'Who files a Woodbine spa, hot tub, or grill permit?',
+        answer:
+          'A hot tub, a spa, or another permanent electric piece on a Carroll parcel also needs an electrical permit, filed by an electrician after the building application. Real Elite coordinates that electrical trade for a Woodbine spa or hot tub and does not perform the electrical work. Running water, or gas piping to a grill, on a Carroll parcel needs a plumbing and gas permit filed by a plumber. Real Elite coordinates that plumbing trade for the Woodbine grill or wet bar and does not perform the plumbing work. Carroll lets electrical, plumbing, and gas permits be dropped off, mailed, or filed online, which is a different path from the in-person building permit.',
+      },
+    ],
+    paragraphs: [
+      'A Woodbine porch roof, spa, or grill line follows the parcel\'s county, not the 21797 mailing name.',
+      'Confirm the Woodbine parcel\'s county before a porch roof or a spa is drawn, because the ZIP digits do not name the building counter.',
+      'The Woodbine outdoor living price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Roofed drawings',
+        paragraphs: [
+          'Use the Carroll shed-roof or gable-roof drawings only when they match the Woodbine design on a Carroll parcel.',
+        ],
+        links: [
+          { href: '/service-areas/woodbine-md', label: 'Woodbine outdoor service area' },
+          { href: '/services/decks/woodbine-md', label: 'Woodbine open decks' },
+          { href: '/services/additions/woodbine-md', label: 'Woodbine additions' },
+        ],
+      },
+    ],
+  },
+
+  'additions-woodbine-md': {
+    h1: 'Home Additions in Woodbine, MD',
+    metaTitle: 'Woodbine MD Addition Split | Real Elite',
+    metaDescription:
+      'Home additions in Woodbine, MD. Howard and Carroll filings stay parcel-specific, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which county receives a Woodbine addition?',
+        answer:
+          'The Census relationship file places ZIP Code Tabulation Area 21797 in Carroll County and in Howard County. Neither the name Woodbine nor ZIP 21797 selects the office. When the addition parcel is in Howard County, the office is Howard County DILP. When the addition parcel is in Carroll County, the office is Carroll County Permits and Inspections. Carroll\'s zoning-case list is what shows Woodbine addresses inside ZIP 21797, and it is not a map of every house.',
+      },
+      {
+        question: 'What does the Howard County addition block ask for in Woodbine?',
+        answer:
+          'On a Howard County parcel, the single-family addition block asks whether a roadside-tree project permit applies and for its number. That block also asks for the energy method used to meet the county\'s currently adopted energy code, and for water supply, public or private well, and sewage, public sewer or septic. Fireplace count is the number to be installed on the Woodbine addition, and the type is chosen when the count is above zero. A condo or homeowners association letter is uploaded when one applies to the Howard County addition.',
+      },
+      {
+        question: 'Is there a Carroll addition checklist for Woodbine?',
+        answer:
+          'Carroll\'s page with addition in the address is a new-home packet, so it is not used as a Woodbine addition checklist. The Woodbine addition still waits on a confirmed Carroll parcel before any Carroll submittal is described.',
+      },
+    ],
+    paragraphs: [
+      'A Woodbine addition is submitted to whichever county contains the parcel.',
+      'A Woodbine mailing address can belong to either county on the Census relationship file, so the addition office is read from the parcel rather than from the ZIP.',
+      'The Woodbine addition price is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Parcel before packet',
+        paragraphs: [
+          'Hold the Woodbine addition packet until the parcel is confirmed in Howard County or in Carroll County.',
+        ],
+        links: [
+          { href: '/service-areas/woodbine-md', label: 'Woodbine addition service area' },
+          { href: '/services/basements/woodbine-md', label: 'Woodbine basements' },
+        ],
+      },
+    ],
+  },
 };
 
 /**

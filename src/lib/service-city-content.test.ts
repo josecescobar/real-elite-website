@@ -835,6 +835,11 @@ describe('comboPublishesPricing', () => {
         'decks-olney-md',
         'outdoor-living-alexandria-va',
         'outdoor-living-olney-md',
+        // Round 19 pages whose copy has no dollar figure above $25,000.
+        'additions-woodbine-md',
+        'decks-reston-va',
+        'outdoor-living-reston-va',
+        'outdoor-living-woodbine-md',
       ].sort()
     );
   });
@@ -903,9 +908,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
     // and three Fort Hunt pages in round 15. All clean.
     // Round 17 adds 11 clean pages for Cabin John, Garrett Park, West Friendship, and Alexandria.
     // Round 18 adds 11 clean pages for Glenwood, Ashton, Olney, Reston, and Alexandria outdoor living.
+    // Round 19 adds 12 clean pages for Reston decks and outdoor living, eight ranked gaps, and Woodbine.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 278 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 290 });
   });
 
   /**
@@ -1465,6 +1471,8 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-glenwood-md',
       'outdoor-living-ashton-md',
       'outdoor-living-olney-md',
+      'outdoor-living-reston-va',
+      'outdoor-living-woodbine-md',
     ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
@@ -1763,6 +1771,12 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       'additions-glenwood-md',
       'decks-glenwood-md',
       'outdoor-living-glenwood-md',
+      // Round 19 adds Kensington decks, Dickerson decks, and the three Woodbine pages.
+      'decks-kensington-md',
+      'decks-dickerson-md',
+      'decks-woodbine-md',
+      'outdoor-living-woodbine-md',
+      'additions-woodbine-md',
     ]);
     for (const city of [
       'glenwood-md',
@@ -2282,13 +2296,19 @@ describe('REA-2495 round 11 richest-county towns', () => {
   });
 
   it('publishes only kitchens, bathrooms, and basements for the six new towns and Springfield', () => {
-    const allowed = new Set(
-      [...NEW_AREAS, 'springfield-va'].flatMap((city) => [
+    const allowed = new Set([
+      ...[...NEW_AREAS, 'springfield-va'].flatMap((city) => [
         `kitchens-${city}`,
         `bathrooms-${city}`,
         `basements-${city}`,
-      ])
-    );
+      ]),
+      // Round 19 adds one ranked service page for five of these towns.
+      'decks-annandale-va',
+      'additions-rockville-md',
+      'additions-colesville-md',
+      'additions-takoma-park-md',
+      'additions-columbia-md',
+    ]);
     for (const city of [...NEW_AREAS, 'springfield-va']) {
       for (const key of Object.keys(CONTENT)) {
         if (keyMatchesCity(key, city)) expect(allowed.has(key), key).toBe(true);
@@ -3272,14 +3292,9 @@ describe('REA-2997 round 18 Glenwood, Ashton, Olney, Reston, and Alexandria outd
     expect(new Set(titles).size).toBe(titles.length);
   });
 
-  it('publishes the 11 service urls and the Montgomery guide, and holds Woodbine and Reston decks', () => {
+  it('publishes the 11 round-18 service urls and the Montgomery guide', () => {
     expect(PAGES).toHaveLength(11);
     expect(getPostBySlug('montgomery-county-residential-fast-track-review')?.date).toBe('2026-10-14');
-    expect(CONTENT).not.toHaveProperty('decks-reston-va');
-    expect(CONTENT).not.toHaveProperty('outdoor-living-reston-va');
-    expect(CONTENT).not.toHaveProperty('additions-woodbine-md');
-    expect(CONTENT).not.toHaveProperty('decks-woodbine-md');
-    expect(CONTENT).not.toHaveProperty('outdoor-living-woodbine-md');
     expect(CONTENT).not.toHaveProperty('additions-brambleton-va');
     expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
     expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
@@ -3363,6 +3378,173 @@ describe('REA-2997 round 18 Glenwood, Ashton, Olney, Reston, and Alexandria outd
         if (fresh.has(sentence)) {
           dupes.push(`${fresh.get(sentence)} also in blog ${post.slug}: ${sentence}`);
         }
+      }
+    }
+    expect(dupes).toEqual([]);
+  });
+});
+
+describe('REA-3011 round 19 Reston, Woodbine, and eight ranked gaps', () => {
+  const PAGES = [
+    ['decks', 'reston-va', 'Decks in Reston, VA'],
+    ['outdoor-living', 'reston-va', 'Outdoor Living in Reston, VA'],
+    ['additions', 'rockville-md', 'Home Additions in Rockville, MD'],
+    ['decks', 'annandale-va', 'Decks in Annandale, VA'],
+    ['additions', 'takoma-park-md', 'Home Additions in Takoma Park, MD'],
+    ['additions', 'colesville-md', 'Home Additions in Colesville, MD'],
+    ['additions', 'columbia-md', 'Home Additions in Columbia, MD'],
+    ['decks', 'kensington-md', 'Decks in Kensington, MD'],
+    ['decks', 'dickerson-md', 'Decks in Dickerson, MD'],
+    ['decks', 'woodbine-md', 'Decks in Woodbine, MD'],
+    ['outdoor-living', 'woodbine-md', 'Outdoor Living in Woodbine, MD'],
+    ['additions', 'woodbine-md', 'Home Additions in Woodbine, MD'],
+  ] as const;
+
+  function entryStrings(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
+    return [
+      entry?.h1,
+      entry?.metaTitle,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ...(entry?.sections ?? []).flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.links ?? []).map((link) => link.label),
+      ]),
+    ].filter((part): part is string => Boolean(part));
+  }
+
+  it.each(PAGES)('%s-%s uses the exact H1, FAQs, and town-tagged photos', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.metaDescription!.length).toBeLessThanOrEqual(160);
+    expect(entry?.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(entry?.paragraphs.length).toBeLessThanOrEqual(4);
+    expect(entry?.faqs?.length).toBeGreaterThanOrEqual(2);
+    expect(entry?.faqs?.length).toBeLessThanOrEqual(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = entryStrings(entry).join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|\blicense\b|inspiration|\bstock\b|estimate fee|\bminutes?\b|\bmiles?\b|veteran-owned|brambleton|separately licensed|—|\bACS\b|\bCDP\b|\bZCTA\b|Summit|Amazon/i
+    );
+    expect(body).not.toMatch(/\d{10}/);
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('does not clone the 12 openings and gives each a unique metaTitle', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('publishes the 12 keys, keeps the content count at 323, and adds no retired combo', () => {
+    expect(PAGES).toHaveLength(12);
+    expect(Object.keys(CONTENT)).toHaveLength(323);
+    for (const [service, city] of PAGES) {
+      expect(CONTENT).toHaveProperty(`${service}-${city}`);
+    }
+    expect(CONTENT).not.toHaveProperty('additions-brambleton-va');
+    expect(CONTENT).not.toHaveProperty('kitchens-hagerstown-md');
+    expect(CONTENT).not.toHaveProperty('bathrooms-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-middleburg-va');
+    expect(CONTENT).not.toHaveProperty('basements-burke-va');
+  });
+
+  it('keeps Reston housing on the addition page and pergola facts off the deck page', () => {
+    const deck = entryStrings(CONTENT['decks-reston-va']).join('\n');
+    const pergola = entryStrings(CONTENT['outdoor-living-reston-va']).join('\n');
+    expect(deck).toMatch(/Fast Track/);
+    expect(deck).toMatch(/under 2,500 square feet/);
+    expect(deck).toMatch(/association management/);
+    expect(deck).not.toMatch(/\$642,000|Reston Association|256 square feet/);
+    expect(pergola).toMatch(/256 square feet/);
+    expect(pergola).toMatch(/one building permit/);
+    expect(pergola).not.toMatch(/Fast Track|Reston Association|\$642,000|under 2,500/);
+  });
+
+  it('keeps Kensington town-first and leaves the ZIP median off the deck page', () => {
+    const text = entryStrings(CONTENT['decks-kensington-md']).join('\n');
+    expect(text).toMatch(/town approval before the Montgomery County application/);
+    expect(text).toMatch(/\$943,500/);
+    expect(text).not.toMatch(/3710 Mitchell|\$781,500|county permit prior to city approval|20895/);
+  });
+
+  it('does not invent a county-only sentence for Colesville or Dickerson', () => {
+    const colesville = entryStrings(CONTENT['additions-colesville-md']).join('\n');
+    const dickerson = entryStrings(CONTENT['decks-dickerson-md']).join('\n');
+    expect(colesville).not.toMatch(/county only/i);
+    expect(colesville).toMatch(/census designated place/);
+    expect(colesville).toMatch(/not a town median/);
+    expect(colesville).toMatch(/70 square feet/);
+    expect(colesville).not.toMatch(/radon|Appendix AF/);
+    expect(dickerson).not.toMatch(/county only/i);
+    expect(dickerson).toMatch(/supported by footings/);
+    expect(dickerson).toMatch(/ZIP Code Tabulation Area 20842/);
+    expect(dickerson).toMatch(/not a town median/);
+    expect(dickerson).not.toMatch(/regardless of height|Wheaton|WSSC/);
+  });
+
+  it('states the Woodbine split parcel by parcel and does not let the ZIP pick the office', () => {
+    for (const service of ['decks', 'outdoor-living', 'additions'] as const) {
+      const text = entryStrings(CONTENT[`${service}-woodbine-md`]).join('\n');
+      expect(text).toMatch(/Howard County DILP/);
+      expect(text).toMatch(/Carroll County Permits and Inspections/);
+      expect(text).not.toMatch(/Howard (County )?DILP covers Woodbine/i);
+      expect(text).not.toMatch(/Carroll (County )?covers Woodbine/i);
+      expect(text).not.toMatch(/\b1797\b/);
+    }
+    const deck = entryStrings(CONTENT['decks-woodbine-md']).join('\n');
+    const outdoor = entryStrings(CONTENT['outdoor-living-woodbine-md']).join('\n');
+    const addition = entryStrings(CONTENT['additions-woodbine-md']).join('\n');
+    expect(deck).toMatch(/8:00 a\.m\. to 4:30 p\.m\./);
+    expect(deck).toMatch(/\$735,600/);
+    expect(deck).toMatch(/not a town median/);
+    expect(outdoor).not.toMatch(/8:00 a\.m\. to 4:30 p\.m\./);
+    expect(outdoor).not.toMatch(/\$735,600/);
+    expect(outdoor).toMatch(/shed roof/);
+    expect(outdoor).toMatch(/gable roof/);
+    expect(addition).toMatch(/roadside-tree/);
+    expect(addition).not.toMatch(/\$735,600|8:00 a\.m\. to 4:30 p\.m\./);
+    expect(addition).not.toMatch(/above grade only/);
+  });
+
+  it('does not repeat a sentence from these pages or from any earlier combo', () => {
+    const splitSentences = (text: string) =>
+      text
+        .split(/(?<=[.!?])\s+/)
+        .map((sentence) => sentence.replace(/\s+/g, ' ').trim())
+        .filter((sentence) => sentence.length >= 40);
+
+    const fresh = new Map<string, string>();
+    const dupes: string[] = [];
+    for (const [service, city] of PAGES) {
+      const key = `${service}-${city}`;
+      for (const sentence of splitSentences(entryStrings(CONTENT[key as keyof typeof CONTENT]).join(' '))) {
+        const prior = fresh.get(sentence);
+        if (prior) dupes.push(`${key} repeats ${prior}: ${sentence}`);
+        else fresh.set(sentence, key);
+      }
+    }
+
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      if (PAGES.some(([service, city]) => key === `${service}-${city}`)) continue;
+      for (const sentence of splitSentences(entryStrings(entry).join(' '))) {
+        if (fresh.has(sentence)) dupes.push(`${fresh.get(sentence)} also in ${key}: ${sentence}`);
       }
     }
     expect(dupes).toEqual([]);
