@@ -95,12 +95,11 @@ describe('built meta descriptions', () => {
     // description is genuinely unavoidable (a noindex shell that cannot carry
     // its own sentence, for example) and say why next to the route.
     //
-    // Empty on purpose. The only former duplicate was the root-layout sentence
-    // on `/`, `/blog`, `/review-request`, and `/_not-found`. Home keeps that
-    // sentence. `/blog`, `/review-request`, and `/_not-found` have their own.
-    // `/_global-error` has no description, so it is not a duplicate and is
-    // not listed here.
-    const DUPLICATE_DESCRIPTION_ALLOWLIST = new Set<string>([]);
+    // `/blog` is a permanent 308 to `/resources` in next.config.ts, so search
+    // engines never see its prerendered shell. That shell inherits the root
+    // layout sentence that `/` uses. `/review-request` and `/_not-found` have
+    // their own. `/_global-error` has no description, so it is not listed.
+    const DUPLICATE_DESCRIPTION_ALLOWLIST = new Set<string>(['/blog']);
 
     const groups = new Map<string, string[]>();
     for (const page of pages) {
@@ -117,25 +116,5 @@ describe('built meta descriptions', () => {
       .sort();
 
     expect(shared).toEqual([]);
-  });
-
-  it('supports the /blog description with that page’s own visible body', () => {
-    const file = path.join(APP, 'blog.html');
-    const html = fs.readFileSync(file, 'utf8');
-    // redirect() replaces this document with an empty shell. The description
-    // has to be in the layout footer this file actually renders.
-    expect(html).not.toContain('id="__next_error__"');
-    const description = metaDescription(html);
-    expect(description, '/blog is missing a meta description').toBeTruthy();
-
-    const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] ?? '';
-    const visible = decodeEntities(
-      body
-        .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-        .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-        .replace(/<[^>]+>/g, ' ')
-        .replace(/\s+/g, ' ')
-    );
-    expect(visible).toContain(description);
   });
 });
