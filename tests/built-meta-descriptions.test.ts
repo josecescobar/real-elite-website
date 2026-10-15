@@ -1,0 +1,92 @@
+import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
+
+/**
+ * Every prerendered page's meta description must fit the snippet budget.
+ *
+ * Google cuts a description around 160 characters. A longer string is still
+ * in the HTML, but the extra words never show, and several service pages had
+ * pasted a whole permit paragraph into `metaDescription`. This reads the
+ * built `<meta name="description">`, not the source field, so a template,
+ * a fallback, or a hardcoded `metadata` export is covered the same way.
+ *
+ * It is part of `npm run test:built` (see vitest.built.config.ts) because it
+ * needs `.next/`. It fails if that output is missing rather than passing on
+ * an empty directory.
+ */
+
+const APP = '.next/server/app';
+const MAX = 160;
+
+/** Trailing slashes are not meaningful here; `/a/` and `/a` are one route. */
+const norm = (p: string): string => p.replace(/\/+$/, '') || '/';
+
+function builtPages(): string[] {
+  const out: string[] = [];
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith('.html')) out.push(full);
+    }
+  };
+  walk(APP);
+  return out;
+}
+
+/** Next writes the homepage as `index.html`; `/index` is not a route. */
+const pageRoute = (file: string): string => {
+  const route = norm(file.slice(APP.length).replace(/\.html$/, ''));
+  return route === '/index' ? '/' : route;
+};
+
+function decodeEntities(value: string): string {
+  return value
+    .replace(/&amp;/g, '&')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
+/** The document meta description, decoded. Null when the page has none. */
+function metaDescription(html: string): string | null {
+  const tag = html.match(/<meta\b[^>]*\bname="description"[^>]*>/i);
+  if (!tag) return null;
+  const content = tag[0].match(/\bcontent="([^"]*)"/);
+  return content ? decodeEntities(content[1]) : null;
+}
+
+describe('built meta descriptions', () => {
+  const hasBuild = fs.existsSync(APP);
+
+  it('has build output to read', () => {
+    expect(
+      hasBuild,
+      `${APP} is missing — run \`npm run build\` first. This suite asserts nothing without it, so it fails rather than passing empty.`
+    ).toBe(true);
+  });
+
+  if (!hasBuild) return;
+
+  const pages = builtPages().map((file) => {
+    const html = fs.readFileSync(file, 'utf8');
+    return { route: pageRoute(file), description: metaDescription(html) };
+  });
+
+  it('reads a full prerender, not a handful of HTML files', () => {
+    const withDescription = pages.filter((page) => page.description);
+    expect(withDescription.length).toBeGreaterThanOrEqual(500);
+  });
+
+  it('keeps every meta description at or under 160 characters', () => {
+    const over = pages
+      .filter((page) => page.description && page.description.length > MAX)
+      .map((page) => `${page.route} (${page.description!.length}): ${page.description}`)
+      .sort();
+    expect(over).toEqual([]);
+  });
+});

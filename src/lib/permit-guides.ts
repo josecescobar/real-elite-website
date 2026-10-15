@@ -550,7 +550,7 @@ const ARLINGTON: CountyPermitGuide = {
   h1: 'Do I Need a Permit to Remodel in Arlington County, VA?',
   seoTitle: 'Arlington County Remodel Permits: Deck, Basement, Bath',
   description:
-    'Which Arlington County remodels need a permit: decks, basements, kitchens, baths, roofs, and additions. How Permit Arlington works, the steps, and historic review.',
+    'Which Arlington County remodels need a permit: decks, basements, kitchens, baths, roofs, and additions. Applications go online through Permit Arlington.',
   cardBlurb:
     'Additions, decks, and most alterations need a permit through Permit Arlington. Same-spot fixture swaps and most roof covering replacements don’t.',
   keywords: [
@@ -1066,7 +1066,7 @@ const HOWARD: CountyPermitGuide = {
   h1: 'Do I Need a Permit to Remodel in Howard County, MD?',
   seoTitle: 'Howard County Remodel Permits: Deck, Basement, Bath',
   description:
-    'Which Howard County, MD remodels need a permit: decks, basements, additions, sheds, fences, plumbing. How DILP permits work, the steps, HOA letters, historic review.',
+    'Which Howard County, MD remodels need a permit: decks, basements, additions, sheds, fences, and plumbing. DILP covers Ellicott City, Columbia, and Clarksville.',
   cardBlurb:
     'Nearly every deck needs a permit, and so do basement finishes and additions. Small sheds and deck-board swaps don’t. One county office covers Ellicott City and Columbia.',
   keywords: [
@@ -1216,7 +1216,7 @@ const FREDERICK: CountyPermitGuide = {
   h1: 'Do I Need a Permit to Remodel in Frederick County, MD?',
   seoTitle: 'Frederick County Remodel Permits: Deck, Basement, Bath',
   description:
-    'Which Frederick County, MD remodels need a permit: decks, basements, additions, sheds, plumbing. County vs. City of Frederick, the portal steps, historic review.',
+    'Which Frederick County, MD remodels need a permit: decks, basements, additions, sheds, and plumbing. The City of Frederick issues its own building permits.',
   cardBlurb:
     'Decks need a permit even for a same-size replacement. Cosmetic work doesn’t. The City of Frederick and Mount Airy run their own permits.',
   keywords: [
