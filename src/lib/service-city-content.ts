@@ -4121,7 +4121,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-brookeville-md': {
     h1: 'Kitchen Remodeling in Brookeville, MD',
     metaDescription:
-      'Kitchen remodeling in Brookeville, MD. Inside town limits, town approval comes before the county application. Free written estimate after a site walk.',
+      'Kitchen remodeling in Brookeville, MD. Inside the Town of Brookeville, town approval comes before the county application. Town questions go to 5 High Street.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
