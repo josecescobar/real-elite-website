@@ -7831,7 +7831,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in McLean, VA',
     metaTitle: 'Outdoor Living McLean VA | Real Elite',
     metaDescription:
-      'Outdoor living in McLean, VA. Learn when Fairfax County requires permits for decks, patios, and screened porches. Free written estimate after a site walk.',
+      'Outdoor living in McLean, VA. On-grade patios do not need a permit, and other approvals may apply. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7855,7 +7855,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Great Falls, VA',
     metaTitle: 'Home Addition Great Falls VA | Real Elite',
     metaDescription:
-      'Home additions in Great Falls, VA. Learn about Fairfax County review steps, required plans, and permits. Free written estimate after a site walk.',
+      'Home additions in Great Falls, VA. Staff may review your package for compliance with county ordinances. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7903,7 +7903,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Great Falls, VA',
     metaTitle: 'Outdoor Living Great Falls VA | Real Elite',
     metaDescription:
-      'Outdoor living in Great Falls, VA. Learn when Fairfax County requires permits for decks, patios, and screened porches. Free written estimate after a site walk.',
+      'Outdoor living in Great Falls, VA. On-grade patios do not need a permit, and other approvals may apply. Free written estimate after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
