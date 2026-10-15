@@ -185,6 +185,15 @@ export const COMBO_CITY_SLUGS = [
   'aspen-hill-md',
   'bluemont-va',
   'myersville-md',
+
+  // Round 20, 2026-10-15. Catalog towns that had no combo slug yet.
+  // Area rows stay in constants.ts. These slugs only type the new CONTENT keys.
+  'mount-airy-md',
+  'haymarket-va',
+  'round-hill-va',
+  'lovettsville-va',
+  'brunswick-md',
+  'aldie-va',
 ] as const;
 export type ComboCitySlug = (typeof COMBO_CITY_SLUGS)[number];
 
@@ -10050,6 +10059,499 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           { href: '/service-areas/woodbine-md', label: 'Woodbine addition service area' },
           { href: '/services/basements/woodbine-md', label: 'Woodbine basements' },
         ],
+      },
+    ],
+  },
+
+  'additions-mount-airy-md': {
+    h1: 'Home Additions in Mount Airy, MD',
+    metaTitle: 'Mount Airy MD Addition Conflict | Real Elite',
+    metaDescription:
+      'Home additions in Mount Airy, MD. Carroll and Frederick sources disagree on the building-permit counter for an in-town parcel.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'What zoning signature does a Mount Airy addition use when a building permit is required?',
+        answer:
+          'When the addition needs a building permit, the town signature is the zoning approval, and the zoning-certificate page says that project does not also get a separate zoning certificate. After the county uploads the application, the town checks it against the town zoning code and the approved site plan, and the planning director signs only after the town permit fees are paid. Construction inspections are arranged with the county.',
+      },
+      {
+        question: 'Why is the Mount Airy building-permit office left unresolved?',
+        answer:
+          'Frederick County still describes Mount Airy as outside the building permits that county processes. Both of those readings were still published on October 15, 2026, so the owner confirms which office will accept the application for that parcel. Carroll County is not the last word by itself.',
+      },
+    ],
+    paragraphs: [
+      'A Mount Airy addition cannot pick its building-permit counter from the town name, the postal code, or the county the parcel sits in.',
+      'For a parcel inside the town limits, the town building-permit page sends that permit to the Carroll County Bureau of Permits and Inspections, and that path includes a parcel on the Frederick County side of the town.',
+      'Pricing for a Mount Airy addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Confirm the accepting office',
+        paragraphs: [
+          'Hold the Mount Airy addition filing until the owner confirms which office will accept that parcel.',
+        ],
+        links: [{ href: '/service-areas/mount-airy-md', label: 'Mount Airy service area' }],
+      },
+    ],
+  },
+
+  'decks-haymarket-va': {
+    h1: 'Decks in Haymarket, VA',
+    metaTitle: 'Haymarket VA Deck Permit Path | Real Elite',
+    metaDescription:
+      'Decks in Haymarket, VA. Town zoning comes before the Prince William building permit when the parcel is inside the town.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'When does Prince William require a building permit for a Haymarket deck?',
+        answer:
+          'Prince William asks for a building permit when a residential deck is built, altered, given structural work, or fitted with a replacement guardrail. If the whole walking surface stays within 16.5 inches of finished grade, that building permit is skipped unless the deck also carries a heavier load such as a hot tub, and zoning approval still applies to that low Haymarket deck.',
+      },
+      {
+        question: 'What has to happen before Prince William will accept a Haymarket deck inside the town?',
+        answer:
+          'Inside the town, zoning approval comes first, and the county will not take the building application until the town has issued that zoning approval. A simple residential deck plan can be reviewed the same day by a residential plan reviewer when the applicant reaches the counter by 10:30 in the morning. The county typical deck design may be used for that simple plan and may not be used for a custom deck. Decks that miss that morning review go through ePortal. A Haymarket mailing address outside the town does not use the town step.',
+      },
+      {
+        question: 'Who issues the trade permits that travel with a Haymarket building permit?',
+        answer:
+          'Prince William County Development Services issues the construction, mechanical, electrical, and plumbing permits after the transfer dated January 15, 2018. Real Elite coordinates those three trades for a Haymarket deck and does not perform the mechanical, electrical, or plumbing work.',
+      },
+    ],
+    paragraphs: [
+      'A Haymarket deck uses town zoning before the county building permit only after the owner confirms the parcel is inside the town.',
+      'The town building and zoning page and the building-department transfer page both date that handoff to January 15, 2018.',
+      'Pricing for a Haymarket deck is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Confirm the town parcel',
+        paragraphs: [
+          'Confirm the Haymarket parcel is inside the town before the town zoning signature is treated as required.',
+        ],
+        links: [{ href: '/service-areas/haymarket-va', label: 'Haymarket service area' }],
+      },
+    ],
+  },
+
+  'decks-rockville-md': {
+    h1: 'Decks in Rockville, MD',
+    metaTitle: 'Rockville MD City Deck Rules | Real Elite',
+    metaDescription:
+      'Decks in Rockville, MD. The city address finder places the parcel, and a city deck is not filed with the county.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'How is a Rockville deck parcel placed inside or outside the city?',
+        answer:
+          'The city services page warns that a Rockville mailing address can sit outside the city and points readers to the city address finder. That finder decides the deck parcel, and the postal code is not the city line.',
+      },
+      {
+        question: 'What does the city require before structural deck work in Rockville?',
+        answer:
+          'Properties inside the city need a permit before structural work starts. The city keeps a deck permit application of its own, apart from the general residential construction application. Those applications go through MGO Connect, and most of them also need an inspection before the work is treated as finished. The city names the Rockville City Code and the Maryland fire prevention code among the rules it enforces.',
+      },
+      {
+        question: 'Which code dates apply, and does the Rockville express window cover a deck?',
+        answer:
+          'An ordinance adopted May 20, 2024 updated Chapter 5 and adopted the I-Codes with local amendments, including the 2021 International Residential Code. Many of those updates took effect May 29, 2024, and some were deferred until December 1, 2024. The express pilot reviews applications that are complete and paid online on Tuesdays from 8:30 until 12:30, for a printed list of certain fences, HVAC equipment, furnaces, water heaters, and accessory structures under 200 square feet or from 200 to 500 square feet. Accessory dwelling units are left off that list. A deck is not named on the eligible list or the ineligible list, an application tied to a building permit is ineligible, and a Rockville deck is not treated as one of those accessory structures.',
+      },
+    ],
+    paragraphs: [
+      'A Rockville deck is filed with City of Rockville Inspection Services only after the parcel is shown to sit inside the city.',
+      'Montgomery County lists the City of Rockville with the City of Gaithersburg as city-permit-only, so an in-city deck is not sent to the county permitting department for the building permit.',
+      'Pricing for a Rockville deck is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Use the address finder',
+        paragraphs: [
+          'Run the Rockville address finder on the deck parcel before any city application is prepared.',
+        ],
+        links: [
+          { href: '/service-areas/rockville-md', label: 'Rockville service area' },
+          { href: '/services/additions/rockville-md', label: 'Rockville additions' },
+        ],
+      },
+    ],
+  },
+
+  'additions-frederick-md': {
+    h1: 'Home Additions in Frederick, MD',
+    metaTitle: 'Frederick MD City Addition | Real Elite',
+    metaDescription:
+      'Home additions in Frederick, MD. The city addition application is separate from the one-stop counter for an in-city parcel.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which code applies to a Frederick addition applied for after 2025?',
+        answer:
+          'For a permit applied for after December 31, 2025, the 2021 International Residential Code applies together with the Maryland Building Performance Standards. The city dates that change to January 1, 2026 and pairs the 2021 International Building Code and the 2021 energy code with it. The plumbing-code edition in the next city note is a different code and is not substituted here.',
+      },
+      {
+        question: 'Can a Frederick addition use the Tuesday one-stop counter?',
+        answer:
+          'The in-person counter runs on Tuesdays from 8 until 11 at 140 West Patrick Street. Its published eligible list includes residential decks and porches, and basement finishes that do not create a new dwelling unit. Residential additions are absent from that list, so a Frederick addition does not use that counter. Someone who does use the counter for an eligible project is told not to start an online application as well.',
+      },
+      {
+        question: 'Where are Frederick addition applications and payments accepted?',
+        answer:
+          'The municipal annex is open to the public from 8 until 2 on weekdays. Applications and card payments can go through the city OpenGov portal, and in-person payments during those annex hours are the other path the city names. A payment instruction that arrives by email is not how the city collects a permit fee.',
+      },
+    ],
+    paragraphs: [
+      'A Frederick addition on a parcel inside the city is filed with City of Frederick Building and Permits, in the public works department.',
+      'The city lists Residential Addition as its own building and zoning application, separate from the deck and porch application and separate from interior renovations and finished basements.',
+      'Pricing for a Frederick addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'City addition application',
+        paragraphs: [
+          'Keep a Frederick addition on the city addition application rather than the Tuesday counter.',
+        ],
+        links: [
+          { href: '/service-areas/frederick-md', label: 'Frederick service area' },
+          { href: '/services/decks/frederick-md', label: 'Frederick decks' },
+        ],
+      },
+    ],
+  },
+
+  'additions-laytonsville-md': {
+    h1: 'Home Additions in Laytonsville, MD',
+    metaTitle: 'Laytonsville MD Addition Order | Real Elite',
+    metaDescription:
+      'Home additions in Laytonsville, MD. Town approval precedes the county application for a parcel inside the town.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which Laytonsville form is the addition, and when may work start?',
+        answer:
+          'The forms page treats a building permit as the application for new building construction or for a structure over $1,500. A fence, a pool, or tree removal uses a different town form. When county approval is required, the town permit is required for the county application. Work stays held until the application is approved and the town clerk issues the permit. An application is not complete until the town has the pieces it asks for, including the filing fee.',
+      },
+      {
+        question: 'Where does the county place Laytonsville relative to its own application?',
+        answer:
+          'Montgomery County lists Laytonsville among the municipalities whose approval comes before the county application. That matching row is used for Laytonsville alone.',
+      },
+      {
+        question: 'What other approvals can sit in front of a Laytonsville addition?',
+        answer:
+          'A property in a subdivision that has a homeowners association needs that association approval before the town application is submitted. An alteration, improvement, or addition to a structure in the town historic district zone uses the town historic district work permit.',
+      },
+    ],
+    paragraphs: [
+      'A Laytonsville addition inside the town starts with the Town of Laytonsville, then Montgomery County when the county also has to approve the work.',
+      'The $1,500 figure on the town forms page is the permit threshold for a structure, not a project price for the addition.',
+      'Pricing for a Laytonsville addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Town permit first',
+        paragraphs: [
+          'File the Laytonsville town permit before the county application when the county also has to approve the addition.',
+        ],
+        links: [
+          { href: '/service-areas/laytonsville-md', label: 'Laytonsville service area' },
+          { href: '/services/kitchens/laytonsville-md', label: 'Laytonsville kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'decks-brookeville-md': {
+    h1: 'Decks in Brookeville, MD',
+    metaTitle: 'Brookeville MD Deck Boundary | Real Elite',
+    metaDescription:
+      'Decks in Brookeville, MD. A mailing address outside the town streets is a county parcel with no town permit.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which streets does the town use for a Brookeville address inside the town?',
+        answer:
+          'The town says a street address inside the town is on High Street, Market Street, Water Street, Church Street, North Street, or South Street. The surrounding area is also called Brookeville and can carry a Brookeville mailing address, and those residents are in Montgomery County and are not residents of the town. Use that street list and the town boundary map before naming a town step. A mailing address outside that list is a county parcel and does not receive a town permit.',
+      },
+      {
+        question: 'What county permit follows town approval for a Brookeville deck on footings?',
+        answer:
+          'For a parcel inside the town, Montgomery County lists Brookeville in the group whose approval comes before the county application. The county requires a building permit for a deck that bears on footings, at any height above grade. That county permit is the step after town approval, and it is the only permit step for a Brookeville mailing address that is not in the town.',
+      },
+      {
+        question: 'When may county deck details replace Brookeville construction plans?',
+        answer:
+          'Those county details may replace construction plans only for a single-span, single-level deck. They may not be used when the deck has a roof, a screened porch, a hot tub, or another extra load.',
+      },
+    ],
+    paragraphs: [
+      'A Brookeville deck follows a town step only when the parcel is inside the town, and a Brookeville mailing address by itself does not establish that.',
+      'The town FAQ describes the town as about 60 acres, with 54 properties and about 135 residents, and those figures are the town description of itself.',
+      'Pricing for a Brookeville deck is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Streets before the town step',
+        paragraphs: [
+          'Match the Brookeville parcel to the street list or the boundary map before a town approval is placed ahead of the county deck permit.',
+        ],
+        links: [
+          { href: '/service-areas/brookeville-md', label: 'Brookeville service area' },
+          { href: '/services/kitchens/brookeville-md', label: 'Brookeville kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'additions-round-hill-va': {
+    h1: 'Home Additions in Round Hill, VA',
+    metaTitle: 'Round Hill VA Addition Filing | Real Elite',
+    metaDescription:
+      'Home additions in Round Hill, VA. Town zoning stays in force beside the Loudoun building permit for an in-town parcel.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'What does Round Hill planning take for an addition inside the town?',
+        answer:
+          'The town has planning and zoning jurisdiction inside its limits. It takes land-development applications for additions and similar work and enforces the town zoning ordinance. Rezonings go to the town council.',
+      },
+      {
+        question: 'Does a Loudoun building permit replace Round Hill zoning approval?',
+        answer:
+          'The county Department of Building and Development issues building permits and grading permits for the entire county, and it issues zoning permits for properties outside the incorporated towns. A county approval still leaves any separate town approval in place, and the applicant still has to obtain the Round Hill town approval.',
+      },
+      {
+        question: 'What does the county additions packet require for a Round Hill house?',
+        answer:
+          'Loudoun treats a residential addition as square footage added to the house, and condominiums fall outside that definition. The application needs the owner signature, the plat for the addition, and plans that detail the structural elements. A paper filing uses three sets of plans and the house location plat. Filing is online in LandMARC or in person on weekdays. A bedroom added to a house served by well and septic also needs health-department approval. Gas permits for residential alterations and additions have required plan review since October 1, 2025. The counter is open weekdays from 8:30 until 5. Real Elite coordinates the gas trade on a Round Hill addition and does not perform that work.',
+      },
+    ],
+    paragraphs: [
+      'A Round Hill addition inside the town uses Town of Round Hill planning and zoning together with a Loudoun County building permit.',
+      'Loudoun names Round Hill on its incorporated-towns list, and the addition uses the town zoning role rather than any deck rule from that same town note.',
+      'Pricing for a Round Hill addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Town zoning stays',
+        paragraphs: [
+          'Keep the Round Hill town zoning approval in place even after Loudoun issues the building permit.',
+        ],
+        links: [{ href: '/service-areas/round-hill-va', label: 'Round Hill service area' }],
+      },
+    ],
+  },
+
+  'decks-lovettsville-va': {
+    h1: 'Decks in Lovettsville, VA',
+    metaTitle: 'Lovettsville VA Deck Permits | Real Elite',
+    metaDescription:
+      'Decks in Lovettsville, VA. Confirm the parcel is inside the town before the town zoning permit is attached to the county filing.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which two permits does Loudoun require for a Lovettsville deck?',
+        answer:
+          'Loudoun requires both a building permit and a zoning permit for every Lovettsville deck. When the property is inside an incorporated town, the county application includes the town zoning permit that has already been approved, and that attachment is the Lovettsville step. The building permit stays with the county.',
+      },
+      {
+        question: 'When can the typical deck detail replace a full Lovettsville plan set?',
+        answer:
+          'The typical deck detail may stand in for a full plan set only when the deck meets every condition in that packet, and the application has to say the typical detail is what will be built. A deck that misses those conditions needs a complete plan set. Inspectors can reject Lovettsville work that follows neither the packet nor the code. Dollar amounts on the fee table stay off this filing note, because the rows split typical details from full plans and split parcels inside a town from parcels outside one.',
+      },
+      {
+        question: 'How is the Lovettsville county deck packet filed?',
+        answer:
+          'The county deck page accepts a LandMARC filing, or an in-person filing on weekdays from 8:30 until 5, with the plans or the typical packet and the house-location plat showing the deck drawn on it.',
+      },
+    ],
+    paragraphs: [
+      'A Lovettsville deck uses a town zoning permit and then a Loudoun County building permit only after the owner confirms the parcel is inside the town.',
+      'No Lovettsville form name, counter hour, or staff name is stated.',
+      'Pricing for a Lovettsville deck is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Confirm the town line',
+        paragraphs: [
+          'Confirm the Lovettsville parcel is inside the town before the town zoning permit is attached to the county deck application.',
+        ],
+        links: [{ href: '/service-areas/lovettsville-va', label: 'Lovettsville service area' }],
+      },
+    ],
+  },
+
+  'decks-myersville-md': {
+    h1: 'Decks in Myersville, MD',
+    metaTitle: 'Myersville MD Deck Zoning | Real Elite',
+    metaDescription:
+      'Decks in Myersville, MD. The town zoning certificate is filed before the Frederick County building permit for the parcel.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'What does the Myersville planning office handle?',
+        answer:
+          'The town planning office reviews zoning certificates and permit applications, enforces the zoning ordinance, and also administers forest conservation and floodplain rules. Office hours on that page are weekdays from 8 until 4.',
+      },
+      {
+        question: 'Which Frederick County paragraph routes a Myersville deck?',
+        answer:
+          'The county requires approval for new construction in the county and in its municipalities, and it excepts the City of Frederick and Mount Airy, which it says handle their own building permits. For a municipality the county does permit, the zoning certificate from that municipality is filed before the county building-permit application. That same filing note names a deck among the accessory structures that need approval.',
+      },
+      {
+        question: 'Which checklist applies, and is the one-day review promised?',
+        answer:
+          'The county publishes a deck checklist and a deck information guide for this work. A covered or screened porch uses a different checklist and is not the Myersville deck submittal. Expedited residential review is offered for projects that meet the county criteria, with decks, sheds, and basement finishes named as examples. An eligible applicant can receive the permit within one business day, and that timing is not promised for a Myersville deck that has not been checked against the criteria.',
+      },
+    ],
+    paragraphs: [
+      'A Myersville deck starts with a Town of Myersville zoning certificate and then a Frederick County building permit.',
+      'Myersville is a municipality the county permits. It is not the City of Frederick, and it is not Mount Airy.',
+      'Pricing for a Myersville deck is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Zoning certificate first',
+        paragraphs: [
+          'File the Myersville zoning certificate before the Frederick County deck application.',
+        ],
+        links: [
+          { href: '/service-areas/myersville-md', label: 'Myersville service area' },
+          { href: '/services/kitchens/myersville-md', label: 'Myersville kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'outdoor-living-brunswick-md': {
+    h1: 'Outdoor Living in Brunswick, MD',
+    metaTitle: 'Brunswick MD Porch Checklist | Real Elite',
+    metaDescription:
+      'Outdoor living in Brunswick, MD. The city zoning certificate and the county porch checklist follow a confirmed city parcel.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who takes the Brunswick zoning certificate?',
+        answer:
+          'The city planning department handles zoning and zoning certificates and tells the applicant to apply online. The planning office on that page is 811 West Potomac Street, open weekdays from 8 until 4:30.',
+      },
+      {
+        question: 'Which Frederick County checklist covers a Brunswick porch?',
+        answer:
+          'The county residential checklist gives a covered or screened porch its own submittal, separate from the deck checklist and the deck information guide. The porch submittal is the one used for this Brunswick work.',
+      },
+      {
+        question: 'What other county trigger applies, and is a porch on the expedited list?',
+        answer:
+          'Frederick County also requires approval for a modification, an alteration, or a change in the use of a building or structure. A screened porch is not moved onto the expedited list, which names decks, sheds, and basement finishes.',
+      },
+    ],
+    paragraphs: [
+      'Brunswick outdoor living uses the City of Brunswick zoning certificate only after the owner confirms the parcel is inside the city.',
+      'Brunswick is a city with its own planning department, not a county place name standing in for the city limits.',
+      'Pricing for Brunswick outdoor living is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Confirm the city parcel',
+        paragraphs: [
+          'Confirm the Brunswick parcel is inside the city before the zoning certificate and the porch checklist are prepared.',
+        ],
+        links: [{ href: '/service-areas/brunswick-md', label: 'Brunswick service area' }],
+      },
+    ],
+  },
+
+  'additions-kensington-md': {
+    h1: 'Home Additions in Kensington, MD',
+    metaTitle: 'Kensington MD Addition Town | Real Elite',
+    metaDescription:
+      'Home additions in Kensington, MD. ZIP 20895 is larger than the town, so the parcel is read from the town map first.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does ZIP 20895 put an addition inside the Town of Kensington?',
+        answer:
+          'The town says it is an incorporated municipality inside the larger area people associate with ZIP 20895. Its 2025 map description puts that ZIP on the larger area and the town on the smaller area. Town residents and residents outside the boundary do not receive the same town services. A 20895 address is not the town line, so the parcel is confirmed on that map before a town step is used.',
+      },
+      {
+        question: 'What order does the county municipalities page record for a Kensington addition?',
+        answer:
+          'That page places Kensington in the group whose approval comes before the county application. The addition follows that order only when the map shows the parcel inside the town.',
+      },
+      {
+        question: 'Where does the town send a resident who asks whether an addition needs a permit?',
+        answer:
+          'The resident FAQ answers the building-permit question with a yes for most cases and sends the resident to town hall to learn which permit applies, along with the town permit information. The permits link opens the town permit portal, and those portal screens stay undescribed. Town office hours on the do-I-live-here page are weekdays from 8 until 4. No phone number is printed with those hours.',
+      },
+    ],
+    paragraphs: [
+      'A Kensington addition uses a town step only after the town map shows the parcel inside the municipal boundary.',
+      'A Kensington mailing address in ZIP 20895 can sit outside the town, and that postal code does not choose the permit office.',
+      'Pricing for a Kensington addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Map before town approval',
+        paragraphs: [
+          'Read the Kensington parcel on the town map before town approval is placed ahead of the county addition application.',
+        ],
+        links: [
+          { href: '/service-areas/kensington-md', label: 'Kensington service area' },
+          { href: '/services/decks/kensington-md', label: 'Kensington decks' },
+        ],
+      },
+    ],
+  },
+
+  'outdoor-living-aldie-va': {
+    h1: 'Outdoor Living in Aldie, VA',
+    metaTitle: 'Aldie VA Outdoor Living County | Real Elite',
+    metaDescription:
+      'Outdoor living in Aldie, VA. Loudoun County issues the building permit and the zoning permit for this unincorporated parcel.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which Aldie decks cannot use the Loudoun typical deck detail?',
+        answer:
+          'The typical deck detail cannot be used for a deck built with a roof, a screened porch, a hot tub, a gazebo, or a deck that stands off the house.',
+      },
+      {
+        question: 'How does Loudoun classify a screened porch in Aldie?',
+        answer:
+          'The county treats a screened porch as a residential addition. An open deck and a screened porch are not the same application.',
+      },
+      {
+        question: 'Who pulls an electrical permit for stair lighting, a hot tub, or a spa in Aldie?',
+        answer:
+          'An electrical permit may also be required for stairway illumination, a hot tub, or a spa. Real Elite coordinates that electrical trade for an Aldie project and does not pull the electrical permit as the electrician.',
+      },
+    ],
+    paragraphs: [
+      'Aldie outdoor living is permitted by Loudoun County Building and Development because Aldie is unincorporated and has no town zoning office.',
+      'The county issues both the building permit and the zoning permit for an Aldie parcel, and there is no town hall to send the reader to.',
+      'Pricing for Aldie outdoor living is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'County porch and deck paths',
+        paragraphs: [
+          'File an Aldie screened porch on the county addition path and an open Aldie deck on the county deck path.',
+        ],
+        links: [{ href: '/service-areas/aldie-va', label: 'Aldie service area' }],
       },
     ],
   },
