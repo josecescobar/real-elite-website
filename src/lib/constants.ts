@@ -1204,7 +1204,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Alexandria is an independent city, not Fairfax County. Building permits are issued by the city's Code Administration. Exterior work in the Old and Historic Alexandria District or the Parker-Gray District, and on buildings the council has designated as 100-year-old, needs a Certificate of Appropriateness from the Board of Architectural Review when the change is visible from a public way. Interior kitchens and baths do not need that review unless the work changes the outside. Demolition of more than 25 square feet of material needs a Permit to Demolish regardless of visibility. Belle Haven, Rosemont, and North Ridge are later neighborhoods inside the city. Fort Hunt, ZIP 22308, uses an Alexandria mailing address and is mostly Fairfax County. The drive from Martinsburg is Route 9 to Leesburg, then Route 7 east to I-495. Real Elite remodels kitchens, primary suites, careful additions, and finished lower levels.",
     neighborhoods: ['Old Town', 'Parker-Gray', 'Belle Haven', 'Rosemont', 'North Ridge', 'Del Ray'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks', 'outdoor-living'],
   },
   'vienna-va': {
     description:
@@ -2095,7 +2095,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Glenwood is western Howard County, ZIP 21737, where MD 97 meets Ten Oaks Road and Burntwoods Road. The houses are detached homes on larger lots, not a Columbia village and not Ellicott City's historic downtown. The drive from Martinsburg is I-81 north to I-70 east, then south on MD 97.\n\nHoward County's Department of Inspections, Licenses and Permits approves and issues permits and enforces the county building codes, including building, mechanical, plumbing, and electrical. The office is at 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455. General permit questions use option 4. The front counter closes at 5:00 p.m., and the county asks visitors to arrive by 4:00 p.m. Residential building permits require electronic submission. Filing fees are nonrefundable and payable when the application is made.\n\nA house on a private well and septic needs Health Department approval before the permit. That number is 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MD 97', 'Ten Oaks Road', 'Burntwoods Road', 'ZIP 21737'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks', 'outdoor-living'],
     nearbySlugs: ['west-friendship-md', 'woodbine-md', 'clarksville-md', 'frederick-md'],
     faqs: [
       {
@@ -2431,7 +2431,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Olney is Montgomery County, ZIP 20832, where Georgia Avenue (MD 97) meets MD 108. The houses are established neighborhoods off that crossing. The drive from Martinsburg is I-81 north to I-70 east, then I-270 south toward MD 97. We confirm the permit steps for the parcel before work starts.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311. Hours are 7:30 a.m. to 4 p.m. Monday through Friday, and no appointment is necessary. A renovation other than a repair needs a permit before work starts. Painting, wallpapering, a faucet replacement, countertops, and floor coverings do not, when no structural change is made. An interior alteration will likely need a permit. Cabinets most likely will not. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A house on its own well and septic has additional requirements. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['Georgia Avenue', 'MD 108', 'ZIP 20832', 'Cashell Road', 'Olney-Laytonsville Road'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks', 'outdoor-living'],
     nearbySlugs: ['laytonsville-md', 'brookeville-md', 'ashton-md', 'kensington-md'],
     faqs: [
       {
@@ -2459,7 +2459,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     description:
       "Ashton is eastern Montgomery County, ZIP 20861, along MD 108 toward New Hampshire Avenue. Sandy Spring shares that ZIP. The drive from Martinsburg is I-81 north to I-70 east, then east on MD 108. We confirm the permit steps for the parcel before work starts.\n\nCounty questions go to the Department of Permitting Services, 2425 Reedie Drive, 7th floor, Wheaton, phone 240-777-0311, Monday through Friday, 7:30 a.m. to 4 p.m. A renovation other than a repair needs a permit before work starts. An interior alteration will likely need a permit. Bathroom caulking most likely will not. Cabinets most likely will not. A house on its own well and septic has additional requirements. Municipality rules and homeowners-association rules are separate from that guidance.\n\nPlumbing questions go to WSSC. A well or a septic system likely needs a permit. Permits are applied for electronically. Electrical work is a separately licensed trade. Real Elite does not take electrical work. The remodeling here is kitchens, bathrooms, and finished lower levels. The price is a free written estimate after a site walk.",
     neighborhoods: ['MD 108', 'ZIP 20861', 'New Hampshire Avenue', 'Sandy Spring', 'Norwood Road'],
-    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'remodeling', 'additions', 'decks', 'outdoor-living'],
     nearbySlugs: ['olney-md', 'brookeville-md', 'laytonsville-md', 'kensington-md'],
     faqs: [
       {

@@ -9109,6 +9109,465 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
   },
+  // Round 18: Alexandria outdoor living, Glenwood, Ashton, Olney, and Reston additions.
+  'outdoor-living-alexandria-va': {
+    h1: 'Outdoor Living in Alexandria, VA',
+    metaTitle: 'Alexandria VA Outdoor Living | Real Elite',
+    metaDescription:
+      'Outdoor living in Alexandria, VA. The parcel picks the city Permit Center or Fairfax County, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['fairfax-county-fast-track-basement-review'],
+    faqs: [
+      {
+        question: 'Who permits a porch or a fence in Alexandria?',
+        answer:
+          'Inside the city, Department of Code Administration Permit Center takes the filing in APEX. A Fairfax County parcel with an Alexandria postal address goes to Fairfax County Land Development Services. The city residential examples name decks, porches, and stoops, and they name fences taller than 6 feet. That fence line is a building-permit example, not a Board of Architectural Review rule, and it is not every fence.',
+      },
+      {
+        question: 'When does the Board of Architectural Review apply to exterior work?',
+        answer:
+          'The city has two local historic districts, the Old and Historic Alexandria District and the Parker-Gray District. Local boundaries are not the National Register boundaries, and the Historic Preservation department does not regulate National Register districts. New construction, and an exterior change to a structure inside a local district that can be seen from a public right-of-way, needs a Certificate of Appropriateness from the Board or from Preservation staff. Buildings City Council has designated as One Hundred-Year-Old Buildings are also under the Board, including buildings outside those two districts. Work that stays inside the building does not need Board approval.',
+      },
+    ],
+    paragraphs: [
+      'An Alexandria porch, patio, or pergola follows the parcel, because a street address can sit in the independent city or in Fairfax County.',
+      'The City of Alexandria housing figures in the American Community Survey 2024 five-year estimates are citywide, not a ZIP median, with a median year built of 1974 and an owner-occupied share of 42.1 percent. The city tax guide still says some Alexandria postal addresses are in Fairfax County. ZIPs 22301, 22305, 22313, and 22314 sit entirely in the city. ZIPs 22302, 22304, 22311, and 22312 are shared with Fairfax County, and ZIP 22206 is shared with Arlington County.',
+      'Accessory structures on the city permit list name sheds, garages, and playhouses greater than 200 square feet. That size line is not a porch rule. Porches are a separate item on the same list. This Alexandria outdoor project is priced with a free written estimate after a site walk once the parcel is confirmed.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Historic review is not the building clock',
+        paragraphs: [
+          'Demolition, or covering more than 25 square feet of exterior material, needs a Permit to Demolish even when the work cannot be seen from the street. The city spells that covering capsulation. Historic staff approval, once the required documents are in, normally finishes in under five business days. Zoning review can stretch that span. It is historic staff approval, not the building-permit clock. The Permit Center says a support team can answer an inquiry within 24 hours or one business day. That reply time is not a plan-review duration.',
+          'Do not treat the whole city as a historic district, and do not treat every porch, patio, pergola, or fence as Board work. A patio and a pergola are not named in the Certificate of Appropriateness sentence. Fence, gate, and wall chapters published for the two local districts are design guidance for district projects, not a citywide fence permit.',
+        ],
+        links: [
+          { href: '/service-areas/alexandria-va', label: 'Alexandria service area' },
+          { href: '/services/additions/alexandria-va', label: 'Alexandria additions' },
+          { href: '/services/decks/alexandria-va', label: 'Alexandria decks' },
+          {
+            href: '/blog/fairfax-county-fast-track-basement-review',
+            label: 'Fairfax County Fast Track review',
+          },
+        ],
+      },
+    ],
+  },
+  'additions-glenwood-md': {
+    h1: 'Home Additions in Glenwood, MD',
+    metaTitle: 'Glenwood MD Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in Glenwood, MD. Howard County DILP reviews a confirmed county parcel, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Who permits a home addition in Glenwood?',
+        answer:
+          'Confirm the parcel is in Howard County first. The building office for that parcel is the Department of Inspections, Licenses and Permits. Every residential building permit for a Glenwood addition has to be sent electronically. The addition packet is the Residential Miscellaneous and Addition checklist, and applications go through the Citizen\'s Access Portal.',
+      },
+      {
+        question: 'What drawings does the Glenwood addition checklist ask for?',
+        answer:
+          'The additions block asks for a site-specific plot plan to scale with dimensions and elevations, plus construction drawings: floor plans, elevations from all four sides, wall bracing, and a detailed cross-section showing the size of materials. Plans must meet the currently adopted energy code. The checklist address is 3430 Court House Drive, Ellicott City. Mechanical, electrical, and plumbing reviews are coordinated trades. Real Elite schedules those licensed contractors and does not install electrical, plumbing, or HVAC.',
+      },
+    ],
+    paragraphs: [
+      'A Glenwood addition is drawn only after the parcel is confirmed in Howard County, because the mailing name does not choose the building office.',
+      'Glenwood is not a census place. The American Community Survey 2024 five-year estimates for ZIP Code Tabulation Area 21738 show a median owner-occupied value of $914,300 and a median year built of 1992. That ZIP-tabulation figure is not a town median.',
+      'The Plan Review Division describes technical review of building, life safety, mechanical, electrical, plumbing, fire protection, and accessibility codes before a building permit is issued. The Plan Review Division does not publish an average residential review time. Council Bill 24-2025, effective September 7, 2025, is described as covering the 2024 International Residential Code along with the building, mechanical, energy, and swimming-pool codes. That adoption note is not a claim that a particular Glenwood detail changed. The Glenwood addition price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Howard County addition filing',
+        paragraphs: [
+          'Use Howard County Department of Inspections, Licenses and Permits for a Glenwood addition once the parcel is in the county. Keep the housing figures labeled as ZIP Code Tabulation Area 21738.',
+        ],
+        links: [
+          { href: '/service-areas/glenwood-md', label: 'Glenwood service area' },
+          { href: '/services/decks/glenwood-md', label: 'Glenwood decks' },
+          { href: '/services/outdoor-living/glenwood-md', label: 'Glenwood outdoor living' },
+        ],
+      },
+    ],
+  },
+  'decks-glenwood-md': {
+    h1: 'Decks in Glenwood, MD',
+    metaTitle: 'Glenwood MD Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in Glenwood, MD. Howard County DILP covers decks once the parcel is confirmed, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which Glenwood decks need a Howard County permit?',
+        answer:
+          'The county deck answer treats a deck under 25 square feet as the only size that skips both footings and a permit. Every other deck needs a permit. Where a footing is required, that answer sets a minimum of 18 inches in diameter, or 16 by 16 inches, and a depth of at least 30 inches.',
+      },
+      {
+        question: 'Does replacing Glenwood deck boards need a permit?',
+        answer:
+          'Replacing deck boards only, and not the structural undercarriage, is ordinary repair and does not need a permit. Replacing handrails or guardrails does need a permit, because the county calls those a structural element. A light on this Glenwood deck is an electrician\'s permit. Real Elite lines up that electrician and does not wire the deck.',
+      },
+    ],
+    paragraphs: [
+      'A Glenwood deck is filed with Howard County after the parcel is confirmed, on a detached-house lot rather than a village street.',
+      'ZIP Code Tabulation Area 21738, the geography used for Glenwood housing counts, has 1,101 owner-occupied units and a 98.2 percent owner share in the American Community Survey 2024 five-year estimates. Those counts are not a Glenwood town median.',
+      'The footing inspection checks that footings are at least 30 inches below finished grade. The framing inspection checks that materials are pressure treated or otherwise weatherproof. A deck that exceeds the issued guidelines needs prior approval from the Plan Review Division. The final inspection checks guardrails, handrails, stairs, landings, flashings, attachments, and spacing. A Glenwood deck is priced with a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Deck inspection and plans',
+        paragraphs: [
+          'The owner does not have to be home for the Glenwood deck inspection. A locked yard should be left open, pets restrained away from the deck, and the permit posted. Construction plans are required for decks of every size, regardless of height. Screened porches are a different filing.',
+        ],
+        links: [
+          { href: '/service-areas/glenwood-md', label: 'Glenwood service area' },
+          { href: '/services/additions/glenwood-md', label: 'Glenwood additions' },
+          { href: '/services/outdoor-living/glenwood-md', label: 'Glenwood outdoor living' },
+        ],
+      },
+    ],
+  },
+  'outdoor-living-glenwood-md': {
+    h1: 'Outdoor Living in Glenwood, MD',
+    metaTitle: 'Glenwood MD Outdoor Living | Real Elite',
+    metaDescription:
+      'Outdoor living in Glenwood, MD. Porches, pergolas, and sheds go to Howard County DILP, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'When does a Glenwood shed or pavilion need construction plans?',
+        answer:
+          'Construction plans are required for an accessory structure of 200 square feet or more. The county memo names pavilions, gazebos, pergolas, and sheds. A plot plan with dimensions to the property lines remains required. A shed needs a building permit when it is greater than 200 square feet, and a shed larger than 400 square feet needs a frost footing at least 30 inches below grade.',
+      },
+      {
+        question: 'Does every Glenwood fence need a building permit?',
+        answer:
+          'No. The residential handout limits the fence block to a fence over 7 feet or a fence around a swimming pool. Porch utilities, when the design includes them, stay with the licensed trade. Real Elite coordinates electrical, plumbing, and HVAC and does not perform that work.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Glenwood means a porch, pavilion, gazebo, pergola, or shed on a Howard County parcel, not a deck.',
+      'The margin of error on the ZIP Code Tabulation Area 21738 median owner-occupied value is $83,991 in the American Community Survey 2024 five-year estimates. That ZIP-tabulation figure is not a Glenwood town median, and Glenwood is not a census place.',
+      'Porches have their own block on the residential online handout, separate from decks: screened porch, open covered porch, porch type, and porch foundation. The sample work line is a screened porch with a landing and steps. This Glenwood porch or pavilion is priced with a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Porch, shed, and grading forms',
+        paragraphs: [
+          'The county forms page links a grading-permit checklist and a standard erosion and sediment control plan for a Glenwood patio that needs grading review. No square-foot trigger for that patio grading permit is stated with those forms. Confirm the parcel is in Howard County before the Department of Inspections, Licenses and Permits packet is prepared.',
+        ],
+        links: [
+          { href: '/service-areas/glenwood-md', label: 'Glenwood service area' },
+          { href: '/services/additions/glenwood-md', label: 'Glenwood additions' },
+          { href: '/services/decks/glenwood-md', label: 'Glenwood decks' },
+        ],
+      },
+    ],
+  },
+  'additions-ashton-md': {
+    h1: 'Home Additions in Ashton, MD',
+    metaTitle: 'Ashton MD Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in Ashton, MD. Montgomery County DPS reviews the parcel, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['montgomery-county-residential-fast-track-review'],
+    faqs: [
+      {
+        question: 'Who permits a home addition in Ashton?',
+        answer:
+          'Ashton is not on Montgomery County\'s municipalities list, so the addition does not start at a Rockville, Gaithersburg, Takoma Park, Garrett Park, Kensington, Brookeville, Laytonsville, or Barnesville counter. Montgomery County Department of Permitting Services is the building office. General permit questions go to 240-777-0311. An Ashton addition is outside the residential fast-track list.',
+      },
+      {
+        question: 'When does an Ashton addition need a drainage plan?',
+        answer:
+          'A drainage plan is required before a permit when an addition increases the building footprint by more than 400 square feet, on a residential lot under 15,000 square feet, and a stormwater management plan has not already been approved. Measure outside wall to outside wall. Electrical, plumbing, and HVAC on the addition are licensed trades Real Elite coordinates and does not self-perform.',
+      },
+    ],
+    paragraphs: [
+      'An Ashton addition is planned for the Ashton-Sandy Spring community along MD 108, and the parcel stays with Montgomery County rather than a town hall.',
+      'Ashton-Sandy Spring is a census designated place, census place 2402762, and not an incorporated town. The American Community Survey 2024 five-year estimates for that place show a median owner-occupied value of $809,200 and a median year built of 1986.',
+      'When the work does not conform to the 2021 International Residential Code, or it is attached to a townhouse, or it is unusual or complex, the county requires construction drawings signed and sealed by an architect or professional engineer, with the seal, signature, date, and certification statement. The Ashton addition price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Addition drawing set',
+        paragraphs: [
+          'The architectural set for an Ashton addition includes existing and proposed floor plans, the use of each space, means of egress, floor-by-floor square footage of added and altered space, and locations of smoke and carbon monoxide alarms. The fast-track clock for eligible small projects is a separate guide, and an addition is not on that list.',
+        ],
+        links: [
+          { href: '/service-areas/ashton-md', label: 'Ashton service area' },
+          { href: '/services/decks/ashton-md', label: 'Ashton decks' },
+          { href: '/services/outdoor-living/ashton-md', label: 'Ashton outdoor living' },
+          {
+            href: '/blog/montgomery-county-residential-fast-track-review',
+            label: 'Montgomery fast-track review',
+          },
+        ],
+      },
+    ],
+  },
+  'decks-ashton-md': {
+    h1: 'Decks in Ashton, MD',
+    metaTitle: 'Ashton MD Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in Ashton, MD. Montgomery County DPS takes the deck permit, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['montgomery-county-residential-fast-track-review'],
+    faqs: [
+      {
+        question: 'Can an Ashton deck use the county deck details instead of custom plans?',
+        answer:
+          'The county Residential Deck Details may replace construction plans for a single-span, single-level deck. That shortcut cannot be used when the deck is built with a roof, a screened porch, a hot tub, or another added load. A building permit is required for every deck, whatever the height above grade.',
+      },
+      {
+        question: 'Which Ashton decks can use the fast track?',
+        answer:
+          'Single-level decks are on the eligible list. A property served by a private well or a private septic system is not eligible. A two-level deck is not eligible. If the house is in a common-ownership community, the association\'s own process is a separate contact and is not the county permit. Deck wiring is coordinated with an electrician. Real Elite does not do the electrical work.',
+      },
+    ],
+    paragraphs: [
+      'An Ashton deck is a Montgomery County Department of Permitting Services filing, because the Ashton parcel is not inside a municipality with its own building counter.',
+      'The Ashton-Sandy Spring census designated place, census place 2402762, has 1,825 owner-occupied units and a 94.0 percent owner share in the American Community Survey 2024 five-year estimates. Those Ashton figures describe the census designated place, not an incorporated town.',
+      'The site plan shows the deck on the house location plat or house location survey, with distances from the deck to the lot lines and the height from grade to the top of the deck. Sheets are no smaller than 11 by 17 inches, and the minimum scale is 1/4 inch equals 1 foot. If a county easement is on the lot, construction may not encroach into the ground or the air space of that easement. An Ashton deck is priced with a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Ashton deck footings',
+        paragraphs: [
+          'Footing details on the Montgomery deck sheet set a minimum depth of 30 inches, require the footings to bear on solid soil, and print a minimum soil bearing capacity of 1,500 psf. That sheet is not the Howard County deck exception for a deck under 25 square feet.',
+        ],
+        links: [
+          { href: '/service-areas/ashton-md', label: 'Ashton service area' },
+          { href: '/services/additions/ashton-md', label: 'Ashton additions' },
+          { href: '/services/outdoor-living/ashton-md', label: 'Ashton outdoor living' },
+          {
+            href: '/blog/montgomery-county-residential-fast-track-review',
+            label: 'Montgomery fast-track review',
+          },
+        ],
+      },
+    ],
+  },
+  'outdoor-living-ashton-md': {
+    h1: 'Outdoor Living in Ashton, MD',
+    metaTitle: 'Ashton MD Outdoor Living | Real Elite',
+    metaDescription:
+      'Outdoor living in Ashton, MD. Fence and shed permits go to Montgomery County DPS, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['montgomery-county-residential-fast-track-review'],
+    faqs: [
+      {
+        question: 'Does an Ashton fence need a Montgomery County permit?',
+        answer:
+          'Montgomery County requires a permit before any kind of fence is installed. Swapping a fence for the same type, in the same place, and at the same height does not need a new permit when that fence was already installed under a fence permit. A replacement needs a permit when the existing fence never had one. A fence that sits in an easement needs a Fence in an Easement approval.',
+      },
+      {
+        question: 'How tall can an Ashton fence be, and how fast is that permit?',
+        answer:
+          'Montgomery County caps a fence or a wall at 6 feet 6 inches, aside from the exceptions the fence page lists. One of those exceptions is a residential corner lot: within 15 feet of where the front and side street lines meet, a fence or other visual block is limited to 3 feet above the curb. Measure that height from the lowest ground under the fence. The county says a fence permit is usually issued within three days after the application is filed. Real Elite coordinates any licensed trade the fence or shed needs and does not self-perform electrical, plumbing, or HVAC.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Ashton covers fences, sheds, and gazebos on a Montgomery County parcel, filed with the Department of Permitting Services rather than a town building counter.',
+      'The margin of error on the Ashton-Sandy Spring census designated place median owner-occupied value is $90,259 in the American Community Survey 2024 five-year estimates. Census place 2402762 is not an incorporated town.',
+      'A shed, gazebo, or other detached structure that is not lived in can be filed without construction plans when it is under 200 square feet. The county limits that review to zoning. An Ashton fence, shed, or gazebo is priced with a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Fence and shed filing',
+        paragraphs: [
+          'Ashton fence and shed paperwork stays with Montgomery County Department of Permitting Services. The community is not one of the municipalities that keep a separate building counter.',
+        ],
+        links: [
+          { href: '/service-areas/ashton-md', label: 'Ashton service area' },
+          { href: '/services/additions/ashton-md', label: 'Ashton additions' },
+          { href: '/services/decks/ashton-md', label: 'Ashton decks' },
+          {
+            href: '/blog/montgomery-county-residential-fast-track-review',
+            label: 'Montgomery fast-track review',
+          },
+        ],
+      },
+    ],
+  },
+  'additions-olney-md': {
+    h1: 'Home Additions in Olney, MD',
+    metaTitle: 'Olney MD Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in Olney, MD. Montgomery County DPS reviews the Olney parcel, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['montgomery-county-residential-fast-track-review'],
+    faqs: [
+      {
+        question: 'Who permits a home addition in Olney?',
+        answer:
+          'Olney is absent from the county municipalities list. A parcel there is not filed at a city counter in Rockville, Gaithersburg, or Takoma Park, and it is not filed at Garrett Park, Kensington, Brookeville, Laytonsville, or Barnesville. The building office is Montgomery County Department of Permitting Services, and general permit questions use 240-777-0311.',
+      },
+      {
+        question: 'Does a county permit replace an Olney association review?',
+        answer:
+          'No. Reconstruction or a renovation of an existing Olney house, other than a repair, needs a permit first. In the county description, reconstruction includes partial demolition that does not itself need a demolition permit. Montgomery County leaves covenants and deed restrictions to the homeowner or civic association. A Department of Permitting Services permit is not that association\'s approval. Real Elite coordinates licensed electrical, plumbing, and HVAC trades and does not perform that work.',
+      },
+    ],
+    paragraphs: [
+      'An Olney addition is a Montgomery County filing for the Olney census designated place, where Georgia Avenue meets MD 108.',
+      'Olney is a census designated place, census place 2458900, and not an incorporated town. The American Community Survey 2024 five-year estimates for that place show a median owner-occupied value of $656,600 and a median year built of 1986.',
+      'The structural set asks for an existing footing plan and a proposed footing plan, plus a framing plan for each floor and a roof framing plan, with location, size, spacing, and material of the framing members. The Olney addition price is a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Olney addition sheets',
+        paragraphs: [
+          'Each door and window on the schedule needs its size, glazing type, and U-value. Plans use a sheet at least 11 by 17 inches. The county will not accept a photo of a plan, graph paper, or lined paper. The drainage drawing shows property lines, lot area, easement widths, corner and mid-side elevations, downspout locations, and arrows for the drainage pattern that exists and the pattern being proposed. Grading on the lot must not block drainage that already comes from a neighboring property.',
+        ],
+        links: [
+          { href: '/service-areas/olney-md', label: 'Olney service area' },
+          { href: '/services/decks/olney-md', label: 'Olney decks' },
+          { href: '/services/outdoor-living/olney-md', label: 'Olney outdoor living' },
+          {
+            href: '/blog/montgomery-county-residential-fast-track-review',
+            label: 'Montgomery fast-track review',
+          },
+        ],
+      },
+    ],
+  },
+  'decks-olney-md': {
+    h1: 'Decks in Olney, MD',
+    metaTitle: 'Olney MD Deck Builder | Real Elite',
+    metaDescription:
+      'Decks in Olney, MD. Montgomery County DPS reviews the deck on its own clock, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['montgomery-county-residential-fast-track-review'],
+    faqs: [
+      {
+        question: 'How long does Montgomery County say an Olney deck permit can take?',
+        answer:
+          'Montgomery County puts an eligible Olney deck on its residential fast track, and it describes that path as sometimes finishing in a few hours. The same office says a complete application can still take as long as 17 days before the permit is issued. That pair is not a promise of a few hours. The Olney parcel is not inside a municipality with its own building counter, so the filing stays with Montgomery County Department of Permitting Services.',
+      },
+      {
+        question: 'What is the Olney deck inspection order?',
+        answer:
+          'The inspection order is a footing inspection, then a framing inspection, then a final inspection. Ask for the inspection at least 24 hours ahead, and have the permit number and the Contact ID printed on the permit. Printed drawings and the other documents have to be on the job site for the inspector. Stairway lights, an outlet, or a hot tub can also need an electrical permit. Real Elite schedules that electrician for an Olney deck and does not do the electrical work.',
+      },
+    ],
+    paragraphs: [
+      'An Olney deck follows the Montgomery County deck permit process, which is a different packet from an Olney addition.',
+      'The Olney census designated place, census place 2458900, has 10,554 owner-occupied units and an 89.2 percent owner share in the American Community Survey 2024 five-year estimates. Those Olney counts describe the census designated place, not an incorporated town.',
+      'For a townhouse, the pertinent section of the approved subdivision site plan can stand in for a house location plat. If Zoning has no plat for an older house, a record plat can be used when the structures and distances are drawn on it. An Olney deck is priced with a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Olney deck code and rails',
+        paragraphs: [
+          'A factory-built guardrail for an Olney deck needs a listing from a code agency the county accepts, and the application has to include that product\'s current evaluation report. One-family and two-family houses, together with accessory structures such as decks, are covered by the Montgomery County Building Code. The county adopts the 2021 International Residential Code for those houses and the 2017 National Electrical Code through that building code.',
+        ],
+        links: [
+          { href: '/service-areas/olney-md', label: 'Olney service area' },
+          { href: '/services/additions/olney-md', label: 'Olney additions' },
+          { href: '/services/outdoor-living/olney-md', label: 'Olney outdoor living' },
+          {
+            href: '/blog/montgomery-county-residential-fast-track-review',
+            label: 'Montgomery fast-track review',
+          },
+        ],
+      },
+    ],
+  },
+  'outdoor-living-olney-md': {
+    h1: 'Outdoor Living in Olney, MD',
+    metaTitle: 'Olney MD Outdoor Living | Real Elite',
+    metaDescription:
+      'Outdoor living in Olney, MD. Fence setbacks and shed eligibility sit with Montgomery County DPS, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['montgomery-county-residential-fast-track-review'],
+    faqs: [
+      {
+        question: 'Where can an Olney fence skip the usual setback?',
+        answer:
+          'Deer fencing skips the building-line and setback rules in an agricultural zone and in a rural residential zone. On property that is neither agricultural nor rural residential, that fencing skips those rules only behind the front wall of the house, and the skip does not apply when the lot adjoins a national historical park. A wall or fence must not sit in a required drainage, utility, or similar easement unless the agency with jurisdiction over that easement approves it.',
+      },
+      {
+        question: 'Are Olney sheds and screened porches on the fast track?',
+        answer:
+          'Sheds, gazebos, and other detached nonhabitable accessory structures under 200 square feet are eligible. A complex design, a structural modification, or an unusual design is taken in for the regular review process. A property on a private well or private septic system is not eligible for this track. A screened porch is not eligible. Real Elite coordinates licensed trades for any utility work and does not self-perform electrical, plumbing, or HVAC.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Olney is a fence, shed, gazebo, or screened porch on a Montgomery County parcel, filed with the Department of Permitting Services.',
+      'The margin of error on the Olney census designated place median owner-occupied value is $14,917 in the American Community Survey 2024 five-year estimates. Census place 2458900 is not an incorporated town.',
+      'On an Olney corner lot in a residential zone, a deer fence has to stay even with or behind the front wall of the house, and it cannot sit nearer the street than that wall. An Olney fence, shed, or gazebo is priced with a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Olney fence and shed path',
+        paragraphs: [
+          'Olney is not on the municipalities list, so fence and shed review for that parcel does not move to a town counter. Montgomery County Department of Permitting Services remains the building office, and general permit questions use 240-777-0311.',
+        ],
+        links: [
+          { href: '/service-areas/olney-md', label: 'Olney service area' },
+          { href: '/services/additions/olney-md', label: 'Olney additions' },
+          { href: '/services/decks/olney-md', label: 'Olney decks' },
+          {
+            href: '/blog/montgomery-county-residential-fast-track-review',
+            label: 'Montgomery fast-track review',
+          },
+        ],
+      },
+    ],
+  },
+  'additions-reston-va': {
+    h1: 'Home Additions in Reston, VA',
+    metaTitle: 'Reston VA Home Addition | Real Elite',
+    metaDescription:
+      'Home additions in Reston, VA. Fairfax County Land Development Services files the addition in PLUS, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    relatedGuideSlugs: ['fairfax-county-fast-track-basement-review'],
+    faqs: [
+      {
+        question: 'Who permits a home addition in Reston?',
+        answer:
+          'Fairfax County describes Reston as unincorporated, and county agencies supply its schools, its roads, its law enforcement, and its other local government services. The residential addition or alteration record is filed in PLUS under the Building tab, and a property owner may apply in their own name. Review can include the Permit Application Center, the Health Department if the house is on a well or septic system, Building Plan Review, the Site Technician Review team, the Fire Marshal\'s Office, Wastewater, and Zoning.',
+      },
+      {
+        question: 'Does the county name Reston for a separate town approval?',
+        answer:
+          'The residential addition page names a separate town approval for Clifton and for Vienna only. Reston is not in that sentence. That is not a statement that Reston is free of every other approval. The owner should check any association rules for the house. That step is private. It is not the Fairfax County permit, and a county permit is not association approval. Building permits, trade permits for electrical, mechanical, and plumbing, and land-disturbance permits are separate. Real Elite coordinates the trade permits and does not do electrical, plumbing, or HVAC work.',
+      },
+    ],
+    paragraphs: [
+      'A Reston addition is a Fairfax County Land Development Services project, filed for an unincorporated community rather than a town hall.',
+      'Owner-occupied housing counted for Reston in the American Community Survey 2024 five-year estimates shows a median value of $642,000, 17,395 owner-occupied units, a 60.6 percent owner share, and a median year built of 1984.',
+      'The county\'s Erosion and Stormwater Management Ordinance covers land-disturbing activity of 2,500 square feet or more, and work cannot start until a site-related plan is approved. The county\'s calculation adds the project footprint, a 10-foot-wide work zone around all sides, a 10-foot-wide access path from the existing street or driveway to the footprint, and, when the work includes excavation, the footprint of excavated material set aside on the lot. Letter to Industry 09-05 is the county pointer for that math. A Reston addition is priced with a free written estimate after a site walk.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Reston addition filing',
+        paragraphs: [
+          'Confirm the Reston parcel is in Fairfax County and file the addition with Land Development Services. The town-approval sentence that names Clifton and Vienna does not name Reston.',
+        ],
+        links: [
+          { href: '/service-areas/reston-va', label: 'Reston service area' },
+          { href: '/services/basements/reston-va', label: 'Reston basements' },
+          {
+            href: '/blog/fairfax-county-fast-track-basement-review',
+            label: 'Fairfax County Fast Track review',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 /**
