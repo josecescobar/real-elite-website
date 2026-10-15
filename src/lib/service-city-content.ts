@@ -9370,7 +9370,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'How tall can an Ashton fence be, and how fast is that permit?',
         answer:
-          'The maximum permitted height of a fence or wall is 6 feet 6 inches, with stated exceptions. On a corner lot in a residential zone, a fence or other visual obstruction can be a maximum of 3 feet above the curb for 15 feet from the intersection of the front and side street lines. Height is measured from the lowest grade under the fence. The county says a fence permit is usually issued within three days after the application is filed. Real Elite coordinates any licensed trade the fence or shed needs and does not self-perform electrical, plumbing, or HVAC.',
+          'Montgomery County caps a fence or a wall at 6 feet 6 inches, aside from the exceptions the fence page lists. One of those exceptions is a residential corner lot: within 15 feet of where the front and side street lines meet, a fence or other visual block is limited to 3 feet above the curb. Measure that height from the lowest ground under the fence. The county says a fence permit is usually issued within three days after the application is filed. Real Elite coordinates any licensed trade the fence or shed needs and does not self-perform electrical, plumbing, or HVAC.',
       },
     ],
     paragraphs: [
@@ -9451,7 +9451,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'How long does Montgomery County say an Olney deck permit can take?',
         answer:
-          'The county says an eligible deck application is reviewed through the residential fast track and can result in a permit in as little as a few hours, and it says an adequately prepared application may take up to 17 days to issue the permit. That pair is not a promise of a few hours. The Olney parcel is not inside a municipality with its own building counter, so the filing stays with Montgomery County Department of Permitting Services.',
+          'Montgomery County puts an eligible Olney deck on its residential fast track, and it describes that path as sometimes finishing in a few hours. The same office says a complete application can still take as long as 17 days before the permit is issued. That pair is not a promise of a few hours. The Olney parcel is not inside a municipality with its own building counter, so the filing stays with Montgomery County Department of Permitting Services.',
       },
       {
         question: 'What is the Olney deck inspection order?',
@@ -9469,7 +9469,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         id: 'permit',
         title: 'Olney deck code and rails',
         paragraphs: [
-          'Pre-manufactured guardrail systems must be listed by an approved code agency, and a current code evaluation report must be submitted with the application. One- and two-family dwellings and their accessory structures, including decks, comply with the Montgomery County Building Code. That code incorporates by reference the International Residential Code for one- and two-family dwellings, 2021 edition, and the National Electric Code, 2017 edition.',
+          'A factory-built guardrail for an Olney deck needs a listing from a code agency the county accepts, and the application has to include that product\'s current evaluation report. One-family and two-family houses, together with accessory structures such as decks, are covered by the Montgomery County Building Code. The county adopts the 2021 International Residential Code for those houses and the 2017 National Electrical Code through that building code.',
         ],
         links: [
           { href: '/service-areas/olney-md', label: 'Olney service area' },
@@ -9494,7 +9494,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Where can an Olney fence skip the usual setback?',
         answer:
-          'Building-line and setback requirements do not apply to deer fencing in an agricultural or rural residential zone, or behind the front building line on property in a non-agricultural or non-rural residential zone, unless the property adjoins a national historical park. A wall or fence must not sit in a required drainage, utility, or similar easement unless the agency with jurisdiction over that easement approves it.',
+          'Deer fencing skips the building-line and setback rules in an agricultural zone and in a rural residential zone. On property that is neither agricultural nor rural residential, that fencing skips those rules only behind the front wall of the house, and the skip does not apply when the lot adjoins a national historical park. A wall or fence must not sit in a required drainage, utility, or similar easement unless the agency with jurisdiction over that easement approves it.',
       },
       {
         question: 'Are Olney sheds and screened porches on the fast track?',
@@ -9505,7 +9505,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'Outdoor living in Olney is a fence, shed, gazebo, or screened porch on a Montgomery County parcel, filed with the Department of Permitting Services.',
       'The margin of error on the Olney census designated place median owner-occupied value is $14,917 in the American Community Survey 2024 five-year estimates. Census place 2458900 is not an incorporated town.',
-      'A deer fence on a corner lot in a residential zone must not be located closer to the street than the face of the building. An Olney fence, shed, or gazebo is priced with a free written estimate after a site walk.',
+      'On an Olney corner lot in a residential zone, a deer fence has to stay even with or behind the front wall of the house, and it cannot sit nearer the street than that wall. An Olney fence, shed, or gazebo is priced with a free written estimate after a site walk.',
     ],
     sections: [
       {
@@ -9537,7 +9537,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       {
         question: 'Who permits a home addition in Reston?',
         answer:
-          'Fairfax County describes Reston as an unincorporated area whose schools, roads, law enforcement, and other government services come from county agencies. The residential addition or alteration record is filed in PLUS under the Building tab, and a property owner may apply in their own name. Review can include the Permit Application Center, the Health Department if the house is on a well or septic system, Building Plan Review, the Site Technician Review team, the Fire Marshal\'s Office, Wastewater, and Zoning.',
+          'Fairfax County describes Reston as unincorporated, and county agencies supply its schools, its roads, its law enforcement, and its other local government services. The residential addition or alteration record is filed in PLUS under the Building tab, and a property owner may apply in their own name. Review can include the Permit Application Center, the Health Department if the house is on a well or septic system, Building Plan Review, the Site Technician Review team, the Fire Marshal\'s Office, Wastewater, and Zoning.',
       },
       {
         question: 'Does the county name Reston for a separate town approval?',
@@ -9548,7 +9548,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     paragraphs: [
       'A Reston addition is a Fairfax County Land Development Services project, filed for an unincorporated community rather than a town hall.',
       'Owner-occupied housing counted for Reston in the American Community Survey 2024 five-year estimates shows a median value of $642,000, 17,395 owner-occupied units, a 60.6 percent owner share, and a median year built of 1984.',
-      'Land-disturbing activity of 2,500 square feet or more is regulated by the Erosion and Stormwater Management Ordinance and needs an approved site-related plan before the ground is disturbed. The county\'s calculation adds the project footprint, a 10-foot-wide work zone around all sides, a 10-foot-wide access path from the existing street or driveway to the footprint, and, when the work includes excavation, the footprint of excavated material set aside on the lot. Letter to Industry 09-05 is the county pointer for that math. A Reston addition is priced with a free written estimate after a site walk.',
+      'The county\'s Erosion and Stormwater Management Ordinance covers land-disturbing activity of 2,500 square feet or more, and work cannot start until a site-related plan is approved. The county\'s calculation adds the project footprint, a 10-foot-wide work zone around all sides, a 10-foot-wide access path from the existing street or driveway to the footprint, and, when the work includes excavation, the footprint of excavated material set aside on the lot. Letter to Industry 09-05 is the county pointer for that math. A Reston addition is priced with a free written estimate after a site walk.',
     ],
     sections: [
       {
