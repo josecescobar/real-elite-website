@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import PhoneLink from '@/components/analytics/PhoneLink';
+
+export const metadata: Metadata = {
+  description:
+    'Page not found. Looks like this page got misplaced on the job site. Back to the Real Elite Contracting homepage, or get a free estimate. Need help?',
+};
 
 export default function NotFound() {
   return (

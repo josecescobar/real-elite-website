@@ -89,4 +89,32 @@ describe('built meta descriptions', () => {
       .sort();
     expect(over).toEqual([]);
   });
+
+  it('does not let two built pages share a meta description', () => {
+    // Routes dropped from the uniqueness check. Add one only when a shared
+    // description is genuinely unavoidable (a noindex shell that cannot carry
+    // its own sentence, for example) and say why next to the route.
+    //
+    // Empty on purpose. The only former duplicate was the root-layout sentence
+    // on `/`, `/blog`, `/review-request`, and `/_not-found`. Home keeps that
+    // sentence. The other three have their own. `/_global-error` has no
+    // description, so it is not a duplicate and is not listed here.
+    const DUPLICATE_DESCRIPTION_ALLOWLIST = new Set<string>([]);
+
+    const groups = new Map<string, string[]>();
+    for (const page of pages) {
+      if (!page.description) continue;
+      if (DUPLICATE_DESCRIPTION_ALLOWLIST.has(page.route)) continue;
+      const routes = groups.get(page.description) ?? [];
+      routes.push(page.route);
+      groups.set(page.description, routes);
+    }
+
+    const shared = [...groups.entries()]
+      .filter(([, routes]) => routes.length > 1)
+      .map(([description, routes]) => `${[...routes].sort().join(', ')}: ${description}`)
+      .sort();
+
+    expect(shared).toEqual([]);
+  });
 });
