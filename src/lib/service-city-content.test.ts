@@ -851,6 +851,17 @@ describe('comboPublishesPricing', () => {
         'decks-myersville-md',
         'decks-rockville-md',
         'outdoor-living-aldie-va',
+        // SEO round 13 pages with no job-range dollar.
+        'additions-annandale-va',
+        'additions-haymarket-va',
+        'additions-springfield-va',
+        'additions-upperville-va',
+        'decks-columbia-md',
+        'decks-springfield-va',
+        'decks-the-plains-va',
+        'kitchens-aldie-va',
+        'outdoor-living-annandale-va',
+        'outdoor-living-kensington-md',
       ].sort()
     );
   });
@@ -921,9 +932,10 @@ describe('unconfirmedClaimIdsInCombo', () => {
     // Round 18 adds 11 clean pages for Glenwood, Ashton, Olney, Reston, and Alexandria outdoor living.
     // Round 19 adds 12 clean pages for Reston decks and outdoor living, eight ranked gaps, and Woodbine.
     // Round 20 adds 9 clean premium pages. Mount Airy, Frederick, and Brunswick are home-market.
+    // SEO round 13 adds 10 clean premium pages.
     // Middleburg bathrooms and basements, and Burke basements, stay retired.
     // Martinsburg and Charles Town are home-market and are not in this count.
-    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 299 });
+    expect({ carrying, clean }).toEqual({ carrying: 0, clean: 309 });
   });
 
   /**
@@ -1487,6 +1499,9 @@ describe('REA-2371 outdoor living and stairs combos', () => {
       'outdoor-living-woodbine-md',
       'outdoor-living-brunswick-md',
       'outdoor-living-aldie-va',
+      // SEO round 13 adds two outdoor-living pages.
+      'outdoor-living-annandale-va',
+      'outdoor-living-kensington-md',
     ]);
     for (const key of Object.keys(CONTENT)) {
       if (key.startsWith('outdoor-living-') || key.startsWith('stairs-')) {
@@ -1794,6 +1809,8 @@ describe('REA-2435 round 7 Tier A/B towns', () => {
       // Round 20 adds Brookeville decks and Kensington additions.
       'decks-brookeville-md',
       'additions-kensington-md',
+      // SEO round 13 adds Kensington outdoor living.
+      'outdoor-living-kensington-md',
     ]);
     for (const city of [
       'glenwood-md',
@@ -2329,6 +2346,12 @@ describe('REA-2495 round 11 richest-county towns', () => {
       'additions-columbia-md',
       // Round 20 adds Rockville decks.
       'decks-rockville-md',
+      // SEO round 13 adds the missing service pages for these towns.
+      'additions-annandale-va',
+      'outdoor-living-annandale-va',
+      'additions-springfield-va',
+      'decks-springfield-va',
+      'decks-columbia-md',
     ]);
     for (const city of [...NEW_AREAS, 'springfield-va']) {
       for (const key of Object.keys(CONTENT)) {
@@ -3498,8 +3521,8 @@ describe('REA-3011 round 19 Reston, Woodbine, and eight ranked gaps', () => {
 
   it('publishes the 12 keys and adds no retired combo', () => {
     expect(PAGES).toHaveLength(12);
-    // Round 20 raises the published total from 323 to 335.
-    expect(Object.keys(CONTENT)).toHaveLength(335);
+    // SEO round 13 raises the published total from 335 to 345.
+    expect(Object.keys(CONTENT)).toHaveLength(345);
     for (const [service, city] of PAGES) {
       expect(CONTENT).toHaveProperty(`${service}-${city}`);
     }
@@ -3664,9 +3687,9 @@ describe('REA-3023 round 20 additions, decks, and outdoor-living gaps', () => {
     expect(new Set(titles).size).toBe(titles.length);
   });
 
-  it('publishes the 12 keys, keeps the content count at 335, and adds no retired combo', () => {
+  it('publishes the 12 keys, keeps the content count at 345, and adds no retired combo', () => {
     expect(PAGES).toHaveLength(12);
-    expect(Object.keys(CONTENT)).toHaveLength(335);
+    expect(Object.keys(CONTENT)).toHaveLength(345);
     for (const [service, city] of PAGES) {
       expect(CONTENT).toHaveProperty(`${service}-${city}`);
     }
@@ -3802,3 +3825,127 @@ describe('REA-3023 round 20 additions, decks, and outdoor-living gaps', () => {
     expect(dupes).toEqual([]);
   });
 });
+
+describe('SEO round 13 pair adds and ten service pages', () => {
+  const PAGES = [
+    ['additions', 'annandale-va', 'Home Additions in Annandale, VA'],
+    ['outdoor-living', 'annandale-va', 'Outdoor Living in Annandale, VA'],
+    ['additions', 'springfield-va', 'Home Additions in Springfield, VA'],
+    ['decks', 'springfield-va', 'Decks in Springfield, VA'],
+    ['kitchens', 'aldie-va', 'Kitchen Remodeling in Aldie, VA'],
+    ['additions', 'upperville-va', 'Home Additions in Upperville, VA'],
+    ['decks', 'the-plains-va', 'Decks in The Plains, VA'],
+    ['outdoor-living', 'kensington-md', 'Outdoor Living in Kensington, MD'],
+    ['decks', 'columbia-md', 'Decks in Columbia, MD'],
+    ['additions', 'haymarket-va', 'Home Additions in Haymarket, VA'],
+  ] as const;
+
+  function entryStrings(entry: (typeof CONTENT)[keyof typeof CONTENT]) {
+    return [
+      entry?.h1,
+      entry?.metaTitle,
+      entry?.metaDescription,
+      ...(entry?.paragraphs ?? []),
+      ...(entry?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ...(entry?.sections ?? []).flatMap((section) => [
+        section.title,
+        ...section.paragraphs,
+        ...(section.links ?? []).map((link) => link.label),
+      ]),
+    ].filter((part): part is string => Boolean(part));
+  }
+
+  it.each(PAGES)('%s-%s publishes the new key', (service, city, h1) => {
+    const entry = CONTENT[`${service}-${city}`];
+    expect(entry?.h1).toBe(h1);
+    expect(entry?.metaDescription?.toLowerCase()).toContain(h1.toLowerCase());
+    expect(entry?.metaDescription!.length).toBeLessThanOrEqual(160);
+    expect(entry?.paragraphs.length).toBe(3);
+    expect(entry?.faqs?.length).toBe(3);
+    expect(entry?.townTaggedPhotosOnly).toBe(true);
+    expect(serviceHrefForArea(service, city)).toBe(`/services/${service}/${city}`);
+    const body = entryStrings(entry).join('\n');
+    expect(body).not.toMatch(
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|\blicense\b|inspiration|\bstock\b|estimate fee|\bminutes?\b|\bmiles?\b|veteran-owned|brambleton|separately licensed|—|\bACS\b|\bCDP\b|\bZCTA\b|Summit|Amazon/i
+    );
+    expect(body).not.toMatch(/\d{10}/);
+    expect(body).toMatch(/free written estimate after a site walk/i);
+    expect(body).toMatch(/parcel/i);
+  });
+
+  it('publishes ten new keys and raises the content count to 345', () => {
+    expect(PAGES).toHaveLength(10);
+    expect(Object.keys(CONTENT)).toHaveLength(345);
+    for (const [service, city] of PAGES) {
+      expect(CONTENT).toHaveProperty(`${service}-${city}`);
+    }
+  });
+
+  it('does not clone the 10 openings and gives each a unique metaTitle', () => {
+    const openings = PAGES.map(([service, city]) =>
+      CONTENT[`${service}-${city}`]!.paragraphs[0].slice(0, 90)
+    );
+    expect(new Set(openings).size).toBe(PAGES.length);
+    const titles = PAGES.map(([service, city]) => {
+      const entry = CONTENT[`${service}-${city}`]!;
+      const serviceTitle = SERVICES.find((item) => item.slug === service)!.title;
+      const area = ALL_SERVICE_AREAS.find((item) => item.slug === city)!;
+      expect(entry.metaTitle).toBeTruthy();
+      expect(entry.metaTitle).not.toBe(defaultComboTitle(serviceTitle, formatAreaPlace(area)));
+      expect(entry.metaTitle!.length).toBeLessThanOrEqual(TITLE_MAX);
+      return entry.metaTitle;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it('does not repeat a new sentence inside these ten pages or on an earlier combo', () => {
+    const splitSentences = (text: string) =>
+      text
+        .split(/(?<=[.!?])\s+/)
+        .map((sentence) => sentence.replace(/\s+/g, ' ').trim())
+        .filter((sentence) => sentence.length >= 40);
+    const fresh = new Map<string, string>();
+    const dupes: string[] = [];
+    for (const [service, city] of PAGES) {
+      const key = `${service}-${city}`;
+      for (const sentence of splitSentences(entryStrings(CONTENT[key as keyof typeof CONTENT]).join(' '))) {
+        const prior = fresh.get(sentence);
+        if (prior) dupes.push(`${key} repeats ${prior}: ${sentence}`);
+        else fresh.set(sentence, key);
+      }
+    }
+    for (const [key, entry] of Object.entries(CONTENT)) {
+      if (PAGES.some(([service, city]) => key === `${service}-${city}`)) continue;
+      for (const sentence of splitSentences(entryStrings(entry).join(' '))) {
+        if (fresh.has(sentence)) dupes.push(`${fresh.get(sentence)} also in ${key}: ${sentence}`);
+      }
+    }
+    expect(dupes).toEqual([]);
+  });
+
+  it('keeps pair-add sentences on the page and does not raise older FAQ caps', () => {
+    const pages = [
+      ['basements', 'marriottsville-md', 'not automatically a Howard County permit'],
+      ['basements', 'ellicott-city-md', 'the online interior-alteration form for a finished lower level'],
+      ['kitchens', 'annandale-va', 'a kitchen that stays inside the walls already there'],
+      ['bathrooms', 'annandale-va', 'that plumbing permit is a follow-on record'],
+      ['kitchens', 'springfield-va', 'not on the county list of towns that must add a separate town approval'],
+      ['bathrooms', 'springfield-va', 'a condo bath in Springfield is not started on the residential addition form'],
+      ['additions', 'mclean-va', 'floodplains and Resource Protection Areas'],
+      ['additions', 'great-falls-va', 'Residential Use Permit'],
+      ['outdoor-living', 'potomac-md', 'skips that plan when the lot is at least fifteen thousand square feet'],
+      ['outdoor-living', 'bethesda-md', 'sends a yellow notification sign'],
+    ] as const;
+    const forbidden =
+      /this page|tagged to|in the gallery|no photo is shown|we do not publish|WV062432|2705198604|MHIC|maryland license|separately licensed/i;
+    for (const [service, city, needle] of pages) {
+      const entry = CONTENT[`${service}-${city}`];
+      expect(entry?.faqs?.length, `${service}-${city}`).toBeLessThanOrEqual(3);
+      const body = entryStrings(entry).join('\n');
+      expect(body, `${service}-${city}`).toContain(needle);
+      const sentence = body.split('\n').find((line) => line.includes(needle)) ?? '';
+      expect(sentence, `${service}-${city}`).not.toMatch(forbidden);
+    }
+  });
+});
+
