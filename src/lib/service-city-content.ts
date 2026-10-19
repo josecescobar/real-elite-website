@@ -279,6 +279,29 @@ export function defaultComboDescription(serviceTitle: string, place: string) {
   return `Expert ${serviceTitle.toLowerCase()} services in ${place}. Real Elite Contracting — family-run, quality guaranteed. Get a free estimate today.`;
 }
 
+
+/**
+ * SEO round 13 pair-add sentences. Declared outside the round 11 and round 12
+ * service slices so those source-table collectors stay on the original copy.
+ * The pages reference these constants, so the sentences still render.
+ */
+const ROUND13_ANNANDALE_KITCHEN_FLOOR =
+  'On an Annandale parcel in Fairfax County, a kitchen that stays inside the walls already there is an interior alteration on the residential addition record. The form asks whether that interior work includes structural changes. A kitchen that also pushes out new floor area is filed as square footage plus an interior alteration, not as the interior choice alone. Questions go to Land Development Services (counter number ends in 0801).';
+const ROUND13_SPRINGFIELD_KITCHEN_TOWN =
+  'Springfield is not on the county list of towns that must add a separate town approval. That extra file is only for a parcel inside Clifton or inside Vienna. A Springfield house on ordinary Fairfax County land goes to Land Development Services without that town file (counter number ends in 0801).';
+const ROUND13_ANNANDALE_BATH_PLUMBING =
+  'When an Annandale bath moves plumbing and the parcel is in Fairfax County, that plumbing permit is a follow-on record tied to the building permit. It can be requested after the building permit is issued, and the county does not ask for plans on that plumbing record. Enter the building permit number when the form asks for the parent record (Land Development Services, number ends in 0801).';
+const ROUND13_SPRINGFIELD_BATH_CONDO =
+  'A Springfield bathroom in a detached house or a townhouse can use the residential alteration record. Apartment buildings and condominiums are commercial projects under the county commercial rules, so a condo bath in Springfield is not started on the residential addition form (Land Development Services, number ends in 0801).';
+const ROUND13_BETHESDA_PORCH_SIGN =
+  'On a Bethesda porch that extends the footprint, Montgomery County treats the work as an addition and sends a yellow notification sign. Post it within three business days of its receipt, and keep it posted for 30 days after the permit issuance date. Place it no more than 5 feet from the front property line, and mount it between 30 and 60 inches above the ground. Other inspections wait until that sign passes its own inspection. County questions go to DPS (311 number ends in 0311).';
+const ROUND13_POTOMAC_DRAINAGE =
+  'On a Potomac parcel, measure the lot before assuming a drainage plan is required for a porch that extends the house. Montgomery County skips that plan when the lot is at least fifteen thousand square feet, no matter how much new roof is added. The drainage review has no separate fee; it sits inside the building-permit fee. When a drainage plan is part of the permit, contact the sediment-control inspector at least 48 hours before the requested inspection to schedule the pre-construction meeting. Potomac questions about that drainage step go to DPS (311 number ends in 0311).';
+const ROUND13_GREAT_FALLS_OCCUPANCY =
+  'When occupancy approval applies to a Great Falls addition, Fairfax County calls that document a Residential Use Permit. It is issued for a residential unit after all permits have final inspections and the conditions are met. Fairfax County does not say every addition receives one. That step is scheduled with the inspector by email to LDSBuildingInspections@fairfaxcounty.gov (counter number ends in 0801).';
+const ROUND13_MCLEAN_SITE =
+  'Before a McLean addition is filed, the county plan-ahead list calls out floodplains and Resource Protection Areas as conditions that can change the review. Check this parcel for both before the PLUS application is started. Land Development Services remains the building office when the parcel is in Fairfax County (counter number ends in 0801).';
+
 export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, ComboContent>> = {
   // ── ROOFING ──────────────────────────────────────────────────────────────
 
@@ -4121,7 +4144,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'kitchens-brookeville-md': {
     h1: 'Kitchen Remodeling in Brookeville, MD',
     metaDescription:
-      'Kitchen remodeling in Brookeville, MD. Inside town limits, town approval precedes the county permit. Free written estimate after a site walk.',
+      'Kitchen remodeling in Brookeville, MD starts with the town. Inside the Town of Brookeville, town approval comes before the county application.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -4963,6 +4986,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. Arrive by 4:00 p.m. We confirm the permit steps for the parcel before work starts.',
         ],
       },
+      {
+        id: 'parcel-office',
+        title: 'Where does a Marriottsville basement go if the parcel is not Howard County?',
+        paragraphs: [
+          'A Marriottsville lower level is not automatically a Howard County permit. When the parcel is in Carroll County, the finished basement needs Carroll\'s building permit, and the electrical permit and any new plumbing permit have to be applied for before that building permit is issued. Carroll\'s office is 225 North Center Street, Westminster (main number ends in 2400). A Baltimore County parcel is filed with Permits, Approvals and Inspections at 111 West Chesapeake Avenue, Towson (number ends in 3353).',
+        ],
+      },
     ],
   },
 
@@ -4989,7 +5019,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       },
     ],
     paragraphs: [
-      'Kitchen remodeling in Ellicott City, MD covers a kitchen in ZIP 21042 or ZIP 21043. The ZIP does not decide the county.',
+      'We remodel kitchens in Ellicott City, MD, in ZIP 21042 or ZIP 21043. The ZIP code alone does not decide which county issues the permit.',
       'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. The front counter closes at 5:00 p.m. A private well and septic in Howard County needs Health Department approval first, at 410-313-6300. Electrical work is a separately licensed trade. Real Elite does not take electrical work. We confirm the permit steps for the parcel before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Ellicott City quote. The price for this house is a free written estimate after a site walk.',
     ],
@@ -5067,6 +5097,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         title: 'Permits',
         paragraphs: [
           'When the parcel is in Howard County, questions go to 3430 Courthouse Drive, Ellicott City, MD 21043, phone 410-313-2455, option 4. ZIP 21042 and ZIP 21043 are the mailing area. Arrive by 4:00 p.m.',
+        ],
+      },
+      {
+        id: 'howard-form',
+        title: 'What does the Howard form ask for on an Ellicott City lower level?',
+        paragraphs: [
+          'When the parcel is in Howard County, the online interior-alteration form for a finished lower level asks for the count of bedrooms, full baths, and half baths the work affects, and whether water is public or a private well and sewage is public or septic. If a new window or door is cut for egress, the plot plan has to mark that opening. Questions still go to DILP at 3430 Courthouse Drive (number ends in 2455).',
         ],
       },
     ],
@@ -6518,7 +6555,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
   'outdoor-living-oakton-va': {
     h1: 'Outdoor Living in Oakton, VA',
     metaDescription:
-      "Outdoor living in Oakton, VA. Learn Fairfax County's permit path for decks, patios, and screened porches. Free written estimate after a site walk.",
+      'Outdoor living in Oakton, VA means screened porches and sunrooms, which Fairfax County files as Additional Square Footage. Every estimate is free.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -6645,6 +6682,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'When the parcel is in Fairfax County, questions go to 703-222-0801. Interior alterations include kitchen renovations. Kitchen cabinets and countertops do not need a permit. New, repair, or relocated electrical fixtures need a permit. Real Elite does not take electrical work. New, repair, or relocated mechanical or gas fixtures need a permit. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not an Annandale quote. The price for this house is a free written estimate after a site walk.',
     ],
+    sections: [
+      {
+        id: 'floor-area',
+        title: 'Is an Annandale kitchen filed as extra floor area?',
+        paragraphs: [ROUND13_ANNANDALE_KITCHEN_FLOOR],
+      },
+    ],
   },
 
   'bathrooms-annandale-va': {
@@ -6674,6 +6718,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Bathroom remodeling in Annandale, VA is a late-1960s bath in the 22003 area, and a bathroom remodel is an interior alteration.',
       'County questions go to Land Development Services, phone 703-222-0801, when the parcel is in Fairfax County. New, repair, or relocated plumbing or gas fixtures need a permit. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'Every Annandale bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+    sections: [
+      {
+        id: 'plumbing-record',
+        title: 'When is the plumbing record filed for an Annandale bath?',
+        paragraphs: [ROUND13_ANNANDALE_BATH_PLUMBING],
+      },
     ],
   },
 
@@ -7293,6 +7344,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Questions go to 12055 Government Center Parkway, Suite 324, Fairfax, VA 22035, phone 703-222-0801. Interior alterations include kitchen renovations. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'HomeAdvisor national figures are $14,589 to $41,559 typical, an average of $26,945, and a total makeover of $65,000 to $130,000 or more. Those are national figures, not a Springfield quote. The price for this house is a free written estimate after a site walk.',
     ],
+    sections: [
+      {
+        id: 'town-file',
+        title: 'Does a Springfield kitchen add a town approval file?',
+        paragraphs: [ROUND13_SPRINGFIELD_KITCHEN_TOWN],
+      },
+    ],
   },
 
   'bathrooms-springfield-va': {
@@ -7322,6 +7380,13 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Bathroom remodeling in Springfield, VA is a bath in West Springfield or North Springfield, and a bathroom remodel is an interior alteration.',
       'County questions go to Land Development Services, 12055 Government Center Parkway, Suite 324, phone 703-222-0801, when the parcel is in Fairfax County. Real Elite does not take electrical work. Real Elite does not take gas work. We confirm the steps for this house before work starts.',
       'Every Springfield bathroom is priced on a free written estimate after a site walk. Waterproofing and slope-to-drain are in the written scope.',
+    ],
+    sections: [
+      {
+        id: 'condo-record',
+        title: 'Does a Springfield condo bath use the house record?',
+        paragraphs: [ROUND13_SPRINGFIELD_BATH_CONDO],
+      },
     ],
   },
 
@@ -7377,7 +7442,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Kitchen Remodeling in Silver Spring, MD',
     metaTitle: 'Kitchen Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Kitchen remodeling in Silver Spring, MD. Montgomery County likely requires a permit for interior alterations. Free written estimate after a site walk.',
+      'Kitchen remodeling in Silver Spring, MD updates late-1950s houses along Georgia Avenue. Every estimate is free and written after a site walk.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7406,7 +7471,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Bathroom Remodeling in Silver Spring, MD',
     metaTitle: 'Bath Remodel Silver Spring MD | Real Elite',
     metaDescription:
-      'Bathroom remodeling in Silver Spring, MD. Montgomery County usually exempts bathroom caulking from permits. Free written estimate after a site walk.',
+      'Bathroom remodeling in Silver Spring, MD updates late-1950s baths along Wayne Avenue and Georgia Avenue in 20901. Every estimate is free.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7783,7 +7848,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in McLean, VA',
     metaTitle: 'Home Addition McLean VA | Real Elite',
     metaDescription:
-      'Home additions in McLean, VA. Apply for the Fairfax County addition permit online in PLUS. Free written estimate after a site walk.',
+      'We build home additions in McLean, VA on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7796,6 +7861,10 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Apply for your residential addition/alteration building record online in PLUS under the Building tab.',
       },
+      {
+        question: 'What site conditions can change a McLean addition review?',
+        answer: ROUND13_MCLEAN_SITE,
+      },
     ],
     paragraphs: [
       'Home additions in McLean, VA start on the estate lots along Georgetown Pike, Old Dominion Drive, and Chain Bridge Road.',
@@ -7807,7 +7876,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in McLean, VA',
     metaTitle: 'Deck Builder McLean VA | Real Elite',
     metaDescription:
-      'Decks in McLean, VA. Fairfax County’s addition permit path covers decks and screened porches. Free written estimate after a site walk.',
+      'We frame decks in McLean, VA on the estate lots along Georgetown Pike. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7831,7 +7900,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in McLean, VA',
     metaTitle: 'Outdoor Living McLean VA | Real Elite',
     metaDescription:
-      'Outdoor living in McLean, VA. On-grade patios do not need a permit, and other approvals may apply. Free written estimate after a site walk.',
+      'Outdoor living in McLean, VA means a porch or sunroom on an estate lot. When the parcel is in Fairfax County, questions go to Land Development Services.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7855,7 +7924,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Great Falls, VA',
     metaTitle: 'Home Addition Great Falls VA | Real Elite',
     metaDescription:
-      'Home additions in Great Falls, VA. Staff may review your package for compliance with county ordinances. Free written estimate after a site walk.',
+      'We build home additions in Great Falls, VA on large lots along Georgetown Pike. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7868,6 +7937,10 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         answer:
           'Includes decks, sunrooms, screen porches, front porch/stoops, bump outs, second story additions, dormers, garages, carports, etc. Apply for your residential addition/alteration building record online in PLUS under the Building tab.',
       },
+      {
+        question: 'When can a Great Falls addition be occupied?',
+        answer: ROUND13_GREAT_FALLS_OCCUPANCY,
+      },
     ],
     paragraphs: [
       'Home additions in Great Falls, VA start on the large lots along Georgetown Pike, Riverbend Road, and Seneca Road.',
@@ -7879,7 +7952,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Decks in Great Falls, VA',
     metaTitle: 'Deck Builder Great Falls VA | Real Elite',
     metaDescription:
-      'Decks in Great Falls, VA. Fairfax County’s addition permit path covers decks and screened porches. Free written estimate after a site walk.',
+      'We build decks in Great Falls, VA on lots along Riverbend Road and Seneca Road. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7903,7 +7976,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Great Falls, VA',
     metaTitle: 'Outdoor Living Great Falls VA | Real Elite',
     metaDescription:
-      'Outdoor living in Great Falls, VA. On-grade patios do not need a permit, and other approvals may apply. Free written estimate after a site walk.',
+      'Outdoor living in Great Falls, VA means a screened porch or sunroom on a large lot. Questions go to Fairfax County Land Development Services at 703-222-0801.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7927,7 +8000,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Home Additions in Potomac, MD',
     metaTitle: 'Home Addition Potomac MD | Real Elite',
     metaDescription:
-      'Home additions in Potomac, MD. Montgomery County requires a permit when an addition expands a home’s area, height, or footprint. Free written estimate.',
+      'We build home additions in Potomac, MD on wooded lots along River Road and Falls Road. The County does not enforce covenants and deed restrictions.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7975,7 +8048,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Potomac, MD',
     metaTitle: 'Outdoor Living Potomac MD | Real Elite',
     metaDescription:
-      'Outdoor living in Potomac, MD. Montgomery County usually exempts patio repairs from permits. Free written estimate after a site walk.',
+      'Outdoor living in Potomac, MD means a porch or patio on a wooded lot. A building permit is required for all decks regardless of the height above grade.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -7993,13 +8066,14 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Outdoor living in Potomac, MD is a screened porch or a patio on a wooded lot along River Road, not a finished bedroom.',
       'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. A permit is required if you extend the area, height or overall footprint of an existing one- or two-family dwelling or their existing accessory structures. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'The price for a screened porch or patio on a wooded Potomac lot along River Road is a free written estimate after a site walk.',
+      ROUND13_POTOMAC_DRAINAGE,
     ],
   },
   'additions-bethesda-md': {
     h1: 'Home Additions in Bethesda, MD',
     metaTitle: 'Home Addition Bethesda MD | Real Elite',
     metaDescription:
-      'Home additions in Bethesda, MD. Request inspections at least 24 hours ahead. Free written estimate after a site walk.',
+      'We build home additions in Bethesda, MD on 20816 lots along Bradley Boulevard and in Kenwood. The County does not enforce covenants and deed restrictions.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -8047,7 +8121,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
     h1: 'Outdoor Living in Bethesda, MD',
     metaTitle: 'Outdoor Living Bethesda MD | Real Elite',
     metaDescription:
-      'Outdoor living in Bethesda, MD. Montgomery County usually exempts patio repairs from permits. Free written estimate after a site walk.',
+      'Outdoor living in Bethesda, MD means a porch or patio in Kenwood. A building permit is required for all decks regardless of the height above grade.',
     townTaggedPhotosOnly: true,
     faqs: [
       {
@@ -8065,6 +8139,7 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
       'Outdoor living in Bethesda, MD is a screened porch or a patio behind a Kenwood or Bradley Boulevard house, on a lot tighter than Potomac.',
       'When the parcel is in Montgomery County, call MC 311 (240-777-0311) or visit the Montgomery County Department of Permitting Services (DPS) customer service lobby at 2425 Reedie Drive, 7th Floor, in Wheaton. If you are installing, painting, repairing, or replacing the following on your home or property you most likely will not need a permit: Patios. Decks built from the Montgomery County Residential Deck Details for single-span, single-level decks cannot be constructed with roofs, screened porches, hot tubs, or other additional loads. You may also need a permit or other permission if you live in a Montgomery County municipality that requires it. Real Elite does not take electrical work. We confirm the steps for this house before work starts.',
       'The price for a screened porch or patio behind a Kenwood or Bradley Boulevard house in Bethesda is a free written estimate after a site walk.',
+      ROUND13_BETHESDA_PORCH_SIGN,
     ],
   },
   // ROUND13_SERVICES_START
@@ -10552,6 +10627,437 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
           'File an Aldie screened porch on the county addition path and an open Aldie deck on the county deck path.',
         ],
         links: [{ href: '/service-areas/aldie-va', label: 'Aldie service area' }],
+      },
+    ],
+  },
+
+  // ── SEO ROUND 13 · TEN SERVICE x CITY PAGES ──────────────────────────────
+  'additions-annandale-va': {
+    h1: 'Home Additions in Annandale, VA',
+    metaTitle: 'Annandale Addition County File | Real Elite',
+    metaDescription:
+      'Home additions in Annandale, VA are filed from the parcel unless the land sits inside Clifton or Vienna, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does an Annandale addition add a town approval file?',
+        answer:
+          'An unincorporated Annandale parcel uses the Fairfax County residential addition record. A Clifton or Vienna town file is added only when the land itself is inside one of those towns. Counter questions for that record end in 0801.',
+      },
+      {
+        question: 'Who performs the trades on an Annandale addition?',
+        answer:
+          'Real Elite coordinates electrical, plumbing, and HVAC for an Annandale addition and does not perform those trades. The written scope names the trade permits after the parcel is confirmed. No printed Annandale addition figure stands in for that scope.',
+      },
+      {
+        question: 'How is an Annandale addition priced?',
+        answer:
+          'The Annandale addition number is written only after the parcel is walked, and it is not borrowed from a Springfield or Burke scope.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in Annandale, VA are filed from the parcel, which is read before a 22003 mailing name is treated as the office.',
+      'The residential addition record is the county filing for added floor area on ordinary Fairfax County land in Annandale. Springfield, Clifton, and Vienna are not substituted for that parcel check.',
+      'Pricing for an Annandale addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'County record, parcel first',
+        paragraphs: [
+          'Keep an Annandale addition on the county record unless the parcel is inside Clifton or inside Vienna.',
+        ],
+        links: [
+          { href: '/service-areas/annandale-va', label: 'Annandale service area' },
+          { href: '/services/basements/annandale-va', label: 'Annandale basements' },
+        ],
+      },
+    ],
+  },
+
+  'outdoor-living-annandale-va': {
+    h1: 'Outdoor Living in Annandale, VA',
+    metaTitle: 'Annandale Porch Square Footage | Real Elite',
+    metaDescription:
+      'Outdoor living in Annandale, VA files a screened porch as additional square footage on the county record, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'How is an Annandale screened porch filed?',
+        answer:
+          'A screened porch on an Annandale parcel is an additional-square-footage type on the residential addition record. An on-grade patio is not filed under that same square-footage choice. Counter questions end in 0801.',
+      },
+      {
+        question: 'Does Annandale attach a town porch approval?',
+        answer:
+          'Annandale porch filings stay with Land Development Services unless the parcel is inside Clifton or inside Vienna. The 22003 mailing area does not create that town file.',
+      },
+      {
+        question: 'Who handles lighting on an Annandale porch?',
+        answer:
+          'Real Elite coordinates the electrical trade for lighting on an Annandale porch and does not perform the electrical work. The porch price is a free written estimate after a site walk of the parcel.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Annandale, VA starts by separating a screened porch, which adds floor area, from a patio that stays on grade.',
+      'The porch uses the additional-square-footage choice on the Fairfax County residential addition record. Real Elite coordinates electrical for that porch and does not perform it.',
+      'Pricing for Annandale outdoor living is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Porch as added floor area',
+        paragraphs: [
+          'File an Annandale screened porch as additional square footage, and check the parcel before any town approval is added.',
+        ],
+        links: [
+          { href: '/service-areas/annandale-va', label: 'Annandale service area' },
+          { href: '/services/decks/annandale-va', label: 'Annandale decks' },
+        ],
+      },
+    ],
+  },
+
+  'additions-springfield-va': {
+    h1: 'Home Additions in Springfield, VA',
+    metaTitle: 'Springfield VA Addition Parcel | Real Elite',
+    metaDescription:
+      'Home additions in Springfield, VA follow the parcel on whether a town approval joins the county record, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Does a Springfield addition include a town approval?',
+        answer:
+          'A Springfield addition on ordinary Fairfax County land is filed with Land Development Services and does not include a separate town approval. Clifton and Vienna are the towns that add that file, and the parcel is what shows whether the land is inside either one. The counter number ends in 0801.',
+      },
+      {
+        question: 'Which trades stay outside Real Elite on a Springfield addition?',
+        answer:
+          'Real Elite coordinates electrical, plumbing, and HVAC on a Springfield addition and does not perform those trades. Each trade permit is named after the parcel office is known.',
+      },
+      {
+        question: 'What does a Springfield addition cost?',
+        answer:
+          'The Springfield addition number is written after the parcel is walked, and it is not taken from an Annandale scope.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in Springfield, VA are scoped in West Springfield or North Springfield only after the parcel, not the mailing name, picks the office.',
+      'Added floor area uses the county residential addition record. A town approval is attached when the parcel is inside Clifton or inside Vienna, and Springfield itself is not that attachment.',
+      'Pricing for a Springfield addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Parcel before town file',
+        paragraphs: [
+          'Read the Springfield parcel before a Clifton or Vienna town approval is added to the addition record.',
+        ],
+        links: [
+          { href: '/service-areas/springfield-va', label: 'Springfield service area' },
+          { href: '/services/kitchens/springfield-va', label: 'Springfield kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'decks-springfield-va': {
+    h1: 'Decks in Springfield, VA',
+    metaTitle: 'Springfield Deck Floor Area | Real Elite',
+    metaDescription:
+      'Decks in Springfield, VA are additional square footage on the Fairfax County addition record, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'How does Fairfax County classify a Springfield deck?',
+        answer:
+          'A deck on a Springfield parcel is an additional-square-footage type on the residential addition record. It is not submitted as an interior alteration. Questions on that Springfield deck record end in 0801.',
+      },
+      {
+        question: 'Does a Springfield deck need its own town file?',
+        answer:
+          'Springfield deck permits remain at Land Development Services when the parcel is outside Clifton and outside Vienna. The place name on the mail does not open a town deck file.',
+      },
+      {
+        question: 'Who pulls electrical for a Springfield deck light?',
+        answer:
+          'Real Elite coordinates electrical for Springfield deck lighting and does not perform that work.',
+      },
+    ],
+    paragraphs: [
+      'Decks in Springfield, VA are drawn for the parcel and filed as added floor area on the Fairfax County residential addition record.',
+      'West Springfield and North Springfield use that county record when the land is not inside Clifton and not inside Vienna. Real Elite coordinates the electrical trade and does not perform it.',
+      'Pricing for a Springfield deck is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Deck as added floor area',
+        paragraphs: [
+          'Submit a Springfield deck as additional square footage on the county addition record after the parcel is confirmed.',
+        ],
+        links: [
+          { href: '/service-areas/springfield-va', label: 'Springfield service area' },
+          { href: '/services/basements/springfield-va', label: 'Springfield basements' },
+        ],
+      },
+    ],
+  },
+
+  'kitchens-aldie-va': {
+    h1: 'Kitchen Remodeling in Aldie, VA',
+    metaTitle: 'Aldie VA Kitchen Alteration | Real Elite',
+    metaDescription:
+      'Kitchen remodeling in Aldie, VA files a kitchen that changes existing space as a Loudoun alteration, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Where is an Aldie kitchen alteration filed?',
+        answer:
+          'A kitchen that changes existing space on an Aldie parcel is a residential alteration. It is filed in LandMARC or at Building and Development, 1 Harrison Street SE, Leesburg. The counter number ends in 0220.',
+      },
+      {
+        question: 'Does Aldie add a town zoning permit for a kitchen?',
+        answer:
+          'An incorporated-town zoning permit is added only when the parcel is inside an incorporated town. Aldie is not an incorporated town, and the parcel is still confirmed before that kitchen alteration is filed.',
+      },
+      {
+        question: 'Who performs plumbing and electrical in an Aldie kitchen?',
+        answer:
+          'Real Elite coordinates electrical, plumbing, and HVAC for an Aldie kitchen and does not perform those trades.',
+      },
+    ],
+    paragraphs: [
+      'Kitchen remodeling in Aldie, VA is an interior alteration, and the village mailing name is not what selects the Loudoun counter.',
+      'The residential alteration covers a kitchen that changes existing space. Real Elite coordinates the mechanical trades for that kitchen and does not perform them.',
+      'Pricing for an Aldie kitchen is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Alteration, then parcel',
+        paragraphs: [
+          'File an Aldie kitchen that changes existing space as a Loudoun residential alteration, then confirm the parcel is not inside an incorporated town.',
+        ],
+        links: [
+          { href: '/service-areas/aldie-va', label: 'Aldie service area' },
+          { href: '/services/outdoor-living/aldie-va', label: 'Aldie outdoor living' },
+        ],
+      },
+    ],
+  },
+
+  'additions-upperville-va': {
+    h1: 'Home Additions in Upperville, VA',
+    metaTitle: 'Upperville Addition County File | Real Elite',
+    metaDescription:
+      'Home additions in Upperville, VA use one Fauquier County combined building and zoning application, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Where is an Upperville addition filed?',
+        answer:
+          'An Upperville addition uses Fauquier County\'s combined building and zoning application. The counter is 16 Courthouse Square in Warrenton, and the number ends in 8230. In-person applications for that addition stop at 4 p.m.',
+      },
+      {
+        question: 'What extra county steps can an Upperville bedroom addition pick up?',
+        answer:
+          'Extra bedrooms on a well-and-septic Upperville parcel need the Health Department bedroom count. A land-disturbing permit may also be required, and that is decided from the parcel rather than from the village name. Real Elite coordinates plumbing for the addition and does not perform it.',
+      },
+      {
+        question: 'Does Upperville have a town permit office for additions?',
+        answer:
+          'Upperville has no town permit office, so the addition goes to the county counter once the parcel is confirmed in Fauquier County.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in Upperville, VA start from the parcel in this unincorporated village, which does not keep a municipal permit counter.',
+      'The combined building and zoning application is the county filing. Real Elite coordinates plumbing and HVAC on an Upperville addition and does not perform either trade.',
+      'Pricing for an Upperville addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Combined county application',
+        paragraphs: [
+          'Take an Upperville addition to the Warrenton counter on the combined application after the parcel is confirmed.',
+        ],
+        links: [
+          { href: '/service-areas/upperville-va', label: 'Upperville service area' },
+          { href: '/services/kitchens/upperville-va', label: 'Upperville kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'decks-the-plains-va': {
+    h1: 'Decks in The Plains, VA',
+    metaTitle: 'The Plains VA Deck Parcel | Real Elite',
+    metaDescription:
+      'Decks in The Plains, VA let the parcel decide the town zoning step before the county deck filing, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Which application covers a deck in The Plains?',
+        answer:
+          'Fauquier lists decks and porches with residential projects and takes a deck on one combined building and zoning application. The Warrenton counter is 16 Courthouse Square, the number ends in 8230, and in-person applications are not taken after 4 p.m.',
+      },
+      {
+        question: 'Does a 20198 address put a Plains deck inside the town?',
+        answer:
+          'A 20198 address can sit outside the Town of The Plains. The parcel is checked first. An in-town parcel still takes the town zoning step before the county building permit. A parcel outside the town does not use that town step.',
+      },
+      {
+        question: 'Who performs electrical work on a deck in The Plains?',
+        answer:
+          'Real Elite coordinates electrical for a deck in The Plains and does not perform that work.',
+      },
+    ],
+    paragraphs: [
+      'Decks in The Plains, VA are permitted from the parcel, because a Plains mailing address can fall outside the incorporated town.',
+      'The county deck filing is the combined building and zoning application, and an in-town parcel still takes town zoning before that filing. Real Elite coordinates the electrical trade on a Plains deck and does not do that work.',
+      'Pricing for a deck in The Plains is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'Town zoning only in town',
+        paragraphs: [
+          'Check whether the Plains parcel is inside the town before the town zoning step is placed ahead of the county deck application.',
+        ],
+        links: [
+          { href: '/service-areas/the-plains-va', label: 'The Plains service area' },
+          { href: '/services/kitchens/the-plains-va', label: 'The Plains kitchens' },
+        ],
+      },
+    ],
+  },
+
+  'outdoor-living-kensington-md': {
+    h1: 'Outdoor Living in Kensington, MD',
+    metaTitle: 'Kensington Porch Parcel First | Real Elite',
+    metaDescription:
+      'Outdoor living in Kensington, MD treats an extending porch as an addition, and ZIP 20895 is not the town line, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Is a Kensington porch filed as an addition?',
+        answer:
+          'A porch that extends the footprint on a Kensington-area parcel is an addition. County questions use the 311 number that ends in 0311. The parcel is identified before that filing starts.',
+      },
+      {
+        question: 'Does every 20895 porch use the Town of Kensington step?',
+        answer:
+          'The town step applies when the parcel is inside the Town of Kensington, and then the county permit comes before town approval. A 20895 address can also belong to another municipality, including Chevy Chase View. The ZIP does not choose the office.',
+      },
+      {
+        question: 'Who handles electrical on a Kensington porch?',
+        answer:
+          'Real Elite coordinates electrical for a Kensington porch and does not perform it.',
+      },
+    ],
+    paragraphs: [
+      'Outdoor living in Kensington, MD is a porch or patio whose office is chosen from the parcel, not from ZIP 20895.',
+      'A footprint-extending porch is handled as an addition. On a Town of Kensington parcel the county permit comes before town approval. Real Elite coordinates electrical for that porch and does not perform the work.',
+      'Pricing for Kensington outdoor living is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'County permit, then town',
+        paragraphs: [
+          'Use the town approval after the county permit only when the Kensington parcel is inside the town.',
+        ],
+        links: [
+          { href: '/service-areas/kensington-md', label: 'Kensington service area' },
+          { href: '/services/additions/kensington-md', label: 'Kensington additions' },
+        ],
+      },
+    ],
+  },
+
+  'decks-columbia-md': {
+    h1: 'Decks in Columbia, MD',
+    metaTitle: 'Columbia MD Deck Application | Real Elite',
+    metaDescription:
+      'Decks in Columbia, MD go through a Howard County filing that asks for use, water, sewage, and a plot plan, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'What does the Howard deck form ask for in Columbia?',
+        answer:
+          'The Columbia deck application asks for the existing use, whether water is a public supply or a private well, and whether sewage is public or a private septic system, plus a plot plan. The counter is 3430 Courthouse Drive, and the number ends in 2455.',
+      },
+      {
+        question: 'Is village architectural review the Columbia deck permit?',
+        answer:
+          'When a deck changes the exterior of a Columbia Association property, village architectural review stays separate from the Howard County permit. The parcel\'s village is named in the written scope. The county filing is still DILP.',
+      },
+      {
+        question: 'Who performs electrical work on a Columbia deck?',
+        answer:
+          'Real Elite coordinates electrical for a Columbia deck and does not perform it.',
+      },
+    ],
+    paragraphs: [
+      'Decks in Columbia, MD are Howard County filings for a village parcel, including Harper\'s Choice and Wilde Lake, and the village name does not select the county counter.',
+      'The deck form records existing use, the water source, and the sewage type, and it includes a plot plan. Real Elite coordinates electrical for the deck and does not perform it.',
+      'Pricing for a Columbia deck is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'County deck, village review apart',
+        paragraphs: [
+          'File the Columbia deck with DILP, and keep village architectural review apart when the exterior of a Columbia Association property changes.',
+        ],
+        links: [
+          { href: '/service-areas/columbia-md', label: 'Columbia service area' },
+          { href: '/services/additions/columbia-md', label: 'Columbia additions' },
+        ],
+      },
+    ],
+  },
+
+  'additions-haymarket-va': {
+    h1: 'Home Additions in Haymarket, VA',
+    metaTitle: 'Haymarket Addition ePortal Path | Real Elite',
+    metaDescription:
+      'Home additions in Haymarket, VA send plans through the county ePortal rather than the deck walk-through window, with a free written estimate after a site walk.',
+    townTaggedPhotosOnly: true,
+    faqs: [
+      {
+        question: 'Where do Haymarket addition plans go?',
+        answer:
+          'Addition plans for a Haymarket parcel go through the Prince William County ePortal. The division number on the residential buildings page ends in 4311. The parcel is confirmed inside or outside the Town of Haymarket before the filing is treated as county-only.',
+      },
+      {
+        question: 'Can a Haymarket addition use the morning walk-through?',
+        answer:
+          'The walk-through from 8 a.m. to 11 a.m. is for a residential deck with no roof. A Haymarket addition does not use that review window and stays on the ePortal plan path.',
+      },
+      {
+        question: 'Who performs the trades on a Haymarket addition?',
+        answer:
+          'Real Elite coordinates electrical, plumbing, and HVAC on a Haymarket addition and does not perform that work.',
+      },
+    ],
+    paragraphs: [
+      'Home additions in Haymarket, VA are routed from the parcel, because the incorporated town and the county land around it do not share one zoning step.',
+      'County addition plans are submitted in the ePortal. When the parcel is inside the Town of Haymarket, town zoning still precedes the county building application. Real Elite coordinates the mechanical trades and does not perform them.',
+      'Pricing for a Haymarket addition is a free written estimate after a site walk of the parcel.',
+    ],
+    sections: [
+      {
+        id: 'permit',
+        title: 'ePortal, not the deck window',
+        paragraphs: [
+          'Send Haymarket addition plans through the county ePortal after the parcel is checked against the town boundary.',
+        ],
+        links: [
+          { href: '/service-areas/haymarket-va', label: 'Haymarket service area' },
+          { href: '/services/decks/haymarket-va', label: 'Haymarket decks' },
+        ],
       },
     ],
   },

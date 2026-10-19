@@ -10,6 +10,8 @@ import ReviewRequestTool from '@/components/admin/ReviewRequestTool';
 
 export const metadata: Metadata = {
   title: 'Review Request Tool',
+  description:
+    'Job wrapped and the customer is happy? Send them the Google review link while it is fresh. Each text is previewed, then sent from the business Twilio number.',
   robots: { index: false, follow: false },
 };
 
