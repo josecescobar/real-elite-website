@@ -2,7 +2,7 @@ import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { PRECISION_PROCESS } from '@/lib/constants';
 
-export default function PrecisionProcess() {
+export default function PrecisionProcess({ note }: { note?: string }) {
   return (
     <section className="bg-navy-900 text-white py-20 md:py-28 relative isolate overflow-hidden">
       {/* Subtle pattern accent */}
@@ -45,6 +45,11 @@ export default function PrecisionProcess() {
             </li>
           ))}
         </ol>
+        {note ? (
+          <p className="mt-12 max-w-3xl mx-auto text-center text-charcoal-100 text-base md:text-lg leading-relaxed">
+            {note}
+          </p>
+        ) : null}
       </Container>
     </section>
   );

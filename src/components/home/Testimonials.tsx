@@ -1,20 +1,14 @@
 import Link from 'next/link';
-import { Star, Quote } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import SectionHeader from '@/components/shared/SectionHeader';
+import { BUSINESS } from '@/lib/constants';
 import { reviewsForPage } from '@/lib/reviews';
 import { ReviewSourceBadge } from '@/components/reviews/ReviewCard';
 
-const renderStars = (count: number) => (
-  <div className="flex gap-1" role="img" aria-label={`${count} out of 5 stars`}>
-    {Array.from({ length: count }).map((_, i) => (
-      <Star key={i} className="w-5 h-5 text-gold-500 fill-gold-500" strokeWidth={0} aria-hidden="true" />
-    ))}
-  </div>
-);
-
 export default function Testimonials() {
   // The homepage is not a roofing page, so it does not lead with a roof quote.
+  // Keep the published Thumbtack quote. Do not print a star rating.
   const reviews = reviewsForPage({}).slice(0, 2);
   if (!reviews.length) return null;
 
@@ -36,7 +30,6 @@ export default function Testimonials() {
                 className="absolute top-6 right-6 w-10 h-10 text-navy-100"
                 aria-hidden="true"
               />
-              <div className="mb-5">{renderStars(t.rating)}</div>
               <blockquote className="text-navy-800 text-lg md:text-xl leading-relaxed font-medium mb-6 flex-1">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
@@ -45,7 +38,17 @@ export default function Testimonials() {
                 {t.location ? (
                   <p className="text-charcoal-500 text-sm">{t.location}</p>
                 ) : null}
-                <ReviewSourceBadge review={t} />
+                <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+                  <ReviewSourceBadge review={t} />
+                  <a
+                    href={BUSINESS.social.google}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex text-sm font-semibold text-navy-800 underline decoration-brand-red/40 underline-offset-4 hover:text-brand-red"
+                  >
+                    Google reviews
+                  </a>
+                </div>
               </figcaption>
             </figure>
           ))}

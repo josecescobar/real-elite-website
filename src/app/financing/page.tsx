@@ -16,6 +16,7 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQSchema from '@/components/seo/FAQSchema';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { FREE_FIRST_VISIT_SENTENCE, financingTrustFaqs } from '@/lib/project-trust';
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -49,7 +50,7 @@ const HOW_IT_WORKS = [
   {
     icon: FileCheck2,
     title: 'Get your free estimate',
-    body: 'We walk your project, then hand you a clear, line-itemed written estimate — no obligation, no pressure.',
+    body: `${FREE_FIRST_VISIT_SENTENCE} We then hand you a clear, line-itemed written estimate — no obligation, no pressure.`,
   },
   {
     icon: CreditCard,
@@ -118,6 +119,7 @@ const FAQ_ITEMS = [
     answer:
       'Yes. Real Elite Contracting is licensed and insured in West Virginia, Virginia and Pennsylvania, and we can discuss payment options with homeowners throughout our service area in the Eastern Panhandle and surrounding counties.',
   },
+  ...financingTrustFaqs(),
 ];
 
 export default function FinancingPage() {
@@ -256,6 +258,11 @@ export default function FinancingPage() {
       <section className="bg-steel-50 py-16 md:py-24 border-t border-charcoal-100">
         <Container size="default">
           <SectionHeader eyebrow="Financing FAQ" title="Questions homeowners ask." />
+          <p className="mt-6">
+            <Link href="/investment" className="link-editorial text-sm font-semibold text-navy-800">
+              See the investment table
+            </Link>
+          </p>
           <dl className="mt-10 space-y-6">
             {FAQ_ITEMS.map((item) => (
               <div key={item.question} className="bg-white rounded-lg p-6 border border-charcoal-100">
