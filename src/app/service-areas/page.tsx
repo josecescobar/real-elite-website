@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Premium remodeling across the Eastern Panhandle, Frederick, Hagerstown, Winchester, Loudoun County, Fairfax County, Prince William County, Montgomery County, and Howard County.',
+    'Premium remodeling across the Eastern Panhandle, Frederick, Hagerstown, Winchester, Loudoun, Fairfax, Prince William, Montgomery, and Howard.',
 };
 
 /**
