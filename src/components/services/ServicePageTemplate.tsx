@@ -6,6 +6,7 @@ import AssurancesBand from '@/components/home/AssurancesBand';
 import AnswerBlock from './AnswerBlock';
 import ScopeChecklist from './ScopeChecklist';
 import InvestmentRanges from './InvestmentRanges';
+import ProjectInvestmentBand from './ProjectInvestmentBand';
 import StickyEstimateRail from './StickyEstimateRail';
 import RelatedProjects from './RelatedProjects';
 import RelatedGuides from './RelatedGuides';
@@ -23,6 +24,7 @@ import { getProjectsByService } from '@/lib/projects';
 import { reviewsForPage } from '@/lib/reviews';
 import { primaryCtaForService } from '@/lib/cta-intent';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { FREE_FIRST_VISIT_SENTENCE, isProjectTrustPage } from '@/lib/project-trust';
 
 type Props = {
   data: ServiceData;
@@ -165,13 +167,18 @@ export default async function ServicePageTemplate({ data }: Props) {
               {/* Scope checklist */}
               <ScopeChecklist title={data.scope.title} items={data.scope.items} />
 
-              {/* Investment ranges */}
-              {data.investment && (
-                <InvestmentRanges
-                  startingAt={data.investment.startingAt}
-                  tiers={data.investment.tiers}
-                  note={data.investment.note}
-                />
+              {/* Investment ranges. Kitchen, bath, and basement use the
+                  published /investment table. Other services keep their own. */}
+              {isProjectTrustPage(data.slug) ? (
+                <ProjectInvestmentBand serviceSlug={data.slug} />
+              ) : (
+                data.investment && (
+                  <InvestmentRanges
+                    startingAt={data.investment.startingAt}
+                    tiers={data.investment.tiers}
+                    note={data.investment.note}
+                  />
+                )
               )}
 
               {/* Real project case studies (Project System) — leads the proof */}
@@ -220,7 +227,7 @@ export default async function ServicePageTemplate({ data }: Props) {
       </section>
 
       {/* Process module */}
-      <PrecisionProcess />
+      <PrecisionProcess note={isProjectTrustPage(data.slug) ? FREE_FIRST_VISIT_SENTENCE : undefined} />
 
       {DeckPermitHoaBlock ? <DeckPermitHoaBlock /> : null}
 

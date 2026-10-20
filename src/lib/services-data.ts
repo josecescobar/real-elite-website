@@ -10,6 +10,13 @@
  * a hero or overview image is stock. Swap in real photos once jobs are shot.
  */
 
+import {
+  PERMITS_ANSWER,
+  PROJECT_TRUST_FAQ,
+  TIMELINE_ANSWER,
+  costAnswerForService,
+} from '@/lib/project-trust';
+
 export type ServiceImage = { src: string; alt: string };
 
 export type InvestmentTier = {
@@ -156,23 +163,21 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     faqs: [
       {
         question: 'How long does a bathroom remodel take?',
-        answer:
-          "The construction schedule depends on the approved scope, selections, permits, and material availability. A shower conversion has a different scope from a full bathroom rebuild. Discuss site supervision, communication, and cleanup arrangements during the estimate.",
+        answer: TIMELINE_ANSWER,
       },
       {
         question: 'How much does a bathroom remodel cost in this region?',
-        answer:
-          'Most full bathroom remodels start around $15k for a clean refresh, $25k–$45k for a full layout-changing remodel with premium tile, and $45k+ for primary suite remodels with custom showers and high-end finishes. Your free estimate is always line-itemed and written.',
+        answer: costAnswerForService('bathrooms'),
+      },
+      PROJECT_TRUST_FAQ.visit,
+      {
+        question: PROJECT_TRUST_FAQ.permits.question,
+        answer: PERMITS_ANSWER,
       },
       {
         question: 'Will my bathroom be unusable during the project?',
         answer:
           "Yes — for the bathroom under renovation. If it's your only bathroom, we work with you on scheduling to compress the downtime. Most homes have a second bathroom, so we plan demo and rough-in around your daily routine.",
-      },
-      {
-        question: 'Do you handle permits and inspections?',
-        answer:
-          "Yes. We pull every permit required by your county or municipality, document each inspection, and submit the final paperwork on your behalf. You shouldn't have to chase paperwork on your own remodel.",
       },
       {
         question: 'Can you match an existing aesthetic in an older home?',
@@ -253,14 +258,14 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     faqs: [
       {
         question: 'How long does a kitchen remodel take?',
-        answer:
-          'The construction schedule depends on the approved scope, selections, permits, and material availability. Cabinetry lead time is usually the longest item — we plan around it so you only lose your kitchen during the demo-and-install window, not the full ordering period.',
+        answer: `Cabinetry lead time is usually the longest item, so ordering happens before the kitchen is out of use. ${TIMELINE_ANSWER}`,
       },
       {
         question: 'How much does a kitchen remodel cost in this region?',
-        answer:
-          'A like-for-like update (same layout, new cabinets/counters/appliances) typically starts around $28k. A full remodel with layout changes runs $50k–$90k. Open-concept work involving wall removal and structural changes can push past $150k for primary kitchens with high-end finishes.',
+        answer: costAnswerForService('kitchens'),
       },
+      PROJECT_TRUST_FAQ.visit,
+      PROJECT_TRUST_FAQ.permits,
       {
         question: 'Can I live in my house during the kitchen remodel?',
         answer:
@@ -309,7 +314,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       'basement Eastern Panhandle',
     ],
     answer:
-      'Real Elite Contracting finishes basements across the WV–MD–VA region — family rooms, in-law suites, and bars built on proper moisture control and code-compliant egress. We coordinate the licensed HVAC contractor and electrician and schedule their inspections. A full basement typically runs 6–12 weeks.',
+      'Real Elite Contracting finishes basements across the WV–MD–VA region — family rooms, in-law suites, and bars built on proper moisture control and code-compliant egress. We coordinate the licensed HVAC contractor and electrician and schedule their inspections. County and HOA reviews are sequenced before demolition.',
     hero: {
       eyebrow: 'New Living Space',
       heading: 'Basement Finishing',
@@ -318,7 +323,7 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
     overview: {
       paragraphs: [
         "Real Elite Contracting finishes basements for homeowners across the WV–MD–VA region — and we treat the moisture-management and egress work as seriously as the finished space. A great basement isn't just framing and drywall; it's proper waterproofing, vapor barriers, and egress windows where required. We coordinate the licensed HVAC contractor and electrician so the room stays comfortable year-round, and we schedule their inspections.",
-        "We handle the dig-out, egress windows, framing, drywall, flooring, trim, doors, and finish work. We coordinate the licensed electrician for lighting, the licensed HVAC contractor when the system has to be extended, and the licensed plumber for a basement bathroom or wet bar, and we schedule their inspections. Most full basement build-outs run 6–12 weeks depending on scope.",
+        "We handle the dig-out, egress windows, framing, drywall, flooring, trim, doors, and finish work. We coordinate the licensed electrician for lighting, the licensed HVAC contractor when the system has to be extended, and the licensed plumber for a basement bathroom or wet bar, and we schedule their inspections. The construction schedule is set from the drawings, the selections, and the site visit.",
       ],
     },
     scope: {
@@ -356,9 +361,14 @@ export const SERVICE_DATA: Record<string, ServiceData> = {
       },
       {
         question: 'How long does a finished basement take?',
-        answer:
-          'Most full basement build-outs run 6–12 weeks. Open family rooms on the lower end, full build-outs with bathrooms and bars closer to 10–12. Egress installation and structural work can add time.',
+        answer: TIMELINE_ANSWER,
       },
+      {
+        question: 'What does a finished basement usually cost?',
+        answer: costAnswerForService('basements'),
+      },
+      PROJECT_TRUST_FAQ.visit,
+      PROJECT_TRUST_FAQ.permits,
       {
         question: 'Do I need egress windows?',
         answer:
