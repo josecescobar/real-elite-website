@@ -67,6 +67,7 @@ const HOW_IT_RUNS = [
 const FIT_ITEMS = [
   'Loudoun County first: Leesburg, Ashburn, Brambleton, Lansdowne, Middleburg, Purcellville, Waterford and Round Hill',
   'Fairfax County by conversation, and the Eastern Panhandle of West Virginia, where the company is based',
+  'Arlington, and Montgomery, Howard and Frederick counties in Maryland, by conversation',
   'Kitchens · primary suites and baths · lower levels · additions · outdoor living · whole-home renovation',
   `Projects of ${CONSULTATION_THRESHOLD_LABEL}. Smaller projects and repairs are welcome through the standard estimate, which is faster for that work`,
   'Working with a designer or architect, considering one, or not sure whether the project needs one',
