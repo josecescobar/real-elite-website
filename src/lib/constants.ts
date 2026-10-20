@@ -3242,6 +3242,7 @@ export const UTILITY_LINKS = [
   { label: 'Storm Damage', href: '/storm-damage' },
   { label: 'Full Property Bundle', href: '/full-property-perimeter' },
   { label: 'Photo Gallery', href: '/gallery' },
+  { label: 'Warranty', href: '/warranty' },
 ] as const;
 
 /**
