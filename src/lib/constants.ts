@@ -571,82 +571,91 @@ export const SERVICE_AREA_CATALOG: readonly ServiceArea[] = [
   /* ---------- Round 6 Tier A towns, 2026-10-10 ----------
    * Maryland is in the service area. Empty legacyTiers, so the pinned
    * primary and secondary lists do not move. Premium, same as the round-4
-   * close-in towns. No Montgomery or Howard county hub is added: those
-   * towns stay unparented and areaRegionLabel names the county. Arlington
+   * close-in towns. Montgomery and Howard towns parent to the county hubs
+   * added in REA-3442. Arlington
    * parents to Northern Virginia. Catharpin parents to Prince William
    * County. Do not print a Maryland license caveat.
    */
-  { slug: 'garrett-park-md', city: 'Garrett Park', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'bethesda-md', city: 'Bethesda', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'garrett-park-md', city: 'Garrett Park', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'bethesda-md', city: 'Bethesda', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
   { slug: 'arlington-va', city: 'Arlington', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'northern-virginia', legacyTiers: [] },
-  { slug: 'potomac-md', city: 'Potomac', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'cabin-john-md', city: 'Cabin John', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'west-friendship-md', city: 'West Friendship', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'chevy-chase-md', city: 'Chevy Chase', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'potomac-md', city: 'Potomac', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'cabin-john-md', city: 'Cabin John', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'west-friendship-md', city: 'West Friendship', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'howard-county-md', legacyTiers: [] },
+  { slug: 'chevy-chase-md', city: 'Chevy Chase', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
   { slug: 'catharpin-va', city: 'Catharpin', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'prince-william-county-va', legacyTiers: [] },
 
   /* ---------- Round 7 Tier A/B towns, 2026-10-10 ----------
    * Maryland is in the service area. Empty legacyTiers, so the pinned
    * primary and secondary lists do not move. Premium, same as round 6.
-   * Howard and Montgomery towns stay unparented. Broad Run parents to
+   * Howard and Montgomery towns parent to the county hubs. Broad Run parents to
    * Loudoun County. fairfax-va publishes as the City of Fairfax.
    * ZIPs 22030, 22031 and 22032 each include city and county parcels.
    * Do not print a Maryland
    * license caveat. Fulton stays omitted. No Brambleton.
    */
-  { slug: 'glenwood-md', city: 'Glenwood', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'clarksville-md', city: 'Clarksville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'brookeville-md', city: 'Brookeville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'glenwood-md', city: 'Glenwood', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'howard-county-md', legacyTiers: [] },
+  { slug: 'clarksville-md', city: 'Clarksville', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'howard-county-md', legacyTiers: [] },
+  { slug: 'brookeville-md', city: 'Brookeville', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
   { slug: 'broad-run-va', city: 'Broad Run', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
-  { slug: 'kensington-md', city: 'Kensington', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'kensington-md', city: 'Kensington', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
   { slug: 'woodbine-md', city: 'Woodbine', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'dickerson-md', city: 'Dickerson', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'dickerson-md', city: 'Dickerson', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
 
   /* ---------- Round 8 richest-county towns, 2026-10-10 ----------
    * Howard, Montgomery, and Fauquier. Empty legacyTiers, so the pinned
    * primary and secondary lists do not move. Premium, same as round 7.
-   * Howard and Montgomery towns stay unparented. Delaplane stays
+   * Howard and Montgomery towns parent to the county hubs. Delaplane stays
    * unparented because there is no Fauquier county row; areaRegionLabel
    * names Fauquier. Ellicott City is one row for ZIP 21042 and ZIP 21043.
    * Do not print a Maryland license caveat. No Brambleton.
    */
   { slug: 'delaplane-va', city: 'Delaplane', state: 'VA', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'marriottsville-md', city: 'Marriottsville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'ellicott-city-md', city: 'Ellicott City', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'laytonsville-md', city: 'Laytonsville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'barnesville-md', city: 'Barnesville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'olney-md', city: 'Olney', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'ashton-md', city: 'Ashton', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'north-potomac-md', city: 'North Potomac', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'marriottsville-md', city: 'Marriottsville', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'howard-county-md', legacyTiers: [] },
+  { slug: 'ellicott-city-md', city: 'Ellicott City', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'howard-county-md', legacyTiers: [] },
+  { slug: 'laytonsville-md', city: 'Laytonsville', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'barnesville-md', city: 'Barnesville', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'olney-md', city: 'Olney', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'ashton-md', city: 'Ashton', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'north-potomac-md', city: 'North Potomac', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
 
   /* ---------- Round 11 richest-county towns, 2026-10-10 ----------
    * Six new area pages. With 18 service pages for these towns and 3
    * Springfield service pages, the round is 27 new pages. Springfield's
    * area page was already live. Annandale parents to Fairfax County.
-   * Montgomery and Howard towns stay unparented. Empty legacyTiers, so the
+   * Montgomery and Howard towns parent to the county hubs. Empty legacyTiers, so the
    * pinned primary and secondary lists do not move. Premium, same as round
    * 8. Rockville is one row for ZIP 20850 and ZIP 20852. Colesville is one
    * row for ZIP 20905. Do not print a Maryland license caveat. No Brambleton.
    */
   { slug: 'annandale-va', city: 'Annandale', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'fairfax-county-va', legacyTiers: [] },
-  { slug: 'rockville-md', city: 'Rockville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'derwood-md', city: 'Derwood', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'colesville-md', city: 'Colesville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'takoma-park-md', city: 'Takoma Park', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'columbia-md', city: 'Columbia', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'rockville-md', city: 'Rockville', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'derwood-md', city: 'Derwood', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'colesville-md', city: 'Colesville', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'takoma-park-md', city: 'Takoma Park', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'columbia-md', city: 'Columbia', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'howard-county-md', legacyTiers: [] },
 
   /* ---------- Round 12 towns, 2026-10-11 ----------
-   * Four new area pages. Silver Spring 20901 and Aspen Hill 20853 stay
-   * unparented Montgomery rows, distinct from Rockville and from each other.
+   * Four new area pages. Silver Spring 20901 and Aspen Hill 20853 parent to
+   * Montgomery County, distinct from Rockville and from each other.
    * Bluemont parents to Loudoun County. Myersville stays unparented so the
    * region label stays Frederick County. Empty legacyTiers. Premium, so the
    * same-week radius sentence stays off. Maryland is in the service area.
    * Do not print a Maryland license caveat. No Brambleton.
    */
-  { slug: 'silver-spring-md', city: 'Silver Spring', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
-  { slug: 'aspen-hill-md', city: 'Aspen Hill', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'silver-spring-md', city: 'Silver Spring', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
+  { slug: 'aspen-hill-md', city: 'Aspen Hill', state: 'MD', kind: 'town', market: 'premium', status: 'active', parent: 'montgomery-county-md', legacyTiers: [] },
   { slug: 'bluemont-va', city: 'Bluemont', state: 'VA', kind: 'town', market: 'premium', status: 'active', parent: 'loudoun-county-va', legacyTiers: [] },
   { slug: 'myersville-md', city: 'Myersville', state: 'MD', kind: 'town', market: 'premium', status: 'active', legacyTiers: [] },
+
+  /* ---------- REA-3442 county hubs, 2026-10-19 ----------
+   * Fairfax County already publishes. These two hubs match that shape for
+   * Montgomery and Howard. Towns above parent here. Woodbine stays
+   * unparented: it sits on the Howard and Carroll line. No Brambleton.
+   * Do not print a Maryland license caveat.
+   */
+  { slug: 'montgomery-county-md', city: 'Montgomery County', state: 'MD', kind: 'county', market: 'premium', status: 'active', legacyTiers: [] },
+  { slug: 'howard-county-md', city: 'Howard County', state: 'MD', kind: 'county', market: 'premium', status: 'active', legacyTiers: [] },
 ];
 
 /**
@@ -1179,7 +1188,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
   /* ---------- Fairfax County, VA ---------- */
   'fairfax-county-va': {
     description:
-      "Fairfax County building permits go through Land Development Services, including inside the towns of Vienna and Clifton. Vienna reviews its own zoning and site plans; the county is the building official. Inside Clifton, a project needs a town use permit, a certificate of appropriateness from the Clifton Architectural Review Board, and the mayor's signature before Land Development Services will accept the building permit. Outside those towns, county zoning and the building permit are both Fairfax County's. Planned communities such as Reston and Burke Centre also require their own architectural review. A county permit is not HOA approval. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The housing runs from McLean and Great Falls estates to Vienna and Oakton colonials, Dunn Loring near the Metro, Fort Hunt along the parkway, and larger-lot houses in Fairfax Station and Clifton. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, or Route 7 to Route 28 and I-66. ZIP codes served: 22101 and 22102 McLean, 22066 Great Falls, 22180, 22181, and 22182 Vienna, 22124 Oakton, 22027 Dunn Loring, 22039 Fairfax Station, 20124 Clifton, 22308 Fort Hunt, 20190, 20191, and 20194 Reston, and 22015 Burke.",
+      "Fairfax County building permits go through Land Development Services, including inside the towns of Vienna and Clifton. Vienna reviews its own zoning and site plans; the county is the building official. Inside Clifton, a project needs a town use permit, a certificate of appropriateness from the Clifton Architectural Review Board, and the mayor's signature before Land Development Services will accept the building permit. Outside those towns, county zoning and the building permit are both Fairfax County's. Planned communities such as Reston and Burke Centre also require their own architectural review. A county permit is not HOA approval. Where a lot is on a private well or septic system, a bedroom addition also needs Fairfax County Health Department approval before the building permit. The housing runs from McLean and Great Falls estates to Vienna and Oakton colonials, Dunn Loring near the Metro, Fort Hunt along the parkway, and larger-lot houses in Fairfax Station and Clifton. The drive from Martinsburg is Route 9 to Leesburg, then Route 7, or Route 7 to Route 28 and I-66. ZIP codes served: 22101 and 22102 McLean, 22066 Great Falls, 22180, 22181, and 22182 Vienna, 22124 Oakton, 22027 Dunn Loring, 22039 Fairfax Station, 20124 Clifton, 22308 Fort Hunt, 20190, 20191, and 20194 Reston, and 22015 Burke.\n\nFairfax is a market Real Elite already takes by conversation. The three project types are kitchens, primary baths, and lower levels. Virginia Class A Contractor 2705198604 (HIC). Call (681) 534-5515. The call and the first site visit are at no charge.",
     neighborhoods: [
       '22101 McLean',
       '22066 Great Falls',
@@ -1193,6 +1202,13 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       '22015 Burke',
     ],
     marketEmphasis: ['basements', 'kitchens', 'bathrooms', 'decks', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Is the first visit free in Fairfax County?',
+        answer:
+          'Yes. The call and the first site visit are at no charge. Call (681) 534-5515. Virginia Class A Contractor 2705198604 (HIC).',
+      },
+    ],
   },
   'mclean-va': {
     description:
@@ -2788,6 +2804,67 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       },
     ],
   },
+  // COUNTY_HUBS_2026_10_START — Fairfax/Montgomery/Howard hub copy is not a round-12 source-table area.
+  'montgomery-county-md': {
+    seoTitle: 'Remodeling Contractor in Montgomery County, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Montgomery County, MD',
+    seoDescription:
+      'Design-build remodeling in Montgomery County, MD. One project lead. The call and the first site visit are at no charge.',
+    description:
+      'Montgomery County is a design-build market. One project lead runs the job. The three project types are kitchens, primary baths, and lower levels. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania. Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site. The call and the first site visit are at no charge. Call (681) 534-5515.',
+    neighborhoods: [
+      'Bethesda',
+      'Potomac',
+      'Chevy Chase',
+      'Rockville',
+      'Silver Spring',
+      'Olney',
+    ],
+    nearbySlugs: ['howard-county-md', 'fairfax-county-va', 'loudoun-county-va'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Is the first visit free in Montgomery County?',
+        answer:
+          'Yes. The call and the first site visit are at no charge. Call (681) 534-5515. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania.',
+      },
+      {
+        question: 'What project types do you take in Montgomery County?',
+        answer:
+          'Kitchens, primary baths, and lower levels. One project lead runs the job. Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site.',
+      },
+    ],
+  },
+  'howard-county-md': {
+    seoTitle: 'Remodeling Contractor in Howard County, MD | Real Elite',
+    seoH1: 'Remodeling Contractor in Howard County, MD',
+    seoDescription:
+      'Design-build remodeling in Howard County, MD. One project lead. The call and the first site visit are at no charge.',
+    description:
+      'Howard County is a design-build market. One project lead runs the job. The three project types are kitchens, primary baths, and lower levels. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania. Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site. The call and the first site visit are at no charge. Call (681) 534-5515.',
+    neighborhoods: [
+      'Ellicott City',
+      'Columbia',
+      'Clarksville',
+      'Glenwood',
+      'West Friendship',
+      'Marriottsville',
+    ],
+    nearbySlugs: ['montgomery-county-md', 'fairfax-county-va', 'loudoun-county-va'],
+    marketEmphasis: ['kitchens', 'bathrooms', 'basements', 'additions', 'remodeling'],
+    faqs: [
+      {
+        question: 'Is the first visit free in Howard County?',
+        answer:
+          'Yes. The call and the first site visit are at no charge. Call (681) 534-5515. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania.',
+      },
+      {
+        question: 'What project types do you take in Howard County?',
+        answer:
+          'Kitchens, primary baths, and lower levels. One project lead runs the job. Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site.',
+      },
+    ],
+  },
 };
 
 /**
@@ -2878,7 +2955,8 @@ export function areaRegionLabel(area: ServiceArea): string {
       area.slug === 'colesville-md' ||
       area.slug === 'takoma-park-md' ||
       area.slug === 'silver-spring-md' ||
-      area.slug === 'aspen-hill-md'
+      area.slug === 'aspen-hill-md' ||
+      area.slug === 'montgomery-county-md'
     ) {
       return 'Montgomery County area';
     }
@@ -2888,7 +2966,8 @@ export function areaRegionLabel(area: ServiceArea): string {
       area.slug === 'clarksville-md' ||
       area.slug === 'marriottsville-md' ||
       area.slug === 'ellicott-city-md' ||
-      area.slug === 'columbia-md'
+      area.slug === 'columbia-md' ||
+      area.slug === 'howard-county-md'
     ) {
       return 'Howard County area';
     }

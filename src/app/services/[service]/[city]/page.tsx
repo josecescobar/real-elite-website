@@ -433,12 +433,23 @@ export default async function ServiceCityPage({
                     <ul className="mt-5 space-y-2">
                       {section.links.map((link) => (
                         <li key={link.href}>
-                          <Link
-                            href={link.href}
-                            className="font-semibold text-navy-800 hover:text-brand-red transition-colors"
-                          >
-                            {link.label} →
-                          </Link>
+                          {link.href.startsWith('http') ? (
+                            <a
+                              href={link.href}
+                              className="font-semibold text-navy-800 hover:text-brand-red transition-colors"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {link.label} →
+                            </a>
+                          ) : (
+                            <Link
+                              href={link.href}
+                              className="font-semibold text-navy-800 hover:text-brand-red transition-colors"
+                            >
+                              {link.label} →
+                            </Link>
+                          )}
                         </li>
                       ))}
                     </ul>

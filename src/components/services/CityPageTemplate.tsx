@@ -354,6 +354,34 @@ export default function CityPageTemplate({ city, data }: Props) {
                     </p>
                   ))}
                 </div>
+                {city.slug === 'loudoun-county-va' && (
+                  <aside className="mt-6 rounded-lg border border-steel-200 bg-steel-50 p-5">
+                    <h2 className="font-heading text-xl font-bold text-navy-800 mb-2">
+                      Finished basement permits
+                    </h2>
+                    <p className="text-charcoal-700 leading-relaxed">
+                      Loudoun County publishes finished-basement permit fees on its own page. Typical fees are 1% of construction cost, not including electrical, mechanical, plumbing, and gas, with a $65 minimum. Full plan review adds a $130 plan review fee. A personal kitchen adds a $165 zoning permit fee. Those are county fees, not the project price.
+                    </p>
+                    <p className="mt-3">
+                      <a
+                        href="https://www.loudoun.gov/1172/Finished-Basements"
+                        className="text-sm font-semibold text-brand-red hover:text-brand-red-dark"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Loudoun County: Finished Basements
+                      </a>
+                    </p>
+                    <p className="mt-2">
+                      <Link
+                        href="/investment#lower-levels"
+                        className="text-sm font-semibold text-brand-red hover:text-brand-red-dark"
+                      >
+                        Published basement investment tiers
+                      </Link>
+                    </p>
+                  </aside>
+                )}
                 <PermitGuideLink areaSlug={city.slug} />
                 <TownDeckHoaBlock citySlug={city.slug} />
                 <FairfaxBasementDetailsNote citySlug={city.slug} surface="town" />

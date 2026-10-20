@@ -33,6 +33,8 @@ export const metadata: Metadata = {
       'Loudoun County VA',
       'Fairfax County VA',
       'Prince William County VA',
+      'Montgomery County MD',
+      'Howard County MD',
       'contractor service area',
       'WV contractor',
       'MD contractor',
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
     ],
   }),
   description:
-    'Premium remodeling across the Eastern Panhandle, Frederick, Hagerstown, Winchester, Loudoun County, Fairfax County, and Prince William County.',
+    'Premium remodeling across the Eastern Panhandle, Frederick, Hagerstown, Winchester, Loudoun County, Fairfax County, Prince William County, Montgomery County, and Howard County.',
 };
 
 /**
@@ -85,7 +87,7 @@ const REGIONS = [
     label: 'Maryland',
     state: 'MD',
     blurb:
-      'Frederick and Hagerstown are in the service area, with Frederick County, Washington County, and the I-70 corridor.',
+      'Frederick, Hagerstown, Montgomery County, and Howard County are in the service area, along with Frederick County, Washington County, and the I-70 corridor.',
     cities: areasIn('MD'),
   },
   {
@@ -114,7 +116,7 @@ export default function ServiceAreasPage() {
             </h1>
             <p className="text-charcoal-200 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl">
               Headquartered in Martinsburg. Trusted across the Eastern Panhandle, the
-              Cumberland Valley, the Shenandoah Valley, Frederick, Hagerstown, Loudoun County, Fairfax County, and Prince William County.
+              Cumberland Valley, the Shenandoah Valley, Frederick, Hagerstown, Loudoun County, Fairfax County, Prince William County, Montgomery County, and Howard County.
             </p>
           </div>
         </Container>

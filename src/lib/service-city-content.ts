@@ -985,6 +985,14 @@ export const CONTENT: Partial<Record<`${FeaturedServiceSlug}-${ComboCitySlug}`, 
         ],
         links: [
           {
+            href: 'https://www.loudoun.gov/1172/Finished-Basements',
+            label: 'Loudoun County: Finished Basements',
+          },
+          {
+            href: '/investment#lower-levels',
+            label: 'Published basement investment tiers',
+          },
+          {
             href: '/blog/basement-remodeling-cost-ashburn-leesburg-2026',
             label: 'Published Loudoun basement fees',
           },

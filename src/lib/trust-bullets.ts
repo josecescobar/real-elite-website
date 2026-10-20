@@ -14,6 +14,8 @@ export function mdServingLine(city: string): string {
   if (city === 'Frederick') {
     return 'Serving Frederick and Frederick County, Maryland.';
   }
+  if (city === 'Montgomery County') return 'Serving Montgomery County, Maryland.';
+  if (city === 'Howard County') return 'Serving Howard County, Maryland.';
   return `Serving ${city} and Frederick County, Maryland.`;
 }
 

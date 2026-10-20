@@ -196,6 +196,9 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     const ROUND_12_2026_10_11 = [
       'silver-spring-md', 'aspen-hill-md', 'bluemont-va', 'myersville-md',
     ];
+    const REA_3442_2026_10_19 = [
+      'montgomery-county-md', 'howard-county-md',
+    ];
     expect(ALL_SERVICE_AREAS.map((a) => a.slug)).toEqual([
       ...PRIMARY_AT_32E6856,
       ...SECONDARY_AT_32E6856,
@@ -211,6 +214,7 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       ...ROUND_8_2026_10_10,
       ...ROUND_11_2026_10_10,
       ...ROUND_12_2026_10_11,
+      ...REA_3442_2026_10_19,
     ]);
   });
 
@@ -220,6 +224,45 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
     for (const area of EXPANSION_SERVICE_AREAS) {
       expect(slugs.has(area.slug)).toBe(true);
       expect(area.state, `${area.slug} is not VA/MD`).not.toBe('WV');
+    }
+  });
+
+  it('parents Montgomery and Howard towns to the new county hubs', () => {
+    const montgomery = [
+      'garrett-park-md', 'bethesda-md', 'potomac-md', 'cabin-john-md', 'chevy-chase-md',
+      'brookeville-md', 'kensington-md', 'dickerson-md', 'laytonsville-md', 'barnesville-md',
+      'olney-md', 'ashton-md', 'north-potomac-md', 'rockville-md', 'derwood-md',
+      'colesville-md', 'takoma-park-md', 'silver-spring-md', 'aspen-hill-md',
+    ];
+    const howard = [
+      'west-friendship-md', 'glenwood-md', 'clarksville-md', 'marriottsville-md',
+      'ellicott-city-md', 'columbia-md',
+    ];
+    for (const slug of montgomery) {
+      expect(getServiceArea(slug)?.parent, slug).toBe('montgomery-county-md');
+    }
+    for (const slug of howard) {
+      expect(getServiceArea(slug)?.parent, slug).toBe('howard-county-md');
+    }
+    expect(childAreasOf('montgomery-county-md').map((area) => area.slug).sort()).toEqual(
+      [...montgomery].sort(),
+    );
+    expect(childAreasOf('howard-county-md').map((area) => area.slug).sort()).toEqual(
+      [...howard].sort(),
+    );
+    expect(getServiceArea('woodbine-md')?.parent).toBeUndefined();
+    expect(getServiceArea('myersville-md')?.parent).toBeUndefined();
+    expect(areaRegionLabel(getServiceArea('montgomery-county-md')!)).toBe('Montgomery County area');
+    expect(areaRegionLabel(getServiceArea('howard-county-md')!)).toBe('Howard County area');
+    for (const slug of ['montgomery-county-md', 'howard-county-md', 'fairfax-county-va']) {
+      const data = CITY_DATA[slug];
+      const copy = [data?.description, ...(data?.faqs ?? []).flatMap((faq) => [faq.question, faq.answer])].join('\n');
+      expect(copy, slug).toMatch(/first site visit are at no charge/);
+      expect(copy, slug).toMatch(/\(681\) 534-5515/);
+      expect(copy, slug).toMatch(/2705198604/);
+      expect(copy, slug).not.toMatch(/estimate fee/i);
+      expect(copy, slug).not.toMatch(/no Maryland contractor license/i);
+      expect(copy, slug).not.toMatch(/licensed.*(?:MD|Maryland)/i);
     }
   });
 
@@ -294,6 +337,8 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
         'aspen-hill-md',
         'bluemont-va',
         'myersville-md',
+        'montgomery-county-md',
+        'howard-county-md',
       ].sort()
     );
   });
@@ -735,6 +780,8 @@ describe('areaHeroLane', () => {
     'loudoun-county-va',
     'fairfax-county-va',
     'prince-william-county-va',
+    'montgomery-county-md',
+    'howard-county-md',
   ] as const;
 
   it('puts each premium county, and every place inside it, on the consultation lane', () => {
