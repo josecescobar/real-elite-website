@@ -265,6 +265,16 @@ describe('static page smoke tests', () => {
     expect(() => render(<ProcessPage />)).not.toThrow();
   });
 
+  it('Warranty page renders', async () => {
+    const { default: WarrantyPage } = await import('@/app/warranty/page');
+    expect(() => render(<WarrantyPage />)).not.toThrow();
+  });
+
+  it('Cost guide page renders', async () => {
+    const { default: CostGuidePage } = await import('@/app/cost-guide/page');
+    expect(() => render(<CostGuidePage />)).not.toThrow();
+  });
+
   it('Financing page renders', async () => {
     const { default: FinancingPage } = await import('@/app/financing/page');
     expect(() => render(<FinancingPage />)).not.toThrow();
