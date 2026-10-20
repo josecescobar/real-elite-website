@@ -263,6 +263,9 @@ describe('SERVICE_AREA_CATALOG derived views', () => {
       expect(copy, slug).not.toMatch(/estimate fee/i);
       expect(copy, slug).not.toMatch(/no Maryland contractor license/i);
       expect(copy, slug).not.toMatch(/licensed.*(?:MD|Maryland)/i);
+      if (slug.endsWith('-md')) {
+        expect(copy, slug).not.toMatch(/West Virginia, Virginia and Pennsylvania/);
+      }
     }
   });
 

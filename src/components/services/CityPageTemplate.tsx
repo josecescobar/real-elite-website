@@ -171,6 +171,13 @@ export default function CityPageTemplate({ city, data }: Props) {
     ? ` ${city.city} sits inside our primary service radius, so on-site visits are typically scheduled within the same week.`
     : '';
 
+  // Maryland county hubs must not list WV/VA/PA and omit Maryland. That
+  // state list reads as a Maryland license caveat. The Virginia Class A
+  // number stays in the county copy; this generated FAQ drops the list.
+  const stateLicenseClause =
+    city.slug === 'montgomery-county-md' || city.slug === 'howard-county-md'
+      ? ''
+      : ' and are licensed and insured in West Virginia, Virginia and Pennsylvania';
   const localFaqs: { question: string; answer: string }[] = [
     ...(data.faqs ?? []),
     {
@@ -184,8 +191,8 @@ export default function CityPageTemplate({ city, data }: Props) {
           ? `Yes. Real Elite Contracting works across ${city.city}, including ${children
               .slice(0, 5)
               .map((a) => a.city)
-              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Virginia and Pennsylvania.`
-          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Virginia and Pennsylvania.${city.state === 'PA' ? ` ${paHicRegistrationLine()}` : ''}`,
+              .join(', ')}. We are headquartered in Martinsburg, WV${stateLicenseClause}.`
+          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV${stateLicenseClause}.${city.state === 'PA' ? ` ${paHicRegistrationLine()}` : ''}`,
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,

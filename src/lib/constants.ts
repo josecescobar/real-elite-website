@@ -2811,7 +2811,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Design-build remodeling in Montgomery County, MD. One project lead. The call and the first site visit are at no charge.',
     description:
-      'Montgomery County is a design-build market. One project lead runs the job. The three project types are kitchens, primary baths, and lower levels. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania. Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site. The call and the first site visit are at no charge. Call (681) 534-5515.',
+      'Montgomery County is a design-build market. One project lead runs the job. The three project types are kitchens, primary baths, and lower levels. Virginia Class A Contractor 2705198604 (HIC). Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site. The call and the first site visit are at no charge. Call (681) 534-5515.',
     neighborhoods: [
       'Bethesda',
       'Potomac',
@@ -2826,7 +2826,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Is the first visit free in Montgomery County?',
         answer:
-          'Yes. The call and the first site visit are at no charge. Call (681) 534-5515. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania.',
+          'Yes. The call and the first site visit are at no charge. Call (681) 534-5515. Virginia Class A Contractor 2705198604 (HIC).',
       },
       {
         question: 'What project types do you take in Montgomery County?',
@@ -2841,7 +2841,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
     seoDescription:
       'Design-build remodeling in Howard County, MD. One project lead. The call and the first site visit are at no charge.',
     description:
-      'Howard County is a design-build market. One project lead runs the job. The three project types are kitchens, primary baths, and lower levels. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania. Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site. The call and the first site visit are at no charge. Call (681) 534-5515.',
+      'Howard County is a design-build market. One project lead runs the job. The three project types are kitchens, primary baths, and lower levels. Virginia Class A Contractor 2705198604 (HIC). Published ranges are the Northern Virginia ranges on the investment page. The price for this house is set on site. The call and the first site visit are at no charge. Call (681) 534-5515.',
     neighborhoods: [
       'Ellicott City',
       'Columbia',
@@ -2856,7 +2856,7 @@ export const CITY_DATA: Record<string, CityDataEntry> = {
       {
         question: 'Is the first visit free in Howard County?',
         answer:
-          'Yes. The call and the first site visit are at no charge. Call (681) 534-5515. Virginia Class A Contractor 2705198604 (HIC). Licensed in West Virginia, Virginia and Pennsylvania.',
+          'Yes. The call and the first site visit are at no charge. Call (681) 534-5515. Virginia Class A Contractor 2705198604 (HIC).',
       },
       {
         question: 'What project types do you take in Howard County?',
