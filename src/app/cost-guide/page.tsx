@@ -55,8 +55,8 @@ export default function CostGuidePage() {
           </h1>
           <p className="text-charcoal-300 text-lg md:text-xl mt-6 leading-relaxed max-w-2xl print:text-black print:text-base">
             The typical ranges we publish across the site, in one document you can keep: what each
-            kind of project tends to cost, and what moves the number. For homeowners across West
-            Virginia, Virginia, Maryland and Pennsylvania.
+            kind of project tends to cost, and what moves the number. For homeowners across
+            Virginia, West Virginia, Maryland and Pennsylvania.
           </p>
           <p className="text-white font-semibold mt-6 max-w-2xl print:text-black">
             {FREE_FIRST_VISIT_SENTENCE}
