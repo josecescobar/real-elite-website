@@ -19,6 +19,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import SendPhotosBlock from '@/components/shared/SendPhotosBlock';
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -66,6 +67,7 @@ const HOW_IT_RUNS = [
 const FIT_ITEMS = [
   'Loudoun County first: Leesburg, Ashburn, Brambleton, Lansdowne, Middleburg, Purcellville, Waterford and Round Hill',
   'Fairfax County by conversation, and the Eastern Panhandle of West Virginia, where the company is based',
+  'Arlington, and Montgomery, Howard and Frederick counties in Maryland, by conversation',
   'Kitchens · primary suites and baths · lower levels · additions · outdoor living · whole-home renovation',
   `Projects of ${CONSULTATION_THRESHOLD_LABEL}. Smaller projects and repairs are welcome through the standard estimate, which is faster for that work`,
   'Working with a designer or architect, considering one, or not sure whether the project needs one',
@@ -198,6 +200,12 @@ export default function DesignConsultationPage() {
                   <LuxuryConsultationFormClient />
                 </Suspense>
               </div>
+              <SendPhotosBlock
+                location="design_consult_photos"
+                formHref="#consult-form"
+                formLabel="the form above"
+                className="mt-10"
+              />
             </div>
 
             {/* How it runs */}

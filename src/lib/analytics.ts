@@ -89,3 +89,11 @@ export function trackLead(params: {
 }) {
   trackEvent('generate_lead', params);
 }
+
+/**
+ * The free cost guide at /cost-guide was printed or saved as a PDF. There is
+ * no email gate, so this click is the only signal the guide was taken.
+ */
+export function trackCostGuideDownload(location: string) {
+  trackEvent('cost_guide_download', { location });
+}

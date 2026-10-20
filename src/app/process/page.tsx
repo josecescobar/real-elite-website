@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import { DESIGN_BUILD_PROCESS } from '@/lib/design-build-process';
+import { HANDOVER_PACKAGE } from '@/lib/warranty';
 import Container from '@/components/shared/Container';
 import AssurancesBand from '@/components/home/AssurancesBand';
 import JsonLd from '@/components/seo/JsonLd';
@@ -61,14 +62,6 @@ const CALENDAR = [
   },
 ];
 
-const HANDOVER = [
-  'Approved drawings and the as-built set',
-  'Selections schedule with product names and finishes',
-  'Closed permit and inspection record',
-  'Manufacturer warranties, registered where the manufacturer allows',
-  'The warranty terms as written in your agreement',
-  'Care instructions for stone, cabinetry and decking',
-];
 
 export default function ProcessPage() {
   const breadcrumb = buildBreadcrumbSchema([
@@ -214,13 +207,20 @@ export default function ProcessPage() {
                 The handover package.
               </h2>
               <ul className="mt-6 divide-y divide-steel-200 border-y border-steel-200">
-                {HANDOVER.map((item) => (
+                {HANDOVER_PACKAGE.map((item) => (
                   <li key={item} className="py-3 text-charcoal-700 flex gap-4">
                     <span aria-hidden="true" className="mt-2.5 w-1.5 h-px bg-brand-red flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 text-charcoal-600 leading-relaxed">
+                How warranties, manufacturer registration and jobsite protection work:{' '}
+                <Link href="/warranty" className="link-editorial font-medium text-navy-900">
+                  read the warranty page
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </Container>

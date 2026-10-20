@@ -13,6 +13,7 @@ import RelatedGuides from './RelatedGuides';
 import LocalAreasServed from './LocalAreasServed';
 import { TownServiceLinksForService } from './TownServiceCrossLinks';
 import ServiceFAQ from './ServiceFAQ';
+import SendPhotosBlock from '@/components/shared/SendPhotosBlock';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import JsonLd from '@/components/seo/JsonLd';
 import RelatedProjectsRail from '@/components/projects/RelatedProjectsRail';
@@ -180,6 +181,13 @@ export default async function ServicePageTemplate({ data }: Props) {
                   />
                 )
               )}
+
+              {/* Text-a-photo lead path. Points at the page's own form. */}
+              <SendPhotosBlock
+                location={`service_${data.slug}_photos`}
+                formHref={primaryCta.href}
+                formLabel={primaryCta.intent === 'roof-quote' ? 'the roof quote form' : 'the estimate form'}
+              />
 
               {/* Real project case studies (Project System) — leads the proof */}
               <RelatedProjectsRail
