@@ -14,6 +14,7 @@ import { buildBreadcrumbSchema } from '@/lib/seo';
 import { BUSINESS, SERVICES } from '@/lib/constants';
 import { resolveCity, getRelatedProjects, type Project } from '@/lib/projects';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import { FINANCING_DISCLAIMER } from '@/lib/project-trust';
 
 export default function ProjectPageTemplate({ project }: { project: Project }) {
   const city = resolveCity(project.citySlug);
@@ -256,6 +257,13 @@ export default function ProjectPageTemplate({ project }: { project: Project }) {
                   Get My Free Estimate
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </a>
+                <p className="mt-5 text-charcoal-300 text-xs leading-relaxed">{FINANCING_DISCLAIMER}</p>
+                <Link
+                  href="/financing"
+                  className="mt-3 inline-flex text-sm font-semibold text-white underline decoration-white/40 underline-offset-4 hover:text-brand-red-light"
+                >
+                  Financing options
+                </Link>
               </div>
             </div>
           </div>

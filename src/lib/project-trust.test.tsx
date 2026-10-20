@@ -17,6 +17,8 @@ import {
 } from '@/lib/project-trust';
 import ProjectInvestmentBand from '@/components/services/ProjectInvestmentBand';
 import Testimonials from '@/components/home/Testimonials';
+import ProjectPageTemplate from '@/components/projects/ProjectPageTemplate';
+import { PROJECTS } from '@/lib/projects';
 import { BUSINESS } from '@/lib/constants';
 
 vi.mock('next/link', () => ({
@@ -156,5 +158,20 @@ describe('homepage reviews line', () => {
     );
     expect(screen.queryByRole('img', { name: /out of 5 stars/i })).not.toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/repair of roof/);
+  });
+});
+
+describe('case-study financing link', () => {
+  it('puts financing one click from every project slug', () => {
+    expect(PROJECTS.length).toBeGreaterThan(0);
+    for (const project of PROJECTS) {
+      cleanup();
+      render(<ProjectPageTemplate project={project} />);
+      const links = screen.getAllByRole('link', { name: 'Financing options' });
+      expect(links, project.slug).toHaveLength(1);
+      expect(links[0], project.slug).toHaveAttribute('href', '/financing');
+      expect(document.body.textContent).toContain('third-party lenders');
+      expect(document.body.textContent).not.toMatch(/estimate fee/i);
+    }
   });
 });
