@@ -171,6 +171,13 @@ export default function CityPageTemplate({ city, data }: Props) {
     ? ` ${city.city} sits inside our primary service radius, so on-site visits are typically scheduled within the same week.`
     : '';
 
+  // Maryland county hubs must not list WV/VA/PA and omit Maryland. That
+  // state list reads as a Maryland license caveat. The Virginia Class A
+  // number stays in the county copy; this generated FAQ drops the list.
+  const stateLicenseClause =
+    city.slug === 'montgomery-county-md' || city.slug === 'howard-county-md'
+      ? ''
+      : ' and are licensed and insured in West Virginia, Virginia and Pennsylvania';
   const localFaqs: { question: string; answer: string }[] = [
     ...(data.faqs ?? []),
     {
@@ -184,8 +191,8 @@ export default function CityPageTemplate({ city, data }: Props) {
           ? `Yes. Real Elite Contracting works across ${city.city}, including ${children
               .slice(0, 5)
               .map((a) => a.city)
-              .join(', ')}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Virginia and Pennsylvania.`
-          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV and are licensed and insured in West Virginia, Virginia and Pennsylvania.${city.state === 'PA' ? ` ${paHicRegistrationLine()}` : ''}`,
+              .join(', ')}. We are headquartered in Martinsburg, WV${stateLicenseClause}.`
+          : `Yes. Real Elite Contracting works across ${city.city} and the surrounding ${areaRegionLabel(city)}. We are headquartered in Martinsburg, WV${stateLicenseClause}.${city.state === 'PA' ? ` ${paHicRegistrationLine()}` : ''}`,
     },
     {
       question: `What services does Real Elite offer in ${city.city}?`,
@@ -354,6 +361,34 @@ export default function CityPageTemplate({ city, data }: Props) {
                     </p>
                   ))}
                 </div>
+                {city.slug === 'loudoun-county-va' && (
+                  <aside className="mt-6 rounded-lg border border-steel-200 bg-steel-50 p-5">
+                    <h2 className="font-heading text-xl font-bold text-navy-800 mb-2">
+                      Finished basement permits
+                    </h2>
+                    <p className="text-charcoal-700 leading-relaxed">
+                      Loudoun County publishes finished-basement permit fees on its own page. Typical fees are 1% of construction cost, not including electrical, mechanical, plumbing, and gas, with a $65 minimum. Full plan review adds a $130 plan review fee. A personal kitchen adds a $165 zoning permit fee. Those are county fees, not the project price.
+                    </p>
+                    <p className="mt-3">
+                      <a
+                        href="https://www.loudoun.gov/1172/Finished-Basements"
+                        className="text-sm font-semibold text-brand-red hover:text-brand-red-dark"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Loudoun County: Finished Basements
+                      </a>
+                    </p>
+                    <p className="mt-2">
+                      <Link
+                        href="/investment#lower-levels"
+                        className="text-sm font-semibold text-brand-red hover:text-brand-red-dark"
+                      >
+                        Published basement investment tiers
+                      </Link>
+                    </p>
+                  </aside>
+                )}
                 <PermitGuideLink areaSlug={city.slug} />
                 <TownDeckHoaBlock citySlug={city.slug} />
                 <FairfaxBasementDetailsNote citySlug={city.slug} surface="town" />

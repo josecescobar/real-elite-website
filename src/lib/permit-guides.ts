@@ -1054,6 +1054,7 @@ const MONTGOMERY: CountyPermitGuide = {
     'derwood-md',
     'colesville-md',
     'aspen-hill-md',
+    'montgomery-county-md',
   ],
   relatedPosts: [],
 };
@@ -1204,6 +1205,7 @@ const HOWARD: CountyPermitGuide = {
     'west-friendship-md',
     'glenwood-md',
     'marriottsville-md',
+    'howard-county-md',
   ],
   relatedPosts: [],
 };

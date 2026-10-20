@@ -553,6 +553,10 @@ describe('REA-2292 basement keywords and Winchester kitchen', () => {
       );
       expect(hrefs).toContain(COST_GUIDE);
       expect(hrefs).toContain(LUXURY_GUIDE);
+      if (city === 'loudoun-county-va') {
+        expect(hrefs).toContain('https://www.loudoun.gov/1172/Finished-Basements');
+        expect(hrefs).toContain('/investment#lower-levels');
+      }
       expect(entry?.relatedGuideSlugs).toEqual(
         expect.arrayContaining([
           'basement-remodeling-cost-ashburn-leesburg-2026',
@@ -2712,7 +2716,7 @@ function round12PermitSentences(constantsSrc: string, contentSrc: string): strin
   const area = sliceBetween(
     constantsSrc,
     '  // ROUND12_AREAS_START',
-    '\n};\n\n/**\n * Every area that currently publishes'
+    '\n  // COUNTY_HUBS_2026_10_START'
   );
   const services = sliceBetween(
     contentSrc,
