@@ -20,7 +20,7 @@ export const metadata: Metadata = buildMetadata({
   path: COST_GUIDE_PATH,
   title: `Free Home Project Cost Guide (PDF) | ${BUSINESS.name}`,
   description:
-    'A free, printable cost guide: typical ranges for kitchens, baths, basements, additions, decks, roofing and siding, what moves the number, and links to our cost articles.',
+    'Free printable cost guide: typical ranges for kitchens, baths, basements, additions, decks, roofing and siding, and what moves the number. No email needed.',
   keywords: [
     'remodel cost guide',
     'kitchen remodel cost',
