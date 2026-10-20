@@ -293,6 +293,33 @@ export default function InvestmentPage() {
         </Container>
       </section>
 
+      {/* Free cost guide offer */}
+      <section className="bg-white pt-16 md:pt-24">
+        <Container size="default">
+          <div className="bg-steel-50 border-l-4 border-brand-red rounded-r-lg p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+            <div>
+              <p className="text-brand-red text-xs uppercase tracking-[0.22em] font-semibold mb-2">
+                Free cost guide
+              </p>
+              <h2 className="font-heading text-2xl md:text-3xl text-navy-900 leading-tight">
+                Take these ranges with you as a PDF.
+              </h2>
+              <p className="text-charcoal-600 mt-2 leading-relaxed max-w-xl">
+                Every range on this page plus our exterior, deck and remodeling ranges, in one
+                printable guide. No email needed. The first site visit is free.
+              </p>
+            </div>
+            <Link
+              href="/cost-guide"
+              className="inline-flex items-center justify-center gap-2 bg-navy-900 text-white px-6 py-3.5 rounded-md text-sm font-semibold hover:bg-brand-red transition-colors focus-ring flex-shrink-0"
+            >
+              Get the free cost guide
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
       {/* CTA */}
       <section className="bg-white py-16 md:py-24">
         <Container size="default">

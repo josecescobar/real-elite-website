@@ -266,3 +266,18 @@ h1 em, h2 em, .font-heading em {
     scroll-behavior: auto;
   }
 }
+
+/* Printable cost guide (/cost-guide). Scoped with :has() so printing any
+   other page is unchanged: only the guide drops the site chrome. */
+@media print {
+  body:has([data-cost-guide]) > *:not(main) {
+    display: none !important;
+  }
+  [data-cost-guide] [data-print-hide] {
+    display: none !important;
+  }
+  [data-cost-guide] {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

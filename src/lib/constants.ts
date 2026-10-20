@@ -3243,6 +3243,7 @@ export const UTILITY_LINKS = [
   { label: 'Full Property Bundle', href: '/full-property-perimeter' },
   { label: 'Photo Gallery', href: '/gallery' },
   { label: 'Warranty', href: '/warranty' },
+  { label: 'Free Cost Guide', href: '/cost-guide' },
 ] as const;
 
 /**
