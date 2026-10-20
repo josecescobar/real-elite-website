@@ -19,6 +19,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import LuxuryGallery from '@/components/consultation/LuxuryGallery';
 import LuxuryConsultationFormClient from './LuxuryConsultationFormClient';
 import PhoneLink from '@/components/analytics/PhoneLink';
+import SendPhotosBlock from '@/components/shared/SendPhotosBlock';
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -198,6 +199,12 @@ export default function DesignConsultationPage() {
                   <LuxuryConsultationFormClient />
                 </Suspense>
               </div>
+              <SendPhotosBlock
+                location="design_consult_photos"
+                formHref="#consult-form"
+                formLabel="the form above"
+                className="mt-10"
+              />
             </div>
 
             {/* How it runs */}
