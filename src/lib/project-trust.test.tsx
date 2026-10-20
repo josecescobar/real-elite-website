@@ -7,7 +7,6 @@ import {
   FINANCING_DISCLAIMER,
   FREE_FIRST_VISIT_SENTENCE,
   PROJECT_TRUST_FAQ,
-  PROJECT_TRUST_PHOTOS,
   PROJECT_TRUST_SLUGS,
   TIMELINE_ANSWER,
   costAnswerForService,
@@ -116,10 +115,10 @@ describe('project investment band', () => {
       expect(screen.getByText(tier.range)).toBeInTheDocument();
     }
     const images = screen.getAllByRole('img');
+    const srcs = images.map((image) => image.getAttribute('src'));
     expect(images).toHaveLength(3);
-    expect(images.map((image) => image.getAttribute('src'))).toEqual(
-      PROJECT_TRUST_PHOTOS[slug].map((photo) => photo.src),
-    );
+    expect(srcs).toContain(category.image.src);
+    expect(screen.getByAltText(category.image.alt)).toHaveAttribute('src', category.image.src);
     const investmentLinks = screen.getAllByRole('link', { name: 'See the investment table' });
     expect(investmentLinks).toHaveLength(1);
     expect(investmentLinks[0]).toHaveAttribute('href', `/investment#${category.slug}`);

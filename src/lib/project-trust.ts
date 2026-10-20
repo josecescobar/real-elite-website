@@ -55,8 +55,8 @@ export const PROJECT_TRUST_PHOTOS: Record<ProjectTrustSlug, readonly TrustPhoto[
       alt: 'White shaker kitchen with a black waterfall-edge quartz island, black pendants, and double wall ovens',
     },
     {
-      src: '/images/projects/kitchens/island-lantern-pendants.jpg',
-      alt: 'White kitchen with a marble-topped island, lantern pendants, and dark hardwood floors',
+      src: '/images/projects/kitchens/hero.jpg',
+      alt: 'White kitchen with a long island, lantern pendants and dark hardwood floors',
     },
     {
       src: '/images/projects/kitchens/gray-marble-waterfall.jpg',
@@ -73,14 +73,14 @@ export const PROJECT_TRUST_PHOTOS: Record<ProjectTrustSlug, readonly TrustPhoto[
       alt: 'Primary bath with a walk-in tile shower beside a quartz-topped navy vanity',
     },
     {
-      src: '/images/work/bath-primary-navy-vanity.webp',
-      alt: 'Navy shaker vanity with matte black pulls and a quartz top',
+      src: '/images/inspiration/suite-spa-bath.jpg',
+      alt: 'Primary bath with book-matched stone walls, a built-in tub and floating vanity',
     },
   ],
   basements: [
     {
       src: '/images/inspiration/basement-media-lounge.jpg',
-      alt: 'Finished lower level with wood-panelled walls, a projection screen, and a fireplace',
+      alt: 'Finished lower level with wood-panelled walls, a projection screen and a fireplace',
     },
     {
       src: '/images/inspiration/basement-wet-bar.jpg',
