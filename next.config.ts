@@ -76,11 +76,16 @@ const nextConfig: NextConfig = {
     // remotePatterns here AND to the CSP img-src above, together.
   },
   async headers() {
+    const markdownContentType = [
+      { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
+    ];
     return [
       {
         source: '/:path*',
         headers: securityHeaders,
       },
+      { source: '/:file.md', headers: markdownContentType },
+      { source: '/:dir/:file.md', headers: markdownContentType },
     ];
   },
   async rewrites() {

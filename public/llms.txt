@@ -1,60 +1,79 @@
 # Real Elite Contracting
 
-> Family-run general contractor serving West Virginia's Eastern Panhandle,
-> Frederick County MD, Winchester VA, and Loudoun County / Northern Virginia.
-> Remodeling and exterior craftsmanship — "Military Precision. Civilian Excellence."
+Premium design-build remodeler for kitchens, primary suites, basements and lower levels, additions, decks, and outdoor living. Serving West Virginia, Virginia, Maryland, and Pennsylvania.
 
-Real Elite Contracting holds WV Contractor License WV062432, Virginia Class A
-Contractor 2705198604 (HIC, residential) and Pennsylvania Home Improvement
-Contractor PA225060. Family-run by brothers Jose and Miguel. Miguel
-is a U.S. military veteran and Purple Heart recipient. No federal veteran
-certification is held. There is no publicly published founding date, and the
-company does not display fabricated review ratings: star/aggregate ratings appear only
-when mirrored from the verified Google Business Profile.
+Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient. No federal veteran certification is held. There is no publicly published founding date, and the company does not display fabricated review ratings: star/aggregate ratings appear only when mirrored from the verified Google Business Profile.
 
-## Contact & facts
+The homepage describes design-build remodeling for Loudoun homes: kitchens, primary suites, lower levels, additions and outdoor living for Leesburg, Ashburn, Middleburg and Hunt Country.
+
+## Contact
+
 - Phone: (681) 534-5515
 - Email: info@realelitecontracting.com
 - Base: Martinsburg, WV 25405 (Eastern Panhandle)
-- Hours: Mon–Fri 7:00 AM–6:00 PM, Sat 8:00 AM–2:00 PM
-- Free written estimates; a real project lead responds after reviewing your request.
-- Instant AI roof quote: https://www.realelitecontracting.com/instant-roof-quote
+- Hours: Mon–Fri: 7:00 AM – 6:00 PM | Sat: 8:00 AM – 2:00 PM
+- The call and the first site visit are at no charge. They exist to decide, on both sides, whether the project is a fit before anyone commits to a design phase.
+- Free written estimates.
+- Contact: https://www.realelitecontracting.com/contact
+- Contact markdown: https://www.realelitecontracting.com/contact.md
 
 ## Services
-- Roofing (replacement, repair, storm/insurance): https://www.realelitecontracting.com/services/roofing
-- Siding & stone exterior: https://www.realelitecontracting.com/services/siding
-- Decks: https://www.realelitecontracting.com/services/decks
-- Outdoor living (screened porches, covered patios, pergolas): https://www.realelitecontracting.com/services/outdoor-living
-- Stairs & railings: https://www.realelitecontracting.com/services/stairs
-- Kitchen remodeling: https://www.realelitecontracting.com/services/kitchens
-- Bathroom remodeling: https://www.realelitecontracting.com/services/bathrooms
-- Basement finishing: https://www.realelitecontracting.com/services/basements
-- Home additions & in-law suites: https://www.realelitecontracting.com/services/additions
-- Whole-home remodeling: https://www.realelitecontracting.com/services/remodeling
-- Exterior repairs: https://www.realelitecontracting.com/services/exterior-repairs
-- General repairs & handyman: https://www.realelitecontracting.com/services/handyman
-- Paving & seal coating (with A+ Paving): https://www.realelitecontracting.com/paving
 
-## Proof
-- Project photography (detailed case studies awaiting confirmation): https://www.realelitecontracting.com/projects
-- Review Center (links to Google; on-site quotes awaiting confirmation): https://www.realelitecontracting.com/reviews
-- How we work (the process): https://www.realelitecontracting.com/process
+- Bathroom Remodeling. Walk-in showers, tile work, vanities, and full master-bath transformations across the WV–MD–VA region. https://www.realelitecontracting.com/services/bathrooms Markdown: https://www.realelitecontracting.com/services/bathrooms.md
+- Kitchen Remodeling. Custom cabinetry, islands, layout changes, and full kitchen transformations. Premium kitchens for families who actually cook. https://www.realelitecontracting.com/services/kitchens Markdown: https://www.realelitecontracting.com/services/kitchens.md
+- Basement Finishing. Finished family rooms, in-law suites, basement bars. Done to code with proper moisture control. https://www.realelitecontracting.com/services/basements Markdown: https://www.realelitecontracting.com/services/basements.md
+- Whole-Home Remodeling. Interior and exterior remodels — kitchens, bathrooms, basements, and full home renovations with a coordinated scope. https://www.realelitecontracting.com/services/remodeling
+- Decks. Composite and pressure-treated decks, railings, and built-ins using premium materials. https://www.realelitecontracting.com/services/decks Markdown: https://www.realelitecontracting.com/services/decks.md
+- Outdoor Living. Screened porches, covered patios, pergolas, and outdoor living spaces tied into the house. https://www.realelitecontracting.com/services/outdoor-living Markdown: https://www.realelitecontracting.com/services/outdoor-living.md
+- Stairs & Railings. Staircase remodels, new treads and balusters, handrails, and deck and porch stairs built to code. https://www.realelitecontracting.com/services/stairs
+- Roofing. Architectural shingle replacement, valley flashing, storm-damage repair, and complete tear-offs. https://www.realelitecontracting.com/services/roofing
+- Siding & Stone Exteriors. Vinyl, fiber cement, and stone veneer that elevates every facade — the highest-ROI exterior upgrade. https://www.realelitecontracting.com/services/siding
+- Paving & Seal Coating. Driveways, parking lots, repairs, and seal coating — asphalt, concrete, and tar-and-chip — across the Eastern Panhandle. https://www.realelitecontracting.com/paving
+- Home Additions. Bump-outs, single rooms, second stories, and in-law suites — engineered to look like they were always part of the home. https://www.realelitecontracting.com/services/additions Markdown: https://www.realelitecontracting.com/services/additions.md
 
 ## Service areas
-- WV Eastern Panhandle: Martinsburg, Inwood, Charles Town, Ranson, Hedgesville, Shepherdstown
-- Maryland: Frederick
-- Virginia: Winchester, Leesburg, Ashburn, Loudoun County, Fairfax County,
-  Prince William County, and Northern Virginia luxury markets
-  (McLean, Great Falls, Vienna, Oakton, Dunn Loring, Reston, Fort Hunt, Middleburg, Old Town Alexandria).
-  Loudoun town pages also cover Purcellville, Round Hill, Lovettsville, Waterford,
-  Hamilton, Aldie, Lansdowne, South Riding, and Sterling.
-  Prince William town pages cover Haymarket, Gainesville, Bristow, and Nokesville.
-  Headquarters stay in Martinsburg, WV. No local office is claimed in those counties.
-- Full list: https://www.realelitecontracting.com/service-areas
 
-## Cost & planning guides (honest local price ranges)
-- Kitchen remodel cost (WV/MD/VA): https://www.realelitecontracting.com/blog/kitchen-remodel-cost-wv-md-va-2026
-- Bathroom remodel cost (Frederick MD): https://www.realelitecontracting.com/blog/bathroom-remodel-cost-frederick-md-2026
-- Basement finishing (Frederick MD): https://www.realelitecontracting.com/blog/basement-finishing-frederick-md-guide
-- Driveway paving comparison (Eastern Panhandle): https://www.realelitecontracting.com/blog/asphalt-vs-concrete-vs-tar-and-chip-driveways-eastern-panhandle-2026
-- All resources: https://www.realelitecontracting.com/resources
+West Virginia, Virginia, Maryland, and Pennsylvania. Maryland is in the service area. Headquarters are in Martinsburg, WV.
+
+- West Virginia: Martinsburg, Inwood, Charles Town, Ranson, Hedgesville, Spring Mills, Falling Waters, Berkeley Springs, Shepherdstown, Harpers Ferry, Kearneysville, Bunker Hill.
+- Maryland, fully in the service area: Frederick, Monrovia, Ijamsville, New Market, Urbana, Mount Airy, Middletown, Adamstown, Point of Rocks, Brunswick, Hagerstown, Boonsboro, Sharpsburg, Williamsport, Garrett Park, Bethesda, Potomac, Cabin John, West Friendship, Chevy Chase, Glenwood, Clarksville, Brookeville, Kensington, Woodbine, Dickerson, Marriottsville, Ellicott City, Laytonsville, Barnesville, Olney, Ashton, North Potomac, Rockville, Derwood, Colesville, Takoma Park, Columbia, Silver Spring, Aspen Hill, Myersville, Montgomery County, Howard County.
+- Virginia: Winchester, Leesburg, Ashburn, McLean, Alexandria, Vienna, Great Falls, Reston, Burke, Fairfax Station, Clifton, Middleburg, Loudoun County, Brambleton, Northern Virginia, Purcellville, Round Hill, Lovettsville, Waterford, Hamilton, Aldie, Lansdowne, South Riding, Sterling, Fairfax County, Prince William County, Oakton, Dunn Loring, Fort Hunt, Haymarket, Gainesville, Bristow, Nokesville, Springfield, Chantilly, Centreville, Falls Church, Fairfax, Manassas, Lake Ridge, Woodbridge, Warrenton, Berryville, The Plains, Upperville, Marshall, Arlington, Catharpin, Broad Run, Delaplane, Annandale, Bluemont.
+- Pennsylvania: Greencastle, Chambersburg, Fort Loudon, Mercersburg, Waynesboro, Fayetteville.
+
+- Loudoun County, VA: https://www.realelitecontracting.com/service-areas/loudoun-county-va Markdown: https://www.realelitecontracting.com/service-areas/loudoun-county-va.md
+- Fairfax County, VA: https://www.realelitecontracting.com/service-areas/fairfax-county-va Markdown: https://www.realelitecontracting.com/service-areas/fairfax-county-va.md
+- Frederick, MD: https://www.realelitecontracting.com/service-areas/frederick-md Markdown: https://www.realelitecontracting.com/service-areas/frederick-md.md
+
+Full list: https://www.realelitecontracting.com/service-areas
+
+Service areas markdown: https://www.realelitecontracting.com/service-areas.md
+
+## Pages
+
+- Home: https://www.realelitecontracting.com/ Markdown: https://www.realelitecontracting.com/index.md
+- Services: https://www.realelitecontracting.com/services Markdown: https://www.realelitecontracting.com/services.md
+- About: https://www.realelitecontracting.com/about Markdown: https://www.realelitecontracting.com/about.md
+- Projects: https://www.realelitecontracting.com/projects
+- Reviews: https://www.realelitecontracting.com/reviews
+- Process: https://www.realelitecontracting.com/process
+- Resources: https://www.realelitecontracting.com/resources
+- Estimate: https://www.realelitecontracting.com/estimate
+- Design consultation: https://www.realelitecontracting.com/design-consultation
+- Roof quote: https://www.realelitecontracting.com/instant-roof-quote
+
+## Markdown twins
+
+- https://www.realelitecontracting.com/index.md (source /)
+- https://www.realelitecontracting.com/services.md (source /services)
+- https://www.realelitecontracting.com/about.md (source /about)
+- https://www.realelitecontracting.com/service-areas.md (source /service-areas)
+- https://www.realelitecontracting.com/contact.md (source /contact)
+- https://www.realelitecontracting.com/services/kitchens.md (source /services/kitchens)
+- https://www.realelitecontracting.com/services/bathrooms.md (source /services/bathrooms)
+- https://www.realelitecontracting.com/services/basements.md (source /services/basements)
+- https://www.realelitecontracting.com/services/additions.md (source /services/additions)
+- https://www.realelitecontracting.com/services/decks.md (source /services/decks)
+- https://www.realelitecontracting.com/services/outdoor-living.md (source /services/outdoor-living)
+- https://www.realelitecontracting.com/service-areas/loudoun-county-va.md (source /service-areas/loudoun-county-va)
+- https://www.realelitecontracting.com/service-areas/fairfax-county-va.md (source /service-areas/fairfax-county-va)
+- https://www.realelitecontracting.com/service-areas/frederick-md.md (source /service-areas/frederick-md)
