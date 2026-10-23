@@ -19,6 +19,15 @@ const INSPIRATION_LABEL = /\binspiration\b/i;
 const MARYLAND_CAVEAT =
   /not a Maryland licen|no Maryland (?:contractor )?licen|Maryland licensing claim|service-area mention|not licensed in Maryland|licensed in Maryland|without a Maryland licen/i;
 
+/**
+ * Internal publishing notes. These describe how the site is produced, not
+ * copy that is published on a page, so they must not return to AI text.
+ */
+const INTERNAL_PUBLISHING = [
+  'There is no publicly published founding date',
+  'star/aggregate ratings appear only when mirrored from the verified Google Business Profile',
+] as const;
+
 const TWIN_FILES = [
   'public/index.md',
   'public/services.md',
@@ -75,6 +84,9 @@ describe('llms.txt and markdown twins', () => {
       expect(text, file).not.toMatch(INSPIRATION_LABEL);
       expect(text, file).not.toMatch(MARYLAND_CAVEAT);
       expect(text, file).not.toMatch(/Morgan County/i);
+      for (const phrase of INTERNAL_PUBLISHING) {
+        expect(text, `${file}: ${phrase}`).not.toContain(phrase);
+      }
     }
   });
 
@@ -83,6 +95,7 @@ describe('llms.txt and markdown twins', () => {
     expect(text).toContain(
       'Family-run by brothers Jose and Miguel. Miguel is a U.S. military veteran and Purple Heart recipient.',
     );
+    expect(text).toContain('No federal veteran certification is held.');
     expect(text).toMatch(/West Virginia/);
     expect(text).toMatch(/Virginia/);
     expect(text).toMatch(/Maryland/);

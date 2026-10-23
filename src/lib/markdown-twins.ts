@@ -287,7 +287,7 @@ export function buildLlmsTxt(twins = buildTwins()): string {
   const body = section([
     '# Real Elite Contracting',
     'Premium design-build remodeler for kitchens, primary suites, basements and lower levels, additions, decks, and outdoor living. Serving West Virginia, Virginia, Maryland, and Pennsylvania.',
-    `${FAMILY_RUN.sentence} No federal veteran certification is held. There is no publicly published founding date, and the company does not display fabricated review ratings: star/aggregate ratings appear only when mirrored from the verified Google Business Profile.`,
+    `${FAMILY_RUN.sentence} No federal veteran certification is held.`,
     'The homepage describes design-build remodeling for Loudoun homes: kitchens, primary suites, lower levels, additions and outdoor living for Leesburg, Ashburn, Middleburg and Hunt Country.',
     '## Contact',
     [
