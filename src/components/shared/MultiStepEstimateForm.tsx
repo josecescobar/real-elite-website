@@ -8,10 +8,7 @@ import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 import SmsConsentField from '@/components/shared/SmsConsentField';
-import TurnstileWidget, {
-  turnstileBlocksSubmit,
-  turnstilePayload,
-} from '@/components/shared/TurnstileWidget';
+import TurnstileWidget, { turnstilePayload } from '@/components/shared/TurnstileWidget';
 import { smsConsentPayload } from '@/lib/sms-consent';
 
 /* -------------------------------- options -------------------------------- */
@@ -115,6 +112,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [smsConsent, setSmsConsent] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -253,6 +251,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
       setIsSuccess(true);
     } catch (err) {
       console.error('Multi-step estimate submission error:', err);
+      setTurnstileReset((n) => n + 1);
       setSubmitError(
         `Something went wrong. Please call ${BUSINESS.phone} or try again in a moment.`
       );
@@ -553,7 +552,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             </div>
           )}
 
-          <TurnstileWidget onToken={setTurnstileToken} />
+          <TurnstileWidget onToken={setTurnstileToken} resetSignal={turnstileReset} />
           <PrivacyNotice subject="estimate" />
         </fieldset>
       )}
@@ -585,7 +584,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
         ) : (
           <button
             type="submit"
-            disabled={isSubmitting || turnstileBlocksSubmit(turnstileToken)}
+            disabled={isSubmitting}
             className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-ring"
           >
             {isSubmitting ? 'Sending…' : 'Get My Free Estimate'}

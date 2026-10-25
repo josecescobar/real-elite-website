@@ -13,10 +13,7 @@ import {
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 import SmsConsentField from '@/components/shared/SmsConsentField';
-import TurnstileWidget, {
-  turnstileBlocksSubmit,
-  turnstilePayload,
-} from '@/components/shared/TurnstileWidget';
+import TurnstileWidget, { turnstilePayload } from '@/components/shared/TurnstileWidget';
 import { smsConsentPayload } from '@/lib/sms-consent';
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -188,6 +185,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [smsConsent, setSmsConsent] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const [isSuccess, setIsSuccess] = useState(false);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -308,6 +306,7 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
       setIsSuccess(true);
     } catch (err) {
       console.error('Luxury consultation submission error:', err);
+      setTurnstileReset((n) => n + 1);
       setSubmitError(
         `Something went wrong. Please call ${BUSINESS.phone} or try again in a moment.`
       );
@@ -704,12 +703,12 @@ export default function LuxuryConsultationForm({ initialProjectType }: Props) {
           </div>
         )}
 
-        <TurnstileWidget onToken={setTurnstileToken} />
+        <TurnstileWidget onToken={setTurnstileToken} resetSignal={turnstileReset} />
         <PrivacyNotice subject="consultation" className="text-xs text-charcoal-500 leading-relaxed" />
 
         <button
           type="submit"
-          disabled={isSubmitting || turnstileBlocksSubmit(turnstileToken)}
+          disabled={isSubmitting}
           className="w-full inline-flex items-center justify-center gap-2 bg-navy-900 text-white px-7 py-4 rounded-md font-semibold text-sm hover:bg-brand-red transition-colors disabled:opacity-60 disabled:cursor-not-allowed focus-ring"
         >
           {isSubmitting ? 'Sending…' : 'Request Phone Consultation'}

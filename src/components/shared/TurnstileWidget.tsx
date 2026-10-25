@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 type TurnstileApi = {
   render: (element: HTMLElement, options: Record<string, unknown>) => string;
   remove: (widgetId: string) => void;
+  reset: (widgetId: string) => void;
 };
 
 declare global {
@@ -22,16 +23,17 @@ export function turnstileSiteKey(): string | undefined {
   return key || undefined;
 }
 
-export function turnstileBlocksSubmit(token: string): boolean {
-  return Boolean(turnstileSiteKey()) && !token;
-}
-
 export function turnstilePayload(token: string): { turnstileToken?: string } {
   return token ? { turnstileToken: token } : {};
 }
 
 type Props = {
   onToken: (token: string) => void;
+  /**
+   * Bump after a failed submit. Turnstile tokens are single-use, so the
+   * widget is reset and the stale token cleared before the next attempt.
+   */
+  resetSignal?: number;
 };
 
 /**
@@ -39,11 +41,17 @@ type Props = {
  * once this component is mounted (the estimate form mounts it on the last
  * step), so it stays off the initial page load.
  * Renders nothing when NEXT_PUBLIC_TURNSTILE_SITE_KEY is unset.
+ *
+ * The widget never blocks submission: the browser cannot know whether the
+ * server secret is set, so the form posts with or without a token and
+ * /api/estimate decides.
  */
-export default function TurnstileWidget({ onToken }: Props) {
+export default function TurnstileWidget({ onToken, resetSignal = 0 }: Props) {
   const siteKey = turnstileSiteKey();
   const hostRef = useRef<HTMLDivElement>(null);
   const onTokenRef = useRef(onToken);
+  const widgetIdRef = useRef<string | null>(null);
+  const lastResetRef = useRef(resetSignal);
 
   useEffect(() => {
     onTokenRef.current = onToken;
@@ -63,6 +71,7 @@ export default function TurnstileWidget({ onToken }: Props) {
         'expired-callback': () => onTokenRef.current(''),
         'error-callback': () => onTokenRef.current(''),
       });
+      widgetIdRef.current = widgetId;
     };
 
     const start = () => {
@@ -94,8 +103,17 @@ export default function TurnstileWidget({ onToken }: Props) {
       else window.clearTimeout(idleId);
       script?.removeEventListener('load', renderWidget);
       if (widgetId && window.turnstile) window.turnstile.remove(widgetId);
+      widgetIdRef.current = null;
     };
   }, [siteKey]);
+
+  useEffect(() => {
+    if (resetSignal === lastResetRef.current) return;
+    lastResetRef.current = resetSignal;
+    onTokenRef.current('');
+    const widgetId = widgetIdRef.current;
+    if (widgetId && window.turnstile) window.turnstile.reset(widgetId);
+  }, [resetSignal]);
 
   if (!siteKey) return null;
 

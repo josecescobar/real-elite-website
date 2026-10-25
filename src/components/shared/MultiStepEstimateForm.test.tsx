@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MultiStepEstimateForm from './MultiStepEstimateForm';
 import { SMS_CONSENT_TEXT_VERSION } from '@/lib/sms-consent';
@@ -441,6 +441,71 @@ describe('MultiStepEstimateForm', () => {
       expect(document.getElementById('cf-turnstile-api')?.getAttribute('src')).toContain(
         'challenges.cloudflare.com/turnstile/v0/api.js'
       );
+    });
+
+    it('submits without a token when only the site key is set (the server decides)', async () => {
+      process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY = 'site-key-test';
+      vi.mocked(fetch).mockResolvedValueOnce(new Response(JSON.stringify({ ok: true }), { status: 200 }));
+      render(<MultiStepEstimateForm />);
+      await advancePastStep1(user);
+      await advancePastStep2(user);
+      await fillStep3(user);
+      const button = screen.getByRole('button', { name: /get my free estimate/i });
+      expect(button).not.toBeDisabled();
+      fireEvent.submit(button.closest('form')!);
+      await waitFor(() => {
+        expect(screen.getByRole('status')).toHaveTextContent(/request received/i);
+      });
+      const estimateCall = vi
+        .mocked(fetch)
+        .mock.calls.find(([url]) => url === '/api/estimate');
+      expect(estimateCall).toBeTruthy();
+      const sent = JSON.parse(String((estimateCall![1] as RequestInit).body));
+      expect(sent).not.toHaveProperty('turnstileToken');
+    });
+
+    it('resets the Turnstile widget and drops the used token after a failed submit', async () => {
+      process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY = 'site-key-test';
+      let tokenCallback: ((token: string) => void) | undefined;
+      const turnstile = {
+        render: vi.fn((_el: HTMLElement, opts: Record<string, unknown>) => {
+          tokenCallback = opts.callback as (token: string) => void;
+          return 'widget-1';
+        }),
+        remove: vi.fn(),
+        reset: vi.fn(),
+      };
+      window.turnstile = turnstile;
+      try {
+        vi.mocked(fetch)
+          .mockResolvedValueOnce(new Response(JSON.stringify({ error: 'nope' }), { status: 500 }))
+          .mockResolvedValueOnce(new Response(JSON.stringify({ ok: true }), { status: 200 }));
+        render(<MultiStepEstimateForm />);
+        await advancePastStep1(user);
+        await advancePastStep2(user);
+        await fillStep3(user);
+        await waitFor(() => expect(turnstile.render).toHaveBeenCalled());
+        await act(async () => tokenCallback?.('token-1'));
+
+        const form = () =>
+          screen.getByRole('button', { name: /get my free estimate/i }).closest('form')!;
+        fireEvent.submit(form());
+        await waitFor(() => expect(turnstile.reset).toHaveBeenCalledWith('widget-1'));
+
+        fireEvent.submit(form());
+        await waitFor(() => {
+          expect(screen.getByRole('status')).toHaveTextContent(/request received/i);
+        });
+        const bodies = vi
+          .mocked(fetch)
+          .mock.calls.filter(([url]) => url === '/api/estimate')
+          .map(([, init]) => JSON.parse(String((init as RequestInit).body)));
+        expect(bodies).toHaveLength(2);
+        expect(bodies[0].turnstileToken).toBe('token-1');
+        expect(bodies[1]).not.toHaveProperty('turnstileToken');
+      } finally {
+        delete window.turnstile;
+      }
     });
 
     it('tags every event with the estimate funnel', async () => {
