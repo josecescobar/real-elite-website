@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { ensureGtagStub } from '@/lib/analytics';
+import { isAnalyticsExcludedPath } from '@/lib/analytics-exclusions';
 
 type DeferredAnalyticsProps = {
   gaId?: string;
@@ -12,6 +14,10 @@ const INTERACTION_EVENTS = ['pointerdown', 'keydown', 'scroll', 'touchstart'] as
 /** Fallback so heatmaps still start if the visitor never interacts. Long
  *  enough that lab LCP/FCP are not waiting on gtag.js / Clarity. */
 const FALLBACK_TIMEOUT_MS = 6000;
+
+function gtagScriptSrc(id: string) {
+  return `https://www.googletagmanager.com/gtag/js?id=${id}`;
+}
 
 function injectScript(src: string) {
   const existing = document.querySelector(`script[src="${src}"]`);
@@ -46,9 +52,20 @@ function loadClarity(id: string) {
  * in the Aug 22 2026 mobile PSI lab. We keep the tags — we just wait for
  * first input or 6s — and `ensureGtagStub()` queues events so estimate /
  * lead hits still fire once gtag.js lands.
+ *
+ * Neither tag loads in a document that starts on an internal tool
+ * (/sales, /review-request): they show lead PII and take an access key
+ * (security audit 2026-10-24, M1). Tags already running cannot be
+ * unloaded, so a soft navigation into a tool is handled by
+ * AnalyticsFreeDocumentGuard, which reloads into a fresh document.
  */
 export default function DeferredAnalytics({ gaId, clarityId }: DeferredAnalyticsProps) {
+  // A boolean dep (not the pathname) so ordinary client navigations don't
+  // re-run the effect and re-send gtag('config').
+  const excluded = isAnalyticsExcludedPath(usePathname());
+
   useEffect(() => {
+    if (excluded) return;
     if (!gaId && !clarityId) return;
 
     if (gaId) {
@@ -61,11 +78,11 @@ export default function DeferredAnalytics({ gaId, clarityId }: DeferredAnalytics
       loaded = true;
       cleanup();
 
-      if (gaId) {
+      if (gaId && !document.querySelector(`script[src="${gtagScriptSrc(gaId)}"]`)) {
         ensureGtagStub();
         window.gtag!('js', new Date());
         window.gtag!('config', gaId);
-        injectScript(`https://www.googletagmanager.com/gtag/js?id=${gaId}`);
+        injectScript(gtagScriptSrc(gaId));
       }
 
       if (clarityId) {
@@ -88,7 +105,7 @@ export default function DeferredAnalytics({ gaId, clarityId }: DeferredAnalytics
     }
 
     return cleanup;
-  }, [gaId, clarityId]);
+  }, [gaId, clarityId, excluded]);
 
   return null;
 }

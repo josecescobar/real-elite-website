@@ -1,25 +1,32 @@
 'use client';
 
-import { useState, useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { Check, Send } from 'lucide-react';
 import { BUSINESS } from '@/lib/constants';
 import { buildReviewMessage, toE164 } from '@/lib/review-request';
+import {
+  purgeLegacyAdminKey,
+  readSessionAdminKey,
+  saveSessionAdminKey,
+} from '@/lib/admin-key-storage';
 
-const KEY_STORAGE = 'realelite-admin-key';
-
-// One-time hydration-safe localStorage read (server snapshot: null).
+// Hydration-safe sessionStorage read (server snapshot: null). The key is
+// never kept in localStorage (audit M1); it is sent in the POST body.
 const noopSubscribe = () => () => {};
-const readSavedKey = () => window.localStorage.getItem(KEY_STORAGE);
 
 const inputClass =
   'w-full px-4 py-3 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 focus:border-navy-400 transition-colors border-charcoal-200 hover:border-charcoal-300';
 
 export default function ReviewRequestTool() {
-  // Remember the key on this device so daily use is two fields, not
-  // three: typedKey === null means "untouched", fall back to storage.
-  const savedKey = useSyncExternalStore(noopSubscribe, readSavedKey, () => null);
+  // Remember the key for this browser tab so repeat sends are two fields,
+  // not three: typedKey === null means "untouched", fall back to storage.
+  const savedKey = useSyncExternalStore(noopSubscribe, readSessionAdminKey, () => null);
   const [typedKey, setTypedKey] = useState<string | null>(null);
   const accessKey = typedKey ?? savedKey ?? '';
+
+  useEffect(() => {
+    purgeLegacyAdminKey();
+  }, []);
 
   const [firstName, setFirstName] = useState('');
   const [phone, setPhone] = useState('');
@@ -66,7 +73,7 @@ export default function ReviewRequestTool() {
         setResult({ ok: false, text: data?.error || 'Something went wrong.' });
         return;
       }
-      window.localStorage.setItem(KEY_STORAGE, accessKey.trim());
+      saveSessionAdminKey(accessKey);
       setResult({ ok: true, text: data?.message || 'Review request sent.' });
       setFirstName('');
       setPhone('');
@@ -83,6 +90,7 @@ export default function ReviewRequestTool() {
     <form
       onSubmit={handleSubmit}
       className="bg-white rounded-lg shadow-card-elevated p-6 sm:p-8"
+      data-clarity-mask="true"
       noValidate
     >
       <div className="space-y-5">

@@ -29,8 +29,11 @@ refuses to send anything without the access key.
 
 2. **Access key** — in Vercel → Settings → Environment Variables, add
    `ADMIN_TOOLS_KEY` set to a long random string (a password manager
-   generated one is perfect). You'll type it once per device; the tool
-   remembers it after the first successful send.
+   generated one is perfect). You'll type it once per browser tab; the
+   tool keeps it in sessionStorage (cleared when the tab closes) after the
+   first successful send. It is never saved to localStorage. The page
+   loads no GA4, GTM or Clarity (if you arrive by an in-site navigation
+   with tags already running, it reloads once into a clean document).
 
 3. **Direct review link (recommended)** — by default the text uses the
    Google profile share link. A *direct write-review* link converts

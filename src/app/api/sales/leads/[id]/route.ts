@@ -8,11 +8,8 @@ export async function GET(
   request: Request,
   context: { params: Promise<{ id: string }> }
 ) {
-  const url = new URL(request.url);
-  const auth = authorizeAgent(request, {
-    required: ['leads:read'],
-    bodyKey: url.searchParams.get('key'),
-  });
+  // Header-only auth: a `?key=` query parameter is ignored (audit M1).
+  const auth = authorizeAgent(request, { required: ['leads:read'] });
   if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
 
   const { id } = await context.params;

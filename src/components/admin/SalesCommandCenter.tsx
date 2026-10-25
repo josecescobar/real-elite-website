@@ -1,11 +1,17 @@
 'use client';
 
-import { useMemo, useState, useSyncExternalStore } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import type { Lead, LeadBucket } from '@/lib/sales/types';
+import {
+  purgeLegacyAdminKey,
+  readSessionAdminKey,
+  saveSessionAdminKey,
+  stripKeyFromUrl,
+} from '@/lib/admin-key-storage';
 
-const KEY_STORAGE = 'realelite-admin-key';
+// Hydration-safe sessionStorage read (server snapshot: null). The key is
+// never kept in localStorage and never put in a URL (audit M1).
 const noopSubscribe = () => () => {};
-const readSavedKey = () => window.localStorage.getItem(KEY_STORAGE);
 
 const BUCKETS: Array<{ id: LeadBucket | 'all'; label: string }> = [
   { id: 'all', label: 'All' },
@@ -23,19 +29,22 @@ const inputClass =
   'w-full px-3 py-2 border-2 rounded-md bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-navy-400 border-charcoal-200 text-sm';
 
 export default function SalesCommandCenter({
-  initialKey = '',
   initialBucket = 'all',
   initialLeads = [],
   initialError = null,
 }: {
-  initialKey?: string;
   initialBucket?: LeadBucket | 'all';
   initialLeads?: LeadRow[];
   initialError?: string | null;
 }) {
-  const savedKey = useSyncExternalStore(noopSubscribe, readSavedKey, () => null);
-  const [typedKey, setTypedKey] = useState<string | null>(initialKey || null);
-  const accessKey = typedKey ?? savedKey ?? initialKey ?? '';
+  const savedKey = useSyncExternalStore(noopSubscribe, readSessionAdminKey, () => null);
+  const [typedKey, setTypedKey] = useState<string | null>(null);
+  const accessKey = typedKey ?? savedKey ?? '';
+
+  useEffect(() => {
+    purgeLegacyAdminKey();
+    stripKeyFromUrl();
+  }, []);
   const [bucket, setBucket] = useState<LeadBucket | 'all'>(initialBucket);
   const [leads, setLeads] = useState<LeadRow[]>(initialLeads);
   const [selectedId, setSelectedId] = useState<string | null>(initialLeads[0]?.id ?? null);
@@ -50,13 +59,15 @@ export default function SalesCommandCenter({
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/sales/leads?bucket=${nextBucket}&key=${encodeURIComponent(accessKey)}`);
+      const res = await fetch(`/api/sales/leads?bucket=${encodeURIComponent(nextBucket)}`, {
+        headers: { authorization: `Bearer ${accessKey.trim()}` },
+      });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         setError(data.error || 'Could not load leads.');
         return;
       }
-      window.localStorage.setItem(KEY_STORAGE, accessKey.trim());
+      saveSessionAdminKey(accessKey);
       setLeads(data.leads ?? []);
     } catch {
       setError('Network error — try again.');
@@ -71,8 +82,8 @@ export default function SalesCommandCenter({
     setError(null);
     const res = await fetch(`/api/sales/leads/${selected.id}/actions`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ key: accessKey, action, draft }),
+      headers: { 'Content-Type': 'application/json', authorization: `Bearer ${accessKey.trim()}` },
+      body: JSON.stringify({ action, draft }),
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
@@ -92,21 +103,29 @@ export default function SalesCommandCenter({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-clarity-mask="true">
+      {/* Submit is handled in script so the key is sent in a header and
+          never ends up in the URL, history, or request logs. */}
       <form
-        method="GET"
-        action="/sales"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!accessKey.trim()) {
+            setError('Enter the access key.');
+            return;
+          }
+          void loadLeads();
+        }}
         className="bg-white rounded-lg shadow-card-elevated p-5 grid gap-3 sm:grid-cols-[1fr_auto]"
       >
         <input
           type="password"
-          name="key"
+          aria-label="Access key"
           className={inputClass}
           placeholder="Access key"
-          defaultValue={accessKey}
+          value={accessKey}
+          onChange={(e) => setTypedKey(e.target.value)}
           autoComplete="off"
         />
-        <input type="hidden" name="bucket" value={bucket} />
         <button
           type="submit"
           className="px-5 py-2 rounded-md bg-navy-800 text-white text-sm font-semibold hover:bg-navy-700"

@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import Container from '@/components/shared/Container';
 import SalesCommandCenter from '@/components/admin/SalesCommandCenter';
-import { authorizeAgent } from '@/lib/sales/agents/auth';
-import { getSalesStore } from '@/lib/sales/store';
-import type { Lead, LeadBucket } from '@/lib/sales/types';
+import AnalyticsFreeDocumentGuard from '@/components/analytics/AnalyticsFreeDocumentGuard';
+import { LEAD_BUCKETS, type LeadBucket } from '@/lib/sales/types';
 
 export const metadata: Metadata = {
   title: 'Grokbot Command Center',
@@ -12,41 +11,27 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
-type LeadRow = Lead & {
-  customer?: { fullName?: string; phone?: string | null; email?: string | null } | null;
-};
+const BUCKETS = new Set<string>(['all', ...LEAD_BUCKETS]);
 
+/**
+ * The access key is NOT read from the URL. `/sales?key=…` used to unlock
+ * the page server-side, which leaked the key into analytics, Clarity,
+ * browser history and request logs (security audit 2026-10-24, M1). The
+ * client component now asks for the key and sends it in an
+ * `Authorization: Bearer` header to /api/sales/leads.
+ */
 export default async function SalesCommandPage({
   searchParams,
 }: {
-  searchParams: Promise<{ key?: string; bucket?: string }>;
+  searchParams: Promise<{ bucket?: string }>;
 }) {
   const params = await searchParams;
-  const key = params.key?.trim() ?? '';
-  const bucket = (params.bucket as LeadBucket | 'all' | undefined) ?? 'all';
-
-  let initialLeads: LeadRow[] = [];
-  let initialError: string | null = null;
-
-  if (key) {
-    const auth = authorizeAgent(
-      new Request('http://localhost/sales', {
-        headers: { authorization: `Bearer ${key}` },
-      }),
-      { required: ['leads:read'] }
-    );
-    if (!auth.ok) {
-      initialError = auth.error;
-    } else {
-      const store = getSalesStore();
-      const leads = await store.listLeads({ bucket, limit: 100 });
-      const customers = await Promise.all(leads.map((lead) => store.getCustomer(lead.customerId)));
-      initialLeads = leads.map((lead, i) => ({ ...lead, customer: customers[i] }));
-    }
-  }
+  const requested = params.bucket;
+  const bucket = (requested && BUCKETS.has(requested) ? requested : 'all') as LeadBucket | 'all';
 
   return (
     <div className="bg-steel-50 py-12 md:py-16 min-h-[70vh]">
+      <AnalyticsFreeDocumentGuard />
       <Container size="wide">
         <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-bold mb-3">
           Internal · Grokbot · Safe Autopilot
@@ -60,12 +45,7 @@ export default async function SalesCommandPage({
           outbound OAuth is wired — Grokbot will not auto-commit price, dates,
           permits, or discounts.
         </p>
-        <SalesCommandCenter
-          initialKey={key}
-          initialBucket={bucket}
-          initialLeads={initialLeads}
-          initialError={initialError}
-        />
+        <SalesCommandCenter initialBucket={bucket} />
       </Container>
     </div>
   );

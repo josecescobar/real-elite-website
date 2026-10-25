@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Container from '@/components/shared/Container';
 import ReviewRequestTool from '@/components/admin/ReviewRequestTool';
+import AnalyticsFreeDocumentGuard from '@/components/analytics/AnalyticsFreeDocumentGuard';
 
 /**
  * Internal tool — not linked from anywhere on the site, noindexed, and
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function ReviewRequestPage() {
   return (
     <div className="bg-steel-50 py-16 md:py-24 min-h-[70vh]">
+      <AnalyticsFreeDocumentGuard />
       <Container size="default">
         <div className="max-w-xl mx-auto">
           <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-bold mb-3">
