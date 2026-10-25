@@ -14,7 +14,12 @@
 
 import { env } from './env';
 
-export type RateLimitVerdict = { allowed: boolean; retryAfter: number };
+export type RateLimitVerdict = {
+  allowed: boolean;
+  retryAfter: number;
+  /** Set when the shared counter could not be read or incremented. */
+  counterError?: true;
+};
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -79,9 +84,21 @@ async function upstashLimit(
   });
   if (!res.ok) throw new Error(`Upstash responded ${res.status}`);
 
-  const results = (await res.json()) as { result: number }[];
-  const count = results[0]?.result ?? 0;
-  const ttlMs = results[2]?.result ?? windowMs;
+  // Upstash answers HTTP 200 even when a command fails; each entry is then
+  // { error } instead of { result }. Treat anything but a numeric INCR result
+  // as an unreadable counter rather than as zero hits.
+  const results = (await res.json().catch(() => null)) as
+    | { result?: unknown; error?: unknown }[]
+    | null;
+  if (!Array.isArray(results)) throw new Error('Upstash returned a non-array pipeline body');
+  const failed = results.find((entry) => entry && entry.error !== undefined);
+  if (failed) throw new Error('Upstash pipeline command failed');
+  const count = results[0]?.result;
+  if (typeof count !== 'number' || !Number.isFinite(count)) {
+    throw new Error('Upstash INCR result missing');
+  }
+  const ttlRaw = results[2]?.result;
+  const ttlMs = typeof ttlRaw === 'number' && ttlRaw > 0 ? ttlRaw : windowMs;
 
   if (count > max) {
     return { allowed: false, retryAfter: Math.max(1, Math.ceil(ttlMs / 1000)) };
@@ -92,18 +109,28 @@ async function upstashLimit(
 /**
  * Returns whether a request identified by `key` is within `max` hits
  * per `windowMs`. Namespace the key per route, e.g. `estimate:<ip>`.
+ *
+ * On an Upstash failure the default is to fail OPEN (the per-IP lead limit
+ * must never block a real lead). Pass `{ failClosed: true }` for optional
+ * outbound messages: the verdict is then `allowed: false, counterError`.
  */
 export async function rateLimit(
   key: string,
   max: number,
-  windowMs: number
+  windowMs: number,
+  opts: { failClosed?: boolean } = {}
 ): Promise<RateLimitVerdict> {
   const creds = upstashCredentials();
   if (creds) {
     try {
       return await upstashLimit(creds.url, creds.token, key, max, windowMs);
     } catch (err) {
-      console.error('rate-limit: Upstash unavailable, failing open:', err);
+      const message = err instanceof Error ? err.message : String(err);
+      if (opts.failClosed) {
+        console.error(`rate-limit: Upstash counter unavailable, failing closed: ${message}`);
+        return { allowed: false, retryAfter: 0, counterError: true };
+      }
+      console.error(`rate-limit: Upstash unavailable, failing open: ${message}`);
       return { allowed: true, retryAfter: 0 };
     }
   }
@@ -112,7 +139,7 @@ export async function rateLimit(
 
 export type OutboundDecision = {
   send: boolean;
-  reason?: 'upstash-unset' | 'email' | 'phone' | 'daily';
+  reason?: 'upstash-unset' | 'counter-error' | 'email' | 'phone' | 'daily';
 };
 
 export function normalizeConfirmEmail(email: string): string {
@@ -130,6 +157,29 @@ function capFromEnv(raw: string | undefined, fallback: number): number {
   const n = Number(raw);
   if (!Number.isInteger(n) || n < 1) return fallback;
   return n;
+}
+
+/**
+ * One fail-closed counter check for an optional outbound message. A counter
+ * that cannot be read or incremented skips the message (the lead itself is
+ * still accepted by the caller).
+ */
+async function outboundGate(
+  key: string,
+  max: number,
+  label: string,
+  reason: 'email' | 'phone' | 'daily'
+): Promise<OutboundDecision> {
+  const hit = await rateLimit(key, max, DAY_MS, { failClosed: true });
+  if (hit.counterError) {
+    console.warn(`estimate: ${label} skipped; cap counter unavailable`);
+    return { send: false, reason: 'counter-error' };
+  }
+  if (!hit.allowed) {
+    console.warn(`estimate: ${label} skipped; ${reason} cap reached`);
+    return { send: false, reason };
+  }
+  return { send: true };
 }
 
 /**
@@ -151,31 +201,14 @@ export async function reserveCustomerConfirmation(
     return { send: false, reason: 'upstash-unset' };
   }
 
-  const emailHit = await rateLimit(
-    `estimate:confirm:email:${normalizeConfirmEmail(email)}`,
-    1,
-    DAY_MS
-  );
-  if (!emailHit.allowed) {
-    console.warn('estimate: customer confirmation skipped; email cap reached');
-    return { send: false, reason: 'email' };
-  }
-
-  const phoneHit = await rateLimit(
-    `estimate:confirm:phone:${normalizeConfirmPhone(phone)}`,
-    1,
-    DAY_MS
-  );
-  if (!phoneHit.allowed) {
-    console.warn('estimate: customer confirmation skipped; phone cap reached');
-    return { send: false, reason: 'phone' };
-  }
-
-  const dailyCap = capFromEnv(env.estimateConfirmDailyCap(), 150);
-  const dailyHit = await rateLimit('estimate:confirm:daily', dailyCap, DAY_MS);
-  if (!dailyHit.allowed) {
-    console.warn('estimate: customer confirmation skipped; daily cap reached');
-    return { send: false, reason: 'daily' };
+  const checks: [string, number, 'email' | 'phone' | 'daily'][] = [
+    [`estimate:confirm:email:${normalizeConfirmEmail(email)}`, 1, 'email'],
+    [`estimate:confirm:phone:${normalizeConfirmPhone(phone)}`, 1, 'phone'],
+    ['estimate:confirm:daily', capFromEnv(env.estimateConfirmDailyCap(), 150), 'daily'],
+  ];
+  for (const [key, max, reason] of checks) {
+    const decision = await outboundGate(key, max, 'customer confirmation', reason);
+    if (!decision.send) return decision;
   }
 
   return { send: true };
@@ -191,13 +224,12 @@ export async function reserveOwnerSms(): Promise<OutboundDecision> {
     return { send: true };
   }
 
-  const dailyCap = capFromEnv(env.estimateSmsDailyCap(), 40);
-  const hit = await rateLimit('estimate:sms:daily', dailyCap, DAY_MS);
-  if (!hit.allowed) {
-    console.warn('estimate: owner SMS skipped; daily cap reached');
-    return { send: false, reason: 'daily' };
-  }
-  return { send: true };
+  return outboundGate(
+    'estimate:sms:daily',
+    capFromEnv(env.estimateSmsDailyCap(), 40),
+    'owner SMS',
+    'daily'
+  );
 }
 
 /** Best-effort client IP from proxy headers (Vercel sets x-forwarded-for). */

@@ -1,6 +1,7 @@
 import { env } from '@/lib/env';
 import { toE164 } from '@/lib/review-request';
 import type { StoredSmsConsent } from '@/lib/sms-consent';
+import { redactForLog } from './redact';
 
 const RPC_TIMEOUT_MS = 2500;
 
@@ -61,7 +62,7 @@ export async function storeSmsConsentEvidence(input: {
     });
     if (!res.ok) {
       const text = await res.text().catch(() => '');
-      console.error('sms consent evidence insert failed', { status: res.status, body: text });
+      console.error('sms consent evidence insert failed', { status: res.status, body: redactForLog(text) });
       return false;
     }
     const rows = (await res.json().catch(() => null)) as
@@ -108,7 +109,7 @@ export async function claimSmsEnrollmentSend(input: {
     });
     if (!res.ok) {
       const text = await res.text().catch(() => '');
-      console.error('sms enrollment claim failed', { status: res.status, body: text });
+      console.error('sms enrollment claim failed', { status: res.status, body: redactForLog(text) });
       return { claimed: false, reason: 'persistence_failed' };
     }
     const row = (await res.json().catch(() => null)) as {
@@ -162,7 +163,7 @@ export async function finishSmsEnrollmentSend(input: {
     });
     if (!res.ok) {
       const text = await res.text().catch(() => '');
-      console.error('sms enrollment finish failed', { status: res.status, body: text });
+      console.error('sms enrollment finish failed', { status: res.status, body: redactForLog(text) });
     }
   } catch (err) {
     console.error('sms enrollment finish error', err);
@@ -212,7 +213,7 @@ async function readCustomerSmsGate(
     });
     if (!res.ok) {
       const text = await res.text().catch(() => '');
-      console.error('sms consent lookup failed', { status: res.status, body: text });
+      console.error('sms consent lookup failed', { status: res.status, body: redactForLog(text) });
       return { allowed: false, reason: 'lookup_failed' };
     }
     const rows = (await res.json().catch(() => null)) as PhoneStateRow[] | null;

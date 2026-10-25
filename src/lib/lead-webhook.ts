@@ -13,6 +13,7 @@
 
 import { env } from '@/lib/env';
 import type { StoredSmsConsent } from '@/lib/sms-consent';
+import { redactForLog } from './redact';
 
 const POST_TIMEOUT_MS = 2500;
 
@@ -124,9 +125,10 @@ export function buildThumbtackLeadWebhookPayload(input: {
   };
 }
 
-export async function postLeadWebhook(payload: Record<string, unknown>): Promise<void> {
+/** Resolves true only when the webhook is configured and returned 2xx. Never throws. */
+export async function postLeadWebhook(payload: Record<string, unknown>): Promise<boolean> {
   const url = env.leadWebhookUrl()?.trim();
-  if (!url) return;
+  if (!url) return false;
 
   const secret = env.leadWebhookSecret()?.trim();
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
@@ -141,9 +143,12 @@ export async function postLeadWebhook(payload: Record<string, unknown>): Promise
     });
     if (!res.ok) {
       const body = await res.text().catch(() => '');
-      console.error('Lead webhook failed', { status: res.status, body: body.slice(0, 500) });
+      console.error('Lead webhook failed', { status: res.status, body: redactForLog(body.slice(0, 500)) });
+      return false;
     }
+    return true;
   } catch (err) {
-    console.error('Lead webhook error', err);
+    console.error('Lead webhook error', redactForLog(err));
+    return false;
   }
 }

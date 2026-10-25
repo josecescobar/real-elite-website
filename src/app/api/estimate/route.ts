@@ -4,6 +4,7 @@ import { env } from '@/lib/env';
 import { buildOwnerLeadSms } from '@/lib/owner-sms';
 import { rateLimit, getClientIp, reserveCustomerConfirmation, reserveOwnerSms } from '@/lib/rate-limit';
 import { verifyTurnstile } from '@/lib/turnstile';
+import { redactForLog } from '@/lib/redact';
 import { recordLead, inferLeadType } from '@/lib/leads';
 import { summarizeLead } from '@/lib/ai-lead-summary';
 import { readSmsConsent } from '@/lib/sms-consent';
@@ -204,17 +205,15 @@ export async function POST(request: Request) {
       userAgent: request.headers.get('user-agent') ?? '',
     });
 
+    // Every delivery channel below (owner email, owner SMS, lead ledger, lead
+    // webhook) is attempted independently, so one outage never drops the
+    // others. The lead is accepted when at least one durable channel (owner
+    // email, ledger, or webhook) succeeded.
     if (!RESEND_API_KEY) {
       console.error(
         'RESEND_API_KEY is not set — add it in Vercel project settings ' +
-          '(see docs/DEPLOYMENT_CHECKLIST.md). Falling back to a graceful ' +
-          'user message instead of a hard 500.'
-      );
-      return NextResponse.json(
-        {
-          error: `We couldn't send the request automatically. Please call ${BUSINESS.phone} and we'll take it from there.`,
-        },
-        { status: 503 }
+          '(see docs/DEPLOYMENT_CHECKLIST.md). Skipping the owner email; ' +
+          'the SMS, ledger and webhook are still attempted.'
       );
     }
 
@@ -297,43 +296,51 @@ export async function POST(request: Request) {
         </div>`
       : '';
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'Real Elite Contracting <info@realelitecontracting.com>',
-        to: [TO_EMAIL],
-        subject: `New Estimate Request: ${values.service} — ${values.fullName}`,
-        reply_to: values.email,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background-color: #1a2744; padding: 20px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 22px; letter-spacing: 0.5px;">New Estimate Request</h1>
-              <p style="color: #c0392b; margin: 4px 0 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Built With Military Precision</p>
-            </div>
-            <div style="padding: 24px; background-color: #f8f9fa; border: 1px solid #e2e8f0;">
-              <table style="width: 100%; border-collapse: collapse;">${rowsHtml}</table>
-              ${messageBlock}
-              ${aiSummaryBlock}
-            </div>
-            <div style="padding: 16px; text-align: center; color: #718096; font-size: 12px;">
-              <p>This estimate request was submitted via realelitecontracting.com</p>
-            </div>
-          </div>
-        `,
-      }),
-    });
+    let ownerEmailOk = false;
+    if (RESEND_API_KEY) {
+      try {
+        const resendResponse = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: 'Real Elite Contracting <info@realelitecontracting.com>',
+            to: [TO_EMAIL],
+            subject: `New Estimate Request: ${values.service} — ${values.fullName}`,
+            reply_to: values.email,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="background-color: #1a2744; padding: 20px; text-align: center;">
+                  <h1 style="color: #ffffff; margin: 0; font-size: 22px; letter-spacing: 0.5px;">New Estimate Request</h1>
+                  <p style="color: #c0392b; margin: 4px 0 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Built With Military Precision</p>
+                </div>
+                <div style="padding: 24px; background-color: #f8f9fa; border: 1px solid #e2e8f0;">
+                  <table style="width: 100%; border-collapse: collapse;">${rowsHtml}</table>
+                  ${messageBlock}
+                  ${aiSummaryBlock}
+                </div>
+                <div style="padding: 16px; text-align: center; color: #718096; font-size: 12px;">
+                  <p>This estimate request was submitted via realelitecontracting.com</p>
+                </div>
+              </div>
+            `,
+          }),
+        });
 
-    if (!resendResponse.ok) {
-      const errorData = await resendResponse.json().catch(() => ({}));
-      console.error('Resend API error:', errorData);
-      return NextResponse.json(
-        { error: 'Failed to send email' },
-        { status: 500 }
-      );
+        if (resendResponse.ok) {
+          ownerEmailOk = true;
+        } else {
+          const errorData = await resendResponse.text().catch(() => '');
+          console.error('Resend API error:', {
+            status: resendResponse.status,
+            body: redactForLog(errorData),
+          });
+        }
+      } catch (err) {
+        console.error('Resend API network error', redactForLog(err));
+      }
     }
 
     // Owner speed-to-lead SMS. This is not a customer text. It is not gated
@@ -383,17 +390,20 @@ export async function POST(request: Request) {
               return res
                 .text()
                 .then((body) =>
-                  console.error('Twilio SMS failed', { status: res.status, body })
+                  console.error('Twilio SMS failed', {
+                    status: res.status,
+                    body: redactForLog(body),
+                  })
                 );
             }
           })
           .catch((err) => {
-            console.error('Twilio SMS network error', err);
+            console.error('Twilio SMS network error', redactForLog(err));
           });
       }
     }
 
-    // Durable lead ledger. Awaited after the owner email. It never throws.
+    // Durable lead ledger. Attempted whether or not the owner email sent. It never throws.
     // Customer enrollment SMS below runs only when this insert echoes a
     // consent id. A ledger miss still leaves the form and customer email
     // successful. See src/lib/leads.ts.
@@ -435,7 +445,7 @@ export async function POST(request: Request) {
     // Job Board ingest. Same JSON shape as elite-agent phone leads, plus
     // the consent record. Unset LEAD_WEBHOOK_URL is a no-op and never fails
     // the request. See src/lib/lead-webhook.ts.
-    await postLeadWebhook(
+    const webhookOk = await postLeadWebhook(
       buildLeadWebhookPayload(
         {
           name: values.fullName!,
@@ -453,6 +463,19 @@ export async function POST(request: Request) {
       )
     );
 
+    if (!ownerEmailOk && !leadWrite.ok && !webhookOk) {
+      console.error('estimate: every durable delivery channel failed; lead not captured');
+      if (!RESEND_API_KEY) {
+        return NextResponse.json(
+          {
+            error: `We couldn't send the request automatically. Please call ${BUSINESS.phone} and we'll take it from there.`,
+          },
+          { status: 503 }
+        );
+      }
+      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+    }
+
     // Customer enrollment text. consentId is set only when Supabase echoed
     // the lead row. A skipped or failed ledger write leaves it null, the
     // text is not sent, and the form still succeeds.
@@ -463,13 +486,15 @@ export async function POST(request: Request) {
         consentId: leadWrite.ok ? leadWrite.consentId : null,
       });
     } catch (err) {
-      console.error('SMS consent confirmation failed', err);
+      console.error('SMS consent confirmation failed', redactForLog(err));
     }
 
     // Customer confirmation — a warm receipt so they know it landed and what
     // happens next. Non-fatal: the owner email above already captured the
     // lead, so a skip or a failure here is logged and the request still succeeds.
-    const confirmationGate = await reserveCustomerConfirmation(values.email!, values.phone!);
+    const confirmationGate = RESEND_API_KEY
+      ? await reserveCustomerConfirmation(values.email!, values.phone!)
+      : { send: false };
     if (confirmationGate.send) {
       const confirmation = customerConfirmationContent(consent.consent);
       try {
@@ -489,7 +514,7 @@ export async function POST(request: Request) {
           }),
         });
       } catch (err) {
-        console.error('Customer confirmation email failed', err);
+        console.error('Customer confirmation email failed', redactForLog(err));
       }
     }
 
@@ -498,7 +523,7 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('Estimate form error:', error);
+    console.error('Estimate form error:', redactForLog(error));
     return NextResponse.json(
       { error: 'An unexpected error occurred' },
       { status: 500 }

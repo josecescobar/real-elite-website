@@ -774,3 +774,94 @@ describe('POST /api/estimate — H1 abuse controls', () => {
     expect(sms.length).toBeLessThanOrEqual(480);
   });
 });
+
+describe('POST /api/estimate — independent delivery channels and log redaction', () => {
+  function mockChannels(opts: { resend: number; ledger: number; webhook: number; twilio: number; twilioBody?: string }) {
+    const fetchMock = vi.fn().mockImplementation(async (url: string, init?: RequestInit) => {
+      const target = String(url);
+      if (target === 'https://api.resend.com/emails') {
+        return new Response('{"message":"unavailable"}', { status: opts.resend });
+      }
+      if (target.includes('/rest/v1/leads')) {
+        if (opts.ledger >= 300) return new Response('nope', { status: opts.ledger });
+        const sent = JSON.parse(String(init?.body)) as { id: string; sms_consent: boolean };
+        return new Response(JSON.stringify([{ id: sent.id, sms_consent: sent.sms_consent }]), {
+          status: 201,
+        });
+      }
+      if (target === 'https://job-board.example/api/leads') {
+        return new Response('{}', { status: opts.webhook });
+      }
+      if (target.includes('api.twilio.com')) {
+        return new Response(opts.twilioBody ?? '{"sid":"SM1"}', { status: opts.twilio });
+      }
+      return new Response('{}', { status: 200 });
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    return fetchMock;
+  }
+
+  function enableAllChannels() {
+    enableOwnerSms();
+    process.env.SUPABASE_URL = 'https://proj.supabase.co';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'service_key';
+    process.env.LEAD_WEBHOOK_URL = 'https://job-board.example/api/leads';
+  }
+
+  const attempted = (fetchMock: ReturnType<typeof vi.fn>, match: (url: string) => boolean) =>
+    fetchMock.mock.calls.some(([url]) => match(String(url)));
+
+  it('still attempts SMS, ledger and webhook and accepts the lead when Resend returns 503', async () => {
+    enableAllChannels();
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const fetchMock = mockChannels({ resend: 503, ledger: 201, webhook: 200, twilio: 201 });
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.120'));
+    expect(res.status).toBe(200);
+    expect(attempted(fetchMock, (u) => u.includes('api.twilio.com'))).toBe(true);
+    expect(attempted(fetchMock, (u) => u.includes('/rest/v1/leads'))).toBe(true);
+    expect(attempted(fetchMock, (u) => u === 'https://job-board.example/api/leads')).toBe(true);
+  });
+
+  it('accepts the lead when only the webhook succeeds', async () => {
+    enableAllChannels();
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    mockChannels({ resend: 503, ledger: 500, webhook: 200, twilio: 201 });
+    const POST = await loadPOST();
+    expect((await POST(makeRequest(validBody, '203.0.113.121'))).status).toBe(200);
+  });
+
+  it('returns 500 and sends no customer confirmation only when every durable channel failed', async () => {
+    enableAllChannels();
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const fetchMock = mockChannels({ resend: 503, ledger: 500, webhook: 502, twilio: 201 });
+    const POST = await loadPOST();
+    const res = await POST(makeRequest(validBody, '203.0.113.122'));
+    expect(res.status).toBe(500);
+    expect(attempted(fetchMock, (u) => u.includes('api.twilio.com'))).toBe(true);
+    const confirmations = resendMessages(fetchMock).filter((m) => m.from.includes('no-reply@'));
+    expect(confirmations).toHaveLength(0);
+  });
+
+  it('logs a Twilio error body with the phone number masked to the last 4 digits', async () => {
+    enableOwnerSms();
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+    mockChannels({
+      resend: 200,
+      ledger: 201,
+      webhook: 200,
+      twilio: 400,
+      twilioBody: '{"code":21211,"message":"The \'To\' number +16815550142 is not valid. Contact jane@example.com"}',
+    });
+    const POST = await loadPOST();
+    expect((await POST(makeRequest(validBody, '203.0.113.123'))).status).toBe(200);
+    await vi.waitFor(() => {
+      expect(error).toHaveBeenCalledWith('Twilio SMS failed', expect.anything());
+    });
+    const logged = JSON.stringify(error.mock.calls);
+    expect(logged).not.toContain('6815550142');
+    expect(logged).not.toContain('jane@example.com');
+    expect(logged).toContain('***0142');
+  });
+});
