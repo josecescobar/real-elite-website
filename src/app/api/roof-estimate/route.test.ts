@@ -480,6 +480,29 @@ describe('POST /api/roof-estimate — transient Google errors are not cached', (
     expect(googleCalls(fetchMock)).toHaveLength(1);
   });
 
+  it('retries the same address after a Solar 200 with invalid JSON instead of caching no coverage', async () => {
+    let solarAttempts = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('geocode')) return geoOk();
+      if (url.includes('solar.googleapis.com')) {
+        solarAttempts += 1;
+        if (solarAttempts === 1) return new Response('{not-json', { status: 200 });
+        return solarOk();
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(validAddress, '203.0.113.92'));
+    expect(await first.json()).toEqual({ covered: false, reason: 'error' });
+
+    const second = await POST(makeRequest(validAddress, '203.0.113.93'));
+    expect((await second.json()).covered).toBe(true);
+    expect(solarAttempts).toBe(2);
+    expect(googleCalls(fetchMock)).toHaveLength(4);
+  });
+
   it('caches a definitive Solar 404 and does not retry Google', async () => {
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input);
