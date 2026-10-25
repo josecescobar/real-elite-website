@@ -8,6 +8,10 @@ import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 import SmsConsentField from '@/components/shared/SmsConsentField';
+import TurnstileWidget, {
+  turnstileBlocksSubmit,
+  turnstilePayload,
+} from '@/components/shared/TurnstileWidget';
 import { smsConsentPayload } from '@/lib/sms-consent';
 
 /* -------------------------------- options -------------------------------- */
@@ -110,6 +114,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [smsConsent, setSmsConsent] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -227,6 +232,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
           message: data.scope,
           ...attributionPayload(),
           ...smsConsentPayload(smsConsent),
+          ...turnstilePayload(turnstileToken),
           website: honeypot,
         }),
       });
@@ -547,6 +553,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             </div>
           )}
 
+          <TurnstileWidget onToken={setTurnstileToken} />
           <PrivacyNotice subject="estimate" />
         </fieldset>
       )}
@@ -578,7 +585,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
         ) : (
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || turnstileBlocksSubmit(turnstileToken)}
             className="inline-flex items-center gap-2 bg-brand-red text-white px-7 py-3.5 rounded-md font-bold text-sm hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20 disabled:opacity-60 disabled:cursor-not-allowed focus-ring"
           >
             {isSubmitting ? 'Sending…' : 'Get My Free Estimate'}

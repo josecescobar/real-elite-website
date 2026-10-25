@@ -23,17 +23,20 @@ import { RETIRED_COMBOS, splitComboKey } from './src/lib/retired-combos';
  *    entry only — the embed is a plain <iframe>, it loads no script here.
  *    Without it the map silently fails to render (the iframe box lays out at
  *    full size, but Chrome refuses to frame it and logs a CSP violation).
+ *  - challenges.cloudflare.com: Cloudflare Turnstile on the estimate form
+ *    (lazy-loaded script, challenge iframe, and siteverify is server-side;
+ *    the widget still connects to Cloudflare from the browser).
  */
 const contentSecurityPolicy = [
   "default-src 'self'",
   // 'unsafe-eval' is development-only: React Refresh / React DevTools need
   // eval() under next dev. Production builds never include it.
-  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live`,
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live https://challenges.cloudflare.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://vercel.live",
   "font-src 'self' data:",
-  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com",
-  "frame-src https://www.googletagmanager.com https://www.google.com https://vercel.live",
+  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com https://challenges.cloudflare.com",
+  "frame-src https://www.googletagmanager.com https://www.google.com https://vercel.live https://challenges.cloudflare.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

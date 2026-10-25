@@ -82,6 +82,30 @@ export const env = {
   upstashRedisUrl: (): string | undefined => process.env.UPSTASH_REDIS_REST_URL,
   upstashRedisToken: (): string | undefined =>
     process.env.UPSTASH_REDIS_REST_TOKEN,
+  /**
+   * Global cap on customer confirmation emails per 24h. Default 150 at the
+   * call site. Unset is fine; production still skips confirmations when
+   * Upstash itself is unset.
+   */
+  estimateConfirmDailyCap: (): string | undefined =>
+    process.env.ESTIMATE_CONFIRM_DAILY_CAP,
+  /** Global cap on owner speed-to-lead SMS per 24h. Default 40 at the call site. */
+  estimateSmsDailyCap: (): string | undefined => process.env.ESTIMATE_SMS_DAILY_CAP,
+
+  // ── Cloudflare Turnstile (estimate bot check) ────────────────────────────
+  /**
+   * Server secret. When unset, /api/estimate does not require a token
+   * (today's behavior) and logs a one-line warning. When set, a missing
+   * or invalid token is rejected and nothing is sent.
+   */
+  turnstileSecretKey: (): string | undefined => process.env.TURNSTILE_SECRET_KEY,
+  /**
+   * Site key inlined into the estimate form widget. Must be the literal
+   * NEXT_PUBLIC_ name so the client bundle can read it. Both keys stay
+   * unset until Jose adds them in Vercel.
+   */
+  turnstileSiteKey: (): string | undefined =>
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
 
   // ── Supabase (durable lead ledger) ───────────────────────────────────────
   /** Supabase project URL. When absent, the lead ledger no-ops (email/SMS

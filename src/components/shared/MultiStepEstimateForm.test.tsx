@@ -56,6 +56,7 @@ describe('MultiStepEstimateForm', () => {
     user = userEvent.setup();
     vi.restoreAllMocks();
     vi.stubGlobal('fetch', vi.fn());
+    delete process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   });
 
   describe('step 1 - service & ZIP', () => {
@@ -418,6 +419,28 @@ describe('MultiStepEstimateForm', () => {
       await user.click(screen.getByRole('button', { name: /continue/i }));
       await fillStep2(user);
       expect(calls('start')).toHaveLength(1);
+    });
+
+    it('loads Turnstile only on the contact step, and only when the site key is set', async () => {
+      const first = render(<MultiStepEstimateForm />);
+      await advancePastStep1(user);
+      await advancePastStep2(user);
+      expect(screen.queryByTestId('turnstile-widget')).not.toBeInTheDocument();
+      expect(document.getElementById('cf-turnstile-api')).toBeNull();
+      first.unmount();
+
+      process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY = 'site-key-test';
+      render(<MultiStepEstimateForm />);
+      expect(screen.queryByTestId('turnstile-widget')).not.toBeInTheDocument();
+      await advancePastStep1(user);
+      await advancePastStep2(user);
+      expect(screen.getByTestId('turnstile-widget')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(document.getElementById('cf-turnstile-api')).toBeTruthy();
+      });
+      expect(document.getElementById('cf-turnstile-api')?.getAttribute('src')).toContain(
+        'challenges.cloudflare.com/turnstile/v0/api.js'
+      );
     });
 
     it('tags every event with the estimate funnel', async () => {
