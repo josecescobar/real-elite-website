@@ -213,7 +213,7 @@ describe('POST /api/roof-estimate — geocode + solar pipeline', () => {
           { status: 200 }
         )
       )
-      .mockResolvedValueOnce(new Response('not found', { status: 404 }));
+      .mockResolvedValueOnce(new Response(JSON.stringify({ error: { code: 404, message: 'Requested entity was not found.', status: 'NOT_FOUND' } }), { status: 404 }));
     vi.stubGlobal('fetch', fetchMock);
     const POST = await loadPOST();
     const res = await POST(makeRequest(validAddress, '203.0.113.32'));
@@ -565,7 +565,7 @@ describe('POST /api/roof-estimate — transient Google errors are not cached', (
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input);
       if (url.includes('geocode')) return geoOk();
-      if (url.includes('solar.googleapis.com')) return new Response('not found', { status: 404 });
+      if (url.includes('solar.googleapis.com')) return new Response(JSON.stringify({ error: { code: 404, message: 'Requested entity was not found.', status: 'NOT_FOUND' } }), { status: 404 });
       throw new Error(`unexpected fetch ${url}`);
     });
     vi.stubGlobal('fetch', fetchMock);
@@ -575,6 +575,34 @@ describe('POST /api/roof-estimate — transient Google errors are not cached', (
     const second = await POST(makeRequest(validAddress, '203.0.113.89'));
     expect(await second.json()).toEqual({ covered: false, reason: 'no_roof_data' });
     expect(googleCalls(fetchMock)).toHaveLength(2);
+  });
+
+  it.each([
+    ['an HTML proxy page', '<html><body>404 Not Found</body></html>'],
+    ['an empty body', ''],
+    ['a different error shape', JSON.stringify({ error: { code: 404, status: 'UNKNOWN' } })],
+  ])('does not cache a 404 with %s and retries Google next time', async (_label, body) => {
+    let solarCalls = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('geocode')) return geoOk();
+      if (url.includes('solar.googleapis.com')) {
+        solarCalls += 1;
+        if (solarCalls === 1) return new Response(body, { status: 404 });
+        return new Response(
+          JSON.stringify({ solarPotential: { wholeRoofStats: { areaMeters2: 200 } } }),
+          { status: 200 }
+        );
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(validAddress, '203.0.113.120'));
+    expect(await first.json()).toEqual({ covered: false, reason: 'error' });
+    const second = await POST(makeRequest(validAddress, '203.0.113.121'));
+    expect(await second.json()).toMatchObject({ covered: true });
+    expect(solarCalls).toBe(2);
   });
 });
 

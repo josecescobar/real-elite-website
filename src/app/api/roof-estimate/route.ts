@@ -71,6 +71,16 @@ function solarRoofAreaMeters2(body: unknown): number | undefined {
   return area;
 }
 
+/**
+ * True only for Google's structured NOT_FOUND body. A proxy or HTML 404
+ * says nothing about this address, so it must not be cached.
+ */
+function isSolarNotFoundBody(body: unknown): boolean {
+  if (!body || typeof body !== 'object') return false;
+  const error = (body as { error?: { code?: unknown; status?: unknown } }).error;
+  return error?.code === 404 && error?.status === 'NOT_FOUND';
+}
+
 export async function POST(request: Request) {
   try {
     const ip = getClientIp(request);
@@ -154,6 +164,10 @@ export async function POST(request: Request) {
       return manualContinue('error');
     }
     if (solarRes.status === 404) {
+      const notFound = await solarRes.json().catch(() => null);
+      if (!isSolarNotFoundBody(notFound)) {
+        return manualContinue('error');
+      }
       const missed: CachedRoofResult = { covered: false, reason: 'no_roof_data' };
       await writeRoofCache(address, missed);
       return NextResponse.json(missed satisfies Result);
