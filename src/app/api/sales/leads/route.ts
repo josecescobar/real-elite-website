@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
-import { customerView, leadView } from '@/lib/sales/agents/redact';
+import { customerView, filterLeadSearch, leadView } from '@/lib/sales/agents/redact';
 import { getSalesStore } from '@/lib/sales/store';
 import type { LeadBucket } from '@/lib/sales/types';
 
@@ -15,7 +15,11 @@ export async function GET(request: Request) {
   const store = getSalesStore();
   const bucket = (url.searchParams.get('bucket') || 'all') as LeadBucket | 'all';
   const query = url.searchParams.get('q') ?? undefined;
-  const leads = await store.listLeads({ bucket, query, limit: 100 });
+  const leads = filterLeadSearch(
+    await store.listLeads({ bucket, query, limit: 100 }),
+    query,
+    auth.scopes
+  );
   // Customer records (email, phone) need `customers:read`; a leads:read-only
   // key gets the lead with contact fields stripped and `customer: null`.
   const customers = await Promise.all(leads.map((lead) => store.getCustomer(lead.customerId)));

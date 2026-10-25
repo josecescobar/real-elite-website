@@ -4,7 +4,7 @@ import { draftCustomerReply } from '../draft';
 import { getSalesStore } from '../store';
 import type { LeadStatus } from '../types';
 import { LEAD_STATUSES } from '../types';
-import { redactToolData } from './redact';
+import { filterLeadSearch, redactToolData } from './redact';
 import { TOOL_SCOPES, type AgentScope } from './scopes';
 
 export type ToolCall = {
@@ -55,11 +55,12 @@ async function runTool(call: ToolCall, granted: AgentScope[]): Promise<ToolResul
     case 'search_leads': {
       const query = str(args.query) ?? '';
       const bucket = str(args.bucket);
-      const leads = await store.listLeads({
+      const found = await store.listLeads({
         query: query || undefined,
         bucket: bucket as never,
         limit: typeof args.limit === 'number' ? args.limit : 25,
       });
+      const leads = filterLeadSearch(found, query, granted);
       return { ok: true, tool, data: { leads } };
     }
     case 'get_lead': {

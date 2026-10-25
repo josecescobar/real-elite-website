@@ -36,6 +36,38 @@ export function leadView(lead: Lead | null, scopes: readonly AgentScope[]): Lead
   return { ...lead, facts: redactFacts(lead.facts ?? {}), raw: null };
 }
 
+/**
+ * The store's search also matches customer name, email and phone. Without
+ * `customers:read` a hit on those would confirm contact details, so results
+ * are kept only when the query matches a field the caller can see.
+ */
+const VISIBLE_SEARCH_FIELDS = [
+  'id',
+  'source',
+  'sourceLeadId',
+  'status',
+  'projectType',
+  'projectSummary',
+  'city',
+  'state',
+  'zip',
+] as const;
+
+export function filterLeadSearch(
+  leads: Lead[],
+  query: string | undefined,
+  scopes: readonly AgentScope[]
+): Lead[] {
+  const needle = query?.trim().toLowerCase();
+  if (!needle || canReadCustomers(scopes)) return leads;
+  return leads.filter((lead) =>
+    VISIBLE_SEARCH_FIELDS.some((field) => {
+      const value = lead[field];
+      return typeof value === 'string' && value.toLowerCase().includes(needle);
+    })
+  );
+}
+
 export function conversationView(
   conversation: Conversation | null,
   scopes: readonly AgentScope[]

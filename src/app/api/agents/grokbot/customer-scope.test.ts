@@ -287,6 +287,31 @@ describe('customers:read gates customer contact data on lead endpoints', () => {
     expect(leaksContact(restrictedTaskBody)).toBe(false);
   });
 
+  it('does not let a leads:read-only key search by customer contact details', async () => {
+    const id = await seedLead();
+    for (const q of [EMAIL, PHONE, 'Pat Sample', '0142']) {
+      const res = await listLeads(
+        authed(`http://localhost/api/sales/leads?q=${encodeURIComponent(q)}`, GROK)
+      );
+      expect((await res.json()).leads).toEqual([]);
+      const tool = await callTool(
+        postJson('http://localhost/api/agents/grokbot/tools', GROK, {
+          tool: 'search_leads',
+          arguments: { query: q },
+        })
+      );
+      expect((await tool.json()).data.leads).toEqual([]);
+    }
+    const visible = await listLeads(
+      authed(`http://localhost/api/sales/leads?q=${encodeURIComponent('bathroom')}`, GROK)
+    );
+    expect((await visible.json()).leads.map((lead: { id: string }) => lead.id)).toEqual([id]);
+    const full = await listLeads(
+      authed(`http://localhost/api/sales/leads?q=${encodeURIComponent(EMAIL)}`, ADMIN)
+    );
+    expect((await full.json()).leads).toHaveLength(1);
+  });
+
   it('redacts task results run under an explicit permissions list without customers:read', async () => {
     const id = await seedLead();
     const created = await createTask(
