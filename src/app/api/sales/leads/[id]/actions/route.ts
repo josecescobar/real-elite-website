@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { authorizeAgent } from '@/lib/sales/agents/auth';
+import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
+import { leadView } from '@/lib/sales/agents/redact';
 import { runAgentTool } from '@/lib/sales/agents/tools';
 import { SALES_OWNER } from '@/lib/sales/company';
 import { getSalesStore } from '@/lib/sales/store';
@@ -13,14 +14,14 @@ export async function POST(
   context: { params: Promise<{ id: string }> }
 ) {
   const body = await request.json().catch(() => null);
-  const auth = authorizeAgent(request, {
-    required: ['leads:write'],
+  const action = typeof body?.action === 'string' ? (body.action as Action) : null;
+  const auth = await authorizeAgentRequest(request, {
+    required: action === 'send' ? ['leads:send'] : ['leads:write'],
     bodyKey: body && typeof body === 'object' ? (body as { key?: unknown }).key : undefined,
   });
-  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  if (agentGateDenied(auth)) return auth;
 
   const { id } = await context.params;
-  const action = typeof body?.action === 'string' ? (body.action as Action) : null;
   if (!action) return NextResponse.json({ error: 'action is required.' }, { status: 400 });
 
   const store = getSalesStore();
@@ -33,13 +34,13 @@ export async function POST(
       draftReply: draft,
       draftStatus: action === 'approve' ? 'approved' : 'drafted',
     });
-    return NextResponse.json({ ok: true, lead: updated });
+    return NextResponse.json({ ok: true, lead: leadView(updated, auth.scopes) });
   }
 
   if (action === 'pause') {
     await store.cancelFollowups(id, 'ai_paused');
     const updated = await store.updateLead(id, { aiPaused: true, status: 'paused', bucket: 'follow_up' });
-    return NextResponse.json({ ok: true, lead: updated });
+    return NextResponse.json({ ok: true, lead: leadView(updated, auth.scopes) });
   }
 
   if (action === 'takeover') {
@@ -49,7 +50,7 @@ export async function POST(
       assignedTo: SALES_OWNER.firstName,
       escalationReasons: [...new Set([...lead.escalationReasons, 'jose_takeover' as const])],
     });
-    return NextResponse.json({ ok: true, lead: updated });
+    return NextResponse.json({ ok: true, lead: leadView(updated, auth.scopes) });
   }
 
   if (action === 'send') {

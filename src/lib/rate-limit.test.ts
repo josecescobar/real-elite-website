@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { rateLimit, getClientIp } from './rate-limit';
+import { rateLimit, rateLimitPeek, getClientIp } from './rate-limit';
 
 afterEach(() => {
   vi.useRealTimers();
@@ -30,6 +30,17 @@ describe('rateLimit (in-memory fallback)', () => {
 
     vi.advanceTimersByTime(61_000);
     expect((await rateLimit(key, 2, 60_000)).allowed).toBe(true);
+  });
+
+  it('peeks a full window without incrementing the counter', async () => {
+    const key = `peek:${Math.random()}`;
+    expect((await rateLimitPeek(key, 1, 60_000)).allowed).toBe(true);
+    expect((await rateLimitPeek(key, 1, 60_000)).allowed).toBe(true);
+    expect((await rateLimit(key, 1, 60_000)).allowed).toBe(true);
+    const full = await rateLimitPeek(key, 1, 60_000);
+    expect(full.allowed).toBe(false);
+    expect(full.retryAfter).toBeGreaterThan(0);
+    expect((await rateLimitPeek(key, 1, 60_000)).allowed).toBe(false);
   });
 
   it('tracks keys independently', async () => {
@@ -231,4 +242,149 @@ describe('outbound caps fail closed on Upstash errors', () => {
       expect((await rateLimit('estimate:203.0.113.9', 5, 60_000)).allowed).toBe(true);
     });
   }
+});
+
+describe('agent counters fail closed; public lead limiter stays open', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+    delete process.env.UPSTASH_REDIS_REST_URL;
+    delete process.env.UPSTASH_REDIS_REST_TOKEN;
+  });
+
+  function upstashEnv() {
+    process.env.UPSTASH_REDIS_REST_URL = 'https://upstash.example';
+    process.env.UPSTASH_REDIS_REST_TOKEN = 'token';
+  }
+
+  const outages: [string, () => Promise<Response>][] = [
+    ['Upstash throws', () => Promise.reject(new Error('ECONNRESET'))],
+    [
+      'Upstash returns a malformed body',
+      async () => new Response(JSON.stringify([{ error: 'WRONGTYPE' }]), { status: 200 }),
+    ],
+  ];
+
+  for (const [label, respond] of outages) {
+    it(`keeps rateLimit fail-open for lead capture when ${label}`, async () => {
+      upstashEnv();
+      vi.stubGlobal('fetch', vi.fn().mockImplementation(respond));
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      const { rateLimit } = await loadFreshLimiter();
+      const verdict = await rateLimit('estimate:203.0.113.10', 5, 60_000);
+      expect(verdict.allowed).toBe(true);
+      expect(verdict.counterError).toBeUndefined();
+    });
+
+    it(`denies rateLimit and rateLimitPeek when ${label} and failClosed is set`, async () => {
+      upstashEnv();
+      vi.stubGlobal('fetch', vi.fn().mockImplementation(respond));
+      const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const { rateLimit, rateLimitPeek } = await loadFreshLimiter();
+      expect(await rateLimit('agent-burst:203.0.113.11', 20, 60_000, { failClosed: true })).toEqual({
+        allowed: false,
+        retryAfter: 0,
+        counterError: true,
+      });
+      expect(await rateLimitPeek('agent-fail:203.0.113.11', 5, 60_000, { failClosed: true })).toEqual({
+        allowed: false,
+        retryAfter: 0,
+        counterError: true,
+      });
+      expect(error).toHaveBeenCalledWith(expect.stringMatching(/failing closed/));
+    });
+  }
+
+  it('still fail-opens a peek that did not ask to fail closed', async () => {
+    upstashEnv();
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('ECONNRESET')));
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { rateLimitPeek } = await loadFreshLimiter();
+    expect(await rateLimitPeek('agent-fail:203.0.113.12', 5, 60_000)).toMatchObject({
+      allowed: true,
+    });
+  });
+});
+
+describe('rateLimitPeek validates every Upstash pipeline entry', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+    delete process.env.UPSTASH_REDIS_REST_URL;
+    delete process.env.UPSTASH_REDIS_REST_TOKEN;
+  });
+
+  function peekResponds(body: unknown) {
+    process.env.UPSTASH_REDIS_REST_URL = 'https://upstash.example';
+    process.env.UPSTASH_REDIS_REST_TOKEN = 'token';
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockImplementation(async () => new Response(JSON.stringify(body), { status: 200 }))
+    );
+  }
+
+  const malformed: [string, unknown][] = [
+    ['an empty PTTL entry', [{ result: '0' }, {}]],
+    ['a missing count result', [{}, { result: 1000 }]],
+    ['an error entry on GET', [{ error: 'WRONGTYPE' }, { result: 1000 }]],
+    ['an error entry on PTTL', [{ result: '0' }, { error: 'ERR' }]],
+    ['a non-numeric count', [{ result: 'lots' }, { result: 1000 }]],
+    ['a fractional count', [{ result: '1.5' }, { result: 1000 }]],
+    ['a negative count', [{ result: '-1' }, { result: 1000 }]],
+    ['a non-numeric PTTL', [{ result: '0' }, { result: 'soon' }]],
+    ['a null PTTL', [{ result: '0' }, { result: null }]],
+    ['a non-object entry', [null, { result: 1000 }]],
+  ];
+
+  for (const [label, body] of malformed) {
+    it(`denies a failClosed peek on ${label}`, async () => {
+      peekResponds(body);
+      const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const { rateLimitPeek } = await loadFreshLimiter();
+      expect(await rateLimitPeek('agent-fail:203.0.113.70', 5, 60_000, { failClosed: true })).toEqual({
+        allowed: false,
+        retryAfter: 0,
+        counterError: true,
+      });
+      expect(error).toHaveBeenCalledWith(expect.stringMatching(/failing closed/));
+    });
+
+    it(`fails open on ${label} when failClosed is not set`, async () => {
+      peekResponds(body);
+      const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const { rateLimitPeek } = await loadFreshLimiter();
+      expect(await rateLimitPeek('agent-fail:203.0.113.71', 5, 60_000)).toEqual({
+        allowed: true,
+        retryAfter: 0,
+      });
+      expect(error).toHaveBeenCalledWith(expect.stringMatching(/failing open/));
+    });
+  }
+
+  it('treats a missing key (GET null, PTTL -2) as zero hits', async () => {
+    peekResponds([{ result: null }, { result: -2 }]);
+    const { rateLimitPeek } = await loadFreshLimiter();
+    expect(await rateLimitPeek('agent-fail:203.0.113.72', 5, 60_000, { failClosed: true })).toEqual({
+      allowed: true,
+      retryAfter: 0,
+    });
+  });
+
+  it('allows a valid count under the limit', async () => {
+    peekResponds([{ result: '4' }, { result: 30_000 }]);
+    const { rateLimitPeek } = await loadFreshLimiter();
+    expect(await rateLimitPeek('agent-fail:203.0.113.73', 5, 60_000, { failClosed: true })).toEqual({
+      allowed: true,
+      retryAfter: 0,
+    });
+  });
+
+  it('denies a full window with retryAfter from PTTL', async () => {
+    peekResponds([{ result: '5' }, { result: 30_000 }]);
+    const { rateLimitPeek } = await loadFreshLimiter();
+    expect(await rateLimitPeek('agent-fail:203.0.113.74', 5, 60_000, { failClosed: true })).toEqual({
+      allowed: false,
+      retryAfter: 30,
+    });
+  });
 });

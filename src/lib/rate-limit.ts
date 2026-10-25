@@ -8,8 +8,9 @@
  * Upstash REST API so the limit holds globally. Without those vars the
  * limiter falls back to the in-memory Map — same behavior as before.
  *
- * Redis errors fail OPEN: a broken limiter must never block a real
- * lead from reaching the inbox.
+ * Redis errors fail OPEN by default: a broken limiter must never block
+ * a real lead from reaching the inbox. Agent and admin guards pass
+ * `{ failClosed: true }` so an unreadable counter denies those requests.
  */
 
 import { env } from './env';
@@ -143,6 +144,105 @@ export async function rateLimit(
     }
   }
   return memoryLimit(key, max, windowMs);
+}
+
+/**
+ * Integer from an Upstash result (number or numeric string). Anything else,
+ * including fractions, NaN and empty strings, is null.
+ */
+function integerResult(value: unknown): number | null {
+  const n =
+    typeof value === 'number'
+      ? value
+      : typeof value === 'string' && value.trim() !== ''
+        ? Number(value)
+        : NaN;
+  return Number.isSafeInteger(n) ? n : null;
+}
+
+async function upstashPeek(
+  url: string,
+  token: string,
+  key: string,
+  max: number,
+  windowMs: number
+): Promise<RateLimitVerdict> {
+  const res = await fetch(`${url}/pipeline`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify([
+      ['GET', key],
+      ['PTTL', key],
+    ]),
+    cache: 'no-store',
+  });
+  if (!res.ok) throw new Error(`Upstash responded ${res.status}`);
+
+  const results = (await res.json().catch(() => null)) as
+    | { result?: unknown; error?: unknown }[]
+    | null;
+  if (!Array.isArray(results) || results.length !== 2) {
+    throw new Error('Upstash returned a malformed pipeline body');
+  }
+  // Validate both entries before deciding anything: an error entry, a
+  // missing `result`, a count that is not a non-negative integer, or a
+  // PTTL that is not an integer all mean the counter state is unknown.
+  for (const entry of results) {
+    if (!entry || typeof entry !== 'object' || entry.error !== undefined) {
+      throw new Error('Upstash pipeline command failed');
+    }
+    if (!('result' in entry)) throw new Error('Upstash peek result missing');
+  }
+  // GET answers null for a key that does not exist yet: zero hits.
+  const count = results[0].result === null ? 0 : integerResult(results[0].result);
+  if (count === null || count < 0) throw new Error('Upstash peek count invalid');
+  // PTTL is -2 (no key), -1 (no expiry) or the milliseconds left.
+  const ttl = integerResult(results[1].result);
+  if (ttl === null) throw new Error('Upstash peek PTTL invalid');
+
+  if (count >= max) {
+    const ttlMs = ttl > 0 ? ttl : windowMs;
+    return { allowed: false, retryAfter: Math.max(1, Math.ceil(ttlMs / 1000)) };
+  }
+  return { allowed: true, retryAfter: 0 };
+}
+
+/**
+ * Read a counter without incrementing it. A full window is `count >= max`
+ * on both the in-memory map and Upstash (the next `rateLimit` call would
+ * be denied). Upstash read failures fail OPEN unless `{ failClosed: true }`
+ * is set (agent/admin lockout checks).
+ */
+export async function rateLimitPeek(
+  key: string,
+  max: number,
+  windowMs: number,
+  opts: { failClosed?: boolean } = {}
+): Promise<RateLimitVerdict> {
+  const creds = upstashCredentials();
+  if (creds) {
+    try {
+      return await upstashPeek(creds.url, creds.token, key, max, windowMs);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      if (opts.failClosed) {
+        console.error(`rate-limit: Upstash peek unavailable, failing closed: ${message}`);
+        return { allowed: false, retryAfter: 0, counterError: true };
+      }
+      console.error(`rate-limit: Upstash peek unavailable, failing open: ${message}`);
+      return { allowed: true, retryAfter: 0 };
+    }
+  }
+  const now = Date.now();
+  const entry = memoryHits.get(key);
+  if (!entry || entry.resetAt < now) return { allowed: true, retryAfter: 0 };
+  if (entry.count >= max) {
+    return { allowed: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) };
+  }
+  return { allowed: true, retryAfter: 0 };
 }
 
 export type OutboundDecision = {

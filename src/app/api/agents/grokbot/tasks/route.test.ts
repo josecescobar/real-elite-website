@@ -16,6 +16,7 @@ beforeEach(() => {
 
 afterEach(() => {
   delete process.env.GROKBOT_API_KEY;
+  delete process.env.ADMIN_TOOLS_KEY;
   vi.restoreAllMocks();
   resetSalesStore();
 });
@@ -73,6 +74,96 @@ describe('POST /api/agents/grokbot/tasks', () => {
     expect(json.task.status).toBe('completed');
     expect(json.task.requestingAgent).toBe('chatgpt');
     expect(JSON.stringify(json.task.result)).toMatch(/Kitchen|cabinets|Leesburg/i);
+  });
+
+  it('does not let an explicit leads:send permission escalate the grokbot key', async () => {
+    const inbound = parseThumbtackPayload({
+      eventID: 'evt_send_scope',
+      eventType: 'NegotiationCreatedV4',
+      data: {
+        negotiationID: 'neg_send_scope',
+        customer: { name: 'Sam Neighbor' },
+        request: {
+          category: 'Kitchen Remodel',
+          description: 'Need new cabinets in Leesburg',
+          location: { zipCode: '20176', city: 'Leesburg', state: 'VA' },
+        },
+      },
+    });
+    const seeded = await ingestInboundLead(inbound!);
+
+    const { POST } = await loadRoute();
+    const res = await POST(
+      new Request('http://localhost/api/agents/grokbot/tasks', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: 'Bearer test-grokbot-key-value',
+          'x-forwarded-for': '198.51.100.77',
+        },
+        body: JSON.stringify({
+          requestingAgent: 'chatgpt',
+          instruction: 'Send the reply to this lead',
+          context: { leadId: seeded.lead?.id },
+          permissions: ['leads:send'],
+        }),
+      })
+    );
+    expect(res.status).toBe(201);
+    const json = await res.json();
+    expect(json.task.status).toBe('failed');
+    expect(json.task.error).toMatch(/Missing scope/);
+  });
+
+  it.each([
+    ['an explicit empty list', []],
+    ['only unknown names', ['not-a-scope', 'also-nope']],
+  ])('does not run tools for %s, including leads:send with the admin key', async (_label, permissions) => {
+    process.env.ADMIN_TOOLS_KEY = 'test-admin-key-value';
+    const inbound = parseThumbtackPayload({
+      eventID: `evt_empty_${permissions.length}`,
+      eventType: 'NegotiationCreatedV4',
+      data: {
+        negotiationID: `neg_empty_${permissions.length}`,
+        customer: { name: 'Sam Neighbor' },
+        request: {
+          category: 'Kitchen Remodel',
+          description: 'Need new cabinets in Leesburg',
+          location: { zipCode: '20176', city: 'Leesburg', state: 'VA' },
+        },
+      },
+    });
+    const seeded = await ingestInboundLead(inbound!);
+
+    const { POST } = await loadRoute();
+    const res = await POST(
+      new Request('http://localhost/api/agents/grokbot/tasks', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: 'Bearer test-admin-key-value',
+          'x-forwarded-for': `198.51.100.${80 + permissions.length}`,
+        },
+        body: JSON.stringify({
+          requestingAgent: 'chatgpt',
+          instruction: 'Send the reply to this lead',
+          context: { leadId: seeded.lead?.id },
+          permissions,
+        }),
+      })
+    );
+    expect(res.status).toBe(201);
+    const json = await res.json();
+    expect(json.task.status).toBe('failed');
+    expect(json.task.permissions).toEqual([]);
+    expect(json.task.result.tools).toEqual([
+      {
+        ok: false,
+        tool: 'send_customer_reply',
+        error: 'Missing scope for send_customer_reply',
+      },
+    ]);
+    expect(JSON.stringify(json.task.result)).not.toMatch(/"sent"\s*:\s*true/);
   });
 });
 

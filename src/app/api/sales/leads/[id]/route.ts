@@ -1,5 +1,12 @@
 import { NextResponse } from 'next/server';
-import { authorizeAgent } from '@/lib/sales/agents/auth';
+import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
+import {
+  conversationView,
+  customerView,
+  followupsView,
+  leadView,
+  messagesView,
+} from '@/lib/sales/agents/redact';
 import { getSalesStore } from '@/lib/sales/store';
 
 export const runtime = 'nodejs';
@@ -9,8 +16,8 @@ export async function GET(
   context: { params: Promise<{ id: string }> }
 ) {
   // Header-only auth: a `?key=` query parameter is ignored (audit M1).
-  const auth = authorizeAgent(request, { required: ['leads:read'] });
-  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  const auth = await authorizeAgentRequest(request, { required: ['leads:read'] });
+  if (agentGateDenied(auth)) return auth;
 
   const { id } = await context.params;
   const store = getSalesStore();
@@ -24,5 +31,12 @@ export async function GET(
     store.listFollowups(lead.id),
   ]);
 
-  return NextResponse.json({ lead, customer, conversation, messages, followups });
+  // Contact data needs `customers:read` (see leads list route).
+  return NextResponse.json({
+    lead: leadView(lead, auth.scopes),
+    customer: customerView(customer, auth.scopes),
+    conversation: conversationView(conversation, auth.scopes),
+    messages: messagesView(messages, auth.scopes),
+    followups: followupsView(followups, auth.scopes),
+  });
 }

@@ -129,6 +129,13 @@ export const env = {
   salesAgentMode: (): string | undefined => process.env.SALES_AGENT_MODE,
   /** Bearer key for /api/agents/grokbot/* (ChatGPT bridge + tools). */
   grokbotApiKey: (): string | undefined => process.env.GROKBOT_API_KEY,
+  /**
+   * Comma-separated scope override for GROKBOT_API_KEY. Unset or blank
+   * keeps the reduced default (every scope except leads:send). A set
+   * value with no recognized scope grants nothing. ADMIN_TOOLS_KEY
+   * ignores this and always has every scope.
+   */
+  grokbotScopes: (): string | undefined => process.env.GROKBOT_SCOPES,
   /** Optional follow-up cadence, e.g. "2h,24h,3d,7d". */
   salesFollowupCadence: (): string | undefined => process.env.SALES_FOLLOWUP_CADENCE,
   thumbtackWebhookUser: (): string | undefined => process.env.THUMBTACK_WEBHOOK_USER,

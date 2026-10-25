@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { authorizeAgent } from '@/lib/sales/agents/auth';
+import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
+import { taskView } from '@/lib/sales/agents/redact';
 import { CHATGPT_TOOL_DEFINITIONS, createAndRunTask } from '@/lib/sales/agents/tasks';
 import { getSalesStore } from '@/lib/sales/store';
 
@@ -8,29 +9,28 @@ export const runtime = 'nodejs';
 export async function GET(request: Request) {
   const url = new URL(request.url);
   // Header-only auth on GET: a `?key=` query parameter is ignored (audit M1).
+  const auth = await authorizeAgentRequest(request, { required: ['leads:read'] });
+  if (agentGateDenied(auth)) return auth;
   if (url.searchParams.get('tools') === '1') {
-    const auth = authorizeAgent(request);
-    if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
     return NextResponse.json({ tools: CHATGPT_TOOL_DEFINITIONS });
   }
 
-  const auth = authorizeAgent(request, { required: ['leads:read'] });
-  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
   const tasks = await getSalesStore().listTasks(50);
-  return NextResponse.json({ tasks });
+  // Redact per caller: stored results reflect the scopes of whoever ran them.
+  return NextResponse.json({ tasks: tasks.map((task) => taskView(task, auth.scopes)) });
 }
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
-  if (!body || typeof body !== 'object') {
+  const record = body && typeof body === 'object' ? body : null;
+  const auth = await authorizeAgentRequest(request, {
+    required: ['tasks:write'],
+    bodyKey: record && 'apiKey' in record ? (record as { apiKey?: unknown }).apiKey : undefined,
+  });
+  if (agentGateDenied(auth)) return auth;
+  if (!record) {
     return NextResponse.json({ error: 'JSON object required.' }, { status: 400 });
   }
-
-  const auth = authorizeAgent(request, {
-    required: ['tasks:write'],
-    bodyKey: (body as { apiKey?: unknown }).apiKey,
-  });
-  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
 
   const row = body as {
     taskId?: unknown;
@@ -66,5 +66,5 @@ export async function POST(request: Request) {
     auth
   );
 
-  return NextResponse.json({ ok: true, task }, { status: 201 });
+  return NextResponse.json({ ok: true, task: taskView(task, auth.scopes) }, { status: 201 });
 }
