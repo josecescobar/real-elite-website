@@ -90,26 +90,40 @@ export default function RoofQuoteTool() {
       const res = await fetch('/api/roof-estimate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address: trimmed }),
+        body: JSON.stringify({ address: trimmed, ...turnstilePayload(turnstileToken) }),
       });
-      if (res.status === 429) {
-        setAddressError('A few too many tries — give it a minute and go again.');
+      const data = await res.json().catch(() => null);
+      const reason = typeof data?.reason === 'string' ? data.reason : '';
+      // A daily cap or a missing shared counter must not trap the homeowner
+      // on the address step. Per-IP throttling and validation still do.
+      const continueManually = reason === 'cap_reached' || reason === 'counter_unavailable';
+      if ((res.status === 429 || res.status === 400) && !continueManually) {
+        setAddressError(
+          typeof data?.error === 'string'
+            ? data.error
+            : res.status === 429
+              ? 'A few too many tries — give it a minute and go again.'
+              : 'Please enter a full street address.'
+        );
+        setTurnstileReset((n) => n + 1);
         return;
       }
-      const data = await res.json().catch(() => null);
       if (data?.covered) {
         setSquares(data.squares);
         setResolvedAddress(data.formattedAddress || trimmed);
         setSource('auto');
+        setTurnstileToken('');
         trackEvent('roof_quote_measure', { result: 'auto' });
         setPhase('material');
       } else {
         // No satellite coverage (or no key yet) — fall back to quick questions.
+        setTurnstileToken('');
         setResolvedAddress(trimmed);
         trackEvent('roof_quote_measure', { result: 'fallback', reason: data?.reason ?? 'unknown' });
         setPhase('fallback');
       }
     } catch {
+      setTurnstileToken('');
       setResolvedAddress(trimmed);
       setPhase('fallback');
     } finally {
@@ -272,6 +286,7 @@ export default function RoofQuoteTool() {
               {addressError}
             </p>
           )}
+          <TurnstileWidget onToken={setTurnstileToken} resetSignal={turnstileReset} />
           <p className="text-charcoal-500 text-xs mt-3 leading-relaxed">
             If your address isn&apos;t covered by satellite data, we&apos;ll ask a couple of quick
             questions instead. Either way, it takes about a minute.
