@@ -14,6 +14,8 @@ const ENV_KEYS = [
   'UPSTASH_REDIS_REST_URL',
   'UPSTASH_REDIS_REST_TOKEN',
   'NEXT_PUBLIC_GTM_ID',
+  'TURNSTILE_SECRET_KEY',
+  'NEXT_PUBLIC_TURNSTILE_SITE_KEY',
 ];
 
 beforeEach(() => {
@@ -80,5 +82,12 @@ describe('validateEnv', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     validateEnv();
     expect(warn).toHaveBeenCalledWith(expect.stringContaining('Upstash rate limiting is only partially configured'));
+  });
+
+  it('warns when only one Turnstile key is set', () => {
+    process.env.TURNSTILE_SECRET_KEY = 'secret';
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    validateEnv();
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('Turnstile is only partially configured'));
   });
 });

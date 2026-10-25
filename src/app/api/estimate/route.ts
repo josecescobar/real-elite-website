@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server';
 import { BUSINESS } from '@/lib/constants';
 import { env } from '@/lib/env';
-import { rateLimit, getClientIp } from '@/lib/rate-limit';
+import { buildOwnerLeadSms } from '@/lib/owner-sms';
+import { rateLimit, getClientIp, reserveCustomerConfirmation, reserveOwnerSms } from '@/lib/rate-limit';
+import { verifyTurnstile } from '@/lib/turnstile';
+import { redactForLog } from '@/lib/redact';
 import { recordLead, inferLeadType } from '@/lib/leads';
 import { summarizeLead } from '@/lib/ai-lead-summary';
 import { readSmsConsent } from '@/lib/sms-consent';
@@ -64,23 +67,27 @@ function escapeHtml(s: string) {
 
 /**
  * Warm, plain confirmation sent to the customer after any form submission.
+ * The greeting is generic on purpose: the submitted name is attacker-controlled
+ * and must not be echoed (mail clients auto-link a name that looks like a URL).
  * The optional checkbox is SMS-only, so a checked box never promises a call.
- * `safeFirstName` must already be HTML-escaped by the caller.
  */
-function customerConfirmationHtml(safeFirstName: string, consent: boolean) {
+function customerConfirmationContent(consent: boolean): { html: string; text: string } {
   const textStep = consent
+    ? 'You agreed we may text this number about your project, including estimate scheduling and updates. Reply STOP to opt out.'
+    : "We won't text this number unless you checked the text-message box on the form.";
+  const htmlStep = consent
     ? `<li style="margin-bottom: 6px;">You agreed we may text this number about your project, including estimate scheduling and updates. Reply STOP to opt out.</li>`
     : `<li style="margin-bottom: 6px;">We won&#39;t text this number unless you checked the text-message box on the form.</li>`;
   const nextSteps = `<li style="margin-bottom: 6px;">A project lead will review your request and reply by email.</li>
-          ${textStep}`;
-  return `
+          ${htmlStep}`;
+  const html = `
     <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2744;">
       <div style="background-color: #1a2744; padding: 20px; text-align: center;">
         <h1 style="color: #ffffff; margin: 0; font-size: 20px; letter-spacing: 0.5px;">Real Elite Contracting</h1>
         <p style="color: #c0392b; margin: 4px 0 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Built With Military Precision</p>
       </div>
       <div style="padding: 24px 20px; line-height: 1.6;">
-        <p style="margin: 0 0 14px;">Hi ${safeFirstName},</p>
+        <p style="margin: 0 0 14px;">Hello,</p>
         <p style="margin: 0 0 14px;">Thanks for reaching out — we&#39;ve got your request and it&#39;s with a project lead now. Here&#39;s what happens next:</p>
         <ul style="margin: 0 0 16px; padding-left: 20px;">
           ${nextSteps}
@@ -93,6 +100,20 @@ function customerConfirmationHtml(safeFirstName: string, consent: boolean) {
       </div>
     </div>
   `;
+  const text = [
+    'Hello,',
+    '',
+    "Thanks for reaching out — we've got your request and it's with a project lead now. Here's what happens next:",
+    '',
+    'A project lead will review your request and reply by email.',
+    textStep,
+    '',
+    "If you'd rather not wait, you're always welcome to call or text us directly:",
+    BUSINESS.phone,
+    '',
+    'Family-run. Licensed & insured in WV, VA and PA.',
+  ].join('\n');
+  return { html, text };
 }
 
 type Field = keyof typeof MAX;
@@ -128,9 +149,21 @@ export async function POST(request: Request) {
     const body = await request.json();
     const website = body?.website;
 
-    // Honeypot: silently succeed so bots don't retry
+    // Honeypot: silently succeed so bots don't retry. This stays ahead of
+    // Turnstile so a filled honeypot is never blocked by a missing token.
     if (typeof website === 'string' && website.length > 0) {
       return NextResponse.json({ message: 'Estimate request sent successfully' }, { status: 200 });
+    }
+
+    const turnstile = await verifyTurnstile(
+      typeof body?.turnstileToken === 'string' ? body.turnstileToken : undefined,
+      ip
+    );
+    if (!turnstile.ok) {
+      return NextResponse.json(
+        { error: 'Verification failed. Please try again.' },
+        { status: 400 }
+      );
     }
 
     // Collect + validate fields
@@ -172,17 +205,15 @@ export async function POST(request: Request) {
       userAgent: request.headers.get('user-agent') ?? '',
     });
 
+    // Every delivery channel below (owner email, owner SMS, lead ledger, lead
+    // webhook) is attempted independently, so one outage never drops the
+    // others. The lead is accepted when at least one durable channel (owner
+    // email, ledger, or webhook) succeeded.
     if (!RESEND_API_KEY) {
       console.error(
         'RESEND_API_KEY is not set — add it in Vercel project settings ' +
-          '(see docs/DEPLOYMENT_CHECKLIST.md). Falling back to a graceful ' +
-          'user message instead of a hard 500.'
-      );
-      return NextResponse.json(
-        {
-          error: `We couldn't send the request automatically. Please call ${BUSINESS.phone} and we'll take it from there.`,
-        },
-        { status: 503 }
+          '(see docs/DEPLOYMENT_CHECKLIST.md). Skipping the owner email; ' +
+          'the SMS, ledger and webhook are still attempted.'
       );
     }
 
@@ -265,43 +296,51 @@ export async function POST(request: Request) {
         </div>`
       : '';
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'Real Elite Contracting <info@realelitecontracting.com>',
-        to: [TO_EMAIL],
-        subject: `New Estimate Request: ${values.service} — ${values.fullName}`,
-        reply_to: values.email,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background-color: #1a2744; padding: 20px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 22px; letter-spacing: 0.5px;">New Estimate Request</h1>
-              <p style="color: #c0392b; margin: 4px 0 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Built With Military Precision</p>
-            </div>
-            <div style="padding: 24px; background-color: #f8f9fa; border: 1px solid #e2e8f0;">
-              <table style="width: 100%; border-collapse: collapse;">${rowsHtml}</table>
-              ${messageBlock}
-              ${aiSummaryBlock}
-            </div>
-            <div style="padding: 16px; text-align: center; color: #718096; font-size: 12px;">
-              <p>This estimate request was submitted via realelitecontracting.com</p>
-            </div>
-          </div>
-        `,
-      }),
-    });
+    let ownerEmailOk = false;
+    if (RESEND_API_KEY) {
+      try {
+        const resendResponse = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: 'Real Elite Contracting <info@realelitecontracting.com>',
+            to: [TO_EMAIL],
+            subject: `New Estimate Request: ${values.service} — ${values.fullName}`,
+            reply_to: values.email,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="background-color: #1a2744; padding: 20px; text-align: center;">
+                  <h1 style="color: #ffffff; margin: 0; font-size: 22px; letter-spacing: 0.5px;">New Estimate Request</h1>
+                  <p style="color: #c0392b; margin: 4px 0 0; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Built With Military Precision</p>
+                </div>
+                <div style="padding: 24px; background-color: #f8f9fa; border: 1px solid #e2e8f0;">
+                  <table style="width: 100%; border-collapse: collapse;">${rowsHtml}</table>
+                  ${messageBlock}
+                  ${aiSummaryBlock}
+                </div>
+                <div style="padding: 16px; text-align: center; color: #718096; font-size: 12px;">
+                  <p>This estimate request was submitted via realelitecontracting.com</p>
+                </div>
+              </div>
+            `,
+          }),
+        });
 
-    if (!resendResponse.ok) {
-      const errorData = await resendResponse.json().catch(() => ({}));
-      console.error('Resend API error:', errorData);
-      return NextResponse.json(
-        { error: 'Failed to send email' },
-        { status: 500 }
-      );
+        if (resendResponse.ok) {
+          ownerEmailOk = true;
+        } else {
+          const errorData = await resendResponse.text().catch(() => '');
+          console.error('Resend API error:', {
+            status: resendResponse.status,
+            body: redactForLog(errorData),
+          });
+        }
+      } catch (err) {
+        console.error('Resend API network error', redactForLog(err));
+      }
     }
 
     // Owner speed-to-lead SMS. This is not a customer text. It is not gated
@@ -315,19 +354,16 @@ export async function POST(request: Request) {
       TWILIO_FROM_NUMBER &&
       TWILIO_TO_NUMBER
     ) {
-      const isLuxury = (values.service ?? '').startsWith('[Luxury Consultation]');
-      const smsBody = [
-        isLuxury ? '🔔 LUXURY LEAD' : '🔔 New Lead',
-        `${values.fullName} · ${values.service}`,
-        values.town ? `Town: ${values.town}` : null,
-        values.budgetRange ? `Budget: ${values.budgetRange}` : null,
-        values.timeline ? `Timeline: ${values.timeline}` : null,
-        values.zip ? `ZIP: ${values.zip}` : null,
-        `📞 ${values.phone}`,
-        '— Real Elite',
-      ]
-        .filter(Boolean)
-        .join('\n');
+      const smsAllowed = await reserveOwnerSms();
+      const smsBody = buildOwnerLeadSms({
+        fullName: values.fullName!,
+        service: values.service!,
+        town: values.town,
+        budgetRange: values.budgetRange,
+        timeline: values.timeline,
+        zip: values.zip,
+        phone: values.phone!,
+      });
 
       const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`;
       const twilioAuth = Buffer.from(
@@ -340,29 +376,34 @@ export async function POST(request: Request) {
         Body: smsBody,
       });
 
-      fetch(twilioUrl, {
-        method: 'POST',
-        headers: {
-          Authorization: `Basic ${twilioAuth}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: twilioForm.toString(),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            return res
-              .text()
-              .then((body) =>
-                console.error('Twilio SMS failed', { status: res.status, body })
-              );
-          }
+      if (smsAllowed.send) {
+        fetch(twilioUrl, {
+          method: 'POST',
+          headers: {
+            Authorization: `Basic ${twilioAuth}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: twilioForm.toString(),
         })
-        .catch((err) => {
-          console.error('Twilio SMS network error', err);
-        });
+          .then((res) => {
+            if (!res.ok) {
+              return res
+                .text()
+                .then((body) =>
+                  console.error('Twilio SMS failed', {
+                    status: res.status,
+                    body: redactForLog(body),
+                  })
+                );
+            }
+          })
+          .catch((err) => {
+            console.error('Twilio SMS network error', redactForLog(err));
+          });
+      }
     }
 
-    // Durable lead ledger. Awaited after the owner email. It never throws.
+    // Durable lead ledger. Attempted whether or not the owner email sent. It never throws.
     // Customer enrollment SMS below runs only when this insert echoes a
     // consent id. A ledger miss still leaves the form and customer email
     // successful. See src/lib/leads.ts.
@@ -404,7 +445,7 @@ export async function POST(request: Request) {
     // Job Board ingest. Same JSON shape as elite-agent phone leads, plus
     // the consent record. Unset LEAD_WEBHOOK_URL is a no-op and never fails
     // the request. See src/lib/lead-webhook.ts.
-    await postLeadWebhook(
+    const webhookOk = await postLeadWebhook(
       buildLeadWebhookPayload(
         {
           name: values.fullName!,
@@ -422,6 +463,19 @@ export async function POST(request: Request) {
       )
     );
 
+    if (!ownerEmailOk && !leadWrite.ok && !webhookOk) {
+      console.error('estimate: every durable delivery channel failed; lead not captured');
+      if (!RESEND_API_KEY) {
+        return NextResponse.json(
+          {
+            error: `We couldn't send the request automatically. Please call ${BUSINESS.phone} and we'll take it from there.`,
+          },
+          { status: 503 }
+        );
+      }
+      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+    }
+
     // Customer enrollment text. consentId is set only when Supabase echoed
     // the lead row. A skipped or failed ledger write leaves it null, the
     // text is not sent, and the form still succeeds.
@@ -432,30 +486,36 @@ export async function POST(request: Request) {
         consentId: leadWrite.ok ? leadWrite.consentId : null,
       });
     } catch (err) {
-      console.error('SMS consent confirmation failed', err);
+      console.error('SMS consent confirmation failed', redactForLog(err));
     }
 
     // Customer confirmation — a warm receipt so they know it landed and what
     // happens next. Non-fatal: the owner email above already captured the
-    // lead, so a failure here is logged and the request still succeeds.
-    const firstName = (values.fullName ?? '').trim().split(/\s+/)[0] || 'there';
-    try {
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: 'Real Elite Contracting <no-reply@realelitecontracting.com>',
-          to: [values.email],
-          reply_to: TO_EMAIL,
-          subject: 'We got your request — here’s what happens next',
-          html: customerConfirmationHtml(escapeHtml(firstName), consent.consent),
-        }),
-      });
-    } catch (err) {
-      console.error('Customer confirmation email failed', err);
+    // lead, so a skip or a failure here is logged and the request still succeeds.
+    const confirmationGate = RESEND_API_KEY
+      ? await reserveCustomerConfirmation(values.email!, values.phone!)
+      : { send: false };
+    if (confirmationGate.send) {
+      const confirmation = customerConfirmationContent(consent.consent);
+      try {
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: 'Real Elite Contracting <no-reply@realelitecontracting.com>',
+            to: [values.email],
+            reply_to: TO_EMAIL,
+            subject: 'We got your request — here’s what happens next',
+            html: confirmation.html,
+            text: confirmation.text,
+          }),
+        });
+      } catch (err) {
+        console.error('Customer confirmation email failed', redactForLog(err));
+      }
     }
 
     return NextResponse.json(
@@ -463,7 +523,7 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('Estimate form error:', error);
+    console.error('Estimate form error:', redactForLog(error));
     return NextResponse.json(
       { error: 'An unexpected error occurred' },
       { status: 500 }

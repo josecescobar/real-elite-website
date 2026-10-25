@@ -23,4 +23,14 @@ describe('buildContentSecurityPolicy', () => {
     expect(policy).toContain('wss://*.pusher.com');
     expect(policy).not.toContain("'unsafe-eval'");
   });
+
+  it('allows Cloudflare Turnstile for script, frame and connect in production and preview', () => {
+    for (const vercelEnv of ['production', 'preview']) {
+      const policy = buildContentSecurityPolicy({ nodeEnv: 'production', vercelEnv });
+      for (const directive of ['script-src', 'frame-src', 'connect-src']) {
+        const clause = policy.split(';').find((part) => part.trim().startsWith(directive));
+        expect(clause, `${vercelEnv} ${directive}`).toContain('https://challenges.cloudflare.com');
+      }
+    }
+  });
 });
