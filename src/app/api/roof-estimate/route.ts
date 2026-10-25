@@ -3,7 +3,6 @@ import { squaresFromAreaMeters2 } from '@/lib/roof-estimate';
 import { env } from '@/lib/env';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 import { verifyTurnstile } from '@/lib/turnstile';
-import { BUSINESS } from '@/lib/constants';
 import {
   readRoofCache,
   reserveRoofGoogleCall,
@@ -23,7 +22,11 @@ import {
  *
  * Turnstile matches /api/estimate: inert when TURNSTILE_SECRET_KEY is unset.
  * Repeated addresses are cached (Upstash, 7 days; in-memory in dev only).
- * Google calls share a daily cap (ROOF_ESTIMATE_DAILY_CAP, default 300).
+ * Only definitive not-found / no-coverage results are cached. Upstream
+ * 429/5xx responses are not. The daily cap (ROOF_ESTIMATE_DAILY_CAP,
+ * default 300) counts each Google HTTP call: Geocoding, then Solar.
+ * Over the cap, or in production without Upstash, Google is skipped and
+ * the response is covered:false so the manual quote can continue.
  */
 
 const RATE_LIMIT = { max: 12, windowMs: 10 * 60 * 1000 };
@@ -32,16 +35,22 @@ type Result =
   | { covered: true; squares: number; formattedAddress: string }
   | {
       covered: false;
-      reason: 'not_configured' | 'address_not_found' | 'no_roof_data' | 'error';
+      reason:
+        | 'not_configured'
+        | 'address_not_found'
+        | 'no_roof_data'
+        | 'error'
+        | 'cap_reached'
+        | 'counter_unavailable';
     };
 
-function callUsResponse() {
-  return NextResponse.json(
-    {
-      error: `We've reached today's roof measurement limit. Call ${BUSINESS.phone} and we'll measure it with you.`,
-    },
-    { status: 429 }
-  );
+function manualContinue(reason: 'cap_reached' | 'counter_unavailable' | 'error') {
+  return NextResponse.json({ covered: false, reason } satisfies Result);
+}
+
+/** Google 429/5xx is a temporary outage, not a fact about this address. */
+function isTransientHttp(status: number): boolean {
+  return status === 429 || status >= 500;
 }
 
 export async function POST(request: Request) {
@@ -87,9 +96,9 @@ export async function POST(request: Request) {
       return NextResponse.json(cached satisfies Result);
     }
 
-    const reservation = await reserveRoofGoogleCall();
-    if (!reservation.allowed) {
-      return callUsResponse();
+    const geoSlot = await reserveRoofGoogleCall();
+    if (!geoSlot.allowed) {
+      return manualContinue(geoSlot.reason);
     }
 
     // 1. Geocode the address to lat/lng.
@@ -97,25 +106,42 @@ export async function POST(request: Request) {
       'https://maps.googleapis.com/maps/api/geocode/json' +
       `?address=${encodeURIComponent(address)}&components=country:US&key=${solarKey}`;
     const geoRes = await fetch(geoUrl);
+    if (isTransientHttp(geoRes.status)) {
+      return manualContinue('error');
+    }
     const geo = await geoRes.json().catch(() => null);
     const place = geo?.results?.[0];
-    if (geo?.status !== 'OK' || !place?.geometry?.location) {
+    if (geo?.status === 'ZERO_RESULTS') {
       const missed: CachedRoofResult = { covered: false, reason: 'address_not_found' };
       await writeRoofCache(address, missed);
       return NextResponse.json(missed satisfies Result);
     }
+    if (geo?.status !== 'OK' || !place?.geometry?.location) {
+      return manualContinue('error');
+    }
     const { lat, lng } = place.geometry.location as { lat: number; lng: number };
     const formattedAddress: string = place.formatted_address ?? address;
+
+    const solarSlot = await reserveRoofGoogleCall();
+    if (!solarSlot.allowed) {
+      return manualContinue(solarSlot.reason);
+    }
 
     // 2. Ask the Solar API for this building's roof.
     const solarUrl =
       'https://solar.googleapis.com/v1/buildingInsights:findClosest' +
       `?location.latitude=${lat}&location.longitude=${lng}&key=${solarKey}`;
     const solarRes = await fetch(solarUrl);
-    if (!solarRes.ok) {
+    if (isTransientHttp(solarRes.status)) {
+      return manualContinue('error');
+    }
+    if (solarRes.status === 404) {
       const missed: CachedRoofResult = { covered: false, reason: 'no_roof_data' };
       await writeRoofCache(address, missed);
       return NextResponse.json(missed satisfies Result);
+    }
+    if (!solarRes.ok) {
+      return manualContinue('error');
     }
     const solar = await solarRes.json().catch(() => null);
     const areaM2: number | undefined = solar?.solarPotential?.wholeRoofStats?.areaMeters2;

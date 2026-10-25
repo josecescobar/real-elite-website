@@ -5,9 +5,12 @@
  * production, so a dev machine still dedupes without Redis. Production
  * without Upstash does not keep a per-instance cache.
  *
- * Cap: ROOF_ESTIMATE_DAILY_CAP (default 300) counts Geocoding + Solar
- * attempts, not cache hits. In production without Upstash the shared
- * counter does not exist, so the route must not call Google.
+ * Cap: ROOF_ESTIMATE_DAILY_CAP (default 300) counts each Google HTTP call.
+ * A full measurement is one Geocoding call plus one Solar call. A
+ * definitive not-found stops after Geocoding and counts one. Cache hits
+ * count zero. In production without Upstash the shared counter does not
+ * exist, so the route must not call Google, but the homeowner still
+ * continues to the manual questions.
  */
 
 import { env } from './env';
@@ -130,18 +133,27 @@ export async function writeRoofCache(address: string, result: CachedRoofResult):
   }
 }
 
+export type RoofGoogleReservation =
+  | { allowed: true }
+  | { allowed: false; reason: 'cap_reached' | 'counter_unavailable' };
+
 /**
- * Reserve one Google Geocoding + Solar attempt. Cache hits must not call this.
- * `allowed: false` means the caller returns the friendly 429 and skips Google.
+ * Reserve one Google HTTP call. Call this immediately before each
+ * Geocoding or Solar fetch. Cache hits must not call this.
+ *
+ * `allowed: false` means skip Google. The route still returns
+ * `covered: false` so the manual quote can continue.
  */
-export async function reserveRoofGoogleCall(): Promise<{ allowed: boolean }> {
+export async function reserveRoofGoogleCall(): Promise<RoofGoogleReservation> {
   if (isProductionRuntime() && !isUpstashConfigured()) {
     console.warn(
       'roof-estimate: UPSTASH_REDIS_REST_URL/TOKEN unset in production; skipping Google calls'
     );
-    return { allowed: false };
+    return { allowed: false, reason: 'counter_unavailable' };
   }
 
   const hit = await rateLimit(DAILY_KEY, roofEstimateDailyCap(), DAY_MS, { failClosed: true });
-  return { allowed: hit.allowed };
+  if (hit.counterError) return { allowed: false, reason: 'counter_unavailable' };
+  if (!hit.allowed) return { allowed: false, reason: 'cap_reached' };
+  return { allowed: true };
 }

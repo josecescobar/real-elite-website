@@ -315,40 +315,184 @@ describe('POST /api/roof-estimate — address cache', () => {
 });
 
 describe('POST /api/roof-estimate — daily Google cap', () => {
-  it('stops Google calls after ROOF_ESTIMATE_DAILY_CAP and asks the caller to call us', async () => {
+  it('counts a Geocoding call and a Solar call, then continues manually', async () => {
     const { fetchMock } = mockGoogleAndUpstash();
-    const POST = await loadPOST({ dailyCap: '1' });
+    const POST = await loadPOST({ dailyCap: '2' });
     const first = await POST(makeRequest(validAddress, '203.0.113.70'));
     expect(first.status).toBe(200);
+    expect((await first.json()).covered).toBe(true);
+    expect(googleCalls(fetchMock)).toHaveLength(2);
 
     const second = await POST(
       makeRequest({ address: '456 Oak Ave, Martinsburg, WV 25401' }, '203.0.113.71')
     );
-    expect(second.status).toBe(429);
-    const body = await second.json();
-    expect(body.error).toMatch(/call/i);
-    expect(body.error).toContain('(681) 534-5515');
+    expect(second.status).toBe(200);
+    expect(await second.json()).toEqual({ covered: false, reason: 'cap_reached' });
     expect(googleCalls(fetchMock)).toHaveLength(2);
+  });
+
+  it('does not make the Solar call when only one cap slot remains', async () => {
+    const { fetchMock } = mockGoogleAndUpstash();
+    const POST = await loadPOST({ dailyCap: '1' });
+    const res = await POST(makeRequest(validAddress, '203.0.113.75'));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ covered: false, reason: 'cap_reached' });
+    const urls = googleCalls(fetchMock).map((call) => String(call[0]));
+    expect(urls).toHaveLength(1);
+    expect(urls[0]).toContain('geocode');
+    expect(urls.some((url) => url.includes('solar.googleapis.com'))).toBe(false);
   });
 
   it('does not spend a Google call on a cache hit after the cap is exhausted', async () => {
     const { fetchMock } = mockGoogleAndUpstash();
-    const POST = await loadPOST({ dailyCap: '1' });
+    const POST = await loadPOST({ dailyCap: '2' });
     expect((await POST(makeRequest(validAddress, '203.0.113.72'))).status).toBe(200);
     const cached = await POST(
       makeRequest({ address: '123 MAIN St, Charleston, WV 25301' }, '203.0.113.73')
     );
     expect(cached.status).toBe(200);
+    expect((await cached.json()).covered).toBe(true);
+    expect(googleCalls(fetchMock)).toHaveLength(2);
+
+    const blocked = await POST(
+      makeRequest({ address: '456 Oak Ave, Martinsburg, WV 25401' }, '203.0.113.76')
+    );
+    expect(await blocked.json()).toEqual({ covered: false, reason: 'cap_reached' });
     expect(googleCalls(fetchMock)).toHaveLength(2);
   });
 
-  it('does not call Google in production when Upstash is unset', async () => {
+  it('does not call Google in production when Upstash is unset, and continues manually', async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal('fetch', fetchMock);
     const POST = await loadPOST({ production: true });
     const res = await POST(makeRequest(validAddress, '203.0.113.74'));
-    expect(res.status).toBe(429);
-    expect((await res.json()).error).toMatch(/call/i);
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ covered: false, reason: 'counter_unavailable' });
     expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
+
+describe('POST /api/roof-estimate — transient Google errors are not cached', () => {
+  const geoOk = () =>
+    new Response(
+      JSON.stringify({
+        status: 'OK',
+        results: [
+          {
+            formatted_address: '123 Main St, Charleston, WV 25301, USA',
+            geometry: { location: { lat: 38.34, lng: -81.63 } },
+          },
+        ],
+      }),
+      { status: 200 }
+    );
+
+  const solarOk = () =>
+    new Response(
+      JSON.stringify({ solarPotential: { wholeRoofStats: { areaMeters2: 200 } } }),
+      { status: 200 }
+    );
+
+  it('retries Google after a Geocoding 429 instead of caching a miss', async () => {
+    let geoAttempts = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('geocode')) {
+        geoAttempts += 1;
+        if (geoAttempts === 1) return new Response('slow down', { status: 429 });
+        return geoOk();
+      }
+      if (url.includes('solar.googleapis.com')) return solarOk();
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(validAddress, '203.0.113.80'));
+    expect(first.status).toBe(200);
+    expect(await first.json()).toEqual({ covered: false, reason: 'error' });
+
+    const second = await POST(makeRequest(validAddress, '203.0.113.81'));
+    expect((await second.json()).covered).toBe(true);
+    expect(geoAttempts).toBe(2);
+    expect(googleCalls(fetchMock)).toHaveLength(3);
+  });
+
+  it('retries Google after a Solar 503 instead of caching no coverage', async () => {
+    let solarAttempts = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('geocode')) return geoOk();
+      if (url.includes('solar.googleapis.com')) {
+        solarAttempts += 1;
+        if (solarAttempts === 1) return new Response('unavailable', { status: 503 });
+        return solarOk();
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(validAddress, '203.0.113.82'));
+    expect(await first.json()).toEqual({ covered: false, reason: 'error' });
+
+    const second = await POST(makeRequest(validAddress, '203.0.113.83'));
+    expect((await second.json()).covered).toBe(true);
+    expect(solarAttempts).toBe(2);
+    expect(googleCalls(fetchMock)).toHaveLength(4);
+  });
+
+  it('does not cache a Geocoding OVER_QUERY_LIMIT status', async () => {
+    let geoAttempts = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('geocode')) {
+        geoAttempts += 1;
+        if (geoAttempts === 1) {
+          return new Response(JSON.stringify({ status: 'OVER_QUERY_LIMIT', results: [] }), { status: 200 });
+        }
+        return geoOk();
+      }
+      if (url.includes('solar.googleapis.com')) return solarOk();
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(validAddress, '203.0.113.84'));
+    expect(await first.json()).toEqual({ covered: false, reason: 'error' });
+    const second = await POST(makeRequest(validAddress, '203.0.113.85'));
+    expect((await second.json()).covered).toBe(true);
+    expect(geoAttempts).toBe(2);
+  });
+
+  it('caches a definitive ZERO_RESULTS miss', async () => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('geocode')) {
+        return new Response(JSON.stringify({ status: 'ZERO_RESULTS', results: [] }), { status: 200 });
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(validAddress, '203.0.113.86'));
+    expect(await first.json()).toEqual({ covered: false, reason: 'address_not_found' });
+    const second = await POST(makeRequest({ address: '123 main st, charleston, wv 25301' }, '203.0.113.87'));
+    expect(await second.json()).toEqual({ covered: false, reason: 'address_not_found' });
+    expect(googleCalls(fetchMock)).toHaveLength(1);
+  });
+
+  it('caches a definitive Solar 404 and does not retry Google', async () => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes('geocode')) return geoOk();
+      if (url.includes('solar.googleapis.com')) return new Response('not found', { status: 404 });
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST();
+    const first = await POST(makeRequest(validAddress, '203.0.113.88'));
+    expect(await first.json()).toEqual({ covered: false, reason: 'no_roof_data' });
+    const second = await POST(makeRequest(validAddress, '203.0.113.89'));
+    expect(await second.json()).toEqual({ covered: false, reason: 'no_roof_data' });
+    expect(googleCalls(fetchMock)).toHaveLength(2);
   });
 });

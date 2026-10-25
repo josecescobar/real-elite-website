@@ -78,10 +78,11 @@ export const env = {
   // ── Google Solar (instant roof quote) ────────────────────────────────────
   googleSolarApiKey: (): string | undefined => process.env.GOOGLE_SOLAR_API_KEY,
   /**
-   * Global cap on Google Geocoding + Solar calls from /api/roof-estimate
-   * per 24h. Default 300 at the call site. Cache hits do not count.
-   * Unset is fine. In production, Google is skipped when Upstash is unset
-   * so a missing counter cannot run up the bill.
+   * Global cap on Google HTTP calls from /api/roof-estimate per 24h.
+   * Default 300 at the call site. One measurement spends two (Geocoding,
+   * then Solar). Cache hits do not count. Unset is fine. In production,
+   * Google is skipped when Upstash is unset so a missing counter cannot
+   * run up the bill; the manual quote still continues.
    */
   roofEstimateDailyCap: (): string | undefined => process.env.ROOF_ESTIMATE_DAILY_CAP,
 

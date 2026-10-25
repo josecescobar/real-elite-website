@@ -93,7 +93,11 @@ export default function RoofQuoteTool() {
         body: JSON.stringify({ address: trimmed, ...turnstilePayload(turnstileToken) }),
       });
       const data = await res.json().catch(() => null);
-      if (res.status === 429 || res.status === 400) {
+      const reason = typeof data?.reason === 'string' ? data.reason : '';
+      // A daily cap or a missing shared counter must not trap the homeowner
+      // on the address step. Per-IP throttling and validation still do.
+      const continueManually = reason === 'cap_reached' || reason === 'counter_unavailable';
+      if ((res.status === 429 || res.status === 400) && !continueManually) {
         setAddressError(
           typeof data?.error === 'string'
             ? data.error
