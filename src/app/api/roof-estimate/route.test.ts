@@ -503,6 +503,64 @@ describe('POST /api/roof-estimate — transient Google errors are not cached', (
     expect(googleCalls(fetchMock)).toHaveLength(4);
   });
 
+  it.each([
+    ['negative', '{"solarPotential":{"wholeRoofStats":{"areaMeters2":-1}}}'],
+    ['non-finite', '{"solarPotential":{"wholeRoofStats":{"areaMeters2":1e999}}}'],
+    ['non-numeric', '{"solarPotential":{"wholeRoofStats":{"areaMeters2":"200"}}}'],
+  ])(
+    'retries the same address after a Solar 200 with a %s roof area instead of caching no coverage',
+    async (_label, malformedBody) => {
+      let solarAttempts = 0;
+      const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+        const url = String(input);
+        if (url.includes('geocode')) return geoOk();
+        if (url.includes('solar.googleapis.com')) {
+          solarAttempts += 1;
+          if (solarAttempts === 1) return new Response(malformedBody, { status: 200 });
+          return solarOk();
+        }
+        throw new Error(`unexpected fetch ${url}`);
+      });
+      vi.stubGlobal('fetch', fetchMock);
+      const POST = await loadPOST();
+      const first = await POST(makeRequest(validAddress, '203.0.113.94'));
+      expect(await first.json()).toEqual({ covered: false, reason: 'error' });
+
+      const second = await POST(makeRequest(validAddress, '203.0.113.95'));
+      expect(await second.json()).toMatchObject({ covered: true, squares: expect.any(Number) });
+      expect(solarAttempts).toBe(2);
+      expect(googleCalls(fetchMock)).toHaveLength(4);
+    }
+  );
+
+  it('does not write a negative Solar area to the Upstash cache', async () => {
+    const sets: string[] = [];
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.endsWith('/pipeline')) {
+        return Response.json([{ result: 1 }, { result: 1 }, { result: 86_400_000 }]);
+      }
+      if (url === 'https://upstash.example') {
+        const cmd = JSON.parse(String(init?.body)) as unknown[];
+        if (cmd[0] === 'SET') sets.push(String(cmd[1]));
+        return Response.json({ result: cmd[0] === 'SET' ? 'OK' : null });
+      }
+      if (url.includes('geocode')) return geoOk();
+      if (url.includes('solar.googleapis.com')) {
+        return new Response(
+          JSON.stringify({ solarPotential: { wholeRoofStats: { areaMeters2: -1 } } }),
+          { status: 200 }
+        );
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    const POST = await loadPOST({ upstash: true, production: true });
+    const res = await POST(makeRequest(validAddress, '203.0.113.96'));
+    expect(await res.json()).toEqual({ covered: false, reason: 'error' });
+    expect(sets).toEqual([]);
+  });
+
   it('caches a definitive Solar 404 and does not retry Google', async () => {
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input);
@@ -517,5 +575,54 @@ describe('POST /api/roof-estimate — transient Google errors are not cached', (
     const second = await POST(makeRequest(validAddress, '203.0.113.89'));
     expect(await second.json()).toEqual({ covered: false, reason: 'no_roof_data' });
     expect(googleCalls(fetchMock)).toHaveLength(2);
+  });
+});
+
+describe('POST /api/roof-estimate — production counter failures fail closed', () => {
+  /**
+   * Upstash is configured but the daily-cap pipeline call fails. The cache
+   * GET/SET endpoint stays healthy so only the counter is under test. The
+   * per-IP limiter shares the pipeline and fails open by design, so the
+   * request must reach the cap check and stop there.
+   */
+  function mockBrokenCounter(pipeline: () => Promise<Response>) {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.endsWith('/pipeline')) return pipeline();
+      if (url === 'https://upstash.example') {
+        const cmd = JSON.parse(String(init?.body)) as unknown[];
+        return Response.json({ result: cmd[0] === 'SET' ? 'OK' : null });
+      }
+      if (url.includes('googleapis.com')) {
+        return new Response(
+          JSON.stringify({ solarPotential: { wholeRoofStats: { areaMeters2: 200 } } }),
+          { status: 200 }
+        );
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    return fetchMock;
+  }
+
+  it.each<[string, () => Promise<Response>]>([
+    ['a network error', async () => {
+      throw new Error('upstash unreachable');
+    }],
+    ['a non-OK HTTP status', async () => new Response('bad gateway', { status: 502 })],
+    ['an error entry', async () =>
+      Response.json([{ error: 'ERR fake failure' }, { result: 1 }, { result: 86_400_000 }])],
+    ['a non-numeric INCR result', async () =>
+      Response.json([{ result: 'seven' }, { result: 1 }, { result: 86_400_000 }])],
+    ['a truncated pipeline', async () => Response.json([{ result: 1 }])],
+    ['a non-JSON body', async () => new Response('<html>oops</html>', { status: 200 })],
+  ])('continues manually with zero Google calls on %s', async (_label, pipeline) => {
+    const fetchMock = mockBrokenCounter(pipeline);
+    const POST = await loadPOST({ upstash: true, production: true });
+    const res = await POST(makeRequest(validAddress, '203.0.113.100'));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ covered: false, reason: 'counter_unavailable' });
+    expect(googleCalls(fetchMock)).toHaveLength(0);
+    expect(fetchMock.mock.calls.some((call) => String(call[0]).endsWith('/pipeline'))).toBe(true);
   });
 });

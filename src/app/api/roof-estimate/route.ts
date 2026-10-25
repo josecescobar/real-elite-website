@@ -23,8 +23,9 @@ import {
  * Turnstile matches /api/estimate: inert when TURNSTILE_SECRET_KEY is unset.
  * Repeated addresses are cached (Upstash, 7 days; in-memory in dev only).
  * Only definitive not-found / no-coverage results are cached. Upstream
- * 429/5xx responses, and a Solar HTTP 200 that is not valid JSON or not a
- * building-insights envelope, are not. The daily cap (ROOF_ESTIMATE_DAILY_CAP,
+ * 429/5xx responses, and a Solar HTTP 200 that is not valid JSON, not a
+ * building-insights envelope, or carries a negative / non-finite roof
+ * area, are not. The daily cap (ROOF_ESTIMATE_DAILY_CAP,
  * default 300) counts each Google HTTP call: Geocoding, then Solar.
  * Over the cap, or in production without Upstash, Google is skipped and
  * the response is covered:false so the manual quote can continue.
@@ -57,14 +58,16 @@ function isTransientHttp(status: number): boolean {
 /**
  * Roof area from a Solar building-insights body.
  * `undefined` means the body is not a valid envelope (do not cache).
- * A finite number, including zero, is a real measurement.
+ * A finite number at or above zero is a real measurement; zero is
+ * definitive no coverage. A negative, NaN, or non-finite area is a
+ * malformed answer, not a fact about this address.
  */
 function solarRoofAreaMeters2(body: unknown): number | undefined {
   if (!body || typeof body !== 'object') return undefined;
   const stats = (body as { solarPotential?: { wholeRoofStats?: { areaMeters2?: unknown } } })
     .solarPotential?.wholeRoofStats;
   const area = stats?.areaMeters2;
-  if (typeof area !== 'number' || !Number.isFinite(area)) return undefined;
+  if (typeof area !== 'number' || !Number.isFinite(area) || area < 0) return undefined;
   return area;
 }
 
@@ -168,7 +171,7 @@ export async function POST(request: Request) {
     if (areaM2 === undefined) {
       return manualContinue('error');
     }
-    if (areaM2 <= 0) {
+    if (areaM2 === 0) {
       const missed: CachedRoofResult = { covered: false, reason: 'no_roof_data' };
       await writeRoofCache(address, missed);
       return NextResponse.json(missed satisfies Result);
