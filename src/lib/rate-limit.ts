@@ -90,15 +90,23 @@ async function upstashLimit(
   const results = (await res.json().catch(() => null)) as
     | { result?: unknown; error?: unknown }[]
     | null;
-  if (!Array.isArray(results)) throw new Error('Upstash returned a non-array pipeline body');
-  const failed = results.find((entry) => entry && entry.error !== undefined);
-  if (failed) throw new Error('Upstash pipeline command failed');
-  const count = results[0]?.result;
-  if (typeof count !== 'number' || !Number.isFinite(count)) {
-    throw new Error('Upstash INCR result missing');
+  // Every command (INCR, PEXPIRE, PTTL) must come back as a numeric result.
+  // A truncated pipeline, an error entry, or a missing value means the
+  // counter state is unknown.
+  if (!Array.isArray(results) || results.length !== 3) {
+    throw new Error('Upstash returned a malformed pipeline body');
   }
-  const ttlRaw = results[2]?.result;
-  const ttlMs = typeof ttlRaw === 'number' && ttlRaw > 0 ? ttlRaw : windowMs;
+  const numbers = results.map((entry) => {
+    if (!entry || typeof entry !== 'object' || entry.error !== undefined) {
+      throw new Error('Upstash pipeline command failed');
+    }
+    if (typeof entry.result !== 'number' || !Number.isFinite(entry.result)) {
+      throw new Error('Upstash pipeline result missing');
+    }
+    return entry.result;
+  });
+  const count = numbers[0];
+  const ttlMs = numbers[2] > 0 ? numbers[2] : windowMs;
 
   if (count > max) {
     return { allowed: false, retryAfter: Math.max(1, Math.ceil(ttlMs / 1000)) };

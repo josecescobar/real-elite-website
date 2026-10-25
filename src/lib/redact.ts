@@ -20,8 +20,13 @@ export function redactPii(value: string): string {
   });
 }
 
-/** Redact any logged value (string, object, Error) to a capped string. */
-export function redactForLog(value: unknown): string {
+/**
+ * Redact any logged value (string, object, Error) to a capped string.
+ * The FULL text is redacted first and only then truncated, so a phone
+ * number or email that straddles the cut can never survive half-masked.
+ * Callers must pass the untruncated value and use `maxChars` to shorten it.
+ */
+export function redactForLog(value: unknown, maxChars = MAX_LOG_CHARS): string {
   let text: string;
   if (typeof value === 'string') text = value;
   else if (value instanceof Error) text = `${value.name}: ${value.message}`;
@@ -33,5 +38,5 @@ export function redactForLog(value: unknown): string {
     }
   }
   const redacted = redactPii(text);
-  return redacted.length > MAX_LOG_CHARS ? `${redacted.slice(0, MAX_LOG_CHARS)}…` : redacted;
+  return redacted.length > maxChars ? `${redacted.slice(0, maxChars)}…` : redacted;
 }

@@ -188,6 +188,25 @@ describe('outbound caps fail closed on Upstash errors', () => {
         ),
     ],
     ['a non-200 response', async () => new Response('oops', { status: 500 })],
+    [
+      'a truncated pipeline response',
+      async () => new Response(JSON.stringify([{ result: 1 }]), { status: 200 }),
+    ],
+    [
+      'a missing PEXPIRE result',
+      async () => new Response(JSON.stringify([{ result: 1 }, {}, { result: 1000 }]), { status: 200 }),
+    ],
+    [
+      'a missing PTTL result',
+      async () => new Response(JSON.stringify([{ result: 1 }, { result: 1 }, {}]), { status: 200 }),
+    ],
+    [
+      'a non-numeric PTTL result',
+      async () =>
+        new Response(JSON.stringify([{ result: 1 }, { result: 1 }, { result: 'soon' }]), {
+          status: 200,
+        }),
+    ],
   ];
 
   for (const [label, respond] of failures) {

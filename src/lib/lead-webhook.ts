@@ -143,7 +143,7 @@ export async function postLeadWebhook(payload: Record<string, unknown>): Promise
     });
     if (!res.ok) {
       const body = await res.text().catch(() => '');
-      console.error('Lead webhook failed', { status: res.status, body: redactForLog(body.slice(0, 500)) });
+      console.error('Lead webhook failed', { status: res.status, body: redactForLog(body, 500) });
       return false;
     }
     return true;

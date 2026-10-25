@@ -29,3 +29,21 @@ describe('redactForLog', () => {
     expect(redactForLog('x'.repeat(5000)).length).toBeLessThanOrEqual(2001);
   });
 });
+
+describe('redact before truncate', () => {
+  it('never leaks a phone or email that straddles the truncation boundary', () => {
+    const phone = '+16815550142';
+    const email = 'jane.doe@example.com';
+    // Put the cut (20 chars) in the middle of the phone, then of the email.
+    const phoneCut = `${'x'.repeat(14)}${phone} tail`;
+    const emailCut = `${'x'.repeat(12)}${email} tail`;
+    for (const text of [phoneCut, emailCut]) {
+      const out = redactForLog(text, 20);
+      expect(out).not.toMatch(/6815550|55501/);
+      expect(out).not.toContain('jane');
+      expect(out).not.toContain('example.com');
+      expect(out.length).toBeLessThanOrEqual(21);
+    }
+  });
+});
+
