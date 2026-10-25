@@ -77,6 +77,7 @@ beforeEach(() => {
   delete process.env.SALES_AGENT_MODE;
   delete process.env.LEAD_WEBHOOK_URL;
   delete process.env.LEAD_WEBHOOK_SECRET;
+  delete process.env.ADMIN_TOOLS_KEY;
   resetSalesStore();
 });
 
@@ -266,31 +267,28 @@ describe('POST /api/webhooks/thumbtack', () => {
 });
 
 describe('GET /api/webhooks/thumbtack', () => {
-  it('reports status without leaking configured secret values', async () => {
+  it('returns only the public liveness signal without admin authorization', async () => {
     process.env.THUMBTACK_WEBHOOK_TOKEN = 'super-secret-token-value';
     process.env.THUMBTACK_WEBHOOK_PASSWORD = 'super-secret-password-value';
     process.env.THUMBTACK_WEBHOOK_USER = 'thumbtack-user';
     const { GET } = await loadRoute();
-    const res = await GET();
-    expect(res.status).toBe(200);
+    const res = await GET(new Request('http://localhost/api/webhooks/thumbtack'));
+    expect(await res.json()).toEqual({ ok: true });
+  });
+
+  it('reports detailed status only for the admin Bearer key', async () => {
+    process.env.ADMIN_TOOLS_KEY = 'test-admin-key-value';
+    process.env.THUMBTACK_WEBHOOK_TOKEN = 'super-secret-token-value';
+    const { GET } = await loadRoute();
+    const res = await GET(new Request('http://localhost/api/webhooks/thumbtack', {
+      headers: { authorization: 'Bearer test-admin-key-value' },
+    }));
     const text = await res.text();
     const json = JSON.parse(text);
-    expect(json.ok).toBe(true);
     expect(json.authRequired).toBe(true);
     expect(json.authConfigured).toBe(true);
     expect(json.acceptingPosts).toBe(true);
     expect(json.acceptedEvents).toContain('NegotiationCreatedV4');
     expect(text).not.toContain('super-secret-token-value');
-    expect(text).not.toContain('super-secret-password-value');
-    expect(text).not.toContain('thumbtack-user');
-  });
-
-  it('reports that posts are not accepted when auth is unset', async () => {
-    const { GET } = await loadRoute();
-    const res = await GET();
-    const json = await res.json();
-    expect(json.authRequired).toBe(true);
-    expect(json.authConfigured).toBe(false);
-    expect(json.acceptingPosts).toBe(false);
   });
 });

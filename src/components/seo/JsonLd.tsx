@@ -3,10 +3,12 @@ interface JsonLdProps {
 }
 
 export default function JsonLd({ schema }: JsonLdProps) {
+  const serializedSchema = JSON.stringify(schema).replace(/</g, '\\u003c');
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializedSchema }}
     />
   );
 }

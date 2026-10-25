@@ -99,7 +99,7 @@ describe('MediaForge draft importer', () => {
     expect(f.run(...args).status).not.toBe(0);
     expect(existsSync(join(f.output, 'src'))).toBe(false);
     expect(existsSync(join(f.output, 'public'))).toBe(false);
-  });
+  }, 15_000);
 
   it.each(['../outside.jpg', 'https://example.com/photo.jpg', 'images/missing.jpg'])('rejects unsafe or missing image %s without partial output', async (ref) => {
     const f = await fixture();

@@ -18,7 +18,7 @@ import { RETIRED_COMBOS, splitComboKey } from './src/lib/retired-combos';
  * Allowed third parties (all env-gated in src/app/layout.tsx):
  *  - Google Tag Manager / GA4: googletagmanager.com, google-analytics.com
  *  - Microsoft Clarity: clarity.ms (+ c.bing.com beacons)
- *  - vercel.live: the preview-deployment feedback toolbar
+ *  - vercel.live / pusher.com: the preview-deployment feedback toolbar
  *  - www.google.com: the Google Maps embed on /contact. This is a frame-src
  *    entry only — the embed is a plain <iframe>, it loads no script here.
  *    Without it the map silently fails to render (the iframe box lays out at
@@ -27,22 +27,38 @@ import { RETIRED_COMBOS, splitComboKey } from './src/lib/retired-combos';
  *    (lazy-loaded script, challenge iframe, and siteverify is server-side;
  *    the widget still connects to Cloudflare from the browser).
  */
-const contentSecurityPolicy = [
-  "default-src 'self'",
-  // 'unsafe-eval' is development-only: React Refresh / React DevTools need
-  // eval() under next dev. Production builds never include it.
-  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://vercel.live https://challenges.cloudflare.com`,
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://vercel.live",
-  "font-src 'self' data:",
-  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com https://vercel.live wss://*.pusher.com https://challenges.cloudflare.com",
-  "frame-src https://www.googletagmanager.com https://www.google.com https://vercel.live https://challenges.cloudflare.com",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "frame-ancestors 'self'",
-  'upgrade-insecure-requests',
-].join('; ');
+/** Cloudflare Turnstile (estimate form): needed in every environment. */
+const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com';
+
+export function buildContentSecurityPolicy({
+  nodeEnv = process.env.NODE_ENV,
+  vercelEnv = process.env.VERCEL_ENV,
+}: {
+  nodeEnv?: string;
+  vercelEnv?: string;
+} = {}): string {
+  const previewFeedback = vercelEnv === 'production' ? '' : ' https://vercel.live';
+  const previewSocket = vercelEnv === 'production' ? '' : ' wss://*.pusher.com';
+
+  return [
+    "default-src 'self'",
+    // 'unsafe-eval' is development-only: React Refresh / React DevTools need
+    // eval() under next dev. Production builds never include it.
+    `script-src 'self' 'unsafe-inline'${nodeEnv === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms${previewFeedback} ${TURNSTILE_ORIGIN}`,
+    "style-src 'self' 'unsafe-inline'",
+    `img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com${previewFeedback}`,
+    "font-src 'self' data:",
+    `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com${previewFeedback}${previewSocket} ${TURNSTILE_ORIGIN}`,
+    `frame-src https://www.googletagmanager.com https://www.google.com${previewFeedback} ${TURNSTILE_ORIGIN}`,
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'self'",
+    'upgrade-insecure-requests',
+  ].join('; ');
+}
+
+const contentSecurityPolicy = buildContentSecurityPolicy();
 
 const securityHeaders = [
   { key: 'Content-Security-Policy', value: contentSecurityPolicy },

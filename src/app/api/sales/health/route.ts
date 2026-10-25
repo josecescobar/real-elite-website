@@ -4,10 +4,15 @@ import { currentSalesMode, thumbtackOutboundReady } from '@/lib/sales/mode';
 import { salesStoreKind } from '@/lib/sales/store';
 import { thumbtackAuthConfigured } from '@/lib/sales/webhook-auth';
 import { env } from '@/lib/env';
+import { hasAdminHealthAuthorization } from '@/lib/admin-health-auth';
 
 export const runtime = 'nodejs';
 
-export async function GET() {
+export async function GET(request: Request) {
+  if (!hasAdminHealthAuthorization(request)) {
+    return NextResponse.json({ ok: true });
+  }
+
   return NextResponse.json({
     ok: true,
     service: 'grokbot-sales',
