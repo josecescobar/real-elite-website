@@ -146,13 +146,18 @@ export async function rateLimit(
   return memoryLimit(key, max, windowMs);
 }
 
-function numericResult(value: unknown): number | null {
-  if (typeof value === 'number' && Number.isFinite(value)) return value;
-  if (typeof value === 'string' && value.trim() !== '' && Number.isFinite(Number(value))) {
-    return Number(value);
-  }
-  if (value === null) return 0;
-  return null;
+/**
+ * Integer from an Upstash result (number or numeric string). Anything else,
+ * including fractions, NaN and empty strings, is null.
+ */
+function integerResult(value: unknown): number | null {
+  const n =
+    typeof value === 'number'
+      ? value
+      : typeof value === 'string' && value.trim() !== ''
+        ? Number(value)
+        : NaN;
+  return Number.isSafeInteger(n) ? n : null;
 }
 
 async function upstashPeek(
@@ -182,16 +187,24 @@ async function upstashPeek(
   if (!Array.isArray(results) || results.length !== 2) {
     throw new Error('Upstash returned a malformed pipeline body');
   }
+  // Validate both entries before deciding anything: an error entry, a
+  // missing `result`, a count that is not a non-negative integer, or a
+  // PTTL that is not an integer all mean the counter state is unknown.
   for (const entry of results) {
     if (!entry || typeof entry !== 'object' || entry.error !== undefined) {
       throw new Error('Upstash pipeline command failed');
     }
+    if (!('result' in entry)) throw new Error('Upstash peek result missing');
   }
-  const count = numericResult(results[0].result);
-  if (count === null) throw new Error('Upstash peek result missing');
+  // GET answers null for a key that does not exist yet: zero hits.
+  const count = results[0].result === null ? 0 : integerResult(results[0].result);
+  if (count === null || count < 0) throw new Error('Upstash peek count invalid');
+  // PTTL is -2 (no key), -1 (no expiry) or the milliseconds left.
+  const ttl = integerResult(results[1].result);
+  if (ttl === null) throw new Error('Upstash peek PTTL invalid');
+
   if (count >= max) {
-    const ttl = numericResult(results[1].result);
-    const ttlMs = ttl !== null && ttl > 0 ? ttl : windowMs;
+    const ttlMs = ttl > 0 ? ttl : windowMs;
     return { allowed: false, retryAfter: Math.max(1, Math.ceil(ttlMs / 1000)) };
   }
   return { allowed: true, retryAfter: 0 };

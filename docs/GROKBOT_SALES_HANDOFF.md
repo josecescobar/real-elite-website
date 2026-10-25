@@ -137,6 +137,12 @@ scope the key does not have. `send_customer_reply` and
 `POST /api/sales/leads/{id}/actions` with `"action":"send"` require
 `leads:send` and return `403` otherwise.
 
+Customer contact data needs `customers:read`. Without it, lead routes,
+lead actions, Grokbot tools and task results still answer, but `customer`
+is `null`, contact fields (name, email, phone, address) are removed from
+lead and conversation `facts`, the raw inbound payload is `null`, and
+inbound message authors are blanked. Message bodies and drafts are kept.
+
 `/api/sales/leads*` and `/api/agents/grokbot/*` share one limit: **20
 requests per 10 minutes per IP**. Five `401`s from an IP in that window
 lock the IP out (`429` with `Retry-After`) until the window resets, even

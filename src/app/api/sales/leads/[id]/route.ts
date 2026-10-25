@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
+import { conversationView, customerView, leadView, messagesView } from '@/lib/sales/agents/redact';
 import { getSalesStore } from '@/lib/sales/store';
 
 export const runtime = 'nodejs';
@@ -24,5 +25,12 @@ export async function GET(
     store.listFollowups(lead.id),
   ]);
 
-  return NextResponse.json({ lead, customer, conversation, messages, followups });
+  // Contact data needs `customers:read` (see leads list route).
+  return NextResponse.json({
+    lead: leadView(lead, auth.scopes),
+    customer: customerView(customer, auth.scopes),
+    conversation: conversationView(conversation, auth.scopes),
+    messages: messagesView(messages, auth.scopes),
+    followups,
+  });
 }

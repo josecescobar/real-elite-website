@@ -4,6 +4,7 @@ import { draftCustomerReply } from '../draft';
 import { getSalesStore } from '../store';
 import type { LeadStatus } from '../types';
 import { LEAD_STATUSES } from '../types';
+import { redactToolData } from './redact';
 import { TOOL_SCOPES, type AgentScope } from './scopes';
 
 export type ToolCall = {
@@ -27,10 +28,20 @@ function hasScope(granted: AgentScope[], tool: string): boolean {
   return needed.every((scope) => granted.includes(scope));
 }
 
+/**
+ * Run one tool within `granted`. Lead, conversation and customer data in the
+ * result is redacted unless `granted` includes `customers:read`.
+ */
 export async function runAgentTool(
   call: ToolCall,
   granted: AgentScope[]
 ): Promise<ToolResult> {
+  const result = await runTool(call, granted);
+  if (result.data === undefined) return result;
+  return { ...result, data: redactToolData(result.data, granted) };
+}
+
+async function runTool(call: ToolCall, granted: AgentScope[]): Promise<ToolResult> {
   const tool = call.name;
   if (!TOOL_SCOPES[tool]) return { ok: false, tool, error: `Unknown tool: ${tool}` };
   if (!hasScope(granted, tool)) {

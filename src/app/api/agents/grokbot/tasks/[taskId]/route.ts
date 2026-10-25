@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
+import { taskView } from '@/lib/sales/agents/redact';
 import { getSalesStore } from '@/lib/sales/store';
 
 export const runtime = 'nodejs';
@@ -15,5 +16,6 @@ export async function GET(
   const { taskId } = await context.params;
   const task = await getSalesStore().getTask(taskId);
   if (!task) return NextResponse.json({ error: 'Task not found.' }, { status: 404 });
-  return NextResponse.json({ task });
+  // A task run by a full-scope key may hold contact data; redact per caller.
+  return NextResponse.json({ task: taskView(task, auth.scopes) });
 }

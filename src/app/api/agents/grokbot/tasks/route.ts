@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
+import { taskView } from '@/lib/sales/agents/redact';
 import { CHATGPT_TOOL_DEFINITIONS, createAndRunTask } from '@/lib/sales/agents/tasks';
 import { getSalesStore } from '@/lib/sales/store';
 
@@ -15,7 +16,8 @@ export async function GET(request: Request) {
   }
 
   const tasks = await getSalesStore().listTasks(50);
-  return NextResponse.json({ tasks });
+  // Redact per caller: stored results reflect the scopes of whoever ran them.
+  return NextResponse.json({ tasks: tasks.map((task) => taskView(task, auth.scopes)) });
 }
 
 export async function POST(request: Request) {
@@ -64,5 +66,5 @@ export async function POST(request: Request) {
     auth
   );
 
-  return NextResponse.json({ ok: true, task }, { status: 201 });
+  return NextResponse.json({ ok: true, task: taskView(task, auth.scopes) }, { status: 201 });
 }

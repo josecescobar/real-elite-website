@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
+import { leadView } from '@/lib/sales/agents/redact';
 import { runAgentTool } from '@/lib/sales/agents/tools';
 import { SALES_OWNER } from '@/lib/sales/company';
 import { getSalesStore } from '@/lib/sales/store';
@@ -33,13 +34,13 @@ export async function POST(
       draftReply: draft,
       draftStatus: action === 'approve' ? 'approved' : 'drafted',
     });
-    return NextResponse.json({ ok: true, lead: updated });
+    return NextResponse.json({ ok: true, lead: leadView(updated, auth.scopes) });
   }
 
   if (action === 'pause') {
     await store.cancelFollowups(id, 'ai_paused');
     const updated = await store.updateLead(id, { aiPaused: true, status: 'paused', bucket: 'follow_up' });
-    return NextResponse.json({ ok: true, lead: updated });
+    return NextResponse.json({ ok: true, lead: leadView(updated, auth.scopes) });
   }
 
   if (action === 'takeover') {
@@ -49,7 +50,7 @@ export async function POST(
       assignedTo: SALES_OWNER.firstName,
       escalationReasons: [...new Set([...lead.escalationReasons, 'jose_takeover' as const])],
     });
-    return NextResponse.json({ ok: true, lead: updated });
+    return NextResponse.json({ ok: true, lead: leadView(updated, auth.scopes) });
   }
 
   if (action === 'send') {
