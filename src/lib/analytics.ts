@@ -1,3 +1,5 @@
+import { isAnalyticsExcludedPath } from './analytics-exclusions';
+
 type GtagParams = Record<string, string | number | boolean | undefined>;
 
 declare global {
@@ -24,6 +26,8 @@ export function ensureGtagStub() {
 
 export function trackEvent(name: string, params: GtagParams = {}) {
   if (typeof window === 'undefined') return;
+  // Internal tools never create GA globals (audit M1).
+  if (isAnalyticsExcludedPath(window.location.pathname)) return;
   ensureGtagStub();
   window.gtag!('event', name, {
     page_path: window.location.pathname,

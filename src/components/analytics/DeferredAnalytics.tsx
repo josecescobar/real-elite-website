@@ -53,8 +53,11 @@ function loadClarity(id: string) {
  * first input or 6s — and `ensureGtagStub()` queues events so estimate /
  * lead hits still fire once gtag.js lands.
  *
- * Neither tag loads on the internal tools (/sales, /review-request): they
- * show lead PII and take an access key (security audit 2026-10-24, M1).
+ * Neither tag loads in a document that starts on an internal tool
+ * (/sales, /review-request): they show lead PII and take an access key
+ * (security audit 2026-10-24, M1). Tags already running cannot be
+ * unloaded, so a soft navigation into a tool is handled by
+ * AnalyticsFreeDocumentGuard, which reloads into a fresh document.
  */
 export default function DeferredAnalytics({ gaId, clarityId }: DeferredAnalyticsProps) {
   // A boolean dep (not the pathname) so ordinary client navigations don't

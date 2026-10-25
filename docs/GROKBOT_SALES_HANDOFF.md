@@ -91,7 +91,11 @@ Stub connector names only (do not invent values): `QBO_CLIENT_ID`,
    `GROKBOT_API_KEY`) into the access-key box. The page no longer accepts
    `/sales?key=…`; the key is sent to `/api/sales/leads` as an
    `Authorization: Bearer` header and kept in sessionStorage for the tab.
-   `/sales` and `/review-request` load no GA4, GTM or Clarity.
+   `/sales` and `/review-request` load no GA4, GTM or Clarity: the tags
+   are skipped in any document that starts on those paths, and if a
+   client-side navigation arrives with tags already running, the page
+   reloads itself once into a fresh, analytics-free document. Link to them
+   only with a plain `<a href>`, never `next/link`.
 
 ### Key transport (security audit 2026-10-24, M1)
 

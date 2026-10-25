@@ -199,8 +199,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {/* GTM, GA4 and Clarity all skip /sales and /review-request
-            (internal tools with lead PII — audit M1). */}
+        {/* GTM, GA4 and Clarity skip documents that start on /sales or
+            /review-request (internal tools with lead PII — audit M1);
+            AnalyticsFreeDocumentGuard on those pages covers soft navs. */}
         <GoogleTagManager gtmId={GTM_ID} />
         <AttributionTracker />
         <DeferredAnalytics gaId={GA_MEASUREMENT_ID} clarityId={CLARITY_ID} />

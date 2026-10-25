@@ -12,3 +12,20 @@ describe('isAnalyticsExcludedPath', () => {
     (path) => expect(isAnalyticsExcludedPath(path)).toBe(false)
   );
 });
+
+describe('trackEvent on internal tools', () => {
+  it('creates no GA globals on /sales', async () => {
+    const { trackEvent } = await import('./analytics');
+    const w = window as Window & { gtag?: unknown; dataLayer?: unknown };
+    delete w.gtag;
+    delete w.dataLayer;
+    window.history.replaceState(null, '', '/sales');
+    try {
+      trackEvent('phone_click');
+      expect(w.gtag).toBeUndefined();
+      expect(w.dataLayer).toBeUndefined();
+    } finally {
+      window.history.replaceState(null, '', '/');
+    }
+  });
+});

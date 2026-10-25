@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Container from '@/components/shared/Container';
 import SalesCommandCenter from '@/components/admin/SalesCommandCenter';
+import AnalyticsFreeDocumentGuard from '@/components/analytics/AnalyticsFreeDocumentGuard';
 import { LEAD_BUCKETS, type LeadBucket } from '@/lib/sales/types';
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default async function SalesCommandPage({
 
   return (
     <div className="bg-steel-50 py-12 md:py-16 min-h-[70vh]">
+      <AnalyticsFreeDocumentGuard />
       <Container size="wide">
         <p className="text-brand-red text-xs uppercase tracking-[0.18em] font-bold mb-3">
           Internal · Grokbot · Safe Autopilot

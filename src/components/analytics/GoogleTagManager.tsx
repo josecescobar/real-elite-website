@@ -5,7 +5,10 @@ import { usePathname } from 'next/navigation';
 import { isAnalyticsExcludedPath } from '@/lib/analytics-exclusions';
 
 /**
- * GTM container, skipped on the internal tools (/sales, /review-request).
+ * GTM container, skipped in documents that start on an internal tool
+ * (/sales, /review-request). A container that already started on a
+ * marketing page keeps running; AnalyticsFreeDocumentGuard reloads the
+ * tool into a fresh document in that case.
  * A client component so the root layout can stay static: the pathname is
  * known during prerender and on the client without reading request headers.
  */

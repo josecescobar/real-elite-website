@@ -4,6 +4,11 @@
  * an access key, so session replays and page_location hits there are a
  * data leak (security audit 2026-10-24, finding M1). Both pages are also
  * noindex and excluded from the sitemap.
+ *
+ * Two layers: (1) these path checks keep every tag out of a document that
+ * starts on a tool; (2) AnalyticsFreeDocumentGuard, mounted on both pages,
+ * reloads once into a fresh document if a soft navigation brought running
+ * tags along. Never link to these paths with next/link (a test enforces it).
  */
 export const ANALYTICS_EXCLUDED_PATHS = ['/sales', '/review-request'] as const;
 
