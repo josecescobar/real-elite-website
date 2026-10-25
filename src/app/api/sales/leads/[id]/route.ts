@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
-import { conversationView, customerView, leadView, messagesView } from '@/lib/sales/agents/redact';
+import {
+  conversationView,
+  customerView,
+  followupsView,
+  leadView,
+  messagesView,
+} from '@/lib/sales/agents/redact';
 import { getSalesStore } from '@/lib/sales/store';
 
 export const runtime = 'nodejs';
@@ -31,6 +37,6 @@ export async function GET(
     customer: customerView(customer, auth.scopes),
     conversation: conversationView(conversation, auth.scopes),
     messages: messagesView(messages, auth.scopes),
-    followups,
+    followups: followupsView(followups, auth.scopes),
   });
 }

@@ -246,6 +246,47 @@ describe('customers:read gates customer contact data on lead endpoints', () => {
     expect(fullBody.task.context).toMatchObject({ leadId: id });
   });
 
+  it('withholds staff follow-up notes and estimate text from a leads:read-only key', async () => {
+    const id = await seedLead();
+    const note = `call ${NAME} at ${PHONE}`;
+    const followup = await callTool(
+      postJson('http://localhost/api/agents/grokbot/tools', ADMIN, {
+        tool: 'create_followup',
+        arguments: { leadId: id, note },
+      })
+    );
+    expect(followup.status).toBe(200);
+
+    const restricted = await getLead(authed(`http://localhost/api/sales/leads/${id}`, GROK), {
+      params: Promise.resolve({ id }),
+    });
+    const restrictedBody = await restricted.json();
+    expect(restrictedBody.followups.length).toBeGreaterThan(0);
+    expect(leaksContact(restrictedBody)).toBe(false);
+
+    const full = await getLead(authed(`http://localhost/api/sales/leads/${id}`, ADMIN), {
+      params: Promise.resolve({ id }),
+    });
+    const fullNotes = (await full.json()).followups.map((f: { note: string | null }) => f.note);
+    expect(fullNotes).toContain(note);
+
+    const created = await createTask(
+      postJson('http://localhost/api/agents/grokbot/tasks', ADMIN, {
+        requestingAgent: 'chatgpt',
+        instruction: `follow-up with ${NAME} at ${EMAIL}; estimate notes for ${ADDRESS}`,
+        context: { leadId: id },
+      })
+    );
+    const { task } = await created.json();
+    const restrictedTask = await getTask(
+      authed(`http://localhost/api/agents/grokbot/tasks/${task.id}`, GROK),
+      { params: Promise.resolve({ taskId: task.id }) }
+    );
+    const restrictedTaskBody = await restrictedTask.json();
+    expect(restrictedTaskBody.task.result).toBeNull();
+    expect(leaksContact(restrictedTaskBody)).toBe(false);
+  });
+
   it('redacts task results run under an explicit permissions list without customers:read', async () => {
     const id = await seedLead();
     const created = await createTask(

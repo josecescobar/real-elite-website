@@ -1,4 +1,12 @@
-import type { AgentTask, Conversation, ConversationFacts, Customer, Lead, Message } from '../types';
+import type {
+  AgentTask,
+  Conversation,
+  ConversationFacts,
+  Customer,
+  Followup,
+  Lead,
+  Message,
+} from '../types';
 import type { AgentScope } from './scopes';
 
 /**
@@ -53,50 +61,81 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
 }
 
+/** Free text written by staff or agents can name the customer. */
+export const WITHHELD_TEXT = '[withheld: requires customers:read]';
+
+export function followupView(followup: Followup, scopes: readonly AgentScope[]): Followup {
+  if (canReadCustomers(scopes)) return followup;
+  return {
+    ...followup,
+    note: followup.note === null ? null : WITHHELD_TEXT,
+    cancelledReason: followup.cancelledReason === null ? null : WITHHELD_TEXT,
+  };
+}
+
+export function followupsView(followups: Followup[], scopes: readonly AgentScope[]): Followup[] {
+  return followups.map((followup) => followupView(followup, scopes));
+}
+
+function estimateView(estimate: Record<string, unknown>): Record<string, unknown> {
+  const lineItems = Array.isArray(estimate.lineItems) ? estimate.lineItems : [];
+  return {
+    id: estimate.id,
+    createdAt: estimate.createdAt,
+    leadId: estimate.leadId,
+    status: estimate.status,
+    title: WITHHELD_TEXT,
+    notes: estimate.notes == null ? null : WITHHELD_TEXT,
+    lineItems: lineItems.filter(isRecord).map((item) => ({
+      label: item.label,
+      amountCents: item.amountCents,
+    })),
+  };
+}
+
 /**
- * Redact the `data` of a tool result (or a stored task result) by shape:
- * `lead`, `leads`, `conversation`, `messages` and `customer` keys. Used for
- * live tool calls and for task results read back later, since a task run by
- * a full-scope key can be fetched by a narrower one.
+ * Redact the `data` of a live tool result. This is an allowlist: each known
+ * key is passed through its view, and any key not listed here is dropped, so
+ * a new tool field stays hidden from a narrow key until it is reviewed.
+ * Message bodies and drafts stay: they are the lead conversation.
  */
 export function redactToolData(data: unknown, scopes: readonly AgentScope[]): unknown {
   if (!isRecord(data) || canReadCustomers(scopes)) return data;
-  const next: Record<string, unknown> = { ...data };
-  if (isRecord(next.lead)) next.lead = leadView(next.lead as Lead, scopes);
-  if (Array.isArray(next.leads)) {
-    next.leads = next.leads.map((lead) => (isRecord(lead) ? leadView(lead as Lead, scopes) : lead));
+  const next: Record<string, unknown> = {};
+  if (isRecord(data.lead)) next.lead = leadView(data.lead as Lead, scopes);
+  if (Array.isArray(data.leads)) {
+    next.leads = data.leads.filter(isRecord).map((lead) => leadView(lead as Lead, scopes));
   }
-  if (isRecord(next.conversation)) {
-    next.conversation = conversationView(next.conversation as Conversation, scopes);
+  if (isRecord(data.conversation)) {
+    next.conversation = conversationView(data.conversation as Conversation, scopes);
   }
-  if (Array.isArray(next.messages)) {
-    next.messages = messagesView(next.messages.filter(isRecord) as Message[], scopes);
+  if (Array.isArray(data.messages)) {
+    next.messages = messagesView(data.messages.filter(isRecord) as Message[], scopes);
   }
-  if ('customer' in next) next.customer = null;
+  if ('customer' in data) next.customer = null;
+  if (isRecord(data.followup)) next.followup = followupView(data.followup as Followup, scopes);
+  if (isRecord(data.estimate)) next.estimate = estimateView(data.estimate);
+  for (const key of ['draft', 'body', 'escalationReasons', 'sent', 'reason'] as const) {
+    if (key in data) next[key] = data[key];
+  }
   return next;
 }
 
 /**
- * Task `instruction`, `context` and any free-form result fields are written
- * by whoever created the task and can carry customer contact details, so a
- * caller without `customers:read` gets them withheld. Only the structured
- * tool results survive, redacted by shape.
+ * A task's instruction, context and stored result are written by whoever
+ * created it and can carry customer contact details anywhere in them, so a
+ * caller without `customers:read` sees only the task's status metadata. It
+ * can still run the tools itself and get their redacted views.
  */
-export const WITHHELD_TASK_TEXT = '[withheld: requires customers:read]';
+export const WITHHELD_TASK_TEXT = WITHHELD_TEXT;
 
 export function taskView(task: AgentTask, scopes: readonly AgentScope[]): AgentTask {
   if (canReadCustomers(scopes)) return task;
-  const tools = isRecord(task.result) ? task.result.tools : undefined;
   return {
     ...task,
-    instruction: WITHHELD_TASK_TEXT,
+    instruction: WITHHELD_TEXT,
     context: null,
-    result: Array.isArray(tools)
-      ? {
-          tools: tools.map((entry) =>
-            isRecord(entry) ? { ...entry, data: redactToolData(entry.data, scopes) } : entry
-          ),
-        }
-      : null,
+    result: null,
+    error: task.error === null ? null : WITHHELD_TEXT,
   };
 }
