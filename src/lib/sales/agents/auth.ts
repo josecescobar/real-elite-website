@@ -94,8 +94,13 @@ export function authorizeAgent(
   return { ok: true, scopes, via };
 }
 
+/**
+ * Omitted permissions (not an array) mean the key's own scopes.
+ * An explicit array is a ceiling: unknown names are dropped, and an
+ * array with no valid scopes grants nothing — it must not expand to
+ * every scope the key holds.
+ */
 export function parseRequestedScopes(value: unknown): AgentScope[] {
   if (!Array.isArray(value)) return [...ALL_SCOPES];
-  const wanted = value.filter((v): v is AgentScope => typeof v === 'string' && ALL_SCOPES.includes(v as AgentScope));
-  return wanted.length ? wanted : [...ALL_SCOPES];
+  return value.filter((v): v is AgentScope => typeof v === 'string' && isAgentScope(v));
 }

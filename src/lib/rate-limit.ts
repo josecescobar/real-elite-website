@@ -8,8 +8,9 @@
  * Upstash REST API so the limit holds globally. Without those vars the
  * limiter falls back to the in-memory Map — same behavior as before.
  *
- * Redis errors fail OPEN: a broken limiter must never block a real
- * lead from reaching the inbox.
+ * Redis errors fail OPEN by default: a broken limiter must never block
+ * a real lead from reaching the inbox. Agent and admin guards pass
+ * `{ failClosed: true }` so an unreadable counter denies those requests.
  */
 
 import { env } from './env';
@@ -199,13 +200,14 @@ async function upstashPeek(
 /**
  * Read a counter without incrementing it. A full window is `count >= max`
  * on both the in-memory map and Upstash (the next `rateLimit` call would
- * be denied). Upstash read failures fail OPEN so a blip cannot lock the
- * command center.
+ * be denied). Upstash read failures fail OPEN unless `{ failClosed: true }`
+ * is set (agent/admin lockout checks).
  */
 export async function rateLimitPeek(
   key: string,
   max: number,
-  windowMs: number
+  windowMs: number,
+  opts: { failClosed?: boolean } = {}
 ): Promise<RateLimitVerdict> {
   const creds = upstashCredentials();
   if (creds) {
@@ -213,6 +215,10 @@ export async function rateLimitPeek(
       return await upstashPeek(creds.url, creds.token, key, max, windowMs);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
+      if (opts.failClosed) {
+        console.error(`rate-limit: Upstash peek unavailable, failing closed: ${message}`);
+        return { allowed: false, retryAfter: 0, counterError: true };
+      }
       console.error(`rate-limit: Upstash peek unavailable, failing open: ${message}`);
       return { allowed: true, retryAfter: 0 };
     }

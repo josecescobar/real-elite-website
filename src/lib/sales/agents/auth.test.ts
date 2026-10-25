@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { authorizeAgent } from './auth';
+import { authorizeAgent, parseRequestedScopes } from './auth';
+import { ALL_SCOPES } from './scopes';
 
 const GROK = 'test-grokbot-key-value';
 const ADMIN = 'test-admin-key-value';
@@ -112,5 +113,24 @@ describe('authorizeAgent per-key scopes (audit M4)', () => {
     process.env.GROKBOT_SCOPES = '   ';
     const auth = authorizeAgent(grokReq(), { required: ['leads:send'] });
     expect(auth).toEqual({ ok: false, status: 403, error: 'Insufficient scope.' });
+  });
+});
+
+describe('parseRequestedScopes', () => {
+  it('treats a missing value as every scope', () => {
+    expect(parseRequestedScopes(undefined)).toEqual([...ALL_SCOPES]);
+    expect(parseRequestedScopes(null)).toEqual([...ALL_SCOPES]);
+  });
+
+  it('keeps only known scopes from an explicit list', () => {
+    expect(parseRequestedScopes(['nope', 'leads:read', 'leads:read'])).toEqual(['leads:read', 'leads:read']);
+  });
+
+  it('returns an empty set for an explicit empty list', () => {
+    expect(parseRequestedScopes([])).toEqual([]);
+  });
+
+  it('returns an empty set when every name is unknown', () => {
+    expect(parseRequestedScopes(['nope', 'also-nope', 1, null])).toEqual([]);
   });
 });
