@@ -87,7 +87,25 @@ Stub connector names only (do not invent values): `QBO_CLIENT_ID`,
 3. `GET https://www.realelitecontracting.com/api/webhooks/thumbtack`
    Public response: exactly `{"ok":true}`. The accepted event list and
    configuration status require the same admin Authorization header.
-4. Command center (noindex): `/sales` — unlock with `ADMIN_TOOLS_KEY`.
+4. Command center (noindex): `/sales` — type `ADMIN_TOOLS_KEY` (or
+   `GROKBOT_API_KEY`) into the access-key box. The page no longer accepts
+   `/sales?key=…`; the key is sent to `/api/sales/leads` as an
+   `Authorization: Bearer` header and kept in sessionStorage for the tab.
+   `/sales` and `/review-request` load no GA4, GTM or Clarity.
+
+### Key transport (security audit 2026-10-24, M1)
+
+Agent and admin keys are accepted **only** in a header or a POST body:
+
+- `Authorization: Bearer <key>` (preferred)
+- `X-Admin-Key`, `X-API-Key` or `X-Grokbot-Key: <key>`
+- POST bodies that already carried one: `apiKey` on
+  `POST /api/agents/grokbot/tasks`, `key` on
+  `POST /api/sales/leads/{id}/actions` and `POST /api/review-request`
+
+A `?key=` query parameter is ignored on every route and the request gets
+`401`. Query strings end up in analytics, browser history and Vercel
+request logs, so never put a key in a URL.
 
 ## E. Simulated Thumbtack lead
 

@@ -14,10 +14,19 @@ function hashEq(a: string, b: string): boolean {
   return timingSafeEqual(left, right);
 }
 
+/**
+ * Keys are accepted ONLY from request headers or a POST body the route
+ * parsed itself (`bodyKey`). The query string is never read: `?key=` URLs
+ * leak into analytics page_location, Clarity recordings, browser history
+ * and Vercel request logs (security audit 2026-10-24, finding M1).
+ */
 function bearerFrom(request: Request, bodyKey?: unknown): string | null {
   const header = request.headers.get('authorization');
   if (header?.toLowerCase().startsWith('bearer ')) return header.slice(7).trim();
-  const alt = request.headers.get('x-api-key') ?? request.headers.get('x-grokbot-key');
+  const alt =
+    request.headers.get('x-admin-key') ??
+    request.headers.get('x-api-key') ??
+    request.headers.get('x-grokbot-key');
   if (alt) return alt.trim();
   if (typeof bodyKey === 'string' && bodyKey.trim()) return bodyKey.trim();
   return null;
@@ -25,6 +34,7 @@ function bearerFrom(request: Request, bodyKey?: unknown): string | null {
 
 export function authorizeAgent(
   request: Request,
+  /** `bodyKey` must come from a parsed POST body — never from searchParams. */
   opts: { required?: AgentScope[]; bodyKey?: unknown } = {}
 ): AgentAuth {
   const provided = bearerFrom(request, opts.bodyKey);

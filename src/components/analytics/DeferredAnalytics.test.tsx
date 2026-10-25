@@ -2,7 +2,11 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import DeferredAnalytics from './DeferredAnalytics';
 
+const nav = vi.hoisted(() => ({ pathname: null as string | null }));
+vi.mock('next/navigation', () => ({ usePathname: () => nav.pathname }));
+
 afterEach(() => {
+  nav.pathname = null;
   document.head.querySelectorAll('script').forEach((node) => node.remove());
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
@@ -39,5 +43,29 @@ describe('DeferredAnalytics', () => {
     render(<DeferredAnalytics />);
     window.dispatchEvent(new Event('pointerdown'));
     expect(document.querySelectorAll('script[src]')).toHaveLength(0);
+  });
+
+  it.each(['/sales', '/review-request'])('never loads GA4 or Clarity on %s (audit M1)', async (path) => {
+    vi.useFakeTimers();
+    try {
+      nav.pathname = path;
+      delete (window as { gtag?: unknown }).gtag;
+      render(<DeferredAnalytics gaId="G-W9QH965H3Y" clarityId="y6j2ghobe7" />);
+      window.dispatchEvent(new Event('pointerdown'));
+      vi.advanceTimersByTime(10_000);
+      expect(document.querySelectorAll('script[src]')).toHaveLength(0);
+      expect(window.gtag).toBeUndefined();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('still loads on marketing pages', async () => {
+    nav.pathname = '/services';
+    render(<DeferredAnalytics gaId="G-W9QH965H3Y" clarityId="y6j2ghobe7" />);
+    window.dispatchEvent(new Event('pointerdown'));
+    await waitFor(() => {
+      expect(document.querySelector('script[src*="clarity.ms/tag"]')).toBeTruthy();
+    });
   });
 });

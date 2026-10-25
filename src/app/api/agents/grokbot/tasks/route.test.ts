@@ -75,3 +75,33 @@ describe('POST /api/agents/grokbot/tasks', () => {
     expect(JSON.stringify(json.task.result)).toMatch(/Kitchen|cabinets|Leesburg/i);
   });
 });
+
+describe('GET /api/agents/grokbot/tasks — header-only auth (audit M1)', () => {
+  it('returns 401 for ?key= with no header (task list and tool definitions)', async () => {
+    const { GET } = await loadRoute();
+    for (const url of [
+      'http://localhost/api/agents/grokbot/tasks?key=test-grokbot-key-value',
+      'http://localhost/api/agents/grokbot/tasks?tools=1&key=test-grokbot-key-value',
+    ]) {
+      const res = await GET(new Request(url));
+      expect(res.status).toBe(401);
+    }
+  });
+
+  it('still serves callers that send Authorization: Bearer', async () => {
+    const { GET } = await loadRoute();
+    const list = await GET(
+      new Request('http://localhost/api/agents/grokbot/tasks', {
+        headers: { authorization: 'Bearer test-grokbot-key-value' },
+      })
+    );
+    expect(list.status).toBe(200);
+    const tools = await GET(
+      new Request('http://localhost/api/agents/grokbot/tasks?tools=1', {
+        headers: { authorization: 'Bearer test-grokbot-key-value' },
+      })
+    );
+    expect(tools.status).toBe(200);
+    expect(Array.isArray((await tools.json()).tools)).toBe(true);
+  });
+});

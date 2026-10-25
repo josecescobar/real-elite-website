@@ -7,13 +7,14 @@ export const runtime = 'nodejs';
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
+  // Header-only auth on GET: a `?key=` query parameter is ignored (audit M1).
   if (url.searchParams.get('tools') === '1') {
-    const auth = authorizeAgent(request, { bodyKey: url.searchParams.get('key') });
+    const auth = authorizeAgent(request);
     if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
     return NextResponse.json({ tools: CHATGPT_TOOL_DEFINITIONS });
   }
 
-  const auth = authorizeAgent(request, { required: ['leads:read'], bodyKey: url.searchParams.get('key') });
+  const auth = authorizeAgent(request, { required: ['leads:read'] });
   if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
   const tasks = await getSalesStore().listTasks(50);
   return NextResponse.json({ tasks });
