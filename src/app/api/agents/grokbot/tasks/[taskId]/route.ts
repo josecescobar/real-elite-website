@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { authorizeAgent } from '@/lib/sales/agents/auth';
+import { agentGateDenied, authorizeAgentRequest } from '@/lib/sales/agents/guard';
 import { getSalesStore } from '@/lib/sales/store';
 
 export const runtime = 'nodejs';
@@ -9,8 +9,8 @@ export async function GET(
   context: { params: Promise<{ taskId: string }> }
 ) {
   // Header-only auth: a `?key=` query parameter is ignored (audit M1).
-  const auth = authorizeAgent(request, { required: ['leads:read'] });
-  if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  const auth = await authorizeAgentRequest(request, { required: ['leads:read'] });
+  if (agentGateDenied(auth)) return auth;
 
   const { taskId } = await context.params;
   const task = await getSalesStore().getTask(taskId);

@@ -56,6 +56,7 @@ Sales-ops (new):
 
 - `SALES_AGENT_MODE`
 - `GROKBOT_API_KEY`
+- `GROKBOT_SCOPES` (optional; unset keeps the reduced scope set, no `leads:send`)
 - `SALES_FOLLOWUP_CADENCE`
 - `THUMBTACK_WEBHOOK_USER`
 - `THUMBTACK_WEBHOOK_PASSWORD`
@@ -110,6 +111,39 @@ Agent and admin keys are accepted **only** in a header or a POST body:
 A `?key=` query parameter is ignored on every route and the request gets
 `401`. Query strings end up in analytics, browser history and Vercel
 request logs, so never put a key in a URL.
+
+### Key scopes and rate limits (security audit 2026-10-24, M4)
+
+Keys are compared by SHA-256 and `timingSafeEqual`. They do not grant the
+same scopes:
+
+| Key | Scopes |
+| --- | --- |
+| `ADMIN_TOOLS_KEY` | Every scope, including `leads:send`. Use this in the `/sales` command center when Send must work. |
+| `GROKBOT_API_KEY` | `leads:read`, `leads:write`, `leads:draft`, `customers:read`, `estimates:write`, `tasks:write`. **No `leads:send`.** |
+
+Keep the two keys different. A request that matches `GROKBOT_API_KEY` is the Grokbot key, so identical values would get the reduced scopes.
+
+`GROKBOT_SCOPES` is an optional comma-separated override for the Grokbot
+key only. Leave it unset for the reduced default above. Unknown names are
+ignored. If the variable is set and none of the names are real scopes, the
+key can call nothing. Granting `leads:send` to ChatGPT or Grok Bot is a
+Jose decision; the default is no. Example (only if send is wanted):
+
+`leads:read,leads:write,leads:draft,leads:send,customers:read,estimates:write,tasks:write`
+
+A task `permissions` array is intersected with the key. It cannot add a
+scope the key does not have. `send_customer_reply` and
+`POST /api/sales/leads/{id}/actions` with `"action":"send"` require
+`leads:send` and return `403` otherwise.
+
+`/api/sales/leads*` and `/api/agents/grokbot/*` share one limit: **20
+requests per 10 minutes per IP**. Five `401`s from an IP in that window
+lock the IP out (`429` with `Retry-After`) until the window resets, even
+if a later request has a valid key. A different IP is unaffected. No new
+env var is required for the limit; it uses the existing rate-limit helper
+(Upstash when `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are
+set, in-memory otherwise).
 
 ## E. Simulated Thumbtack lead
 
@@ -230,7 +264,10 @@ Internal tools (same Bearer): `search_leads`, `get_lead`, `get_conversation`,
   `docs/sql/sales-ops.sql` run once or the command center will not survive
   serverless cold starts.
 - **GROKBOT_API_KEY** must be set in Vercel or the ChatGPT bridge 503s.
-- **ADMIN_TOOLS_KEY** must be set or `/sales` cannot load leads.
+  `GROKBOT_SCOPES` is optional. Unset is safe: the key cannot send
+  customer replies. Do not set it unless send is an explicit decision.
+- **ADMIN_TOOLS_KEY** must be set or `/sales` cannot load leads. Send from
+  the command center needs this key (it is the one with `leads:send`).
 - **XAI_API_KEY / OPENAI_API_KEY** unused for v1 drafts (deterministic
   engine). Optional later.
 - **QBO / Calendar / Gmail** are interfaces only — no fake credentials.

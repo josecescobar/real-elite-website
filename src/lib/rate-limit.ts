@@ -145,6 +145,87 @@ export async function rateLimit(
   return memoryLimit(key, max, windowMs);
 }
 
+function numericResult(value: unknown): number | null {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string' && value.trim() !== '' && Number.isFinite(Number(value))) {
+    return Number(value);
+  }
+  if (value === null) return 0;
+  return null;
+}
+
+async function upstashPeek(
+  url: string,
+  token: string,
+  key: string,
+  max: number,
+  windowMs: number
+): Promise<RateLimitVerdict> {
+  const res = await fetch(`${url}/pipeline`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify([
+      ['GET', key],
+      ['PTTL', key],
+    ]),
+    cache: 'no-store',
+  });
+  if (!res.ok) throw new Error(`Upstash responded ${res.status}`);
+
+  const results = (await res.json().catch(() => null)) as
+    | { result?: unknown; error?: unknown }[]
+    | null;
+  if (!Array.isArray(results) || results.length !== 2) {
+    throw new Error('Upstash returned a malformed pipeline body');
+  }
+  for (const entry of results) {
+    if (!entry || typeof entry !== 'object' || entry.error !== undefined) {
+      throw new Error('Upstash pipeline command failed');
+    }
+  }
+  const count = numericResult(results[0].result);
+  if (count === null) throw new Error('Upstash peek result missing');
+  if (count >= max) {
+    const ttl = numericResult(results[1].result);
+    const ttlMs = ttl !== null && ttl > 0 ? ttl : windowMs;
+    return { allowed: false, retryAfter: Math.max(1, Math.ceil(ttlMs / 1000)) };
+  }
+  return { allowed: true, retryAfter: 0 };
+}
+
+/**
+ * Read a counter without incrementing it. A full window is `count >= max`
+ * on both the in-memory map and Upstash (the next `rateLimit` call would
+ * be denied). Upstash read failures fail OPEN so a blip cannot lock the
+ * command center.
+ */
+export async function rateLimitPeek(
+  key: string,
+  max: number,
+  windowMs: number
+): Promise<RateLimitVerdict> {
+  const creds = upstashCredentials();
+  if (creds) {
+    try {
+      return await upstashPeek(creds.url, creds.token, key, max, windowMs);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.error(`rate-limit: Upstash peek unavailable, failing open: ${message}`);
+      return { allowed: true, retryAfter: 0 };
+    }
+  }
+  const now = Date.now();
+  const entry = memoryHits.get(key);
+  if (!entry || entry.resetAt < now) return { allowed: true, retryAfter: 0 };
+  if (entry.count >= max) {
+    return { allowed: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) };
+  }
+  return { allowed: true, retryAfter: 0 };
+}
+
 export type OutboundDecision = {
   send: boolean;
   reason?: 'upstash-unset' | 'counter-error' | 'email' | 'phone' | 'daily';

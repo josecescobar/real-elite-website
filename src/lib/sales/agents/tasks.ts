@@ -1,7 +1,6 @@
 import { getSalesStore } from '../store';
 import type { AgentTask } from '../types';
 import { parseRequestedScopes, type AgentAuth } from './auth';
-import { ALL_SCOPES, type AgentScope } from './scopes';
 import { runAgentTool, type ToolResult } from './tools';
 
 export type CreateTaskInput = {
@@ -62,6 +61,7 @@ export async function createAndRunTask(
 ): Promise<AgentTask> {
   const store = getSalesStore();
   const id = input.taskId?.trim() || crypto.randomUUID();
+  const explicitPermissions = Array.isArray(input.permissions);
   const permissions = parseRequestedScopes(input.permissions).filter((scope) =>
     auth.scopes.includes(scope)
   );
@@ -80,7 +80,9 @@ export async function createAndRunTask(
     const context =
       input.context && typeof input.context === 'object' ? (input.context as Record<string, unknown>) : {};
     const calls = inferTool(input.instruction, context);
-    const granted = (permissions.length ? permissions : ALL_SCOPES) as AgentScope[];
+    // An explicit permissions list is a ceiling, never a way back to every
+    // scope. Omitted permissions stay inside the key's own scopes.
+    const granted = explicitPermissions ? permissions : auth.scopes;
     const results: ToolResult[] = [];
     for (const call of calls) {
       results.push(await runAgentTool(call, granted));
@@ -125,7 +127,7 @@ export const CHATGPT_TOOL_DEFINITIONS = [
             type: 'array',
             items: { type: 'string' },
             description:
-              'Optional scope list: leads:read, leads:write, leads:draft, leads:send, customers:read, estimates:write.',
+              'Optional scope list, intersected with the key. GROKBOT_API_KEY does not include leads:send unless GROKBOT_SCOPES grants it. ADMIN_TOOLS_KEY has every scope.',
           },
         },
         required: ['requestingAgent', 'instruction'],

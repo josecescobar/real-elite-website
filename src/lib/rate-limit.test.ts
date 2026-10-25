@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { rateLimit, getClientIp } from './rate-limit';
+import { rateLimit, rateLimitPeek, getClientIp } from './rate-limit';
 
 afterEach(() => {
   vi.useRealTimers();
@@ -30,6 +30,17 @@ describe('rateLimit (in-memory fallback)', () => {
 
     vi.advanceTimersByTime(61_000);
     expect((await rateLimit(key, 2, 60_000)).allowed).toBe(true);
+  });
+
+  it('peeks a full window without incrementing the counter', async () => {
+    const key = `peek:${Math.random()}`;
+    expect((await rateLimitPeek(key, 1, 60_000)).allowed).toBe(true);
+    expect((await rateLimitPeek(key, 1, 60_000)).allowed).toBe(true);
+    expect((await rateLimit(key, 1, 60_000)).allowed).toBe(true);
+    const full = await rateLimitPeek(key, 1, 60_000);
+    expect(full.allowed).toBe(false);
+    expect(full.retryAfter).toBeGreaterThan(0);
+    expect((await rateLimitPeek(key, 1, 60_000)).allowed).toBe(false);
   });
 
   it('tracks keys independently', async () => {

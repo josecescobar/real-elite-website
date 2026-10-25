@@ -2,6 +2,36 @@ import { createHash, timingSafeEqual } from 'crypto';
 import { env } from '@/lib/env';
 import { ALL_SCOPES, type AgentScope } from './scopes';
 
+/** Grokbot default. `leads:send` stays off until GROKBOT_SCOPES names it. */
+export const DEFAULT_GROKBOT_SCOPES: readonly AgentScope[] = ALL_SCOPES.filter(
+  (scope) => scope !== 'leads:send'
+);
+
+function isAgentScope(value: string): value is AgentScope {
+  return (ALL_SCOPES as readonly string[]).includes(value);
+}
+
+/**
+ * Scopes for GROKBOT_API_KEY. Blank or unset → reduced default.
+ * A non-blank value is the allow-list (unknown tokens dropped). If none
+ * of the tokens are real scopes, the key gets nothing.
+ */
+export function grokbotScopes(): AgentScope[] {
+  const raw = env.grokbotScopes();
+  if (raw === undefined || raw.trim() === '') return [...DEFAULT_GROKBOT_SCOPES];
+  const seen = new Set<AgentScope>();
+  for (const part of raw.split(',')) {
+    const token = part.trim();
+    if (isAgentScope(token)) seen.add(token);
+  }
+  return [...seen];
+}
+
+function scopesFor(via: 'grokbot' | 'admin'): AgentScope[] {
+  if (via === 'admin') return [...ALL_SCOPES];
+  return grokbotScopes();
+}
+
 export type AgentAuth = {
   ok: true;
   scopes: AgentScope[];
@@ -57,7 +87,7 @@ export function authorizeAgent(
   else if (admin && hashEq(provided, admin)) via = 'admin';
   if (!via) return { ok: false, status: 401, error: 'Invalid access key.' };
 
-  const scopes = ALL_SCOPES;
+  const scopes = scopesFor(via);
   if (opts.required?.some((scope) => !scopes.includes(scope))) {
     return { ok: false, status: 403, error: 'Insufficient scope.' };
   }
