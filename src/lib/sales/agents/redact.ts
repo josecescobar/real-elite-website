@@ -76,17 +76,27 @@ export function redactToolData(data: unknown, scopes: readonly AgentScope[]): un
   return next;
 }
 
+/**
+ * Task `instruction`, `context` and any free-form result fields are written
+ * by whoever created the task and can carry customer contact details, so a
+ * caller without `customers:read` gets them withheld. Only the structured
+ * tool results survive, redacted by shape.
+ */
+export const WITHHELD_TASK_TEXT = '[withheld: requires customers:read]';
+
 export function taskView(task: AgentTask, scopes: readonly AgentScope[]): AgentTask {
-  if (canReadCustomers(scopes) || !isRecord(task.result)) return task;
-  const tools = task.result.tools;
-  if (!Array.isArray(tools)) return task;
+  if (canReadCustomers(scopes)) return task;
+  const tools = isRecord(task.result) ? task.result.tools : undefined;
   return {
     ...task,
-    result: {
-      ...task.result,
-      tools: tools.map((entry) =>
-        isRecord(entry) ? { ...entry, data: redactToolData(entry.data, scopes) } : entry
-      ),
-    },
+    instruction: WITHHELD_TASK_TEXT,
+    context: null,
+    result: Array.isArray(tools)
+      ? {
+          tools: tools.map((entry) =>
+            isRecord(entry) ? { ...entry, data: redactToolData(entry.data, scopes) } : entry
+          ),
+        }
+      : null,
   };
 }

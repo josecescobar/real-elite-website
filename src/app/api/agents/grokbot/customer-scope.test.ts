@@ -213,6 +213,39 @@ describe('customers:read gates customer contact data on lead endpoints', () => {
     expect(leaksContact(await full.json())).toBe(true);
   });
 
+  it('withholds task instruction and context that carry contact details', async () => {
+    const id = await seedLead();
+    const created = await createTask(
+      postJson('http://localhost/api/agents/grokbot/tasks', ADMIN, {
+        requestingAgent: 'chatgpt',
+        instruction: `call ${NAME} at ${PHONE} or email ${EMAIL} about ${ADDRESS}`,
+        context: { leadId: id, note: `${NAME} ${EMAIL} ${PHONE}` },
+      })
+    );
+    expect(created.status).toBe(201);
+    const { task } = await created.json();
+
+    const restricted = await getTask(
+      authed(`http://localhost/api/agents/grokbot/tasks/${task.id}`, GROK),
+      { params: Promise.resolve({ taskId: task.id }) }
+    );
+    expect(restricted.status).toBe(200);
+    const restrictedBody = await restricted.json();
+    expect(leaksContact(restrictedBody)).toBe(false);
+    expect(restrictedBody.task.context).toBeNull();
+
+    const list = await listTasks(authed('http://localhost/api/agents/grokbot/tasks', GROK));
+    expect(leaksContact(await list.json())).toBe(false);
+
+    const full = await getTask(
+      authed(`http://localhost/api/agents/grokbot/tasks/${task.id}`, ADMIN),
+      { params: Promise.resolve({ taskId: task.id }) }
+    );
+    const fullBody = await full.json();
+    expect(fullBody.task.instruction).toContain(EMAIL);
+    expect(fullBody.task.context).toMatchObject({ leadId: id });
+  });
+
   it('redacts task results run under an explicit permissions list without customers:read', async () => {
     const id = await seedLead();
     const created = await createTask(
