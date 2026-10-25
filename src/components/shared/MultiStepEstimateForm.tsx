@@ -8,6 +8,7 @@ import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 import SmsConsentField from '@/components/shared/SmsConsentField';
+import TurnstileWidget, { turnstilePayload } from '@/components/shared/TurnstileWidget';
 import { smsConsentPayload } from '@/lib/sms-consent';
 
 /* -------------------------------- options -------------------------------- */
@@ -110,6 +111,8 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [smsConsent, setSmsConsent] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -227,6 +230,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
           message: data.scope,
           ...attributionPayload(),
           ...smsConsentPayload(smsConsent),
+          ...turnstilePayload(turnstileToken),
           website: honeypot,
         }),
       });
@@ -247,6 +251,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
       setIsSuccess(true);
     } catch (err) {
       console.error('Multi-step estimate submission error:', err);
+      setTurnstileReset((n) => n + 1);
       setSubmitError(
         `Something went wrong. Please call ${BUSINESS.phone} or try again in a moment.`
       );
@@ -547,6 +552,7 @@ export default function MultiStepEstimateForm({ initialService }: Props) {
             </div>
           )}
 
+          <TurnstileWidget onToken={setTurnstileToken} resetSignal={turnstileReset} />
           <PrivacyNotice subject="estimate" />
         </fieldset>
       )}

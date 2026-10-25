@@ -82,6 +82,17 @@ export function validateEnv(): void {
     );
   }
 
+  const turnstileSet = [env.turnstileSecretKey()?.trim(), env.turnstileSiteKey()?.trim()].filter(
+    Boolean
+  ).length;
+  if (turnstileSet === 1) {
+    console.warn(
+      '[env] Turnstile is only partially configured — set both TURNSTILE_SECRET_KEY and ' +
+        'NEXT_PUBLIC_TURNSTILE_SITE_KEY, or leave both unset. A secret without a site key ' +
+        'rejects every estimate submission.'
+    );
+  }
+
   const thumbtackBasic = [env.thumbtackWebhookUser(), env.thumbtackWebhookPassword()].filter(Boolean).length;
   if (thumbtackBasic === 1) {
     console.warn(

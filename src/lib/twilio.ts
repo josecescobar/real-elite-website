@@ -1,5 +1,6 @@
 import { createHmac, timingSafeEqual } from 'crypto';
 import { env } from './env';
+import { redactForLog } from './redact';
 
 /**
  * Twilio helpers shared by the voice/SMS webhooks.
@@ -88,7 +89,7 @@ export async function sendSmsDetailed(to: string, body: string): Promise<SmsSend
     );
     if (!res.ok) {
       const detail = await res.text().catch(() => '');
-      console.error('Twilio SMS failed', { status: res.status, detail });
+      console.error('Twilio SMS failed', { status: res.status, detail: redactForLog(detail) });
       return { ok: false };
     }
     const payload = (await res.json().catch(() => null)) as { sid?: unknown } | null;

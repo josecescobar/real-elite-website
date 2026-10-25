@@ -22,6 +22,7 @@
 
 import { env } from '@/lib/env';
 import type { StoredSmsConsent } from '@/lib/sms-consent';
+import { redactForLog } from './redact';
 
 export type LeadType = 'estimate' | 'roof_quote' | 'luxury_consultation';
 
@@ -152,7 +153,7 @@ export async function recordLead(input: LeadInput): Promise<LeadWriteResult> {
     });
     const body = await res.text().catch(() => '');
     if (!res.ok) {
-      console.error('Lead ledger insert failed', { status: res.status, body });
+      console.error('Lead ledger insert failed', { status: res.status, body: redactForLog(body) });
       return { ok: false, reason: 'failed' };
     }
     const echoed = echoedLead(body, row.id);
@@ -167,7 +168,7 @@ export async function recordLead(input: LeadInput): Promise<LeadWriteResult> {
     };
   } catch (err) {
     // Network error / timeout / abort — the email already delivered the lead.
-    console.error('Lead ledger insert error', err);
+    console.error('Lead ledger insert error', redactForLog(err));
     return { ok: false, reason: 'failed' };
   }
 }

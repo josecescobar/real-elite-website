@@ -13,6 +13,7 @@
  */
 
 import { env } from '@/lib/env';
+import { redactForLog } from './redact';
 
 const AI_GATEWAY_URL = 'https://ai-gateway.vercel.sh/v1/chat/completions';
 const MODEL = 'minimax/minimax-m3-free';
@@ -82,7 +83,7 @@ export async function summarizeLead(input: LeadSummaryInput): Promise<string | n
 
     if (!res.ok) {
       const body = await res.text().catch(() => '');
-      console.error('AI lead summary request failed', { status: res.status, body });
+      console.error('AI lead summary request failed', { status: res.status, body: redactForLog(body) });
       return null;
     }
 

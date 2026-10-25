@@ -28,6 +28,7 @@ import { BUSINESS } from '@/lib/constants';
 import SuccessNextSteps from '@/components/shared/SuccessNextSteps';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 import SmsConsentField from '@/components/shared/SmsConsentField';
+import TurnstileWidget, { turnstilePayload } from '@/components/shared/TurnstileWidget';
 import { smsConsentPayload } from '@/lib/sms-consent';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -62,6 +63,8 @@ export default function RoofQuoteTool() {
   const [leadErrors, setLeadErrors] = useState<{ fullName?: string; phone?: string; email?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [smsConsent, setSmsConsent] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
@@ -187,6 +190,7 @@ export default function RoofQuoteTool() {
           address: resolvedAddress,
           ...attributionPayload(),
           ...smsConsentPayload(smsConsent),
+          ...turnstilePayload(turnstileToken),
           website: honeypot,
         }),
       });
@@ -198,6 +202,7 @@ export default function RoofQuoteTool() {
       trackLead({ lead_type: 'roof_quote', service: 'Roofing' });
       setPhase('success');
     } catch {
+      setTurnstileReset((n) => n + 1);
       setSubmitError(
         `Something went wrong sending your request. Please call ${BUSINESS.phone} or try again.`
       );
@@ -560,6 +565,7 @@ export default function RoofQuoteTool() {
             </div>
           )}
 
+          <TurnstileWidget onToken={setTurnstileToken} resetSignal={turnstileReset} />
           <PrivacyNotice subject="estimate" />
 
           <div className="mt-7 flex items-center justify-between gap-4">
