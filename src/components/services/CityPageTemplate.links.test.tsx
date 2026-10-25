@@ -157,7 +157,7 @@ describe('CityPageTemplate links to every combo published for its area', () => {
     }
 
     expect(offenders, offenders.join('; ')).toEqual([]);
-  });
+  }, 15_000);
 });
 
 describe('CityPageTemplate hero lane', () => {

@@ -7,12 +7,17 @@ import { salesStoreKind } from '@/lib/sales/store';
 import type { InboundLead } from '@/lib/sales/types';
 import { authorizeThumbtackWebhook, thumbtackAuthConfigured } from '@/lib/sales/webhook-auth';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
+import { hasAdminHealthAuthorization } from '@/lib/admin-health-auth';
 
 export const runtime = 'nodejs';
 
 const RATE_LIMIT = { max: 60, windowMs: 10 * 60 * 1000 };
 
-export async function GET() {
+export async function GET(request: Request) {
+  if (!hasAdminHealthAuthorization(request)) {
+    return NextResponse.json({ ok: true });
+  }
+
   const authConfigured = thumbtackAuthConfigured();
   return NextResponse.json({
     ok: true,

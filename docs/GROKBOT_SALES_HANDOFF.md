@@ -82,9 +82,11 @@ Stub connector names only (do not invent values): `QBO_CLIENT_ID`,
 
 1. Merge this PR — Vercel deploys the existing `real-elite-website` project.
 2. `GET https://www.realelitecontracting.com/api/sales/health`
-   Expect `ok: true`, `mode: safe_autopilot`, `store: memory|supabase`.
+   Public response: exactly `{"ok":true}`. For detailed `mode` and `store`
+   status, send `Authorization: Bearer <ADMIN_TOOLS_KEY>`.
 3. `GET https://www.realelitecontracting.com/api/webhooks/thumbtack`
-   Expect `ok: true` and the accepted event list.
+   Public response: exactly `{"ok":true}`. The accepted event list and
+   configuration status require the same admin Authorization header.
 4. Command center (noindex): `/sales` — unlock with `ADMIN_TOOLS_KEY`.
 
 ## E. Simulated Thumbtack lead
