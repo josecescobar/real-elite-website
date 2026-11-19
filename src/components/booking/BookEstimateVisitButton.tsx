@@ -6,6 +6,74 @@ import { bookingUrlFromEnv, parseBookingUrl, type BookingTarget } from '@/lib/bo
 
 export const BOOKING_BUTTON_LABEL = 'Book a free estimate visit';
 export const BOOKING_NAMESPACE = 'free-estimate-visit';
+/** How long a click waits for /embed/embed.js before showing the fallback. */
+export const BOOKING_EMBED_READY_TIMEOUT_MS = 8_000;
+
+type BookingCal = {
+  loaded?: boolean;
+};
+
+function bookingCal(): BookingCal | undefined {
+  return (window as Window & { Cal?: BookingCal }).Cal;
+}
+
+function findEmbedScript(embedJsUrl: string): HTMLScriptElement | null {
+  for (const script of document.getElementsByTagName('script')) {
+    if (script.src === embedJsUrl || script.getAttribute('src') === embedJsUrl) return script;
+  }
+  return null;
+}
+
+/** Vendored getCalApi only injects a script while Cal.loaded is falsy. */
+function abandonEmbedScript(script: HTMLScriptElement): void {
+  script.remove();
+  const cal = bookingCal();
+  if (cal) cal.loaded = false;
+}
+
+/**
+ * getCalApi resolves once the namespace queue exists, before embed.js loads.
+ * Wait for the script's load event, and fail on error or timeout so the button
+ * can show its fallback and a later click can inject the script again.
+ */
+function watchEmbedScript(script: HTMLScriptElement, timeoutMs: number): Promise<void> {
+  if (script.dataset.bookingEmbed === 'ready') return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    const timer = window.setTimeout(onTimeout, timeoutMs);
+
+    function finish(settle: () => void) {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timer);
+      script.removeEventListener('load', onLoad);
+      script.removeEventListener('error', onError);
+      settle();
+    }
+    function onLoad() {
+      finish(() => {
+        script.dataset.bookingEmbed = 'ready';
+        resolve();
+      });
+    }
+    function onError() {
+      finish(() => {
+        abandonEmbedScript(script);
+        reject(new Error('booking embed failed to load'));
+      });
+    }
+    function onTimeout() {
+      finish(() => {
+        abandonEmbedScript(script);
+        reject(new Error('booking embed timed out'));
+      });
+    }
+
+    script.addEventListener('load', onLoad);
+    script.addEventListener('error', onError);
+  });
+}
 
 const BRAND_COLOR = '#8a6236';
 
@@ -21,6 +89,8 @@ export async function openBookingModal(target: BookingTarget): Promise<void> {
     embedJsUrl: target.embedJsUrl,
     namespace: BOOKING_NAMESPACE,
   });
+  const script = findEmbedScript(target.embedJsUrl);
+  if (script) await watchEmbedScript(script, BOOKING_EMBED_READY_TIMEOUT_MS);
   cal('ui', {
     hideEventTypeDetails: false,
     layout: 'month_view',
