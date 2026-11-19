@@ -18,7 +18,7 @@ export const SMS_VERBAL_OPT_IN_SCRIPT =
 
 /** Confirmation text sent after a valid opt-in. Published on /sms-terms. */
 export const SMS_OPT_IN_CONFIRMATION =
-  'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. Message frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out. Support: (681) 534-5515.';
+  'Real Elite Contracting: You are subscribed to texts about your project, including estimate scheduling and updates. You can text photos of your project to this number. Msg frequency varies. Msg & data rates may apply. Reply HELP for help or STOP to opt out.';
 
 const PAGE_URL_MAX = 2000;
 
