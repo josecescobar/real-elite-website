@@ -12,7 +12,7 @@ import type { PrimaryCta } from '@/lib/cta-intent';
  *
  * GuideTemplate resolves the CTA from the article's own path, so a roofing
  * guide offers the instant roof quote rather than the generic estimate form.
- * The defaults keep the previous behaviour for any caller that passes nothing.
+ * The defaults keep the previous behavior for any caller that passes nothing.
  */
 type Props = {
   cta?: PrimaryCta;
