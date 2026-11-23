@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_REGISTRATION, LICENSED_STATES } from './claims';
+import { RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_TEAMING, LICENSED_STATES } from './claims';
 import { FORBIDDEN_VETERAN_CLAIMS } from './__tests__/forbidden-claim-terms';
 import { runtimeTextOfFile } from './runtime-text';
 import nextConfig from '../../next.config';
@@ -84,10 +84,8 @@ describe('credential and ranking claims', () => {
     }
   });
 
-  it('retains the SAM registration and NAICS Jose confirmed without claiming certification', () => {
-    expect(FEDERAL_REGISTRATION.summary).toBe('Registered in SAM.gov (UEI UZPDY2HUR9, CAGE 21N7T2)');
-    expect(FEDERAL_REGISTRATION.naics.map(n => n.code)).toEqual(['236220', '238160', '238320', '238330', '238990', '236118']);
-    expect(FEDERAL_REGISTRATION.naics.filter(n => n.primary).map(n => n.code)).toEqual(['236220']);
+  it('invites federal teaming without claiming SAM registration', () => {
+    expect(FEDERAL_TEAMING).toBe('Available for federal teaming inquiries');
   });
 
   it('redirects the legacy about URL with the requested 301', async () => {

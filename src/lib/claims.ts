@@ -49,21 +49,8 @@ export function paHicRegistrationLine(): string {
   return `PA HIC #${PA_HIC_REGISTRATION_NUMBER}. Existing-house home improvement only. Expires ${PA_HIC_EXPIRES}.`;
 }
 
-/** Confirmed by Jose in REA-55 board comment 59567b88 (2026-09-27).
- * SAM registration and NAICS codes do not establish veteran certification
- * or expand state contractor license specialties.
- */
-export const FEDERAL_REGISTRATION = {
-  summary: 'Registered in SAM.gov (UEI UZPDY2HUR9, CAGE 21N7T2)',
-  naics: [
-    { code: '236220', label: 'Commercial & Institutional Building Construction', primary: true },
-    { code: '238160', label: 'Roofing Contractors', primary: false },
-    { code: '238320', label: 'Painting & Wall Covering Contractors', primary: false },
-    { code: '238330', label: 'Flooring Contractors', primary: false },
-    { code: '238990', label: 'All Other Specialty Trade Contractors', primary: false },
-    { code: '236118', label: 'Residential Remodelers', primary: false },
-  ],
-} as const;
+/** Public wording until current federal registration is verified. */
+export const FEDERAL_TEAMING = 'Available for federal teaming inquiries';
 
 export type ClaimStatus = 'verified' | 'unconfirmed';
 
