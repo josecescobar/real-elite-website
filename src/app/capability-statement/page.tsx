@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { FEDERAL_REGISTRATION } from '@/lib/claims';
+import { FEDERAL_TEAMING } from '@/lib/claims';
 import Link from 'next/link';
 import {
   Award,
@@ -32,7 +32,6 @@ export const metadata: Metadata = {
       'Martinsburg contractor WV',
       'federal contractor Martinsburg',
       'VA Medical Center contractor capability',
-      'NAICS 236118 238160 contractor',
       'GSA Schedule contractor WV',
     ],
   }),
@@ -50,11 +49,9 @@ const SNAPSHOT = [
   { label: 'Service Region', value: 'WV · MD · VA Tri-State' },
   { label: 'Business Type', value: 'Family-run LLC' },
   { label: 'Who runs it', value: 'Brothers Jose and Miguel' },
-  { label: 'SAM.gov Registration', value: FEDERAL_REGISTRATION.summary },
+  { label: 'Federal Teaming', value: FEDERAL_TEAMING },
   { label: 'Contractor Licenses', value: 'WV062432 · VA Class A 2705198604 (HIC) · PA HIC PA225060' },
 ];
-
-const NAICS_CODES = FEDERAL_REGISTRATION.naics;
 
 const COMPETENCIES = [
   {
@@ -227,43 +224,6 @@ export default function CapabilityStatementPage() {
         </Container>
       </section>
 
-      {/* NAICS codes */}
-      <section className="bg-steel-50 py-14 md:py-20">
-        <Container size="wide">
-          <SectionHeader
-            eyebrow="NAICS Codes"
-            title="What we're coded for."
-            subtitle="Primary NAICS shown first. Additional codes carried for relevant task orders and prime/sub teaming."
-          />
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-3">
-            {NAICS_CODES.map((n) => (
-              <div
-                key={n.code}
-                className={`flex items-start gap-4 bg-white border ${
-                  n.primary ? 'border-brand-red' : 'border-charcoal-100'
-                } rounded-lg p-5`}
-              >
-                <div
-                  className={`flex-shrink-0 inline-flex items-center justify-center w-14 h-14 rounded-md font-heading font-extrabold text-sm ${
-                    n.primary ? 'bg-brand-red text-white' : 'bg-navy-800 text-white'
-                  }`}
-                >
-                  {n.code}
-                </div>
-                <div className="pt-1">
-                  <p className="font-bold text-navy-800 text-base">{n.label}</p>
-                  {n.primary && (
-                    <p className="text-brand-red text-[0.65rem] uppercase tracking-[0.18em] font-bold mt-1">
-                      Primary
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
       {/* Core competencies */}
       <section className="bg-white py-14 md:py-20">
         <Container size="wide">
@@ -430,7 +390,7 @@ export default function CapabilityStatementPage() {
               <span>·</span>
               <span>Licensed WV · VA · PA</span>
               <span>·</span>
-              <span>Registered in SAM.gov</span>
+              <span>{FEDERAL_TEAMING}</span>
             </div>
           </div>
         </Container>

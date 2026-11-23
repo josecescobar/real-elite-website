@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { FEDERAL_REGISTRATION } from '@/lib/claims';
+import { FEDERAL_TEAMING } from '@/lib/claims';
 import { buildMetadata, fitTitle } from '@/lib/seo';
 import Link from 'next/link';
 import {
@@ -48,10 +48,9 @@ const PILLARS = [
   },
   {
     icon: Award,
-    eyebrow: 'Registration',
-    title: 'Registered in SAM.gov',
-    body:
-      `${FEDERAL_REGISTRATION.summary}. That registration is not a veteran certification and does not expand the state licenses.`,
+    eyebrow: 'Teaming',
+    title: 'Federal teaming',
+    body: FEDERAL_TEAMING,
   },
   {
     icon: Building2,
@@ -63,12 +62,6 @@ const PILLARS = [
 ];
 
 const CERT_TRACKS = [
-  {
-    name: 'SAM.gov',
-    full: 'System for Award Management Registration',
-    status: 'Registered',
-    body: `${FEDERAL_REGISTRATION.summary}. Primary NAICS: 236220. Additional NAICS: 238160, 238320, 238330, 238990, 236118. Registration does not establish a veteran certification or expand state license specialties.`,
-  },
   {
     name: 'West Virginia',
     full: 'WV Contractor License WV062432',
@@ -129,7 +122,7 @@ const FAQ_ITEMS = [
   {
     question: 'Does Real Elite hold a federal veteran certification?',
     answer:
-      `No. ${FEDERAL_REGISTRATION.summary}. Registration is not a veteran certification. No branch of service is stated.`,
+      'No. Real Elite does not hold a federal veteran certification.',
   },
   {
     question: 'Do I need to be a federal customer to hire Real Elite?',
@@ -139,7 +132,7 @@ const FAQ_ITEMS = [
   {
     question: 'Which licenses does Real Elite hold?',
     answer:
-      `WV Contractor License WV062432, Virginia Class A Contractor 2705198604 (HIC) and Pennsylvania Home Improvement Contractor PA225060. ${FEDERAL_REGISTRATION.summary}.`,
+      'WV Contractor License WV062432, Virginia Class A Contractor 2705198604 (HIC) and Pennsylvania Home Improvement Contractor PA225060.',
   },
   {
     question: 'How does "Military Precision" actually show up in our project?',
@@ -250,7 +243,7 @@ export default function VeteransPage() {
         <Container size="wide">
           <SectionHeader
             eyebrow="What is on file"
-            title="Licenses and registration, stated exactly."
+            title="State licenses and registration."
             subtitle="These are the credentials Real Elite actually holds. A federal veteran certification is not one of them."
           />
 

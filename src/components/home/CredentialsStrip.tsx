@@ -1,8 +1,9 @@
+import { FEDERAL_TEAMING } from '@/lib/claims';
 import Container from '@/components/shared/Container';
 
 /**
  * The credentials row under the hero. Verifiable facts only: licence
- * classes and numbers, ownership, language, federal registration. No ratings,
+ * classes and numbers, ownership, language, teaming availability. No ratings,
  * no counts, no promises about how a job runs.
  */
 const CREDENTIALS = [
@@ -11,7 +12,7 @@ const CREDENTIALS = [
   { label: 'West Virginia', value: 'Licensed · WV062432' },
   { label: 'Pennsylvania', value: 'HIC · PA225060' },
   { label: 'Languages', value: 'English · Español' },
-  { label: 'Federal', value: 'Registered in SAM.gov' },
+  { label: 'Federal Teaming', value: FEDERAL_TEAMING },
 ] as const;
 
 export default function CredentialsStrip() {

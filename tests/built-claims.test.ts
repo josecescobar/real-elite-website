@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import { OPERATIONAL_CLAIMS, RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_REGISTRATION, claimsFoundIn } from '../src/lib/claims';
+import { OPERATIONAL_CLAIMS, RETRACTED_TRUST_CLAIMS, CONTRACTOR_LICENSES, FEDERAL_TEAMING, claimsFoundIn } from '../src/lib/claims';
 import { FORBIDDEN_VETERAN_CLAIMS } from '../src/lib/__tests__/forbidden-claim-terms';
 
 const retractedTrustClaims = [...RETRACTED_TRUST_CLAIMS, ...FORBIDDEN_VETERAN_CLAIMS];
@@ -232,12 +232,15 @@ describe('unconfirmed claims in rendered pages', () => {
     }
   });
 
-  it('publishes the confirmed SAM facts and withholds unverified proof', () => {
-    for (const route of ['/veterans', '/capability-statement']) {
+  it('invites teaming without publishing unverified federal credentials', () => {
+    for (const file of pages) {
+      const html = fs.readFileSync(file, 'utf8');
+      expect(html, routeOf(file)).not.toMatch(/UZPDY2HUR9|21N7T2|UZPDEDYZHUR9|21N72|registered in SAM\.gov|Primary NAICS/i);
+    }
+    for (const route of ['/', '/veterans', '/capability-statement']) {
       const file = pages.find(file => routeOf(file) === route)!;
       const text = visibleText(fs.readFileSync(file, 'utf8'));
-      expect(text).toContain(FEDERAL_REGISTRATION.summary);
-      for (const { code } of FEDERAL_REGISTRATION.naics) expect(text).toContain(code);
+      expect(text).toContain(FEDERAL_TEAMING);
     }
     expect(pages.filter(file => routeOf(file).startsWith('/projects/'))).toEqual([]);
     const reviews = pages.find(file => routeOf(file) === '/reviews');
